@@ -3,7 +3,7 @@
 
   <!-- Ideoligions in the colony (Source/ColonyCouncil/Faith/), with Ideology. -->
   <CC_Settings_FaithLife>Ideoligions in the colony</CC_Settings_FaithLife>
-  <CC_Settings_FaithLife_Tip>With Ideology: the game's ideoligions, and each colonist's certainty in their own, come into Rimfolk's life. Talks about their ideoligions can move a listener's certainty, the council can call an ideoligion evening or decree one ideoligion for the colony, a hard turn of life can shake someone's certainty, and a page shows who holds which ideoligion and how firmly. Conversions are always the game's own: someone takes up a new ideoligion when their certainty runs out.</CC_Settings_FaithLife_Tip>
+  <CC_Settings_FaithLife_Tip>With Ideology: the game's ideoligions, and each colonist's certainty in their own, come into Rimfolk's life. Talks about their ideoligions can move a listener's certainty, the council can call an ideoligion evening or decree one ideoligion for the colony, hard times can shake someone's certainty, and a page shows who holds which ideoligion and how firmly. Conversions are always the game's own: someone takes up a new ideoligion when their certainty runs out.</CC_Settings_FaithLife_Tip>
   <CC_SetNote_FaithLife>Talks, rites and hard times can move a colonist's certainty in their ideoligion (Ideology).</CC_SetNote_FaithLife>
 
   <!-- Someone took up a new ideoligion through something Rimfolk did (a talk, an ideoligion evening, a decree). -->

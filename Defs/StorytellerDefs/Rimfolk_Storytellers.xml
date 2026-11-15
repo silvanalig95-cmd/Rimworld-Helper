@@ -16,7 +16,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LongRoad</defName>
     <label>The Long Road</label>
-    <description>The world calls the colony out. Raids come to the gate at the classic pace, and more of the story waits in the region: letters asking for help, favours called in, camps on the land, missions and quests, travellers on the road. Ambushes and chance meetings follow the colony's caravans more than its walls.\n\nFor a game of journeys and the region map.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>More of the story happens out in the region. Raids come to the gate at the classic pace, and the region brings more: letters asking for help, favours called in, camps on the land, missions and quests, travellers on the road. Ambushes and chance meetings happen more to the colony's caravans than at its walls.\n\nFor a game of journeys and the region map.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LongRoad</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LongRoadTiny</portraitTiny>
     <listOrder>61</listOrder>
@@ -261,7 +261,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Neighbours</defName>
     <label>Neighbours</label>
-    <description>The peoples around are the story. Raids come at the classic pace, and most come from a people with a reason: one the colony wronged, an old enemy. Peoples call in their favours and ask the colony into their quarrels, write and visit more, and a people the colony helped is likelier to send fighters when it is attacked.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>Most of the story comes from the peoples around the colony. Raids come at the classic pace, and most come from a people with a reason: one the colony wronged, or an old enemy. Peoples call in their favours, ask the colony to join their quarrels, and write and visit more often, and a people the colony has helped is more likely to send fighters when the colony is attacked.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Neighbours</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/NeighboursTiny</portraitTiny>
     <listOrder>62</listOrder>
@@ -488,7 +488,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_TurningYear</defName>
     <label>The Turning Year</label>
-    <description>The calendar decides. Quiet springs, with sickness coming with the thaw; growing summers of heat waves and blight; trade and camps in autumn, when the harvest is in; then a hard winter, its cold snaps and the hungry raids of late winter. Every year has the same shape and different contents, so the colony can plan for its seasons. Over a year the threats and the sickness come about as often as the classic pace.\n\nFor a game of fields, stores and the colony's calendar.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The seasons shape the year. Spring is quiet, though sickness comes with the thaw. Summer is the growing season, with heat waves and blight. Autumn, once the harvest is in, brings trade and camps. Winter is hard, with cold snaps and the hardest raids late in the season. Every year follows the same pattern with different events in it, so the colony can plan for its seasons. Over a year, threats and sickness come about as often as at the classic pace.\n\nFor a game of fields, stores and the colony's calendar.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/TurningYear</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/TurningYearTiny</portraitTiny>
     <listOrder>63</listOrder>
@@ -786,7 +786,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_WhatYouSow</defName>
     <label>What You Sow</label>
-    <description>The colony's deeds decide, as the peoples remember them. Raids come at the classic pace whatever the colony does, but who comes is its deeds: cruelty draws raiders with a grievance, and the roads thin (a quarter of the traders, visitors and friends in a fight still come); kindness brings traders, visitors and friends at the gate in a fight. Nothing is told: the world simply answers, and its peoples remember longer.\n\nFor a game where how the colony treats others matters.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>What happens depends on the colony's deeds, as the peoples remember them. Raids come at the classic pace whatever the colony does, but its deeds decide who comes. Cruelty brings raiders with a grievance, and fewer traders, visitors and friends in a fight (a quarter of them still come); kindness brings traders and visitors, and friends to the gate in a fight. None of this is announced: the world simply responds, and its peoples remember for longer.\n\nFor a game where how the colony treats others matters.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/WhatYouSow</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/WhatYouSowTiny</portraitTiny>
     <listOrder>64</listOrder>
@@ -1014,7 +1014,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_OldPowers</defName>
     <label>Old Powers</label>
-    <description>The world feels watched. Raids come nearly at the classic pace, and stranger things make up the rest of it: psychic drones, maddened herds, things in the earth, and the void where its powers are awake. Nights are full of omens, eclipses and auroras; pilgrims and seers are more often on the road, the land and the sky stir more, the old powers' own strange happenings come about twice as often (a seer at the end of a season, a stone that hums, a night sky in other colours, an animal that speaks, pale wolves under the full moon), and the region's word turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>More of the story is strange and unexplained. Raids come nearly at the classic pace, and stranger threats make up the rest: psychic drones, maddened herds, things in the earth, and the void's own threats where Anomaly's content is on. Omens and strange nights come often, with eclipses and auroras. Pilgrims and seers travel more, Rimfolk's events about the land and the sky come more often, and the old powers' own strange happenings come about twice as often (a seer at the end of a season, a stone that hums, a night sky in other colours, an animal that speaks, pale wolves under the full moon). News from the region turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/OldPowers</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/OldPowersTiny</portraitTiny>
     <listOrder>65</listOrder>
@@ -1350,7 +1350,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LeanYears</defName>
     <label>Lean Years</label>
-    <description>Scarcity is the enemy, not raiders. Raids come at the classic pace, and blights, cold snaps, heat waves and storms come often, traders are few and camps come seldom, and the region's word is of famine, drought and hard winters. The colony must feed and keep everyone through years that test it.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>Scarcity is the main danger, more than raiders. Raids come at the classic pace, while blights, cold snaps, heat waves and storms come often, traders are few and camps are rarer. News from the region is of famine, drought and hard winters. The colony has to keep everyone fed and warm through hard years.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LeanYears</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LeanYearsTiny</portraitTiny>
     <listOrder>66</listOrder>
@@ -1643,7 +1643,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_RiseAndFall</defName>
     <label>Rise and Fall</label>
-    <description>Long arcs of about two years. First a year of growth and plenty: few raids, traders, visitors and camps. Then the region's word of a great trouble, a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky, and a season later the trouble itself: the war's raids, the plague's sickness, the famine's blights, the winter's cold. Then the rebuilding, quiet, with friends at hand, and the next arc. Over an arc the threats and the sickness come about as often as the classic pace.\n\nFor a game of long stories with an ending to each.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The story runs in long arcs of about two years. First comes a year of growth and plenty, with few raids and many traders, visitors and camps. Then news comes from the region of a great trouble (a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky), and about a season later the trouble itself arrives: the war's raids, the plague's sickness, the famine's blights, the winter's cold. Then comes a quiet time of rebuilding, with friends at hand, and the next arc begins. Over an arc, threats and sickness come about as often as at the classic pace.\n\nFor a game of long stories with an ending to each.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/RiseAndFall</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/RiseAndFallTiny</portraitTiny>
     <listOrder>67</listOrder>
@@ -1977,7 +1977,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Crossroads</defName>
     <label>Crossroads</label>
-    <description>The colony as a market on a road through the land. Traders come about twice as often, orbital traders too, with visitors, travellers and camps of merchants, and debts and favours between the colony and its neighbours. Raids come at the classic pace, larger as its wealth grows, and some come from rivals with a grudge. The region's word is of fairs, trade, roads and their tolls.\n\nFor a game of trade and wealth.\n\nIt leans toward these, never away from anything: every kind of event can still come.</description>
+    <description>The colony is a market on a road through the land. Traders come about twice as often, orbital traders too, along with visitors, travellers and merchants' camps, and there are more debts and favours between the colony and its neighbours. Raids come at the classic pace, larger as the colony's wealth grows, and some come from rivals with a grudge. News from the region is of fairs, trade, roads and tolls.\n\nFor a game of trade and wealth.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Crossroads</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/CrossroadsTiny</portraitTiny>
     <listOrder>68</listOrder>

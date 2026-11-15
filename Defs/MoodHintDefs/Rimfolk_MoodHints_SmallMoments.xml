@@ -10,7 +10,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_SmallLetdowns</defName>
     <thoughts><li>Rimfolk_SmallLetdowns</li></thoughts>
-    <fix>Each of these passes within half a day. If they keep coming, they wear on the heart: the heart section below says what wore on them most, and that is the thing to change.</fix>
+    <fix>Each of these passes within half a day. If they keep coming, they add to their strain: the Heart section below says what caused the most, and that is the thing to change.</fix>
     <act>Each passes in half a day</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -19,7 +19,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_SmallJoys</defName>
     <thoughts><li>Rimfolk_SmallJoys</li></thoughts>
-    <keep>Each lifts them for half a day, and a run of them eases the heart: time with friends, a varied table and the small kindnesses of colony life keep them coming.</keep>
+    <keep>Each gives a good mood for half a day, and a run of them eases strain: time with friends, varied meals and small kindnesses from the others keep them coming.</keep>
     <article>Council_Alm_C_Setbacks</article>
   </ColonyCouncil.MoodHintDef>
 

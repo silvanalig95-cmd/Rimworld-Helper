@@ -24,8 +24,8 @@
   <CC_LetterForm_SignOursTitled>{FROM}, {TITLE}, for all of us at {COLONY}</CC_LetterForm_SignOursTitled>
   <CC_LetterForm_SignMark>X, the mark of {FROM}</CC_LetterForm_SignMark>
   <CC_LetterForm_SignHelped>{FROM}, written down for them by {HELPER}</CC_LetterForm_SignHelped>
-  <CC_LetterForm_SignMany>The many of {TOWN}</CC_LetterForm_SignMany>
-  <CC_LetterForm_TheirHelper>the one in town who has letters</CC_LetterForm_TheirHelper>
+  <CC_LetterForm_SignMany>The people of {TOWN}</CC_LetterForm_SignMany>
+  <CC_LetterForm_TheirHelper>the one in town who can write</CC_LetterForm_TheirHelper>
   <CC_LetterForm_MachineHead>RECORD {DATE}\nFROM: {FROM}, {PLACE}\nTO: {TO}\nSUBJECT: {PURPOSE}</CC_LetterForm_MachineHead>
   <CC_LetterForm_MachinePoint>{N}. {LINE}</CC_LetterForm_MachinePoint>
   <CC_LetterForm_MachinePS>ADDENDUM: {LINE}</CC_LetterForm_MachinePS>

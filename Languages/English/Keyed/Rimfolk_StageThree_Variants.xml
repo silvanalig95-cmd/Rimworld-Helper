@@ -37,8 +37,8 @@
   <CC_TownLife_HardshipText_3>By {MEANS}, sad news from {TOWN}, the town {COLONY} was: {PAWN}, the colony's own once, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_3>
   <CC_TownLife_CoolHead_2>{TOWN} has a new {TITLE}, {HEAD}, who thinks little of the colony. While {HEAD} leads, the town will be cooler to it.</CC_TownLife_CoolHead_2>
   <CC_TownLife_CoolHead_3>{HEAD} is {TITLE} of {TOWN} now, and no friend of the colony's. The town will be cooler to the colony while they lead it.</CC_TownLife_CoolHead_3>
-  <CC_TownLife_FightText_2>{NAMES} have reached {TOWN} for the colony. {ENEMY} are coming in at the far side, and {PEOPLE} are holding their walls.\n\nIt is their town now: the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText_2>
-  <CC_TownLife_FightText_3>The colony's fighters, {NAMES}, are at {TOWN}, with {PEOPLE} on the walls beside them and {ENEMY} coming in from the far side.\n\nThe town is its people's, and the colony's fighters are there to help, not to command. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText_3>
+  <CC_TownLife_FightText_2>{NAMES} have reached {TOWN} for the colony. {ENEMY} are coming in at the far side, and {PEOPLE} are holding their walls.\n\nIt is their town now: the colony's fighters fight beside its people, not in command of them. The fight is won when every raider is down or gone.</CC_TownLife_FightText_2>
+  <CC_TownLife_FightText_3>The colony's fighters, {NAMES}, are at {TOWN}, with {PEOPLE} on the walls beside them and {ENEMY} coming in from the far side.\n\nThe town is its people's, and the colony's fighters are there to help, not to command. The fight is won when every raider is down or gone.</CC_TownLife_FightText_3>
 
   <!-- ================= Foundings, hand-overs, take-backs and merges ================= -->
   <CC_Found_LetterText_2>{NAMES} from {MOTHER} have founded {PLACE}: {PARTY}.</CC_Found_LetterText_2>

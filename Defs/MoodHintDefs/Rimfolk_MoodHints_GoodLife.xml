@@ -42,7 +42,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_TroubleAches</defName>
     <thoughts><li>Rimfolk_Trouble_Aches</li></thoughts>
-    <fix>An old injury, a bad back or the years ache today, more often in cold or wet weather. It passes in a day, and sooner after a deep talk or a good time with a friend.</fix>
+    <fix>An old injury, a bad back or their age gives them aches today, more often in cold or wet weather. It passes in a day, and sooner after a deep talk or a good time with a friend.</fix>
     <act>Company helps it pass</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>

@@ -14,7 +14,7 @@
     <importance>0.8</importance>
     <tips>
       <li>Grazing animals eat grass while it grows and hay or kibble once it stops. A herd that grew all summer can eat the stores bare by midwinter.</li>
-      <li>Haygrass grows fast and keeps for a long time once cut; a field of it sown in summer is the herd's winter.</li>
+      <li>Haygrass grows fast and keeps for a long time once cut; a field of it sown in summer feeds the herd through the winter.</li>
       <li>Fewer animals through the winter, and more of them born in spring, is how most herders get by.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -27,8 +27,8 @@
     <category>Temperature</category>
     <importance>0.8</importance>
     <tips>
-      <li>Each animal has the coldest it can bear; below it, it gets hypothermia like anyone else. A roofed barn keeps the wind off even without a heater.</li>
-      <li>[lowtech] A campfire in the barn, behind a wall, keeps a herd through a hard night.</li>
+      <li>Each animal has a lowest temperature it can stand; below it, it gets hypothermia like anyone else. A roofed barn keeps the wind off even without a heater.</li>
+      <li>[lowtech] A campfire in the barn, behind a wall, keeps a herd warm through a cold night.</li>
       <li>Animals in a pen can't come in by themselves. A barn door inside the pen lets them.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -41,9 +41,9 @@
     <category>Power</category>
     <importance>1</importance>
     <tips>
-      <li>A fuelled generator only runs while someone keeps it fed. A stack of its fuel in the stores, near it, keeps the haulers ahead of it.</li>
-      <li>Batteries carry a grid through a generator's gap; without them the lights go out the moment it stops.</li>
-      <li>Saving the power, a decree, switches the lamps off at night and lets the batteries carry the dark hours.</li>
+      <li>A fuelled generator only runs while someone keeps refuelling it. A stockpile of its fuel close by lets the haulers keep up.</li>
+      <li>Batteries keep the power on while a generator is out of fuel; without them the lights go out the moment it stops.</li>
+      <li>The decree saving the power switches the lamps off late at night, so the batteries last until morning.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -56,7 +56,7 @@
     <importance>0.6</importance>
     <tips>
       <li>A blueprint the stores can't pay for still sends builders and haulers looking. Plans for what can be built now get built sooner.</li>
-      <li>The same plan in a stuff the colony has (wood for steel, stone for wood) can go up today.</li>
+      <li>The same plan in a material the colony has (wood instead of steel, stone instead of wood) can be built today.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -69,8 +69,8 @@
     <importance>0.7</importance>
     <tips>
       <li>A tree is cover for whoever stands behind it. Close to a wall, it's cover for the attackers, not the defenders.</li>
-      <li>Open ground outside the wall, for a few steps at least, gives the defenders the shots.</li>
-      <li>Trees also burn. A fire in a wood that touches the wall comes over it.</li>
+      <li>Keep a few cells of open ground outside the wall, so attackers there have no cover from the defenders.</li>
+      <li>Trees also burn, and a fire in trees right up against the wall can spread over it.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -95,7 +95,7 @@
     <category>Idea</category>
     <importance>0.6</importance>
     <tips>
-      <li>An ideoligion's moral guide can call its evenings, speak to its doubters and convert others. Without one, the faithful drift.</li>
+      <li>An ideoligion's moral guide can call evenings of faith, talk with its doubters and convert others. Without one, nobody does these things for it.</li>
       <li>The role is given from the ideoligion's tab, and the council can name one when two could take it.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>

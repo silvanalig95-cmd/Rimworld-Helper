@@ -100,7 +100,7 @@
     <defName>Council_Temple</defName>
     <label>temple</label>
     <description>A large altar at the far end with braziers either side, a lectern facing two rows of pews with an aisle down the middle, columns and drapes.</description>
-    <purpose>A ritual room for the whole colony: funerals, festivals and trials with everyone seated and the room itself adding to the rite.</purpose>
+    <purpose>A ritual room for the whole colony: funerals, festivals and trials with everyone seated, and the room's impressiveness adding to the ritual's quality.</purpose>
     <order>29</order>
     <group>Leisure</group>
     <size>(9,8)</size>

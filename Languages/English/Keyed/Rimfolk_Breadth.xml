@@ -7,7 +7,7 @@
   <CC_Social_VendettaSettled_blood>{0} has avenged {2} on {1}.</CC_Social_VendettaSettled_blood>
   <CC_Social_VendettaSettled_captive>{0} has settled with {1} for {2}, partly with captives.</CC_Social_VendettaSettled_captive>
   <CC_Social_VendettaSettled_home>{2} came home, and {0} let the matter of {1} rest.</CC_Social_VendettaSettled_home>
-  <CC_Social_VendettaSettled_forgiven>{0} laid down the vendetta against {1} for {2}.</CC_Social_VendettaSettled_forgiven>
+  <CC_Social_VendettaSettled_forgiven>{0} gave up the vendetta against {1} for {2}.</CC_Social_VendettaSettled_forgiven>
   <CC_Social_VendettaSettled_peace>{0} made peace with {1} over {2}, once the colony had.</CC_Social_VendettaSettled_peace>
 
   <!-- The newer council seats. -->
@@ -23,8 +23,8 @@
   <CC_Ways_TraitPride>Colonists with a passion for {0} are proud of it.</CC_Ways_TraitPride>
   <CC_Ways_TraitFading>People have stopped calling the colony {0}.</CC_Ways_TraitFading>
   <CC_Ways_TraitWhy>The colony is known as {0}.</CC_Ways_TraitWhy>
-  <CC_Ways_TraitsHeader>What the work has made us</CC_Ways_TraitsHeader>
-  <CC_Ways_TraitsIntro>Beside the five ways, a colony grows into what its people keep doing. Steady work for a season earns the name; it fades if the work stops.</CC_Ways_TraitsIntro>
+  <CC_Ways_TraitsHeader>What the colony is known for</CC_Ways_TraitsHeader>
+  <CC_Ways_TraitsIntro>Besides the five ways, a colony becomes known for the work its people keep doing. A season of steady work earns the name, and it fades if the work stops.</CC_Ways_TraitsIntro>
   <CC_Ways_TraitKnown>known</CC_Ways_TraitKnown>
   <CC_Ways_TraitProgress>{0} of the way</CC_Ways_TraitProgress>
 
@@ -68,7 +68,7 @@
   <CC_Heart_Cause_WorryAway>{0} is away on the road</CC_Heart_Cause_WorryAway>
   <CC_Heart_Cause_Circle>one of a group</CC_Heart_Cause_Circle>
   <CC_Heart_Cause_ManyFriends>good friends close by</CC_Heart_Cause_ManyFriends>
-  <CC_Heart_Cause_Vendetta>a debt of blood to collect</CC_Heart_Cause_Vendetta>
+  <CC_Heart_Cause_Vendetta>a death to avenge</CC_Heart_Cause_Vendetta>
   <CC_Heart_Cause_GoalHalfway>a life goal half won</CC_Heart_Cause_GoalHalfway>
   <CC_Heart_Cause_SteadyNerve>a steady nerve under fire</CC_Heart_Cause_SteadyNerve>
 
@@ -92,7 +92,7 @@
   <CC_Adv_JoyTime_Title>{0} colonist(s) with no time for recreation</CC_Adv_JoyTime_Title>
   <CC_Adv_JoyTime_Detail>Not one hour of recreation in the schedule: {0}. Give them an hour or two in the evening, or some "anything" hours.</CC_Adv_JoyTime_Detail>
   <CC_Adv_Strain_Title>{0} colonist(s) worn down by strain</CC_Adv_Strain_Title>
-  <CC_Adv_Strain_Detail>Close to breaking under the surface: {0}. Rest, recreation, a gathering or a quiet day will bring it down.</CC_Adv_Strain_Detail>
+  <CC_Adv_Strain_Detail>Close to a breaking point, though it doesn't show yet: {0}. Rest, recreation, a gathering or a quiet day will bring it down.</CC_Adv_Strain_Detail>
   <CC_Adv_Conval_Title>{0} convalescent(s) back at work</CC_Adv_Conval_Title>
   <CC_Adv_Conval_Detail>Still weak and working anyway: {0}. Rest in bed would get them well about a third sooner.</CC_Adv_Conval_Detail>
   <CC_Adv_WishLapse_Title>{0} wish(es) about to lapse</CC_Adv_WishLapse_Title>
@@ -102,8 +102,8 @@
   <!-- Scenarios: the married couple, and what the new starts promise. -->
   <CC_ScenPart_Bond_spouses>Rimfolk: two of the colonists are married (or close friends, if they couldn't be).</CC_ScenPart_Bond_spouses>
   <CC_Scen_Bond_spouses>{A_nameDef} and {B_nameDef} are married, and everything they own is in this place now.</CC_Scen_Bond_spouses>
-  <CC_Scen_Hint_Troupe>Word of a company of players settling down travels fast among wandering folk. Someone will come looking for an audience before long.</CC_Scen_Hint_Troupe>
-  <CC_Scen_Hint_Monastery>The old house sent word ahead that the new one keeps open doors. Pilgrims and wandering holy folk will find their way here soon.</CC_Scen_Hint_Monastery>
+  <CC_Scen_Hint_Troupe>News that a troupe of actors has settled here spreads quickly among travelling people. Someone will come to watch a show before long.</CC_Scen_Hint_Troupe>
+  <CC_Scen_Hint_Monastery>The order's old house sent word ahead that the new one welcomes anyone who comes. Pilgrims and wandering holy people will start arriving soon.</CC_Scen_Hint_Monastery>
   <CC_Scen_Hint_Family>The family back home was promised news within the month. They'll come to see for themselves, or at least write.</CC_Scen_Hint_Family>
 
 </LanguageData>

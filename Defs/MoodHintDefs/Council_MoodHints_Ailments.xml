@@ -134,7 +134,7 @@
       <li>Council_Ail_PulledThrough</li>
       <li>Council_Ail_Survived</li>
     </thoughts>
-    <fix>It passes in two days. Good medicine on the shelf and a second doctor make a hard case lighter to carry.</fix>
+    <fix>It passes in two days. Good medicine on the shelf and a second doctor make hard cases easier on the doctor.</fix>
     <act>Passes in two days</act>
     <actionable>false</actionable>
     <keep>It comes from seeing someone through a serious illness.</keep>
@@ -257,7 +257,7 @@
       <li>Council_Ail_BadNights_Mood</li>
       <li>Council_Ail_Unease_Mood</li>
     </thoughts>
-    <fix>The fight or the horror, coming back at night. It can't be tended; company in the evening and an ordinary day's work help it pass within a few days to a week. Strong walls and fewer fights at the door mean fewer bad nights.</fix>
+    <fix>Memories of a fight or of something horrible they saw, coming back at night. It can't be tended; company in the evening and an ordinary day's work help it pass within a few days to a week. Strong walls and fewer fights at the door mean fewer bad nights.</fix>
     <act>Company in the evening helps</act>
     <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
@@ -271,7 +271,7 @@
       <li>Council_Ail_Leeches_Mood</li>
       <li>Council_Ail_OrbitSick_Mood</li>
     </thoughts>
-    <fix>The place itself. Gas masks on polluted ground (and cleaning it up), goggles or a full helmet on bright snow, high boots in the swamp; in orbit, plain food and regular hours while the body settles. All pass in hours to a few days, and a doctor's tending helps.</fix>
+    <fix>These come from the place itself. Gas masks on polluted ground (and cleaning it up), goggles or a full helmet on bright snow, high boots in the swamp; in orbit, plain food and regular hours while the body settles. All pass in hours to a few days, and a doctor's tending helps.</fix>
     <act>Give them the right gear</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>

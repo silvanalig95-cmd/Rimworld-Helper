@@ -14393,8 +14393,8 @@ a plain plate with its name on Rimfolk's ground (`Tools/make_storyteller_plates.
 it, and 228 by 244 for the list, twice its size). Its parts are the game's own comps tuned to its way, Rimfolk's own
 comps where the game's can't say it (below), and a `StoryWayExtension`: Rimfolk's levers on its own happenings, a shape
 (the seasons, the colony's deeds, the long arc), kinds of world situation it leans to, kinds of everyday hurt it leans
-to. Each description says plainly how it plays and ends "It leans toward these, never away from anything: every kind of
-event can still come."
+to. Each description says plainly how it plays and ends "It shifts the odds this way but shuts nothing out: every kind of event
+can still come."
 
 **The levers** (`Story/StoryLevers.cs`, `StoryWaysMath.Keys`), each a factor on Rimfolk's own rate, read through
 `StoryDirection.Factor(key)`: the direction's when one is chosen in the settings, else the storyteller's when it is one
@@ -14420,7 +14420,7 @@ of the eight, else 1 (the raids' reasons 0). The season, the deeds or the arc sh
 The everyday hurts: a way's `harmLean` tilts the shared budget's weight toward its kinds (`Harm.Reckon`, the tilt in
 the shared weight and in each pass), so the hurts move between kinds and their total stays the budget.
 
-**Two rules.** A way leans toward something and never away from anything: no lever, shape or share of a storyteller
+**Two rules.** A way leans toward something and shuts nothing out: no lever, shape or share of a storyteller
 part goes below `StoryWaysMath.Floor` (a quarter); the raids' reasons are a share of who comes, never more than
 `MaxRaidReasons` (0.85), and only from a people that could have come anyway; every incident category of the game and
 the player's mods keeps a route under every way (the tests check each def against docs/player-mods: ThreatBig,

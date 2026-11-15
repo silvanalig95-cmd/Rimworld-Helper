@@ -170,6 +170,61 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   letters), the camps' arrivals, help, joins and farewells (letters), the vanilla gathering and condition messages
   (already plain), every placeholder, tag, number and fact, and every line already plain (most of the encounters and
   nuisances, the missions and the wishes' lost lines). No test pinned these words.
+- 0.250.0, **Plain words: advice-storytellers**
+  (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
+  i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "start with:
+  event cards, advice and building, messages and interface, storytellers"). The advice-and-building batch with the
+  storytellers and scenarios: 65 files (`AdvisorSignalDefs`, `DefenseStepDefs`, `DefenseTemplateDefs`, `MoodHintDefs`,
+  `RoomTemplateDefs`, `Scenarios`, `StorytellerDefs`). About 1,950 lines read (tips, steps, plans' purposes and tips,
+  mood hints' fixes, keeps and short actions, room plans, scenario texts, the eight storytellers), 138 rewritten: things
+  given a will ("guns that never sleep", now the step "turrets behind the gate"; "the faithful drift", "a workshop
+  works", "each tires of being used", "the void where its powers are awake"), riddling or clipped lines ("Only three.",
+  "Nobody needs to.", "The place itself.", "A sour talk."), wry endings ("a line people only find in the middle of a raid
+  is no line", "which is what art is for", "and the rest of the afternoon"), in-world phrases explained ("the others'
+  circles", "the heart's good side", "feuding watches" as Bad Blood's two crews, "the region's word" as news from the
+  region, "laid down" as a vendetta forgiven) and the storytellers' colon and semicolon chains as plain sentences, each
+  storyteller keeping its character ("The calendar decides" is "The seasons shape the year"; "The world calls the colony
+  out" is the approved sample). Each storyteller now ends "It shifts the odds this way but shuts nothing out: every kind
+  of event can still come." (StoryWaysTests checks "shuts nothing out"; "never away from anything" read as untrue beside
+  Lean Years' fewer traders). Found and fixed against the code: the camp advice said a camp whose tension boils over
+  "turns on the colony", while `Camp.CheckTension` has it leave on bad terms and cost 8 goodwill (and
+  `CC_Camp_TensionHigh` says so); it now says that. The decree advice said a decree enacted again soon "wears thinner",
+  while `Decrees.cs` keeps its effect and makes people resent it more within 30 days (`FatigueDays`); it now says "within
+  a month ... is resented more". The sweat room's tip on a campfire now says what `SeasonWishMath.SaunaHotEnough` does.
+  The numbers checked against the code and the thoughts' durations held (a third sooner in bed, 40 strain off a day to
+  themselves, five days and half the trust to make a taken wish right, a tradition after three years, the burned dish
+  one in four to one in fifty, envy within two grades, 60 days for torn-down work). Left as they were: every line
+  already plain (most of the advisor, the defense plans' tips, the room plans, the hints' short actions), the order's
+  saying in The Quiet House ("a house that feeds people is a house people come to"), the lender's quoted message and the
+  great-aunt's letter, every placeholder, number, defName and tag. Still worded the old way elsewhere, for their own
+  rounds: the Almanac's defense lines page ("5. Guns that never sleep") and storytellers page, `CC_Def_Adv_Turrets`,
+  DESIGN.md's note on how each storyteller's description ends.
+- 0.249.0, **Plain words: interface-4** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable"", "yes, please rewrite everything", "leave: what colonists
+  say, talk between colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with:
+  ... messages and interface"). The fourth and largest messages-and-interface batch, 182 files of
+  `Languages/English/Keyed` (settings and their tips, the council's and planning windows, the advisor, the colony news
+  and messages, harm and health, animals and the herd, peoples, camps and visitors, marriage, wards, fealty, renown,
+  schemes, the region, many colonies, letters' fixed words, scenarios). Read: 6,088 keyed lines; rewritten: 210, in 65
+  of the files; the rest were already plain and are left word for word. What changed: settings tips strung
+  together with semicolons are plain sentences (against their nature, renown, small acts by how they are, strong
+  feelings, visitors at the stalls, gatherings a week, a drink or a smoke before work, the stall's sales table); things
+  given will are plain (the food "wants" cold places, the land taking a ruin back, the road that talks, a feeling that
+  visits a grave, the scrap that spits, the storyteller direction where "the world feels watched"); wry last lines say
+  what happened ("It didn't take long", "It was close for a while, and then it wasn't", "a road goes two ways", "and
+  then the colony feels it", "the colony has one less of its own"); in-world phrases are explained where they stand (the
+  Conclave's glass is their storm glass, the Roll is the Banner's book of names, the Wardens' book, the Kiln Guild's
+  wander-year, a hard turn of the sky is bad weather); old words for plain ones ("dear" is expensive, "abed", "players"
+  for actors, "the one in town who has letters"); clipped impact lines ("a sheaf in ten", "never more", "plans taken off
+  the ground"). One number fixed to the code: `CC_Settings_GoodLife_Tip` (`Rimfolk_GoodLife.xml`, the older "Used to the
+  good life" tip) said the spoiled's line falls to 30, while `GoodLifeMath.LineFor` has 45, 35, 25 and 15; it now says
+  15, as `CC_Settings_Ordinary_Tip` does since interface-1. Left as written: everything spoken (bubbles, quoted lines,
+  toasts, the camps' and travellers' reported words), groups, gossip, talk, quirks, personas and marks, epithets and the
+  one name, trait changes, moods' causes and setbacks, shared memories, ailments and the illness budget, the heart's
+  good side bands the player approved, the age forms (`Rimfolk_Ages.xml`, already plain noun phrases), and every tag,
+  placeholder, number and chance; no god is named anywhere new. Unused keys with old numbers (`CC_Good_Band_*_Desc`,
+  `CC_Good_Explain`) are left as they were.
 - 0.248.0, **Plain words: interface-3** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing

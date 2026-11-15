@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Advice, defense steps and storytellers in plain words
+
+*15 November 2026, version 0.250.0*
+
+- The advisor's tips, the defense steps and plans, and the mood hints' advice now say what to do and why in plain words.
+- The room plans, the scenarios and the eight storytellers are described plainly, and each storyteller now says it shifts the odds but shuts nothing out.
+- Two pieces of advice now match the game: a camp whose tension gets too high leaves on bad terms instead of attacking, and a decree enacted again within a month is resented more.
+- The fifth defense step is now called turrets behind the gate, here and in the Almanac.
+
+## Settings, camps and the region in plain words
+
+*15 November 2026, version 0.249.0*
+
+- Settings tooltips that ran long lists together with semicolons now say the same things in plain sentences.
+- Messages and letters about camps, peoples, marriages and the region say plainly what happened, without wry last lines or phrases that were never explained.
+- The tooltip for "Used to the good life" now gives the right number: for the spoiled, good moods start counting for less from 15 points.
+
 ## Planning, the post and the peoples' ages in plain words
 
 *15 November 2026, version 0.248.0*

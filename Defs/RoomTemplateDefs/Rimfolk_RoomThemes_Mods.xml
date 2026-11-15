@@ -43,7 +43,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Garden</defName>
     <label>garden</label>
-    <description>The outdoors brought in: lawn underfoot, plants along the walls from the comfortable style on, garden lamps where there's power, and wooden furniture. With Alpha Props: Parks and Gardens, its lawns and street lights; without it, green carpet and the colony's own plant pots and lamps.</description>
+    <description>An indoor garden: lawn underfoot, plants along the walls from the comfortable style on, garden lamps where there's power, and wooden furniture. With Alpha Props: Parks and Gardens, its lawns and street lights; without it, green carpet and the colony's own plant pots and lamps.</description>
     <order>70</order>
     <iconDefs><li>VFEPD_AP_LamplightA_Functional</li><li>PlantPot</li></iconDefs>
     <furnitureStuff><li>WoodLog</li></furnitureStuff>

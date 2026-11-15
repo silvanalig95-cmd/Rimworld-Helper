@@ -20,7 +20,7 @@
   <Rimfolk_Evt_Game_Poker>poker</Rimfolk_Evt_Game_Poker>
   <Rimfolk_Evt_GameWonTitle>{A_nameDef} won at {GAME}</Rimfolk_Evt_GameWonTitle>
   <Rimfolk_Evt_GameLostTitle>{A_nameDef} lost at {GAME}</Rimfolk_Evt_GameLostTitle>
-  <Rimfolk_Evt_GameWon>{A_nameDef} beat {X_nameDef} at {GAME}. It was close for a while, and then it wasn't.</Rimfolk_Evt_GameWon>
+  <Rimfolk_Evt_GameWon>{A_nameDef} beat {X_nameDef} at {GAME}. It was close for a while before {A_nameDef} pulled ahead.</Rimfolk_Evt_GameWon>
   <Rimfolk_Evt_GameWonStake>{A_nameDef} beat {X_nameDef} at {GAME}, and {X_nameDef} counted out the {COUNT} silver they had staked.</Rimfolk_Evt_GameWonStake>
   <Rimfolk_Evt_GameLost>{X_nameDef} beat {A_nameDef} at {GAME}, and was gracious about it.</Rimfolk_Evt_GameLost>
   <Rimfolk_Evt_GameLostStake>{X_nameDef} beat {A_nameDef} at {GAME}. The {COUNT} silver the colony staked goes to {X_nameDef}.</Rimfolk_Evt_GameLostStake>

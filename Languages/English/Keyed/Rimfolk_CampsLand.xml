@@ -15,7 +15,7 @@
   <CC_CampLand_HullLeft>The {NAME} left their wrecked hull {PLACE}. It is nobody's now, and the colony can take it apart.</CC_CampLand_HullLeft>
   <CC_Camp_End_declined>The {NAME} from {FACTION} found no work at the colony, packed up their camp {PLACE} and moved on to the next farm.</CC_Camp_End_declined>
   <CC_CampReap_SupperLabel>supper for the {NAME}</CC_CampReap_SupperLabel>
-  <CC_CampReap_NoSupper>The {NAME} worked the colony's fields all day, and there were no meals in the stores for their supper. They went to bed hungry, and they won't forget it.</CC_CampReap_NoSupper>
+  <CC_CampReap_NoSupper>The {NAME} worked the colony's fields all day, and there were no meals in the stores for their supper. They went to bed hungry, and they are angry with the colony for it.</CC_CampReap_NoSupper>
   <CC_Camp_Help_fish>{X_nameDef} left {COUNT} {THING} from their catch at the edge of the camp {PLACE}, for the colony.</CC_Camp_Help_fish>
   <CC_Camp_Help_scrap>{X_nameDef} left {COUNT} {THING} from their haul at the edge of the camp {PLACE}, for the colony.</CC_Camp_Help_scrap>
 
@@ -53,8 +53,8 @@
   <CC_CampLand_HaulBrought>{X_nameDef} of the {NAME} set down {COUNT} {THING} from their haul by the colony's gate: the colony's half.</CC_CampLand_HaulBrought>
   <CC_CampLand_RuinsLeave>The {NAME} won't work ruins somebody else claims. They're packing up their camp {PLACE}.</CC_CampLand_RuinsLeave>
   <CC_CampLand_RuinsFee>The {NAME} will pay the colony {COUNT} silver every five days to finish the ruins, the first tomorrow, set out at the edge of their camp.</CC_CampLand_RuinsFee>
-  <CC_CampLand_BeastSold>{THING} is the {NAME}'s now and goes to their fence; one of them is bringing {COUNT} silver up to the colony's gate. {A_nameDef} watched it go.</CC_CampLand_BeastSold>
-  <CC_CampLand_BeastSoldNoKeeper>{THING} is the {NAME}'s now and goes to their fence; one of them is bringing {COUNT} silver up to the colony's gate.</CC_CampLand_BeastSoldNoKeeper>
+  <CC_CampLand_BeastSold>{THING} is the {NAME}'s now and goes into their pen; one of them is bringing {COUNT} silver up to the colony's gate. {A_nameDef} watched it go.</CC_CampLand_BeastSold>
+  <CC_CampLand_BeastSoldNoKeeper>{THING} is the {NAME}'s now and goes into their pen; one of them is bringing {COUNT} silver up to the colony's gate.</CC_CampLand_BeastSoldNoKeeper>
   <CC_CampLand_FeedLabel>feeding the {NAME}'s beasts</CC_CampLand_FeedLabel>
 
   <!-- ===================== What an answer does ===================== -->
@@ -75,7 +75,7 @@
   <CC_Impact_Reap>The {0} reap the colony's ripe crops by day and leave them for its haulers</CC_Impact_Reap>
   <CC_Impact_ReapBrief>the harvest reaped</CC_Impact_ReapBrief>
   <CC_Impact_ReapSheaf>One in ten of what they reap goes in their packs</CC_Impact_ReapSheaf>
-  <CC_Impact_ReapSheafBrief>a sheaf in ten</CC_Impact_ReapSheafBrief>
+  <CC_Impact_ReapSheafBrief>a tenth of the harvest</CC_Impact_ReapSheafBrief>
   <CC_Impact_ReapMeals>{0} cooked meals carried to their camp each evening they worked</CC_Impact_ReapMeals>
   <CC_Impact_ReapMealsBrief>their suppers</CC_Impact_ReapMealsBrief>
   <CC_Impact_MonolithNotes>The colony's study of the unnatural gains {0} knowledge</CC_Impact_MonolithNotes>

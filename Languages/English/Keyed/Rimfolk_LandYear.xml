@@ -3,7 +3,7 @@
 
   <!-- ===================== A freezer in hot country (Wishes/WishWorkers_Work.cs) ===================== -->
 
-  <CC_Reason_HotFreezer>{PAWN_nameDef} watches the food turn in the heat, and nothing in the colony keeps it cold.</CC_Reason_HotFreezer>
+  <CC_Reason_HotFreezer>{PAWN_nameDef} watches the food spoil in the heat, and nothing in the colony keeps it cold.</CC_Reason_HotFreezer>
 
   <!-- ===================== Clothes for the season (Wishes/WishWorkers_Seasons.cs) ===================== -->
 
@@ -23,14 +23,14 @@
   <CC_Reason_SaunaCold>{PAWN_nameDef} is cold to the bone and dreams of a hot sauna.</CC_Reason_SaunaCold>
   <CC_Reason_Sauna>The winter here is long, and {PAWN_nameDef} would like somewhere hot to sit at the end of a cold day.</CC_Reason_Sauna>
   <CC_Fulfilled_SaunaModded>The colony has a sauna: {THING} in a small closed room, or another sauna heater.</CC_Fulfilled_SaunaModded>
-  <CC_Fulfilled_SaunaOwn>The colony has a sauna: a small closed room (30 cells at most, no bed or workbench in it) with a seat and {THING} or another heat source, kept at {HEAT} or more. A fire can only warm a room so far: with only a fire, as warm as it can make it does.</CC_Fulfilled_SaunaOwn>
+  <CC_Fulfilled_SaunaOwn>The colony has a sauna: a small closed room (30 cells at most, no bed or workbench in it) with a seat and {THING} or another heat source, kept at {HEAT} or more. A fire can only warm a room so far, so with only a fire, the room counts once it is as warm as the fire can make it.</CC_Fulfilled_SaunaOwn>
   <CC_Kept_Lost_Sauna>The sauna {FOR_nameDef} asked for is gone.</CC_Kept_Lost_Sauna>
   <CC_TieNote_Sauna>talked in the sauna</CC_TieNote_Sauna>
   <CC_Habit_Report_Sauna>sitting in the sauna.</CC_Habit_Report_Sauna>
 
   <!-- ===================== A fishing spot (Wishes/WishWorkers_Breadth.cs) ===================== -->
 
-  <CC_Reason_FishingIdle>There's a fishing spot marked out by the water, and nobody goes near it. {PAWN_nameDef} would.</CC_Reason_FishingIdle>
+  <CC_Reason_FishingIdle>There's a fishing spot marked out by the water, and nobody uses it. {PAWN_nameDef} would like to.</CC_Reason_FishingIdle>
 
   <!-- ===================== A favourite animal, a pack animal (Animals/AnimalWishes2.cs) ===================== -->
 
@@ -42,7 +42,7 @@
   <CC_SelfHelp_Favourite>{PAWN_nameDef} picked out {OTHER_definite} and marked it for taming. If {PAWN_pronoun} isn't allowed to handle animals, someone else will have to.</CC_SelfHelp_Favourite>
   <CC_Favourite_Bonded>{ANIMAL_nameDef} has bonded with {PAWN_nameDef}: the very kind {PAWN_pronoun} always loved, and it chose {PAWN_objective}.</CC_Favourite_Bonded>
   <CC_Reason_PackHauler>{PAWN_nameDef} hauls more than anyone here, and {KIND} could carry the load.</CC_Reason_PackHauler>
-  <CC_Reason_PackTrader>{PAWN_nameDef} has a trader's tongue and nothing to carry the goods: {KIND} would do.</CC_Reason_PackTrader>
+  <CC_Reason_PackTrader>{PAWN_nameDef} is good at trading but has nothing to carry the goods: {KIND} would do.</CC_Reason_PackTrader>
   <CC_Reason_PackRoads>{PAWN_nameDef} would rather be on the road, and {KIND} of {PAWN_possessive} own would make it easier.</CC_Reason_PackRoads>
 
   <!-- ===================== Bringing the herd home (Animals/HerdHome.cs) ===================== -->

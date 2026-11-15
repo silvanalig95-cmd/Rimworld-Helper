@@ -27,12 +27,12 @@
   <CC_Fealty_Paid_2>Their collector came to the gate, and the colony's tribute for {PEOPLE} went out to them: {GOODS}.</CC_Fealty_Paid_2>
   <CC_Fealty_Paid_3>The season turns, and the tribute for {PEOPLE} is carried out to their collector: {GOODS}.</CC_Fealty_Paid_3>
 
-  <CC_Fealty_Short_2>{PEOPLE} asked {VALUE} silver's worth for the season, and the colony could give {PAID}. It owes them {OWED}. Unpaid when their collector comes again, the oath is broken ({WORD}).</CC_Fealty_Short_2>
+  <CC_Fealty_Short_2>{PEOPLE} asked {VALUE} silver's worth for the season, and the colony could give {PAID}. It owes them {OWED}. If it is still unpaid when their collector comes again, the oath is broken ({WORD}).</CC_Fealty_Short_2>
 
   <CC_Fealty_BrokenTribute_2>{PEOPLE} waited a season for the {OWED} silver's worth the colony owed them, and it never came. They hold the oath broken ({WORD}), think {GOODWILL} worse of the colony, and will remember it.</CC_Fealty_BrokenTribute_2>
 
-  <CC_Fealty_Renounced_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They will remember it as a wrong done them, {GOODWILL} goodwill and a grudge.</CC_Fealty_Renounced_2>
-  <CC_Fealty_Renounced_Clean_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They left it to its raiders this season, and have nothing to say against it.</CC_Fealty_Renounced_Clean_2>
+  <CC_Fealty_Renounced_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They will remember it as a wrong done to them: {GOODWILL} goodwill and a grudge.</CC_Fealty_Renounced_2>
+  <CC_Fealty_Renounced_Clean_2>Word has gone to {PEOPLE}: the colony renounces its oath ({WORD}). They did not help the colony against its raiders this season, and have nothing to say against it.</CC_Fealty_Renounced_Clean_2>
 
   <CC_Arms_Fealty_2>{ENEMY} are at {TOWN}, and {WHO} of {PEOPLE} calls on the colony's oath: {RITE}.</CC_Arms_Fealty_2>
 

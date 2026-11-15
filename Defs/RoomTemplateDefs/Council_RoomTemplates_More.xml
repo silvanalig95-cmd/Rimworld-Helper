@@ -51,7 +51,7 @@
     <tips>
       <li>Beer cheers people up and counts as recreation, but some colonists get a taste for it. Set a drug policy.</li>
       <li>Fermenting barrels work between 7 °C and 32 °C, so a heated room keeps the beer coming in winter.</li>
-      <li>A table in the tavern is also a dining table: the hungry eat here, the thirsty drink.</li>
+      <li>A table in the tavern is also a dining table, so people eat here as well as drink.</li>
     </tips>
     <things>
       <li><defs><li>Table2x2c</li></defs><role>table</role><pos>(1,1)</pos><optional>false</optional></li>
@@ -186,7 +186,7 @@
     <tips>
       <li>Build it where raiders usually come from, at the end of the killbox or beside the main gate.</li>
       <li>Weapons on the shelf here let the guards arm themselves where the fight starts.</li>
-      <li>Thick walls and a light: a guard who can see the gate sees raiders coming.</li>
+      <li>Thick walls keep the guard safe, and a light spares them the bad mood of sitting in the dark.</li>
     </tips>
     <things>
       <li><defs><li>DiningChair</li><li>Stool</li><li>Armchair</li></defs><role>chair</role><pos>(1,1)</pos><rot>South</rot><optional>false</optional></li>
@@ -232,7 +232,7 @@
     <defName>Council_Longhouse</defName>
     <label>longhouse</label>
     <description>A long shared hall for a tribe: ten bedrolls along the walls, a fire in the middle and a torch.</description>
-    <purpose>The whole tribe under one roof and around one fire, warm through the winter.</purpose>
+    <purpose>The whole tribe sleeps under one roof around one fire, and stays warm through the winter.</purpose>
     <order>8</order>
     <group>Living</group>
     <quiet>true</quiet>

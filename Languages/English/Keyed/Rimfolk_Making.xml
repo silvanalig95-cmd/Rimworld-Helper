@@ -4,7 +4,7 @@
   <CC_Tab_Making>Making</CC_Tab_Making>
   <CC_Making_Header>What you could make</CC_Making_Header>
   <CC_Making_Sub>From the benches you have and what's in stock, read from every bench's own recipes.</CC_Making_Sub>
-  <CC_Making_HeaderTip>Once an hour, or when you ask, the council reads the recipes of every bench the colony has and checks them against the stock: what a batch could be made of now with no bill set for it (what the building and the bills wait on first, then the staples, and of clothes and weapons only the dearest), the chains (a material the blueprints are short of or a bill waits on, and the bench here that makes it, with a bill sized to the want), the bills waiting on an ingredient the colony has none of, the harvests and finds no bench here puts to its own use and which bench would, and the benches standing without bills. A product the colony already has sixty or more of isn't suggested unless something waits on it. Any mod's benches and recipes count by themselves. The automations in the settings can set these bills for you.</CC_Making_HeaderTip>
+  <CC_Making_HeaderTip>Once an hour, or when you ask, the council reads the recipes of every bench the colony has and checks them against the stock: what a batch could be made of now with no bill set for it (what the building and the bills wait on first, then the staples, and of clothes and weapons only the most valuable), the chains (a material the blueprints are short of or a bill waits on, and the bench here that makes it, with a bill sized to what is needed), the bills waiting on an ingredient the colony has none of, the harvests and finds no bench here puts to its own use and which bench would, and the benches standing without bills. A product the colony already has sixty or more of isn't suggested unless something waits on it. Any mod's benches and recipes count by themselves. The automations in the settings can set these bills for you.</CC_Making_HeaderTip>
   <CC_Making_Stat>{0} could be made now</CC_Making_Stat>
   <CC_Making_Could>You could make now</CC_Making_Could>
   <CC_Making_CouldNone>Nothing new: every batch the stock allows has a bill already, or the colony has plenty of it.</CC_Making_CouldNone>
@@ -30,7 +30,7 @@
   <CC_Making_Chain_Batch>A batch of {N} takes {H} hours at the {BENCH}, from {PARTS} (have/need).</CC_Making_Chain_Batch>
   <CC_Making_Chain_Lead>The whole chain, batch by batch: about {0} days.</CC_Making_Chain_Lead>
   <CC_Making_Chain_NoMaker>No bench here makes it.</CC_Making_Chain_NoMaker>
-  <CC_Making_Chain_Cycle>It takes itself to make: the chain stops here.</CC_Making_Chain_Cycle>
+  <CC_Making_Chain_Cycle>It needs itself as an ingredient: the chain stops here.</CC_Making_Chain_Cycle>
   <CC_Making_Chain_Deep>Four links down: the chain stops here.</CC_Making_Chain_Deep>
   <CC_Making_Chain_Plant>{PLANT} yields it: sow {N} cell(s).</CC_Making_Chain_Plant>
   <CC_Making_ZoneGrows>A zone of {N} cell(s) grows {PLANT} already.</CC_Making_ZoneGrows>

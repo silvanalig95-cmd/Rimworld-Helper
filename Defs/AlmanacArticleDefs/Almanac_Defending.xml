@@ -319,7 +319,7 @@ Against both: walls at least two thick, cover ready in more than one place, an i
     <label>turrets and their weaknesses</label>
     <category>Defending</category>
     <order>60</order>
-    <summary>Guns that never sleep, and the five things that silence them</summary>
+    <summary>Turrets, and the five things that shut them down</summary>
     <tip>A turret is backup for your people, never instead of them.</tip>
     <description>Turrets fire at anything hostile in reach without needing a colonist, as long as they have power and their ammunition is kept up. In a killbox they add a lot of firepower. They also add wealth, so raids grow with them, and each has weaknesses a raid can find.</description>
     <sections>

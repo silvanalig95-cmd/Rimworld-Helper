@@ -95,7 +95,7 @@
       <li>Council_ChildGrown</li>
       <li>Council_SawThemGrow</li>
     </thoughts>
-    <keep>An heirloom is a comfort as long as it's carried, more so to the heir: keep it out of the stockpile and on them. Watching a child grow up is its own reward.</keep>
+    <keep>An heirloom is a comfort as long as it's carried, more so to the heir: keep it out of the stockpile and on them. Seeing a child they raised grow up gives a good mood of its own.</keep>
     <article>Council_Alm_C_Secrets</article>
     <councilTab>Roster</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -110,7 +110,7 @@
       <li>Council_Scen_HuntOver</li>
       <li>Council_Scen_DebtPaid</li>
     </thoughts>
-    <fix>A feeling the colony started the game with, and slow to fade. Between feuding watches, shared work, shared meals and a common enemy build better opinions in the meantime.</fix>
+    <fix>A feeling the colony started the game with, and slow to fade. Between the two feuding watches of Bad Blood, shared work, shared meals and a common enemy build better opinions in the meantime.</fix>
     <act>Shared work brings them round</act>
     <actionable>false</actionable>
     <keep>Something the colony started the game with, and it lasts for months. The bonds it began can grow into lasting friendships; the Bonds page shows them.</keep>
@@ -128,7 +128,7 @@
       <li>Council_Dlm_Trad_FrostSoup</li>
       <li>Council_Dlm_Trad_Lanterns</li>
     </thoughts>
-    <keep>A seasonal custom kept, or a day marked properly. Kept, a custom goes on the colony calendar, and kept three years running it becomes a tradition; a keeper of days on the council makes each kept day more of an occasion.</keep>
+    <keep>A seasonal custom kept, or a day marked properly. Once kept, a custom goes on the colony calendar, and kept three years running it becomes a tradition; a keeper of days on the council makes each kept day more of an occasion.</keep>
     <article>Council_Alm_C_Traditions</article>
     <councilTab>Decrees</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -149,7 +149,7 @@
       <li>Council_Vendetta_LetGo</li>
       <li>Council_Vendetta_Home</li>
     </thoughts>
-    <keep>A vendetta ended without more blood: laid down, or the one who was taken came home. The Bonds page keeps how it ended.</keep>
+    <keep>A vendetta ended without more blood: it was forgiven, or the one who was taken came home. The Bonds page shows how it ended.</keep>
     <article>Council_Alm_C_Secrets</article>
     <councilTab>Bonds</councilTab>
   </ColonyCouncil.MoodHintDef>

@@ -10,7 +10,7 @@
   <CC_Impact_DigPropBrief>a prop under the rock</CC_Impact_DigPropBrief>
   <CC_Impact_DigOn>The digging at that face marked again as it was</CC_Impact_DigOn>
   <CC_Impact_DigOnBrief>the digging goes on</CC_Impact_DigOnBrief>
-  <CC_Impact_DigRisk>The rock may come down on whoever digs there next: a crush, never more</CC_Impact_DigRisk>
+  <CC_Impact_DigRisk>The rock may come down on whoever digs there next: a crush injury at worst</CC_Impact_DigRisk>
   <CC_Impact_DigRiskBrief>the rock may fall on the digger</CC_Impact_DigRiskBrief>
   <CC_Impact_DigLeave>That face left as it is: nobody digs there</CC_Impact_DigLeave>
   <CC_Impact_DigLeaveBrief>that face left</CC_Impact_DigLeaveBrief>
@@ -24,7 +24,7 @@
   <CC_Impact_FellTreeBrief>the {0} felled</CC_Impact_FellTreeBrief>
   <CC_Impact_TreeMayFall>A wind may bring the {0} down onto the wall, which it would break</CC_Impact_TreeMayFall>
   <CC_Impact_TreeMayFallBrief>it may fall on the wall</CC_Impact_TreeMayFallBrief>
-  <CC_Impact_TreeRisk>Anyone beside it when it falls may be crushed: never more</CC_Impact_TreeRisk>
+  <CC_Impact_TreeRisk>Anyone beside it when it falls may be crushed, but not killed</CC_Impact_TreeRisk>
   <CC_Impact_TreeRiskBrief>it may fall on someone</CC_Impact_TreeRiskBrief>
   <CC_Danger_TreeFell>The wind brought the leaning {TREE} down across the colony's wall.</CC_Danger_TreeFell>
   <CC_Danger_TreeFell_2>The leaning {TREE} came down in the wind and broke the wall it leaned on.</CC_Danger_TreeFell_2>
@@ -44,7 +44,7 @@
   <CC_Danger_SmoulderCaught>The smoulder in the dry grass has caught: there's fire out past the colony.</CC_Danger_SmoulderCaught>
   <CC_Danger_SmoulderCaught_2>Nobody stamped it out in time, and the dry grass past the colony is burning.</CC_Danger_SmoulderCaught_2>
   <CC_Danger_StampBurn>{PAWN_nameDef} stamped out the smoulder, and it flared and burned {PAWN_possessive} {PART}.</CC_Danger_StampBurn>
-  <CC_Danger_StampBurn_2>The smoulder is out, and {PAWN_nameDef} has a burned {PART} to show for it.</CC_Danger_StampBurn_2>
+  <CC_Danger_StampBurn_2>The smoulder is out, but {PAWN_nameDef} got a burned {PART} putting it out.</CC_Danger_StampBurn_2>
 
   <!-- The old shell -->
   <CC_Danger_ShellGone>The shell is gone.</CC_Danger_ShellGone>
@@ -63,7 +63,7 @@
   <CC_Impact_ShellStoresBrief>a shell for the mortars</CC_Impact_ShellStoresBrief>
   <CC_Danger_ShellCarried>The old shell is set down far past the fields, for nobody to touch.</CC_Danger_ShellCarried>
   <CC_Danger_BlastStone>The old shell went up in the field, and a stone from the blast cut {PAWN_nameDef}'s {PART}.</CC_Danger_BlastStone>
-  <CC_Danger_BlastStone_2>{PAWN_nameDef} set the old shell off, and the blast threw a stone that opened {PAWN_possessive} {PART}.</CC_Danger_BlastStone_2>
+  <CC_Danger_BlastStone_2>{PAWN_nameDef} set the old shell off, and the blast threw a stone that cut {PAWN_possessive} {PART}.</CC_Danger_BlastStone_2>
 
   <!-- The twitching scrap -->
   <CC_Danger_ScrapGone>The scrap is gone.</CC_Danger_ScrapGone>
@@ -75,13 +75,13 @@
   <CC_Impact_ScrapLeftBrief>whoever handles it may be burned</CC_Impact_ScrapLeftBrief>
   <CC_Danger_ScrapBroken>{PAWN_nameDef} has broken up the twitching scrap for its metal.</CC_Danger_ScrapBroken>
   <CC_Danger_ScrapBurn>The last of the scrap's charge jumped into {PAWN_nameDef}'s {PART}, and burned it.</CC_Danger_ScrapBurn>
-  <CC_Danger_ScrapBurn_2>The old scrap spat a spark as {PAWN_nameDef} took hold of it, and burned {PAWN_possessive} {PART}.</CC_Danger_ScrapBurn_2>
+  <CC_Danger_ScrapBurn_2>The old scrap gave off a spark as {PAWN_nameDef} took hold of it, and burned {PAWN_possessive} {PART}.</CC_Danger_ScrapBurn_2>
 
   <!-- The ground giving -->
   <CC_Danger_NoFloor>The colony can't build a floor over it, or hasn't the stuff for one.</CC_Danger_NoFloor>
   <CC_Impact_LayFloor>A {0} floor marked over the soft ground, for the builders to lay; the ground holds under it</CC_Impact_LayFloor>
   <CC_Impact_LayFloorBrief>a floor over the soft ground</CC_Impact_LayFloorBrief>
-  <CC_Impact_GroundRisk>The ground may give under the next who cross it: a bruise, or a crack on a foot bone, never more</CC_Impact_GroundRisk>
+  <CC_Impact_GroundRisk>The ground may give under the next who cross it: a bruise, or at worst a cracked foot bone</CC_Impact_GroundRisk>
   <CC_Impact_GroundRiskBrief>a foot may go through it</CC_Impact_GroundRiskBrief>
   <CC_Danger_GroundGave>The soft ground by the door gave under {PAWN_nameDef}, and bruised {PAWN_possessive} {PART}.</CC_Danger_GroundGave>
   <CC_Danger_GroundGave_2>{PAWN_nameDef}'s foot went through the soft ground by the door: a bruised {PART}, and mud where the ground was.</CC_Danger_GroundGave_2>

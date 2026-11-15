@@ -27,7 +27,7 @@
   <CC_Year_EndingUnknown>its own way</CC_Year_EndingUnknown>
   <CC_Year_Allies>The colony has allies: {FACTION}.</CC_Year_Allies>
   <CC_Year_Chronicle>Of the year's {N} chronicle line(s) about strangers and the world:</CC_Year_Chronicle>
-  <CC_Year_Close>So much for the land and the neighbours; the annals have the rest.</CC_Year_Close>
+  <CC_Year_Close>That is all for the land and the neighbours; the rest is in the annals.</CC_Year_Close>
   <CC_Chronicle_YearLetter>The {ORD} year's letter was written.</CC_Chronicle_YearLetter>
 
 </LanguageData>
