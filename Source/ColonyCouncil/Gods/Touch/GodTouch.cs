@@ -407,11 +407,15 @@ namespace ColonyCouncil
             var entries = GodTouchMath.Of(god);
             var recent = b.RecentOf(home, god);
             var tried = new HashSet<TouchEffect>();
+            // A great one that can't happen here falls to a notable one only where a notable one's waits are past too.
+            bool notableOk = Forced.HasValue || b.DaysSince("n|" + god + "|" + home, now) >= GodTouchMath.NotableGodDays
+                && b.DaysSince("nc|" + home, now) >= GodTouchMath.NotableColonyDays;
             for (int attempt = 0; attempt < 4; attempt++)
             {
                 var pick = ForcedEffect.HasValue && attempt == 0
                     ? entries.FirstOrDefault(e => e.effect == ForcedEffect.Value)
-                    : GodTouchMath.Pick(entries, tier, ctx.dark, recent, e => !tried.Contains(e.effect) && GodTouchEffects.Can(e, ctx), Rand.Value);
+                    : GodTouchMath.Pick(entries, tier, ctx.dark, recent, e => !tried.Contains(e.effect) && (e.tier != TouchTier.Notable || notableOk) && GodTouchEffects.Can(e, ctx),
+                        Rand.Value);
                 if (pick.effect == TouchEffect.None) return;
                 tried.Add(pick.effect);
                 ctx.tier = pick.tier;
