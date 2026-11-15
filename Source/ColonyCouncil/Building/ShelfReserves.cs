@@ -194,6 +194,22 @@ namespace ColonyCouncil
         private bool OrderedInto(Building_Storage shelf, IntVec3 c, Thing thing) =>
             orders.Count > 0 && orders.TryGetValue((shelf, c), out var o) && o.def == thing.def && Find.TickManager.TicksGame < o.until;
 
+        /// <summary>The shelf and kind a colonist's order is finding a free cell for right now (ShelfMakeRoom.StraightIn): the reserves' rules give way to it.</summary>
+        private static Building_Storage planningShelf;
+        private static ThingDef planningDef;
+
+        /// <summary>A colonist's order looks for a cell of this shelf for this kind (null, null: done).</summary>
+        internal static void Planning(Building_Storage shelf, ThingDef def)
+        {
+            planningShelf = shelf;
+            planningDef = def;
+        }
+
+        /// <summary>The stack a colonist's order takes off its shelf, while the order looks for where it goes (ShelfMakeRoom.FirstJob): its shelf no longer takes it.</summary>
+        private static Thing leaving;
+
+        internal static void Leaving(Thing t) => leaving = t;
+
         /// <summary>
         /// The ordered hauls into this shelf that have come in (a stack of their kind in their cell that wasn't there
         /// before): those stacks are kept here from now on; hauls past their time are let go.
@@ -401,8 +417,11 @@ namespace ColonyCouncil
             /// <summary>One per reserved slot of the entries that count now, and the entry each belongs to.</summary>
             public List<Kind> kinds = new List<Kind>();
             public List<int> slotEntry = new List<int>();
-            /// <summary>Per slot: filled by a stack on the shelf now; empty but some on the map (waiting for room).</summary>
-            public bool[] here, onMap;
+            /// <summary>
+            /// Per slot: filled by a stack on the shelf now, or kept for an ordered haul on its way (<see cref="ordered"/>,
+            /// so nothing else is brought for it meanwhile); empty but some on the map (waiting for room).
+            /// </summary>
+            public bool[] here, onMap, ordered = new bool[0];
             public HashSet<Thing> moveOut = new HashSet<Thing>();
             /// <summary>The stacks on the shelf as looked at, the same stacks as the pure rules saw them, and each entry's cap (-1: none).</summary>
             public List<Thing> things = new List<Thing>();
@@ -486,6 +505,25 @@ namespace ColonyCouncil
             {
                 for (int k = 0; k < kinds.Count; k++)
                     if (!here[k] && kinds[k].Matches(d) && Admits(slotEntry[k], d)) return true;
+                return false;
+            }
+
+            /// <summary>
+            /// An empty slot a stack of this kind would fill when a colonist is ordered to bring it: one it fills now
+            /// (<see cref="FillsMissing"/>), or an empty slot of the best at hand of its group that it ranks at least as
+            /// well as the best at hand for (which counts only what comes by itself; once on the shelf, it is the best).
+            /// </summary>
+            public bool OrderFills(ThingDef d)
+            {
+                if (FillsMissing(d)) return true;
+                double rank = RankOf(d);
+                for (int k = 0; k < kinds.Count; k++)
+                {
+                    int e = slotEntry[k];
+                    if (here[k] || !kinds[k].best || rankedDefs[e] == null || !rankedDefs[e].Contains(d)) continue;
+                    var targets = kinds[k].targets;
+                    if (targets == null || targets.All(t => RankOf(t) <= rank)) return true;
+                }
                 return false;
             }
 
@@ -663,6 +701,20 @@ namespace ColonyCouncil
                 st.here[k] = filledBy[k] >= 0;
                 if (st.here[k]) st.holding.Add(things[filledBy[k]]);
             }
+            // A slot an ordered haul is on its way to counts as filled meanwhile, so nothing else is brought for it.
+            st.ordered = new bool[st.kinds.Count];
+            if (orders.Count > 0)
+                foreach (var o in orders)
+                {
+                    if (o.Key.Item1 != shelf || now >= o.Value.until) continue;
+                    for (int k = 0; k < st.kinds.Count; k++)
+                    {
+                        int e = st.slotEntry[k];
+                        if (st.here[k] || !st.kinds[k].Matches(o.Value.def) && !(st.kinds[k].best && st.rankedDefs[e] != null && st.rankedDefs[e].Contains(o.Value.def))) continue;
+                        st.here[k] = st.ordered[k] = true;
+                        break;
+                    }
+                }
             // What would come: for "any" kept best first, the best of it; for the rest, only where a slot is empty.
             for (int e = 0; e < n; e++)
             {
@@ -731,7 +783,7 @@ namespace ColonyCouncil
             for (int e = 0; e < n; e++)
             {
                 if (!st.active[e] || st.rankedDefs[e] == null || st.swapBest[e] > ShelfReserveMath.NoneComing || st.betterWhy[e] != Why.None) continue;
-                if (slotsOf[e].Count == 0 || slotsOf[e].Any(k => !st.here[k])) continue;
+                if (slotsOf[e].Count == 0 || slotsOf[e].Any(k => filledBy[k] < 0)) continue;
                 double low = slotsOf[e].Min(k => st.RankFor(e, things[filledBy[k]].def));
                 if (st.restedDef[e] != null && st.RankFor(e, st.restedDef[e]) > low)
                 {
@@ -1012,15 +1064,15 @@ namespace ColonyCouncil
             // stacks are put together (the game's merging) only while the one made stays within its number per stack.
             if (thing.Spawned && thing.Map == map && shelf.OccupiedRect().Contains(thing.Position))
             {
-                if (st.moveOut.Contains(thing)) return false;
+                if (st.moveOut.Contains(thing) || thing == leaving) return false;
                 int most = st.LimitFor(thing.def);
                 if (most <= 0) return true;
                 foreach (var t in map.thingGrid.ThingsListAt(c))
                     if (t != thing && t.CanStackWith(thing) && t.stackCount + thing.stackCount > most) return false;
                 return true;
             }
-            // A colonist's ordered haul into this cell (kept for it, ShelfMakeRoom): what it brings goes in.
-            if (Of(map)?.OrderedInto(shelf, c, thing) == true) return true;
+            // A colonist's ordered haul into this cell (kept for it, ShelfMakeRoom), or the order looking for one: it goes in.
+            if (planningShelf == shelf && planningDef == thing.def || Of(map)?.OrderedInto(shelf, c, thing) == true) return true;
             if (st.Barred(thing.def)) return false;
             // Added to a stack already in the cell, it takes no slot: up to its number per stack, if it has one.
             int limit = st.LimitFor(thing.def);
@@ -1063,7 +1115,7 @@ namespace ColonyCouncil
         {
             if (t == null || !Reserved.Contains(shelf) || !On) return false;
             var st = Of(shelf.Map)?.StateOf(shelf);
-            return st != null && st.moveOut.Contains(t);
+            return t == leaving && t.Spawned && shelf.OccupiedRect().Contains(t.Position) || st != null && st.moveOut.Contains(t);
         }
 
         // ---------------- Words ----------------
@@ -1117,12 +1169,14 @@ namespace ColonyCouncil
             for (int k = 0; k < st.kinds.Count; k++)
                 if (st.slotEntry[k] == e) slots.Add(k);
             if (slots.Count == 0) return "CC_Shelf_Unknown".Translate().Resolve();
-            int filled = slots.Count(k => st.here[k]);
+            bool Ordered(int k) => k < st.ordered.Length && st.ordered[k];
+            int filled = slots.Count(k => st.here[k] && !Ordered(k));
             int open = slots.FirstOrDefault(k => !st.here[k]);
             string rest = filled == slots.Count
                 ? st.swapBest[e] > ShelfReserveMath.NoneComing && st.bestDef[e] != null && st.swapLesser[e] != null
                     ? "CC_Shelf_BetterComing".Translate(st.bestDef[e].label.Named("BETTER"), st.swapLesser[e].label.Named("LESSER")).Resolve()
                     : WhyNotComing(st, e) ?? "CC_Shelf_Here".Translate().Resolve()
+                : slots.All(k => st.here[k]) ? "CC_Shelf_Bringing".Translate().Resolve()
                 : !st.onMap[open] ? "CC_Shelf_NoneOnMap".Translate().Resolve()
                 : !st.comes[e] ? "CC_Shelf_KeptHigher".Translate().Resolve()
                 : (st.moveOut.Count > 0 ? "CC_Shelf_MakingRoom" : "CC_Shelf_Coming").Translate().Resolve();
@@ -1161,7 +1215,7 @@ namespace ColonyCouncil
         {
             if (st == null || e < 0 || e >= st.entries.Count || !st.active[e]) return false;
             for (int k = 0; k < st.kinds.Count; k++)
-                if (st.slotEntry[k] == e && !st.here[k]) return false;
+                if (st.slotEntry[k] == e && (!st.here[k] || k < st.ordered.Length && st.ordered[k])) return false;
             return true;
         }
     }

@@ -461,11 +461,23 @@ public static class ShelfReserveTests
           && room.Contains("int inPlace = allowed ? st.InPlaceOf(thing.def, movable) : -1;")
           && room.Contains("ShelfReserveMath.OrderWays(st.capacity, st.held, allowed, fills, roomFrom, inPlace)"),
             "ordered: the pure rules decide how (straight in, making room, in place of a lesser stack) and which stack goes");
-        C(room.Contains("st.FillsMissing(thing.def) || st.InPlaceOf(thing.def, null) >= 0"),
+        C(room.Contains("st.OrderFills(thing.def) || st.InPlaceOf(thing.def, null) >= 0") && room.Contains("bool fills = st.OrderFills(thing.def);"),
             "ordered: a shelf counts with an empty slot the stack fills, or a lesser stack it would take the place of");
-        C(room.Contains("StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out var cell, out var dest) && dest != shelf")
-          && room.Contains("HaulAIUtility.CanHaulAside(pawn, occupant, out var aside)"),
+        C(reserves.Contains("if (FillsMissing(d)) return true;") && reserves.Contains("if (targets == null || targets.All(t => RankOf(t) <= rank)) return true;"),
+            "an empty best-at-hand slot takes an ordered stack at least as good as the best that comes by itself");
+        C(room.Contains("ShelfReserves.Planning(shelf, thing.def);") && room.Contains("ShelfReserves.Planning(null, null);")
+          && reserves.Contains("if (planningShelf == shelf && planningDef == thing.def || Of(map)?.OrderedInto(shelf, c, thing) == true) return true;"),
+            "straight in: the game's own search for a cell, the reserves' rules giving way to the order meanwhile and set back after");
+        C(room.Contains("stored = StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out cell, out dest);")
+          && room.Contains("if (stored && dest != shelf)") && room.Contains("HaulAIUtility.CanHaulAside(pawn, occupant, out var aside)"),
             "the stack off the shelf goes to its best other storage, else beside the shelf");
+        C(room.Contains("ShelfReserves.Leaving(occupant);") && room.Contains("ShelfReserves.Leaving(null);")
+          && reserves.Contains("if (st.moveOut.Contains(thing) || thing == leaving) return false;")
+          && reserves.Contains("return t == leaving && t.Spawned && shelf.OccupiedRect().Contains(t.Position) || st != null && st.moveOut.Contains(t);"),
+            "while the order looks for where the lesser stack goes, its own shelf doesn't take it (it still holds a slot there)");
+        C(reserves.Contains("st.here[k] = st.ordered[k] = true;") && reserves.Contains("if (o.Key.Item1 != shelf || now >= o.Value.until) continue;")
+          && reserves.Contains("if (slotsOf[e].Count == 0 || slotsOf[e].Any(k => filledBy[k] < 0)) continue;"),
+            "a slot an ordered haul is on its way to counts as filled, so nothing else is brought for it meanwhile");
         C(room.Contains("pawn.jobs.TryTakeOrderedJob(plan.first, JobTag.Misc)") && room.Contains("JobMaker.MakeJob(JobDefOf.HaulToCell, plan.thing, plan.freed)")
           && room.Contains("if (!haul.TryMakePreToilReservations(pawn, false)) return;") && room.Contains("pawn.jobs.jobQueue.EnqueueFirst(haul, JobTag.Misc)"),
             "ordered: two jobs, the game's haul into the freed cell queued next and reserved from the order on");
@@ -517,7 +529,7 @@ public static class ShelfReserveTests
         C(reserves.Contains("Scribe_Collections.Look(ref keptSaved, \"kept\", LookMode.Reference);")
           && reserves.Contains("kept.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned || t.Map != map);"),
             "the stacks kept by an order are saved as references, the gone ones dropped first");
-        C(reserves.Contains("if (Of(map)?.OrderedInto(shelf, c, thing) == true) return true;")
+        C(reserves.Contains("|| Of(map)?.OrderedInto(shelf, c, thing) == true) return true;")
           && reserves.Contains("orders.Count > 0 && orders.TryGetValue((shelf, c), out var o) && o.def == thing.def && Find.TickManager.TicksGame < o.until"),
             "an ordered haul's cell takes what it brings, of that kind, while the order counts");
         C(room.Contains("if (pawn.jobs.TryTakeOrderedJob(haul, JobTag.Misc)) reserves?.Ordered(plan.shelf, plan.freed, plan.thing);")
@@ -550,6 +562,7 @@ public static class ShelfReserveTests
         C(keyed.TryGetValue("CC_Shelf_MakeRoomSwap", out var swapLine) && swapLine.StartsWith("Make room on the {SHELF} and haul {THING} there") && swapLine.Contains("{LESSER}"),
             "the menu's line for a better stack says which lesser one it takes the place of");
         C(keyed.TryGetValue("CC_Shelf_HaulToSlot", out var slotLine) && slotLine.Contains("{SHELF}") && slotLine.Contains("{THING}"), "the menu's line straight into the slot");
+        C(keyed.TryGetValue("CC_Shelf_Bringing", out var bringing) && bringing.Contains("colonist"), "the list says a colonist is bringing it");
         foreach (var k in new[] { "CC_Shelf_KeptHigher", "CC_Shelf_BetterHigher" })
             C(keyed.TryGetValue(k, out var why) && why.Contains("higher priority") && why.Contains("right-click it with a colonist"),
                 $"{k}: kept in higher storage, and how to bring it anyway");

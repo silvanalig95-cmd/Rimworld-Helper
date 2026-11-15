@@ -238,7 +238,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     shelf and haul fine bake x4 there, in place of the simple meal" (a better meal or medicine than a stack in a slot kept
     best first or for the best at hand; kinds ranked alike never replace each other). The lesser stack goes first (its
     best other storage, else beside the shelf), then the better one into the freed cell, kept for it from the order on
-    (the cell takes what the order brings for four hours), and once in it stays: the game's best-storage check counts it
+    (the cell takes what the order brings for four hours, and its slot counts as filled meanwhile, "being brought by a
+    colonist" in the list), and once in it stays: the game's best-storage check counts it
     in its best storage while it holds a reserved slot, so no hauler carries it straight back (saved). On its own: a swap
     with every store full sets the lesser stack down beside the shelf when the better kind's own store would take it, the
     better comes in and the lesser goes where it lay. The list says why a better kind isn't coming ("the better fine bake
@@ -247,13 +248,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     kept higher ends with the same right-click.
   - **Code map**: `Building/ShelfReserveMath.cs` (`MayMakeRoom` without a priority, `OrderWay`, `OrderWays`, `InPlaceOf`,
     `SwapWay`, `SwapBy`), `Building/ShelfReserves.cs` (`Why`; `State.filledBy`, `rankedDefs` for the best at hand too,
-    `RankFor`, `InPlaceOf`, `bestFrom`, `restedDef`, `betterDef`, `betterLesser`, `betterWhy`, `aside`; `Look`'s swap by
-    `SwapBy` and why a better kind isn't coming; `FetchableFrom`, `InHigher`, `TakesInPlace`; `Ordered`, `OrderedInto`,
-    `OrdersCameIn`, `KeptHere`, `kept` saved as `keptSaved`; `MayStore`'s ordered cell; `WhyNotComing`;
+    `RankFor`, `OrderFills`, `InPlaceOf`, `ordered`, `bestFrom`, `restedDef`, `betterDef`, `betterLesser`, `betterWhy`,
+    `aside`; `Look`'s ordered slots, swap by `SwapBy` and why a better kind isn't coming; `FetchableFrom`, `InHigher`,
+    `TakesInPlace`; `Ordered`, `OrderedInto`, `OrdersCameIn`, `KeptHere`, `kept` saved as `keptSaved`, `Planning`,
+    `Leaving`; `MayStore`'s ordered cell; `WhyNotComing`;
     `Patch_ShelfReserveFetch` for kept stacks), `Building/ShelfMakeRoom.cs` (`Plan.way`, `PlanFor`, `PlanOn`,
     `StraightIn`, `Freeing`, `Take`, `Label`, `SetDownJob` counting `aside`), `Languages/English/Keyed/Rimfolk_Stores.xml`
     (`CC_Shelf_MakeRoomSwap`, `CC_Shelf_HaulToSlot`, `CC_Shelf_BetterHigher`, `CC_Shelf_BetterRested`,
-    `CC_Shelf_BetterNoRoom`, `CC_Shelf_KeptHigher`, `CC_Shelf_Explain`), `Rimfolk_Rooms.xml` (the setting's tip),
+    `CC_Shelf_BetterNoRoom`, `CC_Shelf_Bringing`, `CC_Shelf_KeptHigher`, `CC_Shelf_Explain`), `Rimfolk_Rooms.xml` (the setting's tip),
     `Tools/save_estimate.py` (`keptSaved`), `Tools/Tests/ShelfReserveTests.cs`. No new setting, no Sched slot, no def.
   - **Can't be checked without the game**: the three menu lines on a stack in a fridge of a higher priority, on the floor
     outside the home area and on another shelf, with the game's "Cannot haul" taken out beside them; the lesser stack

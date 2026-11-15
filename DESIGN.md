@@ -5369,21 +5369,26 @@ the fine meals stayed in the fridge for good.
   menu's line comes for every reserved shelf but the one the game's own haul brings the stack to (the destination of
   `TryFindBestBetterStorageFor`; there the game's line does it), wherever the stack lies, storage of a higher priority
   included: the order is the player's (`MayMakeRoom` no longer asks for better storage). A shelf counts when the stack
-  fills an empty slot, or takes a lesser stack's place: of the entries kept best first or for the best at hand whose
+  fills an empty slot (`State.OrderFills`: one it fills now, or an empty best-at-hand slot of its group it ranks at least
+  as well as the best at hand for, which counts only what comes by itself), or takes a lesser stack's place: of the entries kept best first or for the best at hand whose
   ranked kinds include it (`State.rankedDefs`, now worked out for the best at hand too, `RankFor`), each with every one
   of its slots filled, the lowest ranked stack filling one that ranks strictly below it (the smaller first; a spare
   stack of the group filling no slot goes first; only stacks the colonist can take), the lowest of the entries' picks.
   Kinds ranked alike never replace each other. The ways, tried in this order: straight into a free cell of the shelf
-  (`StraightIn`, the game's own search within it) when it fills an empty slot and the shelf has room, "Haul fine bake x4
+  (`StraightIn`, the game's own search within it, the reserves' rules giving way meanwhile, `ShelfReserves.Planning`)
+  when it fills an empty slot and the shelf has room, "Haul fine bake x4
   to its reserved slot on the big shelf"; making room as before (`RoomFrom`) when the shelf is full, "Make room on the
   big shelf and haul fine bake x4 there"; in place of the lesser stack, "Make room on the big shelf and haul fine bake
   x4 there, in place of the simple meal". The stack that goes is carried to its best other storage, else set down
-  beside the shelf (`FirstJob`, as before), then the game's `HaulToCell` brings the ordered stack into its cell, queued
-  next and reserved at once.
+  beside the shelf (`FirstJob`; its own shelf doesn't take it during that search, `ShelfReserves.Leaving`, as a lesser
+  meal in a slot still belongs there and the search would find the shelf itself), then the game's `HaulToCell` brings
+  the ordered stack into its cell, queued next and reserved at once.
 - **Kept for it** (`ShelfReserves.Ordered`, `OrderedInto`, `OrdersCameIn`, `KeptHere`): from the order on, the cell
   takes what the order brings (`MayStore` lets that kind into that cell for four hours, `OrderTicks`), so the game's own
   check while it is carried (`Toils_Haul.CarryHauledThingToCell` fails a haul whose cell is no longer valid storage)
-  holds though the shelf is looked at again without the carried stack (the best at hand may shift meanwhile). Once in (a
+  holds though the shelf is looked at again without the carried stack (the best at hand may shift meanwhile); and the
+  slot it is on its way to counts as filled (`State.ordered`), so nothing else is brought for it meanwhile (the list
+  says "being brought by a colonist"). Once in (a
   stack of that kind in that cell that wasn't there at the order), the stack is kept: `Patch_ShelfReserveFetch` also
   tells the game it is in its best storage while it holds a reserved slot, isn't on its way out and the shelf accepts
   it, so the game's haulers never carry it straight back to the higher storage it came from (which has room, as it just
@@ -5405,7 +5410,7 @@ the fine meals stayed in the fridge for good.
   simple meal's place, but no other storage has room for the simple meal" (`Why.NoRoom`). An empty slot whose kind is
   only in higher storage ends "which keeps it: right-click it with a colonist to bring it here". Keys in
   `Rimfolk_Stores.xml` (`CC_Shelf_MakeRoomSwap`, `CC_Shelf_HaulToSlot`, `CC_Shelf_BetterHigher`, `CC_Shelf_BetterRested`,
-  `CC_Shelf_BetterNoRoom`); the window's explanation, the setting's tip, the Almanac's "Reserved slots" and README say
+  `CC_Shelf_BetterNoRoom`, `CC_Shelf_Bringing`); the window's explanation, the setting's tip, the Almanac's "Reserved slots" and README say
   it. No new setting, no Sched slot.
 - Tests: `ShelfReserveTests` (`OrderWays`; `InPlaceOf` on the player's shelf, with a fine meal kept in its slot, an empty
   slot, a spare stack, stacks the colonist can't take; the shelf after the order; `SwapBy`; a play-out with the fridge

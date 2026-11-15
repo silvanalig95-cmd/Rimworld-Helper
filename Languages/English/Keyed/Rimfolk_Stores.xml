@@ -12,6 +12,7 @@
   <CC_Shelf_AnyOf>any {GROUP}</CC_Shelf_AnyOf>
   <CC_Shelf_Here>on the shelf</CC_Shelf_Here>
   <CC_Shelf_Coming>on the map, comes to the free slot</CC_Shelf_Coming>
+  <CC_Shelf_Bringing>being brought by a colonist</CC_Shelf_Bringing>
   <CC_Shelf_MakingRoom>on the map, a stack moves out to make room</CC_Shelf_MakingRoom>
   <CC_Shelf_NoneOnMap>none on this map, its slot is used meanwhile</CC_Shelf_NoneOnMap>
   <CC_Shelf_KeptHigher>on the map, but only in storage of a higher priority than this shelf, which keeps it: right-click it with a colonist to bring it here</CC_Shelf_KeptHigher>

@@ -111,7 +111,7 @@ namespace ColonyCouncil
             var reserves = ShelfReserves.Of(map);
             var shelves = ShelfReserves.Reserved
                 .Where(s => s != null && s.Spawned && s.Map == map && s.Faction == pawn.Faction && s.GetStoreSettings() != null)
-                .Where(s => reserves?.StateOf(s) is ShelfReserves.State st && (st.FillsMissing(thing.def) || st.InPlaceOf(thing.def, null) >= 0))
+                .Where(s => reserves?.StateOf(s) is ShelfReserves.State st && (st.OrderFills(thing.def) || st.InPlaceOf(thing.def, null) >= 0))
                 .OrderByDescending(s => (int)s.GetStoreSettings().Priority).ThenBy(s => s.Position.DistanceToSquared(thing.Position)).ToList();
             if (shelves.Count == 0 || !pawn.CanReserveAndReach(thing, PathEndMode.ClosestTouch, Danger.Deadly)) return null;
             // A shelf the game's own haul brings it to needs no order: the game's line does that.
@@ -134,7 +134,7 @@ namespace ColonyCouncil
             if (shelf.OccupiedRect().Contains(thing.Position) || !shelf.HaulDestinationEnabled) return null;
             var settings = shelf.GetStoreSettings();
             bool allowed = settings.AllowedToAccept(thing) && !st.Barred(thing.def);
-            bool fills = st.FillsMissing(thing.def);
+            bool fills = st.OrderFills(thing.def);
             var rect = shelf.OccupiedRect();
             var movable = st.things.Select(t => t.Spawned && t.Map == map && rect.Contains(t.Position) && !t.IsForbidden(pawn) && !t.IsBurning()
                 && pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Deadly)).ToList();
@@ -161,12 +161,26 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Straight into a cell of the shelf with room for it (the game's own search within the shelf).</summary>
+        /// <summary>
+        /// Straight into a cell of the shelf with room for it: the game's own search within the shelf, the reserves' rules
+        /// giving way to the order meanwhile (an empty best-at-hand slot counts only what comes by itself).
+        /// </summary>
         private static Plan StraightIn(Pawn pawn, Thing thing, Building_Storage shelf)
         {
             var group = shelf.GetSlotGroup();
-            if (group == null || !StoreUtility.TryFindBestBetterStoreCellForIn(thing, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, group, out var cell)) return null;
-            return new Plan { shelf = shelf, way = ShelfReserveMath.OrderWay.Straight, thing = thing, freed = cell };
+            if (group == null) return null;
+            bool found;
+            IntVec3 cell;
+            ShelfReserves.Planning(shelf, thing.def);
+            try
+            {
+                found = StoreUtility.TryFindBestBetterStoreCellForIn(thing, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, group, out cell);
+            }
+            finally
+            {
+                ShelfReserves.Planning(null, null);
+            }
+            return found ? new Plan { shelf = shelf, way = ShelfReserveMath.OrderWay.Straight, thing = thing, freed = cell } : null;
         }
 
         /// <summary>A stack off the shelf first (to make room, or the lesser one the ordered stack replaces), then the ordered stack into its cell.</summary>
@@ -178,10 +192,25 @@ namespace ColonyCouncil
             return first == null ? null : new Plan { shelf = shelf, way = way, occupant = occupant, thing = thing, freed = freed, first = first };
         }
 
-        /// <summary>The stack off the shelf: to its best other storage (the game's search), else set down on a free cell beside the shelf.</summary>
+        /// <summary>
+        /// The stack off the shelf: to its best other storage (the game's search, its own shelf not taking it meanwhile: a
+        /// lesser meal in a slot still belongs there), else set down on a free cell beside the shelf.
+        /// </summary>
         private static Job FirstJob(Pawn pawn, Thing occupant, Building_Storage shelf)
         {
-            if (StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out var cell, out var dest) && dest != shelf)
+            bool stored;
+            IntVec3 cell;
+            IHaulDestination dest;
+            ShelfReserves.Leaving(occupant);
+            try
+            {
+                stored = StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out cell, out dest);
+            }
+            finally
+            {
+                ShelfReserves.Leaving(null);
+            }
+            if (stored && dest != shelf)
             {
                 if (dest is ISlotGroupParent && cell.IsValid) return MoveJob(occupant, cell, shelf, true);
                 if (dest is Thing container && container.TryGetInnerInteractableThingOwner() != null) return HaulAIUtility.HaulToContainerJob(pawn, occupant, container);
