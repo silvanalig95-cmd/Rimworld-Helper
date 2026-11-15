@@ -258,6 +258,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   journal written at a table, training (the colony's targets and training dummies from the mod pool, shadow sparring,
   archery practice), fishing (Odyssey's fishing where there's water, the catch their own), their own gear (mending,
   sharpening, oiling a bow, tending their pack animal), games of their own (cards, dice), and their own instruments.
+  In the player's active mods for these: Misc. Training (`haplo.miscellaneous.training`: `ArcheryTarget`,
+  `MartialArtsTarget`) for training, and Odyssey's fishing; no other mod needed.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
