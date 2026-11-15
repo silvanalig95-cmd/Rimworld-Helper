@@ -84,6 +84,20 @@ public static class IdleHoursTests
         C(IdleHoursMath.ThrowOf("RimWorld.JobDriver_PlayHorseshoes") == JoyThrow.Horseshoe && IdleHoursMath.ThrowOf("RimWorld.JobDriver_PlayHoopstone") == JoyThrow.Stone
           && IdleHoursMath.ThrowOf("RimWorld.JobDriver_SitFacingBuilding") == JoyThrow.None && IdleHoursMath.ThrowOf(null) == JoyThrow.None, "horseshoes and stones thrown as the game throws them");
         C(IdleHoursMath.IsTelescope("Telescope", "Telescope") && IdleHoursMath.IsTelescope(null, "VFE_Telescope") && !IdleHoursMath.IsTelescope("Gaming_Cerebral", "ChessTable"), "the telescope is for the stars");
+        C(IdleHoursMath.IsMusic(true, "HighCulture", false) && IdleHoursMath.IsMusic(false, "HighCulture", false) && !IdleHoursMath.IsMusic(false, "HighCulture", true)
+          && !IdleHoursMath.IsMusic(false, "Gaming_Cerebral", false), "the harp and the piano are played as music, a radio is listened to like a screen, chess is a game");
+        C(!IdleHoursMath.Excluded("Play_Billiards", "Gaming_Dexterity", "VFE_PoolTable") && IdleHoursMath.Excluded("ReceiveTherapy", "Social", "TherapyCouch")
+          && IdleHoursMath.Excluded("AM_VisitCorpseContainer", "Morbid", "AM_CorpseDisplay"), "a pool table is a game; a therapist's couch and a corpse on show are not for visitors");
+        // A fire to sit round, from the player's buildings (docs/player-mods/buildings.tsv, active rows).
+        C(IdleHoursMath.SitByFire(true, "Campfire", false, true, 1) && IdleHoursMath.SitByFire(true, "Brazier", false, false, 1) && IdleHoursMath.SitByFire(true, "DarklightBrazier", false, false, 1)
+          && IdleHoursMath.SitByFire(true, "VFEM2_Hearth", false, false, 2) && IdleHoursMath.SitByFire(true, "VFET_LargeFire", false, false, 4) && IdleHoursMath.SitByFire(true, "VCE_Grill", false, true, 1),
+            "a campfire, a brazier, a hearth, a tribal large fire and a grill are fires to sit round");
+        C(!IdleHoursMath.SitByFire(true, "TorchLamp", false, false, 1) && !IdleHoursMath.SitByFire(true, "Darktorch", false, false, 1) && !IdleHoursMath.SitByFire(true, "RB_WaxCandle", false, false, 1)
+          && !IdleHoursMath.SitByFire(true, "ChemlampPost", false, false, 1) && !IdleHoursMath.SitByFire(true, "Maal_GravFieldExtender", false, false, 1),
+            "torches, lamps, candles and the grav field extender are lights, not fires to sit round");
+        C(!IdleHoursMath.SitByFire(true, "FueledStove", false, true, 3) && !IdleHoursMath.SitByFire(true, "FueledSmithy", false, true, 3)
+          && !IdleHoursMath.SitByFire(true, "VQE_Genetron_WoodFired", true, false, 36) && !IdleHoursMath.SitByFire(false, "Campfire", false, true, 1),
+            "a stove, a smithy and a wood-fired generator are no fires to sit round, nor anything that isn't a fire");
         C(IdleHoursMath.Free(false, false, false, false, 0, 1), "a joy thing nobody has is free");
         C(!IdleHoursMath.Free(true, false, false, false, 0, 2), "one of the colony's people has it or is on the way: not free");
         C(!IdleHoursMath.Free(false, true, false, false, 0, 2) && !IdleHoursMath.Free(false, false, true, false, 0, 2) && !IdleHoursMath.Free(false, false, false, true, 0, 2),
@@ -213,6 +227,8 @@ public static class IdleHoursTests
         }
         C(Said("giveway") >= 2, "a word to one of the colony's people they give way to");
         C(IdleHoursMath.Moment(IdleDoing.OwnDrug, true) == "drink" && IdleHoursMath.Moment(IdleDoing.OwnDrug, false) == "smoke", "a drink or a smoke, by what it is");
+        C(IdleHoursMath.Moment(IdleDoing.Game, false, true) == "watch" && IdleHoursMath.Moment(IdleDoing.Game, false) == "game" && Said("watch") >= 2,
+            "a screen or a radio is watched, with words of its own, not played");
         C(IdleHoursMath.LineChance(IdleDoing.Company) > IdleHoursMath.LineChance(IdleDoing.Fire) && IdleHoursMath.LineChance(IdleDoing.Chat) == 0f && IdleHoursMath.LineChance(IdleDoing.Nap) == 0f,
             "a greeting to one of the colony's people more often than a remark at the fire");
         C(IdleHoursMath.MaySpeak(-1, -1, 1000), "the first line may be said");
@@ -235,6 +251,10 @@ public static class IdleHoursTests
         C(idle.Contains("if (l.facts.role == IdleRole.Trader || p.inventory?.innerContainer == null) return;"), "a trader's pack is the trade's goods, never eaten or drunk");
         C(jobs.Contains("inv.TryAdd(taken)") && !jobs.Contains("GenPlace.TryPlaceThing"), "a portion not finished goes back into the pack, never onto the colony's ground");
         C(idle.Contains("KeepOut.KeptFrom(") && idle.Contains("RoomOk("), "kept rooms, cells, sickrooms and bedrooms are no place to idle");
+        C(idle.Contains("if (!spot && l.places != null && l.places.workCells.Contains(map.cellIndices.CellToIndex(c))) return false;"),
+            "nobody idles on a cook's or a crafter's spot (the campfire's, the bench's)");
+        C(Regex.IsMatch(jobs, @"class JobDriver_VisitNap[\s\S]*?public override bool LookForOtherJobs => false;"), "a nap isn't cut short by the duty's wander");
+        C(idle.Contains("IdleHoursMath.SitByFire(Sauna.IsFire(def)") && idle.Contains("art.Props.canBeEnjoyedAsArt"), "fires and art told as the rules and the game's own looking at art tell them");
         C(idle.Contains("VisitorTrade.HeldByStory(p)"), "a story's visitor is left to the story");
         C(idle.Contains("public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.visitorsIdle ?? true);"), "under the setting and the deeper game hooks");
         string settings = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "CouncilSettings.cs"));

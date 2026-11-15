@@ -224,9 +224,33 @@ namespace ColonyCouncil
 
         private static readonly string[] ExcludedWords =
         {
-            "Hydrotherapy", "HotTub", "Sauna", "Bath", "Therma", "Pool", "Swim", "Washing", "Shoot", "Archery", "Arrow", "Dart", "MartialArts",
-            "Dummy", "Punching", "Strength", "Stage", "Performance", "RimMarket", "Auction", "Council_", "Rimfolk_", "Lounger", "Sunbath"
+            "Hydrotherapy", "HotTub", "Sauna", "Bath", "Therma", "PoolTile", "SwimmingPool", "Swim", "Washing", "Shoot", "Archery", "Arrow", "Dart",
+            "MartialArts", "Dummy", "Punching", "Strength", "Stage", "Performance", "RimMarket", "Auction", "Council_", "Rimfolk_", "Lounger", "Sunbath",
+            "Therapy", "Corpse"
         };
+
+        /// <summary>
+        /// Played or listened to as music: one of the game's instruments (the harp, the lyre, the piano of Royalty), or a
+        /// thing of high culture played at its own spot (Vanilla Furniture Expanded's piano). A radio or a screen of high
+        /// culture is watched and listened to like a screen, so it counts as watching.
+        /// </summary>
+        public static bool IsMusic(bool instrument, string joyKind, bool watch) => instrument || joyKind == "HighCulture" && !watch;
+
+        /// <summary>
+        /// A fire to sit round: the game's fires (a campfire, a brazier, a hearth, a large fire) but not a light (a torch, a
+        /// lamp, a candle), nothing that runs on or makes power (a wood-fired generator), no stove or smithy (a workbench
+        /// bigger than a campfire), and nothing bigger than four cells.
+        /// </summary>
+        public static bool SitByFire(bool isFire, string defName, bool power, bool workTable, int cells)
+        {
+            if (!isFire || power || cells > 4 || workTable && cells > 1) return false;
+            if (string.IsNullOrEmpty(defName)) return true;
+            foreach (var w in NotFireWords)
+                if (defName.IndexOf(w, StringComparison.OrdinalIgnoreCase) >= 0) return false;
+            return true;
+        }
+
+        private static readonly string[] NotFireWords = { "Torch", "Lamp", "Candle", "Sconce", "Lantern", "GravField" };
 
         /// <summary>How the joy thing is used, by the game's joy giver for it.</summary>
         public static JoyShape ShapeOf(bool instrument, bool watch, bool sitAdjacent, bool interactionCellGiver, bool hasInteractionCell)
@@ -541,8 +565,12 @@ namespace ColonyCouncil
 
         // ---------------- What's said ----------------
 
-        /// <summary>The moment a line is picked for (Rimfolk_Pool_VisitorIdle), or null when nothing is said.</summary>
-        public static string Moment(IdleDoing d, bool drink)
+        /// <summary>
+        /// The moment a line is picked for (Rimfolk_Pool_VisitorIdle), or null when nothing is said. <paramref name="drink"/>:
+        /// their own is a drink, not a smoke; <paramref name="watch"/>: the colony's thing is watched or listened to (a screen,
+        /// a radio), not played.
+        /// </summary>
+        public static string Moment(IdleDoing d, bool drink, bool watch = false)
         {
             switch (d)
             {
@@ -552,7 +580,7 @@ namespace ColonyCouncil
                 case IdleDoing.Seat: return "seat";
                 case IdleDoing.Shelter: return "shelter";
                 case IdleDoing.Snack: return "snack";
-                case IdleDoing.Game: return "game";
+                case IdleDoing.Game: return watch ? "watch" : "game";
                 case IdleDoing.Music: return "music";
                 case IdleDoing.Stars: return "stars";
                 case IdleDoing.Art: return "art";

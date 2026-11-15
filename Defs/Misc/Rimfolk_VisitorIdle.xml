@@ -223,7 +223,7 @@
         <ticksBetweenMotes>70</ticksBetweenMotes>
         <positionLerpFactor>0.6</positionLerpFactor>
         <positionRadius>0.3</positionRadius>
-        <moteDef>Mote_StoneBit</moteDef>
+        <fleckDef>WoodBit</fleckDef>
       </li>
     </children>
   </EffecterDef>

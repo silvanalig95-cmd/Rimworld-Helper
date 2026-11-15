@@ -96,15 +96,22 @@ namespace ColonyCouncil
             public JoyThrow toss;
             public int age;
             public bool telescope, desireSit;
+            /// <summary>Played as music (an instrument, a piano), or watched and listened to (a screen, a radio).</summary>
+            public bool music, watch;
+            /// <summary>One of the game's instruments, which plays its own music while someone is at it.</summary>
+            public bool instrument;
             public int participants = 1;
         }
 
-        private sealed class Places
+        public sealed class Places
         {
             public int tick;
             public readonly List<Building> fires = new List<Building>(), seats = new List<Building>(), games = new List<Building>(), music = new List<Building>(),
                 stars = new List<Building>(), art = new List<Building>(), altars = new List<Building>();
-            /// <summary>Cells where someone works at one of the colony's buildings (by the map's cell index): a chair there is a work chair, not a seat to take.</summary>
+            /// <summary>
+            /// Cells where someone works at one of the colony's buildings (by the map's cell index): a chair there is a work
+            /// chair, not a seat to take, and nobody idles on a cook's or a crafter's spot.
+            /// </summary>
             public readonly HashSet<int> workCells = new HashSet<int>();
         }
 
@@ -132,16 +139,20 @@ namespace ColonyCouncil
                             if (def == null || def.category != ThingCategory.Building || map.ContainsKey(def)) continue;
                             if (IdleHoursMath.Excluded(g.defName, g.joyKind?.defName, def.defName)) continue;
                             bool instrument = def.thingClass != null && typeof(Building_MusicalInstrument).IsAssignableFrom(def.thingClass);
+                            bool watch = typeof(JoyGiver_WatchBuilding).IsAssignableFrom(g.giverClass);
                             map[def] = new JoyThing
                             {
                                 giver = g,
                                 job = g.jobDef,
-                                shape = IdleHoursMath.ShapeOf(instrument, typeof(JoyGiver_WatchBuilding).IsAssignableFrom(g.giverClass),
+                                shape = IdleHoursMath.ShapeOf(instrument, watch,
                                     typeof(JoyGiver_InteractBuildingSitAdjacent).IsAssignableFrom(g.giverClass) || typeof(JoyGiver_PlayBilliards).IsAssignableFrom(g.giverClass),
                                     typeof(JoyGiver_InteractBuildingInteractionCell).IsAssignableFrom(g.giverClass), def.hasInteractionCell),
                                 toss = IdleHoursMath.ThrowOf(g.jobDef?.driverClass?.FullName),
                                 age = AgeOfThing(def),
                                 telescope = IdleHoursMath.IsTelescope(g.joyKind?.defName, def.defName),
+                                music = IdleHoursMath.IsMusic(instrument, g.joyKind?.defName, watch),
+                                watch = watch,
+                                instrument = instrument,
                                 desireSit = g.desireSit,
                                 participants = Math.Max(1, g.jobDef?.joyMaxParticipants ?? 1)
                             };
@@ -181,8 +192,6 @@ namespace ColonyCouncil
 
         private static readonly string[] NotSeats = { "Toilet", "Latrine", "Commode", "Throne", "Bath", "Saddle", "Pew" };
 
-        private static readonly string[] NotFires = { "Torch", "Lamp", "Candle", "Sconce", "Lantern" };
-
         private static Places PlacesOf(Map map)
         {
             int now = Now;
@@ -199,14 +208,16 @@ namespace ColonyCouncil
                     if (joy.TryGetValue(def, out var j))
                     {
                         if (j.telescope) pl.stars.Add(b);
-                        else if (j.shape == JoyShape.Instrument) pl.music.Add(b);
+                        else if (j.music) pl.music.Add(b);
                         else pl.games.Add(b);
                         continue;
                     }
-                    if (Sauna.IsFire(def) && !NotFires.Any(n => def.defName.IndexOf(n, StringComparison.OrdinalIgnoreCase) >= 0)) pl.fires.Add(b);
+                    if (IdleHoursMath.SitByFire(Sauna.IsFire(def), def.defName, def.GetCompProperties<CompProperties_Power>() != null, def.IsWorkTable, def.size.x * def.size.z))
+                        pl.fires.Add(b);
                     else if (def.building != null && def.building.isSittable && !(b is Building_Bed)
                              && !NotSeats.Any(n => def.defName.IndexOf(n, StringComparison.OrdinalIgnoreCase) >= 0)) pl.seats.Add(b);
-                    else if (def.IsArt || b.TryGetComp<CompArt>() is CompArt art && art.Active && !(b is Building_Bed)) pl.art.Add(b);
+                    // Art as the game's own looking at art has it: a sculpture, or anything whose art is there to be enjoyed.
+                    else if (b.TryGetComp<CompArt>() is CompArt art && art.Active && art.Props.canBeEnjoyedAsArt && !(b is Building_Bed)) pl.art.Add(b);
                     if (def.ritualFocus != null) pl.altars.Add(b);
                 }
                 // A work chair is no seat to take.
@@ -338,6 +349,8 @@ namespace ColonyCouncil
             /// <summary>Rimfolk's own visits keep out of doors and off the fields.</summary>
             public bool outdoors;
             public IdleFacts facts;
+            /// <summary>The colony's things on the map, as at the hour's look.</summary>
+            public Places places;
             public List<Building> fires = new List<Building>(), seats = new List<Building>(), games = new List<Building>(), music = new List<Building>(),
                 stars = new List<Building>(), art = new List<Building>(), shrines = new List<Building>();
             public Thing ownFire;
@@ -393,7 +406,8 @@ namespace ColonyCouncil
             }
             l.facts = f;
             // For Hospitality's guests only what its own recreation lacks is gathered: a fire for the cold, their god's shrine, their animals.
-            Gather(l, PlacesOf(map));
+            l.places = PlacesOf(map);
+            Gather(l, l.places);
             f.fire = l.fires.Count > 0 || l.ownFire != null;
             f.seat = l.seats.Count > 0;
             f.game = l.games.Count > 0;
@@ -526,7 +540,7 @@ namespace ColonyCouncil
                     foreach (var s in book.shrines)
                         if (s != null && !s.pending && s.Live && s.god == god.id && s.thing is Building b && PlaceOk(l, b))
                             l.shrines.Add(b);
-                if (ModsConfig.IdeologyActive && l.p.Ideo != null && l.p.Ideo == Faction.OfPlayer.ideos?.PrimaryIdeo)
+                if (ModsConfig.IdeologyActive && l.p.Ideo != null && (Faction.OfPlayer.ideos?.AllIdeos.Contains(l.p.Ideo) ?? false))
                     foreach (var b in pl.altars)
                         if (!l.shrines.Contains(b) && PlaceOk(l, b))
                             l.shrines.Add(b);
@@ -723,7 +737,7 @@ namespace ColonyCouncil
                 case IdleDoing.Pray:
                     foreach (var b in l.shrines.OrderBy(b => b.Position.DistanceToSquared(p.Position)).Take(3))
                     {
-                        var cell = b.def.hasInteractionCell && StandOk(l, b.InteractionCell, false) ? b.InteractionCell : NextTo(l, b);
+                        var cell = b.def.hasInteractionCell && StandOk(l, b.InteractionCell, false, true) ? b.InteractionCell : NextTo(l, b);
                         if (cell.IsValid) return JobMaker.MakeJob(IdleDefOf.Rimfolk_IdlePray, cell, b);
                     }
                     return null;
@@ -751,15 +765,18 @@ namespace ColonyCouncil
         /// <summary>
         /// A cell this visitor may stand (or sit) on for a while: open to them (no cell, sickroom, bedroom or kept room; out
         /// of doors and off the fields for Rimfolk's own visits), near their spot, nobody on it, nobody of theirs going to it,
-        /// nothing of the colony's reserved there or on its way to it, and within reach. <paramref name="seat"/>: a seat's
-        /// cell, where the seat itself is the edifice.
+        /// nothing of the colony's reserved there or on its way to it, not where someone works at one of the colony's
+        /// buildings (a cook's spot by the campfire, a crafter's at the bench), and within reach. <paramref name="seat"/>: a
+        /// seat's cell, where the seat itself is the edifice; <paramref name="spot"/>: the place's own spot (a game's, an
+        /// instrument's, a shrine's), which is a building's spot by its nature.
         /// </summary>
-        private static bool StandOk(Look l, IntVec3 c, bool seat)
+        private static bool StandOk(Look l, IntVec3 c, bool seat, bool spot = false)
         {
             var map = l.map;
             var p = l.p;
             if (!c.IsValid || !c.InBounds(map) || !c.Standable(map) || c.Fogged(map)) return false;
             if (!Near(l, c, 4f)) return false;
+            if (!spot && l.places != null && l.places.workCells.Contains(map.cellIndices.CellToIndex(c))) return false;
             var edifice = c.GetEdifice(map);
             if (edifice is Building_Door) return false;
             if (edifice != null && !seat && !(edifice.def.building?.isSittable ?? false) && edifice.def.passability != Traversability.Standable) return false;
@@ -852,7 +869,7 @@ namespace ColonyCouncil
                 case JoyShape.Cell:
                 case JoyShape.Instrument:
                     if (b.def.hasInteractionCell)
-                        return StandOk(l, b.InteractionCell, true) ? b.InteractionCell : IntVec3.Invalid;
+                        return StandOk(l, b.InteractionCell, true, true) ? b.InteractionCell : IntVec3.Invalid;
                     return NextTo(l, b);
                 default:
                 {

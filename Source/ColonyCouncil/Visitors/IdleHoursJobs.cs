@@ -146,7 +146,8 @@ namespace ColonyCouncil
             stay.AddPreInitAction(() => Begin(d));
             stay.AddPreTickIntervalAction(delta => During(d, delta));
             var effecter = ext.effecter ?? EffecterOf(d);
-            if (effecter != null) stay.WithEffect(effecter, TargetIndex.A);
+            // A game's own effect shows at the game (the cards on the table, the screen's glow); the rest where they sit.
+            if (effecter != null) stay.WithEffect(effecter, d == IdleDoing.Game && job.targetB.HasThing ? TargetIndex.B : TargetIndex.A);
             if (d == IdleDoing.Snack || d == IdleDoing.OwnDrug)
             {
                 var sound = job.thingDefToCarry?.ingestible?.ingestSound;
@@ -183,7 +184,8 @@ namespace ColonyCouncil
                 }
                 if (!Rand.Chance(IdleHoursMath.LineChance(d))) return;
                 bool drink = d == IdleDoing.OwnDrug && IdleHours.DrugKind(job.thingDefToCarry) == OwnDrugKind.Drink;
-                IdleHours.Say(pawn, IdleHoursMath.Moment(d, drink), d == IdleDoing.Company ? Other : null);
+                bool watch = d == IdleDoing.Game && (IdleHours.JoyOf(Place?.def)?.watch ?? false);
+                IdleHours.Say(pawn, IdleHoursMath.Moment(d, drink, watch), d == IdleDoing.Company ? Other : null);
             }
             catch (Exception e)
             {
@@ -309,10 +311,16 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A nap in the shade: the game's own lying down on the ground under a tree, for an hour or so (the job's expiry), in words of its own.</summary>
+    /// <summary>
+    /// A nap in the shade: the game's own lying down on the ground under a tree, for an hour or so (the job's expiry), in
+    /// words of its own. It doesn't look for anything else to do meanwhile: a visitor's duty would have them up again at
+    /// once to wander about their spot (as with a hosted guest's sleep, JobDriver_GuestSleep).
+    /// </summary>
     public class JobDriver_VisitNap : JobDriver_LayDown
     {
         [Unsaved] private readonly IdleCheck check = new IdleCheck();
+
+        public override bool LookForOtherJobs => false;
 
         public override string GetReport() => (asleep ? "CC_Idle_Report_Nap" : "CC_Idle_Report_Rest").Translate().Resolve();
 
