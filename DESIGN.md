@@ -3433,17 +3433,19 @@ moments are filled with things of their own, none of it work or value for the co
   fire, a grill, not a torch, lamp or candle, a stove or smithy, or anything with power. Seats: anything sittable but a
   bed, a toilet, a throne, a saddle or a pew. Art: what the game's own looking at art takes (`canBeEnjoyedAsArt`).
 - **Where** (`PlaceOk`, `StandOk`): near their spot (`IdleHoursMath.Reach`: 20 cells for the game's visitors, 16 for a
-  caravan, 9 for its trader, 14 for Rimfolk's visits, 24 for envoys, 6 for Hospitality's guests from where they stand),
+  caravan, 9 for its trader, 14 for Rimfolk's visits, 24 for envoys, 6 for Hospitality's guests from where they stand;
+  round two below widens these and spreads them over the colony),
   never in a cell, a sickroom, a bedroom or a barracks, nor in a room visitors keep out of (`KeepOut.KeptFrom`: the
   colony's bedrooms and cold stores, whose doors are barred to them anyway), out of doors and off the fields for
   Rimfolk's visits, on nobody's cell, not one another of them is going to, and within reach.
 - **Hospitality's guests** keep Hospitality's own recreation: only what it has nothing for is filled
   (`IdleHoursMath.ForHospitality`: warming their hands at a fire in the cold, shelter from the rain, a prayer at their
-  god's shrine, their own animals), less often (`FillChance`), and close to where they stand.
+  god's shrine, their own animals), less often (`FillChance`), and close to where they stand. Round two below gives
+  them all of Rimfolk's doings, within their guest area.
 - **How often and how long** (`FillChance`, `Stint`, `NextLook`): three idle wanders in four by day become something of
   their own, fewer at night and for Hospitality's guests; a stint lasts from a few minutes to an hour and a half of game
   time (a bite 400 to 700 ticks, a game 1,500 to 3,000), then a little wandering (150 to 400 ticks) before the next look,
-  longer (500 to 1,000) when nothing came of it.
+  longer (500 to 1,000) when nothing came of it. Round two below: most of the day, a look at once.
 - **What's said** (`IdleHours.Say`, `Rimfolk_Pool_VisitorIdle`): now and then a line as a stint begins, one plain sentence
   through `Speech.Say` (a greeting to the colonist they keep company more often, said only when the two are together),
   tagged by the moment, their people's age and calling; a word to the colonist they give way to; never from one visitor
@@ -3456,6 +3458,88 @@ moments are filled with things of their own, none of it work or value for the co
 - **Dev mode**: "Visitors: fill this visitor's idle hour now" (the chance and the next look aside) and "Visitors: idle
   hours of everyone here (log)" (each visitor's group, role, age, calling, the hour, the weather, what fits and how much,
   or why nothing does).
+
+### Visitors' idle hours, round two: busy most of the day, over the colony (the player's go, 15 November 2026; not released yet)
+
+The player: "guests still just wait around most of the time it feels. they could read books, take walks, interact with my
+pets, write letters, train, fish, work on and use items themselves etc.", then "ok looks like they already read books
+sometimes, but they generally just chill around the same room (my eating room)", and to the proposal "and yes, your
+suggestions all sound great". Why they waited: a look came only now and then (three in four by day, Hospitality's guests
+45% of that), a stint ended in a wander of 150 to 1,000 ticks before the next look, and for Hospitality's guests Rimfolk
+filled only warming, shelter, prayer and animals, within six cells of where they stood, while Hospitality's own duty
+(`Relax`, in its `Duties_Visit.xml`) has them stand about being sociable a third of the time and wander the colony the rest
+once its recreation is done (its `JobGiver_Relax` only gives a job while their recreation is below 90%), which drew them
+all to the dining room. The same files as the first round: `Visitors/IdleHoursMath.cs` (`IdleHoursTests`),
+`Visitors/IdleHours.cs`, `Visitors/IdleHoursJobs.cs`, `Defs/Misc/Rimfolk_VisitorIdle.xml`,
+`Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml`, `Languages/English/Keyed/Rimfolk_VisitorIdle.xml`.
+
+- **Most of their waiting filled** (`FillChance`, `NextLook`, `NextLookAfter`, `Stint`): nine idle moments in ten by day
+  and six in ten at night become something of their own (Hospitality's guests nine tenths of that); the next look comes
+  the moment a stint ends (a stint that ended within 250 ticks of starting waits 300 to 700, so nobody starts and stops
+  over and over); stints are longer where it fits (an evening at the fire up to 3,200 ticks, a game 3,400, a book or
+  fishing 3,500). The night is quieter: only the fire, a seat, shelter, the stars, a little talk, and sleep.
+- **Hospitality's guests** (`ForHospitality`, `GuestArea`): every doing but the night's sleep (their nights are in
+  Hospitality's guest beds), alongside Hospitality's own recreation, which comes first: Rimfolk fills only the moments its
+  duty would have them wander (`GotoWander`, `Wait_Wander`) or stand about (`StandAndBeSociallyActive`, filled for its
+  guests only). Within the guest area set in Hospitality's guest tab (its `CompGuest.guestArea_int`, found by name as the
+  market finds it; Hospitality's own reach patch keeps them in it too), reaching 50 cells over the colony from where they
+  stand. The game's visitors now reach 24 cells, envoys 30.
+- **Spread over the colony** (`IdleHoursMath.PlaceScore`, `IdleHours.Spread`): every seat, fire, game, instrument, telescope,
+  piece of art, table, target, book, fishing place and walk's end is ranked by its distance over their reach, a penalty
+  for the room they are in now (0.8 for Hospitality's guests, 0.25 for the rest), 0.3 for each other visitor within five
+  cells or in the same room indoors (where those at a stint are going counts), and a little chance; a seat for a bite, a
+  smoke or mending is looked for up to 20 cells off for Hospitality's guests (8 for the rest). So after a while in the
+  dining room the next thing is somewhere else: another room, the grounds, the fire, the garden.
+- **New doings**, each a job of its own with its own words (`Rimfolk_IdleRead` to `Rimfolk_IdleSleep`), none working for
+  the colony or using up its things, each giving way to the colony's people as before, by their people's age and calling:
+  - **A book** (`Read`): one of their own from their pack (any `Book`; taken out once they sit down, put back after), or
+    one of the colony's lying about (a shelf, a table, the floor) or in its bookcase, taken up, read on a seat within
+    eight cells (else beside where it lay) carried open as the game's readers carry it (`Book.IsOpen`), and put back into
+    its bookcase or onto the cell it lay on; cut short away from there, it is set down where they stand, still the
+    colony's. The book's own outcomes (research, skill, a quest) are never run, so reading gives the colony nothing; dark
+    tomes that can break a mind are left alone (`BookOk`). A tribal people reads only a book of its own; the children,
+    a guard on watch and anyone who can't see don't read.
+  - **A walk** (`Walk`): two to four places on the colony's laid paths out of doors (or open ground), nearest first at a
+    stroll, a moment at each, ending at a garden (flowers in a pot or a bed of beauty plants), a grave with someone in it,
+    or a view (the water's edge, the edge of the home area looking out), where they stand a while looking at it. In fair
+    weather by day, mornings and evenings most; not the children (they play), not a trader or a guard.
+  - **The colony's pets** (`Pet`): a small animal of the colony's (a dog, a cat, a guinea pig: `IsPet`, body size up to
+    1.3, a pet by the game's petness or one that nuzzles; not roped or penned stock), awake, idle and calm, nobody of the
+    colony after it: petted (it waits with them, a heart over it), or, for a dog out of doors, a stick thrown a few times
+    within its allowed area, the dog running after it and bringing it back by the game's own going somewhere
+    (`JobDefOf.Goto`). Never tamed, trained or bonded. A word to it now and then; the children most.
+  - **A letter or their journal** (`Write`), sitting at one of the colony's tables (a table to eat at, not a work bench),
+    from the medieval age on.
+  - **Training** (`Train`): at the colony's training targets from the player's mods (Misc. Training's martial arts target,
+    Vanilla Factions Expanded - Medieval 2's training dummy; `IdleHoursMath.SparTargets`, by name), blows struck with the
+    game's own lunge and sound; or shadow sparring on open ground in fair weather, the body thrown forward with each blow
+    (`ForcedBodyOffset`) and turning now and then. Not the children, not a trader or a guard; mercenaries and hunters
+    most. **Archery** (`Archery`): with their own bow or crossbow (`IsBow`), at the colony's archery target (Misc. Training's,
+    Medieval 2's) from its own stand, Misc. Training's arrow (`Mote_ArcheryArrow`) flying and striking with the bow's own
+    sound; with Misc. Training not loaded there is no arrow to show, so no archery.
+  - **Fishing** (`Fish`): at the water's edge with fish in the water (Odyssey's fish stock, or Vanilla Fishing Expanded's
+    open water on its own; `CampLand.Fishable`), never in one of the colony's fishing zones or beside a colonist fishing,
+    with Odyssey's fishing line shown at the water; at the end one to three of the water's own fish go into their pack
+    (theirs, taken with them), with the game's sound of a catch. The colony's fish stock is left as it was. The river
+    folk (`fishers`) three times as often; never against their faith (Odyssey's fishing precepts).
+  - **Their own gear**: mending the most worn piece of their clothes (below four fifths), a tenth of its hit points made
+    good at the end (`Mend`; not a titled one); seeing to their weapon (`Sharpen`, the weapon in hand): a blade sharpened
+    with a few sparks, a bow oiled and restrung, a gun cleaned. Their own pack animal is seen to as before (`Animal`).
+  - **A game of their own** (`Cards`) with one of their own idle near, the two facing each other: cards (the game's cards
+    over them and the chips' sound), dice among the medieval half the time, a game of stones for a tribal people (the
+    stones thrown between them). Grown-ups only; of an evening most.
+  - **A song** (`Sing`), sung quietly to themselves, notes over them; of an evening most. No mod in the player's list adds
+    an instrument a person carries, so their own instruments wait for one; the colony's instruments are played as before.
+  - **A night's sleep** (`Sleep`): the game's visitors and a caravan's people (not its trader or guards), tired at
+    night, lie down on the ground near their spot, out of doors (a porch or a shed's eaves in rain, snow or the cold),
+    the game's own lying down, till rested. Rimfolk's visits, envoys and Hospitality's guests keep their own beds and
+    bedtimes.
+- **The log** ("Visitors: idle hours of everyone here"): a first line for the map (how many are up and about, how many
+  at something of their own, how many standing or wandering, and the share of their idle time filled this session), and
+  for each visitor what they are at now, their share filled (the ticks at stints against the ticks left standing or
+  wandering, each such moment counted up to 1,000 ticks: `IdleHoursMath.FilledShare`), what is about for the new doings
+  (their book, the colony's books, pets, fishing places, a target, a bow, a table, walk ends, worn clothes, a weapon),
+  and what fits now. Per session, nothing saved.
 
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 

@@ -3,12 +3,33 @@
 
   <!-- Visitors' idle hours (Source/ColonyCouncil/Visitors/IdleHours.cs). -->
   <CC_Settings_VisitorsIdle>Visitors fill their idle hours</CC_Settings_VisitorsIdle>
-  <CC_Settings_VisitorsIdle_Tip>When visitors would otherwise stand about or wander near their spot, they do something of their own now and then: talk with each other or keep one of your colonists company, sit by a fire or on a bench, warm their hands in the cold, get out of the rain, eat from their own packs, nap under a tree at midday, play your games and instruments or use your telescope when none of your people want them, look at your art, pray at a shrine of their god, see to their own animals, smoke or drink something of their own, smoke a pipe or whittle; their children run about and play. What they do depends on their people's tech level, the hour and the weather. None of it is work for the colony and none of your goods are used. They reserve nothing, and they get up as soon as one of your colonists heads for the game, the seat or the place. The game's visitors and traders, Rimfolk's visits between their duties and envoys do this; Hospitality's guests only for what Hospitality has no recreation for. Needs the deeper game hooks.</CC_Settings_VisitorsIdle_Tip>
-  <CC_SetNote_VisitorsIdle>Visitors sit, talk, play and see to their animals instead of standing about.</CC_SetNote_VisitorsIdle>
+  <CC_Settings_VisitorsIdle_Tip>When visitors would otherwise stand about or wander near their spot, they mostly do something of their own: talk with each other or keep one of your colonists company, sit by a fire or on a bench, warm their hands in the cold, get out of the rain, eat from their own packs, nap under a tree at midday, play your games and instruments or use your telescope when none of your people want them, look at your art, pray at a shrine of their god, see to their own animals, smoke or drink something of their own, smoke a pipe or whittle; read a book of their own or one of yours (put back where it lay), take a walk to a garden, a grave or a view, pet your dogs and cats or throw a stick for a dog, write a letter at a table, train at your training targets or spar with their shadow, practise with their own bow at your archery target, fish (the catch is theirs), mend their clothes, see to their weapon, play cards or dice with each other, sing to themselves, and at night sit by the fire or sleep. Their children run about and play. What they do depends on their people's tech level, the hour and the weather, and they spread out over the colony rather than staying in one room. None of it is work for the colony and none of your goods are used up. They reserve nothing, and they get up as soon as one of your colonists heads for the game, the seat or the place. The game's visitors and traders, Rimfolk's visits between their duties, envoys and Hospitality's guests do this; Hospitality's own recreation comes first for its guests, and their guest area decides where they may go. Needs the deeper game hooks.</CC_Settings_VisitorsIdle_Tip>
+  <CC_SetNote_VisitorsIdle>Visitors read, walk, fish, play and see to their things instead of standing about.</CC_SetNote_VisitorsIdle>
 
   <CC_Idle_Report_Drink>having a drink of their own.</CC_Idle_Report_Drink>
   <CC_Idle_Report_Smoke>having a smoke of their own.</CC_Idle_Report_Smoke>
   <CC_Idle_Report_Nap>napping in the shade.</CC_Idle_Report_Nap>
   <CC_Idle_Report_Rest>resting in the shade.</CC_Idle_Report_Rest>
+  <CC_Idle_Report_Sleep>sleeping on the ground.</CC_Idle_Report_Sleep>
+  <CC_Idle_Report_LieDown>lying down for the night.</CC_Idle_Report_LieDown>
+  <CC_Idle_Report_Read>reading {0}.</CC_Idle_Report_Read>
+  <CC_Idle_Report_ReadOwn>reading {0} from their pack.</CC_Idle_Report_ReadOwn>
+  <CC_Idle_Report_Walk0>taking a walk round the colony.</CC_Idle_Report_Walk0>
+  <CC_Idle_Report_Walk1>walking out to the garden.</CC_Idle_Report_Walk1>
+  <CC_Idle_Report_Walk2>walking out to the graves.</CC_Idle_Report_Walk2>
+  <CC_Idle_Report_Walk3>walking out to look at the view.</CC_Idle_Report_Walk3>
+  <CC_Idle_Report_Pet>petting {0}.</CC_Idle_Report_Pet>
+  <CC_Idle_Report_Fetch>throwing a stick for {0}.</CC_Idle_Report_Fetch>
+  <CC_Idle_Report_Letter>writing a letter.</CC_Idle_Report_Letter>
+  <CC_Idle_Report_Journal>writing in their journal.</CC_Idle_Report_Journal>
+  <CC_Idle_Report_Train>training at the {0}.</CC_Idle_Report_Train>
+  <CC_Idle_Report_Spar>sparring with their shadow.</CC_Idle_Report_Spar>
+  <CC_Idle_Report_Mend>mending their {0}.</CC_Idle_Report_Mend>
+  <CC_Idle_Report_Sharpen0>sharpening their {0}.</CC_Idle_Report_Sharpen0>
+  <CC_Idle_Report_Sharpen1>oiling and restringing their {0}.</CC_Idle_Report_Sharpen1>
+  <CC_Idle_Report_Sharpen2>cleaning their {0}.</CC_Idle_Report_Sharpen2>
+  <CC_Idle_Report_Cards0>playing cards with {0}.</CC_Idle_Report_Cards0>
+  <CC_Idle_Report_Cards1>playing dice with {0}.</CC_Idle_Report_Cards1>
+  <CC_Idle_Report_Cards2>playing a game of stones with {0}.</CC_Idle_Report_Cards2>
 
 </LanguageData>
