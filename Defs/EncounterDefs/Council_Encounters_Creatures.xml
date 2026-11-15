@@ -180,7 +180,7 @@
     <texts>
       <li>{A_nameDef} saw {X_definite} make straight for the stores to eat the colony's food.</li>
       <li>{A_nameDef} watched {X_definite} sneak off to the stores, looking for something to eat.</li>
-      <li>{A_nameDef} saw {X_definite} head for the stored food, and knew what {X_pronoun} was after.</li>
+      <li>{A_nameDef} saw {X_definite} head for the stored food to eat some of it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Larder</scene></li>
@@ -373,7 +373,7 @@
     <texts>
       <li>Well after dark, {X_definite} went outside, stared into the dark and cried out again and again, and {A_nameDef} heard every call.</li>
       <li>{A_nameDef} was still up when {X_definite} started crying out at something in the dark, and {X_pronoun} kept at it for a long while.</li>
-      <li>In the night {X_definite} stood facing the dark and called out over and over, and {A_nameDef} couldn't stop listening.</li>
+      <li>In the night {X_definite} stood facing the dark and called out over and over while {A_nameDef} listened.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Cry</scene></li>

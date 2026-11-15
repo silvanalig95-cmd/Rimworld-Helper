@@ -251,8 +251,10 @@ namespace ColonyCouncil
                     }
                     if (w.stage == 1)
                     {
-                        // The night is over once they're up again: told then.
-                        if (!Together.Able(w.a)) continue;
+                        // The night is over once they're up again in the morning (not woken in the small hours): told then.
+                        var at = w.a.MapHeld;
+                        int hour = at != null ? GenLocalDate.HourOfDay(at) : 12;
+                        if (!Together.Able(w.a) || hour < 5 || hour >= 22) continue;
                         waiting.Remove(w);
                         w.tell?.Invoke();
                         continue;
@@ -393,13 +395,14 @@ namespace ColonyCouncil
             if (young.Count == 0 || !a.CanReach(x, PathEndMode.Touch, Danger.None)) return false;
             var first = young.OrderBy(y => y.Position.DistanceToSquared(x.Position)).First();
             if (!AnimalTempers.CellNear(x, first.Position, 1, out var cell)) return false;
-            if (!AnimalDays.Start(x, AnimalTempers.Linger(AnimalNatureDefOf.Rimfolk_AnimalLieBy, cell, first, AnimalDaysMath.LitterTicks, first))) return false;
+            // The colonist first: without them going over, there is nothing to tell, and it waits.
+            var look = JobMaker.MakeJob(AnimalDaysDefOf.Rimfolk_SitWithAnimal, x);
+            look.count = AnimalDaysMath.WatchTicks;
+            if (!AnimalDays.StartThen(a, look, tell)) return false;
+            AnimalDays.Start(x, AnimalTempers.Linger(AnimalNatureDefOf.Rimfolk_AnimalLieBy, cell, first, AnimalDaysMath.LitterTicks, first));
             foreach (var y in young.Take(4))
                 if (MoreHabits.Calm(y) && y.GetLord() == null && y.CanReach(x, PathEndMode.Touch, Danger.Some))
                     AnimalDays.Start(y, AnimalDays.FollowJob(x, 1.9f, AnimalDaysMath.LitterTicks));
-            var look = JobMaker.MakeJob(AnimalDaysDefOf.Rimfolk_SitWithAnimal, x);
-            look.count = AnimalDaysMath.WatchTicks;
-            AnimalDays.StartThen(a, look, tell);
             AnimalTempers.Noted(x, "CC_AnimalScene_Litter", a.Named("PAWN"));
             return true;
         }
