@@ -3220,6 +3220,104 @@ game gives it (a freezer with a butcher's table is a kitchen to the game). The p
 - **Dev mode**: "Visitors: rooms kept from them (log)" and "Visitors: look at the kept rooms again now"
   (`Visitors/KeepOutDebug.cs`).
 
+### Visitors' idle hours: their own day (the player's go, 14 November 2026; released 0.239.0)
+
+The player: "guests should spend more of their time doing things. i don't want them to generate value for me, but it
+just looks a bit weird when they spend most of their day just standing and walking around. they can talk, do actions,
+recreation, many things that don't make them work for me", then "do the one that visitors fill their idle hours". Before,
+the game's visitors and traders stood about and wandered near their spot, Rimfolk's own visits had their duties
+(`Rimfolk_VisitWait`, `Rimfolk_VisitWork`) and a fire and a seat now and then, and envoys wandered. Now a visitor's idle
+moments are filled with things of their own, none of it work or value for the colony. The pure rules are in
+`Visitors/IdleHoursMath.cs` (`IdleHoursTests`), the game side in `Visitors/IdleHours.cs` (who, what is about, the places),
+`Visitors/IdleHoursJobs.cs` (the stints and the hook) and `Visitors/IdleHoursDebug.cs`; the jobs in
+`Defs/Misc/Rimfolk_VisitorIdle.xml`, the lines in `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml`.
+
+- **The way in** (`Patch_VisitorsIdle`): a postfix on `ThinkNode_Duty.TryIssueJobPackage`, at low priority so it comes
+  after the market's (`Patch_VisitorsShop`). Only when the duty's answer is an idle wander (`GotoWander`, `Wait_Wander`)
+  of someone not of the colony does `IdleHours.JobFor` look for something of their own; the job keeps the wander's lord,
+  source and duty tag. Fighting, eating, sleeping, the market and whatever the duty has for them (a visit's work, its
+  fire) come first, and the duty itself is left as it is.
+- **Who** (`IdleHours.GroupOf`, `AtStay`, `WhyNot`): on a home map, at peace with the colony, not held or a quest's, up and
+  about, no danger on the map, not leaving, not trading or in Rimfolk's outsider talk, not held by a story
+  (`VisitorTrade.HeldByStory`, shared with the market), not hungry, worn out or due to sleep. The groups: the game's
+  visitors (`LordJob_VisitColony`) and trade caravans (`LordJob_TradeWithColony`) at their spot (`LordToil_DefendPoint`,
+  the caravan's own toil included), a caravan's goods and pack carriers aside; Rimfolk's visits at their spot out of
+  doors (`LordToil_VisitHere`, not those shown a corner inside); envoys staying the season (`LordToil_EnvoyStay`); and
+  Hospitality's guests relaxing (its `Relax` duty). The trader keeps near the trade (`IdleRole.Trader`, 9 cells), a
+  caravan's guards stay on watch (no games, no nap, no drink). Quest lodgers are the colony's own for their stay and take
+  its recreation already; callers, camps, feasts' and hosted guests and stories' strangers have their own plans.
+- **What they do** (`IdleDoing`, each a JobDef of its own with `VisitIdleExtension`, run by `JobDriver_VisitIdle`):
+  talk with one of their own who is idle near (the two stand together, the game's own chats come of it), keep one of the
+  colony's people at their leisure company (`SmallHabits.CanListen`; not followed about once they walk off), sit in the
+  ring round a lit fire (their own camp's first for a Rimfolk visit), warm their hands right by it below 5 degrees, take
+  a free seat (out in the open in fair weather, under a roof in foul; never a work chair), get under a roof near them in
+  rain or snow (a porch or eaves for Rimfolk's visits, which keep out of doors), eat a bite from their own pack at a meal
+  hour when peckish, nap in a tree's shade at midday in fair weather when a little tired (`JobDriver_VisitNap`, the
+  game's own lying down, which doesn't look for another job meanwhile), play the colony's games, its instruments and its
+  telescope on a clear night while nobody of the colony wants them, look at its art, pray at a shrine of their god (the
+  colony's dedicated shrines, Gods/Worship) or an altar of a faith the colony holds and they share, see to their own
+  animals (the beast waits while they brush it down), run about at play (the children, `JobDriver_VisitIdlePlay`), have a
+  smoke or a drink of their own from their own pack, smoke a pipe or whittle a bit of wood.
+- **Fitted to them** (`IdleHoursMath.Weights`, `NotFor`, `CallingFactor`): by the hour (meals at breakfast, midday and
+  supper, prayers morning and evening, games and music from morning to mid-evening, the telescope after dark, the nap
+  from noon to four, the fire most of an evening), the weather (shelter first in the rain, the fire on a chilly day, no
+  nap in rain or cold), who they are (children play and see to the animals and nothing grown; a titled visitor never
+  dozes on the ground or whittles and looks at the art more; a scoffer doesn't pray, the devout pray more; a teetotaller
+  or a faith against drugs has no smoke or drink; nobody who can't talk, see or use their hands does what needs it), their
+  people's age (a thing of the colony's fits them when it is of their age or older, by its own tech level, its research,
+  its components or plasteel and its power: a tribal visitor plays horseshoes and the royal game of Ur, not chess or a
+  spacer screen; whittling and a pipe among the older ages most) and their calling (herders see to their animals,
+  pilgrims pray, scholars look at the stars and the art, artisans at the art, traders and mercenaries play).
+- **Nothing for the colony**: nothing made, hauled, cleaned or built for it; nothing of its stores used (what they eat,
+  drink or smoke comes out of their own pack, one portion, and what isn't finished goes back into it; a trader's pack is
+  the trade's goods and never touched); no fuel, power or wear asked of anything beyond what it already uses; and no
+  recreation taken from the colony's people. Nothing is reserved (`TryMakePreToilReservations` is true), so one of the
+  colony's people who wants a game, a seat or a place finds it free; the moment one of them reserves the thing, the cell
+  or the seat, or sets out to walk there (`IdleHours.ColonyWho`: the colony's reservations and destinations), the visitor
+  stands up and gives it to them, now and then with a word, and leaves it be for four hours (`GiveWayHours`). A joy thing
+  is free only when nobody of the colony has it, it isn't forbidden or switched off, it has its power and there's room at
+  it (`IdleHoursMath.Free`: two at a chess table, one at a telescope). Nobody idles on a cook's or a crafter's spot (the
+  colony's buildings' interaction cells, `Places.workCells`). Every stint is casually interruptible, so a trader can
+  still be traded with and anyone talked to.
+- **The colony's things** (`IdleHours.JoyThings`, `PlacesOf`, looked at once an hour per map): every building a joy giver
+  of the game or a loaded mod uses (`JoyGiver_InteractBuilding` and its kinds), so the player's whole pool counts: the
+  game's horseshoes, hoopstone, chess, Ur, poker, billiards, screens, telescope and Royalty's instruments; Vanilla
+  Furniture Expanded's arcade, roulette, piano, computers, radio and Spacer's interactive table; the Settlers' faro and
+  five-finger fillet; Boglegs' tongo; the quests' foosball and wargaming tables. Left out (`IdleHoursMath.Excluded`):
+  baths, hot tubs, saunas, pools and swimming, the washing machine, shooting, archery, darts, sparring, dummies and
+  punching bags (the game shows the throw or the blow, which a visitor's stint doesn't), a stage that needs a performer, a
+  therapist's couch, a corpse on show, the market's stalls and auction, and Rimfolk's own habits. How each is used comes
+  from its joy giver (`ShapeOf`: a watching spot, a seat beside it, its own spot, an instrument), with the game's look of
+  it: the horseshoes and stones thrown, the cards at a poker table, a screen's glow at the screen, the instrument played
+  with its own music (`Building_MusicalInstrument.StartPlaying`), notes over a piano, the report the game's own job uses
+  ("playing chess."). Fires (`IdleHoursMath.SitByFire`, over `Sauna.IsFire`): a campfire, a brazier, a hearth, a large
+  fire, a grill, not a torch, lamp or candle, a stove or smithy, or anything with power. Seats: anything sittable but a
+  bed, a toilet, a throne, a saddle or a pew. Art: what the game's own looking at art takes (`canBeEnjoyedAsArt`).
+- **Where** (`PlaceOk`, `StandOk`): near their spot (`IdleHoursMath.Reach`: 20 cells for the game's visitors, 16 for a
+  caravan, 9 for its trader, 14 for Rimfolk's visits, 24 for envoys, 6 for Hospitality's guests from where they stand),
+  never in a cell, a sickroom, a bedroom or a barracks, nor in a room visitors keep out of (`KeepOut.KeptFrom`: the
+  colony's bedrooms and cold stores, whose doors are barred to them anyway), out of doors and off the fields for
+  Rimfolk's visits, on nobody's cell, not one another of them is going to, and within reach.
+- **Hospitality's guests** keep Hospitality's own recreation: only what it has nothing for is filled
+  (`IdleHoursMath.ForHospitality`: warming their hands at a fire in the cold, shelter from the rain, a prayer at their
+  god's shrine, their own animals), less often (`FillChance`), and close to where they stand.
+- **How often and how long** (`FillChance`, `Stint`, `NextLook`): three idle wanders in four by day become something of
+  their own, fewer at night and for Hospitality's guests; a stint lasts from a few minutes to an hour and a half of game
+  time (a bite 400 to 700 ticks, a game 1,500 to 3,000), then a little wandering (150 to 400 ticks) before the next look,
+  longer (500 to 1,000) when nothing came of it.
+- **What's said** (`IdleHours.Say`, `Rimfolk_Pool_VisitorIdle`): now and then a line as a stint begins, one plain sentence
+  through `Speech.Say` (a greeting to the colonist they keep company more often, said only when the two are together),
+  tagged by the moment, their people's age and calling; a word to the colonist they give way to; never from one visitor
+  more than once in six hours, or on one map more than once in half an hour (`MaySpeak`).
+- **The cost**: each visitor looks at most once in a stint and a wander (their next look by `thingIDNumber`, per
+  session), what is about from the hour's list of the map's things, the way there checked only for the doing picked; a
+  stint's own checks once a second (`IdleCheck`). Nothing is saved but the game's own job.
+- **The setting**: "Visitors fill their idle hours" (`visitorsIdle`, on by default; the What's on page, Neighbours and
+  letters, after the outsiders' settings; under the deeper game hooks).
+- **Dev mode**: "Visitors: fill this visitor's idle hour now" (the chance and the next look aside) and "Visitors: idle
+  hours of everyone here (log)" (each visitor's group, role, age, calling, the hour, the weather, what fits and how much,
+  or why nothing does).
+
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
 "Do another big content update to existing mechanics": this part the neighbours and the people who come to the colony,
@@ -13416,11 +13514,13 @@ what the colony's people do there, never what the god makes of it.
   `Textures/ColonyCouncil/Gods/Signs/`: `<Key>.png`, the sign in the god's colours as on the draft sheet, 128 by 128, and
   `Unknown.png`, a plain wax seal. (The ages' grey forms, stone, shield, badge and ring, were dropped in 0.238.1 at the
   player's word, "these are not the icons you created here??": they stay on the draft sheet only.) Shown:
-  - in the Gods' book, over the chapter's name (56 px) and small at the end of its row in the list: the god's sign once
-    the chapter tells what the god is (`GodSignsMath.Tells`: a verse of what it is that isn't a doubt, or the god seen
-    plainly by the colony's own people) and for the god most of those verses are of (`GodSignsMath.Believed`; on a tie
-    the first told), so a chapter told of wrongly shows the wrong one; until then the unknown seal (`GodSigns.Unknown`),
-    one for every such chapter, so every name has a picture and nothing gives away which names are one;
+  - in the Gods' book, over the chapter's name (56 px) and small at the end of its row in the list
+    (`GodSignsMath.SignGods`, 0.238.2, the player: "god's book still shows the same icon for many"): a chapter told what
+    its god is (`GodSignsMath.Tells`: a verse of what it is that isn't a doubt, or the god seen plainly by the colony's
+    own people) shows the god most of those verses are of (`GodSignsMath.Believed`; on a tie the first told), so a
+    chapter told of wrongly shows the wrong one; any other chapter shows the sign of the god its name belongs to, the
+    earliest heard first, unless that god's sign already shows on a chapter told of it or on an earlier name; only those
+    keep the unknown seal (`GodSigns.Unknown`), so two untold names never show they are one god;
   - on a god's card, over its name, only when the card names it and the colony knows its sign (`GodSigns.Known`); a
     veiled card ("some say") shows none (`GodsWiring`, `GodPresence.Manifest`'s overload with a sign, `GodLetter.sign`);
   - nowhere else: not on a shrine, not over a god on the map (the player's pick).

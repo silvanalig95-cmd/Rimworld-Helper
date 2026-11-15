@@ -25,6 +25,8 @@ namespace ColonyCouncil
 
         private int threatAt = Fresh.Never;
         private bool threat;
+        private int hostilesAt = Fresh.Never;
+        private bool hostiles;
         private int colonistsAt = Fresh.Never;
         private int colonists;
         private int foodAt = Fresh.Never;
@@ -100,6 +102,55 @@ namespace ColonyCouncil
 
         /// <summary><see cref="Threat"/> for a map; false for no map.</summary>
         public static bool ThreatOn(Map map) => map != null && Of(map).Threat;
+
+        /// <summary>
+        /// Any enemy at all on the map, as of this 250-tick stretch: every hostile pawn up and about, a mech cluster's guns
+        /// and buildings, whether or not the colony has seen them yet and whether or not they sleep. The game's own threat
+        /// test (<see cref="Threat"/>) leaves out what lies in the unexplored fog and what is dormant, so a pikeman and a
+        /// drone standing in the fog by the base were no threat to it (the player, 15 November 2026: "i can't call my allies
+        /// despite hving pikemen and a drone in the base ... all threats should count"). Calling allies in and their band's
+        /// fight go by this.
+        /// </summary>
+        public bool Hostiles
+        {
+            get
+            {
+                int now = Now;
+                if (!Fresh.Holds(hostilesAt, now, ThreatTicks))
+                {
+                    hostilesAt = now;
+                    try
+                    {
+                        hostiles = AnyHostile(map);
+                    }
+                    catch
+                    {
+                        hostiles = Threat;
+                    }
+                }
+                return hostiles;
+            }
+        }
+
+        private static bool AnyHostile(Map map)
+        {
+            if (map?.attackTargetsCache == null) return false;
+            var player = Faction.OfPlayer;
+            foreach (var target in map.attackTargetsCache.TargetsHostileToFaction(player))
+            {
+                var thing = target?.Thing;
+                if (thing == null || !thing.Spawned || !thing.HostileTo(player)) continue;
+                if (thing is Pawn pawn)
+                {
+                    if (!pawn.Dead && !pawn.Downed) return true;
+                }
+                else if (GenHostility.IsDefMechClusterThreat(thing.def)) return true;
+            }
+            return false;
+        }
+
+        /// <summary><see cref="Hostiles"/> for a map: any enemy on it, seen or not, awake or not; false for no map.</summary>
+        public static bool HostilesOn(Map map) => map != null && Of(map).Hostiles;
 
         // ---------------- Every hour ----------------
 

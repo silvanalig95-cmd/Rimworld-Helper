@@ -124,21 +124,100 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   here", so every message at the top of the screen is in the pass: those in Keyed and the event cards are in their
   batches, and a ninth batch takes the rest (def text printed through `Tell.Message` or `Messages.Message` elsewhere,
   such as the world situations' `<news>`).
+- **To do when the player asks (15 November 2026): the great caravan's hill road plays out, with a real effect** (a
+  bug). The player, with the council's answer list showing "A great caravan · Guido tells them the hill road · As
+  answered · Guido goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has
+  it.": "just had this event but it didn't play out on the map and also there was no real effect from it?". Found: the
+  beat "Bandits in the hills" (`Defs/WorldSituationDefs/Rimfolk_WS_Variety3_Roads.xml`, `Rimfolk_WS_GreatCaravan`)
+  brings the rider by `VisitEffect_AtGate`, and the answer sends A to him by `DilemmaEffect_Visit` (to `Stranger`); in
+  their save (15 November) the situation's `ctx.stranger` is null, so the rider never came (most likely the -37° cold of
+  that day, or no way in) and the answer had nobody to walk to: only the words happened. Its effects are small and late:
+  +4 goodwill at once, then, when the train arrives, +4 more and +6 to the town's fortune. When asked: no answer whose
+  play-out needs the rider while there is none (the beat waits for the rider, or its words and answer take the form the
+  colony's means allow: a written route sent back with the messenger, a colonist riding out to meet the train), checked
+  for every beat that brings someone to the gate; the answer's effect shown on its card and, when the train comes
+  through, in a letter that says what the colony's road did for them and for the colony.
+- **To do when the player asks (15 November 2026): varied clothes against the weather.** The player: "regarding the
+  weather clothing, i'd want not everyone to just wear only a parka against cold, but the clothing should always be
+  varied. of course there should be parkas, but also other clothing combinations to counter the cold". How it is now
+  (0.232.1, `Visitors/WeatherDress*.cs`): each layer takes the warmest cheap piece that fits, and pieces within 2° count
+  as alike with the kind's own first, so most arrivals end in the same parka and tuque. When asked: the pick weighs
+  several combinations that keep them as warm (a parka; a duster or jacket over a shirt and sweater; a cape or cloak;
+  fur hats, scarves, wraps, earmuffs and boots from the player's mods, active rows only) and draws among those that are
+  warm enough, by each person and their people's own style and tags, so a group comes in mixed clothes; the same for
+  heat (light shirts, hats and wraps of different kinds).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
-  more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
-  spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
-  don't make them work for me", then "to do later". How it is now: the game's visitor groups wander their lord's spot;
-  Rimfolk's own visits have their duties (`Rimfolk_VisitWait`, `Rimfolk_VisitWork`), the market, services, guests who
-  help out (`GuestHelp`, work for the colony, which this is not) and small habits (`Immersion/MoreHabits`,
-  `SmallHabits`). When asked: a visitor's idle hours filled with things of their own, none of it work or value for the
-  colony: talking with each other and with colonists nearby (the game's social interactions, Rimfolk's outsider talk),
-  sitting by a fire or on a bench, warming their hands in the cold, sheltering from rain, eating from their own packs,
-  a nap in the shade, the colony's games and joy things where free (horseshoes, chess, an instrument, a telescope),
-  looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
-  drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
-  Hospitality left to its own recreation where it already has it.
+- 0.239.0, **Visitors fill their idle hours**
+  (14 November 2026; the player: "guests should spend more of their time doing things. i don't want them to generate
+  value for me, but it just looks a bit weird when they spend most of their day just standing and walking around. they
+  can talk, do actions, recreation, many things that don't make them work for me", then "do the one that visitors fill
+  their idle hours"). DESIGN.md "Visitors' idle hours: their own day" (after "Guests keep out of bedrooms and the cold
+  store") has all of it; the Almanac's visitors page a section, *Their idle hours* (keywords unchanged).
+  - What: where a visitor's duty would have them wander about their spot, the game's visitors and traders, Rimfolk's
+    visits between their duties (out of doors), envoys, and Hospitality's guests (only what Hospitality's recreation has
+    nothing for) now and then do something of their own: talk with one of their own, keep a colonist at leisure company,
+    sit by a fire or on a free seat, warm their hands in the cold, shelter from rain, a bite from their own pack at a meal
+    hour, a nap in a tree's shade at midday, the colony's games, instruments, screens and telescope while nobody of the
+    colony wants them, its art, a prayer at their god's shrine or a shared faith's altar, their own animals, children's
+    play, a smoke or a drink of their own, a pipe, whittling. By the hour, the weather, who they are (children, titled,
+    guards, traders, the devout and scoffers, teetotallers), their people's age (a thing of the colony's fits them when
+    it is of their age or older) and calling. Nothing made, hauled, cleaned or built for the colony, nothing of its
+    stores used, nothing reserved: they give way the moment a colonist reserves or walks to the thing, the cell or the
+    seat, and leave it four hours. Never in bedrooms, cold stores (`KeepOut`), cells, sickrooms, barracks or on the
+    colony's buildings' work spots. Not covered: quest lodgers (the colony's own for their stay, with its recreation),
+    callers, camps, feasts' and hosted guests, stories' strangers.
+  - Code map: `Source/ColonyCouncil/Visitors/IdleHoursMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `IdleDoing`,
+    `IdleGroup`, `IdleRole`, `IdleFacts`; the hours, the weather, `AgeOf`, `ThingAge`, `Fits`, `Excluded`, `IsMusic`,
+    `SitByFire`, `ShapeOf`, `ThrowOf`, `Free`, `DrugKindOf`, `ForHospitality`, `NotFor`, `Weights`, `CallingFactor`,
+    `Pick`, `FillChance`, `Reach`, `Stint`, `NextLook`, `Moment`, `LineChance`, `MaySpeak`). `Visitors/IdleHours.cs`
+    (`IdleDefOf`; `On`; per session `nextLook`, `gaveWay`, `saidBy`/`saidOn`, `busy`; `JoyThings` from every
+    `JoyGiver_InteractBuilding`'s buildings; `PlacesOf` once an hour per map; `GroupOf`, `AtStay`, `WhyNot`, `Still`;
+    `LookFor`, `Gather`, `Shrines`, `Pack`; `JobFor`, `Make`; `StandOk`, `ColonyWho`, `FreeJoy`, `JoyCell`, `RingCell`,
+    `ViewCell`, `ShelterCell`, `ShadeCell`, `RestCell`, `PlayRoute`; `Started`, `Ended`, `GaveWay`, `Say`, `Report`).
+    `Visitors/IdleHoursJobs.cs` (`VisitIdleExtension`; `JobDriver_VisitIdle`, `IdleCheck`, `JobDriver_VisitNap`,
+    `JobDriver_VisitIdlePlay`; `Patch_VisitorsIdle`, a low-priority postfix on `ThinkNode_Duty.TryIssueJobPackage`
+    after `Patch_VisitorsShop`). `Visitors/IdleHoursDebug.cs` (two dev actions). `VisitorTrade.HeldByStory` split out of
+    the market's `GuestWhyNot` (`VisitorTradeGuests.cs`) and shared. Defs `Defs/Misc/Rimfolk_VisitorIdle.xml` (18
+    JobDefs, the effecter `Rimfolk_Whittle`), `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml` (the lines, in
+    `ImmersionTests`), keys `Languages/English/Keyed/Rimfolk_VisitorIdle.xml`; the setting `visitorsIdle`
+    (`CouncilSettings`, `SettingsCatalog`: What's on, Neighbours and letters, under the deeper game hooks). Tests
+    `Tools/Tests/IdleHoursTests.cs`. No `Sched` pass and nothing saved but the game's own job.
+  - Try in the game: 1. With a trade caravan or the game's visitors waiting, watch them for an hour: most of them sit,
+    talk, warm up or play rather than stand about; "Visitors: idle hours of everyone here (log)" says what fits each.
+    2. Build a campfire and a bench near where they wait: of an evening some sit round the fire; in a frost they stand
+    right by it, "warming their hands at the fire."; a cook going to the campfire's spot finds it free. 3. Set a colonist
+    to recreation at a horseshoes pin or a chess table a visitor is using: the visitor gets up as the colonist walks over
+    (now and then with "Sorry, I'll get out of your way.") and doesn't come back to it for a few hours. 4. A tribal
+    visitor uses horseshoes or the game of Ur but not the chess table or a television. 5. Let it rain on visitors standing
+    outside: they go under the nearest roof that isn't a bedroom or a freezer. 6. Midday in fair weather: a tired visitor
+    lies down under a tree and naps, and gets up after an hour or so. 7. A visitor with beer or a joint in their pack
+    drinks or smokes it of an evening (the game's own effect, one gone from their pack); a trader never touches the
+    goods. 8. With Hospitality, its guests keep to Hospitality's recreation and only come to a fire in the cold or under a
+    roof in the rain. 9. Turn the setting off: they stand about and wander as before.
+- 0.238.3, **Allies called against every enemy
+  on the land** (15 November 2026; the player, with pikemen and a drone by the base and "Call Stormriders" greyed "only
+  while a threat is on the colony": "i can't call my allies despite hving pikemen and a drone in the base, please fix
+  asap, all threats should count or i should just be able to call them in regardless of threat or not, assuming i plan
+  an attack or so"). Cause, from their save `League_of_Toba` (15 November): the three pikemen of Armmurd Mechhive stood
+  with the duty `SleepForever` (a sleeping mech group, `LordJob_SleepThenAssaultColony`/`SleepThenMechanoidsDefend`), and
+  the game's own threat test (`GenHostility.AnyHostileActiveThreatToPlayer`, which `MapFacts.ThreatOn` reads) leaves out
+  what is asleep or in the unexplored fog. Now `MapFacts.HostilesOn` (any hostile pawn up and about, seen or not, awake
+  or not, and a mech cluster's guns and buildings) decides the pact's call (`Pacts.CallWhyNot`), a debt's fighters
+  (`FavourCalls.FightersWhy`), a vassal's levies (`Vassals.LeviesWhyNot`), whether a called band still comes
+  (`Pacts.Arrive`) and how long it fights (`WarCamp`: it hunts every enemy, so a band called against a sleeping cluster
+  wakes and fights it). The alerts that offer the call still wait for an active threat, so a sleeping cluster doesn't
+  keep one up. Texts: "only while enemies are on the colony's land", the call's tooltip "seen or not, awake or asleep".
+  Tested in `PactTests`. Try in the game: with sleeping mechs on the map, the peoples' page offers "Call ..."; called,
+  the band walks in and attacks them.
+- 0.238.2, **Every chapter its god's sign**
+  (15 November 2026; the player, with a screenshot of the Gods' book where Ducat, Smoulder, the moon, Hollin and Mog all
+  showed the seal: "god's book still shows the same icon for many"). Cause: 0.238.1 showed a god's sign only once someone
+  had told what the god is, so most chapters kept the seal. Now `GodSignsMath.SignGods` (pure, tested in
+  `GodsUnderstoodTests`) gives each chapter of `GodLorePage` the god it was told of, or else the god its name belongs to
+  (`LoreName.god`), the earliest heard first; the seal is left only on a later untold name of a god whose sign already
+  shows, so the book never shows that two names are one god. The plain line still waits for what is told. Try in the
+  game: the Gods' book's list and chapters each with their god's coloured sign.
 - 0.238.1, **The Gods' book's signs and page,
   fixed** (14 November 2026; the player, with a screenshot of chapter VI "The Stranger": "the gods' book is bugged and
   these are not the icons you created here??", then "yes"). Causes: the game's own measuring (`Text.CalcSize`,

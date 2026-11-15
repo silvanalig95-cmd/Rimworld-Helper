@@ -185,7 +185,7 @@
   <CC_Vassal_Act_Level>Tribute: {LEVEL}...</CC_Vassal_Act_Level>
   <CC_Vassal_Act_Level_Tip>How much they bring at harvest: light, usual, or heavy (which costs their goodwill each season).</CC_Vassal_Act_Level_Tip>
   <CC_Vassal_Act_Levies>Call their levies</CC_Vassal_Act_Levies>
-  <CC_Vassal_Act_Levies_Tip>While a threat is on the colony: their people's band walks in some hours later, a third of the threat, once a season at most. Their dead weigh on their head's regard.</CC_Vassal_Act_Levies_Tip>
+  <CC_Vassal_Act_Levies_Tip>While enemies are on the colony's land, seen or not: their people's band walks in some hours later, a third of the threat, once a season at most. Their dead weigh on their head's regard.</CC_Vassal_Act_Levies_Tip>
 
   <!-- Vassals: why not -->
   <CC_Vassal_Why_LeviesComing>The levies of {TOWN} are on their way already.</CC_Vassal_Why_LeviesComing>

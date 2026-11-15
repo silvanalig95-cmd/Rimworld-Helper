@@ -223,7 +223,8 @@ namespace ColonyCouncil
                 return;
             }
             if (b.dismissed) return;
-            bool threat = MapFacts.ThreatOn(b.map);
+            // Every enemy counts, seen or not, asleep or not: a band called in against a mech cluster in the fog hunts it.
+            bool threat = MapFacts.HostilesOn(b.map);
             if (threat)
             {
                 // A fight that drags on (a siege they can't break): they give up and go home.
@@ -277,7 +278,7 @@ namespace ColonyCouncil
             if (b.LordAlive) b.lord.ReceiveMemo(LordJob_WarBand.MemoLeave);
             // The fight over, they gather their own: their dead lying on the land are carried off with them (never while
             // enemies are still about).
-            if (b.map != null && !MapFacts.ThreatOn(b.map))
+            if (b.map != null && !MapFacts.HostilesOn(b.map))
             {
                 try
                 {

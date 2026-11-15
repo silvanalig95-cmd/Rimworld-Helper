@@ -5,6 +5,30 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors' own day
+
+*15 November 2026, version 0.239.0*
+
+- Visitors now fill their idle hours with things of their own: they talk, sit by a fire or on a bench, warm their hands in the cold and get out of the rain.
+- Guests play your games and instruments, watch your screens and use your telescope only while none of your colonists want them, and get up as soon as one heads over.
+- Visitors eat, drink and smoke only from their own packs, never from your stores; a trader never touches the goods for sale.
+- What they do depends on the hour, the weather and their people's tech level: a tribal guest plays horseshoes, not chess, and a noble does not nap on the ground.
+- Hospitality's guests keep Hospitality's own recreation and only come to a fire in the cold or under a roof in the rain.
+
+## Allies against every enemy
+
+*15 November 2026, version 0.238.3*
+
+- Allies can now be called in against any enemy on your land, including mechs that are asleep or still hidden in the unexplored fog.
+- A band called in this way hunts every enemy on the map, so it wakes and fights a sleeping mech group instead of turning back.
+
+## Every chapter its sign
+
+*15 November 2026, version 0.238.2*
+
+- Every chapter of the Gods' book now shows its god's coloured sign, the god it was told of or the god its name belongs to.
+- The plain seal stays only on a second name of a god whose sign already shows elsewhere, so the book never gives away that two names are one god.
+
 ## The Gods' book mended
 
 *14 November 2026, version 0.238.1*
