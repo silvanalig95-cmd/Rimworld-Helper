@@ -1398,6 +1398,91 @@ once-a-day rate of everything said on screen) and write in their journals. The r
 - **Ticking**: in the animals' hour and day (`AnimalLife`, the council's people pass) and, for the fight, on the fight
   sides' 250-tick look (`Sched.RareFightSides`): no new slot.
 
+### The animals, made more visible (the player's go, 14 November 2026; released 0.241.0)
+
+The player: "i must say that i can't really see a lot from the animal features we included, please add to to-do list to
+enhance and build up on these", then "do ... making animals more visible". The reasons, from the code and the player's save
+(League of Toba, 14 November 2026: twelve animals, a horse, a thunderox, an ankylosaurus, two giant crowned silkies, two
+titanis, a dusk prowler, a blood scarab, a raccoon and two companion dryads): nobody was bonded to any of them and only the
+dusk prowler had a master, so everything that needed "its person" never happened (a pet following, the loyal one at the
+door, the brave one's stand, five of the ten temperaments, grief, the old companion's story); six colonists filled six
+seats, so there was no herdmaster and none of the herdmaster's work; friendships needed two pets asleep side by side, and
+the three pets slept apart, so in 99 days not one pair formed; and the animals' encounters, which did come often (seventeen
+of them fired), were only words in the news, never anything on the map, and some could say what wasn't so: the new litter
+(which fired) could be told of any animal, newborns or not, the animal on guard (which fired) with no stranger about, and
+the old friend slowing down of a young animal. There were no children, so a child's play could not come either.
+
+- **Every animal has its person** (`AnimalFacts.PersonOf`): the one it is bonded to, its master, else the colonist it is
+  fond of (`AnimalFacts.FondOf`, `AnimalDaysMath.Favourite`). Among the colony's people living where it lives (and those
+  away from there, not another colony's), weighted by `FondWeight` (1, plus a fifth of their Animals level, 1.5 for a
+  passion, 2 for a child, 1 for Kind; a quarter for someone who never handles animals, a child aside), and fixed for the
+  pair: each person's score is an even draw from the two ids stretched by their weight (`-ln(u)/w`), lowest wins, so the
+  animal keeps the one it took to and a newcomer only ever wins an animal from the rest. Worked out at most once an hour,
+  not saved. Its card says "fond of" whom. The temperaments use it (`AnimalTempers.TryMoment`, the loyal one's wait and
+  homecoming), as does a pet following its person (`AnimalLife.Follow`); only a bond or a master takes an animal into a
+  fight (`FightBrave` keeps `PetTracker.PersonOf`), so no animal is put in harm's way that wasn't before.
+- **Friends across kinds** (`AnimalBonds.Nights`, `AnimalDaysMath.MayBefriend`): two that sleep side by side on three
+  nights may be friends when they are two pets or two of different kinds (the horse and the barn's goat), never two of the
+  herd's own kind. Feuds stay the pets' own.
+- **Their days on the map** (`Animals/AnimalDays.cs`, from the animals' hour; the pace `animalMoments`, "Animals' moments
+  on the map", 100% by default; all under "Pets as companions"):
+  | Moment | What is seen | How often at 100% |
+  |---|---|---|
+  | home again | its person back after four hours or more away (a caravan, a site), the animal runs to them (`JobDriver_AnimalRunTo`, `Rimfolk_AnimalGreet`) and gives the game's nuzzle as it gets there, and they say hello then; the loyal ones have their own homecoming; out of danger only, the welcome waiting for it to pass | 8 in 10 for a pet, 4 in 10 for the herd's ones, within three hours of their return |
+  | the foot of the bed | at bedtime (ten to one) a pet up to 1.6 body size goes into its person's room and sleeps on the cell just past the foot end of the sleeper's place (`Building_Bed.GetFootSlotPos`, `AnimalDaysMath.FootCells`; a bed's own cells can't be stood on), else beside its foot, else beside the bed in the same room; they mention it when they wake (five to ten), a journal line now and then | about every three nights |
+  | a meal | a pet goes to sit at the elbow of someone eating (sat with their food), its own person first, facing them a while; they tell it no as it sits down, if still eating | about every two days, half again for a greedy one |
+  | play | a child with free time and a calm animal within 25 cells (up to 2.5 body, no hunter over 1.2): the animal bounds about the child (`JobDriver_AnimalPlay`) and the child chases it (`JobDriver_PlayWithAnimal`, some recreation), both at a run, 1,200 ticks | about daily for each child |
+  | the herd | in the early morning (six to nine) a herd of two or more grown of one kind (herd animals) follows its eldest, the herd's leader when it is one of them, to fresh grazing 5 to 30 cells off in its area and pen | about every day and a half for each kind |
+  | the rounds | in their free time the herdmaster, else whoever is best with animals and handles them, goes round up to five of the colony's animals, nearest next (`JobDriver_KeeperRound`), 300 ticks beside each while it holds still, a little handling practice and a little of the recreation the free time would have given; a word to the first (sick, hurt, in young) | about every two days, half again for a herdmaster |
+  | rain and snow | when rain or snow (rate 0.5 or more) comes on by day, up to three named pets out in it go in under a roof in the home area and lie down a while, the first remarked on as it lies down there; in the snow up to two young ones play in it | when the weather turns |
+  | a bitter night | below -8 °C at night, each herd of one kind out in the open lies down close round its eldest | once a night |
+  | raiders | as they come (the fight's 250-tick look), up to two named pets, never a timid one, turn to face the nearest and give their own call (`Pawn_CallTracker.DoCall`), and someone says where (`AnimalNatureMath.Compass`) | once a fight |
+  | a strange sky | a god's presence on the map (its condition, `GameCondition_GodPresence`), out of danger: up to three pets go to keep close to their person a while (`Rimfolk_AnimalKeepClose`), the first crying out as it goes, and someone says the animals are restless once it is at their side; the god is never named | once a presence |
+  | a death | when its person dies (the animals' hour keeps whom each is with, `AnimalDays.Deaths`, and sees it before another takes their place, with or without temperaments), the animal goes to lie by the body or the grave it is in (`Rimfolk_AnimalMourn`), cries out as it lies down and every 1,500 ticks (the linger's `callEvery`), and stays 7,500 ticks, once the danger is past, within half a day; whoever sees it says so as it lies down; the bonded ones' grave visits go on as before | once a death |
+
+  Each is noted on the animal's card ("lately") and said in one plain sentence (`Rimfolk_Pool_AnimalDays`, tagged by
+  moment, temperament, family, body), through `Speech.Say` at the shared once-a-day rate. One of each a map an hour at
+  most; nothing in danger but the alarm; never a mount carrying its rider (Giddy-Up's mounted job, `AnimalDays.Ridden`).
+- **Said as it is seen** (`AnimalArrivals`, `Animals/AnimalDayJobs.cs`): what is said about a moment waits for the animal
+  to get there, so the words and the sight come together: `AnimalDays.StartThen` sets what is said for the job's id before
+  the job starts (one already there arrives at once), and `JobDriver_AnimalLinger` (as it starts to stay),
+  `JobDriver_AnimalRunTo` (as it reaches them) and `JobDriver_SitWithAnimal` (as they sit down) say it. Jobs cut short
+  never arrive, and their words are never said; after a load the jobs play out without them.
+- **Encounters that happen on the map first** (`Animals/AnimalScenes.cs`): an encounter with an animal's scene
+  (`DilemmaEffect_AnimalScene`) is played out and only then told, its words, moods and journal line coming as it is seen
+  (`Strangers/Encounters.cs` calls `AnimalScenes.Begin`; told once at most); one whose moment never comes is never told.
+  Fifteen of the seventeen with the colony's animals: the welcome (it runs to them and nuzzles them, told as it reaches
+  them), warm feet (it sleeps at the foot of their bed that night, told in the morning), the stolen dinner (at their next
+  meal it sits at their elbow, told as it sits down, then runs off), a child at play (chase), adopted by an animal and
+  company at work (it keeps at their side a while, told as it reaches them), comfort (it walks over, nuzzles them and stays
+  at their side), a new trick (it bounds about in front of them, and they stop to watch in their free time), the larder
+  raid (it makes for the stores, never a table, and eats there, the game's own eating, in place of food taken off the
+  count; told as it sets off, its words saying that much), confiding in it (in their free time they sit with it a while,
+  told as they sit down), the grudge (it runs at their heels and off again, told as it reaches them), the old friend
+  slowing down (an animal old for its kind only, `moment` `x:oldanimal`: it walks over to them and stays at their side),
+  the new litter (only an animal with newborns of its own on the map, born within six days, `AnimalDaysMath.Newborn`, in
+  any season: it lies by them, they keep close to it, and the colonist comes over in their free time to look, told as they
+  get there), the animal on guard (only with a stranger, a visitor or trader, within 18 cells and in sight: it goes and
+  stands between them, facing the stranger, `Rimfolk_AnimalGuard`, told as it takes its place) and the noise in the night
+  (it goes a few steps further out under the open sky, faces the dark and cries out every 300 ticks, `Rimfolk_AnimalCry`,
+  told at its first cry). An encounter whose words need newborns or a stranger is cast only with them there
+  (`AnimalScenes.Fits`, in `Encounters.Cast`), so it is never told without them, scene or not. Their words were rewritten
+  to say only what the scene shows. A meal, a night and a free hour are waited for, a day and a half at most. Left as
+  words: the gift from the hunt and the chewed belongings, which would need things made or spoilt.
+- **The personal stories' steps, on the map**: every step of the animals' stories before the last now has something seen
+  (the old companion at its person's heels; the orphan following them, then visited in the evening; the stray watched at
+  dusk and visited before the handlers try it; the feud's ambushes, an evening in each other's company, then the animal at
+  their heels; PokéWorld's partner at the trainer's heels and a visit once friends).
+- **Families from the mod pool**: Vanilla Animals Expanded's dogs by their breeds (beagle, chihuahua, corgi, bulldog,
+  shepherd, Great Dane, poodle, pug, rottweiler, shih-tzu), the Maine coon, Odyssey's greatwolf and prairie dog, and the
+  big grazers, small animals and snakes of the game, Odyssey and Vanilla Animals Expanded have their families
+  (`AnimalNatureMath.Family`), so their lines and leans fit; a temperament already given is kept.
+- **Nothing saved**: the person is worked out; what waits (a homecoming, a morning's word, a scene, a death, the words
+  for an arrival) is this session's; the jobs keep only their own timings (`until`, `about`, `nextCall`, `looked`). No Sched
+  slot: the animals' hour and the fight's look. No harm, no letter, no message.
+- **Dev mode** (`Animals/AnimalDaysDebug.cs`): whom each animal is with (bond, master, fond of), any daily moment now, an
+  encounter's scene for a colonist and an animal picked.
+
 ### The colony's animals hunting for themselves (the player's request, 7 November 2026)
 
 The player's husky starved: the game never lets a tame animal hunt unless its kind is flagged a predator, and then only
@@ -3228,6 +3313,104 @@ game gives it (a freezer with a butcher's table is a kitchen to the game). The p
   only a stall's own place to Hospitality's guests, never one inside a kept room (`Patch_MarketGuestsReach`).
 - **Dev mode**: "Visitors: rooms kept from them (log)" and "Visitors: look at the kept rooms again now"
   (`Visitors/KeepOutDebug.cs`).
+
+### Visitors' idle hours: their own day (the player's go, 14 November 2026; released 0.239.0)
+
+The player: "guests should spend more of their time doing things. i don't want them to generate value for me, but it
+just looks a bit weird when they spend most of their day just standing and walking around. they can talk, do actions,
+recreation, many things that don't make them work for me", then "do the one that visitors fill their idle hours". Before,
+the game's visitors and traders stood about and wandered near their spot, Rimfolk's own visits had their duties
+(`Rimfolk_VisitWait`, `Rimfolk_VisitWork`) and a fire and a seat now and then, and envoys wandered. Now a visitor's idle
+moments are filled with things of their own, none of it work or value for the colony. The pure rules are in
+`Visitors/IdleHoursMath.cs` (`IdleHoursTests`), the game side in `Visitors/IdleHours.cs` (who, what is about, the places),
+`Visitors/IdleHoursJobs.cs` (the stints and the hook) and `Visitors/IdleHoursDebug.cs`; the jobs in
+`Defs/Misc/Rimfolk_VisitorIdle.xml`, the lines in `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml`.
+
+- **The way in** (`Patch_VisitorsIdle`): a postfix on `ThinkNode_Duty.TryIssueJobPackage`, at low priority so it comes
+  after the market's (`Patch_VisitorsShop`). Only when the duty's answer is an idle wander (`GotoWander`, `Wait_Wander`)
+  of someone not of the colony does `IdleHours.JobFor` look for something of their own; the job keeps the wander's lord,
+  source and duty tag. Fighting, eating, sleeping, the market and whatever the duty has for them (a visit's work, its
+  fire) come first, and the duty itself is left as it is.
+- **Who** (`IdleHours.GroupOf`, `AtStay`, `WhyNot`): on a home map, at peace with the colony, not held or a quest's, up and
+  about, no danger on the map, not leaving, not trading or in Rimfolk's outsider talk, not held by a story
+  (`VisitorTrade.HeldByStory`, shared with the market), not hungry, worn out or due to sleep. The groups: the game's
+  visitors (`LordJob_VisitColony`) and trade caravans (`LordJob_TradeWithColony`) at their spot (`LordToil_DefendPoint`,
+  the caravan's own toil included), a caravan's goods and pack carriers aside; Rimfolk's visits at their spot out of
+  doors (`LordToil_VisitHere`, not those shown a corner inside); envoys staying the season (`LordToil_EnvoyStay`); and
+  Hospitality's guests relaxing (its `Relax` duty). The trader keeps near the trade (`IdleRole.Trader`, 9 cells), a
+  caravan's guards stay on watch (no games, no nap, no drink). Quest lodgers are the colony's own for their stay and take
+  its recreation already; callers, camps, feasts' and hosted guests and stories' strangers have their own plans.
+- **What they do** (`IdleDoing`, each a JobDef of its own with `VisitIdleExtension`, run by `JobDriver_VisitIdle`):
+  talk with one of their own who is idle near (the two stand together, the game's own chats come of it), keep one of the
+  colony's people at their leisure company (`SmallHabits.CanListen`; not followed about once they walk off), sit in the
+  ring round a lit fire (their own camp's first for a Rimfolk visit), warm their hands right by it below 5 degrees, take
+  a free seat (out in the open in fair weather, under a roof in foul; never a work chair), get under a roof near them in
+  rain or snow (a porch or eaves for Rimfolk's visits, which keep out of doors), eat a bite from their own pack at a meal
+  hour when peckish, nap in a tree's shade at midday in fair weather when a little tired (`JobDriver_VisitNap`, the
+  game's own lying down, which doesn't look for another job meanwhile), play the colony's games, its instruments and its
+  telescope on a clear night while nobody of the colony wants them, look at its art, pray at a shrine of their god (the
+  colony's dedicated shrines, Gods/Worship) or an altar of a faith the colony holds and they share, see to their own
+  animals (the beast waits while they brush it down), run about at play (the children, `JobDriver_VisitIdlePlay`), have a
+  smoke or a drink of their own from their own pack, smoke a pipe or whittle a bit of wood.
+- **Fitted to them** (`IdleHoursMath.Weights`, `NotFor`, `CallingFactor`): by the hour (meals at breakfast, midday and
+  supper, prayers morning and evening, games and music from morning to mid-evening, the telescope after dark, the nap
+  from noon to four, the fire most of an evening), the weather (shelter first in the rain, the fire on a chilly day, no
+  nap in rain or cold), who they are (children play and see to the animals and nothing grown; a titled visitor never
+  dozes on the ground or whittles and looks at the art more; a scoffer doesn't pray, the devout pray more; a teetotaller
+  or a faith against drugs has no smoke or drink; nobody who can't talk, see or use their hands does what needs it), their
+  people's age (a thing of the colony's fits them when it is of their age or older, by its own tech level, its research,
+  its components or plasteel and its power: a tribal visitor plays horseshoes and the royal game of Ur, not chess or a
+  spacer screen; whittling and a pipe among the older ages most) and their calling (herders see to their animals,
+  pilgrims pray, scholars look at the stars and the art, artisans at the art, traders and mercenaries play).
+- **Nothing for the colony**: nothing made, hauled, cleaned or built for it; nothing of its stores used (what they eat,
+  drink or smoke comes out of their own pack, one portion, and what isn't finished goes back into it; a trader's pack is
+  the trade's goods and never touched); no fuel, power or wear asked of anything beyond what it already uses; and no
+  recreation taken from the colony's people. Nothing is reserved (`TryMakePreToilReservations` is true), so one of the
+  colony's people who wants a game, a seat or a place finds it free; the moment one of them reserves the thing, the cell
+  or the seat, or sets out to walk there (`IdleHours.ColonyWho`: the colony's reservations and destinations), the visitor
+  stands up and gives it to them, now and then with a word, and leaves it be for four hours (`GiveWayHours`). A joy thing
+  is free only when nobody of the colony has it, it isn't forbidden or switched off, it has its power and there's room at
+  it (`IdleHoursMath.Free`: two at a chess table, one at a telescope). Nobody idles on a cook's or a crafter's spot (the
+  colony's buildings' interaction cells, `Places.workCells`). Every stint is casually interruptible, so a trader can
+  still be traded with and anyone talked to.
+- **The colony's things** (`IdleHours.JoyThings`, `PlacesOf`, looked at once an hour per map): every building a joy giver
+  of the game or a loaded mod uses (`JoyGiver_InteractBuilding` and its kinds), so the player's whole pool counts: the
+  game's horseshoes, hoopstone, chess, Ur, poker, billiards, screens, telescope and Royalty's instruments; Vanilla
+  Furniture Expanded's arcade, roulette, piano, computers, radio and Spacer's interactive table; the Settlers' faro and
+  five-finger fillet; Boglegs' tongo; the quests' foosball and wargaming tables. Left out (`IdleHoursMath.Excluded`):
+  baths, hot tubs, saunas, pools and swimming, the washing machine, shooting, archery, darts, sparring, dummies and
+  punching bags (the game shows the throw or the blow, which a visitor's stint doesn't), a stage that needs a performer, a
+  therapist's couch, a corpse on show, the market's stalls and auction, and Rimfolk's own habits. How each is used comes
+  from its joy giver (`ShapeOf`: a watching spot, a seat beside it, its own spot, an instrument), with the game's look of
+  it: the horseshoes and stones thrown, the cards at a poker table, a screen's glow at the screen, the instrument played
+  with its own music (`Building_MusicalInstrument.StartPlaying`), notes over a piano, the report the game's own job uses
+  ("playing chess."). Fires (`IdleHoursMath.SitByFire`, over `Sauna.IsFire`): a campfire, a brazier, a hearth, a large
+  fire, a grill, not a torch, lamp or candle, a stove or smithy, or anything with power. Seats: anything sittable but a
+  bed, a toilet, a throne, a saddle or a pew. Art: what the game's own looking at art takes (`canBeEnjoyedAsArt`).
+- **Where** (`PlaceOk`, `StandOk`): near their spot (`IdleHoursMath.Reach`: 20 cells for the game's visitors, 16 for a
+  caravan, 9 for its trader, 14 for Rimfolk's visits, 24 for envoys, 6 for Hospitality's guests from where they stand),
+  never in a cell, a sickroom, a bedroom or a barracks, nor in a room visitors keep out of (`KeepOut.KeptFrom`: the
+  colony's bedrooms and cold stores, whose doors are barred to them anyway), out of doors and off the fields for
+  Rimfolk's visits, on nobody's cell, not one another of them is going to, and within reach.
+- **Hospitality's guests** keep Hospitality's own recreation: only what it has nothing for is filled
+  (`IdleHoursMath.ForHospitality`: warming their hands at a fire in the cold, shelter from the rain, a prayer at their
+  god's shrine, their own animals), less often (`FillChance`), and close to where they stand.
+- **How often and how long** (`FillChance`, `Stint`, `NextLook`): three idle wanders in four by day become something of
+  their own, fewer at night and for Hospitality's guests; a stint lasts from a few minutes to an hour and a half of game
+  time (a bite 400 to 700 ticks, a game 1,500 to 3,000), then a little wandering (150 to 400 ticks) before the next look,
+  longer (500 to 1,000) when nothing came of it.
+- **What's said** (`IdleHours.Say`, `Rimfolk_Pool_VisitorIdle`): now and then a line as a stint begins, one plain sentence
+  through `Speech.Say` (a greeting to the colonist they keep company more often, said only when the two are together),
+  tagged by the moment, their people's age and calling; a word to the colonist they give way to; never from one visitor
+  more than once in six hours, or on one map more than once in half an hour (`MaySpeak`).
+- **The cost**: each visitor looks at most once in a stint and a wander (their next look by `thingIDNumber`, per
+  session), what is about from the hour's list of the map's things, the way there checked only for the doing picked; a
+  stint's own checks once a second (`IdleCheck`). Nothing is saved but the game's own job.
+- **The setting**: "Visitors fill their idle hours" (`visitorsIdle`, on by default; the What's on page, Neighbours and
+  letters, after the outsiders' settings; under the deeper game hooks).
+- **Dev mode**: "Visitors: fill this visitor's idle hour now" (the chance and the next look aside) and "Visitors: idle
+  hours of everyone here (log)" (each visitor's group, role, age, calling, the hour, the weather, what fits and how much,
+  or why nothing does).
 
 ### Neighbours' requests and callers at the gate (the player's request, 6 November 2026)
 
@@ -10176,6 +10359,24 @@ its rules pure and tested (`PactMath.cs`; `Tools/Tests/PactTests.cs`).
   for fighters (`FavourAsk.Fighters`) brings a band the same way. A trade pact: `IncidentDefOf.TraderCaravanArrival` for
   them each season, and the cart carried out to the gate (`DilemmaEffect_CarryOut`, their porters waiting) and paid for
   (`Couriers.PaySilver`, four fifths of its worth).
+- **A war band on the map** (`Camps/WarBandOrders.cs`, the duty `Rimfolk_WarBandHunt` set by `LordToil_WarBandHunt`, a
+  subclass of the game's `LordToil_HuntEnemies` so saved groups load unchanged; the player, 15 November 2026: "the
+  delegation came but is neither attacking the enemies nor following my pawns"). Every band (a pact's, a debt's, a
+  liege's, a vassal's levies, one come of its own) fights the game's way, with what the game's hunt lacks: it only goes
+  after enemies that are awake, so a band called against a sleeping mech cluster stood idle at the map's edge. In order:
+  an awake enemy within 65 cells (the game's `JobGiver_AIFightEnemies`); while any colonist on the map is drafted, they go
+  with the nearest one and stand ready beside them (`JobGiver_WarBandWithColony`, the game's follow job, radius 5); an
+  awake enemy further off (`JobGiver_AIGotoNearestHostile`); a sleeping enemy they can see and walk to
+  (`WarBandOrders.Asleep`: a duty that disables threats, an inactive mind, a dormant mechanoid) has them wait
+  `CampStoryMath.MusterDistance` (36) cells from it on the line toward the colony (`MusterPoint`), past the 30 cells at
+  which mechanoids wake, and once they have waited `SleepersWaitHours` (6) with nobody drafted (`GoIn`, the band's
+  `asleepSince` and `goIn`) they go in and attack the nearest one, which wakes them (`WarBandOrders.Attack`: melee, the
+  game's static attack, or a cast position first); with no enemy in reach (shut away in the fog), they stand by just
+  outside the colony (the duty's focus). Messages: "found ... asleep and wait out of their waking range" as they come,
+  "go in on their own" when they do, "can't find a way to ... for now and stand by near the colony" (`CC_WarBand_*`).
+  The band's hour (`WarCamps.Watch`): once only enemies out of their reach are left after they had one in reach
+  (`AnyInReach`, `metEnemy`), the fight they could have is over and they make camp; a band that never had one in reach
+  goes home after `FightGiveUpDays` with "the enemy stayed shut away out of their reach" (`CC_WarCamp_Waited`).
 - **Calls to arms** (`CallsToArms`): a partner's town within reach attacked (a Faction Territories invasion,
   `Territories.InvasionAt`, or a running bad war world event within 10 tiles) brings a defense partner's letter (once a
   day, a third of the time) or a debt's call (`FavourNeed.Fighters`); answered by a caravan of two grown colonists or more
@@ -14276,6 +14477,123 @@ Years) to 11 and 12 (Crossroads) against 4.6 and 5. A way above the classic pace
 **What only the game can show**: the storyteller screen with the plates, each comp's firings in a real colony
 (Rimfolk's parts follow the game's own rules, checked by the tests and the balance tool but not run in the game), the
 raid aimed by reason and its letter's line, the omen's world situation, and the direction changing a running game.
+
+### The old powers' own strange happenings (the player's go, 14 November 2026; released 0.240.0)
+
+The player: "i like the old powers storyteller and want you to do some more more events in this style, including the gods
+and using ressources from rimworld of magic", then "do ... more old powers style events". Item 7 of
+`docs/storytellers-proposals.md` made into happenings of its own: fourteen uncanny happenings, each played out on the map,
+fewer threats but stranger ones, under every storyteller and leaning to Old Powers. The gods stay unseen, harm stays in
+the shared budget, and every one takes the colony's age's form.
+
+- **The frame** (`Source/ColonyCouncil/OldPowers/OldPowers.cs`): looked at in the world events' hour
+  (`HappeningTracker.Hourly`, `OldPowers.Hourly`), with Rimfolk's world events on, at each home on the ground with no
+  fight on. With nothing under way and the last of any at least four days back (`OldPowersMath.SpacingDays`), each
+  happening whose hours it is (`HoursOf`: the seer and the pilgrims in the morning, the beast and the dead at dusk, most at
+  night) and whose call holds has its chance, one at most. One under way at a time (`OldPowersBook.play`, an
+  `OldPowerPlay`), its short steps on their own due tick (`OldPowersBook.Due`; nothing at all ticks with none under way), let
+  go when it ends so nothing of it stays in the save. Words through `OldPowers.T` and `Aged` (the colony's age, tribal to
+  spacer, `CC_OldP_..._0` to `_3`), lines through the pool `Rimfolk_Pool_OldPowersSaid` (`OldPowers.Line`: only lines
+  tagged with every tag of the moment, in the colony's era; one sentence over the head, `Speech.Say`), cards through
+  `Tell.Letter`, news lines through `Tell.Minor`.
+- **The pace** (`OldPowersMath.PaceOf`, `DayChance`, `CheckChance`): the gods' rules (`GodPaceMath`): each its own gap (18
+  to 36 days), its chance small at the end of the gap and growing over a ramp, nothing on a call that is nearly always
+  true (`GodPaceMath.Trigger`: none means never, however free), a strong reason 2.2 times as likely. The ways' lever
+  `StoryWaysMath.Uncanny` (`StoryLevers.uncanny`) makes each look three times as likely under Old Powers or its story
+  direction (`<uncanny>3</uncanny>`), 1 under every other way and storyteller; with the gaps and the spacing that comes to
+  about one in three weeks at a home under any storyteller and one in ten days under Old Powers (the tests' model).
+- **The fourteen** (`OldPowersMath.OldPower`, saved in this order):
+  - *The seer of the season* (`OldPowersVisitors.cs`; a season's last two days, strongly with a frost or the heat coming):
+    a seer of a people at peace (A RimWorld of Magic's arcane fold, `Seers`, six times likelier; a people of seers next)
+    walks in on a visit, with the Chronomancer class where the mod has it, sits at the colony's middle and casts in the
+    age's way (bones in the ashes, painted cards, a pendulum over a map, readings on a screen); someone free sits to
+    listen; one word at a time over the seer's head, then the card with each word and its plain fact, all true
+    (`SeerWords`: the next season's warmth from the map's twelfths, whether crops grow, the stores short or enough, blades
+    when the storyteller's queue holds a fight within fifteen days).
+  - *Everything faced one way* (`OldPowersNight.cs`; midnight, strongly the night after a death of the colony, else a
+    clear night with no moon): everyone and every beast awake stops and faces one way for ten seconds, shadows running
+    out that way; after a death toward where the dead lie (at dawn someone goes and stands there), else toward the edge
+    of the land (at dawn someone walks out and finds an old worn thing of the colony's age there, `OwnMurmur.OldThing`).
+  - *The humming stone* (dusk, a psychic sky strongly, a thunderstorm): a stone chunk near the middle, else the rock face
+    nearest, hums till five in the morning; the beasts keep away; someone lays a hand on it (a mage's mana filled); those
+    asleep within fourteen cells dream of it.
+  - *The sealed scroll* (`OldPowersFinds.cs`; someone of the colony in a room of the old ruins not searched before):
+    something sealed lies in the dust and they walk over and kneel by it: A RimWorld of Magic's spell scroll or now and
+    then its grimoire; else a tome (Anomaly) or a textbook in an older colony, a schematic or a textbook in a newer one.
+    Each room gives one at most (`OldPowersBook.searched`).
+  - *The casters lit up* (A RimWorld of Magic's mana storm or surge, Vanilla Events Expanded's psychic bloom,
+    stimulation or overdrive strongly, an aurora): the colony's mages (their mana filled), psycasters (half their
+    psyfocus) and those psychically sensitive enough light up where they stand; at the shared budget's rate one is
+    burned across the hands by the light (`Harm.Injure`, `HarmKinds.Uncanny`), and the card says so.
+  - *The wandering enchanter* (a season's first three days, never in winter, strongly with a caster in the colony, only
+    with a piece below masterwork and the silver for it): an enchanter (A RimWorld of Magic's Enchanter class where the
+    mod has it; in the age's form, a rune-carver to a nanite smith) offers to work the colony's finest carried weapon or
+    worn piece up one grade (`EnchantPrice`: 60 to 600 silver); asked by its own letter (`ChoiceLetter_OldPowers`,
+    `Rimfolk_OldPowersLetter`) when the letters' gap allows, it walks on unanswered; yes, the bearer walks over, the two
+    stand an hour over it with the light running along it, the silver comes out of the stores.
+  - *The thing under the ground* (a long wet run strongly, a shorter one or the thaw): a knock under open earth near the
+    middle one night, the ground cracking the next, and on the third morning it comes up (`PickFind`, leaning from the
+    last finds): an old cache (silver and an old worn thing), something precious of the colony's age (`ThingRoles`, the
+    player's whole pool), A RimWorld of Magic's raw magicyte (with a minor enchanting gem now and then); or with Anomaly,
+    harm on and the shared budget's roll, one or two of the game's shamblers climbing out and coming for the colony (a
+    small threat's card). Someone walks over to look.
+  - *The dead on the road* (dusk, strongly within three days of a death of the colony, else a night with no moon while
+    the void is awake or the dead lie unburied): a line of pale figures walks a road across the land past the colony and
+    off it; those who see it stop and watch. With Anomaly, harm on and the shared budget's roll, the game's small
+    shambler swarm walks it instead (a small share of the threat points, its own letter under the old powers' words).
+  - *Pilgrims passing* (`OldPowersVisitors.cs`; spring's or autumn's first three days, strongly under an eclipse or an
+    aurora): three to five pilgrims of a people at peace (a people of pilgrims likelier) stop at the colony's oldest grave,
+    else its oldest tree, else its middle, pray there in turn, leave a carving of their people's age from the player's
+    whole pool, and walk on.
+  - *Another sky* (a clear night in the deep of summer or winter, strongly under an aurora): till five in the morning the
+    night sky is violet with green-white shadows (`GameCondition_OtherSky`, `Rimfolk_OldP_OtherSky`), stars wrong,
+    stargazing three times as likely and the gladder; those out of doors stop and look up.
+  - *The animal that spoke* (`OldPowersFinds.cs`; dusk, strongly after the colony's hunters took four beasts in five days,
+    else a full moon): a wild animal walks up to someone out of doors, stands before them and says one true sentence
+    (`BeastWordOf`: the beasts taken, a fight coming, that they are sick, hungry, worn out or unhappy, else that something
+    old is watching), then walks off like any other animal.
+  - *A god going by* (evening, strongly a god of the colony drawn very near, else drawn near on a night with no moon; never
+    while a coming, a presence or omens are under way): the god's own signs (round 2, `GodShapes.Omens`) one after another
+    from ten at night, two hours apart, through the gods' own omens; at dawn the one who keeps it most looks out and says
+    it went by, the colony's book keeps what they saw (`GodsOnMapWords.Saw`), and its own presence (round 2) stays a while
+    as it goes (`PresenceKind.Depart`, `OldPowersMath.PassLingers`: where it has one that isn't held only while the god
+    walks the land, and no other presence is on), named as the colony knows it, as the gods' own quiet presence is.
+  - *The pale wolves* (`OldPowersNight.cs`; a full moon on a clear night, strongly in winter or with snow lying): a wolf
+    howls far off (A RimWorld of Magic's `TM_WolfHowl`, else the game's warg), and five to eight pale wolves (its spirit
+    wolves, `Mote_SpiritWolf_North` to `_West`, each drawn running the way it runs; else a pale light) run once round the
+    colony 22 cells out and off the land; the beasts near stand and watch, those of the colony out of doors who see them
+    stop and look ("saw the pale wolves", +2). At dawn someone walks out to where they ran and looks: no tracks, the snow
+    smooth where there is snow.
+  - *Eyes in the dark* (`OldPowersNight.cs`; a foggy night strongly, else a night with no moon in autumn or winter): three
+    to six pairs of eyes catch the light at the edge of the dark 14 to 24 cells round the colony (two small glints side by
+    side, low to the ground, A RimWorld of Magic's grey twinkle tinted), on places the colony's light doesn't reach;
+    those out of doors who can see a pair stop and look ("felt watched", -2). After about a minute the one handiest in a
+    fight, awake and free, walks out to the nearest pair, and as they come close every pair goes out, with nothing there;
+    unwalked to, they go out at first light or after four hours.
+- **Harm** (`HarmKinds.Uncanny`, "something uncanny that turns on someone (old powers)", system `oldPowers`, on with the
+  world events, weight 0.004): the caster's burn, the shamblers on the road, the dead from under the ground, each rolled
+  through `Harm.Roll` against the shared budget at the game's rate and told on a card. Nothing else hurts anyone; the
+  pale wolves and the eyes never do.
+- **The gods unseen**: a card names a god only through `Gods.CardName` (the colony knows it was that god) and
+  `GodsOnMapWords.Title`; else "Signs in the night" and "some say something went past"; the presence after dawn is
+  veiled unless the colony knows the god. The animal's "something old is watching" names nothing.
+- **Ages**: the seer's casting, the ruin the scroll lies in, the enchanter's trade and another sky's stars each have four
+  forms (`Aged`); the lines carry era tags where an age speaks its own way; the finds are of the colony's age.
+- **The player's mods** (by name, the active rows of `docs/player-mods`, the game's own where one isn't loaded): A
+  RimWorld of Magic's motes (casting circles, glowing runes, mana puffs, arcane waves, psionic current, ghosts, shadows,
+  twinkles, holy light, earth cracks, its spirit wolves), sounds (gong, power-up, low vibration, low wind, soft
+  explosion, wolf howl, its sermon), scrolls and grimoire, raw magicyte and minor enchanting gems, its Chronomancer and
+  Enchanter classes, its arcane fold, its mana storm and surge; Vanilla Events Expanded's and Vanilla Psycasts Expanded's
+  psychic skies, the Archon's psychic storm; Anomaly's shamblers and tomes; Royalty's psycasters and anima sound.
+- **Dev actions** ("Rimfolk", `OldPowersDebug.cs`): one a happening ("Old powers: ... now"), the next step now, and the
+  pace in the log.
+- **Saved**: `OldPowersBook` (a game component): when each last came (fourteen), the last of any, the short memory of the
+  forms (`GodPaceMath.Memory`), the ruins' rooms searched (`RuinsKept`), the one under way (its pilgrims, five at most,
+  and the eyes' places, six at most). Modelled in `Tools/save_estimate.py`.
+- **What only the game can show**: the motes in view (the wolves' drawings upright and running the right way, the
+  eyes' glints at the edge of the light), the seer's and the enchanter's visits with their lords, the bearer and the
+  enchanter standing an hour, everything facing one way at once, the shamblers' letter under the old powers' words, the
+  presence after dawn, and how often they come in a real colony.
 
 ### Checking a new game version
 

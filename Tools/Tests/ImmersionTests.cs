@@ -25,6 +25,8 @@ public static class ImmersionTests
         // The family's life together (Social/FamilyLife.cs).
         "Council_Pool_SayNewCouple", "Council_Pool_SayMatchDoubt", "Council_Pool_SayParentNewPartner", "Council_Pool_SayEngaged", "Council_Pool_SayProposalComfort", "Council_Pool_SayExpecting",
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",
+        // The colony's animals' days, seen (Animals/AnimalDays.cs).
+        "Rimfolk_Pool_AnimalDays",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
@@ -47,6 +49,8 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines",
         // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
         "Rimfolk_VisitorLines2",
+        // What visitors say as they start something of their own in an idle hour (Visitors/IdleHours.cs).
+        "Rimfolk_Pool_VisitorIdle",
         // What callers say at their work, beside their event's own lines (Visitors/Callers.cs).
         "Rimfolk_Pool_CallerSays",
         // A caster of the peoples naming their craft, the colony's remark, a raider's craft named, a spell in peace's word and
@@ -210,7 +214,10 @@ public static class ImmersionTests
         // society's night of the fire (their letters, messengers, visitors and talk are in the pools above).
         "Rimfolk_Pool_PlayDisputation",
         // Release D's peoples (Peoples/PeoplesD.cs): what is said at a funeral the Quiet Bell leads.
-        "Rimfolk_Pool_PlayBellFuneral"
+        "Rimfolk_Pool_PlayBellFuneral",
+        // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
+        // colony say at each moment.
+        "Rimfolk_Pool_OldPowersSaid"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

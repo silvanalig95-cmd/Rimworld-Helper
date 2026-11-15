@@ -392,6 +392,16 @@ MODEL = {
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
     "Gods/OnMap/OwnSeven.cs:ruins": ("fixed", const("Gods/OnMap/OwnSevenMath.cs", "RuinsHeldAtMost", 30), 35,
                                      "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
+    # The old powers' own strange happenings (OldPowers/OldPowersBook.cs): when each last came (one a happening, fourteen),
+    # the short memory of the forms they took, the rooms of the old ruins searched for a scroll; and only while one is
+    # under way (one at a time, let go when it ends): the pilgrims walking together and the places of the eyes in the dark.
+    "OldPowers/OldPowersBook.cs:last": ("fixed", 14, V, "when each old power's happening last came, one a happening"),
+    "OldPowers/OldPowersBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40,
+                                          "the old powers' short memory of the forms they took ('seer|fold1|12'), GodPaceMath.Memory at most"),
+    "OldPowers/OldPowersBook.cs:searched": ("fixed", const("OldPowers/OldPowersMath.cs", "RuinsKept", 20), 35,
+                                            "rooms of the old ruins searched for a scroll, OldPowersMath.RuinsKept at most, the oldest let go"),
+    "OldPowers/OldPowersBook.cs:group": ("while", 5, P, "the pilgrims walking together, while they pass (five at most)"),
+    "OldPowers/OldPowersBook.cs:cells": ("while", 6, 35, "the places of the eyes in the dark, while they are there (six at most)"),
     # The sacred beast's stay, while it lasts: its kin following at a distance (GodShapeDef.kinCount, three at most) and those
     # who sat near it (GodsOnMapMath.SittersAVisit).
     "Gods/OnMap/SacredAnimal.cs:kin": ("while", 3, P, "the beast's kin following at a distance, while it stays (a few times in a long game)"),

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 706; modelled: 706; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** after two, **4,148 KB** after five.
+Saved collections found: 711; modelled: 711; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,011 KB** after a year, **3,714 KB** after two, **4,150 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -341,6 +341,7 @@ Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** aft
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Camps/CampTracker.cs:raids` | per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one) | while | 1 | 1 | 1 | 0.7 |
+| `OldPowers/OldPowersBook.cs:searched` | rooms of the old ruins searched for a scroll, OldPowersMath.RuinsKept at most, the oldest let go | fixed | 20 | 20 | 20 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Peoples/Events3/PeopleEvents3Book.cs:shrines` | the old shrines the pilgrims raised, one a map, PeopleEvents3Math.MaxShrines kept | cap | 0 | 1 | 2 | 0.6 |
@@ -385,6 +386,7 @@ Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** aft
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
+| `OldPowers/OldPowersBook.cs:lately` | the old powers' short memory of the forms they took ('seer|fold1|12'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
@@ -420,6 +422,7 @@ Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** aft
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
+| `OldPowers/OldPowersBook.cs:last` | when each old power's happening last came, one a happening | fixed | 14 | 14 | 14 | 0.3 |
 | `Camps/Camp.cs:willing` | while the camp stays | while | 8 | 8 | 8 | 0.3 |
 | `Camps/CampRaid.cs:pawns` | per band: its fighters, eight at most (CampRaids.MakeBand), while it is on the map | while | 8 | 8 | 8 | 0.3 |
 | `Camps/CampRequests.cs:errandPeople` | those of the camp on an errand into the colony, while it lasts | while | 8 | 8 | 8 | 0.3 |
@@ -458,6 +461,7 @@ Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** aft
 | `World/Region/Hamlet.cs:escorts` | per home: the colonists who walked its hamlet's settlers out, HamletMath.MaxSettlers at most | cap | 3 | 6 | 8 | 0.2 |
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
 | `CouncilGameComponent.cs:medicKits` | the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs) | fixed | 9 | 9 | 9 | 0.2 |
+| `OldPowers/OldPowersBook.cs:cells` | the places of the eyes in the dark, while they are there (six at most) | while | 6 | 6 | 6 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Gods/OnMap/OwnHappenings.cs:watches` | the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most | fixed | 8 | 8 | 8 | 0.2 |
@@ -467,6 +471,7 @@ Rimfolk's part of the save, roughly: **3,010 KB** after a year, **3,712 KB** aft
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Journeys/Journeys.cs:plans` | one plan per home at most, until it sets off (one home in the model) | fixed | 1 | 1 | 1 | 0.2 |
 | `Missions/StoriesComponent.cs:missions` | missions 2 days after they end | window | 0 | 0 | 0 | 0.2 |
+| `OldPowers/OldPowersBook.cs:group` | the pilgrims walking together, while they pass (five at most) | while | 5 | 5 | 5 | 0.2 |
 | `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Peoples/Events/PeopleEventsBook.cs:read` | the old places the scholars read, PeopleEventsMath.MaxRead kept | cap | 2 | 3 | 8 | 0.2 |

@@ -31,6 +31,59 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.241.1</version>
+        <date>15 November 2026</date>
+        <title>Called fighters go with yours</title>
+        <points>
+          <li>Fighters called by a pact, a debt, a liege or a vassal now go with your drafted colonists and stand ready beside them.</li>
+          <li>Against a sleeping enemy, such as a mech cluster, they wait out of its waking range on the colony's side and say so, and if nobody comes for some hours they go in on their own and wake it.</li>
+          <li>With the enemy shut away out of reach, they stand by near the colony, and once the fight they could reach is over they make camp.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.241.0</version>
+        <date>15 November 2026</date>
+        <title>The colony's animals, seen on the map</title>
+        <points>
+          <li>Every named animal now has its person: the one it is bonded to, its master, or the colonist it is fond of, shown on its card.</li>
+          <li>Pets run to meet their person coming home, sleep at the foot of their bed, sit by them at meals and play chase with the children.</li>
+          <li>In the morning the herd follows its eldest out to fresh grazing, lies close together on bitter nights, and the herdmaster or the best hand goes round the animals.</li>
+          <li>Pets come in out of the rain, call out at raiders, keep close to their people when the sky turns strange, and lie by their person when they die.</li>
+          <li>Fifteen of the animals' encounters now happen on the map first, and only when what they speak of is there.</li>
+          <li>What is said about an animal comes as it is seen, and two animals of different kinds can become friends.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.240.0</version>
+        <date>15 November 2026</date>
+        <title>The old powers stir</title>
+        <points>
+          <li>Old Powers has fourteen strange happenings of its own, each played out on the map: a seer at the end of a season, a night when everyone turns to face one way, a stone that hums in a storm, a sealed scroll in old ruins, and more.</li>
+          <li>Pale wolves run once round the colony under the full moon, and in the morning someone finds no tracks where they ran.</li>
+          <li>On foggy or moonless nights, eyes watch the colony from the edge of the dark until someone walks out to them.</li>
+          <li>A god drawn near may go by in the night: its own signs one after another, then its own presence for a while after dawn, named only when the colony knows it.</li>
+          <li>A wandering enchanter offers to work a piece of the colony's gear up a grade for silver, and the bearer stands with them while it is done.</li>
+          <li>They come under every storyteller about once in three weeks, and about once in ten days under Old Powers or its story direction.</li>
+          <li>A RimWorld of Magic's effects, sounds, scrolls, spirit wolves and classes are used where it is in your list; harm is rare, shared with the rest of Rimfolk's, and always shown.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.239.0</version>
+        <date>15 November 2026</date>
+        <title>Visitors' own day</title>
+        <points>
+          <li>Visitors now fill their idle hours with things of their own: they talk, sit by a fire or on a bench, warm their hands in the cold and get out of the rain.</li>
+          <li>Guests play your games and instruments, watch your screens and use your telescope only while none of your colonists want them, and get up as soon as one heads over.</li>
+          <li>Visitors eat, drink and smoke only from their own packs, never from your stores; a trader never touches the goods for sale.</li>
+          <li>What they do depends on the hour, the weather and their people's tech level: a tribal guest plays horseshoes, not chess, and a noble does not nap on the ground.</li>
+          <li>Hospitality's guests keep Hospitality's own recreation and only come to a fire in the cold or under a roof in the rain.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.238.3</version>
         <date>15 November 2026</date>
         <title>Allies against every enemy</title>

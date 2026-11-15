@@ -195,7 +195,7 @@ namespace ColonyCouncil
                 var animals = map.mapPawns.SpawnedColonyAnimals.Where(Has).ToList();
                 foreach (var a in animals)
                 {
-                    var person = PetTracker.PersonOf(a);
+                    var person = AnimalFacts.PersonOf(a);
                     if (person != null) lastPerson[a.thingIDNumber] = person;
                 }
                 if (lastPerson.Count > 500) lastPerson.RemoveAll(kv => kv.Value == null || kv.Value.Dead);
@@ -234,7 +234,9 @@ namespace ColonyCouncil
             try
             {
                 var map = a.Map;
-                var person = PetTracker.PersonOf(a);
+                // Its person: bonded, its master, else the one it has taken to (AnimalFacts.PersonOf), so every animal's
+                // temperament can show, not only the bonded few.
+                var person = AnimalFacts.PersonOf(a);
                 switch (t)
                 {
                     case Temper.Brave: return BravePredator(a, person, map, out why);
@@ -429,11 +431,11 @@ namespace ColonyCouncil
 
         private static bool Meal(Thing t) => t.def.ingestible?.IsMeal ?? false;
 
-        /// <summary>A meal or a few mouthfuls from the stores, or off a table: it goes there and eats them.</summary>
-        private static bool Greedy(Pawn a, Map map, out string why)
+        /// <summary>A meal or a few mouthfuls from the stores, or off a table (not with <paramref name="storesOnly"/>): it goes there and eats them.</summary>
+        private static bool Greedy(Pawn a, Map map, out string why, bool storesOnly = false)
         {
             why = null;
-            var food = GenRadial.RadialDistinctThingsAround(a.Position, map, 30f, true).Where(t => Snack(a, t)).Take(40).ToList();
+            var food = GenRadial.RadialDistinctThingsAround(a.Position, map, 30f, true).Where(t => Snack(a, t) && (!storesOnly || !OnTable(t))).Take(40).ToList();
             var pick = food.OrderByDescending(t => (OnTable(t) ? 2 : 0) + (Meal(t) ? 1 : 0)).ThenBy(t => t.Position.DistanceToSquared(a.Position)).FirstOrDefault();
             if (pick == null)
             {
@@ -531,6 +533,9 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A raid on the stores (an encounter's, Animals/AnimalScenes.cs): it goes and eats a few mouthfuls there, as a greedy one would, never off a table.</summary>
+        internal static bool RaidStores(Pawn a) => a?.Map != null && Greedy(a, a.Map, out _, true);
+
         // ---------------- Mischievous ----------------
 
         private static bool Crop(Pawn a, Plant p, Map map) =>
@@ -597,7 +602,7 @@ namespace ColonyCouncil
         /// <summary>Its person, alive and the colony's, when they aren't on its map (away with a caravan or at another home).</summary>
         private static Pawn Away(Pawn a)
         {
-            var person = PetTracker.PersonOf(a);
+            var person = AnimalFacts.PersonOf(a);
             return person != null && !person.Dead && person.MapHeld != a.Map ? person : null;
         }
 
@@ -679,7 +684,7 @@ namespace ColonyCouncil
                 awayAt.Remove(id);
                 return;
             }
-            var person = PetTracker.PersonOf(a);
+            var person = AnimalFacts.PersonOf(a);
             if (person == null || !person.Spawned || person.Map != map || !MoreHabits.Calm(a) || a.GetLord() != null) return;
             awayAt.Remove(id);
             // A moment like the others: none at the pace's nothing.
@@ -817,6 +822,8 @@ namespace ColonyCouncil
                 var hostiles = map.mapPawns.AllPawnsSpawned.Where(p => Hostile(p, map)).ToList();
                 if (hostiles.Count == 0) continue;
                 var shooters = map.mapPawns.AllPawnsSpawned.Where(p => Shooting(p, now) && !p.Dead && !p.Downed).ToList();
+                // A pet raises the alarm as they come (Animals/AnimalDays.cs), once a fight.
+                if (!force) AnimalDays.Alarm(map, hostiles);
                 foreach (var a in map.mapPawns.SpawnedColonyAnimals.Where(Has).ToList())
                 {
                     var t = Of(a);
@@ -832,6 +839,7 @@ namespace ColonyCouncil
 
         private static bool FightBrave(Pawn a, List<Pawn> hostiles)
         {
+            // Only its bonded one or its master: an animal that has merely taken to someone stays out of the fight as before.
             var person = PetTracker.PersonOf(a);
             // Its person down already: it stands over them all the same.
             if (person == null || !person.Spawned || person.Map != a.Map || a.RaceProps.baseBodySize < AnimalNatureMath.StandMinSize) return false;

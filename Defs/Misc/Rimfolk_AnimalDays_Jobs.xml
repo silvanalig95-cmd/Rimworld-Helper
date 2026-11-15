@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' days on the map (Source/ColonyCouncil/Animals/AnimalDays.cs, AnimalScenes.cs, AnimalDayJobs.cs): a pet at
+    someone's elbow at a meal, a pet sheltering from the weather, one lying by its dead person, one standing between
+    someone and a stranger, one crying out at night (JobDriver_AnimalLinger, as the natures' own), one running to greet
+    someone, keeping close to them or running at their heels (JobDriver_AnimalRunTo), an animal at play
+    (JobDriver_AnimalPlay), a colonist playing chase with one (JobDriver_PlayWithAnimal), sitting with one or stopping to
+    watch it (JobDriver_SitWithAnimal), and the keeper's round of the animals (JobDriver_KeeperRound). Each is ended by
+    danger.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_AnimalBeg</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>begging from TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_Beg</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalShelter</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>sheltering from the weather.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalMourn</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>lying by TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+        <report>CC_AnimalJob_Mourn</report>
+        <callEvery>1500</callEvery>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalPlay</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalPlay</driverClass>
+    <reportString>playing.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PlayWithAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayWithAnimal</driverClass>
+    <reportString>playing chase with TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <joyKind>Social</joyKind>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_SitWithAnimal</defName>
+    <driverClass>ColonyCouncil.JobDriver_SitWithAnimal</driverClass>
+    <reportString>sitting with TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <joyKind>Social</joyKind>
+  </JobDef>
+
+  <!-- An animal going to someone and keeping at their side a moment (JobDriver_AnimalRunTo): what waited for it to get
+       there is said as it does. -->
+  <JobDef>
+    <defName>Rimfolk_AnimalGreet</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalRunTo</driverClass>
+    <reportString>greeting TargetA.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalRunToExtension">
+        <nuzzle>true</nuzzle>
+        <report>CC_AnimalJob_Greet</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalKeepClose</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalRunTo</driverClass>
+    <reportString>keeping close to TargetA.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalRunToExtension">
+        <report>CC_AnimalJob_KeepClose</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalPester</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalRunTo</driverClass>
+    <reportString>running at TargetA's heels.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalRunToExtension">
+        <report>CC_AnimalJob_Pester</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Standing between someone (target C) and a stranger (target B), facing the stranger (JobDriver_AnimalLinger). -->
+  <JobDef>
+    <defName>Rimfolk_AnimalGuard</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>standing in front of someone.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_Guard</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- At night, standing facing the dark and crying out (its kind's own call) every few seconds (JobDriver_AnimalLinger). -->
+  <JobDef>
+    <defName>Rimfolk_AnimalCry</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>crying out into the dark.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <callEvery>300</callEvery>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_KeeperRound</defName>
+    <driverClass>ColonyCouncil.JobDriver_KeeperRound</driverClass>
+    <reportString>looking over the animals.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

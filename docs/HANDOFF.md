@@ -53,14 +53,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **The animals, made more visible. (being built, the player's go of 14 November 2026)** The player: "i must say that i can't really see a lot from the animal features we
-    included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
-    now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
-    a round that makes them seen and builds on them.
-  - **More of Old Powers' kind. (being built, the player's go of 14 November 2026)** The player: "i like the old powers storyteller and want you to do some more more events
-    in this style, including the gods and using ressources from rimworld of magic". When asked: a list of uncanny events
-    first (omens, strange nights, things in the earth, the gods drawing near, seers and pilgrims), with A RimWorld of
-    Magic's motes, sounds and effects (its textures are in the scratchpad's `rom_Motes`), for Old Powers and any way.
   - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
@@ -124,21 +116,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   here", so every message at the top of the screen is in the pass: those in Keyed and the event cards are in their
   batches, and a ninth batch takes the rest (def text printed through `Tell.Message` or `Messages.Message` elsewhere,
   such as the world situations' `<news>`).
+- **To do when the player asks (15 November 2026): porters reach the mailbag, or say why not.** The player, with a
+  screenshot of goods left just outside their killbox: "porters placed the material just before my killbox instead of
+  walking to the mailbag. is this because of the traps? i'll build a door in the wall now". Found: not the traps (the
+  game's visitors know the colony's traps and step round or over them; reach ignores them). `CourierTracker` sets the
+  load down where the porter stands once at the colony when `CanReach(spot, OnCell, Danger.Some)` fails: no open way
+  in (no door in the wall, a locked one), or a way through cold that is deadly for an underdressed porter (the region's
+  danger). When asked: they take any way in that exists (`Danger.Deadly` for the walk, the 0.232.1 dressing keeping them
+  warm), and if there truly is none, the drop says why in a message ("no way in past the wall"), with the porter
+  standing by the goods.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
-  more of their time doing things. i don't want them to generate value for me, but it just looks a bit weird when they
-  spend most of their day just standing and walking around. they can talk, do actions, recreation, many things that
-  don't make them work for me", then "to do later". How it is now: the game's visitor groups wander their lord's spot;
-  Rimfolk's own visits have their duties (`Rimfolk_VisitWait`, `Rimfolk_VisitWork`), the market, services, guests who
-  help out (`GuestHelp`, work for the colony, which this is not) and small habits (`Immersion/MoreHabits`,
-  `SmallHabits`). When asked: a visitor's idle hours filled with things of their own, none of it work or value for the
-  colony: talking with each other and with colonists nearby (the game's social interactions, Rimfolk's outsider talk),
-  sitting by a fire or on a bench, warming their hands in the cold, sheltering from rain, eating from their own packs,
-  a nap in the shade, the colony's games and joy things where free (horseshoes, chess, an instrument, a telescope),
-  looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
-  drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
-  Hospitality left to its own recreation where it already has it.
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The great caravan's rider comes,
   his answer plays out, and everyone comes in varied clothes, as warm as they can** (15 November 2026; the player's
   words: with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered · Guido
@@ -214,6 +202,218 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     goes out to the edge of the colony's land. 5. A caravan, a visitor group or a raid in a hard frost: mixed clothes, a
     parka on some, a jacket over a fleece shirt and a vest on another, a cape or a pelt coat on another. 6. In -60 °C a
     Rimfolk visit still comes, in its warmest, and goes once hypothermia reaches the game's own line, with the message.
+- 0.241.1, **Called fighters go with the
+  colony's fighters, and wake a sleeping enemy** (15 November 2026; the player, with their save `League_of_Toba_2`: "the
+  delegation came but is neither attacking the enemies nor following my pawns"). Cause: two Darkshards of Faction_25,
+  called on a pact against the sleeping guards of a psychic droner ship part (two lancers, a pikeman and a legionary
+  fusilier, duty `SleepForever`), stood on `Wait_Wander` at the map's east edge: the game's `HuntEnemiesIndividual` only
+  goes after enemies that are awake (`ThreatDisabled`), so it gave them nothing to do. 0.238.3 said the band "hunts every
+  enemy ... wakes and fights it"; it didn't. Now DESIGN.md "A war band on the map" (after "Pacts"): they fight awake
+  enemies as before, go with the nearest drafted colonist, wait 36 cells from a sleeping enemy on the colony's side and
+  go in on their own after six hours with nobody drafted, and stand by near the colony when the enemy is shut away out
+  of reach; once only shut-away enemies are left after a fight in reach, they make camp. Code: `Camps/WarBandOrders.cs`,
+  `Defs/Misc/Rimfolk_WarBand.xml`, `WarCamp.cs` (`WarBand.asleepSince`, `goIn`, `metEnemy`, `Watch`),
+  `CampStoryMath.MusterPoint`/`GoIn`, tests in `CampStoryTests`. Try in the game: load the save; within the hour the
+  two walk to a spot about 36 cells east of the ship part and the message says they wait; draft a colonist and they come
+  to them; leave nobody drafted for six hours and they go in and the guards wake. The player also asked how to beat the
+  mechs; the advice was given in chat (close in, maces against mech armour, Darunia first, doctors back, EMP grenades
+  later).
+- 0.241.0, **The colony's animals, seen on the
+  map** (14 November 2026; the player's words: "i must say that i can't really see a lot from the animal features we
+  included, please add to to-do list to enhance and build up on these", then "do ... making animals more visible").
+  DESIGN.md "The animals, made more visible" (before "The colony's animals hunting for themselves") has all of it; the
+  Almanac's pages "the colony's animals" (a section, *Their days on the map*) and "the animals' natures" (keywords
+  unchanged).
+  - What was there and why it wasn't seen (the inventory, from the code and their save League of Toba of 14 November,
+    day 99): Rimfolk's animal parts are the temperaments (a card line, and moments on the map that mostly need "its
+    person"), friends, feuds and grief between animals, the few that speak (a fantasy source), the herd's year (its
+    leader, its line, the first calf), the herdmaster's work, wishes and goals, the famine cull and the fading pet, pets
+    hunting for themselves, the resident beast, omen animals, Ideology's sacred animals, PokéWorld's Pokémon at home and
+    the trainer's story, the creatures' 34 encounters, and the beasts (great herds and stampedes, pack alphas, nemeses,
+    the region's legends). The beasts, the hunts, the herd's year, the resident beast, the sacred animals' day and the
+    Pokémon at home already play out on the map. What didn't, in their colony: twelve animals (a horse, a thunderox, an
+    ankylosaurus, two giant crowned silkies, two titanis, a dusk prowler, a blood scarab, a raccoon, two companion
+    dryads), none bonded and only the dusk prowler with a master, so everything that waits for "its person" never came
+    (a pet at its person's heels, the loyal one at the door, the brave one's stand, five of the temperaments' moments,
+    grief, the old companion's story); six colonists in six seats, so no herdmaster (Guido, Animals 13 with a burning
+    passion, is the best with them); friendships only between two pets asleep side by side, and their three pets slept
+    apart; no children, so no child's play; and the seventeen pet encounters that fired were words in the news only,
+    some of them able to say what wasn't so (the new litter of any animal, newborns or not; the animal on guard with no
+    stranger about; the old friend slowing down of a young animal).
+  - What: every named animal has its person (bonded, its master, else the colonist it is fond of, fixed for the pair,
+    "fond of" on its card), and the temperaments and the pet at its person's heels use it; friends across kinds. Their
+    days on the map, each with a plain line said as it is seen: home again (it runs over and nuzzles them), the foot of
+    the bed (the cell past the bed's foot end), a meal (at their elbow), a child's chase, the herd moving off behind its
+    eldest in the morning, the rounds (the herdmaster, else the best with animals, in their free time), in out of the
+    rain and snow, the young in the snow, the herd huddled on a bitter night, the alarm at raiders, the pets keeping close
+    to their people under a god's presence (the god unnamed), and lying by its dead person, crying out. Fifteen of the
+    seventeen pet encounters now happen on the map first and are told as they are seen: the five added in this round are
+    the grudge, the old friend slowing down (old animals only), the new litter (only with newborns of its own, any
+    season), the animal on guard (only with a stranger near) and the noise in the night; the larder raid never takes
+    from a table. Every step of the animals' personal stories before the last has something seen. Left as words: the
+    gift from the hunt and the chewed belongings. No harm, no letter, no message, nothing saved, no Sched slot.
+  - Code map: `Source/ColonyCouncil/Animals/AnimalDaysMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `AnimalDay`,
+    `AnimalScene`, `FondWeight`, `Score`, `Favourite`, `Days`, `HourChance`, `HoursOf`, the hours, `MayBeg`,
+    `MaySleepAtFoot`, `PlaysWithChild`, `GreetChance`, `MayBefriend`, `FootCells`, `Homecoming`, `Huddles`, `Shelters`,
+    `Newborn`, `CryHour`, the ticks). `Animals/AnimalDays.cs` (`Hourly` from `AnimalLife.Hourly`; per session `awayFrom`,
+    `awayLast`, `footNight`, `mourners`, `personSeen`, `weatherSeen`, `alarmAt`, `presencesSeen`; `Start`, `StartThen`,
+    `RunToJob`, `FollowJob`, `Tags`, `Say`, `Remark`; `Homecomings`, `Greet`, `FootOfBed`, `SleepAtFoot`, `FootCell`,
+    `Mornings`, `Eating`, `Begging`, `Beg`, `ChildPlay`, `Play`, `HerdMoves`, `Pasture`, `Keeper`, `Rounds`, `Looked`,
+    `Weather`, `Shelter`, `SnowPlay`, `Huddle`, `Alarm` (from `AnimalTempers.FightLook`), `Uneasy`, `Deaths`,
+    `Notify_PersonDied`, `Mourn`, `InspectPart`, the dev answers). `Animals/AnimalScenes.cs`
+    (`DilemmaEffect_AnimalScene`; `Begin` and `Fits`, both from `Strangers/Encounters.cs`; `Play`, `Try`, `Hourly`,
+    `YoungOf`, `StrangerNear`, the scenes). `Animals/AnimalDayJobs.cs` (`AnimalDaysDefOf`; `AnimalArrivals`;
+    `AnimalRunToExtension`, `JobDriver_AnimalRunTo`, `JobDriver_AnimalPlay`, `JobDriver_PlayWithAnimal`,
+    `JobDriver_SitWithAnimal`, `JobDriver_KeeperRound`). `Animals/AnimalDaysDebug.cs` (three dev actions). Changed:
+    `AnimalFacts` (`PersonOf`, `FondOf`, `TakesTo`, `Pet`), `AnimalNatureJobs` (the linger's arrival and `callEvery`, the
+    card's "fond of"), `AnimalTempers` (the person, the alarm's call, `RaidStores`), `AnimalBonds` (friends across kinds),
+    `AnimalLife` (the hour, a pet's heels), `AnimalNatureMath` (families from the mod pool), `Strangers/Encounters.cs`
+    (`Told` split from `Fire`, the scene and `Fits`). Defs `Defs/Misc/Rimfolk_AnimalDays_Jobs.xml` (12 JobDefs),
+    `Defs/FlavorPoolDefs/Rimfolk_Pools_AnimalDays.xml` (the lines, in `ImmersionTests`, and the journal),
+    `Defs/EncounterDefs/Council_Encounters_Creatures.xml`, `Defs/ArcDefs/Rimfolk_Arcs_Animals.xml` and
+    `Rimfolk_Arcs_Mods_PokeWorld.xml`; keys `Languages/English/Keyed/Rimfolk_AnimalDays.xml`; the pace is the setting
+    `animalMoments` ("Animals' moments on the map"), everything under "Pets as companions". Tests
+    `Tools/Tests/AnimalDaysTests.cs`; `Tools/playout_audit.py` counts the scene.
+  - Try in the game: 1. Select a named animal with no bond and no master: its card says "fond of" someone; "Animals:
+    whom each animal is with" lists all of them in the log. 2. Send that person off with a caravan for half a day and
+    back: as they come in, the animal runs over, nuzzles them, and they say hello as it gets there. 3. At night a small
+    pet goes into its person's room and sleeps just past the foot of the bed; the next morning its person mentions it.
+    4. At a meal a pet comes to sit at someone's elbow and they tell it no as it sits down. 5. In the early morning the
+    two silkies (or the titanis) walk off together behind the eldest to fresh ground. 6. In their free time Guido (the best
+    with animals) goes round a few of them, stopping beside each, with a word to the first. 7. Rain coming on: the pets out in it go in under
+    a roof, and someone remarks on the first as it lies down. 8. A raid: up to two pets turn to face the raiders and call
+    out, and someone says where they are. 9. A god's presence: the pets go to their people and stay close, one crying
+    out. 10. "Animals: an encounter's scene now..." with Guard while a trader is near, or Cry at night: the animal stands
+    between them, or goes out and cries at the dark, and the news comes as it does. 11. Kill a colonist with dev mode:
+    after the danger, their animal lies down by the body and cries.
+  - Mods that would help (none of them in their list yet): Zoology: Realistic Animal Overhaul
+    ([3679396881](https://steamcommunity.com/sharedfiles/filedetails/?id=3679396881); tags 1.6 and 1.7, updated 25
+    October 2026, kept up) gives the animals much more of their own to do on the map (young nursing, parents guarding
+    their young, prey fleeing hunters, predators guarding kills, colonists walking dogs and playing fetch, better animal
+    sounds) and has its own support for Alpha Animals, Dinosauria, Megafauna and Vanilla Animals Expanded; it also
+    rebalances every animal's numbers, so try it with its systems one at a time (it may overlap Animals Logic). Animals
+    are fun! (Continued) ([3245454244](https://steamcommunity.com/sharedfiles/filedetails/?id=3245454244); tags 1.1 to
+    1.7, updated 12 November 2026, kept up), lighter: colonists walk their pets and play fetch for recreation, with a
+    small chance each time to bond, so more animals get their bonded person and Rimfolk's bonded parts (grief, the grave,
+    the old companion's story); one or the other, since Zoology has walks and fetch too. For the night's sounds under
+    the cry in the dark, Ambient Rim ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430);
+    tags 1.4 to 1.6, updated July 2026), already proposed for the gods.
+- 0.240.0, **More of Old Powers' kind: the old
+  powers' own strange happenings** (14 November 2026; the player's words: "i like the old powers storyteller and want
+  you to do some more more events in this style, including the gods and using ressources from rimworld of magic", then
+  "do ... more old powers style events"). Item 7 of `docs/storytellers-proposals.md` made into fourteen happenings of
+  their own. DESIGN.md "The old powers' own strange happenings" (after "Ways to play") has all of it; the README's ways
+  to play a paragraph; the Almanac's "ways to play" page, Old Powers' section and row (keywords unchanged); Old Powers'
+  description and its direction's note say so.
+  - What: fourteen uncanny happenings, each played out on the map with its card or news line, under every storyteller
+    (about one in three weeks at a home) and leaning to Old Powers and its story direction (each look three times as
+    likely, about one in ten days; the ways' new lever `uncanny`, 3 on Old Powers). The gods' pace (`GodPaceMath`): each
+    its own gap, a ramp, a reason needed (never when merely free), none within four days of another, one under way at a
+    time, never with a fight on. The seer of the season; everything faced one way; the humming stone; the sealed scroll;
+    the casters lit up; the wandering enchanter (its own question letter); the thing under the ground; the dead on the
+    road; pilgrims passing; another sky; the animal that spoke; a god going by (its own round 2 signs through the night,
+    then its own round 2 presence a while after dawn); the pale wolves (A RimWorld of Magic's spirit wolves running round
+    the colony under the full moon, no tracks at dawn); eyes in the dark (gone when someone walks out to them). Harm only
+    through the shared budget (`HarmKinds.Uncanny`): a caster's burned hands, the shamblers on the road, the dead from
+    under the ground (Anomaly), each shown. A god named only where the colony knows it (`Gods.CardName`). Each in the
+    colony's age's form.
+  - Code map: `Source/ColonyCouncil/OldPowers/OldPowersMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `OldPower`,
+    `PaceOf`, `HoursOf`, `DayChance`, `CheckChance`, `Spaced`, `AssumedShare`, `Age`, each happening's trigger and rules,
+    `SeerWords`, `PickFind`, `BeastWordOf`, `PassLingers`, `PackAt`, `PackFacing`, the eyes' numbers). `OldPowers.cs` (the
+    frame: `Hourly`, `Call`, `Begin`, `Fire`, `Play`, `Step`, the words, `Line`, `Say`, `Card`, `Minor`, `Motes`,
+    `Drift`, `Sound`). `OldPowersBook.cs` (`OldPowersBook`, a game component: `last`, `lastAny`, `lately`, `searched`,
+    `play`; `OldPowerPlay`; `ChoiceLetter_OldPowers`). `OldPowersVisitors.cs` (seer, enchanter, pilgrims),
+    `OldPowersNight.cs` (one way, stone, casters, dead road, another sky and `GameCondition_OtherSky`, pale wolves, eyes),
+    `OldPowersFinds.cs` (scroll, under the ground, the animal, a god going by and its presence after), `OldPowersDebug.cs`
+    (a dev action each, the next step, the pace in the log). Seams: `HappeningTracker.Hourly` calls `OldPowers.Hourly`;
+    `StoryWaysMath.Uncanny`, `StoryLevers.uncanny`; `HarmKinds.Uncanny` and `Harm.cs`'s `oldPowers`; `AnswerMath.Sources`
+    and `EventCardMath.Kinds` for the enchanter's letter. Defs `Defs/IncidentDefs/Rimfolk_OldPowers.xml` (eleven small
+    moods, another sky, the letter), `Rimfolk_OldPowers_Lines.xml` (`Rimfolk_Pool_OldPowersSaid`, in `ImmersionTests`),
+    keys `Languages/English/Keyed/Rimfolk_OldPowers.xml`; `<uncanny>3</uncanny>` on Old Powers in
+    `Defs/StorytellerDefs/Rimfolk_Storytellers.xml`. Moods in `Tools/Balance/Rates.cs`; saved collections in
+    `Tools/save_estimate.py`. Tests `Tools/Tests/OldPowersTests.cs` (1288 checks, with a model of how often they come).
+    No `Sched` pass.
+  - Mods used (active rows, by name, the game's own as the fallback): A RimWorld of Magic's motes (casting circles,
+    runes, mana puffs, arcane waves, psionic current, ghosts, shadows, twinkles, holy light, earth cracks, spirit wolves),
+    sounds (gong, power-up, low vibration, low wind, soft explosion, wolf howl, its sermon), spell scrolls and grimoire,
+    raw magicyte and minor enchanting gems, the Chronomancer and Enchanter classes, the arcane fold, mana storm and surge;
+    Vanilla Events Expanded's and Vanilla Psycasts Expanded's psychic skies, the Archon's psychic storm; Anomaly's
+    shamblers and tomes; Royalty's psycasters. Would help: Ambient Rim
+    ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430); tags 1.4 to 1.6, no 1.7 tag yet,
+    kept up: a 1.6 fix in July 2026), already named for the gods' presences: night birds and owls in the trees and wind
+    on open ground, under the strange nights; nothing here needs it. The pale wolves' drawings come with A RimWorld of
+    Magic, already in the list.
+  - Not seen in a real game (none of it could be): the motes in view at each zoom (the wolves' drawings upright and
+    facing the way they run; the eyes as two small glints at the edge of the light), the seer's, enchanter's and
+    pilgrims' visits under their lords, the shamblers' letter under the old powers' words, the presence after dawn's
+    label on the card, everyone facing one way at once, and how often they come in a real colony.
+  - Try in the game (dev mode, "Rimfolk", "Old powers: ... now"; "Old powers: the next step now" skips a wait; "Old
+    powers: the pace now (log)" shows each one's call and chance):
+    1. The seer (morning): a seer walks in to the middle, someone sits with them, one word at a time over the seer's head,
+       then the card with the next season's warmth, crops, the stores and blades if a raid is queued.
+    2. Everything faces one way (at night): everyone and every animal awake turns the same way; at dawn someone walks
+       out that way and finds an old thing (after a death, everyone faces the grave and someone stands there at dawn).
+    3. The humming stone, the sealed scroll (with someone in a room of ruins), the casters lit up (a mage or psycaster in
+       the colony): each as its card says.
+    4. The wandering enchanter (a colonist carrying a weapon below masterwork, silver in the stores): its letter; yes,
+       the bearer walks over, an hour of light, the piece one grade better and the silver gone.
+    5. The thing under the ground: a knock, "the next step now" twice for the crack and the morning, the find.
+    6. The dead on the road at dusk, the pilgrims (they pray at the oldest grave and leave a carving), another sky at
+       night (violet, with green shadows), the animal that spoke (someone out of doors with a wild animal near).
+    7. A god going by: "Gods: the colony knows every god", then the action; signs through the night from ten, at six
+       the card titled with the god's name, and the god's own presence in the corner for a while (Hollin's "the green
+       leaning", say). Without the colony knowing the god: "Signs in the night", unnamed.
+    8. The pale wolves (at night): a howl, then pale wolves run once round the colony and off; animals and colonists
+       out of doors stop and watch; at dawn someone walks out and says there are no tracks.
+    9. Eyes in the dark (at night): pairs of small glints round the colony; those outside stop and look; after about a
+       minute someone walks out to the nearest pair, and every pair goes out as they get close.
+- 0.239.0, **Visitors fill their idle hours**
+  (14 November 2026; the player: "guests should spend more of their time doing things. i don't want them to generate
+  value for me, but it just looks a bit weird when they spend most of their day just standing and walking around. they
+  can talk, do actions, recreation, many things that don't make them work for me", then "do the one that visitors fill
+  their idle hours"). DESIGN.md "Visitors' idle hours: their own day" (after "Guests keep out of bedrooms and the cold
+  store") has all of it; the Almanac's visitors page a section, *Their idle hours* (keywords unchanged).
+  - What: where a visitor's duty would have them wander about their spot, the game's visitors and traders, Rimfolk's
+    visits between their duties (out of doors), envoys, and Hospitality's guests (only what Hospitality's recreation has
+    nothing for) now and then do something of their own: talk with one of their own, keep a colonist at leisure company,
+    sit by a fire or on a free seat, warm their hands in the cold, shelter from rain, a bite from their own pack at a meal
+    hour, a nap in a tree's shade at midday, the colony's games, instruments, screens and telescope while nobody of the
+    colony wants them, its art, a prayer at their god's shrine or a shared faith's altar, their own animals, children's
+    play, a smoke or a drink of their own, a pipe, whittling. By the hour, the weather, who they are (children, titled,
+    guards, traders, the devout and scoffers, teetotallers), their people's age (a thing of the colony's fits them when
+    it is of their age or older) and calling. Nothing made, hauled, cleaned or built for the colony, nothing of its
+    stores used, nothing reserved: they give way the moment a colonist reserves or walks to the thing, the cell or the
+    seat, and leave it four hours. Never in bedrooms, cold stores (`KeepOut`), cells, sickrooms, barracks or on the
+    colony's buildings' work spots. Not covered: quest lodgers (the colony's own for their stay, with its recreation),
+    callers, camps, feasts' and hosted guests, stories' strangers.
+  - Code map: `Source/ColonyCouncil/Visitors/IdleHoursMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `IdleDoing`,
+    `IdleGroup`, `IdleRole`, `IdleFacts`; the hours, the weather, `AgeOf`, `ThingAge`, `Fits`, `Excluded`, `IsMusic`,
+    `SitByFire`, `ShapeOf`, `ThrowOf`, `Free`, `DrugKindOf`, `ForHospitality`, `NotFor`, `Weights`, `CallingFactor`,
+    `Pick`, `FillChance`, `Reach`, `Stint`, `NextLook`, `Moment`, `LineChance`, `MaySpeak`). `Visitors/IdleHours.cs`
+    (`IdleDefOf`; `On`; per session `nextLook`, `gaveWay`, `saidBy`/`saidOn`, `busy`; `JoyThings` from every
+    `JoyGiver_InteractBuilding`'s buildings; `PlacesOf` once an hour per map; `GroupOf`, `AtStay`, `WhyNot`, `Still`;
+    `LookFor`, `Gather`, `Shrines`, `Pack`; `JobFor`, `Make`; `StandOk`, `ColonyWho`, `FreeJoy`, `JoyCell`, `RingCell`,
+    `ViewCell`, `ShelterCell`, `ShadeCell`, `RestCell`, `PlayRoute`; `Started`, `Ended`, `GaveWay`, `Say`, `Report`).
+    `Visitors/IdleHoursJobs.cs` (`VisitIdleExtension`; `JobDriver_VisitIdle`, `IdleCheck`, `JobDriver_VisitNap`,
+    `JobDriver_VisitIdlePlay`; `Patch_VisitorsIdle`, a low-priority postfix on `ThinkNode_Duty.TryIssueJobPackage`
+    after `Patch_VisitorsShop`). `Visitors/IdleHoursDebug.cs` (two dev actions). `VisitorTrade.HeldByStory` split out of
+    the market's `GuestWhyNot` (`VisitorTradeGuests.cs`) and shared. Defs `Defs/Misc/Rimfolk_VisitorIdle.xml` (18
+    JobDefs, the effecter `Rimfolk_Whittle`), `Defs/FlavorPoolDefs/Rimfolk_Pool_VisitorIdle.xml` (the lines, in
+    `ImmersionTests`), keys `Languages/English/Keyed/Rimfolk_VisitorIdle.xml`; the setting `visitorsIdle`
+    (`CouncilSettings`, `SettingsCatalog`: What's on, Neighbours and letters, under the deeper game hooks). Tests
+    `Tools/Tests/IdleHoursTests.cs`. No `Sched` pass and nothing saved but the game's own job.
+  - Try in the game: 1. With a trade caravan or the game's visitors waiting, watch them for an hour: most of them sit,
+    talk, warm up or play rather than stand about; "Visitors: idle hours of everyone here (log)" says what fits each.
+    2. Build a campfire and a bench near where they wait: of an evening some sit round the fire; in a frost they stand
+    right by it, "warming their hands at the fire."; a cook going to the campfire's spot finds it free. 3. Set a colonist
+    to recreation at a horseshoes pin or a chess table a visitor is using: the visitor gets up as the colonist walks over
+    (now and then with "Sorry, I'll get out of your way.") and doesn't come back to it for a few hours. 4. A tribal
+    visitor uses horseshoes or the game of Ur but not the chess table or a television. 5. Let it rain on visitors standing
+    outside: they go under the nearest roof that isn't a bedroom or a freezer. 6. Midday in fair weather: a tired visitor
+    lies down under a tree and naps, and gets up after an hour or so. 7. A visitor with beer or a joint in their pack
+    drinks or smokes it of an evening (the game's own effect, one gone from their pack); a trader never touches the
+    goods. 8. With Hospitality, its guests keep to Hospitality's recreation and only come to a fire in the cold or under a
+    roof in the rain. 9. Turn the setting off: they stand about and wander as before.
 - 0.238.3, **Allies called against every enemy
   on the land** (15 November 2026; the player, with pikemen and a drone by the base and "Call Stormriders" greyed "only
   while a threat is on the colony": "i can't call my allies despite hving pikemen and a drone in the base, please fix

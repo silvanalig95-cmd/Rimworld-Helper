@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A visitor's idle hours (Source/ColonyCouncil/Visitors/IdleHours.cs; the rules in IdleHoursMath.cs): where their
+    duty would have them wander about their spot for want of anything to do, the game's visitors and traders, Rimfolk's
+    own visits between their duties, envoys, and Hospitality's guests (only what Hospitality's own recreation lacks) do
+    something of their own instead. None of it is work or value for the colony: nothing is made, hauled, cleaned or
+    built for it, nothing of the colony's is used up, and a joy thing of the colony's is given up the moment one of the
+    colony's people wants it (they reserve nothing, so the colony's people find it free and the visitor stands up).
+    Every stint is casually interruptible, so a trader can still be traded with and anyone talked to.
+  -->
+
+  <JobDef Name="Rimfolk_IdleBase" Abstract="True">
+    <driverClass>ColonyCouncil.JobDriver_VisitIdle</driverClass>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <suspendable>false</suspendable>
+  </JobDef>
+
+  <!-- Two of them talking, the one walked over to waiting with them; the game's own chats come of it. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleChat</defName>
+    <reportString>talking with TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Chat</doing>
+        <social>SuperActive</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Beside one of the colony's people at their leisure; Rimfolk's outsider talk may start between them. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleCompany</defName>
+    <reportString>keeping TargetA company.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Company</doing>
+        <social>SuperActive</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleFire</defName>
+    <reportString>sitting by the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Fire</doing>
+        <social>SuperActive</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleWarm</defName>
+    <reportString>warming their hands at the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Warm</doing>
+        <social>SuperActive</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleSeat</defName>
+    <reportString>sitting a while.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Seat</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleShelter</defName>
+    <reportString>sheltering from the weather.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Shelter</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A bite from their own pack: the food's own eating effect and sound, and it is gone from their pack at the end. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleSnack</defName>
+    <reportString>eating from their pack.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Snack</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A nap in the shade: the game's own lying down, on the ground under a tree. -->
+  <JobDef>
+    <defName>Rimfolk_IdleNap</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitNap</driverClass>
+    <reportString>napping in the shade.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <neverShowWeapon>true</neverShowWeapon>
+  </JobDef>
+
+  <!-- The colony's games, screens and the like: the report is the game's own for it ("playing chess."). -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleGame</defName>
+    <reportString>playing a game.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Game</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleMusic</defName>
+    <reportString>playing TargetB.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Music</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleStars</defName>
+    <reportString>looking at the stars.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Stars</doing>
+        <social>Quiet</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleArt</defName>
+    <reportString>admiring TargetB.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Art</doing>
+        <social>Quiet</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdlePray</defName>
+    <reportString>praying at TargetB.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Pray</doing>
+        <social>Off</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Seeing to one of their own animals: it waits with them while they brush it down. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleAnimal</defName>
+    <reportString>seeing to TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Animal</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A child at play: running about from place to place near their people. -->
+  <JobDef>
+    <defName>Rimfolk_IdlePlay</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitIdlePlay</driverClass>
+    <reportString>playing.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <suspendable>false</suspendable>
+  </JobDef>
+
+  <!-- A smoke or a drink of their own, from their own pack: the game's own effect of it, and it is gone from the pack at the end. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleOwnDrug</defName>
+    <reportString>having something of their own.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>OwnDrug</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdlePipe</defName>
+    <reportString>smoking a pipe.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Pipe</doing>
+        <effecter>Smoke_Joint</effecter>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleCarve</defName>
+    <reportString>whittling a bit of wood.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Carve</doing>
+        <effecter>Rimfolk_Whittle</effecter>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A few chips of wood flying from a knife: whittling, smaller and slower than sawing planks. -->
+  <EffecterDef>
+    <defName>Rimfolk_Whittle</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <scale>0.15~0.3</scale>
+        <ticksBetweenMotes>70</ticksBetweenMotes>
+        <positionLerpFactor>0.6</positionLerpFactor>
+        <positionRadius>0.3</positionRadius>
+        <fleckDef>WoodBit</fleckDef>
+      </li>
+    </children>
+  </EffecterDef>
+
+</Defs>

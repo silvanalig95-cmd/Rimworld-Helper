@@ -63,6 +63,9 @@ PLAY = {
     "DilemmaEffect_KeepFire": "fire kept",
     "DilemmaEffect_BoltDoor": "door bolted",
     "DilemmaEffect_Follow": "at heel",
+    # An animal's moment played out before it is told (Animals/AnimalScenes.cs): running to someone, the foot of their
+    # bed, a meal, chase with a child, following them, comfort, a trick, the stores, sitting together, a feud's ambush.
+    "DilemmaEffect_AnimalScene": "an animal's moment",
     "DilemmaEffect_SwapRooms": "rooms traded",
     # Also kept on the map for a while: smudge fires along the fields, a stone cut for each grave, a fenced patch sown,
     # the children's race run.

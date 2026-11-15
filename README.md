@@ -1436,7 +1436,7 @@ The herd and the pets are part of the colony's life, not only its larder and its
   light things off a shelf; the loyal one waits at the door while its person is away and runs to them when they come
   home; the lazy one naps by the fire, in the shade or in the sun; the curious one follows visitors about, or goes to
   watch someone at work. Whoever sees it may say something, and the card says what it did lately. About every three
-  to five days each at 100% (the setting "Animals' temperaments on the map"), once a fight for the brave and the timid,
+  to five days each at 100% (the setting "Animals' moments on the map"), once a fight for the brave and the timid,
   one such moment an hour on a map at most.
 - **Friends, feuds and grief**, with no letters and no messages at all: two of the colony's companions (bonded, or
   pets rather than the herd) seen asleep side by side three nights are friends, fall in together by day with a nuzzle
@@ -1455,6 +1455,17 @@ The herd and the pets are part of the colony's life, not only its larder and its
   loyalty, a cat's disdain, a thrumbo's slow age, a Pokémon by its type), warns of raiders or a predator really on the
   map near it and says where, and has a place at the council table without a vote: a line at a meeting its person sits
   in, and a word on the council's questions about its person or itself. Never a letter or a message of its own.
+- **Their days, seen on the map**: every named animal has its person, the one it is bonded to, its master, or else the
+  colonist it is fond of (its card says so). A pet runs to meet its person when they come home after hours away, sleeps
+  at the foot of their bed and sits at their elbow at meals; children play chase with the animals; in the morning a
+  herd follows its eldest out to fresh grazing, and on bitter nights it lies down close together; the herdmaster, or
+  whoever is best with animals, goes round them in their free time; pets come in out of the rain and snow, turn and
+  call out at raiders, keep close to their people when the sky turns strange, and lie by their person when they die.
+  Two of different kinds can now become friends in the barn. What is said comes as it is seen (the hello as the pet
+  reaches its person). Fifteen of the animals' encounters happen on the map before they are told, among them a grudge,
+  an old animal walking over slowly, a mother by her newborns, an animal standing between its person and a stranger and
+  a cry in the night, each only when what it speaks of is there; and every step of the animals' personal stories has
+  something to see. No letters, nobody hurt.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 - **Pets hunt for themselves** (the setting of that name, on by default): an animal whose kind hunts in real life (dogs,
   cats, foxes, wolves, bears, big cats, birds of prey, snakes, crocodiles; other kinds by what they are, from a table with
@@ -3090,7 +3101,8 @@ favours asked, missions, world events, friends in a fight, omens, and who a raid
 - **What You Sow**: the colony's deeds decide, as the peoples remember them. Raids at the classic pace whatever it
   does; cruelty brings them from the wronged and thins the roads to a quarter; kindness brings traders, visitors and friends.
 - **Old Powers**: the world feels watched. Raids nearly at the classic pace, stranger threats making up the rest, omens and strange nights
-  (eclipses, auroras, a psychic calm), more pilgrims and seers, and word of strange skies. It names nothing.
+  (eclipses, auroras, a psychic calm), more pilgrims and seers, the old powers' own strange happenings about twice as
+  often (below), and word of strange skies. It names nothing.
 - **Lean Years**: scarcity is the enemy. Raids at the classic pace, a hardship about every week (blight
   most, cold snaps, heat waves, storms), few traders, and word of famine, drought and hard winters.
 - **Rise and Fall**: arcs of about two years: a year of growth, then the region's word of a trouble (a war, a plague, a
@@ -3109,6 +3121,21 @@ mod's, toward one of the eight, through Rimfolk's own happenings and the reasons
 its own pace of threats and sickness. With one of the eight as your storyteller it plays its own way unless a direction
 is chosen. Both change in a running game: the game's options, Gameplay, Change storyteller; and the setting. The
 Almanac's page "ways to play" has each in full.
+
+**The old powers' own strange happenings.** Fourteen uncanny happenings, each played out on the map, come under every
+storyteller, about one in three weeks at a home, and about one in ten days under Old Powers or its direction. None comes
+within four days of another, each keeps a long gap of its own, and each needs a reason (a full moon, a storm, a death in
+the colony, fog, a season's turn), never just the time passing:
+a seer at the end of a season who says, in the colony's age's way, what the next season will bring, every word true;
+a night when everyone and every animal awake turns to face one way; a stone that hums through a stormy night; a sealed
+scroll found in old ruins; the colony's casters lit up under a sky full of power; a wandering enchanter who will work a
+piece of gear up a grade for silver; something knocking under the ground for two nights before it comes up; the dead
+walking a road across the land at dusk; pilgrims who stop to pray at the colony's graves; another sky at night; a wild
+animal that walks up to someone and says one true sentence; signs of something going by in the night, and a god's own
+presence for a while after dawn; pale wolves running once round the colony under the full moon, leaving no tracks; eyes
+at the edge of the dark that go out when someone walks up to them. They use A RimWorld of Magic's effects, sounds,
+scrolls and classes where it is in your list. Harm is rare and stays within Rimfolk's shared budget (a caster's burned
+hands, the dead coming up with Anomaly), and a god is named only when the colony knows it was that god.
 
 ## Rimfolk events
 Every few days, something happens to the colony from outside: Rimfolk's own events. They join your storyteller's own

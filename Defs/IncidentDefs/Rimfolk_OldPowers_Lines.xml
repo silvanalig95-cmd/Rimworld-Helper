@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What is said aloud in the old powers' happenings (Source/ColonyCouncil/OldPowers/OldPowers.cs, Line): one sentence
+    each, plain speech. A line is said only at the moment whose every tag it carries (OldPowers.Line never falls back to
+    another moment's line), and the era tags pick the colony's age. Moments:
+      seer,cast (the seer), seer,word:<frost|cold|mild|warm|heat|grows|bare|storesshort|storesenough|blades> (the seer),
+      seer,heard (the one who listened);
+      oneway,turn and oneway,dead (one who stood), oneway,found ({THING}) and oneway,grave ({DEAD}) at dawn;
+      stone,touch; scroll,found ({THING});
+      charged,<mage|psycaster|sensitive>, charged,burned;
+      enchanter,<arrive|work|leave|nosilver> (the enchanter), enchanter,done (the one who carried the piece);
+      buried,<knock|crack|waker>, buried,found ({THING});
+      deadroad,sight; pilgrims,pray and pilgrims,token (a pilgrim), pilgrims,seen (one of the colony); othersky;
+      beast,word:<hunted|coming|sick|hungry|tired|sad|watched> (the beast: {COUNT} beasts taken, {NAME} the one it speaks
+      to), beast,heard;
+      godpasses,dawn, with named ({GOD}, the colony's name for it) or scoffer;
+      spiritpack,seen, spiritpack,tracks (with snow on snow);
+      watched,eyes, watched,walk and watched,nothing (the one who walked out).
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_OldPowersSaid</defName>
+    <lines>
+      <plain>
+        <li>[seer,cast] Sit down with me and I'll tell you what the next season will bring.</li>
+        <li>[seer,cast] Give me a moment, and I'll read what the coming season holds.</li>
+        <li>[seer,cast,tribal] Let me throw the bones into the ash and see how they fall.</li>
+        <li>[seer,cast,medieval] Let me lay out the cards and see what the season holds.</li>
+        <li>[seer,cast,industrial] Let me hold the pendulum over your map and see where it swings.</li>
+        <li>[seer,cast,spacer] Let me go through the readings and tell you what's coming.</li>
+
+        <li>[seer,word:frost] It will freeze here before the next season is over.</li>
+        <li>[seer,word:frost] The next season will be cold enough to freeze the ground.</li>
+        <li>[seer,word:cold] The next season will be cold, so keep the fires going.</li>
+        <li>[seer,word:cold] You'll want warm clothes next season.</li>
+        <li>[seer,word:mild] The next season will be mild, neither hot nor cold.</li>
+        <li>[seer,word:mild] Next season the weather will be kind to you.</li>
+        <li>[seer,word:warm] The next season will be warm.</li>
+        <li>[seer,word:warm] It will be warm here next season, warmer than now.</li>
+        <li>[seer,word:heat] The next season will be very hot, so keep water close.</li>
+        <li>[seer,word:heat] Next season the heat will be hard on you.</li>
+        <li>[seer,word:grows] Your fields will grow next season.</li>
+        <li>[seer,word:grows] Whatever you plant next season will come up.</li>
+        <li>[seer,word:bare] Nothing will grow in your fields next season.</li>
+        <li>[seer,word:bare] Don't count on the fields next season, they won't grow.</li>
+        <li>[seer,word:storesshort] Your stores won't last until things grow again.</li>
+        <li>[seer,word:storesshort] You don't have enough food put by for what's coming.</li>
+        <li>[seer,word:storesenough] You have enough food put by to see the season through.</li>
+        <li>[seer,word:storesenough] Your stores will last, you've done well there.</li>
+        <li>[seer,word:blades] People with weapons are coming here before long.</li>
+        <li>[seer,word:blades] Someone means to attack you, and soon.</li>
+        <li>[seer,word:blades,lowtech] I see blades at your gate before the season is out.</li>
+
+        <li>[seer,heard] That was worth hearing, I'll tell the others.</li>
+        <li>[seer,heard] I don't know how they know, but I believe them.</li>
+        <li>[seer,heard] Well, now we know what to get ready for.</li>
+
+        <li>[oneway,turn] Why did we all just turn round the same way?</li>
+        <li>[oneway,turn] Everyone stopped and looked the same way, even the animals.</li>
+        <li>[oneway,turn] I turned round without meaning to, and so did everyone else.</li>
+        <li>[oneway,turn] Look at the shadows, they're all pointing the same way.</li>
+        <li>[oneway,dead] We're all facing where the dead one lies.</li>
+        <li>[oneway,dead] Everyone turned towards the grave at once.</li>
+        <li>[oneway,grave] I wanted to come and stand here with {DEAD} for a while.</li>
+        <li>[oneway,grave] We all turned this way last night, so I came to see {DEAD}.</li>
+        <li>[oneway,found] This is where we were all looking, and here's {THING}.</li>
+        <li>[oneway,found] There's {THING} lying out here, it wasn't here yesterday.</li>
+
+        <li>[stone,touch] The stone is humming, I can feel it in my hand.</li>
+        <li>[stone,touch] It's warm, and it's buzzing like there's something inside.</li>
+        <li>[stone,touch] I've never heard a stone make a sound before.</li>
+
+        <li>[scroll,found] There's {THING} here under the dust, and it's still sealed.</li>
+        <li>[scroll,found] Someone left {THING} in here a very long time ago.</li>
+        <li>[scroll,found] Look at this, {THING}, and the seal hasn't been broken.</li>
+
+        <li>[charged,mage] My mana is full, I've never felt it come in so fast.</li>
+        <li>[charged,mage] The sky is pouring power into me tonight.</li>
+        <li>[charged,psycaster] My head is clear, my focus is coming back on its own.</li>
+        <li>[charged,psycaster] I can feel the psychic field getting stronger tonight.</li>
+        <li>[charged,sensitive] Something in the air is running right through me.</li>
+        <li>[charged,sensitive] My skin is prickling, can anyone else feel that?</li>
+        <li>[charged,burned] It came out of my hands too fast and burned them.</li>
+        <li>[charged,burned] My hands are burned, it was too much at once.</li>
+
+        <li>[enchanter,arrive] I work on weapons and gear, if you have something worth the trouble.</li>
+        <li>[enchanter,arrive] I can make one of your things better, for a fair price.</li>
+        <li>[enchanter,arrive,lowtech] I carve runes into blades and cloth, and they come out better.</li>
+        <li>[enchanter,work] Hold it still for me, this will take about an hour.</li>
+        <li>[enchanter,work] Stand there and don't let go of it until I'm done.</li>
+        <li>[enchanter,leave] Another time, then, I'll be on my way.</li>
+        <li>[enchanter,leave] No matter, there are other places on my road.</li>
+        <li>[enchanter,nosilver] You don't have the silver after all, so I'll go.</li>
+        <li>[enchanter,done] It feels different in my hands now, better made somehow.</li>
+        <li>[enchanter,done] Look at it, it's like it was made by a master.</li>
+
+        <li>[buried,knock] Did you hear that knocking under the ground?</li>
+        <li>[buried,knock] Something hit the ground from underneath, I felt it.</li>
+        <li>[buried,crack] The ground over there has cracked open since last night.</li>
+        <li>[buried,crack] It's knocking again, and now the earth is splitting.</li>
+        <li>[buried,found] So this is what was knocking under the ground: {THING}.</li>
+        <li>[buried,found] The ground opened up, and look what was in it.</li>
+        <li>[buried,waker] Something is climbing out of the ground, get back.</li>
+        <li>[buried,waker] There are dead people coming up out of that hole.</li>
+
+        <li>[deadroad,sight] There are people walking out there, and they look dead.</li>
+        <li>[deadroad,sight] Look at them walking in a line, they don't even look at us.</li>
+        <li>[deadroad,sight] I can see right through those people out there.</li>
+
+        <li>[pilgrims,pray] We'll pray here a while and then be on our way.</li>
+        <li>[pilgrims,pray] This is a good place to stop and pray.</li>
+        <li>[pilgrims,pray] Thank you for letting us stop here.</li>
+        <li>[pilgrims,token] We'll leave this here for the people who live in this place.</li>
+        <li>[pilgrims,token] A small thing to thank you, and now we go on.</li>
+        <li>[pilgrims,seen] Those pilgrims stopped at our place to pray.</li>
+        <li>[pilgrims,seen] It's good to see people praying here.</li>
+
+        <li>[othersky] Look up, the sky is the wrong colour tonight.</li>
+        <li>[othersky] Those aren't our stars, I don't know any of them.</li>
+        <li>[othersky] The whole sky has turned violet, come and look.</li>
+        <li>[othersky,spacer] None of these stars are on the charts.</li>
+
+        <li>[beast,word:hunted] You've killed {COUNT} of us in a few days, and we noticed.</li>
+        <li>[beast,word:hunted] Your people have taken too many of us lately.</li>
+        <li>[beast,word:coming] Someone is coming to fight you, and soon.</li>
+        <li>[beast,word:coming] There are people on their way here who mean you harm.</li>
+        <li>[beast,word:sick] You're sick, {NAME}, you should rest.</li>
+        <li>[beast,word:sick] You smell of sickness, go and lie down.</li>
+        <li>[beast,word:hungry] You're hungry, {NAME}, go and eat something.</li>
+        <li>[beast,word:hungry] You haven't eaten enough today.</li>
+        <li>[beast,word:tired] You're worn out, {NAME}, go to sleep.</li>
+        <li>[beast,word:tired] You need to sleep, you can barely stand.</li>
+        <li>[beast,word:sad] You're unhappy, {NAME}, and the others can see it.</li>
+        <li>[beast,word:sad] Something is weighing on you, talk to someone about it.</li>
+        <li>[beast,word:watched] Something old is watching your colony.</li>
+        <li>[beast,word:watched] Something has been watching your colony for a long time.</li>
+        <li>[beast,heard] That animal just spoke to me, I heard every word.</li>
+        <li>[beast,heard] Did anyone else hear that, or was it just me?</li>
+        <li>[beast,heard] It talked to me and then walked off like a normal animal.</li>
+
+        <li>[godpasses,dawn] Something went past us in the night, and it didn't stop.</li>
+        <li>[godpasses,dawn] All those signs last night, and now nothing.</li>
+        <li>[godpasses,dawn,named] {GOD} went past us in the night.</li>
+        <li>[godpasses,dawn,named] Those were {GOD}'s signs, it went right past us.</li>
+        <li>[godpasses,dawn,scoffer] A lot of strange things at night, that's all it was.</li>
+        <li>[godpasses,dawn,scoffer] People will say it was a god, but nobody saw anything.</li>
+
+        <li>[spiritpack,seen] There's a pack of white wolves running round the colony.</li>
+        <li>[spiritpack,seen] Look at those wolves, they're running round us without a sound.</li>
+        <li>[spiritpack,seen] I can't hear their feet at all, those wolves.</li>
+        <li>[spiritpack,tracks] They ran right through here last night, and there isn't a single track.</li>
+        <li>[spiritpack,tracks] No tracks at all, as if nothing ran here.</li>
+        <li>[spiritpack,tracks,snow] The snow is smooth here, and they ran right across it.</li>
+        <li>[spiritpack,tracks,snow] Not a mark in the snow where those wolves ran.</li>
+
+        <li>[watched,eyes] There are eyes out there at the edge of the dark.</li>
+        <li>[watched,eyes] Something out there is looking at us, I can see its eyes.</li>
+        <li>[watched,eyes] Those eyes haven't moved since I first saw them.</li>
+        <li>[watched,walk] I'll go out and see what it is.</li>
+        <li>[watched,walk] Stay here, I'm going out to have a look.</li>
+        <li>[watched,nothing] They all went out as I got close, and there's nothing here.</li>
+        <li>[watched,nothing] Nothing here at all, not even tracks.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

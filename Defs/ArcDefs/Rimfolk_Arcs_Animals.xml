@@ -42,6 +42,9 @@
           <li>{PAWN_nameDef}'s {PET_nameDef} has grown old.</li>
           <li>{PET_nameDef} has gone gray about the muzzle, and {PAWN_nameDef} has noticed.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>24</hours></li>
+        </effects>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
@@ -192,6 +195,9 @@
         <chronicle>
           <li>{PET_nameDef} follows {PAWN_nameDef} everywhere now, tripping over {PET_possessive} own feet.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>36</hours></li>
+        </effects>
         <gate>
           <kind>Practice</kind>
           <amount>1500</amount>
@@ -220,6 +226,9 @@
         <chronicle>
           <li>{PAWN_nameDef}'s orphan {PET_nameDef} is nearly grown.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>18~21</hours><duration>0.5~1</duration></li>
+        </effects>
         <gate><kind>Custom</kind><minDays>3</minDays><timeoutDays>45</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
@@ -299,6 +308,9 @@
         <chronicle>
           <li>A stray has been turning up at dusk, always the same distance from the door, and {PAWN_nameDef} has started watching for it.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~20</hours><duration>0.5~0.75</duration></li>
+        </effects>
         <gate><kind>Time</kind><days>2</days><minDays>1.5</minDays></gate>
       </li>
       <li>
@@ -342,6 +354,7 @@
           <li>The stray lets {PAWN_nameDef} close now, and {PAWN_nameDef} has asked the handlers to bring it in.</li>
         </chronicle>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~21</hours><duration>0.5~0.75</duration></li>
           <li Class="ColonyCouncil.ArcEffect_TameStray" />
         </effects>
         <gate><kind>Custom</kind><minDays>0.25</minDays><timeoutDays>12</timeoutDays></gate>
@@ -423,6 +436,9 @@
           <li>{PET_nameDef} has taken against {PAWN_nameDef}, for reasons of {PET_possessive} own.</li>
           <li>{PAWN_nameDef} and {PET_nameDef} have fallen out, and the doorway is no longer safe.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Pester</scene></li>
+        </effects>
         <gate><kind>Time</kind><days>2</days><minDays>2</minDays></gate>
       </li>
       <li>
@@ -443,6 +459,7 @@
           <li>The colony has started keeping score in the feud between {PAWN_nameDef} and {PET_nameDef}. {PET_nameDef} is ahead.</li>
         </chronicle>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Pester</scene></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FeudWithAnimal</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><chance>0.3</chance><exceptTrait><li>Kind</li></exceptTrait></li>
         </effects>
@@ -465,6 +482,9 @@
         <chronicle>
           <li>{PET_nameDef} accepted the crust off {PAWN_nameDef}'s bread today. A truce, of sorts.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~20</hours><duration>0.5~1</duration></li>
+        </effects>
         <gate><kind>Hold</kind><hold>Near</hold><hours>8</hours><minDays>2</minDays><timeoutDays>15</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
@@ -485,6 +505,7 @@
           <li>{PAWN_nameDef} and {PET_nameDef} made their peace, and now they're never apart.</li>
         </chronicle>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>24</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GrudgingFriends</thought></li>
         </effects>
       </li>

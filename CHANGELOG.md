@@ -5,6 +5,47 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Called fighters go with yours
+
+*15 November 2026, version 0.241.1*
+
+- Fighters called by a pact, a debt, a liege or a vassal now go with your drafted colonists and stand ready beside them.
+- Against a sleeping enemy, such as a mech cluster, they wait out of its waking range on the colony's side and say so, and if nobody comes for some hours they go in on their own and wake it.
+- With the enemy shut away out of reach, they stand by near the colony, and once the fight they could reach is over they make camp.
+
+## The colony's animals, seen on the map
+
+*15 November 2026, version 0.241.0*
+
+- Every named animal now has its person: the one it is bonded to, its master, or the colonist it is fond of, shown on its card.
+- Pets run to meet their person coming home, sleep at the foot of their bed, sit by them at meals and play chase with the children.
+- In the morning the herd follows its eldest out to fresh grazing, lies close together on bitter nights, and the herdmaster or the best hand goes round the animals.
+- Pets come in out of the rain, call out at raiders, keep close to their people when the sky turns strange, and lie by their person when they die.
+- Fifteen of the animals' encounters now happen on the map first, and only when what they speak of is there.
+- What is said about an animal comes as it is seen, and two animals of different kinds can become friends.
+
+## The old powers stir
+
+*15 November 2026, version 0.240.0*
+
+- Old Powers has fourteen strange happenings of its own, each played out on the map: a seer at the end of a season, a night when everyone turns to face one way, a stone that hums in a storm, a sealed scroll in old ruins, and more.
+- Pale wolves run once round the colony under the full moon, and in the morning someone finds no tracks where they ran.
+- On foggy or moonless nights, eyes watch the colony from the edge of the dark until someone walks out to them.
+- A god drawn near may go by in the night: its own signs one after another, then its own presence for a while after dawn, named only when the colony knows it.
+- A wandering enchanter offers to work a piece of the colony's gear up a grade for silver, and the bearer stands with them while it is done.
+- They come under every storyteller about once in three weeks, and about once in ten days under Old Powers or its story direction.
+- A RimWorld of Magic's effects, sounds, scrolls, spirit wolves and classes are used where it is in your list; harm is rare, shared with the rest of Rimfolk's, and always shown.
+
+## Visitors' own day
+
+*15 November 2026, version 0.239.0*
+
+- Visitors now fill their idle hours with things of their own: they talk, sit by a fire or on a bench, warm their hands in the cold and get out of the rain.
+- Guests play your games and instruments, watch your screens and use your telescope only while none of your colonists want them, and get up as soon as one heads over.
+- Visitors eat, drink and smoke only from their own packs, never from your stores; a trader never touches the goods for sale.
+- What they do depends on the hour, the weather and their people's tech level: a tribal guest plays horseshoes, not chess, and a noble does not nap on the ground.
+- Hospitality's guests keep Hospitality's own recreation and only come to a fire in the cold or under a roof in the rain.
+
 ## Allies against every enemy
 
 *15 November 2026, version 0.238.3*

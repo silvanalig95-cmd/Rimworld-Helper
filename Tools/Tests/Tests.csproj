@@ -13,6 +13,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/StallCounterMath.cs" Link="StallCounterMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorTradeMath.cs" Link="VisitorTradeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/KeepOutMath.cs" Link="KeepOutMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/IdleHoursMath.cs" Link="IdleHoursMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeAdviceMath.cs" Link="TradeAdviceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeMarketMath.cs" Link="TradeMarketMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeWindowMath.cs" Link="TradeWindowMath.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="../../Source/ColonyCouncil/Items/ItemCardMaterialMath.cs" Link="ItemCardMaterialMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Items/ItemCardUseMath.cs" Link="ItemCardUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/AnimalDaysMath.cs" Link="AnimalDaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/PostMath.cs" Link="PostMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/RiderPackMath.cs" Link="RiderPackMath.cs" />
@@ -340,5 +342,6 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />
+    <Compile Include="../../Source/ColonyCouncil/OldPowers/OldPowersMath.cs" Link="OldPowersMath.cs" />
   </ItemGroup>
 </Project>

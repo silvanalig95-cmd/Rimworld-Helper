@@ -663,6 +663,8 @@ namespace ColonyCouncil
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
             Safe("quests", () => Quests(comp));
+            // The old powers' own strange happenings, on their own pace and the ways' lever (OldPowers/OldPowers.cs).
+            Safe("the old powers", () => OldPowers.Hourly(now));
             // With the storyteller in charge of them, Rimfolk's own timer stays quiet.
             if (!S.worldEvents || S.eventsFromStoryteller) return;
             EventTimers(now);
