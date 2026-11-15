@@ -260,6 +260,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   sharpening, oiling a bow, tending their pack animal), games of their own (cards, dice), and their own instruments.
   In the player's active mods for these: Misc. Training (`haplo.miscellaneous.training`: `ArcheryTarget`,
   `MartialArtsTarget`) for training, and Odyssey's fishing; no other mod needed.
+  The player, then: "ok looks like they already read books sometimes, but they generally just chill around the same
+  room (my eating room)". Why: for Hospitality's guests Rimfolk fills only warming up, shelter, prayer and animals
+  (`IdleHoursMath.ForHospitality`) and leaves the rest to Hospitality's own recreation, which keeps each guest in their
+  guest area (`guestArea_int`, set in Hospitality's guest tab) and draws them to the gathering spot, here the dining
+  room; and Rimfolk's own reach for them is "nearly where they stand". So when built: Hospitality's guests get Rimfolk's
+  doings too (walks, the fire, games, the garden, pets, books, training, fishing), within their guest area when one is
+  set, spread over the colony's rooms and grounds rather than the one room, and a word in the Almanac's visitors page
+  that the guest area in Hospitality's tab decides where they may go.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
