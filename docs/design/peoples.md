@@ -543,7 +543,9 @@ description, `honours`, `fears` and `sayings` in its `PeopleExtension`, `Defs/In
 `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesLore.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesLore.xml`,
 `Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesLore.xml`, `Defs/Misc/Rimfolk_PeoplesLore_Misc.xml`, `Patches/
 Rimfolk_PeoplesLore.xml`, Keyed `Rimfolk_PeoplesLore.xml`; the Almanac's two pages a section each, *Where their ways
-began* (keywords unchanged).
+began* (keywords unchanged). (Since 15 November 2026 the twenty-three peoples' descriptions no longer hold the founding
+in their middle: each is written in its own shape, naming a founder only where the people would; DESIGN.md, "The
+peoples' descriptions, each in its own words". The foundings below stand as their talk, faith and page tell them.)
 
 | | Founding (the middle of their description) | Sayings | They honour | They fear |
 |---|---|---|---|---|

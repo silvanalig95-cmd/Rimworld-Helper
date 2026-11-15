@@ -71,7 +71,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   3 each pawn's belief; 4 each god's happenings, two batches of 7; 5 saints. Pawns on Display was not answered, so it
   is not used. Rounds 0 and 1 are released (0.232.0), the Mog remake too (0.233.0); round 2 is built, not released (the
   entry below); rounds 3 to 5 are next.
-- **To do when the player asks (14 November 2026): the peoples' descriptions rewritten.** The player: "i really like the
+- **Done (built 15 November 2026, not released yet; the entry "The peoples' descriptions, each in its own words" below
+  the to-do list): the peoples' descriptions rewritten.** The player: "i really like the
   different factions you created, but when i look at their faction and read the description text with their history
   etc., it really reads like AI gibberish and I don't understand what is really meant. also they all follow the same
   structure and it's always one named individual who started the faction somehow. can you redo these descriptions and
@@ -84,7 +85,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   shape (a war, a place, a trade, a schism, a slow drift, a law, an accident; a named person only where the people
   would remember one), different lengths and openings, and still true to what their lore already says on the map
   (`honours`, `fears`, `sayings`, leaders' titles, their events and letters); checked against the peoples' lore docs so
-  nothing on the map contradicts the new text.
+  nothing on the map contradicts the new text. The player picked it on 15 November 2026 to run alongside two other
+  builds ("if it makes sense to run something in addition, also do that").
 - **To do when the player asks (the rest of it; the player's pick done 15 November 2026, 0.243.0 to 0.251.0): Rimfolk's text in plain words.** The player: "when you write
   text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
   "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward. look through a
@@ -289,6 +291,33 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.252.0, **The peoples' descriptions, each in
+  its own words** (15 November 2026; the player's words, 14 November 2026: "it really reads like AI gibberish and I don't
+  understand what is really meant. also they all follow the same structure and it's always one named individual who
+  started the faction somehow. can you redo these descriptions and do a better job? each faction shoud have it's own
+  description & history, written and tailored for it exactly"). The `<description>` of all 23 FactionDefs in
+  `Defs/PeopleDefs/Rimfolk_People_*.xml`, rewritten in plain words: what they do, where and how they live, the age they
+  live in, what they want from their neighbours and how they treat outsiders (each one of their events, asks or trades on
+  the map), and a history in a shape of its own (a war's end, a vote, a crash, an abandoned lab, a drought, an order
+  never given, a flood, a battlefield, a pact at a ford, a plague, a quarrel over a shrine, a fire, a vow, a flight
+  from fire, and so on). A founder is named in six (Aldith, Tamsa, Old Brannoc, Captain Imre Sallow, Nessa Pell, Tobin
+  Garrow), where the people keep the name in a custom; the other seventeen tell what happened and never contradict the
+  founders their talk, faith and Almanac page name. No two open alike; about 140 to 190 words, each no longer than before.
+  Code map: the 23 people defs (the four header comments that said the description names the founder now say the talk
+  does); `Tools/Tests/PeoplesLoreTests.cs` (the old pin on "Their ways began" and the founder replaced by: two
+  paragraphs or more, at most 1200 characters, the age said, no em dash or exclamation mark, no two openings alike);
+  DESIGN.md, "The peoples' descriptions, each in its own words"; README (the seven's founding stories); a line in
+  `docs/design/peoples.md` and `docs/text-style-samples.md`. Nothing in code, nothing saved. Left as they were and
+  reported, since they are not the description: the Almanac's six peoples' pages, *Where their ways began* ("began
+  with" a named founder for most of the 23), each people's talk piece telling how their ways began (one named founder
+  each), and their faiths' descriptions (21 of 23 name their founder; the road league's and the
+  learned society's don't). The region window's Peoples page shows what they honour and fear and their news, never the
+  description or a founder. Can't
+  be checked without the game: how each text sits in the faction's info window. Try in the game: open the Factions tab
+  (or the world's list of factions when making a world), press the info button beside a Rimfolk people (the hospitaller
+  order, the Wheel, the Hollow Fleet) and read the description; then talk to one of their visitors at the gate until they
+  tell how their ways began, and check that the two agree. Mods that would help: none needed, it is text in the game's
+  own window.
 - 0.251.0, **Plain words: messages-elsewhere**
   (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
   i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only

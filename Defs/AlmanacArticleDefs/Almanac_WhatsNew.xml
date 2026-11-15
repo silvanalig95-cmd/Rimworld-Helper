@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.252.0</version>
+        <date>15 November 2026</date>
+        <title>The peoples, each described in its own words</title>
+        <points>
+          <li>Each of Rimfolk's 23 peoples has a new description on its faction page, in plain words: what they do, how they live, the age they live in and what they want from their neighbours.</li>
+          <li>Each people's history now has a shape of its own, such as a war, a vote, a flood, a fire or a vow, and a founder is named only where that people keeps the name in a custom.</li>
+          <li>The descriptions match what each people does on the map, and they are shorter than before, with no two beginning the same way.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.251.0</version>
         <date>15 November 2026</date>
         <title>Messages at the top of the screen in plain words</title>

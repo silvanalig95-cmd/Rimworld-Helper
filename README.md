@@ -4248,9 +4248,11 @@ spells kept out of their hands (the masters' storms, meteors and wraths, resurre
 elementals, sabotage, the sniper's headshot, the mortar and the breaching charge, and the like). Off without the mod; the
 guard off with the deeper game hooks; no visitor casts in peace with the mod's "AI can cast" off.
 
-**Where their ways began.** Each of the seven keeps a founding story (in its description on the faction page), a few
-sayings, and what it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons
-through Harrow Ford under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
+**Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
+description on the faction page says in plain words what they do, how they live, what they want from their neighbours
+and where their ways came from, each in a shape of its own, as for all twenty-three peoples), a few sayings, and what
+it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons through Harrow Ford
+under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
 fever town alone through a winter and hung its last lamp over the sickhouse door for anyone ("we were spared, and so we
 owe"); the herders' Tamsa, who walked the last forty head through the dry year to grass and back, which is why herders
 count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who blessed every door he passed; the
