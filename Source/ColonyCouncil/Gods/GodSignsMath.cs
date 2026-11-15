@@ -5,10 +5,9 @@ namespace ColonyCouncil
     /// <summary>
     /// The pure rules of the gods' signs (Gods/GodSigns.cs draws them; Tools/make_god_signs.py makes them): the colony's own
     /// holy sign for each god, what its people draw, carve or stitch for it, never a portrait of the god. Where each texture
-    /// is (the plain sign, and the sign in each age's form: scratched on a stone, painted on a shield, stamped on a badge,
-    /// lit in a ring), which form the colony's own age takes, and which god a chapter of the colony's book holds itself to
-    /// be about (its plain line and its sign follow what was told under that name, not the truth). No game types, so
-    /// Tools/Tests checks them.
+    /// is (the sign in the god's colours, and the unknown seal), which god a chapter of the colony's book holds itself to be
+    /// about (its plain line follows what was told under that name, not the truth), and which sign each chapter shows. No
+    /// game types, so Tools/Tests checks them.
     /// </summary>
     public static class GodSignsMath
     {
@@ -52,6 +51,39 @@ namespace ColonyCouncil
                 if (best < 0 || kv.Value > count[best] || kv.Value == count[best] && first[kv.Key] < first[best])
                     best = kv.Key;
             return best;
+        }
+
+        /// <summary>
+        /// The god whose sign each chapter of the book shows (the player, 15 November 2026, of chapters left with the seal:
+        /// "god's book still shows the same icon for many"), by chapter: one told what its god is shows the god it was told
+        /// of (<paramref name="believed"/>, from <see cref="Believed"/>); any other shows the sign of the god its name
+        /// belongs to (<paramref name="named"/>), the earliest heard (<paramref name="heard"/>) first, unless that god's sign
+        /// already shows on a chapter told of it or on an earlier name, so two untold names never show they are one god;
+        /// -1, the unknown seal, for the rest.
+        /// </summary>
+        public static int[] SignGods(IList<int> believed, IList<int> named, IList<int> heard)
+        {
+            int n = believed?.Count ?? 0;
+            var result = new int[n];
+            var taken = new HashSet<int>();
+            var rest = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                result[i] = believed[i];
+                if (believed[i] >= 0) taken.Add(believed[i]);
+                else rest.Add(i);
+            }
+            rest.Sort((a, b) =>
+            {
+                int ha = heard != null && a < heard.Count ? heard[a] : int.MaxValue, hb = heard != null && b < heard.Count ? heard[b] : int.MaxValue;
+                return ha != hb ? ha.CompareTo(hb) : a.CompareTo(b);
+            });
+            foreach (int i in rest)
+            {
+                int g = named != null && i < named.Count ? named[i] : -1;
+                result[i] = g >= 0 && taken.Add(g) ? g : -1;
+            }
+            return result;
         }
     }
 }

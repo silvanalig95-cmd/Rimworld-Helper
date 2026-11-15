@@ -13331,11 +13331,13 @@ what the colony's people do there, never what the god makes of it.
   `Textures/ColonyCouncil/Gods/Signs/`: `<Key>.png`, the sign in the god's colours as on the draft sheet, 128 by 128, and
   `Unknown.png`, a plain wax seal. (The ages' grey forms, stone, shield, badge and ring, were dropped in 0.238.1 at the
   player's word, "these are not the icons you created here??": they stay on the draft sheet only.) Shown:
-  - in the Gods' book, over the chapter's name (56 px) and small at the end of its row in the list: the god's sign once
-    the chapter tells what the god is (`GodSignsMath.Tells`: a verse of what it is that isn't a doubt, or the god seen
-    plainly by the colony's own people) and for the god most of those verses are of (`GodSignsMath.Believed`; on a tie
-    the first told), so a chapter told of wrongly shows the wrong one; until then the unknown seal (`GodSigns.Unknown`),
-    one for every such chapter, so every name has a picture and nothing gives away which names are one;
+  - in the Gods' book, over the chapter's name (56 px) and small at the end of its row in the list
+    (`GodSignsMath.SignGods`, 0.238.2, the player: "god's book still shows the same icon for many"): a chapter told what
+    its god is (`GodSignsMath.Tells`: a verse of what it is that isn't a doubt, or the god seen plainly by the colony's
+    own people) shows the god most of those verses are of (`GodSignsMath.Believed`; on a tie the first told), so a
+    chapter told of wrongly shows the wrong one; any other chapter shows the sign of the god its name belongs to, the
+    earliest heard first, unless that god's sign already shows on a chapter told of it or on an earlier name; only those
+    keep the unknown seal (`GodSigns.Unknown`), so two untold names never show they are one god;
   - on a god's card, over its name, only when the card names it and the colony knows its sign (`GodSigns.Known`); a
     veiled card ("some say") shows none (`GodsWiring`, `GodPresence.Manifest`'s overload with a sign, `GodLetter.sign`);
   - nowhere else: not on a shrine, not over a god on the map (the player's pick).

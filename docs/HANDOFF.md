@@ -204,6 +204,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
        out of doors stop and watch; at dawn someone walks out and says there are no tracks.
     9. Eyes in the dark (at night): pairs of small glints round the colony; those outside stop and look; after about a
        minute someone walks out to the nearest pair, and every pair goes out as they get close.
+- 0.238.2, **Every chapter its god's sign**
+  (15 November 2026; the player, with a screenshot of the Gods' book where Ducat, Smoulder, the moon, Hollin and Mog all
+  showed the seal: "god's book still shows the same icon for many"). Cause: 0.238.1 showed a god's sign only once someone
+  had told what the god is, so most chapters kept the seal. Now `GodSignsMath.SignGods` (pure, tested in
+  `GodsUnderstoodTests`) gives each chapter of `GodLorePage` the god it was told of, or else the god its name belongs to
+  (`LoreName.god`), the earliest heard first; the seal is left only on a later untold name of a god whose sign already
+  shows, so the book never shows that two names are one god. The plain line still waits for what is told. Try in the
+  game: the Gods' book's list and chapters each with their god's coloured sign.
 - 0.238.1, **The Gods' book's signs and page,
   fixed** (14 November 2026; the player, with a screenshot of chapter VI "The Stranger": "the gods' book is bugged and
   these are not the icons you created here??", then "yes"). Causes: the game's own measuring (`Text.CalcSize`,
