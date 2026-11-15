@@ -98,7 +98,7 @@
       </li>
       <li>
         <label>The children can race on their own</label>
-        <outcome>The children ran their race with only each other to cheer. {A_nameDef} won, according to {A_nameDef}.</outcome>
+        <outcome>The children ran their race with only each other to cheer, and {A_nameDef} says {A_pronoun} won.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_ChildrensRace</thought></li>
@@ -146,7 +146,7 @@
       </li>
       <li>
         <label>Glean, but it goes to the stores</label>
-        <outcome>The children gleaned the fields and everything went into the storeroom. {A_nameDef} carried in the last basket and put it down with a sigh that could be heard across the colony.</outcome>
+        <outcome>The children gleaned the fields and everything went into the storeroom. {A_nameDef} carried in the last basket and put it down with a loud sigh.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>300</xp></li>

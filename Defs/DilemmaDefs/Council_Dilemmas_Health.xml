@@ -59,7 +59,7 @@
         <outcomes>
           <li>[colony:Hardworking] This colony doesn't stop for grief, and {A_nameDef} knew that before asking. {A_nameDef} is back at work, and doing it well, and not looking at anyone.</li>
           <li>[trait:Industrious|trait:HardWorker] {A_nameDef} said keeping busy was probably better anyway, and was back in the infirmary within the hour, sleeves rolled up.</li>
-          <li>[trait:Tough] {A_nameDef} said the dead don't need a day off and neither does the doctor, and went back to the infirmary. Nobody believed the first part.</li>
+          <li>[trait:Tough] {A_nameDef} said the dead don't need a day off and neither does the doctor, and went back to the infirmary.</li>
         </outcomes>
         <ways><toil>2</toil><mercy>-1</mercy></ways>
         <effects>
@@ -126,7 +126,7 @@
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} lasted until midday, then sat down in the yard and couldn't get up again. Two of the others helped {A_objective} back to bed. The doctor said nothing, which was worse than anything the doctor could have said.</riskOutcome>
+        <riskOutcome>{A_nameDef} lasted until midday, then sat down in the yard and couldn't get up again. Two of the others helped {A_objective} back to bed. The doctor said nothing.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_Overdid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>2</days></li>
@@ -137,7 +137,7 @@
         <label>Bed until the strength comes back</label>
         <outcome>The doctor's word stands. {A_nameDef} is in bed with orders to stay there, and somebody brings {A_possessive} meals so there's no excuse to get up.</outcome>
         <outcomes>
-          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the decision badly and is now lying in bed, very still, radiating disapproval at the ceiling.</li>
+          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the decision badly and is now lying in bed, very still, clearly unhappy about it.</li>
           <li>[trait:Lazy|trait:Slothful] {A_nameDef} took to bed rest with suspicious grace and asked for another pillow.</li>
         </outcomes>
         <ways><mercy>1</mercy><toil>-1</toil></ways>
@@ -248,7 +248,7 @@
     <options>
       <li>
         <label>{B_nameDef} learns from {A_nameDef}</label>
-        <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour that has been through a great deal. The two of them are only half at their usual work for a while.</outcome>
+        <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour. The two of them are only half at their usual work for a while.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} took {B_nameDef} out to gather the birthing herbs and taught {B_objective} the name of each on the way back.</li>
           <li>[skill:Medicine] {A_nameDef} started {B_nameDef} on the basics the same afternoon, and {B_nameDef} has been writing notes in the margins of everything since.</li>

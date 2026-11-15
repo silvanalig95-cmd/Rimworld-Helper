@@ -140,6 +140,36 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: messages-elsewhere**
+  (14 November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour,
+  i'd like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only
+  thing i don't mind and even enjoy, is old medieval writing", and, with the snow-day screenshot, "also pop ups up
+  here"). The ninth batch: def text outside `Defs/IncidentDefs` and Keyed that reaches the top of the screen, found by
+  following `Tell.Message`, `Tell.Minor`, `News.Post`, `Notify.Message` and `Messages.Message` back to the def fields
+  they print. Found and read (about 4,300 lines): the answers' outcomes of the council's questions (`DilemmaDefs`:
+  `outcome`, `outcomes`, `riskOutcome`, `riskOutcomes`, and the `LetterVariantsDef` outcome lines), of world events
+  (`WorldSituationDefs` beats' option outcomes, and the beats with `<message>true</message>`, told as news), of camps'
+  asks (`CampDefs`: an ask's `outcomes` and `refused`, and `settled` when the camp stands), of missions
+  (`MissionDefs`: `accepted`, `ready`, `reminder`, the event-picked `outcomes` and the options' outcomes),
+  encounters and nuisances (`EncounterDefs` `texts`, with their letter variants), the colony's fading names
+  (`ColonyTraitDef` `lost`), a granted wish lost (`WishDef` `lostText`), a secret told at the grave (`SecretDef`
+  `grave`, `truth`, `truthLowTech`), and the pools read as messages: vendettas sworn, settled, ended and inherited,
+  birthdays and arrival days, a pet's heroics and farewell, a nemesis's taunt and release. There is no `<news>` field
+  in the world events; their messages are those beats and outcomes. 269 lines rewritten (council questions 107, world
+  events 68, camps 42, encounters 23, missions 18, the rest 11): wry last lines ("The good knives are not in the
+  kitchen", "The dog has already found the warmest spot", "It didn't return the favor",
+  "They took the water"), riddling or cut-short lines ("{BEAST} stays, paid for", "The meals go out steaming, and come
+  back as silver", "{PLACE} it stays", "{OTHER} died owed"), things given will ("The frozen ground fought every
+  shovel", "the {ILLNESS} didn't notice"), and in-world phrases said plainly (the Waystone Book, the ash-grey, the red
+  cord, the wander-year, "an apprentice of the glass"); the approved samples from `docs/text-style-samples.md` for the
+  mage's mornings, the visitor's tea, the child's tracks in the snow, the smith's camp and the news over soup ("dear" to
+  "expensive"). Left as they were: quoted speech and the lines in a colonist's voice inside these fields, the faiths'
+  and gods' words (the vigils, the tree songs and their omens, the worship dilemmas and happenings in `GodDefs`), the
+  social moments between colonists that also go to the social log (the offices' interplay, the "together" pools, a
+  secret confided, the peacemaker), epithets, persona marks and trait changes (character, and the last two are
+  letters), the camps' arrivals, help, joins and farewells (letters), the vanilla gathering and condition messages
+  (already plain), every placeholder, tag, number and fact, and every line already plain (most of the encounters and
+  nuisances, the missions and the wishes' lost lines). No test pinned these words.
 - 0.248.0, **Plain words: interface-3** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing

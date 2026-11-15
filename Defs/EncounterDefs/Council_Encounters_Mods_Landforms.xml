@@ -96,7 +96,7 @@
       <li>{A_nameDef} walked the whole way round the island before supper, and at every turn there was the sea. Halfway, {X_indefinite} fell in behind {A_objective} for a while, as if it was doing the same thing.</li>
       <li>From the high point of the island {A_nameDef} could see water on every side and nothing else, and {X_indefinite} grazing at {A_possessive} feet as though that were perfectly ordinary.</li>
       <li>[storm] Spray came right over the island in the storm. {A_nameDef} and {X_indefinite} both sheltered in the lee of the same rock, soaked and blinking.</li>
-      <li>[evening] The sun went down into the sea on one side of the island, and the dark came up out of it on the other. {A_nameDef} sat on the rocks between them with {X_indefinite} not far off.</li>
+      <li>[evening] The sun went down into the sea on one side of the island. {A_nameDef} sat on the rocks and watched it, with {X_indefinite} not far off.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SeaAllRound</thought></li>

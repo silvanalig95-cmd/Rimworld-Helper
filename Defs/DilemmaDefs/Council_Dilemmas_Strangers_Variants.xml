@@ -288,7 +288,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{X_nameDef} packed the tonic away and moved on to selling buttons. {A_nameDef} lay awake that night, wondering.</li>
+          <li>{X_nameDef} packed the tonic away and went back to selling other things. {A_nameDef} lay awake that night, wondering whether it would have helped.</li>
         </lines>
       </li>
     </outcomes>
@@ -306,7 +306,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>The council wouldn't pay. {X_nameDef} told the story at supper, slowly, so it would last.</li>
+          <li>The council wouldn't pay. {X_nameDef} told the story at supper, in full.</li>
         </lines>
       </li>
     </outcomes>

@@ -106,7 +106,7 @@
         </ready>
         <reminder>
           <li>{FACTION}'s carts come for the building materials within {DAYS}, and the stockpiles are still short: {ITEM}.</li>
-          <li>[storm] {PLACE} still has sky where its roofs should be. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
+          <li>[storm] Many houses at {PLACE} still have no roofs. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
           <li>[fire] {PLACE} is still living in tents among the ashes, and {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
         </reminder>
         <doneTitles>
@@ -170,7 +170,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will have to look elsewhere, and hope.</outcome>
+            <outcome>{FACTION} will have to look for help elsewhere.</outcome>
           </li>
         </options>
       </li>

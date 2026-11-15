@@ -615,7 +615,7 @@
         <li>{PAWN_nameDef} promised {OTHER_nameDef}'s memory that {FACTION} would answer for {LOST}.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} died owed. {PAWN_nameDef} will take payment from {FACTION} for {LOST}.</li>
+        <li>{OTHER_nameDef} died before {FACTION} paid for {LOST}, and {PAWN_nameDef} will see that they do.</li>
         <li>{PAWN_nameDef} picked up the vendetta where {OTHER_nameDef} dropped it, against {FACTION}, for {LOST}.</li>
       </blunt>
       <cheerful>

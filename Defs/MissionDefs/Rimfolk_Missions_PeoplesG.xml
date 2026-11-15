@@ -244,10 +244,10 @@
           <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each afternoon {DEAD} spends an hour beside someone of the colony at their work, watching and asking what each thing is for.\n\nAt the end {DEAD} goes home with the Choir's thanks, about {COUNT} silver. If {DEAD} never gets to stand beside anyone at work, the stay was wasted here.</li>
         </terms>
         <accepted>
-          <li>The colony will take {DEAD} of {FACTION}, a listener who would learn what it is to be ordinary.</li>
+          <li>The colony will take {DEAD} of {FACTION}, a listener who wants to learn how ordinary people live and work.</li>
         </accepted>
         <ready>
-          <li>{DEAD} is here from {PLACE} in a pale robe, looking at everything as if it were the first of its kind.</li>
+          <li>{DEAD} is here from {PLACE} in a pale robe, and looks at everything with great curiosity.</li>
         </ready>
         <reminder>
           <li>{DEAD} of {FACTION} is on the road from {PLACE}, and will want a bed and someone to watch at work.</li>

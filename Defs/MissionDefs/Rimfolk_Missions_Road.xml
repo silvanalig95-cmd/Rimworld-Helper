@@ -206,7 +206,7 @@
         </accepted>
         <ready>
           <li>{A_nameDef} found {DEAD} curled up under a bush, cold and frightened but unhurt. {DEAD} is coming back to the colony holding {A_nameDef}'s hand, and {FACTION} will be here for {X_objective} within {DAYS}.</li>
-          <li>[youth] {A_nameDef} found {DEAD} sitting on a rock with a tear-streaked face, insisting it was the wind. {DEAD} is coming back to the colony with {A_objective}, and {FACTION} will come for {X_objective} within {DAYS}.</li>
+          <li>[youth] {A_nameDef} found {DEAD} sitting on a rock, upset and tearful but unhurt. {DEAD} is coming back to the colony with {A_objective}, and {FACTION} will come for {X_objective} within {DAYS}.</li>
         </ready>
         <reminder>
           <li>{DEAD} is still out there somewhere, and the search has {DAYS} left before the trail goes cold.</li>

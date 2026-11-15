@@ -79,7 +79,7 @@
           </li>
           <li>
             <label>Pay half, with apologies</label>
-            <outcome>The clerk accepts half, writes something careful in his ledger, and assures the colony that the steward is an understanding man.</outcome>
+            <outcome>The clerk accepts half, notes it in his ledger, and says the steward will probably accept it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>half the levy</label><what>silver</what><factor>0.5</factor><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
@@ -90,7 +90,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>The clerk is told the colony can't spare the silver. He writes that down too, and rides off without finishing his tea.</outcome>
+            <outcome>The clerk is told the colony can't spare the silver. He notes the refusal in his ledger and rides off, clearly displeased.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </effects>
@@ -229,7 +229,7 @@
           </li>
           <li>
             <label>Feed the deserter and send them on</label>
-            <outcome>A hot meal and something for the road are carried out to the gate, and the deserter will be gone before the patrol comes by. When it does, the colony won't have seen anyone.</outcome>
+            <outcome>A hot meal and something for the road are carried out to the gate, and the deserter will be gone before the patrol comes by. When it does, the colony will say it has seen no one.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the deserter</label><what>meals</what><count>2</count><ifHave>true</ifHave></li>
             </effects>
@@ -247,7 +247,7 @@
         <requires><li>sheltered</li></requires>
         <message>true</message>
         <texts>
-          <li>An imperial patrol stopped at the gate and asked {A_nameDef} whether anyone in uniform had come through. {A_nameDef} said no, and offered them water. They took the water.</li>
+          <li>An imperial patrol stopped at the gate and asked {A_nameDef} whether anyone in uniform had come through. {A_nameDef} said no and offered them water, which they accepted.</li>
         </texts>
       </li>
     </beats>
@@ -357,7 +357,7 @@
         <day>6~10</day>
         <message>true</message>
         <texts>
-          <li>Word from {PLACE}: the candidates are paying for games in the city, with chariot races, a play and free bread. {A_nameDef} has been describing the chariots to anyone who stands still long enough.</li>
+          <li>Word from {PLACE}: the candidates are paying for games in the city, with chariot races, a play and free bread. {A_nameDef} has been talking about the chariots ever since.</li>
         </texts>
       </li>
     </beats>
@@ -467,7 +467,7 @@
             <outcome>The prospector panned the stream until dark, singing, and came up to the gate grinning. The colony's third was weighed out on his little brass scale and paid in silver, more than anyone expected.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The prospector panned the stream until dark and found mud, a boot and some very surprised frogs. He left in good spirits, heading for the next creek.</riskOutcome>
+            <riskOutcome>The prospector panned the stream until dark and found nothing of value. He left in good spirits, heading for the next creek.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>220</count></li>
             </effects>
@@ -484,7 +484,7 @@
         <day>6~11</day>
         <message>true</message>
         <texts>
-          <li>Another string of prospectors passed the colony this morning, headed for the hills above {PLACE}. {A_nameDef} sold one of them a coil of rope for twice what it was worth and has been insufferable since.</li>
+          <li>Another string of prospectors passed the colony this morning, headed for the hills above {PLACE}. {A_nameDef} sold one of them a coil of rope for twice what it was worth, and is very pleased with the sale.</li>
         </texts>
       </li>
     </beats>

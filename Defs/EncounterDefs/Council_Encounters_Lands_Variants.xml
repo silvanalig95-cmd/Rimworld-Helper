@@ -44,7 +44,7 @@
     <encounter>Council_EncC_NightCalls</encounter>
     <texts>
       <li>[land:mountains|land:hills] Somewhere up the valley {X_indefinite} called, and the mountains threw the call back three times. {A_nameDef} lay awake and couldn't tell which of the calls was real.</li>
-      <li>[land:desert] Out on the cold sand {X_indefinite} called once, long and thin, and the silence afterward was the biggest {A_nameDef} has ever heard.</li>
+      <li>[land:desert] Out on the cold sand {X_indefinite} called once, long and thin, and afterward it was quieter than {A_nameDef} had ever known.</li>
       <li>[land:tundra|land:boreal] The calls came across the snow from the dark trees, carrying for miles in the still cold. {A_nameDef} checked the gate and then checked it again.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

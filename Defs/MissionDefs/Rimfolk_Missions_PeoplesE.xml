@@ -46,7 +46,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will find {DEAD} another sky.</outcome>
+            <outcome>{FACTION} will find {DEAD} another place to study the sky.</outcome>
           </li>
         </options>
       </li>
@@ -58,7 +58,7 @@
           <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Every clear night {DEAD} lies out under the open sky near the gate a couple of hours, watching it, and {A_nameDef} is the better at the fields for sitting up with {DEAD}.\n\nAt the end {DEAD} leaves the Conclave's thanks, about {COUNT} silver, and {FACTION} will hear of the colony's sky. If {DEAD} never sees a clear night, the stay is wasted.</li>
         </terms>
         <accepted>
-          <li>The colony will host {DEAD} of {FACTION}, an apprentice of the glass, who comes to study its sky.</li>
+          <li>The colony will host {DEAD} of {FACTION}, an apprentice weather-reader, who comes to study the sky here.</li>
         </accepted>
         <ready>
           <li>{DEAD} is here from {PLACE}, with a notebook and a stormglass, and asking which way the colony's weather comes from.</li>
@@ -250,7 +250,7 @@
           <li>The colony's fighters have reached the fort at {PLACE} and taken their places on the wall. Keep the caravan there while the company musters.</li>
         </ready>
         <reminder>
-          <li>The Banner's wall at {PLACE} is still thin, and the colony's fighters haven't come.</li>
+          <li>The Banner's fort at {PLACE} is still short of soldiers, and the colony's fighters haven't come.</li>
         </reminder>
         <doneTitles>
           <li>[worked] The wall at {PLACE}</li>
@@ -304,7 +304,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will send {DEAD} on to another people's benches.</outcome>
+            <outcome>{FACTION} will send {DEAD} to work at another people's workshops instead.</outcome>
           </li>
         </options>
       </li>
@@ -316,7 +316,7 @@
           <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each working day {DEAD} spends two hours at the bench nearest {A_nameDef}, learning, and {A_nameDef} learns a little from the questions.\n\nAt the end {DEAD} leaves a piece of guild work by the gate, carved at the colony and marked, and the guild's thanks, about {COUNT} silver. If {DEAD} never gets to a bench, the wander-year was wasted here.</li>
         </terms>
         <accepted>
-          <li>The colony will take {DEAD} of {FACTION}, a journeyman on the wander-year, at its benches.</li>
+          <li>The colony will take {DEAD} of {FACTION}, a journeyman on the year of travel the guild asks of its young, to work at its benches.</li>
         </accepted>
         <ready>
           <li>{DEAD} is here from {PLACE}, with a roll of tools and a bracer branded with the guild's mark, asking where the benches are.</li>

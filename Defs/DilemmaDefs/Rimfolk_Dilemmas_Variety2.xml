@@ -135,7 +135,7 @@
     <options>
       <li>
         <label>{A_nameDef} carries it</label>
-        <outcome>The {THING} goes to {A_nameDef}, who walks to the stores to take it up and sets down what {A_pronoun} carried before. {B_nameDef} says nothing about it, which says enough.</outcome>
+        <outcome>The {THING} goes to {A_nameDef}, who walks to the stores to take it up and sets down what {A_pronoun} carried before. {B_nameDef} says nothing, but is clearly unhappy about it.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_TakeUp" />

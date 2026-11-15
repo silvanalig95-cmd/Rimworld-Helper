@@ -83,7 +83,7 @@
         <outcomes>
           <li>[land:desert] {B_nameDef} found the bitter shrubs growing in a dry gully and brought back enough for a week of tea. {A_nameDef} pulls a face at every cup and is getting better anyway.</li>
           <li>[land:jungle|land:swamp] {B_nameDef} waded out to the wet ground and came back muddy to the thighs with a sack of leaves. Boiled down, they made {A_nameDef} sweat out the worst of the {ILLNESS}.</li>
-          <li>[b:skill:Plants] {B_nameDef} knew where to look and wasn't gone long. {A_nameDef} has been drinking the tea since and says it tastes like grass, which it mostly is.</li>
+          <li>[b:skill:Plants] {B_nameDef} knew where to look and wasn't gone long. {A_nameDef} has been drinking the tea since and says it tastes like grass.</li>
         </outcomes>
         <ways><tradition>2</tradition></ways>
         <effects>
@@ -180,7 +180,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>3~4</duration></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>{B_nameDef} nursed {A_nameDef} apart from the rest, night and day. {A_nameDef} is mending. {B_nameDef} looks like the one who has been ill.</riskOutcome>
+        <riskOutcome>{B_nameDef} nursed {A_nameDef} apart from the rest, night and day. {A_nameDef} is mending, and {B_nameDef} is worn out.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>B</target><amount>6</amount></li>
         </riskEffects>
@@ -233,7 +233,7 @@
         <label>Cold suppers for a few days</label>
         <outcome>The stove is cold, {A_nameDef} is in bed, and supper comes out of jars and crocks until the cook is well.</outcome>
         <outcomes>
-          <li>[lowtech] Supper is flatbread, smoked meat and pickled roots out of the crock, eaten cold. {A_nameDef} is in bed, and the colony has learned what it thinks of pickled roots.</li>
+          <li>[lowtech] Supper is flatbread, smoked meat and pickled roots out of the crock, eaten cold. {A_nameDef} is in bed, and nobody much likes the pickled roots.</li>
           <li>[winter] Cold suppers in the middle of winter. People eat standing around the hearth, and {A_nameDef} is under orders to rest until the stove can be lit again.</li>
         </outcomes>
         <ways><toil>-2</toil></ways>
@@ -270,7 +270,7 @@
     <options>
       <li>
         <label>Let {B_nameDef} try the old remedy</label>
-        <outcome>{B_nameDef} made up the remedy and saw to it half the night. {A_nameDef} is breathing easier and smells terrible, and {B_nameDef} is being very gracious about being right.</outcome>
+        <outcome>{B_nameDef} made up the remedy and saw to it half the night. {A_nameDef} is breathing easier and smells terrible, and {B_nameDef} is pleased the remedy worked.</outcome>
         <outcomes>
           <li>Humming the whole time, {B_nameDef} made it up exactly as {B_pronoun} was taught as a child. {A_nameDef} feels better, and has promised not to mention the smell.</li>
           <li>[winter] Wrapped in the remedy by the stove, with the wind banging at the shutters, {A_nameDef} slept soundly while {B_nameDef} sat up beside {A_objective} and kept the fire fed.</li>
@@ -430,9 +430,9 @@
         </effects>
         <riskChance>0.5</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} went through every step of {X_nameDef}'s cure, and the {ILLNESS} didn't notice. {X_nameDef} says it takes longer in some people. The colony has a new story to tell about {A_nameDef}.</riskOutcome>
+        <riskOutcome>{A_nameDef} went through every step of {X_nameDef}'s cure, but the {ILLNESS} didn't ease. {X_nameDef} says it takes longer in some people.</riskOutcome>
         <riskOutcomes>
-          <li>[theirHightech] The gray pills turned out to taste of chalk, because they were chalk. {A_nameDef} took all of them anyway and is no better.</li>
+          <li>[theirHightech] The gray pills turned out to be chalk. {A_nameDef} took all of them anyway and is no better.</li>
         </riskOutcomes>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_OddCureFlop</thought></li>
@@ -456,7 +456,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} watched every step of the cure. It didn't work, but {B_nameDef} came away with a list of things not to try, which {B_pronoun} says is the more useful kind of list.</riskOutcome>
+        <riskOutcome>{B_nameDef} watched every step of the cure. It didn't work, but {B_nameDef} came away knowing what not to try next time.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>250</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><xpPerHour>50</xpPerHour><duration>2~3</duration></li>
@@ -767,7 +767,7 @@
       </li>
       <li>
         <label>From now on, meetings wait for those at work</label>
-        <outcome>From now on no meeting starts until the last of them is in from work. {A_nameDef} was pleased. Supper on meeting nights comes later, and the cook has things to say about that.</outcome>
+        <outcome>From now on no meeting starts until the last of them is in from work. {A_nameDef} was pleased. Supper on meeting nights comes later, and the cook complains about it.</outcome>
         <ways><tradition>3</tradition><toil>-1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_MeetingsWait</thought></li>
@@ -976,7 +976,7 @@
         <label>Let {A_nameDef} rest; {A_pronoun} has earned it</label>
         <outcome>{A_nameDef} has put down the heavy work, by leave of the council. {A_nameDef} sits in the sun most mornings, mends things in the afternoons and has opinions about everything the young ones do.</outcome>
         <outcomes>
-          <li>[lowtech] {A_nameDef} has taken the bench by the door as {A_possessive} own. From there {A_pronoun} whittles, shells beans and tells the children which of the adults to ignore.</li>
+          <li>[lowtech] {A_nameDef} has taken the bench by the door as {A_possessive} own. From there {A_pronoun} whittles, shells beans and gives the children advice.</li>
           <li>[colony:Traditional] This colony looks after its old ones, and the council said so at supper so everyone would hear. {A_nameDef} wiped {A_possessive} eyes and blamed the smoke.</li>
         </outcomes>
         <ways><mercy>2</mercy><tradition>3</tradition><toil>-2</toil></ways>
@@ -1084,7 +1084,7 @@
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} answered the question at enormous length, with footnotes. {A_nameDef} fell asleep partway through and has not asked {B_nameDef} anything since.</riskOutcome>
+        <riskOutcome>{B_nameDef} answered the question at great length. {A_nameDef} fell asleep partway through and has not asked {B_nameDef} anything since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>150</xp></li>
         </riskEffects>
@@ -1266,7 +1266,7 @@
         <riskChance>0.3</riskChance>
         <riskSkill>Cooking</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} tried something new for supper. It was new. Most of it went back to the kitchen, and {A_nameDef} has stopped complaining about the old meal.</riskOutcome>
+        <riskOutcome>{B_nameDef} tried something new for supper, and most of it went back to the kitchen. {A_nameDef} has stopped complaining about the old meal.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>200</xp></li>
@@ -1276,7 +1276,7 @@
       </li>
       <li>
         <label>Send a forager out for something fresh</label>
-        <outcome>{B_nameDef} found a patch of wild berries and brought back a basketful. They were gone before supper, eaten out of hand. Not a meal, but not the same bowl either.</outcome>
+        <outcome>{B_nameDef} found a patch of wild berries and brought back a basketful. They were gone before supper, eaten by hand, and made a change from the usual meal.</outcome>
         <outcomes>
           <li>[land:desert] In the shade of a dry wash {B_nameDef} found a few bushes of hard little berries, and stripped every one. They were sour and new, and gone in one sitting.</li>
           <li>[land:coast] {B_nameDef} worked along the dunes above the tide line and came back with a basket of beach berries, salt on the skins and sweet inside.</li>
@@ -1302,7 +1302,7 @@
       </li>
       <li>
         <label>Food is food</label>
-        <outcome>Food is food, and the colony is lucky to have it. {A_nameDef} agreed that the colony is lucky, and ate the same meal again, slowly.</outcome>
+        <outcome>Food is food, and the colony is lucky to have it. {A_nameDef} agreed, without much enthusiasm, and ate the same meal again.</outcome>
         <ways><generosity>-2</generosity><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_FoodIsFood</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -1351,7 +1351,7 @@
       </li>
       <li>
         <label>Rotate everyone's chores once a week</label>
-        <outcome>Once a week now the chores rotate, and each of them does someone else's job for the day. The work is worse that day, and the complaints are at least new ones.</outcome>
+        <outcome>Once a week now the chores rotate, and each of them does someone else's job for the day. The work is done less well that day, and people complain about the new jobs instead of the old ones.</outcome>
         <ways><openness>2</openness><toil>-1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_ChoresRotated</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.7</chance></li>
@@ -1399,7 +1399,7 @@
       </li>
       <li>
         <label>Supper in two sittings</label>
-        <outcome>Supper now comes in two sittings, early and late, and there's room on the bench for everyone's elbows. The cook works an hour longer, and mentions it.</outcome>
+        <outcome>Supper now comes in two sittings, early and late, and there's room on the bench for everyone's elbows. The cook works an hour longer, and isn't happy about it.</outcome>
         <ways><tradition>-1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_TwoSittings</thought><chance>0.6</chance><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -1533,7 +1533,7 @@
       </li>
       <li>
         <label>{B_nameDef} keeps watch; others cover {B_possessive} work</label>
-        <outcome>{B_nameDef} stays at {A_nameDef}'s bedside, and the others are covering {B_possessive} other work. {A_nameDef} is starting to mend. {B_nameDef} looks like a ghost.</outcome>
+        <outcome>{B_nameDef} stays at {A_nameDef}'s bedside, and the others are covering {B_possessive} other work. {A_nameDef} is starting to mend. {B_nameDef} is exhausted.</outcome>
         <ways><toil>2</toil><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.06</severity></li>

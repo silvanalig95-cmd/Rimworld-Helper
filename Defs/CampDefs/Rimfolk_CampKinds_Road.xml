@@ -290,7 +290,7 @@
     <settled>
       <li>The merchants from {FACTION} have laid their wares out on a cloth {PLACE}: little jars, bright cloth, things that tick and things that shine. They've hung a lamp so customers can come after dark.</li>
       <li>The merchants' camp {PLACE} has a striped awning over the stall and a smell of strange spices over everything.</li>
-      <li>The merchants from {FACTION} have set out their stall {PLACE} and are calling their wares to anyone who comes near, in three languages and a fourth that may be made up.</li>
+      <li>The merchants from {FACTION} have set out their stall {PLACE} and are calling their wares to anyone who comes near, in several languages.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who has walked with the merchants all the way from the far south, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
@@ -342,7 +342,7 @@
         <outcomes>
           <li>The merchants are coming to supper tonight, and {X_nameDef} insists on cooking one dish from home. {X_nameDef} won't say what goes in it.</li>
           <li>The merchants will eat at the colony's table tonight. {X_nameDef} has brought a jar of something red and asked for the hottest pan in the kitchen.</li>
-          <li>Supper with the merchants tonight. {X_nameDef} has asked to help in the kitchen, and the cook hasn't said no yet.</li>
+          <li>Supper with the merchants tonight. {X_nameDef} has asked to help in the kitchen.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the merchants</label><hours>17~21</hours></li>
@@ -519,13 +519,13 @@
         </askTexts>
         <tip>Two drovers walk the herd down to the colony's water for an afternoon. Afterwards, if one of the beasts is ready for it, a drover milks or shears it and leaves the colony what it gives.</tip>
         <outcomes>
-          <li>The drovers will bring the herd down to the colony's water this afternoon. {X_nameDef} has sworn on the dog that not a hoof touches the fields.</li>
+          <li>The drovers will bring the herd down to the colony's water this afternoon. {X_nameDef} has promised that not a hoof will touch the fields.</li>
           <li>{X_nameDef} thanked {A_nameDef} and went to round up the beasts. They'll be at the water within a few hours, lowing.</li>
           <li>The drovers will water the herd at the colony's water this afternoon. If one of the beasts is ready for it, {X_nameDef} says, the colony can have what it gives.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} walked the herd the long way round to the river. The beasts complained about it all afternoon.</li>
-          <li>{X_nameDef} said they'd find water somewhere, and didn't say where.</li>
+          <li>{X_nameDef} took the herd the long way round to the river instead.</li>
+          <li>{X_nameDef} said they'd find water somewhere else.</li>
         </refused>
         <refuseTension>5</refuseTension>
         <effects>
@@ -791,7 +791,7 @@
     <settled>
       <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig. They sleep on moss and keep their fire in a ring of old stones, and they pray under the biggest tree.</li>
       <li>The tree-singers of {FACTION} have their camp {PLACE}, and have already been round every old tree within sight of it to say good morning.</li>
-      <li>The tree-singers have made a camp {PLACE} so light it might blow away, and spend the daylight at the foot of the oldest tree in sight.</li>
+      <li>The tree-singers have made a very light camp {PLACE}, and spend the daylight at the foot of the oldest tree in sight.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the tree-singers {PLACE}, says the land here has asked {X_objective} to stay, and {X_pronoun} would like the colony to ask too.</li>
@@ -841,7 +841,7 @@
         <warm>2</warm>
         <tension>-5</tension>
         <outcomes>
-          <li>{A_nameDef} has gone walking in the woods with the tree-singers, to listen to whatever it is they listen to.</li>
+          <li>{A_nameDef} has gone walking in the woods with the tree-singers, to listen to the trees the way they do.</li>
           <li>{A_nameDef} has gone into the woods with the tree-singers and won't be back before dusk.</li>
           <li>The tree-singers have taken {A_nameDef} to the oldest trees nearby, to hear what they call the slow songs.</li>
         </outcomes>

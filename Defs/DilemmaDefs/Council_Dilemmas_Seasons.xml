@@ -231,7 +231,7 @@
       </li>
       <li>
         <label>The year of the muffalo</label>
-        <outcome>It is the year of the muffalo. The muffalo has not been told. {A_nameDef} is sulking.</outcome>
+        <outcome>It is the year of the muffalo, and {A_nameDef} is sulking.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Muffalo</thought></li>
@@ -449,7 +449,7 @@
       </li>
       <li>
         <label>Have the best cook stretch half the food</label>
-        <outcome>{B_nameDef} made a feast out of half the food anyone expected, mostly stew and nerve, and the colony ate until late.</outcome>
+        <outcome>{B_nameDef} made a feast out of half the food anyone expected, mostly stew, and the colony ate until late.</outcome>
         <outcomes>
           <li>[lowtech] {B_nameDef} kept three pots going over the fire and fed the colony twice from half the stores. The walls waited until morning.</li>
           <li>[b:trait:Gourmand] {B_nameDef} cooked as if for a lord's table and ate as much as anyone, but the food lasted. It was a good night.</li>

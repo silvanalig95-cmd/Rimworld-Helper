@@ -191,7 +191,7 @@
           </li>
           <li>
             <label>Keep them off the land</label>
-            <outcome>The hunters are told to go around. They do, the long way.</outcome>
+            <outcome>The hunters are told to go around the colony's land, and they do.</outcome>
             <ways><openness>-1</openness></ways>
           </li>
         </options>
@@ -368,7 +368,7 @@
         <options>
           <li>
             <label>Let {A_objective} study it</label>
-            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of diagrams that make the others' eyes ache.</outcome>
+            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of diagrams that nobody else can follow.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />

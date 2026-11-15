@@ -80,7 +80,7 @@
         <options>
           <li>
             <label>Host the retinue for a night ({COUNT} silver)</label>
-            <outcome>The herald rides back with the colony's answer. Out come the brooms, and the yard is swept from wall to wall for the lord's coming.</outcome>
+            <outcome>The herald rides back with the colony's answer, and the yard is swept from wall to wall for the lord's coming.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Pay" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
@@ -96,7 +96,7 @@
           </li>
           <li>
             <label>Send a gift to meet them on the road</label>
-            <outcome>A steward of the progress came for the colony's gift, looked at it carefully, smiled carefully, and took it away to the lord.</outcome>
+            <outcome>A steward of the progress came for the colony's gift, looked it over without comment, and took it away to the lord.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the lord</label><what>silver</what><factor>0.4</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -119,8 +119,8 @@
         <message>true</message>
         <texts>
           <li>The lord's retinue stayed the night at the colony. Someone taught the children a marching song, someone else lost a boot, and the lord's cook asked for the colony's bread recipe before they left.</li>
-          <li>[faction:Outland_VathunNobles] The Vathun lord's retinue stayed the night. The servants slept in the barn, the guards by the gate and the poets wherever they fell; the lord, it turned out, snores.</li>
-          <li>[faction:Outland_Empire] The Eastborn magistrate stayed the night and took tea with the colony at dawn: a long, quiet, beautiful hour that nobody quite knew how to end.</li>
+          <li>[faction:Outland_VathunNobles] The Vathun lord's retinue stayed the night. The servants slept in the barn, the guards by the gate and the poets wherever they found room.</li>
+          <li>[faction:Outland_Empire] The Eastborn magistrate stayed the night and took tea with the colony at dawn, a long and quiet ceremony.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_ProgressHosted</thought></li>
@@ -281,7 +281,7 @@
         <message>true</message>
         <texts>
           <li>A band of {FACTION} went by on the road today, close enough to count. They looked the colony over and kept going.</li>
-          <li>[paid] Riders of {FACTION} went past the colony at midday. One of them raised a spear to the wall as they passed, which the lookout decided to take as a greeting.</li>
+          <li>[paid] Riders of {FACTION} went past the colony at midday. One of them raised a spear toward the wall as they passed, perhaps as a greeting.</li>
         </texts>
       </li>
       <li>
@@ -295,7 +295,7 @@
         <message>true</message>
         <texts>
           <li>A band of {FACTION} came along the road slowly this afternoon, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
-          <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the walls. Somewhere along the road the colony's warning is being cursed, and the colony knows it.</li>
+          <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the walls. They know the colony warned the road about them.</li>
         </texts>
       </li>
     </beats>

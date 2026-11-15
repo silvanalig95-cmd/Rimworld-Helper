@@ -421,7 +421,7 @@
           <li>{X_nameDef} thanked {A_nameDef} and laid out a few pelts at the edge of the trappers' camp.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} shrugged and went back to the trappers' fire, and the jerky.</li>
+          <li>{X_nameDef} shrugged and went back to the trappers' fire to eat jerky.</li>
           <li>The trappers will eat their own meat again tonight. {X_nameDef} didn't say much about it.</li>
         </refused>
         <refuseTension>4</refuseTension>

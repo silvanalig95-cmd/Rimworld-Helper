@@ -47,7 +47,7 @@
       </li>
       <li>
         <label>Pay {FACTION} to let {X_objective} go</label>
-        <outcome>Two hundred silver went to {FACTION} for the trouble, and {X_nameDef} stayed. One or two people have been working out what else that silver would have bought.</outcome>
+        <outcome>Two hundred silver went to {FACTION} for the trouble, and {X_nameDef} stayed. A few people think it was too much to pay.</outcome>
         <ways><generosity>4</generosity><openness>5</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>200</count></li>
@@ -79,7 +79,7 @@
         <outcome>{B_nameDef} sat down with whoever speaks for {FACTION} and talked until a debt had been forgiven and a promise made. {X_nameDef} stayed, and {FACTION} left on decent terms.</outcome>
         <outcomes>
           <li>[theirLowtech] {B_nameDef} shared a pipe with the {FACTION} elders and talked until the fire burned low. {X_nameDef} stayed, and the elders left without hard feelings.</li>
-          <li>[b:past:trader] {B_nameDef} haggled with {FACTION} as if {X_nameDef} were a bolt of cloth, which seemed to be what they understood. {X_nameDef} stayed, and they parted on decent terms.</li>
+          <li>[b:past:trader] {B_nameDef} bargained with {FACTION} over {X_nameDef} the way traders do, and they seemed to respect it. {X_nameDef} stayed, and they parted on decent terms.</li>
         </outcomes>
         <riskChance>0.5</riskChance>
         <riskSkill>Social</riskSkill>
@@ -124,7 +124,7 @@
     <options>
       <li>
         <label>Demand an apology</label>
-        <outcome>{X_nameDef} apologized to {A_nameDef} the next morning, every word of it addressed to {X_possessive} boots.</outcome>
+        <outcome>{X_nameDef} apologized to {A_nameDef} the next morning, without once looking up.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GotApology</thought></li>
@@ -368,7 +368,7 @@
       </li>
       <li>
         <label>Leave {X_objective} where {X_pronoun} lies</label>
-        <outcome>No one went back for {X_nameDef}. Toward evening the calling stopped.</outcome>
+        <outcome>No one went back for {X_nameDef}, who called for help until evening and then fell silent.</outcome>
         <ways><mercy>-9</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_LeftToBleed</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -470,7 +470,7 @@
     <options>
       <li>
         <label>Pay for the bite</label>
-        <outcome>The council paid {X_nameDef} fifty silver for the bite. {X_nameDef} counted it with the bandaged hand, which no longer seemed to hurt.</outcome>
+        <outcome>The council paid {X_nameDef} fifty silver for the bite, and {X_nameDef} seemed satisfied with it.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count><by>Outsiders</by></li>
@@ -562,7 +562,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council left {X_definite} alone. It didn't return the favor: it came out of the brush at a dead run, straight for the nearest person.</riskOutcome>
+        <riskOutcome>The council left {X_definite} alone, but it came out of the brush at a dead run, straight for the nearest person.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>X</target><mentalState>Manhunter</mentalState></li>
         </riskEffects>
@@ -729,7 +729,7 @@
         </effects>
         <riskChance>0.5</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The tonic was water, sugar and something that tasted like an old boot. {A_nameDef} drank all of it anyway, out of spite, and people have been calling {A_objective} the alchemist since.</riskOutcome>
+        <riskOutcome>The tonic was water, sugar and something that tasted like an old boot. {A_nameDef} drank all of it anyway, and people have teased {A_objective} about it since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicSwindle</thought></li>
@@ -815,7 +815,7 @@
         </effects>
         <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The council paid {X_nameDef} a hundred and fifty silver to keep quiet. {X_nameDef} pocketed it and told the story anyway, while the coins were still warm.</riskOutcome>
+        <riskOutcome>The council paid {X_nameDef} a hundred and fifty silver to keep quiet. {X_nameDef} pocketed it and told the story anyway, the same day.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />

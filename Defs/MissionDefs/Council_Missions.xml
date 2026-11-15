@@ -226,19 +226,19 @@
         <options>
           <li>
             <label>Hand {BEAST} back ({TALE} silver)</label>
-            <outcome>{BEAST} goes home.</outcome>
+            <outcome>{BEAST} goes back to its herder.</outcome>
             <ways><generosity>1</generosity></ways>
           </li>
           <li>
             <label>Keep {BEAST}, and pay {COUNT} silver</label>
-            <outcome>{BEAST} stays, paid for.</outcome>
+            <outcome>{BEAST} stays with the colony, and the herder is paid for it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
             <label>Keep {BEAST} without paying</label>
-            <outcome>{BEAST} stays, unpaid for.</outcome>
+            <outcome>{BEAST} stays with the colony, and the herder is not paid for it.</outcome>
             <ways><generosity>-3</generosity></ways>
           </li>
         </options>

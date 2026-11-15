@@ -61,7 +61,7 @@
     <encounter>Council_EncP_StaringGuard</encounter>
     <texts>
       <li>[eating] Every spoonful of {A_nameDef}'s supper, {X_nameDef} watched without blinking. {A_nameDef} finished fast and took the bowl outside.</li>
-      <li>[working] {X_nameDef} leaned on the fence and watched {A_nameDef} work all morning, and nodded once at the end, which was worse than if {X_pronoun} had said something.</li>
+      <li>[working] {X_nameDef} leaned on the fence and watched {A_nameDef} work all morning, and at the end nodded once without a word, which made {A_nameDef} uneasy.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -97,7 +97,7 @@
     <defName>Council_Var_EncP_HaggleLoss</defName>
     <encounter>Council_EncP_HaggleLoss</encounter>
     <texts>
-      <li>[trait:Kind] {X_nameDef} told {A_nameDef} a long story about a sick child at home, and {A_nameDef} paid more than the asking price. {X_nameDef} whistled for the rest of the day.</li>
+      <li>[trait:Kind] {X_nameDef} told {A_nameDef} a long story about a sick child at home, and {A_nameDef} paid more than the asking price, though the story may not have been true.</li>
       <li>[rain] {A_nameDef} bought a rain cape from {X_nameDef} in a downpour, at twice the going rate. It leaked by evening.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

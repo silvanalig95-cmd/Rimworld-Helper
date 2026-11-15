@@ -56,7 +56,7 @@
       </li>
       <li>
         <label>Whoever's awake can watch it</label>
-        <outcome>{A_nameDef} and a handful of early risers watched the sun come up from the wall. The rest saw it through the window, and that was something.</outcome>
+        <outcome>{A_nameDef} and a handful of early risers watched the sun come up from the wall. The rest saw it through the window.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SunsReturn</thought><chance>0.75</chance></li>
@@ -104,7 +104,7 @@
         <label>Everyone out in the rain</label>
         <outcome>The colony stood out in the rain until they were soaked through, laughing, catching it in their hands. {A_nameDef} started a dance with no particular steps, which made it easy to join.</outcome>
         <outcomes>
-          <li>[tribal] {A_nameDef} led the rain dance round the yard, and one by one the colony joined in, splashing, until the rain eased off as if it had been satisfied.</li>
+          <li>[tribal] {A_nameDef} led the rain dance round the yard, and one by one the colony joined in, splashing, until the rain eased off.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>-3</toil></ways>
         <effects>
@@ -193,7 +193,7 @@
       </li>
       <li>
         <label>Bread is for eating</label>
-        <outcome>The loaf went on the supper table. {A_nameDef} ate a piece of it, but not as if it tasted of much.</outcome>
+        <outcome>The loaf went on the supper table. {A_nameDef} ate a piece of it without much appetite.</outcome>
         <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -290,7 +290,7 @@
     <options>
       <li>
         <label>Everyone up to the high ground</label>
-        <outcome>The colony climbed up in the late light and sat in a row on the ledge, pointing out their own roofs and fields to each other. From up there it looked like a place someone had meant to make.</outcome>
+        <outcome>The colony climbed up in the late light and sat in a row on the ledge, pointing out their own roofs and fields to each other. From up there they could see how much they had built.</outcome>
         <ways><tradition>4</tradition><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_HighWatch</thought></li>

@@ -204,7 +204,7 @@
         </ready>
         <reminder>
           <li>{FACTION}'s carts come soon for the fodder, and the stockpiles are still short: {ITEM}.</li>
-          <li>[snow] {PLACE}'s herds won't wait for the snow, and the stockpiles are still short: {ITEM}.</li>
+          <li>[snow] {PLACE}'s herds need the fodder before the snow comes, and the stockpiles are still short: {ITEM}.</li>
         </reminder>
         <doneTitles>
           <li>[delivered] Fodder for {PLACE}</li>

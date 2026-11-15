@@ -154,7 +154,7 @@
         <tension>-6</tension>
         <outcomes>
           <li>The colony is going over to the league's fire this evening. {X_nameDef} says the beer is after the count, and the count is nearly done.</li>
-          <li>Whoever isn't on watch is going to the caravan's fire tonight, and the drivers are already arguing about who tells Harrow Ford.</li>
+          <li>Whoever isn't on watch is going to the caravan's fire tonight, and the drivers are already arguing about who gets to tell the story of Harrow Ford.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the league's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
@@ -185,8 +185,8 @@
         <tension>-4</tension>
         <deed>traded</deed>
         <outcomes>
-          <li>{A_nameDef} sat with {X_nameDef} over the Waystone Book while the colony's name went into it in good ink, with every trade of the winter written beside it.</li>
-          <li>{X_nameDef} opened the Waystone Book on the trading table, wrote the colony in good ink and had {A_nameDef} sign beside it, as the league does.</li>
+          <li>{A_nameDef} sat with {X_nameDef} over the Waystone Book, the league's record of trusted places, while the colony's name was written into it with every trade of the winter beside it.</li>
+          <li>{X_nameDef} opened the Waystone Book on the trading table, wrote the colony's name in it and had {A_nameDef} sign beside it, as the league does.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><sit>true</sit><duration>1~1.5</duration></li>

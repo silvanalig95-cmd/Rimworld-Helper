@@ -73,7 +73,7 @@
           <li>
             <label>Name it after {A_nameDef}</label>
             <showIf><li>friend</li></showIf>
-            <outcome>{X_nameDef} goes back down the road with {A_nameDef}'s name. {A_nameDef} pretends not to be pleased, and does not manage it.</outcome>
+            <outcome>{X_nameDef} goes back down the road with {A_nameDef}'s name, and {A_nameDef} is clearly pleased.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
             </effects>
@@ -84,7 +84,7 @@
           </li>
           <li>
             <label>Let it keep its own name</label>
-            <outcome>{X_nameDef} is told the town should keep the name its own families chose. {PLACE} it stays.</outcome>
+            <outcome>{X_nameDef} is told the town should keep the name its own families chose, so it stays {PLACE}.</outcome>
           </li>
         </options>
       </li>

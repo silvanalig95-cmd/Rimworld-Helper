@@ -92,7 +92,7 @@
         <label>{A_nameDef} takes the {LASTB} name</label>
         <outcome>{A_nameDef} goes by {LASTB} now, the same as {B_nameDef}, and the colony is still getting used to it.</outcome>
         <outcomes>
-          <li>[engaged] When they marry, {A_nameDef} will take the {LASTB} name. {B_nameDef} tried not to look pleased about it, and failed.</li>
+          <li>[engaged] When they marry, {A_nameDef} will take the {LASTB} name. {B_nameDef} was clearly pleased.</li>
           <li>[!engaged] {A_nameDef} goes by {LASTB} now, the same as {B_nameDef}. The council wrote it into the colony's chronicle, and that was that.</li>
         </outcomes>
         <ways><tradition>1</tradition></ways>

@@ -180,7 +180,7 @@
         <tip>One of the scholars sits with {A_nameDef} for an afternoon and writes down the colony's story as {A_pronoun} tells it. Practice in social skills, and the story goes into the colony's chronicle.</tip>
         <outcomes>
           <li>{X_nameDef} will come to sit with {A_nameDef} this afternoon, with a fresh notebook and two pens in case one runs dry.</li>
-          <li>{A_nameDef} has agreed to tell the colony's story, and is already arguing with {A_objective}self about where it starts.</li>
+          <li>{A_nameDef} has agreed to tell the colony's story, and is already working out where to begin.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} said the story would keep until {X_pronoun} comes this way again.</li>

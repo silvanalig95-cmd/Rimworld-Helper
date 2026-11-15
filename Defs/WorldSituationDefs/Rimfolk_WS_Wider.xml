@@ -417,7 +417,7 @@
             </effects>
             <riskChance>0.3</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>Half the crates hold rust and rotten packing, and one holds a very old boot. The rest is worth about what was paid, which the scavenger says makes it a fair trade.</riskOutcome>
+            <riskOutcome>Half the crates hold only rust and rotten packing. The rest is worth about what was paid, so the trade comes out even.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Loot"><value>140~220</value></li>
@@ -467,7 +467,7 @@
             </effects>
             <riskChance>0.35</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{FACTION} opened the deeper door. Whatever was behind it had been waiting a long time: the diggers came up the stairs coughing and running, and {NAME} has been shut and guarded since. Nobody died. {FACTION} remember whose advice it was.</riskOutcome>
+            <riskOutcome>{FACTION} opened the deeper door. Something dangerous was behind it: the diggers came up the stairs coughing and running, and {NAME} has been shut and guarded since. Nobody died, but {FACTION} remember that the colony advised them to open it.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </riskEffects>
@@ -626,7 +626,7 @@
           </li>
           <li>
             <label>Send him on his way</label>
-            <outcome>The carter turns his cart around without arguing. He has been turned around a good deal this month.</outcome>
+            <outcome>The carter turns his cart around without arguing. Other places have turned him away this month too.</outcome>
           </li>
         </options>
       </li>

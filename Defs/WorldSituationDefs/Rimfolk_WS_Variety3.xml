@@ -383,7 +383,7 @@
           </li>
           <li>
             <label>Trust the weather</label>
-            <outcome>The fields are left to ripen. The colony will see what the nights bring.</outcome>
+            <outcome>The fields are left to ripen, and the colony hopes the frost holds off.</outcome>
           </li>
         </options>
       </li>
@@ -594,7 +594,7 @@
           </li>
           <li>
             <label>The colony needs its wood</label>
-            <outcome>The driver goes back to {PLACE} with the cart empty. {FACTION} will find the timber somewhere, or not.</outcome>
+            <outcome>The driver goes back to {PLACE} with the cart empty. {FACTION} will have to find the timber elsewhere.</outcome>
           </li>
         </options>
       </li>

@@ -80,7 +80,7 @@
           </li>
           <li>
             <label>Send nothing</label>
-            <outcome>The colony sends nothing to {PLACE}. It's noticed.</outcome>
+            <outcome>The colony sends nothing to {PLACE}, and people there take note of it.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
             </effects>
@@ -379,7 +379,7 @@
         <options>
           <li>
             <label>Speak for {TALE}</label>
-            <outcome>The council says it plainly at the gate: {TALE} has the right of it. One preacher goes off smiling. The other is halfway down the road before the words are finished.</outcome>
+            <outcome>The council says it plainly at the gate: {TALE} has the right of it. One preacher goes off smiling. The other leaves angry before the council has finished speaking.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-8</amount></li>
@@ -417,7 +417,7 @@
           </li>
           <li>
             <label>Keep out of it</label>
-            <outcome>Both preachers are thanked and sent on their way. The colony keeps its own counsel.</outcome>
+            <outcome>Both preachers are thanked and sent on their way. The colony takes no side.</outcome>
           </li>
         </options>
       </li>
@@ -504,7 +504,7 @@
         <options>
           <li>
             <label>Host the talks ({COUNT} food)</label>
-            <outcome>Both riders leave with the same answer. The food is set aside, and the delegations will come within days, two sets of people who would rather not eat at the same table.</outcome>
+            <outcome>Both riders leave with the same answer. The food is set aside, and both delegations will come within days, though neither wants to eat with the other.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
             </effects>

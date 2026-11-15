@@ -138,7 +138,7 @@
         <deed>traded</deed>
         <outcomes>
           <li>{X_nameDef} unrolls a stack of hides, scraped clean and stiff, and counts the silver twice.</li>
-          <li>[lowtech] {X_nameDef} sells the colony a bundle of hides smoked over the party's fire. They still smell of it.</li>
+          <li>[lowtech] {X_nameDef} sells the colony a bundle of hides smoked over the party's fire.</li>
           <li>{X_nameDef} lets the colony have the best of the party's hides, and keeps back one that {X_pronoun} says is promised to someone.</li>
         </outcomes>
         <effects>
@@ -165,7 +165,7 @@
         </outcomes>
         <refused>
           <li>{X_nameDef} shrugged, slung the haunch back over {X_possessive} shoulder and went back to the camp.</li>
-          <li>The hunters ate meat again tonight. {X_nameDef} made a point of saying so.</li>
+          <li>The hunters kept their meat, and {X_nameDef} made it clear {X_pronoun} was not pleased.</li>
         </refused>
         <refuseTension>4</refuseTension>
         <effects>
@@ -294,12 +294,12 @@
         </askTexts>
         <tip>They fell trees near their camp and stack the logs for the colony; twenty of the colony's raw food is carried out to them.</tip>
         <outcomes>
-          <li>The family cut and stacked forty logs on the colony's side of their camp before noon, and {A_nameDef} carried the food over. {X_nameDef} counted it twice and thanked {A_objective} once.</li>
+          <li>The family cut and stacked forty logs on the colony's side of their camp before noon, and {A_nameDef} carried the food over. {X_nameDef} counted it carefully and thanked {A_objective}.</li>
           <li>{X_nameDef} and the older children worked the axe in turns all morning. The logs are stacked, and the family will eat well tonight.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} nodded as if {X_pronoun} had expected it, and went back to the camp with the axe.</li>
-          <li>The family's cookpot was thin again tonight.</li>
+          <li>The family had little to eat again tonight.</li>
         </refused>
         <refuseTension>6</refuseTension>
         <refuseGoodwill>1</refuseGoodwill>
@@ -331,7 +331,7 @@
         </outcomes>
         <refused>
           <li>{X_nameDef} went back to binding the wheel with rope. It might hold as far as the next hill.</li>
-          <li>The family spent the evening mending the cart themselves, by firelight, with the colony's answer between them.</li>
+          <li>The family spent the evening mending the cart themselves, by firelight.</li>
           <li>{X_nameDef} thanked the colony anyway, and went back to the cart with the rope.</li>
         </refused>
         <refuseTension>4</refuseTension>
@@ -473,8 +473,8 @@
         <warm>1</warm>
         <tension>-3</tension>
         <outcomes>
-          <li>{A_nameDef} has gone to sit by the prospectors' pot while {X_nameDef} cooks. The stew calls for a lot of pepper and more patience than the colony's cook has.</li>
-          <li>{X_nameDef} won't give up the stew's secret, but will let {A_nameDef} watch, which {A_nameDef} says amounts to the same thing.</li>
+          <li>{A_nameDef} has gone to sit by the prospectors' pot while {X_nameDef} cooks. The stew takes a lot of pepper and a long time to cook.</li>
+          <li>{X_nameDef} won't share the stew's recipe, but will let {A_nameDef} watch it being made.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
@@ -500,7 +500,7 @@
           <li>Two of the prospectors will dig at the colony's edge this afternoon. {X_nameDef} has promised to fill the hole in after, and to leave the colony's share beside it.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} rolled the map back up very slowly, so {A_nameDef} could see how disappointed {X_pronoun} was.</li>
+          <li>{X_nameDef} rolled the map back up and told {A_nameDef} how disappointed {X_pronoun} was.</li>
           <li>The prospectors went back to their own holes, muttering about the seam the colony is sitting on.</li>
           <li>{X_nameDef} said the seam would keep, and went back to the camp's own holes.</li>
         </refused>
@@ -778,7 +778,7 @@
     </texts>
     <settled>
       <li>The traders from {FACTION} have their stall up {PLACE}, with a torch to see the goods by.</li>
-      <li>The traders' stall {PLACE} is open for business, with the best of the goods at the front and a sign promising fair prices, which {A_nameDef} doubts.</li>
+      <li>The traders' stall {PLACE} is open for business, with the best goods at the front. {A_nameDef} says their prices are not as fair as their sign claims.</li>
       <li>The traders from {FACTION} have laid their goods out {PLACE}, and {X_nameDef} is already calling prices to anyone in earshot.</li>
     </settled>
     <joinTexts>
@@ -825,7 +825,7 @@
           <li>The traders will set up at the colony's gate for the day, and have left the price of the spot at the edge of their camp.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} said the camp was a fine place for a stall too, and didn't sound as if {X_pronoun} meant it.</li>
+          <li>{X_nameDef} said the camp would do for a stall too, though {X_pronoun} was clearly disappointed.</li>
           <li>The traders stayed at their camp, calling their prices louder than before.</li>
         </refused>
         <refuseTension>3</refuseTension>
@@ -853,7 +853,7 @@
         <skill>Social</skill>
         <warm>2</warm>
         <outcomes>
-          <li>{A_nameDef} has gone to help at the traders' stall for the afternoon. {X_nameDef} gave {A_objective} an apron and three rules, the first of which is never look surprised.</li>
+          <li>{A_nameDef} has gone to help at the traders' stall for the afternoon. {X_nameDef} gave {A_objective} an apron and a few rules for dealing with customers.</li>
           <li>{X_nameDef} is teaching {A_nameDef} to haggle, and says {A_pronoun} has the face for it.</li>
         </outcomes>
         <effects>
@@ -921,7 +921,7 @@
     </texts>
     <settled>
       <li>The smith from {FACTION} has a work spot and a table of wares set up at the camp {PLACE}. The ringing of a hammer carries all the way to the colony.</li>
-      <li>The smith's camp {PLACE} is up and the forge is lit, and two colonists have already found reasons to walk past it with bent tools.</li>
+      <li>The smith has set up camp {PLACE} and lit the forge. A couple of colonists have already taken tools over to be mended.</li>
       <li>A fire burns hot at the smith's camp {PLACE}, and a row of half-finished blades lies cooling on a flat stone.</li>
     </settled>
     <joinTexts>
@@ -969,7 +969,7 @@
         <skill>Crafting</skill>
         <outcomes>
           <li>{A_nameDef} has gone down to the smith's fire to learn. {X_nameDef} handed {A_objective} the bellows first, and said the hammer comes later.</li>
-          <li>{X_nameDef} took the silver and {A_nameDef} both, and set {A_objective} to work on a horseshoe that will never fit a horse.</li>
+          <li>{X_nameDef} took the silver and set {A_nameDef} to work on a practice horseshoe.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><xpPerHour>220</xpPerHour><duration>2~3</duration></li>
@@ -1142,7 +1142,7 @@
         <tension>-3</tension>
         <outcomes>
           <li>{X_nameDef} is walking {A_nameDef} round the hut's little garden and the woods past it, naming plants under {X_possessive} breath.</li>
-          <li>The hermit has said three things to {A_nameDef} all afternoon, and all three were about the soil.</li>
+          <li>The hermit has said little to {A_nameDef} all afternoon, and only about the soil.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
@@ -1157,8 +1157,8 @@
         <warm>2</warm>
         <tension>-4</tension>
         <outcomes>
-          <li>{A_nameDef} is taking a hot meal out to the hermit's hut. The door may or may not open.</li>
-          <li>{A_nameDef} will leave a meal on the hermit's step and knock. {X_nameDef} doesn't usually answer until the coast is clear.</li>
+          <li>{A_nameDef} is taking a hot meal out to the hermit's hut, and will leave it on the step if the door stays shut.</li>
+          <li>{A_nameDef} will leave a meal on the hermit's step and knock. {X_nameDef} doesn't usually open the door until nobody is there.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the hermit</label><what>meals</what><count>1</count><to>Camp</to></li>
@@ -1183,7 +1183,7 @@
           <li>{A_nameDef} will carry the dose out to the hermit. {X_nameDef} said thank you at the gate, under {X_possessive} breath.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} nodded once and went back to the hut. The smoke rose late again the next morning.</li>
+          <li>{X_nameDef} nodded once and went back to the hut.</li>
           <li>The hermit didn't ask again.</li>
         </refused>
         <refuseTension>3</refuseTension>

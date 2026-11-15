@@ -28,7 +28,7 @@
     <options>
       <li>
         <label>Let {A_nameDef} off with a warning</label>
-        <outcome>A warning, and nothing more. {B_nameDef} thinks the council has gone soft, and says so to anyone who stands still long enough.</outcome>
+        <outcome>A warning, and nothing more. {B_nameDef} thinks the council has gone soft, and has been saying so all day.</outcome>
         <ways><mercy>6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
@@ -109,7 +109,7 @@
       </li>
       <li>
         <label>Lock it away for trading</label>
-        <outcome>The stash went into storage, forbidden, to be sold to the next trader. The ones who had hoped for a share keep finding reasons to be in the storeroom.</outcome>
+        <outcome>The stash went into storage, forbidden, to be sold to the next trader. Those who had hoped for a share are disappointed.</outcome>
         <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><forbidden>true</forbidden></li>
