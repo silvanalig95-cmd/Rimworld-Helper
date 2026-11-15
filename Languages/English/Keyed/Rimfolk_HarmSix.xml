@@ -31,7 +31,7 @@
   <CC_HarmSix_Mote_Sickle_Industrial>the shears slipped</CC_HarmSix_Mote_Sickle_Industrial>
   <CC_HarmSix_Mote_Sickle_Spacer>the cutter slipped</CC_HarmSix_Mote_Sickle_Spacer>
   <CC_HarmSix_StrongBack>{PAWN_nameDef} carried more than anyone should, again, and has {ILLNESS} for it. {NOTE}</CC_HarmSix_StrongBack>
-  <CC_HarmSix_StrongBack_2>Two loads at once was one too many: {PAWN_nameDef} has {ILLNESS}. {NOTE}</CC_HarmSix_StrongBack_2>
+  <CC_HarmSix_StrongBack_2>{PAWN_nameDef} carried two loads at once and has {ILLNESS} for it. {NOTE}</CC_HarmSix_StrongBack_2>
   <CC_HarmSix_Mote_Nick>a nicked thumb</CC_HarmSix_Mote_Nick>
 
   <!-- ===================== Animals not ours (WildHurts.cs) ===================== -->

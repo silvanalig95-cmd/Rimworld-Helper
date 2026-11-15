@@ -8,15 +8,15 @@
        meal and music"); {CONTEST} a contest in a word ("a race", "wrestling"). -->
 
   <!-- Their answer to the invitation -->
-  <CC_Feast_Ans_Yes_4>{NAME} sends back a yes, and a warning that their people eat a great deal. Expect them for {FEAST}.</CC_Feast_Ans_Yes_4>
-  <CC_Feast_Ans_YesHope_3>{NAME} will come to {FEAST}. That there will be {HOPE} settled it.</CC_Feast_Ans_YesHope_3>
-  <CC_Feast_Ans_YesHope_4>For {FEAST} with {HOPE}, {NAME} would walk twice as far, and will come.</CC_Feast_Ans_YesHope_4>
+  <CC_Feast_Ans_Yes_4>{NAME} sends back a yes, and mentions that their people have big appetites. Expect them for {FEAST}.</CC_Feast_Ans_Yes_4>
+  <CC_Feast_Ans_YesHope_3>{NAME} will come to {FEAST}. The promise of {HOPE} decided it.</CC_Feast_Ans_YesHope_3>
+  <CC_Feast_Ans_YesHope_4>{NAME} will gladly come to {FEAST}, since there will be {HOPE}.</CC_Feast_Ans_YesHope_4>
   <CC_Feast_Ans_No_4>{NAME} can't come to {FEAST}. The answer is polite, and short.</CC_Feast_Ans_No_4>
   <CC_Feast_Ans_Moot_3>Things at the colony moved on before the answer came, and the letter about {FEAST} is answered with thanks and nothing more.</CC_Feast_Ans_Moot_3>
 
   <!-- The day set, and the guests at the gate -->
   <CC_Feast_Set_4>Every answer is back, and {GUESTS} of {PEOPLES} are coming to {FEAST}. Expect them on {DATE}, or on the first fine day after it.</CC_Feast_Set_4>
-  <CC_Feast_Arrive_4>The road has brought them: {GUESTS} of {PEOPLES}, here for {FEAST}, each with one or two of their own. They are making their way to the gate.</CC_Feast_Arrive_4>
+  <CC_Feast_Arrive_4>{GUESTS} of {PEOPLES} have arrived for {FEAST}, each with one or two of their own. They are making their way to the gate.</CC_Feast_Arrive_4>
   <CC_Feast_Arrive_Wedding_2>Kin and friends of the one who marries in have come for the wedding: {GUESTS} of {PEOPLES}, walking up to the gate with those who came with them.</CC_Feast_Arrive_Wedding_2>
   <CC_Feast_Arrive_Wedding_3>Wedding guests at the gate: {GUESTS} of {PEOPLES}, each with one or two of their people. They will wait there until the ceremony, and sit at the colony's table after it.</CC_Feast_Arrive_Wedding_3>
 
@@ -28,10 +28,10 @@
 
   <!-- The night, and first light -->
   <CC_Feast_Msg_Sour_4>{GUEST} has had enough of {PAWN}, or of the drink, and the two are trading blows after the feast.</CC_Feast_Msg_Sour_4>
-  <CC_Feast_End_3>{GUESTS} left at first light, the road home ahead of them and {FEAST} behind.</CC_Feast_End_3>
+  <CC_Feast_End_3>{GUESTS} left at first light to go home after {FEAST}.</CC_Feast_End_3>
   <CC_Feast_End_4>The guests are gone, out through the gate at first light: {GUESTS}, home from {FEAST}.</CC_Feast_End_4>
   <CC_Feast_End_Insulted_2>{GUESTS} did not wait for first light. They left {FEAST} offended, and their people will hear why.</CC_Feast_End_Insulted_2>
-  <CC_Feast_End_Insulted_3>Offended at how they were kept, {GUESTS} have walked out of {FEAST} early.</CC_Feast_End_Insulted_3>
+  <CC_Feast_End_Insulted_3>Offended at how they were treated, {GUESTS} have walked out of {FEAST} early.</CC_Feast_End_Insulted_3>
   <CC_Feast_Died_2>{NAME} of {PEOPLE} came as a guest to {FEAST} and has died at the colony. The other guests are going home, and {PEOPLE} will want to know how it happened.</CC_Feast_Died_2>
 
   <!-- The steward's suggestion -->

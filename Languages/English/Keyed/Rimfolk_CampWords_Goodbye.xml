@@ -16,7 +16,7 @@
   <CC_Camp_Goodbye_Warm>{X_nameDef} sent word as the light went: the {NAME} will soon be on their way. The colony had been better to them than most, {X_nameDef} said, and they'd carry its name down the road. The colony could send them off with {COUNT} meals for the way, or just a word.</CC_Camp_Goodbye_Warm>
   <CC_Camp_Goodbye_Warm_2>Word came from the {NAME} at dusk: they are nearly ready to go on. Few places on the road had treated them so well, {X_nameDef} said, and the colony's name would travel with them. The colony could send them off with {COUNT} meals for the way, or just a word.</CC_Camp_Goodbye_Warm_2>
 
-  <CC_Camp_Goodbye_Cool>{X_nameDef} sent word that the {NAME} will soon be gone. It was short, and nobody from the camp came to say it. Still, a road goes two ways, and a word now might count later.</CC_Camp_Goodbye_Cool>
+  <CC_Camp_Goodbye_Cool>{X_nameDef} sent word that the {NAME} will soon be gone. It was short, and nobody from the camp came to say it. Still, a kind word from the colony now might count for something later.</CC_Camp_Goodbye_Cool>
   <CC_Camp_Goodbye_Cool_2>The {NAME} let the colony know, briefly, that they are packing to go. {X_nameDef} had nothing more to say than that. A word from the colony now might still count for something on the road.</CC_Camp_Goodbye_Cool_2>
 
   <CC_Camp_Goodbye_Again>{X_nameDef} sent word at dusk, as last time: the {NAME} will soon be on their way. They would pass this way again, {X_nameDef} said, if they're wanted.</CC_Camp_Goodbye_Again>

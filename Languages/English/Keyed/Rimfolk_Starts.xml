@@ -13,12 +13,12 @@
   <CC_Scen_Kinsman>a kinsman</CC_Scen_Kinsman>
   <CC_ScenPart_Foe_feud>Rimfolk: a neighboring people the colonists have been at feud with for generations.</CC_ScenPart_Foe_feud>
   <CC_Scen_Hunt_feud_Label>{FACTION}'s war band</CC_Scen_Hunt_feud_Label>
-  <CC_Scen_Hunt_feud_Text>{FACTION} have come for the colony again. The old feud goes on, on {FOE}'s word.</CC_Scen_Hunt_feud_Text>
+  <CC_Scen_Hunt_feud_Text>{FACTION} have come for the colony again, sent by {FOE} to carry on the old feud.</CC_Scen_Hunt_feud_Text>
   <CC_Scen_Hunt_feud_Led_Label>{FOE} comes for the feud</CC_Scen_Hunt_feud_Led_Label>
-  <CC_Scen_Hunt_feud_Led_Text>{FOE} is leading {FACTION}'s war band against the colony in person, to settle the old feud the old way.</CC_Scen_Hunt_feud_Led_Text>
+  <CC_Scen_Hunt_feud_Led_Text>{FOE} is leading {FACTION}'s war band against the colony in person, to settle the old feud by fighting.</CC_Scen_Hunt_feud_Led_Text>
 
   <!-- ===================== A shared secret ===================== -->
-  <CC_Scen_SecretShared>{NAMES} came down with one secret between them, and swore never to speak of it. {KEEPER_nameDef} carries most of its weight. Whoever comes to live here later won't know, unless one of them lets it slip.</CC_Scen_SecretShared>
+  <CC_Scen_SecretShared>{NAMES} came down with one secret between them, and swore never to speak of it. {KEEPER_nameDef} is the most troubled by it. Whoever comes to live here later won't know, unless one of them lets it slip.</CC_Scen_SecretShared>
 
   <!-- ===================== A council already formed ===================== -->
   <CC_Scen_Seat>{PAWN_nameDef} as {OFFICE}</CC_Scen_Seat>
@@ -29,7 +29,7 @@
 
   <!-- ===================== Days the colony keeps ===================== -->
   <CC_Scen_Day>{NAME} (a {WAY}, first in {DAYS} days)</CC_Scen_Day>
-  <CC_Scen_Days>They brought their own days with them, and the calendar keeps them as traditions from the first year: {DAYS}. Letting one pass will be felt.</CC_Scen_Days>
+  <CC_Scen_Days>They brought their own days with them, and the calendar keeps them as traditions from the first year: {DAYS}. Letting one pass will disappoint people.</CC_Scen_Days>
   <CC_ScenPart_Days>Rimfolk: the colony brings days of its own ({0}).</CC_ScenPart_Days>
 
   <!-- ===================== A life goal ===================== -->
@@ -37,8 +37,8 @@
   <CC_ScenPart_Goal>Rimfolk: someone came with a life goal ({0}).</CC_ScenPart_Goal>
 
   <!-- ===================== Beholden to a people ===================== -->
-  <CC_Scen_Beholden_granted_Lord>The colony holds this land by grant of {FACTION}, in the name of {LORD}. A grant is not a gift.</CC_Scen_Beholden_granted_Lord>
-  <CC_Scen_Beholden_granted>The colony holds this land by grant of {FACTION}. A grant is not a gift.</CC_Scen_Beholden_granted>
+  <CC_Scen_Beholden_granted_Lord>The colony holds this land by grant of {FACTION}, in the name of {LORD}, and owes them for it.</CC_Scen_Beholden_granted_Lord>
+  <CC_Scen_Beholden_granted>The colony holds this land by grant of {FACTION}, and owes them for it.</CC_Scen_Beholden_granted>
   <CC_Scen_Beholden>The colony is beholden to {FACTION}.</CC_Scen_Beholden>
   <CC_Scen_Beholden_Remembered>{FACTION} have written it down, and one day they will ask for something in return. What the colony says then will be remembered.</CC_Scen_Beholden_Remembered>
   <CC_ScenPart_Beholden>Rimfolk: the colony holds its land by another people's grant, and owes them for it.</CC_ScenPart_Beholden>
@@ -52,7 +52,7 @@
   <!-- ===================== A world event set in motion ===================== -->
   <CC_ScenPart_Situation>Rimfolk: {0} around day {1}-{2}.</CC_ScenPart_Situation>
   <CC_Scen_Hint_ShipDown>The ship won't stay in orbit for long. When it comes down, half the region will be picking through the wreck, and through whatever it was carrying.</CC_Scen_Hint_ShipDown>
-  <CC_Scen_Hint_Orphanage>Word travels that there are children here. A storyteller or a troupe of players will find their way to the gate before long, and so might a child who is lost.</CC_Scen_Hint_Orphanage>
+  <CC_Scen_Hint_Orphanage>Word travels that there are children here. A storyteller or a troupe of actors will find their way to the gate before long, and so might a lost child.</CC_Scen_Hint_Orphanage>
   <CC_Scen_Hint_Steward>The lord's reeve will come round to see how the grant is being worked, and what it owes, sooner rather than later.</CC_Scen_Hint_Steward>
 
 </LanguageData>

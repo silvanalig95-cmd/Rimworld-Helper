@@ -16,10 +16,10 @@
   <CC_Same_Adv_SeatsTitle>{SEATS} seats at the tables for {EATERS} who eat here</CC_Same_Adv_SeatsTitle>
   <CC_Same_Adv_SeatsPlan>{0} would seat everyone at once; a few more chairs around the table you have help too.</CC_Same_Adv_SeatsPlan>
   <CC_Same_Adv_SeatsNoPlan>More chairs at the tables, or a second table, would seat everyone.</CC_Same_Adv_SeatsNoPlan>
-  <CC_Same_Adv_ColdNoneTitle>Nothing is kept cold, and the food wants {NEED} places</CC_Same_Adv_ColdNoneTitle>
+  <CC_Same_Adv_ColdNoneTitle>Nothing is kept cold, and the food needs {NEED} places</CC_Same_Adv_ColdNoneTitle>
   <CC_Same_Adv_ColdNoneHow>{ROTTING} pieces of food that spoils lie in the warm now; a closed room kept below freezing with {COOLER} keeps it fresh.</CC_Same_Adv_ColdNoneHow>
-  <CC_Same_Adv_ColdShortTitle>The cold store has {BUILT} places for the {NEED} the food wants</CC_Same_Adv_ColdShortTitle>
-  <CC_Same_Adv_ColdSoonTitle>The cold store's {BUILT} places will fall short of the {NEED} the winter wants</CC_Same_Adv_ColdSoonTitle>
+  <CC_Same_Adv_ColdShortTitle>The cold store has {BUILT} places for the {NEED} the food needs</CC_Same_Adv_ColdShortTitle>
+  <CC_Same_Adv_ColdSoonTitle>The cold store's {BUILT} places will fall short of the {NEED} needed for winter</CC_Same_Adv_ColdSoonTitle>
   <CC_Same_Adv_HospitalBeds>{BEDS} medical bed(s) for {PEOPLE} people; at most {MOST} laid up at once over the last {DAYS} day(s).</CC_Same_Adv_HospitalBeds>
   <CC_Same_Adv_KitchenNumbers>Meals: {HAVE} nutrition in store against a stock target of {TARGET}, about {USE} eaten a day ({DAYS} days); the stoves' bills make about {MAKE} a day.</CC_Same_Adv_KitchenNumbers>
   <CC_Same_Adv_DoctorBest>{PAWN} has the best Medicine of the {COUNT} colonists ({LEVEL}).</CC_Same_Adv_DoctorBest>

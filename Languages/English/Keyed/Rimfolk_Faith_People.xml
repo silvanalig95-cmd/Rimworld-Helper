@@ -9,7 +9,7 @@
   <CC_UI_Sub_Faiths>Who holds which ideoligion and how firmly, what each asks, and who could sway whom.</CC_UI_Sub_Faiths>
   <CC_FaithPg_Stat>{N} ideoligions among {PEOPLE}</CC_FaithPg_Stat>
   <CC_FaithPg_SplitTip>How split the colony is: {PCT} (0% is one ideoligion for everyone, 100% everyone their own). From half, with three ideoligions or more, the advisor speaks up.</CC_FaithPg_SplitTip>
-  <CC_FaithPg_Intro>Who holds which ideoligion, and how firmly. Certainty is the game's own: when it runs out, someone takes up the ideoligion that wore it down. The moral guide, the conversion ritual, talks between believers and a hard turn of life move it; contentment slowly rebuilds it. Click a believer to open their page.</CC_FaithPg_Intro>
+  <CC_FaithPg_Intro>Who holds which ideoligion, and how firmly. Certainty is the game's own value: when it runs out, the person takes up the ideoligion that wore it down. The moral guide, the conversion ritual, talks between believers and hard times in someone's life change it, and a good mood slowly rebuilds it. Click a believer to open their page.</CC_FaithPg_Intro>
   <CC_FaithPg_None>Nobody in the colony holds an ideoligion.</CC_FaithPg_None>
   <CC_FaithPg_NoIdeology>Ideoligions need Ideology.</CC_FaithPg_NoIdeology>
   <CC_FaithPg_Classic>In classic mode the colony has no ideoligions to speak of.</CC_FaithPg_Classic>
@@ -21,7 +21,7 @@
   <CC_FaithPg_RoleNone>none in this ideoligion</CC_FaithPg_RoleNone>
   <CC_FaithPg_RoleAway>held by someone not here</CC_FaithPg_RoleAway>
   <CC_FaithPg_RoleEmpty>empty</CC_FaithPg_RoleEmpty>
-  <CC_FaithPg_RoleEmptyTip>The {ROLE} speaks for the ideoligion. With no one in the role here, its believers have no voice of their own, and an ideoligion that minds an empty role lets them feel it. The game's Ideoligion tab names one from the believers who qualify.</CC_FaithPg_RoleEmptyTip>
+  <CC_FaithPg_RoleEmptyTip>The {ROLE} speaks for the ideoligion. With no one in the role here, its believers have nobody to speak for them, and some ideoligions give their believers a bad mood while the role is empty. The game's Ideoligion tab names one from the believers who qualify.</CC_FaithPg_RoleEmptyTip>
   <CC_FaithPg_Certainty>{PCT} certain, {STATE}</CC_FaithPg_Certainty>
   <CC_FaithPg_TipAsks>Weighing on them: {0}</CC_FaithPg_TipAsks>
   <CC_FaithPg_Asks>What it asks that weighs on someone now</CC_FaithPg_Asks>
@@ -41,9 +41,9 @@
   <CC_FaithPg_TogetherSplit>{N} ideoligions share the colony, and {WAVERING} of its people are wavering. Certainty moves slowly, and mostly through the game's own tools:</CC_FaithPg_TogetherSplit>
   <CC_FaithPg_ToolConvert>The moral guide's Convert ability: a talk with one colonist of another ideoligion that takes a good part of their certainty, more from someone wavering who likes the guide. Every ideoligion with a moral guide here can try.</CC_FaithPg_ToolConvert>
   <CC_FaithPg_ToolRitual>The conversion ritual: an ideoligion's moral guide speaks to one listener of another ideoligion, with others there to see it. How well it goes decides how much of their certainty it takes.</CC_FaithPg_ToolRitual>
-  <CC_FaithPg_ToolMood>Mood and certainty: the game moves certainty a little every day by mood. Content colonists win theirs back and unhappy ones lose it, so a miserable, wavering colonist is the easiest to bring round, and a contented one slips away from it.</CC_FaithPg_ToolMood>
+  <CC_FaithPg_ToolMood>Mood and certainty: the game changes certainty a little every day by mood. Content colonists gain theirs back and unhappy ones lose it, so a miserable, wavering colonist is the easiest to bring round, and a content one gets harder to bring round over time.</CC_FaithPg_ToolMood>
   <CC_FaithPg_ToolTalk>Talks: when two of different ideoligions talk it over kindly, a devout, well-liked colonist who comes out of it well sways the other a little. An argument only makes both dig in, and two of one ideoligion steady each other.</CC_FaithPg_ToolTalk>
-  <CC_FaithPg_ToolRoles>Roles: an ideoligion with a leader and a moral guide here has someone to speak for it and to bring others in; one without has no voice of its own.</CC_FaithPg_ToolRoles>
+  <CC_FaithPg_ToolRoles>Roles: an ideoligion with a leader and a moral guide here has someone to speak for it and to bring others in. One without them has nobody to do that.</CC_FaithPg_ToolRoles>
   <CC_FaithPg_ReadMore>Ideoligions in the Almanac</CC_FaithPg_ReadMore>
 
   <!-- ===================== A colonist's ideoligion (character page, section 35) ===================== -->
@@ -59,12 +59,12 @@
   <CC_FaithP_Ask>{WHAT} ({MOOD})</CC_FaithP_Ask>
   <CC_FaithP_NoteMoved>{WHAT}: certainty {PTS}</CC_FaithP_NoteMoved>
   <CC_FaithP_NoteConverted>took up {FAITH}</CC_FaithP_NoteConverted>
-  <CC_FaithP_NoteCrisisTip>A crisis of faith: a hard turn of life that shook how firmly they hold their ideoligion. It's among what shaped them, too.</CC_FaithP_NoteCrisisTip>
+  <CC_FaithP_NoteCrisisTip>A crisis of faith: something hard that happened to them shook how firmly they hold their ideoligion. It is also listed among the things that shaped them.</CC_FaithP_NoteCrisisTip>
   <CC_FaithP_NoteTalkTip>A talk about their ideoligion that moved them.</CC_FaithP_NoteTalkTip>
   <CC_FaithP_CertaintyTip>Certainty is the game's own: how firmly someone holds their ideoligion, from 0 to 100%. Devout from {DEVOUT}, wavering under {WAVERING}. When it runs out, they take up the ideoligion of whoever wore it down.</CC_FaithP_CertaintyTip>
   <CC_FaithP_CertaintyDrift>The game moves it {0} a day now, by their mood: content colonists win certainty back, unhappy ones lose it.</CC_FaithP_CertaintyDrift>
-  <CC_FaithP_AsksTip>Moods that come from the ideoligion's own precepts: what it expects of its believers (a ritual held lately, a table to eat at, a place of its own, a role filled) and doesn't have here. Giving the ideoligion what it asks lifts them; weighing on someone day after day, it can shake their certainty.</CC_FaithP_AsksTip>
-  <CC_FaithP_SwayTip>How much one good talk about their ideoligions would take off the listener's certainty: a friendly debate a devout speaker comes out of well. The open are moved more, the proud less; friends are heard, rivals hardly; an ideoligion that frowns on preaching hears half as much. Nobody is swayed by talk more than once a day.</CC_FaithP_SwayTip>
+  <CC_FaithP_AsksTip>Moods that come from the ideoligion's own precepts: what it expects of its believers (a ritual held lately, a table to eat at, a place of its own, a role filled) and doesn't have here. Giving the ideoligion what it asks improves their mood. If the bad mood goes on day after day, it can lower their certainty.</CC_FaithP_AsksTip>
+  <CC_FaithP_SwayTip>How much one good talk about their ideoligions would take off the listener's certainty, when a devout speaker does well in a friendly debate. Open-minded listeners are moved more and proud ones less. Friends are listened to and rivals hardly at all, and a listener whose ideoligion frowns on preaching is moved half as much. Nobody is swayed by talk more than once a day.</CC_FaithP_SwayTip>
 
   <!-- ===================== Talks about ideoligion ===================== -->
   <CC_FaithT_NoteSwayed>swayed by {OTHER_nameDef} in a talk about {FAITH}</CC_FaithT_NoteSwayed>

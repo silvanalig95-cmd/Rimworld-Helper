@@ -3,7 +3,7 @@
 
   <!-- The herd's year (Source/ColonyCouncil/Animals/HerdStory.cs): a named leader, its line, the first calf of spring, the old leader's last season. -->
   <CC_Herd_LeaderTitle>The herd has a leader</CC_Herd_LeaderTitle>
-  <CC_Herd_Leader>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them to water and back for a while without anyone saying so; today {PAWN_nameDef} said so, and gave {PET_objective} the name.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader>
+  <CC_Herd_Leader>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them to water and back for a while without anyone remarking on it. Today {PAWN_nameDef} noticed, and named {PET_objective} the herd's leader.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader>
   <CC_Herd_NewLeaderTitle>{PET_nameDef} leads the herd</CC_Herd_NewLeaderTitle>
   <CC_Herd_NewLeader_Line>The herd follows {PET_nameDef} now, of {LINE}'s own blood: the {COUNT} generation to lead it. {PAWN_nameDef} says the herd settled on it before anyone did.</CC_Herd_NewLeader_Line>
   <CC_Herd_NewLeader_New>The herd follows {PET_nameDef} now, a {KIND} of no line the colony knows. A new line begins with {PET_objective}.</CC_Herd_NewLeader_New>
@@ -18,7 +18,7 @@
   <CC_Herd_LastSeason>{PET_nameDef}, who leads the colony's herd, is old now: gray at the muzzle, slow to rise, the herd walking at {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason>
   <CC_Herd_LastSeasonChronicle>{PET_nameDef}, the herd's leader, began {PET_possessive} last season.</CC_Herd_LastSeasonChronicle>
   <CC_Herd_GoneTitle>The herd has lost {PET_nameDef}</CC_Herd_GoneTitle>
-  <CC_Herd_Gone>{PET_nameDef}, who led the colony's herd, is dead. The herd stood about the pens this morning not knowing where to go. In a day or two one of them will take the lead, one of {PET_possessive} own blood if there is one, and {PAWN_nameDef} will give it the name.</CC_Herd_Gone>
+  <CC_Herd_Gone>{PET_nameDef}, who led the colony's herd, is dead. The herd stood about the pens this morning not knowing where to go. In a day or two one of them will take the lead, one of {PET_possessive} own blood if there is one, and {PAWN_nameDef} will name it the new leader.</CC_Herd_Gone>
   <CC_Herd_GoneChronicle>The herd lost its leader, {PET_nameDef}.</CC_Herd_GoneChronicle>
   <CC_Herd_LeaderChronicle>{PET_nameDef} became the leader of the colony's herd.</CC_Herd_LeaderChronicle>
   <CC_Herd_Ordinal_2>second</CC_Herd_Ordinal_2>
@@ -51,7 +51,7 @@
   <CC_Beast_Stance_feared>feared, the children kept in</CC_Beast_Stance_feared>
   <CC_Beast_Stance_hunted>hunted</CC_Beast_Stance_hunted>
   <CC_Beast_Stance_tame>being tamed</CC_Beast_Stance_tame>
-  <CC_Beast_Stance_catch>a ball waiting for it</CC_Beast_Stance_catch>
+  <CC_Beast_Stance_catch>a ball ready to catch it</CC_Beast_Stance_catch>
   <CC_Beast_Stance_driven>driven off</CC_Beast_Stance_driven>
 
 </LanguageData>

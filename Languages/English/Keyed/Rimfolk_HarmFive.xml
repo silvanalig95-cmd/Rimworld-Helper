@@ -18,8 +18,8 @@
   <CC_HarmFive_PatientIll>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, the patient who slept in the same room. {NOTE}</CC_HarmFive_PatientIll>
   <CC_HarmFive_PatientIll_2>{OTHER} came for the doctor and left {ILLNESS} behind: {PAWN_nameDef} shared the room with {OTHER} and has it now. {NOTE}</CC_HarmFive_PatientIll_2>
   <CC_HarmFive_BadBatch>{PAWN_nameDef} woke queasy with {ILLNESS}: the dose from {OTHER}'s case was a bad batch. {NOTE}</CC_HarmFive_BadBatch>
-  <CC_HarmFive_BadBatch_2>{OTHER}'s tonic had turned in the bottle, and {PAWN_nameDef} has {ILLNESS} this morning for it. {NOTE}</CC_HarmFive_BadBatch_2>
-  <CC_HarmFive_PetitionLapse>Let go unheeded while something catching goes round, the sick work on, and it reaches one more of the colony.</CC_HarmFive_PetitionLapse>
+  <CC_HarmFive_BadBatch_2>{OTHER}'s tonic had gone bad in the bottle, and {PAWN_nameDef} has {ILLNESS} this morning for it. {NOTE}</CC_HarmFive_BadBatch_2>
+  <CC_HarmFive_PetitionLapse>If the petition is ignored while an illness is going round, the sick keep working and pass it on to one more colonist.</CC_HarmFive_PetitionLapse>
   <CC_HarmFive_PatientTale_TB>deep cough that sounds like tuberculosis</CC_HarmFive_PatientTale_TB>
   <CC_HarmFive_PatientTale_Cholera>stomach sickness that looks like cholera</CC_HarmFive_PatientTale_Cholera>
   <CC_HarmFive_Mote_SoreArm>a sore arm</CC_HarmFive_Mote_SoreArm>
@@ -30,7 +30,7 @@
   <CC_Impact_CampFeverStopsBrief>the fever won't spread</CC_Impact_CampFeverStopsBrief>
   <CC_Impact_PatientIll>{0} carries something catching, and whoever of ours sleeps in the same room may catch it</CC_Impact_PatientIll>
   <CC_Impact_PatientIllBrief>a room of their own keeps it from us</CC_Impact_PatientIllBrief>
-  <CC_Impact_BadBatch>Now and then a healer's batch has turned, and a few who take it are the worse for it next morning</CC_Impact_BadBatch>
+  <CC_Impact_BadBatch>Now and then a healer's batch has gone bad, and a few who take it fall ill the next morning</CC_Impact_BadBatch>
   <CC_Impact_BadBatchBrief>a bad batch now and then</CC_Impact_BadBatchBrief>
   <CC_Impact_BatchLooked>{0} looks the batch over first, and a bad one would be caught</CC_Impact_BatchLooked>
   <CC_Impact_BatchLookedBrief>{0} looks it over first</CC_Impact_BatchLookedBrief>
@@ -42,7 +42,7 @@
   <CC_HarmFive_Malaria>One of the bites {PAWN_nameDef} was left with carried {ILLNESS}: this is a malaria country.</CC_HarmFive_Malaria>
   <CC_HarmFive_Malaria_2>{PAWN_nameDef}'s untended bites have turned into a shaking fever: {ILLNESS}.</CC_HarmFive_Malaria_2>
   <CC_HarmFive_DirtyWater>{PAWN_nameDef} has {ILLNESS} from the untreated water. {NOTE}</CC_HarmFive_DirtyWater>
-  <CC_HarmFive_DirtyWater_2>The water here is drunk as it comes, and {PAWN_nameDef} has {ILLNESS} for it. {NOTE}</CC_HarmFive_DirtyWater_2>
+  <CC_HarmFive_DirtyWater_2>The colony drinks its water untreated, and {PAWN_nameDef} has {ILLNESS} for it. {NOTE}</CC_HarmFive_DirtyWater_2>
 
   <!-- ===================== The weather and the cold (ColdHurts.cs) ===================== -->
 
@@ -54,7 +54,7 @@
   <CC_HarmFive_RainLover>{PAWN_nameDef} stood out in the rain again, soaked through, and has {ILLNESS} for it. {NOTE}</CC_HarmFive_RainLover>
   <CC_HarmFive_RainLover_2>All that standing in the rain has caught up with {PAWN_nameDef}: {ILLNESS}. {NOTE}</CC_HarmFive_RainLover_2>
   <CC_HarmFive_SnowLover>{PAWN_nameDef} stayed out in the falling snow far too long in the bitter cold, and has {ILLNESS}. {NOTE}</CC_HarmFive_SnowLover>
-  <CC_HarmFive_SnowLover_2>The snow {PAWN_nameDef} loves so much has nipped {PAWN_possessive} fingers and cheeks: {ILLNESS}. {NOTE}</CC_HarmFive_SnowLover_2>
+  <CC_HarmFive_SnowLover_2>{PAWN_nameDef} loves the snow, but stayed out in it too long and has hurt {PAWN_possessive} fingers and cheeks: {ILLNESS}. {NOTE}</CC_HarmFive_SnowLover_2>
   <CC_HarmFive_Mote_Splash>into the icy water</CC_HarmFive_Mote_Splash>
   <CC_Impact_WatchCold>A long watch in this frost can bring frostnip to one without warm clothes, and one alone outside the walls may draw a predator</CC_Impact_WatchCold>
   <CC_Impact_WatchColdBrief>the frost and the dark</CC_Impact_WatchColdBrief>
@@ -67,6 +67,6 @@
 
   <!-- ===================== The forecast can be wrong (Fields/FieldWeather.cs) ===================== -->
 
-  <CC_HarmFive_ForecastMissed>The forecast missed: on {DATE} a frost of {TEMP}, colder than the land's reckoning, caught the crop this field was sown for.</CC_HarmFive_ForecastMissed>
+  <CC_HarmFive_ForecastMissed>The forecast was wrong: on {DATE} a frost of {TEMP}, colder than expected for this land, caught the crop this field was sown for.</CC_HarmFive_ForecastMissed>
 
 </LanguageData>

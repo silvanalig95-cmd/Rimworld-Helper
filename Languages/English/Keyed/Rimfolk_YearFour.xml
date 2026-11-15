@@ -27,18 +27,18 @@
   <CC_Y4_SnowPathsMarked>The ground by the colony's doors is marked for snow clearing ({N} cells).</CC_Y4_SnowPathsMarked>
 
   <!-- ===================== The unfinished work ===================== -->
-  <CC_Y4_NoUnpaid>Every plan standing can be paid for now.</CC_Y4_NoUnpaid>
-  <CC_Impact_CancelPlans>{0} plans waiting on stuff the stores don't hold taken off the ground</CC_Impact_CancelPlans>
-  <CC_Impact_CancelPlansBrief>the plans that can't be paid for taken off</CC_Impact_CancelPlansBrief>
-  <CC_Y4_PlansCancelled>{N} plans waiting on stuff the stores don't hold are taken off the ground.</CC_Y4_PlansCancelled>
+  <CC_Y4_NoUnpaid>The stores hold enough for every blueprint now.</CC_Y4_NoUnpaid>
+  <CC_Impact_CancelPlans>{0} blueprints waiting on materials the stores don't hold cancelled</CC_Impact_CancelPlans>
+  <CC_Impact_CancelPlansBrief>the blueprints that can't be paid for cancelled</CC_Impact_CancelPlansBrief>
+  <CC_Y4_PlansCancelled>{N} blueprints waiting on materials the stores don't hold are cancelled.</CC_Y4_PlansCancelled>
 
   <!-- ===================== Trees and wild plants ===================== -->
   <CC_Y4_TreesGone>No grown trees stand by the walls now.</CC_Y4_TreesGone>
   <CC_Impact_TreesAll>{0} grown trees close outside the colony's walls marked for the cutters</CC_Impact_TreesAll>
   <CC_Impact_TreesHalf>{0} of the trees nearest the walls marked for the cutters; the rest stand</CC_Impact_TreesHalf>
   <CC_Impact_TreesBrief>the trees by the wall marked to come down</CC_Impact_TreesBrief>
-  <CC_Impact_TreesFaith>Someone whose ideoligion holds trees sacred will feel each one fall, as the game has it</CC_Impact_TreesFaith>
-  <CC_Impact_TreesFaithBrief>a faith that holds trees sacred minds it</CC_Impact_TreesFaithBrief>
+  <CC_Impact_TreesFaith>Someone whose ideoligion holds trees sacred gets the game's bad mood for each one cut down</CC_Impact_TreesFaith>
+  <CC_Impact_TreesFaithBrief>upsets a faith that holds trees sacred</CC_Impact_TreesFaithBrief>
   <CC_Impact_TreesForWood>Up to {0} of the nearest wild trees marked for the cutters each morning, until the stores hold the winter's wood</CC_Impact_TreesForWood>
   <CC_Impact_TreesForWoodBrief>trees marked for wood each morning</CC_Impact_TreesForWoodBrief>
   <CC_Y4_TreesMarked>{N} trees by the colony's walls are marked for the cutters.</CC_Y4_TreesMarked>
@@ -55,10 +55,10 @@
   <CC_Impact_SlaughterMeatBrief>meat, and hay that lasts</CC_Impact_SlaughterMeatBrief>
   <CC_Y4_HerdMarked>{NAMES} marked for slaughter, so the hay lasts the winter.</CC_Y4_HerdMarked>
   <CC_Y4_CantTrain>{0} can't learn that now.</CC_Y4_CantTrain>
-  <CC_Impact_TrainGuard>{0} set to learn to guard and to go for an enemy, for the handlers to teach as the game has them</CC_Impact_TrainGuard>
-  <CC_Impact_TrainHaul>{0} set to learn to haul, for the handlers to teach as the game has them</CC_Impact_TrainHaul>
+  <CC_Impact_TrainGuard>{0} set to learn to guard and to attack an enemy, for the handlers to teach in the usual way</CC_Impact_TrainGuard>
+  <CC_Impact_TrainHaul>{0} set to learn to haul, for the handlers to teach in the usual way</CC_Impact_TrainHaul>
   <CC_Impact_TrainBrief>{0}'s training set</CC_Impact_TrainBrief>
-  <CC_Y4_TrainGuard>{PET_nameDef} is set to learn to guard and to go for an enemy.</CC_Y4_TrainGuard>
+  <CC_Y4_TrainGuard>{PET_nameDef} is set to learn to guard and to attack an enemy.</CC_Y4_TrainGuard>
   <CC_Y4_TrainHaul>{PET_nameDef} is set to learn to haul.</CC_Y4_TrainHaul>
 
   <!-- ===================== Home from the road ===================== -->
@@ -68,9 +68,9 @@
   <CC_Y4_NoAltar>The colony's ideoligion has no altar here.</CC_Y4_NoAltar>
   <CC_Y4_GuideTaken>Someone holds that role already.</CC_Y4_GuideTaken>
   <CC_Y4_CantGuide>{0} can't take that role now.</CC_Y4_CantGuide>
-  <CC_Impact_NameGuide>{0} named the ideoligion's {1}, with everything the role asks and gives, as the game has it</CC_Impact_NameGuide>
+  <CC_Impact_NameGuide>{0} named the ideoligion's {1}, with the role's duties and abilities as in the game</CC_Impact_NameGuide>
   <CC_Impact_NameGuideBrief>{0} guides the faith</CC_Impact_NameGuideBrief>
-  <CC_Y4_GuideNamed>{PAWN_nameDef} is the ideoligion's {ROLE} now, by the council's word.</CC_Y4_GuideNamed>
+  <CC_Y4_GuideNamed>{PAWN_nameDef} is the ideoligion's {ROLE} now, as the council decided.</CC_Y4_GuideNamed>
 
   <!-- ===================== The decrees ===================== -->
   <CC_Log_EveryFaith>Every faith has its evening by decree</CC_Log_EveryFaith>
@@ -90,9 +90,9 @@
   <CC_Adv_GenFuel_Title>The {0} is running dry</CC_Adv_GenFuel_Title>
   <CC_Adv_GenFuel_Detail>The {0} has fuel for about {1} hours, and there's none of its fuel in the stores. When it stops, whatever it powers stops with it.</CC_Adv_GenFuel_Detail>
   <CC_Adv_Unpaid_Title>{0} plans waiting on stuff the colony lacks</CC_Adv_Unpaid_Title>
-  <CC_Adv_Unpaid_Detail>{0} blueprints need {1} that the stores don't hold. They'll stand unbuilt until it's found, bought or the plans are taken off.</CC_Adv_Unpaid_Detail>
+  <CC_Adv_Unpaid_Detail>{0} blueprints need {1} that the stores don't hold. They'll stay unbuilt until it's found or bought, or the blueprints are cancelled.</CC_Adv_Unpaid_Detail>
   <CC_Adv_TreeCover_Title>{0} trees giving cover by the walls</CC_Adv_TreeCover_Title>
-  <CC_Adv_TreeCover_Detail>{0} grown trees stand close outside the colony's walls. Anyone coming at the colony can stand behind them; open ground gives the defenders the shots.</CC_Adv_TreeCover_Detail>
+  <CC_Adv_TreeCover_Detail>{0} grown trees stand close outside the colony's walls. Attackers can take cover behind them, while open ground leaves them exposed to the defenders.</CC_Adv_TreeCover_Detail>
   <CC_Adv_TreeCover_Act>Mark for cutting</CC_Adv_TreeCover_Act>
   <CC_Adv_TreeCover_ActTip>Marks every grown tree close outside the walls for the colony's cutters.</CC_Adv_TreeCover_ActTip>
   <CC_Adv_Snow_Title>Deep snow, and nowhere set to clear</CC_Adv_Snow_Title>
@@ -100,6 +100,6 @@
   <CC_Adv_Snow_Act>Mark the paths</CC_Adv_Snow_Act>
   <CC_Adv_Snow_ActTip>Marks the open ground by the colony's doors for snow clearing.</CC_Adv_Snow_ActTip>
   <CC_Adv_NoGuide_Title>No {0} for the colony's ideoligion</CC_Adv_NoGuide_Title>
-  <CC_Adv_NoGuide_Detail>Nobody holds the {0}'s role in {1}, so nobody leads its words or answers its doubters. {2} could take it, from the ideoligion's roles.</CC_Adv_NoGuide_Detail>
+  <CC_Adv_NoGuide_Detail>Nobody holds the {0}'s role in {1}, so nobody leads its rituals or speaks for it. {2} could take it, from the ideoligion's roles.</CC_Adv_NoGuide_Detail>
 
 </LanguageData>

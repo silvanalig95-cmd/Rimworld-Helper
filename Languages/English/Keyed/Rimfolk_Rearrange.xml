@@ -2,7 +2,7 @@
 <LanguageData>
   <!-- Rearranging a built room (Source/ColonyCouncil/Building/RoomRearranger.cs, Designator_RearrangeRoom.cs). -->
   <CC_Rearr_Button>Rearrange a room</CC_Rearr_Button>
-  <CC_Rearr_Desc>Click a built room to see where the council would put its furniture: beds with their heads to the wall, benches with their backs to it and their work spots free, the table in the middle with the chairs facing it, shelves along the walls, lamps where they light the work, a screen with its watch area open. Then the room is walked from its doors to everything people use, and each piece goes to the one of its good places that leaves the whole room walking best: no work spot on someone else's way, no chair in the aisle, the main ways two wide where the room is busy, no floor cut off or wasted. What already stands well stays, the more readily the heavier it is. Say go and the room is tidied with the game's own reinstall orders, a few at a time as the cells free up. Walls, doors, pipes, conduits, plumbed fixtures, growing plants and filled graves stay where they are.</CC_Rearr_Desc>
+  <CC_Rearr_Desc>Click a built room to see where the council would put its furniture: beds with their heads to the wall, benches with their backs to it and their work spots free, the table in the middle with the chairs facing it, shelves along the walls, lamps where they light the work, a screen with its watch area open. Then the council works out how people walk from the doors to everything they use, and each piece goes to the one of its good places that leaves the room easiest to walk through: no work spot on someone else's way, no chair in the aisle, the main ways two wide where the room is busy, no floor cut off or wasted. What already stands well stays, the more readily the heavier it is. Say go and the room is tidied with the game's own reinstall orders, a few at a time as the cells free up. Walls, doors, pipes, conduits, plumbed fixtures, growing plants and filled graves stay where they are.</CC_Rearr_Desc>
   <CC_Rearr_PickRoom>Click a built room to have the council tidy it. It has to be enclosed, with a door.</CC_Rearr_PickRoom>
   <CC_Rearr_NotARoom>Pick an enclosed room with a door, not the outdoors or a doorway.</CC_Rearr_NotARoom>
   <CC_Rearr_TooBig>Rooms up to {0} cells can be rearranged.</CC_Rearr_TooBig>
@@ -48,7 +48,7 @@
   <CC_Rearr_Why_watch>On the screen's watch area, facing it.</CC_Rearr_Why_watch>
 
   <!-- How the room walks and sits, now and as arranged (RoomWalkMath). -->
-  <CC_Rearr_Walk_Title>How the room walks</CC_Rearr_Walk_Title>
+  <CC_Rearr_Walk_Title>Moving around the room</CC_Rearr_Walk_Title>
   <CC_Rearr_Walk_Change>{0} now, {1} after</CC_Rearr_Walk_Change>
   <CC_Rearr_Walk_Ways>The main ways are {0} cell(s) wide at the narrowest, with {1} squeeze point(s) where two people can't pass.</CC_Rearr_Walk_Ways>
   <CC_Rearr_Walk_InWay>Work spots standing in someone else's way: {0}. Chairs and the like slowing the ways: {1}.</CC_Rearr_Walk_InWay>

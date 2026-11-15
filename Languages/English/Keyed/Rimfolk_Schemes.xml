@@ -16,20 +16,20 @@
   <CC_Scheme_What_Machine>at {THING} in the night, working to jam it</CC_Scheme_What_Machine>
   <CC_Scheme_What_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_What_Console>
   <CC_Scheme_What_Totem>carrying off {THING} from the colony's stores, a carving to take home</CC_Scheme_What_Totem>
-  <CC_Scheme_What_Purse>cutting a purse of {THING} from the colony's stores</CC_Scheme_What_Purse>
+  <CC_Scheme_What_Purse>stealing {THING} from the colony's stores</CC_Scheme_What_Purse>
   <CC_Scheme_What_Tool>pocketing {THING} from the colony's stores</CC_Scheme_What_Tool>
   <CC_Scheme_What_Fight>whispering lies to {HOT_nameDef} about {OTHER_nameDef}, to set the two of them fighting</CC_Scheme_What_Fight>
-  <CC_Scheme_What_Smear_Fires>going through the colony's rooms in the night, for tales to tell at other fires</CC_Scheme_What_Smear_Fires>
-  <CC_Scheme_What_Smear_Halls>going through the colony's rooms in the night, for slanders to carry to other halls</CC_Scheme_What_Smear_Halls>
-  <CC_Scheme_What_Smear_Papers>going through the colony's rooms in the night, for a smear in the papers</CC_Scheme_What_Smear_Papers>
-  <CC_Scheme_What_Smear_Feeds>going through the colony's rooms in the night, for a smear on the feeds</CC_Scheme_What_Smear_Feeds>
-  <CC_Scheme_What_Smear_Court>going through the colony's rooms in the night, for intrigue at court</CC_Scheme_What_Smear_Court>
+  <CC_Scheme_What_Smear_Fires>going through the colony's rooms in the night, looking for gossip to spread among other peoples</CC_Scheme_What_Smear_Fires>
+  <CC_Scheme_What_Smear_Halls>going through the colony's rooms in the night, looking for scandal to spread among other lords</CC_Scheme_What_Smear_Halls>
+  <CC_Scheme_What_Smear_Papers>going through the colony's rooms in the night, looking for a scandal to put in the papers</CC_Scheme_What_Smear_Papers>
+  <CC_Scheme_What_Smear_Feeds>going through the colony's rooms in the night, looking for a scandal to put on the feeds</CC_Scheme_What_Smear_Feeds>
+  <CC_Scheme_What_Smear_Court>going through the colony's rooms in the night, looking for something to use against the colony at court</CC_Scheme_What_Smear_Court>
 
   <!-- The same, short, for a row of the pages. -->
   <CC_Scheme_Short_Machine>at {THING} in the night, working to jam it</CC_Scheme_Short_Machine>
   <CC_Scheme_Short_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_Short_Console>
   <CC_Scheme_Short_Totem>carrying off a carving from the colony's stores</CC_Scheme_Short_Totem>
-  <CC_Scheme_Short_Purse>cutting a purse from the colony's stores</CC_Scheme_Short_Purse>
+  <CC_Scheme_Short_Purse>stealing valuables from the colony's stores</CC_Scheme_Short_Purse>
   <CC_Scheme_Short_Tool>pocketing tools from the colony's stores</CC_Scheme_Short_Tool>
   <CC_Scheme_Short_Fight>whispering lies to set the colony's people fighting</CC_Scheme_Short_Fight>
   <CC_Scheme_AMachine>a machine</CC_Scheme_AMachine>
@@ -43,7 +43,7 @@
   <CC_Scheme_How_Dog>{DOG} caught the scent and barked until the colony woke.</CC_Scheme_How_Dog>
   <CC_Scheme_After_Machine>{AGENT_nameDef} ran before doing any harm, and is leaving the colony at once.</CC_Scheme_After_Machine>
   <CC_Scheme_After_Theft>{AGENT_nameDef} dropped {THING} and is leaving the colony at once.</CC_Scheme_After_Theft>
-  <CC_Scheme_After_Fight>{HOT_nameDef} paid the lies no heed, and {AGENT_nameDef} is leaving the colony at once.</CC_Scheme_After_Fight>
+  <CC_Scheme_After_Fight>{HOT_nameDef} didn't believe the lies, and {AGENT_nameDef} is leaving the colony at once.</CC_Scheme_After_Fight>
   <CC_Scheme_After_Smear>{AGENT_nameDef} is leaving the colony at once, with nothing to tell.</CC_Scheme_After_Smear>
 
   <CC_Scheme_Caught_Label>Caught at it: {AGENT_nameDef}</CC_Scheme_Caught_Label>
@@ -63,7 +63,7 @@
   <CC_Scheme_Words>{PAWN_nameDef} had hard words with {OTHER_nameDef} over something {PAWN_nameDef} had been told about {OTHER_objective}.</CC_Scheme_Words>
   <CC_Scheme_Words_2>{PAWN_nameDef} took {OTHER_nameDef} to task over what was said about {OTHER_objective}.</CC_Scheme_Words_2>
 
-  <CC_Scheme_Smear>Ill words about {COLONY} are going round the region, {WHERE}: {PEOPLES} think a little less of it.</CC_Scheme_Smear>
+  <CC_Scheme_Smear>Bad talk about {COLONY} is going round the region, {WHERE}: {PEOPLES} think a little less of it.</CC_Scheme_Smear>
   <CC_Scheme_Smear_2>Someone has been talking against {COLONY} {WHERE}, and {PEOPLES} think a little less of it now.</CC_Scheme_Smear_2>
   <CC_Scheme_SmearWhere_Fires>at the fires of other peoples</CC_Scheme_SmearWhere_Fires>
   <CC_Scheme_SmearWhere_Halls>in the halls of other lords</CC_Scheme_SmearWhere_Halls>

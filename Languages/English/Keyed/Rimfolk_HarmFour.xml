@@ -24,9 +24,9 @@
 
   <CC_HarmFour_Rut>{ANIMAL_nameDef}, in the rut, charged {PAWN_nameDef} in the pen and caught {PAWN_objective} on the {PART}.</CC_HarmFour_Rut>
   <CC_HarmFour_Rut_2>{PAWN_nameDef} went into the pen in the rut, and {ANIMAL_nameDef} lowered his head and charged.</CC_HarmFour_Rut_2>
-  <CC_HarmFour_LessonKick>Learning the animals with {OTHER_nameDef}, {PAWN_nameDef} was kicked by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonKick>
+  <CC_HarmFour_LessonKick>Learning to handle animals with {OTHER_nameDef}, {PAWN_nameDef} was kicked by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonKick>
   <CC_HarmFour_LessonKick_2>{ANIMAL_nameDef} took fright at the lesson and kicked out at {PAWN_nameDef}, while {OTHER_nameDef} calmed it.</CC_HarmFour_LessonKick_2>
-  <CC_HarmFour_LessonBite>Learning the animals with {OTHER_nameDef}, {PAWN_nameDef} was bitten by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonBite>
+  <CC_HarmFour_LessonBite>Learning to handle animals with {OTHER_nameDef}, {PAWN_nameDef} was bitten by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonBite>
   <CC_HarmFour_LessonBite_2>{ANIMAL_nameDef} snapped at {PAWN_nameDef} during the lesson before {OTHER_nameDef} could calm it.</CC_HarmFour_LessonBite_2>
 
   <!-- ===================== Seen over them, no message (Mishaps.cs, AnimalHurts.cs, Quarrels.cs, GamesDay.cs) ===================== -->

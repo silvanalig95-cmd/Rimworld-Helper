@@ -71,7 +71,7 @@
   <CC_PW_Reason_OwnFree>{PAWN_nameDef} has no Pokémon of {PAWN_possessive} own, and the colony's {SPECIES} has no trainer.</CC_PW_Reason_OwnFree>
   <CC_PW_Reason_OwnWild>{PAWN_nameDef} has no Pokémon of {PAWN_possessive} own, and there's a wild {SPECIES} out there.</CC_PW_Reason_OwnWild>
   <CC_PW_Promise_Own>{OTHER_nameDef} has a trainer now: {FOR_nameDef}.</CC_PW_Promise_Own>
-  <CC_PW_Reason_Balls>{PAWN_nameDef} has seen wild Pokémon about and counted the colony's ball belts. It didn't take long.</CC_PW_Reason_Balls>
+  <CC_PW_Reason_Balls>{PAWN_nameDef} has seen wild Pokémon about, and the colony has very few ball belts.</CC_PW_Reason_Balls>
 
   <!-- Life goals and the council's project. -->
   <CC_PW_Asp_Level>best level {0} of {1}</CC_PW_Asp_Level>

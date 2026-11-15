@@ -19,7 +19,7 @@
   <CC_FarNews_situation_4>{WHAT} is all anyone in {TOWN} wanted to talk about.</CC_FarNews_situation_4>
   <CC_FarNews_war_3>{PEOPLE} are at war with {ENEMY} now, and {TOWN} is bracing for it.</CC_FarNews_war_3>
   <CC_FarNews_war_4>War has come between {PEOPLE} and {ENEMY}, and nobody in {TOWN} talks of anything else.</CC_FarNews_war_4>
-  <CC_FarNews_peace_3>{PEOPLE} and {ENEMY} have put their war away, and {TOWN} breathes easier for it.</CC_FarNews_peace_3>
+  <CC_FarNews_peace_3>{PEOPLE} and {ENEMY} have ended their war, and {TOWN} is relieved.</CC_FarNews_peace_3>
   <CC_FarNews_peace_4>The war between {PEOPLE} and {ENEMY} is over, and {TOWN} is glad of it.</CC_FarNews_peace_4>
   <CC_FarNews_new_3>{TOWN} is a new town of {PEOPLE}, raised only this year.</CC_FarNews_new_3>
   <CC_FarNews_new_4>There is a town called {TOWN} now, where there was none last year, and {PEOPLE} built it.</CC_FarNews_new_4>
@@ -41,7 +41,7 @@
   <!-- ================= Towns emptied, faded, held on to and founded ================= -->
   <CC_RiseFall_HeldOn_3>{MEANS}: most of {TOWN}, {WHERE}, has gone, but a few families stayed behind, and {PEOPLE} have let them keep it.</CC_RiseFall_HeldOn_3>
   <CC_RiseFall_Empty_4>{MEANS}: there is nobody left in {TOWN}, {WHERE}. {PEOPLE} have gone, and {RUIN} is all that stands there.</CC_RiseFall_Empty_4>
-  <CC_RiseFall_Faded_4>{MEANS}: the land has taken back the ruin of {TOWN}, {WHERE}, and only those who knew it could find it now.</CC_RiseFall_Faded_4>
+  <CC_RiseFall_Faded_4>{MEANS}: the ruin of {TOWN}, {WHERE}, is overgrown now, and only those who knew it could find it.</CC_RiseFall_Faded_4>
   <CC_RiseFall_Daughter_3>{MEANS}: families from {MOTHER} have struck out on their own and founded {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter_3>
 
   <!-- ================= Trading posts ================= -->
@@ -49,7 +49,7 @@
   <CC_Post_Closed_Soured_3>{PEOPLE} have given up on {POST}, their {KIND} {WHERE}, with nothing mended between them and {COLONY}. Nothing is left there but {LEFT}.</CC_Post_Closed_Soured_3>
   <CC_Post_Closed_War_3>{POST}, the {KIND} of {PEOPLE} {WHERE}, is closed: no people keeps a post open for those it is at war with. Nothing is left there but {LEFT}.</CC_Post_Closed_War_3>
   <CC_Post_Razed_3>{COLONY} razed {POST}, the {KIND} {PEOPLE} had opened to trade with it, and {PEOPLE} will remember it.</CC_Post_Razed_3>
-  <CC_Post_Sacked_Text_3>Raiders of {ENEMY}, at war with {PEOPLE}, have come down on {POST}, their {KIND} {WHERE}, and taken all they could carry. The post still stands, but it will trade poorly for a long while.</CC_Post_Sacked_Text_3>
+  <CC_Post_Sacked_Text_3>Raiders of {ENEMY}, at war with {PEOPLE}, have attacked {POST}, their {KIND} {WHERE}, and taken all they could carry. The post still stands, but it will trade poorly for a long while.</CC_Post_Sacked_Text_3>
 
   <!-- ================= A hamlet under the colony's protection ================= -->
   <CC_Hamlet_Help_Food_3>The first fields at {HAMLET} have failed them, and {LEADER} asks whether the colony could spare {GOODS}, carried down to their carter at the gate, to see the families through.</CC_Hamlet_Help_Food_3>

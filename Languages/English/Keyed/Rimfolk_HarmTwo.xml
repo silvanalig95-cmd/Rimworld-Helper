@@ -6,7 +6,7 @@
 
   <!-- ===================== Frayed tempers (FrayedTempers.cs) ===================== -->
 
-  <CC_HarmTwo_FrayedBand>A sharp word comes to blows more easily.</CC_HarmTwo_FrayedBand>
+  <CC_HarmTwo_FrayedBand>Arguments turn into fights more easily.</CC_HarmTwo_FrayedBand>
   <CC_HarmTwo_Frayed>{PAWN_nameDef} has been {BAND} for a while, and a sharp word with {OTHER_nameDef} came to blows.</CC_HarmTwo_Frayed>
   <CC_HarmTwo_Frayed_2>Days of strain have left {PAWN_nameDef} {BAND}, and this time the words with {OTHER_nameDef} ended in a fight.</CC_HarmTwo_Frayed_2>
 
@@ -45,7 +45,7 @@
   <!-- ===================== Sickness brought home (SickHome.cs) ===================== -->
 
   <CC_HarmTwo_SickHome>{PAWN_nameDef} has fallen ill a few days after coming home from {TOWN}: {ILLNESS}. {WHY}</CC_HarmTwo_SickHome>
-  <CC_HarmTwo_SickHome_2>{PAWN_nameDef} brought more than goods home from {TOWN}, and is ill with it now: {ILLNESS}. {WHY}</CC_HarmTwo_SickHome_2>
+  <CC_HarmTwo_SickHome_2>{PAWN_nameDef} caught something at {TOWN} and is ill with it now: {ILLNESS}. {WHY}</CC_HarmTwo_SickHome_2>
   <CC_HarmTwo_SickHome_Plague>A plague was going round {TOWN} while the caravan stayed there.</CC_HarmTwo_SickHome_Plague>
   <CC_HarmTwo_SickHome_Famine>{TOWN} was going hungry while the caravan stayed there, and the sickness that follows short rations and bad water was about.</CC_HarmTwo_SickHome_Famine>
 
@@ -61,7 +61,7 @@
   <CC_HarmTwo_SabotageFound_Seen>{WITNESS_nameDef} saw it done</CC_HarmTwo_SabotageFound_Seen>
   <CC_HarmTwo_SabotageFound_Word>word of it got round</CC_HarmTwo_SabotageFound_Word>
   <CC_HarmTwo_SabotageFight>{OTHER_nameDef} found out who was behind {WHAT} ({HOW}), went to have it out with {PAWN_nameDef}, and it came to blows.</CC_HarmTwo_SabotageFight>
-  <CC_HarmTwo_SabotageFight_2>It was {PAWN_nameDef} behind {WHAT}, and {HOW}. {OTHER_nameDef} has gone for {PAWN_objective}, fists first.</CC_HarmTwo_SabotageFight_2>
+  <CC_HarmTwo_SabotageFight_2>It was {PAWN_nameDef} behind {WHAT}, and {HOW}. {OTHER_nameDef} has attacked {PAWN_objective} with bare fists.</CC_HarmTwo_SabotageFight_2>
   <CC_HarmTwo_SabotageWords>{OTHER_nameDef} found out who was behind {WHAT} ({HOW}), and had hard words with {PAWN_nameDef} over it.</CC_HarmTwo_SabotageWords>
   <CC_HarmTwo_SabotageWords_2>It was {PAWN_nameDef} behind {WHAT}, and {HOW}. {OTHER_nameDef} said so to {PAWN_possessive} face.</CC_HarmTwo_SabotageWords_2>
   <CC_HarmTwo_TieNote_Sabotage>spoiled the other's work</CC_HarmTwo_TieNote_Sabotage>

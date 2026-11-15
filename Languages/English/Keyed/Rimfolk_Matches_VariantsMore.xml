@@ -14,10 +14,10 @@
        as they are, so they have no fellows. -->
 
   <!-- Their offer, and their answers -->
-  <CC_Match_Offer_4>{PEOPLE} have sent a proposal by {WHO}'s hand. They offer {THEIRS} for {OURS}, and would hold it by {RITE}; the colony would call it {WORD}.</CC_Match_Offer_4>
+  <CC_Match_Offer_4>{PEOPLE} have sent a proposal with {WHO}. They offer {THEIRS} for {OURS}, and would hold the wedding by {RITE}; the colony would call it {WORD}.</CC_Match_Offer_4>
   <CC_Match_Ans_Yes_4>{OURS} and {THEIRS} are promised. {PEOPLE} have agreed to {WORD}, and want the wedding held by {RITE}. {LIVES}.</CC_Match_Ans_Yes_4>
   <CC_Match_Ans_No_4>{PEOPLE} won't part with {THEIRS}, not for {OURS} and not this year.</CC_Match_Ans_No_4>
-  <CC_Match_Ans_NoNever_3>{PEOPLE} would not even weigh it. They don't think enough of the colony to give it one of their own, {OURS} or no {OURS}.</CC_Match_Ans_NoNever_3>
+  <CC_Match_Ans_NoNever_3>{PEOPLE} would not even consider it. They don't think well enough of the colony to give it one of their own, even for {OURS}.</CC_Match_Ans_NoNever_3>
   <CC_Match_Ans_Moot_2>{PEOPLE} could not answer as the letter asked. {WHY}</CC_Match_Ans_Moot_2>
 
   <!-- Agreed -->
@@ -30,33 +30,33 @@
   <CC_Match_Arrive_Alone_2>{THEIRS} of {PEOPLE} came in alone and has joined the colony. With no guests here to see it, the wedding to {OURS} will be the colony's own, on a quiet day.</CC_Match_Arrive_Alone_2>
   <CC_Match_Arrive_Alone_3>No guests came with {THEIRS}, but {THEIRS} came all the same and has joined the colony. The colony will marry {OURS} and {THEIRS} by its own ceremony, once the day is quiet.</CC_Match_Arrive_Alone_3>
   <CC_Match_Escort_Comes_3>New family for {OURS}: {THEIRS} and one of {PEOPLE}, come from {TOWN}, are walking up to the gate.</CC_Match_Escort_Comes_3>
-  <CC_Match_Leaves_3>{OURS} said goodbye at the gate and went with {THEIRS} toward {TOWN}. The colony has one less of its own, and {PEOPLE} one more.</CC_Match_Leaves_3>
+  <CC_Match_Leaves_3>{OURS} said goodbye at the gate and went with {THEIRS} toward {TOWN}, to live among {PEOPLE}.</CC_Match_Leaves_3>
   <CC_Match_Leaves_4>With a last word at the gate, {OURS} left with {THEIRS} for {TOWN}. The wedding will be there, by the ways of {PEOPLE}.</CC_Match_Leaves_4>
 
   <!-- The wedding -->
-  <CC_Match_Wed_3>The wedding is done: {OURS} and {THEIRS} are married, and the guests who came from {TOWN} saw it. {PEOPLE} and the colony are bound now.</CC_Match_Wed_3>
+  <CC_Match_Wed_3>The wedding is done: {OURS} and {THEIRS} are married, and the guests who came from {TOWN} saw it. {PEOPLE} and the colony are allies by marriage now.</CC_Match_Wed_3>
   <CC_Match_Wed_4>{OURS} and {THEIRS} said their vows here at the colony, with guests from {TOWN} looking on. It is {WORD} now between {PEOPLE} and the colony.</CC_Match_Wed_4>
-  <CC_Match_WedQuiet_2>{OURS} and {THEIRS} said their vows here at the colony, with none of the guests from {TOWN} to see it. {PEOPLE} are bound to the colony all the same.</CC_Match_WedQuiet_2>
+  <CC_Match_WedQuiet_2>{OURS} and {THEIRS} said their vows here at the colony, with none of the guests from {TOWN} to see it. {PEOPLE} are allies of the colony by marriage all the same.</CC_Match_WedQuiet_2>
   <CC_Match_WedQuiet_3>A quiet wedding at the colony: {OURS} and {THEIRS} are married. {PEOPLE} would have held it by {RITE}, and it is {WORD} all the same.</CC_Match_WedQuiet_3>
-  <CC_Match_WedAway_4>A letter from {TOWN} with the news the colony was waiting for: {OURS} and {THEIRS} are married, by {RITE}. {PEOPLE} and the colony are bound now.</CC_Match_WedAway_4>
+  <CC_Match_WedAway_4>A letter from {TOWN} with the news the colony was waiting for: {OURS} and {THEIRS} are married, by {RITE}. {PEOPLE} and the colony are allies by marriage now.</CC_Match_WedAway_4>
 
   <!-- While it holds, and how it ends -->
   <CC_Match_KinGift_4>A season's gift from the town {THEIRS} came from: {GIFT}, set down at the gate by a courier of {PEOPLE}.</CC_Match_KinGift_4>
   <CC_Match_KinGift_5>{GIFT} came from {TOWN} this season, from the town {THEIRS} left behind, carried by a courier of {PEOPLE}.</CC_Match_KinGift_5>
   <CC_Match_KinGift_Away_3>{TOWN} hasn't forgotten the colony since {OURS} went there: {GIFT} came this season, with word from {OURS} and {THEIRS}, by a courier of {PEOPLE}.</CC_Match_KinGift_Away_3>
   <CC_Match_KinGift_Away_4>A courier of {PEOPLE} set down {GIFT} at the gate, the season's gift from {TOWN}, where {OURS} and {THEIRS} live.</CC_Match_KinGift_Away_4>
-  <CC_Match_End_Death_3>The alliance with {PEOPLE} ends with {DEAD}. It was a bond made through one marriage, and nothing carries it on.</CC_Match_End_Death_3>
+  <CC_Match_End_Death_3>{DEAD} has died, and the alliance with {PEOPLE} ends. It rested on that one marriage, and nothing else keeps it going.</CC_Match_End_Death_3>
   <CC_Match_End_Home_2>{THEIRS} has left the colony and gone back to {PEOPLE}. The marriage alliance ends with it, and neither side holds a grudge.</CC_Match_End_Home_2>
   <CC_Match_End_Home_3>{THEIRS} is home among {PEOPLE} again, and the alliance that came with the marriage is over.</CC_Match_End_Home_3>
   <CC_Match_End_Parted_3>The marriage between {OURS} and {THEIRS} is over, and the alliance with it. {PEOPLE} will think less of the colony for a while.</CC_Match_End_Parted_3>
-  <CC_Match_Wronged_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, its pact too, and {HEAD} speaks for the grudge their people hold.</CC_Match_Wronged_3>
-  <CC_Match_WrongedNoPact_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is over, and {PEOPLE} hold a grudge for it that {HEAD} will not let be forgotten.</CC_Match_WrongedNoPact_2>
-  <CC_Match_WrongedNoPact_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, and {HEAD} speaks for the grudge their people hold.</CC_Match_WrongedNoPact_3>
+  <CC_Match_Wronged_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, its pact too, and {HEAD} has made it known that their people hold a grudge.</CC_Match_Wronged_3>
+  <CC_Match_WrongedNoPact_2>{PEOPLE} have heard that {NAME}, of the marriage between them and the colony, was {WRONG}. The alliance is over, and {PEOPLE} hold a grudge for it that {HEAD} will not let anyone forget.</CC_Match_WrongedNoPact_2>
+  <CC_Match_WrongedNoPact_3>{PEOPLE} gave the colony one of their own, and {NAME} was {WRONG}. The marriage alliance is broken, and {HEAD} has made it known that their people hold a grudge.</CC_Match_WrongedNoPact_3>
 
   <!-- In-laws who write when a raiders' camp is set against the colony (Diplomacy/MatchWarnings.cs: RaidersCamps.Found
        with the suffix _Kin): {TOWN} their town, {DOING} their people, {WHERE} where the camp is, {PEOPLE} the raiders,
        {KIND} the camp, {COLONY} the home. -->
-  <CC_RaidCamp_Found_Text_Kin>Word has come from {TOWN}, bound to the colony by marriage, of {DOING}: their people on the road have seen the fires of a camp {WHERE}. {PEOPLE} have made a {KIND} there, near enough to strike at {COLONY}, and the town wanted the colony to hear it from them first.</CC_RaidCamp_Found_Text_Kin>
+  <CC_RaidCamp_Found_Text_Kin>A letter has come from {TOWN} of {DOING}, the town the colony is tied to by marriage. Their people on the road have seen the fires of a camp {WHERE}. {PEOPLE} have made a {KIND} there, near enough to attack {COLONY}, and the town wanted the colony to hear it from them first.</CC_RaidCamp_Found_Text_Kin>
   <CC_RaidCamp_Found_Line_Kin>{TOWN}, bound to the colony by marriage, warned of a {KIND} of {PEOPLE} {WHERE}.</CC_RaidCamp_Found_Line_Kin>
 
 </LanguageData>

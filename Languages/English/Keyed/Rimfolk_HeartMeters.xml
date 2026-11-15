@@ -15,7 +15,7 @@
   <!-- Hovering a tick, the weight's mark, the meter. -->
   <CC_Meter_TickTip>From {AT}, {BAND}: {EFFECTS}.</CC_Meter_TickTip>
   <CC_Meter_TickTipPlain>From {AT}, {BAND}.</CC_Meter_TickTipPlain>
-  <CC_Meter_TickEpisode>From {AT}, someone at the end of their rope may need a day to themselves: they keep to their room for half a day or so, then come back lighter.</CC_Meter_TickEpisode>
+  <CC_Meter_TickEpisode>From {AT}, someone at the end of their rope may need a day to themselves: they keep to their room for half a day or so, then come back feeling better.</CC_Meter_TickEpisode>
   <CC_Meter_FloorNote>The mark under the bar is the weight; the shaded part of the bar is what it holds.</CC_Meter_FloorNote>
   <CC_Meter_EasesBy>What eases it: sleep in a warm bed, free time, good meals and good company.</CC_Meter_EasesBy>
 
