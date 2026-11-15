@@ -164,6 +164,9 @@ namespace ColonyCouncil
             return job;
         }
 
+        /// <summary>Carrying a rider (Giddy-Up's mounted job): never taken off for a moment of its own.</summary>
+        internal static bool Ridden(Pawn a) => GiddyUpMounts.CarryingRider(a);
+
         /// <summary>
         /// Up for a moment: calm, not roped, in no group, and awake and idle; or, with <paramref name="lyingToo"/>, lying down
         /// of its own accord (a pet gets up from its basket to go to its person's bed).
@@ -257,7 +260,7 @@ namespace ColonyCouncil
         /// </summary>
         internal static bool Greet(Pawn a, Pawn p, Action arrived = null, bool walk = false, string note = "CC_AnimalDay_Greet")
         {
-            if (!Together.Able(p) || !MoreHabits.Calm(a) || a.GetLord() != null || (a.roping?.IsRoped ?? false) || !a.Awake()) return false;
+            if (!Together.Able(p) || !MoreHabits.Calm(a) || a.GetLord() != null || (a.roping?.IsRoped ?? false) || !a.Awake() || Ridden(a)) return false;
             if (!a.Position.InHorDistOf(p.Position, 70f) || !a.CanReach(p, PathEndMode.Touch, Danger.Some)) return false;
             var job = RunToJob(AnimalDaysDefOf.Rimfolk_AnimalGreet, p, walk ? LocomotionUrgency.Walk : LocomotionUrgency.Jog, walk ? AnimalDaysMath.SideTicks / 2 : AnimalDaysMath.GreetTicks);
             if (!StartThen(a, job, arrived)) return false;
@@ -515,7 +518,7 @@ namespace ColonyCouncil
             if (keeper == null || !Together.Able(keeper) || !Together.FreeTime(keeper) || keeper.GetLord() != null) return;
             if (!Rand.Chance(Chance(AnimalDay.Rounds) * (AnimalFacts.IsHerdmaster(keeper) ? 1.5f : 1f))) return;
             var round = map.mapPawns.SpawnedColonyAnimals
-                .Where(a => MoreHabits.Calm(a) && a.GetLord() == null && !(a.roping?.IsRoped ?? false) && a.Position.InHorDistOf(keeper.Position, 60f)
+                .Where(a => MoreHabits.Calm(a) && a.GetLord() == null && !(a.roping?.IsRoped ?? false) && !Ridden(a) && a.Position.InHorDistOf(keeper.Position, 60f)
                             && keeper.CanReach(a, PathEndMode.Touch, Danger.None))
                 .ToList();
             if (round.Count < 2 || !AnimalTempers.Ready("day:rounds|" + map.uniqueID, AnimalDaysMath.Days(AnimalDay.Rounds) * 0.5f)) return;
@@ -608,7 +611,8 @@ namespace ColonyCouncil
         private static void Huddle(Map map)
         {
             if (!AnimalDaysMath.Huddles(map.mapTemperature.OutdoorTemp)) return;
-            var herd = AnimalFacts.Herd(map).Where(a => MoreHabits.Calm(a) && a.GetLord() == null && !(a.roping?.IsRoped ?? false) && !a.Position.Roofed(map) && a.CurrentBed() == null).ToList();
+            var herd = AnimalFacts.Herd(map).Where(a => MoreHabits.Calm(a) && a.GetLord() == null && !(a.roping?.IsRoped ?? false) && !a.Position.Roofed(map) && a.CurrentBed() == null
+                                                        && !Ridden(a)).ToList();
             int night = (Now + GenDate.TicksPerDay / 4) / GenDate.TicksPerDay;
             foreach (var g in herd.GroupBy(a => a.def).Where(g => g.Count() >= AnimalDaysMath.HerdMin))
             {
@@ -741,7 +745,7 @@ namespace ColonyCouncil
                     mourners.Remove(kv.Key);
                     continue;
                 }
-                if (Rate <= 0f || !MoreHabits.Calm(a) || a.GetLord() != null || (a.roping?.IsRoped ?? false) || !a.Awake()) continue;
+                if (Rate <= 0f || !MoreHabits.Calm(a) || a.GetLord() != null || (a.roping?.IsRoped ?? false) || !a.Awake() || Ridden(a)) continue;
                 if (!AnimalTempers.CellNear(a, at.Position, 1, out var cell)) continue;
                 var job = AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalMourn, cell, at, AnimalDaysMath.MournTicks, dead);
                 job.locomotionUrgency = LocomotionUrgency.Jog;

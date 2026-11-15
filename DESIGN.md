@@ -1442,7 +1442,7 @@ the old friend slowing down of a young animal. There were no children, so a chil
 
   Each is noted on the animal's card ("lately") and said in one plain sentence (`Rimfolk_Pool_AnimalDays`, tagged by
   moment, temperament, family, body), through `Speech.Say` at the shared once-a-day rate. One of each a map an hour at
-  most; nothing in danger but the alarm.
+  most; nothing in danger but the alarm; never a mount carrying its rider (Giddy-Up's mounted job, `AnimalDays.Ridden`).
 - **Said as it is seen** (`AnimalArrivals`, `Animals/AnimalDayJobs.cs`): what is said about a moment waits for the animal
   to get there, so the words and the sight come together: `AnimalDays.StartThen` sets what is said for the job's id before
   the job starts (one already there arrives at once), and `JobDriver_AnimalLinger` (as it starts to stay),

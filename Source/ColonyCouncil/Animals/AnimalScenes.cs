@@ -150,7 +150,7 @@ namespace ColonyCouncil
             };
         }
 
-        private static bool Up(Pawn x) => MoreHabits.Calm(x) && x.GetLord() == null && !(x.roping?.IsRoped ?? false) && x.Awake();
+        private static bool Up(Pawn x) => MoreHabits.Calm(x) && x.GetLord() == null && !(x.roping?.IsRoped ?? false) && x.Awake() && !AnimalDays.Ridden(x);
 
         /// <summary>Plays the scene for <paramref name="a"/> and <paramref name="x"/> now, or waits for its moment; tells it once it is seen.</summary>
         internal static void Play(AnimalScene scene, Pawn a, Pawn x, Action tell)
@@ -199,7 +199,7 @@ namespace ColonyCouncil
                     return AnimalDays.Greet(x, a, tell, true, "CC_AnimalScene_SlowGreet");
                 case AnimalScene.FootOfBed:
                     // Its night: A asleep in their own bed, at bedtime; told when they wake.
-                    if (!AnimalDaysMath.BedHour(GenLocalDate.HourOfDay(map)) || a.Awake() || !MoreHabits.Calm(x) || x.GetLord() != null) return false;
+                    if (!AnimalDaysMath.BedHour(GenLocalDate.HourOfDay(map)) || a.Awake() || !MoreHabits.Calm(x) || x.GetLord() != null || AnimalDays.Ridden(x)) return false;
                     return AnimalDays.SleepAtFoot(x, a);
                 case AnimalScene.Plate:
                     return AnimalDays.Eating(a) && Up(x) && Snatch(x, a, tell);
