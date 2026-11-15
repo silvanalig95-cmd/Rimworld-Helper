@@ -107,11 +107,14 @@
   <CC_Play_Begin_Spot>{PAWN_nameDef} goes to spend a while {WHERE}.</CC_Play_Begin_Spot>
   <CC_Play_Report_Fields>out at the edge of the fields.</CC_Play_Report_Fields>
   <CC_Play_Report_Gate>standing at the gate.</CC_Play_Report_Gate>
+  <CC_Play_Report_Edge>out at the edge of the colony's land.</CC_Play_Report_Edge>
   <CC_Play_Report_Water>down by the water.</CC_Play_Report_Water>
   <CC_Play_Report_Alone>spending a while alone.</CC_Play_Report_Alone>
   <CC_Play_Where_Gate>at the gate</CC_Play_Where_Gate>
   <CC_Play_Where_Place>by the {0}</CC_Play_Where_Place>
   <CC_Play_Where_Walk>out past the buildings</CC_Play_Where_Walk>
+  <CC_Play_Where_Edge>out at the edge of the colony's land, where the road comes in</CC_Play_Where_Edge>
+  <CC_Play_Why_VisitorGone>The visitor is not on the map now.</CC_Play_Why_VisitorGone>
   <CC_Play_Where_Beside>at {OTHER_nameDef}'s side</CC_Play_Where_Beside>
   <CC_Play_To_Gate>the gate</CC_Play_To_Gate>
   <CC_Play_To_Camp>the camp's fire</CC_Play_To_Camp>

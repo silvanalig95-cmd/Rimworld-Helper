@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ColonyCouncil
 {
@@ -8,10 +9,13 @@ namespace ColonyCouncil
     /// who spawn from events, visitors, caravans, camps etc. just dress appropriately for the weather, so that they don't
     /// have to leave because of it. of course if it's super cold or any other extreme conditions that's fair"; then "for
     /// raiders it would also make sense if they come dressed for the weather, assuming their faction actually fits the
-    /// clothing"). The rules of Visitors/WeatherDress.cs: who is dressed as they arrive, how far short of comfortable the
-    /// stay's weather may leave them before they put something on, when clothing of their age can't keep them safe (the
-    /// extremes, where the game's own leaving stays), what may come off and what may go on, what it may cost, the pick a
-    /// layer at a time, and why a group still goes for the weather. Pure (no game types), so Tools/Tests can check it.
+    /// clothing"; on 15 November 2026 "i'd want not everyone to just wear only a parka against cold, but the clothing should
+    /// always be varied" and "people should just be dressed for the weather as much as possible, counts for all events").
+    /// The rules of Visitors/WeatherDress.cs: who is dressed as they arrive, how far short of comfortable the stay's weather
+    /// may leave them before they put something on, what happens past what clothing of their age keeps out (they come in
+    /// their warmest, and the game's own leaving stays), what may come off and what may go on, what it may cost, the pick a
+    /// layer at a time and the draw among the outfits that keep them warm enough, and why a group still goes for the
+    /// weather. Pure (no game types), so Tools/Tests can check it.
     /// </summary>
     public static class WeatherDressMath
     {
@@ -149,11 +153,15 @@ namespace ColonyCouncil
             /// <summary>What they put on keeps them safe through it (and as near comfortable as their clothes go).</summary>
             Dressed,
             /// <summary>
-            /// Past what any clothing of their age keeps out: the extreme cold or heat. They are left as they came, and the
-            /// game's own leaving (and Rimfolk's, on the same line) stays.
+            /// Past what any clothing of their age keeps out: the extreme cold or heat. They still come in their warmest (the
+            /// player, 15 November 2026: "people should just be dressed for the weather as much as possible"), and the game's
+            /// own leaving (and Rimfolk's, on the same line) stays: when it gets to them, they go.
             /// </summary>
             PastTheirClothes
         }
+
+        /// <summary>Whether what the pick chose is put on: always, unless they came dressed well enough (past their clothes, their warmest still goes on).</summary>
+        public static bool PutOn(Dressing d) => d != Dressing.AsTheyAre;
 
         /// <summary>
         /// The verdict, from how comfortable they are now (<paramref name="nowMin"/>, <paramref name="nowMax"/>) and dressed
@@ -237,20 +245,26 @@ namespace ColonyCouncil
 
         // ---------------- The pick ----------------
 
-        /// <summary>One piece of apparel as the pick sees it: what it keeps out (degrees), its worth, how well it fits them, kept on.</summary>
+        /// <summary>
+        /// One piece of apparel as the pick sees it: what it keeps out (degrees), its worth, how well it fits them, kept on,
+        /// and what kind of piece it is (<see cref="kind"/>: the same for a parka in any material, so a people's own liking
+        /// for it holds whatever it's made of).
+        /// </summary>
         public sealed class Piece
         {
             public readonly float cold, heat, worth;
             public readonly int fit;
             public readonly bool kept;
+            public readonly int kind;
 
-            public Piece(float cold, float heat, float worth, int fit = 0, bool kept = false)
+            public Piece(float cold, float heat, float worth, int fit = 0, bool kept = false, int kind = 0)
             {
                 this.cold = cold;
                 this.heat = heat;
                 this.worth = worth;
                 this.fit = fit;
                 this.kept = kept;
+                this.kind = kind;
             }
         }
 
@@ -272,7 +286,107 @@ namespace ColonyCouncil
         /// <paramref name="clashOffered"/>(offered, offered): the two can't be worn together.
         /// </summary>
         public static Choice Choose(IList<Piece> worn, IList<Piece> offered, Func<int, int, bool> clashWorn, Func<int, int, bool> clashOffered,
-            float bareMin, float bareMax, float low, float high, float room)
+            float bareMin, float bareMax, float low, float high, float room) =>
+            Layer(worn, offered, clashWorn, clashOffered, bareMin, bareMax, low, high, room, -1, 0, 0);
+
+        // ---------------- Varied clothes ----------------
+
+        /// <summary>How many drawn outfits are tried for each person before the one they come in is chosen.</summary>
+        public const int Draws = 12;
+
+        /// <summary>
+        /// The outfit someone comes in, drawn among those that keep them warm enough (or cool enough) for the stay, so a
+        /// group comes in mixed clothes (the player, 15 November 2026: "not everyone to just wear only a parka against cold,
+        /// but the clothing should always be varied. of course there should be parkas, but also other clothing combinations
+        /// to counter the cold"). The plain pick (<see cref="Choose(IList{Piece}, IList{Piece}, Func{int, int, bool}, Func{int, int, bool}, float, float, float, float, float)"/>)
+        /// is one of them; <see cref="Draws"/> more are built a layer at a time with each layer drawn by what it brings
+        /// (never past what they still need), how well it fits them (their kind's tags, their faith's style), how much their
+        /// people like that kind of piece (<paramref name="style"/>: the same for all of a people) and the person's own
+        /// liking (<paramref name="seed"/>), so a parka, a jacket over a fleece shirt and a vest, a cape over a hoodie with a
+        /// warm hat, a pelt coat and a scarf all come up. Only outfits warm enough are kept, each once; then one is chosen,
+        /// those of their kind and their people's liking likelier. Where no outfit is warm enough (the extreme cold or heat,
+        /// or nothing more within what it may cost), the plain pick: their warmest. The same person gets the same outfit.
+        /// </summary>
+        public static Choice Choose(IList<Piece> worn, IList<Piece> offered, Func<int, int, bool> clashWorn, Func<int, int, bool> clashOffered,
+            float bareMin, float bareMax, float low, float high, float room, int seed, int style)
+        {
+            var plain = Choose(worn, offered, clashWorn, clashOffered, bareMin, bareMax, low, high, room);
+            if (plain.on.Count == 0 || Short(plain.comfyMin, plain.comfyMax, low, high) > Enough) return plain;
+            var outfits = new List<Choice> { plain };
+            for (int d = 0; d < Draws; d++)
+            {
+                var c = Layer(worn, offered, clashWorn, clashOffered, bareMin, bareMax, low, high, room, d, seed, style);
+                if (c.on.Count == 0 || Short(c.comfyMin, c.comfyMax, low, high) > Enough || outfits.Any(o => Same(o, c))) continue;
+                outfits.Add(c);
+            }
+            if (outfits.Count == 1) return plain;
+            float total = 0f;
+            var weights = new float[outfits.Count];
+            for (int i = 0; i < outfits.Count; i++)
+            {
+                weights[i] = Liked(outfits[i], offered, style);
+                total += weights[i];
+            }
+            float r = Unit(seed, 977, style) * total;
+            for (int i = 0; i < outfits.Count; i++)
+            {
+                r -= weights[i];
+                if (r < 0f) return outfits[i];
+            }
+            return outfits[outfits.Count - 1];
+        }
+
+        /// <summary>How likely an outfit is chosen: by how well its pieces fit them, and how much their people like each kind of piece in it.</summary>
+        public static float Liked(Choice c, IList<Piece> offered, int style)
+        {
+            if (c == null || c.on.Count == 0) return 1f;
+            float fit = 0f, like = 0f;
+            foreach (int o in c.on)
+            {
+                fit += offered[o].fit;
+                like += Liking(style, offered[o].kind);
+            }
+            return (1f + FitShare * fit / c.on.Count) * (like / c.on.Count);
+        }
+
+        /// <summary>
+        /// In a drawn layer, how much a piece's weight is its own (the rest is how much of what they still need it brings): so a
+        /// vest or a scarf is drawn often enough for a jacket over a shirt and a vest, not only the one coat that does it all.
+        /// </summary>
+        public const float BringsShare = 0.3f;
+
+        /// <summary>How much each point of fit (their kind's tags 2, their faith's style 1) adds to a piece's or an outfit's weight.</summary>
+        public const float FitShare = 0.5f;
+
+        /// <summary>How much a people (<paramref name="style"/>) likes a kind of piece: from half to one and a half, the same for every one of them.</summary>
+        public static float Liking(int style, int kind) => 0.5f + Unit(style, kind, 31);
+
+        /// <summary>Two outfits of the same pieces.</summary>
+        public static bool Same(Choice a, Choice b) => a.on.Count == b.on.Count && a.on.All(b.on.Contains);
+
+        /// <summary>A number from 0 to 1 that is always the same for the same three (a hash, no game randomness).</summary>
+        public static float Unit(int a, int b, int c)
+        {
+            unchecked
+            {
+                uint h = (uint)a * 0x9E3779B1u ^ ((uint)b + 0x7F4A7C15u) * 0x85EBCA77u ^ ((uint)c + 0x165667B1u) * 0xC2B2AE3Du;
+                h ^= h >> 15;
+                h *= 0x2C1B3C6Du;
+                h ^= h >> 12;
+                h *= 0x297A2D39u;
+                h ^= h >> 15;
+                return (h & 0xFFFFFF) / (float)0x1000000;
+            }
+        }
+
+        /// <summary>
+        /// The pick, a layer at a time. With <paramref name="draw"/> below zero, the plain pick (the rules of
+        /// <see cref="Choose(IList{Piece}, IList{Piece}, Func{int, int, bool}, Func{int, int, bool}, float, float, float, float, float)"/>);
+        /// else each layer is drawn among those that would bring them nearer comfortable, weighed by what it brings toward
+        /// what they still need, their fit, their people's liking and the draw's own (<see cref="Choose(IList{Piece}, IList{Piece}, Func{int, int, bool}, Func{int, int, bool}, float, float, float, float, float, int, int)"/>).
+        /// </summary>
+        private static Choice Layer(IList<Piece> worn, IList<Piece> offered, Func<int, int, bool> clashWorn, Func<int, int, bool> clashOffered,
+            float bareMin, float bareMax, float low, float high, float room, int draw, int seed, int style)
         {
             var c = new Choice();
             var wearing = new List<int>();
@@ -286,6 +400,8 @@ namespace ColonyCouncil
             int n = offered?.Count ?? 0;
             var gone = new List<int>();
             var replaced = new List<int>();
+            bool drawn = draw >= 0;
+            var drawable = drawn ? new List<(int o, float w, float cost)>() : null;
             for (int step = 0; step < MaxLayers * 2 && c.on.Count < MaxLayers; step++)
             {
                 float min = bareMin - cold, max = bareMax + heat;
@@ -294,6 +410,7 @@ namespace ColonyCouncil
                 int best = -1;
                 float bestShort = 0f, bestCost = 0f;
                 bool bestCovers = false;
+                drawable?.Clear();
                 for (int o = 0; o < n; o++)
                 {
                     if (c.on.Contains(o)) continue;
@@ -327,6 +444,14 @@ namespace ColonyCouncil
                     float s = Short(min + offCold - p.cold, max - offHeat + p.heat, low, high);
                     // A layer of their own put on gives way only to one clearly better, so their kind's coat isn't swapped for a stranger's barely warmer.
                     if (s > shortNow - (ownGoes ? Tie : MinGain)) continue;
+                    if (drawn)
+                    {
+                        // What it brings toward what they still need, how it fits them, their people's liking, this draw's own.
+                        float brings = Math.Min(shortNow - s, shortNow - Enough) / (shortNow - Enough);
+                        float w = (BringsShare + (1f - BringsShare) * brings) * (1f + FitShare * p.fit) * Liking(style, p.kind) * (0.25f + 1.5f * Unit(seed, draw * 4099 + o, step));
+                        if (w > 0f) drawable.Add((o, w, cost));
+                        continue;
+                    }
                     bool covers = s <= Enough;
                     bool better;
                     if (best < 0) better = true;
@@ -340,6 +465,22 @@ namespace ColonyCouncil
                     bestShort = s;
                     bestCost = cost;
                     bestCovers = covers;
+                }
+                if (drawn && drawable.Count > 0)
+                {
+                    float total = 0f;
+                    foreach (var x in drawable) total += x.w;
+                    float r = Unit(seed, draw * 4099 + 4001, step) * total;
+                    var pick = drawable[drawable.Count - 1];
+                    foreach (var x in drawable)
+                    {
+                        r -= x.w;
+                        if (r >= 0f) continue;
+                        pick = x;
+                        break;
+                    }
+                    best = pick.o;
+                    bestCost = pick.cost;
                 }
                 if (best < 0) break;
                 gone.Clear();
@@ -430,11 +571,15 @@ namespace ColonyCouncil
 
         // ---------------- Why they still go ----------------
 
-        /// <summary>Rimfolk's own visitors go on once the cold or heat starts to hurt them this much (early, before the game's own).</summary>
-        public const float Suffering = 0.04f;
-
         /// <summary>The game's own visitors, traders and guests leave past this much hypothermia or heatstroke (Trigger_PawnExperiencingDangerousTemperatures).</summary>
         public const float GameLeaves = 0.15f;
+
+        /// <summary>
+        /// Rimfolk's own visitors and couriers go on once the cold or heat has hurt them this much: the game's own line, so
+        /// they come and are seen, and go only when the weather really gets to them, as the game's own visitors do (it was
+        /// 0.04 until 15 November 2026, which sent a group dressed in its warmest home within the hour).
+        /// </summary>
+        public const float Suffering = GameLeaves;
 
         public enum Why
         {
@@ -462,6 +607,9 @@ namespace ColonyCouncil
 
         /// <summary>The message key for Rimfolk's own visitors gone for the weather: the extreme cold, the extreme heat, or hunger.</summary>
         public static string VisitKey(Why why) => "CC_Visit_Weather_" + (why == Why.Heat ? "heat" : why == Why.Hunger ? "hunger" : "cold");
+
+        /// <summary>The message key for a courier gone home early for the weather: the cold, unless it was the heat.</summary>
+        public static string CourierKey(Why why) => why == Why.Heat ? "CC_Courier_End_Heat" : "CC_Courier_End_Cold";
 
         /// <summary>The message key for the game's own groups leaving for the temperature: the cold if it has taken hold of them more, else the heat.</summary>
         public static string GameKey(float hypothermia, float heatstroke) => hypothermia >= heatstroke ? "CC_WeatherLeave_Cold" : "CC_WeatherLeave_Heat";

@@ -73,7 +73,12 @@ namespace ColonyCouncil
         /// <summary>At the gate: the edge of the colony's home ground, on the side nearest the map's edge.</summary>
         Gate,
         /// <summary>The thing the event named (a grave, a cache, a fallen star), where it lies.</summary>
-        Place
+        Place,
+        /// <summary>
+        /// Out at the edge of the colony's land, where the road (or the way in visitors take) comes in: a ride out to someone
+        /// who has gone on, or who never reached the gate (a world event's rider).
+        /// </summary>
+        Edge
     }
 
     /// <summary>One of the people of a dilemma or an event.</summary>
@@ -84,7 +89,9 @@ namespace ColonyCouncil
         B,
         X,
         /// <summary>The dilemma's animal (a pet).</summary>
-        Pet
+        Pet,
+        /// <summary>The first of an event's group who is on the map (hunters a world event brought onto the colony's land).</summary>
+        Group
     }
 
     /// <summary>What a work party does: the game's own work of each kind, on what the colony really has to do.</summary>
@@ -859,6 +866,15 @@ namespace ColonyCouncil
                 case PlayWho.B: return ctx.b;
                 case PlayWho.X: return ctx.stranger;
                 case PlayWho.Pet: return ctx.pet;
+                case PlayWho.Group:
+                {
+                    var group = (ctx as HappeningContext)?.group;
+                    if (group == null) return null;
+                    foreach (var g in group)
+                        if (g != null && !g.Dead && g.Spawned && (ctx.map == null || g.Map == ctx.map))
+                            return g;
+                    return null;
+                }
                 default: return null;
             }
         }

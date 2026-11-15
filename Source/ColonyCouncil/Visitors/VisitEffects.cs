@@ -105,6 +105,18 @@ namespace ColonyCouncil
         /// <summary>The first of them becomes the event's {X} (when it has none).</summary>
         public bool stranger = true;
 
+        /// <summary>
+        /// It would bring them now, if the map lets them come: the setting on, the colony's era and the event's flags, its
+        /// people at peace, a home to come to, and no chance to roll. A world event's beat with one waits until they can
+        /// come, and its letter goes out only once they have (WorldSituations.Run).
+        /// </summary>
+        public bool Brings(DilemmaContext ctx)
+        {
+            if (chance < 1f || !Could(ctx)) return false;
+            var map = SituationEffectUtil.MapOf(ctx);
+            return map != null && map.IsPlayerHome && Visitors.Usable(Visitors.PeopleOf(ctx, enemy));
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (!Gate(ctx)) return;
@@ -200,6 +212,11 @@ namespace ColonyCouncil
         public string work;
         /// <summary>Mourners carrying their dead: one of them bears the body in their arms all the way, named as the event names it ({NAME}) (Borne).</summary>
         public bool bearDead;
+        /// <summary>
+        /// Once on the map they are the letter's group, so an answer can walk out to them (DilemmaEffect_Visit whom Group:
+        /// "walks out to the hunters"); until they've come, and after they've gone, that answer can't be given.
+        /// </summary>
+        public bool group;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -222,6 +239,7 @@ namespace ColonyCouncil
                 t.work = work;
                 t.bearDead = bearDead;
                 if (bearDead) t.deadName = (ctx as SituationContext)?.name;
+                if (group) t.groupFor = ctx as HappeningContext;
                 tracker.Add(t);
             }
             catch (Exception e)

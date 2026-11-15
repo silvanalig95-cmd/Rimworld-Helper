@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The rider at the gate, and winter clothes for everyone
+
+*15 November 2026, version 0.242.0*
+
+- The great caravan's rider now comes to the gate in hard frost, and telling him the hill road plays out on the map.
+- If the rider has already gone, the road is written down and taken out to the edge of the colony's land, and answers whose visitor has left can't be given.
+- The caravan's card shows what the answer does later, and every world event's ending letter says what it changed.
+- Visitors, traders and raiders come in varied winter clothes by their people's taste, and in their warmest when nothing is warm enough.
+- Rimfolk's own visitors and couriers are no longer kept away by cold or heat, and leave only when it really gets to them.
+
 ## A day off spent at leisure
 
 *15 November 2026, version 0.241.2*

@@ -168,6 +168,14 @@ namespace ColonyCouncil
                         where = "CC_Play_Where_Walk".Translate();
                         return true;
                     }
+                    case PlaySpot.Edge:
+                    {
+                        var c = EdgeCell(map, organizer);
+                        if (!c.IsValid) break;
+                        spot = c;
+                        where = "CC_Play_Where_Edge".Translate();
+                        return true;
+                    }
                 }
             }
             return false;
@@ -544,6 +552,23 @@ namespace ColonyCouncil
             if (CellFinder.TryFindRandomCellNear(center, map, 30,
                     x => !x.Roofed(map) && x.DistanceTo(center) >= 14f && !(x.GetTerrain(map)?.IsWater ?? false) && Ok(x, map, pawn), out var cell))
                 return cell;
+            return IntVec3.Invalid;
+        }
+
+        /// <summary>
+        /// Out at the edge of the colony's land: a few steps in from where the road comes onto the map (the way in visitors
+        /// take, a road first), open ground that can be reached safely, whatever the weather.
+        /// </summary>
+        public static IntVec3 EdgeCell(Map map, Pawn pawn)
+        {
+            if (map == null) return IntVec3.Invalid;
+            var tp = TraverseParms.For(TraverseMode.PassDoors, Danger.Some, false);
+            var from = pawn != null && pawn.Spawned && pawn.Map == map ? pawn.Position : TemplatePlanner.ColonyCenter(map);
+            if (!RCellFinder.TryFindRandomPawnEntryCell(out var entry, map, CellFinder.EdgeRoadChance_Always, false,
+                    c => map.reachability.CanReach(from, c, PathEndMode.OnCell, tp))) return IntVec3.Invalid;
+            foreach (var c in GenRadial.RadialCellsAround(entry, 7f, true))
+                if (c.InBounds(map) && c.DistanceToEdge(map) >= 3 && !c.Roofed(map) && c.GetEdifice(map) == null && !(c.GetTerrain(map)?.IsWater ?? false) && Ok(c, map, pawn))
+                    return c;
             return IntVec3.Invalid;
         }
 

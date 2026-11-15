@@ -49,8 +49,8 @@ public static class OutcomeTests
         var option = Regex.Match(def, @"public class SituationOption\s*\{(.*?)\n    \}", RegexOptions.Singleline).Value;
         C(Regex.IsMatch(option, @"public List<string> outcomes;") && Regex.IsMatch(option, @"public List<string> riskOutcomes;"), "a situation's answer has outcomes and riskOutcomes lists");
         string resolve = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/World/WorldSituations.cs"));
-        C(resolve.Contains("DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, worker.Tags(s))"),
-            "a situation's answer is told the dilemmas' way, by the situation's own tags");
+        C(resolve.Contains("var tags = worker.Tags(s);") && resolve.Contains("DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, tags)"),
+            "a situation's answer is told the dilemmas' way, by the situation's own tags (and visitorGone when its visitor isn't on the map)");
         string choices = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs"));
         C(choices.Contains("OutcomeMath.Pool(") && choices.Contains("Flavor.PickFresh(lines, tags, more)"), "the variants are picked fresh, as the dilemmas' are");
 

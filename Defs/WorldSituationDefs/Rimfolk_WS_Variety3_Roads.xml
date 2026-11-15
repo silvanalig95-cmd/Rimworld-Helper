@@ -371,10 +371,14 @@
         <options>
           <li>
             <label>{A_nameDef} tells them the hill road</label>
-            <outcome>{A_nameDef} goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has it. The rider goes back to the train at a gallop.</outcome>
+            <outcome>[!visitorGone] {A_nameDef} goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has it. The rider goes back to the train at a gallop.</outcome>
+            <outcomes>
+              <li>[visitorGone] The rider had already gone, so {A_nameDef} writes the old hill road down and takes it out to the edge of the colony's land, where the train's road comes in, and waits there for its next rider.</li>
+            </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hill road told at the gate</label><who>A</who><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hill road told at the gate</label><who>A</who><to>Stranger</to><orTo><li>Edge</li></orTo><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Foretold"><ending>safe</ending><when>when {NAME} reaches {PLACE} by the hill road</when></li>
             </effects>
             <flags><li>warned</li></flags>
             <help>2</help>
@@ -382,7 +386,10 @@
           </li>
           <li>
             <label>The colony knows no other way</label>
-            <outcome>The rider is told the colony knows no other road, and goes back to the train to take its chances.</outcome>
+            <outcome>[!visitorGone] The rider is told the colony knows no other road, and goes back to the train to take its chances.</outcome>
+            <outcomes>
+              <li>[visitorGone] The rider had already gone back to the train, and the colony sends no word after him.</li>
+            </outcomes>
           </li>
         </options>
       </li>
@@ -396,7 +403,7 @@
           <li>{NAME} reaches {PLACE}</li>
         </titles>
         <texts>
-          <li>{NAME} came into {PLACE} by the old hill road while the bandits waited on the ridges for it, and {FACTION} have a season's goods in their markets. The caravan's master says the colony's road saved the train.</li>
+          <li>{NAME} came into {PLACE} by the old hill road while the bandits waited on the ridges for it, and {FACTION} have a season's goods in their markets. The caravan's master says the colony's road saved the train, and {FACTION} think better of the colony for it.</li>
         </texts>
         <chronicle>{NAME} reached {PLACE} safe by the road the colony told it.</chronicle>
         <effects>

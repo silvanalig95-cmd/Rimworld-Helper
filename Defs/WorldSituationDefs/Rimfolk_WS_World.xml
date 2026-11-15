@@ -105,7 +105,7 @@
       <li>
         <key>hunters</key>
         <effects>
-          <li Class="ColonyCouncil.VisitEffect_Come"><what>hunters</what><count>2~3</count><armed>true</armed><spot>Far</spot><stopHours>3</stopHours><hourFrom>6</hourFrom><hourTo>15</hourTo><work>hunt</work></li>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>hunters</what><count>2~3</count><armed>true</armed><spot>Far</spot><stopHours>3</stopHours><hourFrom>6</hourFrom><hourTo>15</hourTo><work>hunt</work><group>true</group></li>
         </effects>
         <day>8~13</day>
         <titles>
@@ -132,7 +132,7 @@
             <label>Send {A_nameDef} out to divide the hunting grounds with them</label>
             <outcome>{A_nameDef} walks out to the hunters from {PLACE} and spends the morning with them agreeing which woods are whose, drawing lines in the dirt with a stick. They part with the lines agreed and the beginning of a liking.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hunting grounds divided</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hunting grounds divided</label><to>Person</to><whom>Group</whom><duration>2~3</duration></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
             </effects>

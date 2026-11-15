@@ -1056,7 +1056,13 @@ public static class HeartFeltTests
         foreach (var (name, code) in new[] { ("HeartEffects", effects), ("HeartTimeOff", off), ("HeartAdvice", advice), ("HeartCountMath", count) })
             C(!code.Contains("MentalBreaker") && !code.Contains("Need_Mood") && !code.Contains("MentalBreakWorker") && !code.Contains("TryStartMentalState"),
                 name + ": nothing of the mood need, the breaker or the break picker");
-        C(Regex.Matches(off, @"\[HarmonyLib\.HarmonyPatch").Count == 1 && off.Contains("[HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]"), "one patch: the day off's button on a colonist");
+        C(Regex.Matches(off, @"\[HarmonyLib\.HarmonyPatch").Count == 2 && off.Contains("[HarmonyLib.HarmonyPatch(typeof(Pawn), nameof(Pawn.GetGizmos))]")
+          && off.Contains("[HarmonyLib.HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd))]"),
+            "two patches: the day off's button on a colonist, and recreation that runs its length on time off");
+        // The player, 15 November 2026: "they start a recreation and then immediatelly stop it again".
+        C(off.Contains("fullJoyAction != JoyTickFullJoyAction.EndJob") && off.Contains("fullJoyAction = JoyTickFullJoyAction.None")
+          && off.Contains("TimeAssignmentDefOf.Joy") && off.Contains("h.AnyOff"),
+            "on time off, in a recreation hour, full recreation only turns the game's 'end the job' into 'carry on'");
         C(!Regex.IsMatch(effects + advice, @"HarmonyPatch"), "no patch for the effects or the advice");
         C(!off.Contains("Sched.") && !advice.Contains("Sched.") && !effects.Contains("Sched."), "no new Sched slot");
 

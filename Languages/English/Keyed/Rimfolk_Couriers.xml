@@ -63,6 +63,8 @@
   <CC_Courier_End_Danger>{0} from {1} left at the first sign of danger.</CC_Courier_End_Danger>
   <CC_Courier_End_TimedOut>{0} from {1} couldn't finish and set off home.</CC_Courier_End_TimedOut>
   <CC_Courier_End_Other>{0} from {1} went home early.</CC_Courier_End_Other>
+  <CC_Courier_End_Cold>{0} from {1} went home early because the cold was getting to them.</CC_Courier_End_Cold>
+  <CC_Courier_End_Heat>{0} from {1} went home early because the heat was getting to them.</CC_Courier_End_Heat>
   <CC_Courier_End_In>What they still carried for the colony was set down before they went.</CC_Courier_End_In>
   <CC_Courier_End_Out>The rest of {0} went from the stores all the same.</CC_Courier_End_Out>
 

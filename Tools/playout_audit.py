@@ -482,6 +482,72 @@ def reason_kind(why):
     return "other: " + why
 
 
+def visits_visitor(li):
+    """An answer's visit that walks a colonist out to the event's visitor (X) or its group, not to one of the colony."""
+    if (li.get("Class") or "").replace("ColonyCouncil.", "") != "DilemmaEffect_Visit":
+        return None
+    to = text_of(li.find("to")) or "Person"
+    whom = text_of(li.find("whom")) or "B"
+    if to == "Stranger" or (to == "Person" and whom == "X"):
+        return "X"
+    if to == "Person" and whom == "Group":
+        return "Group"
+    return None
+
+
+def strangers():
+    """
+    Answers that walk a colonist out to the event's visitor never run without them (the great caravan's rider, 15 November
+    2026: the answer went out to a rider who never came). For world events, where the defs say who comes: a visit to X
+    needs a beat that brings X to the gate (VisitEffect_AtGate, X its first unless stranger is false, or the event's own
+    X at their head with withStranger), since the beat's letter waits until they are there (WorldSituations.Run); a visit
+    to the group needs the beat's VisitEffect_Come with group. Or the visit says where it goes instead (orTo). Rimfolk's
+    events bring their visitor in code, and every such answer greys out while the visitor isn't on the map
+    (DilemmaEffect_Visit.Unavailable). Returns the problems.
+    """
+    problems = []
+    world = events = 0
+    for path in sorted(glob.glob(os.path.join(ROOT, "Defs", "**", "*.xml"), recursive=True)):
+        try:
+            tree = ET.parse(path)
+        except ET.ParseError:
+            continue
+        rel = os.path.relpath(path, ROOT)
+        for d in tree.getroot():
+            defname = text_of(d.find("defName"))
+            if d.tag == "ColonyCouncil.WorldSituationDef":
+                for b in lis(d, "beats"):
+                    key = text_of(b.find("key"))
+                    effects = lis(b, "effects")
+                    cls = lambda li: (li.get("Class") or "").replace("ColonyCouncil.", "")
+                    brings_x = any(cls(li) == "VisitEffect_AtGate" and (text_of(li.find("stranger")) != "false" or text_of(li.find("withStranger")) == "true") for li in effects)
+                    brings_group = any(cls(li) == "VisitEffect_Come" and text_of(li.find("group")) == "true" for li in effects)
+                    for i, o in enumerate(lis(b, "options")):
+                        for li in lis(o, "effects") + lis(o, "riskEffects"):
+                            whom = visits_visitor(li)
+                            if whom is None:
+                                continue
+                            world += 1
+                            if li.find("orTo") is not None:
+                                continue
+                            if whom == "X" and not brings_x:
+                                problems.append("%s %s [%s/%d]: walks out to X, but the beat brings nobody to the gate as X" % (rel, defname, key, i))
+                            if whom == "Group" and not brings_group:
+                                problems.append("%s %s [%s/%d]: walks out to the group, but no VisitEffect_Come of the beat has group" % (rel, defname, key, i))
+            elif d.tag == "IncidentDef":
+                for ext in lis(d, "modExtensions"):
+                    if not (ext.get("Class") or "").endswith("HappeningExtension"):
+                        continue
+                    for o in lis(ext, "options"):
+                        for li in lis(o, "effects") + lis(o, "riskEffects"):
+                            if visits_visitor(li) is not None:
+                                events += 1
+    print("\nAnswers that walk out to the event's visitor: %d of world events (each where its beat brings them, or with a place to go instead), %d of Rimfolk's events (greyed out while the visitor isn't on the map)" % (world, events))
+    for p in problems:
+        print("  " + p)
+    return problems
+
+
 def main():
     args = sys.argv[1:]
     flt = None
@@ -499,6 +565,9 @@ def main():
     if "--skip" in args:
         list_skips(answers, flt, skips)
         stale(answers, skips)
+    # Always: no answer walks out to a visitor who isn't there.
+    if strangers():
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -259,7 +259,8 @@ namespace ColonyCouncil
                 else
                 {
                     string who = People(t, true, out _);
-                    string key = end == CourierEnd.Danger ? "CC_Courier_End_Danger" : end == CourierEnd.TimedOut ? "CC_Courier_End_TimedOut" : "CC_Courier_End_Other";
+                    string key = end == CourierEnd.Danger ? "CC_Courier_End_Danger" : end == CourierEnd.TimedOut ? "CC_Courier_End_TimedOut"
+                        : end == CourierEnd.Weather ? WeatherDressMath.CourierKey(Visitors.WeatherOf(t.people)) : "CC_Courier_End_Other";
                     text = key.Translate(who, faction).Resolve();
                     if (incoming) text += " " + "CC_Courier_End_In".Translate().Resolve();
                     if (outgoing) text += " " + "CC_Courier_End_Out".Translate(t.takeLabel ?? "").Resolve();

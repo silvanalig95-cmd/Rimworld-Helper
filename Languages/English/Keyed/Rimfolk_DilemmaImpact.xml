@@ -911,6 +911,10 @@
   <CC_Impact_Goodwill>{0}: {1} goodwill</CC_Impact_Goodwill>
   <CC_Impact_GoodwillBrief>{0} {1}</CC_Impact_GoodwillBrief>
   <CC_Impact_GoodwillNeighbors>The nearby peoples: {0} goodwill each</CC_Impact_GoodwillNeighbors>
+  <CC_Impact_Foretold_Goodwill>{0}: {1} goodwill with {2}</CC_Impact_Foretold_Goodwill>
+  <CC_Impact_Foretold_GoodwillBrief>{1} {0} later</CC_Impact_Foretold_GoodwillBrief>
+  <CC_Impact_Foretold_Fortune>{0}: {1} prosperity at {2}</CC_Impact_Foretold_Fortune>
+  <CC_Impact_Foretold_FortuneBrief>{1} prosperity {0} later</CC_Impact_Foretold_FortuneBrief>
   <CC_Impact_GoodwillHunters>Those at odds with them: {0} goodwill each</CC_Impact_GoodwillHunters>
   <CC_Impact_Tension>The camp's tension: {0}</CC_Impact_Tension>
   <CC_Impact_TensionBrief>camp tension {0}</CC_Impact_TensionBrief>
@@ -969,6 +973,7 @@
   <CC_Impact_Spot_Water>the water</CC_Impact_Spot_Water>
   <CC_Impact_Spot_Fields>the fields</CC_Impact_Spot_Fields>
   <CC_Impact_Spot_Gate>the gate</CC_Impact_Spot_Gate>
+  <CC_Impact_Spot_Edge>the edge of the colony's land</CC_Impact_Spot_Edge>
   <CC_Impact_Spot_Place>the place itself</CC_Impact_Spot_Place>
 
 </LanguageData>

@@ -416,19 +416,27 @@ namespace ColonyCouncil
                     can = false;
                     retry = true;
                 }
+                // Whoever its letter says is at the gate must be able to come (no danger, room for another group): until
+                // then it waits, so the letter never speaks of a rider who isn't there (the great caravan's, 15 November 2026).
+                if (can && AtGate(beat, s.ctx).Count > 0 && !HappeningWorker_AtGate2.CanCome(map))
+                {
+                    can = false;
+                    retry = true;
+                }
                 if (!can)
                 {
-                    if (retry && bs.postponed < 8 && now + GenDate.TicksPerHour * 6 < s.endTick)
-                    {
-                        bs.postponed++;
-                        bs.due = now + GenDate.TicksPerHour * 6;
-                    }
-                    else s.beats.Remove(bs);
+                    if (!Postpone(s, bs, retry, now)) s.beats.Remove(bs);
                     continue;
                 }
                 s.beats.Remove(bs);
                 if (beat.chance < 1f && !Rand.Chance(beat.chance)) continue;
-                bool happened = Run(s, beat, map);
+                bool happened = Run(s, beat, map, out bool wait);
+                // They couldn't reach the gate after all (no way in from the edge): it waits as above, its letter unsent.
+                if (wait)
+                {
+                    if (Postpone(s, bs, true, now)) s.beats.Add(bs);
+                    continue;
+                }
                 bs.times += happened ? 1 : 0;
                 // It comes back, while there's time and it hasn't come too often.
                 if (beat.repeatDays.max > 0f && bs.times < beat.maxTimes)
@@ -439,6 +447,19 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A beat that can't come yet tries again in six hours, eight times at most and while the event runs; false: it doesn't come.</summary>
+        private static bool Postpone(WorldSituation s, BeatState bs, bool retry, int now)
+        {
+            if (!retry || bs.postponed >= 8 || now + GenDate.TicksPerHour * 6 >= s.endTick) return false;
+            bs.postponed++;
+            bs.due = now + GenDate.TicksPerHour * 6;
+            return true;
+        }
+
+        /// <summary>The beat's effects that bring someone to the gate with its letter and would do it now (the setting on, its people at peace, the colony's era).</summary>
+        public static List<VisitEffect_AtGate> AtGate(SituationBeat beat, DilemmaContext ctx) =>
+            beat?.effects == null ? new List<VisitEffect_AtGate>() : beat.effects.OfType<VisitEffect_AtGate>().Where(g => g.Brings(ctx)).ToList();
+
         /// <summary>Brings a beat on now, or after some days (an answer's next step, or the worker's).</summary>
         public void Call(WorldSituation s, string key, float days)
         {
@@ -447,8 +468,14 @@ namespace ColonyCouncil
             s.beats.Add(new BeatState { key = key, due = Now + Mathf.RoundToInt(Mathf.Max(0f, days) * GenDate.TicksPerDay) });
         }
 
-        private bool Run(WorldSituation s, SituationBeat beat, Map map)
+        /// <summary>
+        /// The beat comes: its people cast, its effects (whoever it brings to the gate first), its letter or message. False when
+        /// it couldn't come; <paramref name="wait"/>: those its letter says are at the gate couldn't get there, so nothing of it
+        /// happened and it tries again later.
+        /// </summary>
+        private bool Run(WorldSituation s, SituationBeat beat, Map map, out bool wait)
         {
+            wait = false;
             var worker = s.Worker;
             var ctx = s.ctx.Copy();
             ctx.map = map;
@@ -478,8 +505,29 @@ namespace ColonyCouncil
                 using (Causes.Push(ctx.cause))
                 using (PlayOuts.Collect())
                 {
+                    // Whoever the letter says is at the gate comes first; if they can't get there, nothing of the beat
+                    // happens yet (no letter about someone who isn't there).
+                    var gates = AtGate(beat, ctx);
+                    if (gates.Count > 0)
+                    {
+                        // The event's own person who walks in at their head ({X} at the gate again) must be free to come.
+                        var x = ctx.stranger;
+                        if (x != null && !x.Spawned && gates.Any(g => g.withStranger && !(WorldSituationWorker.FreeInWorld(x) && x.Faction == Visitors.PeopleOf(ctx, g.enemy) && !x.Downed)))
+                        {
+                            wait = true;
+                            return false;
+                        }
+                        foreach (var g in gates) HappeningTracker.Safe(g, ctx);
+                        if (VisitorTracker.Instance?.CameWith(ctx) != true)
+                        {
+                            wait = true;
+                            return false;
+                        }
+                    }
                     // What the beat sets going on the map (PlayOut/) comes first, so it can hold the moods of those taking part.
-                    foreach (var e in PlayOuts.Ordered(beat.effects)) HappeningTracker.Safe(e, ctx);
+                    foreach (var e in PlayOuts.Ordered(beat.effects))
+                        if (!(e is VisitEffect_AtGate g && gates.Contains(g)))
+                            HappeningTracker.Safe(e, ctx);
                 }
             try
             {
@@ -565,7 +613,10 @@ namespace ColonyCouncil
                     if (!o.riskNext.NullOrEmpty()) Call(s, o.riskNext, o.nextDays.RandomInRange);
                 }
                 // The risk's words when it came true, else the plain ones, picked among their variants by the situation's tags.
-                string outcome = DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, worker.Tags(s));
+                // "visitorGone": the one the letter came with isn't on the map now (an answer's words for going out without them).
+                var tags = worker.Tags(s);
+                if (!DilemmaEffect_Visit.Here(ctx.stranger, ctx)) tags.Add(VisitorGone);
+                string outcome = DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, tags);
                 outcome = worker.Chosen(s, ctx, beat, i, risk, byDefault, outcome);
                 if (comp != null) CharacterTracker.For(ctx.map)?.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, o.ways, byDefault, risk, s.def.label, ctx.Format(o.label));
@@ -593,6 +644,20 @@ namespace ColonyCouncil
         }
 
         // ---------------- Ending ----------------
+
+        /// <summary>The tag an answer's words are picked by when the one its letter came with isn't on the map (gone on, or never came).</summary>
+        public const string VisitorGone = "visitorGone";
+
+        /// <summary>What an ending's effects changed, as they apply (goodwill, prosperity), for its letter: kept only while they apply.</summary>
+        private static readonly List<string> moved = new List<string>();
+
+        private static bool recording;
+
+        /// <summary>An ending's effect tells what it changed ("+4 goodwill with Ararcoler League"), for the ending's letter.</summary>
+        public static void Moved(string line)
+        {
+            if (recording && !line.NullOrEmpty() && moved.Count < 8) moved.Add(line);
+        }
 
         /// <summary>Ends a situation with one of its endings (its letter, effects and chronicle), or quietly.</summary>
         public void End(WorldSituation s, string key)
@@ -623,16 +688,27 @@ namespace ColonyCouncil
                         if (owed > 0) Couriers.PaySilver(map, IntVec3.Invalid, owed, s.ctx.faction);
                         string cause = "CC_WS_Cause".Translate(def.LabelCap).Resolve();
                         s.ctx.cause = cause;
-                        using (Causes.Push(cause))
-                        using (PlayOuts.Collect())
+                        moved.Clear();
+                        recording = true;
+                        try
                         {
-                            if (ending.effects != null)
-                                foreach (var e in PlayOuts.Ordered(ending.effects)) HappeningTracker.Safe(e, s.ctx);
+                            using (Causes.Push(cause))
+                            using (PlayOuts.Collect())
+                            {
+                                if (ending.effects != null)
+                                    foreach (var e in PlayOuts.Ordered(ending.effects)) HappeningTracker.Safe(e, s.ctx);
+                            }
+                        }
+                        finally
+                        {
+                            recording = false;
                         }
                         string label = worker.Line(ending.titles, s) ?? s.Label;
                         string text = worker.Line(ending.texts, s) ?? "";
                         string note = worker.EndingNote(s, ending, text);
                         if (!note.NullOrEmpty()) text += (text.Length > 0 ? "\n\n" : "") + note;
+                        // What the ending changed, in numbers: the goodwill it gave and the prosperity it moved.
+                        if (moved.Count > 0) text += (text.Length > 0 ? "\n\n" : "") + "CC_WS_Moved".Translate(TextUtil.JoinAnd(moved.Distinct().ToList())).Resolve();
                         if (s.deeds.Count > 0) text += "\n\n" + "CC_WS_YourPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve();
                         var look = new LookTargets(new[] { s.ctx.stranger, s.ctx.other }.Where(p => p != null && p.Spawned));
                         Tell.Letter(NewsKind.World, Importance.Notable, null, label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);

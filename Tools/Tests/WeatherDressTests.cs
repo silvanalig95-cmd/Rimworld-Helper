@@ -25,6 +25,7 @@ public static class WeatherDressTests
         Pieces(C);
         Worth(C);
         Pick(C);
+        Variety(C);
         Hindering(C);
         TheSave(C);
         Leaving(C);
@@ -139,6 +140,9 @@ public static class WeatherDressTests
         C(WeatherDressMath.Outcome(2f, 24f, -30f, 24f, -60f, -45f) == WeatherDressMath.Dressing.PastTheirClothes,
             "past what any clothing of their age keeps out: the extreme cold, where the game's own leaving stays");
         C(WeatherDressMath.Outcome(16f, 28f, 16f, 40f, 20f, 58f) == WeatherDressMath.Dressing.PastTheirClothes, "and the extreme heat");
+        C(WeatherDressMath.PutOn(WeatherDressMath.Dressing.PastTheirClothes) && WeatherDressMath.PutOn(WeatherDressMath.Dressing.Dressed)
+          && !WeatherDressMath.PutOn(WeatherDressMath.Dressing.AsTheyAre),
+            "past what their clothes keep out they still come in their warmest (the player, 15 November 2026: \"dressed for the weather as much as possible\")");
         C(WeatherDressMath.SafeThrough(-22f, 24f, -31f, 10f) && !WeatherDressMath.SafeThrough(-22f, 24f, -33f, 10f),
             "safe is the game's own range, ten degrees past comfortable either way");
     }
@@ -252,6 +256,133 @@ public static class WeatherDressTests
         C(cv.on.Count == 1 && cv.on[0] == 1 && WeatherDressMath.SafeThrough(cv.comfyMin, cv.comfyMax, -30f, -10f), "but a coat that alone keeps out the cold before one that doesn't");
     }
 
+    // ---------------- Varied clothes ----------------
+
+    // Kinds of piece, for a people's liking (the def's short hash in the game).
+    private const int Parka = 1, WarmJacket = 2, Jacket = 3, Duster = 4, Cape = 5, PeltCoat = 6, Fleece = 7, Hoodie = 8, Shirt = 9, Vest = 10,
+        Tuque = 11, WarmHat = 12, Hood = 13, Headwrap = 14, Scarf = 15, Gloves = 16, Boots = 17;
+
+    // Where each goes: two of the same place can't be worn together (a coat over a coat, two hats).
+    private static readonly Dictionary<int, string> Place = new Dictionary<int, string>
+    {
+        { Parka, "shell" }, { WarmJacket, "shell" }, { Jacket, "shell" }, { Duster, "shell" }, { Cape, "shell" }, { PeltCoat, "shell" },
+        { Fleece, "skin" }, { Hoodie, "skin" }, { Shirt, "skin" }, { Vest, "middle" },
+        { Tuque, "head" }, { WarmHat, "head" }, { Hood, "head" }, { Headwrap, "head" }, { Scarf, "face" }, { Gloves, "hands" }, { Boots, "feet" }
+    };
+
+    /// <summary>
+    /// The player's pool for one of the road league's wayfarers (their kind IndustrialBasic: the parka, the warm jacket, the
+    /// fleece shirt and hoodie, the tuque, scarf, gloves and boots are theirs, fit 2), each in a cheap and a warm material:
+    /// cold kept out by cloth-like numbers (a cloth parka 36, a cloth tuque 9).
+    /// </summary>
+    private static List<P> LeaguePool(out List<int> kinds)
+    {
+        var pool = new List<(int kind, float cold, float worth, int fit)>
+        {
+            (Parka, 36f, 120f, 2), (Parka, 48f, 170f, 2), (WarmJacket, 30f, 100f, 2), (WarmJacket, 38f, 150f, 2), (Jacket, 14.4f, 90f, 0), (Jacket, 20f, 130f, 0),
+            (Duster, 12f, 80f, 0), (Duster, 17f, 120f, 0), (Cape, 10f, 70f, 0), (Cape, 15f, 110f, 0), (PeltCoat, 30f, 95f, 0),
+            (Fleece, 9f, 40f, 2), (Fleece, 12f, 60f, 2), (Hoodie, 9f, 40f, 2), (Shirt, 4.5f, 25f, 2), (Vest, 6f, 35f, 0), (Vest, 8f, 50f, 0),
+            (Tuque, 9f, 30f, 2), (Tuque, 12f, 45f, 2), (WarmHat, 9f, 30f, 0), (Hood, 5f, 25f, 0), (Headwrap, 4f, 20f, 0),
+            (Scarf, 3f, 20f, 2), (Gloves, 2f, 20f, 2), (Boots, 2f, 30f, 2)
+        };
+        kinds = pool.Select(x => x.kind).ToList();
+        return pool.Select(x => new P(x.cold, 0f, x.worth, x.fit, false, x.kind)).ToList();
+    }
+
+    private static void Variety(Action<bool, string> C)
+    {
+        var offered = LeaguePool(out var kinds);
+        bool Clash(int o, int q) => Place[kinds[o]] == Place[kinds[q]];
+        bool NoWorn(int o, int w) => false;
+        var nothing = new List<P>();
+        const float bare = 16f, top = 26f, low = -24f, high = -10f, room = 400f;
+        const int league = 52 * 7919 + 17;
+        var outfits = new List<WeatherDressMath.Choice>();
+        bool allWarm = true, inBudget = true, oneCoat = true;
+        int parkas = 0, layered = 0;
+        for (int person = 1; person <= 24; person++)
+        {
+            var c = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, low, high, room, 531600 + person, league);
+            allWarm &= WeatherDressMath.Short(c.comfyMin, c.comfyMax, low, high) <= WeatherDressMath.Enough && WeatherDressMath.SafeThrough(c.comfyMin, c.comfyMax, low, high);
+            inBudget &= c.spent <= room + 0.01f;
+            oneCoat &= c.on.Count(o => Place[kinds[o]] == "shell") <= 1 && c.on.Count(o => Place[kinds[o]] == "head") <= 1;
+            if (c.on.Any(o => kinds[o] == Parka)) parkas++;
+            if (c.on.Count >= 3 && !c.on.Any(o => kinds[o] == Parka)) layered++;
+            if (!outfits.Any(x => WeatherDressMath.Same(x, c))) outfits.Add(c);
+        }
+        C(allWarm, "every one of a group of 24 comes warm enough for a night of -24 (within four degrees of comfortable, safe through it)");
+        C(inBudget && oneCoat, "each within what it may cost, never two coats or two hats at once");
+        C(outfits.Count >= 6, $"and the group comes in mixed clothes: {outfits.Count} different outfits among 24 (the player: \"the clothing should always be varied\")");
+        C(parkas > 0 && parkas < 24, $"of course there are parkas ({parkas} of 24), and not on everyone");
+        C(layered > 0, $"a jacket, duster or cape over a shirt or fleece and a vest, with a hat: {layered} of 24 in layered clothes");
+        int others = outfits.Count(o => o.on.Any(i => kinds[i] == Cape || kinds[i] == PeltCoat || kinds[i] == Duster || kinds[i] == Jacket));
+        C(others >= 2, $"jackets, dusters, capes or pelt coats come up too ({others} outfits), not only the warmest coat");
+        var otherPeople = new List<WeatherDressMath.Choice>();
+        for (int person = 1; person <= 24; person++)
+        {
+            var c = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, low, high, room, 531600 + person, 9 * 7919 + 17);
+            if (!otherPeople.Any(x => WeatherDressMath.Same(x, c))) otherPeople.Add(c);
+        }
+        C(otherPeople.Any(o => o.on.Any(i => kinds[i] == Cape || kinds[i] == PeltCoat)) && otherPeople.Count >= 6,
+            $"another people, with its own liking, comes in its own mix ({otherPeople.Count} outfits, capes or pelt coats among them)");
+        var again = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, low, high, room, 531601, league);
+        var first = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, low, high, room, 531601, league);
+        C(WeatherDressMath.Same(again, first), "the same person gets the same outfit each time (no game randomness)");
+
+        // A people's own liking: the same for all of them, and not every people alike.
+        float L(int style, int kind) => WeatherDressMath.Liking(style, kind);
+        C(L(league, Parka) == L(league, Parka) && L(league, Parka) >= 0.5f && L(league, Parka) <= 1.5f, "a people's liking for a kind of piece is the same for all of them, from half to one and a half");
+        int differ = 0;
+        for (int k = 1; k <= 17; k++)
+            if (Math.Abs(L(league, k) - L(9 * 7919 + 17, k)) > 0.2f) differ++;
+        C(differ >= 5, $"and two peoples like different things ({differ} of 17 kinds of piece apart)");
+        C(Enumerable.Range(0, 2000).Select(i => WeatherDressMath.Unit(i, 7, 3)).All(u => u >= 0f && u < 1f)
+          && Math.Abs(Enumerable.Range(0, 2000).Average(i => WeatherDressMath.Unit(i, 7, 3)) - 0.5f) < 0.05f, "the draw's numbers spread evenly from 0 to 1");
+
+        // Their kind's pieces likelier: of two outfits alike but for fit, the fitting one weighs more.
+        var twoParkas = new List<P> { new P(36f, 0f, 120f, 2, false, Parka), new P(36f, 0f, 120f, 0, false, Parka) };
+        var theirs = new WeatherDressMath.Choice();
+        theirs.on.Add(0);
+        var strangers = new WeatherDressMath.Choice();
+        strangers.on.Add(1);
+        C(WeatherDressMath.Liked(theirs, twoParkas, league) > WeatherDressMath.Liked(strangers, twoParkas, league) && WeatherDressMath.Liked(new WeatherDressMath.Choice(), twoParkas, league) == 1f,
+            "their kind's pieces count for more in the draw");
+
+        // The extremes: no outfit is warm enough, so their warmest, the plain pick, as before.
+        var extreme = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, -70f, -55f, room, 531602, league);
+        var warmest = WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, -70f, -55f, room);
+        C(WeatherDressMath.Same(extreme, warmest) && extreme.on.Count > 0 && extreme.comfyMin < bare - 40f,
+            "in the extreme cold they come in their warmest all the same, a parka and more over it");
+        // Mild weather: nothing on, whoever they are.
+        C(WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, 14f, 24f, room, 531603, league).on.Count == 0, "mild weather: nothing put on");
+        // A kept coat (armour) stays on in every drawn outfit: none of them puts another coat over it.
+        var armour = new List<P> { new P(10f, 2f, 400f, 0, true) };
+        bool kept = true;
+        for (int person = 1; person <= 12; person++)
+        {
+            var c = WeatherDressMath.Choose(armour, offered, (o, w) => Place[kinds[o]] == "shell", Clash, bare, top, low, high, room, 700 + person, league);
+            kept &= c.off.Count == 0 && !c.on.Any(o => Place[kinds[o]] == "shell");
+        }
+        C(kept, "armour is never taken off for a drawn outfit either");
+        // Within what it may cost: a raider's small budget draws only among the cheap.
+        bool cheap = true;
+        for (int person = 1; person <= 12; person++)
+            cheap &= WeatherDressMath.Choose(nothing, offered, NoWorn, Clash, bare, top, low, high, 45f, 900 + person, league).spent <= 45.01f;
+        C(cheap, "a raider's small budget holds in every drawn outfit");
+        // The heat: light layers of different kinds against a hot afternoon.
+        var hot = new List<P> { new P(1.8f, 9f, 25f, 0, false, 21), new P(0.5f, 8f, 25f, 2, false, 22), new P(10f, 15f, 70f, 0, false, 23), new P(1f, 6f, 20f, 2, false, 24) };
+        bool HotClash(int o, int q) => o != q && (o <= 1) == (q <= 1);
+        var hotOutfits = new List<WeatherDressMath.Choice>();
+        bool cool = true;
+        for (int person = 1; person <= 16; person++)
+        {
+            var c = WeatherDressMath.Choose(nothing, hot, NoWorn, HotClash, bare, top, 18f, 40f, 999f, 1200 + person, 77);
+            cool &= WeatherDressMath.Short(c.comfyMin, c.comfyMax, 18f, 40f) <= WeatherDressMath.Enough;
+            if (!hotOutfits.Any(x => WeatherDressMath.Same(x, c))) hotOutfits.Add(c);
+        }
+        C(cool && hotOutfits.Count >= 2, $"the same in the heat: cool enough, in {hotOutfits.Count} different combinations of hats and light layers");
+    }
+
     // ---------------- A piece that hinders them ----------------
 
     private static void Hindering(Action<bool, string> C)
@@ -297,7 +428,8 @@ public static class WeatherDressTests
         var worn = new List<P> { new P(1.8f, 1.8f, 20f), new P(12f, 17f, 90f), new P(0.5f, 0.5f, 30f) };
         float nowMin = bare - 1.8f - 12f - 0.5f, nowMax = top + 1.8f + 17f + 0.5f;
         C(!WeatherDressMath.SafeThrough(nowMin, nowMax, -24f, -12f), "as they came, a night of -24 would hurt them: the cause");
-        C(WeatherDressMath.Suffers(0.0525f, 0f, false) == WeatherDressMath.Why.Cold, "and the hypothermia the save shows was past Rimfolk's line: they left");
+        C(0.0525f > 0.04f && WeatherDressMath.Suffers(0.0525f, 0f, false) == WeatherDressMath.Why.None,
+            "the hypothermia the save shows was past Rimfolk's old line (0.04) and they left; at the game's own line (0.15) they would have stayed");
         // On offer: a cloth parka (2 x 18, their kind's IndustrialBasic, the duster's Shell layer), a tuque, a cowboy hat.
         var offered = new List<P> { new P(36f, 0f, 120f, 2), new P(9f, 0f, 30f, 2), new P(1.8f, 9f, 25f, 2) };
         bool Clash(int o, int w) => o == 0 && w == 1 || o == 1 && w == 2 || o == 2 && w == 2;
@@ -317,11 +449,14 @@ public static class WeatherDressTests
 
     private static void Leaving(Action<bool, string> C)
     {
-        C(WeatherDressMath.Suffering == 0.04f && WeatherDressMath.GameLeaves == 0.15f && WeatherDressMath.Suffering < WeatherDressMath.GameLeaves,
-            "Rimfolk's visitors go a little before the game's own (0.04 against 0.15 of hypothermia or heatstroke)");
-        C(WeatherDressMath.Suffers(0.03f, 0f, false) == WeatherDressMath.Why.None, "a chill short of that keeps them");
-        C(WeatherDressMath.Suffers(0f, 0.05f, false) == WeatherDressMath.Why.Heat && WeatherDressMath.Suffers(0.06f, 0.05f, true) == WeatherDressMath.Why.Cold,
+        C(WeatherDressMath.GameLeaves == 0.15f && WeatherDressMath.Suffering == WeatherDressMath.GameLeaves,
+            "Rimfolk's visitors and couriers go at the game's own line, 0.15 of hypothermia or heatstroke (the player, 15 November 2026: they come and are seen)");
+        C(WeatherDressMath.Suffers(0.14f, 0f, false) == WeatherDressMath.Why.None && WeatherDressMath.Suffers(0.0525f, 0.1f, false) == WeatherDressMath.Why.None,
+            "a chill short of that keeps them");
+        C(WeatherDressMath.Suffers(0f, 0.16f, false) == WeatherDressMath.Why.Heat && WeatherDressMath.Suffers(0.2f, 0.16f, true) == WeatherDressMath.Why.Cold,
             "the cold or the heat, whichever has taken hold more");
+        C(WeatherDressMath.CourierKey(WeatherDressMath.Why.Cold) == "CC_Courier_End_Cold" && WeatherDressMath.CourierKey(WeatherDressMath.Why.Heat) == "CC_Courier_End_Heat",
+            "a courier gone home early says it was the cold or the heat");
         C(WeatherDressMath.Suffers(0f, 0f, true) == WeatherDressMath.Why.Hunger, "else hunger");
         C(WeatherDressMath.NightWhy(-20f, 24f, -31f, 0f) == WeatherDressMath.Why.Cold && WeatherDressMath.NightWhy(16f, 28f, 20f, 39f) == WeatherDressMath.Why.Heat
           && WeatherDressMath.NightWhy(-20f, 24f, -29f, 0f) == WeatherDressMath.Why.None, "a night out that would hurt them, by its cold or heat");
@@ -362,7 +497,16 @@ public static class WeatherDressTests
         C(dress.Contains("return WeatherDressMath.Qualifies(a);") && dress.Contains("if (Arriving(p, map) != WeatherDressMath.Who.Dress) return;")
           && dress.Contains("ForStay(p, map, WeatherDressMath.ArrivalHours);"), "who by the pure rule, for the next two days");
         C(dress.Contains("var outcome = WeatherDressMath.Outcome(nowMin, nowMax, plan.choice.comfyMin, plan.choice.comfyMax, low, high);")
-          && dress.Contains("if (outcome == WeatherDressMath.Dressing.Dressed) Apply(p, plan);"), "dressed only where it keeps them safe; past that, as they came");
+          && dress.Contains("if (WeatherDressMath.PutOn(outcome)) Apply(p, plan);"), "dressed whenever they're short: safe where it can, past that in their warmest");
+        C(dress.Contains("WeatherDressMath.Choose(wornPieces, pieces, ClashWorn, ClashOffered, bareMin, bareMax, low, high, room, Seed(p), Style(p))")
+          && dress.Contains("pa.thing.shortHash") && dress.Contains("p.Faction.loadID"),
+            "the outfit drawn by the person and their people's own liking, a kind of piece by its def");
+        C(Regex.IsMatch(dress, @"ForStay\(p, map, WeatherDressMath\.ArrivalHours\);\s*asTheyCame\.Remove\(p\.thingIDNumber\);") && dress.Contains("if (p != null && !p.Spawned) AsTheyCame(p);"),
+            "someone dressed for their whole stay before they appear (a Rimfolk visit, a camp) isn't dressed again as they appear");
+        string couriers = Code("Couriers/CourierTracker.cs");
+        C(!couriers.Contains("temp < -25f") && !couriers.Contains("OutdoorTemp") && couriers.Contains("if (here.Any(Visitors.WeatherHurts))")
+          && couriers.Contains("End(t, CourierEnd.Weather);"),
+            "the cold or the heat never keeps Rimfolk's own visitors and couriers away (it was -25 to 45 degrees); a courier the weather gets to goes home");
         C(dress.Contains("if (off.Any(w => Kept(w, p))) continue;") && dress.Contains("PawnApparelGenerator.PostProcessApparel(ap, p);")
           && dress.Contains("PawnGenerator.PostProcessGeneratedGear(ap, p);") && dress.Contains("if (!EquipmentUtility.CanEquip(ap, p))"),
             "nothing kept comes off; in their kind's colours and faith's style; only what they can wear (other mods' races too)");

@@ -329,7 +329,10 @@ namespace ColonyCouncil
     /// bed); to a grave (the event's own, the grave of the one a personal story grieves, else one of the colony's dead);
     /// to the camp's fire; or on a long walk. A visit to a place on their own (the water, the fields, the gate, the open
     /// air) or to a grave may name others to go to when that one can't be had (<see cref="orTo"/>: no water near the
-    /// colony, no fields, no grave; for a grave, a long walk out too).
+    /// colony, no fields, no grave; for a grave, a long walk out too). A visit to the event's visitor (X) never goes to
+    /// someone who isn't there: when they aren't on the map (gone on, or never reached the gate), it goes to the first of
+    /// <see cref="orTo"/>'s own places instead (a ride out to the edge of the colony's land), and without one the answer
+    /// can't be given (<see cref="Unavailable"/>; the default answer always can, and then nothing is set going).
     /// </summary>
     public class DilemmaEffect_Visit : DilemmaEffect_PlayOut
     {
@@ -338,14 +341,50 @@ namespace ColonyCouncil
             var v = PlayOuts.Who(who, ctx);
             if (v == null || v.Dead || !(v.RaceProps?.Humanlike ?? false)) return;
             Pawn other = null;
-            if (to == PlaySpot.Person || to == PlaySpot.Stranger)
+            var spot = to;
+            if (ToPerson)
             {
-                var w = to == PlaySpot.Stranger ? PlayWho.X : whom == who && who == PlayWho.B ? PlayWho.A : whom;
-                other = PlayOuts.Who(w, ctx);
-                if (other == null || other == v || !Here(other, ctx)) return;
+                other = PlayOuts.Who(Whom, ctx);
+                if (other == v) return;
+                if (other == null || !Here(other, ctx))
+                {
+                    // The visitor isn't on the map: where the answer goes instead, if it says.
+                    var alone = Alone();
+                    if (alone.Count == 0) return;
+                    other = null;
+                    spot = alone[0];
+                }
             }
-            string place = other != null ? DilemmaImpact.Spot(PlaySpot.Person, ctx, other) : DilemmaImpact.Spot(to, ctx);
+            string place = other != null ? DilemmaImpact.Spot(PlaySpot.Person, ctx, other) : DilemmaImpact.Spot(spot, ctx);
             sheet.Play("CC_Impact_Visit".Translate(label, v.LabelShort, place, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+        }
+
+        /// <summary>A visit to someone (a person of the colony, or the event's visitor), not to a place.</summary>
+        private bool ToPerson => to == PlaySpot.Person || to == PlaySpot.Stranger;
+
+        /// <summary>Who a visit to someone is for: X for the stranger; B going to someone means going to A, unless the effect says otherwise.</summary>
+        private PlayWho Whom => to == PlaySpot.Stranger ? PlayWho.X : whom == who && who == PlayWho.B ? PlayWho.A : whom;
+
+        /// <summary>The visit is for the event's visitor (X) or one of its group from outside, not one of the colony's.</summary>
+        private bool ToVisitor => ToPerson && (Whom == PlayWho.X || Whom == PlayWho.Group);
+
+        /// <summary>For a visit to the event's visitor: the places on their own it goes to instead when the visitor isn't on the map (<see cref="orTo"/>).</summary>
+        private List<PlaySpot> Alone() =>
+            ToVisitor && orTo != null ? orTo.Where(OwnPlace).ToList() : new List<PlaySpot>();
+
+        /// <summary>
+        /// The event's visitor isn't on the map (gone on before the answer, or never reached the gate), and the answer has
+        /// nowhere else to go in their place: it can't be given, so no answer speaks of walking out to someone who isn't there.
+        /// </summary>
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (!PlayOuts.On || ctx?.map == null || !ToVisitor) return null;
+            var v = PlayOuts.Who(who, ctx);
+            if (v == null || v.Dead) return null;
+            var o = PlayOuts.Who(Whom, ctx);
+            if (Here(o, ctx) || Alone().Count > 0) return null;
+            // Named when the colony knows who it was; else (their letter let go of them as they left) plainly.
+            return o != null ? "CC_Stranger_Gone".Translate(o.LabelShort).Resolve() : "CC_Play_Why_VisitorGone".Translate().Resolve();
         }
 
         public PlayWho who = PlayWho.A;
@@ -360,7 +399,7 @@ namespace ColonyCouncil
 
         /// <summary>The places a visit can go to on its own (not to a person, a grave or the camp, which have their own ways).</summary>
         public static bool OwnPlace(PlaySpot s) =>
-            s == PlaySpot.Fields || s == PlaySpot.Water || s == PlaySpot.Gate || s == PlaySpot.Outdoors || s == PlaySpot.Fire || s == PlaySpot.Place;
+            s == PlaySpot.Fields || s == PlaySpot.Water || s == PlaySpot.Gate || s == PlaySpot.Outdoors || s == PlaySpot.Fire || s == PlaySpot.Place || s == PlaySpot.Edge;
 
         public DilemmaEffect_Visit()
         {
@@ -377,14 +416,24 @@ namespace ColonyCouncil
             p.visitor = v;
             p.to = to;
             p.spots = (OwnPlace(to) || to == PlaySpot.Grave) && orTo != null ? orTo.Where(s => Instead(to, s)).ToList() : new List<PlaySpot>();
-            if (to == PlaySpot.Person || to == PlaySpot.Stranger)
+            if (ToPerson)
             {
-                // B going to someone means going to A, unless the effect says otherwise.
-                var w = to == PlaySpot.Stranger ? PlayWho.X : whom == who && who == PlayWho.B ? PlayWho.A : whom;
-                var o = PlayOuts.Who(w, ctx);
-                if (o == null || o == v || !Here(o, ctx)) return false;
-                p.other = o;
-                p.to = PlaySpot.Person;
+                var o = PlayOuts.Who(Whom, ctx);
+                if (o == v) return false;
+                if (o == null || !Here(o, ctx))
+                {
+                    // The event's visitor isn't on the map: on their own to where the answer says instead (out to the edge
+                    // of the colony's land after a rider who has gone), else nothing.
+                    var alone = Alone();
+                    if (alone.Count == 0) return false;
+                    p.to = alone[0];
+                    p.spots = alone.Skip(1).ToList();
+                }
+                else
+                {
+                    p.other = o;
+                    p.to = PlaySpot.Person;
+                }
             }
             p.place = (ctx as HappeningContext)?.place;
             p.workEffect = work;

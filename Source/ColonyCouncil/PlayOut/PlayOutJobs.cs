@@ -38,6 +38,7 @@ namespace ColonyCouncil
                 case PlaySpot.Camp: return "CC_Play_Report_Camp".Translate();
                 case PlaySpot.Fields: return "CC_Play_Report_Fields".Translate();
                 case PlaySpot.Gate: return "CC_Play_Report_Gate".Translate();
+                case PlaySpot.Edge: return "CC_Play_Report_Edge".Translate();
                 case PlaySpot.Water: return "CC_Play_Report_Water".Translate();
                 case PlaySpot.Walk: return "CC_Play_Report_Walk".Translate();
                 case PlaySpot.Outdoors:

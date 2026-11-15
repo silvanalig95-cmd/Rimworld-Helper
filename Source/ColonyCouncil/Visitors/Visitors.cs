@@ -15,8 +15,8 @@ namespace ColonyCouncil
     /// with it and waits there until the colony answers; guests who are given a bed stay the night and go on at first
     /// light; mourners, bands and herds pass on the road, a herd grazing the far meadow overnight on its way.
     /// <para>They are never a threat: only a people at peace with the colony sends anyone, they never come into danger
-    /// (raiders, bitter cold or heat), they leave at once if they're hurt or their people turn hostile, and they go when
-    /// the cold or hunger gets to them. A colonist taking in the family at the gate takes in those very people; the
+    /// (raiders, poison in the air; never kept away by the cold or the heat, which they come dressed for), they leave at
+    /// once if they're hurt or their people turn hostile, and they go when the cold, the heat or hunger gets to them. A colonist taking in the family at the gate takes in those very people; the
     /// rider at the gate is the one handed what the colony sends. Every visit has an end: answered, timed out, the map
     /// gone, a reload, the setting turned off. With the setting off, or when nobody can come, the letter alone tells it,
     /// as before.</para>
@@ -245,7 +245,7 @@ namespace ColonyCouncil
 
         // ---------------- Where ----------------
 
-        /// <summary>No danger, weather people would walk out in, nothing in the air.</summary>
+        /// <summary>No danger and nothing in the air. Never the cold or the heat: they come dressed in their warmest or coolest (WeatherDress).</summary>
         public static bool Safe(Map map) => CourierTracker.Safe(map);
 
         /// <summary>Groups on this map now.</summary>
@@ -366,6 +366,27 @@ namespace ColonyCouncil
         /// they came (WeatherDress), only the extreme cold or heat does that.
         /// </summary>
         public static bool Suffering(Pawn p) => SufferingFrom(p) != WeatherDressMath.Why.None;
+
+        /// <summary>The cold or the heat (not hunger) has got to them, at the game's own line: a courier goes home.</summary>
+        public static bool WeatherHurts(Pawn p)
+        {
+            var w = SufferingFrom(p);
+            return w == WeatherDressMath.Why.Cold || w == WeatherDressMath.Why.Heat;
+        }
+
+        /// <summary>Whichever of the cold and the heat has got to one of them most (the cold when neither).</summary>
+        public static WeatherDressMath.Why WeatherOf(IEnumerable<Pawn> people)
+        {
+            float cold = 0f, heat = 0f;
+            foreach (var p in people ?? Enumerable.Empty<Pawn>())
+            {
+                var hs = p?.health?.hediffSet;
+                if (hs == null) continue;
+                cold = Math.Max(cold, hs.GetFirstHediffOfDef(HediffDefOf.Hypothermia)?.Severity ?? 0f);
+                heat = Math.Max(heat, hs.GetFirstHediffOfDef(HediffDefOf.Heatstroke)?.Severity ?? 0f);
+            }
+            return heat > cold ? WeatherDressMath.Why.Heat : WeatherDressMath.Why.Cold;
+        }
 
         private static WeatherDressMath.Why SufferingFrom(Pawn p)
         {
