@@ -220,6 +220,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   chapter and lore, its presence, its saints, its belief and its feast as the other gods have. No loving (the player
   left it out). A mod that would help, optional: Tavern (ods.tavern, Workshop 3775694305, tagged 1.6 and 1.7, in their
   list but not active) for tavern tables, counters and drink graphics.
+  The player: "sounds good! except the name, provide some other alternatives. what would be interesting is that the god
+  could take shape inside an actual drug, and once a pawn consumes it, they will get a godly effect from it". Names
+  offered (to pick): Revel, the Open Cup; Lull, the Sweet Smoke; Glimmer, the Bright Lie; Velvet, the Soft Hand; Wisp,
+  the One in the Smoke; Mirth, the Long Night; Honey, the Last Glass; Tipple, the Merry Cheat. The god in a drug,
+  sketched: now and then the god takes a single drug or drink in the colony's stores (a joint, a bottle, a draught,
+  whatever the colony has); it looks like any other (the unseen gods: no label, no glow), and at most someone notices
+  something small about it in passing ("the new keg smells sweeter than it should"). Whoever takes it gets one of the
+  god's own effects for a while, good or bad and never told which in advance: a strong, clean high with no hangover;
+  a burst of skill or an inspiration; a vision that shows something true, or something false they believe; no fear in
+  a fight; or the god's deceit, a wonderful high and then a hard crash, a sudden craving or an addiction that takes
+  hold at once (harm at the game's rate, through the game's own drug effects, shown). Afterwards the colony's book
+  records what they believe it was, perhaps wrongly.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
