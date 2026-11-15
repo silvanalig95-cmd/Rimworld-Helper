@@ -2096,10 +2096,17 @@ no more than its slots, so many per stack, or only while a patient lies in the r
 anything the shelf allows, but keep a slot free for each reserved kind the colony has on the map. When one turns up and
 the shelf is full, a stack of what it holds most of is carried elsewhere to make room, and if nothing else will store
 it, it is set down beside the shelf, so the reserved kind can come in; it isn't put back while it would take that slot.
-Right-click a stack of a reserved kind that has nowhere to go with a colonist selected: in place of "Cannot haul" the
-menu offers **Make room on the shelf and haul simple meal x4 there** (for four simple meals), and the colonist carries
-a stack off the shelf (to other storage, else beside it; never one filling another reserved slot) and brings yours into
-the freed spot, kept for them meanwhile. Works with LWM's Deep Storage.
+Right-click a stack of a reserved kind with a colonist selected, where the haulers wouldn't bring it to the shelf (it
+lies in storage of a higher priority, or the shelf is full): the menu offers **Haul fine bake x4 to its reserved slot on
+the shelf** when there is room, **Make room on the shelf and haul simple meal x4 there** when the shelf is full, and
+for a better meal or medicine than one in a best-first or best-at-hand slot **Make room on the shelf and haul fine bake
+x4 there, in place of the simple meal**, in place of the game's "Cannot haul" line. The colonist carries a stack off the
+shelf (to other storage, else beside it; never one filling another reserved slot) and brings yours into the freed spot,
+kept for them meanwhile; what they bring stays on the shelf, even with room in the higher storage it came from. Any
+meals and medicine fill their slots best first: a better kind that turns up takes a lesser stack's place, the lesser
+carried back to the store, or set down beside the shelf until the better kind's place in the store is free. The list
+says when a better kind isn't coming and why (kept in higher storage, left out for a day, no room for the lesser).
+Works with LWM's Deep Storage.
 
 ### Taking cover with a drag
 With drafted colonists selected, hold **Ctrl and right-drag**: the cell you press is where they gather and the drag

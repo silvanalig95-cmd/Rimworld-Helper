@@ -211,6 +211,74 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   leftover rules when they go.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **A better meal in a lesser one's
+  place on a reserved shelf** (15 November 2026; the player's words: "also i think the "take best meal" reservation in
+  the storage is not properly working. i had three slots reserved fo this, but could not haul a fine bake or so. it
+  should have been haulable via "make space and haul", are these two features compatible with each other?"). A fix to
+  0.205.3 ("making room on a reserved shelf") and 0.231.2 ("the best meals on a reserved shelf"). DESIGN.md "A better
+  stack in a lesser one's place" (in "Reserved slots on shelves", its heading now ending "not released yet"), README
+  "Reserved slots on shelves", the Almanac's "Reserved slots" (Management, keywords unchanged), the window's
+  explanation and the setting's tip.
+  - **The cause, three parts.** The ordered make-room looked only for an empty reserved slot on a full shelf
+    (`FillsMissing`), so a fine bake for meal slots all held by simple meals and bakes got the game's "Cannot haul" and
+    nothing else; it also came only where the game's haul found no storage at all, and only from storage of the shelf's
+    priority or lower, so a stack in a fridge of a higher priority couldn't be brought even by order. And on its own a
+    swap with no free slot happened only when another store had room for the lesser stack: with every store full the
+    better meals stayed in the fridge. Ruled out: the fine bake is in `FoodMeals` and ranks exactly as the fine meal (+5
+    mood, offset 16, worth 20), so the best at hand is either.
+  - **Their save** (`League of Toba`, 15 November 2026): `LWM_BigShelf86117` at 72, 208, now Critical, reserves a joint,
+    hot coffee, any meals x2 and the best meal at hand x1; six stacks of its eight (components 43 and fine bake 4 on one
+    cell, steel 75 three times and hot coffee 17 on the other). One meal slot holds the fine bake, two wait, the joint's
+    slot is used meanwhile (no joint on the map, ten in packs). The only other meal on the map, four fine meals, lies in
+    the freezer's stockpile (Preferred, below the shelf), so it comes by itself. The save shows the shelf after the
+    trouble: it was while the meal slots held lesser meals and the fine bake lay where the shelf doesn't fetch from.
+  - **Built.** By order: the colonist's menu offers, for every reserved shelf but the one the game's own haul brings the
+    stack to and from storage of any priority, "Haul fine bake x4 to its reserved slot on the big shelf" (an empty slot
+    and room), "Make room on the big shelf and haul fine bake x4 there" (an empty slot, full), or "Make room on the big
+    shelf and haul fine bake x4 there, in place of the simple meal" (a better meal or medicine than a stack in a slot kept
+    best first or for the best at hand; kinds ranked alike never replace each other). The lesser stack goes first (its
+    best other storage, else beside the shelf), then the better one into the freed cell, kept for it from the order on
+    (the cell takes what the order brings for four hours), and once in it stays: the game's best-storage check counts it
+    in its best storage while it holds a reserved slot, so no hauler carries it straight back (saved). On its own: a swap
+    with every store full sets the lesser stack down beside the shelf when the better kind's own store would take it, the
+    better comes in and the lesser goes where it lay. The list says why a better kind isn't coming ("the better fine bake
+    is only in storage of a higher priority, which keeps it: right-click it with a colonist to bring it here", "didn't
+    come in three hours and is left out for a day", "no other storage has room for the simple meal"), and an empty slot
+    kept higher ends with the same right-click.
+  - **Code map**: `Building/ShelfReserveMath.cs` (`MayMakeRoom` without a priority, `OrderWay`, `OrderWays`, `InPlaceOf`,
+    `SwapWay`, `SwapBy`), `Building/ShelfReserves.cs` (`Why`; `State.filledBy`, `rankedDefs` for the best at hand too,
+    `RankFor`, `InPlaceOf`, `bestFrom`, `restedDef`, `betterDef`, `betterLesser`, `betterWhy`, `aside`; `Look`'s swap by
+    `SwapBy` and why a better kind isn't coming; `FetchableFrom`, `InHigher`, `TakesInPlace`; `Ordered`, `OrderedInto`,
+    `OrdersCameIn`, `KeptHere`, `kept` saved as `keptSaved`; `MayStore`'s ordered cell; `WhyNotComing`;
+    `Patch_ShelfReserveFetch` for kept stacks), `Building/ShelfMakeRoom.cs` (`Plan.way`, `PlanFor`, `PlanOn`,
+    `StraightIn`, `Freeing`, `Take`, `Label`, `SetDownJob` counting `aside`), `Languages/English/Keyed/Rimfolk_Stores.xml`
+    (`CC_Shelf_MakeRoomSwap`, `CC_Shelf_HaulToSlot`, `CC_Shelf_BetterHigher`, `CC_Shelf_BetterRested`,
+    `CC_Shelf_BetterNoRoom`, `CC_Shelf_KeptHigher`, `CC_Shelf_Explain`), `Rimfolk_Rooms.xml` (the setting's tip),
+    `Tools/save_estimate.py` (`keptSaved`), `Tools/Tests/ShelfReserveTests.cs`. No new setting, no Sched slot, no def.
+  - **Can't be checked without the game**: the three menu lines on a stack in a fridge of a higher priority, on the floor
+    outside the home area and on another shelf, with the game's "Cannot haul" taken out beside them; the lesser stack
+    carried off and the ordered haul straight after, its cell kept through the carry; the kept stack staying with room in
+    the fridge it came from, also after loading; a swap with the lesser set down beside the shelf and taken to the fridge
+    afterwards; the list's new lines; LWM's cells; Pick Up And Haul's hauling to inventory.
+  - **Try in the game**: 1. The big shelf (Important) with any meals x2 and the best meal at hand x1, its three meal slots
+    filled with simple meals; fine bakes in a stockpile of Critical priority. The list says "on the shelf; the better
+    fine bake is only in storage of a higher priority, which keeps it: right-click it with a colonist to bring it here".
+    Right-click the fine bakes with a colonist: "Make room on the big shelf and haul fine bake x4 there, in place of the
+    simple meal". Taken, they carry the smallest simple meal stack off ("making room on the big shelf for the fine bake."
+    in their status) and bring the fine bakes into its spot; the bakes stay there with room in the stockpile, also after
+    saving and loading. 2. The best slot empty, room on the shelf, the fine bakes only in the Critical stockpile: "Haul
+    fine bake x4 to its reserved slot on the big shelf". 3. A fine meal in a slot and the rest fine too: no line for a
+    fine bake (ranked alike). 4. The shelf Critical, the fridge stockpile below it and full (no store with room for a
+    simple meal), the meal slots held by simple meals, fine bakes in the fridge: a hauler sets a simple meal stack down
+    beside the shelf, brings fine bakes into its slot, and the simple meal goes into the fridge where they were; the list
+    says "the fine bake comes in place of the simple meal" meanwhile. 5. Reserved slots or the deeper hooks off: nothing
+    of this.
+  - **Mods that would help**: none needed, Rimfolk does it itself. In their list and touched by it: LWM's Deep Storage
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3532608331; 1.6 and 1.7, kept up), whose shelf this is; Pick
+    Up And Haul (https://steamcommunity.com/sharedfiles/filedetails/?id=1279012058; tagged up to 1.6), whose haulers take
+    their work from the game's list of things to haul, which leaves a kept stack out; RimFridge
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=2898411376; tagged up to 1.6), whose fridges are storage
+    like any other here.
 - 0.255.0, **Guests busy most of the day,
   over the colony** (15 November 2026; the player's words: "guests still just wait around most of the time it feels.
   they could read books, take walks, interact with my pets, write letters, train, fish, work on and use items themselves
