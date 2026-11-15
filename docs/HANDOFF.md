@@ -139,6 +139,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
   drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
   Hospitality left to its own recreation where it already has it.
+- 0.238.2, **Every chapter its god's sign**
+  (15 November 2026; the player, with a screenshot of the Gods' book where Ducat, Smoulder, the moon, Hollin and Mog all
+  showed the seal: "god's book still shows the same icon for many"). Cause: 0.238.1 showed a god's sign only once someone
+  had told what the god is, so most chapters kept the seal. Now `GodSignsMath.SignGods` (pure, tested in
+  `GodsUnderstoodTests`) gives each chapter of `GodLorePage` the god it was told of, or else the god its name belongs to
+  (`LoreName.god`), the earliest heard first; the seal is left only on a later untold name of a god whose sign already
+  shows, so the book never shows that two names are one god. The plain line still waits for what is told. Try in the
+  game: the Gods' book's list and chapters each with their god's coloured sign.
 - 0.238.1, **The Gods' book's signs and page,
   fixed** (14 November 2026; the player, with a screenshot of chapter VI "The Stranger": "the gods' book is bugged and
   these are not the icons you created here??", then "yes"). Causes: the game's own measuring (`Text.CalcSize`,

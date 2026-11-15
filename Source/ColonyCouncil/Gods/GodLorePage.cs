@@ -45,6 +45,8 @@ namespace ColonyCouncil
             public List<BookLine> lines;
             /// <summary>The god the chapter holds itself to be about, from what was told under its name (GodSignsMath.Believed), or -1.</summary>
             public int believed = -1;
+            /// <summary>The god whose sign the chapter shows (GodSignsMath.SignGods), or -1 for the unknown seal.</summary>
+            public int signGod = -1;
         }
 
         private static readonly List<Page> pages = new List<Page>();
@@ -115,6 +117,10 @@ namespace ColonyCouncil
                 p.lines = GodBookMath.Compose(p.verses, Pieces);
                 p.believed = GodSignsMath.Believed(p.verses);
             }
+            // Every chapter its god's sign: the god it was told of, else the god its name belongs to, once among the untold.
+            var signs = GodSignsMath.SignGods(pages.Select(x => x.believed).ToList(), pages.Select(x => x.name?.god ?? -1).ToList(),
+                pages.Select(x => x.name?.first ?? int.MaxValue).ToList());
+            for (int i = 0; i < pages.Count; i++) pages[i].signGod = signs[i];
             if (chosen != Whole && chosen != Unnamed && !byTitle.ContainsKey(chosen)) chosen = Whole;
         }
 
@@ -384,12 +390,13 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The chapter's sign, over its name and small in the list: its god's sign in its colours once someone has told what it
-        /// is or it was seen plainly, and until then the seal of a god nobody can yet say (GodSigns.Unknown).
+        /// The chapter's sign, over its name and small in the list: the sign of the god it was told of, or else of the god its
+        /// name belongs to (GodSignsMath.SignGods); the seal of a god nobody can yet say (GodSigns.Unknown) only where another
+        /// untold name of the same god already shows its sign.
         /// </summary>
         private static Texture2D SignOf(Page p)
         {
-            string key = GodSigns.KeyOf(BelievedGod(p));
+            string key = GodSigns.KeyOf(p?.signGod >= 0 ? Gods.ById(p.signGod) : null);
             return key == null ? GodSigns.Unknown : GodSigns.Plain(key);
         }
 

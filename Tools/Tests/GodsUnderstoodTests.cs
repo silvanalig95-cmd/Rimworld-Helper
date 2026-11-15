@@ -123,13 +123,22 @@ public static class GodsUnderstoodTests
         var told = V(BookPart.Known, 7, 3);
         told.key = "CropBlight";
         C(GodSignsMath.Believed(new[] { sighted }) == 7 && GodSignsMath.Believed(new[] { told }) == -1, "a god seen plainly by the colony tells it too; a sign of its hand alone does not");
+        // Which sign each chapter shows (the player, 15 November 2026: "god's book still shows the same icon for many").
+        var shown = GodSignsMath.SignGods(new[] { -1, -1, 3, -1, -1 }, new[] { 1, 2, 3, 3, 1 }, new[] { 10, 20, 30, 5, 40 });
+        C(shown[0] == 1 && shown[1] == 2, "an untold chapter shows the sign of the god its name belongs to");
+        C(shown[2] == 3 && shown[3] == -1, "a god's sign already shown on a chapter told of it: an untold name of the same god keeps the seal");
+        C(shown[4] == -1, "two untold names of one god: the earlier heard shows its sign, the later keeps the seal, so they don't show they are one");
+        var both = GodSignsMath.SignGods(new[] { 4, 4 }, new[] { 4, 4 }, new[] { 1, 2 });
+        C(both[0] == 4 && both[1] == 4, "two chapters each told of the same god both show it, as the colony believes");
+        C(GodSignsMath.SignGods(new[] { -1 }, new[] { -1 }, new[] { 0 })[0] == -1 && GodSignsMath.SignGods(new int[0], new int[0], new int[0]).Length == 0,
+            "a name that belongs to no known god keeps the seal; no chapters, no signs");
 
         string signs = Read("Gods/GodSigns.cs"), page = Read("Gods/GodLorePage.cs"), card = Read("Gods/Presence/GodCard.cs"), wiring = Read("Gods/GodsWiring.cs");
         C(signs.Contains("ContentFinder<Texture2D>.Get(path, false)") && !signs.Contains("Ages.Ours") && signs.Contains("v.god == g.id && GodSignsMath.Tells(v)"),
             "the sign loaded softly, in its colours, known once the colony was told what the god is");
         C(page.Contains("p.believed = GodSignsMath.Believed(p.verses);") && page.Contains("y = Title(x, y, w, p.title, also, first, SignOf(p));")
           && page.Contains("return key == null ? GodSigns.Unknown : GodSigns.Plain(key);"),
-            "the book: the god's coloured sign over the chapter's name and small in the list, the unknown seal until someone has told what it is");
+            "the book: the god's coloured sign over the chapter's name and small in the list, by GodSignsMath.SignGods; the seal only where it would give away two names of one god");
         C(page.Contains("UiKit.SizedLabel(x, y, w, title.CapitalizeFirst(), 26") && page.Contains("UiKit.Sized(38, TextAnchor.UpperLeft, false)")
           && !page.Contains("\"<size=38>\"") && !page.Contains("\"<size=26>\"") && !card.Contains("\"<size=28>\""),
             "the chapter's name and its first capital measured at the size they are drawn at, so neither is cut (the game's measuring strips size tags)");
