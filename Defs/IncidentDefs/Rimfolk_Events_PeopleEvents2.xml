@@ -167,10 +167,10 @@
           <li>[!beast] {TALE} for {B_nameDef}</li>
         </titles>
         <texts>
-          <li>[!beast] {X_nameDef}, a trade agent of {FACTION}, has come with a surgeon, a marshal and a humming case of equipment. The enclave would fit {B_nameDef} with {TALE} for the {RELATION}, at the colony's medical bed: {COUNT} silver now, or on terms, a fifth down and the rest in four seasonal instalments asked for by letter. The enclave keeps every bargain exactly as agreed, {X_pronoun} adds.</li>
+          <li>[!beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon, a marshal and a humming case of equipment. The enclave would fit {B_nameDef} with {TALE} for the {RELATION}, at the colony's medical bed: {COUNT} silver now, or on terms, a fifth down and the rest in four seasonal instalments asked for by letter. The enclave keeps every bargain exactly as agreed, {X_pronoun} adds.</li>
           <li>[need,!beast] {X_nameDef} of {FACTION} has heard about {B_nameDef}'s {RELATION}, and has brought {TALE} to replace it. The enclave's surgeon would do the work at the colony's medical bed, for {COUNT} silver now, or a fifth down and four instalments, one each season, asked for by letter.</li>
-          <li>[better,!beast] A trade agent of {FACTION}, {X_nameDef}, has come to the gate with an offer for {B_nameDef}: {TALE} in place of the {RELATION} {B_pronoun} has, fitted at the colony's bed by the enclave's surgeon. {COUNT} silver, or terms: a fifth down, then four seasonal instalments.</li>
-          <li>[beast] {X_nameDef}, a trade agent of {FACTION}, has come with a surgeon who treats animals as well as people. {PET_nameDef}, {B_nameDef}'s animal, could be fitted with {TALE} for the {RELATION} where it stands: {COUNT} silver, or a fifth down and four instalments asked for by letter each season.</li>
+          <li>[better,!beast] A factor of {FACTION}, {X_nameDef}, has come to the gate with an offer for {B_nameDef}: {TALE} in place of the {RELATION} {B_pronoun} has, fitted at the colony's bed by the enclave's surgeon. {COUNT} silver, or terms: a fifth down, then four seasonal instalments.</li>
+          <li>[beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon who treats animals as well as people. {PET_nameDef}, {B_nameDef}'s animal, could be fitted with {TALE} for the {RELATION} where it stands: {COUNT} silver, or a fifth down and four instalments asked for by letter each season.</li>
           <li>[pod,!beast] A pod came down by the trade spot this morning, and {X_nameDef} of {FACTION} stepped out of it with a surgeon and a marshal. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms, a fifth down and four instalments.</li>
           <li>[walk,!beast] {X_nameDef} of {FACTION} has walked in from the road with a surgeon and a marshal, their spacer kit dusty, since a tribe's land has no place for a pod to land. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms.</li>
           <li>[their:grateful,!beast] The enclave thinks well of the colony's dealings, and {X_nameDef} has brought {TALE} for {B_nameDef} on a friend's terms: {COUNT} silver now, or a fifth down and the rest in four seasonal instalments.</li>
@@ -555,10 +555,10 @@
           <li>Ground for rent</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a trade agent of {FACTION}, has come to the gate with a slate of figures. The enclave would rent ground at the colony's edge for ten to fifteen days, lay a small landing pad and stalls on it, and trade from it every day, paying exactly {COUNT} silver every five days.</li>
+          <li>{X_nameDef}, a factor of {FACTION}, has come to the gate with a slate of figures. The enclave would rent ground at the colony's edge for ten to fifteen days, lay a small landing pad and stalls on it, and trade from it every day, paying exactly {COUNT} silver every five days.</li>
           <li>[tribal] A stranger in close-fitting spacer kit, {X_nameDef} of {FACTION}, has come to the gate with a slate that glows. The enclave would rent ground at the colony's edge, {X_pronoun} says, and lay a flat place where things come down from the sky each morning to trade: {COUNT} silver every five days.</li>
           <li>[lowtech] {X_nameDef} of {FACTION} has walked in from beyond the hills where the enclave's people set down. They would rent a patch of ground at the colony's edge for their pad and stalls, ten to fifteen days, and pay {COUNT} silver every five days, an exact figure.</li>
-          <li>[!lowtech] A trade agent of {FACTION}, {X_nameDef}, has come to the colony's gate with an exact offer: rent for a patch of ground at the edge, {COUNT} silver every five days, for a pad, a few stalls and fresh stock by pod each morning.</li>
+          <li>[!lowtech] A factor of {FACTION}, {X_nameDef}, has come to the colony's gate with an exact offer: rent for a patch of ground at the edge, {COUNT} silver every five days, for a pad, a few stalls and fresh stock by pod each morning.</li>
           <li>[their:grateful] The enclave thinks well of the colony's dealings, and {X_nameDef} would rather rent its ground than anyone's: a pad and stalls at the edge for ten to fifteen days, {COUNT} silver every five days.</li>
         </texts>
         <defaultOption>2</defaultOption>

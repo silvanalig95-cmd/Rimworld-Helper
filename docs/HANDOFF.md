@@ -147,7 +147,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   `_Stories_More.xml`, `_Stories_Seasons.xml` (the story chains: the door in the hill, the fugitive's debt, bad blood,
   the preacher, the lost expedition, the lost letters, the stranger's seeds, the play, the apprentice, the fever),
   `Council_Events_Living.xml`, `_Land.xml`, `_Callers.xml`, `_Storyteller.xml`, and the peoples' events
-  `Rimfolk_Events_PeopleEvents2.xml` and `Rimfolk_Events_PeoplesE.xml`. About 2,320 lines read and 343 rewritten
+  `Rimfolk_Events_PeopleEvents2.xml` and `Rimfolk_Events_PeoplesE.xml`. About 2,320 lines read and 342 rewritten
   (titles, letter texts, answers and their outcomes, endings and chronicle lines, World page lines, raid and message
   texts); the rest were already plain and are unchanged. Rewritten: cut-short and riddling openings ("Crates. Row on row
   of them", "Hatch 7. That's all the stencil says"), similes and things given will ("dry as bone", "like embers", "the
@@ -155,13 +155,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   what year it is", "The tired faces at breakfast say otherwise"), and the peoples' in-world phrases said plainly or
   explained once ("writes the colony in good ink" is the league's book of fair dealers, "to the last digit" is the
   enclave keeping bargains exactly, Edda Vane, Ilse Varro and Nessa Pell named as their peoples' founders, the Roll as
-  the Banner's book of names). The snow day the player showed now says what plays out: nobody has to work, and people
-  spend it in the snow or by the fire. Left as written: everything spoken (the `<lines>` the visitors and colonists say,
-  the toasts, feast and vigil lines, quoted speech and quoted letters inside the cards), the journals (`<journal>`
-  pools), the tribal, medieval and faith beliefs told as what a people says (the sky-wolf, the fire kept high on the
-  longest night so the sun can find its way back, the spirit-singer's spirits, the Mossborn's dead becoming the grove),
-  titles and option labels that were already plain, every tag, placeholder, number, chance and effect. No test pinned
-  these words; playout_audit is as before (one new candidate from the word "everyone" was reworded away).
+  the Banner's book of names; the peoples' own titles kept, such as the enclave's factor, which is the visitor's label
+  on the map). The snow day the player showed now says what plays out: nobody has to work, and people spend it in the
+  snow or by the fire. Left as written: everything spoken (the `<lines>` the visitors and colonists say, the toasts,
+  feast and vigil lines, quoted speech and quoted letters inside the cards), the journals (`<journal>` pools), the
+  tribal, medieval and faith beliefs told as what a people says (the sky-wolf, the fire kept high on the longest night
+  so the sun can find its way back, the spirit-singer's spirits, the Mossborn's dead becoming the grove), titles and
+  option labels that were already plain, every tag, placeholder, number, chance and effect. No test pinned these words;
+  playout_audit is as before (one new candidate from the word "everyone" was reworded away).
 - 0.242.0, **The great caravan's rider comes,
   his answer plays out, and everyone comes in varied clothes, as warm as they can** (15 November 2026; the player's
   words: with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered · Guido
