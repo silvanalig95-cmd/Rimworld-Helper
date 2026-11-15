@@ -234,7 +234,7 @@
         <options>
           <li>
             <label>Send {NAME} a gift, for the next verse</label>
-            <outcome>The purse goes down the road to {NAME} with a rider from {PLACE}, along with two stories for the next verse. One of them is true.</outcome>
+            <outcome>The purse goes down the road to {NAME} with a rider from {PLACE}, along with two stories about the colony for the next verse of the song.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the purse for {NAME}</label><what>silver</what><count>40</count><to>Gate</to></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_OurSong</thought></li>
@@ -243,7 +243,7 @@
           </li>
           <li>
             <label>Let them sing</label>
-            <outcome>The colony lets the song go where songs go. {A_nameDef} has been humming it all afternoon.</outcome>
+            <outcome>The colony sends nothing for the song. {A_nameDef} has been humming it all afternoon.</outcome>
           </li>
         </options>
       </li>
@@ -436,7 +436,7 @@
               <li Class="ColonyCouncil.WorldEffect_Silver" />
             </effects>
             <riskChance>0.35</riskChance>
-            <riskOutcome>{FACTION}'s tollmen found carts on the colony's lane within the week and turned them back at the colony's own fence. The carter's silver stays paid. {FACTION}'s goodwill does not.</riskOutcome>
+            <riskOutcome>{FACTION}'s tollmen found carts on the colony's lane within the week and turned them back at the colony's own fence. The colony keeps the carter's silver, but loses some of {FACTION}'s goodwill.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </riskEffects>
@@ -767,7 +767,7 @@
             <outcome>{A_nameDef} goes to {PLACE} and speaks for the exiles in front of the {TITLE}.</outcome>
             <riskChance>0.45</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>The {TITLE} heard {A_nameDef} out in silence and then had {A_objective} shown to the road. The exiles stay exiles.</riskOutcome>
+            <riskOutcome>The {TITLE} heard {A_nameDef} out in silence and then had {A_objective} shown to the road. The exiles are not allowed back.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>800</xp></li>
             </effects>

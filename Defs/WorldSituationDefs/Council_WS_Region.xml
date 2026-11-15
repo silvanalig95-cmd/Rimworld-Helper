@@ -81,7 +81,7 @@
         <options>
           <li>
             <label>Let them water the herds, as neighbors</label>
-            <outcome>The herders bring their animals down at dusk, and stay out of the fields as they promised. Their thanks will reach {PLACE} before they do.</outcome>
+            <outcome>The herders bring their animals down at dusk and stay out of the fields as they promised. They will speak well of the colony at {PLACE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>2~3</count><armed>true</armed><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><onward>true</onward></li>
@@ -1284,7 +1284,7 @@
         <options>
           <li>
             <label>Let {A_nameDef} have a look</label>
-            <outcome>{A_nameDef} spent the day bent over {NAME}'s logs with a pot of tea and came out of it knowing more about orbital freight than anyone needs to. The salvagers paid as promised when they came back for the core.</outcome>
+            <outcome>{A_nameDef} spent the day going through {NAME}'s logs over a pot of tea and learned a great deal about orbital freight. The salvagers paid as promised when they came back for the core.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Silver" />

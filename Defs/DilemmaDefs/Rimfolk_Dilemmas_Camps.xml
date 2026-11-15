@@ -69,7 +69,7 @@
       </li>
       <li>
         <label>Pay the camp for the lost hands ({COUNT} silver)</label>
-        <outcome>{A_nameDef} carried a purse down to the camp. The elders weighed it, then weighed {X_nameDef} with their eyes, and agreed. {X_nameDef} stays.</outcome>
+        <outcome>{A_nameDef} carried a purse down to the camp. The elders weighed it, looked {X_nameDef} over, and agreed. {X_nameDef} stays.</outcome>
         <ways><generosity>2</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the camp</label><what>silver</what><to>Camp</to><tens>true</tens></li>

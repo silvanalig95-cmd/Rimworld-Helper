@@ -154,7 +154,7 @@
       </li>
       <li>
         <label>Hold a funeral for the animal</label>
-        <outcome>The colony stopped work to bury the animal in a small wooden box, with speeches. {A_nameDef} gave the longest. The shortest came from the cook, who had left a pot on.</outcome>
+        <outcome>The colony stopped work to bury the animal in a small wooden box, with speeches. {A_nameDef} gave the longest.</outcome>
         <ways><tradition>6</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>10</count></li>
@@ -177,7 +177,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.8</chance></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>{A_nameDef} asks the question at every meal now, of anyone who will sit still for it.</riskOutcome>
+        <riskOutcome>{A_nameDef} asks the question at every meal now.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_AwkwardQuestions</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AwkwardQuestions</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
@@ -349,7 +349,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about><chance>0.5</chance></li>
         </effects>
         <riskChance>0.15</riskChance>
-        <riskOutcome>{PET_nameDef} went unpunished, and bit {B_nameDef} again before the day was out, on the other hand.</riskOutcome>
+        <riskOutcome>{PET_nameDef} went unpunished, and bit {B_nameDef} again before the day was out.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_BittenAgain</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -468,7 +468,7 @@
     <options>
       <li>
         <label>{PET_nameDef} is family</label>
-        <outcome>{PET_nameDef} is family, and family isn't eaten. {B_nameDef} accepted it, and still licks {B_possessive} lips when {PET_nameDef} walks past.</outcome>
+        <outcome>{PET_nameDef} is family, and family isn't eaten. {B_nameDef} accepted it, though {B_pronoun} still eyes {PET_nameDef} hungrily.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -485,7 +485,7 @@
       </li>
       <li>
         <label>Feed {B_nameDef} extra rations instead</label>
-        <outcome>{B_nameDef} gets an extra portion at every meal, on the understanding that {PET_nameDef} stays off the menu. {B_nameDef} eats it slowly, watching {PET_nameDef}.</outcome>
+        <outcome>{B_nameDef} gets an extra portion at every meal, on the understanding that {PET_nameDef} is not to be eaten.</outcome>
         <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -574,7 +574,7 @@
       </li>
       <li>
         <label>Give {B_nameDef} the worst chores for a week</label>
-        <outcome>{B_nameDef} is on the worst chores for a week, scrubbing floors and hauling waste. {A_nameDef} stops by to watch, sometimes with a snack.</outcome>
+        <outcome>{B_nameDef} is on the worst chores for a week, scrubbing floors and hauling waste. {A_nameDef} sometimes stops by to watch.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -613,7 +613,7 @@
       </li>
       <li>
         <label>Leave it be</label>
-        <outcome>{B_nameDef} wasn't punished. {A_nameDef} hasn't written a word since, and has been seen going through {B_nameDef}'s laundry.</outcome>
+        <outcome>{B_nameDef} wasn't punished. {A_nameDef} hasn't written a word since, and has been searching {B_nameDef}'s things.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LetterRead</thought></li>
@@ -923,7 +923,7 @@
     <options>
       <li>
         <label>It was {A_nameDef}</label>
-        <outcome>The council credits {A_nameDef} with saving the colony. {A_nameDef} has taken to lingering in doorways in case anyone wants to say thanks. {B_nameDef} uses other doorways.</outcome>
+        <outcome>The council credits {A_nameDef} with saving the colony. {A_nameDef} has taken to lingering in doorways in case anyone wants to say thanks, and {B_nameDef} avoids {A_objective}.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SavedTheColony</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>

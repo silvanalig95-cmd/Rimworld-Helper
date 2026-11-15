@@ -32,7 +32,7 @@
         <label>Cull {COUNT} head</label>
         <outcome>The council chose the stores. {A_nameDef} marked the {COUNT} head {A_pronoun} could best spare, and did the job properly, and didn't come in for supper.</outcome>
         <outcomes>
-          <li>[lowtech] {A_nameDef} said the old words over each of them before the knife, as {A_possessive} people do. The colony will eat. {A_nameDef} won't, tonight.</li>
+          <li>[lowtech] {A_nameDef} said the old words over each of them before the knife, as {A_possessive} people do. The colony will have meat, though {A_nameDef} won't eat any tonight.</li>
         </outcomes>
         <ways><mercy>-2</mercy><toil>2</toil></ways>
         <effects>
@@ -123,7 +123,7 @@
       </li>
       <li>
         <label>Watch the fields at night</label>
-        <outcome>{A_nameDef} and {B_nameDef} take turns sitting out by the crops with a lantern and a pot to bang, until the raider learns.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} take turns sitting out by the crops with a lantern and a pot to bang, until the animal learns to stay away.</outcome>
         <ways><mercy>2</mercy><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch over the fields</label><target>AAndB</target><to>Fields</to><hours>20~2</hours></li>
@@ -145,7 +145,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_WorthTaming</thought></li>
         </effects>
         <riskChance>0.4</riskChance>
-        <riskOutcome>{B_nameDef} is working on taming the raider, and the raider is working on the crops in the meantime.</riskOutcome>
+        <riskOutcome>{B_nameDef} is working on taming the raider, and in the meantime the animal is still eating the crops.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_CropsEaten"><count>4</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_LetItGraze</thought></li>
@@ -205,7 +205,7 @@
       </li>
       <li>
         <label>{A_nameDef} nurses {PET_nameDef} through</label>
-        <outcome>No medicine, but {A_nameDef} will sit up with {PET_nameDef} at night, keep {X_objective} warm and get water into {X_objective}, and see.</outcome>
+        <outcome>No medicine, but {A_nameDef} will sit up with {PET_nameDef} at night, keep {X_objective} warm and get water into {X_objective}, and hope for the best.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>NoMeds</care></li>
@@ -215,7 +215,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} sat up three nights running with {PET_nameDef}, and {PET_nameDef} is no better. {A_nameDef} is a good deal worse.</riskOutcome>
+        <riskOutcome>{A_nameDef} sat up three nights running with {PET_nameDef}, and {PET_nameDef} is no better. {A_nameDef} is exhausted.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_AnimalCare"><care>NoMeds</care></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetFading</thought></li>
@@ -307,7 +307,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
         </effects>
         <riskChance>0.45</riskChance>
-        <riskOutcome>The council left {X_definite} alone. It didn't return the favor. The pen was broken into in the night, and one of the herd is gone.</riskOutcome>
+        <riskOutcome>The council left {X_definite} alone, but it broke into the pen in the night, and one of the herd is gone.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_LoseAnimal" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Setback_AnimalLost</thought></li>
@@ -335,7 +335,7 @@
     <options>
       <li>
         <label>{A_nameDef} keeps {PET_nameDef}, and that's the end of it</label>
-        <outcome>The council stood by {A_nameDef}. {PET_nameDef} sleeps where {PET_pronoun} likes, and {B_nameDef} prays a little louder in the mornings.</outcome>
+        <outcome>The council stood by {A_nameDef}. {PET_nameDef} sleeps where {PET_pronoun} likes, and {B_nameDef} makes {B_possessive} disapproval known at morning prayers.</outcome>
         <ways><openness>3</openness><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>

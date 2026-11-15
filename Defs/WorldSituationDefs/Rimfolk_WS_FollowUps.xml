@@ -113,7 +113,7 @@
         <options>
           <li>
             <label>Send {A_nameDef} to build</label>
-            <outcome>{A_nameDef} goes to {PLACE} with a mallet and a plumb-line and comes back a week later, thinner than promised, with a bridge behind {A_objective} that {FACTION} have already named after the colony.</outcome>
+            <outcome>{A_nameDef} goes to {PLACE} with a mallet and a plumb-line and comes back a week later, tired and thinner, having built a bridge that {FACTION} have already named after the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1800</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>

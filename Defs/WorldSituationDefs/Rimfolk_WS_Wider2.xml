@@ -128,7 +128,7 @@
           </li>
           <li>
             <label>Send him on as he is</label>
-            <outcome>The driver goes on, dripping, to find someone else's stove.</outcome>
+            <outcome>The driver goes on, still wet, to look for shelter somewhere else.</outcome>
             <ways><mercy>-1</mercy></ways>
           </li>
         </options>
@@ -151,7 +151,7 @@
         <options>
           <li>
             <label>Sell them {COUNT} meals</label>
-            <outcome>The meals go out steaming, and come back as silver.</outcome>
+            <outcome>Hot meals are carried out to the caravan, and its people pay for them in silver.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>MealSimple</thing><price>1.6</price><toVisitor>true</toVisitor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
@@ -365,7 +365,7 @@
         <options>
           <li>
             <label>Give them supper and a place for the night</label>
-            <outcome>Supper goes out to the delegates at the gate, and they bed down in the lee of the colony's wall, still going over roads, grazing and who said what at the last moot until sleep takes them.</outcome>
+            <outcome>Supper goes out to the delegates at the gate, and they bed down in the lee of the colony's wall, still going over roads, grazing and who said what at the last moot until they fall asleep.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the delegates</label><what>meals</what><count>3</count><eat>true</eat><night>true</night></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>

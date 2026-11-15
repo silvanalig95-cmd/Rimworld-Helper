@@ -74,7 +74,7 @@
     <settled>
       <li>The war party of {FACTION} has its fire going {PLACE}, weapons stacked within reach and the wounded laid out beside it.</li>
       <li>The fighters {PLACE} have their camp up: a fire, bedrolls in a ring, and a sentry who never quite sits down.</li>
-      <li>Smoke rises from the war camp {PLACE}. Someone is singing, badly, and nobody minds.</li>
+      <li>Smoke rises from the war camp {PLACE}, and someone there is singing.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the fighters camped {PLACE}, came to the gate with {X_possessive} pack already on. "I've fought for other people long enough. I'd rather fight for mine. Is there a place here?"</li>

@@ -16,7 +16,7 @@
         <li>[killed] {NAME} won't forget {OTHER_nameDef}, and won't forgive {FACTION}.</li>
         <li>[killed,kin,!many] {NAME} lost family to {FACTION} today, and has sworn to make them pay for {OTHER_nameDef}.</li>
         <li>[killed,partner,!many] {NAME} closed {OTHER_nameDef}'s eyes and swore that {FACTION} would pay for it.</li>
-        <li>[killed,friend,!many] {OTHER_nameDef} was {NAME}'s friend. {FACTION} will find that out.</li>
+        <li>[killed,friend,!many] {OTHER_nameDef} was {NAME}'s friend, and {NAME} has sworn that {FACTION} will pay for it.</li>
         <li>[killed,many] {NAME} stood together over {OTHER_nameDef} and swore the same oath against {FACTION}.</li>
         <li>[killed,mech] {NAME} swore to tear apart three of the machines for every year {OTHER_nameDef} should have had.</li>
         <li>[taken,!many] {FACTION} carried off {OTHER_nameDef}, and {NAME} means to make them pay.</li>
@@ -27,13 +27,13 @@
         <li>[pet] {NAME} knelt by {OTHER_nameDef} after the fighting and swore that {FACTION} would answer for it.</li>
       </plain>
       <warm>
-        <li>[killed,!many] {NAME} has never wanted to hurt anyone, but for {OTHER_nameDef}'s sake has sworn to make an exception of {FACTION}.</li>
+        <li>[killed,!many] {NAME} has never wanted to hurt anyone, but has sworn to make {FACTION} pay for {OTHER_nameDef}.</li>
         <li>[pet] {NAME} held {OTHER_nameDef} until the end, and swore then that {FACTION} would answer for it.</li>
       </warm>
       <blunt>
         <li>[killed,!many] {FACTION} killed {OTHER_nameDef}. {NAME} is going to kill some of them back.</li>
-        <li>[taken,!many] {FACTION} took {OTHER_nameDef}. {NAME} wants them to try that again.</li>
-        <li>[pet] They killed {NAME}'s animal. {FACTION} picked the wrong fight.</li>
+        <li>[taken,!many] {FACTION} took {OTHER_nameDef}, and {NAME} has sworn to make them pay for it.</li>
+        <li>[pet] {FACTION} killed {NAME}'s animal, and {NAME} has sworn to make them pay.</li>
       </blunt>
       <gloomy>
         <li>[killed,!many] {NAME} says vengeance won't bring {OTHER_nameDef} back, and has sworn it on {FACTION} anyway.</li>
@@ -68,7 +68,7 @@
         <li>[peace] Now that there's peace, {PAWN_nameDef} finds {PAWN_pronoun} has nothing left to say to {FACTION} about {LOST}.</li>
       </plain>
       <warm>
-        <li>[forgiven] {PAWN_nameDef} lit a candle for {LOST} and let the anger at {FACTION} go out with the old one.</li>
+        <li>[forgiven] {PAWN_nameDef} lit a candle for {LOST} and let go of the anger at {FACTION}.</li>
         <li>[home] {PAWN_nameDef} is too happy to have {LOST} back to remember why {FACTION} mattered.</li>
       </warm>
       <blunt>

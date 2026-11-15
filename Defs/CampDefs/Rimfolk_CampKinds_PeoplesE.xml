@@ -99,8 +99,8 @@
     </texts>
     <settled>
       <li>The Banner's squad has its fire going {PLACE}, weapons stacked within reach and a sentry who never quite sits down.</li>
-      <li>[shelter:hut] The squad {PLACE} has its post up: four walls in a straight line, beds squared inside, the ash-grey hung out to dry.</li>
-      <li>The squad {PLACE} has its camp up in a straight line, beds squared, the ash-grey hung out to dry.</li>
+      <li>[shelter:hut] The squad {PLACE} has its post up: four walls in a straight line, beds squared inside, and their ash-grey uniforms hung out to dry.</li>
+      <li>The squad {PLACE} has its camp up in a straight line, beds squared, and their ash-grey uniforms hung out to dry.</li>
       <li>Smoke rises from the Banner's camp {PLACE}, and someone there is reading the Roll aloud to the others.</li>
     </settled>
     <joinTexts>

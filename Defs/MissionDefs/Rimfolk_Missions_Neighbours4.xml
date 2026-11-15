@@ -758,10 +758,10 @@
           <li>The colony is searching for {DEAD}. Someone has to come within a few steps of {X_objective}, somewhere out on the colony's land.</li>
         </accepted>
         <ready>
-          <li>{A_nameDef} found {DEAD} sitting on a stone, talking to nobody in particular about a dog that died forty years ago. {DEAD} is coming back to the colony on {A_nameDef}'s arm, and {FACTION} are sending someone for {X_objective}.</li>
+          <li>{A_nameDef} found {DEAD} sitting on a stone, confused but unhurt. {DEAD} is coming back to the colony on {A_nameDef}'s arm, and {FACTION} are sending someone for {X_objective}.</li>
         </ready>
         <reminder>
-          <li>{DEAD} is still out there somewhere, and the trail won't stay warm much longer.</li>
+          <li>{DEAD} is still out there somewhere, and will be harder to find the longer the search takes.</li>
         </reminder>
         <doneTitles>
           <li>[found] {DEAD} goes home</li>
@@ -844,7 +844,7 @@
           <li>{A_nameDef} found {DEAD} by a dead fire, sore-footed and sheepish and very hungry. {DEAD} is coming back to the colony with {A_objective}, and {FACTION} are sending someone for {X_objective}.</li>
         </ready>
         <reminder>
-          <li>{DEAD} is still out there somewhere, and the trail won't stay warm much longer.</li>
+          <li>{DEAD} is still out there somewhere, and will be harder to find the longer the search takes.</li>
         </reminder>
         <doneTitles>
           <li>[found] {DEAD} goes home</li>

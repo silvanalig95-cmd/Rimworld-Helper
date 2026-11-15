@@ -213,7 +213,7 @@
     <defName>Rimfolk_Var2_EncC_MyBeastReturns</defName>
     <encounter>Council_EncC_MyBeastReturns</encounter>
     <texts>
-      <li>[hurt] {A_nameDef}'s old wounds ached when {X_definite} came out of the trees again, as if they remembered too.</li>
+      <li>[hurt] {A_nameDef}'s old wounds started to ache when {X_definite} came out of the trees again.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

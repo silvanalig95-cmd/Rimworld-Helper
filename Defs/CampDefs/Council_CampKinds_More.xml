@@ -163,7 +163,7 @@
         <warm>2</warm>
         <outcomes>
           <li>{A_nameDef} has gone to sit at the healers' table and learn. {X_nameDef} started with how to wash {A_possessive} hands, properly.</li>
-          <li>{X_nameDef} is showing {A_nameDef} how they set a bone with two sticks and a lot of nerve.</li>
+          <li>{X_nameDef} is showing {A_nameDef} how they set a bone between two sticks.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><xpPerHour>180</xpPerHour><duration>2~3</duration></li>
@@ -287,7 +287,7 @@
           <li>{X_nameDef} thanked {A_nameDef} and went to fetch the icon. The procession will be in the fields within the hour.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} bowed and said they would bless the fields from the road as they pass. They did, loudly.</li>
+          <li>{X_nameDef} bowed and said they would bless the fields from the road as they passed, and they did.</li>
           <li>The procession kept to its camp, singing.</li>
         </refused>
         <refuseTension>4</refuseTension>
@@ -378,7 +378,7 @@
     </texts>
     <settled>
       <li>The players from {FACTION} have their camp up {PLACE}, with a stage of packed earth and a torch at each corner.</li>
-      <li>[!lowtech] The circus from {FACTION} has strung lanterns between two poles {PLACE} and marked out a ring in the dirt. The juggler is still juggling.</li>
+      <li>[!lowtech] The circus from {FACTION} has strung lanterns between two poles {PLACE} and marked out a ring in the dirt, where a juggler is practising.</li>
       <li>[tribal] The dancers from {FACTION} have cleared a dancing ground {PLACE} and beaten it flat. Their drums are already going at dusk.</li>
       <li>Costumes hang airing on a line at the players' camp {PLACE}, and a trunk of props stands open by the fire.</li>
     </settled>
@@ -449,10 +449,10 @@
         <tip>The colony goes to the players' stage tonight to watch. Recreation for whoever comes.</tip>
         <outcomes>
           <li>The colony is going to the players' stage tonight. {X_nameDef} won't say what the play is about, only that it ends badly for a duke.</li>
-          <li>Whoever can be spared will watch the players tonight. {X_nameDef} has asked them to laugh in the right places, and given a list.</li>
+          <li>Whoever can be spared will watch the players tonight, and {X_nameDef} is glad of the audience.</li>
         </outcomes>
         <refused>
-          <li>{X_nameDef} took the answer badly. The players rehearsed until midnight anyway, louder than usual.</li>
+          <li>{X_nameDef} took the answer badly, and the players rehearsed loudly until midnight.</li>
           <li>The players performed to their own fire tonight. The colony could hear the laughs.</li>
         </refused>
         <refuseTension>5</refuseTension>
@@ -468,7 +468,7 @@
         <silver>80</silver>
         <deed>welcomed</deed>
         <outcomes>
-          <li>The players will perform at the colony tonight. {X_nameDef} has already measured the hall and decided where the duke will die.</li>
+          <li>The players will perform at the colony tonight. {X_nameDef} has already measured the hall to plan the stage.</li>
           <li>{X_nameDef} took the silver with a flourish. The players will bring the show to the colony after supper.</li>
         </outcomes>
         <effects>
@@ -484,7 +484,7 @@
         <minDays>1</minDays>
         <warm>2</warm>
         <outcomes>
-          <li>{A_nameDef} is to play a guard with one line in the players' next show. {X_nameDef} is making {A_objective} say it forty different ways.</li>
+          <li>{A_nameDef} is to play a guard with one line in the players' next show. {X_nameDef} is making {A_objective} practise it over and over.</li>
           <li>{X_nameDef} has taken {A_nameDef} into rehearsal, and promised {A_objective} a costume with a hat.</li>
         </outcomes>
         <effects>
@@ -629,7 +629,7 @@
         <warm>2</warm>
         <outcomes>
           <li>{A_nameDef} is carrying the measuring chain for {X_nameDef} today, and learning why it matters which end is which.</li>
-          <li>{X_nameDef} has taken {A_nameDef} out with the instrument, and is explaining the arithmetic of hills.</li>
+          <li>{X_nameDef} has taken {A_nameDef} out with the instrument, and is explaining how to measure the height of a hill.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>

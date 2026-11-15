@@ -68,7 +68,7 @@
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Beer</thing><price>3</price><toVisitor>true</toVisitor></li>
             </effects>
             <riskChance>0.25</riskChance>
-            <riskOutcome>The beer is handed over at the gate and paid for. A few days later {FACTION}'s wardens found the bottles at {PLACE}, and asked where they came from. They were told.</riskOutcome>
+            <riskOutcome>The beer is handed over at the gate and paid for. A few days later {FACTION}'s wardens found the bottles at {PLACE} and asked where they came from, and were told it was the colony.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </riskEffects>
@@ -591,7 +591,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The two of them come in through the gate with their bundles, and are the colony's now.</outcome>
+            <outcome>The two of them come in through the gate with their bundles and join the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2</count><ages>17~28</ages></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>

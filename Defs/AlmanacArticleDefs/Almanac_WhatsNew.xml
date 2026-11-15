@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.251.0</version>
+        <date>15 November 2026</date>
+        <title>Messages at the top of the screen in plain words</title>
+        <points>
+          <li>The outcomes of the council's questions, world events, camps' requests and missions that show at the top of the screen now say plainly what happened, without a joke or twist at the end.</li>
+          <li>Encounters, small troubles at home, and the vendetta, birthday, pet and graveside messages read in plain words, and local terms such as the Waystone Book and the red cord at the gate are explained where they appear.</li>
+          <li>Nothing plays differently: every name, number and effect in these messages is the same as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.250.0</version>
         <date>15 November 2026</date>
         <title>Advice, defense steps and storytellers in plain words</title>

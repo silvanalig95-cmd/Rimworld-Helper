@@ -63,7 +63,7 @@
     <colonist><passion>Melee</passion></colonist>
     <texts>
       <li>{X_nameDef}, who fights for a living, watched {A_nameDef} train in the yard and then, without a word, moved {A_possessive} back foot a hand's width to the left. It helped.</li>
-      <li>"How did you get so quick?" {A_nameDef} asked. Ten thousand mornings, {X_nameDef} said, and showed {A_objective} the first one.</li>
+      <li>"How did you get so quick?" {A_nameDef} asked. {X_nameDef} said it came from years of practising every morning, and showed {A_objective} the first exercise.</li>
       <li>{X_nameDef} walked {A_nameDef} through an old form with empty hands, slow as a dance, until {A_nameDef} could do it with {A_possessive} eyes shut.</li>
     </texts>
     <effects>

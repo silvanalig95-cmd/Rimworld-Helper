@@ -320,7 +320,7 @@
     <options>
       <li>
         <label>Send {X_nameDef} off with a gift</label>
-        <outcome>{X_nameDef} was handed fifty silver "for the road", in front of the caravan guards. {X_nameDef} weighed the purse in one hand, didn't bite any of it, and made no more jokes that day.</outcome>
+        <outcome>{X_nameDef} was handed fifty silver "for the road", in front of the caravan guards. {X_nameDef} weighed the purse in one hand and made no more jokes that day.</outcome>
         <ways><generosity>6</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count><by>Outsiders</by></li>
@@ -344,7 +344,7 @@
       </li>
       <li>
         <label>Charge {X_objective} for the well water, then</label>
-        <outcome>Two silver a bucket for the pack animals, the council ruled, twenty silver in all. {X_nameDef} paid without a word, which was worse than the jokes. {A_nameDef} wishes {A_pronoun} had never brought it up.</outcome>
+        <outcome>Two silver a bucket for the pack animals, the council ruled, twenty silver in all. {X_nameDef} paid without a word, and {A_nameDef} wishes {A_pronoun} had never brought it up.</outcome>
         <ways><generosity>-6</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>20</count><by>Outsiders</by></li>
@@ -377,7 +377,7 @@
     <options>
       <li>
         <label>The custom stands, for everyone</label>
-        <outcome>The custom stands, the council ruled, for everyone and every time. {A_nameDef} agreed to be there in the voice of someone agreeing to have a tooth pulled, and {B_nameDef} will be watching.</outcome>
+        <outcome>The custom stands, the council ruled, for everyone and every time. {A_nameDef} agreed to be there, very reluctantly, and {B_nameDef} will be watching.</outcome>
         <ways><tradition>6</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_MadeToConform</thought></li>
@@ -519,7 +519,7 @@
       </li>
       <li>
         <label>Ask the {FACTION} visitors to move on</label>
-        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way. {X_nameDef} is complaining all the way to the gate, and {A_nameDef} is changing the sheets.</outcome>
+        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way. {X_nameDef} complained all the way to the gate, and {A_nameDef} was glad to see {X_objective} go.</outcome>
         <ways><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -556,7 +556,7 @@
     <options>
       <li>
         <label>Open the gate for {X_objective}</label>
-        <outcome>The gate opened for {X_nameDef}, and {A_nameDef} sat up late with {X_objective}, talking about people from before. The watch counted the storeroom twice before going to bed.</outcome>
+        <outcome>The gate opened for {X_nameDef}, and {A_nameDef} sat up late with {X_objective}, talking about people from before. The watch kept an eye on the storeroom all the same.</outcome>
         <ways><openness>6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FriendLetIn</thought></li>

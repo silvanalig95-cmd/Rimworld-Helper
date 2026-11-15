@@ -82,7 +82,7 @@
           </li>
           <li>
             <label>Wish them well</label>
-            <outcome>The runner goes home with the colony's good wishes and an empty purse.</outcome>
+            <outcome>The runner goes home with the colony's good wishes but no silver.</outcome>
           </li>
         </options>
       </li>
@@ -167,7 +167,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The family unloads the barrow. The dog has already found the warmest spot.</outcome>
+            <outcome>The family unloads the barrow and settles in, and their dog lies down by the fire.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>dog</animal></li>
             </effects>
@@ -310,7 +310,7 @@
         <options>
           <li>
             <label>Charge a toll</label>
-            <outcome>A rope goes across the track, and a jar goes beside it. The merchants pay, and grumble about it in every town they visit.</outcome>
+            <outcome>The colony puts a rope across the track and a toll jar beside it. The merchants pay, and complain about it in every town they visit.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>-3</amount></li>
@@ -321,7 +321,7 @@
           </li>
           <li>
             <label>Set up a rest stop (60 wood)</label>
-            <outcome>A shelter goes up by the track, with a fire pit and a trough. The merchants notice.</outcome>
+            <outcome>The colony builds a shelter by the track, with a fire pit and a trough. The merchants appreciate it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the rest stop</label><what>WoodLog</what><count>60</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
@@ -570,7 +570,7 @@
           </li>
           <li>
             <label>Let them camp, for a fee (60 silver)</label>
-            <outcome>The pilgrims pass a bowl among themselves until the fee is in it, and camp by the water. They sing less than they might have.</outcome>
+            <outcome>The pilgrims pass a bowl among themselves until the fee is in it, and camp by the water, though they are less cheerful about it.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot><work>sing</work></li>
@@ -707,7 +707,7 @@
           </li>
           <li>
             <label>Keep them off the land</label>
-            <outcome>The prospectors are told the colony's land is not for digging. They shoulder their picks and go to dig somebody else's.</outcome>
+            <outcome>The prospectors are told the colony's land is not for digging. They shoulder their picks and leave to look elsewhere.</outcome>
             <ways><openness>-1</openness></ways>
           </li>
         </options>

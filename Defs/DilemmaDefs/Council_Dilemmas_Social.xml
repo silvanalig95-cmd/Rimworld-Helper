@@ -50,7 +50,7 @@
       </li>
       <li>
         <label>Keep them apart: separate shifts, separate meals</label>
-        <outcome>{A_nameDef} works the mornings now and {B_nameDef} the afternoons, and meals are taken in shifts so they only meet by accident. The others had their weeks rearranged to make it work, and mention it often.</outcome>
+        <outcome>{A_nameDef} works the mornings now and {B_nameDef} the afternoons, and meals are taken in shifts so they only meet by accident. The others had their weeks rearranged to make it work, and complain about it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Separated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-1</amount></li>
@@ -75,7 +75,7 @@
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The first lesson didn't last an hour. {B_nameDef} called {A_nameDef} hopeless, {A_nameDef} demonstrated a technique on {B_nameDef}'s nose, and that was the end of the lessons.</riskOutcome>
+        <riskOutcome>The first lesson didn't last an hour. {B_nameDef} called {A_nameDef} hopeless, {A_nameDef} punched {B_nameDef} in the nose, and that was the end of the lessons.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_TaughtByRival</thought></li>
@@ -149,7 +149,7 @@
       </li>
       <li>
         <label>Keep the roster as it is</label>
-        <outcome>The roster stays as it was. {A_nameDef} and {B_nameDef} still find each other at meals, and glare at it on the way past.</outcome>
+        <outcome>The roster stays as it was. {A_nameDef} and {B_nameDef} still find each other at meals, and glare at the roster on the way past.</outcome>
         <ways><tradition>3</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_PostedApart</thought></li>
@@ -419,7 +419,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-5</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
-        <riskOutcome>The case was thrown out, and within the hour another forty silver had gone missing. {B_nameDef} has said "I told you so" to anyone who will stand still for it.</riskOutcome>
+        <riskOutcome>The case was thrown out, and within the hour another forty silver had gone missing. {B_nameDef} has said "I told you so" to anyone who will listen.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Unfair</thought><chance>0.5</chance></li>
@@ -854,7 +854,7 @@
       </li>
       <li>
         <label>Back the quartermaster</label>
-        <outcome>{A_nameDef} keeps the keys, and the list went unread. The quartermaster's friends were relieved, and {B_nameDef} added the council to the list.</outcome>
+        <outcome>{A_nameDef} keeps the keys, and the list went unread. The quartermaster's friends were relieved, and {B_nameDef} now blames the council as well.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -878,7 +878,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>{B_nameDef} now checks every ration {A_nameDef} hands out. Within the hour there was a disagreement over a potato, and the ledger was used as a weapon.</riskOutcome>
+        <riskOutcome>{B_nameDef} now checks every ration {A_nameDef} hands out. Within the hour there was a disagreement over a potato, and it came to blows over the ledger.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>

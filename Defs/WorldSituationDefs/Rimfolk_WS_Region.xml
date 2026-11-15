@@ -83,7 +83,7 @@
           </li>
           <li>
             <label>Wish them well</label>
-            <outcome>The runner goes home with the colony's good wishes and an empty purse.</outcome>
+            <outcome>The runner goes home with the colony's good wishes but no silver.</outcome>
           </li>
         </options>
       </li>

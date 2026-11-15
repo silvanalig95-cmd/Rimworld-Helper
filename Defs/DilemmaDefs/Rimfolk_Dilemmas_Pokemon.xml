@@ -25,7 +25,7 @@
     <options>
       <li>
         <label>Leave food out for it</label>
-        <outcome>{A_nameDef} carried food out to the edge of the fields for {X_nameDef} and left it there. By morning it was gone, and nothing else was.</outcome>
+        <outcome>{A_nameDef} carried food out to the edge of the fields for {X_nameDef} and left it there. By morning the food was gone, and nothing else had been taken.</outcome>
         <ways><mercy>2</mercy><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_FeedBeast" />

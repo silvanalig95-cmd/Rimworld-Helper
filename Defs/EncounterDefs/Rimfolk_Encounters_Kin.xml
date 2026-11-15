@@ -44,7 +44,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} asked to see the colony's doctor, and when {A_nameDef} came, {X_pronoun} rolled up a sleeve to show a long, neat scar. "Your stitches," {X_pronoun} said. "They held. I wanted you to see."</li>
-      <li>Someone {A_nameDef} once patched up on a bad day walks without a stick now. {X_nameDef} had come to say so, and to bring that person's thanks to the steady hands.</li>
+      <li>Someone {A_nameDef} once patched up on a bad day walks without a stick now. {X_nameDef} had come to say so, and to thank {A_nameDef} for that person.</li>
       <li>{X_nameDef} of {FACTION} found {A_nameDef} and asked a dozen questions about wounds and fevers, writing down every answer. Their own healer, {X_pronoun} explained, wants to know how the colony's doctor does it.</li>
       <li>[their:dearA] Among {FACTION}, {X_nameDef} told {A_nameDef}, they still tell the story of the stranger who stitched their people back together, and in the story {A_nameDef} is nearly a saint. {A_nameDef} went quite red.</li>
       <li>[theirLowtech] By {A_nameDef}'s bed, {X_nameDef} left a bundle of dried healing herbs and a message from {FACTION}'s wise-woman: from one healer to another.</li>

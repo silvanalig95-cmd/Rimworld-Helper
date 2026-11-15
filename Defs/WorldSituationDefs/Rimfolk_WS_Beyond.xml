@@ -155,7 +155,7 @@
         <options>
           <li>
             <label>Send {A_nameDef} to {PLACE}</label>
-            <outcome>{A_nameDef} goes to {PLACE} with a bag of tools, and comes back four days later with a sunburnt neck and a dozen new roofs behind {A_objective}.</outcome>
+            <outcome>{A_nameDef} goes to {PLACE} with a bag of tools and comes back four days later, sunburnt, after helping put up a dozen new roofs.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
@@ -178,7 +178,7 @@
           </li>
           <li>
             <label>{A_nameDef} is needed here</label>
-            <outcome>The rider is told the colony can't spare {A_nameDef}. That evening {A_nameDef} looks toward {PLACE} more than once.</outcome>
+            <outcome>The rider is told the colony can't spare {A_nameDef}, who is clearly sorry not to go to {PLACE}.</outcome>
           </li>
         </options>
       </li>
@@ -330,7 +330,7 @@
         <options>
           <li>
             <label>Hide him</label>
-            <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. By evening both families know where he is.</outcome>
+            <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. By evening both families have found out where he is.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><inside>true</inside></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
@@ -381,7 +381,7 @@
         <options>
           <li>
             <label>{A_nameDef} sits between them</label>
-            <outcome>{A_nameDef} spends a long day at a long table with two families who won't look at each other. By evening they are arguing about the size of the blood price instead of about blood, and {A_nameDef} calls that progress.</outcome>
+            <outcome>{A_nameDef} spends a long day at the table with two families who won't look at each other. By evening they have stopped arguing about the killing and started arguing about the blood price, which is a step toward settling it.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Social</riskSkill>
             <riskOutcome>In the second hour an uncle of {ENEMY}'s family said something about a grandmother. {A_nameDef} got everyone out before it came to blows, but the feud is worse than it was.</riskOutcome>
@@ -620,7 +620,7 @@
           </li>
           <li>
             <label>Everyone to bed: there's work tomorrow</label>
-            <outcome>The colony goes to bed at the usual hour. {NAME} will still be there tomorrow night, for anyone who wants to lose sleep over it.</outcome>
+            <outcome>The colony goes to bed at the usual hour. {NAME} will still be in the sky tomorrow night.</outcome>
             <ways><toil>1</toil></ways>
           </li>
         </options>
@@ -792,7 +792,7 @@
           </li>
           <li>
             <label>The colony has enough</label>
-            <outcome>The carter thanks the colony for its time and goes on down the road, still heavy.</outcome>
+            <outcome>The carter thanks the colony for its time and goes on down the road with his load.</outcome>
           </li>
         </options>
       </li>
@@ -1039,7 +1039,7 @@
           </li>
           <li>
             <label>Send them on to {PLACE}</label>
-            <outcome>The drovers are told it's for {FACTION}'s own elders to judge. They go off arguing, and the heifer looks back once.</outcome>
+            <outcome>The drovers are told it's for {FACTION}'s own elders to judge. They go off arguing, taking the heifer with them.</outcome>
           </li>
         </options>
       </li>

@@ -264,7 +264,7 @@
     </texts>
     <settled>
       <li>The shearers' camp {PLACE} is up: a fire, shelter for the night, and the blades laid out to be honed.</li>
-      <li>The shearers from {FACTION} have made camp {PLACE}. Their dog has already found the warmest spot by the fire.</li>
+      <li>The shearers from {FACTION} have made camp {PLACE}, and their dog is lying by the fire.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the youngest of the shearers {PLACE}, says {X_pronoun} is tired of a different flock every week, and asks whether the colony needs someone who knows beasts.</li>

@@ -37,7 +37,7 @@
     <thought>Council_Nuisance_NoCoat</thought>
     <texts>
       <li>{A_nameDef} worked on in the rain, shirt stuck flat to {A_possessive} back.</li>
-      <li>Rain ran off {A_nameDef}'s hair and down inside {A_possessive} collar. A coat would have helped, if anyone had made {A_objective} one.</li>
+      <li>Rain ran off {A_nameDef}'s hair and down inside {A_possessive} collar, because nobody has made {A_objective} a coat.</li>
       <li>{A_nameDef} wrung out {A_possessive} sleeves at the end of the job and got about a cup of water from each.</li>
       <li>Every step squelched. {A_nameDef} gave up trying to stay dry.</li>
       <li>{A_nameDef} watched someone go by in a good coat and kept working in the downpour.</li>

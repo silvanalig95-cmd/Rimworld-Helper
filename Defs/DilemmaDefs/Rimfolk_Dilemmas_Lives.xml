@@ -30,8 +30,8 @@
         <label>{A_nameDef} mends it, with {B_nameDef}'s help</label>
         <outcome>{A_nameDef} spent the afternoon with {B_nameDef}, putting right what {A_pronoun} broke. {B_nameDef} showed {A_objective} how, and made {A_objective} do every bit of it, twice where the first try came out crooked.</outcome>
         <outcomes>
-          <li>[b:quirk:Proverbs] "You break it, you mend it, you learn it," {B_nameDef} said, and said it again every time {A_nameDef} complained. {A_nameDef} mended it. {A_nameDef} can now recite the saying in {B_nameDef}'s voice.</li>
-          <li>[b:trait:Abrasive] {B_nameDef} stood over {A_nameDef} the whole time with a running commentary on everything {A_pronoun} did wrong. It's mended. It's mended very well.</li>
+          <li>[b:quirk:Proverbs] "You break it, you mend it, you learn it," {B_nameDef} said, and said it again every time {A_nameDef} complained. {A_nameDef} mended it, and now knows the saying by heart.</li>
+          <li>[b:trait:Abrasive] {B_nameDef} stood over {A_nameDef} the whole time, pointing out everything {A_pronoun} did wrong. It's mended, and mended very well.</li>
         </outcomes>
         <ways><tradition>2</tradition><mercy>1</mercy></ways>
         <effects>
@@ -44,7 +44,7 @@
         <label>Say sorry to everyone at supper</label>
         <outcome>{A_nameDef} stood up at supper and said sorry to the whole colony, in a very small voice. Someone clapped. {A_nameDef} went red to the ears, and won't do it again in a hurry.</outcome>
         <outcomes>
-          <li>[quirk:WrongLaugh] {A_nameDef} got halfway through saying sorry at supper and started giggling, and couldn't stop, and set off half the table. It wasn't much of an apology. It was a very good supper.</li>
+          <li>[quirk:WrongLaugh] {A_nameDef} got halfway through saying sorry at supper and started giggling, and couldn't stop, and set off half the table. It wasn't much of an apology, but it was a cheerful supper.</li>
         </outcomes>
         <ways><tradition>3</tradition></ways>
         <effects>
@@ -61,14 +61,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council let it go, and {A_nameDef} took that as permission. Two days later it was the rain barrel again. {B_nameDef} hasn't said "I told you so" yet, out loud.</riskOutcome>
+        <riskOutcome>The council let it go, and {A_nameDef} took that as permission. Two days later it was the rain barrel again. {B_nameDef} hasn't said "I told you so", though {B_pronoun} clearly thinks it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
         </riskEffects>
       </li>
       <li>
         <label>A stern word from the council</label>
-        <outcome>The council gave {A_nameDef} a stern talking-to, all of them at once, which was a lot of stern for one small person. {A_nameDef} hasn't thrown a stone since. {A_nameDef} hasn't said much since, either.</outcome>
+        <outcome>The council gave {A_nameDef} a stern talking-to, all of them at once. {A_nameDef} hasn't thrown a stone since, and has been very quiet.</outcome>
         <ways><tradition>3</tradition><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_ScoldedByCouncil</thought></li>
@@ -237,9 +237,9 @@
     <options>
       <li>
         <label>Morning lessons, with {B_nameDef}</label>
-        <outcome>Every morning now, {B_nameDef} sits the children down for lessons, starting with {A_nameDef}. They grumble about it. They also correct the grown-ups' spelling.</outcome>
+        <outcome>Every morning now, {B_nameDef} sits the children down for lessons, starting with {A_nameDef}. They grumble about it, but they are learning to read and write.</outcome>
         <outcomes>
-          <li>[b:quirk:KeepsRecords] {B_nameDef} keeps a ledger of every lesson and every child's progress, in columns. {A_nameDef} has started a ledger of {B_nameDef}'s sayings.</li>
+          <li>[b:quirk:KeepsRecords] {B_nameDef} keeps a ledger of every lesson and every child's progress, in columns, and {A_nameDef} is making good progress.</li>
           <li>[b:quirk:Proverbs] {B_nameDef}'s lessons are half letters and half old sayings. The children can't spell yet, but they all know that a cold oven bakes no bread.</li>
         </outcomes>
         <ways><openness>2</openness><toil>-2</toil></ways>
@@ -417,7 +417,7 @@
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} went alone and got halfway before {A_possessive} knees gave up the argument. {A_nameDef} sat on a rock until someone came looking, and was walked home between two people, saying very little.</riskOutcome>
+        <riskOutcome>{A_nameDef} went alone and got halfway before {A_possessive} knees gave out. {A_nameDef} sat on a rock until someone came looking, and was walked home between two people, saying very little.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_TooFarTooOld</thought></li>
         </riskEffects>
@@ -451,7 +451,7 @@
     <options>
       <li>
         <label>Insist: {B_nameDef} sees to {A_nameDef} today</label>
-        <outcome>The council insisted. {A_nameDef} sat for {B_nameDef}'s examination with the face of someone being robbed, and was given rest and a remedy. {A_nameDef} feels better, and is more put out than ever.</outcome>
+        <outcome>The council insisted. {A_nameDef} sat for {B_nameDef}'s examination unwillingly, and was given rest and a remedy. {A_nameDef} feels better, and is more put out than ever.</outcome>
         <outcomes>
           <li>[quirk:Proverbs] {A_nameDef} submitted to {B_nameDef}'s examination with a running commentary of sayings about doctors, none of them kind. {B_nameDef} has heard them all before.</li>
         </outcomes>
@@ -667,7 +667,7 @@
     <options>
       <li>
         <label>The old way: {A_nameDef} has done it longer</label>
-        <outcome>The council backed {A_nameDef}. It's done the old way, as it always has been. {A_nameDef} was gracious about winning, mostly. {B_nameDef} is doing it the old way, loudly.</outcome>
+        <outcome>The council backed {A_nameDef}. It's done the old way, as it always has been. {A_nameDef} was gracious about winning, mostly. {B_nameDef} is doing it the old way, and complaining about it.</outcome>
         <ways><tradition>4</tradition><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_TheOldWay</thought></li>
@@ -676,7 +676,7 @@
       </li>
       <li>
         <label>The new way: let {B_nameDef} try it</label>
-        <outcome>{B_nameDef} gets a season to do it {B_possessive} way. {B_nameDef} is delighted. {A_nameDef} is keeping a close eye on it, and a list.</outcome>
+        <outcome>{B_nameDef} gets a season to do it {B_possessive} way. {B_nameDef} is delighted. {A_nameDef} is keeping a close eye on it.</outcome>
         <outcomes>
           <li>[quirk:KeepsRecords] {A_nameDef} has started a page in {A_possessive} notebook headed "the new way: what went wrong". It's blank so far, which annoys {A_objective}.</li>
         </outcomes>
@@ -777,7 +777,7 @@
       </li>
       <li>
         <label>Keep it, but keep it private</label>
-        <outcome>The council said {A_nameDef} can write what {A_pronoun} likes, as long as no one else has to read it. {A_nameDef} has started a second notebook about the council.</outcome>
+        <outcome>The council said {A_nameDef} can write what {A_pronoun} likes, as long as no one else has to read it. {A_nameDef} has kept writing.</outcome>
         <ways><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_RecordsPrivate</thought></li>

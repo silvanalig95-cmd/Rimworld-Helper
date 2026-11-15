@@ -64,7 +64,7 @@
         <options>
           <li>
             <label>Sell {COUNT} food at twice its worth</label>
-            <outcome>The food is carried out to the gate and loaded, and the driver leaves the purse behind, as full as it came.</outcome>
+            <outcome>The food is carried out to the gate and loaded, and the driver pays the full price.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>2</factor></li>

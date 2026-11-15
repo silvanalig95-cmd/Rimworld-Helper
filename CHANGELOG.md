@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Messages at the top of the screen in plain words
+
+*15 November 2026, version 0.251.0*
+
+- The outcomes of the council's questions, world events, camps' requests and missions that show at the top of the screen now say plainly what happened, without a joke or twist at the end.
+- Encounters, small troubles at home, and the vendetta, birthday, pet and graveside messages read in plain words, and local terms such as the Waystone Book and the red cord at the gate are explained where they appear.
+- Nothing plays differently: every name, number and effect in these messages is the same as before.
+
 ## Advice, defense steps and storytellers in plain words
 
 *15 November 2026, version 0.250.0*

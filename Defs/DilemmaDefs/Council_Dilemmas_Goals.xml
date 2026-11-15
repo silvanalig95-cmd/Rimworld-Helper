@@ -482,7 +482,7 @@
     <options>
       <li>
         <label>Rally the colony behind {A_nameDef}</label>
-        <outcome>All the way round the dinner table, one by one, each colonist gave {A_nameDef} a reason not to give up. Most were good. One was mostly about the soup. By the time the plates were cleared, {A_nameDef} was talking about the dream again.</outcome>
+        <outcome>All the way round the dinner table, one by one, each colonist gave {A_nameDef} a reason not to give up. By the time the plates were cleared, {A_nameDef} was talking about the dream again.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Encouraged</thought></li>

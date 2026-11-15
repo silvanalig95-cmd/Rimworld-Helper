@@ -82,7 +82,7 @@
           <li>The colony's shots have reached the lodge at {PLACE} and gone out with the Wardens before dawn. Keep the caravan there while the drive goes on.</li>
         </ready>
         <reminder>
-          <li>The lantern still burns at the crossroads below {PLACE}, and the colony's shots haven't come.</li>
+          <li>The Wardens at {PLACE} are still waiting at their lodge for the colony's shots.</li>
         </reminder>
         <doneTitles>
           <li>[worked] The drive from {PLACE}</li>

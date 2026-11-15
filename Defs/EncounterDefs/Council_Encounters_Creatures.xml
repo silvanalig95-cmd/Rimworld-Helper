@@ -451,7 +451,7 @@
     <texts>
       <li>First up this morning, {A_nameDef} found {X_indefinite} grazing in the mist just past the fence and stood listening to {X_objective} tear at the grass.</li>
       <li>In the gray light before breakfast, {A_nameDef} watched {X_indefinite} step out of the trees, nose at the wet grass, and step back in.</li>
-      <li>{A_nameDef} stood very still at the well while {X_indefinite} drank from the runoff not ten paces away. The bucket grew heavy in {A_possessive} hands. {A_nameDef} didn't set it down.</li>
+      <li>{A_nameDef} stood very still at the well, holding a full bucket, while {X_indefinite} drank from the runoff not ten paces away.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_QuietMorning</thought></li>
@@ -550,7 +550,7 @@
     <weight>0.9</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>For most of the afternoon {X_indefinite} paced the far side of the fence, keeping exactly level with {A_nameDef} as {A_pronoun} worked. {A_nameDef} found a reason to finish early.</li>
+      <li>For most of the afternoon {X_indefinite} paced the far side of the fence, keeping exactly level with {A_nameDef} as {A_pronoun} worked. {A_nameDef} stopped work early.</li>
       <li>{A_nameDef} went out for firewood and came face to face with {X_indefinite} nosing at the woodpile. They both backed away slowly, and {A_nameDef} came in without the wood.</li>
       <li>There are fresh prints right up to the fields, and {X_indefinite} lying in the shade just past them, watching {A_nameDef} work.</li>
       <li>{A_nameDef} looked up and found {X_indefinite} low in the long grass, eyes on {A_objective}. When {A_nameDef} stood up and shouted, the animal didn't run.</li>

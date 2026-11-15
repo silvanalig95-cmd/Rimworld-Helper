@@ -28,7 +28,7 @@
     <options>
       <li>
         <label>{A_nameDef} works it in {THING}</label>
-        <outcome>{A_nameDef} has the bench and the colony's {THING} for the piece, and has gone to make it while the idea lasts. {B_nameDef} has stopped counting.</outcome>
+        <outcome>{A_nameDef} has the bench and the colony's {THING} for the piece, and has gone to make it while the idea is fresh. {B_nameDef} has given up counting the cost.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} carries the {THING} to the bench {A_objective}self and starts on it before anyone can change their mind.</li>
         </outcomes>
@@ -80,7 +80,7 @@
     <options>
       <li>
         <label>A measured dose, to steady {A_objective}</label>
-        <outcome>{A_nameDef} takes one dose of the {THING} from the stores, and the shaking stops. The want of it stays.</outcome>
+        <outcome>{A_nameDef} takes one dose of the {THING} from the stores, and the shaking stops. The craving remains.</outcome>
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Dose" />
@@ -252,7 +252,7 @@
       </li>
       <li>
         <label>Leave them as they stand</label>
-        <outcome>The old walls stand as they have stood, nobody's.</outcome>
+        <outcome>The old walls are left as they are, belonging to nobody.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_RuinLeft</thought></li>
@@ -393,7 +393,7 @@
       </li>
       <li>
         <label>Leave it to the wild</label>
-        <outcome>The {X_kind} is left where it lies. The wild will see to it, one way or another.</outcome>
+        <outcome>The {X_kind} is left where it lies, to live or die on its own.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LeftHurt</thought><chance>0.5</chance></li>
         </effects>

@@ -84,7 +84,7 @@
         <options>
           <li>
             <label>Shut the gate to travelers</label>
-            <outcome>The rider ties the red cord to the colony's gatepost and goes on to the next farm. Travelers who come up the road will be turned back until {NAME} is over.</outcome>
+            <outcome>The rider ties a red cord to the colony's gatepost, the sign of a closed gate, and goes on to the next farm. Travelers who come up the road will be turned back until {NAME} is over.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
@@ -95,7 +95,7 @@
           </li>
           <li>
             <label>Keep the gate open</label>
-            <outcome>The rider shrugs and goes on to the next farm. The colony's gate stays open, to traders and to whatever they bring with them.</outcome>
+            <outcome>The rider shrugs and goes on to the next farm. The colony's gate stays open to traders, and to any sickness they carry.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_HarmRisk"><risk>gateSickness</risk></li>
             </effects>
@@ -170,7 +170,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>They are given a corner to sleep in and a bowl each. Before dark, one of them has asked where the woodpile is.</outcome>
+            <outcome>They are given a corner to sleep in and a bowl each. Before dark, one of them has already offered to help with the firewood.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
@@ -513,7 +513,7 @@
         <options>
           <li>
             <label>Take her in</label>
-            <outcome>The girl is brought in, fed and given a blanket by the stove. By evening she has asked every colonist's name, some of them twice.</outcome>
+            <outcome>The girl is brought in, fed and given a blanket by the stove. By evening she knows every colonist's name.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>14~16</ages></li>
             </effects>
@@ -989,7 +989,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The family gets dry clothes, a hot meal and a place to sleep. The goat gets the pen.</outcome>
+            <outcome>The family gets dry clothes, a hot meal and a place to sleep, and their goat is put in the pen.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>goat</animal></li>
             </effects>

@@ -94,7 +94,7 @@
     <children>true</children>
     <texts>
       <li>The smell from the colony's oven brought {X_nameDef} round to the kitchen door, where {A_nameDef} handed over the end of a loaf still too hot to hold.</li>
-      <li>{X_nameDef} watched {A_nameDef} pull the loaves from the oven with a long paddle and asked to try. The second loaf survived.</li>
+      <li>{X_nameDef} watched {A_nameDef} pull the loaves from the oven with a long paddle and asked to try. {X_nameDef} dropped the first loaf, but got the second one out whole.</li>
       <li>[x:child] {X_nameDef} hung about the oven all morning until {A_nameDef} gave {X_objective} a little loaf of {X_possessive} own.</li>
     </texts>
     <effects>

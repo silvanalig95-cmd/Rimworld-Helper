@@ -245,7 +245,7 @@
         <label>Dance until the fire burns down</label>
         <outcome>They danced until the fire was embers and the drummer's hands gave out. Even the ones who swore they couldn't dance were dragged up for at least one, and nobody was up early the next day.</outcome>
         <outcomes>
-          <li>[lowtech] The last sheaf went round the fire on {A_nameDef}'s shoulders, and the colony danced after it until the stars moved.</li>
+          <li>[lowtech] The last sheaf went round the fire on {A_nameDef}'s shoulders, and the colony danced after it late into the night.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>-4</toil></ways>
         <effects>
@@ -385,7 +385,7 @@
     <options>
       <li>
         <label>Lanterns along the walls</label>
-        <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at itself glowing. It was a long while before anyone went in.</outcome>
+        <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at the lights. It was a long while before anyone went in.</outcome>
         <outcomes>
           <li>[snow] The lanterns lit up the falling snow. They stood out in it, looking, until their feet went numb.</li>
           <li>[lowtech] The lights along the walls burned until first light, one for each of the colony's dead, {A_nameDef} said.</li>

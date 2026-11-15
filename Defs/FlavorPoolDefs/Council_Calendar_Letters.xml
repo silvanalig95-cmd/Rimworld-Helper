@@ -180,7 +180,7 @@
         <li>Somebody has saved {A_nameDef} the best seat at supper for {A_possessive} birthday.</li>
         <li>[old] {A_nameDef} has another birthday today, and has asked that nobody count the years out loud.</li>
         <li>[child] It's {A_nameDef}'s birthday, and {A_nameDef} has been up since dawn waiting for someone to say so.</li>
-        <li>[teen] {A_nameDef}'s birthday. {A_nameDef} says it's no big deal, and has mentioned it four times.</li>
+        <li>[teen] {A_nameDef}'s birthday. {A_nameDef} says it's no big deal, but keeps mentioning it.</li>
         <li>[lowtech] Someone has carved {A_nameDef} a wooden bird for {A_possessive} birthday.</li>
         <li>[winter] {A_nameDef}'s birthday falls in the deep cold, and the cooks found a few sweet things to mark it anyway.</li>
       </plain>

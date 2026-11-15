@@ -143,7 +143,7 @@
           </li>
           <li>
             <label>Warn them off the colony's land</label>
-            <outcome>The hunters from {PLACE} are told, politely, where the colony's land begins. They go, politely, and their faces say what their mouths don't.</outcome>
+            <outcome>The hunters from {PLACE} are told, politely, where the colony's land begins. They leave without arguing, but they are clearly unhappy about it.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Go"><what>hunters</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
@@ -244,7 +244,7 @@
           </li>
           <li>
             <label>Pull up their traps and send them back</label>
-            <outcome>The traps go back to {PLACE} in a heap, carried by the colony's hunter and dropped at their edge without a word. The settlers get the message. They don't like it.</outcome>
+            <outcome>The traps go back to {PLACE} in a heap, carried by the colony's hunter and dropped at their edge without a word. The settlers understand, and resent it.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
             </effects>
@@ -259,7 +259,7 @@
         <message>true</message>
         <texts>
           <li>Word from {PLACE}: the settlers have {COUNT} households now, a wall of sorts, and a first harvest in. {X_nameDef} still leads them.</li>
-          <li>[sour] Word from {PLACE}: {COUNT} households now, and a wall going up with its blind side to the colony. {X_nameDef} still leads them, and still hasn't been back to the gate.</li>
+          <li>[sour] Word from {PLACE}: {COUNT} households now, and a wall going up with no gate on the colony's side. {X_nameDef} still leads them, and still hasn't been back to the gate.</li>
           <li>[fed] Word from {PLACE}: {COUNT} households now, and a harvest in at last. The settlers say, to anyone who will listen, that the colony's food got them to it.</li>
         </texts>
       </li>
@@ -311,7 +311,7 @@
           <li>
             <label>Sit down with {X_nameDef} and agree a line</label>
             <showIf><li>sour</li></showIf>
-            <outcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and come away with a line agreed and the beginnings of something that isn't dislike. It will do.</outcome>
+            <outcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and come away with a line agreed and on better terms than before.</outcome>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
             <riskOutcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and get up without agreeing anything. {X_nameDef} walks home in the dark.</riskOutcome>
@@ -332,7 +332,7 @@
           <li>
             <label>Tell them to keep to their side</label>
             <showIf><li>sour</li></showIf>
-            <outcome>{X_nameDef} is told where the colony's land ends and that {PLACE}'s people are to stay off it. {X_pronoun} says nothing, and leaves nothing behind but the look on {X_possessive} face.</outcome>
+            <outcome>{X_nameDef} is told where the colony's land ends and that {PLACE}'s people are to stay off it. {X_pronoun} says nothing and leaves, clearly angry.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
             </effects>
@@ -599,7 +599,7 @@
           </li>
           <li>
             <label>Tell them the colony keeps its own stretch of road</label>
-            <outcome>The wardens are told the colony needs no keeping. They ride on without watering the horses, and without the nod.</outcome>
+            <outcome>The wardens are told the colony needs no keeping. They ride on without watering the horses or saying goodbye.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
             </effects>
@@ -899,7 +899,7 @@
           </li>
           <li>
             <label>Let it keep its own name</label>
-            <outcome>The reeve is told the town should have a name of its own, and seems relieved; so does the colony. {PLACE} it stays.</outcome>
+            <outcome>The reeve is told the town should have a name of its own, and seems relieved. It stays {PLACE}.</outcome>
           </li>
         </options>
       </li>

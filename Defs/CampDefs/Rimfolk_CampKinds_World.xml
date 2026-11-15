@@ -112,7 +112,7 @@
         <warm>1</warm>
         <outcomes>
           <li>{A_nameDef} sat at the wardens' fire and wrote the colony's letter to {FACTION}, and {X_nameDef} sealed it with the post's mark for the next cart through.</li>
-          <li>{A_nameDef} went down to the post with paper and came back without it. {X_nameDef} said the carters would have the colony's word to {FACTION} on the road by morning.</li>
+          <li>{A_nameDef} took the colony's letter down to the post. {X_nameDef} said the carters would have it on the road to {FACTION} by morning.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>

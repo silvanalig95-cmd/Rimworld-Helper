@@ -95,7 +95,7 @@
     <texts>
       <li>Fresh tracks led over the rise, and at the end of them {A_nameDef} found {X_indefinite} digging through the crust for whatever grows beneath.</li>
       <li>[skill:Animals] {A_nameDef} read the tracks in the snow like a page, and half a mile on found {X_indefinite} exactly where {A_pronoun} had said it would be.</li>
-      <li>[child] {A_nameDef} followed the little holes in the snow all the way to the trees, found {X_indefinite} at the end of them, and ran back with frost on {A_possessive} eyelashes to tell the grown-ups.</li>
+      <li>[child] {A_nameDef} followed tracks in the snow to the trees, found {X_indefinite} there, and ran back to tell the adults.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_FollowedTracks</thought></li>
@@ -162,7 +162,7 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} looked up from the path and found {X_indefinite} watching from the undergrowth, close enough to touch. Neither moved. Then a bird shrieked overhead, and the leaves were empty.</li>
+      <li>{A_nameDef} looked up from the path and found {X_indefinite} watching from the undergrowth, close enough to touch. Neither moved until a bird shrieked overhead, and then it was gone.</li>
       <li>Something in the green kept pace with {A_nameDef} all the way back from the far plot. At the gate {A_nameDef} turned and saw {X_indefinite} sitting in the ferns, watching to see where {A_pronoun} went.</li>
       <li>[rain] In the warm rain, with water running off every leaf, {A_nameDef} nearly stepped on {X_indefinite} curled under a fern. It looked up, unbothered, and went back to sleep.</li>
     </texts>
@@ -206,7 +206,7 @@
     <texts>
       <li>{A_nameDef} was up to the knees in black water, clearing a channel, when {X_indefinite} went past through the reeds without a sound. {A_nameDef} held {A_possessive} breath until it was gone.</li>
       <li>The reeds parted a few paces from {A_nameDef}, and out looked {X_indefinite}, dripping weed. Then the reeds closed again.</li>
-      <li>[fog] Mist lay on the marsh like milk. {A_nameDef} heard the slow wading before {A_pronoun} saw anything, and then {X_indefinite} came out of the white and went back into it.</li>
+      <li>[fog] The marsh was thick with mist. {A_nameDef} heard the slow wading before {A_pronoun} saw anything, and then {X_indefinite} came out of the mist and went back into it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ReedWalker</thought></li>
@@ -336,7 +336,7 @@
     <cooldownDays>10</cooldownDays>
     <texts>
       <li>{X_nameDef} sells salt fish along this coast and has pockets full of shells for the children of every village. {A_nameDef} isn't a child, but {X_nameDef} gave {A_objective} one anyway, a spiral, pink inside.</li>
-      <li>Between haggling over the price of salt, {X_nameDef} pressed a smooth white shell into {A_nameDef}'s hand and said it would bring good weather. It hasn't yet. {A_nameDef} keeps it on the windowsill.</li>
+      <li>Between haggling over the price of salt, {X_nameDef} pressed a smooth white shell into {A_nameDef}'s hand and said it would bring good weather. {A_nameDef} keeps it on the windowsill.</li>
       <li>[child] {X_nameDef} held a big shell to {A_nameDef}'s ear and told {A_objective} the sea was inside it. {A_nameDef} listened, eyes wide, and was allowed to keep it.</li>
     </texts>
     <effects>

@@ -84,7 +84,7 @@
     <texts>
       <li>{X_nameDef} of {FACTION} looked at the colony's walls for a long time, then showed {A_nameDef} how the republic's builders set an arch so it holds itself up.</li>
       <li>In the dust, {X_nameDef} drew {A_nameDef} a column: base, shaft and capital, and the slight swell in the middle that makes it look straight.</li>
-      <li>{A_nameDef} and {X_nameDef} argued about mortar until dark. {X_nameDef}'s people put ash from a volcano in theirs; {A_nameDef} is now looking for a volcano.</li>
+      <li>{A_nameDef} and {X_nameDef} argued about mortar until dark. {X_nameDef}'s people put volcanic ash in theirs, and {A_nameDef} wants to try it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>400</xp></li>
@@ -103,7 +103,7 @@
     <cooldownDays>7</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>SettlerCivil</li><li>SettlerRough</li></factions></stranger>
     <texts>
-      <li>{X_nameDef} told {A_nameDef} about a cattle drive across the salt flats, two hundred head and one canteen. The canteen grew more heroic every time {X_pronoun} told it.</li>
+      <li>{X_nameDef} told {A_nameDef} about a cattle drive across the salt flats, two hundred head and one canteen, and the story grew a little every time {X_pronoun} told it.</li>
       <li>Back home, {X_nameDef} swore to {A_nameDef}, there's a mule that can count to five and will only work for the mayor.</li>
       <li>{X_nameDef} let {A_nameDef} taste the chemshine {FACTION} brews. {A_nameDef} coughed until {A_possessive} eyes ran, then asked how it's made.</li>
       <li>[night] Long after dark, {X_nameDef} told {A_nameDef} about the bandit who robbed the same stagecoach eleven times and was finally hired to guard it.</li>

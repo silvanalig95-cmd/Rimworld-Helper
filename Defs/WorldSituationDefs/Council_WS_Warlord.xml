@@ -148,7 +148,7 @@
           </li>
           <li>
             <label>Wait {X_objective} out</label>
-            <outcome>The council gives {X_nameDef} nothing: no silver and no answer. Let {NAME} find out how little there is to take here.</outcome>
+            <outcome>The council gives {X_nameDef} no silver and no answer, and the colony will face {NAME} if it comes.</outcome>
             <ways><tradition>1</tradition></ways>
           </li>
         </options>

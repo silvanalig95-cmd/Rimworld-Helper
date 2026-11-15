@@ -22,7 +22,7 @@
     <cooldownDays>4</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>Over a bowl of soup, {X_nameDef} told {A_nameDef} that two warlords up north are burning each other's fields again. Grain will be dear by winter.</li>
+      <li>Over a bowl of soup, {X_nameDef} told {A_nameDef} that two warlords up north are burning each other's fields again. Grain will be expensive by winter.</li>
       <li>A town three weeks east has the coughing sickness, {X_nameDef} told {A_nameDef}, and they've started nailing the doors shut on the sick.</li>
       <li>By supper {A_nameDef} had passed on everything {X_nameDef} said. Salt is twice last year's price, the ford bridge has washed out, and a village up north has made a goat its headman.</li>
       <li>{A_nameDef} sat up late with {X_nameDef}, settlement by settlement, hearing who had married and who had been hanged since the last caravan came through.</li>
@@ -657,7 +657,7 @@
     <stranger><kind>Prisoner</kind><nemesisOfA>true</nemesisOfA></stranger>
     <texts>
       <li>For a long time {A_nameDef} stood at {X_nameDef}'s door without a word. {X_nameDef} looked up, recognized {A_objective}, and looked away first.</li>
-      <li>{X_nameDef} grinned at {A_nameDef} through the bars and asked how the scar was coming along. {A_nameDef} walked away before {A_possessive} hands could decide anything.</li>
+      <li>{X_nameDef} grinned at {A_nameDef} through the bars and asked how the scar was coming along. {A_nameDef} walked away before {A_pronoun} did something {A_pronoun} would regret.</li>
       <li>{A_nameDef} carried {X_nameDef}'s dinner in personally, set it down, and said, "Now I know where you sleep, too."</li>
       <li>The last time they met, {A_nameDef} was on the ground and {X_nameDef} was standing over {A_objective}. Today {X_nameDef} is on a cell floor, and {A_nameDef} can't stop looking.</li>
     </texts>

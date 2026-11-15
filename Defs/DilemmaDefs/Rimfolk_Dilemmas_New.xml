@@ -109,7 +109,7 @@
       </li>
       <li>
         <label>Blame the meat</label>
-        <outcome>The council put it down to bad meat, and {A_nameDef} goes on cooking as before. The ones who were sick have their own opinion about that.</outcome>
+        <outcome>The council put it down to bad meat, and {A_nameDef} goes on cooking as before. The ones who were sick are not so sure.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>

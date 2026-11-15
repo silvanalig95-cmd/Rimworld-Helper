@@ -21,7 +21,7 @@
     <cooldownDays>8</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_Empire</li></factions></stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} made tea for {A_nameDef} in a small iron pot, slowly, and would not let {A_objective} drink until it had been looked at properly.</li>
+      <li>{X_nameDef} of {FACTION} made tea for {A_nameDef} in a small iron pot. Among {X_nameDef}'s people you admire the tea for a moment before drinking it, and {X_nameDef} showed {A_nameDef} how.</li>
       <li>Among the Eastborn, {X_nameDef} told {A_nameDef}, a guest bows once at the gate and once at the table, and the second bow is the one that counts.</li>
       <li>"How old are you?" {A_nameDef} asked. {X_nameDef} said, politely, that the Eastborn stop counting after the second hundred.</li>
       <li>[night] Under the lanterns, {X_nameDef} recited a poem for {A_nameDef} about a single maple leaf, and then spent much longer explaining it.</li>
@@ -46,7 +46,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_MotzCoalition</li></factions></stranger>
     <texts>
       <li>{X_nameDef} of {FACTION} came out once the sun was down and sat with {A_nameDef} just past the reach of the lamps, where {X_pronoun} said the night was kindest.</li>
-      <li>{A_nameDef} dimmed the lamp by the door without being asked. {X_nameDef} noticed, folded {X_possessive} soft wings with a shiver of thanks, and stayed to talk.</li>
+      <li>{A_nameDef} dimmed the lamp by the door without being asked. {X_nameDef} noticed, folded {X_possessive} soft wings, thanked {A_objective}, and stayed to talk.</li>
       <li>The Motz find their way by the smell of rain and the hum of the ground, {X_nameDef} told {A_nameDef}, and laughed at the idea of needing a lantern.</li>
       <li>In the coalition, {X_nameDef} explained, the councilors vote by humming, and the louder side wins. {A_nameDef} said the colony's council could use that.</li>
     </texts>
@@ -125,7 +125,7 @@
       <li>{X_nameDef} of {FACTION} rode out under a vow, {X_pronoun} told {A_nameDef}, for a shrine at the end of a long road, and the road has taken six years so far.</li>
       <li>{X_nameDef} showed {A_nameDef} how to keep mail from rusting: a barrel, a few shovels of sand, and rolling it for longer than anyone wants to.</li>
       <li>[x:factionmod:athelas.medievaltotalrim.france] {X_nameDef} sang {A_nameDef} a song from the south of {X_possessive} kingdom, all about a lady in a tower, and then admitted {X_pronoun} had never met a lady in a tower.</li>
-      <li>[x:factionmod:athelas.medievaltotalrim.hre] {X_nameDef} tried to explain to {A_nameDef} how the Empire chooses its emperor. It involved seven electors, two arguments and a sigh.</li>
+      <li>[x:factionmod:athelas.medievaltotalrim.hre] {X_nameDef} tried to explain to {A_nameDef} how the Empire chooses its emperor. It involved seven electors and a great deal of arguing.</li>
       <li>[x:factionmod:athelas.medievaltotalrim.poland] In {X_nameDef}'s country the horsemen ride to war with wings on their backs, and {X_nameDef} swore to {A_nameDef} that the feathers really do make a sound when they charge.</li>
       <li>[x:factionmod:athelas.medievaltotalrim.iberia] {X_nameDef} told {A_nameDef} about a city where three faiths share one market, and argue about everything except the price of oranges.</li>
       <li>[x:factionmod:athelas.medievaltotalrim.russia] Some winters at home are so long, {X_nameDef} told {A_nameDef}, that a whole town spends them in one great hall, and by the thaw has heard every story in it twice.</li>

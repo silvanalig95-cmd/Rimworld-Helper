@@ -38,7 +38,7 @@
         <label>Everyone out for the wood</label>
         <outcome>The colony went out together for the winter's wood and kept at it until dusk, carrying logs to the stores and felling what had to be felled. The pile by the wall was a head taller by dark.</outcome>
         <outcomes>
-          <li>[lowtech] They went out to the woods together with axes and came back with the winter on their backs, log after log, until the pile stood taller than {A_nameDef}.</li>
+          <li>[lowtech] They went out to the woods together with axes and carried the winter's wood back on their backs, log after log, until the pile stood taller than {A_nameDef}.</li>
           <li>[tradition] The woodpile day went as it always does: everyone out from morning, the logs carried in, and {A_nameDef} last to put down {A_possessive} axe.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>2</toil></ways>
@@ -122,7 +122,7 @@
       </li>
       <li>
         <label>The lights, and then to bed</label>
-        <outcome>A light was set by every grave at dusk, and the colony went to bed at its usual hour. From the windows the graves could be seen burning all night.</outcome>
+        <outcome>A light was set by every grave at dusk, and the colony went to bed at its usual hour. From the windows the lights on the graves could be seen all night.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>15</count></li>
