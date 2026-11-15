@@ -249,6 +249,187 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     the pieces used come from mods already enabled: Vanilla Factions Expanded - Settlers (posts), - Classical (drying
     rack), - Medieval 2 (banner), - Empire (imperial banner), Vanilla Furniture Expanded - Architect (picket fence), Dubs
     Bad Hygiene (latrine), LWM's Deep Storage (basket), Deep Storage Plus (firewood rack), all on 1.6 and 1.7.
+- 0.256.2, **A better meal in a lesser one's
+  place on a reserved shelf** (15 November 2026; the player's words: "also i think the "take best meal" reservation in
+  the storage is not properly working. i had three slots reserved fo this, but could not haul a fine bake or so. it
+  should have been haulable via "make space and haul", are these two features compatible with each other?"). A fix to
+  0.205.3 ("making room on a reserved shelf") and 0.231.2 ("the best meals on a reserved shelf"). DESIGN.md "A better
+  stack in a lesser one's place" (in "Reserved slots on shelves", its heading now ending "not released yet"), README
+  "Reserved slots on shelves", the Almanac's "Reserved slots" (Management, keywords unchanged), the window's
+  explanation and the setting's tip.
+  - **The cause, three parts.** The ordered make-room looked only for an empty reserved slot on a full shelf
+    (`FillsMissing`), so a fine bake for meal slots all held by simple meals and bakes got the game's "Cannot haul" and
+    nothing else; it also came only where the game's haul found no storage at all, and only from storage of the shelf's
+    priority or lower, so a stack in a fridge of a higher priority couldn't be brought even by order. And on its own a
+    swap with no free slot happened only when another store had room for the lesser stack: with every store full the
+    better meals stayed in the fridge. Ruled out: the fine bake is in `FoodMeals` and ranks exactly as the fine meal (+5
+    mood, offset 16, worth 20), so the best at hand is either.
+  - **Their save** (`League of Toba`, 15 November 2026): `LWM_BigShelf86117` at 72, 208, now Critical, reserves a joint,
+    hot coffee, any meals x2 and the best meal at hand x1; six stacks of its eight (components 43 and fine bake 4 on one
+    cell, steel 75 three times and hot coffee 17 on the other). One meal slot holds the fine bake, two wait, the joint's
+    slot is used meanwhile (no joint on the map, ten in packs). The only other meal on the map, four fine meals, lies in
+    the freezer's stockpile (Preferred, below the shelf), so it comes by itself. The save shows the shelf after the
+    trouble: it was while the meal slots held lesser meals and the fine bake lay where the shelf doesn't fetch from.
+  - **Built.** By order: the colonist's menu offers, for every reserved shelf but the one the game's own haul brings the
+    stack to and from storage of any priority, "Haul fine bake x4 to its reserved slot on the big shelf" (an empty slot
+    and room), "Make room on the big shelf and haul fine bake x4 there" (an empty slot, full), or "Make room on the big
+    shelf and haul fine bake x4 there, in place of the simple meal" (a better meal or medicine than a stack in a slot kept
+    best first or for the best at hand; kinds ranked alike never replace each other). The lesser stack goes first (its
+    best other storage, else beside the shelf), then the better one into the freed cell, kept for it from the order on
+    (the cell takes what the order brings for four hours, and its slot counts as filled meanwhile, "being brought by a
+    colonist" in the list), and once in it stays: the game's best-storage check counts it
+    in its best storage while it holds a reserved slot, so no hauler carries it straight back (saved). On its own: a swap
+    with every store full sets the lesser stack down beside the shelf when the better kind's own store would take it, the
+    better comes in and the lesser goes where it lay. The list says why a better kind isn't coming ("the better fine bake
+    is only in storage of a higher priority, which keeps it: right-click it with a colonist to bring it here", "didn't
+    come in three hours and is left out for a day", "no other storage has room for the simple meal"), and an empty slot
+    kept higher ends with the same right-click.
+  - **Code map**: `Building/ShelfReserveMath.cs` (`MayMakeRoom` without a priority, `OrderWay`, `OrderWays`, `InPlaceOf`,
+    `SwapWay`, `SwapBy`), `Building/ShelfReserves.cs` (`Why`; `State.filledBy`, `rankedDefs` for the best at hand too,
+    `RankFor`, `OrderFills`, `InPlaceOf`, `ordered`, `bestFrom`, `restedDef`, `betterDef`, `betterLesser`, `betterWhy`,
+    `aside`; `Look`'s ordered slots, swap by `SwapBy` and why a better kind isn't coming; `FetchableFrom`, `InHigher`,
+    `TakesInPlace`; `Ordered`, `OrderedInto`, `OrdersCameIn`, `KeptHere`, `kept` saved as `keptSaved`, `Planning`,
+    `Leaving`; `MayStore`'s ordered cell; `WhyNotComing`;
+    `Patch_ShelfReserveFetch` for kept stacks), `Building/ShelfMakeRoom.cs` (`Plan.way`, `PlanFor`, `PlanOn`,
+    `StraightIn`, `Freeing`, `Take`, `Label`, `SetDownJob` counting `aside`), `Languages/English/Keyed/Rimfolk_Stores.xml`
+    (`CC_Shelf_MakeRoomSwap`, `CC_Shelf_HaulToSlot`, `CC_Shelf_BetterHigher`, `CC_Shelf_BetterRested`,
+    `CC_Shelf_BetterNoRoom`, `CC_Shelf_Bringing`, `CC_Shelf_KeptHigher`, `CC_Shelf_Explain`), `Rimfolk_Rooms.xml` (the setting's tip),
+    `Tools/save_estimate.py` (`keptSaved`), `Tools/Tests/ShelfReserveTests.cs`. No new setting, no Sched slot, no def.
+  - **Can't be checked without the game**: the three menu lines on a stack in a fridge of a higher priority, on the floor
+    outside the home area and on another shelf, with the game's "Cannot haul" taken out beside them; the lesser stack
+    carried off and the ordered haul straight after, its cell kept through the carry; the kept stack staying with room in
+    the fridge it came from, also after loading; a swap with the lesser set down beside the shelf and taken to the fridge
+    afterwards; the list's new lines; LWM's cells; Pick Up And Haul's hauling to inventory.
+  - **Try in the game**: 1. The big shelf (Important) with any meals x2 and the best meal at hand x1, its three meal slots
+    filled with simple meals; fine bakes in a stockpile of Critical priority. The list says "on the shelf; the better
+    fine bake is only in storage of a higher priority, which keeps it: right-click it with a colonist to bring it here".
+    Right-click the fine bakes with a colonist: "Make room on the big shelf and haul fine bake x4 there, in place of the
+    simple meal". Taken, they carry the smallest simple meal stack off ("making room on the big shelf for the fine bake."
+    in their status) and bring the fine bakes into its spot; the bakes stay there with room in the stockpile, also after
+    saving and loading. 2. The best slot empty, room on the shelf, the fine bakes only in the Critical stockpile: "Haul
+    fine bake x4 to its reserved slot on the big shelf". 3. A fine meal in a slot and the rest fine too: no line for a
+    fine bake (ranked alike). 4. The shelf Critical, the fridge stockpile below it and full (no store with room for a
+    simple meal), the meal slots held by simple meals, fine bakes in the fridge: a hauler sets a simple meal stack down
+    beside the shelf, brings fine bakes into its slot, and the simple meal goes into the fridge where they were; the list
+    says "the fine bake comes in place of the simple meal" meanwhile. 5. Reserved slots or the deeper hooks off: nothing
+    of this.
+  - **Mods that would help**: none needed, Rimfolk does it itself. In their list and touched by it: LWM's Deep Storage
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3532608331; 1.6 and 1.7, kept up), whose shelf this is; Pick
+    Up And Haul (https://steamcommunity.com/sharedfiles/filedetails/?id=1279012058; tagged up to 1.6), whose haulers take
+    their work from the game's list of things to haul, which leaves a kept stack out; RimFridge
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=2898411376; tagged up to 1.6), whose fridges are storage
+    like any other here.
+- 0.256.1, **The camera for every god's doing**
+  (the player, 15 November 2026: "The camera should move for all non-trivial god moments"). Undoes 0.256.0's "camera only
+  for the big moments". `GodPresence.Look` jumps the camera (a home's map only, the game's speed left as it is) for an
+  omen, every card of the gods' own happenings (`OwnHappenings.Card` and `CardOf`), the late gift, the great cat's
+  doings (`MogsWays`, four letters) and a notable effect of the gods' touch before its look plays; `PresenceSpec.quiet`
+  is gone, so a prayer's answers are moments with the camera again. Left alone: small touches, dreams, what is only
+  told, offerings taken quietly, and what follows an order the player gave. DESIGN.md "The camera for every god's doing".
+  Tests in `GodTouchTests` (and `GodsTests` follows the seam's arguments).
+  - Try in the game: "Gods: a god's touch here now..." with a notable effect, with the camera elsewhere; an omen (the
+    gods' own omens' dev action); a prayer for the dead answered.
+- 0.256.0, **The gods felt, and what follows
+  them** (15 November 2026; the player's words, with their save `League_of_Toba_2`: "so far i really like how the gods
+  event appear, also with the sound, visual effect and camera centering! if there's other similarly impressive visual
+  effects, include some variety. but also for many of the gods occurences i don't see any real game impact. it's a cool
+  event but nothing rally comes from it, for example the stranger one at the altar i have and had three times already this
+  event. there should be more ingame effect. also pawns seem to take no mood or heart/strain or other gameplay impact
+  either. update this now"; then "effects can be all kinds of things, be creative, not just what you listed under"; and
+  "the effect can be something more impactful also, remember these are gods. but keep it balanced, not that strong effects
+  come up all the time. there should be range and variety"). DESIGN.md "The gods felt, and what follows them" (after "Each
+  god's own happenings, the second seven") has all of it; `docs/design/gods.md` the contract ("What the gods' occurrences
+  leave"); README (A god on the map, The gods on the map: "What it leaves"); the Almanac's gods page (one paragraph on
+  how people take what they see; keywords unchanged).
+  - Why, from their save (read with a script outside its folder): Ennu's offering at the Stranger's church was taken
+    before everyone's eyes three times (ticks 5767607, 6387607, 6567607, the last two three days apart), each a full
+    moment with the camera, as the colony kept offering and Ennu stayed near; nothing followed but a little belief. Over
+    the save's last 43 days about one occurrence of the gods a day was seen; a mood came only to someone holding that god
+    first (`Rimfolk_Belief_GodActed`), and the heart never moved.
+  - The inventory, before and now (S small, N notable, G great):
+    - Each god's own presence after a moment (round 2: plants faster, hearths, mining yield, batteries, calm beasts,
+      clear sky, cold, dark, long noon, moon sleep, rain, trade, the cats' watch): its effects already; now felt by those
+      who saw the moment, and ten gods' may stay on the land for days as a great effect.
+    - Offerings taken (each god's own way): before, words and a sign where it lay and a little belief, Ennu's and any
+      god drawn near a full moment every time; now plainly a month apart at most a god (any god's a week and a day),
+      otherwise quietly, and once someone sees it go or finds the place empty it is felt and followed (four days apart a
+      god): Ennu's travellers, a people's goodwill, a trader, easy company, an inspiration, rarely someone joining or a
+      week of warm evenings.
+    - Omens (the five shared, the twenty-six of the gods' own, the sky's signs, the still sun): words and a sign before;
+      now an odd sign -1 for most, +3 for a believer, the flinch for one in dread, and about a third bring a small effect.
+    - The stranger at the gate: its tellings now felt and may be followed small; its judgement keeps its own outcome.
+    - The sacred beasts, the moon's return, the weather as a voice, the late gift, the waking, the great cat, Tamiu's
+      riddle and the wrapped dead, the gods' kindness and anger and gifts in the world, the Hunger's dealings, a prayer
+      answered, the council's answers: each already its own effect; now also felt by who saw it.
+    - Hollin's rising and Murmur's surfacing: a moment, a mark and belief before; now felt and followed, a big occurrence
+      (a notable or great effect likelier).
+    - The marks, the letters' tales, the quarrels told, the camps' words, the gods' hands in the game's events: words
+      only, unchanged.
+    - Each god's own happenings (51): those with their own effect (the bargain's vein, the seam, the burn, the star, the
+      pods, the aurora, the wounded thrumbo tended, the white beast kept waiting, the old tree, the green walk, the ring
+      dug up, the bowl found empty, the turret, the small tests, the kindest's news, the sulk, the thaw, Murmur's rain,
+      give-back and frogs, Ducat's trail and coin, the moonlit watch, the dark's) now also felt; the ones that were words
+      and visuals only (the roots through the floor, the dryads' word, the heat from below, the stretching dream, the warm
+      dream with no burn, the white beast's dusk stop, the horn child's forecast, the last of its kind, the mourner, the
+      rings round a body or the stores, the threads, the breath in the ring, the bowl set out, the machine that won't
+      stop, the message to the stars, the dry thunder, the word in the frost, the walk round the edge, the frost on a
+      grave, Helios looking back and the dawn, her face in the water, the dark face kept, the cat at the threshold and by
+      the lost dead) now felt and followed by their god's own effect.
+    - Worship: a broken vow's shadow was words only, now its god's anger may follow; festivals, dreams and saints keep
+      their own moods.
+  - Each god's own effects: Hollin S a good day for growing, flowers, plants learned; N crops grown on, healroot, an
+    inspiration; G her green ten days; D brambles. Smoulder S warm hands, fires full, crafting; N ore, an inspiration; G a
+    seam of gold, warm stone a week; D fires out. Bellwether S a steady eye, animals; N game comes, an inspiration; G
+    animals wander in and stay, his calm ten days; D game leaves. Morel S shaking off sickness, medicine; N mushrooms,
+    rich ground; G the fields made rich; D food going off. Ennu S easy company, social; N travellers, goodwill, a trader,
+    an inspiration; G someone joins, warm evenings a week. Pip S a feel for machines, machines mended, batteries full; N
+    parts (by age), an inspiration; G the hum five days; D a breakdown. Cirrus S light on their feet, clear sky; N an
+    aurora, a ship chunk, an inspiration; G the high sky a week; D fog. Hush S at ease in the cold, snow; N the stores
+    kept, a cold snap broken; G everyone frost-hardy a season; D fires out. The Hunger S hearing too much; N an
+    inspiration; D fires out, a tenth of a stack gone; G its dark two days. Helios S sun-warmed, clear sky; N crops grown
+    on, an inspiration; G a day of sun for every crop and everyone warmed five days. Selene S sleeping deeply; N wounds
+    healed, an inspiration; G an old scar gone, her moon five days; D a bad night. Tamiu S calm, the rats gone; N a cat
+    comes to stay, an inspiration; G one kept calm a season. Murmur S a clean hand in the kitchen, rain; N crops grown on,
+    fish on the bank; G a spring, his rain four days; D fog. Ducat S a good eye for a bargain; N silver, a trader, an
+    inspiration; G gold on the ground, his glint a week; D a tenth of the silver gone.
+  - How often (`GodTouchMath.Tier`; at about one occurrence a day, as the save had): about 25 small, 6 notable and less
+    than one great a colony-year at a home, a third or so with the moods only; a god's notable 8 days apart (any god's 3),
+    its great 120 (any god's 40), its small twice a day at most; the same occurrence within ten days (an offering four)
+    felt only; a god seen often lately less likely to come again (`GodTouchMath.Turn`).
+  - Code: `Source/ColonyCouncil/Gods/Touch/` (`GodTouch.cs`: `GodTouchBook`, the notes, the wait, `Felt`, `Follow`;
+    `GodTouchMath.cs`: every rule, pure, linked in the tests; `GodTouchEffects.cs`: each effect; `GodTouchFx.cs`: each
+    god's look; `GodTouchDebug.cs`). Seams: `Gods.Remember` and `Gods.Moment` (`GodTouch.Note`, `NoteMoment`),
+    `GodAct.what` and `PresenceSpec.what` (set by `GodsOnMapWords.Saw`, `GodWorld.Moment` "world", `GodWorld.Remember`
+    "told", `GodMarks.Note` "mark", `Worship.Sign` and `Witness`' new `what`), `Offerings` (`PlainTakingAllowed`,
+    `PlainTaken`, `GodTouch.Taken` from `Settle` and `Noticed`), `OwnHappenings.Due` (`GodTouch.Turn`),
+    `PresenceSpec.quiet` and `lingerTicks` (through `GodsWiring`, `GodPresence.Manifest`, `GameCondition_GodPresence.Begin`'s
+    `linger`), `GodFx.Flash`'s god key (each god's look in its moments and omens), `GodPresenceShows.Vermin` made internal.
+    Defs `Defs/GodDefs/Rimfolk_GodTouch.xml` (four moods with two stages each, the remembered, fourteen blessings, the
+    frost-hardy, warmed through, kept calm and a bad night, the history event for goodwill); words
+    `Languages/English/Keyed/Rimfolk_GodTouch.xml`. Saved: `GodTouchBook` (modelled in `Tools/save_estimate.py`). Tests:
+    `Tools/Tests/GodTouchTests.cs`; `GodsOnMapTests` and `GodsTests` follow the two seams' new arguments. Balance: the five
+    moods in `Tools/Balance/Rates.cs`.
+  - Decided here: the angers never wound (none of the effects is in the harm budget); Tamiu's watch never stays (it is hers
+    only while she walks the land, `GodPresenceOwnMath.EndsWhenGone`), nor the long noon, the white silence or the rot;
+    Ennu, Helios and Tamiu have no anger of their own here; a great effect is a god's moment of its own (the camera on
+    it), and everyone of the home who believes at all remembers it (+4, three days); the camera stays put for a prayer's
+    small answers (the consoled, the fighter's nerve).
+  - Can't be checked without the game: each god's look (the flecks and effecters by name, their sizes and colours, the
+    flash over the land), each effect played out (the plants coming up on the land's ground, the spring's water, the
+    seam in the rock, the animals and the cat walking in, the incidents' letters with the touch's message beside them,
+    the goodwill line), the long presences' light sky over days, the moods' and the heart's amounts in play, and the wait
+    for a moment to finish before what follows.
+  - Try in the game: 1. Dev mode "Gods: a god's touch here now...": pick Ennu, then Visitors: travellers come and a message
+    says so; pick Ennu again, "any great kindness": a moment with its card (someone come to join, or warm evenings a
+    week). 2. Each god's look: the same action with any god's small effects near the camera. 3. An offering at a shrine
+    ("Gods: offerings at every shrine now", then "offerings here taken now, each god's own way"): the first taken plainly is
+    a moment; the next within a month goes quietly, and someone who finds it gone feels it; what follows comes once in
+    four days a god. 4. "Gods: an omen here...": those near get "an odd sign" (or "my god showed itself" if they hold
+    that god); the heart's record shows it. 5. "Gods: the gods' touch (log)" for the waits and what came lately.
+  - Mods that would help: Vanilla Psycasts Expanded (already active, Workshop 2842502659, 1.5 to 1.7, kept up) gives some
+    gods' looks their cold glow, heat, sparks, black smoke and skip flash; P-Music (in their list, not active, Workshop
+    725130005, tagged 1.0 to 1.7, kept up) adds many tracks the gods' big moments could draw on for more variety in sound;
+    nothing else needed.
 - 0.255.0, **Guests busy most of the day,
   over the colony** (15 November 2026; the player's words: "guests still just wait around most of the time it feels.
   they could read books, take walks, interact with my pets, write letters, train, fish, work on and use items themselves

@@ -115,7 +115,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Rats and mice (the game's and the player's mods', by name).</summary>
-        private static bool Vermin(ThingDef d)
+        internal static bool Vermin(ThingDef d)
         {
             string n = d?.defName ?? "";
             return n == "Rat" || n.IndexOf("Rat_", StringComparison.Ordinal) >= 0 || n.IndexOf("Mouse", StringComparison.OrdinalIgnoreCase) >= 0

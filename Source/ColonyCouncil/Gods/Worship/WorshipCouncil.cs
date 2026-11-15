@@ -304,7 +304,7 @@ namespace ColonyCouncil
             Worship.Book?.SetMark(Gods.HomeKey(ctx.map), "dry", g.id, Worship.Now, Worship.Now + days * GenDate.TicksPerDay);
             bool plain = GodNear.Plain(g, ctx.map);
             string text = ("CC_Wsh_DryBegins_" + Worship.Step(plain)).Translate(Worship.Called(g).Named("GOD")).Resolve();
-            Worship.Sign(g, ctx.map, IntVec3.Invalid, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate().Resolve(), text, null, false, GodActKind.Omen, plain);
+            Worship.Sign(g, ctx.map, IntVec3.Invalid, PresenceKind.Omen, "CC_Wsh_DryBegins_Title".Translate().Resolve(), text, null, false, GodActKind.Omen, plain, "council");
         }
     }
 
@@ -378,7 +378,7 @@ namespace ColonyCouncil
                 Worship.Favour(g, map, WorshipMath.BeastGiven, "CC_Wsh_Why_BeastGiven".Translate(beast.LabelShort.Named("PET")).Resolve(), FavourSource.Offering);
                 if (plain)
                     Worship.Sign(g, map, beast.Position, PresenceKind.Act, "CC_Wsh_BeastGiven_Title".Translate(Worship.Called(g).Named("GOD")).Resolve(), text, beast, false,
-                        GodActKind.Act, true);
+                        GodActKind.Act, true, "council");
                 else
                 {
                     // Let go by the colony's own hand, to the god it named: in the colony's book by those who saw it go.

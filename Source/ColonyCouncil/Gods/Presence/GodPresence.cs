@@ -51,6 +51,8 @@ namespace ColonyCouncil
             public float start;
             public SongDef track;
             public bool stung, played, carded;
+            /// <summary>Its presence lasts this many ticks instead of its usual hours (PresenceSpec.lingerTicks); 0: as usual.</summary>
+            public int linger;
             public readonly List<(Sustainer s, float until)> held = new List<(Sustainer, float)>();
         }
 
@@ -78,7 +80,12 @@ namespace ColonyCouncil
         /// so the sky and the land after the moment are that god's own (GodPresenceOwn.cs); the shared presence when null.
         /// </summary>
         public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
-            bool veiled, Color? colorA, Color? colorB, string sign, GameConditionDef presence, string godKey)
+            bool veiled, Color? colorA, Color? colorB, string sign, GameConditionDef presence, string godKey) =>
+            Manifest(look, godName, epithet, map, at, kind, avatar, title, text, veiled, colorA, colorB, sign, presence, godKey, 0);
+
+        /// <summary>The same, with <paramref name="linger"/> ticks of the god's own presence after it instead of its usual hours (0: usual).</summary>
+        public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
+            bool veiled, Color? colorA, Color? colorB, string sign, GameConditionDef presence, string godKey, int linger)
         {
             if (look == null || map == null) return false;
             if (avatar != null && avatar.Spawned && avatar.Map == map) at = avatar.Position;
@@ -101,6 +108,7 @@ namespace ColonyCouncil
                 presence = presence,
                 godKey = godKey,
                 music = MusicOn,
+                linger = linger,
                 a = colorA ?? c?.ColorA ?? look.colorA,
                 b = colorB ?? c?.ColorB ?? look.colorB,
                 start = Time.realtimeSinceStartup
@@ -130,13 +138,48 @@ namespace ColonyCouncil
             moments.Clear();
         }
 
+        // ---------------- The camera ----------------
+
+        /// <summary>
+        /// The camera to where a god did something the player should see (an omen, the gods' own happenings, a gift left, a
+        /// notable effect): every god's doing on the map but the small touches, dreams and what is only told. The game's speed
+        /// is left as it is; only a coming (Begin) slows it.
+        /// </summary>
+        public static void Look(Map map, IntVec3 at)
+        {
+            if (map == null || !at.IsValid || !at.InBounds(map)) return;
+            Look(new GlobalTargetInfo(at, map));
+        }
+
+        /// <summary>The same, to a card's first target that stands on a map (a pawn, a thing, a place).</summary>
+        public static void Look(LookTargets look)
+        {
+            if (look == null || !look.IsValid) return;
+            Look(look.PrimaryTarget);
+        }
+
+        private static void Look(GlobalTargetInfo target)
+        {
+            try
+            {
+                if (!target.IsValid || target.Map == null || !Homes.IsHome(target.Map)) return;
+                CameraJumper.TryJump(target);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods: the camera to a god's doing", e);
+            }
+        }
+
         // ---------------- An omen ----------------
 
         private static void Omen(Moment m)
         {
+            // The camera there, so the sign is seen where it shows (the player: the camera for every god's moment but the small touches).
+            Look(m.map, m.at);
             foreach (var s in GodSounds.StingFor(m.look, PresenceKind.Omen))
                 GodSounds.Play(s, m.map, m.at, 0.8f)?.End();
-            GodFx.Flash(m.look, m.map, m.at, m.a, m.b, false);
+            GodFx.Flash(m.look, m.map, m.at, m.a, m.b, false, m.godKey);
             GodReactions.Moment(m.map, m.at, m.avatar, m.veiled ? null : m.name, m.look.Domain, PresenceKind.Omen);
             string line = m.text ?? m.title;
             if (!line.NullOrEmpty()) Tell.Message(NewsKind.Land, Importance.Notable, m.map, line, new LookTargets(m.at, m.map), MessageTypeDefOf.NeutralEvent);
@@ -240,8 +283,8 @@ namespace ColonyCouncil
             var c = GodAvatar.Of(m.avatar);
             if (c != null && m.kind == PresenceKind.Reveal && c.disguised) c.Show(true);
             if (m.avatar != null && m.avatar.Spawned) m.at = m.avatar.Position;
-            GodFx.Flash(m.look, map, m.at, m.a, m.b, true);
-            GameCondition_GodPresence.Begin(map, m.kind, m.a, m.look.still, m.name, m.veiled, m.presence, m.godKey);
+            GodFx.Flash(m.look, map, m.at, m.a, m.b, true, m.godKey);
+            GameCondition_GodPresence.Begin(map, m.kind, m.a, m.look.still, m.name, m.veiled, m.presence, m.godKey, m.linger);
             GodReactions.Moment(map, m.at, m.avatar, m.veiled ? null : m.name, m.look.Domain, m.kind);
             GodTrails.Mark(GodPresenceMath.MarkFor(m.kind, m.look.mark, m.look.wrathMark), map, m.at, m.a);
         }

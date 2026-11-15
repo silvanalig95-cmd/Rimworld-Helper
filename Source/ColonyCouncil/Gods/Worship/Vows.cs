@@ -103,7 +103,7 @@ namespace ColonyCouncil
                 Worship.Favour(g, map, WorshipMath.WrathFavour, "CC_Wsh_Why_Wrath".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Vow, GodOffence.BrokenWord);
                 bool plain = GodNear.Plain(g, map);
                 string wrath = ("CC_Wsh_Wrath_" + Worship.Step(plain)).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve();
-                Worship.Sign(g, map, p.PositionHeld, PresenceKind.Wrath, "CC_Wsh_Wrath_Title".Translate(p.LabelShort.Named("PAWN")).Resolve(), wrath, p, false, GodActKind.Wrath, plain);
+                Worship.Sign(g, map, p.PositionHeld, PresenceKind.Wrath, "CC_Wsh_Wrath_Title".Translate(p.LabelShort.Named("PAWN")).Resolve(), wrath, p, false, GodActKind.Wrath, plain, "vow");
             }
         }
 

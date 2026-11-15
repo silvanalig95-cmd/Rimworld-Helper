@@ -385,6 +385,12 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:marks": ("cap", (const("Gods/OnMap/GodsOnMapMath.cs", "MaxMarks", 24), 0.05), 260, "the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherHomes": ("fixed", 1, V, "one per home: when a god last answered in the weather there"),
     "Gods/OnMap/GodsOnMapBook.cs:weatherTicks": ("fixed", 1, V, "beside it, the tick"),
+    # The gods' touch (Gods/Touch/GodTouch.cs): when each god's small, notable and great effects, any god's notable and great,
+    # each occurrence's last effect and a god's plain taking last came at the home (about 14 gods x 4, a few colony keys and
+    # about 60 occurrences' keys: one entry each, overwritten), the effects lately and the occurrences lately (both capped).
+    "Gods/Touch/GodTouch.cs:last": ("fixed", 14 * 4 + 3 + 60, 90, "when each god's effects and each occurrence's last came at the home, one key each, overwritten"),
+    "Gods/Touch/GodTouch.cs:recent": ("fixed", const("Gods/Touch/GodTouchMath.cs", "RecentKept", 40), 40, "the effects lately ('home|god|effect|tick'), GodTouchMath.RecentKept at most"),
+    "Gods/Touch/GodTouch.cs:seen": ("fixed", const("Gods/Touch/GodTouch.cs", "MaxSeen", 60), 30, "the occurrences seen lately ('home|god|tick'), a season at most and GodTouchBook.MaxSeen"),
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
     # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).
@@ -1131,6 +1137,7 @@ MODEL = {
     "Building/ShelfReserves.cs:reserves": ("while", 30, 60, "shelves with reserved slots, per map, while the shelf stands"),
     "Building/ShelfReserves.cs:kinds": ("while", 0, 30, "read from saves of 0.23.0 and 0.23.1 only, then kept as entries"),
     "Building/ShelfReserves.cs:entries": ("while", 6, 90, "per shelf: the kinds it keeps slots for, with how they're kept"),
+    "Building/ShelfReserves.cs:keptSaved": ("while", 4, 40, "stacks a colonist was ordered to bring to a reserved shelf, per map, while they hold one of its slots (let go when they don't, or leave the shelf)"),
     "Building/CustomRooms.cs:pieces": ("settings", 30, 120, "per saved room, in the mod's settings file"),
     "Building/PersonalTouches.cs:pending": ("cap", (10, 0.2), 200, "until built or dropped"),
     # Dilemmas and decrees

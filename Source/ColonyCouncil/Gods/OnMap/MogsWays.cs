@@ -586,6 +586,7 @@ namespace ColonyCouncil
                 GodSounds.Play(GodSounds.Sound("TinyBell"), map, a.Position);
                 if (god != null) Gods.AddFavour(god, map, MogMath.RightFavour, null);
                 string title = GodsOnMapWords.Title(god, map, false, "CC_Mog_Right_Title", "CC_Mog_Right_TitleNamed", called.Named("BEAST"));
+                GodPresence.Look(map, a.Position);
                 Tell.Letter(NewsKind.Land, Importance.Notable, map, title, "CC_Mog_Right_Text".Translate(args).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(p));
                 CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_Mog_Journal_Right".Translate(args).Resolve());
                 if (god != null) GodsOnMapWords.Saw(god, map, a.Position, GodActKind.Blessing, p, "CC_GodM_Saw_RiddleRight", args);
@@ -606,6 +607,7 @@ namespace ColonyCouncil
             if (god != null) Gods.AddFavour(god, map, MogMath.WrongFavour, null);
             string key = cuffed ? "CC_Mog_Wrong_TextCuffed" : "CC_Mog_Wrong_Text";
             string wtitle = GodsOnMapWords.Title(god, map, false, "CC_Mog_Wrong_Title", "CC_Mog_Wrong_TitleNamed", called.Named("BEAST"));
+            GodPresence.Look(map, a.Position);
             Tell.Letter(NewsKind.Land, Importance.Notable, map, wtitle, key.Translate(args).Resolve(), cuffed ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent,
                 new LookTargets(p));
             CouncilGameComponent.Instance?.journals?.WriteText(p, (cuffed ? "CC_Mog_Journal_Cuffed" : "CC_Mog_Journal_Wrong").Translate(args).Resolve());
@@ -704,6 +706,7 @@ namespace ColonyCouncil
             b.catOwn = false;
             b.catUntil = b.keeperUntil + Mathf.RoundToInt(Rand.Range(MogMath.CatDaysMin, MogMath.CatDaysMax) * GenDate.TicksPerDay);
             var args = new[] { k.Named("KEEPER"), f.Name.Named("PEOPLE"), b.dead.Named("DEAD"), Homes.Name(map).Named("HOME") };
+            GodPresence.Look(new LookTargets(k));
             Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Mog_Keeper_Title".Translate(args).Resolve(),
                 ("CC_Mog_Keeper_Text_" + GodStranger.Age).Translate(args).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(k), f);
             Gods.Learn(god, "visitors");
@@ -1001,6 +1004,7 @@ namespace ColonyCouncil
             string home = Homes.Name(map);
             var args = new[] { home.Named("HOME"), risen.Count.Named("COUNT") };
             string title = GodsOnMapWords.Title(god, map, false, "CC_Mog_Risen_Title", "CC_Mog_Risen_TitleNamed", args);
+            GodPresence.Look(new LookTargets(risen));
             Tell.Letter(NewsKind.Land, Importance.Important, map, title, ("CC_Mog_Risen_Text_" + GodStranger.Age).Translate(args).Resolve(), LetterDefOf.ThreatSmall,
                 new LookTargets(risen));
             var seer = GodsOnMapWords.Seer(map, mid, 30f);

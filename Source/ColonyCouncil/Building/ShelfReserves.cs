@@ -83,13 +83,17 @@ namespace ColonyCouncil
     /// ordered to haul a reserved kind to a full shelf make room first). A reserved kind comes from loose stacks in the
     /// home area and from storage of the shelf's priority or lower: lower the game's own hauling empties by itself (the
     /// shelf is better storage), the same Rimfolk fetches (Patch_ShelfReserveFetch, WantedOn, FetchJob), and the game
-    /// never carries it back, as a haul needs strictly better storage; storage of a higher priority keeps what it holds.
+    /// never carries it back, as a haul needs strictly better storage; storage of a higher priority keeps what it holds,
+    /// unless a colonist is ordered to bring a stack from there (ShelfMakeRoom): that stack goes into the cell kept for
+    /// it (Ordered, MayStore) and stays while it holds a reserved slot (KeptHere, Patch_ShelfReserveFetch).
     /// "Any" of meals or of medicine is kept best first, in the order colonists pick their food (RankOf): the better
     /// stacks fill its slots, an empty slot takes nothing less than the best that would come, and a better kind that
-    /// turns up takes a lesser stack's slot, into a free slot or with the lesser carried back to the store (a swap;
-    /// never between kinds ranked alike, and not for a day once a better kind waited for didn't come). Looked at again at
-    /// most every two seconds, and at once when what the shelf holds changes. Works the same with LWM's Deep Storage,
-    /// whose shelves count their stacks through the game's own number per cell.
+    /// turns up takes a lesser stack's slot, into a free slot, with the lesser carried back to the store, or with the
+    /// lesser set down beside the shelf when only the better kind's own store would take it (a swap; never between kinds
+    /// ranked alike, and not for a day once a better kind waited for didn't come). The list says why a better kind isn't
+    /// coming (kept in higher storage, left out for a day, no room for the lesser). Looked at again at most every two
+    /// seconds, and at once when what the shelf holds changes. Works the same with LWM's Deep Storage, whose shelves
+    /// count their stacks through the game's own number per cell.
     /// </summary>
     public class ShelfReserves : MapComponent
     {
@@ -134,13 +138,105 @@ namespace ColonyCouncil
 
         public override void ExposeData()
         {
-            if (Scribe.mode == LoadSaveMode.Saving) reserves.RemoveAll(r => r?.shelf == null || r.shelf.Destroyed || r.entries.NullOrEmpty());
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                reserves.RemoveAll(r => r?.shelf == null || r.shelf.Destroyed || r.entries.NullOrEmpty());
+                kept.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned || t.Map != map);
+                keptSaved = kept.ToList();
+            }
             Scribe_Collections.Look(ref reserves, "reserves", LookMode.Deep);
+            Scribe_Collections.Look(ref keptSaved, "kept", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 reserves ??= new List<ShelfReserve>();
                 reserves.RemoveAll(r => r?.shelf == null || r.entries.NullOrEmpty());
+                kept = new HashSet<Thing>(keptSaved?.Where(t => t != null) ?? Enumerable.Empty<Thing>());
+                keptSaved = null;
             }
+        }
+
+        // ---------------- Ordered hauls ----------------
+
+        /// <summary>A colonist's ordered haul to a reserved shelf: the kind it brings, the stacks of that kind already in the cell, and until when it counts.</summary>
+        private struct Order
+        {
+            public ThingDef def;
+            public HashSet<Thing> before;
+            public int until;
+        }
+
+        /// <summary>The ordered hauls on their way, per shelf and the cell kept for each (not saved: a haul is over well within <see cref="OrderTicks"/>).</summary>
+        private readonly Dictionary<(Building_Storage, IntVec3), Order> orders = new Dictionary<(Building_Storage, IntVec3), Order>();
+
+        /// <summary>
+        /// Stacks a colonist was ordered to bring to a reserved shelf: kept there while they hold one of its reserved
+        /// slots, so the game's haulers never carry them off to storage of a higher priority (saved).
+        /// </summary>
+        private HashSet<Thing> kept = new HashSet<Thing>();
+
+        private List<Thing> keptSaved;
+
+        /// <summary>Four hours: an ordered haul still on its way after that no longer has its cell kept by these rules.</summary>
+        private const int OrderTicks = 10000;
+
+        /// <summary>A colonist is ordered to bring a stack into this cell of the shelf (ShelfMakeRoom.Take): what comes into it goes in, and is kept there.</summary>
+        internal void Ordered(Building_Storage shelf, IntVec3 cell, Thing thing)
+        {
+            if (shelf == null || thing == null) return;
+            var before = new HashSet<Thing>();
+            foreach (var t in map.thingGrid.ThingsListAt(cell))
+                if (t.def == thing.def) before.Add(t);
+            orders[(shelf, cell)] = new Order { def = thing.def, before = before, until = Find.TickManager.TicksGame + OrderTicks };
+            states.Remove(shelf);
+        }
+
+        /// <summary>An ordered haul of this kind is on its way into this cell of the shelf.</summary>
+        private bool OrderedInto(Building_Storage shelf, IntVec3 c, Thing thing) =>
+            orders.Count > 0 && orders.TryGetValue((shelf, c), out var o) && o.def == thing.def && Find.TickManager.TicksGame < o.until;
+
+        /// <summary>The shelf and kind a colonist's order is finding a free cell for right now (ShelfMakeRoom.StraightIn): the reserves' rules give way to it.</summary>
+        private static Building_Storage planningShelf;
+        private static ThingDef planningDef;
+
+        /// <summary>A colonist's order looks for a cell of this shelf for this kind (null, null: done).</summary>
+        internal static void Planning(Building_Storage shelf, ThingDef def)
+        {
+            planningShelf = shelf;
+            planningDef = def;
+        }
+
+        /// <summary>The stack a colonist's order takes off its shelf, while the order looks for where it goes (ShelfMakeRoom.FirstJob): its shelf no longer takes it.</summary>
+        private static Thing leaving;
+
+        internal static void Leaving(Thing t) => leaving = t;
+
+        /// <summary>
+        /// The ordered hauls into this shelf that have come in (a stack of their kind in their cell that wasn't there
+        /// before): those stacks are kept here from now on; hauls past their time are let go.
+        /// </summary>
+        private void OrdersCameIn(Building_Storage shelf, List<Thing> things, int now)
+        {
+            if (orders.Count == 0) return;
+            foreach (var key in orders.Keys.Where(k => k.Item1 == shelf).ToList())
+            {
+                var o = orders[key];
+                var come = things.FirstOrDefault(t => t.Position == key.Item2 && t.def == o.def && !o.before.Contains(t));
+                if (come != null) kept.Add(come);
+                if (come != null || now >= o.until) orders.Remove(key);
+            }
+        }
+
+        /// <summary>
+        /// A stack a colonist was ordered to bring here that holds one of the shelf's reserved slots, on a shelf that
+        /// still accepts it: in its best storage, whatever storage of a higher priority would take it.
+        /// </summary>
+        internal bool KeptHere(Thing t)
+        {
+            if (kept.Count == 0 || t == null || !kept.Contains(t) || !t.Spawned || t.Map != map) return false;
+            var shelf = map.haulDestinationManager.SlotGroupAt(t.Position)?.parent as Building_Storage;
+            if (shelf == null || !Reserved.Contains(shelf) || shelf.Faction != Faction.OfPlayer) return false;
+            var st = StateOf(shelf);
+            return st != null && st.holding.Contains(t) && !st.moveOut.Contains(t) && shelf.Accepts(t);
         }
 
         public override void FinalizeInit()
@@ -298,6 +394,18 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>Why a better kind on the map isn't coming to a filled slot kept best first or for the best at hand.</summary>
+        public enum Why
+        {
+            None,
+            /// <summary>Only in storage of a higher priority than the shelf, which keeps it.</summary>
+            Higher,
+            /// <summary>An empty slot waited three hours for it in vain: left out for a day.</summary>
+            Rested,
+            /// <summary>No free slot, and no storage has room for the lesser stack it would replace.</summary>
+            NoRoom
+        }
+
         public class State
         {
             public int tick, held, capacity, waiting;
@@ -309,8 +417,11 @@ namespace ColonyCouncil
             /// <summary>One per reserved slot of the entries that count now, and the entry each belongs to.</summary>
             public List<Kind> kinds = new List<Kind>();
             public List<int> slotEntry = new List<int>();
-            /// <summary>Per slot: filled by a stack on the shelf now; empty but some on the map (waiting for room).</summary>
-            public bool[] here, onMap;
+            /// <summary>
+            /// Per slot: filled by a stack on the shelf now, or kept for an ordered haul on its way (<see cref="ordered"/>,
+            /// so nothing else is brought for it meanwhile); empty but some on the map (waiting for room).
+            /// </summary>
+            public bool[] here, onMap, ordered = new bool[0];
             public HashSet<Thing> moveOut = new HashSet<Thing>();
             /// <summary>The stacks on the shelf as looked at, the same stacks as the pure rules saw them, and each entry's cap (-1: none).</summary>
             public List<Thing> things = new List<Thing>();
@@ -335,10 +446,57 @@ namespace ColonyCouncil
             public HashSet<Thing> holding = new HashSet<Thing>();
             public HashSet<ThingDef> wanted = new HashSet<ThingDef>();
             public int wantCount;
+            /// <summary>Which stack fills each slot (-1: empty), as ShelfReserveMath.Fill matched them.</summary>
+            public int[] filledBy = new int[0];
+            /// <summary>
+            /// Per entry of "any" kept best first: the store the best kind that would come lies in (null: loose), and the
+            /// best kind left out for a day after an empty slot waited for it in vain.
+            /// </summary>
+            public SlotGroup[] bestFrom;
+            public ThingDef[] restedDef;
+            /// <summary>
+            /// Per entry kept best first or for the best at hand, every slot filled and no swap under way: a better kind
+            /// on the map that isn't coming, why not, and for "no room" the lesser kind it would replace.
+            /// </summary>
+            public ThingDef[] betterDef, betterLesser;
+            public Why[] betterWhy;
+            /// <summary>Swaps whose lesser stack is set down beside the shelf until the better kind's store has room for it.</summary>
+            public int aside;
 
             /// <summary>How a kind ranks for an entry kept best first: its rank among the group's ranked kinds, else last (Unranked).</summary>
             public double RankIn(int e, ThingDef d) =>
                 ranked[e] && rankedDefs[e] != null && rankedDefs[e].Contains(d) ? RankOf(d) : ShelfReserveMath.Unranked;
+
+            /// <summary>How a kind ranks for an entry kept best first or for the best at hand: among the group's ranked kinds, else last.</summary>
+            public double RankFor(int e, ThingDef d) =>
+                rankedDefs[e] != null && rankedDefs[e].Contains(d) ? RankOf(d) : ShelfReserveMath.Unranked;
+
+            /// <summary>
+            /// The stack on the shelf an ordered stack of this kind takes the place of: a lesser one filling a slot kept
+            /// best first or for the best at hand that the kind could fill (ShelfReserveMath.InPlaceOf), the lowest of the
+            /// entries' picks; only of those a colonist can take (<paramref name="movable"/>; null: all). -1 for none.
+            /// </summary>
+            public int InPlaceOf(ThingDef d, IList<bool> movable)
+            {
+                if (d == null || stacks == null || things == null || stacks.Count != things.Count || filledBy.Length != kinds.Count) return -1;
+                double rank = RankOf(d);
+                int pick = -1;
+                double low = 0d;
+                for (int e = 0; e < entries.Count; e++)
+                {
+                    if (!active[e] || kindOf[e] == null || rankedDefs[e] == null || !rankedDefs[e].Contains(d)) continue;
+                    var slots = new List<int>();
+                    for (int k = 0; k < kinds.Count; k++)
+                        if (slotEntry[k] == e) slots.Add(k);
+                    int ee = e;
+                    var ranks = things.Select(t => RankFor(ee, t.def)).ToList();
+                    int i = ShelfReserveMath.InPlaceOf(stacks, filledBy, slots, ranks, rank, movable);
+                    if (i < 0 || pick >= 0 && (ranks[i] > low || ranks[i] == low && stacks[i].count >= stacks[pick].count)) continue;
+                    pick = i;
+                    low = ranks[i];
+                }
+                return pick;
+            }
 
             /// <summary>An empty slot of the entry takes this kind: always, but for "any" kept best first only as good as the best that would come.</summary>
             public bool Admits(int e, ThingDef d) => !ranked[e] || ShelfReserveMath.TakesEmptySlot(RankIn(e, d), bestComing[e]);
@@ -347,6 +505,25 @@ namespace ColonyCouncil
             {
                 for (int k = 0; k < kinds.Count; k++)
                     if (!here[k] && kinds[k].Matches(d) && Admits(slotEntry[k], d)) return true;
+                return false;
+            }
+
+            /// <summary>
+            /// An empty slot a stack of this kind would fill when a colonist is ordered to bring it: one it fills now
+            /// (<see cref="FillsMissing"/>), or an empty slot of the best at hand of its group that it ranks at least as
+            /// well as the best at hand for (which counts only what comes by itself; once on the shelf, it is the best).
+            /// </summary>
+            public bool OrderFills(ThingDef d)
+            {
+                if (FillsMissing(d)) return true;
+                double rank = RankOf(d);
+                for (int k = 0; k < kinds.Count; k++)
+                {
+                    int e = slotEntry[k];
+                    if (here[k] || !kinds[k].best || rankedDefs[e] == null || !rankedDefs[e].Contains(d)) continue;
+                    var targets = kinds[k].targets;
+                    if (targets == null || targets.All(t => RankOf(t) <= rank)) return true;
+                }
                 return false;
             }
 
@@ -455,6 +632,11 @@ namespace ColonyCouncil
             st.bestDef = new ThingDef[n];
             st.swapBest = new double[n];
             st.swapLesser = new ThingDef[n];
+            st.bestFrom = new SlotGroup[n];
+            st.restedDef = new ThingDef[n];
+            st.betterDef = new ThingDef[n];
+            st.betterLesser = new ThingDef[n];
+            st.betterWhy = new Why[n];
             var allowedOf = new List<ThingDef>[n];
             var room = shelf.GetRoom();
             st.noRoom = room == null || room.PsychologicallyOutdoors;
@@ -473,12 +655,12 @@ namespace ColonyCouncil
                     st.kinds.Add(kind);
                     st.slotEntry.Add(e);
                 }
-                // "Any" of a group with ranked kinds is kept best first.
-                if (kind.cat == null || kind.best) continue;
+                // "Any" of a group with ranked kinds is kept best first; the best at hand ranks the same kinds.
+                if (kind.cat == null) continue;
                 allowedOf[e] = AllowedIn(kind.cat, shelf);
                 var ranked = RankedOf(allowedOf[e]);
                 if (ranked.Count == 0) continue;
-                st.ranked[e] = true;
+                st.ranked[e] = !kind.best;
                 st.rankedDefs[e] = new HashSet<ThingDef>(ranked);
             }
             foreach (var c in shelf.AllSlotCellsList()) st.capacity += c.GetMaxItemsAllowedInCell(map);
@@ -519,6 +701,20 @@ namespace ColonyCouncil
                 st.here[k] = filledBy[k] >= 0;
                 if (st.here[k]) st.holding.Add(things[filledBy[k]]);
             }
+            // A slot an ordered haul is on its way to counts as filled meanwhile, so nothing else is brought for it.
+            st.ordered = new bool[st.kinds.Count];
+            if (orders.Count > 0)
+                foreach (var o in orders)
+                {
+                    if (o.Key.Item1 != shelf || now >= o.Value.until) continue;
+                    for (int k = 0; k < st.kinds.Count; k++)
+                    {
+                        int e = st.slotEntry[k];
+                        if (st.here[k] || !st.kinds[k].Matches(o.Value.def) && !(st.kinds[k].best && st.rankedDefs[e] != null && st.rankedDefs[e].Contains(o.Value.def))) continue;
+                        st.here[k] = st.ordered[k] = true;
+                        break;
+                    }
+                }
             // What would come: for "any" kept best first, the best of it; for the rest, only where a slot is empty.
             for (int e = 0; e < n; e++)
             {
@@ -528,13 +724,15 @@ namespace ColonyCouncil
                 {
                     foreach (var d in allowedOf[e].OrderByDescending(d => st.RankIn(e, d)))
                     {
-                        if (!Fetchable(d, shelf, priority)) continue;
+                        if (!FetchableFrom(d, shelf, priority, out var from)) continue;
                         st.comes[e] = true;
                         st.bestComing[e] = st.RankIn(e, d);
                         st.bestDef[e] = d;
+                        st.bestFrom[e] = from;
                         break;
                     }
                     WaitForBetter(shelf, st, e, slotsOf[e].Count(k => !st.here[k]), now);
+                    if (st.bestDef[e] != null && st.bestComing[e] == ShelfReserveMath.NoneComing) st.restedDef[e] = st.bestDef[e];
                 }
                 else if (empty) st.comes[e] = st.kindOf[e].Defs.Any(d => Fetchable(d, shelf, priority));
             }
@@ -550,7 +748,8 @@ namespace ColonyCouncil
             }
             var outs = ShelfReserveMath.MoveOut(st.capacity, stacks, st.kinds.Count, st.waiting, caps);
             foreach (int i in outs) st.moveOut.Add(things[i]);
-            // A better kind that would come takes a lesser stack's slot: into a free slot, else the lesser goes back to the store.
+            // A better kind that would come takes a lesser stack's slot: into a free slot, else the lesser goes back to the
+            // store, else it is set down beside the shelf while the better kind's own store would take it once that is out.
             int free = st.capacity - (st.held - outs.Count) - st.waiting;
             var taken = new HashSet<int>(outs);
             for (int e = 0; e < n; e++)
@@ -559,17 +758,47 @@ namespace ColonyCouncil
                 if (!st.ranked[e] || best == ShelfReserveMath.NoneComing) continue;
                 int low = ShelfReserveMath.SwapDue(stacks, filledBy, slotsOf[e], best);
                 if (low < 0) continue;
-                if (free > 0) free--;
+                int go = free > 0 ? -1 : ShelfReserveMath.SwapOut(stacks, filledBy, slotsOf[e], best, low, taken);
+                bool otherStore = go >= 0 && HasOtherStore(things[go], shelf);
+                var way = ShelfReserveMath.SwapBy(free, go >= 0, otherStore, go >= 0 && !otherStore && TakesInPlace(st.bestFrom[e], things[go]));
+                if (way == ShelfReserveMath.SwapWay.Stuck)
+                {
+                    st.betterDef[e] = st.bestDef[e];
+                    st.betterLesser[e] = things[go >= 0 ? go : low].def;
+                    st.betterWhy[e] = Why.NoRoom;
+                    continue;
+                }
+                if (way == ShelfReserveMath.SwapWay.Free) free--;
                 else
                 {
-                    int go = ShelfReserveMath.SwapOut(stacks, filledBy, slotsOf[e], best, low, taken);
-                    if (go < 0 || !HasOtherStore(things[go], shelf)) continue;
                     taken.Add(go);
                     st.moveOut.Add(things[go]);
+                    if (way == ShelfReserveMath.SwapWay.Aside) st.aside++;
                 }
                 st.swapBest[e] = best;
                 st.swapLesser[e] = things[low].def;
                 st.swaps++;
+            }
+            // Why a better kind on the map isn't coming to slots all filled: left out for a day, or kept in higher storage.
+            for (int e = 0; e < n; e++)
+            {
+                if (!st.active[e] || st.rankedDefs[e] == null || st.swapBest[e] > ShelfReserveMath.NoneComing || st.betterWhy[e] != Why.None) continue;
+                if (slotsOf[e].Count == 0 || slotsOf[e].Any(k => filledBy[k] < 0)) continue;
+                double low = slotsOf[e].Min(k => st.RankFor(e, things[filledBy[k]].def));
+                if (st.restedDef[e] != null && st.RankFor(e, st.restedDef[e]) > low)
+                {
+                    st.betterDef[e] = st.restedDef[e];
+                    st.betterWhy[e] = Why.Rested;
+                    continue;
+                }
+                foreach (var d in allowedOf[e].Where(st.rankedDefs[e].Contains).OrderByDescending(RankOf))
+                {
+                    if (RankOf(d) <= low) break;
+                    if (!InHigher(d, shelf, priority)) continue;
+                    st.betterDef[e] = d;
+                    st.betterWhy[e] = Why.Higher;
+                    break;
+                }
             }
             // The kinds fetched from storage of the shelf's own priority: those an empty slot waits for, and a swap's better kinds.
             for (int k = 0; k < st.kinds.Count; k++)
@@ -590,6 +819,15 @@ namespace ColonyCouncil
             st.things = things;
             st.stacks = stacks;
             st.caps = caps;
+            st.filledBy = filledBy;
+            // An ordered haul that has come in is kept here; a kept stack no longer holding a slot here is let go.
+            OrdersCameIn(shelf, things, now);
+            if (kept.Count > 0)
+            {
+                var rect = shelf.OccupiedRect();
+                kept.RemoveWhere(t => t == null || t.Destroyed || !t.Spawned || t.Map != map || rect.Contains(t.Position) && !st.holding.Contains(t)
+                    || !(map.haulDestinationManager.SlotGroupAt(t.Position)?.parent is Building_Storage b && Reserved.Contains(b)));
+            }
             return st;
         }
 
@@ -668,8 +906,13 @@ namespace ColonyCouncil
         /// another shelf. Storage of a higher priority keeps what it holds (the game would carry it straight back).
         /// Read without asking any storage whether it accepts a stack, so a look never sets off another.
         /// </summary>
-        private bool Fetchable(ThingDef d, Building_Storage shelf, StoragePriority priority)
+        private bool Fetchable(ThingDef d, Building_Storage shelf, StoragePriority priority) => FetchableFrom(d, shelf, priority, out _);
+
+        /// <summary>The same, and the store such a stack lies in (<paramref name="from"/>; a stored one before a loose one, null when only loose).</summary>
+        private bool FetchableFrom(ThingDef d, Building_Storage shelf, StoragePriority priority, out SlotGroup from)
         {
+            from = null;
+            bool found = false;
             var rect = shelf.OccupiedRect();
             var home = map.areaManager.Home;
             foreach (var t in map.listerThings.ThingsOfDef(d))
@@ -680,9 +923,42 @@ namespace ColonyCouncil
                 bool stored = g != null && g.Settings.AllowedToAccept(t) && !Cached(other, s => s.moveOut.Contains(t), false);
                 if (!stored && (home == null || !home[t.Position])) continue;
                 if (stored && ((int)g.Settings.Priority > (int)priority || Cached(other, s => s.holding.Contains(t), true))) continue;
+                if (!shelf.settings.AllowedToAccept(t)) continue;
+                found = true;
+                if (!stored) continue;
+                from = g;
+                return true;
+            }
+            return found;
+        }
+
+        /// <summary>
+        /// Some of this kind lies in storage of a higher priority than the shelf (not forbidden, allowed on the shelf):
+        /// that storage keeps it, and only a colonist's order brings it over.
+        /// </summary>
+        private bool InHigher(ThingDef d, Building_Storage shelf, StoragePriority priority)
+        {
+            var rect = shelf.OccupiedRect();
+            foreach (var t in map.listerThings.ThingsOfDef(d))
+            {
+                if (!t.Spawned || rect.Contains(t.Position) || t.Position.Fogged(map) || t.IsForbidden(Faction.OfPlayer)) continue;
+                var g = map.haulDestinationManager.SlotGroupAt(t.Position);
+                if (g == null || (int)g.Settings.Priority <= (int)priority || !g.Settings.AllowedToAccept(t)) continue;
                 if (shelf.settings.AllowedToAccept(t)) return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// The store a better kind comes from would take the lesser stack it replaces once the better is out of it (the
+        /// two change places): an ordinary store of the colony's, not a reserved shelf, whose settings allow the lesser.
+        /// </summary>
+        private static bool TakesInPlace(SlotGroup from, Thing lesser)
+        {
+            var parent = from?.parent;
+            if (parent == null || lesser == null || !parent.HaulDestinationEnabled) return false;
+            if (parent is Building_Storage b && Reserved.Contains(b) || parent is Thing owner && owner.Faction != Faction.OfPlayer) return false;
+            return from.Settings.AllowedToAccept(lesser);
         }
 
         /// <summary>
@@ -788,13 +1064,15 @@ namespace ColonyCouncil
             // stacks are put together (the game's merging) only while the one made stays within its number per stack.
             if (thing.Spawned && thing.Map == map && shelf.OccupiedRect().Contains(thing.Position))
             {
-                if (st.moveOut.Contains(thing)) return false;
+                if (st.moveOut.Contains(thing) || thing == leaving) return false;
                 int most = st.LimitFor(thing.def);
                 if (most <= 0) return true;
                 foreach (var t in map.thingGrid.ThingsListAt(c))
                     if (t != thing && t.CanStackWith(thing) && t.stackCount + thing.stackCount > most) return false;
                 return true;
             }
+            // A colonist's ordered haul into this cell (kept for it, ShelfMakeRoom), or the order looking for one: it goes in.
+            if (planningShelf == shelf && planningDef == thing.def || Of(map)?.OrderedInto(shelf, c, thing) == true) return true;
             if (st.Barred(thing.def)) return false;
             // Added to a stack already in the cell, it takes no slot: up to its number per stack, if it has one.
             int limit = st.LimitFor(thing.def);
@@ -837,7 +1115,7 @@ namespace ColonyCouncil
         {
             if (t == null || !Reserved.Contains(shelf) || !On) return false;
             var st = Of(shelf.Map)?.StateOf(shelf);
-            return st != null && st.moveOut.Contains(t);
+            return t == leaving && t.Spawned && shelf.OccupiedRect().Contains(t.Position) || st != null && st.moveOut.Contains(t);
         }
 
         // ---------------- Words ----------------
@@ -879,9 +1157,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Where an entry stands: kept off for now, on the shelf (a better kind coming in place of a lesser one), coming, a
-        /// stack moving out for it, only in storage of a higher priority, or none on the map; with several slots, how many
-        /// are filled.
+        /// Where an entry stands: kept off for now, on the shelf (a better kind coming in place of a lesser one, or why a
+        /// better kind on the map isn't), coming, a stack moving out for it, only in storage of a higher priority (a
+        /// colonist's order brings it), or none on the map; with several slots, how many are filled.
         /// </summary>
         public static string StatusOf(State st, int e)
         {
@@ -891,12 +1169,14 @@ namespace ColonyCouncil
             for (int k = 0; k < st.kinds.Count; k++)
                 if (st.slotEntry[k] == e) slots.Add(k);
             if (slots.Count == 0) return "CC_Shelf_Unknown".Translate().Resolve();
-            int filled = slots.Count(k => st.here[k]);
+            bool Ordered(int k) => k < st.ordered.Length && st.ordered[k];
+            int filled = slots.Count(k => st.here[k] && !Ordered(k));
             int open = slots.FirstOrDefault(k => !st.here[k]);
             string rest = filled == slots.Count
                 ? st.swapBest[e] > ShelfReserveMath.NoneComing && st.bestDef[e] != null && st.swapLesser[e] != null
                     ? "CC_Shelf_BetterComing".Translate(st.bestDef[e].label.Named("BETTER"), st.swapLesser[e].label.Named("LESSER")).Resolve()
-                    : "CC_Shelf_Here".Translate().Resolve()
+                    : WhyNotComing(st, e) ?? "CC_Shelf_Here".Translate().Resolve()
+                : slots.All(k => st.here[k]) ? "CC_Shelf_Bringing".Translate().Resolve()
                 : !st.onMap[open] ? "CC_Shelf_NoneOnMap".Translate().Resolve()
                 : !st.comes[e] ? "CC_Shelf_KeptHigher".Translate().Resolve()
                 : (st.moveOut.Count > 0 ? "CC_Shelf_MakingRoom" : "CC_Shelf_Coming").Translate().Resolve();
@@ -910,11 +1190,32 @@ namespace ColonyCouncil
             return status;
         }
 
+        /// <summary>
+        /// For slots all filled: why a better kind on the map isn't coming in place of a lesser one (kept in storage of
+        /// a higher priority, left out for a day, or no room for the lesser stack); null when none is.
+        /// </summary>
+        private static string WhyNotComing(State st, int e)
+        {
+            var better = st.betterDef?[e];
+            if (better == null) return null;
+            switch (st.betterWhy[e])
+            {
+                case Why.Higher:
+                    return "CC_Shelf_BetterHigher".Translate(better.label.Named("BETTER")).Resolve();
+                case Why.Rested:
+                    return "CC_Shelf_BetterRested".Translate(better.label.Named("BETTER")).Resolve();
+                case Why.NoRoom when st.betterLesser[e] != null:
+                    return "CC_Shelf_BetterNoRoom".Translate(better.label.Named("BETTER"), st.betterLesser[e].label.Named("LESSER")).Resolve();
+                default:
+                    return null;
+            }
+        }
+
         public static bool AllHere(State st, int e)
         {
             if (st == null || e < 0 || e >= st.entries.Count || !st.active[e]) return false;
             for (int k = 0; k < st.kinds.Count; k++)
-                if (st.slotEntry[k] == e && !st.here[k]) return false;
+                if (st.slotEntry[k] == e && (!st.here[k] || k < st.ordered.Length && st.ordered[k])) return false;
             return true;
         }
     }
@@ -987,6 +1288,8 @@ namespace ColonyCouncil
     /// A stack in storage of a reserved shelf's own priority that the shelf wants (an empty slot of its kind, or a better
     /// kind's swap: ShelfReserves.WantedOn) isn't in its best storage, so the game's hauling looks at it; the haul itself
     /// is ShelfReserves.FetchJob, given where the game's own search finds no better storage (Patch_ShelfMakeRoomAuto).
+    /// And a stack a colonist was ordered to bring to a reserved shelf, holding one of its slots, is in its best storage
+    /// there (ShelfReserves.KeptHere), so the game never carries it straight back to storage of a higher priority.
     /// </summary>
     [HarmonyPatch(typeof(StoreUtility), nameof(StoreUtility.IsInValidBestStorage))]
     public static class Patch_ShelfReserveFetch
@@ -995,10 +1298,16 @@ namespace ColonyCouncil
 
         public static void Postfix(Thing t, ref bool __result)
         {
-            if (!__result || broken || ShelfReserves.Reserved.Count == 0 || t == null || !t.Spawned || !ShelfReserves.On) return;
+            if (broken || ShelfReserves.Reserved.Count == 0 || t == null || !t.Spawned || !ShelfReserves.On) return;
             try
             {
-                if (ShelfReserves.Of(t.Map)?.WantedOn(t) != null) __result = false;
+                var reserves = ShelfReserves.Of(t.Map);
+                if (reserves == null) return;
+                if (__result)
+                {
+                    if (reserves.WantedOn(t) != null) __result = false;
+                }
+                else if (reserves.KeptHere(t)) __result = true;
             }
             catch (Exception e)
             {
