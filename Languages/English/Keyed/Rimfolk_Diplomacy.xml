@@ -74,7 +74,7 @@
   <CC_Dip_For_brokeCamp>a raiders' camp broken</CC_Dip_For_brokeCamp>
   <CC_Dip_For_hamlet>a hamlet taken under protection</CC_Dip_For_hamlet>
   <CC_Dip_For_hamletHelped>help in a hard season</CC_Dip_For_hamletHelped>
-  <CC_Dip_For_envoyHonored>an envoy well kept</CC_Dip_For_envoyHonored>
+  <CC_Dip_For_envoyHonored>an envoy well hosted</CC_Dip_For_envoyHonored>
   <CC_Dip_For_fostered>a ward fostered</CC_Dip_For_fostered>
   <CC_Dip_For_hostageReturned>a hostage returned</CC_Dip_For_hostageReturned>
   <CC_Dip_For_aid>fighters sent in a fight</CC_Dip_For_aid>
@@ -125,7 +125,7 @@
   <CC_Dip_What_Much_Some>a fair amount</CC_Dip_What_Much_Some>
   <CC_Dip_What_Much_Much>a good deal</CC_Dip_What_Much_Much>
   <CC_Dip_What_Captive>{PEOPLE} let {PAWN} go: {PAWN_pronoun} walks the road home from their town and comes in at the edge of the colony's land.</CC_Dip_What_Captive>
-  <CC_Dip_What_Peace>{PEOPLE} speak for the colony to {ENEMY}: for a year, a truce the colony offers {ENEMY} is the better taken for it.</CC_Dip_What_Peace>
+  <CC_Dip_What_Peace>{PEOPLE} speak for the colony to {ENEMY}: for a year, {ENEMY} are more likely to accept a truce the colony offers.</CC_Dip_What_Peace>
   <CC_Dip_What_Fighters>A band of {PEOPLE}'s fighters walks in to stand with the colony against the threat on it, some hours after they hear.</CC_Dip_What_Fighters>
   <CC_Dip_Menu_Others>A word with other peoples ({COUNT})</CC_Dip_Menu_Others>
   <CC_Dip_Menu_NotNow>Not now ({COUNT})</CC_Dip_Menu_NotNow>
@@ -202,8 +202,8 @@
   <CC_Dip_AskNeed_Food_2>The stores at {TOWN} won't last the season. They ask for {GOODS}, carried out to their messenger at the gate.</CC_Dip_AskNeed_Food_2>
   <CC_Dip_AskNeed_Feud>{PEOPLE} are in a blood feud with {OTHER}, and ask the colony to speak on their side.</CC_Dip_AskNeed_Feud>
   <CC_Dip_AskNeed_Seat>The seat at {TOWN} is contested, and {PEOPLE} ask the colony to speak for the claimant they stand behind.</CC_Dip_AskNeed_Seat>
-  <CC_Dip_AskAnswer_Goods>Sent, one of the colony carries it out to the gate, where their messenger will come for it. Refused, or left unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Goods>
-  <CC_Dip_AskAnswer_Word>Given, the colony's speaker writes the colony's word to them, and their messenger carries it home. Refused, or left unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Word>
+  <CC_Dip_AskAnswer_Goods>If the colony sends it, a colonist carries it out to the gate, where their messenger will come for it. If it refuses, or leaves the letter unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Goods>
+  <CC_Dip_AskAnswer_Word>If the colony agrees, its speaker writes the colony's word to them, and their messenger carries it home. If it refuses, or leaves the letter unanswered too long, the debt is broken, and {PEOPLE} will remember it.</CC_Dip_AskAnswer_Word>
   <CC_Dip_AskOpt_Send>Send the {NEED}</CC_Dip_AskOpt_Send>
   <CC_Dip_AskOpt_Word>Speak on the side of {PEOPLE}</CC_Dip_AskOpt_Word>
   <CC_Dip_AskOpt_Refuse>Refuse</CC_Dip_AskOpt_Refuse>
@@ -285,14 +285,14 @@
   <CC_SetSec_Diplomacy>Diplomacy</CC_SetSec_Diplomacy>
   <CC_Settings_DiplomacyFavours>Favors owed and called in</CC_Settings_DiplomacyFavours>
   <CC_SetNote_DiplomacyFavours>Debts of honor either way: the colony calls in what it is owed, and the peoples what it owes them.</CC_SetNote_DiplomacyFavours>
-  <CC_Settings_DiplomacyFavours_Tip>A good turn of size 10 or more in a people's memory leaves a debt of honor: they owe the colony for one of theirs freed or tended, refugees taken in, a lost child found, a town rebuilt; the colony owes them for their fighters, relief, medicine or lessons. One each way per people and colony, renewed by a new good turn, let go two years after if nobody asks; a notable helped in person owes the colonist who did it (twelve such at most). The colony calls one in by letter, by call, from the region window's Peoples or face to face: a load of goods (about 400 silver's worth by their town's fortune), a word with a third people (10 goodwill), a colonist of the colony they hold, or their help toward peace with a people at war with the colony. They honor it while their head thinks well of the colony (regard 20 or more), seven times in ten below that, four in ten below 0; a refusal is remembered. They call in what the colony owes them about once in 90 days, only with a need the world shows (medicine in a sickness, food in a famine, hands at harvest, their homeless taken in, the colony's word in a feud), at most once a season; refused or left unanswered, the debt breaks and they lose 5 goodwill toward the colony. Off: no debt is made or called in, and those open run out by their terms.</CC_Settings_DiplomacyFavours_Tip>
+  <CC_Settings_DiplomacyFavours_Tip>A good turn of size 10 or more in a people's memory leaves a debt of honor: they owe the colony for one of theirs freed or tended, refugees taken in, a lost child found, a town rebuilt; the colony owes them for their fighters, relief, medicine or lessons. One each way per people and colony, renewed by a new good turn, dropped two years later if nobody calls it in; a notable helped in person owes the colonist who did it (twelve such at most). The colony calls one in by letter, by call, from the region window's Peoples or face to face: a load of goods (about 400 silver's worth by their town's fortune), a word with a third people (10 goodwill), a colonist of the colony they hold, or their help toward peace with a people at war with the colony. They honor it while their head thinks well of the colony (regard 20 or more), seven times in ten below that, four in ten below 0; a refusal is remembered. They call in what the colony owes them about once in 90 days, only with a need the world shows (medicine in a sickness, food in a famine, hands at harvest, their homeless taken in, the colony's word in a feud), at most once a season; refused or left unanswered, the debt breaks and they lose 5 goodwill toward the colony. Off: no debt is made or called in, and those open run out by their terms.</CC_Settings_DiplomacyFavours_Tip>
 
   <!-- What the peoples remember of diplomacy (World/FactionMemory.cs): the colony's deeds, its wrongs, and theirs -->
   <CC_Memory_Deed_swore>swore an oath to them</CC_Memory_Deed_swore>
   <CC_Memory_Deed_keptWord>repaid a debt of honor when they called it in</CC_Memory_Deed_keptWord>
   <CC_Memory_Deed_keptWord_Name>repaid the debt for {NAME} when they called it in</CC_Memory_Deed_keptWord_Name>
   <CC_Memory_Deed_ransomed>ransomed one of theirs back to them</CC_Memory_Deed_ransomed>
-  <CC_Memory_Deed_envoyHonored>kept their envoy well</CC_Memory_Deed_envoyHonored>
+  <CC_Memory_Deed_envoyHonored>looked after their envoy well</CC_Memory_Deed_envoyHonored>
   <CC_Memory_Deed_fostered>fostered a child of theirs</CC_Memory_Deed_fostered>
   <CC_Memory_Deed_married>married into their people</CC_Memory_Deed_married>
   <CC_Memory_Deed_hostageReturned>returned a hostage of theirs unharmed</CC_Memory_Deed_hostageReturned>

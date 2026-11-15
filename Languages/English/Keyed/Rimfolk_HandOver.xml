@@ -142,7 +142,7 @@
   <CC_HandOver_Wait_FewStay>Fewer than {COUNT} grown-ups are left at {HOME}: a town needs them. Call it off from the colony's card, or wait for them to come back.</CC_HandOver_Wait_FewStay>
   <CC_HandOver_Wait_Engine>The gravship's engine is still at {HOME}: the town can't keep it. Fly it away or take it apart.</CC_HandOver_Wait_Engine>
   <CC_HandOver_Wait_NobodyElse>Nobody of the colony's is left anywhere but {HOME}: handing it over now would leave the colony no one. Call it off from the colony's card.</CC_HandOver_Wait_NobodyElse>
-  <CC_HandOver_HomeGone>{HOME} is no longer the colony's, so its hand-over and the new colony with it are let go.</CC_HandOver_HomeGone>
+  <CC_HandOver_HomeGone>{HOME} is no longer the colony's, so its hand-over and the new colony with it are dropped.</CC_HandOver_HomeGone>
   <CC_HandOver_Long>The town takes over</CC_HandOver_Long>
 
   <!-- The town is made -->
@@ -174,7 +174,7 @@
   <CC_HandOver_Stage_Left>those who go have left</CC_HandOver_Stage_Left>
   <CC_HandOver_TownHead>Once the colony's</CC_HandOver_TownHead>
   <CC_HandOver_TownLine>Once the colony {COLONY}, handed over {AGO}; {COUNT} of its former people live here.</CC_HandOver_TownLine>
-  <CC_HandOver_TownBond>They think well of the colony: +{BOND} to the goodwill they come back to, once of {COLONY}.</CC_HandOver_TownBond>
+  <CC_HandOver_TownBond>They think well of the colony: +{BOND} to the goodwill they drift back to, as former people of {COLONY}.</CC_HandOver_TownBond>
   <CC_HandOver_TownBondEnded>The bond with the colony was broken by war.</CC_HandOver_TownBondEnded>
 
   <!-- The founding window's third choice (the hand-over in the same act) -->

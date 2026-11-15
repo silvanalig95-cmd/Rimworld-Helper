@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Panels, letters and the peoples in plain words
+
+*15 November 2026, version 0.247.0*
+
+- The item card, settings and on-screen panels describe things more plainly, such as what a room's beauty does, why the game's own list is hidden and how long a tending lasts.
+- Letters to neighbours, debts of honour and the league's crates now say what is recorded and who does what, without unexplained phrases such as good ink and red ink.
+- The peoples that arise and the peoples' own events describe in ordinary words how each new people lives and what each answer does.
+
 ## Messages and tooltips in plain words: the council, defenses and dealings
 
 *15 November 2026, version 0.246.0*

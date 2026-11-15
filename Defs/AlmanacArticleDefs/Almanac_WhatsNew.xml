@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.247.0</version>
+        <date>15 November 2026</date>
+        <title>Panels, letters and the peoples in plain words</title>
+        <points>
+          <li>The item card, settings and on-screen panels describe things more plainly, such as what a room's beauty does, why the game's own list is hidden and how long a tending lasts.</li>
+          <li>Letters to neighbours, debts of honour and the league's crates now say what is recorded and who does what, without unexplained phrases such as good ink and red ink.</li>
+          <li>The peoples that arise and the peoples' own events describe in ordinary words how each new people lives and what each answer does.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.246.0</version>
         <date>15 November 2026</date>
         <title>Messages and tooltips in plain words: the council, defenses and dealings</title>

@@ -61,8 +61,8 @@
   <!-- The hamlet stands -->
   <CC_Hamlet_Founded_Label>{HAMLET} is founded</CC_Hamlet_Founded_Label>
   <CC_Hamlet_Founded_Escorted>{LEADER} and the settlers of {PEOPLE} lit their first fires at {HAMLET} last night, with the colony's caravan camped beside them. {HAMLET} stands {WHERE} now: {WORD} of {PEOPLE} under {PROTECTION}, with {LEADER} at its head.</CC_Hamlet_Founded_Escorted>
-  <CC_Hamlet_Founded_Alone>{NEWS} brings word that the settlers of {PEOPLE} reached the place on their own and lit their first fires at {HAMLET}. It stands {WHERE} now, {WORD} of {PEOPLE} under {PROTECTION}, with {LEADER} at its head. The road cost them, and it starts poor.</CC_Hamlet_Founded_Alone>
-  <CC_Hamlet_Founded_Walked>{WALKED} walked them out, and their people will remember it.</CC_Hamlet_Founded_Walked>
+  <CC_Hamlet_Founded_Alone>{NEWS} brings word that the settlers of {PEOPLE} reached the place on their own and lit their first fires at {HAMLET}. It stands {WHERE} now, {WORD} of {PEOPLE} under {PROTECTION}, with {LEADER} at its head. The journey was hard on them, and the hamlet starts poor.</CC_Hamlet_Founded_Alone>
+  <CC_Hamlet_Founded_Walked>{WALKED} escorted them there, and their people will remember it.</CC_Hamlet_Founded_Walked>
   <CC_Hamlet_Founded_Life>Its founding families are {FAMILIES}. It is a town of {PEOPLE} in every way: it trades, and its people will bring the colony some of their harvest and turn to it in hard times.</CC_Hamlet_Founded_Life>
   <CC_Hamlet_Founded_Life_NoFamilies>It is a town of {PEOPLE} in every way: it trades, and its people will bring the colony some of their harvest and turn to it in hard times.</CC_Hamlet_Founded_Life_NoFamilies>
   <CC_Hamlet_Note_Founded>Founded {HAMLET} under the colony's protection.</CC_Hamlet_Note_Founded>
@@ -73,10 +73,10 @@
   <CC_Hamlet_Harvest_Coming>A carter from {HAMLET} is on the way up to the colony's gate with {GOODS}, the first of their harvest.</CC_Hamlet_Harvest_Coming>
   <CC_Hamlet_Harvest_Left>Carters from {HAMLET} left {GOODS} at the colony's gate, the first of their harvest.</CC_Hamlet_Harvest_Left>
   <CC_Hamlet_Help_Label>{HAMLET} asks for help</CC_Hamlet_Help_Label>
-  <CC_Hamlet_Help_Food>{HAMLET}'s stores are nearly empty, and its first fields have not come good. {LEADER} asks whether the colony could spare {GOODS}, carried down to their carter at the gate.</CC_Hamlet_Help_Food>
+  <CC_Hamlet_Help_Food>{HAMLET}'s stores are nearly empty, and its first fields have not done well. {LEADER} asks whether the colony could spare {GOODS}, carried down to their carter at the gate.</CC_Hamlet_Help_Food>
   <CC_Hamlet_Help_Doctor>There is sickness at {HAMLET}, and nobody there who knows how to treat it. {LEADER} asks for {GOODS}, brought down to their carter at the gate by the colony's doctor, with a word on how to use it.</CC_Hamlet_Help_Doctor>
   <CC_Hamlet_Help_Tools>{HAMLET} is short of everything {WORD} needs to get through a hard season. {LEADER} asks for {GOODS}, carried down to their carter at the gate.</CC_Hamlet_Help_Tools>
-  <CC_Hamlet_Help_Why>They turn to the colony because it took them under its protection. Refused twice in one season, they will stop counting on it.</CC_Hamlet_Help_Why>
+  <CC_Hamlet_Help_Why>They turn to the colony because it took them under its protection. If the colony refuses them twice in one season, they will stop counting on it.</CC_Hamlet_Help_Why>
   <CC_Hamlet_Help_Send>Send {GOODS}</CC_Hamlet_Help_Send>
   <CC_Hamlet_Help_Refuse>Refuse them this time</CC_Hamlet_Help_Refuse>
   <CC_Hamlet_Refused>{HAMLET} will have to manage on its own this time.</CC_Hamlet_Refused>
@@ -84,13 +84,13 @@
   <!-- Fealty -->
   <CC_Hamlet_Oath_Label>{HAMLET} asks to swear fealty</CC_Hamlet_Oath_Label>
   <CC_Hamlet_Oath_Text>{HAMLET} has done well under the colony's protection, and {LEADER} asks that its families may swear fealty to {COLONY}: {RITE}, taken at {OATHPLACE}.</CC_Hamlet_Oath_Text>
-  <CC_Hamlet_Oath_Vassal>Sworn, it will be the colony's vassal by Faction Territories' own reckoning, and no longer a town of {PEOPLE}.</CC_Hamlet_Oath_Vassal>
-  <CC_Hamlet_Oath_Tie>Sworn, it remains a town of {PEOPLE}, but holds itself the colony's from then on.</CC_Hamlet_Oath_Tie>
+  <CC_Hamlet_Oath_Vassal>Once sworn, it will be the colony's vassal by Faction Territories' own reckoning, and no longer a town of {PEOPLE}.</CC_Hamlet_Oath_Vassal>
+  <CC_Hamlet_Oath_Tie>Once sworn, it remains a town of {PEOPLE}, but counts itself the colony's from then on.</CC_Hamlet_Oath_Tie>
   <CC_Hamlet_Oath_Accept>Accept their oath</CC_Hamlet_Oath_Accept>
   <CC_Hamlet_Oath_NotYet>Not yet</CC_Hamlet_Oath_NotYet>
   <CC_Hamlet_NotYet>{LEADER} of {HAMLET} will ask again when the colony is ready.</CC_Hamlet_NotYet>
   <CC_Hamlet_Sworn_Label>{HAMLET} swears fealty</CC_Hamlet_Sworn_Label>
-  <CC_Hamlet_Sworn_Text>{LEADER} and the families of {HAMLET} have sworn fealty to {COLONY}: {RITE}, taken at {OATHPLACE}. {HAMLET} remains a town of {PEOPLE}, and holds itself the colony's from now on.</CC_Hamlet_Sworn_Text>
+  <CC_Hamlet_Sworn_Text>{LEADER} and the families of {HAMLET} have sworn fealty to {COLONY}: {RITE}, taken at {OATHPLACE}. {HAMLET} remains a town of {PEOPLE}, and counts itself the colony's from now on.</CC_Hamlet_Sworn_Text>
 
   <!-- Their people turned on the colony -->
   <CC_Hamlet_Hostile_Label>{HAMLET} must choose</CC_Hamlet_Hostile_Label>
@@ -135,7 +135,7 @@
   <CC_Hamlet_H_Refused>{COLONY} refused {HAMLET} help in a hard season.</CC_Hamlet_H_Refused>
 
   <!-- What their people remember (World/FactionMemory.cs) -->
-  <CC_Memory_Deed_hamlet>walked settlers of theirs out and took their hamlet under its protection</CC_Memory_Deed_hamlet>
+  <CC_Memory_Deed_hamlet>escorted settlers of theirs and took their hamlet under its protection</CC_Memory_Deed_hamlet>
   <CC_Memory_Deed_hamlet_Name>took {NAME}, their hamlet, under its protection</CC_Memory_Deed_hamlet_Name>
   <CC_Memory_Deed_hamletHarvest>brought the colony the first of their hamlet's harvest</CC_Memory_Deed_hamletHarvest>
   <CC_Memory_Deed_hamletHarvest_Name>brought the colony the first of {NAME}'s harvest</CC_Memory_Deed_hamletHarvest_Name>
@@ -180,7 +180,7 @@
   <!-- Settings -->
   <CC_Settings_Hamlets>Hamlets</CC_Settings_Hamlets>
   <CC_SetNote_Hamlets>Settlers may ask to found a hamlet a few days off under the colony's protection, and in time swear fealty.</CC_SetNote_Hamlets>
-  <CC_Settings_Hamlets_Tip>From the colony's 90th day, with five grown colonists or more at a home, settlers of a people at peace may ask to found a hamlet near it, at most once a year and one hamlet a home: a holding that has lived a year on the colony's land with little unease, the families of a town given up (offered at the gate), or settlers from a poor or struggling town in reach. The place is 6 to 10 tiles off, on land that holds a town, by a river or a road where it can; the colony may choose another. Taken under protection, they camp at the gate with their carts for a few days, and a caravan of two grown colonists or more sent to the place takes them along; after a night there the hamlet stands, a town of their own people. At the founding the road may bring the game's own caravan demand or ambush (15 in 100, 35 near a raiders' camp or a hostile town), with the settlers among the defenders. Let go alone, a third are turned back. The hamlet brings produce at harvest and asks for food, a doctor or tools in hard seasons; refused twice in one season, it stops counting on the colony. After 60 days at a fortune of 40 or more it asks to swear fealty (Faction Territories' vassal when its vassalage is on). Off: no settlers ask, and a hamlet standing goes on as a town of its people.</CC_Settings_Hamlets_Tip>
+  <CC_Settings_Hamlets_Tip>From the colony's 90th day, with five grown colonists or more at a home, settlers of a people at peace may ask to found a hamlet near it, at most once a year and one hamlet a home: a holding that has lived a year on the colony's land with little unease, the families of a town given up (offered at the gate), or settlers from a poor or struggling town in reach. The place is 6 to 10 tiles off, on land that holds a town, by a river or a road where it can; the colony may choose another. Taken under protection, they camp at the gate with their carts for a few days, and a caravan of two grown colonists or more sent to the place takes them along; after a night there the hamlet stands, a town of their own people. At the founding the road may bring the game's own caravan demand or ambush (15 in 100, 35 near a raiders' camp or a hostile town), with the settlers among the defenders. If they go alone, a third are turned back. The hamlet brings produce at harvest and asks for food, a doctor or tools in hard seasons; refused twice in one season, it stops counting on the colony. After 60 days at a fortune of 40 or more it asks to swear fealty (Faction Territories' vassal when its vassalage is on). Off: no settlers ask, and a hamlet standing goes on as a town of its people.</CC_Settings_Hamlets_Tip>
   <CC_Settings_SmallTownMaps>Small towns' maps</CC_Settings_SmallTownMaps>
   <CC_SetNote_SmallTownMaps>A hamlet, a trading post or a town in its first year has a smaller base with fewer defenders on its own map.</CC_SetNote_SmallTownMaps>
   <CC_Settings_SmallTownMaps_Tip>When the map of a hamlet, a trading post or a town in its first year is made (attacked or entered), its base stands on smaller ground (a hamlet 0.6 of a town's on each side, a post 0.75, a new town 0.8) with fewer defenders (0.35, 0.5 and 0.65 of a town's) and less in its stores; a hamlet has no walls round its edge. With Vanilla Base Generation Expanded each people's own layouts are built on the smaller ground. An Empire town keeps its ground, with fewer defenders. Sites, ruins and other mods' world objects are never touched. Needs the deeper game hooks.</CC_Settings_SmallTownMaps_Tip>
