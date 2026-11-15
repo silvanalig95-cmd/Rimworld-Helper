@@ -270,6 +270,23 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   that the guest area in Hospitality's tab decides where they may go.
   The player: "and yes, your suggestions all sound great": approved as proposed; it starts when one of the three
   builds running now (the storytellers, the three fixes, the faction descriptions) is done.
+- **To do when the player asks (15 November 2026): colonists ride out to far work, and ride back.** The player, with
+  their save `League_of_Toba` (15 November, afternoon): "pawns should really use mounts whenever they walk away out of
+  the base range. sometimes they do, but sometimes they don't, i don't uinderstand. for example now avila did not mount
+  up despite going really far to mine. it should mount to go there, and mount back up aftr finishing work. same for all
+  other activities where they walk out further out of the base." Read from the save: the colony's riding is Giddy-Up 2
+  - Continued's (`memegoddess.giddyup`, its auto-mount), not Rimfolk's (Rimfolk mounts only its couriers and riders,
+  `GiddyUpMounts.MountUp`); nobody was mounted (its `ExtendedDataStorage` has every `mount` null); Avila was mining steel
+  at (93, 259) and Bautista at (137, 260), 70 to 90 cells from the base around (60, 200), on foot; free animals in the
+  pen around (55 to 80, 160 to 180): an adult horse, two titanis, a thunderox, an ankylosaurus (which of them
+  Giddy-Up lets be ridden is in its own settings, not the save). Proposed when asked: first read Giddy-Up 2 Continued's
+  own auto-mount rules (its source, Owlchemist's GiddyUp2 on GitHub and the continued fork) to say why it skipped
+  Avila (its minimum distance, how far the mount may be from the rider, an animal's hunger or rest, the job kind); then,
+  with Giddy-Up active (soft), Rimfolk fills the gap: a colonist (not drafted, not in a caravan) whose work lies well
+  outside the home area and who isn't mounted first fetches the nearest free animal Giddy-Up allows, rides out,
+  leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
+  rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
+  inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
