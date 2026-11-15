@@ -149,6 +149,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   standing by the goods.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.241.2, **A day off's recreation runs its
+  length** (15 November 2026; the player: "if i give a pawn a day off and they're at full recreation satisfaction, they
+  start a recreation and then immediatelly stop it again. if they get a day off they should be able to do recreation
+  for as long as they want to reduce strain"). Cause: the game ends a recreation job the tick their recreation is full
+  (`JoyUtility.JoyTickCheckEnd`, full joy: end the job), and the time off's think node (`Rimfolk_Heart_TimeOffTree`)
+  offers `JobGiver_GetJoy` in a plain priority list, where the game's "recreation is full, so no recreation" priority
+  doesn't apply, so they took up a recreation and dropped it again at once. Now `Patch_HeartTimeOffFullJoy` (in
+  `Heart/HeartTimeOff.cs`) turns that end into "carry on" while a day off or a bad afternoon runs in a recreation hour
+  (`HeartTimeOff.KeepsAtRecreation`): each recreation runs the game's own length for it, and as recreation under way it
+  eases strain each hour. DESIGN.md (the day off) and docs/design/heart-felt.md point 14 say so. Try in the game: give a
+  strained colonist with full recreation a day off; they sit through a whole game of chess or a stretch at the
+  television, then pick the next.
 - 0.241.1, **Called fighters go with the
   colony's fighters, and wake a sleeping enemy** (15 November 2026; the player, with their save `League_of_Toba_2`: "the
   delegation came but is neither attacking the enemies nor following my pawns"). Cause: two Darkshards of Faction_25,

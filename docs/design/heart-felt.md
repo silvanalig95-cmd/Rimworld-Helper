@@ -128,7 +128,8 @@ one colonist held near breaking for eight weeks among seven close friends never 
 14. **A day off for one colonist**: the player grants a strained colonist a day of rest from their card, the heart's page
     or a gizmo; they leave work for the day and rest, sleep in, take their recreation, walk and see friends, played out on
     the map, and it eases strain well beyond an ordinary day; the colony feels the work missed; at most once in a while
-    for each colonist so it stays a choice.
+    for each colonist so it stays a choice. Their recreation runs its full length though their recreation is full, so they can keep at it all
+    day (15 November 2026).
 
 ## Rules that hold
 

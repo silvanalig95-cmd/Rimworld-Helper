@@ -19,6 +19,8 @@ namespace ColonyCouncil
     /// <item>A bad afternoon from worn down, now and then (HeartCountMath.BadDayChancePerHour): off work for a few hours, a
     /// while in their room, a walk, a drink if they drink, a visit to a grave; it eases a good share of strain.</item>
     /// </list>
+    /// In their recreation hours a recreation runs its full length though their recreation is full
+    /// (Patch_HeartTimeOffFullJoy), so they can keep at it all day.
     /// Both played out on the map through their timetable (the hours changed are saved on the heart and put back after,
     /// only where nobody changed them since) and a node of Rimfolk's own in the game's think tree
     /// (Defs/HeartDefs/Rimfolk_Heart_TimeOff.xml), which stands down whenever they are drafted, need a doctor or danger
@@ -338,6 +340,17 @@ namespace ColonyCouncil
 
         // ---------------- What they do ----------------
 
+        /// <summary>
+        /// Their recreation goes on though their recreation is full (Patch_HeartTimeOffFullJoy): time off under way, in an
+        /// hour their timetable gives to recreation, not drafted.
+        /// </summary>
+        public static bool KeepsAtRecreation(Pawn p)
+        {
+            if (p == null || p.Drafted || p.timetable == null || p.timetable.CurrentAssignment != TimeAssignmentDefOf.Joy) return false;
+            var h = Heart.Of(p);
+            return h != null && h.AnyOff;
+        }
+
         /// <summary>Between the acts of their time off: a bad afternoon's every hour or so, a day off's every three.</summary>
         public static int ActGapTicks(TimeOffKind kind) => kind == TimeOffKind.BadDay ? GenDate.TicksPerHour : GenDate.TicksPerHour * 3;
 
@@ -426,6 +439,34 @@ namespace ColonyCouncil
             if (pawn.timetable == null || pawn.timetable.CurrentAssignment != TimeAssignmentDefOf.Joy) return false;
             if (HealthAIUtility.ShouldSeekMedicalRest(pawn) || MapFacts.ThreatOn(pawn.Map)) return false;
             return true;
+        }
+    }
+
+    /// <summary>
+    /// Recreation on time off runs its full length (the player, 15 November 2026: "if i give a pawn a day off and they're at
+    /// full recreation satisfaction, they start a recreation and then immediatelly stop it again. if they get a day off they
+    /// should be able to do recreation for as long as they want to reduce strain"). The game ends a recreation the moment
+    /// their recreation is full, and the time off's node offers recreation again at once, so they started and stopped over
+    /// and over. On a day off or a bad afternoon, in the hours their timetable gives to recreation, a full recreation no
+    /// longer ends it: it runs as long as the game's own length for it, and its hours count toward easing their strain
+    /// (HeartLogic: recreation under way eases strain each hour).
+    /// </summary>
+    [HarmonyLib.HarmonyPatch(typeof(JoyUtility), nameof(JoyUtility.JoyTickCheckEnd))]
+    public static class Patch_HeartTimeOffFullJoy
+    {
+        public static void Prefix(Pawn pawn, ref JoyTickFullJoyAction fullJoyAction)
+        {
+            if (fullJoyAction != JoyTickFullJoyAction.EndJob || !RimfolkPatches.On) return;
+            var joy = pawn?.needs?.joy;
+            if (joy == null || joy.CurLevel <= 0.999f) return;
+            try
+            {
+                if (HeartTimeOff.KeepsAtRecreation(pawn)) fullJoyAction = JoyTickFullJoyAction.None;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the heart's time off: recreation at full", e);
+            }
         }
     }
 

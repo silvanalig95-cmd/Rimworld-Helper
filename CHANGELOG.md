@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A day off spent at leisure
+
+*15 November 2026, version 0.241.2*
+
+- On a day off or a bad afternoon, a colonist whose recreation is already full no longer stops each recreation the moment it starts.
+- Each recreation runs its full length, so they can keep at it all day, and those hours ease their strain.
+
 ## Called fighters go with yours
 
 *15 November 2026, version 0.241.1*

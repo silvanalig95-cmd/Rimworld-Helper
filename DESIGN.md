@@ -920,7 +920,12 @@ own and Rimfolk's own acts. No new Sched slot; one Harmony patch (the gizmo on a
   `Humanlike_PreMain`, before the colonist's main work: `ThinkNode_ConditionalHeartTimeOff`) keeps them from ordinary
   work while their timetable says recreation: emergencies first (the game's own emergency work, a fire, someone needing
   a doctor now), then food and sleep as they need, then now and then an act (a walk, their partner's company, the fire,
-  a friend sent for), then their recreation, then a wander about the colony. It stands down when they are drafted,
+  a friend sent for), then their recreation, then a wander about the colony. Their recreation runs its full length
+  though their recreation is full (`Patch_HeartTimeOffFullJoy`, a prefix on the game's `JoyUtility.JoyTickCheckEnd`
+  that turns its "end the job when full" into "carry on" while time off runs in a recreation hour,
+  `HeartTimeOff.KeepsAtRecreation`; the player, 15 November 2026: "they start a recreation and then immediatelly stop it
+  again ... they should be able to do recreation for as long as they want to reduce strain"), so its hours count toward
+  easing strain (recreation under way, each hour, `HeartLogic`). It stands down when they are drafted,
   downed, need a doctor or danger comes, and the day off ends at once when danger comes (checked every slice of the
   heart's hour, 250 ticks), so they can be drafted. The timetable's hours changed are saved on the heart (`offHours`,
   "9=Work>Joy"), put back when it ends only where nobody changed them since; an hour the calendar's rest day had given is

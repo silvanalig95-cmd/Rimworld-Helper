@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.241.2</version>
+        <date>15 November 2026</date>
+        <title>A day off spent at leisure</title>
+        <points>
+          <li>On a day off or a bad afternoon, a colonist whose recreation is already full no longer stops each recreation the moment it starts.</li>
+          <li>Each recreation runs its full length, so they can keep at it all day, and those hours ease their strain.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.241.1</version>
         <date>15 November 2026</date>
         <title>Called fighters go with yours</title>
