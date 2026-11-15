@@ -53,10 +53,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **The animals, made more visible. (being built, the player's go of 14 November 2026)** The player: "i must say that i can't really see a lot from the animal features we
-    included, please add to to-do list to enhance and build up on these". When asked: list what Rimfolk's animal parts do
-    now and what of it shows on the map (Animals/, the pets, herds, bonds, the beasts' encounters and dilemmas), propose
-    a round that makes them seen and builds on them.
   - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
     are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
     region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
@@ -153,6 +149,86 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   standing by the goods.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.241.0, **The colony's animals, seen on the
+  map** (14 November 2026; the player's words: "i must say that i can't really see a lot from the animal features we
+  included, please add to to-do list to enhance and build up on these", then "do ... making animals more visible").
+  DESIGN.md "The animals, made more visible" (before "The colony's animals hunting for themselves") has all of it; the
+  Almanac's pages "the colony's animals" (a section, *Their days on the map*) and "the animals' natures" (keywords
+  unchanged).
+  - What was there and why it wasn't seen (the inventory, from the code and their save League of Toba of 14 November,
+    day 99): Rimfolk's animal parts are the temperaments (a card line, and moments on the map that mostly need "its
+    person"), friends, feuds and grief between animals, the few that speak (a fantasy source), the herd's year (its
+    leader, its line, the first calf), the herdmaster's work, wishes and goals, the famine cull and the fading pet, pets
+    hunting for themselves, the resident beast, omen animals, Ideology's sacred animals, PokéWorld's Pokémon at home and
+    the trainer's story, the creatures' 34 encounters, and the beasts (great herds and stampedes, pack alphas, nemeses,
+    the region's legends). The beasts, the hunts, the herd's year, the resident beast, the sacred animals' day and the
+    Pokémon at home already play out on the map. What didn't, in their colony: twelve animals (a horse, a thunderox, an
+    ankylosaurus, two giant crowned silkies, two titanis, a dusk prowler, a blood scarab, a raccoon, two companion
+    dryads), none bonded and only the dusk prowler with a master, so everything that waits for "its person" never came
+    (a pet at its person's heels, the loyal one at the door, the brave one's stand, five of the temperaments' moments,
+    grief, the old companion's story); six colonists in six seats, so no herdmaster (Guido, Animals 13 with a burning
+    passion, is the best with them); friendships only between two pets asleep side by side, and their three pets slept
+    apart; no children, so no child's play; and the seventeen pet encounters that fired were words in the news only,
+    some of them able to say what wasn't so (the new litter of any animal, newborns or not; the animal on guard with no
+    stranger about; the old friend slowing down of a young animal).
+  - What: every named animal has its person (bonded, its master, else the colonist it is fond of, fixed for the pair,
+    "fond of" on its card), and the temperaments and the pet at its person's heels use it; friends across kinds. Their
+    days on the map, each with a plain line said as it is seen: home again (it runs over and nuzzles them), the foot of
+    the bed (the cell past the bed's foot end), a meal (at their elbow), a child's chase, the herd moving off behind its
+    eldest in the morning, the rounds (the herdmaster, else the best with animals, in their free time), in out of the
+    rain and snow, the young in the snow, the herd huddled on a bitter night, the alarm at raiders, the pets keeping close
+    to their people under a god's presence (the god unnamed), and lying by its dead person, crying out. Fifteen of the
+    seventeen pet encounters now happen on the map first and are told as they are seen: the five added in this round are
+    the grudge, the old friend slowing down (old animals only), the new litter (only with newborns of its own, any
+    season), the animal on guard (only with a stranger near) and the noise in the night; the larder raid never takes
+    from a table. Every step of the animals' personal stories before the last has something seen. Left as words: the
+    gift from the hunt and the chewed belongings. No harm, no letter, no message, nothing saved, no Sched slot.
+  - Code map: `Source/ColonyCouncil/Animals/AnimalDaysMath.cs` (pure, linked in `Tools/Tests/Tests.csproj`: `AnimalDay`,
+    `AnimalScene`, `FondWeight`, `Score`, `Favourite`, `Days`, `HourChance`, `HoursOf`, the hours, `MayBeg`,
+    `MaySleepAtFoot`, `PlaysWithChild`, `GreetChance`, `MayBefriend`, `FootCells`, `Homecoming`, `Huddles`, `Shelters`,
+    `Newborn`, `CryHour`, the ticks). `Animals/AnimalDays.cs` (`Hourly` from `AnimalLife.Hourly`; per session `awayFrom`,
+    `awayLast`, `footNight`, `mourners`, `personSeen`, `weatherSeen`, `alarmAt`, `presencesSeen`; `Start`, `StartThen`,
+    `RunToJob`, `FollowJob`, `Tags`, `Say`, `Remark`; `Homecomings`, `Greet`, `FootOfBed`, `SleepAtFoot`, `FootCell`,
+    `Mornings`, `Eating`, `Begging`, `Beg`, `ChildPlay`, `Play`, `HerdMoves`, `Pasture`, `Keeper`, `Rounds`, `Looked`,
+    `Weather`, `Shelter`, `SnowPlay`, `Huddle`, `Alarm` (from `AnimalTempers.FightLook`), `Uneasy`, `Deaths`,
+    `Notify_PersonDied`, `Mourn`, `InspectPart`, the dev answers). `Animals/AnimalScenes.cs`
+    (`DilemmaEffect_AnimalScene`; `Begin` and `Fits`, both from `Strangers/Encounters.cs`; `Play`, `Try`, `Hourly`,
+    `YoungOf`, `StrangerNear`, the scenes). `Animals/AnimalDayJobs.cs` (`AnimalDaysDefOf`; `AnimalArrivals`;
+    `AnimalRunToExtension`, `JobDriver_AnimalRunTo`, `JobDriver_AnimalPlay`, `JobDriver_PlayWithAnimal`,
+    `JobDriver_SitWithAnimal`, `JobDriver_KeeperRound`). `Animals/AnimalDaysDebug.cs` (three dev actions). Changed:
+    `AnimalFacts` (`PersonOf`, `FondOf`, `TakesTo`, `Pet`), `AnimalNatureJobs` (the linger's arrival and `callEvery`, the
+    card's "fond of"), `AnimalTempers` (the person, the alarm's call, `RaidStores`), `AnimalBonds` (friends across kinds),
+    `AnimalLife` (the hour, a pet's heels), `AnimalNatureMath` (families from the mod pool), `Strangers/Encounters.cs`
+    (`Told` split from `Fire`, the scene and `Fits`). Defs `Defs/Misc/Rimfolk_AnimalDays_Jobs.xml` (12 JobDefs),
+    `Defs/FlavorPoolDefs/Rimfolk_Pools_AnimalDays.xml` (the lines, in `ImmersionTests`, and the journal),
+    `Defs/EncounterDefs/Council_Encounters_Creatures.xml`, `Defs/ArcDefs/Rimfolk_Arcs_Animals.xml` and
+    `Rimfolk_Arcs_Mods_PokeWorld.xml`; keys `Languages/English/Keyed/Rimfolk_AnimalDays.xml`; the pace is the setting
+    `animalMoments` ("Animals' moments on the map"), everything under "Pets as companions". Tests
+    `Tools/Tests/AnimalDaysTests.cs`; `Tools/playout_audit.py` counts the scene.
+  - Try in the game: 1. Select a named animal with no bond and no master: its card says "fond of" someone; "Animals:
+    whom each animal is with" lists all of them in the log. 2. Send that person off with a caravan for half a day and
+    back: as they come in, the animal runs over, nuzzles them, and they say hello as it gets there. 3. At night a small
+    pet goes into its person's room and sleeps just past the foot of the bed; the next morning its person mentions it.
+    4. At a meal a pet comes to sit at someone's elbow and they tell it no as it sits down. 5. In the early morning the
+    two silkies (or the titanis) walk off together behind the eldest to fresh ground. 6. In their free time Guido (the best
+    with animals) goes round a few of them, stopping beside each, with a word to the first. 7. Rain coming on: the pets out in it go in under
+    a roof, and someone remarks on the first as it lies down. 8. A raid: up to two pets turn to face the raiders and call
+    out, and someone says where they are. 9. A god's presence: the pets go to their people and stay close, one crying
+    out. 10. "Animals: an encounter's scene now..." with Guard while a trader is near, or Cry at night: the animal stands
+    between them, or goes out and cries at the dark, and the news comes as it does. 11. Kill a colonist with dev mode:
+    after the danger, their animal lies down by the body and cries.
+  - Mods that would help (none of them in their list yet): Zoology: Realistic Animal Overhaul
+    ([3679396881](https://steamcommunity.com/sharedfiles/filedetails/?id=3679396881); tags 1.6 and 1.7, updated 25
+    October 2026, kept up) gives the animals much more of their own to do on the map (young nursing, parents guarding
+    their young, prey fleeing hunters, predators guarding kills, colonists walking dogs and playing fetch, better animal
+    sounds) and has its own support for Alpha Animals, Dinosauria, Megafauna and Vanilla Animals Expanded; it also
+    rebalances every animal's numbers, so try it with its systems one at a time (it may overlap Animals Logic). Animals
+    are fun! (Continued) ([3245454244](https://steamcommunity.com/sharedfiles/filedetails/?id=3245454244); tags 1.1 to
+    1.7, updated 12 November 2026, kept up), lighter: colonists walk their pets and play fetch for recreation, with a
+    small chance each time to bond, so more animals get their bonded person and Rimfolk's bonded parts (grief, the grave,
+    the old companion's story); one or the other, since Zoology has walks and fetch too. For the night's sounds under
+    the cry in the dark, Ambient Rim ([3158997430](https://steamcommunity.com/sharedfiles/filedetails/?id=3158997430);
+    tags 1.4 to 1.6, updated July 2026), already proposed for the gods.
 - 0.240.0, **More of Old Powers' kind: the old
   powers' own strange happenings** (14 November 2026; the player's words: "i like the old powers storyteller and want
   you to do some more more events in this style, including the gods and using ressources from rimworld of magic", then

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' days on the map (Source/ColonyCouncil/Animals/AnimalDays.cs): what its person says to it or of it, and
+    what someone who sees it says. {PET} is the animal (named, or "the muffalo" for one of the herd with no name, so no line
+    starts with it), {PAWN} the one speaking, {OTHER} the dead it lies by, {PLACE} where the raiders are ("to the east"),
+    {KIND} its kind, {COUNT} how many of the herd. Every line is one short, plain sentence, said the way a person would say
+    it, and carries its moment's tag (day:greet, day:foot, day:beg, day:play, day:herd, day:rounds, day:shelter, day:snow,
+    day:huddle, day:alarm, day:uneasy, day:mourn), so none is said in another's place. Other tags: temper:brave and the
+    rest, family:canine, family:feline and the rest (AnimalNatureMath.Family), body:beast, body:bird, body:other, pokemon,
+    young, oldanimal; at a meal, mine (the animal's own person eating); for the shelter, rain or snow; on the rounds, sick,
+    hurt, pregnant, herdmaster. The gods are never named: the animals being uneasy is all anyone knows of it.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_AnimalDays</defName>
+    <lines>
+      <plain>
+        <!-- Home again: its person, as it runs to them. -->
+        <li>[day:greet] Hello, {PET_nameDef}, I'm back.</li>
+        <li>[day:greet] Easy, {PET_nameDef}, I'm home now.</li>
+        <li>[day:greet] Did you miss me, {PET_nameDef}?</li>
+        <li>[day:greet] Good to see you too, {PET_nameDef}.</li>
+        <li>[day:greet,family:canine] Down, {PET_nameDef}, you'll knock me over.</li>
+        <li>[day:greet,family:feline] So you did notice I was gone, {PET_nameDef}.</li>
+        <li>[day:greet,body:bird] Hello, {PET_nameDef}, I've no food on me, sorry.</li>
+        <li>[day:greet,young] You've grown while I was away, {PET_nameDef}.</li>
+        <li>[day:greet,pokemon] Good to see you, {PET_nameDef}, were you all right while I was gone?</li>
+
+        <!-- The morning after a night at the foot of the bed: its person. -->
+        <li>[day:foot] Last night {PET_nameDef} slept at the foot of my bed.</li>
+        <li>[day:foot] I heard {PET_nameDef} come in last night and lie down by the bed.</li>
+        <li>[day:foot] Good morning, {PET_nameDef}, you slept in here again.</li>
+        <li>[day:foot,family:canine] You stayed by my bed all night, {PET_nameDef}, good dog.</li>
+        <li>[day:foot,young] Last night {PET_nameDef} came in and curled up by my bed.</li>
+        <li>[day:foot,temper:lazy] Time to get up, {PET_nameDef}, you've slept long enough.</li>
+
+        <!-- A meal: the one eating, with the animal at their elbow. -->
+        <li>[day:beg] No, {PET_nameDef}, this is my food.</li>
+        <li>[day:beg] You've had yours, {PET_nameDef}.</li>
+        <li>[day:beg] Stop staring at my plate, {PET_nameDef}.</li>
+        <li>[day:beg] All right, one bite, {PET_nameDef}, and that's all.</li>
+        <li>[day:beg,temper:greedy] You only just ate, {PET_nameDef}.</li>
+        <li>[day:beg,family:canine] Sit, {PET_nameDef}, you're not getting any.</li>
+        <li>[day:beg,family:feline] Keep your paws off the table, {PET_nameDef}.</li>
+        <li>[day:beg,body:bird] Stop pecking at my bowl, {PET_nameDef}.</li>
+        <li>[day:beg,mine] I know you're hungry, {PET_nameDef}, but this is mine.</li>
+
+        <!-- Play: the child, at a run. -->
+        <li>[day:play] Come back, {PET_nameDef}, it's my turn to chase you!</li>
+        <li>[day:play] Wait for me, {PET_nameDef}!</li>
+        <li>[day:play] You can't catch me, {PET_nameDef}!</li>
+        <li>[day:play] Run, {PET_nameDef}, I'm coming!</li>
+        <li>[day:play,body:bird] Come back, {PET_nameDef}, I just want to hold you.</li>
+        <li>[day:play,family:canine] Fetch, {PET_nameDef}, over here!</li>
+        <li>[day:play,family:feline] Where did you go, {PET_nameDef}?</li>
+        <li>[day:play,temper:lazy] Don't lie down yet, {PET_nameDef}, we're still playing.</li>
+
+        <!-- The herd moves off: someone who sees it ({PET} the eldest leading). -->
+        <li>[day:herd] The herd is following {PET_nameDef} out to graze.</li>
+        <li>[day:herd] There goes {PET_nameDef}, with the rest behind.</li>
+        <li>[day:herd] Looks like {PET_nameDef} is taking them to fresh grass.</li>
+        <li>[day:herd,body:bird] The whole flock is following {PET_nameDef}.</li>
+        <li>[day:herd,oldanimal] Even at its age, {PET_nameDef} still leads them out.</li>
+
+        <!-- The rounds: the keeper, to the first of them. -->
+        <li>[day:rounds] Morning, {PET_nameDef}, let's have a look at you.</li>
+        <li>[day:rounds] Hold still, {PET_nameDef}, this won't take long.</li>
+        <li>[day:rounds] You look well, {PET_nameDef}.</li>
+        <li>[day:rounds,sick] Let me see you, {PET_nameDef}, you don't look well.</li>
+        <li>[day:rounds,hurt] Easy, {PET_nameDef}, let me see where you're hurt.</li>
+        <li>[day:rounds,pregnant] Not long to go now, {PET_nameDef}.</li>
+        <li>[day:rounds,young] You're getting big, {PET_nameDef}.</li>
+        <li>[day:rounds,oldanimal] Stiff this morning, {PET_nameDef}?</li>
+        <li>[day:rounds,herdmaster] Time to check on all of you, starting with {PET_nameDef}.</li>
+
+        <!-- The weather: someone who sees it come in, or play. -->
+        <li>[day:shelter,rain] Look, {PET_nameDef} has come in out of the rain.</li>
+        <li>[day:shelter,rain] Come inside, {PET_nameDef}, you're getting soaked.</li>
+        <li>[day:shelter,snow] Look, {PET_nameDef} has come in out of the snow.</li>
+        <li>[day:shelter,snow] Come in, {PET_nameDef}, you're covered in snow.</li>
+        <li>[day:shelter,family:canine] Don't shake yourself off in here, {PET_nameDef}.</li>
+        <li>[day:shelter,family:feline] Come in, {PET_nameDef}, I know you hate getting wet.</li>
+        <li>[day:snow] I don't think {PET_nameDef} has seen snow before.</li>
+        <li>[day:snow] Look at {PET_nameDef} jumping about in the snow.</li>
+        <li>[day:snow] It's only snow, {PET_nameDef}.</li>
+        <li>[day:huddle] The herd is lying close together against the cold.</li>
+        <li>[day:huddle] They're all lying around {PET_nameDef} to keep warm.</li>
+        <li>[day:huddle] It's a cold night, so the animals are huddled up.</li>
+
+        <!-- Raiders: someone who sees it raise the alarm. -->
+        <li>[day:alarm] Look, {PET_nameDef} has seen something {PLACE}.</li>
+        <li>[day:alarm] Something's coming {PLACE}, look at {PET_nameDef}.</li>
+        <li>[day:alarm] Good, {PET_nameDef}, I see them too.</li>
+        <li>[day:alarm,family:canine] Listen, {PET_nameDef} is barking at someone {PLACE}.</li>
+        <li>[day:alarm,family:feline] Look, {PET_nameDef} is staring at something {PLACE}.</li>
+        <li>[day:alarm,body:bird] Listen to {PET_nameDef}, there's someone {PLACE}.</li>
+
+        <!-- A god's presence: someone who sees the animals uneasy (they only know the animals feel something). -->
+        <li>[day:uneasy] The animals are restless today.</li>
+        <li>[day:uneasy] Easy, {PET_nameDef}, there's nothing there.</li>
+        <li>[day:uneasy] Today {PET_nameDef} won't leave my side.</li>
+        <li>[day:uneasy] What's got into {PET_nameDef} today?</li>
+        <li>[day:uneasy,family:canine] Listen to {PET_nameDef} whining, I don't know why.</li>
+        <li>[day:uneasy,family:feline] Look, {PET_nameDef}'s fur is standing on end.</li>
+
+        <!-- A death: someone who sees it lie by its person. -->
+        <li>[day:mourn] Look, {PET_nameDef} is lying by {OTHER_nameDef} and won't move.</li>
+        <li>[day:mourn] I think {PET_nameDef} knows {OTHER_nameDef} is dead.</li>
+        <li>[day:mourn] Leave {PET_nameDef} be, it wants to stay with {OTHER_nameDef}.</li>
+        <li>[day:mourn] Poor {PET_nameDef}, it was always with {OTHER_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>[day:greet] I missed you too, {PET_nameDef}.</li>
+        <li>[day:foot] I slept better with {PET_nameDef} by the bed.</li>
+        <li>[day:beg] Here, {PET_nameDef}, you can have the crust.</li>
+        <li>[day:play] You're my best friend, {PET_nameDef}.</li>
+        <li>[day:rounds] There you are, {PET_nameDef}, let's see how you're doing.</li>
+        <li>[day:shelter] Come and dry off next to me, {PET_nameDef}.</li>
+        <li>[day:mourn] Come here, {PET_nameDef}, I miss {OTHER_nameDef} too.</li>
+      </warm>
+      <blunt>
+        <li>[day:greet] Yes, I'm back, {PET_nameDef}.</li>
+        <li>[day:beg] Go away, {PET_nameDef}.</li>
+        <li>[day:herd] The herd's moving.</li>
+        <li>[day:rounds] Teeth, feet and coat, then the next one.</li>
+        <li>[day:shelter] Shake off outside, {PET_nameDef}.</li>
+      </blunt>
+      <cheerful>
+        <li>[day:greet] Look how happy you are, {PET_nameDef}!</li>
+        <li>[day:play] Again, {PET_nameDef}, let's go again!</li>
+        <li>[day:snow] Look at {PET_nameDef} go in the snow!</li>
+      </cheerful>
+      <gloomy>
+        <li>[day:greet] At least someone's glad I came back.</li>
+        <li>[day:beg] Everyone wants something from my plate.</li>
+        <li>[day:uneasy] I don't like it when the animals act like this.</li>
+      </gloomy>
+      <cold>
+        <li>[day:foot] I let {PET_nameDef} stay the night.</li>
+        <li>[day:beg] No scraps, {PET_nameDef}.</li>
+        <li>[day:rounds] Stand still, {PET_nameDef}, I've the others to see.</li>
+        <li>[day:mourn] Let the animal stay with {OTHER_nameDef}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- What its person writes of a night at the foot of their bed (tags as above). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_AnimalDays</defName>
+    <lines>
+      <plain>
+        <li>[day:foot] Last night {PET_nameDef} slept at the foot of my bed. I let {PET_objective} stay.</li>
+        <li>[day:foot] I woke up and {PET_nameDef} was asleep at the foot of the bed.</li>
+        <li>[day:foot] After dark {PET_nameDef} came into my room and lay down by the bed.</li>
+      </plain>
+      <warm><li>[day:foot] Last night {PET_nameDef} slept by my bed. I liked having {PET_objective} there.</li></warm>
+      <cold><li>[day:foot] Last night {PET_nameDef} slept in my room.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -317,6 +317,7 @@
     <Compile Include="../../Source/ColonyCouncil/Items/ItemCardMaterialMath.cs" Link="ItemCardMaterialMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Items/ItemCardUseMath.cs" Link="ItemCardUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/AnimalDaysMath.cs" Link="AnimalDaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/PostMath.cs" Link="PostMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Post/RiderPackMath.cs" Link="RiderPackMath.cs" />

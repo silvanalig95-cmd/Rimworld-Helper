@@ -32,16 +32,20 @@ namespace ColonyCouncil
         public bool stand;
         /// <summary>Its report with whom it's about ({OTHER}), a translation key; the job's own words without one.</summary>
         public string report;
+        /// <summary>Calls out (its kind's own call) as it gets there and every this many ticks while it stays; 0 for never.</summary>
+        public int callEvery;
     }
 
     /// <summary>
-    /// An animal's moment of staying (Animals/AnimalTempers.cs, AnimalBonds.cs): it walks to a cell (target A) and stays
-    /// there a while (the job's count, in ticks) facing something (target B: a door, a grave, a bed, someone), standing,
-    /// lying down, or holding its ground in a fight. Target C, when there is one, is whom it's about, by name in its report.
+    /// An animal's moment of staying (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalDays.cs): it walks to a cell (target A)
+    /// and stays there a while (the job's count, in ticks) facing something (target B: a door, a grave, a bed, someone),
+    /// standing, lying down, or holding its ground in a fight. Target C, when there is one, is whom it's about, by name in its
+    /// report. What waited for it to get there is said then (Animals/AnimalDayJobs.cs, AnimalArrivals).
     /// </summary>
     public class JobDriver_AnimalLinger : JobDriver
     {
         private string about;
+        private int nextCall = -1;
 
         private AnimalLingerExtension Ext => job.def.GetModExtension<AnimalLingerExtension>();
 
@@ -75,6 +79,8 @@ namespace ColonyCouncil
             stay.initAction = () =>
             {
                 if (Ext?.lie == true) pawn.jobs.posture = PawnPosture.LayingOnGroundNormal;
+                if (Ext?.callEvery > 0) Call();
+                AnimalArrivals.Arrived(job);
             };
             stay.tickIntervalAction = Stay;
             stay.defaultCompleteMode = ToilCompleteMode.Delay;
@@ -87,8 +93,15 @@ namespace ColonyCouncil
             yield return stay;
         }
 
+        private void Call()
+        {
+            pawn.caller?.DoCall();
+            nextCall = Find.TickManager.TicksGame + Math.Max(60, Ext?.callEvery ?? 0);
+        }
+
         private void Stay(int delta)
         {
+            if (Ext?.callEvery > 0 && nextCall >= 0 && Find.TickManager.TicksGame >= nextCall) Call();
             var face = job.targetB;
             if (face.HasThing)
             {
@@ -126,6 +139,7 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref about, "about");
+            Scribe_Values.Look(ref nextCall, "nextCall", -1);
         }
     }
 
@@ -187,7 +201,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// One line under a named or bonded animal's inspect text, built at most every four seconds of game time:
-    /// "Temperament: loyal · sleeps beside Pepper · at odds with Whiskers", then its grief, its voice and what it did
+    /// "Temperament: loyal · fond of Guido · sleeps beside Pepper · at odds with Whiskers", then its grief, its voice and what it did
     /// lately, each when there is one (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs).
     /// </summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.GetInspectString))]
@@ -234,6 +248,9 @@ namespace ColonyCouncil
             var t = AnimalTempers.Of(a);
             if (t == null) return null;
             var parts = new List<string> { "CC_Temper_Inspect".Translate(AnimalTempers.Label(t.Value).Named("TEMPER")).Resolve() };
+            // Whom it has taken to, with no bond and no master (Animals/AnimalDays.cs).
+            string takes = AnimalDays.InspectPart(a);
+            if (!takes.NullOrEmpty()) parts.Add(takes);
             parts.AddRange(AnimalBonds.InspectParts(a));
             var sb = new StringBuilder(string.Join(" · ", parts));
             string grief = AnimalBonds.GriefLine(a);

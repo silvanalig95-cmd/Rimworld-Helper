@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The animals' days on the map (Source/ColonyCouncil/Animals/AnimalDays.cs, AnimalScenes.cs). What each did lately, on its card. -->
+  <CC_AnimalDay_Greet>ran to meet {PAWN_nameDef}, home again</CC_AnimalDay_Greet>
+  <CC_AnimalDay_FootOfBed>slept at the foot of {PAWN_nameDef}'s bed</CC_AnimalDay_FootOfBed>
+  <CC_AnimalDay_Beg>sat at {PAWN_nameDef}'s elbow while {PAWN_pronoun} ate</CC_AnimalDay_Beg>
+  <CC_AnimalDay_Play>played chase with {PAWN_nameDef}</CC_AnimalDay_Play>
+  <CC_AnimalDay_HerdLead>led the herd off to graze, {COUNT} of them</CC_AnimalDay_HerdLead>
+  <CC_AnimalDay_Looked>was looked over by {PAWN_nameDef}</CC_AnimalDay_Looked>
+  <CC_AnimalDay_Shelter>came in out of the rain</CC_AnimalDay_Shelter>
+  <CC_AnimalDay_ShelterSnow>came in out of the snow</CC_AnimalDay_ShelterSnow>
+  <CC_AnimalDay_SnowPlay>played in the snow</CC_AnimalDay_SnowPlay>
+  <CC_AnimalDay_Huddle>lay down close with the herd against the cold</CC_AnimalDay_Huddle>
+  <CC_AnimalDay_Alarm>raised the alarm at the raiders</CC_AnimalDay_Alarm>
+  <CC_AnimalDay_Uneasy>wouldn't settle, and kept close to {PAWN_nameDef}</CC_AnimalDay_Uneasy>
+  <CC_AnimalDay_Mourn>lay down by {OTHER_nameDef}'s body and cried</CC_AnimalDay_Mourn>
+  <CC_AnimalScene_Plate>begged at {PAWN_nameDef}'s meal and ran off</CC_AnimalScene_Plate>
+  <CC_AnimalScene_Shadow>followed {PAWN_nameDef} about</CC_AnimalScene_Shadow>
+  <CC_AnimalScene_Comfort>stayed at {PAWN_nameDef}'s side while {PAWN_pronoun} was low</CC_AnimalScene_Comfort>
+  <CC_AnimalScene_Trick>jumped about in front of {PAWN_nameDef}</CC_AnimalScene_Trick>
+  <CC_AnimalScene_Confide>sat with {PAWN_nameDef} a while</CC_AnimalScene_Confide>
+  <CC_AnimalScene_Pester>ran at {PAWN_nameDef}'s heels and off again</CC_AnimalScene_Pester>
+  <CC_AnimalScene_Greet>ran over to greet {PAWN_nameDef}</CC_AnimalScene_Greet>
+  <CC_AnimalScene_SlowGreet>walked slowly over to {PAWN_nameDef} and stayed by {PAWN_objective}</CC_AnimalScene_SlowGreet>
+  <CC_AnimalScene_Litter>lay by {PET_possessive} newborns while {PAWN_nameDef} looked at them</CC_AnimalScene_Litter>
+  <CC_AnimalScene_Guard>stood between {PAWN_nameDef} and {OTHER_nameDef}</CC_AnimalScene_Guard>
+  <CC_AnimalScene_Cry>cried out into the dark at night</CC_AnimalScene_Cry>
+
+  <!-- Its card: whom it has taken to, with no bond and no master. -->
+  <CC_AnimalDay_Inspect_TakesTo>fond of {PAWN_nameDef}</CC_AnimalDay_Inspect_TakesTo>
+
+  <!-- Its jobs' words. -->
+  <CC_AnimalJob_Beg>begging from {OTHER}.</CC_AnimalJob_Beg>
+  <CC_AnimalJob_Play>playing with {OTHER}.</CC_AnimalJob_Play>
+  <CC_AnimalJob_Mourn>lying by {OTHER}'s side.</CC_AnimalJob_Mourn>
+  <CC_AnimalJob_Greet>greeting {OTHER}.</CC_AnimalJob_Greet>
+  <CC_AnimalJob_KeepClose>keeping close to {OTHER}.</CC_AnimalJob_KeepClose>
+  <CC_AnimalJob_Pester>running at {OTHER}'s heels.</CC_AnimalJob_Pester>
+  <CC_AnimalJob_Guard>standing in front of {OTHER}.</CC_AnimalJob_Guard>
+
+</LanguageData>

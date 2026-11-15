@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The colony's animals, seen on the map
+
+*15 November 2026, version 0.241.0*
+
+- Every named animal now has its person: the one it is bonded to, its master, or the colonist it is fond of, shown on its card.
+- Pets run to meet their person coming home, sleep at the foot of their bed, sit by them at meals and play chase with the children.
+- In the morning the herd follows its eldest out to fresh grazing, lies close together on bitter nights, and the herdmaster or the best hand goes round the animals.
+- Pets come in out of the rain, call out at raiders, keep close to their people when the sky turns strange, and lie by their person when they die.
+- Fifteen of the animals' encounters now happen on the map first, and only when what they speak of is there.
+- What is said about an animal comes as it is seen, and two animals of different kinds can become friends.
+
 ## The old powers stir
 
 *15 November 2026, version 0.240.0*

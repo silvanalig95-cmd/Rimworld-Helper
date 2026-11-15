@@ -308,7 +308,8 @@ namespace ColonyCouncil
                 if (def.colonist != null ? !def.colonist.Allows(p, null) : !def.children && p.DevelopmentalStage.Juvenile()) continue;
                 if (!def.precepts.NullOrEmpty() && !def.precepts.Any(n => Beliefs.HasPrecept(p, n))) continue;
                 // Only a stranger they are really with: within talking range for people, in sight not far off for animals.
-                var met = strangers.Where(x => Meets(p, x)).ToList();
+                // And, for an animal's scene, one with what its words need (newborns of its own, a stranger near: Animals/AnimalScenes.cs).
+                var met = strangers.Where(x => Meets(p, x) && AnimalScenes.Fits(def, p, x)).ToList();
                 if (met.Count == 0) continue;
                 var s = Strangers.Pick(map, def.stranger, p, met);
                 if (s == null) continue;
@@ -339,6 +340,15 @@ namespace ColonyCouncil
             // Tagged lines ([rain], [winter], [trait:Kind], [x:child]) only when they fit the moment and the people.
             string text = ctx.Format(Flavor.Pick(def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(def.texts));
             ctx.cause = text;
+            // An animal's scene plays out on the map first (Animals/AnimalScenes.cs), and the moment is told once it has.
+            if (AnimalScenes.Begin(def, ctx, () => Told(def, comp, map, a, x, ctx, text))) return;
+            Told(def, comp, map, a, x, ctx, text);
+        }
+
+        /// <summary>The moment's effects, its words in the news and the social log, its chronicle line and journal.</summary>
+        private static void Told(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x, DilemmaContext ctx, string text)
+        {
+            // together: Cast picked a colonist who is with the stranger (Meets), or an animal's scene brought them together.
             foreach (var e in def.effects)
             {
                 try
