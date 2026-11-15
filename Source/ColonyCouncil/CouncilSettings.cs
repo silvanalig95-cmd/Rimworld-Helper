@@ -327,6 +327,11 @@ namespace ColonyCouncil
         /// the day's limits.
         /// </summary>
         public OutsiderAutoMode outsiderAuto = OutsiderAutoMode.WithinLimits;
+        /// <summary>
+        /// Visitors fill their idle hours with things of their own (Visitors/IdleHours.cs): a fire, a bench, the colony's games
+        /// and art while nobody of the colony wants them, a prayer, their animals, their pack; never work for the colony.
+        /// </summary>
+        public bool visitorsIdle = true;
         /// <summary>Journeys planned ahead: the travellers get ready together and set off at the hour chosen (Journeys/).</summary>
         public bool journeys = true;
         /// <summary>Many colonies (Colonies/Foundings.cs): a fresh start in the same world offered from a colony's card, and newcomers called to it.</summary>
@@ -1000,6 +1005,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref outsiderChatter, "outsiderChatter", true);
             Scribe_Values.Look(ref outsiderChatterFrequency, "outsiderChatterFrequency", 1f);
             Scribe_Values.Look(ref outsiderAuto, "outsiderAuto", OutsiderAutoMode.WithinLimits);
+            Scribe_Values.Look(ref visitorsIdle, "visitorsIdle", true);
             Scribe_Values.Look(ref journeys, "journeys", true);
             Scribe_Values.Look(ref freshStarts, "freshStarts", true);
             Scribe_Values.Look(ref newcomers, "newcomers", true);
