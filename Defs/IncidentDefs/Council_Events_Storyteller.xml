@@ -388,7 +388,7 @@
           <li>[good] {TALE}'s caravan sold everything it carried. {TALE} has sent the colony its share: {COUNT} silver, about twice what went in.</li>
           <li>[good,lowtech] {COUNT} silver in a knotted sack has come from {FACTION}'s lands, the colony's share of {TALE}'s venture. Tied to the knot is a strip of bark with three words cut into it: sold it all.</li>
           <li>[lost] A storm caught {TALE}'s caravan in the passes and sent half the goods down the mountainside. What {TALE} could save of the colony's stake has come back with an apology, {COUNT} silver of it.</li>
-          <li>[lost] Bandits stopped {TALE}'s caravan in its second week on the road and kept most of it. {TALE} got away with the strongbox, or what was left in it, and has sent the colony {COUNT} silver, its share of what was left.</li>
+          <li>[lost] Bandits stopped {TALE}'s caravan in its second week on the road and kept most of it. {TALE} got away with the strongbox, or what was left in it, and has sent the colony {COUNT} silver, its share of what was saved.</li>
         </done>
         <failTitles>
           <li>A venture that never was</li>
