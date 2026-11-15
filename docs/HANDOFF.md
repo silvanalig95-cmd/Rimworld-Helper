@@ -189,6 +189,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
   rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
+- **To do when the player asks (15 November 2026): camps clean up round their campsite.** The player: "camps should
+  also clean up around their campsite". Now: camps make filth (their butchering's blood, and on leaving, refuse and ash
+  round the old fire after a long, crowded or sour stay, `CampPackMath` `Leftover.Refuse`, `CampPack.cs`) and never
+  clean any. Proposed when asked: while they stay, in their idle hours, camp people sweep and clean the filth on their
+  own ground (blood, dirt, ash, vomit, trash within their camp's area, never the colony's rooms), as a chore of their own
+  shown on the map (the game's own cleaning look), the orderly kinds more than the careless; and before they leave, the
+  orderly ones tidy the site (the refuse left behind only after a stay gone sour, as a sign of it, or by a careless kind
+  in a hurry; a question for the player when building: keep that or drop it).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.255.0, **Guests busy most of the day,
