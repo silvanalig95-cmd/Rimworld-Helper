@@ -261,6 +261,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Careless</tidy>
     <works><li>Chop</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Donkey</li></kinds><count>1~2</count><at>picket</at></li>

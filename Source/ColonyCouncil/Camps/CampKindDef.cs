@@ -129,6 +129,15 @@ namespace ColonyCouncil
         /// <summary>They set up tables and seats to eat at, for a stay of a day and a half or more.</summary>
         public bool dines = true;
         /// <summary>
+        /// How tidy they keep their ground (Camps/CampClean.cs, CampDayMath.CleanChance): orderly (healers, pilgrims, scholars,
+        /// wardens), as most camps, or careless (salvagers, minstrels, a road gang). Left at Usual, a kind that leaves no trace
+        /// is orderly and a war party careless (<see cref="Tidy"/>).
+        /// </summary>
+        public CampTidy tidy = CampTidy.Usual;
+
+        /// <summary>How tidy they keep their ground: their own word, else orderly for those who leave no trace, careless for those who come to fight.</summary>
+        public CampTidy Tidy => tidy != CampTidy.Usual ? tidy : leaves == CampLeaves.NoTrace ? CampTidy.Orderly : fights ? CampTidy.Careless : CampTidy.Usual;
+        /// <summary>
         /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds): while one
         /// runs, the camp comes <see cref="situationWeight"/> times as often, and its lines can ask for [ws:kind] and
         /// name it ({SITUATION}).

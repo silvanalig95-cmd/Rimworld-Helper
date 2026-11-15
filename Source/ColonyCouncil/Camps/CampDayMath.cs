@@ -141,5 +141,103 @@ namespace ColonyCouncil
         /// line, through the speech system), more with more of them sitting together.
         /// </summary>
         public static float TalkChance(int sitting) => sitting < 2 ? 0f : Math.Min(0.6f, 0.2f + 0.1f * sitting);
+
+        // ---------------- Their goods into their own storage ----------------
+
+        /// <summary>
+        /// One of their goods is carried into their own storage (their shelf, a basket, a firewood rack: Camps/CampStore.cs):
+        /// it is theirs, lying loose at their camp, not in one of their stores already, not a body (bodies go to the
+        /// butcher's spot), not something they put out on purpose (bales by the beasts, a woodpile by the door, a stall's
+        /// wares), not in the colony's storage or home area, nobody else has it in hand, and one of their stores takes it
+        /// and has room. Until 15 November 2026 anything within three and a half cells of the stash's corner counted as put
+        /// away, and goods were set down only on bare ground beside the shelf, so nothing ever went onto it.
+        /// </summary>
+        public static bool Stows(StowFacts f) => f.theirs && f.atCamp && !f.corpse && !f.putOut && !f.inStore && !f.inColony && !f.busy && f.storeTakes;
+
+        /// <summary>How much of a stack one trip carries into the store: what the cell has room for and the carrier can lift, at least one.</summary>
+        public static int StowCount(int stack, int room, int carry) => Math.Max(1, Math.Min(stack, Math.Min(Math.Max(1, room), Math.Max(1, carry))));
+
+        // ---------------- Clean ground round their camp ----------------
+
+        /// <summary>
+        /// Filth they sweep or wash away (Camps/CampClean.cs): the mess people and their work make (blood, vomit, ash, trash,
+        /// dirt tracked about, rubble, animal filth, bile, spilled fuel, slime), never what the land itself lays down (leaves,
+        /// petals, sand, snow, water, mud, moss). By the def's name, so the mods' own blood and trash are covered.
+        /// </summary>
+        public static bool Mess(string defName)
+        {
+            if (string.IsNullOrEmpty(defName)) return false;
+            string n = defName.ToLowerInvariant();
+            foreach (var land in LandFilth)
+                if (n.Contains(land)) return false;
+            foreach (var mess in MessFilth)
+                if (n.Contains(mess)) return true;
+            return false;
+        }
+
+        private static readonly string[] MessFilth = { "blood", "vomit", "ash", "trash", "dirt", "rubble", "animalfilth", "bile", "fuel", "slime", "gore", "offal", "hair", "puddle" };
+        private static readonly string[] LandFilth = { "leaves", "leaf", "petal", "sand", "snow", "water", "mud", "moss", "pollen", "seed" };
+
+        /// <summary>
+        /// They clean this filth: it is a mess (<see cref="Mess"/>), on their own ground (within their camp's reach), and
+        /// never on the colony's (its home area, a zone, a plan, near its land) nor in a room under a roof that isn't theirs.
+        /// </summary>
+        public static bool Cleans(CleanFacts f) => f.mess && f.onTheirGround && !f.colonyGround && !f.colonyRoom && !f.reserved;
+
+        /// <summary>The chance, at a free hour, that one of them looks round for filth to clean: the orderly often, the careless seldom.</summary>
+        public static float CleanChance(CampTidy t) => t == CampTidy.Orderly ? 0.8f : t == CampTidy.Careless ? 0.15f : 0.45f;
+
+        /// <summary>How many bits of filth lie on their ground before anyone bothers: one for the orderly, three usually, eight for the careless.</summary>
+        public static int CleanFrom(CampTidy t) => t == CampTidy.Orderly ? 1 : t == CampTidy.Careless ? 8 : 3;
+
+        /// <summary>At most this many at their cleaning at once (one, two for a big camp of the orderly).</summary>
+        public static int Cleaners(CampTidy t, int people) => t == CampTidy.Orderly && people >= 6 ? 2 : 1;
+
+        /// <summary>Going in their own time, the orderly tidy their site before they set off (their packing hours wait for it).</summary>
+        public static bool TidiesBeforeLeaving(CampTidy t, bool orderlyGoing) => orderlyGoing && t == CampTidy.Orderly;
+    }
+
+    /// <summary>How tidy a kind of camp keeps its ground (CampKindDef.tidy): orderly, as most, or careless.</summary>
+    public enum CampTidy
+    {
+        Usual,
+        Orderly,
+        Careless
+    }
+
+    /// <summary>What there is to know about one of a camp's goods, for whether it is carried into their own storage (CampDayMath.Stows).</summary>
+    public struct StowFacts
+    {
+        /// <summary>One of their goods (the camp owns it).</summary>
+        public bool theirs;
+        /// <summary>Lying within their camp's reach.</summary>
+        public bool atCamp;
+        /// <summary>A body: dressed at the butcher's spot, never shelved.</summary>
+        public bool corpse;
+        /// <summary>Put out on purpose: bales by the beasts, a woodpile by the door, a stall's wares (porters move those).</summary>
+        public bool putOut;
+        /// <summary>In one of their own stores already.</summary>
+        public bool inStore;
+        /// <summary>In the colony's storage or its home area: taken, not theirs to fetch.</summary>
+        public bool inColony;
+        /// <summary>Someone has it in hand or reserved.</summary>
+        public bool busy;
+        /// <summary>One of their stores takes it and has room for it.</summary>
+        public bool storeTakes;
+    }
+
+    /// <summary>What there is to know about a bit of filth near a camp, for whether they clean it (CampDayMath.Cleans).</summary>
+    public struct CleanFacts
+    {
+        /// <summary>Mess that people make (CampDayMath.Mess), not what the land lays down.</summary>
+        public bool mess;
+        /// <summary>Within their camp's reach of their fire.</summary>
+        public bool onTheirGround;
+        /// <summary>The colony's: its home area or near it, a zone, a plan or a mark.</summary>
+        public bool colonyGround;
+        /// <summary>Indoors under a roof that isn't one of theirs.</summary>
+        public bool colonyRoom;
+        /// <summary>Someone else is at it already.</summary>
+        public bool reserved;
     }
 }

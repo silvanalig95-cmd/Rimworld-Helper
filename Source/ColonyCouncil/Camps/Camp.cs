@@ -481,6 +481,8 @@ namespace ColonyCouncil
             ExposeBrawl();
             // The day's newer work and the packing up (CampDay.cs, CampPack.cs).
             ExposeDay();
+            // What they add over their stay (CampGrow.cs).
+            ExposeGrow();
             // The old site they hold, a band fated to come against them, a second party for the site (CampRaid.cs).
             ExposeCrowd();
             // Their stand against a beast at their fire (CampHarm.cs).

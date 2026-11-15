@@ -151,6 +151,7 @@ VFEPD_AP_LamplightC_Functional
 # Vanilla Factions Expanded - Classical 1.6 (oskarpotocki.vfe.classical)
 VFEC_CentralRepublic
 VFEC_EasternRepublic
+VFEC_MeatDryingRack
 VFEC_Tent
 VFEC_WesternRepublic
 VFEC_Wreath

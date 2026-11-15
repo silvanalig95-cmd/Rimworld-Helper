@@ -944,6 +944,9 @@ namespace ColonyCouncil
             foreach (var plan in c.plans.Where(p => !p.reuse))
                 foreach (var cost in Camp.Costs(plan))
                     totals[cost.thingDef] = (totals.TryGetValue(cost.thingDef, out var n) ? n : 0) + cost.count;
+            // And for what they mean to add over their stay (CampGrow.cs).
+            foreach (var kv in c.GrowMaterials())
+                totals[kv.Key] = (totals.TryGetValue(kv.Key, out var n) ? n : 0) + kv.Value;
             int who = 0;
             foreach (var kv in totals)
             {

@@ -258,6 +258,9 @@
   <CC_CampLeft_What_stash>a shelf</CC_CampLeft_What_stash>
   <CC_CampLeft_What_stall>the stall</CC_CampLeft_What_stall>
   <CC_CampLeft_What_beds>bedding they had no time to pack</CC_CampLeft_What_beds>
+  <CC_CampLeft_What_post>a lean-to</CC_CampLeft_What_post>
+  <CC_CampLeft_What_fence>a pen</CC_CampLeft_What_fence>
+  <CC_CampLeft_What_fireseat>seats round the fire</CC_CampLeft_What_fireseat>
   <CC_CampLeft_StandingColony>They left their post standing for the colony that hired them: {THING} are the colony's now.</CC_CampLeft_StandingColony>
   <CC_CampLeft_Woodpile>They left a woodpile of the logs they cut by their old fire.</CC_CampLeft_Woodpile>
   <CC_CampLeft_Hides>They left hides of their kills at the edge of their camp nearest the colony.</CC_CampLeft_Hides>
@@ -268,4 +271,19 @@
   <CC_CampLeft_Embers>Their fire was not quite out, and the dry grass by it has caught.</CC_CampLeft_Embers>
   <CC_CampLeft_LameBeast>One of their beasts was too lame for the road, and they left it with the colony.</CC_CampLeft_LameBeast>
   <CC_CampLeft_Drawn>{THING} has come onto the land, drawn by the offal at the old camp.</CC_CampLeft_Drawn>
+
+  <!-- What a camp adds as it settles in over its stay (Camps/CampGrow.cs), told in the evening's news once it stands. -->
+  <CC_CampGrow_Done>The {NAME} have put up {THING} at their camp.</CC_CampGrow_Done>
+  <CC_CampGrow_What_fireseat>seats round their fire</CC_CampGrow_What_fireseat>
+  <CC_CampGrow_What_post>a lean-to over their stash</CC_CampGrow_What_post>
+  <CC_CampGrow_What_fence>a pen for their beasts</CC_CampGrow_What_fence>
+  <CC_CampGrow_What_drying>a rack for drying meat</CC_CampGrow_What_drying>
+  <CC_CampGrow_What_stonework>a stonecutter's table</CC_CampGrow_What_stonework>
+  <CC_CampGrow_What_tailoring>a tailor's bench</CC_CampGrow_What_tailoring>
+  <CC_CampGrow_What_woodpile>a rack for their firewood</CC_CampGrow_What_woodpile>
+  <CC_CampGrow_What_shrine>a small altar</CC_CampGrow_What_shrine>
+  <CC_CampGrow_What_banner>a banner at the edge of their camp</CC_CampGrow_What_banner>
+  <CC_CampGrow_What_latrine>a latrine</CC_CampGrow_What_latrine>
+  <CC_CampGrow_What_basket>a basket for their food</CC_CampGrow_What_basket>
+  <CC_CampGrow_What_store>another shelf for their goods</CC_CampGrow_What_store>
 </LanguageData>

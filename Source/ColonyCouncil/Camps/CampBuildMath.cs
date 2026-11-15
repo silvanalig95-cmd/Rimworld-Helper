@@ -127,6 +127,58 @@ namespace ColonyCouncil
         public int Count(string role) => pieces.Count(p => p.role == role);
     }
 
+    /// <summary>What a camp is and has, for what it adds over its stay (read off the game by Camps/CampGrow.cs).</summary>
+    public struct GrowFacts
+    {
+        public int people;
+        /// <summary>How long they mean to stay, in days.</summary>
+        public float days;
+        /// <summary>Their people's age: tribal, medieval, industrial or spacer.</summary>
+        public string age;
+        /// <summary>The first of their kind's callings (CampKindDef.works): Mine, Craft, Chop, Hunt...; null for none.</summary>
+        public string calling;
+        /// <summary>They hunt (a beast every day or two, or a hunting calling).</summary>
+        public bool hunts;
+        /// <summary>They brought pack beasts or a herd.</summary>
+        public bool beasts;
+        /// <summary>A people of a faith (with Ideology).</summary>
+        public bool faith;
+        /// <summary>Their kind has a spot of its own already (a shrine's, a stage, a forge).</summary>
+        public bool ownSpot;
+        /// <summary>That spot of theirs is a work table (the smith's forge).</summary>
+        public bool workTable;
+        /// <summary>A shelf stands for their goods.</summary>
+        public bool stash;
+        /// <summary>They sit down to eat at tables.</summary>
+        public bool dines;
+        /// <summary>The Empire's people (their own banner).</summary>
+        public bool empire;
+        /// <summary>How many of their goods lie about with no store that takes them or has room, and whether any of it is food.</summary>
+        public int loose;
+        public bool looseFood;
+        /// <summary>The role has a piece in this game that their people know how to build (the kit's, their age, the player's mods).</summary>
+        public Func<string, bool> has;
+    }
+
+    /// <summary>
+    /// The camp as it stands, for placing what it adds (read off the map by Camps/CampGrow.cs), in its own frame: the fire
+    /// at (0,0), +z away from the colony.
+    /// </summary>
+    public sealed class GrowSite
+    {
+        /// <summary>Cells something of theirs stands on.</summary>
+        public readonly HashSet<(int x, int z)> taken = new HashSet<(int, int)>();
+        /// <summary>Cells kept free: the fire's ring, door steps, work spots' places to stand, the stash's ground, a hut's inside.</summary>
+        public readonly HashSet<(int x, int z)> keep = new HashSet<(int, int)>();
+        /// <summary>What a lean-to roofs over: the stash's ground and its shelf.</summary>
+        public readonly List<(int x, int z)> cover = new List<(int, int)>();
+        public (int x, int z)? stash, picket, butcher;
+        /// <summary>Their beds' cells (a latrine keeps away from them).</summary>
+        public readonly List<(int x, int z)> beds = new List<(int, int)>();
+        /// <summary>What a cell costs to clear (CampBuildMath.Cost of its fate), -1 for never: the colony's, water, ore, someone else's.</summary>
+        public Func<int, int, int> cost;
+    }
+
     /// <summary>
     /// How a camp is laid out and what its builders clear first (Camps/CampSite.cs): the fate of each cell, a bed for every
     /// sleeper, a shelter that is a real room (walls all round, one door, room for the roof), tables with a seat for everyone,
@@ -756,6 +808,318 @@ namespace ColonyCouncil
 
         /// <summary>A crafting spot for a stay of two days or more.</summary>
         public static bool CraftFor(float days) => days >= 2f;
+
+        // ---------------- Growing over the stay ----------------
+
+        /// <summary>A stay shorter than this adds nothing to the camp: it stays as it was put up.</summary>
+        public const float GrowFromDays = 2.5f;
+
+        /// <summary>The most times a camp adds to itself, however long and big.</summary>
+        public const int GrowMost = 6;
+
+        /// <summary>They add nothing new in the last day of their stay.</summary>
+        public const float GrowStopDays = 1f;
+
+        /// <summary>A step not built within this many days is given up (its blueprints taken up, the materials back in the stash).</summary>
+        public const float GrowGiveUpDays = 1.5f;
+
+        /// <summary>Everything a camp can add as it settles in, by the role its pieces take (Camps/CampGrow.cs; the kits' grows, Rimfolk_CampKits.xml).</summary>
+        public static readonly string[] GrowRoles = { "fireseat", "post", "fence", "drying", "stonework", "tailoring", "woodpile", "shrine", "banner", "latrine", "basket", "store" };
+
+        /// <summary>
+        /// How many times a camp adds to itself over its stay: none for a stay under two and a half days, about once for every
+        /// day and a quarter after the first, never more than two and one for every two of its people, six at most. A short
+        /// camp stays as it was put up, a long one grows to a settled look; everything stays within its reach of the fire.
+        /// </summary>
+        public static int GrowCeiling(int people, float days)
+        {
+            if (days < GrowFromDays || people <= 0) return 0;
+            int byDays = (int)Math.Floor((days - 1.25f) / 1.25f);
+            return Math.Max(0, Math.Min(GrowMost, Math.Min(byDays, 2 + people / 2)));
+        }
+
+        /// <summary>The hours to the next addition (<paramref name="roll"/> 0 to 1): the first 18 to 28 hours after the camp stands, the rest a day or so apart (19 to 34 hours).</summary>
+        public static int GrowGapHours(int step, double roll)
+        {
+            roll = Math.Max(0, Math.Min(1, roll));
+            return step <= 0 ? 18 + (int)Math.Round(roll * 10) : 19 + (int)Math.Round(roll * 15);
+        }
+
+        /// <summary>
+        /// What a camp would add as it settles in, the most fitting first: its kind's own (a pen for their beasts, a drying
+        /// rack for hunters, a stonecutter's table for those who come to cut rock, a tailor's bench for crafters, a firewood
+        /// rack for woodcutters, a small altar for a people of a faith without a spot of their own) in turn with what any
+        /// camp would (seats round the fire, a lean-to over the stash for a stay of four days or more, a latrine for four
+        /// people or more staying four days, a banner at the edge for a stay of five days, of a people past the tribal age or
+        /// the Empire's); first of all a second store when their goods lie about with no room for them. Only roles with a
+        /// piece in this game that their people know how to build (<see cref="GrowFacts.has"/>).
+        /// </summary>
+        public static List<string> GrowWants(GrowFacts f)
+        {
+            var own = new List<string>();
+            if (f.beasts) own.Add("fence");
+            if (f.hunts) own.Add("drying");
+            if (f.calling == "Mine") own.Add("stonework");
+            else if (f.calling == "Craft" && !f.workTable) own.Add("tailoring");
+            if (f.calling == "Chop") own.Add("woodpile");
+            if (f.faith && !f.ownSpot) own.Add("shrine");
+            var common = new List<string>();
+            if (f.dines && f.people >= 2) common.Add("fireseat");
+            if (f.stash && f.days >= 4f) common.Add("post");
+            if (f.people >= 4 && f.days >= 4f) common.Add("latrine");
+            if (f.days >= 5f && (f.empire || f.age != "tribal")) common.Add("banner");
+            var list = new List<string>();
+            if (f.loose > 0) list.Add(f.looseFood && (f.has == null || f.has("basket")) ? "basket" : "store");
+            int i = 0, j = 0;
+            while (i < own.Count || j < common.Count)
+            {
+                if (i < own.Count) list.Add(own[i++]);
+                if (j < common.Count) list.Add(common[j++]);
+            }
+            return list.Where(r => f.has == null || f.has(r)).Distinct().ToList();
+        }
+
+        /// <summary>The next thing they add: the first wanted they haven't built or tried; null when there's nothing left, or they've grown as much as the stay allows.</summary>
+        public static string GrowNext(GrowFacts f, ICollection<string> done, int grown) =>
+            grown >= GrowCeiling(f.people, f.days) ? null : GrowWants(f).FirstOrDefault(r => done == null || !done.Contains(r));
+
+        /// <summary>How many pieces one addition is: a seat round the fire for each of them up to four, four posts for a lean-to, one of the rest (a pen's fences are counted when it's placed).</summary>
+        public static int GrowPieces(string role, int people) => role == "fireseat" ? Math.Max(2, Math.Min(4, people)) : role == "post" ? 4 : role == "fence" ? 16 : 1;
+
+        /// <summary>A piece's front cell: where one stands to use it (a bench's place to stand), the middle of its side by its facing.</summary>
+        public static (int x, int z) FrontCell(CampPiece p)
+        {
+            int midX = p.minX + (p.Width - 1) / 2, midZ = p.minZ + (p.Depth - 1) / 2;
+            switch (p.facing)
+            {
+                case 1: return (p.minX - 1, midZ);
+                case 2: return (midX, p.maxZ + 1);
+                case 3: return (p.maxX + 1, midZ);
+                default: return (midX, p.minZ - 1);
+            }
+        }
+
+        /// <summary>The facing that puts a piece's front toward a point (a bench's place to stand on the fire's side).</summary>
+        public static int FrontToward(float dx, float dz) => Math.Abs(dz) >= Math.Abs(dx) ? (dz > 0 ? 0 : 2) : (dx > 0 ? 1 : 3);
+
+        /// <summary>The facing of a seat at (dx, dz) from the fire, looking at it.</summary>
+        public static int LookToward(float dx, float dz) => Math.Abs(dz) >= Math.Abs(dx) ? (dz > 0 ? 2 : 0) : (dx > 0 ? 3 : 1);
+
+        /// <summary>
+        /// Where one addition goes, in the camp's frame (the fire at (0,0), +z away from the colony), or null when there's no
+        /// room for it: seats round the fire, a cell apart, looking at it; four posts at the corners of a roof over the
+        /// stash; a pen of fences round a free patch near the picket with a gap on the fire's side; the rest each where it
+        /// fits best by what it is (a drying rack by the butcher's spot, a store by the stash, a bench or a firewood rack
+        /// near the fire with its front free, an altar on the far side, a banner at the edge on the colony's side, a latrine
+        /// at the far edge away from the beds). Never on what stands, on a cell kept free, or on the colony's ground; all
+        /// within the camp's reach. <paramref name="w"/>, <paramref name="d"/>: the piece's size facing north.
+        /// </summary>
+        public static List<CampPiece> GrowPlace(string role, GrowSite site, int w = 1, int d = 1, int count = 1, int beasts = 0)
+        {
+            if (site == null) return null;
+            var g = new Grid(site.cost);
+            foreach (var c in site.taken) g.cells[c] = 1;
+            foreach (var c in site.keep)
+                if (!g.cells.ContainsKey(c)) g.cells[c] = 2;
+            // The fire's ring stays free whatever the site says.
+            foreach (var c in Ring((0, 0)))
+                if (!g.cells.ContainsKey(c)) g.cells[c] = 2;
+            g.cells[(0, 0)] = 1;
+            w = Math.Max(1, w);
+            d = Math.Max(1, d);
+            switch (role)
+            {
+                case "fireseat": return FireSeats(g, Math.Max(2, Math.Min(4, count)));
+                case "post": return LeanTo(g, site);
+                case "fence": return Pen(g, site, beasts);
+                case "drying": return GrowOne(g, role, site.butcher ?? (0, 0), w, d, 1, site.butcher.HasValue ? 3 : 6, null);
+                case "basket":
+                case "store": return GrowOne(g, role, site.stash ?? (0, 3), w, d, 1, 6, null);
+                case "woodpile":
+                case "stonework":
+                case "tailoring": return GrowOne(g, role, (0, 0), w, d, 3, 8, null);
+                case "shrine": return GrowOne(g, role, (0, 0), w, d, 5, 9, p => p.minZ >= 2);
+                case "banner": return GrowOne(g, role, (0, 0), w, d, 6, Reach, p => p.maxZ <= -4);
+                case "latrine":
+                    return GrowOne(g, role, (0, 0), w, d, 7, Reach, p => p.minZ >= 3 && site.beds.All(b => Math.Abs(b.x - p.minX) + Math.Abs(b.z - p.minZ) >= 5));
+                default: return null;
+            }
+        }
+
+        /// <summary>A piece (or a few) placed where it fits, nearest <paramref name="at"/> first, the far side from the colony first, its front toward the fire and kept free.</summary>
+        private static List<CampPiece> GrowOne(Grid g, string role, (int x, int z) at, int w, int d, int from, int to, Func<CampPiece, bool> where)
+        {
+            var cands = new List<(CampPiece p, float dist, float angle)>();
+            int span = to + Math.Max(w, d);
+            for (int x = at.x - span; x <= at.x + span; x++)
+                for (int z = at.z - span; z <= at.z + span; z++)
+                    for (int f = 0; f < 4; f++)
+                    {
+                        // A square piece needs no turning; a long one is tried both ways.
+                        if (w == d && f % 2 == 1) continue;
+                        var p = At(role, x, z, w, d, f);
+                        float cx = (p.minX + p.maxX) / 2f, cz = (p.minZ + p.maxZ) / 2f;
+                        float dist = (float)Math.Sqrt((cx - at.x) * (cx - at.x) + (cz - at.z) * (cz - at.z));
+                        if (dist < from || dist > to) continue;
+                        // Its front toward the fire (a square piece's toward it too, whichever way it was tried).
+                        int want = FrontToward(cx, cz);
+                        if (w != d && f != want) continue;
+                        p.facing = want;
+                        if (where != null && !where(p)) continue;
+                        cands.Add((p, dist, (float)Math.Atan2(cz, cx)));
+                    }
+            var layout = new CampLayout();
+            var places = cands.OrderBy(c => Math.Round(c.dist)).ThenBy(c => Math.Abs(c.angle - Math.PI / 2)).Select(c => (new List<CampPiece> { c.p }, new List<(int, int)> { FrontCell(c.p) }));
+            return Place(g, places, layout, true) ? layout.pieces : null;
+        }
+
+        /// <summary>Seats round the fire two cells out, looking at it, a cell apart so there is always a way through, the far side first.</summary>
+        private static List<CampPiece> FireSeats(Grid g, int count)
+        {
+            var ring = new List<(int x, int z)>();
+            for (int x = -2; x <= 2; x++)
+                for (int z = -2; z <= 2; z++)
+                    if (Math.Max(Math.Abs(x), Math.Abs(z)) == 2) ring.Add((x, z));
+            var placed = new List<CampPiece>();
+            foreach (var (x, z) in ring.OrderBy(c => Math.Abs(Math.Atan2(c.z, c.x) - Math.PI / 2)).ThenBy(c => Math.Abs(c.x) + Math.Abs(c.z)))
+            {
+                if (placed.Count >= count) break;
+                // A cell apart from the others, so the seats never close the fire in.
+                if (placed.Any(p => Math.Abs(p.minX - x) <= 1 && Math.Abs(p.minZ - z) <= 1)) continue;
+                var seat = new CampPiece { role = "fireseat", minX = x, maxX = x, minZ = z, maxZ = z, facing = LookToward(x, z) };
+                if (g.Try(new List<CampPiece> { seat }, new List<(int, int)>(), false) < 0) continue;
+                g.Put(new List<CampPiece> { seat }, new List<(int, int)>());
+                placed.Add(seat);
+            }
+            return placed.Count >= 2 ? placed : null;
+        }
+
+        /// <summary>The most posts a lean-to stands on, and how far its roof may reach from the nearest of them (the game's roofs need a holder within six cells).</summary>
+        public const int LeanToPosts = 4;
+        public const int RoofReach = 5;
+
+        /// <summary>
+        /// A lean-to over the stash: posts round the stash's ground and its shelf, the corners first and as far apart as fits
+        /// (two at least, four at most), a cell or two out from it; its roof (<see cref="Roofed"/>) over the stash, the shelf
+        /// and the posts, every roofed cell their own ground and near a post. Null without a stash or room for two posts.
+        /// </summary>
+        private static List<CampPiece> LeanTo(Grid g, GrowSite site)
+        {
+            if (site.cover.Count == 0) return null;
+            int x0 = site.cover.Min(c => c.x), x1 = site.cover.Max(c => c.x), z0 = site.cover.Min(c => c.z), z1 = site.cover.Max(c => c.z);
+            // Cells a cell or two out from the stash, the corners a cell out first.
+            var ring = new List<(int x, int z, int rank)>();
+            for (int x = x0 - 2; x <= x1 + 2; x++)
+                for (int z = z0 - 2; z <= z1 + 2; z++)
+                {
+                    if (x >= x0 && x <= x1 && z >= z0 && z <= z1) continue;
+                    int dx = x < x0 ? x0 - x : x > x1 ? x - x1 : 0, dz = z < z0 ? z0 - z : z > z1 ? z - z1 : 0;
+                    int rank = dx == 1 && dz == 1 ? 0 : Math.Max(dx, dz) == 1 ? 1 : dx == 2 && dz == 2 ? 2 : 3;
+                    ring.Add((x, z, rank));
+                }
+            var posts = new List<CampPiece>();
+            while (posts.Count < LeanToPosts)
+            {
+                CampPiece pick = null;
+                float best = float.MinValue;
+                foreach (var (x, z, rank) in ring)
+                {
+                    if (posts.Any(p => Math.Max(Math.Abs(p.minX - x), Math.Abs(p.minZ - z)) < 2)) continue;
+                    var post = new CampPiece { role = "post", minX = x, maxX = x, minZ = z, maxZ = z };
+                    if (g.Try(new List<CampPiece> { post }, new List<(int, int)>(), false) < 0) continue;
+                    // The corners first, then as far from the posts already standing as can be.
+                    float apart = posts.Count == 0 ? 0f : posts.Min(p => Math.Abs(p.minX - x) + Math.Abs(p.minZ - z));
+                    float score = apart * 2f - rank * 3f;
+                    if (score <= best) continue;
+                    best = score;
+                    pick = post;
+                }
+                if (pick == null) break;
+                posts.Add(pick);
+                ring.RemoveAll(c => c.x == pick.minX && c.z == pick.minZ);
+            }
+            if (posts.Count < 2) return null;
+            // The roof only over ground of theirs to build on (or what stands of theirs), within the camp's reach and near a post.
+            var roof = Roofed(posts.Select(p => (p.minX, p.minZ)), site.cover);
+            foreach (var (x, z) in roof)
+                if (Math.Abs(x) > Reach || Math.Abs(z) > Reach || (!g.cells.ContainsKey((x, z)) && g.cost(x, z) < 0)
+                    || !posts.Any(p => Math.Max(Math.Abs(p.minX - x), Math.Abs(p.minZ - z)) <= RoofReach)) return null;
+            g.Put(posts, new List<(int, int)>());
+            return posts;
+        }
+
+        /// <summary>The roof a lean-to's posts hold: every cell within them and the stash they stand round (<paramref name="cover"/>).</summary>
+        public static List<(int x, int z)> Roofed(IEnumerable<(int x, int z)> posts, IEnumerable<(int x, int z)> cover = null)
+        {
+            var list = posts.ToList();
+            var cells = new List<(int, int)>();
+            if (list.Count < 2) return cells;
+            var all = list.Concat(cover ?? Enumerable.Empty<(int x, int z)>()).ToList();
+            for (int x = all.Min(p => p.x); x <= all.Max(p => p.x); x++)
+                for (int z = all.Min(p => p.z); z <= all.Max(p => p.z); z++)
+                    cells.Add((x, z));
+            return cells;
+        }
+
+        /// <summary>
+        /// A pen for their beasts: fences round a free patch (three by three, four by three for four beasts or more) near the
+        /// picket (else the stash), a gap on the side nearest the fire so the beasts can walk out with them when they go; null
+        /// when no patch fits.
+        /// </summary>
+        private static List<CampPiece> Pen(Grid g, GrowSite site, int beasts)
+        {
+            int iw = beasts >= 4 ? 4 : 3, id = 3;
+            var near = site.picket ?? site.stash ?? (0, 5);
+            List<CampPiece> best = null;
+            List<(int, int)> bestKeep = null;
+            float bestScore = float.MaxValue;
+            for (int ix = near.x - 7; ix <= near.x + 7; ix++)
+                for (int iz = near.z - 7; iz <= near.z + 7; iz++)
+                {
+                    int ox0 = ix - 1, ox1 = ix + iw, oz0 = iz - 1, oz1 = iz + id;
+                    if (Math.Abs(ox0) > Reach || Math.Abs(ox1) > Reach || Math.Abs(oz0) > Reach || Math.Abs(oz1) > Reach) continue;
+                    // Clear of the fire's ring and two cells beyond.
+                    if (ox0 <= 3 && ox1 >= -3 && oz0 <= 3 && oz1 >= -3) continue;
+                    var ring = new List<(int x, int z)>();
+                    var inside = new List<(int x, int z)>();
+                    for (int x = ox0; x <= ox1; x++)
+                        for (int z = oz0; z <= oz1; z++)
+                        {
+                            bool edge = x == ox0 || x == ox1 || z == oz0 || z == oz1;
+                            if (edge) ring.Add((x, z));
+                            else inside.Add((x, z));
+                        }
+                    // The gap: the side cell nearest the fire (never a corner), and the step outside it.
+                    var gap = ring.Where(c => !((c.x == ox0 || c.x == ox1) && (c.z == oz0 || c.z == oz1))).OrderBy(c => c.x * c.x + c.z * c.z).First();
+                    var step = (gap.x == ox0 ? gap.x - 1 : gap.x == ox1 ? gap.x + 1 : gap.x, gap.z == oz0 ? gap.z - 1 : gap.z == oz1 ? gap.z + 1 : gap.z);
+                    var fences = ring.Where(c => c != gap).Select(c => new CampPiece { role = "fence", minX = c.x, maxX = c.x, minZ = c.z, maxZ = c.z }).ToList();
+                    var keep = inside.Concat(new[] { gap, step }).ToList();
+                    int cost = g.Try(fences, keep, true);
+                    if (cost < 0 || keep.Any(k => g.cells.ContainsKey(k))) continue;
+                    float cx = (ox0 + ox1) / 2f, cz = (oz0 + oz1) / 2f;
+                    float score = (float)Math.Sqrt((cx - near.x) * (cx - near.x) + (cz - near.z) * (cz - near.z)) + cost * 0.2f;
+                    if (score >= bestScore) continue;
+                    bestScore = score;
+                    best = fences;
+                    bestKeep = keep;
+                }
+            if (best == null) return null;
+            g.Put(best, bestKeep);
+            return best;
+        }
+
+        /// <summary>The patch a pen's fences close in (its inside), from the fences as they stand.</summary>
+        public static List<(int x, int z)> PenInside(IEnumerable<(int x, int z)> fences)
+        {
+            var list = fences.ToList();
+            var cells = new List<(int, int)>();
+            if (list.Count < 8) return cells;
+            int x0 = list.Min(c => c.x), x1 = list.Max(c => c.x), z0 = list.Min(c => c.z), z1 = list.Max(c => c.z);
+            for (int x = x0 + 1; x < x1; x++)
+                for (int z = z0 + 1; z < z1; z++)
+                    cells.Add((x, z));
+            return cells;
+        }
 
         // ---------------- Ages ----------------
 

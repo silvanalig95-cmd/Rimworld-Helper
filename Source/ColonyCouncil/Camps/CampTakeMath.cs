@@ -29,6 +29,8 @@ namespace ColonyCouncil
         public bool zoned;
         /// <summary>In storage (a stockpile, a shelf).</summary>
         public bool stored;
+        /// <summary>The storage is the camp's own (their shelf, their basket), not the colony's.</summary>
+        public bool ownStore;
         /// <summary>Forbidden by the colony (not by the camp itself).</summary>
         public bool forbidden;
         /// <summary>A plant someone sowed.</summary>
@@ -55,8 +57,9 @@ namespace ColonyCouncil
         /// <summary>Why a camper may not take it (a word for the dev log: colony, others, home, zone, stored, forbidden, sown, ore, valuable, building), or null when they may.</summary>
         public static string Why(TakeFacts f)
         {
-            // Their own goods, and what their own work brought down, are theirs to carry wherever it lies.
-            if (f.theirs && !f.colony && !f.stored) return null;
+            // Their own goods, and what their own work brought down, are theirs to carry wherever it lies, their own shelf
+            // too; never out of the colony's storage.
+            if (f.theirs && !f.colony && (!f.stored || f.ownStore)) return null;
             if (f.colony) return "colony";
             if (f.others) return "others";
             if (f.home) return "home";

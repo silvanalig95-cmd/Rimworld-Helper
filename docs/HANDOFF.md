@@ -189,28 +189,66 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
   rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
-- **To do when the player asks (15 November 2026): camps clean up round their campsite, and grow over their stay.** The player: "camps should
-  also clean up around their campsite". Now: camps make filth (their butchering's blood, and on leaving, refuse and ash
-  round the old fire after a long, crowded or sour stay, `CampPackMath` `Leftover.Refuse`, `CampPack.cs`) and never
-  clean any. Proposed when asked: while they stay, in their idle hours, camp people sweep and clean the filth on their
-  own ground (blood, dirt, ash, vomit, trash within their camp's area, never the colony's rooms), as a chore of their own
-  shown on the map (the game's own cleaning look), the orderly kinds more than the careless; and before they leave, the
-  orderly ones tidy the site (the refuse left behind only after a stay gone sour, as a sign of it, or by a careless kind
-  in a hurry; a question for the player when building: keep that or drop it).
-  The player, then: "and also build additional things over their stay, appropriate to the faction, type of camp etc.
-  not that the just fill up the map, but also not that they only build a couple things at first and then stay like
-  this for days on end". Now: a camp builds its whole layout when it sets up (`CampBuildMath`, `CampSite.SpecFor`: the
-  fire, beds or tents or a shelter, and the mods' buildings by its kind) and then stays as it is. Proposed when asked:
-  the camp grows over its stay in steps, a day or so apart, by its kind, its people's age (tech level) and the land's
-  room: what a camp of that kind would add as it settles in (a drying rack or a smokehouse spot, a woodpile and a
-  chopping block, a pen for their beasts, a work spot for their trade, a table and seats round the fire, a lean-to
-  against the weather, a shrine of their faith, storage for their goods, a sign or banner at the edge, a latrine), from
-  the full mod pool (soft), each building raised by their own hands on the map from what they carry or gather, never the
-  colony's; a ceiling by the camp's size and how long it means to stay, so a short camp stays small and a long one grows
-  to a settled look without filling the map; nothing built on the colony's ground; all of it packed or left by the
-  leftover rules when they go.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Camps keep their goods on their
+  shelf, clean their ground and grow over their stay** (15 November 2026; the player's words: "camps should also clean
+  up around their campsite", "and also build additional things over their stay, appropriate to the faction, type of
+  camp etc. not that the just fill up the map, but also not that they only build a couple things at first and then
+  stay like this for days on end", with their save "also the camp is not hauling their stuff into their storage unit",
+  then "go ahead with the camp updates & fixes"). DESIGN.md "Camps keep their goods, clean their ground and grow over
+  their stay" (after the winter folk) has all of it; the earlier camps section's day and refuse lines point to it;
+  README the camps paragraph; the Almanac's camps page ("What they build, their day and what they leave", prose only,
+  keywords unchanged).
+  - **The bug** (the save, `League_of_Toba_3`): the surveyors' camp's shelf held only what fell on it as they unpacked;
+    40 logs, a chemfuel, bearberries and a shiv lay round it. Their fetching counted anything within three and a half
+    cells of the stash's corner as put away and set goods down only on bare ground beside the shelf; camp people don't
+    run the game's own hauling. Fixed: a chore of their own carries their loose goods into their own stores, the game's
+    hauling into storage for their people's storage only (`CampDayMath.Stows`, tested); their own shelf is no longer the
+    colony's storage to the take rule (`TakeFacts.ownStore`). The same camp had no fire (given up as they arrived; the
+    save doesn't say why): it is set down again once its ground is clear, and a one-cell piece whose place to stand is
+    blocked is now turned to another side before it is given up.
+  - **Built**: cleaning in their free hours (the game's own cleaning look, on their ground only, by the kind's tidiness:
+    `CampKindDef.tidy`, nineteen kinds set), the orderly tidying before they go, refuse left only after a sour stay or a
+    careless kind's hurry; growth in steps a day or so apart, a ceiling by people and stay (six at most), by kind and
+    age from the player's mods: seats round the fire, a lean-to over the stash, a pen with a gap, a drying rack, a
+    stonecutter's table or a tailor's bench (used for their crafting), a firewood rack, a small altar, a banner (the
+    Empire's own for the Empire), a latrine, a basket or second shelf for goods with no room.
+  - **Code map**: `Camps/CampStore.cs` (`Stores`, `InOwnStore`, `InColonyStore`, `StoreCellFor`, `StowJob`,
+    `StowJobFor`, `KeepStores`, `LooseWithoutRoom`), `Camps/CampClean.cs` (`CleanJob`, `ToTidy`, `MayClean`,
+    `JobDriver_CampClean`, `CampCleanDefOf`), `Camps/CampGrow.cs` (`GrowHour`, `RetryFire`, `StartGrowth`, `GrowStuff`,
+    `Affords`, `DropMaterials`, `GrowDone`, `GiveUpGrowth`, `GrowSiteNow`, `LeanToRoof`, `RoofLeanTo`, `UnroofLeanTo`,
+    `PenCells`, `FireSeat`, `GrowMaterials`), `Camps/CampBuildMath.cs` (growth: `GrowFacts`, `GrowSite`, `GrowCeiling`,
+    `GrowGapHours`, `GrowWants`, `GrowNext`, `GrowPieces`, `GrowPlace`, `FireSeats`, `LeanTo`, `Roofed`, `Pen`,
+    `PenInside`, `FrontCell`), `Camps/CampDayMath.cs` (`Stows`, `StowCount`, `Mess`, `Cleans`, `CleanChance`,
+    `CleanFrom`, `Cleaners`, `TidiesBeforeLeaving`, `CampTidy`, `StowFacts`, `CleanFacts`), `CampPackMath` (refuse),
+    `CampTakeMath` (`ownStore`), `CampKit.GrowPiece` and `CampKitDef.grows`, `CampDay` (crafting at all their work
+    tables, stone blocks from a chunk), `CampWork` (the chores in `JobFor`, `Day`, `Fetch`, `SitCell`), `CampLook`
+    (beasts in their pen), `CampPack` (tidy hours, the lean-to's roof, the words), `CampTracker.Equip` and
+    `Camp.Unpack` (the materials for the growth), Defs/CampDefs/Rimfolk_CampKits.xml (each age's grows,
+    `Rimfolk_CampClean`), the kinds' `tidy`, `Rimfolk_Camps.xml` (`CC_CampGrow_*`, `CC_CampLeft_What_post`, `fence`,
+    `fireseat`), `Rimfolk_Pool_CampWork` (`[grow]` lines), `Tools/Tests/CampGrowTests.cs` (2,953 checks),
+    `Tools/Tests/ModDefNames.txt` (`VFEC_MeatDryingRack`), `Tools/save_estimate.py` (plans 120 a camp, 50 a site).
+    Saved: four values (`grown`, `nextGrowTick`, `growing`, `growUntil`).
+  - **Not checked without the game**: the haul onto their shelf (the game's job for a people's own storage), the
+    cleaning job, each addition's blueprints and building, the lean-to's roof, the beasts in the pen and out through its
+    gap, the mods' drying rack, banners, latrine and basket built by a camp's people, the save's fire set down again.
+  - **Try in the game**: 1. Load the save: within a few hours the surveyors carry the logs, the bearberries, the
+    chemfuel and the shiv onto their shelf (hover the shelf: the stacks are there) and their fire's blueprint goes down
+    and is built. 2. Within the hour the first addition goes down (for them seats round the fire, then a small altar if
+    their people have a faith, then a lean-to over the shelf; the stonecutter's table needs steel they don't carry, so it's
+    passed over); the evening's news says what they put up. 3. Blood round their fire is
+    cleaned in their free hours by day (the game's cleaning effect). 4. A new camp of drovers or a caravan: a pen of
+    fences round their beasts by the second day, the beasts inside it. 5. A long camp (refugees, woodcutters): watch it
+    add a thing a day or so apart and stop at its ceiling. 6. When a camp leaves in its own time: stools and the shelf
+    packed, posts and fences left standing; an orderly kind cleans first; refuse only after a sour stay or a careless
+    kind's hurry.
+  - **Mods that would help**: none of the player's mods, active or subscribed, has a chopping block or a cheap
+    woodpile (Deep Storage Plus's firewood rack costs 210 logs, so only woodcutters put it up). Medieval Overhaul
+    (subscribed, not enabled; its files go to 1.6) has drying racks and banners of its own, but it is a whole overhaul;
+    the pieces used come from mods already enabled: Vanilla Factions Expanded - Settlers (posts), - Classical (drying
+    rack), - Medieval 2 (banner), - Empire (imperial banner), Vanilla Furniture Expanded - Architect (picket fence), Dubs
+    Bad Hygiene (latrine), LWM's Deep Storage (basket), Deep Storage Plus (firewood rack), all on 1.6 and 1.7.
 - 0.255.0, **Guests busy most of the day,
   over the colony** (15 November 2026; the player's words: "guests still just wait around most of the time it feels.
   they could read books, take walks, interact with my pets, write letters, train, fish, work on and use items themselves

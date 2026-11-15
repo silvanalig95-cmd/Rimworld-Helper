@@ -44,6 +44,7 @@
       <li><role>stall</role></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <titles>
       <li>Healers by the road</li>
@@ -212,6 +213,7 @@
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <titles>
       <li>A procession of the faithful</li>

@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 711; modelled: 711; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,011 KB** after a year, **3,714 KB** after two, **4,150 KB** after five.
+Rimfolk's part of the save, roughly: **3,029 KB** after a year, **3,732 KB** after two, **4,168 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -25,8 +25,8 @@ Rimfolk's part of the save, roughly: **3,011 KB** after a year, **3,714 KB** aft
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Letters/LetterBook.cs:correspondences` | each correspondence as it builds up: LetterBook.MaxCorrespondences at most, the longest quiet let go | cap | 9 | 18 | 45 | 65.9 |
 | `Gods/GodLore.cs:entries` | the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept | cap | 30 | 60 | 150 | 61.5 |
+| `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places, what it added over the stay too (about fifty a site, six sites) | fixed | 300 | 300 | 300 | 58.6 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
-| `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
 | `Gods/GodLore.cs:verses` | the verses of the book's chapters, each with its words, teller and date, GodBookMath.MaxVerses at most | cap | 36 | 72 | 180 | 45.7 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
 | `Gods/Belief/PawnGodsBook.cs:people` | one per colonist of the colony's own, the departed let go daily and the discarded at saving | colonists | 20 | 20 | 20 | 41.0 |
@@ -43,6 +43,7 @@ Rimfolk's part of the save, roughly: **3,011 KB** after a year, **3,714 KB** aft
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
+| `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, a second store: CampGrow.cs, about thirty more), while the camp stays | while | 120 | 120 | 120 | 23.4 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 248 | 248 | 248 | 21.8 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
@@ -56,7 +57,6 @@ Rimfolk's part of the save, roughly: **3,011 KB** after a year, **3,714 KB** aft
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
 | `Colonies/TownLayout.cs:table` | per town the colony was: its kept layout, the grids deflated and the def names (64 KB at most a town); none for a town handed over before release 2b | cap | 0 | 1 | 2 | 18.5 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
-| `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), while the camp stays | while | 90 | 90 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `Offices/Election.cs:canvassed` | three visits a day for three days a candidate, while it lasts | while | 180 | 180 | 180 | 15.8 |

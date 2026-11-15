@@ -40,6 +40,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Chop</li><li>Hunt</li><li>Mine</li></works>
     <leaves>Employer</leaves>
     <leavesWhy>a squad hired by contract builds its post for the one who pays: when the contract ends the post is the colony's</leavesWhy>

@@ -158,6 +158,8 @@ namespace ColonyCouncil
             if (!Settled) return;
             int day = GenDate.DaysPassed;
             if (day != dayKey) NewDay(day);
+            // A part of a stack carried into their store on its own is theirs like the rest (CampStore.cs).
+            KeepStores();
             Upkeep();
             WatchRepair();
             WatchErrand();
@@ -165,6 +167,8 @@ namespace ColonyCouncil
             WatchDead();
             if (phase == CampPhase.Building) CheckBuilt();
             else PlaceWaiting();
+            // What they add as they settle in, a day or so apart (CampGrow.cs).
+            GrowHour();
             WatchTrade();
             // Packing up in their last hours (CampPack.cs): no new events, and once it's done they set off. A real threat
             // still sends them at once (Ends), but not a band come against a camp far off (CampRaid.cs), nor a beast (CampHarm.cs).
@@ -328,6 +332,8 @@ namespace ColonyCouncil
                 }
                 fuel.Refuel(fuel.Props.fuelCapacity * 0.6f);
             }
+            // A lean-to keeps its roof over their stash while its posts stand (CampGrow.cs).
+            if (plans.Any(p => p.role == "post" && !p.dropped)) RoofLeanTo();
             // A hut or a tent gets its roof once its walls and door stand all round (a room the game counts as one).
             foreach (int room in CampSite.Rooms(plans).ToList())
             {
@@ -409,10 +415,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The materials they carried go down in their stash.</summary>
+        /// <summary>The materials they carried go down in their stash: for the camp, and for what they mean to add over their stay (CampGrow.cs).</summary>
         private void Unpack()
         {
             var needs = new HashSet<ThingDef>(plans.SelectMany(p => Costs(p)).Select(c => c.thingDef));
+            needs.UnionWith(GrowMaterials().Keys);
             foreach (var p in Here)
             {
                 var inv = p.inventory?.innerContainer;
@@ -464,6 +471,15 @@ namespace ColonyCouncil
                     p.waiting = false;
                     return;
                 }
+                // A one-cell piece whose place to stand is blocked (a fire whose cooking spot is under a tree): turned to
+                // another side, as a player's builder would place it.
+                if (worst != CellFate.Mine && p.def.rotatable && p.def.size.x == 1 && p.def.size.z == 1 && !GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, p.rot, map, false, null, null, p.stuff).Accepted)
+                    foreach (var rot in new[] { p.rot.Rotated(RotationDirection.Clockwise), p.rot.Opposite, p.rot.Rotated(RotationDirection.Counterclockwise) })
+                        if (GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, rot, map, false, null, null, p.stuff).Accepted)
+                        {
+                            p.rot = rot;
+                            break;
+                        }
                 if (worst == CellFate.Mine || !GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, p.rot, map, false, null, null, p.stuff).Accepted)
                 {
                     // Rock to mine, or a tree no building can go over: cleared first. Anything else in the way is no cause to wait.

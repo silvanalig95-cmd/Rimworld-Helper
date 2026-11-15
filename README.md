@@ -3353,7 +3353,15 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   and their stay, of their people's age: a bed for each of them, round the fire (a war party, mourners, pilgrims), in one
   hut with walls all round, a door and a roof (settlers, refugees, the hermit, the wardens' post), or in tents (traders,
   hunters, healers and the other road folk), and for a longer stay tables with a seat each, lights, a butcher's and a
-  crafting spot, a hitching spot for their beasts and a shelf for their goods. A wooded spot is as good as an open one:
+  crafting spot, a hitching spot for their beasts and a shelf for their goods, which they keep their goods on (what lies
+  loose at their camp is carried onto it). A longer stay grows: a day or so after the camp stands, and a day or so apart,
+  they add what their kind would as it settles in, from your mods where you have them: seats round the fire, a lean-to
+  over their stash, a pen for their beasts, a drying rack for hunters, a stonecutter's table or a tailor's bench for
+  their trade, a firewood rack for woodcutters, a small altar for a people of a faith, a banner at the edge, a latrine,
+  a basket or another shelf when their goods have no room; nothing for a stay under two and a half days, six things at
+  most for a long one, all within ten cells of their fire and never on your ground. In their free hours they clean the
+  mess on their own ground (blood, ash, trash, dirt), the orderly kinds often and before they go, the careless seldom.
+  A wooded spot is as good as an open one:
   they fell the trees in the way, carry chunks aside and mine plain rock, as your builders would. Their day: their own
   beds at night, meals at their table, work from seven to five (cutting wood, hunting, fishing, mining plain rock,
   gathering wild plants, making something at their spot, mending their camp) and the evening talking by the fire. They
@@ -3365,8 +3373,8 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   keep clear, and the camp stays. They trade, sometimes help, and may ask to join. Going in their
   own time, they pack their bedrolls, tents and furniture on the map in their last hours and leave their walls, huts and
   fire pit standing, nobody's (the penitents, the tree-singers and deserters take theirs down; the Banner's squad leaves
-  its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one refuse, offal that
-  draws a predator in, embers in dry grass or a lame beast. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
+  its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one offal that
+  draws a predator in, embers in dry grass or a lame beast, and refuse after a sour stay or a careless kind's hurry. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
   bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
   people, a handful at most, fed by the camp and leaving with it), hunters dressing each kill at their butchering
   spot, the refugees' washing by their hut's door, the hermit's woodpile by the door. The smith may walk over and mend

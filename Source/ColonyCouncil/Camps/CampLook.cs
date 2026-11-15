@@ -327,8 +327,11 @@ namespace ColonyCouncil
             bool night = hour >= 21 || hour < 6;
             // A beast the beast-catchers roped is kept at their picket with their own (CampKindsLand3.cs).
             var home = g == null || g.follow ? (IsCaught(a) ? Picket : FireCell) : Spot(g.at);
+            // Beasts kept at the picket live in their pen once it stands (CampGrow.cs): they rest and mill about inside it.
+            var pen = home == Picket && !(g != null && g.follow) ? PenCells() : null;
+            if (pen != null && pen.Count == 0) pen = null;
             var rest = a.needs?.rest;
-            if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f))) return LieDown(a, home);
+            if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f))) return pen != null ? InPen(a, pen, true) ?? LieDown(a, home) : LieDown(a, home);
             // Walked to the colony's water with the drovers, or strayed into its fields (CampRequests.cs): they mill about there.
             if (errandHerd && ErrandLive && !night && !(g != null && g.follow) && errandCell.IsValid)
             {
@@ -350,7 +353,31 @@ namespace ColonyCouncil
                 var graze = Graze(a, home);
                 if (graze != null) return graze;
             }
+            if (pen != null)
+            {
+                var inPen = InPen(a, pen, false);
+                if (inPen != null) return inPen;
+            }
             return Wander(a, home, loose ? 3 : 5, loose);
+        }
+
+        /// <summary>A beast's rest or a few steps inside their pen (<paramref name="lie"/>: lying down there).</summary>
+        private Job InPen(Pawn a, List<IntVec3> pen, bool lie)
+        {
+            var free = pen.Where(c => c.GetFirstPawn(map) == null && c.GetEdifice(map) == null && a.CanReach(c, PathEndMode.OnCell, Danger.None)).ToList();
+            if (free.Count == 0) return null;
+            if (lie) return JobMaker.MakeJob(JobDefOf.LayDown, free.RandomElement());
+            bool wait = a.mindState.nextMoveOrderIsWait;
+            a.mindState.nextMoveOrderIsWait = !wait;
+            if (wait && pen.Contains(a.Position))
+            {
+                var w = JobMaker.MakeJob(JobDefOf.Wait_Wander);
+                w.expiryInterval = Rand.Range(300, 900);
+                return w;
+            }
+            var job = JobMaker.MakeJob(JobDefOf.GotoWander, free.RandomElement());
+            job.locomotionUrgency = LocomotionUrgency.Walk;
+            return job;
         }
 
         /// <summary>Whom their dog keeps close to: whoever leads them, else the first of them up and about.</summary>

@@ -939,6 +939,7 @@
       <li><role>stall</role></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <titles>
       <li>A traveling healer</li>
@@ -1071,6 +1072,7 @@
       <li><role>spot</role><defs><li>PartySpot</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Careless</tidy>
     <works><li>Craft</li><li>Chop</li></works>
     <titles>
       <li>Fiddles at dusk</li>

@@ -7,7 +7,17 @@
        Roles: fire; bed (a bed each); tent (a tent that is a bed, for the kinds that sleep in tents); hut and door (a hut's
        walls and door); tentwall and tentdoor (a tent's, when no tent is a bed); wall (a windbreak); table and seat; light;
        butcher and craft (their work spots); stall (a trader's table); picket (where pack beasts are tied); stash (a shelf
-       for their goods, for a stay of three days or more). -->
+       for their goods, for a stay of three days or more).
+       Grows: what a camp of the age adds over its stay (Source/ColonyCouncil/Camps/CampGrow.cs, CampBuildMath.GrowWants), the
+       player's mods' pieces first, from the active rows of docs/player-mods; a role with no piece that exists and that the
+       people know how to build is simply not added (there is no game piece for a drying rack, a firewood rack, a banner, a
+       latrine or a food basket). post (a lean-to's posts over the stash: VFE Settlers' post, else a column); fence (a pen
+       for their beasts: VFE Architect's picket fence, else the game's fence); drying (VFE Classical's meat drying rack, for
+       hunters); stonework and tailoring (a bench for their trade); woodpile (Deep Storage Plus's firewood rack, for
+       woodcutters, of the logs they cut); shrine (Ideology's small altar, for a people of a faith); banner (VFE Medieval 2's
+       heraldic standing banner) and imperialbanner (VFE Empire's, for the Empire's people); latrine (Dubs Bad Hygiene's pit
+       latrine); basket (LWM's Deep Storage food basket, a second store for their food). Seats round the fire are the kit's
+       seat, a second store for other goods the kit's stash. -->
 
   <ColonyCouncil.CampKitDef>
     <defName>Rimfolk_CampKit_Tribal</defName>
@@ -31,6 +41,19 @@
       <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
       <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
     </parts>
+    <grows>
+      <li><role>post</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Post</li><li>Column</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>fence</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_PicketFence</li><li>Fence</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>drying</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_MeatDryingRack</li></defs></li>
+      <li><role>stonework</role><defs><li>TableStonecutter</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tailoring</role><defs><li>HandTailoringBench</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>woodpile</role><defs><li MayRequire="mlie.deepstorageplus">DSP_WoodRack</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>shrine</role><defs><li MayRequire="ludeon.rimworld.ideology">Altar_Small</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>banner</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_StandingBanner</li></defs></li>
+      <li><role>imperialbanner</role><defs><li MayRequire="oskarpotocki.vfe.empire">VFEE_ImperialBanner</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>latrine</role><defs><li MayRequire="dubwise.dubsbadhygiene">PitLatrine</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>basket</role><defs><li MayRequire="lwm.deepstorage">LWM_Food_Basket</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </grows>
   </ColonyCouncil.CampKitDef>
 
   <ColonyCouncil.CampKitDef>
@@ -55,6 +78,19 @@
       <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
       <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
     </parts>
+    <grows>
+      <li><role>post</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Post</li><li>Column</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>fence</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_PicketFence</li><li>Fence</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>drying</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_MeatDryingRack</li></defs></li>
+      <li><role>stonework</role><defs><li>TableStonecutter</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tailoring</role><defs><li>HandTailoringBench</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>woodpile</role><defs><li MayRequire="mlie.deepstorageplus">DSP_WoodRack</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>shrine</role><defs><li MayRequire="ludeon.rimworld.ideology">Altar_Small</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>banner</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_StandingBanner</li></defs></li>
+      <li><role>imperialbanner</role><defs><li MayRequire="oskarpotocki.vfe.empire">VFEE_ImperialBanner</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>latrine</role><defs><li MayRequire="dubwise.dubsbadhygiene">PitLatrine</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>basket</role><defs><li MayRequire="lwm.deepstorage">LWM_Food_Basket</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </grows>
   </ColonyCouncil.CampKitDef>
 
   <ColonyCouncil.CampKitDef>
@@ -79,6 +115,19 @@
       <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
       <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
     </parts>
+    <grows>
+      <li><role>post</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Post</li><li>Column</li></defs><stuff><li>WoodLog</li><li>Steel</li></stuff></li>
+      <li><role>fence</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_PicketFence</li><li>Fence</li></defs><stuff><li>WoodLog</li><li>Steel</li></stuff></li>
+      <li><role>drying</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_MeatDryingRack</li></defs></li>
+      <li><role>stonework</role><defs><li>TableStonecutter</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tailoring</role><defs><li>HandTailoringBench</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>woodpile</role><defs><li MayRequire="mlie.deepstorageplus">DSP_WoodRack</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>shrine</role><defs><li MayRequire="ludeon.rimworld.ideology">Altar_Small</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>banner</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_StandingBanner</li></defs></li>
+      <li><role>imperialbanner</role><defs><li MayRequire="oskarpotocki.vfe.empire">VFEE_ImperialBanner</li></defs><stuff><li>Cloth</li><li>Synthread</li><li>Leather_Plain</li></stuff></li>
+      <li><role>latrine</role><defs><li MayRequire="dubwise.dubsbadhygiene">PitLatrine</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>basket</role><defs><li MayRequire="lwm.deepstorage">LWM_Food_Basket</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </grows>
   </ColonyCouncil.CampKitDef>
 
   <ColonyCouncil.CampKitDef>
@@ -103,6 +152,19 @@
       <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
       <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
     </parts>
+    <grows>
+      <li><role>post</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Post</li><li>Column</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>fence</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_PicketFence</li><li>Fence</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>drying</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_MeatDryingRack</li></defs></li>
+      <li><role>stonework</role><defs><li>TableStonecutter</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>tailoring</role><defs><li>HandTailoringBench</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>woodpile</role><defs><li MayRequire="mlie.deepstorageplus">DSP_WoodRack</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>shrine</role><defs><li MayRequire="ludeon.rimworld.ideology">Altar_Small</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>banner</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_StandingBanner</li></defs></li>
+      <li><role>imperialbanner</role><defs><li MayRequire="oskarpotocki.vfe.empire">VFEE_ImperialBanner</li></defs><stuff><li>Synthread</li><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>latrine</role><defs><li MayRequire="dubwise.dubsbadhygiene">PitLatrine</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>basket</role><defs><li MayRequire="lwm.deepstorage">LWM_Food_Basket</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </grows>
   </ColonyCouncil.CampKitDef>
 
   <!-- The camp's newer work (Camps/CampDay.cs, CampPack.cs): something simple made at their crafting spot, their own
@@ -122,6 +184,14 @@
     <modExtensions>
       <li Class="ColonyCouncil.CampJobExtension"><ticks>900</ticks><repairEffect>true</repairEffect><progress>true</progress></li>
     </modExtensions>
+  </JobDef>
+
+  <!-- Cleaning the mess on their own ground (Camps/CampClean.cs): the game's own cleaning, on their camp's ground. -->
+  <JobDef>
+    <defName>Rimfolk_CampClean</defName>
+    <driverClass>ColonyCouncil.JobDriver_CampClean</driverClass>
+    <reportString>cleaning.</reportString>
+    <casualInterruptible>true</casualInterruptible>
   </JobDef>
 
   <JobDef ParentName="Council_CampJobBase">

@@ -122,11 +122,17 @@ namespace ColonyCouncil
             if (rest != null && (rest.CurLevelPercentage < 0.2f || (night && rest.CurLevelPercentage < 0.95f))) return Sleep(camp, pawn);
             bool adult = !pawn.DevelopmentalStage.Juvenile();
             if (!adult) return Child(camp, pawn, hour);
-            // Packing up in their last hours: bedrolls, tents and furniture uninstalled and carried (CampPack.cs).
+            // Packing up in their last hours: bedrolls, tents and furniture uninstalled and carried (CampPack.cs); the orderly
+            // tidy their ground before they set off (CampClean.cs).
             if (camp.packingFor != null)
             {
                 var pack = camp.PackJob(pawn);
                 if (pack != null) return pack;
+                if (camp.ToTidy())
+                {
+                    var tidy = camp.CleanJob(pawn, true);
+                    if (tidy != null) return tidy;
+                }
             }
             // An errand into the colony an ask or a request sent them on (CampRequests.cs).
             var errand = camp.ErrandJob(pawn);
@@ -142,6 +148,9 @@ namespace ColonyCouncil
                 if (job != null) return job;
             }
             job = Fetch(camp, pawn);
+            if (job != null) return job;
+            // Their goods lying loose carried into their own storage: the shelf, a basket, a firewood rack (CampStore.cs).
+            job = camp.StowJob(pawn);
             if (job != null) return job;
             if (hour >= 17 && hour < 22) return Evening(camp, pawn, hour);
             if (hour >= 7 && hour < 17 && camp.phase == CampPhase.Living) return Day(camp, pawn);
@@ -338,19 +347,35 @@ namespace ColonyCouncil
             // off: bodies by the butchering spot, the rest at the stash. What they put out has its own place (porters move it).
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
             {
-                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || camp.IsWare(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, camp.FetchRadius)) continue;
+                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || camp.IsWare(t) || camp.InOwnStore(t) || InColony(camp, t) || !t.Position.InHorDistOf(camp.center, camp.FetchRadius)) continue;
                 var to = t is Corpse ? killSpot : camp.stash;
                 if (t.Position.InHorDistOf(to, 3.5f)) continue;
                 if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                return HaulTo(camp, pawn, t, to);
+                return HaulToStash(camp, pawn, t, to);
             }
             return null;
         }
 
-        /// <summary>In the colony's stockpiles or home area (only for a spawned thing).</summary>
+        /// <summary>In the colony's stockpiles or home area (only for a spawned thing); their own stores are not the colony's.</summary>
         private static bool InColony(Thing t, Area home) => StoreUtility.IsInAnyStorage(t) || (home != null && home[t.Position]);
 
-        private static Job HaulToStash(Camp camp, Pawn pawn, Thing t) => HaulTo(camp, pawn, t, camp.stash);
+        private static bool InColony(Camp camp, Thing t) => camp.InColonyStore(t);
+
+        /// <summary>
+        /// One of their things (made theirs now) carried to the stash: into one of their stores where one takes it and has
+        /// room (their shelf, a basket, a firewood rack: CampStore.cs), else set down on the ground beside it; a body to
+        /// <paramref name="to"/> (the butcher's spot).
+        /// </summary>
+        private static Job HaulToStash(Camp camp, Pawn pawn, Thing t, IntVec3? to = null)
+        {
+            if (!(t is Corpse))
+            {
+                camp.Own(t);
+                var stow = camp.StowJobFor(pawn, t);
+                if (stow != null) return stow;
+            }
+            return HaulTo(camp, pawn, t, to ?? camp.stash);
+        }
 
         /// <summary>One of their things (made theirs now) carried to a free spot near <paramref name="to"/>.</summary>
         private static Job HaulTo(Camp camp, Pawn pawn, Thing t, IntVec3 to)
@@ -446,6 +471,12 @@ namespace ColonyCouncil
             {
                 var job = camp.LabourJob(pawn, w);
                 if (job != null) return job;
+            }
+            // A free hour: the filth on their ground cleaned, the orderly often, the careless seldom (CampClean.cs).
+            if (Rand.Chance(CampDayMath.CleanChance(camp.Tidy)))
+            {
+                var clean = camp.CleanJob(pawn);
+                if (clean != null) return clean;
             }
             // Porters: a load carried between the beasts and the fire, and back (CampKindDef.campGoods carryTo).
             if (Rand.Chance(0.3f))
@@ -563,11 +594,13 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>A free spot near the fire to sit, eat or cook at.</summary>
+        /// <summary>A free spot near the fire to sit, eat or cook at: one of their seats round the fire where one is free (CampGrow.cs).</summary>
         public static IntVec3 SitCell(Camp camp, Pawn pawn)
         {
             var map = pawn.Map;
             var fire = camp.FireCell;
+            var seat = camp.FireSeat(pawn);
+            if (seat.IsValid) return seat;
             if (CellFinder.TryFindRandomCellNear(fire, map, 2, c => c != fire && c.Standable(map) && c.GetEdifice(map) == null && c.GetFirstPawn(map) == null && !c.Roofed(map), out var cell))
                 return cell;
             return CellFinder.RandomClosewalkCellNear(fire, map, 3);
@@ -605,7 +638,7 @@ namespace ColonyCouncil
                 else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo || def == CampDefOf.Council_CampErrandDig) camp.ErrandWorked(pawn, job);
                 else if (def == CampDefOf.Council_CampGather) camp.Gathered(pawn, job.targetA.Thing);
                 else if (def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) camp.Milked(pawn, job.targetA.Thing as Pawn);
-                else if (def == CampDayDefOf.Rimfolk_CampCraft) camp.Crafted(pawn);
+                else if (def == CampDayDefOf.Rimfolk_CampCraft) camp.Crafted(pawn, job.targetB.Thing as Building);
                 else if (def == CampDayDefOf.Rimfolk_CampMend) camp.Mended(pawn, job.targetA.Thing);
                 else if (def == CampDayDefOf.Rimfolk_CampPack) camp.Packed(pawn, job.targetA.Thing as Building);
                 else camp.LandJobDone(pawn, job);
