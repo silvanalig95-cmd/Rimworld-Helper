@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' touch (Source/ColonyCouncil/Gods/Touch/; the player, 15 November 2026: "pawns seem to take no mood or
+    heart/strain or other gameplay impact either"). What someone of the colony feels after seeing something of the gods, by
+    their belief (GodTouchMath.MoodFor): a believer glad of their god's kindness, more when they saw it plainly; someone of
+    no strong belief awed by a sight, uneasy at a sign or an anger; someone in dread of that god afraid when it comes near; a
+    scoffer nothing. Sized like the game's own moods for things of that weight: a sign -1, a sight +2, a kindness +4, a god
+    seen plainly +6 or -5. Each one at a time (a newer one renews it). The great effects (a season of a god's presence, a
+    spring, a vein of gold) leave everyone of the home who believes at all remembering it a few days.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_Blessed</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>my god was good to us</label>
+        <description>I saw it, and I know whose hand it was. The god I hold to looks after us.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+      <li>
+        <label>saw my god with my own eyes</label>
+        <description>There was no doubting it this time. I saw the god I pray to, plainly, here among us.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_Wonder</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>saw something of the gods</label>
+        <description>I saw something today that I can't explain. It stays with me, in a good way.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+      <li>
+        <label>saw a god plainly</label>
+        <description>I saw something that could only have been a god, as clearly as I see the others here. I keep thinking about it.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_Uneasy</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>an odd sign</label>
+        <description>Something strange happened today, and I don't know what it means. I keep looking over my shoulder.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>something angry was here</label>
+        <description>Whatever that was, it was not pleased with us. I would rather not see it again.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_Afraid</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the one I fear came near</label>
+        <description>I know what that was, and I am afraid of it. It came close to us today.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>the one I fear showed itself</label>
+        <description>I saw the one I dread, plainly, here among us. I can't stop shaking.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_Remembered</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>something great happened here</label>
+        <description>Everyone is talking about it. Something happened here that people will remember for years.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A people at peace thinking better of the colony after hearing of it (the game's goodwill line). -->
+  <HistoryEventDef>
+    <defName>Rimfolk_GodTouch_Heard</defName>
+    <label>heard of what happened at the colony</label>
+  </HistoryEventDef>
+
+  <!--
+    Each god's short blessing on those who saw something of it (GodTouchEffects.Bless): about a day, a modest help in the
+    god's own work. The label and words say what they feel, never whose it is.
+  -->
+
+  <HediffDef Name="Rimfolk_GodTouchBlessBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.8, 0.55)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~70000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Hollin</defName>
+    <label>a good day for growing</label>
+    <description>Since what they saw, work with plants comes easily to them, and the harvest from their hands is a little better.</description>
+    <stages><li><statOffsets><PlantWorkSpeed>0.15</PlantWorkSpeed><PlantHarvestYield>0.08</PlantHarvestYield></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Smoulder</defName>
+    <label>warm hands</label>
+    <description>Since what they saw, their hands feel warm and sure. Work at the bench and in the rock goes faster.</description>
+    <stages><li><statOffsets><GeneralLaborSpeed>0.12</GeneralLaborSpeed><MiningSpeed>0.12</MiningSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Bellwether</defName>
+    <label>a steady eye</label>
+    <description>Since what they saw, they move quietly and the animals settle around them. Hunting and handling animals go better.</description>
+    <stages><li><statOffsets><HuntingStealth>0.15</HuntingStealth><TameAnimalChance>0.1</TameAnimalChance><TrainAnimalChance>0.1</TrainAnimalChance></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Morel</defName>
+    <label>shaking off sickness</label>
+    <description>Since what they saw, their body fights off sickness better than usual.</description>
+    <stages><li><statFactors><ImmunityGainSpeed>1.15</ImmunityGainSpeed></statFactors></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Ennu</defName>
+    <label>easy company</label>
+    <description>Since what they saw, they are easy to talk to, and strangers warm to them quickly.</description>
+    <stages><li><statOffsets><SocialImpact>0.1</SocialImpact><NegotiationAbility>0.1</NegotiationAbility></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Pip</defName>
+    <label>a feel for machines</label>
+    <description>Since what they saw, they seem to know what a machine needs before they look. Research and building go better.</description>
+    <stages><li><statFactors><ResearchSpeed>1.12</ResearchSpeed></statFactors><statOffsets><ConstructSuccessChance>0.05</ConstructSuccessChance></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Cirrus</defName>
+    <label>light on their feet</label>
+    <description>Since what they saw, they feel light and quick, as if the wind were behind them.</description>
+    <stages><li><statOffsets><MoveSpeed>0.4</MoveSpeed></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Hush</defName>
+    <label>at ease in the cold</label>
+    <description>Since what they saw, the cold doesn't reach them as it did. They can stand a colder day without feeling it.</description>
+    <stages><li><statOffsets><ComfyTemperatureMin>-8</ComfyTemperatureMin></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Undertow</defName>
+    <label>hearing too much</label>
+    <description>Since what they saw, the world sounds louder and closer, and their mind is more open than it was. It doesn't always feel good.</description>
+    <defaultLabelColor>(0.5, 0.45, 0.65)</defaultLabelColor>
+    <stages><li><statOffsets><PsychicSensitivity>0.2</PsychicSensitivity><GlobalLearningFactor>0.15</GlobalLearningFactor><MentalBreakThreshold>0.02</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Helios</defName>
+    <label>sun-warmed</label>
+    <description>Since what they saw, they feel warmed through and full of energy. Every kind of work goes a little faster.</description>
+    <stages><li><statFactors><WorkSpeedGlobal>1.06</WorkSpeedGlobal></statFactors></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Selene</defName>
+    <label>sleeping deeply</label>
+    <description>Since what they saw, they sleep deeply and wake rested, and their wounds mend faster.</description>
+    <stages><li><statFactors><RestRateMultiplier>1.25</RestRateMultiplier><InjuryHealingFactor>1.25</InjuryHealingFactor></statFactors></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Mog</defName>
+    <label>calm</label>
+    <description>Since what they saw, they have been calm and steady. Bad news and pain shake them less.</description>
+    <stages><li><statOffsets><MentalBreakThreshold>-0.04</MentalBreakThreshold><PainShockThreshold>0.05</PainShockThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Murmur</defName>
+    <label>a clean hand in the kitchen</label>
+    <description>Since what they saw, the water they draw and the food they cook seem cleaner, and cooking goes a little faster.</description>
+    <stages><li><statFactors><FoodPoisonChance>0.5</FoodPoisonChance><CookSpeed>1.1</CookSpeed></statFactors></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Ducat</defName>
+    <label>a good eye for a bargain</label>
+    <description>Since what they saw, they notice what things are really worth. Traders find them hard to cheat.</description>
+    <stages><li><statOffsets><TradePriceImprovement>0.05</TradePriceImprovement></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- The great ones that last: a season without the cold, the sun's warmth for days, a calm kept for a season. -->
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Hardy</defName>
+    <label>frost-hardy</label>
+    <description>Since what happened, the cold has hardly touched them. It has been like that for everyone here.</description>
+    <comps Inherit="False">
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>900000~900000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><ComfyTemperatureMin>-10</ComfyTemperatureMin></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_SunWarmed</defName>
+    <label>warmed through</label>
+    <description>Since the day every crop shot up in the sun, everyone here has felt warm and strong. Work goes faster.</description>
+    <comps Inherit="False">
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>300000~300000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statFactors><WorkSpeedGlobal>1.08</WorkSpeedGlobal></statFactors></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Ward</defName>
+    <label>kept calm</label>
+    <description>Since what happened, they have been calm and steady through everything, and pain bothers them less.</description>
+    <comps Inherit="False">
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>900000~900000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><painFactor>0.85</painFactor><statOffsets><MentalBreakThreshold>-0.06</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Sleepless</defName>
+    <label>a bad night</label>
+    <description>After what they saw, they slept badly and woke tired. They will be tired sooner today.</description>
+    <defaultLabelColor>(0.6, 0.55, 0.7)</defaultLabelColor>
+    <isBad>true</isBad>
+    <stages><li><statFactors><RestFallRateFactor>1.25</RestFallRateFactor></statFactors></li></stages>
+  </HediffDef>
+
+</Defs>

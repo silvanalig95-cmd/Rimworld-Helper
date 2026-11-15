@@ -219,6 +219,107 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The gods felt, and what follows
+  them** (15 November 2026; the player's words, with their save `League_of_Toba_2`: "so far i really like how the gods
+  event appear, also with the sound, visual effect and camera centering! if there's other similarly impressive visual
+  effects, include some variety. but also for many of the gods occurences i don't see any real game impact. it's a cool
+  event but nothing rally comes from it, for example the stranger one at the altar i have and had three times already this
+  event. there should be more ingame effect. also pawns seem to take no mood or heart/strain or other gameplay impact
+  either. update this now"; then "effects can be all kinds of things, be creative, not just what you listed under"; and
+  "the effect can be something more impactful also, remember these are gods. but keep it balanced, not that strong effects
+  come up all the time. there should be range and variety"). DESIGN.md "The gods felt, and what follows them" (after "Each
+  god's own happenings, the second seven") has all of it; `docs/design/gods.md` the contract ("What the gods' occurrences
+  leave"); README (A god on the map, The gods on the map: "What it leaves"); the Almanac's gods page (one paragraph on
+  how people take what they see; keywords unchanged).
+  - Why, from their save (read with a script outside its folder): Ennu's offering at the Stranger's church was taken
+    before everyone's eyes three times (ticks 5767607, 6387607, 6567607, the last two three days apart), each a full
+    moment with the camera, as the colony kept offering and Ennu stayed near; nothing followed but a little belief. Over
+    the save's last 43 days about one occurrence of the gods a day was seen; a mood came only to someone holding that god
+    first (`Rimfolk_Belief_GodActed`), and the heart never moved.
+  - The inventory, before and now (S small, N notable, G great):
+    - Each god's own presence after a moment (round 2: plants faster, hearths, mining yield, batteries, calm beasts,
+      clear sky, cold, dark, long noon, moon sleep, rain, trade, the cats' watch): its effects already; now felt by those
+      who saw the moment, and ten gods' may stay on the land for days as a great effect.
+    - Offerings taken (each god's own way): before, words and a sign where it lay and a little belief, Ennu's and any
+      god drawn near a full moment every time; now plainly a month apart at most a god (any god's a week and a day),
+      otherwise quietly, and once someone sees it go or finds the place empty it is felt and followed (four days apart a
+      god): Ennu's travellers, a people's goodwill, a trader, easy company, an inspiration, rarely someone joining or a
+      week of warm evenings.
+    - Omens (the five shared, the twenty-six of the gods' own, the sky's signs, the still sun): words and a sign before;
+      now an odd sign -1 for most, +3 for a believer, the flinch for one in dread, and about a third bring a small effect.
+    - The stranger at the gate: its tellings now felt and may be followed small; its judgement keeps its own outcome.
+    - The sacred beasts, the moon's return, the weather as a voice, the late gift, the waking, the great cat, Tamiu's
+      riddle and the wrapped dead, the gods' kindness and anger and gifts in the world, the Hunger's dealings, a prayer
+      answered, the council's answers: each already its own effect; now also felt by who saw it.
+    - Hollin's rising and Murmur's surfacing: a moment, a mark and belief before; now felt and followed, a big occurrence
+      (a notable or great effect likelier).
+    - The marks, the letters' tales, the quarrels told, the camps' words, the gods' hands in the game's events: words
+      only, unchanged.
+    - Each god's own happenings (51): those with their own effect (the bargain's vein, the seam, the burn, the star, the
+      pods, the aurora, the wounded thrumbo tended, the white beast kept waiting, the old tree, the green walk, the ring
+      dug up, the bowl found empty, the turret, the small tests, the kindest's news, the sulk, the thaw, Murmur's rain,
+      give-back and frogs, Ducat's trail and coin, the moonlit watch, the dark's) now also felt; the ones that were words
+      and visuals only (the roots through the floor, the dryads' word, the heat from below, the stretching dream, the warm
+      dream with no burn, the white beast's dusk stop, the horn child's forecast, the last of its kind, the mourner, the
+      rings round a body or the stores, the threads, the breath in the ring, the bowl set out, the machine that won't
+      stop, the message to the stars, the dry thunder, the word in the frost, the walk round the edge, the frost on a
+      grave, Helios looking back and the dawn, her face in the water, the dark face kept, the cat at the threshold and by
+      the lost dead) now felt and followed by their god's own effect.
+    - Worship: a broken vow's shadow was words only, now its god's anger may follow; festivals, dreams and saints keep
+      their own moods.
+  - Each god's own effects: Hollin S a good day for growing, flowers, plants learned; N crops grown on, healroot, an
+    inspiration; G her green ten days; D brambles. Smoulder S warm hands, fires full, crafting; N ore, an inspiration; G a
+    seam of gold, warm stone a week; D fires out. Bellwether S a steady eye, animals; N game comes, an inspiration; G
+    animals wander in and stay, his calm ten days; D game leaves. Morel S shaking off sickness, medicine; N mushrooms,
+    rich ground; G the fields made rich; D food going off. Ennu S easy company, social; N travellers, goodwill, a trader,
+    an inspiration; G someone joins, warm evenings a week. Pip S a feel for machines, machines mended, batteries full; N
+    parts (by age), an inspiration; G the hum five days; D a breakdown. Cirrus S light on their feet, clear sky; N an
+    aurora, a ship chunk, an inspiration; G the high sky a week; D fog. Hush S at ease in the cold, snow; N the stores
+    kept, a cold snap broken; G everyone frost-hardy a season; D fires out. The Hunger S hearing too much; N an
+    inspiration; D fires out, a tenth of a stack gone; G its dark two days. Helios S sun-warmed, clear sky; N crops grown
+    on, an inspiration; G a day of sun for every crop and everyone warmed five days. Selene S sleeping deeply; N wounds
+    healed, an inspiration; G an old scar gone, her moon five days; D a bad night. Tamiu S calm, the rats gone; N a cat
+    comes to stay, an inspiration; G one kept calm a season. Murmur S a clean hand in the kitchen, rain; N crops grown on,
+    fish on the bank; G a spring, his rain four days; D fog. Ducat S a good eye for a bargain; N silver, a trader, an
+    inspiration; G gold on the ground, his glint a week; D a tenth of the silver gone.
+  - How often (`GodTouchMath.Tier`; at about one occurrence a day, as the save had): about 25 small, 6 notable and less
+    than one great a colony-year at a home, a third or so with the moods only; a god's notable 8 days apart (any god's 3),
+    its great 120 (any god's 40), its small twice a day at most; the same occurrence within ten days (an offering four)
+    felt only; a god seen often lately less likely to come again (`GodTouchMath.Turn`).
+  - Code: `Source/ColonyCouncil/Gods/Touch/` (`GodTouch.cs`: `GodTouchBook`, the notes, the wait, `Felt`, `Follow`;
+    `GodTouchMath.cs`: every rule, pure, linked in the tests; `GodTouchEffects.cs`: each effect; `GodTouchFx.cs`: each
+    god's look; `GodTouchDebug.cs`). Seams: `Gods.Remember` and `Gods.Moment` (`GodTouch.Note`, `NoteMoment`),
+    `GodAct.what` and `PresenceSpec.what` (set by `GodsOnMapWords.Saw`, `GodWorld.Moment` "world", `GodWorld.Remember`
+    "told", `GodMarks.Note` "mark", `Worship.Sign` and `Witness`' new `what`), `Offerings` (`PlainTakingAllowed`,
+    `PlainTaken`, `GodTouch.Taken` from `Settle` and `Noticed`), `OwnHappenings.Due` (`GodTouch.Turn`),
+    `PresenceSpec.quiet` and `lingerTicks` (through `GodsWiring`, `GodPresence.Manifest`, `GameCondition_GodPresence.Begin`'s
+    `linger`), `GodFx.Flash`'s god key (each god's look in its moments and omens), `GodPresenceShows.Vermin` made internal.
+    Defs `Defs/GodDefs/Rimfolk_GodTouch.xml` (four moods with two stages each, the remembered, fourteen blessings, the
+    frost-hardy, warmed through, kept calm and a bad night, the history event for goodwill); words
+    `Languages/English/Keyed/Rimfolk_GodTouch.xml`. Saved: `GodTouchBook` (modelled in `Tools/save_estimate.py`). Tests:
+    `Tools/Tests/GodTouchTests.cs`; `GodsOnMapTests` and `GodsTests` follow the two seams' new arguments. Balance: the five
+    moods in `Tools/Balance/Rates.cs`.
+  - Decided here: the angers never wound (none of the effects is in the harm budget); Tamiu's watch never stays (it is hers
+    only while she walks the land, `GodPresenceOwnMath.EndsWhenGone`), nor the long noon, the white silence or the rot;
+    Ennu, Helios and Tamiu have no anger of their own here; a great effect is a god's moment of its own (the camera on
+    it), and everyone of the home who believes at all remembers it (+4, three days); the camera stays put for a prayer's
+    small answers (the consoled, the fighter's nerve).
+  - Can't be checked without the game: each god's look (the flecks and effecters by name, their sizes and colours, the
+    flash over the land), each effect played out (the plants coming up on the land's ground, the spring's water, the
+    seam in the rock, the animals and the cat walking in, the incidents' letters with the touch's message beside them,
+    the goodwill line), the long presences' light sky over days, the moods' and the heart's amounts in play, and the wait
+    for a moment to finish before what follows.
+  - Try in the game: 1. Dev mode "Gods: a god's touch here now...": pick Ennu, then Visitors: travellers come and a message
+    says so; pick Ennu again, "any great kindness": a moment with its card (someone come to join, or warm evenings a
+    week). 2. Each god's look: the same action with any god's small effects near the camera. 3. An offering at a shrine
+    ("Gods: offerings at every shrine now", then "offerings here taken now, each god's own way"): the first taken plainly is
+    a moment; the next within a month goes quietly, and someone who finds it gone feels it; what follows comes once in
+    four days a god. 4. "Gods: an omen here...": those near get "an odd sign" (or "my god showed itself" if they hold
+    that god); the heart's record shows it. 5. "Gods: the gods' touch (log)" for the waits and what came lately.
+  - Mods that would help: Vanilla Psycasts Expanded (already active, Workshop 2842502659, 1.5 to 1.7, kept up) gives some
+    gods' looks their cold glow, heat, sparks, black smoke and skip flash; P-Music (in their list, not active, Workshop
+    725130005, tagged 1.0 to 1.7, kept up) adds many tracks the gods' big moments could draw on for more variety in sound;
+    nothing else needed.
 - 0.254.0, **Three fixes: porters reach the
   mailbag, the stall's health, world events above the letters** (15 November 2026; the player's words: "alright, i'd
   like the storytellers and fixes/small improvements", for the three entries gathered that day). DESIGN.md has each:

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The gods' touch (Source/ColonyCouncil/Gods/Touch/): what follows a god's occurrence on the map, told as what was seen and
+    felt, never whose it was (the card of a great one names the god only where the colony knows it was that god). {HOME} is
+    the home; {WHO} the ones it touched, by name.
+  -->
+
+  <!-- ===================== Each god's short blessing ===================== -->
+
+  <CC_GodTouch_Bless_Hollin>Since what happened at {HOME}, work with plants comes easily to {WHO}.</CC_GodTouch_Bless_Hollin>
+  <CC_GodTouch_Bless_Smoulder>Since what happened at {HOME}, work at the bench and in the rock goes easily for {WHO}.</CC_GodTouch_Bless_Smoulder>
+  <CC_GodTouch_Bless_Bellwether>Since what happened at {HOME}, the animals settle around {WHO}.</CC_GodTouch_Bless_Bellwether>
+  <CC_GodTouch_Bless_Morel>Since what happened at {HOME}, sickness has a weaker hold on {WHO}.</CC_GodTouch_Bless_Morel>
+  <CC_GodTouch_Bless_Ennu>Since what happened at {HOME}, strangers warm quickly to {WHO}.</CC_GodTouch_Bless_Ennu>
+  <CC_GodTouch_Bless_Pip>Since what happened at {HOME}, the machines give {WHO} less trouble than usual.</CC_GodTouch_Bless_Pip>
+  <CC_GodTouch_Bless_Cirrus>Since what happened at {HOME}, the wind seems to be behind {WHO} wherever they go.</CC_GodTouch_Bless_Cirrus>
+  <CC_GodTouch_Bless_Hush>Since what happened at {HOME}, the cold doesn't reach {WHO} as it did.</CC_GodTouch_Bless_Hush>
+  <CC_GodTouch_Bless_Undertow>Since what happened at {HOME}, the world sounds louder and closer to {WHO}.</CC_GodTouch_Bless_Undertow>
+  <CC_GodTouch_Bless_Helios>Since what happened at {HOME}, a warmth has stayed with {WHO}, and their work goes faster.</CC_GodTouch_Bless_Helios>
+  <CC_GodTouch_Bless_Selene>Since what happened at {HOME}, sleep comes deep and easy to {WHO}, and their wounds mend faster.</CC_GodTouch_Bless_Selene>
+  <CC_GodTouch_Bless_Mog>Since what happened at {HOME}, a calm has settled on {WHO}.</CC_GodTouch_Bless_Mog>
+  <CC_GodTouch_Bless_Murmur>Since what happened at {HOME}, cooking goes cleanly and quickly for {WHO}.</CC_GodTouch_Bless_Murmur>
+  <CC_GodTouch_Bless_Ducat>Since what happened at {HOME}, traders find it hard to cheat {WHO}.</CC_GodTouch_Bless_Ducat>
+
+  <!-- ===================== Small ===================== -->
+
+  <CC_GodTouch_Learn>{WHO} came away from what happened at {HOME} knowing more about {SKILL}.</CC_GodTouch_Learn>
+  <CC_GodTouch_Bloom>Flowers came up in a ring where it happened at {HOME}.</CC_GodTouch_Bloom>
+  <CC_GodTouch_Brambles>Brambles came up where it happened at {HOME}.</CC_GodTouch_Brambles>
+  <CC_GodTouch_Refuel>The fires near where it happened at {HOME} are burning full again, though nobody fed them.</CC_GodTouch_Refuel>
+  <CC_GodTouch_FiresOut>The fires near where it happened at {HOME} went out all at once.</CC_GodTouch_FiresOut>
+  <CC_GodTouch_Mend>The machines near where it happened at {HOME} are working again, and the worn walls and machines there look whole.</CC_GodTouch_Mend>
+  <CC_GodTouch_Charge>Every battery at {HOME} is full, though nothing changed in the power.</CC_GodTouch_Charge>
+  <CC_GodTouch_ClearSky>The sky cleared over {HOME}.</CC_GodTouch_ClearSky>
+  <CC_GodTouch_Snow>Snow began to fall over {HOME}.</CC_GodTouch_Snow>
+  <CC_GodTouch_Rain>Rain began to fall over {HOME}.</CC_GodTouch_Rain>
+  <CC_GodTouch_Fog>Fog came down over {HOME}.</CC_GodTouch_Fog>
+  <CC_GodTouch_RatsGone>The rats are leaving {HOME}, and the cats are out watching them go.</CC_GodTouch_RatsGone>
+  <CC_GodTouch_Sleepless>{WHO} slept badly after what they saw at {HOME}.</CC_GodTouch_Sleepless>
+
+  <!-- ===================== Notable ===================== -->
+
+  <CC_GodTouch_Inspire_Reason>It came to {PAWN} after what they saw at {HOME}.</CC_GodTouch_Inspire_Reason>
+  <CC_GodTouch_Find>Something lay where it happened at {HOME}, and nobody had put it there: {WHAT}.</CC_GodTouch_Find>
+  <CC_GodTouch_Healroot>Wild healroot came up where it happened at {HOME}.</CC_GodTouch_Healroot>
+  <CC_GodTouch_Ripen>The crops near where it happened at {HOME} have grown on overnight.</CC_GodTouch_Ripen>
+  <CC_GodTouch_Game>A group of {ANIMALS} came onto the land at {HOME}.</CC_GodTouch_Game>
+  <CC_GodTouch_GameLeaves>The wild animals at {HOME} are walking off the land.</CC_GodTouch_GameLeaves>
+  <CC_GodTouch_RichSoil>The ground where it happened at {HOME} has turned dark and rich.</CC_GodTouch_RichSoil>
+  <CC_GodTouch_Visitors>Not long after, travellers came to {HOME}.</CC_GodTouch_Visitors>
+  <CC_GodTouch_Trader>Not long after, traders came to {HOME}.</CC_GodTouch_Trader>
+  <CC_GodTouch_TraderOrbit>Not long after, a trader in orbit called {HOME}.</CC_GodTouch_TraderOrbit>
+  <CC_GodTouch_Goodwill>Word of what happened at {HOME} reached {FACTION}, and they think better of the colony for it.</CC_GodTouch_Goodwill>
+  <CC_GodTouch_Aurora>The night sky over {HOME} filled with coloured light.</CC_GodTouch_Aurora>
+  <CC_GodTouch_SkyGift>Something came down out of the sky near {HOME}.</CC_GodTouch_SkyGift>
+  <CC_GodTouch_Preserve>The food in the stores at {HOME} smells fresh again, as if it had just been put up.</CC_GodTouch_Preserve>
+  <CC_GodTouch_Spoil>Some of the food in the stores at {HOME} has started to go off.</CC_GodTouch_Spoil>
+  <CC_GodTouch_ColdBreak>The cold broke over {HOME}.</CC_GodTouch_ColdBreak>
+  <CC_GodTouch_Heal>{WHO}'s wounds look much better since what happened at {HOME}.</CC_GodTouch_Heal>
+  <CC_GodTouch_CatComes>{CAT} walked in at {HOME} and has stayed, as if it lived there.</CC_GodTouch_CatComes>
+  <CC_GodTouch_Fish>Fish lay on the bank by the water at {HOME}: {WHAT}.</CC_GodTouch_Fish>
+  <CC_GodTouch_Breakdown>The {THING} at {HOME} broke down.</CC_GodTouch_Breakdown>
+  <CC_GodTouch_Vanish>{COUNT} {WHAT} went missing from the stores at {HOME}, and nobody was seen taking it.</CC_GodTouch_Vanish>
+
+  <!-- ===================== Great (a god's moment and its card) ===================== -->
+
+  <CC_GodTouch_Linger_Title>It stays at {HOME}</CC_GodTouch_Linger_Title>
+  <CC_GodTouch_Linger_Hollin>Since then, everything that grows at {HOME} has been growing faster, day after day.</CC_GodTouch_Linger_Hollin>
+  <CC_GodTouch_Linger_Smoulder>Since then, the stone at {HOME} has stayed warm, and the miners bring up more from the rock.</CC_GodTouch_Linger_Smoulder>
+  <CC_GodTouch_Linger_Bellwether>Since then, the animals at {HOME} have stayed calm, and none has turned on anyone.</CC_GodTouch_Linger_Bellwether>
+  <CC_GodTouch_Linger_Ennu>Since then, the evenings at {HOME} have stayed warm: the hearths burn longer, and people talk more kindly.</CC_GodTouch_Linger_Ennu>
+  <CC_GodTouch_Linger_Pip>Since then, the wires at {HOME} have hummed: the batteries hold, and the machines run faster.</CC_GodTouch_Linger_Pip>
+  <CC_GodTouch_Linger_Cirrus>Since then, the sky over {HOME} has stayed high and clear, and the weather holds.</CC_GodTouch_Linger_Cirrus>
+  <CC_GodTouch_Linger_Selene>Since then, the moon over {HOME} has stayed close: the nights are light, and the sleepers heal faster.</CC_GodTouch_Linger_Selene>
+  <CC_GodTouch_Linger_Murmur>Since then, the wells at {HOME} have run clean, and the rain has come.</CC_GodTouch_Linger_Murmur>
+  <CC_GodTouch_Linger_Ducat>Since then, coins have glinted in the stores at {HOME}, and traders pay better.</CC_GodTouch_Linger_Ducat>
+  <CC_GodTouch_Dim_Title>The dark stays at {HOME}</CC_GodTouch_Dim_Title>
+  <CC_GodTouch_Dim_Undertow>Since then, a dark has stayed over {HOME}: the lamps reach less far, and people hear things in the quiet.</CC_GodTouch_Dim_Undertow>
+  <CC_GodTouch_Vein_Title>Gold in the rock</CC_GodTouch_Vein_Title>
+  <CC_GodTouch_Vein_Text>A seam of gold has come up in the rock near {HOME}, glinting where there was only stone.</CC_GodTouch_Vein_Text>
+  <CC_GodTouch_Herd_Title>Animals came to stay</CC_GodTouch_Herd_Title>
+  <CC_GodTouch_Herd_Text>Soon after, animals walked in at {HOME} and stayed with the colony.</CC_GodTouch_Herd_Text>
+  <CC_GodTouch_Wanderer_Title>Someone came to stay</CC_GodTouch_Wanderer_Title>
+  <CC_GodTouch_Wanderer_Text>Soon after, someone walked in at {HOME} and asked to stay with the colony.</CC_GodTouch_Wanderer_Text>
+  <CC_GodTouch_Hardy_Title>The cold let go</CC_GodTouch_Hardy_Title>
+  <CC_GodTouch_Hardy_Text>Since what happened, nobody at {HOME} feels the cold as they did.</CC_GodTouch_Hardy_Text>
+  <CC_GodTouch_SunYear_Title>A day of sun</CC_GodTouch_SunYear_Title>
+  <CC_GodTouch_SunYear_Text>Every crop at {HOME} grew a long way in a single day, and everyone there feels warmed through.</CC_GodTouch_SunYear_Text>
+  <CC_GodTouch_ScarGone_Title>An old wound gone</CC_GodTouch_ScarGone_Title>
+  <CC_GodTouch_ScarGone_Text>{WHO}'s old wound on the {PART} is gone, as if it had never been there.</CC_GodTouch_ScarGone_Text>
+  <CC_GodTouch_Ward_Title>Kept calm</CC_GodTouch_Ward_Title>
+  <CC_GodTouch_Ward_Text>Since what happened at {HOME}, {WHO} has been calm and steady through everything, and pain bothers them less.</CC_GodTouch_Ward_Text>
+  <CC_GodTouch_Spring_Title>A spring</CC_GodTouch_Spring_Title>
+  <CC_GodTouch_Spring_Text>Water welled up out of the ground near where it happened at {HOME}, and a spring stands there now.</CC_GodTouch_Spring_Text>
+  <CC_GodTouch_Hoard_Title>Gold on the ground</CC_GodTouch_Hoard_Title>
+  <CC_GodTouch_Hoard_Text>Gold lay where it happened at {HOME}, and nobody had put it there: {WHAT}.</CC_GodTouch_Hoard_Text>
+  <CC_GodTouch_Fertile_Title>Rich ground</CC_GodTouch_Fertile_Title>
+  <CC_GodTouch_Fertile_Text>The soil of the fields at {HOME} has turned dark and rich.</CC_GodTouch_Fertile_Text>
+
+</LanguageData>

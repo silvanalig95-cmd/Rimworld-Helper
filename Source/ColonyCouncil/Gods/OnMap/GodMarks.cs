@@ -38,7 +38,7 @@ namespace ColonyCouncil
             Gods.Remember(new GodAct
             {
                 god = god.id, home = Homes.KeyOf(map), tick = Now, kind = GodActKind.Mark, cell = cell,
-                text = "CC_GodM_MarkAct".Translate(Homes.Name(map).Named("HOME")).Resolve()
+                text = "CC_GodM_MarkAct".Translate(Homes.Name(map).Named("HOME")).Resolve(), what = "mark"
             });
         }
 

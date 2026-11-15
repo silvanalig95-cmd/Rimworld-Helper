@@ -508,7 +508,7 @@ public static class GodsOnMapTests
         string bare = Regex.Replace(code, @"//[^\n]*", "");
         C(code.Contains("GodPresenceSeam.Call(") && code.Contains("GodAvatar.Make(") && code.Contains("PresenceKind.Omen") && code.Contains("GodAvatar.Reveal("),
             "through the core's seams and the presence part's avatar");
-        C(Regex.Matches(bare, @"GodsOnMapWords\.Saw\(").Count >= 12 && code.Contains("Gods.Remember(new GodAct { god = god.id, home = Gods.HomeKey(map), tick = Find.TickManager.TicksGame, kind = kind, cell = cell, text = text })"),
+        C(Regex.Matches(bare, @"GodsOnMapWords\.Saw\(").Count >= 12 && code.Contains("Gods.Remember(new GodAct { god = god.id, home = Gods.HomeKey(map), tick = Find.TickManager.TicksGame, kind = kind, cell = cell, text = text, what = key })"),
             "what people saw goes in the colony's book in their own words");
         C(!Regex.IsMatch(bare, @"AddFavour\([^;]*""CC_"), "favour moves unseen: never with words the player reads");
         C(strangerCode.Contains("GodAvatar.Make(x, GodsWiring.LookOf(god), x.LabelShort, true") && animalCode.Contains("Label(a, god)"),

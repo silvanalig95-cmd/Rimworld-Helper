@@ -645,6 +645,16 @@ namespace Balance
             ("Rimfolk_Thought_Selene_KeptDarkFace", 0.004f),
             ("Rimfolk_Thought_Murmur_Sang", 0.012f),
             ("Rimfolk_Thought_Tamiu_CatWentAway", 0.001f),
+            // The gods' touch (Gods/Touch/): about one occurrence of the gods a day seen by a few of the colony (the player's save,
+            // 15 November 2026, had about that), a third of them signs; a believer of that god glad of a kindness or a sight
+            // about once in two weeks, someone of no strong belief awed about once a week and uneasy at a sign or an anger about
+            // once a week (-1 mostly), one in dread afraid rarely (few are), and everyone who believes at all remembering a great
+            // one about once a colony-year (GodTouchMath.GreatColonyDays and the waits: about 0.8 a year).
+            ("Rimfolk_GodTouch_Blessed", 0.03f),
+            ("Rimfolk_GodTouch_Wonder", 0.12f),
+            ("Rimfolk_GodTouch_Uneasy", 0.1f),
+            ("Rimfolk_GodTouch_Afraid", 0.004f),
+            ("Rimfolk_GodTouch_Remembered", 0.013f),
             // The saints (Gods/Saints/): one of the colony's own named a saint about once in a colony-year or two, for all but
             // its scoffers; a prayer at a saint's place about once in two days at a home with one or two (SaintsMath.PrayChance),
             // a few of them before a relic; a saint's day once a year a saint, for those devoted to them.

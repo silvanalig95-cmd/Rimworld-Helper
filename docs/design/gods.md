@@ -601,3 +601,30 @@ contract:
   white silence is a round 2 presence's few degrees); nothing new in the harm or illness budgets.
 - Every age: each happening is the land's and the colony's own things, its words by the colony's age where the means
   matter.
+
+### What the gods' occurrences leave: felt, and followed (the player, 15 November 2026; not released yet)
+
+"for many of the gods occurences i don't see any real game impact ... the stranger one at the altar i have and had three
+times already this event. there should be more ingame effect. also pawns seem to take no mood or heart/strain or other
+gameplay impact either"; "effects can be all kinds of things, be creative"; "the effect can be something more impactful
+also, remember these are gods. but keep it balanced, not that strong effects come up all the time. there should be range
+and variety". DESIGN.md, "The gods felt, and what follows them", has the whole of it. For the contract:
+- Every occurrence someone of the colony saw is felt and may be followed (`Gods/Touch/`), through the seams already there:
+  `Gods.Remember` (an act on the land with its witnesses), `Gods.Moment` (a god's moment), and `GodTouch.Taken` (an
+  offering seen going or found taken). A part says what its occurrence was by `GodAct.what` or `PresenceSpec.what` (its
+  words key, or its own word: "world" for a moment in the world, "told" for words only, "taken", "prayer", "council",
+  "vow", "mark"); a part needs no code of its own to have its occurrences felt.
+- Felt by belief, never by favour: a believer of the god they took it for glad of its kindness, one in dread of it afraid,
+  someone of no strong belief awed or uneasy, a scoffer unmoved; the heart eased or strained a little through its own API
+  and caps. What they believe is what the colony's book has; the god they took it for may be the wrong one.
+- Followed only where the occurrence has no effect of its own (`GodTouchMath.HasOwnEffect`): one of its god's own effects
+  (`GodTouchMath.Table`, each god's its own), small most of the time, notable now and then, great rarely, each tier with
+  its own waits per god and for the colony, the same occurrence soon again felt only. A part whose occurrence carries its
+  own effect adds its words key to `OwnEffectKeys`.
+- The unseen rule holds: what follows is told as what was seen and never names the god; a great one is a god's moment of
+  its own, its card named only where `Gods.CardName` allows; the blessings say what is felt, never whose.
+- No harm in it: the angers spoil, break, chill and frighten, never wound; nothing new in the budgets.
+- An offering is taken before everyone's eyes a month apart at most a god at a home (any god's a week and a day), and a
+  god seen often lately gives the others their turn (`GodTouch.Turn` in `OwnHappenings.Due`).
+- Each god has its own look where it acts (`GodTouchFx`), in its big moments, omens and effects; the camera only for the
+  big moments (`PresenceSpec.quiet` for the small ones).
