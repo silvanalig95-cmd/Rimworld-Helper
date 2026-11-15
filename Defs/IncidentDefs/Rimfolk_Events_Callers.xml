@@ -248,14 +248,14 @@
         </titles>
         <texts>
           <li>[!nobeast] Word of the fight has travelled. A burial order of {FACTION}, with {X_nameDef} at its head, has come to the gate to see to the raiders still lying where they fell. They will dig a grave for each beyond the wall for {COUNT} silver, or load the dead on their pack beast and take them away for nothing, if they may keep what the raiders carried.</li>
-          <li>[lowtech,!nobeast] Grey cloaks and long spades: the ash-keepers of {FACTION} go wherever the dead lie unburied, and {X_nameDef} says the raiders by the colony have lain long enough. Graves beyond the wall for {COUNT} silver, or the dead carried off on their beast for nothing, the raiders' gear going with them.</li>
+          <li>[lowtech,!nobeast] The ash-keepers of {FACTION}, in grey cloaks and with long spades, go wherever the dead lie unburied, and {X_nameDef} says the raiders near the colony have lain there long enough. They offer graves beyond the wall for {COUNT} silver, or to carry the dead off on their pack animal for nothing, taking the raiders' gear with them.</li>
           <li>[nobeast] Word of the fight has travelled. A burial order of {FACTION}, with {X_nameDef} at its head, has come to the gate to see to the raiders still lying where they fell. They will dig a grave for each beyond the wall for {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Graves outside the wall, for {COUNT} silver</label>
-            <outcome>{X_nameDef}'s order dug a row of graves beyond the gate and laid the raiders in them, one to a grave. The ground is quiet again.</outcome>
+            <outcome>{X_nameDef}'s order dug a row of graves beyond the gate and laid the raiders in them, one to a grave.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_UndertakersBury" />
@@ -348,7 +348,7 @@
           </li>
           <li>
             <label>Turn them away</label>
-            <outcome>The family was turned away at the gate. {TALE} heard of it, and has dug in.</outcome>
+            <outcome>The family was turned away at the gate. {TALE} heard of it, and is now harder to win over.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_KinRefused" />
@@ -397,7 +397,7 @@
         <options>
           <li>
             <label>A cut for everyone ({COUNT} silver)</label>
-            <outcome>{X_nameDef} cut everyone's hair in turn by the gate, talking all the while, and the colony hardly knows itself.</outcome>
+            <outcome>{X_nameDef} cut everyone's hair in turn by the gate, talking all the while, and the colony looks quite different now.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_BarberCuts" />
@@ -453,10 +453,10 @@
           <li>{X_nameDef} looks at the colony's animals</li>
         </titles>
         <texts>
-          <li>[hurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been looking over the fence at the colony's animals. {X_pronoun} offers to see to {TALE}, with medicine of {X_possessive} own, and to work {PET_nameDef} a while, for {COUNT} silver or the feed; for a corner to sleep in, the tending alone.</li>
+          <li>[hurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been looking over the fence at the colony's animals. {X_nameDef} offers to treat {TALE} with medicine of {X_possessive} own and to train {PET_nameDef} for a while, for {COUNT} silver or the feed. For a corner to sleep in, {X_nameDef} would do the treatment only.</li>
           <li>[hurt,!young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been looking over the fence at the colony's animals. {X_pronoun} offers to see to {TALE}, with medicine of {X_possessive} own, for {COUNT} silver, or the feed, or a corner to sleep in.</li>
-          <li>[nohurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been watching {PET_nameDef} for some time. {X_pronoun} offers to work {PET_objective} a morning, for {COUNT} silver or the feed.</li>
-          <li>[hurt,lowtech] {X_nameDef} of {FACTION} doctors the drovers' beasts, and smells like it. {X_pronoun} has had a look at the colony's animals over the fence and offers to see to {TALE} with salves of {X_possessive} own, for {COUNT} silver, the feed, or a corner to sleep in.</li>
+          <li>[nohurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been watching {PET_nameDef} for some time. {X_pronoun} offers to spend a morning training {PET_objective}, for {COUNT} silver or the feed.</li>
+          <li>[hurt,lowtech] {X_nameDef} of {FACTION} doctors the drovers' beasts. {X_pronoun} has had a look at the colony's animals over the fence and offers to see to {TALE} with salves of {X_possessive} own, for {COUNT} silver, the feed, or a corner to sleep in.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -464,9 +464,9 @@
             <label>Pay {COUNT} silver</label>
             <outcome>{X_nameDef} saw to the colony's animals one by one, as agreed.</outcome>
             <outcomes>
-              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then worked {PET_nameDef} a long while.</li>
+              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then trained {PET_nameDef} for a long while.</li>
               <li>[hurt,!young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay.</li>
-              <li>[nohurt] {X_nameDef} worked {PET_nameDef} a long while, and {PET_pronoun} is the better for it.</li>
+              <li>[nohurt] {X_nameDef} trained {PET_nameDef} for a long while, and {PET_pronoun} has learned from it.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
@@ -478,9 +478,9 @@
             <label>Pay in feed instead</label>
             <outcome>{X_nameDef} saw to the colony's animals one by one, for a load of {THING} for the drovers' beasts.</outcome>
             <outcomes>
-              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then worked {PET_nameDef} a long while, for a load of {THING} for the drovers' beasts.</li>
+              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then trained {PET_nameDef} for a long while, for a load of {THING} for the drovers' beasts.</li>
               <li>[hurt,!young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, for a load of {THING} for the drovers' beasts.</li>
-              <li>[nohurt] {X_nameDef} worked {PET_nameDef} a long while, for a load of {THING} for the drovers' beasts.</li>
+              <li>[nohurt] {X_nameDef} trained {PET_nameDef} for a long while, for a load of {THING} for the drovers' beasts.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the feed for {X_nameDef}</label><variant>true</variant><steward>false</steward></li>

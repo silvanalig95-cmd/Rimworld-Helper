@@ -30,9 +30,9 @@
           <li>[!lowtech] Stranded merchants</li>
         </titles>
         <texts>
-          <li>[their:friend] The first thing the traders of {FACTION} asked at the gate was whether {FRIEND_nameDef} still lives here. They've broken down on the road below with a full load, and among {FACTION}, this colony's name is one worth knocking on.\n\n{A_nameDef} could go down and help with the repair. If not, they'll buy {TALE} for {COUNT} silver and do the work themselves.</li>
+          <li>[their:friend] The first thing the traders of {FACTION} asked at the gate was whether {FRIEND_nameDef} still lives here. They've broken down on the road below with a full load, and {FACTION} know this colony as a good place to ask for help.\n\n{A_nameDef} could go down and help with the repair. If not, they'll buy {TALE} for {COUNT} silver and do the work themselves.</li>
           <li>[tribal] A trading party of {FACTION} has stopped below the colony with a broken sledge. One of its runners split on a rock, and their pack animals can't drag it lopsided.\n\nThey'd be glad of {A_nameDef}'s hands, the best in the colony. Otherwise they'll pay {COUNT} silver for {TALE} and cut a new runner themselves.</li>
-          <li>[lowtech,!tribal] A merchant wagon of {FACTION} broke its axle on the track past the colony's fields. The merchants have unloaded half their goods into the mud, and one of them keeps saying it was a good axle, a very good axle.\n\n{A_nameDef} is the best hand in the colony for a job like this. Failing that, they'll pay {COUNT} silver for {TALE} and make a new axle themselves.</li>
+          <li>[lowtech,!tribal] A merchant wagon of {FACTION} broke its axle on the track past the colony's fields, and the merchants have unloaded half their goods into the mud to get at it.\n\n{A_nameDef} is the best hand in the colony for a job like this. Failing that, they'll pay {COUNT} silver for {TALE} and make a new axle themselves.</li>
           <li>[!lowtech] A trade caravan of {FACTION} has pulled up on the road outside the colony. The hub of their cart's rear wheel cracked on the rocks further back, and they've come this far on a splint and a lot of rope.\n\nThey'd take {A_nameDef}'s help gladly. Or {COUNT} silver buys them {TALE} to patch it themselves.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -315,7 +315,7 @@
           <li>[water] {FACTION} and {ENEMY} both claim the same spring, in the hills between their lands. The argument has gone on all season, and now both have asked the colony to judge. Each has written out its case and sent it to the colony's table, and each expects to win.</li>
           <li>[herd] Sheep from {ENEMY}'s flocks strayed onto {FACTION}'s land last spring and lambed there. The ewes were theirs, say {ENEMY}, so the lambs are theirs. The grass was ours, say {FACTION}, and so is everything that grew fat on it.\n\nBoth have asked the colony to settle it.</li>
           <li>[land] {FACTION} and {ENEMY} can't agree where one's land ends and the other's begins, along a strip of good bottomland both want to plant. They've asked the colony to draw the line.</li>
-          <li>[salvage,!lowtech] A cargo pod came down between the lands of {FACTION} and {ENEMY}, and both reached it the same morning. Each says it got there first. They've agreed to let the colony settle it, which mostly means each expects the colony to side with them.</li>
+          <li>[salvage,!lowtech] A cargo pod came down between the lands of {FACTION} and {ENEMY}, and both reached it the same morning. Each says it got there first. They've agreed to let the colony settle it, and each expects the colony to side with it.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -439,9 +439,9 @@
           <li>A warm spell</li>
         </titles>
         <texts>
-          <li>[fall] A warm wind came up from the south overnight, and the cold has let go for a while. It should stay mild for several days: more growing days for the crops still in the ground, and fewer cold nights for the colony.</li>
+          <li>[fall] A warm wind came up from the south overnight, and the cold has eased for a while. It should stay mild for several days: more growing days for the crops still in the ground, and fewer cold nights for the colony.</li>
           <li>[spring] The icicles on the eaves have been dripping since morning. A warm spell has set in early, and should hold for several days, long enough to give the fields a head start.</li>
-          <li>Mild weather, out of season. It looks set to stay for several days.</li>
+          <li>The weather has turned mild, which is unusual for the season, and looks set to stay that way for several days.</li>
         </texts>
       </li>
     </modExtensions>
@@ -687,7 +687,7 @@
         </titles>
         <texts>
           <li>[lowtech] {X_nameDef}, a fortune teller of {FACTION} with a deck of painted cards and a pouch of knucklebones, offers to read every colonist's fortune tonight for {COUNT} silver, and promises only the truth.</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} reads palms and cards, and swears {X_pronoun} has never told a fortune that didn't come true, give or take the details. For {COUNT} silver, everyone in the colony can have theirs read tonight.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} reads palms and cards, and claims that every fortune {X_pronoun} has told has come true. For {COUNT} silver, everyone in the colony can have theirs read tonight.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
