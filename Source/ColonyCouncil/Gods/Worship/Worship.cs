@@ -319,7 +319,7 @@ namespace ColonyCouncil
         /// Remembered among the god's acts, and in the colony's book through those who saw it.
         /// </summary>
         public static void Sign(God g, Map map, IntVec3 cell, PresenceKind kind, string title, string text, LookTargets look, bool letter, GodActKind act = GodActKind.Act,
-            bool? plain = null, string what = null, bool quiet = false)
+            bool? plain = null, string what = null)
         {
             if (g == null || text.NullOrEmpty()) return;
             try
@@ -334,9 +334,8 @@ namespace ColonyCouncil
                     ? " " + "CC_GW_Hand_Plain".Translate(Called(g).Named("GOD")).Resolve()
                     : Hand(g, map, cell);
                 spec.text = text;
-                // What it was, for the gods' touch ("taken", "prayer", "council"), and a small moment with no camera where asked.
+                // What it was, for the gods' touch ("taken", "prayer", "council").
                 spec.what = what;
-                spec.quiet = quiet;
                 if (!GodPresenceSeam.Call(spec))
                 {
                     Glow(map, cell, g, kind == PresenceKind.Wrath, !spec.veiled);

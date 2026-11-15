@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The camera for every god's doing
+
+*15 November 2026, version 0.256.1*
+
+- The camera goes to every god's doing on the map again: its moments, omens, its own happenings, a gift left at the gate, the great cat's doings, and a notable effect that follows.
+- A prayer answered moves the camera to the one who prayed, as other moments do.
+- Only the small touches, dreams and what is only told leave the camera where you have it.
+
 ## The gods felt, and what follows them
 
 *15 November 2026, version 0.256.0*

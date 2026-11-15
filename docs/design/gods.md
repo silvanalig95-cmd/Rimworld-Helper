@@ -626,5 +626,6 @@ and variety". DESIGN.md, "The gods felt, and what follows them", has the whole o
 - No harm in it: the angers spoil, break, chill and frighten, never wound; nothing new in the budgets.
 - An offering is taken before everyone's eyes a month apart at most a god at a home (any god's a week and a day), and a
   god seen often lately gives the others their turn (`GodTouch.Turn` in `OwnHappenings.Due`).
-- Each god has its own look where it acts (`GodTouchFx`), in its big moments, omens and effects; the camera only for the
-  big moments (`PresenceSpec.quiet` for the small ones).
+- Each god has its own look where it acts (`GodTouchFx`), in its big moments, omens and effects.
+- The camera goes to every god's doing on the map (0.256.1, `GodPresence.Look`): its moments, omens, its own happenings'
+  cards, a gift left, the great cat's doings and a notable effect; not to the small touches, dreams or what is only told.

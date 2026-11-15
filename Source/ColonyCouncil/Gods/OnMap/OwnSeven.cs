@@ -130,6 +130,7 @@ namespace ColonyCouncil
                 all.Add(name.Named("GOD"));
                 title = namedTitle.Translate(all.ToArray()).Resolve().CapitalizeFirst();
             }
+            GodPresence.Look(look);
             Tell.Letter(NewsKind.Land, Importance.Notable, map, title, text, def ?? LetterDefOf.NeutralEvent, look);
         }
 

@@ -1581,8 +1581,9 @@ walks in the look of its own:
   is small: a sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
   and green flashes, embers and heat, dust, pale spores, a skip flash and footprints, sparks, lightning glow, snow and
   frost, dark rings and smoke, light shafts, pale rings, sand, water, gold glints (the game's own flecks, A RimWorld of
-  Magic's and Vanilla Psycasts Expanded's). The camera goes there only for the big moments; a small one (a prayer's
-  small answer) plays where it happens and leaves the camera where you have it.
+  Magic's and Vanilla Psycasts Expanded's). The camera goes to every god's doing on the map: its moments, omens, its
+  own happenings, a gift left, the great cat and a notable effect that follows. Only the small touches, dreams and what
+  is only told leave the camera where you have it.
 
 Your own music for a god: put .ogg, .wav or .mp3 files in `Sounds/Rimfolk/Gods/<Domain>/` inside Rimfolk's folder (for
 example `Sounds/Rimfolk/Gods/Storm/`) and restart the game; they play before the look's own tracks. Settings: *Gods'

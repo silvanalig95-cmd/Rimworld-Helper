@@ -341,8 +341,7 @@ namespace ColonyCouncil
                     Interplay.Ease(p, 8f, StrainRelief.Quiet);
                     GodDreams.QueueLost(p, g, r.aboutName);
                     string text = ("CC_Wsh_Answer_Death_" + step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD"), (r.aboutName ?? "?").Named("DEAD")).Resolve();
-                    // A small moment (no camera): the one who prayed comforted where they are.
-                    Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false, GodActKind.Act, plain, "prayer", true);
+                    Worship.Sign(g, map, p.Position, PresenceKind.Act, title, text, p, false, GodActKind.Act, plain, "prayer");
                     return true;
                 }
                 case PrayerKind.Raid:
@@ -351,8 +350,7 @@ namespace ColonyCouncil
                     if (frenzy == null || p.WorkTagIsDisabled(WorkTags.Violent) || p.Inspired || p.mindState?.inspirationHandler == null) return false;
                     if (!p.mindState.inspirationHandler.TryStartInspiration(frenzy, "CC_Wsh_Answer_RaidReason".Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve())) return false;
                     string text = ("CC_Wsh_Answer_Raid_" + step).Translate(p.LabelShort.Named("PAWN"), Worship.Called(g).Named("GOD")).Resolve();
-                    // A small moment in the middle of a fight: the camera stays where the player has it.
-                    Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing, plain, "prayer", true);
+                    Worship.Sign(g, map, p.Position, PresenceKind.Blessing, title, text, p, false, GodActKind.Blessing, plain, "prayer");
                     return true;
                 }
                 default:

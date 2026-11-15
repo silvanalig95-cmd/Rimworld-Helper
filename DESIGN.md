@@ -14653,8 +14653,7 @@ these are gods. but keep it balanced, not that strong effects come up all the ti
   rings and twinkles, Tamiu's sand, Murmur's water, Ducat's gold glints (A RimWorld of Magic's motes, Vanilla Psycasts
   Expanded's cold glow, heat, sparks, black smoke and skip flash, Anomaly's and Biotech's flecks). Shown with every
   god's big moment and omen (`GodFx.Flash` with the god's key) and with each of its effects, the more the stronger. The
-  camera only for the big moments: a small moment (`PresenceSpec.quiet`: a prayer's small answers, the one who prayed
-  comforted or given a fighter's nerve) plays its sound, light and card and leaves the camera and the game's speed alone.
+  camera goes to every god's doing but the small touches (0.256.1, "The camera for every god's doing" below).
 - **The unseen rule holds:** what follows is told as what was seen ("Flowers came up in a ring where it happened at
   Mapa."), its words never name a god; a great one's card is named only where the colony knows the god; the blessings'
   labels say what is felt ("warm hands"); the colony's book keeps the notable and great as those who saw them saw them
@@ -14668,6 +14667,26 @@ these are gods. but keep it balanced, not that strong effects come up all the ti
   `seen`, a season and `MaxSeen`; modelled in `Tools/save_estimate.py`); its steps on a due tick of its own, no Sched slot.
   Dev mode: "Gods: a god's touch here now..." (any of a god's effects where the mouse is, or any of a tier, or an omen
   seen) and "Gods: the gods' touch (log)". Tests: `Tools/Tests/GodTouchTests.cs`. The moods in `Tools/Balance/Rates.cs`.
+
+### The camera for every god's doing (the player's request, 15 November 2026; released 0.256.1)
+
+The player, after 0.256.0 had kept the camera for the big moments only: "The camera should move for all non-trivial god
+moments". `GodPresence.Look` (a place, or a card's first target) jumps the camera there, on a home's map only, and
+leaves the game's speed as it is; only a god's coming (`GodPresence.Begin`) also drops to normal speed and fades the
+music, as before.
+
+- **Every moment of a god** goes through `Begin` again: `PresenceSpec.quiet` is gone, so a prayer's answers (the one who
+  prayed comforted, a fighter given nerve in a raid) move the camera as every other moment does.
+- **An omen** (`GodPresence.Omen`): the camera to where it shows, before its sound and the god's look.
+- **The gods' own happenings**: every card of theirs (`OwnHappenings.Card`, letter or message, and `OwnHappenings.CardOf`
+  for the seven later gods), the late gift left at the gate (`GodGifts.LateGift`), and the great cat's doings (her
+  riddle answered right or wrong, a keeper at the grave, the wrapped dead risen: `MogsWays`).
+- **What follows** (the gods' touch): a notable effect moves the camera to its place before the god's look plays
+  (`GodTouchEffects.Show`); a great one is a moment of its own and already did.
+- **Left where the player has it**: the small touches (a day of better work, a skill, snow or rain), dreams (the
+  miners' dream, the last of its kind), what is only told (letters' tales, quarrels, marks remembered, the gods' hands
+  in the game's events), an offering taken quietly and found gone, and what follows from an order the player gave (the
+  silver set down in the shaft, the beast's road opened or not).
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 

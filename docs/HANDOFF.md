@@ -211,6 +211,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   leftover rules when they go.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.256.1, **The camera for every god's doing**
+  (the player, 15 November 2026: "The camera should move for all non-trivial god moments"). Undoes 0.256.0's "camera only
+  for the big moments". `GodPresence.Look` jumps the camera (a home's map only, the game's speed left as it is) for an
+  omen, every card of the gods' own happenings (`OwnHappenings.Card` and `CardOf`), the late gift, the great cat's
+  doings (`MogsWays`, four letters) and a notable effect of the gods' touch before its look plays; `PresenceSpec.quiet`
+  is gone, so a prayer's answers are moments with the camera again. Left alone: small touches, dreams, what is only
+  told, offerings taken quietly, and what follows an order the player gave. DESIGN.md "The camera for every god's doing".
+  Tests in `GodTouchTests` (and `GodsTests` follows the seam's arguments).
+  - Try in the game: "Gods: a god's touch here now..." with a notable effect, with the camera elsewhere; an omen (the
+    gods' own omens' dev action); a prayer for the dead answered.
 - 0.256.0, **The gods felt, and what follows
   them** (15 November 2026; the player's words, with their save `League_of_Toba_2`: "so far i really like how the gods
   event appear, also with the sound, visual effect and camera centering! if there's other similarly impressive visual

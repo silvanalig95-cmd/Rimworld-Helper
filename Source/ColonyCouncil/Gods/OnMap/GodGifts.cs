@@ -66,6 +66,7 @@ namespace ColonyCouncil
             IntVec3 at = map.Center;
             if (near != null && RCellFinder.TryFindRandomSpotJustOutsideColony(near, out var spot)) at = spot;
             if (LeaveFind(god, map, at, 2) == null) return;
+            GodPresence.Look(map, at);
             Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_GodM_LateGift".Translate(Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(at, map),
                 MessageTypeDefOf.PositiveEvent);
             GodsOnMapWords.Saw(god, map, at, GodActKind.Blessing, GodsOnMapWords.Seer(map, at, 40f), "CC_GodM_Saw_LateGift");

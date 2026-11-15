@@ -185,7 +185,7 @@ namespace ColonyCouncil
         /// Remembered among the god's acts either way.
         /// </summary>
         public static void Moment(God g, Map map, PresenceKind kind, IntVec3 cell, Pawn avatar, string title, string text, bool letter = true,
-            LetterDef def = null, LookTargets look = null, Faction faction = null, Importance importance = Importance.Notable, bool quiet = false)
+            LetterDef def = null, LookTargets look = null, Faction faction = null, Importance importance = Importance.Notable)
         {
             if (g == null || text.NullOrEmpty()) return;
             var home = HomeOr(map);
@@ -205,7 +205,6 @@ namespace ColonyCouncil
                 spec.text = text;
                 // Its own effect is what the moment tells (a kindness or an anger in its shape, a gift): the gods' touch adds the moods only.
                 spec.what = "world";
-                spec.quiet = quiet;
                 shown = GodPresenceSeam.Call(spec);
             }
             catch (Exception e)

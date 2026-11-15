@@ -198,13 +198,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A small or notable effect shown: the god's own look at the place (GodTouchFx), a sound for a notable one, a message
-        /// of what happened, and the colony's book keeping it as those who saw it saw it.
+        /// A small or notable effect shown: the god's own look at the place (GodTouchFx), the camera and a sound for a notable
+        /// one, a message of what happened, and the colony's book keeping it as those who saw it saw it.
         /// </summary>
         private static void Show(TouchContext c, IntVec3 at, string key, params NamedArgument[] more)
         {
             string text = key.StartsWith("CC_", StringComparison.Ordinal) ? Words(c, key, more) : key;
             if (!at.IsValid || !at.InBounds(c.map)) at = c.cell;
+            // The camera there first, so the god's look plays where the player is looking.
+            if (c.tier >= TouchTier.Notable) GodPresence.Look(c.map, at);
             GodTouchFx.Show(c.god, c.map, at, c.tier, c.dark);
             if (c.tier >= TouchTier.Notable) GodTouchFx.Sound(c.god, c.map, at);
             Tell.Message(NewsKind.Land, c.tier >= TouchTier.Notable ? Importance.Important : Importance.Notable, c.map, text, new LookTargets(at, c.map),

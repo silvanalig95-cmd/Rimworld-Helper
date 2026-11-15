@@ -169,10 +169,20 @@ public static class GodTouchTests
           && Read("Gods/OnMap/GodMarks.cs").Contains("what = \"mark\""), "each occurrence says what it was");
         C(touch.Contains("GodPresence.Busy && now - p.at < LongestWait"), "it follows once the god's moment has played out");
         C(touch.Contains("private static bool resolving;") && Regex.Matches(touch, @"if \(.*resolving").Count >= 3, "what the touch itself does is never noted again");
-        C(Read("Gods/Presence/GodPresence.cs").Contains("if (m.quiet) return;") && Read("Gods/GodsWiring.cs").Contains("s.quiet, s.lingerTicks"),
-            "a small moment leaves the camera and the game's speed alone; the camera only for the big moments");
-        C(Read("Gods/Worship/Prayers.cs").Contains("\"prayer\", true);") && Read("Gods/Presence/GodPresenceCondition.cs").Contains("if (linger > 0) ticks = linger;"),
-            "a prayer's small answers are quiet; a god's presence may stay for days, its sky only lightly tinted");
+        // The player, 15 November 2026: "The camera should move for all non-trivial god moments".
+        string presenceSrc = Read("Gods/Presence/GodPresence.cs");
+        C(!presenceSrc.Contains("quiet") && !Read("Gods/GodPresenceSeam.cs").Contains("public bool quiet;") && !Read("Gods/Worship/Prayers.cs").Contains("\"prayer\", true);")
+          && Read("Gods/GodsWiring.cs").Contains("s.god.Key, s.lingerTicks);"),
+            "no god's moment is kept from the camera: a prayer's answers too");
+        C(Regex.IsMatch(presenceSrc, @"private static void Omen\(Moment m\)\s*\{[^}]*Look\(m\.map, m\.at\);")
+          && Read("Gods/Touch/GodTouchEffects.cs").Contains("if (c.tier >= TouchTier.Notable) GodPresence.Look(c.map, at);\n            GodTouchFx.Show(")
+          && Read("Gods/OnMap/OwnHappenings.cs").Contains("GodPresence.Look(look);") && Read("Gods/OnMap/OwnSeven.cs").Contains("GodPresence.Look(look);")
+          && Read("Gods/OnMap/GodGifts.cs").Contains("GodPresence.Look(map, at);") && Regex.Matches(Read("Gods/OnMap/MogsWays.cs"), @"GodPresence\.Look\(").Count == 4,
+            "the camera goes to an omen, the gods' own happenings, a gift left, the great cat's doings and a notable effect, before the god's look plays");
+        C(presenceSrc.Contains("if (!target.IsValid || target.Map == null || !Homes.IsHome(target.Map)) return;") && !Read("Gods/Touch/GodTouchEffects.cs").Contains("TouchTier.Small) GodPresence.Look"),
+            "only to a home's map, and never for a small touch");
+        C(Read("Gods/Presence/GodPresenceCondition.cs").Contains("if (linger > 0) ticks = linger;"),
+            "a god's presence may stay for days, its sky only lightly tinted");
         C(Read("Gods/Presence/GodFx.cs").Contains("GodTouchFx.Signature(godKey, map, cell, a, b, big ? TouchTier.Great : TouchTier.Small);"),
             "every god's big moment and omen has its own look");
 
