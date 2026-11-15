@@ -232,6 +232,15 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   a fight; or the god's deceit, a wonderful high and then a hard crash, a sudden craving or an addiction that takes
   hold at once (harm at the game's rate, through the game's own drug effects, shown). Afterwards the colony's book
   records what they believe it was, perhaps wrongly.
+  The player, then: "and i'd like it to also have some physical shape, perhaps a devil or so?", and "satyr would be
+  awesome". So the god's shape when it walks among them (the gods' avatar, GodAvatar, as the others have) is a satyr: a
+  horned reveller who turns up at a party or a late fire with a drink to share. Soft, by name: a satyr xenotype from
+  the player's mods if one is active (none is yet), else the base game's Biotech horns (`Headbone_MiniHorns` or
+  `Headbone_CenterHorn`) on a person in the god's colours, larger, as the other avatars are. Mods with satyrs, none
+  confirmed for 1.7: Forgotten Realms - Biotech Edition (in their list, not active; Workshop 3068979395; tagged 1.4 to
+  1.6; its satyrs "delight in singing, dancing, feasting, and debauchery"), Roo's Satyr Xenotype (goat legs; the
+  original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
+  January 2026).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
