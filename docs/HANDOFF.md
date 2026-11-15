@@ -268,6 +268,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   doings too (walks, the fire, games, the garden, pets, books, training, fishing), within their guest area when one is
   set, spread over the colony's rooms and grounds rather than the one room, and a word in the Almanac's visitors page
   that the guest area in Hospitality's tab decides where they may go.
+  The player: "and yes, your suggestions all sound great": approved as proposed; it starts when one of the three
+  builds running now (the storytellers, the three fixes, the faction descriptions) is done.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
