@@ -20,6 +20,7 @@
     <earliestDay>0</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
         <group>Visitors</group>
         <answerDays>3</answerDays>
         <notable>false</notable>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Draws the plates of Rimfolk's eight ways to play (Defs/StorytellerDefs/Rimfolk_Storytellers.xml): the game's storyteller
+Draws the plates of Rimfolk's fourteen ways to play (Defs/StorytellerDefs/Rimfolk_Storytellers.xml): the game's storyteller
 screen needs a picture for each storyteller (StorytellerDef.portraitLarge and portraitTiny, loaded with
 ContentFinder<Texture2D>, which logs an error for a path with no texture), and the player asked for no character and no
 portrait. So each is a plain plate in Rimfolk's own look (UI/SkinMath.cs): the window's dark ground, a raised card with a
@@ -34,6 +34,12 @@ WAYS = [
     ("LeanYears", "Lean Years"),
     ("RiseAndFall", "Rise and Fall"),
     ("Crossroads", "Crossroads"),
+    ("OpenGate", "Open Gate"),
+    ("HomeAndHearth", "Home and Hearth"),
+    ("TheWilds", "The Wilds"),
+    ("Windfalls", "Windfalls"),
+    ("Sellswords", "Sellswords"),
+    ("FeastDays", "Feast Days"),
 ]
 
 

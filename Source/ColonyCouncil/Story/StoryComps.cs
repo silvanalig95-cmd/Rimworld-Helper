@@ -9,9 +9,9 @@ namespace ColonyCouncil
 {
     // The ways to play's own storyteller parts (Defs/StorytellerDefs/Rimfolk_Storytellers.xml), only where the game's
     // comps can't say the way: a threat cycle with a shape (the year, the deeds, the long arc, the colony's wealth),
-    // sickness with a shape that keeps the game's own rate over the year, named happenings by the season or the arc,
-    // traders and visitors by the shape, and the omen of Rise and Fall's trouble. The world each reads is the target's:
-    // its home's season, the peoples' memory of the colony, the days since the colony settled.
+    // sickness with a shape that keeps the game's own rate over the year, named happenings by the season or the arc, named
+    // quests, traders and visitors by the shape, and the omen of Rise and Fall's trouble. The world each reads is the
+    // target's: its home's season, the peoples' memory of the colony, the days since the colony settled.
 
     /// <summary>The shape's inputs for a target: its home's season, the colony's deeds, the arc's phase and trouble.</summary>
     public static class StoryCompInputs
@@ -175,8 +175,10 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A way's named happenings (Old Powers' strange ones, Lean Years' hardships, the Turning Year's weather by its season,
-    /// Rise and Fall's trouble): about every <see cref="mtbDays"/> days one of those that can come now does, by weight, the
-    /// one that came last much less likely (StoryWaysMath.PickRecency). Each is the game's own event with its own letter.
+    /// Rise and Fall's trouble, Open Gate's joiners, The Wilds' animals, Windfalls' pods): about every <see cref="mtbDays"/>
+    /// days one of those that can come now does, by weight, the one that came last much less likely
+    /// (StoryWaysMath.PickRecency). Each is the game's own event with its own letter. One that brings people follows the
+    /// game's own sense of how many the colony should have, as the game's own draw does (StoryWaysMath.PickAccept).
     /// </summary>
     public class StorytellerCompProperties_WayPicks : StorytellerCompProperties
     {
@@ -208,6 +210,7 @@ namespace ColonyCouncil
             var trouble = StoryDirection.Trouble;
             int now = Find.TickManager.TicksGame;
             var may = new List<(IncidentDef def, IncidentParms parms, float w)>();
+            var weights = new List<float>();
             foreach (var p in Props.picks)
             {
                 var def = p?.incident;
@@ -217,15 +220,18 @@ namespace ColonyCouncil
                     var parms = GenerateParms(def.category, target);
                     if (!def.Worker.CanFireNow(parms)) continue;
                     float since = target.StoryState.lastFireTicks.TryGetValue(def, out int t) ? (now - t) / (float)GenDate.TicksPerDay : float.NaN;
-                    may.Add((def, parms, p.weight * StoryWaysMath.PickRecency(since)));
+                    float w = p.weight * StoryWaysMath.PickRecency(since);
+                    weights.Add(w);
+                    // The game's own sense of how many people the colony should have, for those that bring someone (1 for the rest).
+                    may.Add((def, parms, w * IncidentChanceFactor_CurrentPopulation(def) * IncidentChanceFactor_PopulationIntent(def)));
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("ways to play: a pick " + def.defName, e);
                 }
             }
-            if (may.Count == 0) yield break;
-            var pick = may.RandomElementByWeight(x => x.w);
+            if (may.Count == 0 || !Rand.Chance(StoryWaysMath.PickAccept(weights, may.Select(x => x.w).ToList()))) yield break;
+            if (!may.TryRandomElementByWeight(x => x.w, out var pick)) yield break;
             yield return new FiringIncident(pick.def, this, pick.parms);
         }
 
@@ -239,6 +245,99 @@ namespace ColonyCouncil
         }
 
         public override string ToString() => base.ToString() + " (" + Props.picks.Count + " picks every " + Props.mtbDays + " days)";
+    }
+
+    // ================= Named quests =================
+
+    /// <summary>One of a way's named quests: the game's or a mod's own quest script, and its weight among the way's.</summary>
+    public class WayQuest
+    {
+        public QuestScriptDef quest;
+        public float weight = 1f;
+    }
+
+    /// <summary>
+    /// A way's named quests (Open Gate's guests who ask to stay and refugees to take in, Windfalls' stashes and ruins,
+    /// Sellswords' bandit camps and bounties): about every <see cref="mtbDays"/> days one of those that can be offered now
+    /// is, by its weight and the game's own weight for it (its points, its earliest day, how lately it came), through the
+    /// game's own random quest, so it is offered, plays out and ends as the game's own does. One that brings people
+    /// follows the game's own sense of how many the colony should have.
+    /// </summary>
+    public class StorytellerCompProperties_WayQuests : StorytellerCompProperties
+    {
+        public float mtbDays = 20f;
+        public List<WayQuest> quests = new List<WayQuest>();
+
+        public StorytellerCompProperties_WayQuests()
+        {
+            compClass = typeof(StorytellerComp_WayQuests);
+        }
+
+        public override IEnumerable<string> ConfigErrors(StorytellerDef parentDef)
+        {
+            foreach (var e in base.ConfigErrors(parentDef)) yield return e;
+            if (mtbDays <= 0f) yield return "mtbDays must be above zero";
+            if (quests.NullOrEmpty()) yield return "a way's quests need at least one quest";
+        }
+    }
+
+    public class StorytellerComp_WayQuests : StorytellerComp
+    {
+        private StorytellerCompProperties_WayQuests Props => (StorytellerCompProperties_WayQuests)props;
+
+        public override IEnumerable<FiringIncident> MakeIntervalIncidents(IIncidentTarget target)
+        {
+            var give = IncidentDefOf.GiveQuest_Random;
+            if (give == null || !Rand.MTBEventOccurs(Props.mtbDays, GenDate.TicksPerDay, 1000f)) yield break;
+            IncidentParms parms;
+            try
+            {
+                parms = GenerateParms(give.category, target);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("ways to play: a quest's parms", e);
+                yield break;
+            }
+            var may = new List<(QuestScriptDef q, float w)>();
+            var weights = new List<float>();
+            float popChance = NaturalRandomQuestChooser.PopulationIncreasingQuestChance();
+            foreach (var wq in Props.quests)
+            {
+                var q = wq?.quest;
+                if (q == null || wq.weight <= 0f || !q.IsRootRandomSelected) continue;
+                try
+                {
+                    if (!q.CanRun(parms.points, target)) continue;
+                    float w = wq.weight * NaturalRandomQuestChooser.GetNaturalRandomSelectionWeight(q, parms.points, target.StoryState);
+                    if (w <= 0f) continue;
+                    weights.Add(w);
+                    // The game offers a quest that brings people a third of the time to a colony of the size it wants, less to a bigger
+                    // one (NaturalRandomQuestChooser): here such a quest comes as often as that share, a third counting as every time.
+                    may.Add((q, q.rootIncreasesPopulation ? w * Math.Min(1f, popChance * 3f) : w));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("ways to play: a quest " + q.defName, e);
+                }
+            }
+            if (may.Count == 0 || !Rand.Chance(StoryWaysMath.PickAccept(weights, may.Select(x => x.w).ToList()))) yield break;
+            if (!may.TryRandomElementByWeight(x => x.w, out var pick)) yield break;
+            parms.questScriptDef = pick.q;
+            bool can;
+            try
+            {
+                can = give.Worker.CanFireNow(parms);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("ways to play: a quest " + pick.q.defName, e);
+                can = false;
+            }
+            if (can) yield return new FiringIncident(give, this, parms);
+        }
+
+        public override string ToString() => base.ToString() + " (" + Props.quests.Count + " quests every " + Props.mtbDays + " days)";
     }
 
     // ================= Traders, visitors and friends by the shape =================

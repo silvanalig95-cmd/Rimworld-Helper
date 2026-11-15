@@ -41,6 +41,12 @@ namespace ColonyCouncil
         /// <summary>Someone may join: rarer while the storyteller thinks the colony is big enough.</summary>
         public bool addsPeople;
         /// <summary>
+        /// The kinds of thing the ways to play lean it by besides its group (StoryWaysMath.LeanKeys: beasts, finds, feasts,
+        /// performers, arms): The Wilds brings more of the beasts' events, Windfalls of the finds', and so on
+        /// (StoryDirection.HappeningFactor).
+        /// </summary>
+        public List<string> leans;
+        /// <summary>
         /// One of Rimfolk's peoples of this calling is five times as likely to be the visitors' people (Peoples/: hungry
         /// pilgrims and pilgrims to a relic the pilgrim fellowship's, a travelling scholar and a book swapper the learned
         /// society's), for the events whose own worker picks it; nobody is shut out.
@@ -119,6 +125,10 @@ namespace ColonyCouncil
             if (texts.NullOrEmpty()) yield return "world event has no texts";
             if (!options.NullOrEmpty() && (defaultOption < 0 || defaultOption >= options.Count)) yield return "defaultOption out of range";
             if (!prefers.NullOrEmpty() && !PeoplesMath.IsCalling(prefers)) yield return "'" + prefers + "' is not a calling";
+            if (leans != null)
+                foreach (var k in leans)
+                    if (!StoryWaysMath.IsLeanKey(k))
+                        yield return "leans names no lever of the ways: " + k;
         }
     }
 

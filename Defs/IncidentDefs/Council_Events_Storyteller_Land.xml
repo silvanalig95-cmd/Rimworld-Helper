@@ -211,6 +211,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Nature</group>
         <answerDays>1</answerDays>
         <riskSkill>Crafting</riskSkill>
@@ -322,6 +323,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <group>Nature</group>
         <answerDays>0.4</answerDays>
         <riskSkill>Animals</riskSkill>

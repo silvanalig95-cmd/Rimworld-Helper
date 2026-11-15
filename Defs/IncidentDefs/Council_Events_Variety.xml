@@ -675,6 +675,7 @@
     <minRefireDays>40</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>performers</li></leans>
         <group>Visitors</group>
         <ages>30~75</ages>
         <stayHours>14~20</stayHours>

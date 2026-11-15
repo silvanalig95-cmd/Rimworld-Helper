@@ -1,5 +1,5 @@
 // The ways to play a colony-year (the player's request, 12 November 2026; Defs/StorytellerDefs/Rimfolk_Storytellers.xml,
-// Source/ColonyCouncil/Story/). Each of the eight storytellers is played from its own def, comp by comp, by the game's
+// Source/ColonyCouncil/Story/). Each of the fourteen storytellers is played from its own def, comp by comp, by the game's
 // own rules as the decompiled game has them (an on-off cycle's hits spread over its days on and thinned by its share,
 // a faction interaction's visits a year, a category's mean days between, the biome's sickness), with the ways' own shapes
 // from StoryWaysMath compiled in as they are, beside the classic storyteller (Cassandra, from the game's own def) for
@@ -256,6 +256,15 @@ namespace Balance
                             last[name] = day;
                             At(day, t => Count(t, Category.TryGetValue(name, out var pc) && pc == "ThreatBig" ? "ThreatBig" : "pick", day));
                         }
+                        break;
+                    }
+                    case "StorytellerCompProperties_WayQuests":
+                    {
+                        // A way's named quests, counted with the quests: about one every so many days (each needing its quest to be
+                        // one the game can offer then, which only the game knows: here every time).
+                        float mtb = F(c, "mtbDays");
+                        for (int day = (int)Math.Ceiling(minDays); day < total; day++)
+                            if (rng.NextDouble() < 1 - Math.Exp(-1.0 / mtb)) At(day, t => t.quests++);
                         break;
                     }
                     case "StorytellerCompProperties_RandomQuest":

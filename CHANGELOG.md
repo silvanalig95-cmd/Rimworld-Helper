@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Six more storytellers
+
+*15 November 2026, version 0.253.0*
+
+- Six new storytellers: Open Gate, Home and Hearth, The Wilds, Windfalls, Sellswords and Feast Days, each bringing more of its own kind of event and nothing less than the base game.
+- Each new storyteller can also be chosen as the story direction over any storyteller.
+- Rise and Fall now runs one year of growth, then one year of trouble that ends with the rebuilding.
+- The Almanac's ways to play page explains how a storyteller works and how every kind of event keeps its chance, with a table of all fourteen.
+
 ## The peoples, each described in its own words
 
 *15 November 2026, version 0.252.0*

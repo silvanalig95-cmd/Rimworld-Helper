@@ -23,6 +23,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <group>Challenge</group>
         <minColonists>3</minColonists>
         <answerDays>1</answerDays>

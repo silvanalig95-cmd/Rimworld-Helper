@@ -4,10 +4,12 @@ using System.Collections.Generic;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Rimfolk's eight ways to play (the player's request, 12 November 2026: "i'd like you to create new and interesting
+    /// Rimfolk's ways to play (the player's request, 12 November 2026: "i'd like you to create new and interesting
     /// storytellers. that can enhance existing or make up new ways to play the game & directions"; docs/storytellers-proposals.md),
     /// as a storyteller each and as the story direction over any storyteller. None is a character: each is named for what it
-    /// does. Small Hours and The Frontier were left out at the player's word.
+    /// does. Small Hours and The Frontier were left out at the player's word. The first eight came on 12 November 2026; the
+    /// six after Crossroads on 15 November 2026 ("I would like to have some more additional storytellers ... I'm not really
+    /// looking for some with fewer rates"): new values only ever go at the end, so saves and settings keep the old ones.
     /// </summary>
     public enum StoryWay
     {
@@ -19,7 +21,13 @@ namespace ColonyCouncil
         OldPowers,
         LeanYears,
         RiseAndFall,
-        Crossroads
+        Crossroads,
+        OpenGate,
+        HomeAndHearth,
+        TheWilds,
+        Windfalls,
+        Sellswords,
+        FeastDays
     }
 
     /// <summary>How a way's levers move with the world: not at all, with the season, with the colony's deeds, with the long arc.</summary>
@@ -31,7 +39,7 @@ namespace ColonyCouncil
         Arc
     }
 
-    /// <summary>Where Rise and Fall's long arc stands: years of growth, the omens of a trouble, the trouble, the rebuilding.</summary>
+    /// <summary>Where Rise and Fall's arc stands: the year of growth, then in the year of the fall the omens of a trouble, the trouble, the rebuilding.</summary>
     public enum ArcPhase
     {
         Growth,
@@ -67,11 +75,22 @@ namespace ColonyCouncil
     {
         // ================= The ways =================
 
-        /// <summary>The eight, in the order the storyteller screen and the setting list them.</summary>
+        /// <summary>The fourteen, in the order the storyteller screen and the setting list them.</summary>
         public static readonly StoryWay[] Ways =
         {
             StoryWay.LongRoad, StoryWay.Neighbours, StoryWay.TurningYear, StoryWay.WhatYouSow, StoryWay.OldPowers, StoryWay.LeanYears,
-            StoryWay.RiseAndFall, StoryWay.Crossroads
+            StoryWay.RiseAndFall, StoryWay.Crossroads, StoryWay.OpenGate, StoryWay.HomeAndHearth, StoryWay.TheWilds, StoryWay.Windfalls,
+            StoryWay.Sellswords, StoryWay.FeastDays
+        };
+
+        /// <summary>
+        /// The six that came after the first eight (15 November 2026). Their rules are stricter: nothing below the game's own
+        /// rate (every lever 1 or more, harm exactly 1), no shape (nothing that runs longer than a season), the threats on
+        /// the classic cycle: they only bring more of their own kind of thing.
+        /// </summary>
+        public static readonly StoryWay[] AtBaseOrMore =
+        {
+            StoryWay.OpenGate, StoryWay.HomeAndHearth, StoryWay.TheWilds, StoryWay.Windfalls, StoryWay.Sellswords, StoryWay.FeastDays
         };
 
         public const string DefPrefix = "Rimfolk_Story_";
@@ -130,12 +149,68 @@ namespace ColonyCouncil
         /// reason (a wrong the colony did them, an old enmity): 0 none, 1 every one that can.
         /// </summary>
         public const string RaidReasons = "raidReasons";
+        /// <summary>Rimfolk's events in which someone may join the colony (HappeningExtension.addsPeople), in both draws.</summary>
+        public const string Joiners = "joiners";
+        /// <summary>
+        /// Rimfolk's events about animals and great beasts (HappeningExtension.leans "beasts"), and the colonists' moments with
+        /// animals (the encounters with the colony's own and calm wild ones).
+        /// </summary>
+        public const string Beasts = "beasts";
+        /// <summary>Rimfolk's events in which the colony finds something or is given something (leans "finds"): treasure, caches, gifts.</summary>
+        public const string Finds = "finds";
+        /// <summary>Rimfolk's events of feasts, fairs, games and wagers (leans "feasts"), and the steward's suggestion of a feast with guests.</summary>
+        public const string Feasts = "feasts";
+        /// <summary>Rimfolk's events of performers and storytellers visiting (leans "performers").</summary>
+        public const string Performers = "performers";
+        /// <summary>
+        /// The colony asked to fight for others: a people's call to arms (Diplomacy/CallsToArms.cs), and Rimfolk's events of
+        /// champions, bounties and sellswords (leans "arms"). Never a fight at the colony's own walls.
+        /// </summary>
+        public const string Arms = "arms";
 
         public static readonly string[] Keys =
         {
             Visitors, Challenges, Pasts, Nature, Fights, Camps, Traders, Letters, Favours, Missions, Situations, Gods, Arcs, Memory, Allies, Schemes,
-            Uncanny, RaidReasons
+            Uncanny, RaidReasons, Joiners, Beasts, Finds, Feasts, Performers, Arms
         };
+
+        /// <summary>The levers one of Rimfolk's events can name in its HappeningExtension.leans (joiners is read from addsPeople).</summary>
+        public static readonly string[] LeanKeys = { Beasts, Finds, Feasts, Performers, Arms };
+
+        public static bool IsLeanKey(string key) => Array.IndexOf(LeanKeys, key) >= 0;
+
+        /// <summary>
+        /// One of Rimfolk's events under a way: its group's lever times the strongest of the levers of its kinds (someone may
+        /// join, beasts, finds, feasts, performers, arms), within the floor and three times. An event of two kinds is not
+        /// counted twice. Fights never come here: an event that may end in a fight takes the fights lever alone (harm).
+        /// </summary>
+        public static float HappeningLean(float group, IList<float> kinds)
+        {
+            float g = float.IsNaN(group) || float.IsInfinity(group) ? 1f : group;
+            float k = 1f;
+            if (kinds != null && kinds.Count > 0)
+            {
+                k = float.MinValue;
+                foreach (float x in kinds) k = Math.Max(k, float.IsNaN(x) || float.IsInfinity(x) ? 1f : x);
+            }
+            return Math.Max(Floor, Math.Min(MaxLever, g * k));
+        }
+
+        /// <summary>
+        /// A way's picks as the game would weigh them: the share of the time one comes at all, the sum of their weights after
+        /// the game's own sense of how many people the colony should have (<paramref name="scaled"/>) against the sum before
+        /// it (<paramref name="weights"/>), never more than every time. Joiners come less to a colony the storyteller thinks
+        /// big enough, the rest as ever.
+        /// </summary>
+        public static float PickAccept(IList<float> weights, IList<float> scaled)
+        {
+            if (weights == null || scaled == null) return 1f;
+            float all = 0f, now = 0f;
+            for (int i = 0; i < weights.Count; i++) all += Math.Max(0f, Nan0(weights[i]));
+            for (int i = 0; i < scaled.Count; i++) now += Math.Max(0f, Nan0(scaled[i]));
+            if (all <= 0f) return 0f;
+            return Math.Max(0f, Math.Min(1f, now / all));
+        }
 
         /// <summary>The levers on something that hurts: never above 1 on their own.</summary>
         public static readonly string[] HarmKeys = { Fights, Schemes };
@@ -315,9 +390,17 @@ namespace ColonyCouncil
 
         // ================= Rise and Fall: the long arc =================
 
-        /// <summary>One arc: two years (a year of growth, the omens, the trouble, the rebuilding).</summary>
+        /// <summary>
+        /// One arc: two years (the player, 15 November 2026: "rise and fall, just do 1 year rise and 1 year fall"). The rise
+        /// is the first year, all growth; the fall is the second: the omens, the trouble, and the rebuilding at its end,
+        /// twenty days each.
+        /// </summary>
         public const float ArcDays = 120f;
-        public const float GrowthEnd = 55f, OmenEnd = 80f, TroubleEnd = 100f;
+        public const float YearDays = 60f;
+        public const float GrowthEnd = YearDays, OmenEnd = 80f, TroubleEnd = 100f;
+
+        /// <summary>The arc's year: false in the rise (its first year, growth), true in the fall (its second).</summary>
+        public static bool FallYear(float days) => ArcDay(days) >= YearDays;
 
         /// <summary>Which arc it is, from the days since the colony settled (the first is 0).</summary>
         public static int ArcCycle(float days) => float.IsNaN(days) || days < 0f ? 0 : (int)Math.Floor(days / ArcDays);
@@ -443,7 +526,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Rise and Fall's traders and visitors: plenty in the good years, few while the trouble lasts.</summary>
+        /// <summary>Rise and Fall's traders and visitors: plenty in the year of growth, few while the trouble lasts.</summary>
         public static float ArcVisitAccept(string key, ArcPhase p)
         {
             if (key == Allies) return p == ArcPhase.Trouble || p == ArcPhase.Rebuild ? 1f : 0.6f;

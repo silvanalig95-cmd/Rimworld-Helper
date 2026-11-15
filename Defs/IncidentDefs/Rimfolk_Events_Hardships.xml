@@ -177,6 +177,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
         <weather>
           <li>dry:6</li>
         </weather>

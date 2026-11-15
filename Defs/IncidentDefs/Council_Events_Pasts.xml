@@ -365,6 +365,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>finds</li></leans>
         <letter>PositiveEvent</letter>
         <group>Past</group>
         <journal>Council_Journal_Evt_Inheritance</journal>

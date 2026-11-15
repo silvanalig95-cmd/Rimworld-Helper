@@ -8,16 +8,34 @@
     <label>ways to play</label>
     <category>Council</category>
     <order>16</order>
-    <summary>Eight storytellers named for what they do, and the story direction that leans any storyteller toward one of them.</summary>
+    <summary>Fourteen storytellers named for what they do, how a storyteller works and keeps every kind of event, and the story direction that leans any storyteller toward one of them.</summary>
     <tip>Pick the way for a new game; change the direction any time in a game already running.</tip>
-    <description>Rimfolk adds eight storytellers to the game's storyteller screen. None of them is a character: each is a way to play, named for what it does, with a plain plate for its picture. Each is a whole storyteller with the game's own difficulty settings and the game's own endgame and DLC parts, and each leans Rimfolk's own happenings its way: its visitors, camps, letters, favours asked, missions, world events, friends in a fight, omens and who a raid comes from.
+    <description>Rimfolk adds fourteen storytellers to the game's storyteller screen. None of them is a character: each is a way to play, named for what it does, with a plain plate for its picture. Each is a whole storyteller with the game's own difficulty settings and the game's own endgame and DLC parts, and each leans Rimfolk's own happenings its way: its visitors, joiners, animals, finds, feasts, performers, camps, letters, favours asked, calls to arms, missions, world events, friends in a fight, omens and who a raid comes from.
 
-A way shifts the odds toward something but shuts nothing out: every kind of event the game, its DLCs, your mods and Rimfolk have can still come under every one of them. Nothing of Rimfolk's comes at less than a quarter of its own rate, and the game's kinds of event each keep a route. Harm keeps the game's own rate: over a year or an arc each way's threats come at the classic storyteller's pace or less (Cassandra's: a cycle of about 4.6 days with threats, then 6 quiet), its sickness about as often as the game's own, and the everyday hurts Rimfolk adds stay within the same budget, a way only moving them between kinds.
+The first eight shape the year in their own ways. The six added after them (Open Gate, Home and Hearth, The Wilds, Windfalls, Sellswords and Feast Days) only bring more of their own kind of thing: nothing comes less often than in the base game, nothing in them runs longer than a season, and their threats come on the classic cycle.
 
-The story direction (Rimfolk's settings, What's on) leans whichever storyteller you play toward one of the eight, through Rimfolk's own happenings and the reasons raids come for. The storyteller keeps its own pace of threats and sickness. With one of the eight as your storyteller, it plays its own way unless a direction is chosen; a direction chosen is the one that leans.</description>
+The story direction (Rimfolk's settings, What's on) leans whichever storyteller you play toward one of the fourteen, through Rimfolk's own happenings and the reasons raids come for. The storyteller keeps its own pace of threats and sickness and its own parts. With one of Rimfolk's as your storyteller, it plays its own way unless a direction is chosen; a direction chosen is the one that leans.</description>
     <sections>
       <li>
-        <heading>The eight</heading>
+        <heading>How a storyteller works</heading>
+        <text>A storyteller is a set of parts, and each part is a clock for one kind of event. One part sends the big threats on a cycle: the classic storyteller's (Cassandra's) has about 4.6 days in which threats may come, then about 6 quiet ones. Other parts send the home's everyday happenings about every 5 days, traders and visitors a few times a year, sickness as the land brings it, quests, ship chunks, and help from allies when the colony is in danger. When a part's clock comes round, it draws one event of its kind from every event the game, the DLCs and your mods have put in that kind, each by its own chance and only if it can happen now. A storyteller never needs to know an event by name: a mod's new event joins its kind and comes with it. The difficulty settings decide how hard threats hit and how much else there is.
+
+A way to play is such a storyteller with its parts tuned to what it is about, a few parts of Rimfolk's own where the game's can't say it (threats by the season or the arc, named events and quests, the omen of a trouble), and levers on Rimfolk's own happenings.</text>
+      </li>
+      <li>
+        <heading>How every kind of event keeps its chance</heading>
+        <points>
+          <li>Every way is built on the game's own base storyteller, so the endgame, the DLCs' quests, the deep drill's insects, the anima and polux trees, Gauranlen pods and the monolith come as with any storyteller.</li>
+          <li>Every kind of event in the game and your mods has a part in every way. Rimfolk's tests read your mod list and fail if a kind has no part. The rarer kinds keep long clocks of their own: the other arrivals of peoples about every 25 days, orbital visitors about every 40, and the Settlers' protection fee about every 60.</li>
+          <li>No way shuts anything out: no part forbids an event, a kind or a place, except the raid beacon's own map, which keeps its own raids as it does under the game's storytellers.</li>
+          <li>Rimfolk's levers touch only Rimfolk's own happenings, and never take one below a quarter of its own rate or above three times it. The six added last take nothing below the game's own rate at all.</li>
+          <li>Harm keeps the game's own rate. A lever on something that hurts is never above 1; over a year or an arc each way's threats come at the classic pace or less and its sickness about as often as the game's own; Rimfolk's everyday hurts stay within the same budget, a way only moving them between kinds.</li>
+          <li>A raid aimed by reason (Neighbours, What You Sow, Rise and Fall, Crossroads) only chooses which people comes, never how many raids, and never more than 85% of them: the rest are the game's own choice, so every people can still come.</li>
+          <li>The ways shaped by the season, the colony's deeds or the long arc move their levers about within the same floor and ceiling.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The fourteen</heading>
         <table>
           <li>Way | How it plays | Raids against the classic pace | Rimfolk leans toward</li>
           <li>The Long Road | The world calls the colony out: more of the story waits in the region | The classic pace at home, more ambushes and meetings on the road | Letters, favours asked, camps, missions, the region's word</li>
@@ -26,8 +44,14 @@ The story direction (Rimfolk's settings, What's on) leans whichever storyteller 
           <li>What You Sow | The colony's deeds decide | The classic pace; who comes is the deeds' | Traders, visitors and friends for kindness; peoples remembering more</li>
           <li>Old Powers | The world feels watched | Nearly the classic pace, stranger threats making up the rest | Omens, strange nights, the land and sky, pilgrims and seers, strange skies</li>
           <li>Lean Years | Scarcity is the enemy | The classic pace | Fewer traders and camps; blights, cold and heat; famine and drought in the region's word</li>
-          <li>Rise and Fall | Long arcs of growth, a trouble foretold, the trouble, the rebuilding | About the same over an arc of two years | Plenty in the good years, the trouble's own news, friends in the rebuilding</li>
+          <li>Rise and Fall | A year of growth, then a year of trouble: the trouble foretold, the trouble, the rebuilding | About the same over the two years | Plenty in the year of growth, the trouble's own news, friends in the rebuilding</li>
           <li>Crossroads | The colony as a market | The classic pace, larger raids as it grows rich | Traders, camps, visitors, favours and debts; rivals with a grudge</li>
+          <li>Open Gate | More people come to join | The classic cycle | Wanderers, refugees, escape pods, wild people and guests who stay; Rimfolk's events in which someone may join; visitors</li>
+          <li>Home and Hearth | The colonists' own lives | The classic cycle | Personal stories, pasts catching up, challenges, wagers, feasts and games</li>
+          <li>The Wilds | Animals and the land | The classic cycle; predators and maddened animals as in the base game | Herds, animals joining, rare beasts, the land's finds; Rimfolk's beasts, the land and sky, moments with animals</li>
+          <li>Windfalls | The colony finds more | The classic cycle, larger raids as it grows rich | Pods, ship chunks and meteorites; stashes, ruins and wrecks to explore; Rimfolk's finds and gifts</li>
+          <li>Sellswords | Fighting for others | The classic cycle at home | Calls to arms, bandit camps, bounties, champions, sellswords for hire</li>
+          <li>Feast Days | Festivals fill the calendar | The classic cycle | Rimfolk's feasts, fairs and games, performers and storytellers; the region's fairs and moots</li>
         </table>
       </li>
       <li>
@@ -56,19 +80,43 @@ The story direction (Rimfolk's settings, What's on) leans whichever storyteller 
       </li>
       <li>
         <heading>Rise and Fall</heading>
-        <text>An arc lasts about two years. The first 55 days are growth: few raids, traders, visitors and camps in plenty. Then the omens: a few days in, the region's word of the coming trouble comes as one of Rimfolk's world events (a war, a plague, a famine, a hard winter or a strange sky), set by the world and never the same as the last arc's. 25 days later the trouble itself, for 20 days: the war's raids, the plague's sickness, the famine's blights (and droughts and weeds with your mods), the winter's cold snaps (and a whiteout), the sky's darkness (a long night, a psychic hum). Then 20 days of rebuilding, quiet, with friends more likely at hand, and the next arc. Personal stories begin a little more often.</text>
+        <text>An arc lasts two years: a year of rise, then a year of fall. The first year, all 60 of its days, is growth: raids come a little less often than at the classic pace, and traders, visitors and camps come in plenty. The second year begins with the omens: a few days in, the region's word of the coming trouble comes as one of Rimfolk's world events (a war, a plague, a famine, a hard winter or a strange sky), set by the world and never the same as the last arc's. 20 days into the year the trouble itself comes, for 20 days: the war's raids, the plague's sickness, the famine's blights (and droughts and weeds with your mods), the winter's cold snaps (and a whiteout), the sky's darkness (a long night, a psychic hum). The year ends with 20 days of rebuilding, quiet, with friends more likely at hand, and then the next arc begins. Over the two years threats and sickness come about as often as at the classic pace. Personal stories begin a little more often.</text>
       </li>
       <li>
         <heading>Crossroads</heading>
         <text>Traders come 12 times a year, orbital traders about twice as often, visitors and travellers more often, and Rimfolk's trading camps and market caravans twice as often. Raids come at the classic pace, larger as the colony grows rich, and about a third of them come from rivals with a grudge. Favours and debts, letters, camps and missions come more often, and the region's word leans to fairs, trade, roads, rushes and tolls.</text>
       </li>
       <li>
+        <heading>Open Gate</heading>
+        <text>About every 10 days someone comes to join, on top of the game's own: a wanderer asking to join, a refugee in a crashed transport pod, a wild person wandering in, and from your mods a group of wild people (Vanilla Events Expanded), an escape pod (Vanilla Gravship Expanded) or a happy guest asking to stay for good (Hospitality). About every 20 days the game offers guests who ask to stay a while and may join at the end, refugees to shelter for a time (Royalty) or a downed refugee to rescue. How many come follows the storyteller's own sense of how big the colony should be, so a large colony sees fewer. Visitors come 6 times a year instead of 4, Rimfolk's visitors 1.3 times as often, and Rimfolk's events in which someone may join 2.5 times as often: a quiet stranger, a wounded stranger, a would-be apprentice, runaway lovers, an old comrade. Raids, sickness and everything else come as in the base game.</text>
+      </li>
+      <li>
+        <heading>Home and Hearth</heading>
+        <text>Personal stories begin about twice as often (no more of them at once than usual), and Rimfolk's events in which a colonist's past catches up with them come about twice as often. Rimfolk's challenges come 1.6 times as often, and its feasts, fairs, games and wagers twice as often: a feast at a camp's fire, a harvest fair, a game for a stake, a travelling gambler, a wedding at the colony, a fair on the frozen river, the longest night kept awake, a neighbour's great day, a town's day. The steward thinks of holding a feast with guests twice as readily (still once a season at most, with offices on). Raids, sickness and everything else come as in the base game.</text>
+      </li>
+      <li>
+        <heading>The Wilds</heading>
+        <text>About every 6 days one of the land's animal events comes, on top of the game's own: a herd passing through, thrumbos passing, farm animals wandering in, an animal that tames itself, ambrosia sprouting, and from your mods caravan and battle animals wandering in and wild crops sprouting (Vanilla Events Expanded), a behemoth passing (Alpha Animals), animals thought extinct passing (Vanilla Animals Expanded - Endangered), and herds and young of Pokémon (PokéWorld). Rimfolk's events of animals and great beasts come 2.5 times as often (a great beast on the land, a strange creature, orphaned young, the herd crossing, a tamer's challenge, the animal doctor), its events of the land and the sky 1.8 times, and the colonists' moments with their own animals and calm wild ones 2.5 times. The region's word leans to great herds, drove seasons and the old thrumbo. Predators, maddened animals, raids and everything else come as in the base game.</text>
+      </li>
+      <li>
+        <heading>Windfalls</heading>
+        <text>About every 8 days something falls from the sky, on top of the game's own: cargo pods most of all, ship chunks, a meteorite, and from your mods pods of clothes and of weapons (Vanilla Events Expanded). About every 15 days the game offers something to explore as one of its quests: an item stash, an ancient complex (Ideology), an abandoned base (Real Ruins), a gravship's wreckage and stashes and wrecks in orbit (Odyssey); now and then a lost city (Go Explore) or untouched ruins (Real Ruins) are found. Rimfolk's finds and gifts come 2.5 times as often: treasure maps, buried caches, sealed crates, a door in the hill, lost cargo, a crashed drone, a fallen star, a child's or a pet's find, a wild harvest, an inheritance, and gifts from allies and old friends the colony once helped. The region's word leans to wrecks and opened vaults. Raids come as in the base game, and still grow with the colony's wealth.</text>
+      </li>
+      <li>
+        <heading>Sellswords</heading>
+        <text>About every 15 days the game offers a fight for others as one of its quests: a bandit camp to clear, an ally's mission against one (Royalty), and from your mods an outlaw wanted for a bounty (Vanilla Factions Expanded - Settlers), a skirmish or a siege camp (Vanilla Factions Expanded - Medieval 2), an arcane bandits' camp (A RimWorld of Magic) or a deserters' hideout (Vanilla Factions Expanded - Empire); now and then a prison camp to free (Go Explore). A people's call to arms, when their town is attacked, comes 2.5 times as readily, and Rimfolk's events of champions, bounties and sellswords 2.5 times as often: a travelling champion and a rematch, a prisoner a people will pay for, a sellsword squad offering to hold the walls, a call to serve a season, a company's muster. The region's word leans to sellsword companies looking for work. Raids on the colony come as in the base game.</text>
+      </li>
+      <li>
+        <heading>Feast Days</heading>
+        <text>Rimfolk's feasts, fairs, games and wagers come 2.5 times as often, and the steward thinks of holding a feast with guests 2.5 times as readily. Performers and storytellers come 2.5 times as often: a travelling storyteller, travelling players, a fiddler, a spirit-singer, a fortune teller, a play about the colony. The region's word leans to great fairs, moots of the peoples, bumper harvests and seasons of songs. Raids, sickness and everything else come as in the base game.</text>
+      </li>
+      <li>
         <heading>Choosing and changing</heading>
         <points>
           <li>A new game: pick the way on the storyteller screen, with any difficulty.</li>
           <li>A game already running: the game's options, Gameplay, Change storyteller. The new way leans from that moment.</li>
-          <li>The story direction: Rimfolk's settings, What's on, Story direction. It leans from that moment, over any storyteller, and none takes it off.</li>
-          <li>What a way leans needs its part of Rimfolk switched on: camps, letters, world events, the gods. A part switched off stays off.</li>
+          <li>The story direction: Rimfolk's settings, What's on, Story direction. It leans from that moment, over any storyteller, and none takes it off. A direction brings a way's levers on Rimfolk's happenings, its world events and its raids' reasons; a way's own parts (its named events and quests, its threats by the season or the arc) come only with the way as your storyteller.</li>
+          <li>What a way leans needs its part of Rimfolk switched on: camps, letters, world events, the gods, offices for the steward's feasts. A part switched off stays off.</li>
         </points>
       </li>
     </sections>
