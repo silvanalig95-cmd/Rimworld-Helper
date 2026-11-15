@@ -22,24 +22,34 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Making room on a full shelf for a reserved kind (the player's report, 10 November 2026: a slot kept for meals held
-    /// by something else, and a meal that couldn't be hauled for want of a free spot). Two ways, both behind the shelf
-    /// reserves setting and the deeper game hooks (ShelfReserves.On):
+    /// by something else, and a meal that couldn't be hauled for want of a free spot), and a better meal or medicine
+    /// taking a lesser stack's place (the player's report, 15 November 2026: three meal slots reserved, and a fine bake
+    /// that couldn't be hauled there). Two ways, both behind the shelf reserves setting and the deeper game hooks
+    /// (ShelfReserves.On):
     /// - On their own: a stack the reserves mark to move out that no other storage takes is set down on a free cell beside
-    ///   the shelf (the game's own haul aside), while the shelf is short of room for a kind waiting for it
-    ///   (Patch_ShelfMakeRoomAuto). It isn't put back while it would take the slot kept for that kind
-    ///   (ShelfReserves.MayStore), so the usual hauling then brings the kind in.
-    /// - Ordered: a colonist's menu on a stack of a reserved kind the game finds no storage for offers "Make room on the
-    ///   shelf and haul it there" (FloatMenuOptionProvider_RimfolkShelfRoom), in place of the game's "Cannot haul" line
-    ///   (Patch_ShelfMakeRoomMenu). Taken, the colonist carries a stack off the shelf to its best other storage, else sets
-    ///   it down beside the shelf, then hauls the stack into the freed cell, kept for them from the order on. The shelf
-    ///   may be of the same priority as where the stack lies (a reserved kind is fetched from there too), never lower.
+    ///   the shelf (the game's own haul aside), while the shelf is short of room for a kind waiting for it, or for a
+    ///   better kind whose swap waits on it (Patch_ShelfMakeRoomAuto). It isn't put back while it would take the slot kept
+    ///   for that kind (ShelfReserves.MayStore), so the usual hauling then brings the kind in.
+    /// - Ordered: a colonist's menu on a stack the game's own haul doesn't bring to a reserved shelf offers, where the
+    ///   shelf would take it (FloatMenuOptionProvider_RimfolkShelfRoom): "Haul X to its reserved slot on the shelf" (an
+    ///   empty slot and room), "Make room on the shelf and haul X there" (an empty slot, the shelf full), or "Make room on
+    ///   the shelf and haul X there, in place of the simple meal" (a better meal or medicine for a lesser stack in a slot
+    ///   kept best first or for the best at hand), in place of the game's "Cannot haul" line (Patch_ShelfMakeRoomMenu).
+    ///   Taken, the colonist carries the stack that goes off the shelf to its best other storage, else sets it down
+    ///   beside the shelf, then hauls theirs into the freed cell, kept for it from the order on (ShelfReserves.Ordered).
+    ///   The order is the player's, so it may fetch from storage of any priority; once in, the stack stays while it
+    ///   holds a reserved slot (ShelfReserves.KeptHere).
     /// </summary>
     public static class ShelfMakeRoom
     {
-        /// <summary>What a colonist does to make room: the shelf, the stack to take off it, the job doing that, and the freed cell the stack comes into.</summary>
+        /// <summary>
+        /// What a colonist does: the shelf, how (ShelfReserveMath.OrderWay), the stack to take off it and the job doing
+        /// that (none when it goes straight in), and the cell the ordered stack comes into.
+        /// </summary>
         public class Plan
         {
             public Building_Storage shelf;
+            public ShelfReserveMath.OrderWay way;
             public Thing occupant, thing;
             public IntVec3 freed;
             public Job first;
@@ -49,8 +59,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// For a stack the game found no storage for: a job setting it down beside its shelf when the reserves mark it to
-        /// move out and the shelf is short of room for a kind that would come (ShelfReserves.Coming), counting the stacks
-        /// already on their way out; else null.
+        /// move out and the shelf is short of room for a kind that would come (ShelfReserves.Coming) or for a better
+        /// kind's swap whose lesser stack has nowhere else to go (State.aside), counting the stacks already on their way
+        /// out; else null.
         /// </summary>
         internal static Job SetDownJob(Pawn p, Thing t)
         {
@@ -60,13 +71,14 @@ namespace ColonyCouncil
             if (shelf == null || !ShelfReserves.Reserved.Contains(shelf)) return null;
             var reserves = ShelfReserves.Of(map);
             var st = reserves?.StateOf(shelf);
-            if (st == null || st.waiting <= 0 || !st.moveOut.Contains(t)) return null;
+            if (st == null || st.waiting + st.aside <= 0 || !st.moveOut.Contains(t)) return null;
             int leaving = 0;
             foreach (var o in st.moveOut)
                 if (o != t && o.Spawned && map.reservationManager.IsReservedByAnyoneOf(o, Faction.OfPlayer)) leaving++;
-            // Every slot waiting first (it costs nothing), then only those the usual hauling would fill.
-            if (ShelfReserveMath.ShortOfRoom(st.capacity, st.held, st.waiting, leaving) <= 0) return null;
-            if (ShelfReserveMath.ShortOfRoom(st.capacity, st.held, reserves.Coming(st, shelf), leaving) <= 0) return null;
+            // Every slot waiting first (it costs nothing), then only those the usual hauling would fill; a swap's better
+            // kind comes by the usual hauling by its nature.
+            if (ShelfReserveMath.ShortOfRoom(st.capacity, st.held, st.waiting + st.aside, leaving) <= 0) return null;
+            if (ShelfReserveMath.ShortOfRoom(st.capacity, st.held, reserves.Coming(st, shelf) + st.aside, leaving) <= 0) return null;
             return HaulAIUtility.CanHaulAside(p, t, out var cell) ? MoveJob(t, cell, shelf, false) : null;
         }
 
@@ -84,8 +96,10 @@ namespace ColonyCouncil
         // ---------------- Ordered ----------------
 
         /// <summary>
-        /// For a stack the game's own haul finds no storage for: the reserved shelf with an empty slot it would fill (the
-        /// best storage first, then the nearest), the stack to take off it and where that goes; null when no room can be made.
+        /// For a stack the game's own haul doesn't bring to a reserved shelf: the shelf that would take it (an empty slot
+        /// it fills, or a lesser stack's place in a slot kept best first or for the best at hand; the best storage first,
+        /// then the nearest), how, and what goes off it; null when there is none. Where the stack lies doesn't matter:
+        /// the order is the player's, so storage of a higher priority gives it up too.
         /// </summary>
         public static Plan PlanFor(Pawn pawn, Thing thing)
         {
@@ -93,24 +107,26 @@ namespace ColonyCouncil
             if (map == null || thing == null || !thing.Spawned || thing.Map != map || !ShelfReserves.On || ShelfReserves.Reserved.Count == 0) return null;
             if (thing.def.category != ThingCategory.Item || !thing.def.EverHaulable || thing is Corpse) return null;
             if (thing.IsForbidden(pawn) || thing.IsBurning() || !thing.IsSociallyProper(pawn, false, true)) return null;
-            // The shelves that could take it once a stack is off them, looked at first: they cost little.
+            // The shelves that could take it, looked at first: they cost little.
             var reserves = ShelfReserves.Of(map);
             var shelves = ShelfReserves.Reserved
                 .Where(s => s != null && s.Spawned && s.Map == map && s.Faction == pawn.Faction && s.GetStoreSettings() != null)
-                .Where(s => reserves?.StateOf(s) is ShelfReserves.State st && st.held >= st.capacity && st.FillsMissing(thing.def))
+                .Where(s => reserves?.StateOf(s) is ShelfReserves.State st && (st.OrderFills(thing.def) || st.InPlaceOf(thing.def, null) >= 0))
                 .OrderByDescending(s => (int)s.GetStoreSettings().Priority).ThenBy(s => s.Position.DistanceToSquared(thing.Position)).ToList();
             if (shelves.Count == 0 || !pawn.CanReserveAndReach(thing, PathEndMode.ClosestTouch, Danger.Deadly)) return null;
+            // A shelf the game's own haul brings it to needs no order: the game's line does that.
             var current = StoreUtility.CurrentStoragePriorityOf(thing, true);
-            if (StoreUtility.TryFindBestBetterStorageFor(thing, pawn, map, current, pawn.Faction, out _, out _)) return null;
+            StoreUtility.TryFindBestBetterStorageFor(thing, pawn, map, current, pawn.Faction, out _, out var gameDest);
             foreach (var shelf in shelves)
             {
-                var plan = PlanOn(pawn, thing, shelf, current);
+                if (ReferenceEquals(gameDest, shelf)) continue;
+                var plan = PlanOn(pawn, thing, shelf);
                 if (plan != null) return plan;
             }
             return null;
         }
 
-        private static Plan PlanOn(Pawn pawn, Thing thing, Building_Storage shelf, StoragePriority current)
+        private static Plan PlanOn(Pawn pawn, Thing thing, Building_Storage shelf)
         {
             var map = pawn.Map;
             var st = ShelfReserves.Of(map)?.StateOf(shelf);
@@ -118,32 +134,83 @@ namespace ColonyCouncil
             if (shelf.OccupiedRect().Contains(thing.Position) || !shelf.HaulDestinationEnabled) return null;
             var settings = shelf.GetStoreSettings();
             bool allowed = settings.AllowedToAccept(thing) && !st.Barred(thing.def);
-            // As good as where it lies or better: a reserved kind is fetched from storage of the shelf's own priority too.
-            bool better = (int)settings.Priority >= (int)current;
-            if (!ShelfReserveMath.MayMakeRoom(st.capacity, st.held, st.FillsMissing(thing.def), allowed, better)) return null;
-            // What goes: what the reserves mark to move out, counting this kind as waiting if it isn't yet (it lies
-            // outside the home area, say), else the stack of least worth of no reserved kind.
-            var marked = new HashSet<Thing>(st.moveOut);
-            if (!st.Waits(thing.def))
-                foreach (int i in ShelfReserveMath.MoveOut(st.capacity, st.stacks, st.kinds.Count, st.waiting + 1, st.caps))
-                    marked.Add(st.things[i]);
+            bool fills = st.OrderFills(thing.def);
             var rect = shelf.OccupiedRect();
             var movable = st.things.Select(t => t.Spawned && t.Map == map && rect.Contains(t.Position) && !t.IsForbidden(pawn) && !t.IsBurning()
                 && pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Deadly)).ToList();
-            var worth = st.things.Select(t => t.MarketValue * t.stackCount).ToList();
-            int pick = ShelfReserveMath.RoomFrom(st.stacks, st.things.Select(marked.Contains).ToList(), worth, movable);
-            if (pick < 0) return null;
-            var occupant = st.things[pick];
+            int roomFrom = -1;
+            if (ShelfReserveMath.MayMakeRoom(st.capacity, st.held, fills, allowed))
+            {
+                // What goes: what the reserves mark to move out, counting this kind as waiting if it isn't yet (it lies
+                // outside the home area, say), else the stack of least worth of no reserved kind.
+                var marked = new HashSet<Thing>(st.moveOut);
+                if (!st.Waits(thing.def))
+                    foreach (int i in ShelfReserveMath.MoveOut(st.capacity, st.stacks, st.kinds.Count, st.waiting + 1, st.caps))
+                        marked.Add(st.things[i]);
+                var worth = st.things.Select(t => t.MarketValue * t.stackCount).ToList();
+                roomFrom = ShelfReserveMath.RoomFrom(st.stacks, st.things.Select(marked.Contains).ToList(), worth, movable);
+            }
+            // A better meal or medicine for a lesser stack in a slot kept best first or for the best at hand.
+            int inPlace = allowed ? st.InPlaceOf(thing.def, movable) : -1;
+            foreach (var way in ShelfReserveMath.OrderWays(st.capacity, st.held, allowed, fills, roomFrom, inPlace))
+            {
+                var plan = way == ShelfReserveMath.OrderWay.Straight ? StraightIn(pawn, thing, shelf)
+                    : Freeing(pawn, thing, shelf, st.things[way == ShelfReserveMath.OrderWay.MakeRoom ? roomFrom : inPlace], way);
+                if (plan != null) return plan;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Straight into a cell of the shelf with room for it: the game's own search within the shelf, the reserves' rules
+        /// giving way to the order meanwhile (an empty best-at-hand slot counts only what comes by itself).
+        /// </summary>
+        private static Plan StraightIn(Pawn pawn, Thing thing, Building_Storage shelf)
+        {
+            var group = shelf.GetSlotGroup();
+            if (group == null) return null;
+            bool found;
+            IntVec3 cell;
+            ShelfReserves.Planning(shelf, thing.def);
+            try
+            {
+                found = StoreUtility.TryFindBestBetterStoreCellForIn(thing, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, group, out cell);
+            }
+            finally
+            {
+                ShelfReserves.Planning(null, null);
+            }
+            return found ? new Plan { shelf = shelf, way = ShelfReserveMath.OrderWay.Straight, thing = thing, freed = cell } : null;
+        }
+
+        /// <summary>A stack off the shelf first (to make room, or the lesser one the ordered stack replaces), then the ordered stack into its cell.</summary>
+        private static Plan Freeing(Pawn pawn, Thing thing, Building_Storage shelf, Thing occupant, ShelfReserveMath.OrderWay way)
+        {
             var freed = occupant.Position;
             if (!pawn.CanReserve(freed) || !pawn.CanReach(freed, PathEndMode.ClosestTouch, Danger.Deadly)) return null;
             var first = FirstJob(pawn, occupant, shelf);
-            return first == null ? null : new Plan { shelf = shelf, occupant = occupant, thing = thing, freed = freed, first = first };
+            return first == null ? null : new Plan { shelf = shelf, way = way, occupant = occupant, thing = thing, freed = freed, first = first };
         }
 
-        /// <summary>The stack off the shelf: to its best other storage (the game's search), else set down on a free cell beside the shelf.</summary>
+        /// <summary>
+        /// The stack off the shelf: to its best other storage (the game's search, its own shelf not taking it meanwhile: a
+        /// lesser meal in a slot still belongs there), else set down on a free cell beside the shelf.
+        /// </summary>
         private static Job FirstJob(Pawn pawn, Thing occupant, Building_Storage shelf)
         {
-            if (StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out var cell, out var dest) && dest != shelf)
+            bool stored;
+            IntVec3 cell;
+            IHaulDestination dest;
+            ShelfReserves.Leaving(occupant);
+            try
+            {
+                stored = StoreUtility.TryFindBestBetterStorageFor(occupant, pawn, pawn.Map, StoragePriority.Unstored, pawn.Faction, out cell, out dest);
+            }
+            finally
+            {
+                ShelfReserves.Leaving(null);
+            }
+            if (stored && dest != shelf)
             {
                 if (dest is ISlotGroupParent && cell.IsValid) return MoveJob(occupant, cell, shelf, true);
                 if (dest is Thing container && container.TryGetInnerInteractableThingOwner() != null) return HaulAIUtility.HaulToContainerJob(pawn, occupant, container);
@@ -153,7 +220,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The order taken: the stack off the shelf first, then the game's own haul of the thing into the freed cell, queued
-        /// next and reserved at once (the thing and the cell), so nobody else fills the cell in between.
+        /// next and reserved at once (the thing and the cell), so nobody else fills the cell in between; or, straight in,
+        /// the haul alone. The cell is kept for what it brings from the order on (ShelfReserves.Ordered).
         /// </summary>
         public static void Take(Pawn pawn, Thing thing)
         {
@@ -164,7 +232,6 @@ namespace ColonyCouncil
                 SoundDefOf.ClickReject.PlayOneShotOnCamera();
                 return;
             }
-            if (!pawn.jobs.TryTakeOrderedJob(plan.first, JobTag.Misc)) return;
             var haul = JobMaker.MakeJob(JobDefOf.HaulToCell, plan.thing, plan.freed);
             int count = Math.Min(plan.thing.stackCount, plan.thing.def.stackLimit);
             int most = ShelfReserves.MostInto(plan.freed, pawn.Map, plan.thing);
@@ -172,7 +239,15 @@ namespace ColonyCouncil
             haul.haulMode = HaulMode.ToCellStorage;
             haul.haulOpportunisticDuplicates = false;
             haul.playerForced = true;
+            var reserves = ShelfReserves.Of(pawn.Map);
+            if (plan.first == null)
+            {
+                if (pawn.jobs.TryTakeOrderedJob(haul, JobTag.Misc)) reserves?.Ordered(plan.shelf, plan.freed, plan.thing);
+                return;
+            }
+            if (!pawn.jobs.TryTakeOrderedJob(plan.first, JobTag.Misc)) return;
             if (!haul.TryMakePreToilReservations(pawn, false)) return;
+            reserves?.Ordered(plan.shelf, plan.freed, plan.thing);
             // Straight after the first job, which is under way, or queued behind it (an order added to the queue).
             if (pawn.CurJob == plan.first) pawn.jobs.jobQueue.EnqueueFirst(haul, JobTag.Misc);
             else pawn.jobs.jobQueue.EnqueueLast(haul, JobTag.Misc);
@@ -180,9 +255,19 @@ namespace ColonyCouncil
 
         // ---------------- Words ----------------
 
-        /// <summary>The menu's line: "Make room on the shelf and haul simple meal x4 there".</summary>
-        public static string Label(Plan plan) =>
-            "CC_Shelf_MakeRoomHaul".Translate(plan.shelf.LabelNoCount.Named("SHELF"), plan.thing.Label.Named("THING")).Resolve();
+        /// <summary>
+        /// The menu's line: "Haul fine bake x4 to its reserved slot on the big shelf", "Make room on the big shelf and haul
+        /// simple meal x4 there", or "Make room on the big shelf and haul fine bake x4 there, in place of the simple meal".
+        /// </summary>
+        public static string Label(Plan plan)
+        {
+            var shelf = plan.shelf.LabelNoCount.Named("SHELF");
+            var thing = plan.thing.Label.Named("THING");
+            if (plan.way == ShelfReserveMath.OrderWay.Straight) return "CC_Shelf_HaulToSlot".Translate(shelf, thing).Resolve();
+            if (plan.way == ShelfReserveMath.OrderWay.InPlace && plan.occupant != null)
+                return "CC_Shelf_MakeRoomSwap".Translate(shelf, thing, plan.occupant.LabelNoCount.Named("LESSER")).Resolve();
+            return "CC_Shelf_MakeRoomHaul".Translate(shelf, thing).Resolve();
+        }
 
         /// <summary>
         /// What the job is: "making room on the shelf for the simple meal." The kind is the stack queued to come into the
@@ -242,9 +327,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Right-clicking a stack of a reserved kind with a colonist selected, when the game finds no storage for it and a
-    /// reserved shelf could take it once a stack is off it: "Make room on the shelf and haul X there". The game finds
-    /// this provider by itself (every FloatMenuOptionProvider in a loaded assembly).
+    /// Right-clicking a stack of a reserved kind with a colonist selected, when the game's own haul doesn't bring it to a
+    /// reserved shelf that would take it (into an empty slot, or in place of a lesser meal or medicine): "Haul X to its
+    /// reserved slot on the shelf", "Make room on the shelf and haul X there", or the same "in place of the simple meal".
+    /// The game finds this provider by itself (every FloatMenuOptionProvider in a loaded assembly).
     /// </summary>
     public class FloatMenuOptionProvider_RimfolkShelfRoom : FloatMenuOptionProvider
     {

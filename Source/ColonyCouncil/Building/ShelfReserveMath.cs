@@ -13,10 +13,11 @@ namespace ColonyCouncil
     /// condition holds: while it doesn't, the kind isn't kept on the shelf at all (barred). A stack that must go and that
     /// no other storage takes is set down beside the shelf while the shelf is short of room (<see cref="ShortOfRoom"/>);
     /// a colonist ordered to haul a reserved kind to a full shelf takes a stack off it first (<see cref="MayMakeRoom"/>,
-    /// <see cref="RoomFrom"/>). Any of meals or of medicine is kept best first, in the order colonists pick their food
-    /// (<see cref="RankedKinds"/>, <see cref="FoodRank"/>): the better stacks take the slots, a lesser kind waits while a
-    /// better one would come, and a better kind that turns up takes a lesser stack's slot (<see cref="SwapDue"/>,
-    /// <see cref="SwapOut"/>).
+    /// <see cref="RoomFrom"/>), and one ordered to haul a better meal or medicine there takes a lesser stack off in its
+    /// place (<see cref="InPlaceOf"/>, <see cref="OrderWays"/>). Any of meals or of medicine is kept best first, in the
+    /// order colonists pick their food (<see cref="RankedKinds"/>, <see cref="FoodRank"/>): the better stacks take the
+    /// slots, a lesser kind waits while a better one would come, and a better kind that turns up takes a lesser stack's
+    /// slot (<see cref="SwapDue"/>, <see cref="SwapOut"/>, <see cref="SwapBy"/>).
     /// </summary>
     public static class ShelfReserveMath
     {
@@ -166,12 +167,72 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whether room can be made on a shelf for a stack a colonist is ordered to haul there: the shelf is full, the
-        /// stack would fill one of its empty reserved slots, the shelf's storage settings allow it, and the shelf is
-        /// storage as good as where it lies or better (<paramref name="better"/>; a reserved kind comes from storage of
-        /// the shelf's own priority too, never from higher).
+        /// stack would fill one of its empty reserved slots, and the shelf's storage settings allow it. Where the stack
+        /// lies doesn't matter: the order is the player's, so it may fetch from storage of a higher priority too.
         /// </summary>
-        public static bool MayMakeRoom(int capacity, int held, bool fillsMissing, bool allowed, bool better) =>
-            capacity > 0 && held >= capacity && fillsMissing && allowed && better;
+        public static bool MayMakeRoom(int capacity, int held, bool fillsMissing, bool allowed) =>
+            capacity > 0 && held >= capacity && fillsMissing && allowed;
+
+        /// <summary>How a colonist ordered to haul a stack to a reserved shelf goes about it.</summary>
+        public enum OrderWay
+        {
+            /// <summary>Straight into a free slot: it fills an empty reserved slot and the shelf has room.</summary>
+            Straight,
+            /// <summary>A stack off the full shelf first (RoomFrom), then the stack into the freed spot.</summary>
+            MakeRoom,
+            /// <summary>In place of a lesser stack in a slot kept best first or for the best at hand (InPlaceOf).</summary>
+            InPlace
+        }
+
+        /// <summary>
+        /// The ways a colonist ordered to haul a stack to a reserved shelf could go about it, in the order tried: straight
+        /// into a free slot, else making room on the full shelf (<paramref name="roomFrom"/>: the stack RoomFrom takes
+        /// off, -1 for none), else in place of a lesser stack (<paramref name="inPlaceOf"/>, -1 for none). None when the
+        /// shelf's storage settings don't allow it.
+        /// </summary>
+        public static List<OrderWay> OrderWays(int capacity, int held, bool allowed, bool fillsMissing, int roomFrom, int inPlaceOf)
+        {
+            var ways = new List<OrderWay>();
+            if (!allowed || capacity <= 0) return ways;
+            if (fillsMissing && held < capacity) ways.Add(OrderWay.Straight);
+            if (MayMakeRoom(capacity, held, fillsMissing, allowed) && roomFrom >= 0) ways.Add(OrderWay.MakeRoom);
+            if (inPlaceOf >= 0) ways.Add(OrderWay.InPlace);
+            return ways;
+        }
+
+        /// <summary>
+        /// The stack an ordered stack ranked <paramref name="rank"/> takes the place of (a fine bake for a simple meal):
+        /// the slots it could fill that are kept best first or for the best at hand (<paramref name="slots"/>) all
+        /// filled, the lowest ranked stack filling one of them that ranks strictly below it (<paramref name="ranks"/>,
+        /// per stack; the smaller first). A spare stack covering one of those slots, filling none and ranked below it,
+        /// goes first, so the slots keep theirs. Only stacks a colonist can take (<paramref name="movable"/>; null: all)
+        /// count. -1 when none ranks below it, or one of those slots is still empty (it fills that one instead).
+        /// </summary>
+        public static int InPlaceOf(IList<Stack> stacks, IList<int> filledBy, IList<int> slots, IList<double> ranks, double rank, IList<bool> movable)
+        {
+            if (stacks == null || filledBy == null || slots == null || ranks == null || slots.Count == 0) return -1;
+            bool Can(int i) => i >= 0 && i < stacks.Count && i < ranks.Count && (movable == null || i < movable.Count && movable[i]);
+            bool LowerOf(int a, int b) => ranks[a] != ranks[b] ? ranks[a] < ranks[b] : stacks[a].count < stacks[b].count;
+            var filling = new HashSet<int>();
+            foreach (int s in filledBy)
+                if (s >= 0) filling.Add(s);
+            int low = -1;
+            foreach (int k in slots)
+            {
+                if (k < 0 || k >= filledBy.Count || filledBy[k] < 0) return -1;
+                int s = filledBy[k];
+                if (!Can(s) || ranks[s] >= rank) continue;
+                if (low < 0 || LowerOf(s, low)) low = s;
+            }
+            if (low < 0) return -1;
+            int spare = -1;
+            for (int i = 0; i < stacks.Count; i++)
+            {
+                if (filling.Contains(i) || !Can(i) || ranks[i] >= rank || !CoversAny(stacks[i], slots)) continue;
+                if (spare < 0 || LowerOf(i, spare)) spare = i;
+            }
+            return spare >= 0 ? spare : low;
+        }
 
         /// <summary>
         /// The stack to take off a full shelf so another can come in: of those the reserves mark to move out
@@ -356,6 +417,31 @@ namespace ColonyCouncil
             if (pick >= 0) return pick;
             return due >= 0 && due < stacks.Count && (taken == null || !taken.Contains(due)) ? due : -1;
         }
+
+        /// <summary>How a better kind takes a lesser stack's slot (a swap due).</summary>
+        public enum SwapWay
+        {
+            /// <summary>Into a free slot left over.</summary>
+            Free,
+            /// <summary>The lesser stack carried back to another store that takes it.</summary>
+            Back,
+            /// <summary>
+            /// The lesser stack set down beside the shelf, as nothing else has room for it, while the better kind's own
+            /// store takes it once that kind has left (the two change places).
+            /// </summary>
+            Aside,
+            /// <summary>No swap: no free slot, and nowhere for the lesser stack to go.</summary>
+            Stuck
+        }
+
+        /// <summary>
+        /// How a swap due goes (<see cref="SwapWay"/>): into a free slot when one is left over; else the lesser stack
+        /// (<paramref name="canGo"/>: SwapOut found one) back to another store with room (<paramref name="otherStore"/>);
+        /// else set down beside the shelf when the store the better kind comes from would take it once that kind is out
+        /// of it (<paramref name="theirStore"/>; a better kind lying loose frees no place); else none.
+        /// </summary>
+        public static SwapWay SwapBy(int free, bool canGo, bool otherStore, bool theirStore) =>
+            free > 0 ? SwapWay.Free : !canGo ? SwapWay.Stuck : otherStore ? SwapWay.Back : theirStore ? SwapWay.Aside : SwapWay.Stuck;
 
         /// <summary>
         /// How long an empty slot of "any" kept best first waits for a better kind that would come before a lesser one may

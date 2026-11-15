@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.256.2</version>
+        <date>15 November 2026</date>
+        <title>A better meal in a lesser one's place</title>
+        <points>
+          <li>Right-click a better meal or medicine with a colonist to bring it to a reserved shelf in place of a lesser stack, even from a fridge of a higher priority.</li>
+          <li>What a colonist is told to bring to a reserved shelf stays there: haulers no longer carry it back to the storage it came from.</li>
+          <li>With the fridge full too, a better meal still changes places with a lesser one: the lesser waits beside the shelf until the fridge has room for it.</li>
+          <li>The shelf's list says why a better meal isn't coming, and how to bring one kept in storage of a higher priority.</li>
+          <li>A stack the haulers would take elsewhere can be sent straight to its empty reserved slot from the colonist's menu.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.256.1</version>
         <date>15 November 2026</date>
         <title>The camera for every god's doing</title>

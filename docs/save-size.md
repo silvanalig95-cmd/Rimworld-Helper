@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 714; modelled: 714; growing without end: 0.
+Saved collections found: 715; modelled: 715; growing without end: 0.
 Rimfolk's part of the save, roughly: **3,025 KB** after a year, **3,728 KB** after two, **4,164 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -486,6 +486,7 @@ Rimfolk's part of the save, roughly: **3,025 KB** after a year, **3,728 KB** aft
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
 | `Peoples/Events2/PeopleEvents2Book.cs:marks` | the blades the guild marked with a colonist's name, PeopleEvents2Math.MaxMarks kept | cap | 1 | 3 | 7 | 0.2 |
 | `Beasts/BeastBook.cs:homes` | one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season | fixed | 1 | 1 | 1 | 0.2 |
+| `Building/ShelfReserves.cs:keptSaved` | stacks a colonist was ordered to bring to a reserved shelf, per map, while they hold one of its slots (let go when they don't, or leave the shelf) | while | 4 | 4 | 4 | 0.2 |
 | `Calendar/CalendarDay.cs:knew` | per day on the calendar | fixed | 4 | 4 | 4 | 0.2 |
 | `Camps/CampLook.cs:walkSeen` | colonists the farewell round looked in on (the walk's count), while the camp stays | while | 4 | 4 | 4 | 0.2 |
 | `ColonyState.cs:colonies` | one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept 30 days (ColonyStateMath.KeepLostDays), then let go | fixed | 1 | 1 | 1 | 0.2 |

@@ -1134,6 +1134,7 @@ MODEL = {
     "Building/ShelfReserves.cs:reserves": ("while", 30, 60, "shelves with reserved slots, per map, while the shelf stands"),
     "Building/ShelfReserves.cs:kinds": ("while", 0, 30, "read from saves of 0.23.0 and 0.23.1 only, then kept as entries"),
     "Building/ShelfReserves.cs:entries": ("while", 6, 90, "per shelf: the kinds it keeps slots for, with how they're kept"),
+    "Building/ShelfReserves.cs:keptSaved": ("while", 4, 40, "stacks a colonist was ordered to bring to a reserved shelf, per map, while they hold one of its slots (let go when they don't, or leave the shelf)"),
     "Building/CustomRooms.cs:pieces": ("settings", 30, 120, "per saved room, in the mod's settings file"),
     "Building/PersonalTouches.cs:pending": ("cap", (10, 0.2), 200, "until built or dropped"),
     # Dilemmas and decrees

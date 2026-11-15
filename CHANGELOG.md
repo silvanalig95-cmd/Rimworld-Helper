@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A better meal in a lesser one's place
+
+*15 November 2026, version 0.256.2*
+
+- Right-click a better meal or medicine with a colonist to bring it to a reserved shelf in place of a lesser stack, even from a fridge of a higher priority.
+- What a colonist is told to bring to a reserved shelf stays there: haulers no longer carry it back to the storage it came from.
+- With the fridge full too, a better meal still changes places with a lesser one: the lesser waits beside the shelf until the fridge has room for it.
+- The shelf's list says why a better meal isn't coming, and how to bring one kept in storage of a higher priority.
+- A stack the haulers would take elsewhere can be sent straight to its empty reserved slot from the colonist's menu.
+
 ## The camera for every god's doing
 
 *15 November 2026, version 0.256.1*

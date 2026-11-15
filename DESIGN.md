@@ -2861,7 +2861,7 @@ conditions that's fair, but not when it's "hard weather" that they could however
 "make sure this weather resilience update is applied to all kinds of occurences that make people come to my map, as long
 as the faction/type of event etc. reasonably allows this and makes sense from a "realism" perspective"; and "so for
 raiders it would also make sense if they come dressed for the weather, assuming their faction actually fits the
-clothing". On 15 November 2026 (not released yet): "regarding the weather clothing, i'd want not everyone to just wear
+clothing". On 15 November 2026 (released 0.242.0): "regarding the weather clothing, i'd want not everyone to just wear
 only a parka against cold, but the clothing should always be varied. of course there should be parkas, but also other
 clothing combinations to counter the cold", and of the great caravan whose rider never came at -36 °C: "again, people
 should just be dressed for the weather as much as possible, counts for all events". So now: varied outfits (**Varied
@@ -5234,7 +5234,7 @@ work giver, full and worth a trip, the longest hold, before needs, never instead
   products taken off the game's list in `Notify_BillDone` (a mod reading the list after it sees fewer), and interplay
   with Common Sense and Gastronomy (a restaurant waits up to two hours for meals in a cook's pocket).
 
-### Reserved slots on shelves, and making room for them (the player's report, 10 November 2026; making room released 0.205.3)
+### Reserved slots on shelves, and making room for them (the player's reports, 10 and 15 November 2026; making room released 0.205.3; a better stack in a lesser one's place released 0.256.2)
 
 The shelf reserves (`Building/ShelfReserves.cs`, the setting "Reserved slots on shelves", `shelfReserves`, behind the
 deeper hooks; Almanac Management, "Reserved slots"): a shelf keeps slots for kinds the player picks (an item, any of a
@@ -5277,6 +5277,9 @@ configured to store it"), and a stack marked to move out that no other storage t
   other storage (the game's search from unstored, never the same shelf; a container by the game's haul to a container),
   else set down beside the shelf; then the game's `HaulToCell` of the ordered stack into the freed cell, queued next and
   reserved at once with the stack, so nobody fills the cell in between. The order is looked at again when it is taken.
+  Since the player's report of 15 November 2026 (below, "A better stack in a lesser one's place") the line comes for
+  any reserved shelf the game's own haul doesn't bring the stack to, wherever it lies (storage of a higher priority
+  too), and also straight into a free slot and in place of a lesser meal or medicine.
 - **The job's words**: `Rimfolk_MakeRoomOnShelf` (`Defs/Misc/Rimfolk_ShelfReserves.xml`), the game's
   `JobDriver_HaulToCell` with its report: "making room on the shelf for the simple meal." (the stack queued to come in)
   or "for meals" (the first kind waiting). No message: the menu's line and the job's report say it.
@@ -5317,23 +5320,24 @@ freezer and stayed.
   better kind coming (`SwapDue`, strictly better, so kinds ranked alike never swap), the swap takes a free slot if one is
   left (kept for it: `MayTakeSlot` counts `swaps`, `FillsSwap` lets the better kind in), else the lesser goes back
   (`SwapOut`: a spare stack of the group first, else the slot's own), only when another store would take it
-  (`HasOtherStore`; never set down). A carried-back stack can't come in again while the better kind comes: the empty
+  (`HasOtherStore`; since 15 November 2026 also set down beside the shelf while the better kind's own store would take
+  it, below). A carried-back stack can't come in again while the better kind comes: the empty
   slot refuses it and no free slot is left over. An empty slot that waits `GateTicks` (three hours) with nothing filled
   gives up on that kind for `RestTicks` (a day; `WaitForBetter`, not saved), so a kind that can't be fetched never keeps
   a slot empty or swaps a stack back and forth.
 - **Where a reserved kind comes from** (every reserved slot, not only meals): loose in the home area, or storage of the
   shelf's priority or lower, never a stack holding another reserved shelf's slot; higher storage keeps what it holds (the
-  game would carry it straight back). Lower the game's own hauling empties. The same priority Rimfolk fetches:
+  game would carry it straight back), unless a colonist is ordered to bring a stack from there (below). Lower the game's own hauling empties. The same priority Rimfolk fetches:
   `Patch_ShelfReserveFetch` (a postfix on `StoreUtility.IsInValidBestStorage`) tells `ListerHaulables` such a stack isn't
   in its best storage while a reserved shelf wants it (`WantedOn`: the same priority, an empty slot or a swap waiting
   for its kind, more of them than cells already reserved for hauls), and `Patch_ShelfMakeRoomAuto` gives
   `ShelfReserves.FetchJob` where the game's search found no better storage: the game's `HaulToCellStorageJob` into a
   cell from `TryFindBestBetterStoreCellForIn`. On the shelf the game never carries it back (no strictly better storage).
-  The ordered make-room accepts the same priority too. A look reads storage priorities and filters straight from the
+  The ordered make-room accepts the same priority too (any priority since 15 November 2026). A look reads storage priorities and filters straight from the
   slot groups, never `Accepts` (which looks at a reserved shelf again), and `StateOf` never looks at a shelf twice at once.
 - **Words**: the shelf's list says "on the shelf, the fine meal comes in place of the simple meal" during a swap and
   "on the map, but only in storage of a higher priority than this shelf, which keeps it" (`CC_Shelf_BetterComing`,
-  `CC_Shelf_KeptHigher`); the window's explanation, the picker's tips, the setting's tip and the Almanac's "Reserved
+  `CC_Shelf_KeptHigher`, which since 15 November 2026 adds "right-click it with a colonist to bring it here"); the window's explanation, the picker's tips, the setting's tip and the Almanac's "Reserved
   slots" say it. Nothing saved, no Sched slot. Tests: `ShelfReserveTests` (the player's 23 left out of their meals, the
   order, best-first fill, swaps, a play-out from their shelf to three fine stacks with each simple one carried back
   once and none let back in, the seams).
@@ -5341,6 +5345,82 @@ freezer and stayed.
   whose hauling to inventory makes its own storage search, leaves such a stack to the game's haul as expected), the
   stacks swapped on LWM's cells, the status lines, and the cost of the best-storage postfix on a big colony (it returns
   at once without a reserved shelf).
+
+**A better stack in a lesser one's place** (the player's report, 15 November 2026; released 0.256.2): "also i think the
+"take best meal" reservation in the storage is not properly working. i had three slots reserved fo this, but could not
+haul a fine bake or so. it should have been haulable via "make space and haul", are these two features compatible with
+each other?" They weren't, in three ways. The ordered make-room looked only for an empty reserved slot on a full shelf
+(`FillsMissing`), so a fine bake for meal slots all filled with simple meals and bakes got the game's "Cannot haul" line
+and nothing else; it came only where the game's haul found no storage at all, and only for a stack in storage of the
+shelf's priority or lower, so a stack in a fridge of a higher priority could not be brought even by order. And on its
+own, a swap with no free slot happened only when another store had room for the lesser stack, so with every store full
+the fine meals stayed in the fridge for good.
+
+- **Their save** (`League of Toba`, 15 November 2026): the shelf is `LWM_BigShelf86117` at 72, 208, now Critical (it
+  was Important the day before), reserving a joint, hot coffee, any meals (2 slots) and the best meal at hand (1 slot).
+  It holds six stacks of its eight: components 43 and four fine bakes on one cell, three stacks of steel and hot coffee
+  17 on the other. So one meal slot is filled (the fine bake), two wait, and the joint's slot is used meanwhile (no
+  joint on the map, ten in packs). The only other meal lying on the map is four fine meals in the freezer's stockpile
+  (Preferred, below the shelf): they come by themselves. A fine meal and a fine bake rank alike (both +5 mood, offset
+  16, worth 20: `FoodRank`), so the best at hand is either; the fine bake is in `FoodMeals` (Vanilla Cooking
+  Expanded's def), ranked among the meals. The save shows the shelf afterwards: what the player met was the meal slots
+  held by lesser meals with the fine bake where the shelf doesn't fetch from (higher storage, or outside the home area).
+- **By order** (`ShelfMakeRoom.PlanFor`, `PlanOn`; `ShelfReserveMath.OrderWays`, `InPlaceOf`; `State.InPlaceOf`): the
+  menu's line comes for every reserved shelf but the one the game's own haul brings the stack to (the destination of
+  `TryFindBestBetterStorageFor`; there the game's line does it), wherever the stack lies, storage of a higher priority
+  included: the order is the player's (`MayMakeRoom` no longer asks for better storage). A shelf counts when the stack
+  fills an empty slot (`State.OrderFills`: one it fills now, or an empty best-at-hand slot of its group it ranks at least
+  as well as the best at hand for, which counts only what comes by itself), or takes a lesser stack's place: of the entries kept best first or for the best at hand whose
+  ranked kinds include it (`State.rankedDefs`, now worked out for the best at hand too, `RankFor`), each with every one
+  of its slots filled, the lowest ranked stack filling one that ranks strictly below it (the smaller first; a spare
+  stack of the group filling no slot goes first; only stacks the colonist can take), the lowest of the entries' picks.
+  Kinds ranked alike never replace each other. The ways, tried in this order: straight into a free cell of the shelf
+  (`StraightIn`, the game's own search within it, the reserves' rules giving way meanwhile, `ShelfReserves.Planning`)
+  when it fills an empty slot and the shelf has room, "Haul fine bake x4
+  to its reserved slot on the big shelf"; making room as before (`RoomFrom`) when the shelf is full, "Make room on the
+  big shelf and haul fine bake x4 there"; in place of the lesser stack, "Make room on the big shelf and haul fine bake
+  x4 there, in place of the simple meal". The stack that goes is carried to its best other storage, else set down
+  beside the shelf (`FirstJob`; its own shelf doesn't take it during that search, `ShelfReserves.Leaving`, as a lesser
+  meal in a slot still belongs there and the search would find the shelf itself), then the game's `HaulToCell` brings
+  the ordered stack into its cell, queued next and reserved at once.
+- **Kept for it** (`ShelfReserves.Ordered`, `OrderedInto`, `OrdersCameIn`, `KeptHere`): from the order on, the cell
+  takes what the order brings (`MayStore` lets that kind into that cell for four hours, `OrderTicks`), so the game's own
+  check while it is carried (`Toils_Haul.CarryHauledThingToCell` fails a haul whose cell is no longer valid storage)
+  holds though the shelf is looked at again without the carried stack (the best at hand may shift meanwhile); and the
+  slot it is on its way to counts as filled (`State.ordered`), so nothing else is brought for it meanwhile (the list
+  says "being brought by a colonist"). Once in (a
+  stack of that kind in that cell that wasn't there at the order), the stack is kept: `Patch_ShelfReserveFetch` also
+  tells the game it is in its best storage while it holds a reserved slot, isn't on its way out and the shelf accepts
+  it, so the game's haulers never carry it straight back to the higher storage it came from (which has room, as it just
+  left). It stops being kept once it holds no slot (a better kind took it, its entry was taken off) or leaves the
+  shelf. `kept` is saved as references (`keptSaved`, modelled in `Tools/save_estimate.py`); the orders on their way are
+  not.
+- **On its own** (`ShelfReserves.Look`, `ShelfReserveMath.SwapBy`): a swap due with no free slot carries the lesser
+  stack back to another store with room, as before; when none has room but the store the better kind comes from would
+  take it once that kind is out (`TakesInPlace`: an ordinary store of the colony's whose settings allow the lesser kind;
+  `FetchableFrom` notes the store a stored stack of the best kind lies in), the lesser is marked to move out and set
+  down beside the shelf (`State.aside`, counted by `ShelfMakeRoom.SetDownJob` as it counts the slots waiting), the
+  better kind comes into the freed slot by the usual hauling or the fetch, and the lesser then goes where it lay. The
+  stack set down isn't let back: the empty slot refuses it while the better kind comes, and the shelf is full again once
+  that is in. With the better kind lying loose, or its store not taking the lesser kind, no swap is made, as before.
+- **Words**: for slots all filled the shelf's list says why a better kind on the map isn't coming (`State.betterDef`,
+  `betterWhy`, `WhyNotComing`): "on the shelf; the better fine bake is only in storage of a higher priority, which keeps
+  it: right-click it with a colonist to bring it here" (`Why.Higher`, `InHigher`), "on the shelf; the better fine meal
+  didn't come in three hours and is left out for a day" (`Why.Rested`), "on the shelf; the fine meal would take the
+  simple meal's place, but no other storage has room for the simple meal" (`Why.NoRoom`). An empty slot whose kind is
+  only in higher storage ends "which keeps it: right-click it with a colonist to bring it here". Keys in
+  `Rimfolk_Stores.xml` (`CC_Shelf_MakeRoomSwap`, `CC_Shelf_HaulToSlot`, `CC_Shelf_BetterHigher`, `CC_Shelf_BetterRested`,
+  `CC_Shelf_BetterNoRoom`, `CC_Shelf_Bringing`); the window's explanation, the setting's tip, the Almanac's "Reserved slots" and README say
+  it. No new setting, no Sched slot.
+- Tests: `ShelfReserveTests` (`OrderWays`; `InPlaceOf` on the player's shelf, with a fine meal kept in its slot, an empty
+  slot, a spare stack, stacks the colonist can't take; the shelf after the order; `SwapBy`; a play-out with the fridge
+  full too, each simple stack set down once and put in the fridge where a fine meal was, none let back; the seams of the
+  order, the kept stack and the swap).
+- **Not checked here**: none of it could be run in the game: the three menu lines on a stack in a fridge of a higher
+  priority, on the floor outside the home area and on another shelf; the lesser stack carried off and the ordered haul
+  straight after, its cell kept; the kept stack staying on the shelf with room in the fridge it came from; a swap with
+  the lesser set down beside the shelf and taken to the fridge afterwards; the list's new lines; LWM's cells; and Pick
+  Up And Haul, whose hauling to inventory makes its own storage search and may not ask the best-storage check.
 
 ## The trade screen (the player's requests, 7 and 8 November 2026)
 
