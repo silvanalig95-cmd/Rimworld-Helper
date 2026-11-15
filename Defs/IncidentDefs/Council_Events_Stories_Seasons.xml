@@ -29,10 +29,10 @@
           <li>A pupil for {A_nameDef}</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION} is barely grown and all elbows, and has walked up from {PLACE} with a letter from {X_possessive} family and a purse of {COUNT} silver for board. They want {X_objective} taught a trade, and the talk in {PLACE} is that the best hands at a bench for a day's walk belong to {A_nameDef}.\n\n{X_nameDef} would come up a day or two each week through the season and work at {A_nameDef}'s side.</li>
+          <li>{X_nameDef} of {FACTION} is a gangly youth who has walked up from {PLACE} with a letter from {X_possessive} family and a purse of {COUNT} silver for board. They want {X_objective} taught a trade, and people in {PLACE} say {A_nameDef} is the best craftsman within a day's walk.\n\n{X_nameDef} would come up a day or two each week through the season and work at {A_nameDef}'s side.</li>
           <li>[lowtech] {X_nameDef}'s mother sent {X_objective} up from {PLACE} with a basket of eggs, a purse of {COUNT} silver and a speech learned by heart: {FACTION} have no one with {A_nameDef}'s skill, and {X_nameDef} is good with {X_possessive} hands and bad at sitting still. Would {A_nameDef} take {X_objective} on for the season?</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} has the family's letter in one hand and a dented toolbox in the other. The workshops in {PLACE} aren't taking apprentices this year, the letter says, and {A_nameDef}'s work is spoken of there.\n\nThere's {COUNT} silver for {X_possessive} keep, if the colony will have {X_objective} at the bench a day or two a week until the season turns.</li>
-          <li>[colony:Hardworking] They say in {PLACE} that the colony works from dark to dark, and {X_nameDef}'s family thinks that's exactly what {X_nameDef} needs. {X_nameDef} of {FACTION} has come up with {COUNT} silver for board, to learn a trade at {A_nameDef}'s elbow through the season, and looks as if {X_pronoun} would rather be anywhere else.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} has the family's letter in one hand and a dented toolbox in the other. The workshops in {PLACE} aren't taking apprentices this year, the letter says, and {A_nameDef}'s work is spoken of there.\n\nThere's {COUNT} silver for {X_possessive} keep, if the colony will have {X_objective} at the bench a day or two a week until the end of the season.</li>
+          <li>[colony:Hardworking] They say in {PLACE} that the colony works from before dawn until after dark, and {X_nameDef}'s family thinks that's exactly what {X_nameDef} needs. {X_nameDef} of {FACTION} has come up with {COUNT} silver for board, to learn a trade at {A_nameDef}'s elbow through the season, and looks as if {X_pronoun} would rather be anywhere else.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -143,17 +143,17 @@
           <li>[lost] No word from {PLACE}</li>
         </endingTitles>
         <endings>
-          <li>[joined] {X_nameDef} has a bed at the colony now, and a place at {A_nameDef}'s bench that is {X_possessive} own. The family at {PLACE} sent {X_possessive} things up on a cart, with a letter that was mostly about socks.</li>
+          <li>[joined] {X_nameDef} has a bed at the colony now, and a place at {A_nameDef}'s bench that is {X_possessive} own. The family at {PLACE} sent {X_possessive} things up on a cart, with a letter wishing {X_objective} well.</li>
           <li>[joined,piece] {X_nameDef} lives at the colony now. The stool with the short leg still stands by {A_nameDef}'s bench, and {X_nameDef} has offered twice to fix it. {A_nameDef} won't let {X_objective}.</li>
           <li>[journeyman] {X_nameDef} is home at {PLACE} with a journeyman's skill and a set of the colony's old tools, and the family has sent something up the road by way of thanks: {ITEM}.\n\nThere's already talk at {PLACE} of a workshop of {X_possessive} own.</li>
           <li>[journeyman,free] {X_nameDef} went home to {PLACE} a journeyman. The family remembered the purse the colony sent back in the spring, and the gift that came up the road afterward is worth far more than the purse was: {ITEM}.</li>
-          <li>[journeyman,greedy] {X_nameDef} went home to {PLACE} a journeyman, and the family sent their thanks: {ITEM}. They have also told the market they paid twice for the timber, more than once.</li>
+          <li>[journeyman,greedy] {X_nameDef} went home to {PLACE} a journeyman, and the family sent their thanks: {ITEM}. They have also complained at the market, more than once, that they paid twice for the timber.</li>
           <li>[guild] {X_nameDef} has gone to the guild at {PLACE}, with wages and a bed and a master who doesn't know {X_objective} yet. A small package came up the road for {A_nameDef} afterward: {ITEM}, and a note in careful letters that says thank you.</li>
-          <li>[guild,family] The family chose the guild, as families do. {X_nameDef} went, and wrote to {A_nameDef} from {PLACE}: the guild's bench is wider, the master is stricter, and {X_nameDef} misses the colony's. A gift came with the letter: {ITEM}.</li>
+          <li>[guild,family] The family chose the guild. {X_nameDef} went, and wrote to {A_nameDef} from {PLACE}: the guild's bench is wider, the master is stricter, and {X_nameDef} misses the colony's. A gift came with the letter: {ITEM}.</li>
           <li>[home] {X_nameDef} is home at {PLACE}, where {X_pronoun} wanted to be. The family let the colony know they're grateful, and that {X_nameDef} talks about {A_nameDef}'s workshop more than they expected.</li>
           <li>[drifted] {X_nameDef} never came back up the hill. The family at {PLACE} wrote to say sorry, and that {X_nameDef} has taken up with a crowd at the market they don't like. {A_nameDef} cleared {X_possessive} things off the bench without saying anything.</li>
           <li>[drifted,greedy] {X_nameDef} never came back up the hill, and the family at {PLACE} wrote to say the timber money is gone too. {A_nameDef} cleared {X_possessive} things off the bench and put the half-made pieces on the woodpile.</li>
-          <li>[declined] {X_nameDef} went home to {PLACE} and took work at the tannery. The family doesn't hold it against the colony. Not much.</li>
+          <li>[declined] {X_nameDef} went home to {PLACE} and took work at the tannery. The family holds it against the colony a little.</li>
           <li>[lost] Word stopped coming up from {PLACE}. A trader thought {X_nameDef}'s family had moved on, and taken {X_objective} with them.</li>
         </endings>
         <summaries>
@@ -194,9 +194,9 @@
           <li>{X_nameDef}'s first weeks</li>
         </titles>
         <texts>
-          <li>[gifted] {X_nameDef} is back up from {PLACE} for the week, and has already made a joint that {A_nameDef} had to look at twice. Cleaner than {A_nameDef}'s own were at that age, {A_nameDef} admits, though not to {X_nameDef}.\n\nThe question is what to do with a quick pair of hands.</li>
+          <li>[gifted] {X_nameDef} is back up from {PLACE} for the week, and has already made a joint that {A_nameDef} had to look at twice. {A_nameDef} admits, though not to {X_nameDef}, that it is cleaner than {A_possessive} own were at that age.\n\nThe question is how best to use such a quick learner.</li>
           <li>[homesick] {X_nameDef} works hard at {A_nameDef}'s bench and says very little, and every hour or so looks down the road toward {PLACE}. {A_nameDef} found {X_objective} in the woodshed yesterday with red eyes, blaming the sawdust.\n\nIt's {X_possessive} first time away from home.</li>
-          <li>[restless] In {X_nameDef}'s first week at the bench: one saw blade snapped, one chisel lost, and an afternoon spent up on the roof watching a hawk. {A_nameDef} says the hands are good, when they stay on the work.\n\n{X_nameDef} is back up from {PLACE} today, grinning.</li>
+          <li>[restless] In {X_nameDef}'s first week at the bench {X_pronoun} snapped a saw blade, lost a chisel and spent an afternoon up on the roof watching a hawk. {A_nameDef} says the hands are good, when they stay on the work.\n\n{X_nameDef} is back up from {PLACE} today, grinning.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -431,13 +431,13 @@
           <li>{X_nameDef} of {FACTION} got as far as the colony's gate and sat down against the post, burning with fever and shivering in the sun. {X_nameDef} was on the way home to {PLACE}, and won't get there like this.\n\n{A_nameDef}, the colony's best doctor, took one look and asked the council to decide quickly.</li>
           <li>[lowtech] The traveler at the gate is {X_nameDef} of {FACTION}, gray in the face and soaked through, with the kind of fever that takes people on the road. {X_nameDef} asks for nothing but a dry place to lie down.\n\n{A_nameDef} says a fever like that can turn either way, and it may be catching.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} came off the road in the rain and went down by the gate, with a temperature {A_nameDef} didn't like and a cough that sounds deep. The nearest proper clinic is days away at {PLACE}.\n\n{A_nameDef} can treat it here, if the council agrees.</li>
-          <li>[winter] Snow on {X_possessive} shoulders and fever in {X_possessive} face: {X_nameDef} of {FACTION} won't last another night on the road to {PLACE}. {A_nameDef} has already fetched a blanket, and is waiting on the council.</li>
+          <li>[winter] {X_nameDef} of {FACTION} has reached the gate with snow on {X_possessive} shoulders and a high fever, and won't last another night on the road to {PLACE}. {A_nameDef} has already fetched a blanket, and is waiting on the council.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Take {X_objective} in; {A_nameDef} will nurse {X_objective}</label>
-            <outcome>{A_nameDef} sat up with {X_nameDef} through the worst of the night, with cold cloths and the medicine chest open. By morning the fever had broken, or bent at least.</outcome>
+            <outcome>{A_nameDef} sat up with {X_nameDef} through the worst of the night, with cold cloths and the medicine chest open. By morning the fever had eased.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
               <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef}'s night at {X_nameDef}'s side</label><count>1</count><to>Stranger</to><hours>19~1</hours><duration>4~6</duration></li>
@@ -542,7 +542,7 @@
           <li>[lost] No more word</li>
         </endingTitles>
         <endings>
-          <li>[joined] {X_nameDef} sleeps at the colony now, in a bed this time, and works as if the fever owed {X_objective} the weeks it took. {A_nameDef} still checks {X_possessive} forehead now and then, out of habit.</li>
+          <li>[joined] {X_nameDef} sleeps at the colony now, in a bed this time, and works hard, as if to make up for the weeks the fever took. {A_nameDef} still checks {X_possessive} forehead now and then, out of habit.</li>
           <li>[saved] Word came up from {PLACE}: the fever has run its course, and the medicine the colony sent went where it was needed most. {FACTION} haven't forgotten who sent it, and a gift came up the road afterward: {ITEM}.</li>
           <li>[saved,nursed] The fever at {PLACE} is over. {X_nameDef} went from house to house with the colony's medicine and {A_nameDef}'s way of doing things, and there are people walking about at {PLACE} who {FACTION} say wouldn't be. A gift came up the road for the colony: {ITEM}.</li>
           <li>[helped] The fever at {PLACE} has burned itself out. {A_nameDef}'s advice went round the town on the back of a feed sack, copied out a dozen times, and {FACTION} credit it with the houses that got off lightly.</li>
@@ -592,7 +592,7 @@
           <li>{X_nameDef} again</li>
         </titles>
         <texts>
-          <li>[relapse] {X_nameDef} came back up the road on a borrowed mule, gray and shaking. The fever came back two days out of {PLACE}, worse than before, and the healer there sent {X_objective} straight back: go to the one who treated you.</li>
+          <li>[relapse] {X_nameDef} came back up the road on a borrowed mule, gray and shaking. The fever came back two days out of {PLACE}, worse than before, and the healer there sent {X_objective} straight back to the one who treated {X_objective} first.</li>
           <li>[lingering] {X_nameDef} of {FACTION} is mending, but so slowly that the family at {PLACE} has given up waiting. {X_nameDef} walked back up to the colony leaning on a stick, to ask {A_nameDef} what else can be done.</li>
           <li>[relapse,sent] Last time, the colony gave {X_nameDef} medicine and a corner outside the wall. The fever came back on the road, and {X_nameDef} is at the gate again, worse, asking for more than a corner this time.</li>
           <li>[lingering,nursed] {A_nameDef} pulled {X_nameDef} through the first night, but the fever never quite let go. {X_nameDef} has come back up from {PLACE} thin and slow, to see the doctor who started the job.</li>
@@ -601,7 +601,7 @@
         <options>
           <li>
             <label>{A_nameDef} sits with {X_objective} again (2 medicine)</label>
-            <outcome>{A_nameDef} sat with {X_nameDef} another long night and went through two doses from the medicine chest. Near dawn the fever let go, for good this time, {A_nameDef} thinks.</outcome>
+            <outcome>{A_nameDef} sat with {X_nameDef} another long night and went through two doses from the medicine chest. Near dawn the fever broke, and {A_nameDef} thinks it is gone for good this time.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
@@ -731,9 +731,9 @@
           <li>{X_nameDef} asks a favor</li>
         </titles>
         <texts>
-          <li>The fever {X_nameDef} carried to the colony's gate has reached {PLACE}, and it's going through the town a street at a time. {X_nameDef} had it once and won't catch it again, so {X_nameDef} is the one who came up the road to ask: the colony pulled one of them through it. Can it spare medicine for the rest?</li>
+          <li>The fever {X_nameDef} carried to the colony's gate has reached {PLACE}, and it's going through the town a street at a time. {X_nameDef} had it once and won't catch it again, so {X_nameDef} has come up the road to ask for help. The colony pulled one of them through the fever, and {X_nameDef} asks whether it can spare medicine for the rest.</li>
           <li>[nursed] {X_nameDef} of {FACTION} knows what the fever needs, because {X_nameDef} watched {A_nameDef} do it. It's in {PLACE} now, house after house, and the healer there has run out of everything. {X_nameDef} has come back to the colony to ask for medicine, and for whatever {A_nameDef} can tell {X_objective}.</li>
-          <li>[worked] The wood {X_nameDef} cut for the colony is still drying by the treeline. Now {X_nameDef} is back at the gate with a different face on: the fever has reached {PLACE}, and the town has run out of medicine.</li>
+          <li>[worked] The wood {X_nameDef} cut for the colony is still drying by the treeline. Now {X_nameDef} is back at the gate, worried: the fever has reached {PLACE}, and the town has run out of medicine.</li>
           <li>[nodebt] "You said there was no debt," {X_nameDef} says at the gate. "So I've come to ask a favor instead." The fever {X_nameDef} lived through is going through {PLACE}, and the town's healer has nothing left.</li>
         </texts>
         <defaultOption>2</defaultOption>

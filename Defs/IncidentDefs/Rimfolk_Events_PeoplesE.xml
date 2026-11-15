@@ -38,8 +38,8 @@
           <li>The Conclave's watch</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass in a padded case at {X_possessive} hip: a sealed vial of clear water that clouds and feathers before the sky turns. The tower at {PLACE} reads the region's weather, {X_nameDef} says, and for {COUNT} silver the Conclave would watch the colony's sky for the season: whenever a cold snap, a heat wave or worse is on its way, a vial-runner will be at the gate with the warning before it comes. Or {X_pronoun} would read tonight's sky for the colony, for nothing.</li>
-          <li>[fields] {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass at {X_possessive} hip. The colony sows by the weather, {X_nameDef} has heard, and the tower at {PLACE} reads the weather a long way off: for {COUNT} silver the Conclave would watch the colony's sky for the season, a vial-runner at the gate before every cold snap or heat wave, and the colony's fields would know of it from the hour the runner sets off. Or a reading of tonight's sky, freely given.</li>
+          <li>{X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass in a padded case at {X_possessive} hip: a sealed vial of clear liquid that goes cloudy and grows feathery crystals before the weather changes. The tower at {PLACE} reads the region's weather, {X_nameDef} says, and for {COUNT} silver the Conclave would watch the colony's sky for the season: whenever a cold snap, a heat wave or worse is on its way, a vial-runner will be at the gate with the warning before it comes. Or {X_pronoun} would read tonight's sky for the colony, for nothing.</li>
+          <li>[fields] {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass at {X_possessive} hip. The colony sows by the weather, {X_nameDef} has heard, and the tower at {PLACE} reads the weather a long way off: for {COUNT} silver the Conclave would watch the colony's sky for the season, a vial-runner at the gate before every cold snap or heat wave, so the colony can protect its fields in time. Or a reading of tonight's sky, freely given.</li>
           <li>[lowtech] A reader of {FACTION} named {X_nameDef} has walked from the tower at {PLACE} with a glass vial wrapped in wool. The Conclave reads the sky, {X_nameDef} says, and for {COUNT} silver it would keep watch on the colony's for a season, a runner at the gate before every hard turn of the weather. Or a reading of tonight's sky, freely given.</li>
           <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a barometer, a notebook of pressure readings and a stormglass in a padded case. The tower at {PLACE} forecasts the region's weather, {X_nameDef} says: {COUNT} silver buys the colony a season of the Conclave's watch, a runner at the gate before every cold snap, heat wave or fallout. Or a free reading of tonight's sky.</li>
           <li>[their:grateful] The Stormglass Conclave thinks well of the colony, and {X_nameDef} has come from {PLACE} to offer its watch on the colony's sky for the season, for {COUNT} silver, a runner at the gate before every hard turn of the weather. Or tonight's reading alone, as between friends.</li>
@@ -58,7 +58,7 @@
           </li>
           <li>
             <label>Tonight's reading, {A_nameDef} with {X_objective}</label>
-            <outcome>{A_nameDef} is standing at the gate with {X_nameDef}, who is holding the glass up against the clouds and saying what each feather in it means.</outcome>
+            <outcome>{A_nameDef} is standing at the gate with {X_nameDef}, who is holding the glass up against the clouds and explaining what each crystal in it means.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>tonight's reading of the sky</label><to>Stranger</to><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>250</xp></li>
@@ -109,7 +109,7 @@
         <texts>
           <li>{X_nameDef}, a storm-walker of {FACTION}, has come to the gate with a brass rod over one shoulder, as tall as {X_objective}, a sealed stormglass caged at its foot. The Conclave sets its rods on the highest roofs of the region to keep a record of the storms, {X_nameDef} says, and would set one over the colony's {TALE}. It draws the lightning that falls near it down onto itself, harmlessly, and the colony would read the weather by it as well as by a weather station.</li>
           <li>[storm] {X_nameDef}, a storm-walker of {FACTION}, has come up the road with the storm, a brass rod over one shoulder and a stormglass caged at its foot. The Conclave keeps a record of every storm, and this one is overhead: {X_nameDef} would set the rod over the colony's {TALE} now, where it would take the lightning that falls near it, harmlessly, and read the weather as well as a weather station.</li>
-          <li>[lowtech] A storm-walker of {FACTION}, {X_nameDef}, has walked from {PLACE} with a brass rod and a caged glass vial. Lightning goes where it is called, {X_nameDef} says, and the Conclave's rods call it: set over the colony's {TALE}, this one would take the strikes that fall near it, and the glass at its foot reads the weather.</li>
+          <li>[lowtech] A storm-walker of {FACTION}, {X_nameDef}, has walked from {PLACE} with a brass rod and a caged glass vial. The Conclave's rods draw the lightning to themselves, {X_nameDef} says: set over the colony's {TALE}, this one would take the strikes that fall near it, and the glass at its foot reads the weather.</li>
           <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a lightning rod of the Conclave's: brass, grounded through a coil, a stormglass sealed at its foot for the tower's record. Set over the colony's {TALE}, it takes the strikes that would fall on the open ground near it, and reads the weather as well as any station.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -172,8 +172,8 @@
           <li>A reader at dusk</li>
         </titles>
         <texts>
-          <li>Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {X_pronoun} has heard that {A_nameDef} keeps the colony's eye on the weather, and the Conclave teaches anyone who will learn: an evening at the glass, the clouds read against it as the light goes, and for a season after {A_nameDef} would read the weather as a reader does.</li>
-          <li>[newreader] Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {A_nameDef} has the best hands at the colony's fields, {X_nameDef} says, and hands that know the soil learn the sky quickly: an evening at the glass, and for a season {A_nameDef} would say what the weather will do, as a reader does.</li>
+          <li>Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {X_nameDef} has heard that {A_nameDef} keeps watch on the colony's weather, and the Conclave teaches anyone who will learn. After an evening at the glass, comparing it with the clouds as the light fades, {A_nameDef} would be able to read the weather for a season, as the Conclave's readers do.</li>
+          <li>[newreader] Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {A_nameDef} has the best hands at the colony's fields, {X_nameDef} says, and people who know the soil learn the sky quickly. After an evening at the glass, {A_nameDef} would be able to tell what the weather will do for a season, as the Conclave's readers do.</li>
           <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate as the light goes, a glass vial wrapped in wool under one arm. The sky is read, not guessed, {X_nameDef} says, and {X_pronoun} would teach {A_nameDef} to read it tonight, the clouds against the glass, so that for a season the colony knows its weather.</li>
           <li>[their:grateful] The Conclave thinks well of the colony, and {X_nameDef} has walked from {PLACE} at dusk to teach {A_nameDef} the glass: an evening at it, and a season of reading the weather after.</li>
         </texts>
@@ -181,7 +181,7 @@
         <options>
           <li>
             <label>Teach {A_nameDef} to read the glass</label>
-            <outcome>{A_nameDef} is sitting with {X_nameDef} and the glass as the light goes, learning to read the one against the other.</outcome>
+            <outcome>{A_nameDef} is sitting with {X_nameDef} and the glass as the light goes, learning to compare the glass with the sky.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>the glass</label><teacher>X</teacher><student>A</student><skill>Plants</skill><hours>17~23</hours><duration>1.5~2</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_GlassTaught" />
@@ -237,9 +237,9 @@
           <li>Saplings for the felled</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a seed-carrier of {FACTION}, has come to the gate with a sack of saplings on {X_possessive} back, their roots balled in moss. The Mossborn keep a ledger of the trees round them, {X_nameDef} says, and the colony has felled {TALE} this season: every few trees felled owe the world a seedling, and {X_pronoun} has brought {COUNT} to plant on the open ground round the colony, out of its fields and its buildings.</li>
-          <li>[cleared] {X_nameDef}, a seed-carrier of {FACTION}, has come to the gate bent under a sack of saplings. The colony has felled {TALE} trees this season, and the Mossborn's ledger has noticed, {X_nameDef} says without heat: {X_pronoun} has brought {COUNT} seedlings to set in the open ground round the colony, out of its fields and its buildings, so the ledger squares a little.</li>
-          <li>[lowtech] A seed-carrier of {FACTION} named {X_nameDef} has walked from the grove at {PLACE} with saplings in a moss-lined sack. {TALE} trees have come down round the colony this season, and the Mossborn owe the world a seedling for every few: {COUNT} of them, to plant on the open ground round the colony if it will have them.</li>
+          <li>{X_nameDef}, a seed-carrier of {FACTION}, has come to the gate with a sack of saplings on {X_possessive} back, their roots balled in moss. The Mossborn keep a record of the trees around them, {X_nameDef} says, and the colony has felled {TALE} this season. They hold that a seedling should be planted for every few trees cut down, and {X_pronoun} has brought {COUNT} to plant on the open ground round the colony, away from its fields and buildings.</li>
+          <li>[cleared] {X_nameDef}, a seed-carrier of {FACTION}, has come to the gate bent under a sack of saplings. The colony has felled {TALE} trees this season and the Mossborn have noted it in their record, {X_nameDef} says calmly. {X_nameDef} has brought {COUNT} seedlings to plant on the open ground round the colony, away from its fields and buildings, to make up for some of them.</li>
+          <li>[lowtech] A seed-carrier of {FACTION} named {X_nameDef} has walked from the grove at {PLACE} with saplings in a moss-lined sack. {TALE} trees have come down round the colony this season, and the Mossborn hold that a seedling is owed for every few: {COUNT} of them, to plant on the open ground round the colony if it will have them.</li>
           <li>[their:grateful] The Mossborn think well of the colony, and {X_nameDef} has come from the grove at {PLACE} with {COUNT} saplings for the {TALE} trees it felled this season, to plant round it as between friends.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -374,8 +374,8 @@
           <li>The Gauranlen tree pruned</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a tree-connector of {FACTION}, has come to the gate with pruning hooks and a pot of resin. The colony's Gauranlen tree is spoken of in the groves, {X_nameDef} says, and the Mossborn tend every tree that has taken a person's bond: an hour or so of pruning, and its bond with the one it knows would be the stronger. {X_pronoun} would like {A_nameDef} at {X_possessive} side while {X_pronoun} works, if the colony likes.</li>
-          <li>[lowtech] A tree-connector of {FACTION} named {X_nameDef} has walked from {PLACE} with hooks and resin for the colony's Gauranlen tree. A bonded tree is a guest of the whole grove, {X_nameDef} says, and {X_pronoun} would prune it, so its bond grows the stronger.</li>
+          <li>{X_nameDef}, a tree-connector of {FACTION}, has come to the gate with pruning hooks and a pot of resin. The colony's Gauranlen tree is spoken of in the groves, {X_nameDef} says, and the Mossborn tend every tree that has taken a person's bond: an hour or so of pruning would make its bond with its connected colonist stronger. {X_nameDef} would like {A_nameDef} at {X_possessive} side while {X_pronoun} works, if the colony agrees.</li>
+          <li>[lowtech] A tree-connector of {FACTION} named {X_nameDef} has walked from {PLACE} with hooks and resin for the colony's Gauranlen tree. A bonded tree is a guest of the whole grove, {X_nameDef} says, and {X_pronoun} would prune it so that its bond grows stronger.</li>
           <li>[their:grateful] The Mossborn think well of the colony, and {X_nameDef} has come from the grove at {PLACE} to tend its Gauranlen tree, an hour's pruning for the bond's sake.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -437,10 +437,10 @@
           <li>Swords for hire at the gate</li>
         </titles>
         <texts>
-          <li>A sergeant of {FACTION}, {X_nameDef}, has come to the gate with a squad of the company, {TALE} in all, every one of them in the Banner's ash-grey. They are between contracts, {X_nameDef} says, and would hold the colony's walls for the season: camped by the colony, they take up arms against whatever comes at it while they are here. The wage is {COUNT} silver every five days, the first paid now; left unpaid, the company walks.</li>
-          <li>[raided] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate. The colony was hit not long ago, {X_nameDef} has heard, and walls hold better with more on them: the squad would camp by the colony for the season and fight for it while they are here, for {COUNT} silver every five days, the first now. Unpaid, they strike camp and go.</li>
-          <li>[lowtech] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate, the Banner's ash-grey on every one. The Banner fights for whoever pays and keeps its word to them, {X_nameDef} says, and would camp by the colony for the season to hold its walls: {COUNT} silver every five days, the first now. Unpaid, they strike camp and go.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} has brought a squad of {TALE} to the gate, arms shouldered, the ash-grey of the Banner on every one. A season's contract, {X_nameDef} says: they camp by the colony and fight for it while they are here, for {COUNT} silver every five days, the first now. The Roll keeps every contract kept, and every one broken.</li>
+          <li>A sergeant of {FACTION}, {X_nameDef}, has come to the gate with a squad of the company, {TALE} in all, every one of them in the Banner's ash-grey. They are between contracts, {X_nameDef} says, and would hold the colony's walls for the season: camped by the colony, they take up arms against whatever comes at it while they are here. The wage is {COUNT} silver every five days, the first paid now. If a wage goes unpaid, the squad leaves.</li>
+          <li>[raided] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate. The colony was hit not long ago, {X_nameDef} has heard, and walls hold better with more on them: the squad would camp by the colony for the season and fight for it while they are here, for {COUNT} silver every five days, the first now. If a wage goes unpaid, they strike camp and go.</li>
+          <li>[lowtech] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate, the Banner's ash-grey on every one. The Banner fights for whoever pays and keeps its word to them, {X_nameDef} says, and would camp by the colony for the season to hold its walls: {COUNT} silver every five days, the first now. If a wage goes unpaid, they strike camp and go.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} has brought a squad of {TALE} to the gate, arms shouldered, the ash-grey of the Banner on every one. A season's contract, {X_nameDef} says: they camp by the colony and fight for it while they are here, for {COUNT} silver every five days, the first now. The Banner writes every contract in its Roll, whether it is kept or broken.</li>
           <li>[their:grateful] The Ashen Banner thinks well of the colony, and {X_nameDef} has brought a squad of {TALE} to offer it first: a season camped by the colony, fighting for it, for {COUNT} silver every five days.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -503,9 +503,9 @@
           <li>Struck from the Roll</li>
         </titles>
         <texts>
-          <li>As the light goes, someone is waiting at the gate who will not come closer: {X_nameDef}, who marched with {FACTION} until a few days ago. {X_pronoun} left the Banner on the road, {X_nameDef} says, and the Roll will have struck the name by now; {X_pronoun} asks shelter, a corner to sleep in tonight, or a place at the colony for good.</li>
-          <li>[theirfoe] As the light goes, {X_nameDef} is waiting at the gate, a soldier of {FACTION} until a few days ago. {X_pronoun} ran from the Banner, {X_nameDef} says, and knows the Banner is no friend of the colony's: {X_pronoun} asks shelter all the same, a corner for the night or a place for good.</li>
-          <li>[lowtech] {X_nameDef}, who carried a spear for {FACTION} until a few days ago, is at the gate with the dark coming on. {X_pronoun} left in the night, and the Roll has struck the name: a corner to sleep in tonight, {X_nameDef} asks, or a place at the colony, if it will have a soldier who ran.</li>
+          <li>At dusk someone is waiting at the gate and won't come closer: {X_nameDef}, who marched with {FACTION} until a few days ago. {X_nameDef} says {X_pronoun} deserted the Banner on the road, and by now {X_possessive} name will have been struck from the Roll, the Banner's book of names. {X_nameDef} asks for shelter: a corner to sleep in tonight, or a place at the colony for good.</li>
+          <li>[theirfoe] At dusk {X_nameDef} is waiting at the gate, a soldier of {FACTION} until a few days ago. {X_nameDef} says {X_pronoun} deserted the Banner, and knows the Banner is no friend of the colony's, but asks for shelter all the same: a corner for the night or a place for good.</li>
+          <li>[lowtech] {X_nameDef}, who carried a spear for {FACTION} until a few days ago, is at the gate as it gets dark. {X_nameDef} left in the night, and {X_possessive} name has been struck from the Roll. {X_nameDef} asks for a corner to sleep in tonight, or a place at the colony if it will have a soldier who deserted.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -565,9 +565,9 @@
           <li>The keeper of the Roll</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a keeper of the Roll of {FACTION}, has come to {DEAD}'s grave with a long book bound in ash-grey cloth. The Roll keeps the name of everyone who fell of their wounds holding a wall, of any people, {X_nameDef} says, and {DEAD}'s belongs in it: {X_pronoun} would read it into the Roll at the grave at dusk, with the colony gathered there to hear it. Or {X_pronoun} would stand a while at the grave with one of the colony.</li>
-          <li>[lowtech] A keeper of the Roll of {FACTION} named {X_nameDef} has walked from the fort at {PLACE} with the book under one arm. {DEAD} fell holding the colony's wall, {X_nameDef} has heard, and the Roll is the Banner's honour: every name of the fallen read into it aloud, at dusk, where they lie.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} is waiting by {DEAD}'s grave with the Roll, a ledger of every name the Banner has carried home or buried, its own people's and strangers'. {DEAD} fell of their wounds holding a wall, {X_nameDef} says, and the Roll would have the name read into it at dusk, the colony gathered.</li>
+          <li>{X_nameDef}, a keeper of the Roll of {FACTION}, has come to {DEAD}'s grave with a long book bound in ash-grey cloth. The Roll records the name of everyone, of any people, who died of wounds taken holding a wall, {X_nameDef} says, and {DEAD}'s belongs in it. {X_nameDef} would read the name into the Roll at the grave at dusk, with the colony gathered there to hear it, or else stand a while at the grave with one of the colonists.</li>
+          <li>[lowtech] A keeper of the Roll of {FACTION} named {X_nameDef} has walked from the fort at {PLACE} with the book under one arm. {DEAD} fell holding the colony's wall, {X_nameDef} has heard, and the Banner honours its fallen by reading each name into the Roll aloud, at dusk, where they lie.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} is waiting by {DEAD}'s grave with the Roll, a ledger of every name the Banner has carried home or buried, its own people's and strangers'. {DEAD} died of wounds taken holding a wall, {X_nameDef} says, and {X_pronoun} would read the name into the Roll at dusk, with the colony gathered.</li>
           <li>[their:grateful] The Ashen Banner thinks well of the colony, and {X_nameDef} has come from {PLACE} with the Roll the moment the fort heard of {DEAD}, to read the name into it at the grave as for one of their own.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -629,7 +629,7 @@
           <li>A commission for {B_nameDef}</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a journeyman of {FACTION}, has come to the gate with a token of burnt clay on a cord, the guild's mark. The guildhall at {PLACE} has heard of {B_nameDef}'s work, {X_nameDef} says, and commissions a {THING} of the colony's making, made at its own bench from what is in its stores. {X_pronoun} will come back for it when it is done and pay by its quality, as the guild does: about {COUNT} silver for a good one, more for better.</li>
+          <li>{X_nameDef}, a journeyman of {FACTION}, has come to the gate with a token of burnt clay on a cord, the guild's mark. The guildhall at {PLACE} has heard of {B_nameDef}'s work, {X_nameDef} says, and commissions a {THING} of the colony's making, made at its own bench from what is in its stores. {X_nameDef} will come back for it when it is done and pay by its quality, as the guild does: about {COUNT} silver for a good one, more for better.</li>
           <li>[art] {X_nameDef}, a journeyman of {FACTION}, has come to the gate with the guild's clay token on a cord. The guildhall at {PLACE} wants a {THING} from {B_nameDef}'s own hands, carved at the colony's table from what is in its stores, and {X_nameDef} will come back for it and pay by how fine it is: about {COUNT} silver for a good one, more for better.</li>
           <li>[lowtech] A journeyman of {FACTION} named {X_nameDef} has walked from the guildhall at {PLACE} with a commission for {B_nameDef}: a {THING}, made at the colony's own bench. The guild pays for the work, not the hours, {X_nameDef} says, so the better it turns out the more it fetches, about {COUNT} silver for a good one.</li>
           <li>[their:grateful] The Kiln Guild thinks well of the colony, and {X_nameDef} has come from {PLACE} with a commission for {B_nameDef}, a {THING}, paid by its quality when {X_nameDef} comes back for it: about {COUNT} silver for a good one.</li>
@@ -638,7 +638,7 @@
         <options>
           <li>
             <label>Take the commission, {B_nameDef} making it</label>
-            <outcome>{B_nameDef} will make the {THING} at the bench from the stuff set apart for it, and {X_nameDef} will come back for it with the guild's silver.</outcome>
+            <outcome>{B_nameDef} will make the {THING} at the bench from the materials set aside for it, and {X_nameDef} will come back for it with the guild's silver.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_GuildCommission" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>

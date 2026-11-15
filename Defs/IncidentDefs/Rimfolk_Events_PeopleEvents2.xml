@@ -29,20 +29,20 @@
         <answerDays>0.3</answerDays>
         <notable>false</notable>
         <titles>
-          <li>A file of pilgrims</li>
+          <li>A group of pilgrims</li>
           <li>Bound for {PLACE}</li>
-          <li>A shell for every shrine</li>
+          <li>Pilgrims at the gate</li>
         </titles>
         <texts>
-          <li>A file of {FACTION}'s pilgrims has stopped at the gate on its way to {PLACE}, {X_nameDef} at its head with a staff hung with shells. They ask whether anyone of the colony would walk with them: {TALE} there and back, on foot, and home with a shell of the shrine. {X_nameDef} looks longest at {A_nameDef}.</li>
-          <li>[grief] {X_nameDef} of {FACTION} has brought a file of pilgrims to the gate, bound for {PLACE}. {X_pronoun} has heard what {A_nameDef} carries, and says the road is good for a grief: {TALE} there and back with the fellowship, and a shell to bring home.</li>
-          <li>[guilt] Pilgrims of {FACTION} are resting at the gate on the road to {PLACE}. {X_nameDef}, who leads them, says that a walk to a shrine has eased heavier things than whatever {A_nameDef} is carrying, and that there is room in the file for one more: {TALE} there and back.</li>
-          <li>[doubt] {X_nameDef}, a keeper of {FACTION}'s pilgrims, has stopped at the gate with a file bound for {PLACE}. Faith is steadier for walking, {X_pronoun} told {A_nameDef}, and anyone of the colony is welcome to walk with them: {TALE} there and back.</li>
-          <li>[relic,second] A file of {FACTION}'s pilgrims has come to the gate, bound for {PLACE}. {X_nameDef} says the relic is shown to walkers only, and anyone of the colony who walks with them, {A_nameDef} or {B_nameDef}, will see it: {TALE} there and back.</li>
-          <li>[relic,!second] A file of {FACTION}'s pilgrims has come to the gate, bound for {PLACE}. The relic is shown to walkers only, {X_nameDef} says, and {A_nameDef} could see it if {A_pronoun} walked with them: {TALE} there and back.</li>
-          <li>[old,second] {X_nameDef} of {FACTION} has stopped at the gate with pilgrims bound for {PLACE}, a shrine older than any of the peoples. They would take one of the colony with them, {X_pronoun} says, {TALE} there and back on foot, if {A_nameDef} or {B_nameDef} would come.</li>
-          <li>[old,!second] {X_nameDef} of {FACTION} has stopped at the gate with pilgrims bound for {PLACE}, a shrine older than any of the peoples, and asks whether {A_nameDef} would walk with them: {TALE} there and back on foot.</li>
-          <li>[lowtech] Pilgrims of {FACTION} in dusty cloaks have stopped at the gate, Old Brannoc's road under their feet and {PLACE} at the end of it. {X_nameDef} blesses the gate, open or shut, and asks whether {A_nameDef} would walk with them: {TALE} there and back.</li>
+          <li>A group of {FACTION}'s pilgrims has stopped at the gate on its way to {PLACE}, led by {X_nameDef}, who carries a staff hung with shells. They ask whether anyone from the colony would walk with them: {TALE} there and back on foot, coming home with a shell from the shrine. {X_nameDef} seems to have {A_nameDef} in mind.</li>
+          <li>[grief] {X_nameDef} of {FACTION} has brought a group of pilgrims to the gate, on their way to {PLACE}. {X_nameDef} has heard about {A_nameDef}'s loss, and says a long walk helps with grief: {TALE} there and back with the fellowship, and a shell to bring home.</li>
+          <li>[guilt] Pilgrims of {FACTION} are resting at the gate on the road to {PLACE}. {X_nameDef}, who leads them, says that a walk to a shrine has helped people with worse troubles than {A_nameDef}'s, and that there is room in the group for one more: {TALE} there and back.</li>
+          <li>[doubt] {X_nameDef}, who leads {FACTION}'s pilgrims, has stopped at the gate with a group on its way to {PLACE}. {X_nameDef} told {A_nameDef} that walking to a shrine can steady a shaken faith, and that anyone from the colony is welcome to come: {TALE} there and back.</li>
+          <li>[relic,second] A group of {FACTION}'s pilgrims has come to the gate on its way to {PLACE}. {X_nameDef} says the relic there is only shown to those who walk to it, and {A_nameDef} or {B_nameDef} could see it by coming along: {TALE} there and back.</li>
+          <li>[relic,!second] A group of {FACTION}'s pilgrims has come to the gate on its way to {PLACE}. {X_nameDef} says the relic there is only shown to those who walk to it, and {A_nameDef} could see it if {A_pronoun} came along: {TALE} there and back.</li>
+          <li>[old,second] {X_nameDef} of {FACTION} has stopped at the gate with pilgrims bound for {PLACE}, a shrine older than any of the region's peoples. {X_nameDef} says they would take one person from the colony with them, {A_nameDef} or {B_nameDef}: {TALE} there and back on foot.</li>
+          <li>[old,!second] {X_nameDef} of {FACTION} has stopped at the gate with pilgrims bound for {PLACE}, a shrine older than any of the region's peoples, and asks whether {A_nameDef} would walk with them: {TALE} there and back on foot.</li>
+          <li>[lowtech] Pilgrims of {FACTION} in dusty cloaks have stopped at the gate on their way to {PLACE}. {X_nameDef} blesses the gate, as the pilgrims bless every gate they pass whether it opens to them or not, and asks whether {A_nameDef} would walk with them: {TALE} there and back.</li>
           <li>[their:grateful] The pilgrim fellowship remembers the colony's welcome, and {X_nameDef} has come to ask whether one of its people would walk with them to {PLACE}: {TALE} there and back, a shell to bring home.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -65,7 +65,7 @@
           </li>
           <li>
             <label>Wish them a good road</label>
-            <outcome>{X_nameDef} blesses the gate on the way out, open or shut, and the file walks on toward {PLACE}.</outcome>
+            <outcome>{X_nameDef} blesses the gate on the way out, as the pilgrims always do, and the group walks on toward {PLACE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -103,11 +103,11 @@
           <li>Under the colony's flag</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a waymaster of {FACTION}, has ridden up to the gate. With {TALE} gathering at {PLACE}, the league asks every friend on the road for one fighter and one pack beast to walk under their own flag, as every waymaster did for Edda Vane. {A_nameDef} and {PET_nameDef} would be away {COUNT} days or so, and come home with a share of the profit.</li>
-          <li>[ride] A waymaster of {FACTION}, {X_nameDef}, has stopped at the gate with the league's book under {X_possessive} arm. With {TALE} gathering at {PLACE}, the league would have the colony's flag in it: one fighter riding one beast, {A_nameDef} on {PET_nameDef}, some {COUNT} days, and a share at the end.</li>
+          <li>{X_nameDef}, a waymaster of {FACTION}, has ridden up to the gate. With {TALE} gathering at {PLACE}, the league asks each friend on the road for one fighter and one pack animal to travel with the caravans under their own flag, as the waymasters once did for the league's founder, Edda Vane. {A_nameDef} and {PET_nameDef} would be away {COUNT} days or so, and come home with a share of the profit.</li>
+          <li>[ride] A waymaster of {FACTION}, {X_nameDef}, has stopped at the gate with the league's book under {X_possessive} arm. With {TALE} gathering at {PLACE}, the league would like the colony to send someone under its own flag: one fighter riding one animal, {A_nameDef} on {PET_nameDef}, for about {COUNT} days, with a share of the profit at the end.</li>
           <li>[season] {X_nameDef} of {FACTION} has come to the gate with a list of names. It is {TALE}, and every friend of the league sends one guard and one wagon to walk with its caravans out of {PLACE}. {A_nameDef} and {PET_nameDef}, {X_pronoun} suggests: some {COUNT} days, and a share of whatever the caravans make.</li>
-          <li>[lowtech] A waymaster of {FACTION} has walked up the road with a staff and a waystone's mark on {X_possessive} cloak, {X_nameDef} by name. With {TALE} going out from {PLACE}, the league asks the colony for one fighter and one pack beast to walk with it under the colony's own flag: some {COUNT} days, and a share of the profit.</li>
-          <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef} has come to ask it first: one fighter and one pack beast to walk with {TALE} out of {PLACE}, under the colony's flag, for some {COUNT} days and a share of the profit.</li>
+          <li>[lowtech] A waymaster of {FACTION} has walked up the road with a staff and the league's mark on {X_possessive} cloak, {X_nameDef} by name. With {TALE} going out from {PLACE}, the league asks the colony for one fighter and one pack beast to walk with it under the colony's own flag: some {COUNT} days, and a share of the profit.</li>
+          <li>[their:grateful] The league has the colony written in its book as a fair dealer, and {X_nameDef} has come to ask the colony first: one fighter and one pack beast to walk with {TALE} out of {PLACE}, under the colony's flag, for some {COUNT} days and a share of the profit.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -121,7 +121,7 @@
           </li>
           <li>
             <label>Send {B_nameDef} and {PET_nameDef}, for a better bargain</label>
-            <outcome>{B_nameDef} is going out with {PET_nameDef}, the colony's flag rolled on the pack and a head for prices.</outcome>
+            <outcome>{B_nameDef} is going out with {PET_nameDef}, the colony's flag rolled on the pack. {B_nameDef} knows how to get a good price.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_LeagueGuard"><second>true</second></li>
             </effects>
@@ -129,7 +129,7 @@
           </li>
           <li>
             <label>Not this season</label>
-            <outcome>{X_nameDef} writes it down without a word against the colony and rides on to the next gate.</outcome>
+            <outcome>{X_nameDef} writes down the answer without holding it against the colony, and rides on to the next gate.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -167,10 +167,10 @@
           <li>[!beast] {TALE} for {B_nameDef}</li>
         </titles>
         <texts>
-          <li>[!beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon and a marshal and a case that hums. The enclave would fit {B_nameDef} with {TALE} for the {RELATION}, at the colony's medical bed: {COUNT} silver now, or on terms, a fifth down and the rest in four seasonal instalments asked for by letter. A bargain struck is kept to the last digit, {X_pronoun} adds.</li>
-          <li>[need,!beast] {X_nameDef} of {FACTION} has heard about {B_nameDef}'s {RELATION}, and has brought {TALE} down to fit it. The enclave's surgeon would work at the colony's bed; {COUNT} silver now, or a fifth down and four instalments, one each season, asked for by letter.</li>
-          <li>[better,!beast] A factor of {FACTION}, {X_nameDef}, has come to the gate with an offer for {B_nameDef}: {TALE} in place of the {RELATION} {B_pronoun} has, fitted at the colony's bed by the enclave's surgeon. {COUNT} silver, or terms: a fifth down, then four seasonal instalments.</li>
-          <li>[beast] {X_nameDef}, a factor of {FACTION}, has come with a surgeon who knows beasts as well as people. {PET_nameDef}, {B_nameDef}'s beast, could have {TALE} for the {RELATION}, fitted where it stands: {COUNT} silver, or a fifth down and four instalments asked for by letter each season.</li>
+          <li>[!beast] {X_nameDef}, a trade agent of {FACTION}, has come with a surgeon, a marshal and a humming case of equipment. The enclave would fit {B_nameDef} with {TALE} for the {RELATION}, at the colony's medical bed: {COUNT} silver now, or on terms, a fifth down and the rest in four seasonal instalments asked for by letter. The enclave keeps every bargain exactly as agreed, {X_pronoun} adds.</li>
+          <li>[need,!beast] {X_nameDef} of {FACTION} has heard about {B_nameDef}'s {RELATION}, and has brought {TALE} to replace it. The enclave's surgeon would do the work at the colony's medical bed, for {COUNT} silver now, or a fifth down and four instalments, one each season, asked for by letter.</li>
+          <li>[better,!beast] A trade agent of {FACTION}, {X_nameDef}, has come to the gate with an offer for {B_nameDef}: {TALE} in place of the {RELATION} {B_pronoun} has, fitted at the colony's bed by the enclave's surgeon. {COUNT} silver, or terms: a fifth down, then four seasonal instalments.</li>
+          <li>[beast] {X_nameDef}, a trade agent of {FACTION}, has come with a surgeon who treats animals as well as people. {PET_nameDef}, {B_nameDef}'s animal, could be fitted with {TALE} for the {RELATION} where it stands: {COUNT} silver, or a fifth down and four instalments asked for by letter each season.</li>
           <li>[pod,!beast] A pod came down by the trade spot this morning, and {X_nameDef} of {FACTION} stepped out of it with a surgeon and a marshal. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms, a fifth down and four instalments.</li>
           <li>[walk,!beast] {X_nameDef} of {FACTION} has walked in from the road with a surgeon and a marshal, their spacer kit dusty, since a tribe's land has no place for a pod to land. The enclave would fit {B_nameDef} with {TALE} at the colony's bed: {COUNT} silver, or terms.</li>
           <li>[their:grateful,!beast] The enclave thinks well of the colony's dealings, and {X_nameDef} has brought {TALE} for {B_nameDef} on a friend's terms: {COUNT} silver now, or a fifth down and the rest in four seasonal instalments.</li>
@@ -188,7 +188,7 @@
           </li>
           <li>
             <label>On terms: a fifth down, the rest by the season</label>
-            <outcome>The down payment is going out to {X_nameDef}, the terms are written to the last digit, and the enclave's surgeon is getting ready to work.</outcome>
+            <outcome>The down payment is going out to {X_nameDef}, the terms are written down exactly, and the enclave's surgeon is getting ready to work.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the down payment for {X_nameDef}</label><what>silver</what><variant>true</variant><steward>false</steward></li>
               <li Class="ColonyCouncil.DilemmaEffect_EnclaveBody"><terms>true</terms></li>
@@ -196,7 +196,7 @@
           </li>
           <li>
             <label>Not today</label>
-            <outcome>{X_nameDef} notes the colony's answer to the last digit, and the enclave's people go back the way they came.</outcome>
+            <outcome>{X_nameDef} notes the colony's answer, and the enclave's people go back the way they came.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -233,11 +233,11 @@
           <li>[default] What is owed</li>
         </titles>
         <texts>
-          <li>[due] A letter has come from {FACTION}, every figure in it to the last digit. The season's instalment for {DEAD}'s {TALE} is due: {COUNT} silver, of {RELATION} still owed. Their courier will wait at the gate for it.</li>
+          <li>[due] A letter has come from {FACTION}, with every figure set out exactly. The season's instalment for {DEAD}'s {TALE} is due: {COUNT} silver, of {RELATION} still owed. Their courier will wait at the gate for it.</li>
           <li>[due] {FACTION}'s letter is short and polite. The instalment for {TALE} fitted to {DEAD} is {COUNT} silver this season, {RELATION} owed in all, carried to the gate where their courier waits.</li>
           <li>[last] {FACTION} writes that the last instalment for {DEAD}'s {TALE} is due: {COUNT} silver, and the bargain is kept. Their courier will wait at the gate for it.</li>
-          <li>[default] {FACTION} writes again about {DEAD}'s {TALE}. The colony missed an instalment, the debt stands in its name, and no lander of theirs comes until it is paid: {RELATION} silver, to the last digit, carried to the gate.</li>
-          <li>[default] A letter from {FACTION}, in a cooler hand than before: {RELATION} silver is owed for {TALE}, the default is written in the colony's debts, and their landers will not come down until it is settled.</li>
+          <li>[default] {FACTION} writes again about {DEAD}'s {TALE}. The colony missed an instalment, the debt is still recorded against it, and none of their landers will come until it is paid: {RELATION} silver in full, carried to the gate.</li>
+          <li>[default] A letter from {FACTION}, less friendly than the last: {RELATION} silver is owed for {TALE}, the default is written in the colony's debts, and their landers will not come down until it is settled.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -250,7 +250,7 @@
           </li>
           <li>
             <label>Pay all that is owed ({RELATION} silver)</label>
-            <outcome>All that is owed is going out to the gate, and the enclave's terms are kept to the last digit.</outcome>
+            <outcome>All that is owed is going out to the gate, and the enclave's terms are met in full.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EnclaveInstalment"><all>true</all></li>
             </effects>
@@ -286,14 +286,14 @@
         <notable>false</notable>
         <titles>
           <li>A crossing on the river</li>
-          <li>Carry the stranger across</li>
+          <li>A crossing for the colony</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a boatman of {FACTION}, has come up from the water with two of the river folk and a coil of rope. The colony's river could have a crossing, {X_pronoun} says: {TALE} over the water where it runs narrow, planks on both banks, laid in a day with {COUNT} of the colony's wood. Carry the stranger across, and a crossing does it every day.</li>
+          <li>{X_nameDef}, a boatman of {FACTION}, has come up from the water with two of the river folk and a coil of rope. The colony's river could have a crossing, {X_pronoun} says: {TALE} over the water where it runs narrow, planks on both banks, laid in a day with {COUNT} of the colony's wood. The river folk's custom is to carry strangers across, and a crossing does that every day.</li>
           <li>[rope] Boatmen of {FACTION} have pulled up on the colony's bank, {X_nameDef} with a mallet in {X_possessive} belt. They would lay {TALE} across the river where it is narrowest, a day's work, if the colony gives {COUNT} wood for it, and the crossing would be the colony's.</li>
           <li>[piles] {X_nameDef} of {FACTION} has come to the gate with a drawing of the colony's river and a cart of iron shoes for piles. They would lay {TALE} across the narrows in a day, {X_pronoun} says, with planks on the banks, for {COUNT} of the colony's wood.</li>
-          <li>[nobuilder] Three boatmen of {FACTION} are waiting by the gate, {X_nameDef} doing the talking. A crossing over the colony's river, {TALE}, laid in a day with {COUNT} wood, and the colony's own forever; nobody of the colony need lift a plank.</li>
-          <li>[lowtech] River folk of {FACTION} have come up from the water with poles and coils of rope, {X_nameDef} at their head. There is a knot in the net for everyone pulled out of a river, {X_pronoun} says, and a crossing pulls them out before they fall in: {TALE}, a day's work, {COUNT} wood.</li>
+          <li>[nobuilder] Three boatmen of {FACTION} are waiting by the gate, with {X_nameDef} doing the talking. They offer to lay a crossing over the colony's river, {TALE}, in a day with {COUNT} wood. It would belong to the colony, and nobody from the colony would need to lift a plank.</li>
+          <li>[lowtech] River folk of {FACTION} have come up from the water with poles and coils of rope, {X_nameDef} at their head. The river folk tie a knot in their net for everyone they pull out of a river, {X_nameDef} says, and a crossing keeps people from falling in at all: {TALE}, a day's work, {COUNT} wood.</li>
           <li>[their:grateful] The river folk remember the colony kindly, and {X_nameDef} has come to give back what they can: {TALE} over the colony's river where it runs narrow, laid in a day with {COUNT} of the colony's wood.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -422,7 +422,7 @@
           <li>{A_nameDef}'s {TALE}</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a master-smith of {FACTION}, has looked at {A_nameDef}'s {TALE} and says it could be more than it is. A day at the colony's bench, with {A_nameDef} watching, would make it {RELATION}, with {A_nameDef}'s name in it: {COUNT} silver and {THING} for the work. Bad work is a lie told in stone, {X_pronoun} adds, and this would be no lie.</li>
+          <li>{X_nameDef}, a master-smith of {FACTION}, has looked at {A_nameDef}'s {TALE} and says it could be more than it is. A day at the colony's bench, with {A_nameDef} watching, would make it {RELATION}, with {A_nameDef}'s name in it: {COUNT} silver and {THING} for the work. The guild says bad work is a lie told in stone, {X_pronoun} adds, and this would be honest work.</li>
           <li>[unique] A master of {FACTION}, {X_nameDef}, has turned {A_nameDef}'s {TALE} over in {X_possessive} hands and named the piece it could be: {RELATION}, with {A_nameDef}'s name on it. A day at the colony's bench while {A_nameDef} watches, {COUNT} silver and {THING}.</li>
           <li>[masterwork] {X_nameDef} of {FACTION} says {A_nameDef}'s {TALE} is honest work that could be {RELATION}, with {A_nameDef}'s name cut into it. A day at the colony's bench, {COUNT} silver and {THING}.</li>
           <li>[bow] A master of {FACTION}'s guild, {X_nameDef}, has strung and unstrung {A_nameDef}'s {TALE} twice. A day at the colony's bench, {X_pronoun} says, and it would be {RELATION}, with {A_nameDef}'s name along the grip: {COUNT} silver and {THING}.</li>
@@ -495,7 +495,7 @@
           <li>[odyssey] The drought has cracked the ground for miles, and {X_nameDef} of {FACTION} has come to the gate ahead of the herd. {COUNT} head and their dogs need water, {X_pronoun} told {A_nameDef}, and the colony's is the nearest that still runs.</li>
           <li>[vee] {X_nameDef}, an elder of {FACTION}, has come through the drought to the colony's gate. The herd is a day behind, {COUNT} head and their dogs, and {X_pronoun} asks to water it at the colony's river and camp there until the rain.</li>
           <li>[region] The long drought has reached the herders' road, and {X_nameDef} of {FACTION} has come to the gate to ask for the colony's water: {COUNT} head and their dogs, a few days by the river, and hay if the colony has any.</li>
-          <li>[lowtech] An old herder of {FACTION}, {X_nameDef}, has come to the gate barefoot over the hard ground. A guest eats from the same pot, {X_pronoun} says, and asks whether the herd, {COUNT} head, might drink from the colony's water until the dry year breaks.</li>
+          <li>[lowtech] An old herder of {FACTION}, {X_nameDef}, has come to the gate barefoot over the hard ground. Among the herders a guest eats from the same pot as the host, {X_pronoun} says, and asks whether the herd, {COUNT} head, might drink from the colony's water until the drought ends.</li>
           <li>[their:grateful] The herding folk remember the colony kindly, and {X_nameDef} has brought their herd to it first in the drought: {COUNT} head and their dogs, to drink at the colony's water and camp by it a while.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -517,7 +517,7 @@
           </li>
           <li>
             <label>Turn them away</label>
-            <outcome>{X_nameDef} turns back to the dry road without arguing, and walks off to find the herd another water.</outcome>
+            <outcome>{X_nameDef} turns back to the dry road without arguing, and walks off to find water for the herd somewhere else.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_DryTurnedAway" />
@@ -555,17 +555,17 @@
           <li>Ground for rent</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a factor of {FACTION}, has come to the gate with a slate of figures. The enclave would rent ground at the colony's edge for ten to fifteen days, lay a small pad and stalls on it, and trade from it every day: {COUNT} silver every five days, to the last digit.</li>
+          <li>{X_nameDef}, a trade agent of {FACTION}, has come to the gate with a slate of figures. The enclave would rent ground at the colony's edge for ten to fifteen days, lay a small landing pad and stalls on it, and trade from it every day, paying exactly {COUNT} silver every five days.</li>
           <li>[tribal] A stranger in close-fitting spacer kit, {X_nameDef} of {FACTION}, has come to the gate with a slate that glows. The enclave would rent ground at the colony's edge, {X_pronoun} says, and lay a flat place where things come down from the sky each morning to trade: {COUNT} silver every five days.</li>
           <li>[lowtech] {X_nameDef} of {FACTION} has walked in from beyond the hills where the enclave's people set down. They would rent a patch of ground at the colony's edge for their pad and stalls, ten to fifteen days, and pay {COUNT} silver every five days, an exact figure.</li>
-          <li>[!lowtech] A factor of {FACTION}, {X_nameDef}, has come by the colony's gate with an offer worked out to the last digit: rent for a patch of ground at the edge, {COUNT} silver every five days, for a pad, a few stalls and fresh stock by pod each morning.</li>
+          <li>[!lowtech] A trade agent of {FACTION}, {X_nameDef}, has come to the colony's gate with an exact offer: rent for a patch of ground at the edge, {COUNT} silver every five days, for a pad, a few stalls and fresh stock by pod each morning.</li>
           <li>[their:grateful] The enclave thinks well of the colony's dealings, and {X_nameDef} would rather rent its ground than anyone's: a pad and stalls at the edge for ten to fifteen days, {COUNT} silver every five days.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Rent them the ground ({COUNT} silver every five days)</label>
-            <outcome>{X_nameDef} writes the rent down to the last digit and goes to fetch the enclave's people.</outcome>
+            <outcome>{X_nameDef} writes down the rent and goes to fetch the enclave's people.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EnclavePad" />
             </effects>
@@ -619,10 +619,10 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a copyist of {FACTION}, has come to the gate with a cart of books saved from {PLACE}. Nothing known should be lost, {X_pronoun} says, and asks the colony to keep the archive, {COUNT} books, for a season until a cart can fetch it.</li>
-          <li>[fire] {X_nameDef} of {FACTION} smells of smoke, and so does the cart behind {X_objective}: {COUNT} books carried out of {PLACE} as the fire came. Ilse Varro carried eleven, {X_pronoun} says, and asks the colony to keep these for a season.</li>
+          <li>[fire] {X_nameDef} of {FACTION} smells of smoke, and so does the cart behind {X_objective}: {COUNT} books carried out of {PLACE} as the fire reached it. The society's founder, Ilse Varro, once saved eleven books from a fire the same way, {X_pronoun} says, and asks the colony to keep these for a season.</li>
           <li>[fell] {PLACE} has fallen, and {X_nameDef}, a copyist of {FACTION}, got out with a cart of the archive. {X_pronoun} asks the colony to keep the books, {COUNT} of them, for a season, until the society can send a cart for them.</li>
           <li>[tome] {X_nameDef} of {FACTION} has brought a cart of {COUNT} books saved from {PLACE}, and a crate bound with wire and sealed. The books may be read, {X_pronoun} says, but the crate stays shut; would the colony keep them all for a season?</li>
-          <li>[lowtech] A copyist of {FACTION} has pulled a handcart to the gate, {X_nameDef} by name, with {COUNT} books under an oiled cloth, saved from {PLACE}. Nothing known should be lost: would the colony keep them for a season?</li>
+          <li>[lowtech] A copyist of {FACTION} has pulled a handcart to the gate, {X_nameDef} by name, with {COUNT} books under an oiled cloth, saved from {PLACE}. The society holds that nothing known should be lost, and {X_nameDef} asks whether the colony would keep them for a season.</li>
           <li>[their:grateful] The learned society trusts the colony, and {X_nameDef} has brought it the archive saved from {PLACE}, {COUNT} books, to keep for a season.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -637,7 +637,7 @@
           </li>
           <li>
             <label>Keep it locked away</label>
-            <outcome>The books are going in to the colony's stores, and nobody of the colony will touch them until the cart comes.</outcome>
+            <outcome>The books are going in to the colony's stores, and nobody in the colony will touch them until the cart comes.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_ArchiveKeep"><locked>true</locked></li>
             </effects>
@@ -683,11 +683,11 @@
           <li>The Circuit's beast-doctor</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a beast-doctor of {FACTION}, has come to the gate because the Circuit heard {PET_nameDef} lost {PET_possessive} {RELATION}. A bond is not a leash, {X_pronoun} says, but a beast on three legs needs more than a bond.</li>
-          <li>[leg] {X_nameDef} of {FACTION} has brought {TALE} for {PET_nameDef}, who lost {PET_possessive} {RELATION}. {X_pronoun} would fit it where the beast stands, by the Circuit's own way of it, for {COUNT} silver. Or {X_pronoun} would take {PET_nameDef} to the Circuit's stables, and leave a young one of its kind.</li>
+          <li>{X_nameDef}, a beast-doctor of {FACTION}, has come to the gate because the Circuit heard that {PET_nameDef} lost {PET_possessive} {RELATION}. The tamers treat their animals as friends, {X_pronoun} says, and an animal on three legs needs help.</li>
+          <li>[leg] {X_nameDef} of {FACTION} has brought {TALE} for {PET_nameDef}, who lost {PET_possessive} {RELATION}. {X_pronoun} would fit it where the animal stands, the Circuit's way, for {COUNT} silver. Or {X_pronoun} would take {PET_nameDef} to the Circuit's stables, and leave a young one of its kind.</li>
           <li>[stables] A beast-doctor of {FACTION}, {X_nameDef}, has come for {PET_nameDef}, lame since {PET_pronoun} lost {PET_possessive} {RELATION}. The Circuit has no legs to fit, but it has stables and grass, and {PET_nameDef} could live out {PET_possessive} days there; {X_pronoun} has brought a young one of its kind to leave in {PET_possessive} place.</li>
           <li>[noyoung] {X_nameDef} of {FACTION} has come about {PET_nameDef} and the {RELATION} {PET_pronoun} lost. The Circuit's stables are open to {PET_objective}, {X_pronoun} says, or a leg fitted here if the Circuit has one to give.</li>
-          <li>[lowtech] A beast-doctor of {FACTION} has walked in from the road with a pack of herbs and splints, {X_nameDef} by name. Nessa Pell never left a lame beast behind, {X_pronoun} says, and asks to see {PET_nameDef}.</li>
+          <li>[lowtech] A beast-doctor of {FACTION} has walked in from the road with a pack of herbs and splints, {X_nameDef} by name. The Circuit's founder, Nessa Pell, never left a lame animal behind, {X_pronoun} says, and asks to see {PET_nameDef}.</li>
           <li>[their:grateful] The Circuit remembers the colony kindly, and {X_nameDef} has come to see to {PET_nameDef}, who lost {PET_possessive} {RELATION}.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -748,11 +748,11 @@
           <li>What the masts heard</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an operator of {FACTION}, has come to the gate with a notebook of what the masts at {PLACE} heard. Silence is the only storm, {X_pronoun} says, and sells what the line carries: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
-          <li>[noradio] The colony has no radio, so {X_nameDef} of {FACTION} has walked the word in from the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}, and where it lies.</li>
+          <li>{X_nameDef}, an operator of {FACTION}, has come to the gate with a notebook of what the radio masts at {PLACE} have picked up, and is selling the news: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
+          <li>[noradio] The colony has no radio, so {X_nameDef} of {FACTION} has brought the news on foot from the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}, and where it lies.</li>
           <li>[outpost] {X_nameDef} of {FACTION} has come to the gate with a headset round {X_possessive} neck. The masts at {PLACE} caught bandits talking on an open band; {X_pronoun} would sell where they camp, or another thing the line heard: {TALE} for {COUNT} silver, {RELATION} for {BEAST}.</li>
           <li>[wreck] An operator of {FACTION}, {X_nameDef}, has a scrap of paper with a beacon's call written on it, heard by the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
-          <li>[lowtech] A runner of {FACTION}'s line, {X_nameDef}, has come to the gate with the masts' news copied in a careful hand from the flag towers at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+          <li>[lowtech] A runner of {FACTION}'s line, {X_nameDef}, has come to the gate with news copied down from the flag towers at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
           <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} with the line's news before anyone else hears it: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
         </texts>
         <defaultOption>2</defaultOption>
