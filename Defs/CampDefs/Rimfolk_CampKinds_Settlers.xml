@@ -37,6 +37,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Chop</li><li>Mine</li><li>Gather</li><li>Hunt</li><li>Craft</li></works>
     <!-- Their carts' beasts, tethered by the stash, and the timber and seed for their first houses and fields. -->
     <animals>

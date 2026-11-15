@@ -166,8 +166,8 @@ namespace ColonyCouncil
                         break;
                     case ThingCategory.Item:
                         var f = CampTake.Facts(t, camp);
-                        if (f.theirs && !f.stored) cell.chunk = true;
-                        else if (f.stored || f.forbidden || f.home || f.zoned) cell.colony = true;
+                        if (f.theirs && (!f.stored || f.ownStore)) cell.chunk = true;
+                        else if ((f.stored && !f.ownStore) || f.forbidden || f.home || f.zoned) cell.colony = true;
                         else if (CampTakeMath.May(f)) cell.chunk = true;
                         else cell.valuable = true;
                         break;
@@ -513,7 +513,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The piece set down on the map: where its rectangle goes once turned with the layout, and the cell and rotation the game needs for it.</summary>
-        private static CampPlan PlanFor(CampStructure s, CampPiece p, IntVec3 center, int turn)
+        public static CampPlan PlanFor(CampStructure s, CampPiece p, IntVec3 center, int turn)
         {
             var def = s.Def;
             var (ax, az) = CampBuildMath.Turn(p.minX, p.minZ, turn);

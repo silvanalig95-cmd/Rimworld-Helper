@@ -381,6 +381,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VisitorsMore2Tests.Run(root, Check)} things about visitors for what the colony keeps (the relic, the anima tree, kin, the gravship, books, regulars' lives).");
         Console.WriteLine($"Checked {CampLandTests.Run(root, Check)} things about camps that come for the land (the harvest, the sheaf in ten, the catch, the ruins, the run).");
         Console.WriteLine($"Checked {CampBuildTests.Run(root, Check)} things about camps that build (what is cleared, a bed each, rooms, every kind's layout, the kits, what they take, the day, packing, what they leave).");
+        Console.WriteLine($"Checked {CampGrowTests.Run(root, Check)} things about camps that keep their own storage, clean their ground and grow over their stay (their goods onto their shelf, the mess they clean, the refuse left, how much and what each kind adds, where it goes, the kits' pieces from the player's mods).");
         Console.WriteLine($"Checked {CampTimerTests.Run(root, Check)} things about the camps' own clock and diary.");
         Console.WriteLine($"Checked {CampCrowdTests.Run(root, Check)} things about camps side by side, bands against a camp and old camps' sites (the levels, the map's room, keeping apart, who attacks whom, how it ends, moving in, contested spots).");
         Console.WriteLine($"Checked {CampHarmTests.Run(root, Check)} things about what makes a camp go when harmed (real attacks only; beasts, insects and stray shots fought off while the camp stays).");

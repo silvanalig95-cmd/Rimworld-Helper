@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps keep their goods, clean and grow
+
+*15 November 2026, version 0.257.0*
+
+- Camps now carry their goods onto their own shelf and keep them there.
+- In their free hours camp people clean the blood, ash and trash on their own ground, and orderly kinds tidy their site before they go.
+- Refuse is left behind only after a sour stay or when a careless kind leaves in a hurry.
+- A longer stay grows by the kind of camp a day or so at a time: fire seats, a lean-to, a pen, a drying rack, a bench, an altar, a banner, a latrine.
+- A short stay stays small, and a long one reaches a settled look within ten cells of the fire, never on your ground.
+- A camp's fire that couldn't be placed on arrival is set down again once its ground is clear.
+
 ## A better meal in a lesser one's place
 
 *15 November 2026, version 0.256.2*

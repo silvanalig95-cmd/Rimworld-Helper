@@ -535,6 +535,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>

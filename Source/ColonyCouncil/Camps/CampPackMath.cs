@@ -67,6 +67,8 @@ namespace ColonyCouncil
         public bool hotDry;
         /// <summary>They had beasts with them, and one is lame or old.</summary>
         public bool lameBeast;
+        /// <summary>A careless kind (CampKindDef.tidy): they clean little and leave their mess when they go in a hurry.</summary>
+        public bool careless;
         /// <summary>The kind's calling allows it: hunters, herders, stonecutters... (each leftover's kinds, CampKindDef.leftovers).</summary>
         public Func<Leftover, bool> calling;
     }
@@ -146,8 +148,10 @@ namespace ColonyCouncil
         /// What a stay leaves behind, from what happened on the map (each only where the kind's calling has it): good things
         /// when they leave in their own time from a stay that went well (a woodpile of what they cut, hides of what they
         /// hunted, a cairn of the stone they cut, a gift when the colony was warm to them), and bad ones from a stay that
-        /// went sour, ran long and crowded, or ended in a hurry (refuse; offal of what they butchered; embers in hot dry
-        /// weather; a lame beast left). <paramref name="roll"/> gives a 0..1 number for each leftover.
+        /// went sour or ended in a hurry (refuse; offal of what they butchered; embers in hot dry weather; a lame beast
+        /// left). Refuse only after a stay gone sour, or from a careless kind going in a hurry: camps clean their ground as
+        /// they stay (CampDayMath.Cleans), so a long, crowded stay no longer leaves it (15 November 2026, the player's
+        /// default). <paramref name="roll"/> gives a 0..1 number for each leftover.
         /// </summary>
         public static List<Leftover> Leaves(StayFacts f, Func<Leftover, double> roll)
         {
@@ -166,8 +170,9 @@ namespace ColonyCouncil
                 if (f.stoneLeft >= CairnFrom && f.mined > 0) Maybe(Leftover.Cairn, 0.6);
                 if (warm) Maybe(Leftover.Gift, Math.Min(0.6, 0.25 + 0.05 * f.warmth));
             }
-            // Refuse: a stay gone sour, or a long, crowded one.
-            if (sour || (f.days >= 6f && f.people >= 6)) Maybe(Leftover.Refuse, sour ? 0.6 : 0.3);
+            // Refuse: a stay gone sour, as a sign of it, or a careless kind going in a hurry.
+            if (sour) Maybe(Leftover.Refuse, 0.6);
+            else if (f.careless && !f.orderly) Maybe(Leftover.Refuse, 0.5);
             // Offal of their butchering, left by people in a hurry or who didn't care.
             if (f.butchered >= 2 && (!f.orderly || sour)) Maybe(Leftover.Offal, 0.5);
             // A fire not quite out: hot, dry weather and a hurried or careless going.

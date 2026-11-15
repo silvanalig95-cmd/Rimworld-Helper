@@ -140,6 +140,8 @@ namespace ColonyCouncil
                 case CampLabour.Craft: return dayCrafts < craftsToday ? CraftJob(p) : null;
                 case CampLabour.Fish: return kind.work != "fish" && dayFish < fishToday && (CampLand.Odyssey || CampLand.FishingMod) ? CommonFishJob(p) : null;
                 case CampLabour.Mend: return MendJob(p);
+                // Hauling: their goods lying loose carried into their own storage (CampStore.cs).
+                case CampLabour.Haul: return StowJob(p);
                 default: return null;
             }
         }
@@ -241,26 +243,32 @@ namespace ColonyCouncil
 
         // ---------------- Something made at their spot ----------------
 
-        /// <summary>Their crafting spot standing: the kit's, or their own spot where it is a work table (the smith's forge).</summary>
-        private Building CraftSpot() =>
-            plans.Where(x => !x.dropped && x.def != null && (x.role == "craft" || (x.role == "spot" && x.def.IsWorkTable))).Select(x => x.Built(map, faction)).FirstOrDefault(b => b != null);
+        /// <summary>
+        /// Their work tables standing: the bench of their trade they put up over the stay (a stonecutter's table, a tailor's
+        /// bench: CampGrow.cs) first, then the kit's crafting spot, or their own spot where it is a work table (the smith's forge).
+        /// </summary>
+        private List<Building> CraftSpots() =>
+            plans.Where(x => !x.dropped && x.def != null && x.def.IsWorkTable && (x.role == "stonework" || x.role == "tailoring" || x.role == "craft" || x.role == "spot"))
+                .OrderBy(x => x.role == "stonework" || x.role == "tailoring" ? 0 : 1).Select(x => x.Built(map, faction)).Where(b => b != null).Distinct().ToList();
 
         /// <summary>
-        /// Something simple to make at their crafting spot from what's in their stash: a recipe the spot knows, needing no more
-        /// than their people's age knows, of their wood, leather, cloth or stone, worth little. Null when they have nothing to
-        /// make it of.
+        /// Something simple to make at one of their work tables from what's in their stash: a recipe the table knows, needing no
+        /// more than their people's age knows, of their wood, leather, cloth or stone, worth little (stone blocks dressed from
+        /// a chunk of the rock they mined, at a stonecutter's table). Null when they have nothing to make it of.
         /// </summary>
-        private (RecipeDef recipe, List<(Thing thing, int count)> use, ThingDef stuff)? CraftPlan()
+        private (RecipeDef recipe, List<(Thing thing, int count)> use, ThingDef stuff, List<ThingDefCountClass> made)? CraftPlan(Building spot)
         {
-            var spot = CraftSpot();
             if (spot == null) return null;
             var goods = Goods().Where(t => !IsProp(t) && !(t is Corpse)).ToList();
             int tech = (int)(Peoples.TechOf(faction, TechLevel.Neolithic));
             foreach (var r in spot.def.AllRecipes.InRandomOrder())
             {
-                if (r?.products == null || r.products.Count != 1 || r.ingredients.NullOrEmpty() || r.workAmount > 12000f) continue;
-                var product = r.products[0].thingDef;
-                if (product == null || product.category != ThingCategory.Item || product.BaseMarketValue > 200f || product.IsMedicine || product.IsDrug) continue;
+                if (r == null || r.ingredients.NullOrEmpty() || r.workAmount > 12000f) continue;
+                // What it makes: its one product, or (stone blocks from a chunk) what the one ingredient is dressed into.
+                bool dressed = r.products.NullOrEmpty() && r.specialProducts != null && r.specialProducts.Contains(SpecialProductType.Butchery) && r.ingredients.Count == 1;
+                if (!dressed && (r.products == null || r.products.Count != 1)) continue;
+                var product = dressed ? null : r.products[0].thingDef;
+                if (!dressed && (product == null || product.category != ThingCategory.Item || product.BaseMarketValue > 200f || product.IsMedicine || product.IsDrug)) continue;
                 if (r.researchPrerequisite != null && !CampBuildMath.Within((int)r.researchPrerequisite.techLevel, tech)) continue;
                 if (r.researchPrerequisites != null && r.researchPrerequisites.Any(x => x != null && !CampBuildMath.Within((int)x.techLevel, tech))) continue;
                 var use = new List<(Thing, int)>();
@@ -285,10 +293,12 @@ namespace ColonyCouncil
                         break;
                     }
                     use.Add((have, count));
-                    if (stuff == null && product.MadeFromStuff && have.def.IsStuff && GenStuff.AllowedStuffsFor(product).Contains(have.def)) stuff = have.def;
+                    if (!dressed && stuff == null && product.MadeFromStuff && have.def.IsStuff && GenStuff.AllowedStuffsFor(product).Contains(have.def)) stuff = have.def;
                 }
-                if (!ok || (product.MadeFromStuff && stuff == null)) continue;
-                return (r, use, stuff);
+                if (!ok || (!dressed && product.MadeFromStuff && stuff == null)) continue;
+                var made = dressed ? use[0].Item1.def.butcherProducts : new List<ThingDefCountClass> { r.products[0] };
+                if (made.NullOrEmpty() || made.Any(m => m?.thingDef == null || m.thingDef.category != ThingCategory.Item || m.thingDef.BaseMarketValue * m.count > 200f)) continue;
+                return (r, use, stuff, made);
             }
             return null;
         }
@@ -296,32 +306,37 @@ namespace ColonyCouncil
         private Job CraftJob(Pawn p)
         {
             if (SkillFor(p, CampLabour.Craft) < 0 || Here.Any(o => o.CurJobDef == CampDayDefOf.Rimfolk_CampCraft)) return null;
-            var spot = CraftSpot();
-            if (spot == null || CraftPlan() == null) return null;
-            var cell = spot.def.hasInteractionCell ? spot.InteractionCell : spot.Position;
-            if (!p.CanReach(cell, PathEndMode.OnCell, Danger.Some)) return null;
-            return JobMaker.MakeJob(CampDayDefOf.Rimfolk_CampCraft, cell, spot);
+            foreach (var spot in CraftSpots())
+            {
+                if (CraftPlan(spot) == null) continue;
+                var cell = spot.def.hasInteractionCell ? spot.InteractionCell : spot.Position;
+                if (!p.CanReach(cell, PathEndMode.OnCell, Danger.Some)) continue;
+                return JobMaker.MakeJob(CampDayDefOf.Rimfolk_CampCraft, cell, spot);
+            }
+            return null;
         }
 
-        /// <summary>The work at their spot done: what it was made of used up, what was made in their stash, of the maker's skill.</summary>
-        public void Crafted(Pawn p)
+        /// <summary>The work at their table done: what it was made of used up, what was made in their stash, of the maker's skill.</summary>
+        public void Crafted(Pawn p, Building spot = null)
         {
-            var plan = CraftPlan();
+            var plan = CraftPlan(spot ?? CraftSpots().FirstOrDefault());
             if (plan == null) return;
-            var (recipe, use, stuff) = plan.Value;
-            var product = recipe.products[0];
+            var (recipe, use, stuff, products) = plan.Value;
             foreach (var (t, n) in use)
             {
                 if (t.Destroyed) return;
                 if (n >= t.stackCount) t.Destroy();
                 else t.SplitOff(n).Destroy();
             }
-            var made = ThingMaker.MakeThing(product.thingDef, stuff);
-            made.stackCount = Mathf.Max(1, Mathf.Min(product.count, product.thingDef.stackLimit));
-            made.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityCreatedByPawn(p, SkillDefOf.Crafting), ArtGenerationContext.Outsider);
+            foreach (var product in products)
+            {
+                var made = ThingMaker.MakeThing(product.thingDef, product.thingDef.MadeFromStuff ? stuff ?? GenStuff.DefaultStuffFor(product.thingDef) : null);
+                made.stackCount = Mathf.Max(1, Mathf.Min(product.count, product.thingDef.stackLimit));
+                made.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityCreatedByPawn(p, SkillDefOf.Crafting), ArtGenerationContext.Outsider);
+                if (GenPlace.TryPlaceThing(made, stash, map, ThingPlaceMode.Near, out var put, null, AtStash) && put != null) Own(put);
+            }
             dayCrafts++;
             thingsMade++;
-            if (GenPlace.TryPlaceThing(made, stash, map, ThingPlaceMode.Near, out var put, null, AtStash) && put != null) Own(put);
             p.skills?.Learn(SkillDefOf.Crafting, 200f);
             SayLine(p, "craft", 0.5f);
         }

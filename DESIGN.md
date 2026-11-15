@@ -3704,7 +3704,8 @@ the building. The kinds named Medieval Overhaul's and Outland's tent pieces, whi
   water has fish (Odyssey's or Vanilla Fishing Expanded's; the fishers' own trips besides), plain rock (stonecutters,
   prospectors, the smith, surveyors, settlers, wardens, the Banner's squad), wild plants with food or medicine in them,
   something simple made at their crafting spot from what's in their stash (a recipe the spot knows, within their age,
-  worth 200 or less; into their stash), mending their own buildings below 80%, hauling. Supper is cooked at their fire
+  worth 200 or less; into their stash), mending their own buildings below 80%, hauling (their goods onto their own
+  shelf, from 15 November 2026: "Camps keep their goods, clean their ground and grow over their stay"). Supper is cooked at their fire
   from their own meat, what they gathered and their provisions. From seven in the evening they sit by the fire: a word
   between two of them each hour (`Rimfolk_Pool_CampEvening`, by their age) with the game's chat, and with colonists who
   come by as before. Enemies at their camp: those with weapons defend it; an allied people fights beside the colony; the
@@ -3735,7 +3736,7 @@ the building. The kinds named Medieval Overhaul's and Outland's tent pieces, whi
   | hides | the same, 10 or more of their kills' hides: 2 in 5, 4 in 5 when warm | at their camp's edge nearest the colony |
   | a cairn | the same, 4 or more chunks of the rock they mined: 3 in 5 | by the old fire |
   | a gift | a warm stay (unease under 35, warmth 3 or more): a quarter and more with the warmth, 3 in 5 at most | a gift of their people's own (`ThingRoles` Gift) at the camp's edge |
-  | refuse | a sour stay (3 in 5), or a long crowded one (6 days and 6 people: 3 in 10) | filth and ash round the old fire |
+  | refuse | a sour stay (3 in 5), or (until 15 November 2026) a long crowded one; now a sour stay or a careless kind in a hurry, as they clean as they stay ("Camps keep their goods, clean their ground and grow over their stay") | filth and ash round the old fire |
   | offal | 2 or more butchered and a hurried or sour going: half | blood and meat at the butcher's spot; half again (the budget) a predator of the land walks in |
   | embers | hot and dry (26 degrees, no rain) and a hurried or sour going: a quarter | half again (the budget) the grass by the fire catches |
   | a lame beast | a camp with beasts, in its own time: about a third | left with the colony, a bruised leg |
@@ -3959,6 +3960,118 @@ herders' grazing, the league's winter quarters) come only from Rimfolk's peoples
 - **Saved**: nothing new (the hole is the map's own terrain; the shelter's day was saved already).
 - **Not run here**: any winter camp on a map; the clothes on each age's people and how far they carry them; the hole
   cut and kept open, the catch through it, and the hole freezing over again; the caravan's night in the colony.
+
+### Camps keep their goods, clean their ground and grow over their stay (the player's go, 15 November 2026; released 0.257.0)
+
+The player's words: "camps should also clean up around their campsite"; "and also build additional things over their
+stay, appropriate to the faction, type of camp etc. not that the just fill up the map, but also not that they only
+build a couple things at first and then stay like this for days on end"; with their save, "also the camp is not
+hauling their stuff into their storage unit"; then "go ahead with the camp updates & fixes".
+
+**What went wrong with the storage** (the save: a surveyors' camp of three, its shelf at (164..165, 24) holding a stack
+of cloth and two steel, and 40 logs, a chemfuel, 15 bearberries and a shiv lying round it on the ground, all theirs and
+all accepted by the shelf). Their fetching (`CampWork.Fetch`) counted anything within three and a half cells of the
+stash's corner as put away, and set what it carried down only on bare ground beside the shelf (`HaulTo` skipped any
+cell with a building), so nothing was ever carried onto it; only what fell there when they unpacked was on it. Camp
+people don't run the game's own hauling (their duty gives every job), so nothing else did either. Their own goods on
+their own shelf also counted as "in storage" to the rule of what they may take (`CampTakeMath`), as if it were the
+colony's. The same save's camp had no fire: its blueprint was given up when they arrived (something lay on its spot
+then) and never set down again.
+
+- **Their goods into their own storage** (`Camps/CampStore.cs`, the rule `CampDayMath.Stows`, `StowFacts`): one of
+  their goods is carried into one of their stores when it is theirs, lying loose at their camp, not in a store of
+  theirs already, not a body (bodies go to the butcher's spot), not put out on purpose (bales by the beasts, a woodpile
+  by the door, a stall's wares), not in the colony's storage or home area, nobody else has it in hand, and a store of
+  theirs takes it and has room (the game's own storage rules: `StoreUtility.TryFindBestBetterStoreCellForIn` for their
+  people only). The chore is the game's own hauling into storage (`HaulAIUtility.HaulToCellStorageJob`) without
+  picking up anything else on the way, at most two of them at it at once, given after fetching at any waking hour and as
+  their hauling work; what they fetch from their felling, mining and gathering goes straight into a store where one
+  takes it (else beside the stash, as before). A part of a stack carried in on its own (the game makes a new stack of
+  it) is taken into their goods each hour (`KeepStores`: only what is forbidden to the colony, as their goods are; the
+  game lets no hauler of the colony's store in another people's storage, so nothing else lands there). Their stores are
+  the stash's shelf and what they add over the stay (a second shelf, a food basket, a firewood rack: `Camp.StoreRoles`).
+  `CampTakeMath`'s new fact `ownStore`: their goods on their own shelf are theirs to use and carry; the colony's storage
+  is never theirs. Their own shelf no longer reads as the colony's ground to the layout (`CampSite.CellAt`).
+- **The fire set down again** (`Camp.RetryFire`): a fire given up when they came is set down again each hour once its
+  ground is clear; and any one-cell piece whose place to stand is blocked (a fire's cooking spot) is turned to another
+  side before it is given up (`PlaceBlueprint`).
+- **Clean ground** (`Camps/CampClean.cs`, `CampDayMath.Mess`, `Cleans`, `CleanFacts`): in their free hours by day, after
+  their callings and chores, one of them cleans the mess on their own ground: blood, vomit, ash, trash, dirt, rubble,
+  animal filth, bile, spilled fuel, slime (by the filth's name, the mods' too), never what the land lays down (leaves,
+  petals, sand, snow, water, mud, moss: Regrowth's falling leaves in the save among them), within twelve cells of their
+  fire, never on the colony's ground (its home area within three cells, a zone, a plan or a mark) nor in a room under a
+  roof that isn't theirs. The job (`Rimfolk_CampClean`, `JobDriver_CampClean`) is the game's own cleaning (its effect,
+  sound, pace by the cleaner's cleaning speed, the progress bar) without its rule that cleaning is only for the home
+  area, each bit asked again before it is cleaned; a round takes the nearest and up to eleven more round it.
+  How tidy a kind is (`CampKindDef.tidy`, `CampTidy`): orderly (healers, the lone healer, pilgrims, the procession,
+  scholars, the teacher, wardens, the Banner's squad, the hired guard, the field sickhouse, the pilgrims' hostel, the
+  pilgrims of the long night, the hermit, settlers, the lantern post, and every kind that leaves no trace: penitents,
+  tree-singers, deserters), careless (salvagers, minstrels, the road gang, and the war party as one that comes to
+  fight), the rest as most. The orderly look round at four free hours in five and clean a single spot of blood, most
+  camps at nearly half and from three bits, the careless at one in seven and only once eight bits lie about
+  (`CleanChance`, `CleanFrom`); one at it at once, two for an orderly camp of six or more (`Cleaners`).
+- **Tidy before they go**: going in their own time, an orderly kind's packing hours wait for their ground to be clean,
+  and they pack up for it even with nothing to pack (`TidiesBeforeLeaving`, `Camp.ToTidy`, `StartPacking`,
+  `WatchPacking`).
+- **The refuse left behind** (`CampPackMath.Leaves`, `StayFacts.careless`): only after a stay gone sour (three in five,
+  as a sign of it) or from a careless kind going in a hurry (one in two); a long, crowded stay no longer leaves it, as
+  they cleaned as they stayed (the player's default from the proposal).
+- **Growing over the stay** (`Camps/CampGrow.cs`; the rules in `CampBuildMath`: `GrowCeiling`, `GrowGapHours`,
+  `GrowWants`, `GrowNext`, `GrowPlace`, `GrowFacts`, `GrowSite`). How many times a camp adds to itself: none for a stay
+  under two and a half days, about once for every day and a quarter after the first, never more than two and one for
+  every two of its people, six at most (three people for seven days: three; six for ten days: five; a hermit alone:
+  two). The first 18 to 28 hours after the camp stands, then every 19 to 34 hours; nothing new in their last day, with
+  a threat on the map, at unease of 60 or more, or while they pack; an addition not built in a day and a half is given up
+  (its blueprints taken up, what was put into them back in the stash). What a kind adds, the most fitting first: its
+  own (a pen for a camp with beasts, a rack to dry meat for hunters, a stonecutter's table for those who come to cut
+  rock, a tailor's bench for those who come to craft, a firewood rack for woodcutters, a small altar for a people of a
+  faith with no spot of its own) in turn with what any camp would (seats round the fire, a lean-to over the stash for a
+  stay of four days or more, a latrine for four people staying four days, a banner at the edge for a stay of five days,
+  of a people past the tribal age or the Empire's); first of all a second store when their goods lie about with no room
+  (a food basket for food, else another shelf). Only roles with a piece in the game that their people know how to build;
+  each tried once, and one with no room or no means is passed over.
+  | Addition | Pieces (the player's mods first, the game's own last) | Where |
+  |---|---|---|
+  | seats round the fire | the kit's seat (VFE's cushion for a tribe, a stool), two to four | two cells out from the fire, a cell apart so it is never closed in, each looking at it; they sit there in the evening |
+  | a lean-to | VFE Settlers' post, else a column; two to four | round the stash's ground and shelf, the corners first; the roof over the stash, the shelf and the posts, never over a tree or under the mountain; taken off before a post is taken down |
+  | a pen | VFE Architect's picket fence, else the game's fence | round a free patch three by three (four by three for four beasts or more) near the picket, a gap on the fire's side; their picket beasts rest and mill about inside it, a herd that grazes beyond the camp sleeps in it at night |
+  | a drying rack | VFE Classical's meat drying rack | by the butcher's spot |
+  | a stonecutter's table, a tailor's bench | the game's own (their age: medieval on) | near the fire, its front free; they make things at it as at their crafting spot (stone blocks from the rock they mined) |
+  | a firewood rack | Deep Storage Plus's | near the fire, of the logs they cut |
+  | a small altar | Ideology's | on the far side from the colony |
+  | a banner | VFE Medieval 2's heraldic standing banner, VFE Empire's imperial banner for the Empire's people | at the edge on the colony's side |
+  | a latrine | Dubs Bad Hygiene's pit latrine | at the far edge, five cells or more from their beds |
+  | a second store | LWM's Deep Storage food basket, the kit's shelf | by the stash |
+  Each is laid out in the camp's frame (the fire at the middle, +z away from the colony) on what the map has now:
+  never on what stands, on a door step, a work spot's place to stand, a hut's or pen's inside or the stash's ground,
+  never on the colony's ground, all within ten cells of the fire; everything a camp could add is about fifty cells at
+  most. The pieces are of the first listed material they have enough of (their goods and packs), else wood where the
+  land has trees to cut; they set out carrying the materials for what they mean to add (the first of their additions,
+  as many as the stay allows; a firewood rack is of the wood they cut), and set them down at their stash on arriving;
+  a camp from an earlier save adds what it has the means for. When it stands, the colony hears it in the evening's news
+  (`CC_CampGrow_Done`: "The surveyors have put up a lean-to over their stash at their camp."), and one of them said a
+  line as they began (`[grow]`, Rimfolk_Pool_CampWork). Going, what they added is packed or left by the rules of the
+  rest: what can be uninstalled (stools, a shelf, a basket, a bench, a banner, the altar, the latrine) is packed and
+  carried in their last hours; the posts and fences, and anything that can't be uninstalled, stand where they are,
+  nobody's (taken down by a kind that leaves no trace, the lean-to's roof first); the leaving message names a lean-to,
+  a pen and seats round the fire left standing. An old site's next camp takes over what stands of it
+  and adds only what it lacks.
+- **The kits' grows** (`CampKitDef.grows`, `CampKit.GrowPiece`, Defs/CampDefs/Rimfolk_CampKits.xml): each age's list,
+  the stuff by age (wood, steel first for spacers, cloth or leather for the imperial banner). No game piece and none in
+  the player's mods for a chopping block or a cheap woodpile (Deep Storage Plus's firewood rack costs 210 logs, so only
+  woodcutters put it up).
+- **Saved**: the growth's count, next hour, step under way and its end (`Camp.ExposeGrow`, values only); the kinds'
+  tidiness is in the defs. The plans model in `Tools/save_estimate.py` holds 120 a camp, an old site's 50.
+- **Tests** (`Tools/Tests/CampGrowTests.cs`): the stowing rule and the old bug, their own shelf against the colony's
+  storage, the mess and the land's filth, the chances, the refuse, the kinds' tidiness, the ceiling and the gaps, what
+  each kind adds first, every addition placed on open ground, among trees and beside the colony's land for three, six
+  and ten people sleeping round the fire, in a hut and in tents (nothing on what stands or is kept free, the fire's way
+  round it, the seats apart, the roof near a post, the pen with one gap, the banner on the colony's side), the kits'
+  pieces from the player's catalogue.
+- **Not run here**: the hauling onto their shelf in the game (the game's own job for a people's own storage), the
+  cleaning job on their ground, the blueprints of each addition and their building, the lean-to's roof, the beasts in
+  their pen and walking out through its gap, the drying rack and the banners of the player's mods built by a camp's
+  people, the fire of the save's camp set down again.
 
 ## Harm from everyday life
 

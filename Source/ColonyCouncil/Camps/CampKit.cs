@@ -18,8 +18,18 @@ namespace ColonyCouncil
         /// <summary>tribal, medieval, industrial or spacer (CampBuildMath.AgeOf).</summary>
         public string age;
         public List<CampStructure> parts = new List<CampStructure>();
+        /// <summary>
+        /// What a camp of this age adds over its stay (Camps/CampGrow.cs, CampBuildMath.GrowRoles), role by role, the player's
+        /// mods' pieces first: posts for a lean-to, fences for a pen, a drying rack, a stonecutter's and a tailor's bench, a
+        /// firewood rack, a small altar, a banner (the Empire's own first for its people), a latrine, a food basket. A role
+        /// with nothing that exists in the game is simply not added. Seats round the fire are the kit's seat, a second store
+        /// the kit's stash.
+        /// </summary>
+        public List<CampStructure> grows = new List<CampStructure>();
 
         public CampStructure Part(string role) => parts?.FirstOrDefault(p => p.role == role);
+
+        public CampStructure Grow(string role) => grows?.FirstOrDefault(p => p.role == role);
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -62,6 +72,28 @@ namespace ColonyCouncil
             var def = kit.defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.category == ThingCategory.Building && Known(d, f));
             if (def == null) return own?.Def != null ? own : null;
             return new CampStructure { role = role, defs = new List<string> { def.defName }, stuff = kit.stuff, doors = kit.doors, count = kit.count };
+        }
+
+        /// <summary>
+        /// The piece a camp adds over its stay for a growth role (CampBuildMath.GrowRoles): seats round the fire are its seat,
+        /// a second store its stash's shelf; the rest from its age's kit's grows, the first that exists and that its people
+        /// know how to build, the Empire's own banner first for the Empire's people. Null when the game has none for them.
+        /// </summary>
+        public static CampStructure GrowPiece(CampKindDef kind, string role, Faction f)
+        {
+            if (role == "fireseat") return Piece(kind, "seat", f);
+            if (role == "store") return Piece(kind, "stash", f);
+            var kit = For(AgeOf(f));
+            if (kit == null) return null;
+            var parts = new List<CampStructure>();
+            if (role == "banner" && f?.def != null && f.def == FactionDefOf.Empire && kit.Grow("imperialbanner") != null) parts.Add(kit.Grow("imperialbanner"));
+            if (kit.Grow(role) != null) parts.Add(kit.Grow(role));
+            foreach (var part in parts)
+            {
+                var def = part.defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.category == ThingCategory.Building && Known(d, f));
+                if (def != null) return new CampStructure { role = role, defs = new List<string> { def.defName }, stuff = part.stuff, count = part.count };
+            }
+            return null;
         }
 
         /// <summary>The people know how to build it: what research it needs is within their age (their means).</summary>

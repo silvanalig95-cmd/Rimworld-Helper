@@ -573,6 +573,7 @@
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <situationKinds>
       <li>faith</li>
@@ -1062,6 +1063,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Chop</li><li>Gather</li><li>Fish</li><li>Hunt</li></works>
     <!-- Firewood stacked by the hut's door, which feeds the fire and is left with the hut. At the end of the season the
          hermit walks to the colony's door and leaves a carved bird there, in its crate. -->

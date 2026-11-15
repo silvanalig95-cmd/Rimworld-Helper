@@ -57,7 +57,9 @@ namespace ColonyCouncil
         private bool StartPacking(string reason)
         {
             int hours = CampPackMath.PackHours(reason);
-            if (hours <= 0 || !Settled || !LordAlive || ToPack().Count == 0) return false;
+            // Nothing to pack, and nothing to tidy for an orderly kind (CampClean.cs): they go at once.
+            bool tidy = CampDayMath.TidiesBeforeLeaving(Tidy, CampPackMath.Orderly(reason)) && FilthOnGround() > 0;
+            if (hours <= 0 || !Settled || !LordAlive || (ToPack().Count == 0 && !tidy)) return false;
             packingFor = reason;
             // At night they sleep on and pack in the morning.
             int hour = GenLocalDate.HourOfDay(map);
@@ -71,7 +73,8 @@ namespace ColonyCouncil
         private void WatchPacking()
         {
             if (packingFor == null) return;
-            if (ToPack().Count > 0 && Now < packUntil) return;
+            // Packing, and for the orderly their ground tidied, until their hours are up.
+            if ((ToPack().Count > 0 || ToTidy()) && Now < packUntil) return;
             string why = packingFor;
             packingFor = null;
             packed = true;
@@ -111,11 +114,12 @@ namespace ColonyCouncil
                     return;
                 }
                 if (fate != PackFate.TakeDown) return;
-                // The roof over a room comes off before its first wall does.
+                // The roof over a room comes off before its first wall does, a lean-to's before its first post (CampGrow.cs).
                 var plan = plans.FirstOrDefault(x => x.def == b.def && x.cell == b.Position);
                 if (plan != null && (plan.role == "hut" || plan.role == "door"))
                     foreach (var c in CampSite.HutInside(plans, plan.room))
                         if (c.InBounds(map) && map.roofGrid.RoofAt(c) == RoofDefOf.RoofConstructed) map.roofGrid.SetRoof(c, null);
+                if (plan != null && plan.role == "post") UnroofLeanTo();
                 var costs = Costs(plan ?? new CampPlan { def = b.def, stuff = b.Stuff });
                 if (LordAlive) lord.ownedBuildings.Remove(b);
                 b.Destroy(DestroyMode.Vanish);
@@ -202,6 +206,11 @@ namespace ColonyCouncil
                     return "CC_CampLeft_What_dining".Translate();
                 case "spot":
                     return "CC_CampLeft_What_spot".Translate(b.def.label.Named("THING"));
+                // What they added over the stay (CampGrow.cs): a lean-to, a pen, seats round the fire.
+                case "post":
+                case "fence":
+                case "fireseat":
+                    return ("CC_CampLeft_What_" + role).Translate();
                 case "fire":
                 case "wall":
                 case "light":
@@ -238,7 +247,7 @@ namespace ColonyCouncil
                 {
                     orderly = orderly, days = DaysHere, people = members.Count, tension = tension, warmth = warm, butchered = beastsDressed, felled = treesFelled, mined = rockMined,
                     woodLeft = wood, hidesLeft = hides, stoneLeft = stone, hotDry = HotDry(), lameBeast = herd.Any(a => a != null && a.Spawned && !a.Dead && GroupOf(a)?.follow != true),
-                    calling = l => kind.leftovers == null || kind.leftovers.Contains(l)
+                    calling = l => kind.leftovers == null || kind.leftovers.Contains(l), careless = Tidy == CampTidy.Careless
                 };
                 foreach (var l in CampPackMath.Leaves(facts, _ => Rand.Value))
                     if (MakeLeftover(l, fire, goods)) leftNow.Add(l);

@@ -792,6 +792,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Chop</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Yak</li></kinds><count>1~1</count><at>picket</at></li>

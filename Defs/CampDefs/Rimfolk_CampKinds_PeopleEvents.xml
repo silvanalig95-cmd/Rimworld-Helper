@@ -50,6 +50,7 @@
       <li><role>table</role></li>
     </structures>
     <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li><li>Chop</li></works>
     <campGoods>
       <li><defs><li>MealSimple</li></defs><count>4~8</count><at>table</at></li>
@@ -172,6 +173,7 @@
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
     <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Chop</li></works>
     <animals>
       <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li>Husky</li><li>LabradorRetriever</li></kinds><count>2~2</count><follow>true</follow><named>true</named></li>
@@ -301,6 +303,7 @@
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <titles>
       <li>Scholars at the old place</li>

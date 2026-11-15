@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.257.0</version>
+        <date>15 November 2026</date>
+        <title>Camps keep their goods, clean and grow</title>
+        <points>
+          <li>Camps now carry their goods onto their own shelf and keep them there.</li>
+          <li>In their free hours camp people clean the blood, ash and trash on their own ground, and orderly kinds tidy their site before they go.</li>
+          <li>Refuse is left behind only after a sour stay or when a careless kind leaves in a hurry.</li>
+          <li>A longer stay grows by the kind of camp a day or so at a time: fire seats, a lean-to, a pen, a drying rack, a bench, an altar, a banner, a latrine.</li>
+          <li>A short stay stays small, and a long one reaches a settled look within ten cells of the fire, never on your ground.</li>
+          <li>A camp's fire that couldn't be placed on arrival is set down again once its ground is clear.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.256.2</version>
         <date>15 November 2026</date>
         <title>A better meal in a lesser one's place</title>

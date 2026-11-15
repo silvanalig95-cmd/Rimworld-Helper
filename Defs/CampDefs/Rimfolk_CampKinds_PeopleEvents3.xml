@@ -44,6 +44,7 @@
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
     <sleep>Tents</sleep>
+    <tidy>Careless</tidy>
     <works><li>Chop</li><li>Haul</li></works>
     <campGoods>
       <li><defs><li>WoodLog</li></defs><count>20~40</count><at>wall</at></li>
@@ -200,6 +201,7 @@
       <li><role>table</role></li>
     </structures>
     <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <titles>
       <li>A field sickhouse</li>

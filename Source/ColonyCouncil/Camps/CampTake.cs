@@ -58,6 +58,8 @@ namespace ColonyCouncil
                         }
                 f.zoned = map.zoneManager.ZoneAt(pos) != null || CampSite.Marked(pos, map) || map.designationManager.DesignationOn(t) != null;
                 f.stored = t.Spawned && StoreUtility.IsInAnyStorage(t);
+                // Their own shelf or basket is theirs, not the colony's storage (CampStore.cs).
+                f.ownStore = f.stored && camp != null && camp.InOwnStore(t);
             }
             f.forbidden = t.def.category == ThingCategory.Item && t.IsForbidden(Faction.OfPlayer) && !f.theirs && !(camp?.FromTheirWork(t) ?? false);
             switch (t.def.category)

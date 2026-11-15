@@ -358,7 +358,9 @@ MODEL = {
     "Building/ColonyUse.cs:keys": ("window", (const("Building/UseLog.cs", "WindowDays", 3) + 1, 70), 45, "with the above: what was counted, where and what"),
     "Building/ColonyUse.cs:amounts": ("window", (const("Building/UseLog.cs", "WindowDays", 3) + 1, 70), V, "with the above: how much"),
     "Camps/Camp.cs:members": ("while", 12, P, "the camp's people (up to twelve), while it stays"),
-    "Camps/Camp.cs:plans": ("while", 90, 200, "what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), while the camp stays"),
+    "Camps/Camp.cs:plans": ("while", 120, 200, "what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), "
+                                             "and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, "
+                                             "a second store: CampGrow.cs, about thirty more), while the camp stays"),
     "Camps/Camp.cs:warmth": ("while", 8, D, "while the camp stays"),
     "Camps/Camp.cs:willing": ("while", 8, P, "while the camp stays"),
     "Camps/Camp.cs:joined": ("while", 3, P, "while the camp stays"),
@@ -428,7 +430,8 @@ MODEL = {
     "Camps/CampRaid.cs:helpers": ("while", 6, P, "per band: the colonists who fought beside the camp, while the band is on the map"),
     "Camps/CampTracker.cs:grounds": ("fixed", const("Camps/CampGroundMath.cs", "MostSites", 6), 260,
                                      "per colony: old camps' sites, the newest CampGroundMath.MostSites, let go once claimed, taken down or built over"),
-    "Camps/CampGround.cs:plans": ("fixed", 6 * 40, 200, "every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites)"),
+    "Camps/CampGround.cs:plans": ("fixed", 6 * 50, 200, "every old site's layout as it was left, its constructions and its beds' places, what it added over the stay too "
+                                                      "(about fifty a site, six sites)"),
     "Camps/CampGround.cs:held": ("fixed", const("Camps/CampGroundMath.cs", "MostSites", 6) * const("Camps/CampGroundMath.cs", "MostHolders", 6), 160,
                                  "who held each old site, the newest CampGroundMath.MostHolders of each of six sites"),
     "Happenings/Happenings.cs:regulars": ("fixed", 5, R, "visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away"),
