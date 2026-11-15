@@ -41,21 +41,28 @@ namespace ColonyCouncil
                 var x = t.fetch;
                 // Not while they're down or out of their mind: they wait (and in the end it's done the old way).
                 if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || x.Downed || x.InMentalState
-                    || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
+                    || !pawn.CanReach(x, PathEndMode.Touch, Danger.Deadly)) return null;
                 OnFoot(pawn, t, false, true);
                 var fetch = JobMaker.MakeJob(CourierDefOf.Council_CourierFetch, x);
                 fetch.locomotionUrgency = Pace.Errand;
                 return fetch;
             }
-            // Unloading from their place at the drop spot (onto the cells beside a mailbag), or where they stand if they can't
-            // get there (built over, or never arrived).
-            bool reach = t.spot.IsValid && pawn.CanReach(t.spot, PathEndMode.ClosestTouch, Danger.Some);
+            // Unloading from their place at the drop spot (onto the cells beside a mailbag), by any way in there is, however
+            // cold or hot. With none at all (the player, 15 November 2026: "porters placed the material just before my killbox
+            // instead of walking to the mailbag"; a wall with no door, a door they can't open), they set it down as near to
+            // it as they can get, and the message says why (CourierTracker.Unload).
+            bool reach = t.spot.IsValid && pawn.CanReach(t.spot, PathEndMode.ClosestTouch, Danger.Deadly);
             if (t.toUnload.Contains(pawn))
-                return reach ? Drop(new LocalTargetInfo(CarrierJobs.PlaceOf(pawn, t.spot)), t.spot) : Drop(new LocalTargetInfo(pawn.Position), IntVec3.Invalid);
+            {
+                if (reach) return Drop(new LocalTargetInfo(CarrierJobs.PlaceOf(pawn, t.spot)), t.spot);
+                if (t.spot.IsValid) t.shutOut = true;
+                var near = t.spot.IsValid ? CarrierJobs.NearestOf(pawn, t.spot) : pawn.Position;
+                return Drop(new LocalTargetInfo(near.IsValid ? near : pawn.Position), IntVec3.Invalid);
+            }
             // The pack animal's load: the first of them still about unloads it, wherever it stands (by the bag, beside it).
             var beast = t.animal;
             if (beast != null && t.toUnload.Contains(beast) && beast.Spawned && !beast.Dead && beast.Map == map && t.Bearers.FirstOrDefault() == pawn
-                && pawn.CanReach(beast, PathEndMode.Touch, Danger.Some))
+                && pawn.CanReach(beast, PathEndMode.Touch, Danger.Deadly))
                 return Drop(new LocalTargetInfo(beast), reach && t.atBag ? t.spot : IntVec3.Invalid);
             if (t.Takes && !t.StillCarrying)
             {
@@ -114,7 +121,7 @@ namespace ColonyCouncil
             foreach (var x in cands.OrderByDescending(x => x.IsInAnyStorage()).ThenBy(x => x.Position.DistanceToSquared(spot)).Take(40))
             {
                 if (!pawn.CanReserve(x, 1, -1, null, false)) continue;
-                if (!pawn.CanReach(x, PathEndMode.ClosestTouch, Danger.Some)) continue;
+                if (!pawn.CanReach(x, PathEndMode.ClosestTouch, Danger.Deadly)) continue;
                 return x;
             }
             return null;

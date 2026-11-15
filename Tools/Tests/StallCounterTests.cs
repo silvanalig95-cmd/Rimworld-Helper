@@ -3,7 +3,7 @@ using ColonyCouncil;
 /// <summary>
 /// The arithmetic of Rimfolk's sales table for RimMarket's colony stalls (Source/ColonyCouncil/Integrations/
 /// StallCounterMath.cs): prices kept as RimMarket keeps them, counts within what there is, the quick amounts, how well a
-/// price sells by RimMarket's own chances, and what a line fetches.
+/// price sells by RimMarket's own chances, what a line fetches, and how worn the weapons and apparel are.
 /// </summary>
 public static class StallCounterTests
 {
@@ -56,6 +56,35 @@ public static class StallCounterTests
         }
         Check(falls, "the dearer the price, never the better it sells");
         Check(StallCounterMath.LineWorth(12, 8) == 96 && StallCounterMath.LineWorth(-3, 8) == 0, "a line fetches its price each times its count");
+
+        // ---------- How worn the weapons and apparel are ----------
+        var none = default(StallCounterMath.Wear);
+        Check(StallCounterMath.HealthText(none) == null && StallCounterMath.HealthTone(none) == 0, "no pieces: no health shown");
+        var one = default(StallCounterMath.Wear);
+        one.Add(0.62f, false);
+        Check(StallCounterMath.HealthText(one) == "62%" && one.count == 1 && one.tainted == 0, "one piece: its health, 62%");
+        var several = default(StallCounterMath.Wear);
+        foreach (float h in new[] { 1f, 0.45f, 0.8f }) several.Add(h, false);
+        several.Add(0.7f, true);
+        Check(StallCounterMath.HealthText(several) == "45-100%" && several.count == 4 && several.tainted == 1, "several: the range, 45-100%, and how many are tainted");
+        var alike = default(StallCounterMath.Wear);
+        alike.Add(1f, false);
+        alike.Add(1f, false);
+        Check(StallCounterMath.HealthText(alike) == "100%", "several alike: one number");
+        Check(StallCounterMath.Percent(0.996f) == 99 && StallCounterMath.Percent(1f) == 100 && StallCounterMath.Percent(0.004f) == 1 && StallCounterMath.Percent(0f) == 0
+              && StallCounterMath.Percent(1.2f) == 100,
+            "a piece that has lost any is never shown at 100%, one with some left never at 0%");
+        var merged = default(StallCounterMath.Wear);
+        merged.Add(none);
+        merged.Add(one);
+        merged.Add(several);
+        Check(merged.count == 5 && merged.tainted == 1 && StallCounterMath.HealthText(merged) == "45-100%", "the counter's and the colony's pieces taken together");
+        var low = default(StallCounterMath.Wear);
+        low.Add(0.3f, false);
+        var mid = default(StallCounterMath.Wear);
+        mid.Add(0.6f, false);
+        Check(StallCounterMath.HealthTone(alike) == 0 && StallCounterMath.HealthTone(mid) == 1 && StallCounterMath.HealthTone(low) == 2 && StallCounterMath.HealthTone(several) == 2,
+            "the colour by the most worn piece: fine from 80%, worn from 50%, badly worn below");
         return cases;
     }
 

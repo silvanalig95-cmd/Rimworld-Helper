@@ -10,7 +10,8 @@ using ColonyCouncil;
 /// still leads somewhere, to its view and mode or the Almanac's window; every view's "?" opens an Almanac article; a
 /// view's header and the People table beside the drawer; every page name the code opens is a page; the bottom bar
 /// buttons are the four windows (the planning button in the rooms button's def), and the rooms and planning buttons'
-/// settings merge as they should. The region window's History page: its kinds in words, its filters.
+/// settings merge as they should. The region window's History page: its kinds in words, its filters; and the world events
+/// running now in the corner above the letters.
 /// </summary>
 public static class PagesTests
 {
@@ -345,6 +346,22 @@ public static class PagesTests
         foreach (HistoryScope s in Enum.GetValues(typeof(HistoryScope)))
             C(WorldHistoryMath.ScopeOf(WorldHistoryMath.ScopeCode(s)) == s, $"the scope {s} is kept on the way back");
         C(WorldHistoryMath.ScopeOf("?") == WorldHistoryMath.DefaultScope && WorldHistoryMath.ScopeOf(null) == WorldHistoryMath.DefaultScope, "an unknown scope is the default");
+
+        // ---------------- The world events running now, above the letters (UI/WorldEventsCorner.cs) ----------------
+        C(WorldEventsCornerMath.OwnLines(0) == 0 && WorldEventsCornerMath.More(0) == 0, "no world event running: no line");
+        C(WorldEventsCornerMath.OwnLines(1) == 1 && WorldEventsCornerMath.OwnLines(3) == 3 && WorldEventsCornerMath.More(3) == 0, "up to three: a line each");
+        C(WorldEventsCornerMath.OwnLines(4) == 2 && WorldEventsCornerMath.More(4) == 2 && WorldEventsCornerMath.OwnLines(9) == 2 && WorldEventsCornerMath.More(9) == 7,
+            "past three: two lines and \"and N more\" for the rest, three lines in all");
+        bool fits = true;
+        for (int k = 0; k <= 12; k++)
+            if (WorldEventsCornerMath.OwnLines(k) + (WorldEventsCornerMath.More(k) > 0 ? 1 : 0) > WorldEventsCornerMath.MostLines
+                || WorldEventsCornerMath.OwnLines(k) + WorldEventsCornerMath.More(k) != k) fits = false;
+        C(fits, "never more than three lines, and every running event is counted");
+        string corner = File.ReadAllText(Path.Combine(src, "UI", "WorldEventsCorner.cs"));
+        C(corner.Contains("s.worldSituations && s.worldEventsCorner") && corner.Contains("WorldHistoryPage.RunningTip(s)") && pagesFile.Contains("tip = RunningTip(s)")
+          && corner.Contains("[HarmonyPatch(typeof(LetterStack), nameof(LetterStack.LettersOnGUI))]") && corner.Contains("lastTop(stack) = top;"),
+            "the corner: only with world events and its setting on, the History chips' own words, above the letters with the alerts moved up");
+        C(corner.Contains("Cards.ShowOnMap(l.place)") && corner.Contains("Pages.Open(\"WorldHistory\")"), "a click opens the region window where it is, else its History");
         return n;
     }
 }

@@ -30,6 +30,16 @@
   <CC_Stall_SellAll>Sell all of it ({0})</CC_Stall_SellAll>
   <CC_Stall_SellN>Sell {0}</CC_Stall_SellN>
   <CC_Stall_NoneAround>None on the map right now.</CC_Stall_NoneAround>
+  <!-- How worn weapons and apparel are (Source/ColonyCouncil/UI/Window_StallCounter.cs): {0} is "62%" or "45-100%" -->
+  <CC_Stall_Health>health {0}</CC_Stall_Health>
+  <CC_Stall_Tainted>tainted</CC_Stall_Tainted>
+  <CC_Stall_TaintedN>{0} tainted</CC_Stall_TaintedN>
+  <CC_Stall_HealthTip>Health: {0} of full hit points. Worn pieces sell for less.</CC_Stall_HealthTip>
+  <CC_Stall_TaintedTip>Tainted ({0}): worn by someone who died in it. A tainted piece sells for a tenth of its price, and colonists don't like to wear one.</CC_Stall_TaintedTip>
+  <CC_Stall_HealthHeld>On the counter: health {0}.</CC_Stall_HealthHeld>
+  <CC_Stall_HealthColony>In the colony: health {0}.</CC_Stall_HealthColony>
+  <CC_Stall_HealthColonyRange>In the colony, in this quality range: health {0}.</CC_Stall_HealthColonyRange>
+  <CC_Stall_HealthPick>RimMarket's sale lines go by quality only, so the haulers bring the nearest pieces in the range, worn or not.</CC_Stall_HealthPick>
   <CC_Stall_Counter>On the counter</CC_Stall_Counter>
   <CC_Stall_ClearAll>Take everything off</CC_Stall_ClearAll>
   <CC_Stall_ClearAllConfirm>Take every line off the sales table? What already lies on the counter is put down in front of the stall.</CC_Stall_ClearAllConfirm>

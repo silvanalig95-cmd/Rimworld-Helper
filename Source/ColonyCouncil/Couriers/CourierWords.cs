@@ -140,15 +140,40 @@ namespace ColonyCouncil
         /// <summary>Where they walk up to, as they're seen on the map: the mailbag, the gate, else the colony.</summary>
         private static string To(CourierTrip t) => (t.atBag ? "CC_Courier_ToBag" : t.atGate ? "CC_Courier_ToGate" : "CC_Courier_ToColony").Translate().Resolve();
 
-        /// <summary>Their business is done: what they set down, what they took.</summary>
-        public static void Done(CourierTrip t)
+        /// <summary>
+        /// No way in to the spot at all: what they brought is set down as near to it as they could get. Says why, and what
+        /// would let them in, with the one who set it down and the goods to look at.
+        /// </summary>
+        public static void ShutOut(CourierTrip t, Pawn by, List<Thing> placed)
         {
             if (t == null || t.quiet) return;
             try
             {
                 string who = People(t, true, out _);
+                var look = new List<Thing>();
+                if (by != null && by.Spawned) look.Add(by);
+                if (placed != null) look.AddRange(placed.Where(x => x != null && x.Spawned));
+                Notify.Message("CC_Courier_ShutOut".Translate(who, FactionName(t), To(t), t.bringLabel ?? "").Resolve(),
+                    look.Count > 0 ? new LookTargets(look) : Look(t), MessageTypeDefOf.CautionInput, Importance.Important);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("courier shut out words", e);
+            }
+        }
+
+        /// <summary>Their business is done: what they set down, what they took.</summary>
+        public static void Done(CourierTrip t)
+        {
+            if (t == null || t.quiet) return;
+            // A delivery set down short of the mailbag was told as it was set down (ShutOut): nothing more to say.
+            if (t.shutTold && t.kind == CourierKind.Deliver && t.fetch == null) return;
+            try
+            {
+                string who = People(t, true, out _);
                 string faction = FactionName(t);
-                string where = (t.atBag ? "CC_Courier_ByBag" : t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony").Translate().Resolve();
+                string where = (t.shutOut ? "CC_Courier_AsNearAsTheyCould" : t.atBag ? "CC_Courier_ByBag" : t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony")
+                    .Translate().Resolve();
                 bool all = t.taken >= t.amount || CourierStock.Particular(t) || (t.def == null && t.what.NullOrEmpty());
                 string took = t.Takes && !all ? (t.takeNoun != null ? "CC_Courier_Amount".Translate(t.taken, t.takeNoun).Resolve() : Couriers.Amount(t.taken, t.what, t.def)) : t.takeLabel;
                 string text;

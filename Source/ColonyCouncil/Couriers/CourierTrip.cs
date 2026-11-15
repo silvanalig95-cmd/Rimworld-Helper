@@ -54,6 +54,11 @@ namespace ColonyCouncil
         public bool atBag;
         /// <summary>Where the old way would have set the things down (the caller's spot, else the trade spot).</summary>
         public IntVec3 oldSpot = IntVec3.Invalid;
+        /// <summary>
+        /// No way in to the spot at all (a wall with no door, a door they can't open): what they brought was set down as near
+        /// to it as they could get (since 15 November 2026), and <see cref="shutTold"/> once the message said so.
+        /// </summary>
+        public bool shutOut, shutTold;
 
         // ---- What they bring ----
 
@@ -235,6 +240,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref atGate, "atGate");
             Scribe_Values.Look(ref atBag, "atBag");
             Scribe_Values.Look(ref oldSpot, "oldSpot", IntVec3.Invalid);
+            Scribe_Values.Look(ref shutOut, "shutOut");
+            Scribe_Values.Look(ref shutTold, "shutTold");
             Scribe_Deep.Look(ref goods, "goods", this);
             Scribe_Values.Look(ref bringLabel, "bringLabel");
             Scribe_Collections.Look(ref toUnload, "toUnload", LookMode.Reference);

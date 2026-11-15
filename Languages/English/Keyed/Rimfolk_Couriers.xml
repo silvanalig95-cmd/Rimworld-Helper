@@ -26,6 +26,7 @@
   <CC_Courier_ByBag>by the mailbag</CC_Courier_ByBag>
   <CC_Courier_ByGate>by the gate</CC_Courier_ByGate>
   <CC_Courier_NearColony>near the colony</CC_Courier_NearColony>
+  <CC_Courier_AsNearAsTheyCould>as near to the colony as they could get</CC_Courier_AsNearAsTheyCould>
   <CC_Courier_ToBag>the mailbag</CC_Courier_ToBag>
   <CC_Courier_ToGate>the gate</CC_Courier_ToGate>
   <CC_Courier_ToColony>the colony</CC_Courier_ToColony>
@@ -56,6 +57,8 @@
   <CC_Courier_Done_Bearer>{PAWN_nameDef} set down {GOODS} for the colony.</CC_Courier_Done_Bearer>
   <CC_Courier_FetchGone>{0} from {1} came for {2}, who is no longer the colony's to give. They left without paying.</CC_Courier_FetchGone>
   <CC_Courier_Done_Nothing>{0} from {1} found none of what they came for left in the stores.</CC_Courier_Done_Nothing>
+  <!-- No way in to the mailbag at all (a wall with no door, a door they can't open): {2} the mailbag, the gate or the colony, {3} what they brought -->
+  <CC_Courier_ShutOut>{0} from {1} found no way in to {2}, so they set down {3} as near to it as they could get. A door or an opening in the wall would let them through.</CC_Courier_ShutOut>
 
   <!-- What was left of a deal went another way -->
   <CC_Courier_Fell_In>{0} from {1} came by another road. Look where traders leave their goods.</CC_Courier_Fell_In>
