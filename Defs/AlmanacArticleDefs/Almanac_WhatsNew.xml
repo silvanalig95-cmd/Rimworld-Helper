@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.246.0</version>
+        <date>15 November 2026</date>
+        <title>Messages and tooltips in plain words: the council, defenses and dealings</title>
+        <points>
+          <li>Messages, tooltips and wish reasons for the council, the defenses and dealings with other peoples now say plainly what happens, without wry endings or old turns of phrase.</li>
+          <li>The short line under each answer uses everyday words, such as "would be deeply hurt" in place of "stung to the quick".</li>
+          <li>Tooltips that were hard to follow, such as how good things grow ordinary, how armour stops a hit and what happens when tribute falls short, are now written in full sentences.</li>
+          <li>The setting for good things growing ordinary now gives the right line for the spoiled, 15 points, as the game counts it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.245.0</version>
         <date>15 November 2026</date>
         <title>Event cards in plain words: the peoples and the neighbours</title>

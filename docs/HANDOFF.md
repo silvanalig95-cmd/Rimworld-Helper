@@ -140,6 +140,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.246.0, **Plain words: interface-1** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: ... messages and interface"). The first
+  messages-and-interface batch: 11 files in `Languages/English/Keyed` (`ColonyCouncil.xml`, the defense lines, what
+  each answer does, ransom and envoys, pacts and truces, fealty and vassals, weapons, wards and hostages, apparel,
+  dealings with towns, marriage alliances). About 5,270 entries read, 115 rewritten: wish reasons with a wry end ("talks
+  about food even while eating", "Better an animal than a colonist."), lofty or archaic words in the answers' flavour
+  lines ("sit ill with", "stung to the quick", "walk taller for it", "cost the colony dear") and in letters and rows ("a
+  colony holds of one liege only", "for want of people", "is handed down no line"), things given a will ("A drone
+  grinds on the minds", "it forgives {PAWN_possessive} Shooting", "guns that never sleep" in the defense lines' own
+  text), riddling tooltips (how good things grow ordinary, the armour roll, tribute that falls short) and clipped
+  clauses ("Sent, ... Refused, worse.") now say what happens, who does it and why. Every placeholder, number and fact
+  kept, labels and buttons as short as before, no god named. Left as they were: everything spoken (co-sign and
+  personal-touch lines, toasts, the contest cries, fallback replies, the in-pack ask), the meeting heckles, the annals,
+  mood and memory causes, dreams, journals, family flavour, the pets' signs of a god's presence as the colony sees them,
+  and every line already plain (most of the advisor, the planner, the defense steps and the weapon and apparel cards).
+  Found, not in this batch, and fixed on merging: `CC_Settings_Ordinary_Tip` (`Rimfolk_OneHeart.xml`) said the line
+  falls "to 21 for the spoiled", while `GoodLifeMath.LineFor` and `CC_GoodTimes_Tip` give 15; it now says 15.
 - 0.245.0, **Plain words: events-2** (14
   November 2026; the player's words: "yes, please rewrite everything", "leave: what colonists say, talk between
   colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with: event cards").

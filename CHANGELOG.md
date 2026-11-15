@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Messages and tooltips in plain words: the council, defenses and dealings
+
+*15 November 2026, version 0.246.0*
+
+- Messages, tooltips and wish reasons for the council, the defenses and dealings with other peoples now say plainly what happens, without wry endings or old turns of phrase.
+- The short line under each answer uses everyday words, such as "would be deeply hurt" in place of "stung to the quick".
+- Tooltips that were hard to follow, such as how good things grow ordinary, how armour stops a hit and what happens when tribute falls short, are now written in full sentences.
+- The setting for good things growing ordinary now gives the right line for the spoiled, 15 points, as the game counts it.
+
 ## Event cards in plain words: the peoples and the neighbours
 
 *15 November 2026, version 0.245.0*
