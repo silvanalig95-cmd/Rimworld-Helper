@@ -126,7 +126,7 @@
   <CC_Truce_End_Peace_2>With {PEOPLE}, {WORD} has run its course, and nobody is at war anymore. {PEACE}</CC_Truce_End_Peace_2>
   <CC_Truce_End_RanOut_Label>The truce with {PEOPLE} ran out</CC_Truce_End_RanOut_Label>
   <CC_Truce_End_RanOut>The truce with {PEOPLE} has run its course. They are still at war with the colony, and their raids may come again. {PEACE}</CC_Truce_End_RanOut>
-  <CC_Truce_End_RanOut_2>With {PEOPLE}, {WORD} is over. Nothing came of it beyond the quiet it bought, and their raiders are free to come again. {PEACE}</CC_Truce_End_RanOut_2>
+  <CC_Truce_End_RanOut_2>With {PEOPLE}, {WORD} is over. It brought a quiet spell and nothing more, and their raiders are free to come again. {PEACE}</CC_Truce_End_RanOut_2>
 
   <!-- Their firebrands, and a truce broken -->
   <CC_Truce_Firebrands_Label>Firebrands of {PEOPLE}</CC_Truce_Firebrands_Label>
@@ -134,7 +134,7 @@
   <CC_Truce_Firebrands_2>Not everyone among {PEOPLE} swore to the truce. A band that didn't is on its way, and when it gets here the truce is broken.</CC_Truce_Firebrands_2>
   <CC_Truce_BrokenByThem_Label>The truce with {PEOPLE} is broken</CC_Truce_BrokenByThem_Label>
   <CC_Truce_BrokenByThem>{PEOPLE} broke {WORD}: {HOW}. The colony will remember it, and their raids may come again.</CC_Truce_BrokenByThem>
-  <CC_Truce_BrokenByThem_2>So much for the truce with {PEOPLE}: {HOW}. It is broken, and the colony owes them nothing now.</CC_Truce_BrokenByThem_2>
+  <CC_Truce_BrokenByThem_2>The truce with {PEOPLE} is over: {HOW}. It is broken, and the colony owes them nothing now.</CC_Truce_BrokenByThem_2>
   <CC_Truce_BrokenByUs_Label>The colony broke its truce</CC_Truce_BrokenByUs_Label>
   <CC_Truce_BrokenByUs>The truce with {PEOPLE} is broken by the colony: {HOW}. They will remember it, and so will every people in reach who hears of it.</CC_Truce_BrokenByUs>
   <CC_Truce_By_Raid>their raiders came at the colony anyway</CC_Truce_By_Raid>
@@ -189,7 +189,7 @@
   <CC_Pact_Band>{COUNT} fighters of {PEOPLE} have walked in to fight {ENEMY} beside the colony, as the pact asks: {WORD}.</CC_Pact_Band>
   <CC_Pact_Band_2>The band of {PEOPLE} has come. {COUNT} of them are on the colony's land, making for {ENEMY}.</CC_Pact_Band_2>
   <CC_Pact_Band_Late>The band of {PEOPLE} reached the colony's land after the fight was over. They saw nothing left to do and turned for home.</CC_Pact_Band_Late>
-  <CC_Pact_Band_Late_2>Fighters of {PEOPLE} came over the hill an hour too late. Finding the fight over, they went home.</CC_Pact_Band_Late_2>
+  <CC_Pact_Band_Late_2>Fighters of {PEOPLE} came too late to help. Finding the fight over, they went home.</CC_Pact_Band_Late_2>
   <CC_Pact_Hist_Band>{PEOPLE} sent their band to fight {ENEMY} beside the colony.</CC_Pact_Hist_Band>
   <CC_Pact_Hist_BandLate>{PEOPLE} sent their band to the colony's aid, too late for the fight.</CC_Pact_Hist_BandLate>
   <CC_Pact_Alert>Call {PEOPLE}</CC_Pact_Alert>
@@ -300,7 +300,7 @@
   <!-- Settings -->
   <CC_Settings_DiplomacyPacts>Pacts and truces</CC_Settings_DiplomacyPacts>
   <CC_SetNote_DiplomacyPacts>Truces with peoples at war with the colony, and defense and trade pacts with its friends.</CC_SetNote_DiplomacyPacts>
-  <CC_Settings_DiplomacyPacts_Tip>A truce can be offered to a people at war with the colony when it has beaten a raid of theirs in the last 15 days, holds one of their notables or kin, or a friend of both has spoken for peace; they offer one now and then after a raid of theirs is beaten. Agreed, their envoy comes to the gate under their sign of parley, vouched for by a people at peace with both, and the colony's speaker walks out to swear it; with no such people it is sworn by word. A season or a year, with a price either way. While it holds, their raiders' camp near the colony breaks up; once per truce their firebrands may raid anyway (one in ten). At its end it is a peace if their goodwill has come to 0. A pact (with a people at goodwill 20 or more, never the Empire) runs a year and can be renewed: a defense pact brings their band when the colony calls during a threat (at most once a season, nine times in ten) and asks the colony's fighters for their town when it is attacked; a trade pact brings their caravan each season and takes a cart of the colony's surplus for silver. Attacking a partner breaks it, and every people in reach hears of it. Off: nothing new is made, and those live run out by their terms.</CC_Settings_DiplomacyPacts_Tip>
+  <CC_Settings_DiplomacyPacts_Tip>A truce can be offered to a people at war with the colony when it has beaten a raid of theirs in the last 15 days, holds one of their notables or kin, or a friend of both has spoken for peace; they offer one now and then after a raid of theirs is beaten. Agreed, their envoy comes to the gate under their sign of parley, vouched for by a people at peace with both, and the colony's speaker walks out to swear it; with no such people it is sworn by word. A season or a year, with a price either way. While it holds, their raiders' camp near the colony breaks up; once per truce their firebrands may raid anyway (one in ten). At its end it is a peace if their goodwill has come to 0. A pact (with a people at goodwill 20 or more, never the Empire) runs a year and can be renewed: a defense pact brings their band when the colony calls during a threat (at most once a season, nine times in ten) and asks the colony's fighters for their town when it is attacked; a trade pact brings their caravan each season and takes a cart of the colony's surplus for silver. Attacking a partner breaks it, and every people in reach hears of it. Off: nothing new is made, and those in force run out by their terms.</CC_Settings_DiplomacyPacts_Tip>
   <CC_Settings_TruceRaids>Truces keep raids away</CC_Settings_TruceRaids>
   <CC_SetNote_TruceRaids>While a truce holds, the storyteller doesn't send that people's raids to that home.</CC_SetNote_TruceRaids>
   <CC_Settings_TruceRaids_Tip>A small hook on the game's choice of raiders: a people holding a truce with the home being raided isn't chosen. Raids whose people is set beforehand (quests, other mods) still come, and break the truce when they do. Needs the deeper game hooks. Off: a truce keeps only Rimfolk's own raids and camps away.</CC_Settings_TruceRaids_Tip>

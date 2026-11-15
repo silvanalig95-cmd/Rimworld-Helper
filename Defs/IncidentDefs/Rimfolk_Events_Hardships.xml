@@ -43,7 +43,7 @@
           <li>[fall] The geese went over low and fast this morning, and by noon {A_nameDef} had stopped work to look at the sky. It's going to freeze tonight, hard and weeks early, and stay cold a day or two. Half the crop is still standing.\n\nWhat's ripe can be in the stores before dark, if the colony drops everything else.</li>
           <li>[lowtech] {A_nameDef} has been sniffing the air since morning, the way old growers do, and doesn't like it. A frost is coming down tonight, the kind that turns leaves black by dawn, with a cold behind it that will sit on the land a day or two.\n\nAnything still in the fields after dark takes its chances.</li>
           <li>[!lowtech] The weather report on the comms gave it one line between the trade prices: hard frost tonight across the region, cold to follow. {A_nameDef} read it twice and went straight out to the fields to see what can be saved before dark.</li>
-          <li>[cold] Frost is nothing new here, but {A_nameDef} says this one is wrong: clear sky, no wind, and a cold coming that will go down into the soil. The crops still standing tonight won't be standing by morning.</li>
+          <li>[cold] Frost is nothing new here, but {A_nameDef} says this one will be worse than usual: clear sky, no wind, and a cold coming that will go down into the soil. The crops still standing tonight won't be standing by morning.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -131,7 +131,7 @@
           </li>
           <li>
             <label>Bring the animals in close every night</label>
-            <outcome>{A_nameDef} brought the herd in before dark and shut them in where the walls are thick. They'll go in every night now until the tracks stop coming, and the barn already smells like it.</outcome>
+            <outcome>{A_nameDef} brought the herd in before dark and shut them in where the walls are thick. They'll go in every night now until the tracks stop coming.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd in</label><count>2</count><tasks><li>Herd</li></tasks><hours>15~20</hours><duration>1~2</duration></li>
             </effects>
@@ -201,7 +201,7 @@
         </titles>
         <texts>
           <li>The wells at {PLACE} have gone to mud, and the creeks on that side of the hills are dry stones. {X_nameDef} of {FACTION} has walked {X_possessive} herd two days to reach water, and the nearest is the colony's river.\n\n{X_nameDef} asks, hat in hand, whether the animals may drink. They won't stay past evening.</li>
-          <li>[lowtech] Dust on the road since morning, and the lowing of a herd under it. {X_nameDef}, a drover of {FACTION}, came ahead to the gate alone: the herd hasn't drunk properly in three days, and the colony sits on the only river that's still running.\n\nThe beasts will drink and go, {X_nameDef} promises.</li>
+          <li>[lowtech] There has been dust on the road since morning, and the sound of a herd under it. {X_nameDef}, a drover of {FACTION}, came ahead to the gate alone: the herd hasn't drunk properly in three days, and the colony sits on the only river that's still running.\n\nThe beasts will drink and go, {X_nameDef} promises.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} came on ahead of a herd that's mostly ribs. The pumps at {PLACE} quit when the water table dropped, and the colony's river is the closest water for a day in any direction.\n\n{X_nameDef} wants a few hours at the bank for the animals, no more.</li>
           <li>{X_nameDef}, a herder of {FACTION}, has been standing at the gate since dawn without asking for anything, which is how {A_nameDef} knew it was serious. The summer has dried up every pond between {PLACE} and here. {X_nameDef}'s herd needs the colony's river, for an afternoon.</li>
         </texts>
@@ -290,8 +290,8 @@
           <li Class="ColonyCouncil.WorldEffect_Incident"><incident>HerdMigration</incident></li>
         </effects>
         <texts>
-          <li>The sky over the far ridge went brown at noon, and by evening the sun was a red coin in it. A grass fire is burning through the hills beyond the colony's land, a long way off, and the wind is keeping it there.\n\nThe animals aren't waiting to see. A herd is coming through the colony's land at a run, and {FACTION}'s farms at {PLACE} lie right in the fire's path.</li>
-          <li>[lowtech] Ash came down with the rain this morning, gray flakes on the washing. {A_nameDef} climbed the lookout and came down to say it: the woods past the ridge are burning, and the fire is walking toward {FACTION}'s fields at {PLACE}.\n\nEverything with legs is running from it, straight across the colony's land.</li>
+          <li>The sky over the far ridge went brown at noon, and by evening the sun showed red through the smoke. A grass fire is burning through the hills beyond the colony's land, a long way off, and the wind is keeping it there.\n\nThe animals aren't waiting to see. A herd is coming through the colony's land at a run, and {FACTION}'s farms at {PLACE} lie right in the fire's path.</li>
+          <li>[lowtech] Ash came down with the rain this morning, gray flakes on the washing. {A_nameDef} climbed the lookout and came down to say it: the woods past the ridge are burning, and the fire is spreading toward {FACTION}'s fields at {PLACE}.\n\nEverything with legs is running from it, straight across the colony's land.</li>
           <li>[!lowtech] {FACTION} put out a call on the comms an hour ago: a wildfire on the far ridge, moving toward {PLACE}, and every hand they have on the firebreaks. The colony is well out of its way.\n\nThe game isn't. Animals driven out of the hills are pouring across the colony's land, too frightened to stop.</li>
           <li>[dry] It hasn't rained in weeks, and now the hills beyond the ridge are burning. Smoke hangs over the colony like a low ceiling. {A_nameDef} counted forty head of game crossing the fields before breakfast, running east, away from it.\n\n{FACTION}'s farms at {PLACE} are next in its way.</li>
         </texts>
@@ -358,7 +358,7 @@
         </titles>
         <texts>
           <li>A runner from {PLACE} came in at a dead run and drank a whole jug of water before saying a word. A war band of {ENEMY} is moving down the valley, {FACTION} say, burning as it goes. It may pass the colony by. It may not.\n\n{FACTION}'s militia could turn it at the ford, with silver for more spears: {COUNT} would do it.</li>
-          <li>[lowtech] Smoke on the hills to the north this morning, three columns of it, and then a rider from {FACTION} with the reason: {ENEMY} are out in force, a war band of them, coming down the valley toward {PLACE} and the colony both.\n\n{FACTION} will meet them at the ford if they can. {COUNT} silver would hire the spears to make sure of it.</li>
+          <li>[lowtech] There was smoke on the hills to the north this morning, three columns of it, and then a rider from {FACTION} came with the reason: {ENEMY} are out in force, a war band of them, coming down the valley toward {PLACE} and the colony both.\n\n{FACTION} will meet them at the ford if they can. {COUNT} silver would hire the spears to make sure of it.</li>
           <li>[!lowtech] The message from {PLACE} came over the comms in pieces, the signal breaking up: a war band of {ENEMY}, moving down the valley road, three days out. {FACTION}'s militia means to hold the bridge and asks the colony for {COUNT} silver toward ammunition.\n\nWithout it, the war band may come straight on.</li>
           <li>{A_nameDef} brought the news up from the gate: a war band of {ENEMY} is coming down the valley, and {FACTION} have sent word to every settlement in its way. Some places it passes by. Some it doesn't.\n\n{FACTION} say {COUNT} silver toward their militia would let them turn it at the ford.</li>
         </texts>

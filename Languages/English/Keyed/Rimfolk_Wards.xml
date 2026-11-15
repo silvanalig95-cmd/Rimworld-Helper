@@ -60,8 +60,8 @@
 
   <!-- Their offer of a ward -->
   <CC_Ward_Offer_Label>A ward offered: {PEOPLE}</CC_Ward_Offer_Label>
-  <CC_Ward_Offer_How>The ward would live at the colony as its lodger, on the colonist bar, working with the colony, and {GUARDIAN} would teach them {SKILL} an hour a day. At the year's end their kin come for them, and how they were kept travels home with them: taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_How>
-  <CC_Ward_Offer_HowChild>The ward, a child, would live at the colony as its lodger, on the colonist bar, and learn {SKILL} at the colony's lessons, where {GUARDIAN} and others can teach. At the year's end their kin come for them, and how they were kept travels home with them: taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_HowChild>
+  <CC_Ward_Offer_How>The ward would live at the colony as its lodger, on the colonist bar, working with the colony, and {GUARDIAN} would teach them {SKILL} an hour a day. At the year's end their kin come for them and take home word of how they were kept: if the ward was taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_How>
+  <CC_Ward_Offer_HowChild>The ward, a child, would live at the colony as its lodger, on the colonist bar, and learn {SKILL} at the colony's lessons, where {GUARDIAN} and others can teach. At the year's end their kin come for them and take home word of how they were kept: if the ward was taught, fed, unhurt and content, their people would owe the colony a debt of honor.</CC_Ward_Offer_HowChild>
   <CC_Ward_Opt_Accept>Take the ward in</CC_Ward_Opt_Accept>
   <CC_Ward_Opt_Decline>Decline with thanks</CC_Ward_Opt_Decline>
   <CC_Ward_Msg_Accepted>The colony has agreed to take {WARD} of {PEOPLE} for a year. They will come to the gate with their kin.</CC_Ward_Msg_Accepted>

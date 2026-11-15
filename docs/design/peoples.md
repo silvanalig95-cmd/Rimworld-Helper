@@ -734,7 +734,7 @@ colony, each with three answers, the last always to send them on):
 - *The Bell's funeral* (`HappeningWorker_BellFuneral`): for one of the colony who died within six days and lies in a
   grave, a bell-keeper waits by the grave; the colony gathers there in the evening (a vigil at the grave with the funeral's own words,
   `Rimfolk_Pool_PlayBellFuneral`), or one colonist stands a while with the bell-keeper.
-- *The ground is listening* (`HappeningWorker_BellVoidSigns`, Anomaly only, the void awake and no big threat for eight
+- *Something stirring underground* (`HappeningWorker_BellVoidSigns`, Anomaly only, the void awake and no big threat for eight
   days): towards evening an old bell-keeper warns at the gate; lamps at the colony's doors and a watch on the walls
   until first light (a patrol), or the bell-keeper alone at the gate with a lamp until first light.
 - *A friendly bout* (`HappeningWorker_TamerBout`): a roaming tamer with their companion (with PokéWorld a Fighting type

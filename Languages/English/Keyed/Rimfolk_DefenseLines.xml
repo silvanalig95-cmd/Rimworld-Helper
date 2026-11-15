@@ -7,7 +7,7 @@
   <CC_DefLine_Section>Defense lines</CC_DefLine_Section>
   <CC_DefLine_SectionCount>{0} line(s)</CC_DefLine_SectionCount>
   <CC_DefLine_SectionNone>none yet</CC_DefLine_SectionNone>
-  <CC_DefLine_Intro>A defense line is one gap you mean to hold, built up step by step: close it, clear the field of fire, cover behind the gate, traps, guns that never sleep, a killbox when raids grow, harder walls and a line to fall back to. The helper checks each step against what stands on the map, says what's left and why, and puts the plans down where they fit together. Start one from a gap's advice below ("Make a defense line"), or with "New defense line".</CC_DefLine_Intro>
+  <CC_DefLine_Intro>A defense line is one gap you mean to hold, built up step by step: close it, clear the field of fire, cover behind the gate, traps, turrets or a post of shooters, a killbox when raids grow, harder walls and a line to fall back to. The helper checks each step against what stands on the map, says what's left and why, and places the plans so they fit together. Start one from a gap's advice below ("Make a defense line"), or with "New defense line".</CC_DefLine_Intro>
   <CC_DefLine_New>New defense line...</CC_DefLine_New>
   <CC_DefLine_New_Tip>Start a line on one of the gaps raiders pass, busiest first, or pick the spot on the map yourself.</CC_DefLine_New_Tip>
   <CC_DefLine_New_Gap>To the {0}: {1}, {2} wide (about {3} in 10 raids)</CC_DefLine_New_Gap>
@@ -132,7 +132,7 @@
   <CC_DefLine_Guns_One>One working turret; a second, three cells from it, covers the first.</CC_DefLine_Guns_One>
   <CC_DefLine_Guns_PostLabel>A sniper's post</CC_DefLine_Guns_PostLabel>
   <CC_DefLine_Guns_Posts>{0} firing position(s) further back see the gate; three make a post.</CC_DefLine_Guns_Posts>
-  <CC_DefLine_Guns_TurretsOff>{0}, so the guns that never sleep are people at a post.</CC_DefLine_Guns_TurretsOff>
+  <CC_DefLine_Guns_TurretsOff>{0}, so this step is a post of shooters instead of turrets.</CC_DefLine_Guns_TurretsOff>
   <CC_DefLine_Guns_TurretResearch>Turrets come later ({0}); until then a post for your best shots does the work.</CC_DefLine_Guns_TurretResearch>
   <CC_DefLine_Turret_NoPower>The {0} has no power.</CC_DefLine_Turret_NoPower>
   <CC_DefLine_Turret_NoFuel>The {0} is out of {1}.</CC_DefLine_Turret_NoFuel>
@@ -166,7 +166,7 @@
   <CC_DefLine_Harden_Wood>{0} of them are wood, which burns.</CC_DefLine_Harden_Wood>
   <CC_DefLine_Harden_Embrasures>With {0} you could let archers and shooters fire through the line itself.</CC_DefLine_Harden_Embrasures>
   <CC_DefLine_Harden_Gatehouse>Behind a palisade or a castle gate, a second wall would close off the embrasures' firing positions. Thicken the plain walls beside them by hand, and let the gatehouse be the second line.</CC_DefLine_Harden_Gatehouse>
-  <CC_DefLine_Harden_ByHand>There's no plan for a second skin of wall in this game: build one right behind the line by hand, wall against wall.</CC_DefLine_Harden_ByHand>
+  <CC_DefLine_Harden_ByHand>There's no plan for a second layer of wall in this game: build one right behind the line by hand, wall against wall.</CC_DefLine_Harden_ByHand>
 
   <!-- Step: fall back -->
   <CC_DefLine_Fallback_None>Between this gate and the beds there's no second door: raiders who get through walk straight to the bedrooms.</CC_DefLine_Fallback_None>
@@ -275,7 +275,7 @@
 
   <!-- Raids -->
   <CC_DefLine_Remind>Raiders are here, and the gate of {0} is shut. With no way in, they break the wall wherever they like. If you mean to fight there, select the gate and set it to stay open.</CC_DefLine_Remind>
-  <CC_DefLine_RaidOver>The raid at {0} is over. {1} The defense window has what it teaches.</CC_DefLine_RaidOver>
+  <CC_DefLine_RaidOver>The raid at {0} is over. {1} The defense window shows what it taught.</CC_DefLine_RaidOver>
   <CC_DefLine_LastRaid>Last raid ({0} ago): {1}</CC_DefLine_LastRaid>
   <CC_DefLine_Raid_Through>{0} came through the gate</CC_DefLine_Raid_Through>
   <CC_DefLine_Raid_Round>{0} went round to the {1}</CC_DefLine_Raid_Round>

@@ -33,7 +33,7 @@
         <texts>
           <li>[lowtech] A peddler on the road passed the news to {A_nameDef} along with the rest of the gossip, not knowing what it was: {TALE} has died, back where {A_nameDef} came from. A fever in the spring, the peddler thinks.\n\n{A_nameDef} finished the day's work without a word, and hasn't eaten since.</li>
           <li>[!lowtech] The message was three lines long and had been passed on twice before it reached the colony's comms: {TALE} has died. {A_nameDef} copied it out by hand and has been carrying the paper folded in a pocket all afternoon.</li>
-          <li>Word came with a traveler this morning: {TALE} is dead, months ago now, and buried far from here. {A_nameDef} heard it at the gate, nodded, and went back to work, and the work isn't getting done.</li>
+          <li>Word came with a traveler this morning: {TALE} is dead, months ago now, and buried far from here. {A_nameDef} heard it at the gate, nodded and went back to work, but has barely got anything done since.</li>
           <li>[winter] News moves slowly in the cold. A letter from the old country reached {A_nameDef} today, half a year late: {TALE} died before the snow came. {A_nameDef} read it by the stove, folded it small, and hasn't said a word since.</li>
           <li>[trait:Kind] {A_nameDef} has been sitting on the woodpile since noon with a letter in {A_possessive} lap: {TALE} is dead. There was a funeral, a long way from here, weeks ago, and {A_nameDef} wasn't at it.</li>
         </texts>
@@ -43,7 +43,7 @@
             <label>A wake tonight, and {A_nameDef} tells the colony about them</label>
             <outcome>The colony gathered after supper and {A_nameDef} told stories until late: the jokes, the quarrels, the time with the borrowed cart. There was more laughing than anyone expected, and some crying at the end.</outcome>
             <outcomes>
-              <li>[lowtech] They poured a cup for the dead and set it at the end of the table, the old way, and {A_nameDef} talked until the cup was the only full thing left.</li>
+              <li>[lowtech] They poured a cup for the dead and set it at the end of the table, the old way, and {A_nameDef} talked about them late into the night.</li>
               <li>[trait:Kind] {A_nameDef} talked about the one who died for an evening, and the colony listened, and at the end {A_nameDef} said thank you to each of them in turn.</li>
             </outcomes>
             <effects>
@@ -79,7 +79,7 @@
             <label>Keep {A_objective} busy; work helps</label>
             <outcome>{A_nameDef} worked through the day and the next, long hours and short answers, and went to bed early both nights.</outcome>
             <outcomes>
-              <li>[trait:Industrious] {A_nameDef} took on twice the work and finished all of it. The grief went into the work, or somewhere further down.</li>
+              <li>[trait:Industrious] {A_nameDef} took on twice the work and finished all of it, and did not talk about the death.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefNoTime</thought></li>
@@ -253,7 +253,7 @@
           </li>
           <li>
             <label>Send {COUNT} silver home instead, with a long letter</label>
-            <outcome>The silver went into a pouch with a long letter, both bound for the old country with the next trader. It won't bring {A_nameDef} home, but it will hire the hands {A_nameDef} can't be.</outcome>
+            <outcome>The silver went into a pouch with a long letter, both bound for the old country with the next trader. It won't bring {A_nameDef} home, but it will pay someone else to do the work there.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SentHome</thought></li>
@@ -262,7 +262,7 @@
           </li>
           <li>
             <label>Let {A_nameDef} go home, with the colony's blessing</label>
-            <outcome>In the morning the colony saw {A_nameDef} to the gate with a full pack and too much advice. {A_nameDef} turned twice on the road to wave, and then the road bent and the colony was one smaller.</outcome>
+            <outcome>In the morning the colony saw {A_nameDef} to the gate with a full pack and plenty of advice. {A_nameDef} turned twice on the road to wave, and then was out of sight.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -310,7 +310,7 @@
           <li>{X_nameDef}'s cart</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION} has a cart of good things and a price far too low for them: {COUNT} silver for the lot. When {A_nameDef} asked where they came from, {X_nameDef} talked about the weather.\n\n{A_nameDef} found the answer on the side of a crate: a merchant's mark from {PLACE}, and fresh splinters where someone pried it open.</li>
+          <li>{X_nameDef} of {FACTION} has a cart of good things and a price far too low for them: {COUNT} silver for the lot. When {A_nameDef} asked where they came from, {X_nameDef} changed the subject.\n\n{A_nameDef} found the answer on the side of a crate: a merchant's mark from {PLACE}, and fresh splinters where someone pried it open.</li>
           <li>[lowtech] Under the sacking on {X_nameDef}'s handcart: good cloth, a few tools, a jar of salt, a pair of boots made for someone else. {COUNT} silver for everything, says {X_nameDef} of {FACTION}, and no questions.\n\n{A_nameDef} heard at the last market that a storehouse at {PLACE} was broken into the week before.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} opened the back of the cart only partway, and kept looking at the road while {X_pronoun} did it. Inside are crates with {PLACE}'s customs seals cut through. {X_nameDef} wants {COUNT} silver for the lot, a third of what it's worth, and wants it fast.</li>
           <li>[colony:Thrifty] Word on the road is that the colony counts every coin, so {X_nameDef} of {FACTION} has brought it a bargain: a cart of goods worth three times the {COUNT} silver {X_pronoun} asks. Where they came from is {X_possessive} business, {X_nameDef} says.\n\nThe sacks are stenciled with the name of a granary at {PLACE}.</li>
@@ -380,8 +380,8 @@
           <li>A game after supper</li>
         </titles>
         <texts>
-          <li>[lowtech] {X_nameDef} of {FACTION} rattles a cup of knucklebones while talking, and never seems to notice doing it. {X_nameDef} would like a game or two after supper with anyone who has silver and an evening to lose it in, or one game against the colony's best, {COUNT} silver a side.\n\n{A_nameDef}, who is good with numbers, thinks {X_nameDef}'s bones roll too well.</li>
-          <li>[!lowtech] A deck of cards, worn soft at the corners, came out of {X_nameDef}'s coat before {X_nameDef} of {FACTION} had finished saying hello. Cards after supper, {X_nameDef} offers: anyone who'd like to play, or one hand against the colony's best for {COUNT} silver a side.\n\n{A_nameDef} has heard about friendly games.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} rattles a cup of knucklebones while talking, and never seems to notice doing it. {X_nameDef} would like to play a few games after supper with anyone willing to bet silver, or one game against the colony's best, {COUNT} silver a side.\n\n{A_nameDef}, who is good with numbers, suspects {X_nameDef}'s knucklebones are weighted.</li>
+          <li>[!lowtech] A deck of cards, worn soft at the corners, came out of {X_nameDef}'s coat before {X_nameDef} of {FACTION} had finished saying hello. Cards after supper, {X_nameDef} offers: anyone who'd like to play, or one hand against the colony's best for {COUNT} silver a side.\n\n{A_nameDef} has heard of card players who cheat at friendly games, and is wary.</li>
           <li>{X_nameDef} of {FACTION} plays dice for a living and makes no secret of it: a game tonight with whoever wants one, or a single game against the colony's best, {COUNT} silver a side, winner takes the pot.</li>
           <li>[colony:Hardworking] The colony doesn't play much, by the look of it, and {X_nameDef} of {FACTION} has taken that as a challenge. A night of games never ruined anyone, {X_nameDef} says, and the dice are already out. Or {A_nameDef}, who looks clever, can play {X_objective} for {COUNT} silver a side.</li>
         </texts>
@@ -614,7 +614,7 @@
           <li>{X_nameDef} of {FACTION} goes from settlement to settlement teaching children their letters and numbers, a day here and a week there, for whatever a place can pay. {X_nameDef} has already met {A_nameDef}, who asked eleven questions before supper.\n\nFor {COUNT} silver, {X_nameDef} will give the colony's children a day of real lessons.</li>
           <li>[lowtech] A teacher has come up the road with a slate under each arm: {X_nameDef} of {FACTION}, who teaches the children of the villages to count, to read the old marks and to tell the stars apart. For {COUNT} silver, {X_nameDef} will spend tomorrow with the colony's young ones.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} runs a school out of a backpack: chalk, a battered reader, a box of pencils worn to stubs. For {COUNT} silver, {X_nameDef} will give the colony's children a day of lessons, and leave the reader behind.</li>
-          <li>[winter] With the fields asleep, {X_nameDef} of {FACTION} walks the settlements teaching, and has stopped at the colony. {A_nameDef} has been following {X_objective} around since the gate. A day of lessons would be {COUNT} silver, {X_nameDef} says.</li>
+          <li>[winter] In winter, with no work in the fields, {X_nameDef} of {FACTION} walks the settlements teaching, and has stopped at the colony. {A_nameDef} has been following {X_objective} around since the gate. A day of lessons would be {COUNT} silver, {X_nameDef} says.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
