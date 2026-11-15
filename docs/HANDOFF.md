@@ -201,6 +201,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   - Still open (ask when building): whether the other below-base levers of the eight go back to the base rate (Lean
     Years' fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What
     You Sow's thinner roads for a cruel colony).
+- **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
+  idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
+  god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
+  stuff, or maybe not loving, but, you know, more of drugs, with the good and bad that they bring to a colony. And, you
+  know, the god likes to deceive or kind of play with pawns, minds and bodies, you know, like drugs do." None of the
+  fourteen gods has this domain (Hollin wild, Smoulder craft, Bellwether hunt, Morel and Tamiu the dead, Ennu the way,
+  Pip machines, Cirrus storms, Hush the cold, Helios and Selene, Murmur waters, Ducat gold, Undertow the dark).
+  Sketched in chat: a fifteenth god (name and epithet to pick, e.g. Haze, the Sweet Smoke), generous first and
+  deceiving after, felt by the pawns and never shown (the unseen gods' rule): at revels and feasts, in a drinker's or
+  smoker's high, in an addict's craving and a hangover. Its happenings would play out on the map: a night of revelry
+  that runs late (more joy, worse mornings), a high that turns into a vision someone believes (and may be wrong), a
+  craving that sends someone to the stores at night, a stash or a still found, a binge it seems to egg on, a cure
+  against it; harm only at the game's rate, through the game's own drug effects, addictions and overdoses, and shown.
+  Every age its form, from the colony's own drugs and drink in the full mod pool (the base game's and the DLCs';
+  Vanilla Brewing Expanded and its coffees and teas; Drugs+; Vanilla Factions' opium, draughts, aperitif and
+  chemshine; Odyssey's psilocap), each by what the colony has unlocked. Its sign (Tools/make_god_signs.py), its book
+  chapter and lore, its presence, its saints, its belief and its feast as the other gods have. No loving (the player
+  left it out). A mod that would help, optional: Tavern (ods.tavern, Workshop 3775694305, tagged 1.6 and 1.7, in their
+  list but not active) for tavern tables, counters and drink graphics.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
