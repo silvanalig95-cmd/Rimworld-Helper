@@ -7,6 +7,12 @@
   <CC_WS_Cause>{0}, in the region</CC_WS_Cause>
   <CC_WS_ForTheColony>For the colony: {0} It may last about {1}.</CC_WS_ForTheColony>
   <CC_WS_YourPart>What the colony did: {0}.</CC_WS_YourPart>
+  <CC_WS_Moved>What it changed: {0}.</CC_WS_Moved>
+  <CC_WS_Moved_Goodwill>{0} goodwill with {1}</CC_WS_Moved_Goodwill>
+  <CC_WS_Moved_GoodwillNeighbors>{0} goodwill with each people nearby</CC_WS_Moved_GoodwillNeighbors>
+  <CC_WS_Moved_GoodwillHunters>{0} goodwill with the peoples at war with them</CC_WS_Moved_GoodwillHunters>
+  <CC_WS_Moved_Fortune>{0} prosperity at {1}</CC_WS_Moved_Fortune>
+  <CC_WS_Moved_FortuneTowns>{0} prosperity at the towns of {1}</CC_WS_Moved_FortuneTowns>
   <CC_WS_ChronicleStart>{0}: {1}</CC_WS_ChronicleStart>
   <CC_WS_ChronicleEnd>{0}, after {1}: {2}</CC_WS_ChronicleEnd>
   <CC_WS_ChroniclePart>The colony {0}.</CC_WS_ChroniclePart>

@@ -473,8 +473,9 @@ namespace ColonyCouncil
                 case PlaySpot.Outdoors:
                 case PlaySpot.Fire:
                 case PlaySpot.Place:
+                case PlaySpot.Edge:
                 {
-                    // Somewhere on their own for a while: the field's edge, the water, the gate, a fire. When that place
+                    // Somewhere on their own for a while: the field's edge, the water, the gate, a fire, the edge of the land. When that place
                     // can't be had (no water near the colony, no fields), the next the answer allows (its orTo).
                     var c = PlaySpots.FocusCell(p, p.to, v, out string where);
                     if (!c.IsValid && p.spots != null)

@@ -81,6 +81,10 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>Someone came to the gate with this letter's question just now (its own visit, coming or here).</summary>
+        public bool CameWith(DilemmaContext ctx) =>
+            ctx != null && trips.Any(t => t.ctxRef == ctx && (t.state == VisitState.Coming || t.state == VisitState.Here));
+
         // ---------------- Adding ----------------
 
         /// <summary>A visit to come later (at its hour, when it's safe).</summary>
@@ -454,6 +458,12 @@ namespace ColonyCouncil
             foreach (var p in party) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
             t.people = people;
             t.animals = animals;
+            // The letter's group from now on, for its answers to walk out to (VisitEffect_Come.group).
+            if (t.groupFor != null)
+            {
+                t.groupFor.group = people.Where(p => p != null && p.Spawned).ToList();
+                t.groupFor = null;
+            }
             t.spot = spot;
             t.exit = t.onward ? Visitors.FarEdge(map, entry, spot) : IntVec3.Invalid;
             float radius = t.spotKind == VisitSpot.Gate ? 4f : animals.Count > 2 ? 9f : 6f;

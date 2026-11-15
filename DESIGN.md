@@ -2752,7 +2752,13 @@ conditions that's fair, but not when it's "hard weather" that they could however
 "make sure this weather resilience update is applied to all kinds of occurences that make people come to my map, as long
 as the faction/type of event etc. reasonably allows this and makes sense from a "realism" perspective"; and "so for
 raiders it would also make sense if they come dressed for the weather, assuming their faction actually fits the
-clothing".
+clothing". On 15 November 2026 (not released yet): "regarding the weather clothing, i'd want not everyone to just wear
+only a parka against cold, but the clothing should always be varied. of course there should be parkas, but also other
+clothing combinations to counter the cold", and of the great caravan whose rider never came at -36 °C: "again, people
+should just be dressed for the weather as much as possible, counts for all events". So now: varied outfits (**Varied
+clothes**, below), their warmest even past what keeps them safe (**The line**), the cold or the heat never keeping
+Rimfolk's own people from the gate, and Rimfolk's own going at the game's own line (**Still going for the weather**);
+the visitor at the gate who never came is the next section.
 
 - **The cause** (their save, League of Toba, 14 November 2026). The world event *a great caravan*
   (`Rimfolk_WS_Variety3_Roads`, "the hauler convoy" of the road league "Ararcoler League"): its outriders' beat asked
@@ -2786,9 +2792,12 @@ clothing".
   read it, with what a cold snap or a heat wave adds now and three degrees more), two days ahead as they arrive
   (`ArrivalHours`), a Rimfolk visit its hours and nights and half a day (`VisitHours` in `Visitors.MakePeople`, at least
   two days, at most a season). Four degrees or less short of comfortable (the game's own line for dressing warmer): as
-  they are. Further: they are dressed as their people's age allows, and only if that keeps them safe through it (the
-  game's safe range, ten degrees past comfortable); past that, the extreme cold or heat, they come as they are and the
-  game's own leaving stays (`WeatherDressMath.Outcome`: `AsTheyAre`, `Dressed`, `PastTheirClothes`).
+  they are. Further: they are dressed as their people's age allows, safe through it where that can be done (the game's
+  safe range, ten degrees past comfortable); past that, the extreme cold or heat, they still come in their warmest
+  within the worth (since 15 November 2026; until then they came as they were), and the game's own leaving stays
+  (`WeatherDressMath.Outcome`: `AsTheyAre`, `Dressed`, `PastTheirClothes`; `PutOn` for the last two). Someone dressed
+  for their whole stay before they appear (a Rimfolk visit in `Visitors.MakePeople`, a camp's people) is left alone by
+  the arrival hook, so their warmest isn't put on twice over.
 - **What comes off, what goes on.** Never off: armour (the game's armour kinds or a mod's named so, a make armoured by
   0.45 of its material or more, or 0.3 sharp armour of its own: a duster and a parka are 0.3 and 0.2, plate 0.9), belts,
   gear (a shield, a jump pack, a piece with an ability), a mod's special kind of apparel, what is locked on them (the
@@ -2811,7 +2820,26 @@ clothing".
   nearer comfortable, never takes off a kept piece and stays within the worth. Of those that would make them
   comfortable enough, their kind's and then the cheapest; else the one that leaves them least short (within two degrees,
   their kind's, then the cheapest). A layer of their own gives way only to one two degrees better. Camps dress through
-  the same pick (`CampWeather.Dress`, after their winter folk's own clothes, which now never go over armour).
+  the same pick (`CampWeather.Dress`, after their winter folk's own clothes, which now never go over armour). This plain
+  pick is the first of the outfits drawn below, and their warmest when none is warm enough.
+- **Varied clothes** (15 November 2026; `WeatherDressMath.Choose` with the person's seed, their thing ID, and their
+  people's, their faction). Besides the plain pick, twelve outfits are drawn for each person, a layer at a time: among
+  the layers that bring them nearer comfortable, each weighs 0.3 for itself and 0.7 for how much of what they still
+  need it brings (`BringsShare`), half again for each point of fit (`FitShare`: their kind's tags 2, their faith's style
+  1), their people's liking for that kind of piece (`Liking`, from half to one and a half, by the def's short hash, the
+  same for every one of that people and different from people to people) and the draw's own (a hash, no game
+  randomness). Only outfits warm enough (or cool enough) for the stay are kept, each once; one of them is chosen by its
+  pieces' fit and their people's liking, the person's own seed deciding (`Liked`). So a group of the league's wayfarers
+  in a night of -24 comes in a parka, a warm jacket over a fleece shirt, a jacket over a fleece and a quilted vest with a
+  scarf, a cape over a hoodie and a vest with a tuque, a pelt coat and a vest: some twenty outfits among twenty-four
+  people in the tests, each warm enough, within the worth, never two coats or two hats at once. Every piece is drawn
+  from the whole loaded pool as before (the player's: the game's parka, duster, jacket, cape, robe, tuque and hood,
+  Vanilla Apparel Expanded's pelt coat, poncho, fleece shirt, hoodie, scarf, gloves and boots, Vanilla Armour Expanded's
+  quilted vest and balaclava, Vanilla Christmas Expanded's warm jacket and warm hat, Ideology's headwrap and broadwrap,
+  Vanilla Ideology Expanded's headscarf and wide hats, Medieval 2's mantle, the elves' cloaks; whatever fits them by age
+  and kind). The same person gets the same outfit each time; in the heat, the same with hats and light layers. Mods
+  that add fur hats, earmuffs and winter cloaks join in as soon as they are in the player's list (none of the active ones
+  has earmuffs or fur hats).
 - **A piece that hinders them** (the coordinator's follow-up, the same day). The game's free warm layer takes any cheap
   warm torso piece without looking at its tags, and put Vanilla Anomaly Expanded's straitjacket on one of the convoy's
   wayfarers (Human531631). Whatever the weather, a piece someone came in that lowers their moving, work, aim, hit or
@@ -2823,19 +2851,85 @@ clothing".
   (`WeatherDressMath.OutOfPlace`, `Swap`; `WeatherDress.SwapHindering`, at the head of `ForStay`). With nothing as warm
   on offer, it stays on rather than leave them colder. On a mild day the wayfarer comes in a jacket of their kind, on a
   night of -24 in a parka.
-- **Still going for the weather.** Rimfolk's own visitors go on at 0.04 hypothermia or heatstroke and the game's own
-  groups at 0.15 (`Trigger_PawnExperiencingDangerousTemperatures`), as before; dressed for it, only the extremes get
-  that far. Rimfolk's night-out check follows the same line: safe through the night to first light on the forecast, as
+- **Never kept away by the cold or the heat** (15 November 2026). Rimfolk's own people come whatever the temperature:
+  the shared gate of visits, couriers, the post and invited guests (`CourierTracker.Safe`, `Visitors.Safe`) keeps out
+  only danger on the map, a map in space and toxic fallout; its -25 to 45 degrees is gone (it refused the great
+  caravan's rider at -36 °C). They come in their warmest, and an event that brings someone to the gate in code
+  (`HappeningWorker_AtGate2.CanCome`) comes in a frost too.
+- **Still going for the weather.** Rimfolk's own visitors go on at the game's own line, 0.15 hypothermia or heatstroke
+  (`WeatherDressMath.Suffering` = `GameLeaves`, as `Trigger_PawnExperiencingDangerousTemperatures` for the game's own
+  groups; it was 0.04 until 15 November 2026), so they come and are seen, and go only when the weather really gets to
+  them; a courier the weather gets to that far sets off home with what it carries set down first (`CourierEnd.Weather`,
+  `Visitors.WeatherHurts`, "went home early because the cold was getting to them", `CC_Courier_End_Cold`, `_Heat`).
+  Rimfolk's night-out check follows the same line: safe through the night to first light on the forecast, as
   dressed (`Visitors.SafeOvernight`, out in the open). The messages say it: Rimfolk's "couldn't stand the extreme cold
   (heat) any longer" or "had nothing left to eat" (`Visitors.WeatherWhy`, `CC_Visit_Weather_cold`, `_heat`, `_hunger`);
   the game's own "leaving the map because of dangerous temperature", for any group whose lord sends it, is said as the
   extreme cold or the extreme heat, whichever has taken hold of them (`Patch_WeatherLeaveWords` on
   `TransitionAction_Message.DoAction`, `CC_WeatherLeave_Cold`, `_Heat`). Nothing else is shown, and nothing is saved.
 - Code: `Visitors/WeatherDressMath.cs` (pure, linked: who, the line, the pieces, the age, the worth, the pick, the
-  swap of a piece that hinders, the leaving), `Visitors/WeatherDress.cs` (the pool, the pieces, the stay, the plan and putting it on, the arrival hook, the
-  words), `Visitors/Visitors.cs` (the visit's own dressing, `Suffering`, `WeatherWhy`, `SafeOvernight`),
-  `Visitors/VisitorWords.cs`, `Camps/CampWeather.cs`, `Languages/English/Keyed/Rimfolk_Visitors.xml`; tests
-  `Tools/Tests/WeatherDressTests.cs`. Under the deeper game hooks setting; no Sched slot.
+  draw of varied outfits, the swap of a piece that hinders, the leaving), `Visitors/WeatherDress.cs` (the pool, the
+  pieces, the stay, the plan and putting it on, the person's and people's seeds, the arrival hook, the words),
+  `Visitors/Visitors.cs` (the visit's own dressing, `Suffering`, `WeatherHurts`, `WeatherOf`, `WeatherWhy`,
+  `SafeOvernight`), `Couriers/CourierTracker.cs` (`Safe`, the courier's weather leaving), `Couriers/CourierWords.cs`,
+  `Visitors/VisitorWords.cs`, `Camps/CampWeather.cs`, `Languages/English/Keyed/Rimfolk_Visitors.xml`,
+  `Rimfolk_Couriers.xml`; tests `Tools/Tests/WeatherDressTests.cs`. Under the deeper game hooks setting; no Sched slot.
+
+### The visitor at the gate who never came (the player's report, 15 November 2026; not released yet)
+
+The player, with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered ·
+Guido goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has it.": "just
+had this event but it didn't play out on the map and also there was no real effect from it?"
+
+- **The cause** (their save, League of Toba, 15 November 2026, tick 6113704). `Rimfolk_WS_GreatCaravan`'s beat "hills"
+  (Bandits in the hills) was due at 6117214; its `VisitEffect_AtGate` brings the master's rider, and the answer sends A to
+  him (`DilemmaEffect_Visit` to `Stranger`). The base advisor's freezer note at 6111544 read "-36 °C beyond the door"
+  (FogSnow, no cold snap, no danger: the sleeping mech cluster isn't counted). `VisitorTracker.ComeNow` refused the trip
+  at `!Visitors.Safe(map)`, which is `CourierTracker.Safe`: outdoor temperature below -25. The beat's letter went out all
+  the same (`WorldSituations.Run` never looked), so the answer's visit had no X (`Fill` returned false) and only the
+  words happened. Its effects were real but unseen: +4 goodwill at once, and the flag `warned` that makes the ending
+  "safe" (+4 goodwill, +6 prosperity at Laestelia Wells) when the event runs out.
+- **The rider comes.** The cold no longer keeps him away (the section above); he comes in his warmest.
+- **The beat waits for him** (`WorldSituations.Beats`, `Run`, `AtGate`, `Postpone`). A beat whose letter says someone
+  is at the gate (a `VisitEffect_AtGate` that would apply now: `VisitEffect_AtGate.Brings`, the setting on, its people
+  at peace, the colony's era, its flags) waits while they can't come (`HappeningWorker_AtGate2.CanCome`: danger, room for
+  another group, too many visits), every six hours, eight times at most, while the event runs. When it comes, those it
+  brings come first: if nobody reached the map (no way in from the edge), or the event's own person who walks in at
+  their head isn't free (`withStranger`), nothing of the beat happens yet and it tries again (`VisitorTracker.CameWith`).
+  With the setting off or a people at war, the letter alone tells it, as before.
+- **An answer without its visitor.** A visit to the event's visitor (`to` Stranger, or `whom` X or the new Group) never
+  goes out to someone who isn't on the map: with `orTo`, it goes on its own to the first of those places instead (the
+  new place `Edge`: out at the edge of the colony's land, a few steps in from where the road comes in, `PlaySpots.EdgeCell`,
+  "out at the edge of the colony's land."); without, the answer can't be given while they're gone ("{0} is no longer
+  here.", or "The visitor is not on the map now." once their letter let go of them: `DilemmaEffect_Visit.Unavailable`;
+  the default answer always can). A world event's answer is told with the tag `visitorGone` when its visitor isn't on
+  the map (`WorldSituations.VisitorGone`), so its words can say what happens instead.
+- **The great caravan's answer.** "{A_nameDef} tells them the hill road": out to the rider at the gate, or, if he has
+  gone, "The rider had already gone, so {A_nameDef} writes the old hill road down and takes it out to the edge of the
+  colony's land, where the train's road comes in, and waits there for its next rider." (`orTo` Edge); the default's
+  words likewise. Its card shows the goodwill now and what it does later (`WorldEffect_Foretold`, ending `safe`: "When
+  the hauler convoy reaches Laestelia Wells by the hill road: +4 goodwill with Ararcoler League", "...: +6 prosperity
+  at Laestelia Wells"). When the train comes through, its letter says "the colony's road saved the train, and Ararcoler
+  League think better of the colony for it", then "What it changed: +4 goodwill with Ararcoler League and +6 prosperity
+  at Laestelia Wells." Every world event's ending letter now says what it changed, as its effects apply
+  (`WorldSituations.Moved`, `CC_WS_Moved`: goodwill with a people, with the peoples nearby or at war with them, and the
+  prosperity at the event's town or its people's towns, with the towns' fortunes on).
+- **Every beat checked.** Of the world events' 127 `VisitEffect_AtGate` (and their `VisitEffect_Come`), seven answers
+  walk out to their visitor: the hill road, the comet's scholar, the market days' quarrel, the warlord's son's two (he
+  walks in at their head, `withStranger`), the rival colony's turning (its leader at their head) and its hunters. All
+  but the last were sound once the rider comes and the beat waits for him. The hunters came by `VisitEffect_Come` and the answer went out to the
+  rival colony's leader, who wasn't there: the hunters are now the letter's group once on the map (`VisitEffect_Come`
+  `group`, `VisitorTrip.groupFor`) and the answer walks out to the first of them (`whom` Group, `PlayWho.Group`). The
+  play-out audit checks it on every run (`Tools/playout_audit.py`, `strangers()`: each world event's answer that walks
+  out to its visitor is in a beat that brings them, or has a place to go instead; it fails the run otherwise), and
+  `Tools/Tests/GateVisitorTests.cs` does too. Rimfolk's own events bring their visitor in code (91 such answers), and
+  the guard above greys any of them out while the visitor isn't on the map.
+- Code: `World/WorldSituations.cs`, `World/SituationEffects.cs` (`WorldEffect_Foretold`, the moves told),
+  `Visitors/VisitEffects.cs`, `Visitors/VisitorTracker.cs`, `Visitors/VisitorTrip.cs`, `PlayOut/PlayOutEffects.cs`,
+  `PlayOut/PlayOuts.cs`, `PlayOut/PlaySpots.cs`, `PlayOut/PlayOutTracker.cs`, `PlayOut/PlayOutJobs.cs`; defs
+  `Rimfolk_WS_Variety3_Roads.xml`, `Rimfolk_WS_World.xml`; keys in `Rimfolk_PlayOut.xml`, `Rimfolk_DilemmaImpact.xml`,
+  `Rimfolk_WorldSituations.xml`, `Rimfolk_Couriers.xml`. Nothing new saved (the group's reference is not saved), no
+  Sched slot.
 
 ### Guests who help out (the player's request, 10 November 2026; released 0.205.0)
 

@@ -124,28 +124,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   here", so every message at the top of the screen is in the pass: those in Keyed and the event cards are in their
   batches, and a ninth batch takes the rest (def text printed through `Tell.Message` or `Messages.Message` elsewhere,
   such as the world situations' `<news>`).
-- **To do when the player asks (15 November 2026): the great caravan's hill road plays out, with a real effect** (a
-  bug). The player, with the council's answer list showing "A great caravan · Guido tells them the hill road · As
-  answered · Guido goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has
-  it.": "just had this event but it didn't play out on the map and also there was no real effect from it?". Found: the
-  beat "Bandits in the hills" (`Defs/WorldSituationDefs/Rimfolk_WS_Variety3_Roads.xml`, `Rimfolk_WS_GreatCaravan`)
-  brings the rider by `VisitEffect_AtGate`, and the answer sends A to him by `DilemmaEffect_Visit` (to `Stranger`); in
-  their save (15 November) the situation's `ctx.stranger` is null, so the rider never came (most likely the -37° cold of
-  that day, or no way in) and the answer had nobody to walk to: only the words happened. Its effects are small and late:
-  +4 goodwill at once, then, when the train arrives, +4 more and +6 to the town's fortune. When asked: no answer whose
-  play-out needs the rider while there is none (the beat waits for the rider, or its words and answer take the form the
-  colony's means allow: a written route sent back with the messenger, a colonist riding out to meet the train), checked
-  for every beat that brings someone to the gate; the answer's effect shown on its card and, when the train comes
-  through, in a letter that says what the colony's road did for them and for the colony.
-- **To do when the player asks (15 November 2026): varied clothes against the weather.** The player: "regarding the
-  weather clothing, i'd want not everyone to just wear only a parka against cold, but the clothing should always be
-  varied. of course there should be parkas, but also other clothing combinations to counter the cold". How it is now
-  (0.232.1, `Visitors/WeatherDress*.cs`): each layer takes the warmest cheap piece that fits, and pieces within 2° count
-  as alike with the kind's own first, so most arrivals end in the same parka and tuque. When asked: the pick weighs
-  several combinations that keep them as warm (a parka; a duster or jacket over a shirt and sweater; a cape or cloak;
-  fur hats, scarves, wraps, earmuffs and boots from the player's mods, active rows only) and draws among those that are
-  warm enough, by each person and their people's own style and tags, so a group comes in mixed clothes; the same for
-  heat (light shirts, hats and wraps of different kinds).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - **Being built (14 November 2026, the player's go: "do the one that visitors fill their idle hours, more old powers style events, making animals more visible first, but you can do as you like if simultanious tasks make more sense"): visitors busy with their own day.** The player: "guests should spend
@@ -161,6 +139,81 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   looking at its art, a prayer at a shrine of their faith, tending their own animals, children playing, a smoke or a
   drink of their own; by their people's age and ways and the hour; given way to colonists at a joy thing; a guest of
   Hospitality left to its own recreation where it already has it.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The great caravan's rider comes,
+  his answer plays out, and everyone comes in varied clothes, as warm as they can** (15 November 2026; the player's
+  words: with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered · Guido
+  goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has it.": "just had
+  this event but it didn't play out on the map and also there was no real effect from it?"; "regarding the weather
+  clothing, i'd want not everyone to just wear only a parka against cold, but the clothing should always be varied. of
+  course there should be parkas, but also other clothing combinations to counter the cold"; "The great caravan: again,
+  people should just be dressed for the weather as much as possible, counts for all events"). DESIGN.md "Dressed for the
+  weather as they come" (updated) and "The visitor at the gate who never came" (new); the Almanac's visitors page (prose
+  and tip only, keywords unchanged).
+  - The cause, from their save (League of Toba, 15 November 2026, read with a script outside the save's folder): tick
+    6113704; `Rimfolk_WS_GreatCaravan` (situation 3, "the hauler convoy" of Ararcoler League, Laestelia Wells) had its
+    beat "hills" due at 6117214, `ctx.stranger` null, no visitor trips. The base advisor's freezer note at 6111544 read
+    "-36 °C beyond the door" (FogSnow, no cold snap; no danger: the sleeping mech cluster isn't counted, and the camps'
+    diary shows no threat). `VisitorTracker.ComeNow` refused the rider at `!Visitors.Safe(t.map)`, which is
+    `CourierTracker.Safe`: outdoor temperature below -25 (it took -25 to 45). `WorldSituations.Run` posted the beat's letter
+    anyway, so the answer's `DilemmaEffect_Visit` to `Stranger` found no X (`Fill` false) and only the words happened. The
+    effects were real but unseen: +4 goodwill, and the flag `warned`, which makes the ending "safe" (+4 goodwill, +6
+    prosperity at the town) when the event runs out.
+  - Built:
+    1. The cold or the heat never keeps Rimfolk's own people away: `CourierTracker.Safe` (visits, couriers, the post,
+       invited guests) keeps out only danger, space and toxic fallout. Everyone the arrival hook dresses comes in their
+       warmest past what keeps them safe (`WeatherDressMath.PutOn`, `WeatherDress.ForStay`), within the worth, armour kept;
+       dressed before they appear (a Rimfolk visit, a camp), they aren't dressed again as they appear (`Done`,
+       `asTheyCame`). Rimfolk's own visitors go at the game's own line, 0.15 hypothermia or heatstroke (`Suffering` =
+       `GameLeaves`, was 0.04); couriers the weather gets to that far go home (`CourierEnd.Weather`,
+       `Visitors.WeatherHurts`, `WeatherOf`, `CC_Courier_End_Cold`, `_Heat`).
+    2. A world event's beat whose letter says someone is at the gate waits for them (`WorldSituations.AtGate`, `Postpone`,
+       `VisitEffect_AtGate.Brings`, `HappeningWorker_AtGate2.CanCome`), and goes out only once they have come
+       (`Run(..., out wait)`, `VisitorTracker.CameWith`; the event's own person at their head must be free). An answer
+       that walks out to the event's visitor goes to `orTo` instead when they aren't on the map (new `PlaySpot.Edge`,
+       `PlaySpots.EdgeCell`), else can't be given (`DilemmaEffect_Visit.Unavailable`, `CC_Stranger_Gone`,
+       `CC_Play_Why_VisitorGone`); the tag `visitorGone` picks its words (`WorldSituations.VisitorGone`). The great caravan's
+       answer: "[visitorGone]" written down and taken out to the edge; its card says the later effects
+       (`WorldEffect_Foretold`, ending `safe`); the safe ending's letter says the colony's road saved the train and the league
+       thinks better of the colony, and every ending letter now says what it changed ("What it changed: +4 goodwill with
+       Ararcoler League and +6 prosperity at Laestelia Wells.": `WorldSituations.Moved`, `CC_WS_Moved*`). The rival colony's
+       hunters (`Council_WS_RivalColony`, beat hunters) are the letter's group once on the map (`VisitEffect_Come` `group`,
+       `VisitorTrip.groupFor`, `PlayWho.Group`), and the answer walks out to them, not to the leader who wasn't there.
+    3. Varied clothes: `WeatherDressMath.Choose(..., seed, style)` draws twelve outfits a layer at a time
+       (`BringsShare` 0.3, `FitShare` 0.5, `Liking` by their people and the kind of piece, `Unit` a hash), keeps those warm
+       enough, and picks one by fit and their people's liking (`Liked`); the plain pick is one of them and their warmest
+       when none is warm enough. Seeds: the person's thing ID, their faction's load ID (`WeatherDress.Seed`, `Style`); a
+       piece's kind is its def's short hash.
+  - Beats checked: 127 `VisitEffect_AtGate` in the world events, and their `VisitEffect_Come`; seven answers walk out to
+    a visitor (the hill road, the comet's scholar, the market days' quarrel, the warlord's son's two, the rival colony's
+    turning and hunters); only the hunters' was wrong besides the cold. The play-out audit fails the run if a world event's
+    answer walks out to a visitor its beat doesn't bring (`Tools/playout_audit.py`, `strangers()`). Rimfolk's own events
+    bring theirs in code (91 such answers) and are greyed out while the visitor isn't there. The three Rimfolk events with
+    a `VisitEffect_AtGate` in their effects (`Council_Evt_DebtDue`, `Council_Evt_LostCargo`, `Council_Story_FeudVendetta`)
+    still fall back to the letter alone when nobody can come, now only for danger or no room.
+  - Code map: `Visitors/WeatherDressMath.cs`, `Visitors/WeatherDress.cs`, `Visitors/Visitors.cs`, `Visitors/VisitEffects.cs`,
+    `Visitors/VisitorTracker.cs`, `Visitors/VisitorTrip.cs`, `Couriers/CourierTracker.cs`, `Couriers/CourierMath.cs`,
+    `Couriers/CourierWords.cs`, `World/WorldSituations.cs`, `World/SituationEffects.cs`, `PlayOut/PlayOutEffects.cs`,
+    `PlayOut/PlayOuts.cs`, `PlayOut/PlaySpots.cs`, `PlayOut/PlayOutTracker.cs`, `PlayOut/PlayOutJobs.cs`; defs
+    `Rimfolk_WS_Variety3_Roads.xml`, `Rimfolk_WS_World.xml`, `Almanac_Council_Visitors.xml`; keys in `Rimfolk_PlayOut.xml`,
+    `Rimfolk_DilemmaImpact.xml`, `Rimfolk_WorldSituations.xml`, `Rimfolk_Couriers.xml`; tests `WeatherDressTests` (the
+    varied outfits, the line, the leaving) and `GateVisitorTests` (new), `OutcomeTests` (the tags); `Tools/playout_audit.py`.
+    Nothing new saved, no Sched slot.
+  - Not run here: the arrival hook and the draw in the game (outfits from the player's whole pool by each people's tags
+    and liking, the colours), a raid of thirty arriving at once with twelve draws each, the beat waiting in a raid and
+    coming after, the edge cell on their map, the card and the ending letter's lines as shown.
+  - Mods that would help (cold weather clothing; none needed, the pool already varies): Medieval Tailor Continued
+    (winter cloak, winter coat, short coat; 1.5 to 1.7), Tasty Armory - Steppe Warriors (nomad fur hood, warrior fur cap;
+    needs Tasty Armory - Core; 1.5 to 1.7), Tasty Armory - High Medieval (nordic fur hood, headscarf; 1.5 to 1.7); all in
+    `docs/player-mods`, not active. See the report for the Workshop links.
+  - Try in the game: 1. In a frost below -25 °C, a great caravan's "Bandits in the hills": the rider walks in to the gate
+    in warm clothes; answer "tells them the hill road" and A walks out to him for an hour; the card shows +4 goodwill now
+    and the later +4 goodwill and +6 prosperity. 2. When the event runs out, the letter "The hauler convoy reaches
+    Laestelia Wells" ends "What it changed: +4 goodwill with Ararcoler League and +6 prosperity at Laestelia Wells."
+    3. With raiders on the map when the beat is due, no letter until they're gone, then the rider and the letter together.
+    4. Let the rider go before answering (dev: harm him, or wait): the answer reads "writes the old hill road down" and A
+    goes out to the edge of the colony's land. 5. A caravan, a visitor group or a raid in a hard frost: mixed clothes, a
+    parka on some, a jacket over a fleece shirt and a vest on another, a cape or a pelt coat on another. 6. In -60 °C a
+    Rimfolk visit still comes, in its warmest, and goes once hypothermia reaches the game's own line, with the message.
 - 0.238.3, **Allies called against every enemy
   on the land** (15 November 2026; the player, with pikemen and a drone by the base and "Call Stormriders" greyed "only
   while a threat is on the colony": "i can't call my allies despite hving pikemen and a drone in the base, please fix

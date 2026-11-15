@@ -104,6 +104,52 @@ namespace ColonyCouncil
                     break;
             }
             foreach (var f in list.Where(f => f != null).Distinct()) WorldSituationWorker.Goodwill(f, amount);
+            // An ending's letter says what it gave (WorldSituations.Moved).
+            if (amount == 0) return;
+            string signed = ImpactMath.Signed(amount);
+            if (who == SituationPeople.Neighbors) WorldSituations.Moved("CC_WS_Moved_GoodwillNeighbors".Translate(signed).Resolve());
+            else if (who == SituationPeople.Hunters) WorldSituations.Moved("CC_WS_Moved_GoodwillHunters".Translate(signed).Resolve());
+            else
+                foreach (var f in list.Where(f => f != null).Distinct())
+                    WorldSituations.Moved("CC_WS_Moved_Goodwill".Translate(signed, f.Name).Resolve());
+        }
+    }
+
+    /// <summary>
+    /// What the ending this answer leads to will do, on the answer's card (nothing happens now): the goodwill it gives the
+    /// event's people and the prosperity it moves, said with <see cref="when"/> ("When the hauler convoy reaches Laestelia
+    /// Wells"). For an answer whose flag makes <see cref="ending"/> the one the event comes to (the great caravan's hill road
+    /// told: "safe"), so the player sees the effect it has later as well as now (the player, 15 November 2026: "there was no
+    /// real effect from it?").
+    /// </summary>
+    public class WorldEffect_Foretold : WorldEffect
+    {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var e = SituationEffectUtil.Of(ctx)?.def?.Ending(ending);
+            if (ctx == null || e?.effects == null || when.NullOrEmpty()) return;
+            string w = ctx.Format(when).CapitalizeFirst();
+            string place = (ctx as SituationContext)?.placeName;
+            foreach (var eff in e.effects)
+            {
+                if (eff is WorldEffect_Goodwill g && g.who == SituationPeople.Faction && ctx.faction != null && g.amount != 0)
+                    sheet.Add(ImpactKind.Goodwill, g.amount > 0 ? 1 : -1, "CC_Impact_Foretold_Goodwill".Translate(w, ImpactMath.Signed(g.amount), ctx.faction.Name).Resolve(),
+                        "CC_Impact_Foretold_GoodwillBrief".Translate(ImpactMath.Signed(g.amount), ctx.faction.Name).Resolve(), "goodwill-later|" + ending);
+                else if (eff is WorldEffect_Fortune f && !f.enemy && RegionBook.FortunesOn && Mathf.Abs(f.amount) > 0.01f && !place.NullOrEmpty())
+                    sheet.Add(ImpactKind.Other, f.amount > 0 ? 1 : -1, "CC_Impact_Foretold_Fortune".Translate(w, ImpactMath.Signed(f.amount), place).Resolve(),
+                        "CC_Impact_Foretold_FortuneBrief".Translate(ImpactMath.Signed(f.amount), place).Resolve(), "fortune-later|" + ending);
+            }
+        }
+
+        /// <summary>The ending's key ("safe").</summary>
+        public string ending;
+
+        /// <summary>When that comes, in the event's words, with its placeholders ("when {NAME} reaches {PLACE}").</summary>
+        [MustTranslate] public string when;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            // Nothing now: the ending does it when it comes.
         }
     }
 
@@ -755,6 +801,12 @@ namespace ColonyCouncil
             if (people == null) return;
             int at = !enemy && s.place.kind == RefKind.Town ? s.place.id : -1;
             RegionFortunes.Move(people, at, amount, Texts.WithThe(s.ctx.name, s.def.label));
+            // An ending's letter says what it moved (WorldSituations.Moved): at its own town, else at its people's towns.
+            if (!RegionBook.FortunesOn || Mathf.Abs(amount) < 0.01f) return;
+            string signed = ImpactMath.Signed(amount);
+            WorldSituations.Moved(at >= 0 && !s.ctx.placeName.NullOrEmpty()
+                ? "CC_WS_Moved_Fortune".Translate(signed, s.ctx.placeName).Resolve()
+                : "CC_WS_Moved_FortuneTowns".Translate(signed, people.Name).Resolve());
         }
     }
 }

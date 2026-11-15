@@ -15,11 +15,13 @@ namespace ColonyCouncil
     /// peoples' events, and anything another mod brings through the game's spawning, is looked at once, just before they
     /// appear (<see cref="Patch_ArrivalDress"/>): if the next two days' weather (the land's own reckoning, CampWeather.StayRange)
     /// would leave them short of comfortable, they put on warm or cool plain layers of their own people's age and kind,
-    /// parkas, tuques, dusters, cowboy hats and whatever the player's mods add, swapping a plainer layer where one is in the
-    /// way, in their faith's style and their kind's colours, never taking off armour, belts, gear or what a title or role
-    /// asks of them, and within what their clothes may cost (a raider's close to what it was). Only where it keeps them
-    /// safe through the stay: past that, the extreme cold or heat, they come as they are and the game's own leaving
-    /// stays, and the message says it was the extreme cold or heat (<see cref="Patch_WeatherLeaveWords"/>). Whatever the
+    /// parkas, tuques, dusters, jackets over shirts and vests, capes, cowboy hats and whatever the player's mods add, an
+    /// outfit drawn among those that keep them warm enough so a group comes in mixed clothes (WeatherDressMath.Choose with
+    /// the person's and their people's own liking), swapping a plainer layer where one is in the way, in their faith's
+    /// style and their kind's colours, never taking off armour, belts, gear or what a title or role asks of them, and
+    /// within what their clothes may cost (a raider's close to what it was). Past what clothing of their age keeps out,
+    /// the extreme cold or heat, they still come in their warmest, the game's own leaving stays, and the message says it
+    /// was the extreme cold or heat (<see cref="Patch_WeatherLeaveWords"/>). Whatever the
     /// weather, a piece they came in that hinders them and their kind didn't ask for (the game's free warm layer's
     /// straitjacket) is swapped first for a plain piece of their age as warm (<see cref="SwapHindering"/>). Camps dress
     /// the same way for their own stay (CampWeather.Dress). Nothing is shown for it, and nothing is saved.
@@ -205,7 +207,13 @@ namespace ColonyCouncil
         }
 
         private static WeatherDressMath.Piece Offer(ThingStuffPair pa, Pawn p, Ideo ideo) =>
-            new WeatherDressMath.Piece(Cold(pa), Heat(pa), pa.Price, WeatherDressMath.Fit(TheirKind(pa.thing, p), ideo?.GetStyleFor(pa.thing) != null));
+            new WeatherDressMath.Piece(Cold(pa), Heat(pa), pa.Price, WeatherDressMath.Fit(TheirKind(pa.thing, p), ideo?.GetStyleFor(pa.thing) != null), false, pa.thing.shortHash);
+
+        /// <summary>The person's own liking, the same for them each time they are dressed.</summary>
+        private static int Seed(Pawn p) => p.thingIDNumber;
+
+        /// <summary>Their people's liking for each kind of piece, the same for all of them: by their people, else their kind.</summary>
+        private static int Style(Pawn p) => p.Faction != null ? p.Faction.loadID * 7919 + 17 : p.kindDef?.shortHash ?? 0;
 
         private static Plan Make(Pawn p, float low, float high, float nowMin, float nowMax, TechLevel tech, bool hostile, float room = -1f)
         {
@@ -232,7 +240,7 @@ namespace ColonyCouncil
             }
             Prices();
             if (room < 0f) room = WeatherDressMath.Room(hostile, wornWorth, p.kindDef?.apparelMoney.max ?? 0f, parka, tuque);
-            var choice = WeatherDressMath.Choose(wornPieces, pieces, ClashWorn, ClashOffered, bareMin, bareMax, low, high, room);
+            var choice = WeatherDressMath.Choose(wornPieces, pieces, ClashWorn, ClashOffered, bareMin, bareMax, low, high, room, Seed(p), Style(p));
             return new Plan { worn = worn, offered = offered, choice = choice };
         }
 
@@ -329,6 +337,7 @@ namespace ColonyCouncil
         public static List<Apparel> Layers(Pawn p, float low, float high, TechLevel tech, bool hostile)
         {
             if (!Dressable(p)) return new List<Apparel>();
+            Done(p);
             float nowMin = Min(p), nowMax = Max(p);
             if (WeatherDressMath.Short(nowMin, nowMax, low, high) <= WeatherDressMath.Enough) return new List<Apparel>();
             var plan = Make(p, low, high, nowMin, nowMax, tech, hostile);
@@ -336,13 +345,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Dresses someone about to appear on <paramref name="map"/> for its next <paramref name="hours"/>, if clothing of their
-        /// people's age keeps them safe through it; past that they come as they are. A piece they came in that hinders them
-        /// is swapped first, whatever the weather.
+        /// Dresses someone about to appear on <paramref name="map"/> for its next <paramref name="hours"/>: an outfit of their
+        /// people's age that keeps them warm (or cool) enough, drawn among those that do; past what any keeps out, their
+        /// warmest all the same (the game's own leaving stays). A piece they came in that hinders them is swapped first,
+        /// whatever the weather. Once dressed here they are left alone as they appear.
         /// </summary>
         public static WeatherDressMath.Dressing ForStay(Pawn p, Map map, int hours)
         {
             if (!Dressable(p) || map == null || p.Faction == null) return WeatherDressMath.Dressing.AsTheyAre;
+            Done(p);
             var tech = Peoples.TechOf(p.Faction);
             if ((int)tech < WeatherDressMath.Neolithic) return WeatherDressMath.Dressing.AsTheyAre;
             var (low, high) = Stay(map, hours);
@@ -354,16 +365,27 @@ namespace ColonyCouncil
             if (WeatherDressMath.Short(nowMin, nowMax, low, high) <= WeatherDressMath.Enough) return WeatherDressMath.Dressing.AsTheyAre;
             var plan = Make(p, low, high, nowMin, nowMax, tech, hostile, Math.Max(0f, room));
             var outcome = WeatherDressMath.Outcome(nowMin, nowMax, plan.choice.comfyMin, plan.choice.comfyMax, low, high);
-            if (outcome == WeatherDressMath.Dressing.Dressed) Apply(p, plan);
+            if (WeatherDressMath.PutOn(outcome)) Apply(p, plan);
             return outcome;
         }
 
-        /// <summary>Those to come exactly as they are made (robbed on the road, down to the shirt): left alone once, as they appear.</summary>
+        /// <summary>
+        /// Those left alone once as they appear: dressed already for their whole stay (a Rimfolk visit, a camp), or to come
+        /// exactly as they are made (robbed on the road, down to the shirt). Never more than a few hundred at once.
+        /// </summary>
         private static readonly HashSet<int> asTheyCame = new HashSet<int>();
 
         public static void AsTheyCame(Pawn p)
         {
-            if (p != null) asTheyCame.Add(p.thingIDNumber);
+            if (p == null) return;
+            if (asTheyCame.Count > 500) asTheyCame.Clear();
+            asTheyCame.Add(p.thingIDNumber);
+        }
+
+        /// <summary>Dressed now for their stay, before they appear: the arrival hook leaves them be, so their warmest isn't put on twice over.</summary>
+        private static void Done(Pawn p)
+        {
+            if (p != null && !p.Spawned) AsTheyCame(p);
         }
 
         // ---------------- Arriving ----------------
@@ -436,6 +458,7 @@ namespace ColonyCouncil
                 if (p?.apparel == null || asTheyCame.Remove(p.thingIDNumber)) return;
                 if (Arriving(p, map) != WeatherDressMath.Who.Dress) return;
                 ForStay(p, map, WeatherDressMath.ArrivalHours);
+                asTheyCame.Remove(p.thingIDNumber);
             }
             catch (Exception e)
             {

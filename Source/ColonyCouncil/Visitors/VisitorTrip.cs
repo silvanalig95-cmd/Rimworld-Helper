@@ -125,6 +125,9 @@ namespace ColonyCouncil
         /// <summary>The context of the letter they came with, until its ID is found (not saved).</summary>
         [Unsaved] public DilemmaContext ctxRef;
 
+        /// <summary>The letter whose group they become once on the map, for its answers to walk out to (VisitEffect_Come.group; not saved).</summary>
+        [Unsaved] public HappeningContext groupFor;
+
         public bool MapThere => map != null && Find.Maps.Contains(map);
 
         public IEnumerable<Pawn> Party

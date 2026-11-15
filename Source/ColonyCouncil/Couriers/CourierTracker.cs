@@ -174,12 +174,16 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>No danger on the map, and weather people would walk in.</summary>
+        /// <summary>
+        /// No danger on the map and nothing poisonous in the air. The cold or the heat never keeps Rimfolk's own people away
+        /// (the player, 15 November 2026: "people should just be dressed for the weather as much as possible, counts for all
+        /// events"): they come in their warmest or coolest (Visitors/WeatherDress.cs) and go when the weather really gets to
+        /// them (<see cref="Visitors.WeatherHurts"/>). It was -25 to 45 degrees until then, which kept the great caravan's
+        /// rider from the gate at -36 and left the colony's answer to nobody.
+        /// </summary>
         public static bool Safe(Map map)
         {
             if (map == null || MapFacts.InVacuum(map) || PlayOuts.WhyNotNow(map, false) != null) return false;
-            float temp = map.mapTemperature.OutdoorTemp;
-            if (temp < -25f || temp > 45f) return false;
             return !map.gameConditionManager.ConditionIsActive(GameConditionDefOf.ToxicFallout);
         }
 
@@ -221,6 +225,12 @@ namespace ColonyCouncil
             if (t.map.dangerWatcher.DangerRating != StoryDanger.None)
             {
                 End(t, CourierEnd.Danger);
+                return;
+            }
+            // The cold or the heat getting to one of them, at the game's own line: they go, what they carry set down first.
+            if (here.Any(Visitors.WeatherHurts))
+            {
+                End(t, CourierEnd.Weather);
                 return;
             }
             if (t.state == CourierState.Coming)

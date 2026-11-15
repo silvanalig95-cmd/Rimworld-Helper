@@ -36,7 +36,9 @@ namespace ColonyCouncil
         /// <summary>The setting was turned off.</summary>
         SettingOff,
         /// <summary>They are gone from the map without a word (a mod, an old save): what's left is settled.</summary>
-        Lost
+        Lost,
+        /// <summary>The cold or the heat got to one of them (the game's own line), and they set off home before it did worse.</summary>
+        Weather
     }
 
     /// <summary>What a pending trip does on its turn.</summary>
