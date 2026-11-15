@@ -38,7 +38,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>On {X_nameDef}'s advice, {A_nameDef} and {B_nameDef} were set to the woodpile side by side. By the end of the afternoon the logs were split, and so was the work between them, without anyone telling them how.</li>
+          <li>On {X_nameDef}'s advice, {A_nameDef} and {B_nameDef} were set to the woodpile side by side. By the end of the afternoon the logs were split, and the two of them had worked out how to share the work without anyone telling them.</li>
         </lines>
       </li>
       <li>
@@ -148,7 +148,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The colony puts buckets under the leaks and waits. The rain goes on drumming on the roof as if it has nowhere else to be.</li>
+          <li>The colony puts buckets under the leaks and waits, and the rain keeps drumming on the roof.</li>
         </lines>
       </li>
     </outcomes>
@@ -239,7 +239,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>The bounty is carried out to the gate for the hunters to count, and they go. {A_nameDef}'s old life is paid off at last.</li>
+          <li>The bounty is carried out to the gate for the hunters to count, and they go. {A_nameDef} is free of them at last.</li>
         </lines>
       </li>
     </outcomes>

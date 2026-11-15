@@ -124,7 +124,7 @@
         <options>
           <li>
             <label>Let them, for {COUNT} silver</label>
-            <outcome>The travelers take turns until long after dark, and leave {COUNT} silver by the bath. The water will want changing.</outcome>
+            <outcome>The travelers take turns until long after dark, and leave {COUNT} silver by the bath. The water will need changing afterward.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
             </effects>

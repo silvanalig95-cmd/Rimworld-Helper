@@ -32,11 +32,11 @@
           <li>An envoy about {DEAD}</li>
         </titles>
         <texts>
-          <li>{FACTION} would rather pay than bleed. They know {A_nameDef} has sworn on them for {DEAD}, and {X_nameDef}, their envoy, has come with the old blood price: {COUNT} silver, laid down for {DEAD}'s life, and the matter closed for good.\n\n{A_nameDef} has heard, and hasn't said anything yet.</li>
+          <li>{FACTION} would rather pay than fight. They know {A_nameDef} has sworn vengeance on them for {DEAD}, and {X_nameDef}, their envoy, has come with the old blood price: {COUNT} silver, laid down for {DEAD}'s life, and the matter closed for good.\n\n{A_nameDef} has heard, and hasn't said anything yet.</li>
           <li>[atwar] An envoy of {FACTION} has stopped at the edge of the colony's land and will come no closer, since their people are still at war with the colony. But they want this one thing settled. For {DEAD}, they offer {COUNT} silver as the blood price, if {A_nameDef} will lay down {A_possessive} oath.</li>
           <li>[taken] {FACTION} carried {DEAD} off, and they can't give {DEAD} back. {X_nameDef}, their envoy, won't pretend otherwise. But they will pay {COUNT} silver as the price of what they did, if {A_nameDef} will let the matter rest.</li>
-          <li>[heir] {X_nameDef} of {FACTION} has come about {DEAD}, and about the oath {A_nameDef} took up when the one who swore it died. {FACTION} offer {COUNT} silver, the blood price, to end it before it outlives anyone else.</li>
-          <li>[pet] {X_nameDef} of {FACTION} has come, a little awkwardly, about {DEAD}, {A_nameDef}'s animal. {FACTION} have heard {A_nameDef} swore on them for it, and would rather pay {COUNT} silver than find out how seriously.</li>
+          <li>[heir] {X_nameDef} of {FACTION} has come about {DEAD}, and about the oath {A_nameDef} took up when the one who swore it died. {FACTION} offer {COUNT} silver, the blood price, to end it before it is passed down again.</li>
+          <li>[pet] {X_nameDef} of {FACTION} has come, a little awkwardly, about {DEAD}, {A_nameDef}'s animal. {FACTION} have heard {A_nameDef} swore vengeance on them for it, and would rather pay {COUNT} silver than wait to see what comes of it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -101,7 +101,7 @@
           <li>{FACTION} come about {DEAD}</li>
         </titles>
         <texts>
-          <li>Now that there's peace, {X_nameDef}, an elder of {FACTION}, has come to the colony and asked to speak to {A_nameDef}. It's to say what {FACTION} never said while they were at war, that they are sorry for {DEAD}. Not for the war. For {DEAD}.\n\n{X_nameDef} doesn't ask {A_nameDef} to forgive anything, only to listen.</li>
+          <li>Now that there's peace, {X_nameDef}, an elder of {FACTION}, has come to the colony and asked to speak to {A_nameDef}. It's to say what {FACTION} never said while they were at war, that they are sorry for {DEAD}: not for the war, but for {DEAD}.\n\n{X_nameDef} doesn't ask {A_nameDef} to forgive anything, only to listen.</li>
           <li>[taken] "We were wrong to take {DEAD}," {X_nameDef} of {FACTION} tells {A_nameDef}, plainly, "and we're sorry for it. I don't know where {DEAD} is now. I wish I did."</li>
           <li>[heir] {X_nameDef} of {FACTION} has come to {A_nameDef}, who took up the oath for {DEAD} when its first keeper died. {FACTION} are sorry, {X_pronoun} says, for {DEAD} and for everything that came after.</li>
           <li>[pet] {X_nameDef} of {FACTION} has come to say sorry about {DEAD}. It was only an animal, some among {FACTION} say. {X_nameDef} has come anyway, having heard what {DEAD} was to {A_nameDef}.</li>

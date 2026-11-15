@@ -31,7 +31,7 @@
         <texts>
           <li>[food] {A_nameDef} came back from a walk with stained fingers. Patches of wild {TALE} have ripened all over the colony's land, by the paths and along the edges of the fields, and they won't keep forever.</li>
           <li>[medicine] There's {TALE} coming up all across the colony's land this season, far more than usual, and {A_nameDef} has marked where. Cut and dried, it would keep the healer's shelf stocked for a good while.</li>
-          <li>[food] {A_nameDef} ate half of what {A_pronoun} picked on the way back, which is how the colony found out. There are patches of wild {TALE} ripe all over its land, and more coming.</li>
+          <li>[food] {A_nameDef} came back with a handful of wild {TALE}, half of it already eaten. There are patches of it ripe all over the colony's land, and more coming.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WildBounty</thought></li>
@@ -134,8 +134,8 @@
           <li>Ice from a black sky</li>
         </titles>
         <texts>
-          <li>The sky over the hills has gone a sick green and the wind has dropped to nothing: hail is coming. When it does, crops in the open will suffer, young ones most of all. Whoever can be spared is out bringing in what's ripe first. It won't last long, but anyone still outside when the stones come will be miserable, and may take a bruise from them: call them in at the first stones (a helmet turns them). (Fields under a roof are safe.)</li>
-          <li>[lowtech] The sky has turned green, the way it does before hail. Soon it will come bouncing off the roofs and stripping the leaves from everything in the fields, and young crops in the open won't all survive it. The ripe ones are being cut and carried in while there's time. It stings, and anyone caught out in it may come away bruised, so bring them in at the first stones; it won't last long. (Fields under a roof are safe.)</li>
+          <li>The sky over the hills has turned a sickly green and the wind has dropped: hail is coming. Crops in the open will be damaged, young ones most of all, and whoever can be spared is out bringing in the ripe ones first. The hail won't last long, but anyone caught outside will be miserable and may be bruised, so call people in at the first stones. A helmet protects against it, and fields under a roof are safe.</li>
+          <li>[lowtech] The sky has turned green, the way it does before hail. Soon it will come bouncing off the roofs and stripping the leaves from everything in the fields, and young crops in the open won't all survive it. The ripe ones are being cut and carried in while there's time. It stings, and anyone caught out in it may come away bruised, so bring people in at the first stones. It won't last long, and fields under a roof are safe.</li>
         </texts>
       </li>
     </modExtensions>
@@ -188,7 +188,7 @@
           <li>[mining] Cutting into the rock, {A_nameDef} broke into a hollow that had been walled up long ago. Someone hid a cache there and never came back for it.</li>
           <li>[farming] {A_nameDef}'s spade struck a box buried in the field, rotted at the corners but still shut.</li>
           <li>[child] {A_nameDef} was digging for worms and turned up an old buried cache instead, and has been dragging people over to see it ever since.</li>
-          <li>{A_nameDef} tripped over the corner of a box sticking out of the ground and dug it up. Whoever buried it scratched three marks on the lid, and never came back to read them.</li>
+          <li>{A_nameDef} tripped over the corner of a box sticking out of the ground and dug it up. Whoever buried it scratched three marks on the lid and never came back for it.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FoundCache</thought></li>

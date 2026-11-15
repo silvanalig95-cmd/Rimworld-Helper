@@ -29,7 +29,7 @@
       <li>[cool,visit3plus] {X_nameDef} the {TALE} has come back, though the last welcome was a cold one. {X_nameDef} waits at the gate, and asks after {A_nameDef} stiffly, as if unsure of the answer.</li>
       <li>[visit2,colony:Open] {X_nameDef}, the {TALE} who came through last season, is back. On the road they say this colony's door is open to travelers, and {X_nameDef} wanted to knock on it again.</li>
       <li>[visit2,trait:Kind] {X_nameDef}, the {TALE} who came through last season, is back, and remembers {A_nameDef} as the kindest face at the colony. {X_nameDef} asked after {A_objective} first.</li>
-      <li>[turning,skill] {X_nameDef} the {TALE} is back, and this time didn't set down the pack at the fire. The road is long, {X_nameDef} told the council, and a trade gets heavy carried from door to door. Would the colony have a {TALE}? Or would {A_nameDef} come along and learn the road?</li>
+      <li>[turning,skill] {X_nameDef} the {TALE} is back, and this time didn't set down the pack at the fire. {X_nameDef} told the council that the road is long and {X_pronoun} is tired of carrying the trade from door to door. {X_nameDef} asks whether the colony would take on a {TALE}, or whether {A_nameDef} would come along and learn the trade on the road.</li>
     </texts>
     <outcomes>
       <li>

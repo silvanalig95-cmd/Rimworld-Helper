@@ -24,10 +24,10 @@
           <li>[turning] {X_nameDef} has something to say</li>
         </titles>
         <texts>
-          <li>[visit2,friend] {X_nameDef}, the {TALE} who came through last season, is at the gate again, and asked after {A_nameDef} before anything else. The road has been long, {X_pronoun} says, and this was the one door {X_pronoun} wanted to knock on.</li>
+          <li>[visit2,friend] {X_nameDef}, the {TALE} who came through last season, is at the gate again, and asked after {A_nameDef} before anything else. It has been a long road, {X_pronoun} says, and this is the place {X_pronoun} most wanted to visit.</li>
           <li>[visit2] {X_nameDef}, the {TALE} who came through last season, is back at the gate with the same pack and a new story or two. {X_pronoun} remembered the colony, {X_pronoun} says, better than most places.</li>
           <li>[visit3plus,friend] {X_nameDef} is back, as regular as the seasons now. {A_nameDef} saw {X_objective} coming from the far field and had the kettle on before {X_pronoun} reached the gate.</li>
-          <li>[visit3plus] {X_nameDef} the {TALE} is back again. The children know {X_possessive} name; the dogs don't bark.</li>
+          <li>[visit3plus] {X_nameDef} the {TALE} is back again. The children know {X_possessive} name, and the dogs no longer bark at {X_objective}.</li>
           <li>[tinker,visit2] {X_nameDef} the tinker is back at the gate, pack clanking, and asks after {A_nameDef} before anything else. {X_pronoun} has a trick or two to show for a warm welcome.</li>
           <li>[scholar,visit2] {X_nameDef}, the scholar who stayed a night last season, is back with a bag of notes and a question for {A_nameDef} that has been bothering {X_objective} for weeks.</li>
           <li>[doctor,visit2] {X_nameDef}, the doctor who came through last season, is at the gate again with a fresh case of remedies, asking how {A_nameDef} and the others have kept.</li>
@@ -38,14 +38,14 @@
           <li>[teller,visit2] {X_nameDef}, who told tales at the colony's fire last season, is back with new ones and asks whether {A_nameDef} still sits in the same place.</li>
           <li>[kindred,visit2] {X_nameDef}, who talked half a night with {A_nameDef} last season about what they both wanted from life, is back at the gate, and asks straight off how far {A_nameDef} has got.</li>
           <li>[cool] {X_nameDef} the {TALE} is at the gate again, though {X_pronoun} wasn't made very welcome last time. {X_pronoun} asks after {A_nameDef} anyway.</li>
-          <li>[turning,friend] {X_nameDef} is back, and this time {X_pronoun} didn't go to the fire first. {X_pronoun} found {A_nameDef} and said, plainly, that the road is getting long and this is the place {X_pronoun} thinks of when it does. {X_pronoun} would stay, if there were a place; or {A_nameDef} might come along and see the road for a season or two.</li>
-          <li>[turning] {X_nameDef} is back, and asked to speak to the council. The road is getting long, {X_pronoun} said, and this colony is the place {X_pronoun} thinks of when it does. Would there be a place here for a {TALE}? Or would {A_nameDef} come along and see the road?</li>
+          <li>[turning,friend] {X_nameDef} is back, and this time {X_pronoun} didn't go to the fire first. {X_pronoun} found {A_nameDef} and said plainly that {X_pronoun} is getting tired of the road, and that this is where {X_pronoun} would most like to settle. {X_pronoun} would stay if there were a place for {X_objective}, or {A_nameDef} might come along and travel with {X_objective} for a season or two.</li>
+          <li>[turning] {X_nameDef} is back, and asked to speak to the council. {X_pronoun} said {X_pronoun} is getting tired of the road, and this colony is where {X_pronoun} would most like to settle. {X_pronoun} asks whether there would be a place here for a {TALE}, or whether {A_nameDef} would come along and travel with {X_objective}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Welcome them in</label>
-            <outcome>{X_nameDef} is given a seat by the fire and the evening. {A_nameDef} comes away with something learned.</outcome>
+            <outcome>{X_nameDef} is given a seat by the fire for the evening. {A_nameDef} comes away with something learned.</outcome>
             <outcomes>
               <li>[kindred] {X_nameDef} and {A_nameDef} talked until the fire was embers, as before.</li>
               <li>[tinker] {X_nameDef} spent the evening by the fire with {A_nameDef}, showing a trick of the trade that {A_nameDef} will use for years.</li>

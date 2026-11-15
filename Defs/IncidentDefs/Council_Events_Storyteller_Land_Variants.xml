@@ -19,7 +19,7 @@
       <li>[herbs,lowtech] {PET_nameDef} has been rolling in a plant by the stream, and came home smelling of it, with a mouthful of the plant besides. It turned out to be a healing herb, and {A_nameDef} went back with a basket for the rest.</li>
       <li>[herbs] {A_nameDef} followed {PET_nameDef} to see where {PET_pronoun} keeps going, and found a patch of healing herbs in a hollow just past the fields. {PET_nameDef} had already eaten some.</li>
       <li>[purse,lowtech] A little cloth bag tied with string, soaked and chewed, turned up in {PET_nameDef}'s mouth and was dropped at {A_nameDef}'s feet. There were {COUNT} silver coins in it, from some pocket a long way from here.</li>
-      <li>[purse] {PET_nameDef} has been digging by the old road, and came back with a purse in {PET_possessive} teeth and {COUNT} silver in the purse. {A_nameDef} has decided not to ask where.</li>
+      <li>[purse] {PET_nameDef} has been digging by the old road, and came back with a purse in {PET_possessive} teeth with {COUNT} silver in it. Nobody knows whose it was.</li>
       <li>[component] {PET_nameDef} trotted in from the junk pile with a component in {PET_possessive} mouth, set it down carefully at {A_nameDef}'s feet, and waited. It works.</li>
       <li>[nothing] The stick across {A_nameDef}'s doorway is the largest {PET_nameDef} could carry, and it was brought with great ceremony. {A_nameDef} has thanked {PET_objective} for it twice.</li>
       <li>[nothing,winter] {PET_nameDef} came in from the snow with a frozen turnip, dropped it in {A_nameDef}'s lap and lay down on {A_possessive} feet. {A_nameDef} has kept the turnip.</li>
@@ -31,7 +31,7 @@
     <defName>Council_Var_Evt_ChildFind</defName>
     <incident>Council_Evt_ChildFind</incident>
     <texts>
-      <li>[fossil] A stone by the stream with a pattern of ridges on it turned out, after a lot of scrubbing, to be a fern, older than anything. {A_nameDef} has been carrying it around in both hands.\n\n{B_nameDef} could tell {A_objective} what it is, if there's time.</li>
+      <li>[fossil] A stone by the stream with a pattern of ridges on it turned out, after a lot of scrubbing, to be a fossil fern, very old. {A_nameDef} has been carrying it around in both hands.\n\n{B_nameDef} could tell {A_objective} what it is, if there's time.</li>
       <li>[coin,lowtech] {A_nameDef} turned up a coin in the vegetable patch, thin and bent, with a king on it whose name has worn away. {A_nameDef} wants to know which king, and where his kingdom went.\n\n{B_nameDef} might know.</li>
       <li>[coin,!lowtech] {A_nameDef} dug up an old coin by the gate, stamped with a ship and a date from before anyone's grandparents. {A_nameDef} keeps asking what the ship was.\n\n{B_nameDef} might be able to tell {A_objective}.</li>
       <li>[skull] Under the hedge, {A_nameDef} found a small animal's skull, clean and white, with teeth that still meet. It has a name already, and {A_nameDef} wants to know what it was.\n\n{B_nameDef} has offered to look at it with {A_objective}.</li>
@@ -55,7 +55,7 @@
     <defName>Council_Var_Evt_OldCommander</defName>
     <incident>Council_Evt_OldCommander</incident>
     <texts>
-      <li>[winter] Snow has stopped the campaign against {ENEMY}, but not the hunger. {X_nameDef}, {A_nameDef}'s old commander, writes from a winter camp of {FACTION}'s that the fighters there are boiling their boots, and asks for {TALE}.\n\nA share of the spoils will come back, if they win.</li>
+      <li>[winter] Snow has halted the campaign against {ENEMY}, and the fighters are going hungry. {X_nameDef}, {A_nameDef}'s old commander, writes from {FACTION}'s winter camp that they are down to boiling their boots, and asks for {TALE}.\n\nA share of the spoils will come back, if they win.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -111,7 +111,7 @@
     <defName>Council_Var_Evt_WildBees</defName>
     <incident>Council_Evt_WildBees</incident>
     <texts>
-      <li>[summer,fields] The crops by the hollow tree have hummed from dawn to dusk since a wild swarm moved in. {A_nameDef} would like to try for the comb with smoke and a steady hand. Left alone, the bees will keep at the fields.</li>
+      <li>[summer,fields] Bees have been humming over the crops by the hollow tree from dawn to dusk since a wild swarm moved in. {A_nameDef} would like to try for the comb with smoke and a steady hand. Left alone, the bees will keep at the fields.</li>
       <li>[nofields,summer] Wild bees have filled a hollow tree near the colony with comb, and the honey is running out of a crack in the bark. {A_nameDef} thinks {A_pronoun} could smoke them out and take it.\n\nOr they could be left alone.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

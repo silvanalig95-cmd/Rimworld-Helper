@@ -14,7 +14,7 @@
     <incident>Council_Evt_RegularBuyer</incident>
     <texts>
       <li>[once,summer] {FACTION}'s rider came back through the heat, dusty to the knees, with a short list. Last time's goods went down well. Now they'd like {TALE}, for {COUNT} silver, and they've sent a small gift for the colony's trouble.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
-      <li>[again,colony:Hardworking] {FACTION} have stopped asking whether the colony can fill an order and started asking when. This time it's {TALE}, for {COUNT} silver, with the usual small gift.\n\nCollection in five days.</li>
+      <li>[again,colony:Hardworking] {FACTION} now take it for granted that the colony can fill their orders. This time it's {TALE}, for {COUNT} silver, with the usual small gift.\n\nThey'll send for it in five days.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -40,7 +40,7 @@
     <defName>Council_Var_Evt_VendettaBand</defName>
     <incident>Council_Evt_VendettaBand</incident>
     <texts>
-      <li>[killed,winter] Tracks in the snow led {A_nameDef} to a small camp of {ENEMY}, a few hours away, with a thin line of smoke rising from it. {A_nameDef} swore {ENEMY} would answer for {DEAD}, and came back without a word.\n\nThe colony could draw them out to fight on its own ground, or let them move on.</li>
+      <li>[killed,winter] Tracks in the snow led {A_nameDef} to a small camp of {ENEMY}, a few hours away, with a thin line of smoke rising from it. {A_nameDef} once swore {ENEMY} would answer for {DEAD}, and came back from the camp without saying anything.\n\nThe colony could draw them out to fight on its own ground, or let them move on.</li>
       <li>[taken,lowtech] A shepherd brought word of a small band of {ENEMY} watering their horses at the ford, a few hours away. These are the people who took {DEAD}. {A_nameDef} wants them brought here, to fight on ground the colony knows.\n\nLeft alone, they'll be over the ford and gone by morning.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -74,7 +74,7 @@
     <defName>Council_Var_Evt_FarMarket</defName>
     <incident>Council_Evt_FarMarket</incident>
     <texts>
-      <li>[summer] Half-empty wagons and a long, hot road ahead: {FACTION}'s summer caravan is bound for the market at {PLACE}. The caravan master will take {TALE} along and trade it there for {THING}, which the colony could use more of.\n\nThey'll be back in a week or so.</li>
+      <li>[summer] {FACTION}'s summer caravan has stopped on its way to the market at {PLACE}, with room to spare on its wagons. The caravan master will take {TALE} along and trade it there for {THING}, which the colony could use more of.\n\nThey'll be back in a week or so.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

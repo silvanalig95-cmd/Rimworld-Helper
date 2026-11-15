@@ -13,7 +13,7 @@
     <defName>Council_Var2_Evt_TreasureMap</defName>
     <incident>Council_Evt_TreasureMap</incident>
     <texts>
-      <li>[summer] All afternoon {X_nameDef} of {FACTION} sat in the colony's shade, waiting for the yard to empty. When it did, {X_nameDef} beckoned {A_nameDef} over and unfolded a map with a mark on the colony's own land.\n\nToo hot to dig, {X_nameDef} says, and too far from home. {COUNT} silver and the map is the colony's.</li>
+      <li>[summer] All afternoon {X_nameDef} of {FACTION} sat in the colony's shade, waiting for the yard to empty. When it did, {X_nameDef} beckoned {A_nameDef} over and unfolded a map with a mark on the colony's own land.\n\n{X_nameDef} says it's too hot to dig and too far from home, and will sell the map for {COUNT} silver.</li>
       <li>[colony:Thrifty] A colony that likes a bargain should hear this one, says {X_nameDef} of {FACTION}, and offers {A_nameDef} a map to a cache buried on the colony's own land, for {COUNT} silver. {A_nameDef} has asked to hold it up to the light first.</li>
     </texts>
     <outcomes>
@@ -46,8 +46,8 @@
     <defName>Council_Var2_Evt_Tribute</defName>
     <incident>Council_Evt_Tribute</incident>
     <texts>
-      <li>[winter] {ENEMY} are hungry this winter, and someone has decided the colony will feed them. Their messenger came through the snow with the price: {COUNT} silver. If it isn't paid, {ENEMY} will come and take it, and whatever else they find.</li>
-      <li>[colony:Walled] {ENEMY} have looked at the colony's walls and decided silver is easier to take than a gate. Their messenger named it: {COUNT} silver, or a war party to collect it.</li>
+      <li>[winter] {ENEMY} are short of food this winter, and have decided the colony should pay for it. Their messenger came through the snow with the price: {COUNT} silver. If it isn't paid, {ENEMY} will come and take it, and whatever else they find.</li>
+      <li>[colony:Walled] {ENEMY} would rather not attack the colony's walls, so they are demanding silver instead. Their messenger named it: {COUNT} silver, or a war party to collect it.</li>
     </texts>
     <outcomes>
       <li>
@@ -69,7 +69,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The colony sends back one word, and spends the rest of the day getting ready for what that word costs.</li>
+          <li>The colony sends back a refusal, and spends the rest of the day getting ready for the attack.</li>
         </lines>
       </li>
     </outcomes>
@@ -160,7 +160,7 @@
       <li>
         <option>2</option>
         <riskLines>
-          <li>{A_nameDef} got onto the subject of the colony's quarrels and couldn't get off it. {X_nameDef} filled three pages, and the piece will make the colony sound like a kennel.</li>
+          <li>{A_nameDef} got onto the subject of the colony's quarrels and couldn't get off it. {X_nameDef} filled three pages, and the piece will make the colony sound quarrelsome.</li>
         </riskLines>
       </li>
     </outcomes>

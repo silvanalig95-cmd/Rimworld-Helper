@@ -143,8 +143,8 @@
         </titles>
         <texts>
           <li>[lowtech,notale] {X_nameDef} of {FACTION} travels alone with a handcart of masks and a drum, and plays every part in the show {X_pronoun} carries from town to town. {X_nameDef} would like supper and a dry place to sleep, and will perform after dark.</li>
-          <li>[lowtech,tale] The play {X_nameDef} of {FACTION} has brought is about this colony, or about what people on the road say of it.\n\n"{TALE}"\n\n{X_nameDef}, a mummer who plays every part {X_pronoun} so much as hears about, would like to perform it tonight, for supper and a bed.</li>
-          <li>[!lowtech,notale] {X_nameDef} of {FACTION} is a traveling player with a painted backdrop rolled up on {X_possessive} back and a play with eleven parts, all of them {X_possessive}. {X_nameDef} will perform it tonight in exchange for supper and somewhere to sleep.</li>
+          <li>[lowtech,tale] The play {X_nameDef} of {FACTION} has brought is about this colony, or about what people on the road say of it.\n\n"{TALE}"\n\n{X_nameDef}, a mummer who plays every part alone, would like to perform it tonight, for supper and a bed.</li>
+          <li>[!lowtech,notale] {X_nameDef} of {FACTION} is a traveling player with a painted backdrop rolled up on {X_possessive} back and a play with eleven parts, which {X_pronoun} plays alone. {X_nameDef} will perform it tonight in exchange for supper and somewhere to sleep.</li>
           <li>[!lowtech,tale] "{TALE}"\n\nThat's the story going round the settlements, and {X_nameDef} of {FACTION} has made a short play of it. {X_nameDef} would like to try it out tonight, on an audience who know how it really went.</li>
           <li>[winter,notale] {X_nameDef} of {FACTION}, a traveling player, came in out of the snow with {X_possessive} costumes in a sack. {X_nameDef} will perform tonight, if the colony will feed {X_objective} and let {X_objective} sleep somewhere warm.</li>
           <li>[summer,notale] {X_nameDef} of {FACTION} has set up a stage of two planks and a blanket in the yard, in the long light after supper. All {X_nameDef} asks is a meal and a place to sleep.</li>

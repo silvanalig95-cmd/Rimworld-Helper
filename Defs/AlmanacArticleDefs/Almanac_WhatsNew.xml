@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.243.0</version>
+        <date>15 November 2026</date>
+        <title>Event cards in plain words: pasts, visitors and the land</title>
+        <points>
+          <li>Event cards about colonists' pasts, visitors, the land, challenges and old debts now say plainly what happens and why, without riddles or wry endings.</li>
+          <li>How each answer turned out is told in ordinary words, and the hail warning now reads as clear advice.</li>
+          <li>What colonists and visitors say aloud is left as it was.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.242.0</version>
         <date>15 November 2026</date>
         <title>The rider at the gate, and winter clothes for everyone</title>

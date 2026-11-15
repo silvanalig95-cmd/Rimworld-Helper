@@ -69,13 +69,13 @@
       <li>
         <option>0</option>
         <lines>
-          <li>{X_nameDef} puts both hands on the cold green metal as if it might be warm. {FACTION} take it home between them, and promise it will ring for the colony too.</li>
+          <li>{X_nameDef} puts both hands on the old bronze bell and says nothing for a while. {FACTION} take it home between them, and promise it will ring for the colony too.</li>
         </lines>
       </li>
       <li>
         <option>1</option>
         <lines>
-          <li>{FACTION} pay the bronze's worth in full and haul it away. They are polite about it. They are also counting.</li>
+          <li>{FACTION} pay the bronze's worth in full and haul it away. They are polite about it, but they won't forget that the colony made them pay.</li>
         </lines>
       </li>
       <li>
@@ -92,7 +92,7 @@
     <defName>Council_Var_Evt_After_SpringReturn</defName>
     <incident>Council_Evt_After_SpringReturn</incident>
     <texts>
-      <li>[flag:sheltered] The two travelers who waited out {TALE} by the colony's fire are back, as they promised. Mud to the knee, grinning, with {COUNT} measures of {THING} for planting from {PLACE}'s best fields.\n\n{X_nameDef} says the debt isn't paid until the seed is in the ground.</li>
+      <li>[flag:sheltered] The two travelers who waited out {TALE} by the colony's fire are back, as they promised. They are muddy to the knee and grinning, and have brought {COUNT} measures of {THING} for planting from {PLACE}'s best fields.\n\n{X_nameDef} says the debt isn't paid until the seed is in the ground.</li>
       <li>[helped] {X_nameDef} of {FACTION} has come up from {PLACE} now the roads are open. They'd have frozen, {X_nameDef} says, without the colony's wood in {TALE}. The thanks come as {COUNT} measures of {THING} for the planting.</li>
     </texts>
     <outcomes>
@@ -111,7 +111,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{A_nameDef} hands the seed back and says the winter's debt was paid by the company. They argue, and lose, and go home with it.</li>
+          <li>{A_nameDef} hands the seed back and says having them there through the winter was payment enough. They argue, give in, and go home with it.</li>
         </lines>
       </li>
     </outcomes>
@@ -154,7 +154,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>The silver is carried out to {X_nameDef} for {PLACE}'s widows, and {A_nameDef} says plainly that the colony should have helped. {X_nameDef} doesn't thank anyone, and doesn't need to.</li>
+          <li>The silver is carried out to {X_nameDef} for {PLACE}'s widows, and {A_nameDef} says plainly that the colony should have helped. {X_nameDef} doesn't thank anyone, but nods and takes the silver.</li>
         </lines>
       </li>
       <li>
@@ -186,7 +186,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>The choice is {A_nameDef}'s, the council says, because the oath was. {A_nameDef} takes a breath at the door and goes out to {X_nameDef}.</li>
+          <li>The council says the choice is {A_nameDef}'s, since it was {A_possessive} oath. {A_nameDef} takes a breath at the door and goes out to {X_nameDef}.</li>
         </lines>
       </li>
     </outcomes>
@@ -206,7 +206,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{X_nameDef} is told that sorry is a word, and {DEAD} was a life. {X_nameDef} doesn't argue, and goes back down the road.</li>
+          <li>{X_nameDef} is told that an apology can't make up for {DEAD}'s death. {X_nameDef} doesn't argue, and goes back down the road.</li>
         </lines>
       </li>
     </outcomes>

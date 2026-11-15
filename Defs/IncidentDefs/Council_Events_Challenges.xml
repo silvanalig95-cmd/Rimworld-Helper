@@ -26,15 +26,15 @@
         </titles>
         <texts>
           <li>[Shooting,lowtech] An archer who has won every contest from here to the coast has heard that {A_nameDef} is a good shot, and doesn't quite believe it. {X_nameDef} of {FACTION} proposes a friendly match at straw targets, best of ten.</li>
-          <li>[Shooting,!lowtech] Tin cans on a fence rail, ten shots each. {X_nameDef} of {FACTION}, a marksman with a bag of medals and an ego to match, wants to try {A_nameDef}, the colony's best shot. It's a friendly match, and the colony can put silver on it if it likes.</li>
-          <li>[Melee] {X_nameDef} of {FACTION} is built like a door, and tours the settlements looking for anyone willing to try a fall in a ring drawn in the dirt, with no weapons and no hard feelings. The colony's champion would be {A_nameDef}.</li>
+          <li>[Shooting,!lowtech] {X_nameDef} of {FACTION}, a marksman who is very proud of {X_possessive} medals, wants to shoot against {A_nameDef}, the colony's best shot, at tin cans on a fence rail, ten shots each. It's a friendly match, and the colony can put silver on it if it likes.</li>
+          <li>[Melee] {X_nameDef} of {FACTION} is a big, broad wrestler who goes from settlement to settlement looking for anyone willing to wrestle in a ring drawn in the dirt, with no weapons and no hard feelings. The colony's champion would be {A_nameDef}.</li>
           <li>[Crafting] "Same materials, same hours, and the onlookers judge," says {X_nameDef}, a traveling artisan of {FACTION} who thinks {X_possessive} work is the finest in the region. {X_nameDef} would like to prove it against {A_nameDef}'s.</li>
-          <li>[Artistic] {X_nameDef}, a wandering artist of {FACTION}, has heard about {A_nameDef}'s work and doesn't believe a word of it. One piece each, made in a single afternoon, with the colony as judge.</li>
-          <li>[Cooking] One kitchen, one afternoon, and whoever eats gets a vote. {X_nameDef}, a traveling cook of {FACTION} who claims to have fed kings, is challenging {A_nameDef} to a cook-off.</li>
-          <li>[Social] {X_nameDef} of {FACTION} could talk a mule into a river, people say, and wants to prove it in a public debate against the colony. {A_nameDef} would speak for the colony.</li>
+          <li>[Artistic] {X_nameDef}, a wandering artist of {FACTION}, has heard about {A_nameDef}'s work and doesn't believe a word of it. {X_nameDef} proposes one piece each, made in a single afternoon, with the colony as judge.</li>
+          <li>[Cooking] {X_nameDef}, a traveling cook of {FACTION} who claims to have fed kings, is challenging {A_nameDef} to a cook-off: one kitchen, one afternoon, and everyone who eats gets a vote.</li>
+          <li>[Social] People say {X_nameDef} of {FACTION} can talk anyone into anything, and {X_nameDef} wants to prove it in a public debate against the colony. {A_nameDef} would speak for the colony.</li>
           <li>[Animals] A drover of {FACTION}, {X_nameDef}, swears there isn't an animal born that {X_pronoun} can't handle, and challenges {A_nameDef} to prove otherwise.</li>
           <li>[Intellectual] {X_nameDef} of {FACTION} collects riddles the way other people collect coins, and wants to try the best of them on the colony's sharpest mind, {A_nameDef}. The loser buys the drinks, unless the colony wants to put real silver on it.</li>
-          <li>[Plants] {X_nameDef}, a gardener of {FACTION}, has walked the colony's fields twice and been polite about them both times. Now {X_nameDef} wants to test {A_nameDef}'s eye for seed and soil against {X_possessive} own, and let the onlookers decide.</li>
+          <li>[Plants] {X_nameDef}, a gardener of {FACTION}, has looked over the colony's fields and thinks {X_pronoun} could do better. Now {X_nameDef} wants to test {A_nameDef}'s eye for seed and soil against {X_possessive} own, and let the onlookers decide.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -101,7 +101,7 @@
         <texts>
           <li>{BEAST} has come. Travelers have talked about the old {THING} for weeks, huge and scarred and straight out of the stories, and now it's roaming the colony's land. It doesn't go looking for trouble, but it fights back hard when hunted. Whoever brings it down will be talked about for years. It will move on in a few days.</li>
           <li>[lowtech] Hunters tell stories about {BEAST}, an old {THING} that has outlived every spear ever thrown at it. Now it's wandering the colony's land. {A_nameDef} has already been out to look at it from a distance. It will move on in a few days, whether anyone tries their luck or not.</li>
-          <li>[!lowtech] An old {THING} that trappers on the road call {BEAST} has wandered onto the colony's land. Bullets have bounced off it before. It has never bothered anyone who left it alone, and it will be gone in a few days. {A_nameDef} is already cleaning a weapon.</li>
+          <li>[!lowtech] An old {THING} that trappers on the road call {BEAST} has wandered onto the colony's land. Hunters have shot at it before and failed to bring it down. It has never bothered anyone who left it alone, and it will be gone in a few days. {A_nameDef} is already cleaning a weapon.</li>
         </texts>
         <lines>
           <li>Old Greymane</li>

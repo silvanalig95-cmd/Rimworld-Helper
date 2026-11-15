@@ -47,7 +47,7 @@
         <option>0</option>
         <lines>
           <li>The {THING} is carried out to the gate with no price asked. {FACTION}'s runner looks at it a long time before saying thank you.</li>
-          <li>[colony:Merciful] The {THING} goes out to the gate before the runner has finished asking. A colony that spares its enemies can spare medicine for its neighbors.</li>
+          <li>[colony:Merciful] The {THING} goes out to the gate before the runner has finished asking. The colony is known for its mercy, and nobody argued against it.</li>
         </lines>
       </li>
       <li>
@@ -78,7 +78,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>The council finds for {FACTION}, and sends the judgment to both sides in writing. {ENEMY}'s answer is one line long.</li>
+          <li>The council finds for {FACTION}, and sends the judgment to both sides in writing. {ENEMY} send back a short, angry reply.</li>
           <li>[water] The spring is {FACTION}'s, says the council. {ENEMY} will have to dig a well, and they say they won't forget who made them.</li>
         </lines>
       </li>
@@ -86,13 +86,13 @@
         <option>1</option>
         <lines>
           <li>The council finds for {ENEMY}, who send their thanks the same day. From {FACTION} there is no word at all.</li>
-          <li>[herd] The young animals go to {ENEMY}, says the council. {FACTION} call it theft with a seal on it.</li>
+          <li>[herd] The young animals go to {ENEMY}, says the council. {FACTION} say the judgment is no better than theft.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>{A_nameDef} works out a split point by point and puts it to both sides. Neither likes it and both accept it, which {A_nameDef} says is how it should be.</li>
+          <li>{A_nameDef} works out a split point by point and puts it to both sides. Neither side is happy with it, but both accept it.</li>
           <li>[land] {A_nameDef} has the strip divided by the furrow, one row each, alternating. Both sides think it's ridiculous, and both accept it.</li>
         </lines>
         <riskLines>
@@ -114,7 +114,7 @@
     <incident>Council_Evt_Elopers</incident>
     <texts>
       <li>[summer] {X_nameDef} and {TALE}, two young people of {FACTION}, walked up to the gate barefoot with their shoes tied round their necks to save the leather. Their families won't hear of the match, so they left.\n\n"We'll work," said {TALE}. "We'll do anything." {A_nameDef} has gone to find them something to eat.</li>
-      <li>[colony:Traditional] {X_nameDef} and {TALE} of {FACTION} ran away from families who had other matches planned for them, and came to a colony that people say keeps to old ways. They seem to hope old ways include taking in the young.\n\n{A_nameDef} has let them sit inside the gate while the council decides.</li>
+      <li>[colony:Traditional] {X_nameDef} and {TALE} of {FACTION} ran away from families who had other matches planned for them, and came to a colony that people say keeps to old ways. They hope that means the colony will take them in.\n\n{A_nameDef} has let them sit inside the gate while the council decides.</li>
     </texts>
     <outcomes>
       <li>

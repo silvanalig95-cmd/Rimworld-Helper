@@ -28,9 +28,9 @@
           <li>Grit from the roof</li>
         </titles>
         <texts>
-          <li>{A_nameDef} was cutting at the {THING} {PLACE} when the rock overhead gave a long creak and let down a trickle of grit. {A_pronoun} stepped back, and the digging at that face has stopped. {B_nameDef} says a prop under it would hold it. {A_nameDef} says rock always talks, and would dig on. A fall there would come down on whoever is digging.</li>
-          <li>[land:mountains] Under the mountain, {A_nameDef} heard the {THING} above the face creak and tick like cooling iron, and grit came down on {A_possessive} shoulders. {A_pronoun} backed off. {B_nameDef} wants a prop set before anyone goes back; dig on as it is, and the rock may come down on the one digging.</li>
-          <li>[lowtech] The rock groaned over {A_nameDef}'s head at the dig {PLACE}, the way the old miners say it does before it falls, and a dust of grit came down. {A_nameDef} came out quick. {B_nameDef} could set a timber prop; the brave would dig on, and the rock may come down on them.</li>
+          <li>{A_nameDef} was cutting at the {THING} {PLACE} when the rock overhead gave a long creak and let down a trickle of grit. {A_pronoun} stepped back, and the digging at that face has stopped. {B_nameDef} says a prop under it would hold it. {A_nameDef} says rock often creaks like that, and would keep digging. A fall there would come down on whoever is digging.</li>
+          <li>[land:mountains] Under the mountain, {A_nameDef} heard the {THING} above the face creak, and grit came down on {A_possessive} shoulders. {A_pronoun} backed off. {B_nameDef} wants a prop set before anyone goes back. If the digging goes on as it is, the rock may come down on whoever is digging.</li>
+          <li>[lowtech] The rock creaked loudly over {A_nameDef}'s head at the dig {PLACE}, which the old miners say happens before a fall, and grit came down. {A_nameDef} got out quickly. {B_nameDef} could set a timber prop. Anyone who digs on without one may have the rock come down on them.</li>
           <li>[!lowtech] The roof over the face {A_nameDef} was working {PLACE} has started to crack and drop grit. {A_nameDef} pulled back and stopped the digging there. {B_nameDef} can set a prop. Dig on without one, and a fall may catch whoever is at the face.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -48,7 +48,7 @@
           </li>
           <li>
             <label>Dig on, carefully</label>
-            <outcome>The digging at that face is marked again as it was. Whoever goes back to it goes back knowing.</outcome>
+            <outcome>The digging at that face is marked again as it was. Whoever goes back to it knows the risk.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_DigFace"><mode>dig</mode></li>
             </effects>
@@ -97,11 +97,11 @@
           <li>A tree over the {TALE}</li>
         </titles>
         <texts>
-          <li>After the rain, the old {THING} by the colony's {TALE} has begun to lean toward it, and the ground at its foot has heaved up where the roots are letting go. {A_nameDef} says fell it now, while it can be felled where it's wanted. {B_nameDef} has known that tree since the colony came. Left standing, a wind may bring it down onto the {TALE}, and onto anyone beside it.</li>
-          <li>[door] The {THING} beside the door has a lean on it it didn't have last week, and the soaked ground around its roots has lifted. {A_nameDef} wants it down before a wind does it. {B_nameDef} says it's stood through worse. If it comes down, it will come down on the doorway.</li>
-          <li>[lowtech] The old {THING} by the {TALE} is leaning, its roots pulling up out of the wet ground. The elders say a tree that leans after rain falls in the next wind. {A_nameDef} has the axe ready; {B_nameDef} would leave it. A fall would take the {TALE} and whoever stood there.</li>
+          <li>After the rain, the old {THING} by the colony's {TALE} has begun to lean toward it, and the ground at its foot has heaved up where the roots are letting go. {A_nameDef} says fell it now, while it can be felled where it's wanted. {B_nameDef} has known that tree since the colony arrived and would rather keep it. If it is left standing, a wind may bring it down onto the {TALE} and anyone beside it.</li>
+          <li>[door] The {THING} beside the door has started to lean since last week, and the soaked ground around its roots has lifted. {A_nameDef} wants it cut down before a wind brings it down. {B_nameDef} says it has stood through worse. If it falls, it will fall on the doorway.</li>
+          <li>[lowtech] The old {THING} by the {TALE} is leaning, its roots pulling up out of the wet ground. The elders say a tree that leans after rain falls in the next wind. {A_nameDef} has the axe ready, but {B_nameDef} would leave it. If it falls, it will land on the {TALE} and anyone standing there.</li>
           <li>[!lowtech] The {THING} next to the {TALE} is leaning at a bad angle after the rain, with its root plate lifting. {A_nameDef} wants it felled under control. Leave it, and the next strong wind may drop it on the {TALE} and whoever is near.</li>
-          <li>[land:forest] In this country the trees grow close to the walls, and after the rain the {THING} by the {TALE} has begun to lean onto it. {A_nameDef} would fell it; {B_nameDef} says the forest was here first. Left, a wind may bring it down on the {TALE}.</li>
+          <li>[land:forest] In this country the trees grow close to the walls, and after the rain the {THING} by the {TALE} has begun to lean onto it. {A_nameDef} would cut it down, but {B_nameDef} says the forest was here first and the tree should stay. If it is left, a wind may bring it down on the {TALE}.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -163,7 +163,7 @@
         <texts>
           <li>No rain for days, and the grass {PLACE} has gone brown and brittle in the heat. {A_nameDef} saw a thread of smoke rising out of it a little way past the colony: something is smouldering there, not yet burning. Someone could stamp it out now, and might burn a hand or a foot doing it. Left, it will catch, and dry grass burns fast.</li>
           <li>[land:grassland] On the open grass {PLACE}, dry as tinder after the long heat, a wisp of smoke is coming up out of the stalks. {A_nameDef} pointed it out to {B_nameDef}. Stamp it out now, at the risk of a burn, or let it go, and the grass will carry fire a long way.</li>
-          <li>[land:desert] In the scrub {PLACE}, baked dry, something has started to smoulder: {A_nameDef} can see the smoke from the colony. It's small yet. Whoever stamps it out may take a burn for it; left, it will catch.</li>
+          <li>[land:desert] Something has started to smoulder in the dry scrub {PLACE}, and {A_nameDef} can see the smoke from the colony. It's still small. Whoever stamps it out may get burned. If it's left, it will catch fire.</li>
           <li>[lowtech] {A_nameDef} smelled it before seeing it: smoke from the dry grass {PLACE}. The old way is to beat it out while it's small, and every herder has a burn to show for it. Leave it, and the grass will catch.</li>
           <li>[!lowtech] Smoke is rising from the dead grass {PLACE}, a little past the colony's edge: a smoulder, not yet a fire. {A_nameDef} could get out there and stamp it out, at some risk of a burn. Otherwise it will catch, and in this heat it will spread.</li>
         </texts>
@@ -219,15 +219,15 @@
         </titles>
         <texts>
           <li>{A_nameDef} turned up something hard in the field and stopped dead: an old shell from a war before the colony's time, rusted, and still whole. Nobody has touched it since. It can be carried well out past the fields, set off where it lies from a safe distance, or left. A fire that reaches it will set it off wherever it is.</li>
-          <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things wake when struck or burned, and this one may still. {B_nameDef} could break it from far off with a thrown stone or an arrow; or someone carries it gently a long way out.</li>
-          <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says strike it from far off and let it burst there. Carried out, it would lie in the grass a long while; left, it lies among the crops.</li>
+          <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things burst when they are struck or burned, and this one still might. {B_nameDef} could set it off from far away with a thrown stone or an arrow, or someone could carry it carefully a long way out.</li>
+          <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says to strike it from far off and let it burst where it lies. It could also be carried out to the grass far from anyone, or left among the crops, where a fire would set it off.</li>
           <li>[!lowtech] {A_nameDef} found an unexploded shell in the field, an old high-explosive round in a crust of rust. {B_nameDef} can set it off from a safe distance, which will tear up the ground around it. Or it gets carried well out and left, or put in the stores for the mortars, if the colony has one.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Carry it out past the fields, gently</label>
-            <outcome>{A_nameDef} lifts the shell like an egg and carries it well out past the fields, and sets it down there for nobody to touch.</outcome>
+            <outcome>{A_nameDef} lifts the shell very carefully, carries it well out past the fields and sets it down there, where nobody will touch it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_OldShell"><mode>carry</mode></li>
             </effects>
@@ -294,7 +294,7 @@
         </titles>
         <texts>
           <li>The wreck of a {BEAST} has lain {PLACE} since it was brought down, and as {A_nameDef} went past it this morning, one of its limbs jerked and it spat sparks. There's charge in it yet. {B_nameDef} could break it up for the metal, and might take a burn from the last of it. Left, whoever handles it next may be burned.</li>
-          <li>[lowtech] The dead iron beast {PLACE} moved when {A_nameDef} passed: a leg kicked out and fire jumped from it in little blue sparks. The elders say the iron things keep a spark of their life a long while. {B_nameDef} could break it apart for its metal, and the spark may bite.</li>
+          <li>[lowtech] The dead iron beast {PLACE} moved when {A_nameDef} passed: a leg kicked out and fire jumped from it in little blue sparks. The elders say the iron things keep some of their power long after they fall. {B_nameDef} could break it apart for its metal, but may get burned by the sparks.</li>
           <li>[industrial] The wreck of the {BEAST} {PLACE} is still live: {A_nameDef} saw its actuators twitch and a shower of sparks from the torn housing. {B_nameDef} can strip it for steel and may get a jolt doing it. Leave it, and the first to haul it may get the jolt instead.</li>
           <li>[spacer] The {BEAST}'s remains {PLACE} still hold a charge: a capacitor somewhere in the wreck is arcing, and a limb jerked when {A_nameDef} came near. {B_nameDef} can break it down for parts, and may take a burn doing it.</li>
         </texts>
@@ -352,8 +352,8 @@
         </titles>
         <texts>
           <li>Days of rain have soaked the {TALE} just outside one of the colony's doors, and this morning {A_nameDef} felt it give under {A_possessive} boot: the ground there is slumping, soft as porridge underneath. {B_nameDef} could lay a floor over it. Left, someone crossing may put a foot through it.</li>
-          <li>[land:swamp] The marsh is creeping in: the {TALE} by the door has gone to sludge under its skin, and {A_nameDef} sank to the ankle stepping out. {B_nameDef} wants a floor laid over it. Leave it, and someone will go in deeper.</li>
-          <li>[land:river] The river has been at the ground under the {TALE} by the door all through the rains, and now it slumps when anyone steps on it. {A_nameDef} nearly turned an ankle. {B_nameDef} can lay a floor over it; left, the next foot may go through.</li>
+          <li>[land:swamp] Marsh water has spread under the {TALE} by the door and turned the ground beneath it to sludge, and {A_nameDef} sank to the ankle stepping out. {B_nameDef} wants a floor laid over it. If it is left, someone will sink in deeper.</li>
+          <li>[land:river] The river has soaked the ground under the {TALE} by the door all through the rains, and now it sinks when anyone steps on it. {A_nameDef} nearly turned an ankle. {B_nameDef} can lay a floor over it. If it is left, the next person may put a foot through.</li>
           <li>[lowtech] After the rains the ground by the door has gone hollow and soft, and {A_nameDef}'s foot went in to the ankle this morning. The old builders lay flat stones over such ground. Left, someone may break a foot on it.</li>
           <li>[!lowtech] The {TALE} outside one of the doors is subsiding after the rain: {A_nameDef} felt it give. {B_nameDef} can lay a floor over the soft patch. Left as it is, someone crossing may put a foot through.</li>
         </texts>

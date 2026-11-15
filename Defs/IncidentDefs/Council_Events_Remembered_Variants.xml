@@ -22,7 +22,7 @@
       <li>[deed:refugees] Some of the homeless the colony fed and sheltered have homes again. {FACTION} have sent {X_nameDef} from {PLACE} with their thanks, and a gift worth about {COUNT} silver that a few of them saved toward.</li>
       <li>[deed:quest|deed:mission] {FACTION} paid a reward at the time, but they've been talking it over at {PLACE}, and they think it fell short. The colony {TALE}. {X_nameDef} has brought the rest: a gift worth about {COUNT} silver.</li>
       <li>[winter] {X_nameDef} of {FACTION} came through the snow from {PLACE} to settle an old debt before the year turns, because that is how it's done among them. The colony {TALE}. The gift is worth about {COUNT} silver.</li>
-      <li>[colony:Generous] {FACTION} know the colony gives without counting. They count anyway. The colony {TALE}, and {X_nameDef} has come from {PLACE} with a gift worth about {COUNT} silver to even things up.</li>
+      <li>[colony:Generous] {FACTION} know the colony gives without asking for anything back, but they want to repay it all the same. The colony {TALE}, and {X_nameDef} has come from {PLACE} with a gift worth about {COUNT} silver to even things up.</li>
     </texts>
     <outcomes>
       <li>
@@ -59,7 +59,7 @@
     </titles>
     <texts>
       <li>[deed:aid,theirLowtech] Before asking anything, {X_nameDef} of {FACTION} said the names of every warrior who answered the colony's call, and which of them came home. Then came the request: {COUNT} silver for their families before winter, or what help the colony can give.</li>
-      <li>[deed:relief,food] Seed is what {PLACE} needs. {FACTION} {TALE}, and gave from their own stores to do it, and the stores never filled again. {X_nameDef} asks {COUNT} silver to buy seed with, or whatever the colony can spare.</li>
+      <li>[deed:relief,food] {FACTION} {TALE}, and gave from their own stores to do it, and the stores never filled again. Now {PLACE} needs seed. {X_nameDef} asks {COUNT} silver to buy seed with, or whatever the colony can spare.</li>
       <li>[colony:Generous] {X_nameDef} takes a long time coming to the point. {FACTION} have heard the colony is open-handed, and they remember that they {TALE}. When it comes, the request is {COUNT} silver toward a roof the storms brought down at {PLACE}, or whatever help the colony can give.</li>
       <li>[spring] The thaw flooded half the fields at {PLACE}, and the seed went with the water. {FACTION} {TALE}, and {X_nameDef} has come to call in the favor: {COUNT} silver to replant, or any help the colony can offer.</li>
     </texts>
@@ -91,7 +91,7 @@
       <li>[medicine,deed:tended] The colony {TALE}, and {FACTION} heard that people here are sick now. {X_nameDef} has come from {PLACE} with {COUNT} {THING}, to return the kindness in the same coin.</li>
       <li>[deed:dignitary] {FACTION} remember how well the colony hosted their own. Now that times are hard here, {X_nameDef} has come from {PLACE} with {COUNT} {THING}, as a host's gift in return.</li>
       <li>[deed:refugees] When {FACTION}'s homeless had nowhere to go, the colony fed them. Now it's the colony going short, and {X_nameDef} has come from {PLACE} with {COUNT} {THING}.</li>
-      <li>[flood] The flood downriver has made everything dear, and {FACTION} heard the colony is feeling it. They remember that the colony {TALE}. {X_nameDef} has come from {PLACE} with {COUNT} {THING}, and no bill.</li>
+      <li>[flood] The flood downriver has made everything expensive, and {FACTION} heard the colony is feeling it. They remember that the colony {TALE}. {X_nameDef} has come from {PLACE} with {COUNT} {THING}, and no bill.</li>
     </texts>
     <outcomes>
       <li>
@@ -145,7 +145,7 @@
     <incident>Council_Evt_Quarrel</incident>
     <texts>
       <li>[winter] Snowed in at the colony, two envoys, one of {FACTION} and one of {ENEMY}, have spent the morning not speaking across the same hearth. Their peoples are quarreling over {TALE}. {X_nameDef} of {FACTION} finally asks the colony to settle it, so they can both go home.</li>
-      <li>[deed:mediated] The colony settled a quarrel for {FACTION} once before, and they've come back with another. {X_nameDef} and an envoy of {ENEMY} are at the gate; this time it's {TALE}.</li>
+      <li>[deed:mediated] The colony settled a quarrel for {FACTION} once before, and they've come back with another. {X_nameDef} and an envoy of {ENEMY} are at the gate, and this time the quarrel is over {TALE}.</li>
       <li>[trait:Kind] {X_nameDef} of {FACTION} asked for {A_nameDef} by name, having heard that {A_nameDef} is fair. An envoy of {ENEMY} came too. The two peoples are quarreling over {TALE}, and want the colony to judge.</li>
     </texts>
     <outcomes>

@@ -140,6 +140,21 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.243.0, **Plain words: events-3** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: event cards"). The third event-card batch: 43
+  files in `Defs/IncidentDefs` (the pasts, visitors and their variants, the land and storyteller events, chains,
+  challenges, battles, aftermath, regulars, dangers, the hospital, the peoples' callers, camps, scenarios, allies,
+  PokéWorld). About 2,040 lines of card text read (titles, letter texts, answers, outcomes, raid letters), 184 rewritten:
+  wry endings ("still arguing about the same fence", "They are also counting."), riddling or clipped lines ("knew the
+  walk before the face", "Mud to the knee, grinning"), things given a will ("as if summer had forgotten something"),
+  in-world phrases never explained ("a good door on the road", "the first of their well") and colon and semicolon
+  chains (the hail warnings) now say what happens, who does it and why. Every placeholder, tag, number and chance kept,
+  who is named unchanged, no god named. Left as they were: everything spoken (the events' bubble lines, quoted speech
+  inside the cards), the great beasts' names, the ailment letters (`Council_Ailments_Incidents.xml`; ailments are on
+  the player's leave list) and every line already plain (three more files needed nothing: the peoples' memory
+  variants, the battles, the hospitaller and the league's outrider).
 - 0.242.0, **The great caravan's rider comes,
   his answer plays out, and everyone comes in varied clothes, as warm as they can** (15 November 2026; the player's
   words: with the council's answer list showing "A great caravan · Guido tells them the hill road · As answered · Guido

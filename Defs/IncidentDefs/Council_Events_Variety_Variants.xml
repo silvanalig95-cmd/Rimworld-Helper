@@ -69,7 +69,7 @@
     <incident>Council_Evt_WarmSpell</incident>
     <texts>
       <li>[winter] In the middle of winter, the wind has turned to the south and the snow is going soft. It won't last, but it should stay mild for several days.</li>
-      <li>[fall] The leaves are down, but the air has gone warm again, as if summer had forgotten something. It should stay mild for several days, and the late crops will have a little longer.</li>
+      <li>[fall] The leaves are down, but the weather has turned warm again. It should stay mild for several days, and the late crops will have a little longer.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

@@ -23,12 +23,12 @@
           <li>[!lowtech] A traveling storyteller</li>
         </titles>
         <texts>
-          <li>[their:friend,tale] There's a song among {FACTION} about {FRIEND_nameDef}, and {X_nameDef}, the bard who sings it, has come to meet the real one. {X_nameDef} will pay for supper and a bed in songs, and knows a story about the colony too, the way it's told on the road: "{TALE}"</li>
+          <li>[their:friend,tale] {FACTION} have a song about {FRIEND_nameDef}, and {X_nameDef}, the bard who sings it, has come to meet {FRIEND_nameDef} in person. {X_nameDef} will sing in return for supper and a bed, and also knows a story about the colony that is told on the road: "{TALE}"</li>
           <li>[lowtech,tale] Bards pay for their supper in songs, and {X_nameDef} of {FACTION} has brought plenty, including one about this colony. It goes like this, more or less: "{TALE}"</li>
           <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening at the colony, trading tales and songs for supper and a bed, as bards always have.</li>
-          <li>[!lowtech,tale] There's a story about this colony going round on the road, and {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument, has carried it here for the night. It goes like this: "{TALE}"</li>
-          <li>[notale] A pack full of songs and a head full of tall tales came up the road with {X_nameDef} of {FACTION}, who would like a meal and a place to sleep, and will pay in stories tonight.</li>
-          <li>[tale] {X_nameDef} of {FACTION}, who tells stories for a living, has come to spend the night. {X_nameDef} has a new favorite, picked up on the road, about this very colony: "{TALE}" Tonight, {X_nameDef} promises, everyone gets the long version.</li>
+          <li>[!lowtech,tale] There's a story about this colony going round on the road, and {X_nameDef} of {FACTION}, a traveling storyteller with a battered instrument, has come to tell it here tonight. It goes like this: "{TALE}"</li>
+          <li>[notale] {X_nameDef} of {FACTION}, a traveler who knows a lot of songs and tall tales, has come up the road. {X_nameDef} would like a meal and a place to sleep, and will tell stories tonight in return.</li>
+          <li>[tale] {X_nameDef} of {FACTION}, who tells stories for a living, has come to spend the night. {X_nameDef}'s newest story, picked up on the road, is about this colony: "{TALE}" {X_nameDef} will tell the whole of it tonight.</li>
           <li>[!lowtech,notale] Tuning a dented instrument by the door, {X_nameDef} of {FACTION} asks for a bed. There'll be stories after supper, {X_nameDef} says, for anyone who stays up.</li>
         </texts>
         <lines>
@@ -201,7 +201,7 @@
         </titles>
         <texts>
           <li>[their:friend] {X_nameDef}, a scholar of {FACTION}, asks for a bed for the night, and mentions that {FACTION} speak of {FRIEND_nameDef} with great respect. On hearing that the colony is working on {TALE}, {X_nameDef} starts asking questions, and offers what {X_pronoun} knows.</li>
-          <li>[tribal] {X_nameDef}, a lore-keeper of {FACTION} who carries a whole people's history in {X_possessive} head, asks for a place to sleep tonight. When {X_nameDef} hears the colony is working on {TALE}, {X_pronoun} smiles. There's an old story about that, and it might help.</li>
+          <li>[tribal] {X_nameDef}, a lore-keeper of {FACTION} who knows {X_possessive} people's history by heart, asks for a place to sleep tonight. When {X_nameDef} hears the colony is working on {TALE}, {X_pronoun} smiles. There's an old story about that, and it might help.</li>
           <li>[lowtech,!tribal] {X_nameDef}, a wandering scholar of {FACTION} with ink-stained fingers and a satchel of books, asks for a bed for the night. On hearing that the colony is working on {TALE}, {X_nameDef} starts asking questions, and doesn't stop until supper is cleared away.</li>
           <li>[!lowtech] {X_nameDef}, a traveling engineer of {FACTION}, asks for a bunk for the night. Someone mentions the colony's work on {TALE}, and {X_nameDef} immediately asks to see the notes. "Oh, no, no, no," {X_nameDef} says, smiling. "Let me show you."</li>
         </texts>
@@ -231,7 +231,7 @@
             <outcome>{X_nameDef} held a lesson after supper for anyone who'd sit still for it. The notes on {TALE} only grew by a page, but everyone who stayed up learned something.</outcome>
             <outcomes>
               <li>[lowtech] {X_nameDef} stood at the end of the table and chalked letters and sums on a board until late, and the colony copied them onto slates. {A_nameDef} asked the most questions.</li>
-              <li>[!lowtech] {X_nameDef} turned the dining table into a classroom for the evening, with a chalk board propped on a chair. The work on {TALE} moved a little, the colony a good deal more.</li>
+              <li>[!lowtech] {X_nameDef} turned the dining table into a classroom for the evening, with a chalk board propped on a chair. The work on {TALE} moved on a little, and everyone learned a good deal.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.1</share><max>500</max></li>
@@ -313,7 +313,7 @@
         </titles>
         <texts>
           <li>A stranger called {X_nameDef} has been waiting outside the colony since dawn, and asks to stay. {X_nameDef} answers every question politely and none of them fully. Where from? "Far." Why here? "Why not?" {A_nameDef} thinks {X_nameDef} is running from trouble, and also looks like a hard worker.</li>
-          <li>[lowtech] {X_nameDef} walked out of the wilds with good boots, empty hands and a name that might be real. {X_nameDef} asks to stay, asks nothing about anyone here, and would rather not talk about the past. {A_nameDef} found {X_objective} first.</li>
+          <li>[lowtech] {X_nameDef} came out of the wilds with good boots and nothing else, and may not have given a real name. {X_nameDef} asks to stay, asks nothing about anyone here, and would rather not talk about the past. {A_nameDef} found {X_objective} first.</li>
           <li>[!lowtech] {X_nameDef} walked in off the road with a good coat, no papers and a story that changes slightly every time it's told. {X_nameDef} asks to stay. {A_nameDef} found {X_objective} first, and thinks there's more to the story.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -337,7 +337,7 @@
             <label>Let {A_nameDef} talk to {X_objective} first</label>
             <outcome>{A_nameDef} sat {X_nameDef} down by the gate and talked until {X_nameDef} had told enough of it. {X_nameDef} is one of us now, with nothing left to hide.</outcome>
             <outcomes>
-              <li>[past:outlaw] {A_nameDef} knew the right questions, having once had to dodge them. {X_nameDef} answered them all, and is one of us now.</li>
+              <li>[past:outlaw] {A_nameDef} has been on the run before and knew what to ask. {X_nameDef} answered every question, and is one of us now.</li>
             </outcomes>
             <riskChance>0.6</riskChance>
             <riskOutcome>{A_nameDef} talked with {X_nameDef} most of the afternoon and came back satisfied. {X_nameDef} is one of us now, though {A_nameDef} isn't sure {X_nameDef} told all of it.</riskOutcome>
@@ -436,7 +436,7 @@
         </titles>
         <texts>
           <li>A stray {THING} has followed {A_nameDef} all the way home and refuses to leave {A_possessive} side. It's thin, it's filthy, and it has very clearly decided {A_nameDef} is its person now.</li>
-          <li>[child] A stray {THING} followed {A_nameDef} home, and {A_nameDef} has already given it a name, a bowl and a corner of {A_possessive} bed. The look on {A_possessive} face says the matter is not up for discussion.</li>
+          <li>[child] A stray {THING} followed {A_nameDef} home, and {A_nameDef} has already given it a name, a bowl and a corner of {A_possessive} bed. {A_nameDef} very much wants to keep it.</li>
           <li>[hunter] For a day now a scrawny stray {THING} has hung around {A_nameDef}, leaving small dead things at {A_possessive} feet. It seems to think the colony could use a hunter.</li>
         </texts>
         <defaultOption>0</defaultOption>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Event cards in plain words: pasts, visitors and the land
+
+*15 November 2026, version 0.243.0*
+
+- Event cards about colonists' pasts, visitors, the land, challenges and old debts now say plainly what happens and why, without riddles or wry endings.
+- How each answer turned out is told in ordinary words, and the hail warning now reads as clear advice.
+- What colonists and visitors say aloud is left as it was.
+
 ## The rider at the gate, and winter clothes for everyone
 
 *15 November 2026, version 0.242.0*

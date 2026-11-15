@@ -22,7 +22,7 @@
         <option>0</option>
         <lines>
           <li>The colony's yes goes back with the rider. {FACTION}'s people will come for {TALE} on the day, and count it on the spot.</li>
-          <li>[again] Word goes back that the order is taken. By now {FACTION}'s people know the way to the stores better than some colonists do.</li>
+          <li>[again] Word goes back that the order is taken. {FACTION}'s people have collected from the colony often enough to know the way to the stores.</li>
         </lines>
       </li>
       <li>
@@ -61,7 +61,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{X_nameDef} is walked to the road and asked not to come back. {X_nameDef} goes without arguing, which {A_nameDef} says is worse.</li>
+          <li>{X_nameDef} is walked to the road and asked not to come back. {X_nameDef} goes without arguing, and {A_nameDef} is upset by it.</li>
         </lines>
       </li>
     </outcomes>
@@ -235,13 +235,13 @@
       <li>
         <option>1</option>
         <lines>
-          <li>The {THING} comes in, and sixty silver goes out to {X_nameDef} for the road. {X_nameDef} calls it too much, and the colony calls it not enough, and both are right.</li>
+          <li>The {THING} comes in, and sixty silver goes out to {X_nameDef} for the road. {X_nameDef} says it is too much, but the colony insists.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>{B_nameDef} has a hot meal in front of the people from {PLACE} before they've set the {THING} down. They eat it with their coats still on, and leave a good word behind with the load.</li>
+          <li>{B_nameDef} has a hot meal in front of the people from {PLACE} before they've set the {THING} down. They eat it with their coats still on, and thank the colony warmly before they go.</li>
         </lines>
       </li>
     </outcomes>

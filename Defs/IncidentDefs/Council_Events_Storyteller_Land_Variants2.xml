@@ -16,7 +16,7 @@
     <texts>
       <li>[fossil,winter] The stream had frozen back from its banks, and in the mud it left {A_nameDef} found a flat stone with a tiny fish in it, every bone in place.\n\n{A_nameDef} wants to know how a fish got inside a stone. {B_nameDef} could tell {A_objective}, given an hour.</li>
       <li>[coin,summer] {A_nameDef} has been digging holes all summer looking for treasure, and today found some: a small square coin with a hole in the middle, threaded on a rotted string.\n\n{A_nameDef} wants to know who carried it. {B_nameDef} has a guess or two.</li>
-      <li>[skull,!lowtech] {A_nameDef} came back from the scrub with a small skull in a jar, cleaned with a toothbrush that was not {A_possessive} own. {A_nameDef} has named it already, and wants to know what it was.\n\n{B_nameDef} could look it up with {A_objective}.</li>
+      <li>[skull,!lowtech] {A_nameDef} came back from the scrub with a small skull in a jar, cleaned with a borrowed toothbrush. {A_nameDef} has named it already, and wants to know what it was.\n\n{B_nameDef} could look it up with {A_objective}.</li>
     </texts>
     <outcomes>
       <li>
@@ -24,7 +24,7 @@
         <lines>
           <li>[fossil] {B_nameDef} tells {A_nameDef} about the sea that was here once, and {A_nameDef} wants to know where all the water went, and then where it is now.</li>
           <li>[coin] {B_nameDef} thinks the coin is from a trading town that burned long ago. {A_nameDef} has given the town a name, a market and a king since.</li>
-          <li>[machine] {A_nameDef} has learned from {B_nameDef} that it was part of a radio, and has stopped calling it a brain, mostly.</li>
+          <li>[machine] {A_nameDef} has learned from {B_nameDef} that it was part of a radio, not a brain.</li>
           <li>{A_nameDef} asks {B_nameDef} more questions in an afternoon than the rest of the colony does in a week, and {B_nameDef} answers most of them.</li>
         </lines>
       </li>
@@ -49,7 +49,7 @@
     <defName>Council_Var2_Evt_Recognized</defName>
     <incident>Council_Evt_Recognized</incident>
     <texts>
-      <li>[summer] Water first, then shade: {X_nameDef} of {FACTION} came for one and stayed for the other, and has spent the whole afternoon looking at {A_nameDef}. At last {X_pronoun} came over and named a price: {COUNT} silver, to forget a face from a notice, from the years when {A_nameDef} was {TALE}.</li>
+      <li>[summer] {X_nameDef} of {FACTION} stopped for water, stayed in the shade all afternoon, and spent the whole time watching {A_nameDef}. At last {X_pronoun} came over and named a price: {COUNT} silver to keep quiet about a face on an old notice, from the years when {A_nameDef} was {TALE}.</li>
       <li>[colony:Harsh] {X_nameDef} of {FACTION} knows what this colony does to people who cross it, and asks {A_nameDef} for silence money anyway, in a low voice and with an eye on the gate. {X_nameDef} remembers {A_nameDef} from {A_possessive} time as {TALE}. The price is {COUNT} silver.</li>
     </texts>
     <outcomes>
@@ -71,7 +71,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>Whatever {A_nameDef} says to {X_nameDef}, it is said low and it is said once. {X_nameDef} doesn't mention silver again, and leaves without looking at anyone.</li>
+          <li>{A_nameDef} has a quiet word with {X_nameDef}. {X_nameDef} doesn't mention silver again, and leaves without looking at anyone.</li>
         </lines>
         <riskLines>
           <li>{A_nameDef} loses {A_possessive} temper halfway through, and {X_nameDef} backs off toward the gate promising that {FACTION} will hear every word.</li>
@@ -116,7 +116,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>{X_nameDef} sets the gift down in front of {A_nameDef} and tells the story of that night to anyone in earshot, getting the worst parts wrong.</li>
+          <li>{X_nameDef} sets the gift down in front of {A_nameDef} and tells the story of that night to anyone who will listen.</li>
         </lines>
       </li>
       <li>
@@ -142,7 +142,7 @@
     <defName>Council_Var2_Evt_SealedCrate</defName>
     <incident>Council_Evt_SealedCrate</incident>
     <texts>
-      <li>[same] {A_nameDef} turned up a sealed crate digging by the wall, and has been turning it over and listening to it ever since. The lock is good work, {A_nameDef} says, and good work can be undone.\n\nA hammer would be quicker. {FACTION} would pay {COUNT} silver for it sealed.</li>
+      <li>[same] {A_nameDef} turned up a sealed crate digging by the wall, and has been examining it ever since. The lock is well made, {A_nameDef} says, but it can be picked.\n\nBreaking it open with a hammer would be quicker. {FACTION} would pay {COUNT} silver for it sealed.</li>
     </texts>
     <outcomes>
       <li>
@@ -179,7 +179,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The split tree stays where the sky put it. People have started giving directions by it.</li>
+          <li>The split tree is left standing, and people have started giving directions by it.</li>
         </lines>
       </li>
     </outcomes>
@@ -252,7 +252,7 @@
       <li>
         <option>0</option>
         <riskLines>
-          <li>The smoke doesn't take. The swarm comes out of the hollow like a thrown sack and sees {A_nameDef} all the way back to the houses. The comb stays in the tree, and so do the bees.</li>
+          <li>The smoke doesn't work. The swarm pours out of the hollow and chases {A_nameDef} all the way back to the houses. The comb stays in the tree, and so do the bees.</li>
         </riskLines>
       </li>
     </outcomes>

@@ -23,8 +23,8 @@
           <li>The allies send food</li>
         </titles>
         <texts>
-          <li>Word reached {PLACE} that the colony's stores were running thin, and the settlers did what allies do. {X_nameDef} and another of them are at the gate with sacks over their shoulders: {COUNT} {THING}, from their own harvest, and a message from their leader that the colony fed them once in a hungry month and this is how it's answered.</li>
-          <li>[starving] The colony has two days of food left, and the settlers of {PLACE} knew it before the council did; their hunters saw the empty fields. {X_nameDef} and another are at the gate with {COUNT} {THING} between them, walked here in a day, and {X_pronoun} says there's more where it came from if the colony needs it.</li>
+          <li>Word reached {PLACE} that the colony's stores were running thin, and the settlers did what allies do. {X_nameDef} and another of them are at the gate with sacks over their shoulders: {COUNT} {THING}, from their own harvest, and a message from their leader: the colony fed them once in a hungry month, and this is their way of returning it.</li>
+          <li>[starving] The colony has two days of food left, and the settlers of {PLACE} knew it before the council did, because their hunters saw the empty fields. {X_nameDef} and another are at the gate with {COUNT} {THING} between them, walked here in a day, and {X_pronoun} says there's more where it came from if the colony needs it.</li>
           <li>[their:friend] {X_nameDef} of {PLACE} asked for {FRIEND_nameDef} at the gate before setting down the sacks: {COUNT} {THING}, the settlers' share of their harvest, sent the moment they heard the colony's stores were thin. "Allies," {X_pronoun} said, "or what's the word for."</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -42,7 +42,7 @@
           </li>
           <li>
             <label>Accept, and sit them down to eat first</label>
-            <outcome>The sacks go into the stores and the two from {PLACE} go to the table. It's a thin meal in a thin time, and nobody minds.</outcome>
+            <outcome>The sacks go into the stores and the two from {PLACE} go to the table. It's a small meal in a lean time, and nobody minds.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
               <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>2</guestCount><label>a meal for the allies' carriers</label><hours>11~20</hours></li>

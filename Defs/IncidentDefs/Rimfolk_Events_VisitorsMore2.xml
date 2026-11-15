@@ -27,7 +27,7 @@
         </titles>
         <texts>
           <li>[theirFaith] Pilgrims of {PLACE} from {FACTION} are at the gate, dusty to the knees. They have walked a long way to pray before {TALE}, and they ask whether the doors of the reliquary might be opened to them for a day.\n\nThey would pray at the gate if that is all the colony allows.</li>
-          <li>[converts] A few of {FACTION}'s people have come to {PLACE}, though their own people haven't, and they walked here to pray before {TALE}. Their leader asks at the gate whether they may be let in to the reliquary for a day.\n\nThey have little, but they would leave something for the shrine if it were asked.</li>
+          <li>[converts] A few people of {FACTION} have joined {PLACE}, though the rest of their people haven't, and they walked here to pray before {TALE}. Their leader asks at the gate whether they may be let in to the reliquary for a day.\n\nThey have little, but they would leave something for the shrine if it were asked.</li>
           <li>[believer] {A_nameDef} saw them first: pilgrims of {PLACE} at the gate, heads bowed, asking to pray before {TALE}. They came from {FACTION}, and they would like to go in to the reliquary itself.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -101,7 +101,7 @@
           <li>[tribal] Folk of {FACTION} are at the gate with bare feet and painted hands. They have heard the colony keeps an anima tree, and they ask to sit before it for a day and a night, as their elders taught them.\n\nWhere they meditate, they say, the tree's grass comes up thicker.</li>
           <li>[empire] Psycasters of {FACTION} have stopped at the gate on their way through. Anima trees are rare, their leader says, and they would like to meditate at the colony's for a day. They would pay for the privilege, if the colony asked.</li>
           <li>Travelers of {FACTION} who meditate at anima trees wherever they find them are at the gate. They ask leave to sit before the colony's tree for a day.\n\nThe tree's grass grows where people meditate before it, whoever they are.</li>
-          <li>[psycaster] Meditators of {FACTION} are at the gate, asking after the colony's anima tree. {A_nameDef}, who knows the tree's quiet as well as anyone, could sit with them.</li>
+          <li>[psycaster] Meditators of {FACTION} are at the gate, asking after the colony's anima tree. {A_nameDef}, a psycaster who knows the tree well, could sit with them.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

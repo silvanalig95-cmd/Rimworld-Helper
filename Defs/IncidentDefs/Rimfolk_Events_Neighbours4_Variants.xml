@@ -10,8 +10,8 @@
     <defName>Rimfolk_Var4_Evt_Barber</defName>
     <incident>Rimfolk_Evt_Barber</incident>
     <texts>
-      <li>[spring,!station] Spring brings {X_nameDef} of {FACTION} up the road with a stool on {X_possessive} back, cutting winter's growth off everyone between the towns and the hills. {X_pronoun} has set up by the gate. Those who want a cut: {TALE}.</li>
-      <li>[industrial|spacer,!station] {X_nameDef} of {FACTION} has unfolded a barber's chair from a case on wheels by the gate and plugged in nothing at all: scissors and a comb, {X_pronoun} says, the way it should be done. Those who'd like a cut: {TALE}.</li>
+      <li>[spring,!station] Every spring {X_nameDef}, a barber of {FACTION}, comes up the road with a stool on {X_possessive} back, giving everyone between the towns and the hills their first haircut since the winter. {X_pronoun} has set up by the gate. Those who want a cut: {TALE}.</li>
+      <li>[industrial|spacer,!station] {X_nameDef} of {FACTION} has unfolded a barber's chair from a case on wheels by the gate. {X_pronoun} works with only scissors and a comb, which {X_pronoun} says is the way it should be done. Those who'd like a cut: {TALE}.</li>
       <li>[station,lowtech] {X_nameDef}, a barber of {FACTION}, stopped dead at the sight of the colony's styling station and asked whether {X_pronoun} might work beside it for the day. Those who'd like a cut: {TALE}.</li>
     </texts>
     <outcomes>
@@ -135,7 +135,7 @@
       <li>
         <option>3</option>
         <lines>
-          <li>The family was sent away from the gate. {TALE} watched them go from the window, and has dug in since.</li>
+          <li>The family was sent away from the gate. {TALE} watched them go from the window, and has been more stubborn since.</li>
         </lines>
       </li>
     </outcomes>
@@ -159,13 +159,13 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef} stood a long while in front of "{TALE}" before {X_pronoun} went, and said {X_pronoun} would tell people about it, which is almost as good as owning it.</li>
+          <li>{X_nameDef} stood a long while in front of "{TALE}" before {X_pronoun} went, and said {X_pronoun} would tell people about it.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>{B_nameDef} sat down at the sculptor's table for {X_nameDef}, who went on down the road saying {X_pronoun} would be back for it, and meant it.</li>
+          <li>{B_nameDef} sat down at the sculptor's table to make a piece for {X_nameDef}, who went on down the road and promised to come back for it.</li>
         </lines>
       </li>
     </outcomes>
