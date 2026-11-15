@@ -5,7 +5,7 @@
 
   <!-- ===================== 2. Red ink (RedInk.cs) ===================== -->
 
-  <CC_PEv3_ArguedOnce>The entry was argued once already, and written twice for it.</CC_PEv3_ArguedOnce>
+  <CC_PEv3_ArguedOnce>This entry was disputed once already, and the dispute got it written down twice.</CC_PEv3_ArguedOnce>
   <CC_PEv3_Impact_Settled>The wrong is put right with {0}: the league carries the silver to them, and the deed against the colony is settled.</CC_PEv3_Impact_Settled>
   <CC_PEv3_Impact_SettledBrief>The wrong put right</CC_PEv3_Impact_SettledBrief>
   <CC_PEv3_Impact_TermsBack>Every league trades with the colony at its usual terms again.</CC_PEv3_Impact_TermsBack>
@@ -54,7 +54,7 @@
   <CC_PEv3_Impact_LittersBrief>Carried to the sickhouse</CC_PEv3_Impact_LittersBrief>
   <CC_PEv3_Impact_LittersKeep>The colony keeps the other {0}, lying where they fell, to take or leave.</CC_PEv3_Impact_LittersKeep>
   <CC_PEv3_Impact_LittersKeepBrief>The rest are the colony's</CC_PEv3_Impact_LittersKeepBrief>
-  <CC_PEv3_Impact_Kept>The colony keeps all {0} of them; the order says nothing, but writes it down.</CC_PEv3_Impact_Kept>
+  <CC_PEv3_Impact_Kept>The colony keeps all {0} of them. The order doesn't object, but it records the refusal.</CC_PEv3_Impact_Kept>
   <CC_PEv3_Impact_KeptBrief>Written down</CC_PEv3_Impact_KeptBrief>
 
   <!-- ===================== 7. The sick room (SickRoom.cs) ===================== -->
@@ -65,7 +65,7 @@
   <CC_PEv3_SickRound>{SISTER_nameDef} has been round the sick room's beds with the order's care: {COUNT} of the sick seen to.</CC_PEv3_SickRound>
   <CC_PEv3_SisterCaught>{SISTER_nameDef} has caught {ILLNESS} on {SISTER_possessive} rounds, and the colony is nursing {SISTER_objective} in one of its beds.</CC_PEv3_SisterCaught>
   <CC_PEv3_SickRoomDeed>the sick room</CC_PEv3_SickRoomDeed>
-  <CC_PEv3_SickRoomOver>{SISTER_nameDef} of {FACTION} has given up the sick room and gone home: the sickness had a harder road through the colony for it.</CC_PEv3_SickRoomOver>
+  <CC_PEv3_SickRoomOver>{SISTER_nameDef} of {FACTION} has closed the sick room and gone home. Thanks to it, the sickness spread more slowly through the colony.</CC_PEv3_SickRoomOver>
   <CC_PEv3_SickRoomMedicine>medicine for the sick room</CC_PEv3_SickRoomMedicine>
   <CC_PEv3_Impact_SickRoom>The sick are carried to {0} ({1} now), and for {2} days a sister of the order doses them on rounds while the well stay out.</CC_PEv3_Impact_SickRoom>
   <CC_PEv3_Impact_SickRoomBrief>A sick room</CC_PEv3_Impact_SickRoomBrief>
@@ -76,7 +76,7 @@
 
   <!-- ===================== 8. A field sickhouse (FieldSickhouse.cs) ===================== -->
 
-  <CC_PEv3_WardDone>{A_nameDef} has worked a day in the order's ward, and comes home knowing a great deal more of the sickbed.</CC_PEv3_WardDone>
+  <CC_PEv3_WardDone>{A_nameDef} has worked a day in the order's ward, and comes home knowing a great deal more about nursing the sick.</CC_PEv3_WardDone>
   <CC_PEv3_WardCaught>{A_nameDef} brought {THING} home from the ward.</CC_PEv3_WardCaught>
   <CC_PEv3_WardEmpty>Nobody lies in the ward yet.</CC_PEv3_WardEmpty>
   <CC_PEv3_BellComes>A sexton of the Quiet Bell has come for {THING}, who died in the order's ward.</CC_PEv3_BellComes>
@@ -88,11 +88,11 @@
   <CC_PEv3_IllnessCrossed>{THING} has crossed from the order's ward to the colony: {A_nameDef} has it.</CC_PEv3_IllnessCrossed>
   <CC_PEv3_BookOfSpared>the field sickhouse</CC_PEv3_BookOfSpared>
   <CC_PEv3_SickFed>their sick fed at the order's sickhouse</CC_PEv3_SickFed>
-  <CC_PEv3_SparedNews>{FACTION}'s sisters have struck their field sickhouse and gone, the hut left standing; {COUNT} of the region's sick and wounded lay in it, and the colony's name is in the Book of the Spared.</CC_PEv3_SparedNews>
+  <CC_PEv3_SparedNews>{FACTION}'s sisters have closed their field sickhouse and gone, leaving the hut standing. {COUNT} of the region's sick and wounded were cared for in it, and the order has written the colony's name in its Book of the Spared.</CC_PEv3_SparedNews>
   <CC_PEv3_Impact_Sickhouse>{0}'s sisters pitch a long hut of beds by the colony, and over the days {1} to {2} of the region's sick and wounded come to it.</CC_PEv3_Impact_Sickhouse>
   <CC_PEv3_Impact_SickhouseBrief>A field sickhouse</CC_PEv3_Impact_SickhouseBrief>
   <CC_PEv3_Impact_SickhouseRisk>A sickness may cross from the ward to the colony (through the harm and illness budgets), a patient may die there, and a band may come for the medicine.</CC_PEv3_Impact_SickhouseRisk>
-  <CC_PEv3_Impact_SickhouseRiskBrief>What can turn</CC_PEv3_Impact_SickhouseRiskBrief>
+  <CC_PEv3_Impact_SickhouseRiskBrief>What can go wrong</CC_PEv3_Impact_SickhouseRiskBrief>
   <CC_PEv3_Impact_Ward>{0} works a day in the order's ward, on rounds beside the sisters.</CC_PEv3_Impact_Ward>
   <CC_PEv3_Impact_WardBrief>A day in the ward</CC_PEv3_Impact_WardBrief>
   <CC_PEv3_Impact_WardRisk>{0} may bring the sickness home (about {1}%, through the harm and illness budgets).</CC_PEv3_Impact_WardRisk>
@@ -109,9 +109,9 @@
   <CC_PEv3_DroveIn>{FACTION}'s drove has come onto the colony's land at its edge: {COUNT} head of {KIND}, and the drovers with them.</CC_PEv3_DroveIn>
   <CC_PEv3_DroveGrazed>{FACTION}'s drove has grazed the colony's open fields as it went: {COUNT} plants cropped to the ground.</CC_PEv3_DroveGrazed>
   <CC_PEv3_DroveKick>{PAWN_nameDef} came too close to {ANIMAL_definite} of the drove, and it kicked: {PAWN_possessive} {PART} is hurt.</CC_PEv3_DroveKick>
-  <CC_PEv3_RideDone>{PAWN_nameDef} has ridden a day with {FACTION}'s drove, and comes in knowing more of beasts than in the morning.</CC_PEv3_RideDone>
-  <CC_PEv3_DroveYoung>{FACTION}'s drovers have left {YOUNG_indefinite} of the drove at their fire for the colony, for the grass.</CC_PEv3_DroveYoung>
-  <CC_PEv3_DroveHides>{FACTION}'s drovers have left {HIDES} {LEATHER} and {MILK} milk at their fire for the colony, for the grass.</CC_PEv3_DroveHides>
+  <CC_PEv3_RideDone>{PAWN_nameDef} has ridden a day with {FACTION}'s drove, and comes back knowing more about animals than in the morning.</CC_PEv3_RideDone>
+  <CC_PEv3_DroveYoung>{FACTION}'s drovers have left {YOUNG_indefinite} of the drove at their fire for the colony, in thanks for the grazing.</CC_PEv3_DroveYoung>
+  <CC_PEv3_DroveHides>{FACTION}'s drovers have left {HIDES} {LEATHER} and {MILK} milk at their fire for the colony, in thanks for the grazing.</CC_PEv3_DroveHides>
   <CC_PEv3_DroveGone>{FACTION}'s drove has gone off the colony's land at the far edge.</CC_PEv3_DroveGone>
   <CC_PEv3_NoWayAcross>The drove has no way across the colony's land.</CC_PEv3_NoWayAcross>
   <CC_PEv3_Impact_Drove>{0} head of {1} cross the colony's land over two or three days, grazing as they go, their drovers' fire at the far edge.</CC_PEv3_Impact_Drove>
@@ -129,7 +129,7 @@
   <!-- ===================== 11. The thief on the drove road (ThiefTrail.cs) ===================== -->
 
   <CC_PEv3_DrivenOff>Raiders of {FACTION} are driving off {BEASTS} of the colony's as they go.</CC_PEv3_DrivenOff>
-  <CC_PEv3_LeftBehind>Its drovers fell or ran, and {ANIMAL_nameDef} is the colony's again where it stands.</CC_PEv3_LeftBehind>
+  <CC_PEv3_LeftBehind>The raiders driving it were killed or ran off, and {ANIMAL_nameDef} is the colony's again where it stands.</CC_PEv3_LeftBehind>
   <CC_PEv3_ThievesCamp>{FACTION}'s thieves' camp</CC_PEv3_ThievesCamp>
   <CC_PEv3_CampFoundLabel>The thieves' camp</CC_PEv3_CampFoundLabel>
   <CC_PEv3_CampFound>{HERDERS}'s riders followed the trail to {FACTION}'s camp, a tile or two off, where {BEASTS} of the colony's are tethered. They have gone ahead to wait for {PAWN_nameDef}, who is setting out to it as a caravan of one; when the caravan comes, they go in together.</CC_PEv3_CampFound>
@@ -146,9 +146,9 @@
   <CC_PEv3_NoRider>Nobody of the colony can be spared for the trail now.</CC_PEv3_NoRider>
   <CC_PEv3_Impact_Trail>{0} rides with them to {1}'s camp a tile or two off, a caravan of one, and the herders' riders go in beside {0}.</CC_PEv3_Impact_Trail>
   <CC_PEv3_Impact_TrailBrief>On the thieves' trail</CC_PEv3_Impact_TrailBrief>
-  <CC_PEv3_Impact_TrailFight>The fight at the camp is the game's own, as any fight at a camp is; {0} may come home hurt, or not at all.</CC_PEv3_Impact_TrailFight>
+  <CC_PEv3_Impact_TrailFight>The fight at the camp is the game's own, as any fight at a camp is; {0} may come home hurt, or be killed.</CC_PEv3_Impact_TrailFight>
   <CC_PEv3_Impact_TrailFightBrief>A fight</CC_PEv3_Impact_TrailFightBrief>
-  <CC_PEv3_Impact_TrailBeasts>Won, {0} come home with the colony's caravan.</CC_PEv3_Impact_TrailBeasts>
+  <CC_PEv3_Impact_TrailBeasts>If the camp is taken, {0} come home with the colony's caravan.</CC_PEv3_Impact_TrailBeasts>
   <CC_PEv3_Impact_TrailBeastsBrief>The beasts back</CC_PEv3_Impact_TrailBeastsBrief>
   <CC_PEv3_Impact_Alone>The herders go alone: each beast comes back at about {0}%, and they keep one of those they bring as their due.</CC_PEv3_Impact_Alone>
   <CC_PEv3_Impact_AloneBrief>They go alone</CC_PEv3_Impact_AloneBrief>
@@ -162,20 +162,20 @@
   <CC_PEv3_HardStarts>One of the herders' {THING} is calving, and it is going hard.</CC_PEv3_HardStarts>
   <CC_PEv3_BirthOurs>{A_nameDef} brought the {THING}'s calf: both live, and the herders say the calf is the colony's.</CC_PEv3_BirthOurs>
   <CC_PEv3_BirthLive>The herders brought the {THING}'s calf themselves, and both live.</CC_PEv3_BirthLive>
-  <CC_PEv3_BirthLostOurs>{A_nameDef} brought the {THING}'s calf, but the mother was lost to it.</CC_PEv3_BirthLostOurs>
-  <CC_PEv3_BirthLost>The herders brought the {THING}'s calf themselves, but the mother was lost to it.</CC_PEv3_BirthLost>
+  <CC_PEv3_BirthLostOurs>{A_nameDef} brought the {THING}'s calf, but the mother died giving birth.</CC_PEv3_BirthLostOurs>
+  <CC_PEv3_BirthLost>The herders brought the {THING}'s calf themselves, but the mother died giving birth.</CC_PEv3_BirthLost>
   <CC_PEv3_Afterbirth>The afterbirth at the herders' camp has drawn a predator in from the edge in the night: {THING}.</CC_PEv3_Afterbirth>
   <CC_PEv3_CalfMissing>A young {THING} of the herders' has wandered off, and they'll go looking for it with lanterns tonight.</CC_PEv3_CalfMissing>
   <CC_PEv3_CalfFound>{X_nameDef} found the missing {THING} by lantern light, and is walking it back to the herd.</CC_PEv3_CalfFound>
   <CC_PEv3_CalfBack>The missing {THING} found its own way back to the herders' camp at first light.</CC_PEv3_CalfBack>
   <CC_PEv3_CalvingName>the spring calving</CC_PEv3_CalvingName>
-  <CC_PEv3_CalvingRegion>{FACTION}'s herders have gone home from the colony's ground with {COUNT} calves born there, and the drove roads hear of it.</CC_PEv3_CalvingRegion>
+  <CC_PEv3_CalvingRegion>{FACTION}'s herders have gone home from the colony's ground with {COUNT} calves born there, and herders along the drove roads hear of it.</CC_PEv3_CalvingRegion>
   <CC_PEv3_NoHand>The colony's best hand at beasts isn't here to go.</CC_PEv3_NoHand>
   <CC_PEv3_NoSecondHand>There's nobody else with beasts to go with them.</CC_PEv3_NoSecondHand>
   <CC_PEv3_Impact_Calving>{0}'s herders bring {1} beasts in calf to the colony's sheltered ground for some days, the calves born at their camp; they ask for hay and offer milk.</CC_PEv3_Impact_Calving>
   <CC_PEv3_Impact_CalvingBrief>A calving camp</CC_PEv3_Impact_CalvingBrief>
   <CC_PEv3_Impact_CalvingRisk>The afterbirth may draw a predator in at night (through the harm budget), and a calf may go missing.</CC_PEv3_Impact_CalvingRisk>
-  <CC_PEv3_Impact_CalvingRiskBrief>What can turn</CC_PEv3_Impact_CalvingRiskBrief>
+  <CC_PEv3_Impact_CalvingRiskBrief>What can go wrong</CC_PEv3_Impact_CalvingRiskBrief>
   <CC_PEv3_Impact_CalvingThanks>After a good stay their people remember it ({0} +{1}).</CC_PEv3_Impact_CalvingThanks>
   <CC_PEv3_Impact_CalvingThanksBrief>Their thanks</CC_PEv3_Impact_CalvingThanksBrief>
   <CC_PEv3_Impact_Birth>{0} goes to the herders' camp and works the {1}'s hard birth, an hour and a half at it.</CC_PEv3_Impact_Birth>
@@ -196,26 +196,26 @@
   <CC_PEv3_ShrineBlocked>{FACTION}'s pilgrims came to set the last stone and found the spot taken, and went on their way.</CC_PEv3_ShrineBlocked>
   <CC_PEv3_ShrineDeed>the old shrine</CC_PEv3_ShrineDeed>
   <CC_PEv3_ShrineMourned>The old shrine by the {HOLY} has fallen to ruin, and {FACTION}'s pilgrims mourn it.</CC_PEv3_ShrineMourned>
-  <CC_PEv3_ShrineKept>The old shrine stands mended again, and {FACTION}'s pilgrims say so on the road.</CC_PEv3_ShrineKept>
+  <CC_PEv3_ShrineKept>The old shrine stands mended again, and {FACTION}'s pilgrims tell others about it on the road.</CC_PEv3_ShrineKept>
   <CC_PEv3_ShrineStop>{PILGRIM_nameDef} of {FACTION} stopped at the old shrine on the road, prayed a while and left {COUNT} {WHAT} at its foot.</CC_PEv3_ShrineStop>
   <CC_PEv3_NoHelper>Nobody else of the colony can work beside them.</CC_PEv3_NoHelper>
   <CC_PEv3_Impact_Shrine>Two pilgrims set stones and a lamp by the {0} for {1} days, then bless it, and it becomes a building of the colony's.</CC_PEv3_Impact_Shrine>
   <CC_PEv3_Impact_ShrineBrief>An old shrine raised</CC_PEv3_Impact_ShrineBrief>
   <CC_PEv3_Impact_ShrineStops>From then on pilgrims stop there in spring and summer and leave a little silver or herbs, and the colony's faithful feel it when they pray there.</CC_PEv3_Impact_ShrineStops>
   <CC_PEv3_Impact_ShrineStopsBrief>Pilgrims stop there</CC_PEv3_Impact_ShrineStopsBrief>
-  <CC_PEv3_Impact_ShrineRuin>Left out in the weather it wears, and let fall to ruin, {0} mourn it.</CC_PEv3_Impact_ShrineRuin>
+  <CC_PEv3_Impact_ShrineRuin>It wears down in the weather, and if it falls to ruin, {0} mourn it.</CC_PEv3_Impact_ShrineRuin>
   <CC_PEv3_Impact_ShrineRuinBrief>Kept, or mourned</CC_PEv3_Impact_ShrineRuinBrief>
 
   <!-- ===================== 16. Two faiths at one table (TwoFaiths.cs) ===================== -->
 
   <CC_PEv3_TwoFaithsNames>{ONE} and {TWO}</CC_PEv3_TwoFaithsNames>
-  <CC_PEv3_TableSettled>The palmer's blessing at one table held: {FAITHS} rest easier for a season, {COUNT} of their believers the steadier for it.</CC_PEv3_TableSettled>
-  <CC_PEv3_TableSplit>The table did not hold: those who waver in {FAITH} are further from it than before, and the split is coming.</CC_PEv3_TableSplit>
-  <CC_PEv3_TableSplitClash>The table did not hold: {FAITHS} are no nearer for the evening, and both sides went to bed less sure than they came.</CC_PEv3_TableSplitClash>
+  <CC_PEv3_TableSettled>The palmer's blessing at one table worked: {FAITHS} are at ease with each other for a season, and {COUNT} of their believers are surer of their faith.</CC_PEv3_TableSettled>
+  <CC_PEv3_TableSplit>The shared table did not help: those who waver in {FAITH} have moved further from it, and a split is coming.</CC_PEv3_TableSplit>
+  <CC_PEv3_TableSplitClash>The evening did not settle anything. {FAITHS} are still divided, and both sides went to bed less certain than before.</CC_PEv3_TableSplitClash>
   <CC_PEv3_NoGathering>The colony's answers don't play out on the map now, so there can be no evening.</CC_PEv3_NoGathering>
-  <CC_PEv3_Impact_Settle>Settled, the faiths' quarrel rests for {0} days, and both sides' believers who came are {1}% surer.</CC_PEv3_Impact_Settle>
+  <CC_PEv3_Impact_Settle>If it is settled, the faiths' quarrel stops for {0} days, and believers of both sides who came are {1}% surer.</CC_PEv3_Impact_Settle>
   <CC_PEv3_Impact_SettleBrief>Settled for a season</CC_PEv3_Impact_SettleBrief>
-  <CC_PEv3_Impact_Split>The split comes anyway: {0}'s wavering are shaken further, and it is said plainly.</CC_PEv3_Impact_Split>
+  <CC_PEv3_Impact_Split>The split comes anyway: those who waver in {0} are shaken further, and the palmer tells them so plainly.</CC_PEv3_Impact_Split>
   <CC_PEv3_Impact_SplitBrief>The split comes</CC_PEv3_Impact_SplitBrief>
   <CC_PEv3_Impact_Apart>{0} walks about the colony blessing each believer of the two sides in turn, no evening and no speeches.</CC_PEv3_Impact_Apart>
   <CC_PEv3_Impact_ApartBrief>Blessed apart</CC_PEv3_Impact_ApartBrief>

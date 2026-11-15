@@ -73,7 +73,7 @@
   <CC_Def_Face_MechsLater>Mechanoids will raid too, once the colony has been here a while longer.</CC_Def_Face_MechsLater>
   <CC_Def_Face_Cluster>A mechanoid cluster can land nearby and wait, asleep.</CC_Def_Face_Cluster>
   <CC_Def_Face_Insects>{0} cells of the home area lie under overhead mountain, where insects can come up.</CC_Def_Face_Insects>
-  <CC_Def_Face_Anomaly>The dark is stirring: some of what it sends comes up inside the walls or walks in unseen.</CC_Def_Face_Anomaly>
+  <CC_Def_Face_Anomaly>Entities may appear: some of them come up inside the walls or walk in unseen.</CC_Def_Face_Anomaly>
   <CC_Def_Face_Waste>{0} toxic wastepacks lie on the map.</CC_Def_Face_Waste>
 
   <!-- Who fights, what stands -->
@@ -95,7 +95,7 @@
   <CC_Def_How_Mountain>In a mountain base the rock is your wall: hold the few ways in, and wall off the tunnels you don't use, against insects.</CC_Def_How_Mountain>
   <CC_Def_How_Pass>You have a natural gap most raids pass: close it with a wall and one gate, and fight there.</CC_Def_How_Pass>
   <CC_Def_How_Open>On open ground, make your own way in: a wall round the colony, with one gate left open when raiders come.</CC_Def_How_Open>
-  <CC_Def_How_High_0>One way in: raiders take the easiest path, so give them a single gate and make it yours.</CC_Def_How_High_0>
+  <CC_Def_How_High_0>One way in: raiders take the easiest path, so give them a single gate and defend it.</CC_Def_How_High_0>
   <CC_Def_How_High_1>A killbox behind it: a turn in the entrance, open ground, then cover and guns at the far end.</CC_Def_How_High_1>
   <CC_Def_How_High_2>Stone, not wood, for everything near the fighting: raiders set fires, and a wooden killbox burns your own people.</CC_Def_How_High_2>
   <CC_Def_How_High_3>Weapons by the beds and walls two thick, for drop pods, sappers and breachers, who never use the gate.</CC_Def_How_High_3>
@@ -125,7 +125,7 @@
   <CC_Def_Came_Some>About {0} in 10 raids would come this way, from the {1}.</CC_Def_Came_Some>
   <CC_Def_Gap_Line>The way in there is {0}, {1} wide.</CC_Def_Gap_Line>
   <CC_Def_Plan_Gate>A gate there with sandbags behind it holds them. Close the gap, and the wall carries on to the rock or water on either side.</CC_Def_Plan_Gate>
-  <CC_Def_Plan_Wall>At that width a gate alone won't do: a stretch of wall two thick, with one gate in it, makes it yours.</CC_Def_Plan_Wall>
+  <CC_Def_Plan_Wall>At that width a gate alone won't do: a stretch of wall two thick, with one gate in it, lets you hold it.</CC_Def_Plan_Wall>
   <CC_Def_Plan_Palisade>A palisade across it with a gatehouse holds them, with archers at the embrasures.</CC_Def_Plan_Palisade>
   <CC_Def_Plan_Bridge>Whoever holds this end of the bridge holds the crossing: a gate at this end, with sandbags behind it.</CC_Def_Plan_Bridge>
 
@@ -140,11 +140,11 @@
   <CC_Def_Adv_Killbox_Title>Turn the way in into a killbox</CC_Def_Adv_Killbox_Title>
   <CC_Def_Adv_Killbox>Raids are about {0} points now, more than a gate holds for long. A killbox behind it brings them round a turn, one at a time, into open ground under every gun the colony has.</CC_Def_Adv_Killbox>
   <CC_Def_Adv_Traps_Title>Traps on the way in</CC_Def_Adv_Traps_Title>
-  <CC_Def_Adv_Traps>Raiders don't see traps. A corridor of them ({1}) in front of the way in to the {0} softens raiders before the fight, while your own people take the slow side.</CC_Def_Adv_Traps>
+  <CC_Def_Adv_Traps>Raiders don't see traps. A corridor of them ({1}) in front of the way in to the {0} wears raiders down before the fight. Your own people use its other side, which has no traps but slows them.</CC_Def_Adv_Traps>
   <CC_Def_Adv_Turrets_Title>Turrets behind the gate</CC_Def_Adv_Turrets_Title>
-  <CC_Def_Adv_Turrets>Two turrets behind cover near the way in to the {0} are guns that never sleep, as long as they have power and someone repairs them. A solar flare silences them, so arm your people as if they weren't there.</CC_Def_Adv_Turrets>
+  <CC_Def_Adv_Turrets>Two turrets behind cover near the way in to the {0} fire day and night, as long as they have power and someone repairs them. A solar flare shuts them down, so arm your people as if they weren't there.</CC_Def_Adv_Turrets>
   <CC_Def_Adv_Post_Title>An archers' post</CC_Def_Adv_Post_Title>
-  <CC_Def_Adv_Post>{1} of your fighters shoot. Behind cover a few cells back from the way in to the {0}, they hit raiders before the gate gives, and walls on the flanks keep arrows off them.</CC_Def_Adv_Post>
+  <CC_Def_Adv_Post>{1} of your fighters shoot. Behind cover a few cells back from the way in to the {0}, they hit raiders before the gate breaks, and walls on the flanks keep arrows off them.</CC_Def_Adv_Post>
   <CC_Def_Adv_Sappers_Title>Sappers and breachers go round</CC_Def_Adv_Sappers_Title>
   <CC_Def_Adv_Sappers>Sappers dig toward the beds and breachers smash any wall in their way: a killbox or a gate does nothing against them. Walls at least two thick, or a second ring round the beds, give you time to meet them. Now {0}% of the outer wall is two thick.</CC_Def_Adv_Sappers>
   <CC_Def_Adv_SappersTribal>Tribes breach with axes.</CC_Def_Adv_SappersTribal>
@@ -158,17 +158,17 @@
   <CC_Def_Adv_Insects>Your base sits under overhead mountain ({0} cells of it): infestations are possible. {1} of those cells are dark and warm, the way insects like them. Keep the deep rooms lit and cold, wall off the rock you don't use, and keep a fallback.</CC_Def_Adv_Insects>
   <CC_Def_Adv_Siege_Title>Something to answer a siege</CC_Def_Adv_Siege_Title>
   <CC_Def_Adv_Siege>{0} can besiege you: they dig in out of reach, build mortars and shell you until you come out.</CC_Def_Adv_Siege>
-  <CC_Def_Adv_Siege_Mortar>A mortar pit deep inside answers them from anywhere on the map.</CC_Def_Adv_Siege_Mortar>
+  <CC_Def_Adv_Siege_Mortar>A mortar pit deep inside can hit them anywhere on the map.</CC_Def_Adv_Siege_Mortar>
   <CC_Def_Adv_Siege_NoMortar>The colony can't build a mortar yet ({0}). Until then, your longest guns or bows can goad them into attacking early.</CC_Def_Adv_Siege_NoMortar>
   <CC_Def_Adv_Mechs_Title>Mechanoids: EMP, not fire</CC_Def_Adv_Mechs_Title>
-  <CC_Def_Adv_Mechs>Mechanoids don't burn and don't feel the cold, and they never give up and leave. EMP stuns them, and for a while after a stun they shrug off the next one. Keep EMP grenades, a launcher or EMP shells where your fighters can reach them.</CC_Def_Adv_Mechs>
+  <CC_Def_Adv_Mechs>Mechanoids don't burn and don't feel the cold, and they never give up and leave. EMP stuns them, and for a while after a stun they resist the next one. Keep EMP grenades, a launcher or EMP shells where your fighters can reach them.</CC_Def_Adv_Mechs>
   <CC_Def_Adv_MechsLow>Mechanoids don't burn and never give up and leave. Without EMP, meet them at a doorway with several fighters close in, where only one of them can reach you at a time, and keep the archers behind cover.</CC_Def_Adv_MechsLow>
   <CC_Def_Adv_Cluster_Title>A cluster can land asleep</CC_Def_Adv_Cluster_Title>
   <CC_Def_Adv_Cluster>A mechanoid cluster can drop near the colony and wait, asleep. Leave it until you're ready, keep people and blueprints well away, and shell it from out of its reach.</CC_Def_Adv_Cluster>
   <CC_Def_Adv_Anomaly_Title>What walls don't stop</CC_Def_Adv_Anomaly_Title>
-  <CC_Def_Adv_Anomaly>Some of what the dark sends comes up through the ground or walks in unseen, and a killbox never sees it. Keep the base well lit, weapons spread among the rooms, and people within reach of each other.</CC_Def_Adv_Anomaly>
-  <CC_Def_Adv_Waste_Title>Wastepacks breed trouble</CC_Def_Adv_Waste_Title>
-  <CC_Def_Adv_Waste>{0} toxic wastepacks lie on the map. Destroyed, they pollute the ground, and insect cocoons can come of them. Store them well away from the base.</CC_Def_Adv_Waste>
+  <CC_Def_Adv_Anomaly>Some entities come up through the ground or walk in unseen, and a killbox does nothing against them. Keep the base well lit, weapons spread among the rooms, and people within reach of each other.</CC_Def_Adv_Anomaly>
+  <CC_Def_Adv_Waste_Title>Wastepacks cause trouble</CC_Def_Adv_Waste_Title>
+  <CC_Def_Adv_Waste>{0} toxic wastepacks lie on the map. Destroyed, they pollute the ground, and insect cocoons can come from them. Store them well away from the base.</CC_Def_Adv_Waste>
   <CC_Def_Adv_Fighters_Title>Too few to hold against raids this size</CC_Def_Adv_Fighters_Title>
   <CC_Def_Adv_Fighters>Raids are about {0} points now; your {1} fighters and defenses count for about {2}. Arm everyone who can fight, and let walls, cover and traps do some of the work.</CC_Def_Adv_Fighters>
   <CC_Def_Adv_Medical_Title>Somewhere for the wounded</CC_Def_Adv_Medical_Title>

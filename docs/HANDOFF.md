@@ -140,6 +140,25 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   it), hover for what it is and how it has gone, click to open the region window on it; none shown while none runs.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: interface-2** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: event cards, advice and building, messages and
+  interface, storytellers"). The second messages-and-interface batch: 22 files in `Languages/English/Keyed` (the item
+  card, the settings, the on-screen panels, the trade screen and trade window, journeys, Hospitality's guests; the
+  neighbours and their letters, the Peoples page, diplomacy, feasts, outsiders, hamlets, hand-overs and fresh starts,
+  camps, defenses, feelings and strain; the peoples' own events, rounds 1 to 3, and the peoples that arise). About
+  5,070 lines read, 207 rewritten: in-world phrases never explained ("wrote the colony in good ink", "red ink in their
+  book", "on their knot night", "The air is dead") now say what is recorded or meant; riddling or clipped lines ("a
+  thing in hand names them", "the road between the two towns more", "until each page has its ending") and wry endings
+  ("words go down the line, things don't", "the road took {PAWN_objective}, as the world's roads do", "the order says nothing, but
+  writes it down") say it plainly; things given a will (what "the dark" sends, "guns that never sleep", the masts that
+  "heard nothing") and dangling "Granted, ...", "Refused, ..." and "Sent, ..." openings now say who does what; the
+  new peoples' founding lines tell how each lives in ordinary words, every custom their town and tests rely on kept.
+  Every placeholder, number, chance and name kept, no god named. Left as they were: the `_Olde` letter lines, everything
+  spoken (the herders' count aloud, quoted speech inside letters), journal lines, the names of peoples and towns, the
+  long settings tooltips that are lists of facts, and every line already plain (Hospitality's guests and the trade
+  window needed nothing). One test followed the new words (`ArisingTests`, the splinter people's grievance).
 - 0.243.0, **Plain words: events-3** (14
   November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
   like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing

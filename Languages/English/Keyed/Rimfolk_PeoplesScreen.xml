@@ -15,7 +15,7 @@
   <CC_PplV_Filter_Dealings>Dealings</CC_PplV_Filter_Dealings>
   <CC_PplV_Filter_Dealings_Tip>Only peoples the colony has ties with (pacts, truces, debts of honor, marriages, fealty) or something under way with (letters, envoys, wards, feasts).</CC_PplV_Filter_Dealings_Tip>
   <CC_PplV_Sort_Closest>Closest</CC_PplV_Sort_Closest>
-  <CC_PplV_Sort_Closest_Tip>Their nearest town first, by days on the road at the colony's means over the land's own way (hills, rivers, roads, the season), as the post reckons it. Towns no road reaches come last.</CC_PplV_Sort_Closest_Tip>
+  <CC_PplV_Sort_Closest_Tip>Their nearest town first, by days on the road with the colony's means of travel (hills, rivers, roads and the season counted), as the post works it out. Towns no road reaches come last.</CC_PplV_Sort_Closest_Tip>
   <CC_PplV_Sort_Regard>Regard</CC_PplV_Sort_Regard>
   <CC_PplV_Sort_Regard_Tip>The warmest first, by their goodwill toward the colony.</CC_PplV_Sort_Regard_Tip>
   <CC_PplV_Sort_Name>Name</CC_PplV_Sort_Name>
@@ -30,7 +30,7 @@
   <CC_PplV_AllTip>What is owed each way between the colony and every people, and what each people remembers of the colony.</CC_PplV_AllTip>
   <CC_PplV_NoneFits>No people fits the search and the filters that are on.</CC_PplV_NoneFits>
   <CC_PplV_MailTip>Mail from them: {COUNT} on its way in or waiting for the colony.</CC_PplV_MailTip>
-  <CC_PplV_NearestTip>Nearest town: {TOWN}, {DAYS} on the road at the colony's means.</CC_PplV_NearestTip>
+  <CC_PplV_NearestTip>Nearest town: {TOWN}, {DAYS} on the road with the colony's means of travel.</CC_PplV_NearestTip>
   <CC_PplV_NoTown>no town</CC_PplV_NoTown>
   <CC_PplV_NoRoad>no road</CC_PplV_NoRoad>
   <CC_PplV_Day>1 day</CC_PplV_Day>
@@ -52,8 +52,8 @@
   <CC_PplV_WebLegend>Green: allies. Red: at war. The colony in gold at the middle.</CC_PplV_WebLegend>
 
   <!-- The page -->
-  <CC_PplP_ShowTip>Show their towns on the region map, lit in gold.</CC_PplP_ShowTip>
-  <CC_PplP_AgeTip>The age they live in: the ways their messengers, traders and words follow.</CC_PplP_AgeTip>
+  <CC_PplP_ShowTip>Show their towns on the region map, marked in gold.</CC_PplP_ShowTip>
+  <CC_PplP_AgeTip>The age they live in, which sets how their messengers, traders and letters work.</CC_PplP_AgeTip>
   <CC_PplP_Trend_Up>Warming this season: {WHY}.</CC_PplP_Trend_Up>
   <CC_PplP_Trend_Down>Cooling this season: {WHY}.</CC_PplP_Trend_Down>
   <CC_PplP_Trend_Steady>Steady this season: {WHY}.</CC_PplP_Trend_Steady>
@@ -129,11 +129,11 @@
   <!-- What each is for: written from what each act does in the code. -->
   <CC_PplAct_For_Greetings>A warm answer comes with a small gift, once a season from each of them; a cordial or cool one tells how their town is faring. Either warms their regard a little.</CC_PplAct_For_Greetings>
   <CC_PplAct_For_Condolences>Mourning with them: their people remember it, and a warm answer warms their regard more than any other letter.</CC_PplAct_For_Condolences>
-  <CC_PplAct_For_Warning>Heeded warmly, their people owe the colony a debt of honor as great as the threat was to them, one a season; heeded at all, they remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning>
-  <CC_PplAct_For_Warning_Alt>Heeded, their people remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning_Alt>
+  <CC_PplAct_For_Warning>If they take it warmly, their people owe the colony a debt of honor as great as the threat was to them, at most one a season. If they take it at all, they remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning>
+  <CC_PplAct_For_Warning_Alt>If they take it seriously, their people remember it, and their goodwill rises more than for kind words.</CC_PplAct_For_Warning_Alt>
   <CC_PplAct_For_News>Their answer tells what is going on around their town: up to three things with a warm or cordial answer, fewer with a cooler one.</CC_PplAct_For_News>
-  <CC_PplAct_For_Invitation>Granted, they come to visit the colony, or send their heir or envoy when they can't leave their seat.</CC_PplAct_For_Invitation>
-  <CC_PplAct_For_Help>Granted, the medicine or food asked for comes with their answer, and the colony owes them a good turn for it. Their people are asked once in a while, whoever of them is written to.</CC_PplAct_For_Help>
+  <CC_PplAct_For_Invitation>If they accept, they come to visit the colony, or send their heir or envoy when they can't leave their seat.</CC_PplAct_For_Invitation>
+  <CC_PplAct_For_Help>If they agree, the medicine or food asked for comes with their answer, and the colony owes them a good turn for it. Each people can be asked only once in a while, whichever of them the letter goes to.</CC_PplAct_For_Help>
   <CC_PplAct_For_Truce>Their raids on this home stop for the term, a season or a year, at the price agreed.</CC_PplAct_For_Truce>
   <CC_PplAct_For_Truce_Alt>Peace sworn for a season or a year at the price agreed, at the gate by their envoy or by word.</CC_PplAct_For_Truce_Alt>
   <CC_PplAct_For_Pact>A defense pact brings their band when the colony is attacked; a trade pact brings their traders each season and buys a cart of the colony's surplus.</CC_PplAct_For_Pact>
@@ -141,18 +141,18 @@
   <CC_PplAct_For_Swear>Their protection: when a people raids the colony, their band comes without a call, once a season at most.</CC_PplAct_For_Swear>
   <CC_PplAct_For_Renounce>No more tribute or levies owed to them.</CC_PplAct_For_Renounce>
   <CC_PplAct_For_AskEnvoy>Their envoy lives at the colony for a season: a good stay raises their head's regard by 12, and a very good one leaves their people owing the colony.</CC_PplAct_For_AskEnvoy>
-  <CC_PplAct_For_SendEnvoy>A colonist lives at their town for a season: their letters bring its news, its notables think better of the colony, and they come home better with people.</CC_PplAct_For_SendEnvoy>
+  <CC_PplAct_For_SendEnvoy>A colonist lives at their town for a season: their letters bring its news, its notables think better of the colony, and the colonist comes home better at dealing with people.</CC_PplAct_For_SendEnvoy>
   <CC_PplAct_For_Feast>Up to three of their notables come for contests and the colony's table; a good welcome is a good turn their people remember, and their head thinks better of the colony.</CC_PplAct_For_Feast>
   <CC_PplAct_For_InviteFeast>A feast with this notable among the guests: a good welcome is a good turn their people remember.</CC_PplAct_For_InviteFeast>
   <CC_PplAct_For_Match>A marriage between one of the colony's and one of theirs binds the colony to their people, with gifts both ways at the gate. Sought only on great terms, or for two who courted.</CC_PplAct_For_Match>
   <CC_PplAct_For_ProposeMatch>A match between one of the colony's and this person, or one of the town they head: a marriage binds the colony to their people.</CC_PplAct_For_ProposeMatch>
   <CC_PplAct_For_AskWard>A youth of theirs lives and learns at the colony for a year: a fine year raises their head's regard by 20 and leaves their people owing the colony.</CC_PplAct_For_AskWard>
   <CC_PplAct_For_SendWard>A youth of the colony's lives among them for a year and comes back with what their people are good at.</CC_PplAct_For_SendWard>
-  <CC_PplAct_For_Exchange>One of theirs in the colony's cells for one of the colony's they hold: agreed, both walk at the gate.</CC_PplAct_For_Exchange>
+  <CC_PplAct_For_Exchange>One of theirs in the colony's cells for one of the colony's they hold: if they agree, both are set free at the gate.</CC_PplAct_For_Exchange>
   <CC_PplAct_For_CallDebt>What they owe, as great as the debt and by their means: goods, a good word with a third people, and for a greater debt help toward peace, their fighters or a captive of the colony's freed. One of their debts a season.</CC_PplAct_For_CallDebt>
   <CC_PplAct_For_AnswerDebt>Keeping the colony's word: answered, they remember it; refused or left unanswered, the debt is broken and they lose 5 goodwill toward the colony.</CC_PplAct_For_AnswerDebt>
   <CC_PplAct_For_Levies>Their band, a third of the threat, walks in some hours later, once a season.</CC_PplAct_For_Levies>
-  <CC_PplAct_For_Level>How much they bring at harvest: light warms their head, heavy costs 3 goodwill each season.</CC_PplAct_For_Level>
+  <CC_PplAct_For_Level>How much they bring at harvest: light tribute raises their head's regard, heavy costs 3 goodwill each season.</CC_PplAct_For_Level>
   <CC_PplAct_For_AskBack>Asks the town's head for the town back, to be the colony's home again; once a year at most.</CC_PplAct_For_AskBack>
   <CC_PplAct_For_TakeBack>Its people agreed: the town is the colony's home again, its map as the colony left it.</CC_PplAct_For_TakeBack>
   <CC_PplAct_For_Journey>Opens the journey planner with this town as the destination.</CC_PplAct_For_Journey>
@@ -204,8 +204,8 @@
   <CC_SetNote_LetterOccasions>Greetings, invitations and asking for help only when there is a reason.</CC_SetNote_LetterOccasions>
 
   <!-- The region map -->
-  <CC_Region_Lit>Towns of {PEOPLE} lit</CC_Region_Lit>
-  <CC_Region_LitTip>The people chosen on Peoples: their towns have a gold ring and their names. The cross lets them go.</CC_Region_LitTip>
+  <CC_Region_Lit>Towns of {PEOPLE} marked</CC_Region_Lit>
+  <CC_Region_LitTip>The people chosen on Peoples: their towns have a gold ring and their names. The cross clears it.</CC_Region_LitTip>
   <CC_Region_ClosestFirst>Closest first</CC_Region_ClosestFirst>
   <CC_Region_ClosestFirst_Tip>The list all in one, nearest first, rather than in its groups.</CC_Region_ClosestFirst_Tip>
 
@@ -215,17 +215,17 @@
   <CC_PplAct_Cost_Supply>The goods or the silver each season, carried to or from the gate by their porters.</CC_PplAct_Cost_Supply>
   <CC_PplAct_For_Relief>Medicine or food for a town in hard times: its fortune a little better, their goodwill warmer, and a debt of honor their whole people remember.</CC_PplAct_For_Relief>
   <CC_PplAct_Cost_Relief>The medicine or food, fetched from the gate by their porters.</CC_PplAct_Cost_Relief>
-  <CC_PplAct_For_Proclaim>A fair day brings their traders and folk to the colony on its morning; friendship declared and taken up warms their goodwill and their head's regard; trade terms posted bring their caravan and better terms with their traders for a season.</CC_PplAct_For_Proclaim>
+  <CC_PplAct_For_Proclaim>A fair day brings their traders and folk to the colony on its morning. A declaration of friendship, once they take it up, warms their goodwill and their head's regard. Posted trade terms bring their caravan and better terms with their traders for a season.</CC_PplAct_For_Proclaim>
   <CC_PplAct_Cost_Proclaim>About an hour of a writer's time.</CC_PplAct_Cost_Proclaim>
   <CC_PplAct_For_Hire>A crew of harvest hands that reaps the colony's fields, or a guard detail camped by the colony that takes up arms against what comes at it, for the season.</CC_PplAct_For_Hire>
-  <CC_PplAct_Cost_Hire>Their wage, asked at their camp every five days; left unpaid, they walk.</CC_PplAct_Cost_Hire>
+  <CC_PplAct_Cost_Hire>Their wage, asked at their camp every five days; if it goes unpaid, they leave.</CC_PplAct_Cost_Hire>
   <CC_PplAct_For_Petition>Their raiders kept away for two seasons, amends in silver for a wrong, a refugee family settled with them, or a family of theirs taken in, by their regard and their ways.</CC_PplAct_For_Petition>
   <CC_PplAct_Cost_Petition>About an hour of a writer's time, and a refusal now and then.</CC_PplAct_Cost_Petition>
-  <CC_PplAct_For_Work>A road the world's own caravans and the post go faster on, a well or a bridge that betters their town and leaves them owing the colony, or a watchtower whose watch sends word of raiders coming that way.</CC_PplAct_For_Work>
+  <CC_PplAct_For_Work>A road the world's own caravans and the post go faster on, a well or a bridge that improves their town and leaves them owing the colony, or a watchtower whose guards warn of raiders coming that way.</CC_PplAct_For_Work>
   <CC_PplAct_Cost_Work>The colony's share of wood, steel or stone, fetched from the gate by their porters.</CC_PplAct_Cost_Work>
   <CC_PplAct_For_Market>A stall in their town for two months: better terms with all their traders, and their caravans come to the colony more often.</CC_PplAct_For_Market>
   <CC_PplAct_Cost_Market>A fee in silver, fetched from the gate by their porters.</CC_PplAct_Cost_Market>
-  <CC_PplAct_For_InviteTown>Folk of their town at the colony's coming feast, fair or gathering day, or a few of the colony's people at their festival by caravan, home with a gift.</CC_PplAct_For_InviteTown>
+  <CC_PplAct_For_InviteTown>Folk of their town at the colony's coming feast, fair or gathering day, or a few of the colony's people at their festival by caravan, who come home with a gift.</CC_PplAct_For_InviteTown>
   <CC_PplAct_Cost_InviteTown>About an hour of a writer's time; for their festival, a caravan of the colony's people away for the journey.</CC_PplAct_Cost_InviteTown>
   <CC_PplAct_For_Reply>They wrote first and wait for an answer: a reply warms them and counts toward a steady exchange; a request granted is a favor done.</CC_PplAct_For_Reply>
 

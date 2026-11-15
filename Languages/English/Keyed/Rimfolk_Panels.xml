@@ -173,7 +173,7 @@
   <CC_Pnl_H_Tended>tended</CC_Pnl_H_Tended>
   <CC_Pnl_H_RaceTip>severity {0}, immunity {1}</CC_Pnl_H_RaceTip>
   <CC_Pnl_H_WillRecover>will recover</CC_Pnl_H_WillRecover>
-  <CC_Pnl_H_LosingTip>losing: at this pace it wins before immunity does</CC_Pnl_H_LosingTip>
+  <CC_Pnl_H_LosingTip>losing: at this pace it reaches full severity before immunity does</CC_Pnl_H_LosingTip>
   <CC_Pnl_H_TowardsDeath>{0} of the way to killing</CC_Pnl_H_TowardsDeath>
   <!-- Health: how far along each condition is. {0} in Hours and Days is a number. -->
   <CC_Pnl_H_Hours>~{0} h</CC_Pnl_H_Hours>
@@ -192,7 +192,7 @@
   <CC_Pnl_H_BleedingLine>Bleeding</CC_Pnl_H_BleedingLine>
   <CC_Pnl_H_BleedRate>{0} a day</CC_Pnl_H_BleedRate>
   <CC_Pnl_H_TendedTip>tended, quality {0}</CC_Pnl_H_TendedTip>
-  <CC_Pnl_H_WearsOff>(it holds {0} more)</CC_Pnl_H_WearsOff>
+  <CC_Pnl_H_WearsOff>(lasts {0} more)</CC_Pnl_H_WearsOff>
   <CC_Pnl_H_WillRecoverIn>will recover in about {0}</CC_Pnl_H_WillRecoverIn>
   <CC_Pnl_H_HealedTip>{0} healed</CC_Pnl_H_HealedTip>
   <CC_Pnl_H_HpLeftTip>{0} HP still to heal</CC_Pnl_H_HpLeftTip>
@@ -346,16 +346,16 @@
   <CC_Settings_HudPanelOptions2>Each panel's options (more)</CC_Settings_HudPanelOptions2>
   <CC_SetNote_HudPanelOptions2>Health, work and idle, the inventory, and what you follow.</CC_SetNote_HudPanelOptions2>
   <CC_Settings_HudHideGameResources>Hide the game's own resource list while the Inventory panel shows</CC_Settings_HudHideGameResources>
-  <CC_Settings_HudHideGameResources_Tip>The Inventory panel shows the same counts as the game's list down the left, so that list steps aside while the panel is up. The counting goes on as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameResources_Tip>
+  <CC_Settings_HudHideGameResources_Tip>The Inventory panel shows the same counts as the game's list down the left, so that list is hidden while the panel is up. The counting goes on as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameResources_Tip>
   <CC_SetNote_HudHideGameResources>The Inventory panel instead of the game's resource list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameResources>
   <CC_Settings_HudHideGameAlerts>Hide the game's own alert list while the Alerts panel shows</CC_Settings_HudHideGameAlerts>
-  <CC_Settings_HudHideGameAlerts_Tip>The Alerts panel shows every alert the game has, so the game's own list on the right steps aside while it's up. The alerts keep updating as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameAlerts_Tip>
+  <CC_Settings_HudHideGameAlerts_Tip>The Alerts panel shows every alert the game has, so the game's own list on the right is hidden while it's up. The alerts keep updating as always; with the panel hidden, switched off, or on the world map, the game's list is back.</CC_Settings_HudHideGameAlerts_Tip>
   <CC_SetNote_HudHideGameAlerts>The Alerts panel instead of the game's list; the list comes back whenever the panel is gone.</CC_SetNote_HudHideGameAlerts>
   <CC_Settings_HudLock>Lock their places</CC_Settings_HudLock>
   <CC_Settings_HudLock_Tip>The panels can't be dragged by accident. "Arrange the panels" in their menu still moves them.</CC_Settings_HudLock_Tip>
   <CC_SetNote_HudLock>The panels stay where they are; "Arrange the panels" still moves them.</CC_SetNote_HudLock>
   <CC_Settings_HudHideWithTabs>Hide them under big windows</CC_Settings_HudHideWithTabs>
-  <CC_Settings_HudHideWithTabs_Tip>The panels always sit beneath the game's windows and its own readouts, so a window simply covers them. With this on, they also go away while a big window is open, such as the Work or Research tab or the council window. Small ones like the build menu leave them be.</CC_Settings_HudHideWithTabs_Tip>
+  <CC_Settings_HudHideWithTabs_Tip>The panels always sit beneath the game's windows and its own readouts, so a window simply covers them. With this on, they also go away while a big window is open, such as the Work or Research tab or the council window. Small ones like the build menu don't hide them.</CC_Settings_HudHideWithTabs_Tip>
   <CC_SetNote_HudHideWithTabs>Off: they stay, beneath the window. On: gone while the Work tab, Research or the council window is open.</CC_SetNote_HudHideWithTabs>
   <CC_Settings_HudHideOnWorld>Hide them on the world map</CC_Settings_HudHideOnWorld>
   <CC_Settings_HudHideOnWorld_Tip>The panels show on the colony's map only, not while the world map is up.</CC_Settings_HudHideOnWorld_Tip>
@@ -427,7 +427,7 @@
   <CC_SetNote_HoverDoing>Their current job, in the game's words.</CC_SetNote_HoverDoing>
   <CC_Settings_HoverHideGameTip>Hide the game's tooltip for that pawn</CC_Settings_HoverHideGameTip>
   <CC_Settings_HoverHideGameTip_Tip>While the card shows for someone, the game's own small tooltip for them (name, weapon, health) stays away so it doesn't cover the card. Everyone else's tooltips are left alone.</CC_Settings_HoverHideGameTip_Tip>
-  <CC_SetNote_HoverHideGameTip>The game's own tooltip for them steps aside while their card shows.</CC_SetNote_HoverHideGameTip>
+  <CC_SetNote_HoverHideGameTip>The game's own tooltip for them is hidden while their card shows.</CC_SetNote_HoverHideGameTip>
   <CC_Settings_HoverScale>Card size: {0}</CC_Settings_HoverScale>
   <CC_SetNote_HoverScale>Bigger for large screens, smaller to keep more of the map in view.</CC_SetNote_HoverScale>
   <CC_Settings_HoverOpacity>Card background: {0}</CC_Settings_HoverOpacity>
@@ -458,7 +458,7 @@
   <CC_Pnl_I_Stacks>Stacks: {0}</CC_Pnl_I_Stacks>
   <CC_Pnl_I_NoChange>The same as this time yesterday.</CC_Pnl_I_NoChange>
   <CC_Pnl_I_ChangeTip>{0} since this time yesterday.</CC_Pnl_I_ChangeTip>
-  <CC_Pnl_I_ChangeSoon>The change since yesterday shows once the panel has watched the stock for a day.</CC_Pnl_I_ChangeSoon>
+  <CC_Pnl_I_ChangeSoon>The change since yesterday shows once the panel has tracked the stock for a day.</CC_Pnl_I_ChangeSoon>
   <CC_Pnl_I_PinnedTip>Pinned to the top.</CC_Pnl_I_PinnedTip>
   <CC_Pnl_I_Pin>Pin {0} to the top</CC_Pnl_I_Pin>
   <CC_Pnl_I_Unpin>Unpin {0}</CC_Pnl_I_Unpin>
@@ -478,7 +478,7 @@
   <CC_Pnl_I_Style_grid>Icon grid</CC_Pnl_I_Style_grid>
   <CC_Pnl_I_Style_grid_Tip>Tiles with the icon and the count under it, wrapping after as many as you like: a strip along an edge of the screen.</CC_Pnl_I_Style_grid_Tip>
   <CC_Pnl_I_Style_essentials>Essentials</CC_Pnl_I_Style_essentials>
-  <CC_Pnl_I_Style_essentials_Tip>Only what most colonies watch, large and calm: meals and the days of food, medicine, silver, steel, components, wood, and what you pin.</CC_Pnl_I_Style_essentials_Tip>
+  <CC_Pnl_I_Style_essentials_Tip>Only what most colonies watch, in large text: meals and the days of food, medicine, silver, steel, components, wood, and what you pin.</CC_Pnl_I_Style_essentials_Tip>
   <CC_Pnl_I_Sort_Category>By category, as the game lists them</CC_Pnl_I_Sort_Category>
   <CC_Pnl_I_Sort_Name>By name</CC_Pnl_I_Sort_Name>
   <CC_Pnl_I_Sort_Count>The most first</CC_Pnl_I_Sort_Count>
