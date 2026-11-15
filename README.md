@@ -770,6 +770,16 @@ meals by the stove (and, called away, setting down whatever they carried from th
 lines of its own for arriving, waiting, staying the night and leaving, with words for the weather, the night and the
 season.
 
+Between their duties visitors are busy most of the day with things of their own (setting "Visitors fill their idle
+hours"): the game's visitors and traders, Rimfolk's visits, envoys and Hospitality's guests (after Hospitality's own
+recreation, and within the guest area set in its guest tab). They talk, sit by the fire, play the colony's games and
+instruments while nobody of the colony wants them, read a book of their own or one of the colony's (put back where it
+lay), walk round the paths to a garden, a grave or a view, pet the colony's dogs and cats or throw a stick for a dog,
+write letters at a table, train at the colony's targets and dummies or spar with their shadow, shoot their own bows at
+the archery target, fish (the catch theirs), mend their clothes and see to their weapons, play cards or dice among
+themselves, sing, and at night sit by the fire or sleep. They spread over the colony rather than all sitting in one room,
+reserve nothing, and get up as soon as a colonist wants the seat, the game or the place.
+
 ### Ideoligions and the council
 With Ideology, a colony of many ideoligions gives the council something to work with (all of it off in classic mode,
 and with "Ideoligions in the colony" off). Every move goes through the game's own certainty: Rimfolk takes some away

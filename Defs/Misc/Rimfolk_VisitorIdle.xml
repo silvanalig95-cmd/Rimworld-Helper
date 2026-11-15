@@ -4,8 +4,8 @@
   <!--
     A visitor's idle hours (Source/ColonyCouncil/Visitors/IdleHours.cs; the rules in IdleHoursMath.cs): where their
     duty would have them wander about their spot for want of anything to do, the game's visitors and traders, Rimfolk's
-    own visits between their duties, envoys, and Hospitality's guests (only what Hospitality's own recreation lacks) do
-    something of their own instead. None of it is work or value for the colony: nothing is made, hauled, cleaned or
+    own visits between their duties, envoys, and Hospitality's guests (once Hospitality's own recreation has had its turn,
+    within their guest area) do something of their own instead, over the colony's rooms and grounds. None of it is work or value for the colony: nothing is made, hauled, cleaned or
     built for it, nothing of the colony's is used up, and a joy thing of the colony's is given up the moment one of the
     colony's people wants it (they reserve nothing, so the colony's people find it free and the visitor stands up).
     Every stint is casually interruptible, so a trader can still be traded with and anyone talked to.
@@ -209,6 +209,153 @@
       <li Class="ColonyCouncil.VisitIdleExtension">
         <doing>Carve</doing>
         <effecter>Rimfolk_Whittle</effecter>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A book: one of their own out of their pack, or one of the colony's taken up where it lies (or out of its bookcase),
+       carried open as the game's readers carry it, and put back where it was. The report names the book. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleRead</defName>
+    <reportString>reading.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Read</doing>
+        <social>Quiet</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A walk round the colony's paths at a stroll, ending at a garden, a grave or a view. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleWalk</defName>
+    <reportString>taking a walk.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Walk</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One of the colony's pets petted (it waits with them), or a stick thrown for a dog; never tamed or trained. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdlePet</defName>
+    <reportString>petting TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Pet</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A letter or their journal, written sitting at one of the colony's tables. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleWrite</defName>
+    <reportString>writing a letter.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Write</doing>
+        <social>Quiet</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Blows struck at one of the colony's training targets or dummies, or at the air (shadow sparring). -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleTrain</defName>
+    <reportString>training.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Train</doing>
+        <social>Off</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Arrows from their own bow at the colony's archery target: the bow shown in hand, the arrows flying. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleArchery</defName>
+    <reportString>shooting arrows at the target.</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Archery</doing>
+        <social>Off</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Fishing at the water's edge (Odyssey's fishing line shown at the water); the catch goes into their own pack. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleFish</defName>
+    <reportString>fishing.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Fish</doing>
+        <social>Quiet</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Mending a worn piece of their own clothes: a little of it made good at the end. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleMend</defName>
+    <reportString>mending their clothes.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Mend</doing>
+        <progress>true</progress>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Seeing to their own weapon, shown in hand: a blade sharpened, a bow oiled and restrung, a gun cleaned. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleSharpen</defName>
+    <reportString>seeing to their weapon.</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Sharpen</doing>
+        <progress>true</progress>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A game of their own with one of their own, the two facing each other: cards, dice, or a game of stones. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleCards</defName>
+    <reportString>playing a game with TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Cards</doing>
+        <social>SuperActive</social>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A song of their own, sung quietly, notes over them. -->
+  <JobDef ParentName="Rimfolk_IdleBase">
+    <defName>Rimfolk_IdleSing</defName>
+    <reportString>singing to themselves.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Sing</doing>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A night's sleep on the ground near their spot: the game's own lying down, under a roof in rain or cold. -->
+  <JobDef>
+    <defName>Rimfolk_IdleSleep</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitNap</driverClass>
+    <reportString>sleeping on the ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <neverShowWeapon>true</neverShowWeapon>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitIdleExtension">
+        <doing>Sleep</doing>
       </li>
     </modExtensions>
   </JobDef>

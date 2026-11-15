@@ -5,8 +5,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Dev mode (Debug actions, "Rimfolk"): a visitor's idle hour filled now (the chance and their next look aside, everything
-    /// else as always), and every visitor on the map with their group and what fits them now, or why nothing does
-    /// (Visitors/IdleHours.cs).
+    /// else as always), and every visitor on the map with their group, what they are at, how much of their idle time this
+    /// session has been filled, what is about for them and what fits them now, or why nothing does, after a line for the
+    /// whole map (Visitors/IdleHours.cs).
     /// </summary>
     public static class IdleHoursDebug
     {
