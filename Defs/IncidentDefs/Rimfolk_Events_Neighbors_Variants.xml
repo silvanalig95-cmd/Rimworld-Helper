@@ -35,7 +35,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>[winter] The ground was hard, and {A_nameDef} dug the hole anyway. The young tree stands bare beside the fields with a stone at its foot, waiting for the spring.</li>
+          <li>[winter] The ground was hard, and {A_nameDef} dug the hole anyway. The young tree stands bare beside the fields with a stone at its foot, and will come into leaf in spring.</li>
         </lines>
       </li>
       <li>
@@ -52,13 +52,13 @@
     <defName>Council_Var_Evt_PawnedKeepsake</defName>
     <incident>Council_Evt_PawnedKeepsake</incident>
     <texts>
-      <li>[winter] By the stove, {X_nameDef} of {FACTION} spread a trader's blanket out to dry and set out the goods on it to sell. Among them is {TALE}. {A_nameDef} sat down hard when {A_pronoun} saw it: it was {A_possessive}, a long time ago.\n\n{X_nameDef} wants {COUNT} silver, and has noticed the sitting down.</li>
+      <li>[winter] By the stove, {X_nameDef} of {FACTION} spread a trader's blanket out to dry and set out the goods on it to sell. Among them is {TALE}. {A_nameDef} sat down hard when {A_pronoun} saw it: it was {A_possessive}, a long time ago.\n\n{X_nameDef} wants {COUNT} silver, and has noticed how much {A_nameDef} wants it.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>{X_nameDef} counts the silver and hands {TALE} over as if it were nothing much. {A_nameDef} holds it as if it were everything.</li>
+          <li>{X_nameDef} counts the silver and hands {TALE} over. {A_nameDef} holds it very carefully.</li>
         </lines>
       </li>
       <li>
@@ -100,7 +100,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>The silver goes into a pouch sewn shut, with a letter folded round it, to go home with the next trader. It will pay for the hands {A_nameDef} can't be. {A_nameDef} wrote until the candle was out.</li>
+          <li>The silver goes into a pouch sewn shut, with a letter folded round it, to go home with the next trader. It will pay someone else to do the work {A_nameDef} can't do from here. {A_nameDef} wrote until the candle was out.</li>
         </lines>
       </li>
       <li>
@@ -150,16 +150,16 @@
     <incident>Council_Evt_Gambler</incident>
     <texts>
       <li>[winter] Long nights are good for business, says {X_nameDef} of {FACTION}, and taps the dice cup on the table. A game after supper for anyone who wants one, or a single game against the colony's best, {COUNT} silver a side.\n\n{A_nameDef}, the colony's sharpest head for numbers, is already watching {X_nameDef}'s hands.</li>
-      <li>[colony:Easygoing] The colony knows how to take an evening off, {X_nameDef} of {FACTION} has heard, and has come to help it lose some silver doing it. Games for anyone tonight, or one against {A_nameDef}, who looks clever, at {COUNT} silver a side.</li>
+      <li>[colony:Easygoing] {X_nameDef} of {FACTION} has heard that the colony knows how to take an evening off, and has come with dice. Games for anyone tonight, or one against {A_nameDef}, who looks clever, at {COUNT} silver a side.</li>
     </texts>
     <outcomes>
       <li>
         <option>0</option>
         <lines>
-          <li>The games went on until the lamps needed filling. The colony came out ahead by the end, and {X_nameDef} paid up and asked to see the dice again, as if they might be the colony's fault.</li>
+          <li>The games went on until the lamps needed filling. The colony came out ahead by the end, and {X_nameDef} paid up and asked to look at the dice again.</li>
         </lines>
         <riskLines>
-          <li>The table laughed all evening, and by the end most of the laughing was {X_nameDef}'s. The colony's purses are lighter for it.</li>
+          <li>Everyone enjoyed the evening, but {X_nameDef} won most of the games, and the colony's purses are lighter for it.</li>
         </riskLines>
       </li>
       <li>
@@ -231,7 +231,7 @@
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef}'s crew went through the treeline like a storm and stopped only when they couldn't see the axe heads. The logs lie where they fell, enough to keep the stoves going a long while.</li>
+          <li>{X_nameDef}'s crew cut through the treeline quickly and stopped only when it was too dark to see. The logs lie where they fell, enough to keep the stoves going a long while.</li>
         </lines>
       </li>
       <li>
@@ -243,7 +243,7 @@
       <li>
         <option>3</option>
         <lines>
-          <li>The three of them shouldered their axes and went on toward {PLACE} without arguing. Somebody up the road will have work.</li>
+          <li>The three of them shouldered their axes and went on toward {PLACE} without arguing, to look for work further up the road.</li>
         </lines>
       </li>
     </outcomes>
@@ -254,7 +254,7 @@
     <defName>Council_Var_Evt_Schoolteacher</defName>
     <incident>Council_Evt_Schoolteacher</incident>
     <texts>
-      <li>[summer] Summer is when {X_nameDef} of {FACTION} walks the settlements teaching, a day here and a day there. {A_nameDef} has already learned to spell {A_possessive} own name from {X_objective}, twice, for free.\n\nFor {COUNT} silver, {X_nameDef} would give the colony's children a proper day of it.</li>
+      <li>[summer] Summer is when {X_nameDef} of {FACTION} walks the settlements teaching, a day here and a day there. {X_nameDef} has already taught {A_nameDef} to spell {A_possessive} own name, for free.\n\nFor {COUNT} silver, {X_nameDef} would give the colony's children a proper day of it.</li>
       <li>[colony:Learned] Word that the colony keeps books brought {X_nameDef} of {FACTION} out of {X_possessive} way to see them. {A_nameDef} found {X_objective} first. For {COUNT} silver, {X_nameDef} will spend a day teaching the colony's children.</li>
     </texts>
     <outcomes>

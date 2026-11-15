@@ -32,7 +32,7 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[colony:Thrifty] Silver on {A_nameDef}, which the colony doesn't do lightly. Word of the bet is already going around.</li>
+          <li>[colony:Thrifty] The colony puts silver on {A_nameDef}, which it doesn't do lightly. Word of the bet is already going around.</li>
         </lines>
       </li>
       <li>
@@ -49,7 +49,7 @@
     <defName>Council_Var_Evt_GreatBeast</defName>
     <incident>Council_Evt_GreatBeast</incident>
     <texts>
-      <li>[winter] Tracks wider than a dinner plate crossed the snow outside the walls last night. They belong to {BEAST}, an old {THING} the travelers talk about, and it's wandering the colony's land for a few days. It leaves alone whatever leaves it alone.</li>
+      <li>[winter] Tracks wider than a dinner plate crossed the snow outside the walls last night. They belong to {BEAST}, an old {THING} the travelers talk about, and it's wandering the colony's land for a few days. It won't attack anyone who leaves it alone.</li>
       <li>[past:soldier] {A_nameDef} heard about {BEAST} in a barracks once, an old {THING} that ate a sergeant's boots. Now it's here, roaming the colony's land, scarred and enormous. It won't stay more than a few days, and it fights hard if hunted.</li>
       <li>[colony:Merciful] {BEAST}, an old {THING} out of the travelers' stories, has wandered onto the colony's land. It has done no harm and will move on in a few days. Some here would like to try for it anyway.</li>
     </texts>
@@ -63,8 +63,8 @@
       <li>[winter] {X_nameDef} of {FACTION} has a map that shows something buried on the colony's land, and would rather sell it than dig through frozen ground. The price is {COUNT} silver. {A_nameDef} has looked at it and can't tell if it's real.</li>
       <li>[theirLowtech] The map came from a grandfather, {X_nameDef} says, who had it from a dying peddler. It shows a cache on the colony's land, marked in soot. {X_nameDef} of {FACTION} wants {COUNT} silver for it, and swears on the grandfather's grave.</li>
       <li>[trait:Greedy] {X_nameDef} of {FACTION} showed {A_nameDef} a map to something buried on the colony's land, and {A_nameDef} has been back three times to look at it again. It costs {COUNT} silver. It might be real.</li>
-      <li>[past:trader] {X_nameDef} of {FACTION} wants {COUNT} silver for a map to a cache on the colony's land. {A_nameDef}, who sold a few maps in {A_possessive} trading days, says some of them were real.</li>
-      <li>[colony:Restless] Word has got around that the colony likes a gamble, and {X_nameDef} of {FACTION} has come with one: a map to something buried on the colony's land, for {COUNT} silver. No refunds.</li>
+      <li>[past:trader] {X_nameDef} of {FACTION} wants {COUNT} silver for a map to a cache on the colony's land. {A_nameDef}, who sold a few maps in {A_possessive} trading days, says some maps like this are real and many are not.</li>
+      <li>[colony:Restless] Word has got around that the colony likes a gamble, and {X_nameDef} of {FACTION} has come with one: a map to something buried on the colony's land, for {COUNT} silver. {X_nameDef} won't give the silver back if nothing is there.</li>
     </texts>
     <outcomes>
       <li>
@@ -138,7 +138,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>The offer goes back to {FACTION} unopened, more or less. {A_nameDef} was whistling at supper.</li>
+          <li>The colony turns {FACTION}'s offer down. {A_nameDef} was whistling at supper.</li>
         </lines>
       </li>
     </outcomes>
@@ -175,7 +175,7 @@
     <texts>
       <li>[lowtech,summer] A shepherd has brought a flock up the hills above the colony for the summer, and plays a pipe in the evenings. The tunes carry a long way, and the colonists have started humming them.</li>
       <li>[lowtech,winter] A family of travelers has camped for the winter in a hollow past the fields. In the evenings they sing, all of them together, and the sound comes over the snow.</li>
-      <li>[!lowtech,winter] On the long winter nights the radio picks up a station from somewhere far south that plays dance music until dawn. The ones who can't sleep have started to keep it company.</li>
+      <li>[!lowtech,winter] On the long winter nights the radio picks up a station from somewhere far south that plays dance music until dawn. Those who can't sleep have started staying up to listen.</li>
       <li>[!lowtech,summer] Someone left the comms open, and a distant station has been playing old songs all week. Work in earshot has slowed down, and the council hasn't said anything.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -248,7 +248,7 @@
       <li>[loss,winter] Mice came in out of the cold and made a winter home in the stores. By the time anyone found the nest, {COUNT} units of food were spoiled.</li>
       <li>[loss,summer] Flies and something with teeth got into the stores in the heat. {COUNT} units of food had to be thrown out.</li>
       <li>[mouser,lowtech] There was a racket in the storeroom last night, and in the morning {PET_nameDef} was asleep on a sack of grain with a row of dead rats beside {PET_objective}. Not a scrap was lost.</li>
-      <li>[mouser,!lowtech] The storeroom had visitors last night, the kind with tails. {PET_nameDef} saw them off, and has been lying across the doorway all morning, very pleased.</li>
+      <li>[mouser,!lowtech] Rats got into the storeroom last night. {PET_nameDef} saw them off, and has been lying across the doorway all morning, very pleased.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

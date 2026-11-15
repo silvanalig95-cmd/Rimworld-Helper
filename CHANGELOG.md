@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Event cards in plain words: the peoples and the neighbours
+
+*15 November 2026, version 0.245.0*
+
+- About 360 more lines of event cards now say plainly what happens: the peoples' visitors, the neighbours, hard times, callers and the events the peoples remember.
+- The peoples' own phrases are explained where they come up, such as the Waystone Book's good ink and red ink, Aldith's lamp, the Mossborn's ledger and the Wardens' lantern.
+- Two events have clearer names: a young beast from the herders, and something stirring underground.
+
 ## Event cards in plain words: stories, seasons and callers
 
 *15 November 2026, version 0.244.0*

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.245.0</version>
+        <date>15 November 2026</date>
+        <title>Event cards in plain words: the peoples and the neighbours</title>
+        <points>
+          <li>About 360 more lines of event cards now say plainly what happens: the peoples' visitors, the neighbours, hard times, callers and the events the peoples remember.</li>
+          <li>The peoples' own phrases are explained where they come up, such as the Waystone Book's good ink and red ink, Aldith's lamp, the Mossborn's ledger and the Wardens' lantern.</li>
+          <li>Two events have clearer names: a young beast from the herders, and something stirring underground.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.244.0</version>
         <date>15 November 2026</date>
         <title>Event cards in plain words: stories, seasons and callers</title>

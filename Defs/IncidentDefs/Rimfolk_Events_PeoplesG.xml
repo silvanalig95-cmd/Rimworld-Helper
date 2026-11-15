@@ -45,8 +45,8 @@
           <li>The sample-buyer</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a sample-buyer of {FACTION}, has come to the gate in a mint-white lab coat with a vat-keeper and a small case of glass. The Works have heard that {B_nameDef} carries {TALE}, and they would pay {COUNT} silver for a sample: a little blood from the arm, drawn where {B_pronoun} stands, and nothing more.</li>
-          <li>[archite] {X_nameDef} of {FACTION} has come to the gate with a case of glass and a careful smile. Nobody makes archite genes any more, {X_pronoun} says, and {B_nameDef} carries {TALE}. The Works would pay {COUNT} silver for a little of {B_possessive} blood, drawn from the arm where {B_pronoun} stands.</li>
+          <li>{X_nameDef}, a sample-buyer of {FACTION}, has come to the gate in a white lab coat with a vat-keeper and a small case of glass vials. The Works have heard that {B_nameDef} carries {TALE}, and they would pay {COUNT} silver for a sample: a little blood from the arm, drawn where {B_pronoun} stands, and nothing more.</li>
+          <li>[archite] {X_nameDef} of {FACTION} has come to the gate with a case of glass vials. {X_nameDef} says nobody can make archite genes any more, and {B_nameDef} carries {TALE}. The Works would pay {COUNT} silver for a little of {B_possessive} blood, drawn from the arm where {B_pronoun} stands.</li>
           <li>[lowtech] Two strangers in clean white coats have come to the gate from {PLACE}: {X_nameDef} of {FACTION} and a companion with a case of little glass bottles. They say {B_nameDef}'s blood is rare, {TALE}, and they would pay {COUNT} silver for a few drops of it from the arm.</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} to ask, as between friends, for a sample of {B_nameDef}'s blood: {B_pronoun} carries {TALE}. The Works would pay {COUNT} silver for a little of it.</li>
         </texts>
@@ -117,8 +117,8 @@
           <li>A sequencer of the Works</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate with a case of the Works' instruments. The Works offer the colony a gene of their own lab, {TALE}, written into {B_nameDef} where {B_pronoun} stands: two hours with the instruments, the gene as a xenogene, and the game's own wait before another. {X_pronoun} asks {COUNT} silver, or one of the colony's genepacks, which the Works buy.</li>
-          <li>[genepack] {X_nameDef} of {FACTION} has heard the colony keeps genepacks, and would write a gene of the Works' own, {TALE}, into {B_nameDef} for one of them, or for {COUNT} silver. Two hours with the instruments where {B_pronoun} stands, {X_nameDef} says, and nothing changed but what was asked.</li>
+          <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate with a case of the Works' instruments. The Works offer to write a gene from their own lab, {TALE}, into {B_nameDef} as a xenogene. It takes two hours and can be done wherever {B_nameDef} is, and afterwards {B_nameDef} must wait the usual time before any more gene work. {X_nameDef} asks {COUNT} silver, or one of the colony's genepacks.</li>
+          <li>[genepack] {X_nameDef} of {FACTION} has heard the colony keeps genepacks, and offers to write one of the Works' own genes, {TALE}, into {B_nameDef} in exchange for a genepack or {COUNT} silver. {X_nameDef} says it takes two hours wherever {B_nameDef} is, and nothing else about {B_objective} will change.</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} offering {B_nameDef} a gene of their own lab, {TALE}, for {COUNT} silver or a genepack, as between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -182,9 +182,9 @@
           <li>Medicine from the Works</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a long case on a strap: the Works' own medicine and drugs, {TALE}, for {COUNT} silver, carried out to them and the case left at the gate.</li>
-          <li>[nogenes] {X_nameDef} of {FACTION} has come to the gate in a mint-white coat with a case of the Works' medicine and drugs, {TALE}. The Works keep their old lore, {X_pronoun} says, even where nobody writes genes any more, and the case is {COUNT} silver.</li>
-          <li>[lowtech] A healer in a clean white coat has come to the gate from {PLACE}, {X_nameDef} of {FACTION}, with a case of medicines nobody here could make: {TALE}, for {COUNT} silver.</li>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a long case on a strap. It holds the Works' own medicine and drugs, {TALE}. If the colony pays {COUNT} silver, {X_nameDef} will leave the case at the gate.</li>
+          <li>[nogenes] {X_nameDef} of {FACTION} has come to the gate in a white coat with a case of the Works' medicine and drugs, {TALE}. {X_nameDef} says the Works still keep their old knowledge of medicine, even where nobody works with genes any more. The case costs {COUNT} silver.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, a healer in a clean white coat, has come to the gate from {PLACE} with a case of medicines nobody here could make: {TALE}, for {COUNT} silver.</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has brought a case of their medicine and drugs from {PLACE}, {TALE}, for {COUNT} silver, a friend's price.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -252,8 +252,8 @@
           <li>The Works ask for a doctor</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with {COUNT} of the Works' vat-grown, young and feverish, leaning on one another. A batch has gone wrong, {X_nameDef} says: their genes don't keep to the pattern they were written with, and the lab is too far. The Works ask whether the colony's doctor would see to them here, or spare some medicine ({TALE}) for the road home.</li>
-          <li>[one] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with one of the Works' vat-grown, young and feverish, barely on {X_possessive} feet. A gene fault, {X_nameDef} says, from a batch that went wrong. The Works ask whether the colony's doctor would see to them here, or spare some medicine ({TALE}).</li>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with {COUNT} of the Works' vat-grown people, young and feverish, leaning on one another. {X_nameDef} says a batch has gone wrong: their genes are not behaving as they were designed to, and the lab is too far away. The Works ask whether the colony's doctor would treat them here, or spare some medicine ({TALE}) for the road home.</li>
+          <li>[one] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with one of the Works' vat-grown people, young, feverish and barely able to stand. {X_nameDef} says it is a gene fault from a batch that went wrong. The Works ask whether the colony's doctor would treat them here, or spare some medicine ({TALE}).</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has brought {COUNT} of their vat-grown from {PLACE}, sick with a gene fault, to the one doctor the Works trust on the road.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -318,8 +318,8 @@
           <li>The Lattice would mend your mechs</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate in an indigo robe with a roll of tools. The colony's mechs are hurt, {TALE}, {X_pronoun} says, quietly, as if {X_pronoun} could hear them, and the Lattice would mend them one by one where they stand, for {COUNT} silver or one of the colony's basic subcores.</li>
-          <li>[one] {X_nameDef}, a mech-tender of {FACTION}, has stopped at the gate and is looking at one of the colony's mechs the way a doctor looks at a limp. It is hurt, {TALE}, and the Lattice would mend it where it stands for {COUNT} silver or a basic subcore.</li>
+          <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate in an indigo robe with a roll of tools. {X_nameDef} says the colony's mechs are damaged, {TALE}, and offers to repair them one by one where they stand, for {COUNT} silver or one of the colony's basic subcores.</li>
+          <li>[one] {X_nameDef}, a mech-tender of {FACTION}, has stopped at the gate and is studying one of the colony's mechs closely. It is damaged, {TALE}, and the Lattice would repair it where it stands for {COUNT} silver or a basic subcore.</li>
           <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has come from {PLACE} to mend the colony's hurt mechs, {TALE}, for {COUNT} silver or a subcore, as between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -381,8 +381,8 @@
           <li>A mech of the Lattice's</li>
         </titles>
         <texts>
-          <li>A {THING} has wandered onto the colony's ground with the Lattice's indigo mark on its plating: one of the mechs of {FACTION}, its link to them broken somewhere on the road, drifting with nobody's mind behind it. The Lattice would come for it if the colony sent word. The colony could also keep it, with {A_nameDef} to oversee it, though the Lattice would not forgive that soon.</li>
-          <li>[nomechanitor] A {THING} has wandered onto the colony's ground with the Lattice's indigo mark on its plating: one of the mechs of {FACTION}, its link to them broken, drifting with nobody's mind behind it. The colony has nobody who could take it on, but it could send word, and the Lattice would come for it.</li>
+          <li>A {THING} with the Lattice's indigo mark on its plating has wandered onto the colony's land. It is one of {FACTION}'s mechs, which lost its link to its mechanitor somewhere on the road and is now wandering with nobody controlling it. The Lattice would come for it if the colony sent word. The colony could also keep it, with {A_nameDef} to oversee it, but the Lattice would not forgive that for a long time.</li>
+          <li>[nomechanitor] A {THING} with the Lattice's indigo mark on its plating has wandered onto the colony's land. It is one of {FACTION}'s mechs, which has lost its link and is wandering with nobody controlling it. Nobody in the colony could take control of it, but the colony could send word, and the Lattice would come for it.</li>
           <li>[their:grateful] A {THING} of {FACTION}'s has wandered onto the colony's ground, its link to them broken. The Lattice thinks well of the colony, and would come for it gladly if word were sent.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -506,9 +506,9 @@
           <li>The Lattice's engineer</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an engineer of {FACTION}, has come to the gate with a {THING} in pieces on a cart. The Lattice would raise it beside the colony's gate for {COUNT} silver, {X_pronoun} says: it wants the colony's power to fire, and it will watch the road all night.</li>
-          <li>[nomechs] {X_nameDef}, an engineer of {FACTION} in an indigo robe, has come to the gate with a {THING} in pieces. The Lattice keeps its lore and its yards even where nobody links a mech, {X_pronoun} says, and it raises turrets instead: this one by the gate, for {COUNT} silver, on the colony's power.</li>
-          <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has brought a {THING} from {PLACE} to raise beside the gate, {COUNT} silver, a friend's price.</li>
+          <li>{X_nameDef}, an engineer of {FACTION}, has come to the gate with a {THING} in pieces on a cart. {X_nameDef} offers to set it up beside the colony's gate for {COUNT} silver. It needs power from the colony to fire, and will guard the road day and night.</li>
+          <li>[nomechs] {X_nameDef}, an engineer of {FACTION} in an indigo robe, has come to the gate with a {THING} in pieces. {X_nameDef} says that where nobody controls mechs, the Lattice keeps its skills by building turrets instead, and offers to set this one up by the gate for {COUNT} silver, running on the colony's power.</li>
+          <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has brought a {THING} from {PLACE} to set up beside the gate for {COUNT} silver, a friend's price.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -572,10 +572,10 @@
           <li>Listeners at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a cantor of {FACTION}, has come to the gate in a pale robe with the listeners of {X_possessive} ring. They would sit a while in the middle of the colony and listen to it, {X_nameDef} says, softly, the way they listen to the Spire. Afterwards some at home will feel a calm and some an unease, {TALE}, and {X_pronoun} cannot say which.</li>
-          <li>[void] {X_nameDef}, a cantor of {FACTION}, has come to the gate with the listeners of {X_possessive} ring, and keeps looking past the colony at nothing. They would sit a while in its middle and listen, {X_nameDef} says, though the void is listening too this season, {TALE}, and more of the colony will feel uneasy for it.</li>
-          <li>[lowtech] Pale strangers in long robes have come to the gate from {PLACE}: {X_nameDef} and the listeners of {FACTION}, who speak so softly that everyone leans in. They would sit in the middle of the colony and listen to it a while, they say, and afterwards some will feel a calm and some an unease.</li>
-          <li>[their:grateful] The Choir of the Spire thinks well of the colony, and {X_nameDef} has come from {PLACE} with the listeners of {X_possessive} ring to sit in its middle and listen, as they would for friends. Some will feel a calm afterwards, and some an unease, {TALE}.</li>
+          <li>{X_nameDef}, a cantor of {FACTION}, has come to the gate in a pale robe with the listeners of {X_possessive} ring. {X_nameDef} says they would like to sit for a while in the middle of the colony and listen to it quietly, the way they listen to the Spire. Afterwards some colonists will feel calmer and some uneasy, {TALE}, and {X_nameDef} cannot say which.</li>
+          <li>[void] {X_nameDef}, a cantor of {FACTION}, has come to the gate with the listeners of {X_possessive} ring, and keeps glancing past the colony at nothing. {X_nameDef} says they would like to sit for a while in the middle of the colony and listen, but this season the void can be heard as well, {TALE}, so more colonists than usual will feel uneasy afterwards.</li>
+          <li>[lowtech] {X_nameDef} and other listeners of {FACTION}, pale and in long robes, have come to the gate from {PLACE}. They speak very softly. They would like to sit in the middle of the colony and listen to it for a while, and afterwards some colonists will feel calmer and some uneasy.</li>
+          <li>[their:grateful] The Choir of the Spire thinks well of the colony, and {X_nameDef} has come from {PLACE} with the listeners of {X_possessive} ring to sit in the middle of the colony and listen, as they do for friends. Afterwards some colonists will feel calmer and some uneasy, {TALE}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -599,7 +599,7 @@
           </li>
           <li>
             <label>Not today</label>
-            <outcome>{X_nameDef} bows a little, as if the answer were also something heard, and the listeners go back to the road.</outcome>
+            <outcome>{X_nameDef} bows a little, and the listeners go back to the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -639,9 +639,9 @@
           <li>The Spire's goods for art</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, the keeper of the hum of {FACTION}, has come to the gate and asked, very politely, to see the colony's art. The Choir have nothing they love more, {X_pronoun} says, and for {TALE} they would give the Spire's {THING}, set down at the gate.</li>
-          <li>[one] {X_nameDef}, the keeper of the hum of {FACTION}, has heard of a piece of the colony's art, {TALE}, and has come to ask for it. For it the Choir would give the Spire's {THING}, set down at the gate.</li>
-          <li>[lowtech] A pale stranger in a long robe, {X_nameDef} of {FACTION}, has come to the gate to look at the colony's carvings. For {TALE} the stranger would leave a strange thing of the Spire's, the {THING}, at the gate.</li>
+          <li>{X_nameDef}, who trades for {FACTION} as their keeper of the hum, has come to the gate and asked very politely to see the colony's art. {X_nameDef} says the Choir love art more than anything, and in exchange for {TALE} they would leave the Spire's {THING} at the gate.</li>
+          <li>[one] {X_nameDef}, the keeper of the hum of {FACTION}, has heard of a piece of the colony's art, {TALE}, and has come to ask for it. In exchange the Choir would leave the Spire's {THING} at the gate.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, a pale stranger in a long robe, has come to the gate to look at the colony's carvings. In exchange for {TALE}, {X_nameDef} would leave an unfamiliar object from the Spire, the {THING}, at the gate.</li>
           <li>[their:grateful] The Choir of the Spire thinks well of the colony, and {X_nameDef} has come from {PLACE} to ask for {TALE}, and leave the Spire's {THING} for it.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -704,9 +704,9 @@
           <li>A technician of the vault</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a technician of {FACTION}, has come up the road in an olive vault suit with a surface-scout and a crate: the last of the vault's spacer goods, {TALE}. The vault can't make what it carries, {X_pronoun} says, and every year a little more of it stops working. For the crate they want {COUNT} components and some food, carried out to them.</li>
-          <li>[fallen] {X_nameDef}, a technician of {FACTION}, has come up the road with a crate that is lighter than it used to be: {TALE}, nearly the last of what still works. The vault wants {COUNT} components and some food for it, {X_nameDef} says, and the vault remembers who keeps the lights on below.</li>
-          <li>[lowtech] A stranger in a patched olive suit with a number on the back has come to the gate from {PLACE}: {X_nameDef} of {FACTION}, with a crate of strange old things, {TALE}. For them {X_pronoun} wants {COUNT} of the little machine parts and some food.</li>
+          <li>{X_nameDef}, a technician of {FACTION}, has come up the road in an olive vault suit with a surface-scout and a crate. It holds the last of the vault's spacer goods, {TALE}. {X_nameDef} says the vault cannot make these things, and every year a little more of what it has stops working. For the crate they want {COUNT} components and some food, carried out to them.</li>
+          <li>[fallen] {X_nameDef}, a technician of {FACTION}, has come up the road with a crate that holds less than it used to: {TALE}, nearly the last of the vault's goods that still work. {X_nameDef} says the vault wants {COUNT} components and some food for it, and will remember who helped keep its power running.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, a stranger in a patched olive suit with a number on the back, has come to the gate from {PLACE} with a crate of strange old things, {TALE}. For them {X_nameDef} wants {COUNT} components, the small machine parts, and some food.</li>
           <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has brought the vault's crate from {PLACE}, {TALE}, for {COUNT} components and some food, as between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -735,7 +735,7 @@
           </li>
           <li>
             <label>Nothing to spare</label>
-            <outcome>{X_nameDef} counts the crate twice, as if it might have changed, and the two of them go back to the road.</outcome>
+            <outcome>{X_nameDef} counts what is in the crate again, and the two of them go back to the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -772,10 +772,10 @@
           <li>Teach us the {TALE}</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a technician of {FACTION}, has come to the gate with a notebook full of drawings of machines nobody in the vault can make any more. The vault has lost the work of a {TALE}, {X_pronoun} says: the last who knew it died below, and the manual is mould. {X_nameDef} asks whether {A_nameDef} would teach {X_objective} at the colony's {TALE} for a few hours.</li>
-          <li>[alone] {X_nameDef}, a technician of {FACTION}, has come to the gate to ask the colony for a craft the vault has lost: the work of a {TALE}. {A_nameDef} is the one who keeps the colony's, and {X_nameDef} asks for a few hours beside {A_objective} at it.</li>
-          <li>[lowtech] A stranger in a patched olive suit, {X_nameDef} of {FACTION}, has come to the gate with a notebook of drawings. {X_pronoun} has heard the colony works a {TALE}, and asks {A_nameDef} to show {X_objective} how, for the vault lost the way of it long ago.</li>
-          <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has come from {PLACE} to ask {A_nameDef} to teach {X_objective} the work of the colony's {TALE}, which the vault lost below.</li>
+          <li>{X_nameDef}, a technician of {FACTION}, has come to the gate with a notebook full of drawings of machines nobody in the vault can make any more. {X_nameDef} says the vault no longer knows how to work a {TALE}: the last person who knew died below, and the manual has rotted. {X_nameDef} asks whether {A_nameDef} would teach {X_objective} at the colony's {TALE} for a few hours.</li>
+          <li>[alone] {X_nameDef}, a technician of {FACTION}, has come to the gate to learn a craft the vault has lost: how to work a {TALE}. {A_nameDef} runs the colony's {TALE}, and {X_nameDef} asks to spend a few hours working beside {A_objective} at it.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, a stranger in a patched olive suit, has come to the gate with a notebook of drawings. {X_nameDef} has heard the colony uses a {TALE}, and asks {A_nameDef} to show {X_objective} how, because the vault forgot how long ago.</li>
+          <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has come from {PLACE} to ask {A_nameDef} to teach {X_objective} how to work the colony's {TALE}, a skill the vault has lost.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -841,7 +841,7 @@
           <li>The sky over the gate</li>
         </titles>
         <texts>
-          <li>A surface-scout of {FACTION} has come up the road with a vault-born child, {X_nameDef}, who had never seen a sky until this week and keeps stopping to look up at it. {X_nameDef} has asked the scout, and now asks the colony, whether {X_pronoun} might stay here above, under it, instead of going back down. The scout says the vault would let {X_objective} go.</li>
+          <li>A surface-scout of {FACTION} has come up the road with a vault-born child, {X_nameDef}, who had never seen a sky until this week and keeps stopping to look up at it. {X_nameDef} has asked the scout, and now asks the colony, whether {X_pronoun} might stay here on the surface instead of going back down. The scout says the vault would let {X_objective} go.</li>
           <li>[night] A surface-scout of {FACTION} has come up the road at night with a vault-born child, {X_nameDef}, who has stopped at the colony's gate to stare at the stars and won't move. {X_nameDef} had never seen a sky until this week, and asks whether {X_pronoun} might stay up here under it, with the colony.</li>
           <li>[youth] A surface-scout of {FACTION} has come up the road with {X_nameDef}, vault-born and not yet grown, who had never seen a sky until this week and keeps looking up at it. {X_nameDef} asks whether {X_pronoun} might stay above with the colony instead of going back below.</li>
         </texts>
