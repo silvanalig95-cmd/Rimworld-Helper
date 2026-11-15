@@ -16,8 +16,142 @@ namespace ColonyCouncil
         public static JobDef Rimfolk_PlayWithAnimal;
         public static JobDef Rimfolk_KeeperRound;
         public static JobDef Rimfolk_SitWithAnimal;
+        public static JobDef Rimfolk_AnimalGreet;
+        public static JobDef Rimfolk_AnimalKeepClose;
+        public static JobDef Rimfolk_AnimalPester;
+        public static JobDef Rimfolk_AnimalGuard;
+        public static JobDef Rimfolk_AnimalCry;
 
         static AnimalDaysDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(AnimalDaysDefOf));
+    }
+
+    /// <summary>
+    /// What is said or told once an animal (or someone going to one) gets where it was going, so the words come when the
+    /// thing is seen: the line as the pet reaches someone eating, the encounter told as the dog reaches its person. Keyed by
+    /// the job's id (jobs are pooled and reused, their ids are not); this session's only, so after a load the job plays out
+    /// without its words. Called by JobDriver_AnimalLinger, JobDriver_AnimalRunTo and JobDriver_SitWithAnimal as they arrive.
+    /// </summary>
+    internal static class AnimalArrivals
+    {
+        private static readonly Dictionary<int, Action> waiting = new Dictionary<int, Action>();
+        private static Game game;
+
+        private static void Fresh()
+        {
+            if (game == Current.Game) return;
+            game = Current.Game;
+            waiting.Clear();
+        }
+
+        /// <summary>Runs <paramref name="then"/> when this job arrives. Set before the job starts: one already there arrives at once.</summary>
+        internal static void On(Job job, Action then)
+        {
+            if (job == null || then == null) return;
+            Fresh();
+            // Jobs cut short never arrive: what they left is dropped now and then.
+            if (waiting.Count > 200) waiting.Clear();
+            waiting[job.loadID] = then;
+        }
+
+        internal static void Forget(Job job)
+        {
+            if (job != null) waiting.Remove(job.loadID);
+        }
+
+        internal static void Arrived(Job job)
+        {
+            if (job == null) return;
+            Fresh();
+            if (!waiting.TryGetValue(job.loadID, out var then)) return;
+            waiting.Remove(job.loadID);
+            try
+            {
+                then();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("animal arrivals", e);
+            }
+        }
+    }
+
+    /// <summary>How an animal runs to someone (Defs/Misc/Rimfolk_AnimalDays_Jobs.xml): with the game's own nuzzle when it gets there, or not.</summary>
+    public class AnimalRunToExtension : DefModExtension
+    {
+        public bool nuzzle;
+        /// <summary>Its report with whom it runs to ({OTHER}), a translation key; the job's own words without one.</summary>
+        public string report;
+    }
+
+    /// <summary>
+    /// An animal going to someone (target A) at the job's pace (Animals/AnimalDays.cs, AnimalScenes.cs): a pet running to its
+    /// person home again, an old one walking over, one running at someone's heels in a grudge. Once there it faces them, gives
+    /// the game's own nuzzle where its def says so (the nuzzle's interaction and mood, as the game's animals give it), and
+    /// stays at their side for the job's count of ticks; what was waiting for it to get there is said then (AnimalArrivals).
+    /// Ended by danger, or when they are gone or down.
+    /// </summary>
+    public class JobDriver_AnimalRunTo : JobDriver
+    {
+        private string about;
+
+        private Pawn Person => job.targetA.Thing as Pawn;
+
+        private AnimalRunToExtension Ext => job.def.GetModExtension<AnimalRunToExtension>();
+
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        public override void Notify_Starting()
+        {
+            base.Notify_Starting();
+            about = Person?.LabelShort;
+        }
+
+        public override string GetReport()
+        {
+            var ext = Ext;
+            if (ext?.report != null && !about.NullOrEmpty() && ext.report.CanTranslate()) return ext.report.Translate(about.Named("OTHER")).Resolve();
+            return base.GetReport();
+        }
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOnDespawnedOrNull(TargetIndex.A);
+            this.FailOn(() => pawn.Downed || pawn.InMentalState || Person == null || Person.Dead || Person.Downed
+                              || pawn.Map != null && pawn.Map.dangerWatcher.DangerRating == StoryDanger.High);
+            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            var meet = ToilMaker.MakeToil("AnimalRunToMeet");
+            meet.initAction = () =>
+            {
+                var p = Person;
+                if (p == null) return;
+                pawn.rotationTracker.FaceTarget(p);
+                // together: the job has brought it to their side (the goto before), and the game's nuzzle checks they're face to face.
+                if (Ext?.nuzzle == true && pawn.interactions != null && InteractionDefOf.Nuzzle != null) pawn.interactions.TryInteractWith(p, InteractionDefOf.Nuzzle);
+                AnimalArrivals.Arrived(job);
+            };
+            meet.defaultCompleteMode = ToilCompleteMode.Delay;
+            meet.defaultDuration = Math.Max(60, job.count);
+            meet.handlingFacing = true;
+            meet.socialMode = RandomSocialMode.Off;
+            meet.tickIntervalAction = delta =>
+            {
+                var p = Person;
+                if (p == null || !p.Spawned) return;
+                // Still beside them: they may walk on, and it keeps at their side for the rest of the moment.
+                if (!pawn.Position.InHorDistOf(p.Position, 2.5f))
+                {
+                    if (!pawn.pather.Moving) pawn.pather.StartPath(p, PathEndMode.Touch);
+                }
+                else pawn.rotationTracker.FaceTarget(p);
+            };
+            yield return meet;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref about, "about");
+        }
     }
 
     /// <summary>
@@ -132,7 +266,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Someone sitting with an animal a while (target A): walking over, then staying beside it facing it for the job's count
-    /// of ticks, talking to it or watching what it does. A little company for them. Ended by danger or when it's gone.
+    /// of ticks, talking to it or watching what it does. A little company for them. What waited for them to get there is
+    /// told then (AnimalArrivals). Ended by danger or when it's gone.
     /// </summary>
     public class JobDriver_SitWithAnimal : JobDriver
     {
@@ -146,6 +281,7 @@ namespace ColonyCouncil
             this.FailOn(() => Animal == null || Animal.Dead || !Animal.Spawned || Animal.Map != pawn.Map);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             var sit = ToilMaker.MakeToil("SitWithAnimal");
+            sit.initAction = () => AnimalArrivals.Arrived(job);
             sit.defaultCompleteMode = ToilCompleteMode.Delay;
             sit.defaultDuration = Math.Max(300, job.count);
             sit.handlingFacing = true;
@@ -166,7 +302,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The keeper's round of the animals (the herdmaster, or whoever looks after them): to each animal of the job's queue in
-    /// turn, a while beside it looking it over (it holds still for them), a little handling practice; then on to the next.
+    /// turn, a while beside it looking it over (it holds still for them), a little handling practice and a little of the
+    /// recreation their free time would have given; then on to the next.
     /// The first one gets a word (AnimalDays.Looked). Ended by danger.
     /// </summary>
     public class JobDriver_KeeperRound : JobDriver
@@ -215,6 +352,8 @@ namespace ColonyCouncil
             {
                 if (job.targetA.Thing is Pawn a && a.Spawned) pawn.rotationTracker.FaceTarget(a);
                 pawn.skills?.Learn(SkillDefOf.Animals, 0.04f * delta);
+                // Their free time, spent with the animals: a little of the rest it takes the place of.
+                pawn.needs?.joy?.GainJoy(AnimalDaysMath.PlayJoyPerTick * 0.6f * delta, JoyKindDefOf.Social);
             };
             look.WithProgressBarToilDelay(TargetIndex.A);
             yield return look;

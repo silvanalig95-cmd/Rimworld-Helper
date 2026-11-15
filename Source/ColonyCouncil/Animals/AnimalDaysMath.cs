@@ -35,7 +35,9 @@ namespace ColonyCouncil
     /// <summary>
     /// An encounter or a personal story's step that an animal plays out on the map before it is told (Animals/AnimalScenes.cs):
     /// running to someone, sleeping at the foot of their bed, a bite snatched at a meal, a game of chase with a child, following
-    /// them at work, comfort when they are low, a trick, a raid on the stores, sitting together, a feud's ambush.
+    /// them at work, comfort when they are low, a trick, a raid on the stores, sitting together, a grudge or a feud's ambush,
+    /// an old one walking over slowly, a mother lying by her young, standing between someone and a stranger, crying out at
+    /// night.
     /// </summary>
     public enum AnimalScene
     {
@@ -49,7 +51,11 @@ namespace ColonyCouncil
         Trick,
         Larder,
         Confide,
-        Pester
+        Pester,
+        SlowGreet,
+        Litter,
+        Guard,
+        Cry
     }
 
     /// <summary>
@@ -205,8 +211,17 @@ namespace ColonyCouncil
 
         // ---------------- Where and when ----------------
 
-        /// <summary>The foot of a bed: the cell past the sleeper's slot, away from the head (the bed faces its head's way).</summary>
-        public static (int x, int z) FootCell(int slotX, int slotZ, int faceX, int faceZ) => (slotX - faceX, slotZ - faceZ);
+        /// <summary>
+        /// Where a pet lies at the foot of a bed, best first: the cell just past the foot end of the sleeper's place (the bed
+        /// faces its head's way), then the two cells beside its foot. A bed's own cells can't be stood on, so a double bed's
+        /// other half drops out by itself.
+        /// </summary>
+        public static (int x, int z)[] FootCells(int footX, int footZ, int faceX, int faceZ) => new[]
+        {
+            (footX - faceX, footZ - faceZ),
+            (footX + faceZ, footZ - faceX),
+            (footX - faceZ, footZ + faceX)
+        };
 
         /// <summary>Away this many hours or more (a caravan, another home) and back, someone is greeted.</summary>
         public const float GreetAwayHours = 4f;
@@ -228,11 +243,29 @@ namespace ColonyCouncil
         /// <summary>Its person died within this many hours: it goes to lie by them.</summary>
         public const float MournWithinHours = 8f;
 
+        /// <summary>Young born within this many days are a mother's newborns (the new litter's scene).</summary>
+        public const float LitterDays = 6f;
+
+        /// <summary>A newborn of its own: young, born within <see cref="LitterDays"/>, of the same kind.</summary>
+        public static bool Newborn(float ageDays, bool sameKind) => sameKind && ageDays >= 0f && ageDays < LitterDays;
+
+        /// <summary>A stranger this close to someone has their animal step in between (the guard's scene).</summary>
+        public const float GuardRange = 18f;
+
+        /// <summary>The night's crying out: from nine at night to four in the morning.</summary>
+        public static bool CryHour(int hour) => hour >= 21 || hour <= 4;
+
         /// <summary>
         /// How long each lasts (ticks): by the dead, sheltering, at someone's elbow at a meal, at play, asleep at the foot of
         /// the bed (it wakes sooner when rested), the keeper beside each animal of the round, an animal at its person's side.
         /// </summary>
         public const int MournTicks = 7500, ShelterTicks = 1800, BegTicks = 700, PlayTicks = 1200, FootTicks = 15000, LookTicks = 300, SideTicks = 1800;
+
+        /// <summary>
+        /// The scenes' own (ticks): at someone's side after running to them, between them and a stranger, crying out at the
+        /// dark (a call every <see cref="CryEvery"/>), a mother lying by her young, someone watching them.
+        /// </summary>
+        public const int GreetTicks = 240, GuardTicks = 1200, CryTicks = 1500, CryEvery = 300, LitterTicks = 2500, WatchTicks = 900;
 
         /// <summary>The fun of play a tick (a game's own recreation is about this).</summary>
         public const float PlayJoyPerTick = 0.00012f;

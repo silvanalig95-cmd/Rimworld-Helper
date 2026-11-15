@@ -178,9 +178,9 @@
     <weight>0.6</weight>
     <cooldownDays>14</cooldownDays>
     <texts>
-      <li>{A_nameDef} caught {X_definite} in the stores, eating the colony's food.</li>
-      <li>{A_nameDef} found {X_definite} in the storeroom, eating from the food there.</li>
-      <li>{A_nameDef} saw {X_definite} sneak into the stores and start eating.</li>
+      <li>{A_nameDef} saw {X_definite} make straight for the stores to eat the colony's food.</li>
+      <li>{A_nameDef} watched {X_definite} sneak off to the stores, looking for something to eat.</li>
+      <li>{A_nameDef} saw {X_definite} head for the stored food, and knew what {X_pronoun} was after.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Larder</scene></li>
@@ -262,11 +262,12 @@
     <weight>0.8</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>Whenever {A_nameDef} walks past, {X_definite} stops what {X_pronoun} is doing and stares at {A_objective} until {A_pronoun} is out of sight.</li>
-      <li>Scraps and soft words have both been tried, and {X_definite} still goes for {A_nameDef}'s ankles on sight.</li>
-      <li>{A_nameDef} says {X_definite} waits behind the barn door for {A_objective} and no one else. It happened twice before breakfast today.</li>
+      <li>When {A_nameDef} walked past, {X_definite} ran at {A_possessive} ankles and then dashed off.</li>
+      <li>Once again {X_definite} went for {A_nameDef}'s heels and ran away before {A_pronoun} could do anything.</li>
+      <li>{A_nameDef} still can't walk past {X_definite} without {X_objective} running at {A_possessive} ankles.</li>
     </texts>
     <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Pester</scene></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_HatedByAnimal</thought></li>
     </effects>
   </ColonyCouncil.EncounterDef>
@@ -299,14 +300,17 @@
       <bondedToA>true</bondedToA>
       <named>true</named>
     </stranger>
+    <!-- Only an animal old for its kind (its words say it is slowing down). -->
+    <moment>x:oldanimal</moment>
     <weight>0.5</weight>
     <cooldownDays>15</cooldownDays>
     <texts>
-      <li>This morning it took {X_definite} a long time to get up, and longer to manage the step. {A_nameDef} waited at the bottom and didn't say a word.</li>
-      <li>These days {X_definite} walks out to meet {A_nameDef} in the evening instead of running. But {X_pronoun} still comes.</li>
-      <li>{A_nameDef} moved {X_definite}'s bed closer to the fire and says it's because of the draft.</li>
+      <li>These days {X_definite} walks over to meet {A_nameDef} instead of running, but {X_pronoun} still comes.</li>
+      <li>{A_nameDef} watched {X_definite} walk slowly over to {A_objective}, and waited for {X_objective} to get there.</li>
+      <li>It took {X_definite} a while to reach {A_nameDef} today, and then {X_pronoun} stayed close by {A_possessive} side.</li>
     </texts>
     <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>SlowGreet</scene></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_OldFriendSlowing</thought></li>
     </effects>
     <journal>Council_Journal_EncC_OldFriend</journal>
@@ -322,17 +326,14 @@
     <children>true</children>
     <weight>0.5</weight>
     <cooldownDays>15</cooldownDays>
-    <seasons>
-      <li>Spring</li>
-      <li>Summer</li>
-      <li>PermanentSummer</li>
-    </seasons>
+    <!-- Only an animal with newborns of its own on the map, in any season (AnimalScenes.Fits). -->
     <texts>
-      <li>In the straw this morning {A_nameDef} found a heap of squalling newborns, with {X_definite} standing over them and watching {A_objective} closely.</li>
-      <li>New mouths in the barn. {A_nameDef} tried to count them under {X_definite}'s hard stare and lost track, because they would not keep still.</li>
-      <li>{A_nameDef} spent the evening in the barn naming the newborns after members of the council, while {X_definite} dozed beside them.</li>
+      <li>{A_nameDef} went over to look at the newborns, and {X_definite} lay beside them and watched {A_objective} closely.</li>
+      <li>The young that {X_definite} had a few days ago are doing well, and {A_nameDef} stopped to look at them.</li>
+      <li>{A_nameDef} stood and watched the newborns for a while, with {X_definite} lying next to them.</li>
     </texts>
     <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Litter</scene></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_NewLitter</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_HerdGrows</thought><onlyTrait><li>Psychopath</li></onlyTrait></li>
     </effects>
@@ -348,11 +349,12 @@
     <weight>0.7</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>The last traveler who reached out to clap {A_nameDef} on the shoulder found {X_definite} in the way, standing very still and watching the hand.</li>
-      <li>{A_nameDef} never asked {X_definite} to guard {A_objective}. But whenever a stranger comes near, there {X_pronoun} is, standing just in front of {A_nameDef}, as if by accident.</li>
-      <li>The last time words got sharp between {A_nameDef} and an outsider at the gate, {X_definite} was planted between them before the second sentence, silent, eyes fixed on the stranger.</li>
+      <li>When a stranger came near {A_nameDef}, {X_definite} went and stood between them, watching the stranger.</li>
+      <li>{A_nameDef} never asked {X_definite} to guard {A_objective}, but when a visitor came close, {X_pronoun} went and stood in front of {A_objective}.</li>
+      <li>A stranger walked up near {A_nameDef}, and {X_definite} came over and stood in the way, keeping an eye on them.</li>
     </texts>
     <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Guard</scene></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Guarded</thought></li>
     </effects>
     <notable>true</notable>
@@ -369,11 +371,12 @@
     <weight>0.8</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>Well after dark, {X_definite} started making an unholy noise at nothing, and kept at it until {A_nameDef} went out in a blanket to sit with {X_objective}.</li>
-      <li>{A_nameDef} is awake because {X_definite} is awake, standing stiff-legged by the wall and staring into the dark.</li>
-      <li>{A_nameDef} lay listening to {X_definite} cry out toward the tree line, over and over, and tried not to think about what was out there.</li>
+      <li>Well after dark, {X_definite} went outside, stared into the dark and cried out again and again, and {A_nameDef} heard every call.</li>
+      <li>{A_nameDef} was still up when {X_definite} started crying out at something in the dark, and {X_pronoun} kept at it for a long while.</li>
+      <li>In the night {X_definite} stood facing the dark and called out over and over, and {A_nameDef} couldn't stop listening.</li>
     </texts>
     <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>Cry</scene></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_KeptAwake</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_NightNerves</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rattled</hediff><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree><chance>0.25</chance></li>

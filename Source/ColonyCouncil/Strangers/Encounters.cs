@@ -308,7 +308,8 @@ namespace ColonyCouncil
                 if (def.colonist != null ? !def.colonist.Allows(p, null) : !def.children && p.DevelopmentalStage.Juvenile()) continue;
                 if (!def.precepts.NullOrEmpty() && !def.precepts.Any(n => Beliefs.HasPrecept(p, n))) continue;
                 // Only a stranger they are really with: within talking range for people, in sight not far off for animals.
-                var met = strangers.Where(x => Meets(p, x)).ToList();
+                // And, for an animal's scene, one with what its words need (newborns of its own, a stranger near: Animals/AnimalScenes.cs).
+                var met = strangers.Where(x => Meets(p, x) && AnimalScenes.Fits(def, p, x)).ToList();
                 if (met.Count == 0) continue;
                 var s = Strangers.Pick(map, def.stranger, p, met);
                 if (s == null) continue;

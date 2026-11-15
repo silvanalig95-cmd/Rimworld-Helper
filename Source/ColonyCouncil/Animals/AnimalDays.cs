@@ -28,8 +28,10 @@ namespace ColonyCouncil
     /// <item>a death: an animal whose person died goes to lie by them, and cries.</item>
     /// </list>
     /// Every animal has its person for this: bonded, its master, else the one it has taken to (AnimalFacts.PersonOf), shown
-    /// on its card. Never a letter or a message, nobody hurt. "Pets as companions" on (People); the pace is the animals'
-    /// moments on How much happens. Nothing here is saved: what waits (a homecoming, a morning's word) starts again after a load.
+    /// on its card. What is said comes as it is seen: the hello as the pet reaches its person, the word at a meal as it sits
+    /// down, the remark as it lies down under the roof or by the dead (AnimalArrivals). Never a letter or a message, nobody
+    /// hurt. "Pets as companions" on (People); the pace is the animals' moments on How much happens. Nothing here is saved:
+    /// what waits (a homecoming, a morning's word) starts again after a load.
     /// </summary>
     public static class AnimalDays
     {
@@ -51,6 +53,8 @@ namespace ColonyCouncil
         private static readonly Dictionary<int, (Pawn person, int tick)> footNight = new Dictionary<int, (Pawn, int)>();
         /// <summary>Animals whose person just died: whom, and since when.</summary>
         private static readonly Dictionary<int, (Pawn dead, int tick)> mourners = new Dictionary<int, (Pawn, int)>();
+        /// <summary>Whom each animal was with an hour ago, to see that they died before another takes their place.</summary>
+        private static readonly Dictionary<int, Pawn> personSeen = new Dictionary<int, Pawn>();
         private static readonly Dictionary<int, string> weatherSeen = new Dictionary<int, string>();
         private static readonly Dictionary<int, int> alarmAt = new Dictionary<int, int>();
         private static readonly HashSet<string> presencesSeen = new HashSet<string>();
@@ -64,6 +68,7 @@ namespace ColonyCouncil
             awayLast.Clear();
             footNight.Clear();
             mourners.Clear();
+            personSeen.Clear();
             weatherSeen.Clear();
             alarmAt.Clear();
             presencesSeen.Clear();
@@ -94,9 +99,12 @@ namespace ColonyCouncil
                 if (!map.IsPlayerHome) continue;
                 var animals = map.mapPawns.SpawnedColonyAnimals.Where(AnimalTempers.Has).ToList();
                 int hour = GenLocalDate.HourOfDay(map);
-                Safe("home again", () => Homecomings(map, animals));
+                // Who is away is kept in danger too; the welcome waits for it to pass (within its three hours).
+                bool calm = map.dangerWatcher.DangerRating == StoryDanger.None;
+                Safe("home again", () => Homecomings(map, animals, calm));
+                Safe("whom each is with", () => Deaths(animals));
+                if (!calm) continue;
                 Safe("a god near", () => Uneasy(map, animals));
-                if (map.dangerWatcher.DangerRating != StoryDanger.None) continue;
                 Safe("a death", () => Mourn(map));
                 Safe("the weather", () => Weather(map, hour));
                 if (AnimalDaysMath.BedHour(hour)) Safe("the foot of the bed", () => FootOfBed(map, animals));
@@ -118,6 +126,32 @@ namespace ColonyCouncil
             if (a?.jobs == null || job == null) return false;
             a.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             return a.CurJob == job;
+        }
+
+        /// <summary>
+        /// Starts the job, with <paramref name="arrived"/> run when it gets where it is going (AnimalArrivals: the linger's spot,
+        /// the one it runs to, the animal someone sits with), so what is said comes with what is seen.
+        /// </summary>
+        internal static bool StartThen(Pawn a, Job job, Action arrived)
+        {
+            if (job == null) return false;
+            AnimalArrivals.On(job, arrived);
+            if (Start(a, job)) return true;
+            AnimalArrivals.Forget(job);
+            return false;
+        }
+
+        /// <summary>
+        /// It goes to them at this pace and keeps at their side for <paramref name="ticks"/> (JobDriver_AnimalRunTo): to greet
+        /// them with the game's nuzzle (Rimfolk_AnimalGreet), to keep close (Rimfolk_AnimalKeepClose), or at their heels a
+        /// moment (Rimfolk_AnimalPester).
+        /// </summary>
+        internal static Job RunToJob(JobDef def, Pawn whom, LocomotionUrgency pace, int ticks)
+        {
+            var job = JobMaker.MakeJob(def, whom);
+            job.count = ticks;
+            job.locomotionUrgency = pace;
+            return job;
         }
 
         internal static Job FollowJob(Pawn whom, float radius, int ticks, LocomotionUrgency pace = LocomotionUrgency.Walk)
@@ -175,10 +209,11 @@ namespace ColonyCouncil
         // ---------------- Home again ----------------
 
         /// <summary>
-        /// Someone away for hours (a caravan, a site, another home) and back: their animal comes running, a nuzzle, a word. The
-        /// loyal ones have their own homecoming (AnimalTempers); the herd's ones come less often than the pets.
+        /// Someone away for hours (a caravan, a site, another home) and back: their animal comes running, a nuzzle, and they
+        /// say hello as it reaches them. The loyal ones have their own homecoming (AnimalTempers); the herd's ones come less
+        /// often than the pets. Not while danger is about: the welcome waits for it to pass.
         /// </summary>
-        private static void Homecomings(Map map, List<Pawn> animals)
+        private static void Homecomings(Map map, List<Pawn> animals, bool calm)
         {
             foreach (var a in animals)
             {
@@ -205,24 +240,28 @@ namespace ColonyCouncil
                     awayLast.Remove(id);
                     continue;
                 }
-                // Back on the map but not up yet (still riding in, asleep): next hour.
-                if (!Together.Able(p) || !p.Spawned) continue;
+                // Back on the map but not up yet (still riding in, asleep), or danger about: next hour.
+                if (!calm || !Together.Able(p) || !p.Spawned) continue;
                 awayFrom.Remove(id);
                 awayLast.Remove(id);
                 if (AnimalTempers.Of(a) == Temper.Loyal || !Rand.Chance(AnimalDaysMath.GreetChance(AnimalFacts.Pet(a)))) continue;
-                if (Greet(a, p)) Say(p, a, Tags(a, "day:greet"));
+                var tags = Tags(a, "day:greet");
+                Greet(a, p, () => Say(p, a, tags));
             }
         }
 
-        /// <summary>It runs to them and nuzzles them (the game's own nuzzle, at a run); it stays at their side when it can't nuzzle.</summary>
-        internal static bool Greet(Pawn a, Pawn p)
+        /// <summary>
+        /// It runs to them and nuzzles them (the game's own nuzzle, JobDriver_AnimalRunTo), then keeps at their side a moment;
+        /// <paramref name="arrived"/> runs as it reaches them. At a walk for an old one slowing down (<paramref name="walk"/>),
+        /// staying longer. Its card says <paramref name="note"/> (home again, by default).
+        /// </summary>
+        internal static bool Greet(Pawn a, Pawn p, Action arrived = null, bool walk = false, string note = "CC_AnimalDay_Greet")
         {
             if (!Together.Able(p) || !MoreHabits.Calm(a) || a.GetLord() != null || (a.roping?.IsRoped ?? false) || !a.Awake()) return false;
             if (!a.Position.InHorDistOf(p.Position, 70f) || !a.CanReach(p, PathEndMode.Touch, Danger.Some)) return false;
-            var job = a.interactions != null ? JobMaker.MakeJob(JobDefOf.Nuzzle, p) : FollowJob(p, 1.6f, 900);
-            job.locomotionUrgency = LocomotionUrgency.Jog;
-            if (!Start(a, job)) return false;
-            AnimalTempers.Noted(a, "CC_AnimalDay_Greet", p.Named("PAWN"));
+            var job = RunToJob(AnimalDaysDefOf.Rimfolk_AnimalGreet, p, walk ? LocomotionUrgency.Walk : LocomotionUrgency.Jog, walk ? AnimalDaysMath.SideTicks / 2 : AnimalDaysMath.GreetTicks);
+            if (!StartThen(a, job, arrived)) return false;
+            AnimalTempers.Noted(a, note, p.Named("PAWN"));
             return true;
         }
 
@@ -254,20 +293,24 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>
+        /// The cell just past the foot of the sleeper's place in the bed, else one beside its foot (AnimalDaysMath.FootCells),
+        /// else any beside the bed, in the same room.
+        /// </summary>
         private static bool FootCell(Pawn a, Building_Bed bed, Pawn sleeper, out IntVec3 cell)
         {
             cell = IntVec3.Invalid;
             var map = bed.Map;
             var room = bed.GetRoom();
             int slot = bed.GetCurOccupantSlotIndex(sleeper);
-            var at = bed.GetSleepingSlotPos(slot < 0 ? 0 : slot);
+            var foot = bed.GetFootSlotPos(slot < 0 ? 0 : slot);
             var face = bed.Rotation.FacingCell;
-            var (x, z) = AnimalDaysMath.FootCell(at.x, at.z, face.x, face.z);
             bool Ok(IntVec3 c) => c.InBounds(map) && c.Standable(map) && c.GetFirstPawn(map) == null && c.GetRoom(map) == room && a.CanReach(c, PathEndMode.OnCell, Danger.Some);
-            var foot = new IntVec3(x, 0, z);
-            if (Ok(foot))
+            foreach (var (x, z) in AnimalDaysMath.FootCells(foot.x, foot.z, face.x, face.z))
             {
-                cell = foot;
+                var c = new IntVec3(x, 0, z);
+                if (!Ok(c)) continue;
+                cell = c;
                 return true;
             }
             foreach (var c in GenAdj.CellsAdjacentCardinal(bed))
@@ -326,17 +369,21 @@ namespace ColonyCouncil
                     .OrderByDescending(p => p == person).ThenBy(p => p.Position.DistanceToSquared(a.Position)).FirstOrDefault();
                 if (eater == null) continue;
                 if (!AnimalTempers.Ready("day:beg|" + a.thingIDNumber, AnimalDaysMath.Days(AnimalDay.Beg) * 0.4f)) continue;
-                if (!Beg(a, eater, AnimalDaysMath.BegTicks)) continue;
-                Say(eater, a, Tags(a, "day:beg", eater == person ? "mine" : null));
+                var tags = Tags(a, "day:beg", eater == person ? "mine" : null);
+                // They tell it no as it sits down beside them, still eating.
+                if (!Beg(a, eater, AnimalDaysMath.BegTicks, () =>
+                    {
+                        if (Eating(eater)) Say(eater, a, tags);
+                    })) continue;
                 return;
             }
         }
 
-        /// <summary>It goes to sit at their elbow, facing them, a while.</summary>
-        internal static bool Beg(Pawn a, Pawn eater, int ticks)
+        /// <summary>It goes to sit at their elbow, facing them, a while; <paramref name="arrived"/> as it sits down there.</summary>
+        internal static bool Beg(Pawn a, Pawn eater, int ticks, Action arrived = null)
         {
             if (!AnimalTempers.CellNear(a, eater.Position, 1, out var cell)) return false;
-            if (!Start(a, AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalBeg, cell, eater, ticks, eater))) return false;
+            if (!StartThen(a, AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalBeg, cell, eater, ticks, eater), arrived)) return false;
             AnimalTempers.Noted(a, "CC_AnimalDay_Beg", eater.Named("PAWN"));
             return true;
         }
@@ -533,9 +580,11 @@ namespace ColonyCouncil
                     !AnimalTempers.CellNear(a, a.Position, 20, out cell, c => c.Roofed(map) && map.areaManager.Home[c])) continue;
                 var job = AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalShelter, cell, IntVec3.Invalid, AnimalDaysMath.ShelterTicks);
                 job.locomotionUrgency = LocomotionUrgency.Jog;
-                if (!Start(a, job)) continue;
+                // The first one in is remarked on as it lies down under the roof.
+                var tags = Tags(a, "day:shelter", snow ? "snow" : "rain");
+                var pet = a;
+                if (!StartThen(a, job, done == 0 ? () => Remark(pet, tags, person) : (Action)null)) continue;
                 AnimalTempers.Noted(a, snow ? "CC_AnimalDay_ShelterSnow" : "CC_AnimalDay_Shelter");
-                if (done == 0) Remark(a, Tags(a, "day:shelter", snow ? "snow" : "rain"), person);
                 if (++done >= 3) return;
             }
         }
@@ -634,17 +683,37 @@ namespace ColonyCouncil
             {
                 var p = AnimalFacts.PersonOf(a);
                 if (p == null || !p.Spawned || p.Map != map || !Together.Able(p) || !a.CanReach(p, PathEndMode.Touch, Danger.Some)) continue;
-                if (!Start(a, FollowJob(p, 1.5f, AnimalDaysMath.SideTicks, LocomotionUrgency.Jog))) continue;
-                if (done == 0) a.caller?.DoCall(false);
+                // The first cries out as it goes, and is remarked on once it is at their side.
+                var tags = Tags(a, "day:uneasy");
+                var pet = a;
+                var job = RunToJob(AnimalDaysDefOf.Rimfolk_AnimalKeepClose, p, LocomotionUrgency.Jog, AnimalDaysMath.SideTicks);
+                if (!StartThen(a, job, done == 0 ? () => Remark(pet, tags, p) : (Action)null)) continue;
+                if (done == 0) a.caller?.DoCall();
                 AnimalTempers.Noted(a, "CC_AnimalDay_Uneasy", p.Named("PAWN"));
-                if (done == 0) Remark(a, Tags(a, "day:uneasy"), p);
                 if (++done >= 3) return;
             }
         }
 
         // ---------------- A death ----------------
 
-        /// <summary>Its person has died (AnimalTempers.Hourly, which keeps whom each animal was with): it will go to lie by them.</summary>
+        /// <summary>
+        /// Whom each animal is with, kept from hour to hour: one whose person was alive an hour ago and is dead now will go to
+        /// lie by them (<see cref="Notify_PersonDied"/>), seen before another takes their place.
+        /// </summary>
+        private static void Deaths(List<Pawn> animals)
+        {
+            foreach (var a in animals)
+            {
+                int id = a.thingIDNumber;
+                if (personSeen.TryGetValue(id, out var before) && before != null && before.Dead) Notify_PersonDied(a, before);
+                var now = AnimalFacts.PersonOf(a);
+                if (now != null) personSeen[id] = now;
+                else if (before != null && before.Dead) personSeen.Remove(id);
+            }
+            if (personSeen.Count > 500) personSeen.RemoveAll(kv => kv.Value == null || kv.Value.Dead);
+        }
+
+        /// <summary>Its person has died (<see cref="Deaths"/>, or a dev action): it will go to lie by them.</summary>
         public static void Notify_PersonDied(Pawn a, Pawn dead)
         {
             if (!On || a == null || dead == null || dead.Corpse == null) return;
@@ -676,11 +745,12 @@ namespace ColonyCouncil
                 if (!AnimalTempers.CellNear(a, at.Position, 1, out var cell)) continue;
                 var job = AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalMourn, cell, at, AnimalDaysMath.MournTicks, dead);
                 job.locomotionUrgency = LocomotionUrgency.Jog;
-                if (!Start(a, job)) continue;
+                // It cries out as it lies down by them (the job's own call, Rimfolk_AnimalMourn), and whoever sees it says so then.
+                var tags = Tags(a, "day:mourn");
+                var pet = a;
+                if (!StartThen(a, job, () => Remark(pet, tags, null, dead.Named("OTHER")))) continue;
                 mourners.Remove(kv.Key);
-                a.caller?.DoCall(false);
                 AnimalTempers.Noted(a, "CC_AnimalDay_Mourn", dead.Named("OTHER"));
-                Remark(a, Tags(a, "day:mourn"), null, dead.Named("OTHER"));
             }
         }
 
@@ -709,11 +779,9 @@ namespace ColonyCouncil
                     foreach (var a in animals.InRandomOrder())
                     {
                         var p = AnimalFacts.PersonOf(a);
-                        if (p != null && p.Spawned && p.Map == map && Greet(a, p))
-                        {
-                            Say(p, a, Tags(a, "day:greet"));
-                            return a.LabelShort + " runs to " + p.LabelShort + ".";
-                        }
+                        var tags = Tags(a, "day:greet");
+                        if (p != null && p.Spawned && p.Map == map && Greet(a, p, () => Say(p, a, tags)))
+                            return a.LabelShort + " runs to " + p.LabelShort + " (the hello comes as it reaches them).";
                     }
                     return "no animal here whose person is up on this map and reachable.";
                 }
@@ -736,11 +804,9 @@ namespace ColonyCouncil
                     foreach (var a in animals.Where(x => AnimalDaysMath.MayBeg(x.RaceProps.baseBodySize, !AnimalFacts.Pet(x))).InRandomOrder())
                     {
                         var eater = eaters.OrderBy(p => p.Position.DistanceToSquared(a.Position)).FirstOrDefault(p => a.CanReach(p, PathEndMode.Touch, Danger.Some));
-                        if (eater != null && Beg(a, eater, AnimalDaysMath.BegTicks))
-                        {
-                            Say(eater, a, Tags(a, "day:beg"));
-                            return a.LabelShort + " sits at " + eater.LabelShort + "'s elbow.";
-                        }
+                        var tags = Tags(a, "day:beg");
+                        if (eater != null && Beg(a, eater, AnimalDaysMath.BegTicks, () => Say(eater, a, tags)))
+                            return a.LabelShort + " goes to sit at " + eater.LabelShort + "'s elbow (the word comes as it sits down).";
                     }
                     return eaters.Count == 0 ? "nobody is eating right now (sat with their food)." : "no pet (a dog's size or less) that can get to them.";
                 }
@@ -810,12 +876,12 @@ namespace ColonyCouncil
                     {
                         var p = AnimalFacts.PersonOf(a);
                         if (p == null || !p.Spawned || p.Map != map || !a.CanReach(p, PathEndMode.Touch, Danger.Some)) continue;
-                        if (Start(a, FollowJob(p, 1.5f, AnimalDaysMath.SideTicks, LocomotionUrgency.Jog))) n++;
-                        if (n == 1)
-                        {
-                            a.caller?.DoCall(false);
-                            Remark(a, Tags(a, "day:uneasy"), p);
-                        }
+                        var tags = Tags(a, "day:uneasy");
+                        var pet = a;
+                        var job = RunToJob(AnimalDaysDefOf.Rimfolk_AnimalKeepClose, p, LocomotionUrgency.Jog, AnimalDaysMath.SideTicks);
+                        if (!StartThen(a, job, n == 0 ? () => Remark(pet, tags, p) : (Action)null)) continue;
+                        if (n == 0) a.caller?.DoCall();
+                        n++;
                     }
                     return n == 0 ? "no pet here with its person up on this map." : n + " pets keep close to their people.";
                 }
@@ -827,7 +893,6 @@ namespace ColonyCouncil
                         if (p == null || !p.Spawned || p.Map != map) continue;
                         if (!AnimalTempers.CellNear(a, p.Position, 1, out var cell)) continue;
                         if (!Start(a, AnimalTempers.Linger(AnimalDaysDefOf.Rimfolk_AnimalMourn, cell, p, 1500, p))) continue;
-                        a.caller?.DoCall(false);
                         return a.LabelShort + " lies down by " + p.LabelShort + " and cries, as it would by them dead (shown on the living for the look).";
                     }
                     return "no animal here with its person on this map.";

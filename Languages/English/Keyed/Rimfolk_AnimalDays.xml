@@ -21,6 +21,11 @@
   <CC_AnimalScene_Trick>jumped about in front of {PAWN_nameDef}</CC_AnimalScene_Trick>
   <CC_AnimalScene_Confide>sat with {PAWN_nameDef} a while</CC_AnimalScene_Confide>
   <CC_AnimalScene_Pester>ran at {PAWN_nameDef}'s heels and off again</CC_AnimalScene_Pester>
+  <CC_AnimalScene_Greet>ran over to greet {PAWN_nameDef}</CC_AnimalScene_Greet>
+  <CC_AnimalScene_SlowGreet>walked slowly over to {PAWN_nameDef} and stayed by {PAWN_objective}</CC_AnimalScene_SlowGreet>
+  <CC_AnimalScene_Litter>lay by {PET_possessive} newborns while {PAWN_nameDef} looked at them</CC_AnimalScene_Litter>
+  <CC_AnimalScene_Guard>stood between {PAWN_nameDef} and {OTHER_nameDef}</CC_AnimalScene_Guard>
+  <CC_AnimalScene_Cry>cried out into the dark at night</CC_AnimalScene_Cry>
 
   <!-- Its card: whom it has taken to, with no bond and no master. -->
   <CC_AnimalDay_Inspect_TakesTo>fond of {PAWN_nameDef}</CC_AnimalDay_Inspect_TakesTo>
@@ -29,5 +34,9 @@
   <CC_AnimalJob_Beg>begging from {OTHER}.</CC_AnimalJob_Beg>
   <CC_AnimalJob_Play>playing with {OTHER}.</CC_AnimalJob_Play>
   <CC_AnimalJob_Mourn>lying by {OTHER}'s side.</CC_AnimalJob_Mourn>
+  <CC_AnimalJob_Greet>greeting {OTHER}.</CC_AnimalJob_Greet>
+  <CC_AnimalJob_KeepClose>keeping close to {OTHER}.</CC_AnimalJob_KeepClose>
+  <CC_AnimalJob_Pester>running at {OTHER}'s heels.</CC_AnimalJob_Pester>
+  <CC_AnimalJob_Guard>standing in front of {OTHER}.</CC_AnimalJob_Guard>
 
 </LanguageData>

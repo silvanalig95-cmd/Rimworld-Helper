@@ -195,8 +195,6 @@ namespace ColonyCouncil
                 var animals = map.mapPawns.SpawnedColonyAnimals.Where(Has).ToList();
                 foreach (var a in animals)
                 {
-                    // Its person just died: it goes to lie by them (Animals/AnimalDays.cs), before another takes their place.
-                    if (lastPerson.TryGetValue(a.thingIDNumber, out var before) && before != null && before.Dead) AnimalDays.Notify_PersonDied(a, before);
                     var person = AnimalFacts.PersonOf(a);
                     if (person != null) lastPerson[a.thingIDNumber] = person;
                 }
@@ -433,11 +431,11 @@ namespace ColonyCouncil
 
         private static bool Meal(Thing t) => t.def.ingestible?.IsMeal ?? false;
 
-        /// <summary>A meal or a few mouthfuls from the stores, or off a table: it goes there and eats them.</summary>
-        private static bool Greedy(Pawn a, Map map, out string why)
+        /// <summary>A meal or a few mouthfuls from the stores, or off a table (not with <paramref name="storesOnly"/>): it goes there and eats them.</summary>
+        private static bool Greedy(Pawn a, Map map, out string why, bool storesOnly = false)
         {
             why = null;
-            var food = GenRadial.RadialDistinctThingsAround(a.Position, map, 30f, true).Where(t => Snack(a, t)).Take(40).ToList();
+            var food = GenRadial.RadialDistinctThingsAround(a.Position, map, 30f, true).Where(t => Snack(a, t) && (!storesOnly || !OnTable(t))).Take(40).ToList();
             var pick = food.OrderByDescending(t => (OnTable(t) ? 2 : 0) + (Meal(t) ? 1 : 0)).ThenBy(t => t.Position.DistanceToSquared(a.Position)).FirstOrDefault();
             if (pick == null)
             {
@@ -535,8 +533,8 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>A raid on the stores (an encounter's, Animals/AnimalScenes.cs): it goes and eats a few mouthfuls, as a greedy one would.</summary>
-        internal static bool RaidStores(Pawn a) => a?.Map != null && Greedy(a, a.Map, out _);
+        /// <summary>A raid on the stores (an encounter's, Animals/AnimalScenes.cs): it goes and eats a few mouthfuls there, as a greedy one would, never off a table.</summary>
+        internal static bool RaidStores(Pawn a) => a?.Map != null && Greedy(a, a.Map, out _, true);
 
         // ---------------- Mischievous ----------------
 

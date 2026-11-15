@@ -80,7 +80,12 @@ public static class AnimalDaysTests
 
         // ================= Where and when =================
 
-        C(AnimalDaysMath.FootCell(10, 10, 0, 1) == (10, 9) && AnimalDaysMath.FootCell(4, 7, 1, 0) == (3, 7), "the foot of the bed: past the sleeper, away from the head");
+        var foot = AnimalDaysMath.FootCells(10, 10, 0, 1);
+        C(foot.Length == 3 && foot[0] == (10, 9) && foot.Contains((11, 10)) && foot.Contains((9, 10)), "the foot of the bed: just past its foot end, else beside its foot");
+        C(AnimalDaysMath.FootCells(4, 7, 1, 0)[0] == (3, 7) && AnimalDaysMath.FootCells(4, 7, -1, 0)[0] == (5, 7) && AnimalDaysMath.FootCells(4, 7, 0, -1)[0] == (4, 8),
+            "whichever way the bed faces");
+        C(AnimalDaysMath.Newborn(2f, true) && !AnimalDaysMath.Newborn(20f, true) && !AnimalDaysMath.Newborn(1f, false), "a litter: its own kind, born within days");
+        C(AnimalDaysMath.CryHour(23) && AnimalDaysMath.CryHour(3) && !AnimalDaysMath.CryHour(12), "crying out at night");
         C(AnimalDaysMath.Homecoming(6f, 1f) && !AnimalDaysMath.Homecoming(1f, 0.5f) && !AnimalDaysMath.Homecoming(24f, 5f), "home after hours away, greeted soon after; not after a stroll, not long after");
         C(AnimalDaysMath.Huddles(-15f) && !AnimalDaysMath.Huddles(0f), "a bitter night, not a cool one");
         C(AnimalDaysMath.Shelters(0.8f, 0f) && AnimalDaysMath.Shelters(0f, 0.8f) && !AnimalDaysMath.Shelters(0.1f, 0f), "rain or snow, not a drizzle");
@@ -102,10 +107,22 @@ public static class AnimalDaysTests
             "every named animal has its person: bonded, its master, else the one it is fond of");
         C(tempers.Contains("var person = AnimalFacts.PersonOf(a);") && Regex.Matches(tempers, @"PetTracker\.PersonOf\(a\)").Count == 1,
             "the temperaments show with that person, the fight's stand alone kept to a bond or a master");
-        C(tempers.Contains("AnimalDays.Notify_PersonDied(a, before)") && tempers.Contains("AnimalDays.Alarm(map, hostiles)"), "a death and a raid reach the animals' days");
+        C(days.Contains("Notify_PersonDied(a, before)") && days.Contains("Safe(\"whom each is with\", () => Deaths(animals));") && tempers.Contains("AnimalDays.Alarm(map, hostiles)"),
+            "a death (seen in the animals' own hour, with or without temperaments) and a raid reach the animals' days");
         C(life.Contains("AnimalDays.Hourly") && life.Contains("AnimalScenes.Hourly") && life.Contains("AnimalFacts.PersonOf(a)"), "the animals' hour runs them, and a pet follows its person");
         C(bonds.Contains("AnimalDaysMath.MayBefriend(") && bonds.Contains("Nights(book, animals,"), "friends across kinds in the barn");
         C(encounters.Contains("AnimalScenes.Begin(def, ctx, () => Told(def, comp, map, a, x, ctx, text))"), "an encounter with a scene is told once it has played");
+        C(encounters.Contains("AnimalScenes.Fits(def, p, x)"), "an encounter whose words need newborns or a stranger is only cast with them there");
+        // What is said comes as it is seen: the line or the news as the animal gets there (AnimalArrivals).
+        string natureJobs = inspect;
+        C(jobs.Contains("internal static class AnimalArrivals") && Regex.Matches(jobs + natureJobs, @"AnimalArrivals\.Arrived\(job\)").Count >= 3,
+            "the linger, the run to someone and sitting with an animal each say what waited as they arrive");
+        C(Regex.IsMatch(days, @"Greet\(a, p, \(\) => Say\(p, a, tags\)\)") && Regex.IsMatch(days, @"Beg\(a, eater, AnimalDaysMath\.BegTicks, \(\) =>"),
+            "the hello as the pet reaches its person, the word at a meal as it sits down");
+        C(Regex.Matches(days, @"StartThen\(").Count >= 5 && Regex.Matches(scenes, @"StartThen\(").Count >= 6, "the remarks and the encounters wait for the animal to get there");
+        C(!Regex.IsMatch(scenes, @"case AnimalScene\.(Greet|SlowGreet|Plate|Shadow|Comfort|Confide|Pester|Litter|Guard|Cry):[^;]*Tell\("),
+            "the scenes told on arrival are not told as they start");
+        C(tempers.Contains("Greedy(a, a.Map, out _, true)"), "the raid on the stores is never on a table");
         C(scenes.Contains("AnimalScenes.Telling") && scenes.Contains("public class DilemmaEffect_AnimalScene"), "the scene's own effect does nothing while its words are told");
         C(inspect.Contains("AnimalDays.InspectPart(a)"), "the card says whom it is fond of");
         C(Regex.Matches(debug, @"\[DebugAction\(""Rimfolk"", ""Animals: ").Count == 3, "the dev actions: whom each is with, a moment now, a scene now");
@@ -141,7 +158,16 @@ public static class AnimalDaysTests
         // The encounters that play out now, and their words.
         var enc = XDocument.Load(Path.Combine(defs, "EncounterDefs", "Council_Encounters_Creatures.xml")).Root!.Elements("ColonyCouncil.EncounterDef").ToList();
         var withScene = enc.Where(e => e.Descendants("li").Any(li => (string)li.Attribute("Class") == "ColonyCouncil.DilemmaEffect_AnimalScene")).ToList();
-        C(withScene.Count >= 10, $"ten of the animals' encounters play out first ({withScene.Count})");
+        C(withScene.Count >= 15, $"fifteen of the animals' encounters play out first ({withScene.Count})");
+        foreach (var name in new[] { "Council_EncC_AnimalGrudge", "Council_EncC_OldFriend", "Council_EncC_NewLitter", "Council_EncC_StoodBetween", "Council_EncC_NightCrying" })
+            C(withScene.Any(e => e.Element("defName")!.Value == name), $"{name} plays out first");
+        foreach (AnimalScene s in Enum.GetValues(typeof(AnimalScene)))
+            C(s == AnimalScene.None || withScene.Any(e => e.Descendants("scene").First().Value == s.ToString())
+              || arcs0().Contains("<scene>" + s + "</scene>"), $"the scene {s} is used");
+        var old = enc.First(e => e.Element("defName")!.Value == "Council_EncC_OldFriend");
+        C(old.Element("moment")?.Value == "x:oldanimal", "the old friend slowing down is only an old animal");
+        var litter = enc.First(e => e.Element("defName")!.Value == "Council_EncC_NewLitter");
+        C(litter.Element("seasons") == null && scenes.Contains("case AnimalScene.Litter: return YoungOf(x).Count > 0;"), "the new litter only with newborns of its own, in any season");
         foreach (var e in withScene)
         {
             string name = e.Element("defName")!.Value;
@@ -150,6 +176,7 @@ public static class AnimalDaysTests
             C(e.Element("texts")!.Elements("li").All(t => !t.Value.StartsWith("{X_")), $"{name}: no text starts with the animal");
             C(!e.Descendants("li").Any(li => (string)li.Attribute("Class") == "ColonyCouncil.DilemmaEffect_Consume"), $"{name}: nothing taken from the stores besides what is eaten on the map");
         }
+        string arcs0() => File.ReadAllText(Path.Combine(defs, "ArcDefs", "Rimfolk_Arcs_Animals.xml")) + File.ReadAllText(Path.Combine(defs, "ArcDefs", "Rimfolk_Arcs_Mods_PokeWorld.xml"));
         var arcs = XDocument.Load(Path.Combine(defs, "ArcDefs", "Rimfolk_Arcs_Animals.xml")).Root!.Elements("ColonyCouncil.ArcDef").ToList();
         string[] play = { "DilemmaEffect_Visit", "DilemmaEffect_Follow", "DilemmaEffect_AnimalScene", "DilemmaEffect_Rest" };
         foreach (var a in arcs)
