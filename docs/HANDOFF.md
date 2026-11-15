@@ -173,6 +173,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     drinks or smokes it of an evening (the game's own effect, one gone from their pack); a trader never touches the
     goods. 8. With Hospitality, its guests keep to Hospitality's recreation and only come to a fire in the cold or under a
     roof in the rain. 9. Turn the setting off: they stand about and wander as before.
+- 0.238.2, **Every chapter its god's sign**
+  (15 November 2026; the player, with a screenshot of the Gods' book where Ducat, Smoulder, the moon, Hollin and Mog all
+  showed the seal: "god's book still shows the same icon for many"). Cause: 0.238.1 showed a god's sign only once someone
+  had told what the god is, so most chapters kept the seal. Now `GodSignsMath.SignGods` (pure, tested in
+  `GodsUnderstoodTests`) gives each chapter of `GodLorePage` the god it was told of, or else the god its name belongs to
+  (`LoreName.god`), the earliest heard first; the seal is left only on a later untold name of a god whose sign already
+  shows, so the book never shows that two names are one god. The plain line still waits for what is told. Try in the
+  game: the Gods' book's list and chapters each with their god's coloured sign.
 - 0.238.1, **The Gods' book's signs and page,
   fixed** (14 November 2026; the player, with a screenshot of chapter VI "The Stranger": "the gods' book is bugged and
   these are not the icons you created here??", then "yes"). Causes: the game's own measuring (`Text.CalcSize`,

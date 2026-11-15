@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every chapter its sign
+
+*15 November 2026, version 0.238.2*
+
+- Every chapter of the Gods' book now shows its god's coloured sign, the god it was told of or the god its name belongs to.
+- The plain seal stays only on a second name of a god whose sign already shows elsewhere, so the book never gives away that two names are one god.
+
 ## The Gods' book mended
 
 *14 November 2026, version 0.238.1*
