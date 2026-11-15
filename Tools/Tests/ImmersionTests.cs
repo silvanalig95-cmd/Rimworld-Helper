@@ -47,6 +47,8 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines",
         // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
         "Rimfolk_VisitorLines2",
+        // What visitors say as they start something of their own in an idle hour (Visitors/IdleHours.cs).
+        "Rimfolk_Pool_VisitorIdle",
         // What callers say at their work, beside their event's own lines (Visitors/Callers.cs).
         "Rimfolk_Pool_CallerSays",
         // A caster of the peoples naming their craft, the colony's remark, a raider's craft named, a spell in peace's word and

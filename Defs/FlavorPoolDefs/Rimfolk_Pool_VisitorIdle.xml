@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a visitor says now and then as they start something of their own in an idle hour (Source/ColonyCouncil/Visitors/
+    IdleHours.cs), over their head through Speech: one plain sentence each. The moments: company (said to one of the
+    colony's people they stand beside), fire, warm, seat, shelter, snack, game, music, stars, art, pray, animal, play (a
+    child), drink, smoke, pipe, carve, and giveway (said to one of the colony's people they give a game or a seat up to).
+    Tagged by their people's age (theirLowtech, theirHightech) and calling (their:herders), as Rimfolk_VisitorLines.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_VisitorIdle</defName>
+    <lines>
+      <plain>
+        <li>[company] Mind if I stand here with you for a while?</li>
+        <li>[company] It's a quiet day here, isn't it?</li>
+        <li>[company] How long have you lived here?</li>
+        <li>[company] We've been on the road a while, so it's good to talk to someone new.</li>
+        <li>[company,their:traders] Business is slow today, so I came over to say hello.</li>
+        <li>[fire] It's good to sit by a fire after a long walk.</li>
+        <li>[fire] I'll sit here by the fire for a while.</li>
+        <li>[fire] We don't often get to sit by a fire like this on the road.</li>
+        <li>[fire,theirLowtech] At home we sit around the fire every evening.</li>
+        <li>[warm] My hands are freezing.</li>
+        <li>[warm] It's cold out, so I need to warm up a bit.</li>
+        <li>[warm] A few minutes by the fire and I'll be fine.</li>
+        <li>[seat] My feet hurt, so I'm going to sit down.</li>
+        <li>[seat] I'll sit here and wait.</li>
+        <li>[seat] It's nice to sit on a proper bench for a change.</li>
+        <li>[shelter] I'm getting out of this rain.</li>
+        <li>[shelter] I'll wait under here until it stops.</li>
+        <li>[shelter] There's no point standing out there getting soaked.</li>
+        <li>[snack] Time for a bite to eat.</li>
+        <li>[snack] I brought some food with me, so I'll have some now.</li>
+        <li>[snack] Just a little something to keep me going.</li>
+        <li>[game] Nobody is using this, so I'll have a go.</li>
+        <li>[game] I haven't played this in a long time.</li>
+        <li>[game] Let's see if I still remember how to play.</li>
+        <li>[game,theirLowtech] We play something like this at home.</li>
+        <li>[music] I hope nobody minds if I play for a bit.</li>
+        <li>[music] I haven't played one of these in a long time.</li>
+        <li>[music] Just a short tune, and then I'll leave it be.</li>
+        <li>[stars] It's a clear night, so it's a good time to look at the stars.</li>
+        <li>[stars] I've never looked through one of these before.</li>
+        <li>[stars,theirHightech] We had one like this back home.</li>
+        <li>[art] Someone here put a lot of work into this.</li>
+        <li>[art] That's well made.</li>
+        <li>[art] I'd like to know who made this.</li>
+        <li>[pray] I'll say a short prayer here.</li>
+        <li>[pray] It's good to find a shrine to our god this far from home.</li>
+        <li>[pray] I always pray before we move on.</li>
+        <li>[animal] Easy now, let me brush you down.</li>
+        <li>[animal] You've carried a lot today, haven't you?</li>
+        <li>[animal] Let me have a look at your feet.</li>
+        <li>[animal,their:herders] I'll check on the animals while we wait.</li>
+        <li>[play] Come and play with me!</li>
+        <li>[play] You can't catch me.</li>
+        <li>[play] I'm going to run to that tree and back.</li>
+        <li>[drink] I brought my own, so don't worry.</li>
+        <li>[drink] I'll have a drink before we go on.</li>
+        <li>[drink] Just one, and then I'll stop.</li>
+        <li>[smoke] I'll just have a quick smoke.</li>
+        <li>[smoke] Don't worry, these are my own.</li>
+        <li>[pipe] Time for a pipe.</li>
+        <li>[pipe] I always have a pipe after a long walk.</li>
+        <li>[pipe] I like to smoke a pipe when we stop for a while.</li>
+        <li>[carve] I carve a little whenever we stop.</li>
+        <li>[carve] I'm making a spoon for the road.</li>
+        <li>[carve] It passes the time, and the children like the little animals I make.</li>
+        <li>[giveway] Go ahead, it's yours, I was only using it while it was free.</li>
+        <li>[giveway] Sorry, I'll get out of your way.</li>
+        <li>[giveway] Here, you have it, I'm done.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
