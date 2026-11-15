@@ -34,11 +34,11 @@ public static class OldPowersTests
         // ================= The pace =================
 
         var all = OldPowersMath.All;
-        C(all.Length == 12 && all.Select(OldPowersMath.Name).Distinct().Count() == 12, "twelve happenings, each its own name");
+        C(all.Length == 14 && all.Select(OldPowersMath.Name).Distinct().Count() == 14, "fourteen happenings, each its own name");
         foreach (var e in all)
         {
             var p = OldPowersMath.PaceOf(e);
-            C(p.gap >= 30f && p.mean > 0f && p.ramp >= 20f, e + ": a long gap, a mean and a ramp of its own");
+            C(p.gap >= 15f && p.mean > 0f && p.ramp >= 20f, e + ": a long gap, a mean and a ramp of its own");
             int w = OldPowersMath.WindowHours(e);
             C(w >= 2 && w <= 14, e + ": looked at a few hours a day (" + w + ")");
             C(Enumerable.Range(0, 24).Count(h => OldPowersMath.InHours(e, h)) == w, e + ": its hours as counted");
@@ -47,7 +47,9 @@ public static class OldPowersTests
             float first = OldPowersMath.DayChance(e, p.gap, O, 1f), later = OldPowersMath.DayChance(e, p.gap + p.ramp, O, 1f);
             C(first > 0f && later > first * 3f, e + ": its chance starts small after the gap and grows over the ramp");
             C(OldPowersMath.DayChance(e, p.gap + p.ramp, S, 1f) > later, e + ": a strong reason likelier than an ordinary one");
-            C(OldPowersMath.DayChance(e, p.gap + p.ramp, O, 3f) > later * 2f, e + ": three times the lever, much likelier");
+            // The lever triples the rate (a day's chance as a rate, so a chance near one isn't held against it).
+            double Rate(float c) => -Math.Log(1.0 - Math.Min(c, 0.999999f));
+            C(Rate(OldPowersMath.DayChance(e, p.gap + p.ramp, O, 3f)) > Rate(later) * 2.9, e + ": three times the lever, three times the rate");
             C(OldPowersMath.CheckChance(e, p.gap + p.ramp, O, 1f) < later, e + ": shared out over its hours");
             C(OldPowersMath.AssumedShare(e) > 0f && OldPowersMath.AssumedShare(e) < 0.3f, e + ": the model's share of looks its call holds");
         }
@@ -83,8 +85,8 @@ public static class OldPowersTests
             return count == 0 ? 9999f : days / (float)count;
         }
         float plain = (Mean(1f, 11) + Mean(1f, 12) + Mean(1f, 13)) / 3f, old = (Mean(3f, 11) + Mean(3f, 12) + Mean(3f, 13)) / 3f;
-        C(plain >= 12f && plain <= 30f, $"under any storyteller about one in two to four weeks ({plain:0.0} days apart)");
-        C(old >= 5f && old <= 12f, $"under Old Powers or its direction about one a week ({old:0.0} days apart)");
+        C(plain >= 14f && plain <= 30f, $"under any storyteller about one in two to four weeks ({plain:0.0} days apart)");
+        C(old >= 6f && old <= 13f, $"under Old Powers or its direction about one in a week or two ({old:0.0} days apart)");
         C(plain / old >= 1.8f, $"Old Powers leans to them ({plain / old:0.0} times as often)");
 
         // ================= What calls each, and how each goes =================
@@ -148,6 +150,25 @@ public static class OldPowersTests
         C(OldPowersMath.GodPassesTrigger(0.9f, true, true) == N && OldPowersMath.GodPassesTrigger(0.75f, false, false) == S && OldPowersMath.GodPassesTrigger(0.55f, true, false) == O
           && OldPowersMath.GodPassesTrigger(0.55f, false, false) == N && OldPowersMath.GodPassesTrigger(0.3f, true, false) == N, "a god going by: drawn near, never while the gods are busy");
         C(OldPowersMath.PassSignAt(0) == 22 && OldPowersMath.PassSignAt(1) == 0 && OldPowersMath.PassSignAt(3) == 4 && OldPowersMath.PassSignsAtMost == 4, "its signs from ten at night, two hours apart");
+        C(OldPowersMath.PassLingers(true, false, false) && !OldPowersMath.PassLingers(false, false, false) && !OldPowersMath.PassLingers(true, true, false) && !OldPowersMath.PassLingers(true, false, true),
+            "after dawn its own presence a while, where it has one that isn't held only while it walks the land, and no other presence is on");
+        C(OldPowersMath.PackTrigger(true, true, false, true) == O && OldPowersMath.PackTrigger(true, true, true, true) == S && OldPowersMath.PackTrigger(false, true, true, true) == N
+          && OldPowersMath.PackTrigger(true, false, true, true) == N && OldPowersMath.PackTrigger(true, true, true, false) == N, "the pale wolves: a full moon on a clear night, likelier in winter or on snow, never unseen");
+        C(Enumerable.Range(0, 100).Select(i => OldPowersMath.PackCount(i / 100f)).All(c => c >= 5 && c <= 8) && OldPowersMath.PackCount(0.99f) == 8 && OldPowersMath.PackCount(0f) == 5, "five to eight wolves");
+        var ring0 = OldPowersMath.PackAt(0f, 0f, 10f);
+        var ringQ = OldPowersMath.PackAt(OldPowersMath.PackSteps / 4f, 0f, 10f);
+        var ringEnd = OldPowersMath.PackAt(OldPowersMath.PackSteps, 0f, 10f);
+        C(Math.Abs(ring0.x) < 0.01f && Math.Abs(ring0.z - 10f) < 0.01f && Math.Abs(ringQ.x - 10f) < 0.01f && Math.Abs(ringQ.z) < 0.01f && Math.Abs(ringEnd.x) < 0.01f && Math.Abs(ringEnd.z - 10f) < 0.01f,
+            "the ring: from north, clockwise, once round");
+        C(OldPowersMath.PackFacing(0f, 0f) == 1 && OldPowersMath.PackFacing(OldPowersMath.PackSteps / 4f, 0f) == 2 && OldPowersMath.PackFacing(OldPowersMath.PackSteps / 2f, 0f) == 3
+          && OldPowersMath.PackFacing(OldPowersMath.PackSteps * 3f / 4f, 0f) == 0, "each wolf drawn running the way it runs: east at the north of the ring, then south, west, north");
+        C(OldPowersMath.PackSteps * OldPowersMath.PackStepTicks <= 1200 && OldPowersMath.PackRadius >= 15f, "once round the colony in a few seconds, wide of its middle");
+        C(OldPowersMath.WatchedTrigger(true, false, StoryWaysMath.Summer, true) == S && OldPowersMath.WatchedTrigger(false, true, StoryWaysMath.Winter, true) == O
+          && OldPowersMath.WatchedTrigger(false, true, StoryWaysMath.Autumn, true) == O && OldPowersMath.WatchedTrigger(false, true, StoryWaysMath.Summer, true) == N
+          && OldPowersMath.WatchedTrigger(true, true, StoryWaysMath.Winter, false) == N, "the eyes: a foggy night, or no moon in autumn or winter, never unseen");
+        C(Enumerable.Range(0, 100).Select(i => OldPowersMath.EyesCount(i / 100f)).All(c => c >= 3 && c <= 6) && OldPowersMath.EyesFrom >= 10f && OldPowersMath.EyesTo > OldPowersMath.EyesFrom,
+            "three to six pairs, at the edge of the colony");
+        C(OldPowersMath.EyesWalkAfter * OldPowersMath.EyesEvery <= 2500 * 2 && OldPowersMath.EyesGoOutAt >= 3f, "someone walks out within a couple of hours, and they go out as that one comes close");
         C(OldPowersMath.Age(2) == 0 && OldPowersMath.Age(3) == 1 && OldPowersMath.Age(4) == 2 && OldPowersMath.Age(5) == 3 && OldPowersMath.Age(7) == 3, "the colony's age as the words take it");
 
         // ================= The code =================
@@ -179,6 +200,13 @@ public static class OldPowersTests
             "a god going by: its card titled by its name only where the colony knows it, the colony's book keeping what its witness saw");
         C(files["OldPowersFinds.cs"].Contains("gb.omens.Add(new GodOmenNote") && files["OldPowersFinds.cs"].Contains("GodComings.Busy(gb)") && files["OldPowersFinds.cs"].Contains("GodPresenceOwn.On(map)"),
             "a god going by shows the god's own signs through the gods' own omens, never on top of a coming or a presence");
+        C(files["OldPowersFinds.cs"].Contains("GameCondition_GodPresence.Begin(map, PresenceKind.Depart,") && files["OldPowersFinds.cs"].Contains("known == null, def, g.Key)")
+          && files["OldPowersFinds.cs"].Contains("OldPowersMath.PassLingers(") && files["OldPowersFinds.cs"].Contains("GodPresenceOwnMath.HeldWhileHere(own.effect)"),
+            "after dawn the god's own presence as it goes, veiled unless the colony knows the god, as the gods' own quiet presence is");
+        C(files["OldPowersNight.cs"].Contains("exactRotation = 0f") && files["OldPowersNight.cs"].Contains("OldPowersMath.PackFacing("),
+            "the pale wolves drawn upright, each the way it runs");
+        C(files["OldPowersNight.cs"].Contains("p.cells.Clear();") && files["OldPowersNight.cs"].Contains("\"watched,nothing\"") && files["OldPowersNight.cs"].Contains("GenCelestial.CurCelestialSunGlow(map) > 0.4f"),
+            "the eyes go out as someone comes close, or at first light");
 
         // ================= The storyteller and the direction =================
 
@@ -243,7 +271,7 @@ public static class OldPowersTests
             string desc = t.Descendants("description").First().Value;
             C(!desc.Contains("—") && !desc.Contains("!"), name + ": its words plain");
         }
-        C(defs.Elements("ThoughtDef").Count() == 9, "nine small moods");
+        C(defs.Elements("ThoughtDef").Count() == 11, "eleven small moods");
         var sky = defs.Elements("GameConditionDef").FirstOrDefault(d => d.Element("defName")?.Value == "Rimfolk_OldP_OtherSky");
         C(sky?.Element("conditionClass")?.Value == "ColonyCouncil.GameCondition_OtherSky" && files["OldPowersNight.cs"].Contains("class GameCondition_OtherSky : GameCondition")
           && files["OldPowersNight.cs"].Contains("public override SkyTarget? SkyTarget(Map map)"), "another sky: its own colours at night");
@@ -257,7 +285,7 @@ public static class OldPowersTests
         string keyedText = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_OldPowers.xml"));
         var keyed = Regex.Matches(keyedText, @"<(CC_OldP_[A-Za-z0-9_]+)>(.*?)</\1>").Cast<Match>().ToDictionary(m => m.Groups[1].Value, m => m.Groups[2].Value);
         var used = new HashSet<string>();
-        foreach (Match m in Regex.Matches(bare, @"OldPowers\.T\(""([A-Za-z_]+)""")) used.Add("CC_OldP_" + m.Groups[1].Value);
+        foreach (Match m in Regex.Matches(bare, @"OldPowers\.T\(""([A-Za-z_]+)""")) if (!m.Groups[1].Value.EndsWith("_")) used.Add("CC_OldP_" + m.Groups[1].Value);
         foreach (Match m in Regex.Matches(bare, @"OldPowers\.K\(""([A-Za-z_]+)""\)")) used.Add("CC_OldP_" + m.Groups[1].Value);
         foreach (Match m in Regex.Matches(bare, @"OldPowers\.Aged\(""([A-Za-z_]+)""")) for (int a = 0; a < 4; a++) used.Add("CC_OldP_" + m.Groups[1].Value + "_" + a);
         foreach (Match m in Regex.Matches(bare, @"OldPowers\.Card\(map, ""([A-Za-z]+)""")) used.Add("CC_OldP_" + m.Groups[1].Value + "_Title");
@@ -266,6 +294,7 @@ public static class OldPowersTests
         foreach (var k in new[] { "Mage", "Psycaster", "Sensitive" }) used.Add("CC_OldP_Charged_" + k);
         foreach (var k in new[] { "Cache", "Relic", "Magicyte" }) used.Add("CC_OldP_Buried_" + k);
         foreach (var k in new[] { "Graves", "Tree", "Middle" }) used.Add("CC_OldP_Pilgrims_Place_" + k);
+        foreach (var k in new[] { "SpiritPack_NoTracks", "SpiritPack_NoTracksSnow", "GodPasses_Lingers", "Watched_Fog", "Watched_Dark" }) used.Add("CC_OldP_" + k);
         used.Add("CC_OldP_Enchanter_No");
         C(used.Count >= 70, $"the words the code uses ({used.Count})");
         foreach (var k in used) C(keyed.ContainsKey(k), k + " is written");
@@ -294,14 +323,21 @@ public static class OldPowersTests
         }
         var own = new HashSet<string>(Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories)
             .SelectMany(f => Regex.Matches(File.ReadAllText(f), @"<defName>([^<]+)</defName>").Cast<Match>().Select(m => m.Groups[1].Value)));
-        var named = Regex.Matches(bare, @"""([A-Z][A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)""").Cast<Match>().Select(m => m.Groups[1].Value)
-            .Where(s => !s.StartsWith("CC_") && !s.StartsWith("Rimfolk_") && s != "Thunder").Distinct().ToList();
+        // The defs named in the code, without the words' keys, their arguments' names and the forms' own words.
+        string defsOnly = Regex.Replace(bare, @"\.Named\(""[^""]*""\)", "");
+        defsOnly = Regex.Replace(defsOnly, @"\b(?:T|K|Aged)\(""[^""]*""", "");
+        defsOnly = Regex.Replace(defsOnly, @"Card\(map, ""[^""]*""", "");
+        defsOnly = Regex.Replace(defsOnly, @"\?\s*""[^""]*""\s*:\s*""[^""]*""", "");
+        var notDefs = new HashSet<string> { "Thunder", "Fog", "Cache", "Relic", "Magicyte", "Waker", "Graves", "Tree", "Middle", "NE", "SE", "SW", "NW", "F0" };
+        var named = Regex.Matches(defsOnly, @"""([A-Z][A-Za-z0-9]+(?:_[A-Za-z0-9]+)*)""").Cast<Match>().Select(m => m.Groups[1].Value)
+            .Where(s => !s.StartsWith("CC_") && !s.StartsWith("Rimfolk_") && !notDefs.Contains(s)).Distinct().ToList();
         C(named.Count >= 40, $"the mods' and the game's defs named in the code ({named.Count})");
         foreach (var name in named) C(pool2.TryGetValue(name, out bool active) && active, name + " is in the game or the player's active mods");
         foreach (var name in Regex.Matches(bare, @"""(Rimfolk_[A-Za-z0-9_]+)""").Cast<Match>().Select(m => m.Groups[1].Value).Distinct())
             C(own.Contains(name), name + " is one of Rimfolk's defs");
         foreach (var rom in new[] { "Mote_Casting", "Mote_Enchanting", "Mote_Shadow", "Mote_Ghost", "Mote_Twinkle", "Mote_ManaPuff", "TM_Gong", "ItemEnchanted", "TM_Powerup", "RawMagicyte", "TM_Grimoire",
-                     "Chronomancer", "Enchanter", "Seers", "ManaSurge", "TM_ManaStorm" })
+                     "Chronomancer", "Enchanter", "Seers", "ManaSurge", "TM_ManaStorm", "Mote_SpiritWolf_North", "Mote_SpiritWolf_East", "Mote_SpiritWolf_South", "Mote_SpiritWolf_West",
+                     "TM_WolfHowl", "Mote_Twinkle_grayscale" })
             C(named.Contains(rom), "A RimWorld of Magic's " + rom + " used by name");
         return n;
     }

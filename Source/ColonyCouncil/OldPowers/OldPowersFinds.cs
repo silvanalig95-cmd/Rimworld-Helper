@@ -23,8 +23,9 @@ namespace ColonyCouncil
     /// beast walks up to someone of the colony out of doors, stands before them and says one true thing (the beasts taken,
     /// a fight coming, that they are sick, hungry, worn out or low), and walks away an ordinary beast again.</item>
     /// <item>A god going by: a god of the colony's drawn near, with nothing of the gods under way, goes by in the night: its
-    /// own signs one after another (GodOmens, two hours apart), and at dawn nothing more; the one who keeps it most says it
-    /// went by. Named only where the colony knows it was that god.</item>
+    /// own signs one after another (GodOmens, two hours apart), and at dawn the one who keeps it most says it went by; its
+    /// own presence (round 2) stays a while after dawn as it goes, where it has one. Named only where the colony knows it
+    /// was that god.</item>
     /// </list>
     /// </summary>
     public static class OldPowersFinds
@@ -552,8 +553,27 @@ namespace ColonyCouncil
             text += " " + (name != null && keeper != null && PawnGods.HoldOf(keeper, g) > 0f
                 ? OldPowers.T("GodPasses_Named", keeper.LabelShort.Named("KEEPER"))
                 : OldPowers.T("GodPasses_Unnamed"));
+            string lingers = Lingers(g, map, name);
+            if (lingers != null) text += "\n\n" + OldPowers.T("GodPasses_Lingers", lingers.Named("PRESENCE"));
             OldPowers.Card(map, "GodPasses", text, keeper != null ? new LookTargets(keeper) : LookTargets.Invalid, LetterDefOf.NeutralEvent, title);
             OldPowers.End(b);
+        }
+
+        /// <summary>
+        /// The god's own presence (each god's own effect) stays a while after dawn as it goes, where it has one that doesn't
+        /// last only while the god walks the land, and no other presence is on: named as the colony knows it, as Quiet does.
+        /// Its label as shown in the corner of the screen, or null when none stays.
+        /// </summary>
+        private static string Lingers(God g, Map map, string known)
+        {
+            var def = GodPresenceOwn.DefOf(g);
+            var own = def?.GetModExtension<OwnPresence>();
+            bool another = map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>() != null;
+            if (!OldPowersMath.PassLingers(own != null && own.effect != PresenceEffect.None, own != null && GodPresenceOwnMath.HeldWhileHere(own.effect), another)) return null;
+            var look = GodsWiring.LookOf(g);
+            GameCondition_GodPresence.Begin(map, PresenceKind.Depart, g.colour, look?.still ?? 0.5f, known ?? GodLore.LabelFor(Gods.Name(g)), known == null, def, g.Key);
+            var c = map.gameConditionManager.GetActiveCondition<GameCondition_GodPresence>();
+            return c?.Label;
         }
     }
 }

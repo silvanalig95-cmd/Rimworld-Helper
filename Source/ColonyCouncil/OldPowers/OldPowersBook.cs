@@ -26,6 +26,10 @@ namespace ColonyCouncil
         /// <summary>The stone, the piece to be worked, the grave or the body, the find.</summary>
         public Thing thing;
         public IntVec3 cell = IntVec3.Invalid, cell2 = IntVec3.Invalid;
+        /// <summary>The places of the eyes in the dark, six at most.</summary>
+        public List<IntVec3> cells = new List<IntVec3>();
+        /// <summary>Where on its ring the pack started (degrees from north).</summary>
+        public float angle;
         public int god = -1;
         public int count, value;
         /// <summary>The form it took (the age's, the find's, the word's), and a word kept for the card.</summary>
@@ -46,6 +50,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref thing, "thing");
             Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
             Scribe_Values.Look(ref cell2, "cell2", IntVec3.Invalid);
+            Scribe_Collections.Look(ref cells, "cells", LookMode.Value);
+            Scribe_Values.Look(ref angle, "angle");
             Scribe_Values.Look(ref god, "god", -1);
             Scribe_Values.Look(ref count, "count");
             Scribe_Values.Look(ref value, "value");
@@ -56,6 +62,7 @@ namespace ColonyCouncil
             {
                 group ??= new List<Pawn>();
                 group.RemoveAll(p => p == null);
+                cells ??= new List<IntVec3>();
             }
         }
     }

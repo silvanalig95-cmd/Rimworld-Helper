@@ -15,7 +15,9 @@
       deadroad,sight; pilgrims,pray and pilgrims,token (a pilgrim), pilgrims,seen (one of the colony); othersky;
       beast,word:<hunted|coming|sick|hungry|tired|sad|watched> (the beast: {COUNT} beasts taken, {NAME} the one it speaks
       to), beast,heard;
-      godpasses,dawn, with named ({GOD}, the colony's name for it) or scoffer.
+      godpasses,dawn, with named ({GOD}, the colony's name for it) or scoffer;
+      spiritpack,seen, spiritpack,tracks (with snow on snow);
+      watched,eyes, watched,walk and watched,nothing (the one who walked out).
   -->
 
   <ColonyCouncil.FlavorPoolDef>
@@ -133,7 +135,7 @@
         <li>[beast,word:sad] You're unhappy, {NAME}, and the others can see it.</li>
         <li>[beast,word:sad] Something is weighing on you, talk to someone about it.</li>
         <li>[beast,word:watched] Something old is watching your colony.</li>
-        <li>[beast,word:watched] You're not alone out here, you never were.</li>
+        <li>[beast,word:watched] Something has been watching your colony for a long time.</li>
         <li>[beast,heard] That animal just spoke to me, I heard every word.</li>
         <li>[beast,heard] Did anyone else hear that, or was it just me?</li>
         <li>[beast,heard] It talked to me and then walked off like a normal animal.</li>
@@ -144,6 +146,22 @@
         <li>[godpasses,dawn,named] Those were {GOD}'s signs, it went right past us.</li>
         <li>[godpasses,dawn,scoffer] A lot of strange things at night, that's all it was.</li>
         <li>[godpasses,dawn,scoffer] People will say it was a god, but nobody saw anything.</li>
+
+        <li>[spiritpack,seen] There's a pack of white wolves running round the colony.</li>
+        <li>[spiritpack,seen] Look at those wolves, they're running round us without a sound.</li>
+        <li>[spiritpack,seen] I can't hear their feet at all, those wolves.</li>
+        <li>[spiritpack,tracks] They ran right through here last night, and there isn't a single track.</li>
+        <li>[spiritpack,tracks] No tracks at all, as if nothing ran here.</li>
+        <li>[spiritpack,tracks,snow] The snow is smooth here, and they ran right across it.</li>
+        <li>[spiritpack,tracks,snow] Not a mark in the snow where those wolves ran.</li>
+
+        <li>[watched,eyes] There are eyes out there at the edge of the dark.</li>
+        <li>[watched,eyes] Something out there is looking at us, I can see its eyes.</li>
+        <li>[watched,eyes] Those eyes haven't moved since I first saw them.</li>
+        <li>[watched,walk] I'll go out and see what it is.</li>
+        <li>[watched,walk] Stay here, I'm going out to have a look.</li>
+        <li>[watched,nothing] They all went out as I got close, and there's nothing here.</li>
+        <li>[watched,nothing] Nothing here at all, not even tracks.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

@@ -26,6 +26,14 @@ namespace ColonyCouncil
     /// harm budget, the game's own shamblers walking through; else a line of pale figures that passes and is gone.</item>
     /// <item>Another sky: on a clear night in the deep of summer or winter, or under an aurora, the sky is another sky till
     /// five in the morning (its own colours, its stars wrong); those out of doors stop and look up.</item>
+    /// <item>The pale wolves: under the full moon on a clear night (in winter or on snow the likelier), a wolf howls far off,
+    /// and a pack of five to eight pale wolves (A RimWorld of Magic's spirit wolves where it is loaded) runs once round the
+    /// colony and off the land; the beasts near stand and watch, those out of doors stop and look; at dawn someone walks
+    /// out to where they ran and finds no tracks.</item>
+    /// <item>Eyes in the dark: on a foggy night, or a night with no moon in autumn or winter, pairs of eyes catch the light
+    /// at the edge of the dark round the colony, low to the ground, and don't move; those out of doors stop and look; after
+    /// a while the one handiest in a fight walks out to the nearest pair, and as they come close every pair goes out, with
+    /// nothing there. Unwalked to, they go out at first light.</item>
     /// </list>
     /// </summary>
     public static class OldPowersNight
@@ -510,6 +518,343 @@ namespace ColonyCouncil
             var c = def == null ? null : p?.map?.gameConditionManager?.GetActiveCondition(def);
             if (c != null && !c.Expired) c.End();
         }
+
+        // ================= The pale wolves =================
+
+        /// <summary>A RimWorld of Magic's spirit wolf, drawn running north, east, south and west (OldPowersMath.PackFacing's order).</summary>
+        private static readonly string[] WolfMotes = { "Mote_SpiritWolf_North", "Mote_SpiritWolf_East", "Mote_SpiritWolf_South", "Mote_SpiritWolf_West" };
+
+        private static readonly Color Wolf = new Color(0.86f, 0.9f, 0.96f), Glint = new Color(0.86f, 0.92f, 0.55f);
+
+        private static bool AnyoneAwake(Map map) => map.mapPawns.FreeColonistsSpawned.Any(p => OwnHappenings.Ours(p) && OldPowers.Awake(p));
+
+        /// <summary>Winter, or snow lying at the colony's middle.</summary>
+        private static bool WinterOrSnow(Map map) => OldPowers.Quarter(map) == StoryWaysMath.Winter || map.snowGrid.GetDepth(OwnHappenings.Middle(map)) > 0.2f;
+
+        public static GodPaceMath.Trigger PackCall(Map map) =>
+            OldPowersMath.PackTrigger(OldPowers.FullMoon, OwnHappenings.Clear(map), WinterOrSnow(map), AnyoneAwake(map));
+
+        /// <summary>A point of the pack's ring at a step, inside the land.</summary>
+        private static Vector3 RingAt(OldPowerPlay p, float step)
+        {
+            var (x, z) = OldPowersMath.PackAt(step, p.angle, OldPowersMath.PackRadius);
+            var at = p.cell.ToVector3Shifted() + new Vector3(x, 0f, z);
+            at.x = Mathf.Clamp(at.x, 1f, p.map.Size.x - 2f);
+            at.z = Mathf.Clamp(at.z, 1f, p.map.Size.z - 2f);
+            return at;
+        }
+
+        public static bool SpiritPack(OldPowersBook b, Map map, bool strong)
+        {
+            if (!AnyoneAwake(map)) return false;
+            var mid = OwnHappenings.Middle(map);
+            var p = OldPowers.Play(b, OldPower.SpiritPack, map, 12f, 120);
+            p.cell = mid;
+            p.angle = Rand.Range(0f, 360f);
+            p.value = OldPowersMath.PackCount(Rand.Value);
+            p.count = 0;
+            p.stage = 1;
+            p.strong = strong;
+            p.form = strong ? "winter" : "moon";
+            var from = RingAt(p, 0f).ToIntVec3();
+            OldPowers.Sound(map, from, "TM_WolfHowl", "Pawn_Warg_Call", "Pawn_Dog_Call");
+            OldPowers.Card(map, "SpiritPack", OldPowers.T("SpiritPack_Text", p.value.ToString().Named("COUNT"), OldPowers.Toward(mid, from).Named("POINT")),
+                new LookTargets(mid, map), LetterDefOf.NeutralEvent);
+            b.Came(OldPower.SpiritPack, Now, p.form);
+            return true;
+        }
+
+        /// <summary>One wolf of the pack at a point, running a way (degrees from north), upright, its drawing by the way it runs.</summary>
+        private static void WolfAt(Map map, Vector3 at, int facing, float angle)
+        {
+            if (!at.ShouldSpawnMotesAt(map)) return;
+            var def = DefDatabase<ThingDef>.GetNamedSilentFail(WolfMotes[((facing % 4) + 4) % 4]);
+            if (def?.mote == null)
+            {
+                OldPowers.Drift(map, at, Wolf, angle, OldPowersMath.PackRadius * 0.5f, 0.6f, 0.3f, "Mote_Ghost");
+                return;
+            }
+            try
+            {
+                if (map.moteCounter.SaturatedLowPriority) return;
+                if (!(ThingMaker.MakeThing(def) is Mote m)) return;
+                m.Scale = 1.1f;
+                m.exactPosition = at;
+                m.exactRotation = 0f;
+                m.rotationRate = 0f;
+                m.solidTimeOverride = 0.3f;
+                if (m is MoteThrown thrown) thrown.SetVelocity(angle, OldPowersMath.PackRadius * 0.5f);
+                GenSpawn.Spawn(m, at.ToIntVec3(), map);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the old powers: a pale wolf", e);
+            }
+        }
+
+        internal static void SpiritPackStep(OldPowersBook b, OldPowerPlay p, int now)
+        {
+            var map = p.map;
+            switch (p.stage)
+            {
+                case 1:
+                {
+                    // Once round the colony, the wolves one behind another.
+                    if (p.count <= OldPowersMath.PackSteps)
+                    {
+                        for (int i = 0; i < p.value; i++)
+                        {
+                            float step = p.count - i * 0.45f;
+                            if (step < 0f) continue;
+                            float run = (p.angle + 360f * step / OldPowersMath.PackSteps + 90f) % 360f;
+                            WolfAt(map, RingAt(p, step), OldPowersMath.PackFacing(step, p.angle), run);
+                        }
+                        if (p.count % 6 == 0) Watch(p, RingAt(p, p.count).ToIntVec3());
+                        p.count++;
+                        OldPowers.Next(b, p, OldPowersMath.PackStepTicks);
+                        return;
+                    }
+                    // Then off the land, straight out from the colony.
+                    var last = RingAt(p, OldPowersMath.PackSteps).ToIntVec3();
+                    p.cell2 = (p.cell + (last - p.cell) * 4).ClampInsideMap(map);
+                    p.stage = 2;
+                    p.count = 0;
+                    OldPowers.Next(b, p, OldPowersMath.PackStepTicks);
+                    return;
+                }
+                case 2:
+                {
+                    if (p.count <= OldPowersMath.PackOffSteps)
+                    {
+                        var start = RingAt(p, OldPowersMath.PackSteps);
+                        var at = Vector3.Lerp(start, p.cell2.ToVector3Shifted(), p.count / (float)OldPowersMath.PackOffSteps);
+                        float run = Angle(start.ToIntVec3(), p.cell2);
+                        for (int i = 0; i < p.value; i++)
+                            WolfAt(map, at + new Vector3(Rand.Range(-1.2f, 1.2f), 0f, Rand.Range(-1.2f, 1.2f)), Mathf.RoundToInt(run / 90f) % 4, run);
+                        p.count++;
+                        OldPowers.Next(b, p, OldPowersMath.PackStepTicks);
+                        return;
+                    }
+                    OldPowers.Minor(map, OldPowers.T("SpiritPack_Gone", OldPowers.Toward(p.cell, p.cell2).Named("POINT")), new LookTargets(p.cell, map));
+                    p.stage = 3;
+                    p.count = 0;
+                    OldPowers.Next(b, p, 1250);
+                    return;
+                }
+                case 3:
+                {
+                    // At dawn someone walks out to where they ran and looks at the ground: there are no tracks.
+                    int hour = GenLocalDate.HourOfDay(map);
+                    if (hour < 6 || hour >= 10)
+                    {
+                        OldPowers.Next(b, p, 1250);
+                        return;
+                    }
+                    var ring = OldPowers.OpenNear(map, RingAt(p, Rand.Range(0, OldPowersMath.PackSteps)).ToIntVec3(), 4);
+                    var go = ring.IsValid ? OldPowers.FreeNear(map, ring) : null;
+                    if (go == null || !OwnHappenings.GoTo(go, ring, GenDate.TicksPerHour))
+                    {
+                        if (hour >= 9) OldPowers.End(b);
+                        else OldPowers.Next(b, p, 1250);
+                        return;
+                    }
+                    p.b = go;
+                    p.cell2 = ring;
+                    p.stage = 4;
+                    OldPowers.Next(b, p, 250);
+                    return;
+                }
+                case 4:
+                {
+                    var go = p.b;
+                    if (go == null || go.Dead || !go.Spawned)
+                    {
+                        OldPowers.End(b);
+                        return;
+                    }
+                    if (!go.Position.InHorDistOf(p.cell2, 2f) && p.count++ < 16)
+                    {
+                        OldPowers.Next(b, p, 250);
+                        return;
+                    }
+                    OwnHappenings.Stand(go, p.cell2, 500);
+                    bool snow = map.snowGrid.GetDepth(p.cell2) > 0.2f;
+                    OldPowers.Say(go, snow ? "spiritpack,tracks,snow" : "spiritpack,tracks");
+                    OldPowers.Minor(map, OldPowers.T(snow ? "SpiritPack_NoTracksSnow" : "SpiritPack_NoTracks", go.LabelShort.Named("WALKER")), new LookTargets(go));
+                    OldPowers.End(b);
+                    return;
+                }
+            }
+        }
+
+        /// <summary>The beasts near the pack stand and watch it go by; those of the colony out of doors who see it stop and watch, once.</summary>
+        private static void Watch(OldPowerPlay p, IntVec3 at)
+        {
+            var map = p.map;
+            foreach (var a in map.mapPawns.AllPawnsSpawned.Where(x => x.RaceProps.Animal && !x.Dead && !x.Downed && x.Awake() && !x.InMentalState
+                                                                       && x.Position.InHorDistOf(at, OldPowersMath.PackSeenBy) && OwnHappenings.Yields(x)).Take(8).ToList())
+                OwnHappenings.Stand(a, at, 300);
+            var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Thought_OldP_SpiritPack");
+            foreach (var w in map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Ours(x) && OldPowers.Awake(x) && !x.Position.Roofed(map) && x.Position.InHorDistOf(at, 40f)
+                                                                          && GenSight.LineOfSight(x.Position, at, map, true)).ToList())
+            {
+                if (thought != null && w.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(thought) != null) continue;
+                if (OwnHappenings.Yields(w)) OwnHappenings.Stand(w, at, 600);
+                OldPowers.Memory(w, "Rimfolk_Thought_OldP_SpiritPack");
+                if (p.b == null)
+                {
+                    p.b = w;
+                    OldPowers.Say(w, "spiritpack,seen");
+                }
+            }
+        }
+
+        // ================= Eyes in the dark =================
+
+        private static bool Fog(Map map) => map.weatherManager?.curWeather?.defName?.IndexOf("Fog", StringComparison.OrdinalIgnoreCase) >= 0;
+
+        public static GodPaceMath.Trigger WatchedCall(Map map) =>
+            OldPowersMath.WatchedTrigger(Fog(map), OldPowers.Moonless, OldPowers.Quarter(map), AnyoneAwake(map));
+
+        /// <summary>A dark, open place at the edge of the colony's light, near a point.</summary>
+        private static IntVec3 DarkNear(Map map, IntVec3 at)
+        {
+            if (!at.InBounds(map)) return IntVec3.Invalid;
+            foreach (var c in GenRadial.RadialCellsAround(at, 3f, true))
+            {
+                if (!c.InBounds(map) || c.Fogged(map) || c.Roofed(map) || !c.Standable(map) || c.GetEdifice(map) != null) continue;
+                if (map.glowGrid.GroundGlowAt(c) >= OldPowersMath.EyesDarkBelow) continue;
+                return c;
+            }
+            return IntVec3.Invalid;
+        }
+
+        public static bool Watched(OldPowersBook b, Map map)
+        {
+            if (!AnyoneAwake(map)) return false;
+            var mid = OwnHappenings.Middle(map);
+            int n = OldPowersMath.EyesCount(Rand.Value);
+            float start = Rand.Range(0f, 360f);
+            var spots = new List<IntVec3>();
+            for (int i = 0; i < n; i++)
+            {
+                float a = (start + i * 360f / n + Rand.Range(-15f, 15f)) * Mathf.Deg2Rad;
+                float r = Rand.Range(OldPowersMath.EyesFrom, OldPowersMath.EyesTo);
+                var c = DarkNear(map, (mid.ToVector3Shifted() + new Vector3(Mathf.Sin(a) * r, 0f, Mathf.Cos(a) * r)).ToIntVec3());
+                if (c.IsValid && !spots.Contains(c)) spots.Add(c);
+            }
+            if (spots.Count < 2) return false;
+            var p = OldPowers.Play(b, OldPower.Watched, map, OldPowersMath.EyesHours + 1f, 60);
+            p.cells = spots;
+            p.cell = mid;
+            p.stage = 1;
+            p.count = 0;
+            p.strong = Fog(map);
+            p.form = p.strong ? "fog" : "dark";
+            OldPowers.Card(map, "Watched", OldPowers.T("Watched_Text", spots.Count.ToString().Named("COUNT"), (p.strong ? OldPowers.T("Watched_Fog") : OldPowers.T("Watched_Dark")).Named("WHEN")),
+                new LookTargets(spots.Select(c => new TargetInfo(c, map))), LetterDefOf.NeutralEvent);
+            b.Came(OldPower.Watched, Now, p.form);
+            return true;
+        }
+
+        /// <summary>A pair of eyes catching the light for a few seconds: two small glints side by side, low to the ground.</summary>
+        private static void Eyes(Map map, IntVec3 c)
+        {
+            var at = c.ToVector3Shifted() + new Vector3(0f, 0f, -0.2f);
+            var def = (Def)DefDatabase<ThingDef>.GetNamedSilentFail("Mote_Twinkle_grayscale") ?? GodFx.MoteDef;
+            foreach (float dx in new[] { -0.14f, 0.14f })
+                GodFx.Throw(def, at + new Vector3(dx, 0f, 0f), map, 0.16f, Glint, 0f, 0f, 0f, 3.6f);
+        }
+
+        internal static void WatchedStep(OldPowersBook b, OldPowerPlay p, int now)
+        {
+            var map = p.map;
+            p.cells.RemoveAll(c => !c.InBounds(map));
+            if (p.cells.Count == 0)
+            {
+                OldPowers.End(b);
+                return;
+            }
+            // Daylight, or their hours over: they go out.
+            if (now > p.until - GenDate.TicksPerHour || GenCelestial.CurCelestialSunGlow(map) > 0.4f)
+            {
+                OldPowers.Minor(map, OldPowers.T("Watched_Out"), LookTargets.Invalid);
+                OldPowers.End(b);
+                return;
+            }
+            foreach (var c in p.cells) Eyes(map, c);
+            switch (p.stage)
+            {
+                case 1:
+                {
+                    // Those of the colony out of doors who can see a pair stop and look at it, once.
+                    var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Thought_OldP_Watched");
+                    int said = 0;
+                    foreach (var w in map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Ours(x) && OldPowers.Awake(x) && !x.Position.Roofed(map)).ToList())
+                    {
+                        if (thought != null && w.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(thought) != null) continue;
+                        var seen = p.cells.Where(c => w.Position.InHorDistOf(c, 32f) && GenSight.LineOfSight(w.Position, c, map, true)).OrderBy(c => c.DistanceToSquared(w.Position)).ToList();
+                        if (seen.Count == 0) continue;
+                        if (OwnHappenings.Yields(w)) OwnHappenings.Stand(w, seen[0], 600);
+                        OldPowers.Memory(w, "Rimfolk_Thought_OldP_Watched");
+                        if (said++ < 2) OldPowers.Say(w, "watched,eyes");
+                    }
+                    // After a while the one handiest in a fight, awake and free, walks out to the nearest pair.
+                    if (++p.count >= OldPowersMath.EyesWalkAfter && p.b == null)
+                    {
+                        var go = Bravest(map, p.cells);
+                        var spot = go == null ? IntVec3.Invalid : p.cells.OrderBy(c => c.DistanceToSquared(go.Position)).First();
+                        if (go != null && OwnHappenings.GoTo(go, spot, GenDate.TicksPerHour))
+                        {
+                            p.b = go;
+                            p.cell2 = spot;
+                            p.stage = 2;
+                            p.count = 0;
+                            OldPowers.Say(go, "watched,walk");
+                        }
+                    }
+                    OldPowers.Next(b, p, OldPowersMath.EyesEvery);
+                    return;
+                }
+                case 2:
+                {
+                    var go = p.b;
+                    bool gone = go == null || go.Dead || !go.Spawned || go.Downed;
+                    if (!gone && !go.Position.InHorDistOf(p.cell2, OldPowersMath.EyesGoOutAt) && p.count++ < 30)
+                    {
+                        if (go.CurJobDef != JobDefOf.Goto) OwnHappenings.GoTo(go, p.cell2, GenDate.TicksPerHour);
+                        OldPowers.Next(b, p, 120);
+                        return;
+                    }
+                    if (gone || !go.Position.InHorDistOf(p.cell2, OldPowersMath.EyesGoOutAt))
+                    {
+                        // They didn't get there: the eyes stay, and nobody else is sent.
+                        p.stage = 3;
+                        OldPowers.Next(b, p, OldPowersMath.EyesEvery);
+                        return;
+                    }
+                    // As they come close every pair goes out at once; there is nothing there.
+                    p.cells.Clear();
+                    OwnHappenings.Stand(go, p.cell2, 600);
+                    OldPowers.Sound(map, p.cell2, "TM_WindLowSD", "TM_AirWooshLow");
+                    OldPowers.Say(go, "watched,nothing");
+                    OldPowers.Minor(map, OldPowers.T("Watched_Nothing", go.LabelShort.Named("WALKER")), new LookTargets(go));
+                    OldPowers.End(b);
+                    return;
+                }
+                default:
+                    // The eyes stay till their hours are over.
+                    OldPowers.Next(b, p, OldPowersMath.EyesEvery);
+                    return;
+            }
+        }
+
+        /// <summary>The one of the colony awake and free to go who is handiest in a fight (shooting or melee), the nearer first among equals; never a child.</summary>
+        private static Pawn Bravest(Map map, List<IntVec3> spots) =>
+            map.mapPawns.FreeColonistsSpawned.Where(x => OwnHappenings.Ours(x) && OldPowers.Awake(x) && OwnHappenings.Yields(x) && x.DevelopmentalStage.Adult()
+                                                         && spots.Any(c => x.CanReach(c, PathEndMode.OnCell, Danger.Some)))
+                .OrderByDescending(x => Math.Max(x.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0, x.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0))
+                .ThenBy(x => spots.Min(c => c.DistanceToSquared(x.Position))).FirstOrDefault();
     }
 
     /// <summary>

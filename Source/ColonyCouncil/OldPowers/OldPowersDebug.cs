@@ -37,6 +37,8 @@ namespace ColonyCouncil
                 case OldPower.OtherSky: return "another sky is already on";
                 case OldPower.Beast: return "nobody of the colony out of doors with a wild beast near";
                 case OldPower.GodPasses: return "the gods off, or no god of the colony with signs of its own that can show here";
+                case OldPower.SpiritPack: return "nobody of the colony awake";
+                case OldPower.Watched: return "nobody of the colony awake, or not two dark open places round the colony (try at night)";
                 default: return "?";
             }
         }
@@ -75,7 +77,13 @@ namespace ColonyCouncil
         private static void DebugBeast() => Fire(OldPower.Beast, "a wild beast walks up to someone of the colony out of doors and says one thing.");
 
         [DebugAction("Rimfolk", "Old powers: a god goes by now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugGodPasses() => Fire(OldPower.GodPasses, "the god's own signs come tonight from ten, two hours apart; the card comes at six in the morning.", true);
+        private static void DebugGodPasses() => Fire(OldPower.GodPasses, "the god's own signs come tonight from ten, two hours apart; the card comes at six in the morning, with the god's own presence a while after it.", true);
+
+        [DebugAction("Rimfolk", "Old powers: the pale wolves now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugSpiritPack() => Fire(OldPower.SpiritPack, "a howl, then pale wolves run once round the colony and off the land; at dawn (six to ten) someone looks for their tracks.");
+
+        [DebugAction("Rimfolk", "Old powers: eyes in the dark now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugWatched() => Fire(OldPower.Watched, "pairs of eyes at the edge of the dark round the colony; after a minute someone walks out to the nearest pair (at night only: daylight puts them out).");
 
         [DebugAction("Rimfolk", "Old powers: the next step now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugNext()

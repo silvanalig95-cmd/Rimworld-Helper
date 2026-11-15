@@ -14,12 +14,15 @@ namespace ColonyCouncil
     /// November "do ... more old powers style events"): the world feels watched. A seer at the season's turn, a night when
     /// everything faces one way, a stone that hums, a sealed scroll in the old ruins, casters burning bright under a sky of
     /// power, a wandering enchanter, a thing under the ground, the dead on the road at dusk, pilgrims passing, another sky, a
-    /// beast that speaks, a god going by in the night. Each plays out on the map, and its card says what was seen; the gods
-    /// stay unseen (a god is named only where the colony knows it was that god, Gods.CardName). They keep the gods' pace
-    /// (OldPowersMath, GodPaceMath), come three times as often under Old Powers and its story direction (the ways' lever
-    /// StoryWaysMath.Uncanny), and take the colony's age's form in their words. What hurts in them is the shared budget's
-    /// (HarmKinds.Uncanny), at its rate, and shown. A RimWorld of Magic's motes, sounds, scrolls, gems and classes by name,
-    /// with the game's own where it isn't loaded. This file is the frame: the hour, the steps, the words, the cards.
+    /// beast that speaks, a god going by in the night (its own signs, then its own presence a while after dawn), pale
+    /// wolves running round the colony under the full moon, eyes at the edge of the dark. Each plays out on the map, and
+    /// its card says what was seen; the gods stay unseen (a god is named only where the colony knows it was that god,
+    /// Gods.CardName). They keep the gods' pace (OldPowersMath, GodPaceMath), each look three times as likely under Old
+    /// Powers and its story direction (the ways' lever StoryWaysMath.Uncanny; about twice as many over a year, as the gaps
+    /// and the spacing hold), and take the colony's age's form in their words. What hurts in them is the shared budget's
+    /// (HarmKinds.Uncanny), at its rate, and shown. A RimWorld of Magic's motes (its spirit wolves among them), sounds,
+    /// scrolls, gems and classes by name, with the game's own where it isn't loaded. This file is the frame: the hour, the
+    /// steps, the words, the cards.
     /// </summary>
     public static partial class OldPowers
     {
@@ -94,6 +97,8 @@ namespace ColonyCouncil
                 case OldPower.OtherSky: return OldPowersNight.OtherSkyCall(map);
                 case OldPower.Beast: return OldPowersFinds.BeastCall(map);
                 case OldPower.GodPasses: return OldPowersFinds.GodPassesCall(map);
+                case OldPower.SpiritPack: return OldPowersNight.PackCall(map);
+                case OldPower.Watched: return OldPowersNight.WatchedCall(map);
                 default: return GodPaceMath.Trigger.None;
             }
         }
@@ -130,6 +135,8 @@ namespace ColonyCouncil
                 case OldPower.OtherSky: return OldPowersNight.OtherSky(b, map);
                 case OldPower.Beast: return OldPowersFinds.Beast(b, map);
                 case OldPower.GodPasses: return OldPowersFinds.GodPasses(b, map);
+                case OldPower.SpiritPack: return OldPowersNight.SpiritPack(b, map, strong);
+                case OldPower.Watched: return OldPowersNight.Watched(b, map);
                 default: return false;
             }
         }
@@ -216,6 +223,8 @@ namespace ColonyCouncil
                     case OldPower.OtherSky: OldPowersNight.OtherSkyStep(b, p, now); break;
                     case OldPower.Beast: OldPowersFinds.BeastStep(b, p, now); break;
                     case OldPower.GodPasses: OldPowersFinds.GodPassesStep(b, p, now); break;
+                    case OldPower.SpiritPack: OldPowersNight.SpiritPackStep(b, p, now); break;
+                    case OldPower.Watched: OldPowersNight.WatchedStep(b, p, now); break;
                 }
             });
             // A step that threw, or that set nothing further: it waits a while and looks again, never every tick.

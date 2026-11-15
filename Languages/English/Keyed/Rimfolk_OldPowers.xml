@@ -135,5 +135,21 @@
   <CC_OldP_GodPasses_Named>{KEEPER}, who holds to that god, says it went past the colony in the night without stopping.</CC_OldP_GodPasses_Named>
   <CC_OldP_GodPasses_Unnamed>Some say something went past the colony in the night.</CC_OldP_GodPasses_Unnamed>
   <CC_OldP_GodPasses_Saw>{WHO} saw signs all night at {HOME}, one after another, and then nothing more.</CC_OldP_GodPasses_Saw>
+  <CC_OldP_GodPasses_Lingers>After dawn it left something behind for a while: {PRESENCE}.</CC_OldP_GodPasses_Lingers>
+
+  <!-- The pale wolves -->
+  <CC_OldP_SpiritPack_Title>Pale wolves under the full moon</CC_OldP_SpiritPack_Title>
+  <CC_OldP_SpiritPack_Text>Under the full moon a wolf howled somewhere out in the dark, and a pack of {COUNT} pale wolves came running in from the {POINT}. They are running round the colony, and their feet make no sound.</CC_OldP_SpiritPack_Text>
+  <CC_OldP_SpiritPack_Gone>The pale wolves ran off the land to the {POINT} and were gone.</CC_OldP_SpiritPack_Gone>
+  <CC_OldP_SpiritPack_NoTracks>At dawn {WALKER} walked out to where the pale wolves ran. There were no tracks on the ground.</CC_OldP_SpiritPack_NoTracks>
+  <CC_OldP_SpiritPack_NoTracksSnow>At dawn {WALKER} walked out to where the pale wolves ran. The snow there was smooth, with no tracks in it.</CC_OldP_SpiritPack_NoTracksSnow>
+
+  <!-- Eyes in the dark -->
+  <CC_OldP_Watched_Title>Eyes in the dark</CC_OldP_Watched_Title>
+  <CC_OldP_Watched_Text>{WHEN} there are eyes at the edge of the dark round the colony, {COUNT} pairs of them, low down near the ground. They catch the light and don't move.</CC_OldP_Watched_Text>
+  <CC_OldP_Watched_Fog>Tonight, in the fog,</CC_OldP_Watched_Fog>
+  <CC_OldP_Watched_Dark>Tonight, with no moon,</CC_OldP_Watched_Dark>
+  <CC_OldP_Watched_Nothing>{WALKER} walked out to the nearest pair of eyes, and as {WALKER} got close, all the eyes went out at once. There was nothing there.</CC_OldP_Watched_Nothing>
+  <CC_OldP_Watched_Out>The eyes at the edge of the dark have gone out. Nobody saw what they belonged to.</CC_OldP_Watched_Out>
 
 </LanguageData>

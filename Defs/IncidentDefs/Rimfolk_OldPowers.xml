@@ -124,6 +124,32 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_SpiritPack</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>saw the pale wolves</label>
+        <description>Under the full moon a pack of pale wolves ran round the colony without making a sound. I've never seen anything like it.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_OldP_Watched</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>felt watched</label>
+        <description>Last night there were eyes at the edge of the dark, and they didn't move. I kept feeling that something was watching me.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
   <GameConditionDef>
     <defName>Rimfolk_OldP_OtherSky</defName>
     <conditionClass>ColonyCouncil.GameCondition_OtherSky</conditionClass>

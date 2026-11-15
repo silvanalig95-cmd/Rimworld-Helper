@@ -28,8 +28,12 @@ namespace ColonyCouncil
         OtherSky,
         /// <summary>A wild beast walks up to someone at dusk and speaks one true sentence.</summary>
         Beast,
-        /// <summary>A god drawn near goes by in the night: its own signs one after another, and at dawn nothing more.</summary>
-        GodPasses
+        /// <summary>A god drawn near goes by in the night: its own signs one after another, and for a while after dawn its own presence.</summary>
+        GodPasses,
+        /// <summary>A pack of pale wolves runs once round the colony under the full moon and is gone, leaving no tracks.</summary>
+        SpiritPack,
+        /// <summary>Pairs of eyes at the edge of the dark round the colony all evening, gone when someone walks out to them.</summary>
+        Watched
     }
 
     /// <summary>
@@ -51,7 +55,7 @@ namespace ColonyCouncil
         // ================= The pace =================
 
         /// <summary>None within this many days of another, at any lever: fewer, and stranger.</summary>
-        public const float SpacingDays = 5f;
+        public const float SpacingDays = 4f;
 
         /// <summary>
         /// A happening's pace at the lever's 1: never within <c>gap</c> days of its last; about every <c>mean</c> days of its
@@ -61,19 +65,21 @@ namespace ColonyCouncil
         {
             switch (e)
             {
-                case OldPower.Seer: return (40f, 6f, 30f);
-                case OldPower.OneWay: return (30f, 5f, 20f);
-                case OldPower.Stone: return (30f, 2.5f, 20f);
-                case OldPower.Scroll: return (40f, 1.5f, 30f);
-                case OldPower.Charged: return (30f, 1.5f, 20f);
-                case OldPower.Enchanter: return (45f, 6f, 30f);
-                case OldPower.Buried: return (40f, 5f, 25f);
-                case OldPower.DeadRoad: return (60f, 3f, 30f);
-                case OldPower.Pilgrims: return (40f, 6f, 25f);
-                case OldPower.OtherSky: return (30f, 4f, 20f);
-                case OldPower.Beast: return (35f, 4f, 20f);
-                case OldPower.GodPasses: return (40f, 5f, 30f);
-                default: return (40f, 6f, 30f);
+                case OldPower.Seer: return (24f, 36f, 30f);
+                case OldPower.OneWay: return (18f, 30f, 20f);
+                case OldPower.Stone: return (18f, 15f, 20f);
+                case OldPower.Scroll: return (24f, 9f, 30f);
+                case OldPower.Charged: return (18f, 9f, 20f);
+                case OldPower.Enchanter: return (27f, 36f, 30f);
+                case OldPower.Buried: return (24f, 30f, 25f);
+                case OldPower.DeadRoad: return (36f, 18f, 30f);
+                case OldPower.Pilgrims: return (24f, 36f, 25f);
+                case OldPower.OtherSky: return (18f, 24f, 20f);
+                case OldPower.Beast: return (21f, 24f, 20f);
+                case OldPower.GodPasses: return (24f, 30f, 30f);
+                case OldPower.SpiritPack: return (24f, 30f, 25f);
+                case OldPower.Watched: return (21f, 30f, 25f);
+                default: return (24f, 36f, 30f);
             }
         }
 
@@ -97,6 +103,8 @@ namespace ColonyCouncil
                 case OldPower.OtherSky: return (22, 1);
                 case OldPower.Beast: return (18, 22);
                 case OldPower.GodPasses: return (20, 22);
+                case OldPower.SpiritPack: return (22, 2);
+                case OldPower.Watched: return (21, 1);
                 default: return (0, 24);
             }
         }
@@ -159,6 +167,8 @@ namespace ColonyCouncil
                 case OldPower.OtherSky: return 0.08f;
                 case OldPower.Beast: return 0.10f;
                 case OldPower.GodPasses: return 0.08f;
+                case OldPower.SpiritPack: return 0.12f;
+                case OldPower.Watched: return 0.12f;
                 default: return 0.1f;
             }
         }
@@ -495,6 +505,81 @@ namespace ColonyCouncil
 
         /// <summary>The morning card comes at this hour.</summary>
         public const int PassMorning = 6;
+
+        /// <summary>
+        /// At dawn the god's own presence (round 2: each god's own effect) stays a while as it goes, where it has one and no
+        /// other presence is on the land: the presence's "a god goes" kind, as long as that kind lasts for its effect. Never
+        /// one that lasts only while its god walks the land (the white beast grazing, the warm evening, the cats' watch).
+        /// </summary>
+        public static bool PassLingers(bool hasOwnPresence, bool heldWhileHere, bool anotherOn) => hasOwnPresence && !heldWhileHere && !anotherOn;
+
+        // ================= The pale wolves =================
+
+        /// <summary>
+        /// A full moon on a clear night calls the pack; a strong reason in winter or with snow lying (the wolves' own
+        /// season). Never on a cloudy night, never with nobody awake to see it.
+        /// </summary>
+        public static GodPaceMath.Trigger PackTrigger(bool fullMoon, bool clear, bool winterOrSnow, bool anyoneAwake)
+        {
+            if (!fullMoon || !clear || !anyoneAwake) return GodPaceMath.Trigger.None;
+            return winterOrSnow ? GodPaceMath.Trigger.Strong : GodPaceMath.Trigger.Ordinary;
+        }
+
+        /// <summary>How many wolves run together (five to eight).</summary>
+        public static int PackCount(float roll) => 5 + (int)Math.Floor(Clamp01(float.IsNaN(roll) ? 0f : roll) * 3.999f);
+
+        /// <summary>The ring they run round the colony's middle (cells), its steps, the ticks between them, and how far they run off after.</summary>
+        public const float PackRadius = 22f;
+        public const int PackSteps = 36, PackStepTicks = 20, PackOffSteps = 10;
+
+        /// <summary>A point of the ring at a step (0 to <see cref="PackSteps"/>), as an offset from the middle (x east, z north), from the start's angle in degrees.</summary>
+        public static (float x, float z) PackAt(float step, float startDeg, float radius)
+        {
+            double a = (startDeg + 360.0 * step / PackSteps) * Math.PI / 180.0;
+            return ((float)(Math.Sin(a) * radius), (float)(Math.Cos(a) * radius));
+        }
+
+        /// <summary>
+        /// Which of the wolf's four drawings fits its running (0 north, 1 east, 2 south, 3 west), by its way along the ring
+        /// (clockwise from north, as the compass turns).
+        /// </summary>
+        public static int PackFacing(float step, float startDeg)
+        {
+            double a = (startDeg + 360.0 * step / PackSteps + 90.0) % 360.0;
+            if (a < 0) a += 360.0;
+            return (int)Math.Round(a / 90.0) % 4;
+        }
+
+        /// <summary>How near (cells) a beast must be to the ring to stand up and watch the pack go by.</summary>
+        public const float PackSeenBy = 30f;
+
+        // ================= Eyes in the dark =================
+
+        /// <summary>
+        /// A foggy night calls them (a strong reason); else a night with no moon in autumn or winter, when the nights are
+        /// long. Never with nobody of the colony awake.
+        /// </summary>
+        public static GodPaceMath.Trigger WatchedTrigger(bool fog, bool moonless, int quarter, bool anyoneAwake)
+        {
+            if (!anyoneAwake) return GodPaceMath.Trigger.None;
+            if (fog) return GodPaceMath.Trigger.Strong;
+            return moonless && (quarter == StoryWaysMath.Autumn || quarter == StoryWaysMath.Winter) ? GodPaceMath.Trigger.Ordinary : GodPaceMath.Trigger.None;
+        }
+
+        /// <summary>How many pairs of eyes (three to six), and how far from the colony's middle they sit (cells).</summary>
+        public static int EyesCount(float roll) => 3 + (int)Math.Floor(Clamp01(float.IsNaN(roll) ? 0f : roll) * 3.999f);
+
+        public const float EyesFrom = 14f, EyesTo = 24f;
+
+        /// <summary>A place is dark enough for the eyes: the ground's light below this (the game's glow, 0 dark to 1 full light).</summary>
+        public const float EyesDarkBelow = 0.3f;
+
+        /// <summary>The eyes blink every so many ticks, for this many hours at most, and go out when someone comes within this many cells.</summary>
+        public const int EyesEvery = 300;
+        public const float EyesHours = 4f, EyesGoOutAt = 5f;
+
+        /// <summary>After this many blinks, the bravest of the colony awake walks out toward the nearest pair.</summary>
+        public const int EyesWalkAfter = 12;
 
         private static float Clamp01(float v) => v < 0f ? 0f : v > 1f ? 1f : v;
     }
