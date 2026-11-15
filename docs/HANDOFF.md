@@ -159,6 +159,35 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   the same floor; raids aimed by reason at most 85% of the time; the story direction setting puts a way's levers on any
   storyteller. Nothing to build unless the player asks (an idea, if wanted: the same explanation on the Almanac's
   storytellers page, with each way's levers as a table).
+- **To do when the player asks (15 November 2026): more storytellers, and the eight improved.** The player: "Because
+  yeah, I would like to have some more additional storytellers and perhaps also improving potentially the one we
+  already created. I think there is one where there is like a good year and a bad year. While this sounds interesting,
+  I don't think I ever want something on this time scale, you know. I, like to kind of change the storyteller up every
+  now and then. So if something like this is integrated, then only think of maybe a season as the biggest time frame.
+  But yeah, I would like to have some more storytellers. Again, I'm not really looking for some with fewer rates. You
+  can always just use the base rate level, and the description should be kind of informative about what the impact is
+  regarding the rewriting of text concept we discussed earlier on. So just kind of give a straightforward, clear
+  description. I mean, you don't have to go into percentages and stuff like that, but I have an understanding what the
+  impact is going to be or how it's going to play out, and not have it kind of be this AI gibberish attempt of making
+  creative writing." Proposed in chat the same day, waiting for their pick:
+  - Rules for all: nothing below the game's base rate (the floor goes from a quarter to the base rate: Lean Years'
+    fewer traders, camps and visitors, the fights levers under 1 in Neighbours, Old Powers and Lean Years, and What You
+    Sow's thinner roads for a cruel colony all go back to base); threats at the classic pace in every storyteller (they
+    change which threats and who sends them, never how many); a season (15 days) the longest any pattern runs; plain
+    descriptions saying what comes more often and what stays as in the base game.
+  - Rise and Fall reworked to the season: each season is a good one (more traders, visitors, camps and finds) or a hard
+    one (the season's threats come from one trouble: a war with one people, a sickness going round, a hard cold or heat,
+    a blight), told by the region's news as the season begins.
+  - The Turning Year, a choice: (a) threats at the base pace all year, the seasons bring more of their own good things
+    and choose which threats come (cold in winter, heat and blight in summer), or (b) keep quiet springs and hard
+    winters as now (the same over a year).
+  - New: Open Gate (more people come to join: wanderers, refugees, escape pods, guests who ask to stay); Home and Hearth
+    (the colonists' own lives: personal stories, pasts catching up, challenges and wagers, feasts and gatherings);
+    The Wilds (animals and the land: herds passing, animals wandering in and joining, rare beasts, the land's finds,
+    Rimfolk's beasts and creature encounters); Windfalls (finds and treasure: cargo pods, ship chunks, treasure maps,
+    ruins and stashes to explore, gifts); Sellswords (fighting for others: calls to arms, missions against bandit camps,
+    bounties, champions' challenges, sellsword companies); Feast Days (festivals: the colony's feasts and games, the
+    peoples' fairs and festivals nearby, performers and storytellers visiting).
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.251.0, **Plain words: messages-elsewhere**
