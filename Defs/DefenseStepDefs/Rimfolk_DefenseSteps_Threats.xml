@@ -19,7 +19,7 @@
     <placeAt>front</placeAt>
     <distance>6</distance>
     <whyNow>Mechanoids raid this colony now, and they don't burn, flee or give up. EMP stands them still long enough to bring them down.</whyNow>
-    <howItWorks>An EMP blast stuns every mechanoid in it, and the colony's own turrets too; after a stun a mechanoid shrugs off EMP for a while. An EMP IED on the way in goes off under the first mechanoid to step on it, before any of them reach the line. EMP grenades, the EMP launcher and EMP shells for a mortar do the same from a distance, where the colony can make them.</howItWorks>
+    <howItWorks>An EMP blast stuns every mechanoid in it, and the colony's own turrets too; after a stun a mechanoid is immune to EMP for a while. An EMP IED on the way in goes off under the first mechanoid to step on it, before any of them reach the line. EMP grenades, the EMP launcher and EMP shells for a mortar do the same from a distance, where the colony can make them.</howItWorks>
     <mistakes>
       <li>An EMP IED within eleven cells of your own turrets: the blast stuns them along with the mechanoids.</li>
       <li>Two blasts on the same mechanoids one after the other: the second does nothing to them.</li>
@@ -63,7 +63,7 @@
       <li>Rimfolk_Defense_MortarPit</li>
     </templates>
     <placeAt>core</placeAt>
-    <whyNow>A siege camps out of reach of every gun at the gate and shells the colony until something answers it. Mortars answer from deep inside, anywhere on the map.</whyNow>
+    <whyNow>A siege camps out of reach of every gun at the gate and shells the colony until someone attacks it. Mortars can hit the camp from deep inside the base, anywhere on the map.</whyNow>
     <howItWorks>A mortar reaches across the whole map but can't hit anything within about thirty cells of it, can't fire from under a roof, and fires only while someone mans it. Two side by side make their misses overlap on the target. Walls between them and the shell shelf keep a mortar that blows up from setting off the other or the shells.</howItWorks>
     <mistakes>
       <li>Mortars by the edge of the base: a siege that camps close is inside their thirty cells.</li>

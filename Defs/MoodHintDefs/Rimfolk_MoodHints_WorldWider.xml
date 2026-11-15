@@ -6,7 +6,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_LaughedAtMoot</defName>
     <thoughts><li>Council_WS_LaughedAtMoot</li></thoughts>
-    <fix>The colony's speaker proposed something at a moot of the peoples and the hall laughed. It fades in four days. Recreation and time with friends help it pass; next time, a speaker with more social skill is likelier to carry the hall.</fix>
+    <fix>The colony's speaker proposed something at a moot of the peoples and the hall laughed. It fades in four days. Recreation and time with friends help it pass; next time, a speaker with more social skill is more likely to win the hall over.</fix>
     <act>Give them time with friends</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldSituations</article>

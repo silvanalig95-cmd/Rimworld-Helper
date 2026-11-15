@@ -68,7 +68,7 @@
     <defName>Council_CoupleBedroom_Roomy</defName>
     <label>roomy couple's bedroom</label>
     <description>A large bedroom for two: a double bed with a table on each side, a dresser, an armchair, a light and plants.</description>
-    <purpose>For a couple the colony wants to keep: spouses, or two colonists whose moods hold others up.</purpose>
+    <purpose>For a couple the colony wants to keep: spouses, or two colonists whose good moods help the others.</purpose>
     <order>11</order>
     <group>Living</group>
     <quiet>true</quiet>
@@ -148,7 +148,7 @@
     <defName>Council_DiningRoom_Large</defName>
     <label>large dining room</label>
     <description>A long table for twelve with chairs all around, two lights and plants in the corners.</description>
-    <purpose>Twelve seats: a big colony eats at once, and the hall it eats in counts for every meal.</purpose>
+    <purpose>Twelve seats, so a big colony can eat at the same time, and the room's impressiveness counts at every meal.</purpose>
     <order>20</order>
     <group>Food</group>
     <size>(8,7)</size>
@@ -287,7 +287,7 @@
     <defName>Council_Workshop_Large</defName>
     <label>large workshop</label>
     <description>Four workstations around a free floor, a tool cabinet between the two at the back, and good light.</description>
-    <purpose>All the colony's making in one room: clothes, weapons, parts and art, close to one storeroom.</purpose>
+    <purpose>All the colony's crafting in one room: clothes, weapons, parts and art, close to one storeroom.</purpose>
     <order>30</order>
     <group>Work</group>
     <size>(8,6)</size>

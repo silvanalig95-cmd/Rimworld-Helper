@@ -53,7 +53,7 @@
     <tips>
       <li>Skill books are worth keeping even after they've been read: the next colonist learns from them too.</li>
       <li>Several readers at once need several chairs. Armchairs make the long books bearable.</li>
-      <li>Keep the hall off the main corridors. A library people walk through is not a quiet room.</li>
+      <li>Keep the hall off the main corridors, so nobody walks through it while others read.</li>
       <li>A big library is a fine room to show off. Sculptures and a good floor make it impressive.</li>
     </tips>
     <things>
@@ -90,7 +90,7 @@
     <near><li>DiningRoom</li></near>
     <tips>
       <li>A campfire is a gathering spot. Parties start around it, and a council with no dining or rec room meets by the fire.</li>
-      <li>Keep the fire fed with wood. A cold council fire is a dark, empty room.</li>
+      <li>Keep the fire fed with wood. Without it the room is cold and dark, and nobody gathers there.</li>
       <li>Leave the cell in front of the fire free: that's where the cook stands when the fire is used for cooking.</li>
     </tips>
     <things>
@@ -156,7 +156,7 @@
     <tips>
       <li>The council meets in the colony's biggest dining room. Make this room larger than the dining room and the meetings come here.</li>
       <li>The table doubles as a dining table, so the chamber is used every day, not just on meeting nights.</li>
-      <li>An impressive room is a pleasant one to argue in. Art on the walls does more for a meeting than a bigger table.</li>
+      <li>An impressive room makes long meetings more pleasant. Art on the walls does more for a meeting than a bigger table.</li>
     </tips>
     <things>
       <li><defs><li>Table2x4c</li></defs><role>table</role><pos>(2,2)</pos><optional>false</optional></li>
@@ -310,7 +310,7 @@
     <near><li>DiningRoom</li><li>RecRoom</li></near>
     <tips>
       <li>Three or four good sculptures and a fine floor make a small room impressive.</li>
-      <li>A small gallery on the way to the dining room is seen every day, which is what art is for.</li>
+      <li>A small gallery on the way to the dining room is seen every day, so its art is enjoyed the most.</li>
     </tips>
     <things>
       <li><defs><li>Column</li></defs><role>column</role><pos>(0,3)</pos><tier>core</tier><optional>false</optional></li>
@@ -324,7 +324,7 @@
     <defName>Council_GalleryGrand</defName>
     <label>grand gallery</label>
     <description>A colonnade down both sides, pedestals at the far end, lights, and a broad open floor for the colony's best art.</description>
-    <purpose>The colony's finest room: where its masterworks stand, and where visitors see what the colony has become.</purpose>
+    <purpose>The colony's finest room: where its masterworks stand, and where visitors see the best of what the colony has made.</purpose>
     <order>27</order>
     <group>Leisure</group>
     <size>(9,7)</size>
@@ -524,7 +524,7 @@
     <defName>Council_KitchenButchery</defName>
     <label>kitchen with butchery</label>
     <description>A kitchen with a stove and shelves, and behind an inner door a butchery with its own table, shelf and light. Clean floor throughout.</description>
-    <purpose>The butcher works a door away from the cook: the blood stays on the far side of the wall, the meat comes through.</purpose>
+    <purpose>The butcher works one door away from the cook, so the blood stays on the far side of the wall and only the meat comes through.</purpose>
     <order>31</order>
     <group>Food</group>
     <size>(7,5)</size>
@@ -662,7 +662,7 @@
     <defName>Council_DrugLab_Large</defName>
     <label>large drug lab</label>
     <description>Two drug lab benches with chairs at them, a shelf for ingredients and a light.</description>
-    <purpose>Medicine and drugs in quantity: one bench on medicine for the doctors, the other on whatever sells or soothes.</purpose>
+    <purpose>Medicine and drugs in quantity: one bench on medicine for the doctors, the other on whatever sells or the colony uses.</purpose>
     <order>38</order>
     <group>Work</group>
     <size>(6,4)</size>
@@ -723,7 +723,7 @@
     <floors><li>SterileTile</li></floors>
     <tips>
       <li>A multi-analyzer speeds up every hi-tech research bench it is linked to. Two benches can share one.</li>
-      <li>Spacer research is slow. Two good researchers in comfortable chairs make the difference between years and seasons.</li>
+      <li>Spacer research is slow. Two good researchers in comfortable chairs can finish in seasons what would otherwise take years.</li>
       <li>Keep the wing clean and quiet: a sterile floor, no corridor through it, and a cleaner who comes by.</li>
     </tips>
     <things>
@@ -781,7 +781,7 @@
     <avoid><li>DiningRoom</li><li>Kitchen</li></avoid>
     <tips>
       <li>Sarcophagi need Complex furniture. Until then the tomb takes a grave, and the sarcophagus can replace it later.</li>
-      <li>Put the tomb somewhere quiet that the colony passes now and then. A tomb nobody sees is soon forgotten.</li>
+      <li>Put the tomb somewhere quiet that the colony passes now and then, where people will see it.</li>
     </tips>
     <things>
       <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(1,2)</pos><optional>false</optional></li>
@@ -804,7 +804,7 @@
     <avoid><li>DiningRoom</li><li>Kitchen</li><li>Bedroom</li></avoid>
     <tips>
       <li>Graves cost almost nothing, sarcophagi a fair amount of stone. Start with graves and replace them in time.</li>
-      <li>Lights and a fine floor make even a room of the dead a decent place to stand.</li>
+      <li>Lights and a fine floor make even a burial room pleasant to visit.</li>
       <li>Raiders' bodies don't belong here. Burn them, or bury them outside.</li>
     </tips>
     <things>

@@ -28,7 +28,7 @@
     <tips>
       <li>Friendships grow from shared work and shared meals. Put them on the same job as someone who likes them a little already.</li>
       <li>A party or a calendar day brings everyone together, and the quiet ones talk more at a gathering than anywhere else.</li>
-      <li>Someone with no friend here is likelier to break, and feels left out when the others' circles close.</li>
+      <li>Someone with no friend here is more likely to break, and feels left out when the others keep to their own friends.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -42,7 +42,7 @@
     <tips>
       <li>Tension with a camp grows as they hunt and cut wood on the colony's land, faster when they break the terms the council set.</li>
       <li>A gift eases tension, and is remembered when they leave.</li>
-      <li>A camp that boils over turns on the colony. Settle a quarrel early, or ask them to move on before it comes to that.</li>
+      <li>A camp whose tension gets too high leaves on bad terms, and its people hear about it. Settle a quarrel early, or ask them to move on before it comes to that.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -139,8 +139,8 @@
     <importance>0.7</importance>
     <tips>
       <li>A promise buys a wish more time and keeps the trust it would lose, as long as the promise is kept.</li>
-      <li>Some wishes are cheap to grant and dear to ignore: a meal, a day off, a word from the council.</li>
-      <li>Letting a wish lapse on purpose is sometimes right. It costs less trust than a promise broken.</li>
+      <li>Some wishes cost little to grant and a lot to ignore: a meal, a day off, a word from the council.</li>
+      <li>Letting a wish lapse on purpose is sometimes right. It costs less trust than a broken promise.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

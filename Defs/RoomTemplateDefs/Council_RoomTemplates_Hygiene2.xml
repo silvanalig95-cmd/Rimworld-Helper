@@ -50,7 +50,7 @@
     <defName>Council_Laundry</defName>
     <label>laundry</label>
     <description>Two washing machines, a shelf for clothes waiting to be washed, a light and a plant.</description>
-    <purpose>Clothes taken from the dead come out of the wash with no trace of it, and colonists wear them without complaint.</purpose>
+    <purpose>Washing clothes taken from the dead removes the taint, so colonists wear them without a bad mood.</purpose>
     <order>39</order>
     <group>Work</group>
     <size>(4,4)</size>

@@ -18,7 +18,7 @@
     <floors><li>WoodPlankFloor</li></floors>
     <near><li>RecRoom</li></near>
     <tips>
-      <li>It counts as a sauna at 28 °C or more: turn the heater's target up once it's built. A campfire can only warm a room to about 23 °C, so with a fire, as warm as the fire makes it counts.</li>
+      <li>It counts as a sauna at 28 °C or more: turn the heater's target up once it's built. A campfire can only warm a room to about 23 °C, so with a fire it counts once the room is about as warm as the fire can make it.</li>
       <li>Keep it small (30 cells at most), the door shut, and no bed or workbench in it, or it's just another room.</li>
       <li>On cold days, colonists with time to spare come and sit in it a while (with "Small habits" on), and chat with whoever else is in there.</li>
     </tips>

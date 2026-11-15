@@ -13,8 +13,8 @@
     <category>Comfort</category>
     <importance>0.9</importance>
     <tips>
-      <li>A noble whose bedroom falls short of their title feels it every day, and higher titles ask for more: more space, more impressiveness, a bedside table and a dresser.</li>
-      <li>Space is the one thing upgrading can't add; a room too small has to be built anew.</li>
+      <li>A noble whose bedroom falls short of their title is unhappy about it every day, and higher titles ask for more: more space, more impressiveness, a bedside table and a dresser.</li>
+      <li>Space is the one thing upgrading can't add; a room that is too small has to be rebuilt larger.</li>
       <li>Impressiveness comes cheapest from a good floor, a piece of art and furniture of good quality.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -41,7 +41,7 @@
     <category>Food</category>
     <importance>0.9</importance>
     <tips>
-      <li>Below freezing, food doesn't rot at all. Whatever doesn't fit in the freezer starts its clock again.</li>
+      <li>Below freezing, food doesn't rot at all. Whatever doesn't fit in the freezer starts rotting again.</li>
       <li>Things that keep on their own (rice, corn, cloth, medicine) can move out of the freezer to make room for meat and meals.</li>
       <li>[!lowtech] A bigger freezer needs more cooling: count on another cooler for each step up in size.</li>
       <li>A double door, or an airlock of two doors, keeps the cold in while people go in and out.</li>
@@ -57,7 +57,7 @@
     <importance>0.6</importance>
     <tips>
       <li>Space counts the floor nobody's furniture stands on. Tables, chairs and statues all eat into it.</li>
-      <li>A cramped room weighs on everyone who spends time in it, and the dining room is where everyone spends time.</li>
+      <li>A cramped room makes everyone who spends time in it less happy, and everyone spends time in the dining room.</li>
       <li>The planner keeps the turn, the style and the materials when you switch to a larger size of the same room.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -70,7 +70,7 @@
     <category>Work</category>
     <importance>0.7</importance>
     <tips>
-      <li>Work goes slower in the dark, and a workshop works long after sunset.</li>
+      <li>Work goes slower in the dark, and workshops are often busy long after sunset.</li>
       <li>A chair on a bench's work spot lets the crafter sit while they work, and keeps up their comfort through a long bill.</li>
       <li>"Plan chairs and lamps" puts a chair on each empty work spot and hangs lamps where the benches are dark.</li>
     </tips>
@@ -86,7 +86,7 @@
     <tips>
       <li>Prisoners mind eating off the floor and sitting in the dark like anyone else, and an unhappy prisoner is likelier to break or try to escape.</li>
       <li>An impressive cell lifts a prisoner's mood. A floor, a light and a table go a long way.</li>
-      <li>Someone the colony hopes to recruit joins more willingly from a cell they can bear.</li>
+      <li>A prisoner the colony hopes to recruit comes round sooner in a decent cell.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

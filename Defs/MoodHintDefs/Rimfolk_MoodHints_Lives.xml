@@ -19,7 +19,7 @@
       <li>Council_Arc_FamilyStillAtOdds</li>
       <li>Council_Arc_CaughtBetween</li>
     </thoughts>
-    <fix>Two people they love still can't get along. It fades within a week. Give the two a reason to work side by side and keep them out of the same small room; a peacemaker on the council steps into their spats.</fix>
+    <fix>Two people they love still can't get along. It fades within a week. Give the two a reason to work side by side and keep them out of the same small room; a peacemaker on the council helps settle their quarrels.</fix>
     <act>Get the two working together</act>
     <article>Council_Alm_C_Arcs</article>
   </ColonyCouncil.MoodHintDef>
@@ -36,7 +36,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Lv_KinFarAway</defName>
     <thoughts><li>Council_Arc_KinDiedFarAway</li></thoughts>
-    <fix>Family of theirs died out in the world's hard times, far away. Nothing brings that back; company, a friend's ear, time off and a good meal make it lighter. It fades in about twelve days.</fix>
+    <fix>Family of theirs died out in the world's hard times, far away. Nothing can change that; company, a friend to talk to, time off and a good meal make it easier to bear. It fades in about twelve days.</fix>
     <act>Company helps</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Arcs</article>
@@ -50,7 +50,7 @@
       <li>Council_DlmLv_ApologizedAtSupper</li>
       <li>Council_DlmLv_ScoldedByCouncil</li>
     </thoughts>
-    <fix>A young one who feels small. Give them real work they're good at and let the grown-ups see it; the next time the council is asked about them, let them have a say. It passes in a few days.</fix>
+    <fix>A young colonist who feels they don't count. Give them real work they're good at and let the grown-ups see it; the next time the council is asked about them, let them have a say. It passes in a few days.</fix>
     <act>Give them work they're good at</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Dilemmas</article>
@@ -79,7 +79,7 @@
       <li>Council_DlmLv_PushedAside</li>
       <li>Council_DlmLv_ColdInTheBones</li>
     </thoughts>
-    <fix>An old colonist who feels put out to pasture, or cold. Keep their room warm, give them someone young to teach or to tell the colony's story to, and let them decide for themselves where they can. It passes in a few days.</fix>
+    <fix>An old colonist who feels pushed aside, or is cold. Keep their room warm, give them someone young to teach or to tell the colony's story to, and let them decide for themselves where they can. It passes in a few days.</fix>
     <act>Keep them warm and useful</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Dilemmas</article>
@@ -95,7 +95,7 @@
       <li>Council_DlmLv_WorriesIgnored</li>
       <li>Council_DlmLv_RecordsPrivate</li>
     </thoughts>
-    <fix>The cost of one of the council's answers, small and short. It passes on its own; a granted wish or a good evening makes up for it in the meantime.</fix>
+    <fix>A small, short bad mood from one of the council's answers. It passes on its own; a granted wish or a good evening makes up for it in the meantime.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Dilemmas</article>

@@ -107,7 +107,7 @@
 
   <ColonyCouncil.DefenseStepDef>
     <defName>Rimfolk_Step_Guns</defName>
-    <label>guns that never sleep</label>
+    <label>turrets behind the gate</label>
     <labelLowTech>an archers' post</labelLowTech>
     <order>50</order>
     <orderFor>
@@ -177,7 +177,7 @@
     </templates>
     <placeAt>line</placeAt>
     <distance>1</distance>
-    <whyNow>Breachers, sappers and fire come for the walls themselves. A second skin of stone buys the time to meet them.</whyNow>
+    <whyNow>Breachers, sappers and fire go for the walls themselves. A second layer of stone gives your people time to get there and fight them.</whyNow>
     <howItWorks>Breachers and sappers go through walls, not gates, and wood burns when raiders bring torches. Two walls thick, a breacher takes twice as long, and stone holds far longer than wood. The second wall goes right behind the first, with no gap, so the inner one isn't open all along once the outer falls.</howItWorks>
     <mistakes>
       <li>A second wall with a gap behind the first: once the outer wall falls, the inner one is open all along.</li>
@@ -199,7 +199,7 @@
       <li>Rimfolk_Defense_Fallback</li>
     </templates>
     <placeAt>between</placeAt>
-    <whyNow>Every line breaks some day. A second door between it and the beds is where people regroup instead of running.</whyNow>
+    <whyNow>Sooner or later a raid gets through the line. A second wall and door between it and the beds is where people regroup instead of running.</whyNow>
     <howItWorks>When the outer line breaks, people fall back behind a wall with a door and cover, between the gate and the beds. Raiders who get through then meet a second line instead of the bedrooms. It also keeps a drop pod raid that lands on the far side of it away from the beds.</howItWorks>
     <mistakes>
       <li>A line nobody knows about until the raid: say beforehand who falls back and when.</li>

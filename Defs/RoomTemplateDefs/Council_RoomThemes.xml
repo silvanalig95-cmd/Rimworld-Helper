@@ -31,7 +31,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Rustic</defName>
     <label>rustic</label>
-    <description>Timber walls, plain wooden furniture, benches and stools, and straw matting or planks underfoot. A farmhouse room that smells of sawdust, and cheap wherever there are trees to fell.</description>
+    <description>Timber walls, plain wooden furniture, benches and stools, and straw matting or planks underfoot. It looks like a farmhouse room, and it's cheap wherever there are trees to cut.</description>
     <order>10</order>
     <iconDefs><li>Stool</li></iconDefs>
     <wallStuff><li>WoodLog</li></wallStuff>
@@ -110,7 +110,7 @@
   <ColonyCouncil.RoomThemeDef>
     <defName>Council_Theme_Tribal</defName>
     <label>tribal</label>
-    <description>Fur beds or hide bedrolls, cushions and stools, torchlight, straw matting and walls of wood or sandstone in earthen tones. Made from what the land and the hunt give.</description>
+    <description>Fur beds or hide bedrolls, cushions and stools, torchlight, straw matting and walls of wood or sandstone in earthen tones. Made from what the colony can gather and hunt.</description>
     <order>50</order>
     <iconDefs><li>Bedroll</li></iconDefs>
     <wallStuff><li>WoodLog</li><li>BlocksSandstone</li></wallStuff>

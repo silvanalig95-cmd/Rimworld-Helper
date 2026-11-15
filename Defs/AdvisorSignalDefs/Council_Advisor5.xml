@@ -31,7 +31,7 @@
     <tips>
       <li>A world event changes what comes to the colony while it lasts: plague in the region makes illness at home likelier, a famine brings the hungry to the gate.</li>
       <li>Caravans come less often while the region is in trouble, so what the colony lacks now it may not be able to buy.</li>
-      <li>[lowtech] Healroot grown and dried before a fever is worth more than any amount bought after.</li>
+      <li>[lowtech] Healroot grown before a fever comes is worth more than any medicine you try to buy once it has started.</li>
       <li>Help given to a people in a bad year is remembered long after it ends.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -57,8 +57,8 @@
     <category>Comfort</category>
     <importance>0.8</importance>
     <tips>
-      <li>A decree is worth its moods while what it does matters more than how people feel about it: rationing in a hungry winter, drills after a raid. This advice speaks only once that reason has passed.</li>
-      <li>A decree enacted again soon after the last time wears thinner, and the bad moods about it grow.</li>
+      <li>A decree is worth its bad moods while what it does matters more than how people feel about it: rationing in a hungry winter, drills after a raid. This advice only appears once that reason has passed.</li>
+      <li>A decree enacted again within a month of the last time is resented more, and the bad moods about it grow.</li>
       <li>Who loves and who hates a decree shows on its card on the Decrees page, before it's enacted.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -131,7 +131,7 @@
     <importance>1</importance>
     <tips>
       <li>Pemmican keeps for months and needs only meat and vegetables, at a campfire or a stove.</li>
-      <li>Meat keeps only days in the warm. A winter mild enough to grow nothing is usually too mild to freeze it either.</li>
+      <li>Meat keeps only a few days when it's warm. A winter cold enough to stop crops growing is often still too warm to freeze meat.</li>
       <li>Rice, corn and potatoes keep for a month or more on their own; berries and meat don't.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -191,7 +191,7 @@
     <tips>
       <li>Colonists eat where they are when the nearest free seat is too far away, and lose mood for it.</li>
       <li>A small table and two chairs by the fields or the workshops saves the walk at lunch.</li>
-      <li>Packed meals carried in a pocket are eaten wherever hunger strikes; a table nearby keeps them from eating on the floor.</li>
+      <li>Colonists eat the packed meals they carry wherever they get hungry; a table nearby keeps them from eating on the floor.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

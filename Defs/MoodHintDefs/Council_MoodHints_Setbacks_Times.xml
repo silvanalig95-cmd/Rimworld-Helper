@@ -36,7 +36,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackEmptyChair</defName>
     <thoughts><li>Council_Setback_EmptyChair</li></thoughts>
-    <fix>The first time a calendar day is kept since someone died this year. It comes once for each of the dead, and passes in a day and a half; company helps, and keeping the day the dead person loved keeps them part of it.</fix>
+    <fix>The first time a calendar day is kept since someone died this year. It comes once for each of the dead, and passes in a day and a half; company helps, and keeping the day the dead person liked best is a way to remember them.</fix>
     <act>Passes in a day or two</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
@@ -49,7 +49,7 @@
     <defName>Council_Mood_RF_SetbackCampSoured</defName>
     <thoughts><li>Council_Setback_CampSoured</li></thoughts>
     <fix>A camp they'd made friends at left on bad terms, or was sent away. Easing the camp's tension while it stays (fair terms, a gift, a little trade, leaving its game and trees alone) keeps it from souring; it fades in three days.</fix>
-    <act>Keep the next camp sweet</act>
+    <act>Keep the next camp happy</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
     <councilTab>HereAndAway</councilTab>
@@ -98,8 +98,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_SetbackStoodBy</defName>
     <thoughts><li>Council_Setback_StoodBy</li></thoughts>
-    <fix>A world event the colony could have helped with ended with nothing from it, and a kind colonist minds. Answering the region's next call, even a little, keeps it away; it fades in three days.</fix>
-    <act>Answer the next call</act>
+    <fix>A world event the colony could have helped with ended with nothing from it, and a kind colonist minds. Helping with the region's next world event, even a little, keeps it away; it fades in three days.</fix>
+    <act>Help with the next one</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_Setbacks</article>
     <councilTab>Events</councilTab>

@@ -202,7 +202,7 @@ public static class StoryWaysTests
             // The description says plainly how it plays, with no character.
             string desc = d.Element("description")?.Value ?? "";
             C(desc.Length >= 250 && desc.Contains("classic pace") && desc.Contains("For a game "), w + ": the description says how it plays and its threats against the classic pace");
-            C(desc.Contains("never away from anything") && desc.Contains("every kind of event can still come"), w + ": the description says it leans, never shuts anything out");
+            C(desc.Contains("shuts nothing out") && desc.Contains("every kind of event can still come"), w + ": the description says it leans, never shuts anything out");
             C(!Regex.IsMatch(desc, @"\b(she|he|her|his|him|hers)\b", RegexOptions.IgnoreCase), w + ": no character in the description");
             C(!desc.Contains('—') && !desc.Contains('!'), w + ": no em dash, no exclamation mark");
             C(!Regex.IsMatch(desc, @"\bgods?\b", RegexOptions.IgnoreCase), w + ": names no god");
