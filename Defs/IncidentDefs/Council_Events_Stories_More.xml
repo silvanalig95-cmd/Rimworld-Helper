@@ -29,10 +29,10 @@
           <li>Letters that never arrived</li>
         </titles>
         <texts>
-          <li>[lowtech] A courier's satchel, the leather gone black with rain, half sunk in the mud by the old road. {A_nameDef} pulled it out and found a bundle of letters inside, tied with string and sealed with wax, every one, for people in {FACTION}'s country. The top one is for {X_nameDef}, at {PLACE}.\n\nWhoever was carrying them never got there. From the state of the satchel, that was years ago.</li>
-          <li>[!lowtech] {A_nameDef} found a mailbag snagged in a thicket below the road, the canvas rotten and the zip rusted shut. Inside are two dozen letters, still sealed, for people in {FACTION}'s towns. The top one is addressed to {X_nameDef} at {PLACE}, in a careful, hopeful hand.\n\nThe postmarks are years old. Whoever was carrying them didn't make it.</li>
+          <li>[lowtech] {A_nameDef} found a courier's satchel half sunk in the mud by the old road, the leather black with rain. Inside is a bundle of letters tied with string, every one sealed with wax, for people in {FACTION}'s country. The top one is for {X_nameDef}, at {PLACE}.\n\nWhoever was carrying them never got there. From the state of the satchel, that was years ago.</li>
+          <li>[!lowtech] {A_nameDef} found a mailbag snagged in a thicket below the road, the canvas rotten and the zip rusted shut. Inside are two dozen letters, still sealed, for people in {FACTION}'s towns. The top one is addressed to {X_nameDef} at {PLACE}, in careful handwriting.\n\nThe postmarks are years old. Whoever was carrying them didn't make it.</li>
           <li>[winter] Clearing snow by the old road, {A_nameDef} turned up a courier's satchel frozen into the bank. The letters inside are dry, wrapped in oilcloth, and sealed: two dozen of them, for people in {FACTION}'s country. The one on top is for {X_nameDef}, at {PLACE}.\n\nThey have been lying there for years.</li>
-          <li>[river] The river gave up a courier's satchel this morning, washed into the reeds below the colony. {A_nameDef} fished it out. The letters inside were wrapped in oilcloth, and most of them are still dry: two dozen, sealed, for people in {FACTION}'s towns. The top one is for {X_nameDef}, at {PLACE}.</li>
+          <li>[river] This morning a courier's satchel washed into the reeds below the colony, and {A_nameDef} fished it out. The letters inside were wrapped in oilcloth, and most of them are still dry: two dozen, sealed, for people in {FACTION}'s towns. The top one is for {X_nameDef}, at {PLACE}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -200,7 +200,7 @@
         <texts>
           <li>[love] "I'll wait for your answer at the fair. If you don't come, I'll know." It's signed with an initial, and it's a proposal of marriage, to {X_nameDef} at {PLACE}. The rest of the letters are prices and weather and a dog that died.\n\n{X_nameDef} never got it. Whoever wrote it must have taken the silence for a no.</li>
           <li>[cache] "Under the split tree by the east field, two spades down." One of the letters, to {X_nameDef} at {PLACE}, is from a father writing as his family fled their farm: the household silver is buried there, about {COUNT} of it, to be dug up when it's safe.\n\nThe farm is a day's walk from the colony. The letter never arrived.</li>
-          <li>[credit] Pay the bearer {COUNT} silver. The note is signed by a merchant house that still trades at {PLACE}, folded into a letter to {X_nameDef}, and made out to whoever carries it.\n\nIt was meant to settle a debt owed to {X_nameDef}'s family. It would settle one for anybody.</li>
+          <li>[credit] One letter, to {X_nameDef}, holds a note of credit that reads "Pay the bearer {COUNT} silver." It is signed by a merchant house that still trades at {PLACE}, and made out to whoever carries it.\n\nIt was meant to settle a debt owed to {X_nameDef}'s family, but anyone holding it could cash it.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -260,10 +260,10 @@
           <li>An answer to the letters</li>
         </titles>
         <texts>
-          <li>[love] The old letter is still in {X_nameDef}'s hand. {X_nameDef} of {FACTION} has carried it all the way from {PLACE}: a proposal, written years ago by someone {X_nameDef} thought had forgotten {X_objective}. {X_nameDef} married someone else in the end, and buried them, and has come to see where the letter was found.</li>
+          <li>[love] {X_nameDef} of {FACTION} has carried the old letter all the way from {PLACE}. It is a proposal, written years ago by someone {X_nameDef} thought had forgotten {X_objective}. {X_nameDef} married someone else in the end and has since been widowed, and has come to see where the letter was found.</li>
           <li>[love,personal] {X_nameDef} of {FACTION} came to the gate holding two letters: the old one, and the one {A_nameDef} wrote to go with it. {X_nameDef} wanted to meet whoever cared enough to write, and to see the road where the letter lay all those years.</li>
-          <li>[cache] Exactly where the letter said: under the split tree, two spades down. {X_nameDef} of {FACTION} dug the family silver up last week, and has come from {PLACE} to thank the colony for sending the letter on. It was {X_possessive} father's, written as the family fled.</li>
-          <li>[credit] Paid at last, after years: the note of credit the colony sent on was honored at {PLACE}, and {X_nameDef} of {FACTION} has come all that way to say thank you in person.</li>
+          <li>[cache] Last week {X_nameDef} of {FACTION} dug up the family silver exactly where the letter said, under the split tree, two spades down, and has come from {PLACE} to thank the colony for sending the letter on. It was {X_possessive} father's, written as the family fled.</li>
+          <li>[credit] After many years, the note of credit the colony sent on has been honored at {PLACE}, and {X_nameDef} of {FACTION} has come all that way to say thank you in person.</li>
           <li>[read] "If they hadn't been opened, they might have been thrown away." {X_nameDef} of {FACTION} has come from {PLACE} with the colony's note in hand, the one that owned up to the broken seals, and doesn't mind about them at all.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -335,7 +335,7 @@
           <li>Seeds from far away</li>
         </titles>
         <texts>
-          <li>[lowtech] A pouch of seeds hangs at {X_nameDef}'s neck on a cord, and the first thing {X_nameDef} of {FACTION} asked at the gate was for the colony's best grower. The seeds come from a valley beyond the mountains, where the plant they grow into is nearly gone. They need good soil and someone patient.\n\n{X_nameDef} can't stay to grow them. {A_nameDef} has already looked at them three times.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} wears a pouch of seeds on a cord round {X_possessive} neck, and the first thing {X_nameDef} asked at the gate was to meet the colony's best grower. The seeds come from a valley beyond the mountains, where the plant they grow into is nearly gone. They need good soil and someone patient.\n\n{X_nameDef} can't stay to grow them. {A_nameDef} has already looked at them three times.</li>
           <li>[industrial] {X_nameDef} of {FACTION} carries a tin of seeds from a farm that burned, the last of a kind {X_possessive} family grew for a hundred years. {X_nameDef} is leaving a few with every settlement that will plant them, so the kind isn't lost, and asks whether the colony will.\n\n{A_nameDef}, the colony's best grower, is already turning one over in {A_possessive} fingers.</li>
           <li>[spacer] {X_nameDef} of {FACTION} carries a sealed case of seeds from a vault on a world that died. The plant they grow into is gone everywhere else. {X_nameDef} is going from colony to colony, leaving a few with anyone who'll plant them, and asks whether this one will.\n\n{A_nameDef}, the colony's best grower, is reading the label on the case very carefully.</li>
           <li>"Who grows things here?" {X_nameDef} of {FACTION} asked at the gate, holding up a small bag of seeds. They're the last of a plant nearly lost, {X_nameDef} says, and they need a new home. {A_nameDef} has said yes twice already, before the council has said anything.</li>
@@ -474,7 +474,7 @@
           <li>[sold] The colony sold cuttings to anyone who'd pay, and made {ITEM} silver. The plant grows in a few gardens along the road now.</li>
           <li>[spread] The cuttings sold well, {ITEM} silver's worth, and then the plant got loose in the neighbors' fields. {FACTION} have been digging out its runners for a week, and they know where it came from.</li>
           <li>[overgrown] The plant from the stranger's seeds has taken over a whole corner of the colony's fields, runners and all, and nothing else will grow there now. {A_nameDef} has stopped going near it.\n\nIt will have to be burned out, sooner or later.</li>
-          <li>[cleared] {A_nameDef} pulled the plant up by its runners, every one, and burned the lot. The field is clean again. {A_nameDef} kept one seed in a jar on the shelf, and won't say why.</li>
+          <li>[cleared] {A_nameDef} pulled the plant up by its runners, every one, and burned the lot. The field is clean again. {A_nameDef} kept one seed in a jar on the shelf, just in case.</li>
           <li>[pulled] The plant from the stranger's seeds is gone, pulled up and composted. {A_nameDef} took it badly, and has been short with people all day.</li>
           <li>[declined] {X_nameDef} went on with the seeds, to look for someone else to plant them. {A_nameDef} watched {X_objective} go from the field's edge.</li>
           <li>[lost] {X_nameDef} never came back to see the garden, and the traders on the road haven't seen {X_objective} since. The plant grows on without {X_objective}, and {A_nameDef} saves its seed every year.</li>
@@ -520,13 +520,13 @@
         <answerDays>1</answerDays>
         <titles>
           <li>What the seeds became</li>
-          <li>[weed] The plant that won't stop</li>
+          <li>[weed] A plant that spreads</li>
           <li>[rare] Blue flowers</li>
         </titles>
         <texts>
           <li>[thrive,tended] The stranger's seeds have come up in the patch {A_nameDef} gave them, and they're growing faster than anything else in the fields: broad leaves, a thick stem, and pods setting already. {A_nameDef} checks on them morning and evening, and has started talking to them.</li>
           <li>[thrive,careless] Out by the fence, where the watering cans never go, the stranger's seeds have come up anyway, broad-leaved and strong and already setting pods. {A_nameDef} found them yesterday and has been carrying water out there ever since.</li>
-          <li>[weed] The stranger's seeds came up, and kept coming. The plant spreads by runners under the ground, and it has crept out of its patch into the next bed, and the one after that. {A_nameDef} pulled a runner up yesterday and found three more by evening.</li>
+          <li>[weed] The stranger's seeds came up and have kept spreading. The plant spreads by runners under the ground, and it has crept out of its patch into the next bed, and the one after that. {A_nameDef} pulled a runner up yesterday and found three more by evening.</li>
           <li>[rare] The stranger's seeds have flowered: tall stalks with pale blue bells that smell of honey and smoke. A trader passing on the road stopped at the smell, asked what they were, and then asked what the colony would take for a cutting.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -535,7 +535,7 @@
             <label>Let it grow</label>
             <outcome>{A_nameDef} lets the plant be, and waters it.</outcome>
             <outcomes>
-              <li>[weed] {A_nameDef} lets the plant be. It doesn't need the water, and it doesn't need the encouragement.</li>
+              <li>[weed] {A_nameDef} lets the plant be, though it is already spreading fast.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>300</xp></li>
@@ -548,7 +548,7 @@
           </li>
           <li>
             <label>Sell cuttings to anyone who'll pay</label>
-            <outcome>{A_nameDef} puts out a sign at the gate. Cuttings, for silver.</outcome>
+            <outcome>{A_nameDef} puts out a sign at the gate offering cuttings for silver.</outcome>
             <ways><generosity>-1</generosity></ways>
           </li>
         </options>
@@ -590,7 +590,7 @@
         </titles>
         <texts>
           <li>[thrive] Thinner than before, {X_nameDef} of {FACTION} has come back up the road to see what became of the seeds. {A_nameDef} took {X_objective} straight out to the patch, where the plants stand waist-high and heavy with pods.\n\n{X_nameDef} hasn't said a word yet.</li>
-          <li>[rare] The smell reached the road first. {X_nameDef} of {FACTION} came the last mile at a run, and is standing now among the blue bells, with the bees all round and both hands over {X_possessive} mouth.</li>
+          <li>[rare] {X_nameDef} of {FACTION} smelled the flowers from the road and ran the last mile. {X_nameDef} is standing among the blue bells now, with both hands over {X_possessive} mouth.</li>
           <li>As promised, {X_nameDef} of {FACTION} has come back to see the garden. The plants are thriving, {A_nameDef} is proud of them, and {X_nameDef} wants to hear everything.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -661,7 +661,7 @@
         <texts>
           <li>[lowtech] The troupe {X_nameDef} writes for plays from village to village, and on the road {X_nameDef} of {FACTION} has heard enough about the colony to want to write a play about it. {X_nameDef} would like to stay a day, ask questions, and listen to whoever will talk.\n\nThe troupe will play it first at {PLACE}, and then wherever the road goes.</li>
           <li>[!lowtech] {X_nameDef}, a playwright with a traveling company of {FACTION}, has arrived with a notebook and a very direct manner. The company wants a new play for the season, and {X_nameDef} wants it to be about the colony: the founding, the hard years, the people.\n\n{X_nameDef} asks for a day of the colony's time and its stories, and promises to be fair.</li>
-          <li>[colony:Merciful] Takes in strangers, forgives its enemies: that's what they say about the colony on the road, and {X_nameDef} of {FACTION}, who writes plays for a traveling troupe, doesn't believe a word of it. {X_nameDef} has come to see for {X_objective}self, and to write it all down.</li>
+          <li>[colony:Merciful] People on the road say the colony takes in strangers and forgives its enemies. {X_nameDef} of {FACTION}, who writes plays for a traveling troupe, doesn't believe it, and has come to see for {X_objective}self and write it all down.</li>
           <li>[colony:Harsh] The things they say about the colony on the road are hard ones, and {X_nameDef} of {FACTION}, who writes for a traveling troupe, has heard most of them. {X_nameDef} would like the colony's side, for a play the troupe means to stage at {PLACE}.</li>
           <li>[colony:Hardworking] "They say you work from dark to dark and never rest," {X_nameDef} of {FACTION} said at the gate. "That's a play." {X_nameDef} writes for a traveling troupe, and would like a day to ask questions.</li>
         </texts>
@@ -678,7 +678,7 @@
           </li>
           <li>
             <label>Tell {X_objective} the best of it</label>
-            <outcome>{A_nameDef} told {X_nameDef} the colony's story, with the best parts first and the worst parts left out. {X_nameDef} wrote it all down and looked as if {X_pronoun} knew.</outcome>
+            <outcome>{A_nameDef} told {X_nameDef} the colony's story, with the best parts first and the worst parts left out. {X_nameDef} wrote it all down, but {X_pronoun} seemed to suspect something was missing.</outcome>
             <ways><openness>-1</openness></ways>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~23</hours></li>
@@ -760,19 +760,19 @@
         </endingTitles>
         <endings>
           <li>[famous,honest] Audiences cry at the right moments, the troupe says. The play about the colony has been a hit at {PLACE} and in every town since, hard parts and all, and travelers who come by now ask which one is {A_nameDef}.</li>
-          <li>[famous,flattering] Brave colonists, wise councils, very little mud. The play has been a hit, and people along the road know the colony's name now. Some of them believe the play.</li>
-          <li>[famous,changed] The play opened at {PLACE} with the new ending the colony asked for, and it has been packing houses ever since. The neighbors talk about the colony as if they'd been there.</li>
+          <li>[famous,flattering] The play shows brave colonists and a wise council, and leaves out the hard parts. It has been a hit, and people along the road now know the colony's name.</li>
+          <li>[famous,changed] The play opened at {PLACE} with the new ending the colony asked for, and it has drawn full crowds ever since. The neighbors talk about the colony as if they'd been there.</li>
           <li>[famous,colony:Merciful] The troupe says audiences stand up for the best scene, the one where the colony takes in a stranger no one else would. The play has been a hit all along the road.</li>
-          <li>[famous,colony:Harsh] Hard, but fair: that's how the colony comes across on the stage, and the play has been a hit. The neighbors seem to respect the colony more for it.</li>
+          <li>[famous,colony:Harsh] On the stage the colony comes across as hard but fair, and the play has been a hit. The neighbors seem to respect the colony more for it.</li>
           <li>[famous] The play about the colony has been a hit at {PLACE} and in every town the troupe has played since. The neighbors know the colony's name now.</li>
-          <li>[fanjoined] The admirer who walked here after seeing the play didn't leave. The colony is less heroic up close than it was on stage, the newcomer admits, and better for it.\n\nThe play is still drawing crowds at {PLACE}.</li>
+          <li>[fanjoined] The admirer who walked here after seeing the play didn't leave. The newcomer admits the real colony is less heroic than the one on stage, but likes it better.\n\nThe play is still drawing crowds at {PLACE}.</li>
           <li>[scandal,honest] {X_nameDef} told the hard parts the way {A_nameDef} told them, and at {PLACE} some people didn't want to hear them. The play caused a scandal on its first night, and there have been arguments in the market since about whether the colony is good or not.</li>
-          <li>[scandal] At {PLACE} the play opened to a scandal. It shows the colony's worst choices, played big, with a villain who looks a lot like {A_nameDef}, and the neighbors are talking.</li>
+          <li>[scandal] At {PLACE} the play opened to a scandal. It shows the colony's worst choices, exaggerated, with a villain who looks a lot like {A_nameDef}, and the neighbors are talking.</li>
           <li>[flop] The play about the colony opened at {PLACE} and closed three nights later. The audience laughed in the wrong places, the set fell over, and the actor playing {A_nameDef} forgot all of {A_possessive} lines.\n\nThe troupe has gone back to an old favorite.</li>
           <li>[refused,hit] {X_nameDef} wrote the play anyway, from rumors and tavern talk, and it's been a hit. Most of it is wrong. The neighbors like the colony more for it all the same.</li>
-          <li>[refused,flop] {X_nameDef} wrote the play anyway, from what {X_pronoun} heard on the road, and it closed after two nights. The colony is spared its moment on the stage.</li>
+          <li>[refused,flop] {X_nameDef} wrote the play anyway, from what {X_pronoun} heard on the road, and it closed after two nights. Few people saw it.</li>
           <li>[refused,scandal] {X_nameDef} wrote the play anyway, from the worst rumors on the road. The colony comes off badly in it, with no one there to set it straight.</li>
-          <li>[vanished] Nothing more was heard of {X_nameDef} or the play. A trader thought the troupe might have gone south for the winter, or broken up, or both.</li>
+          <li>[vanished] Nothing more was heard of {X_nameDef} or the play. A trader thought the troupe might have gone south for the winter, or broken up.</li>
         </endings>
         <summaries>
           <li>[famous] A play about the colony was a hit along the road.</li>
@@ -811,9 +811,9 @@
           <li>The play comes to the colony</li>
         </titles>
         <texts>
-          <li>A cart of painted flats is standing at the gate. {X_nameDef} has brought the troupe back to play the colony's story to the colony first, before taking it on the road, and looks nervous about it. There's a part in it for {A_nameDef}, played by an actor taller and better-looking than {A_nameDef}.</li>
+          <li>A cart of painted flats is standing at the gate. {X_nameDef} has brought the troupe back to play the colony's story to the colony first, before taking it on the road, and looks nervous about it. {A_nameDef} is in it, played by one of the troupe's actors.</li>
           <li>[honest] "It's all in there," {X_nameDef} warns the council. "The good and the bad, just the way {A_nameDef} told it." The troupe is back to perform the play about the colony here first, before it goes on the road.</li>
-          <li>[flattering] {X_nameDef} has brought the troupe back to perform the play about the colony here first. From the rehearsal everyone could hear through the walls last night, the colony is very brave, and there's a lot of singing.</li>
+          <li>[flattering] {X_nameDef} has brought the troupe back to perform the play about the colony here first. From the rehearsal everyone heard last night, the play shows the colony as very brave, and has a lot of singing.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -889,7 +889,7 @@
           <li>Someone who saw the play</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION} saw the play about the colony at {PLACE}, and walked for three days to see the real thing. {X_nameDef} has already asked which one is {A_nameDef}, and seems faintly disappointed that {A_nameDef} is shorter than the actor.</li>
+          <li>{X_nameDef} of {FACTION} saw the play about the colony at {PLACE}, and walked for three days to see the real thing. {X_nameDef} has already asked which one is {A_nameDef}.</li>
           <li>[changed] The new ending brought {X_nameDef} of {FACTION} all the way from {PLACE}. {X_nameDef} saw the play there and has come to find out whether any of it is true, the ending most of all.</li>
           <li>[winter] {X_nameDef} of {FACTION} came through the snow to the colony's gate having seen the play at {PLACE}, and would like to shake {A_nameDef}'s hand. Then, perhaps, to stay a while.</li>
         </texts>
