@@ -413,7 +413,9 @@ namespace ColonyCouncil
         {
             if (b == null || g == null || why == GodPaceMath.Trigger.None) return false;
             if (forced == h) return true;
-            return Rand.Chance(OwnHappeningsMath.CheckChance(h, DaysSince(b, h, now), why, GodNear.Of(g, map), checks));
+            // A god seen often at the home lately gives the other gods their turn (GodTouch.Turn: the player, 15 November 2026,
+            // had the same god's occurrence three times in a short while).
+            return Rand.Chance(OwnHappeningsMath.CheckChance(h, DaysSince(b, h, now), why, GodNear.Of(g, map), checks) * GodTouch.Turn(g, map));
         }
 
         /// <summary>The dev action's happening, while it is being fired: every chance and gap of it gives way.</summary>

@@ -217,6 +217,11 @@ namespace ColonyCouncil
         public string teller;
         /// <summary>It has reached the colony's book already (not saved: a load doesn't write it again).</summary>
         public bool booked;
+        /// <summary>
+        /// What it was, for the gods' touch (Gods/Touch/GodTouch.cs): the words key it was seen in (CC_GodO_Saw_Roots ...), or
+        /// the part's own word for it ("world", "told", "taken", "prayer"); null for anything else. Not saved.
+        /// </summary>
+        public string what;
 
         public void ExposeData()
         {

@@ -23,6 +23,15 @@ namespace ColonyCouncil
         /// near enough shows itself plainly now and then (GodNear.Plain), and is named, as the colony is sure it was that god.
         /// </summary>
         public bool veiled;
+        /// <summary>
+        /// A small moment: its sound, light and card where it happens, the game's speed and the camera left as they are (the
+        /// player, 15 November 2026: the camera only for the big moments).
+        /// </summary>
+        public bool quiet;
+        /// <summary>The god's own presence after it lasts this many ticks instead of its usual hours (a great effect of the gods' touch); 0: as usual.</summary>
+        public int lingerTicks;
+        /// <summary>What it was, for the gods' touch (as GodAct.what): its caller's word for it, or null.</summary>
+        public string what;
 
         /// <summary>A moment of a god at a place: veiled as the gods are felt, plain when the god is drawn near enough this time (GodNear.Plain).</summary>
         public static PresenceSpec For(God god, Map map, PresenceKind kind, IntVec3 cell = default, Pawn avatar = null) => new PresenceSpec

@@ -98,10 +98,22 @@ namespace ColonyCouncil
         /// burst of rays opens, its circle shows on the ground and its motes fly up. <paramref name="big"/>: a coming, a
         /// reveal, a wrath; small: an omen's glimmer.
         /// </summary>
-        public static void Flash(GodLookDef look, Map map, IntVec3 cell, Color a, Color b, bool big)
+        public static void Flash(GodLookDef look, Map map, IntVec3 cell, Color a, Color b, bool big, string godKey = null)
         {
             if (look == null || map == null || !cell.InBounds(map)) return;
             var loc = cell.ToVector3Shifted();
+            // Each god's own look over the shared one (Gods/Touch/GodTouchFx.cs): its leaves, embers, sparks, water or sand.
+            if (!godKey.NullOrEmpty() && map == Find.CurrentMap)
+            {
+                try
+                {
+                    GodTouchFx.Signature(godKey, map, cell, a, b, big ? TouchTier.Great : TouchTier.Small);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gods: a god's own look", e);
+                }
+            }
             try
             {
                 if (big) map.weatherManager.eventHandler.AddEvent(new GodFlashEvent(map, a));

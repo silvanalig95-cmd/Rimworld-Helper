@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.256.0</version>
+        <date>15 November 2026</date>
+        <title>The gods felt, and what follows them</title>
+        <points>
+          <li>Whoever sees something of the gods now feels it, by what they believe: a believer is glad and comforted, someone in dread is afraid, a scoffer shrugs.</li>
+          <li>Most of the gods' doings are now followed by something of that god's own, usually small, sometimes more, and rarely something the colony remembers.</li>
+          <li>Each god has its own look on the map: leaves, embers, sparks, frost, water, sand, gold.</li>
+          <li>An offering is taken before everyone's eyes a month apart at most, and a god that came often lately gives the others their turn.</li>
+          <li>The camera now moves only for the big moments of the gods.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.255.0</version>
         <date>15 November 2026</date>
         <title>Guests busy all day, all over the colony</title>
