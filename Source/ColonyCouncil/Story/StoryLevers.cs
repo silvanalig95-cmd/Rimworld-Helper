@@ -23,6 +23,7 @@ namespace ColonyCouncil
         public float memory = 1f;
         public float allies = 1f;
         public float schemes = 1f;
+        public float uncanny = 1f;
         public float raidReasons;
 
         /// <summary>A lever by its key (StoryWaysMath.Keys); 1 for a key it doesn't know.</summary>
@@ -46,6 +47,7 @@ namespace ColonyCouncil
                 case StoryWaysMath.Memory: return memory;
                 case StoryWaysMath.Allies: return allies;
                 case StoryWaysMath.Schemes: return schemes;
+                case StoryWaysMath.Uncanny: return uncanny;
                 case StoryWaysMath.RaidReasons: return raidReasons;
                 default: return 1f;
             }

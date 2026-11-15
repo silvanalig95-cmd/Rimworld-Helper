@@ -123,6 +123,8 @@ namespace ColonyCouncil
         public const string Allies = "allies";
         /// <summary>Schemes against the colony (harm: never above 1).</summary>
         public const string Schemes = "schemes";
+        /// <summary>The old powers' own strange happenings (OldPowers/): how often one comes (what hurts in them stays the shared budget's).</summary>
+        public const string Uncanny = "uncanny";
         /// <summary>
         /// The share of the raids the storyteller sends without saying from whom that come from the people with the most
         /// reason (a wrong the colony did them, an old enmity): 0 none, 1 every one that can.
@@ -132,7 +134,7 @@ namespace ColonyCouncil
         public static readonly string[] Keys =
         {
             Visitors, Challenges, Pasts, Nature, Fights, Camps, Traders, Letters, Favours, Missions, Situations, Gods, Arcs, Memory, Allies, Schemes,
-            RaidReasons
+            Uncanny, RaidReasons
         };
 
         /// <summary>The levers on something that hurts: never above 1 on their own.</summary>

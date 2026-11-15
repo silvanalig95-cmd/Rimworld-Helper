@@ -198,6 +198,14 @@ namespace ColonyCouncil
         /// <summary>A miner waking from a warm dream with a burn across the hand, for silver kept from the deep (Gods/OnMap/OwnSmoulder.cs).</summary>
         public static readonly HarmKind GodBurn = new HarmKind("godBurn", "a warm dream's burn for silver kept from the deep (gods)", "gods", 0.003f, false);
 
+        // ---------------- The old powers (14 November 2026) ----------------
+
+        /// <summary>
+        /// Something uncanny turning on someone (OldPowers/): a caster's hands burned by the light that filled them, the dead
+        /// walking the road at dusk as the game's shamblers, the dead crawling up out of what was buried.
+        /// </summary>
+        public static readonly HarmKind Uncanny = new HarmKind("uncanny", "something uncanny that turns on someone (old powers)", "oldPowers", 0.004f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -215,7 +223,8 @@ namespace ColonyCouncil
             WorstNight, FirstSteps, WorkingWrong,
             CampLeft,
             UnionDrill,
-            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn
+            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn,
+            Uncanny
         };
 
         public static HarmKind Of(string key)

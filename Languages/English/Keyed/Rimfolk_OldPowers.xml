@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The old powers' own strange happenings (Source/ColonyCouncil/OldPowers/): their cards and news lines. -->
+
+  <!-- The points of the compass, as the cards say them -->
+  <CC_OldP_Point_N>north</CC_OldP_Point_N>
+  <CC_OldP_Point_NE>north-east</CC_OldP_Point_NE>
+  <CC_OldP_Point_E>east</CC_OldP_Point_E>
+  <CC_OldP_Point_SE>south-east</CC_OldP_Point_SE>
+  <CC_OldP_Point_S>south</CC_OldP_Point_S>
+  <CC_OldP_Point_SW>south-west</CC_OldP_Point_SW>
+  <CC_OldP_Point_W>west</CC_OldP_Point_W>
+  <CC_OldP_Point_NW>north-west</CC_OldP_Point_NW>
+
+  <!-- The seer of the season -->
+  <CC_OldP_Seer_Title>A seer at the end of the season</CC_OldP_Seer_Title>
+  <CC_OldP_Seer_Text>{SEER}, {OF}, came to the colony as the season was ending, sat down near the middle and {CAST}. {WHO} {SEER} said:\n\n{WORDS}</CC_OldP_Seer_Text>
+  <CC_OldP_Seer_OfFold>a seer of the arcane fold</CC_OldP_Seer_OfFold>
+  <CC_OldP_Seer_Of>a seer of {PEOPLE}</CC_OldP_Seer_Of>
+  <CC_OldP_Seer_OfNone>a travelling seer</CC_OldP_Seer_OfNone>
+  <CC_OldP_Seer_Cast_0>threw small bones into the ashes of the fire and looked at how they fell</CC_OldP_Seer_Cast_0>
+  <CC_OldP_Seer_Cast_1>laid out a deck of painted cards on the ground</CC_OldP_Seer_Cast_1>
+  <CC_OldP_Seer_Cast_2>held a pendulum over a hand-drawn map of the area</CC_OldP_Seer_Cast_2>
+  <CC_OldP_Seer_Cast_3>went through a column of readings on a handheld screen</CC_OldP_Seer_Cast_3>
+  <CC_OldP_Seer_Listener>{LISTENER} went over and sat down to listen.</CC_OldP_Seer_Listener>
+  <CC_OldP_Seer_NoListener>Nobody was free to sit with them, so they said it to whoever was near.</CC_OldP_Seer_NoListener>
+  <CC_OldP_Seer_Word_Frost>It will freeze. The next season averages {TEMP} here.</CC_OldP_Seer_Word_Frost>
+  <CC_OldP_Seer_Word_Cold>It will be cold. The next season averages {TEMP} here.</CC_OldP_Seer_Word_Cold>
+  <CC_OldP_Seer_Word_Mild>It will be mild. The next season averages {TEMP} here.</CC_OldP_Seer_Word_Mild>
+  <CC_OldP_Seer_Word_Warm>It will be warm. The next season averages {TEMP} here.</CC_OldP_Seer_Word_Warm>
+  <CC_OldP_Seer_Word_Heat>It will be very hot. The next season averages {TEMP} here.</CC_OldP_Seer_Word_Heat>
+  <CC_OldP_Seer_Word_Grows>The fields will grow. Crops grow at that temperature.</CC_OldP_Seer_Word_Grows>
+  <CC_OldP_Seer_Word_Bare>Nothing will grow. It will be too cold or too hot for crops.</CC_OldP_Seer_Word_Bare>
+  <CC_OldP_Seer_Word_StoresShort>The stores will run short. The colony has food for less than fifteen days, and nothing will grow.</CC_OldP_Seer_Word_StoresShort>
+  <CC_OldP_Seer_Word_StoresEnough>The stores will last. The colony has food for forty days or more.</CC_OldP_Seer_Word_StoresEnough>
+  <CC_OldP_Seer_Word_Blades>A fight is coming. An attack on the colony is due within fifteen days.</CC_OldP_Seer_Word_Blades>
+
+  <!-- Everything faced one way -->
+  <CC_OldP_OneWay_Title>Everything turned one way</CC_OldP_OneWay_Title>
+  <CC_OldP_OneWay_Text>At midnight everyone awake in the colony stopped and turned to face {POINT}: {WHO}. Their shadows stretched out that way across the ground. It lasted about ten seconds.</CC_OldP_OneWay_Text>
+  <CC_OldP_OneWay_WhoPeople>{COUNT} people</CC_OldP_OneWay_WhoPeople>
+  <CC_OldP_OneWay_WhoBeasts>{COUNT} people, and the animals too</CC_OldP_OneWay_WhoBeasts>
+  <CC_OldP_OneWay_Dead>They were all facing where {DEAD} lies.</CC_OldP_OneWay_Dead>
+  <CC_OldP_OneWay_Edge>Nobody could see anything out there in the dark.</CC_OldP_OneWay_Edge>
+  <CC_OldP_OneWay_DawnFound>At dawn {WALKER} walked out the way everyone had faced and found {THING} lying at the edge of the land.</CC_OldP_OneWay_DawnFound>
+  <CC_OldP_OneWay_DawnDead>At dawn {WALKER} went and stood for a while where {DEAD} lies.</CC_OldP_OneWay_DawnDead>
+
+  <!-- The humming stone -->
+  <CC_OldP_Stone_Title>The stone that hums</CC_OldP_Stone_Title>
+  <CC_OldP_Stone_Text>At dusk {STONE} near the middle of the colony began to hum, a low steady sound, {WHY}. It will go on until early morning, and the animals are keeping away from it.</CC_OldP_Stone_Text>
+  <CC_OldP_Stone_Psychic>while the psychic disturbance was on</CC_OldP_Stone_Psychic>
+  <CC_OldP_Stone_Storm>as the thunderstorm came over</CC_OldP_Stone_Storm>
+  <CC_OldP_Stone_Face>the {ROCK} rock face</CC_OldP_Stone_Face>
+  <CC_OldP_Stone_Quiet>The stone stopped humming in the early morning.</CC_OldP_Stone_Quiet>
+
+  <!-- The sealed scroll -->
+  <CC_OldP_Scroll_Title>A sealed scroll in the ruins</CC_OldP_Scroll_Title>
+  <CC_OldP_Scroll_Text>In {RUIN}, {FINDER} noticed something lying in the dust: {THING}, still sealed. {FINDER} went over and knelt down beside it.</CC_OldP_Scroll_Text>
+  <CC_OldP_Scroll_Ruin_0>the old stone ruin</CC_OldP_Scroll_Ruin_0>
+  <CC_OldP_Scroll_Ruin_1>the ruined tower</CC_OldP_Scroll_Ruin_1>
+  <CC_OldP_Scroll_Ruin_2>the old ruin</CC_OldP_Scroll_Ruin_2>
+  <CC_OldP_Scroll_Ruin_3>the ancient ruin</CC_OldP_Scroll_Ruin_3>
+
+  <!-- The casters lit up -->
+  <CC_OldP_Charged_Title>The casters lit up</CC_OldP_Charged_Title>
+  <CC_OldP_Charged_Text>{SKY}, and the colony's casters lit up where they stood:\n\n{NAMES}</CC_OldP_Charged_Text>
+  <CC_OldP_Charged_Power>Tonight the sky was full of power</CC_OldP_Charged_Power>
+  <CC_OldP_Charged_Aurora>Tonight there was an aurora over the colony</CC_OldP_Charged_Aurora>
+  <CC_OldP_Charged_Mage>{NAME}: light ran over their hands, and their mana is full.</CC_OldP_Charged_Mage>
+  <CC_OldP_Charged_Psycaster>{NAME}: their psyfocus rose by half.</CC_OldP_Charged_Psycaster>
+  <CC_OldP_Charged_Sensitive>{NAME}: they felt it go right through them.</CC_OldP_Charged_Sensitive>
+  <CC_OldP_Charged_Burned>The light came out of {NAME}'s hands too fast and burned them.</CC_OldP_Charged_Burned>
+
+  <!-- The wandering enchanter -->
+  <CC_OldP_Enchanter_Label>A wandering enchanter</CC_OldP_Enchanter_Label>
+  <CC_OldP_Enchanter_Title>The enchanter's work</CC_OldP_Enchanter_Title>
+  <CC_OldP_Enchanter_Who_0>a wandering rune-carver</CC_OldP_Enchanter_Who_0>
+  <CC_OldP_Enchanter_Who_1>a wandering enchanter</CC_OldP_Enchanter_Who_1>
+  <CC_OldP_Enchanter_Who_2>a travelling tinker who works on gear with tools nobody else uses</CC_OldP_Enchanter_Who_2>
+  <CC_OldP_Enchanter_Who_3>a travelling nanite smith</CC_OldP_Enchanter_Who_3>
+  <CC_OldP_Enchanter_Text>{ENCHANTER}, {WHO}, has come to the colony. They have looked at {BEARER}'s {THING} ({QUALITY}) and say they can make it {NEXT} in about an hour, for {PRICE} silver.</CC_OldP_Enchanter_Text>
+  <CC_OldP_Enchanter_Ask>If the colony agrees, {BEARER} will take it over to them and stay while they work.</CC_OldP_Enchanter_Ask>
+  <CC_OldP_Enchanter_Yes>Let {ENCHANTER} work on {BEARER}'s {THING} ({PRICE} silver)</CC_OldP_Enchanter_Yes>
+  <CC_OldP_Enchanter_No>Send them on their way</CC_OldP_Enchanter_No>
+  <CC_OldP_Enchanter_NoSilver>The colony doesn't have {PRICE} silver in its stores.</CC_OldP_Enchanter_NoSilver>
+  <CC_OldP_Enchanter_Gone>{BEARER} no longer has the {THING}.</CC_OldP_Enchanter_Gone>
+  <CC_OldP_Enchanter_Done>{ENCHANTER} and {BEARER} stood over the {THING} for about an hour while {ENCHANTER} worked on it. It is now {NEXT}. {ENCHANTER} was paid {PRICE} silver from the stores and went on their way.</CC_OldP_Enchanter_Done>
+
+  <!-- The thing under the ground -->
+  <CC_OldP_Buried_Knock>Something knocked under the ground to the {POINT} of the colony's middle during the night, and dust rose from the spot.</CC_OldP_Buried_Knock>
+  <CC_OldP_Buried_Crack>The knocking under the ground came again, and the earth over it has cracked.</CC_OldP_Buried_Crack>
+  <CC_OldP_Buried_Title>Something came up out of the ground</CC_OldP_Buried_Title>
+  <CC_OldP_Buried_Text>This morning the cracked ground near the colony broke open, and {WHAT}: {FOUND}.</CC_OldP_Buried_Text>
+  <CC_OldP_Buried_Cache>an old buried cache was lying in it</CC_OldP_Buried_Cache>
+  <CC_OldP_Buried_Relic>something old and valuable was lying in it</CC_OldP_Buried_Relic>
+  <CC_OldP_Buried_Magicyte>raw magicyte had pushed up through the soil</CC_OldP_Buried_Magicyte>
+  <CC_OldP_BuriedWaker_Title>The dead came up out of the ground</CC_OldP_BuriedWaker_Title>
+  <CC_OldP_BuriedWaker_Text>This morning the cracked ground near the colony broke open, and {COUNT} of the dead climbed out of it. They are coming for the colony.</CC_OldP_BuriedWaker_Text>
+
+  <!-- The dead on the road -->
+  <CC_OldP_DeadRoad_Title>The dead on the road</CC_OldP_DeadRoad_Title>
+  <CC_OldP_DeadRoad_Text>At dusk a line of pale figures came walking across the land from the {FROM}, {WHY}. They walk slowly and do not look at the colony.</CC_OldP_DeadRoad_Text>
+  <CC_OldP_DeadRoad_AfterDeath>a few days after a death in the colony</CC_OldP_DeadRoad_AfterDeath>
+  <CC_OldP_DeadRoad_NoMoon>on a night with no moon</CC_OldP_DeadRoad_NoMoon>
+  <CC_OldP_DeadRoad_Walkers>At dusk the dead came walking across the land, {WHY}.</CC_OldP_DeadRoad_Walkers>
+  <CC_OldP_DeadRoad_Gone>The pale figures walked off the edge of the land and were gone.</CC_OldP_DeadRoad_Gone>
+
+  <!-- The pilgrims passing -->
+  <CC_OldP_Pilgrims_Title>Pilgrims passing through</CC_OldP_Pilgrims_Title>
+  <CC_OldP_Pilgrims_Text>{COUNT} pilgrims of {PEOPLE} came onto the land {WHY}. They have stopped at {PLACE} to pray before they go on.</CC_OldP_Pilgrims_Text>
+  <CC_OldP_Pilgrims_Road>on their way somewhere else</CC_OldP_Pilgrims_Road>
+  <CC_OldP_Pilgrims_Sign>because of the sign in the sky</CC_OldP_Pilgrims_Sign>
+  <CC_OldP_Pilgrims_Place_Graves>the colony's graves</CC_OldP_Pilgrims_Place_Graves>
+  <CC_OldP_Pilgrims_Place_Tree>the colony's oldest tree</CC_OldP_Pilgrims_Place_Tree>
+  <CC_OldP_Pilgrims_Place_Middle>the middle of the colony</CC_OldP_Pilgrims_Place_Middle>
+  <CC_OldP_Pilgrims_Token>The pilgrims left {TOKEN} at {PLACE} and went on their way.</CC_OldP_Pilgrims_Token>
+
+  <!-- Another sky -->
+  <CC_OldP_OtherSky_Title>Another sky</CC_OldP_OtherSky_Title>
+  <CC_OldP_OtherSky_Text_0>Tonight the sky over the colony is violet, the shadows are green, and the stars are not the usual stars. It should last until early morning.</CC_OldP_OtherSky_Text_0>
+  <CC_OldP_OtherSky_Text_1>Tonight the sky over the colony is violet, the shadows are green, and none of the stars are where they should be. It should last until early morning.</CC_OldP_OtherSky_Text_1>
+  <CC_OldP_OtherSky_Text_2>Tonight the sky over the colony is violet, the shadows are green, and the stars don't match any star chart. It should last until early morning.</CC_OldP_OtherSky_Text_2>
+  <CC_OldP_OtherSky_Text_3>Tonight the sky over the colony is violet, the shadows are green, and the stars match no sky in the colony's star charts. It should last until early morning.</CC_OldP_OtherSky_Text_3>
+  <CC_OldP_OtherSky_Gone>The night sky looks as it should again.</CC_OldP_OtherSky_Gone>
+
+  <!-- The animal that spoke -->
+  <CC_OldP_Beast_Title>An animal spoke</CC_OldP_Beast_Title>
+  <CC_OldP_Beast_Text>At dusk {BEAST} walked up to {HEARER}, stood in front of them and spoke. {HEARER} says it said: {WORDS} Then it walked away like any other animal.</CC_OldP_Beast_Text>
+
+  <!-- A god going by -->
+  <CC_OldP_GodPasses_Title>Signs in the night</CC_OldP_GodPasses_Title>
+  <CC_OldP_GodPasses_TitleNamed>{GOD} went by</CC_OldP_GodPasses_TitleNamed>
+  <CC_OldP_GodPasses_Text>All night there were signs at the colony, {COUNT} of them, one after another. By dawn they had stopped.</CC_OldP_GodPasses_Text>
+  <CC_OldP_GodPasses_Named>{KEEPER}, who holds to that god, says it went past the colony in the night without stopping.</CC_OldP_GodPasses_Named>
+  <CC_OldP_GodPasses_Unnamed>Some say something went past the colony in the night.</CC_OldP_GodPasses_Unnamed>
+  <CC_OldP_GodPasses_Saw>{WHO} saw signs all night at {HOME}, one after another, and then nothing more.</CC_OldP_GodPasses_Saw>
+
+</LanguageData>
