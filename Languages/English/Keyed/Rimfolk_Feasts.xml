@@ -10,7 +10,7 @@
   <!-- The settings -->
   <CC_Settings_DiplomacyFeasts>Feasts with guests</CC_Settings_DiplomacyFeasts>
   <CC_SetNote_DiplomacyFeasts>Feasts, hunts, games and contests with guests from the peoples around, once a season at a home.</CC_SetNote_DiplomacyFeasts>
-  <CC_Settings_DiplomacyFeasts_Tip>From a people's card, the calendar or at the steward's suggestion, invite up to three notables of peoples at peace who live within three days' travel and think well enough of the colony (regard 0 or more), by letter or call. Each answers by their regard, the road and whether what their people hope for is offered: a hunt for a tribe, a hunt or wrestling in the middle ages, a race or a shooting match for an industrial people, wrestling or a game at the tables for spacers, a fine meal and music for the Empire. On the first fine day after the last of them can arrive, they walk in with one or two of their people and wait by the gate. Up to four contests are held on the map in the afternoon (wrestling by the sparring rules, a race, a hunt, a game at the colony's tables, and a shooting match only where a mod gives targets), the feast is the colony's gathering with the guests at its table, the champion of the day gets the prize, and the guests stay the night and go home at first light. A good welcome raises their regard and their people remember it; an empty plate is a slight. A wrestling bout's blow goes in hard about one time in 25; a guest's night after the feast turns into a fistfight about one guest night in 15. Off: nothing new is planned or suggested, and a feast under way plays out.</CC_Settings_DiplomacyFeasts_Tip>
+  <CC_Settings_DiplomacyFeasts_Tip>From a people's card, the calendar or at the steward's suggestion, invite up to three notables of peoples at peace who live within three days' travel and think well enough of the colony (regard 0 or more), by letter or call. Each answers by their regard, the road and whether what their people hope for is offered: a hunt for a tribe, a hunt or wrestling in the middle ages, a race or a shooting match for an industrial people, wrestling or a game at the tables for spacers, a fine meal and music for the Empire. On the first fine day after the last of them can arrive, they walk in with one or two of their people and wait by the gate. Up to four contests are held on the map in the afternoon (wrestling by the sparring rules, a race, a hunt, a game at the colony's tables, and a shooting match only where a mod gives targets), the feast is the colony's gathering with the guests at its table, the champion of the day gets the prize, and the guests stay the night and go home at first light. A good welcome raises their regard and their people remember it; a guest left without a meal takes it as a slight. A wrestling bout's blow goes in hard about one time in 25; a guest's night after the feast turns into a fistfight about one guest night in 15. Off: nothing new is planned or suggested, and a feast under way plays out.</CC_Settings_DiplomacyFeasts_Tip>
 
   <!-- The colony's feast in its own words, with "the" ({FEAST}) -->
   <CC_Feast_Name_Tribal>the gift feast</CC_Feast_Name_Tribal>
@@ -77,8 +77,8 @@
   <!-- Why a contest didn't happen, or the feast was called off ({WHY}) -->
   <CC_Feast_Off_Light>the light was going</CC_Feast_Off_Light>
   <CC_Feast_Off_Rain>the weather wouldn't clear</CC_Feast_Off_Rain>
-  <CC_Feast_Off_Long>it went on too long and was called</CC_Feast_Off_Long>
-  <CC_Feast_Off_Late>the evening came, and the feast with it</CC_Feast_Off_Late>
+  <CC_Feast_Off_Long>it went on too long and was stopped</CC_Feast_Off_Long>
+  <CC_Feast_Off_Late>evening came, and it was time for the feast</CC_Feast_Off_Late>
   <CC_Feast_Off_NoRing>there was no open ground for a ring</CC_Feast_Off_NoRing>
   <CC_Feast_Off_Nobody>nobody was free to take part</CC_Feast_Off_Nobody>
   <CC_Feast_Off_BrokeUp>it broke up before the end</CC_Feast_Off_BrokeUp>
@@ -104,7 +104,7 @@
   <CC_Feast_Ans_YesHope>{NAME} will come to {FEAST}, and is glad there will be {HOPE}.</CC_Feast_Ans_YesHope>
   <CC_Feast_Ans_YesHope_2>{NAME} accepts, and says {HOPE} at the colony is worth the walk.</CC_Feast_Ans_YesHope_2>
   <CC_Feast_Ans_No>{NAME} won't be coming to {FEAST}.</CC_Feast_Ans_No>
-  <CC_Feast_Ans_No_2>{NAME} sends regrets: there's no coming to {FEAST} this time.</CC_Feast_Ans_No_2>
+  <CC_Feast_Ans_No_2>{NAME} sends regrets and can't come to {FEAST} this time.</CC_Feast_Ans_No_2>
   <CC_Feast_Ans_No_3>{NAME} thanks the colony for the invitation, and stays at home.</CC_Feast_Ans_No_3>
   <CC_Feast_Ans_TheirRite>At home their people keep their feasts as {RITE}.</CC_Feast_Ans_TheirRite>
   <CC_Feast_Ans_Moot>The colony's plans for {FEAST} have changed, and the letter is answered with thanks only.</CC_Feast_Ans_Moot>
@@ -124,7 +124,7 @@
   <CC_Feast_Arrive_Label>Guests for {FEAST}</CC_Feast_Arrive_Label>
   <CC_Feast_Arrive>Guests for {FEAST} have come: {GUESTS} of {PEOPLES}, each with one or two of their people. They are walking up to the gate to wait there.</CC_Feast_Arrive>
   <CC_Feast_Arrive_2>The guests are here: {GUESTS} of {PEOPLES}, come for {FEAST}. They are walking to the gate with those who came with them.</CC_Feast_Arrive_2>
-  <CC_Feast_Arrive_3>In from the road for {FEAST}: {GUESTS} of {PEOPLES}, with those who came with them, making for the gate.</CC_Feast_Arrive_3>
+  <CC_Feast_Arrive_3>{GUESTS} of {PEOPLES} have arrived for {FEAST} with those who came with them, and are heading for the gate.</CC_Feast_Arrive_3>
   <CC_Feast_Arrive_Wedding>Guests for the wedding have come: {GUESTS} of {PEOPLES}, each with one or two of their people. They are walking up to the gate to wait there.</CC_Feast_Arrive_Wedding>
   <CC_Feast_Arrive_How>The contests begin in the afternoon: {CONTESTS}. The feast follows in the evening, and the guests stay the night.</CC_Feast_Arrive_How>
   <CC_Feast_Arrive_HowNone>The feast is in the evening, and the guests stay the night.</CC_Feast_Arrive_HowNone>
@@ -167,7 +167,7 @@
   <!-- The end -->
   <CC_Feast_End_Label>The guests go home</CC_Feast_End_Label>
   <CC_Feast_End>{GUESTS} set out for home at first light after {FEAST}.</CC_Feast_End>
-  <CC_Feast_End_2>First light, and the guests are on their way home from {FEAST}: {GUESTS}.</CC_Feast_End_2>
+  <CC_Feast_End_2>At first light the guests set off home from {FEAST}: {GUESTS}.</CC_Feast_End_2>
   <CC_Feast_End_Insulted>The guests have left {FEAST} at once, offended by how they were treated: {GUESTS}.</CC_Feast_End_Insulted>
   <CC_Feast_End_Glad>{NAME} went home pleased: {WHY}.</CC_Feast_End_Glad>
   <CC_Feast_End_Fair>{NAME} went home content enough: {WHY}.</CC_Feast_End_Fair>
@@ -214,8 +214,8 @@
   <CC_Feast_Dlg_Contest_Shooting>Five shots each at the colony's target.</CC_Feast_Dlg_Contest_Shooting>
   <CC_Feast_Dlg_ContestTip_Wrestling>Up to three bouts in a ring by the gate, each between one of the colony's grown people and a guest: eight swings each, or until one yields to the pain. One blow in a bout goes in harder than meant about one time in 25 (a cracked rib, a bloody nose gone bad), never on someone hurt in the last three days or with child.</CC_Feast_Dlg_ContestTip_Wrestling>
   <CC_Feast_Dlg_ContestTip_Race>The runners line up at the gate, run out to a marker on open ground and back, and the first home wins. A runner may stumble at the turn and lose a moment.</CC_Feast_Dlg_ContestTip_Race>
-  <CC_Feast_Dlg_ContestTip_Hunt>Game nothing likely to turn is marked for hunting, one beast more than there are hunters; the most kills wins. As in any hunt, a beast may turn on its hunter now and then.</CC_Feast_Dlg_ContestTip_Hunt>
-  <CC_Feast_Dlg_ContestTip_Tables>Up to two games, played as the game's own recreation; the winner by the game's own skill for it, and some luck.</CC_Feast_Dlg_ContestTip_Tables>
+  <CC_Feast_Dlg_ContestTip_Hunt>Game that isn't likely to turn on its hunter is marked for hunting, one beast more than there are hunters; the most kills wins. As in any hunt, a beast may turn on its hunter now and then.</CC_Feast_Dlg_ContestTip_Hunt>
+  <CC_Feast_Dlg_ContestTip_Tables>Up to two games, played as the game's own recreation; the winner is decided by the game's own skill for it, and some luck.</CC_Feast_Dlg_ContestTip_Tables>
   <CC_Feast_Dlg_ContestTip_Shooting>Each shooter takes five shots from a line ten paces or so from the target; the most hits wins.</CC_Feast_Dlg_ContestTip_Shooting>
   <CC_Feast_Dlg_Prize>The prize</CC_Feast_Dlg_Prize>
   <CC_Feast_Dlg_NoPrize>No prize</CC_Feast_Dlg_NoPrize>

@@ -53,7 +53,7 @@
   <CC_Adv_Office_Best>{1} would make the best {0} of those here (competence {2}). Appoint them from the Decrees page, or wait for the election.</CC_Adv_Office_Best>
 
   <!-- A calendar day with nothing laid by -->
-  <CC_Adv_CalPrep_Title>{0} tomorrow, and nothing laid by</CC_Adv_CalPrep_Title>
+  <CC_Adv_CalPrep_Title>{0} tomorrow, and nothing is ready</CC_Adv_CalPrep_Title>
   <CC_Adv_CalPrep_Detail>{0} is kept as {1}, and {2}. See to it today, keep the day another way, or let it pass from the Calendar page.</CC_Adv_CalPrep_Detail>
   <CC_Adv_CalPrep_Feast>there aren't meals enough in store for everyone to sit down to</CC_Adv_CalPrep_Feast>
   <CC_Adv_CalPrep_Hunt>nobody who hunts has a bow or a gun to hunt with</CC_Adv_CalPrep_Hunt>

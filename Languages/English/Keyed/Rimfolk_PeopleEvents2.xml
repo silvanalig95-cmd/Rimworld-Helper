@@ -8,7 +8,7 @@
   <CC_PEv2_SetOut>{PAWN} has set out from the map's edge for {PLACE}, a caravan of one.</CC_PEv2_SetOut>
   <CC_PEv2_Stayed>{PAWN} didn't set out after all.</CC_PEv2_Stayed>
   <CC_PEv2_AwayLostLabel>{0} lost on the road</CC_PEv2_AwayLostLabel>
-  <CC_PEv2_AwayLost>{PAWN} never reached home from {PLACE}: the road took {PAWN_objective}, as the world's roads do. {FACTION} send word that they are sorry.</CC_PEv2_AwayLost>
+  <CC_PEv2_AwayLost>{PAWN} never reached home from {PLACE} and was lost somewhere on the road. {FACTION} send word that they are sorry.</CC_PEv2_AwayLost>
   <CC_PEv2_Homeward>{PAWN}'s days at {PLACE} are over, and {PAWN_pronoun} has set out for home, a caravan of one on the road.</CC_PEv2_Homeward>
   <CC_PEv2_HomewardEarly>{PAWN} has left {PLACE} before {PAWN_possessive} days there were done, and is on the road home.</CC_PEv2_HomewardEarly>
   <CC_PEv2_NoSecond>Nobody else of the colony is free to go.</CC_PEv2_NoSecond>
@@ -26,13 +26,13 @@
   <CC_PEv2_OldShrine>the old shrine at {NAME}</CC_PEv2_OldShrine>
   <CC_PEv2_Impact_Cough>{0} may bring the pilgrims' cough home from the crowded road (about {1}%, through the harm budget).</CC_PEv2_Impact_Cough>
   <CC_PEv2_Impact_CoughBrief>The pilgrims' cough</CC_PEv2_Impact_CoughBrief>
-  <CC_PEv2_Impact_Home>Home, {0} brings a shell, a lasting memory of the shrine and steadier faith.</CC_PEv2_Impact_Home>
-  <CC_PEv2_Impact_HomeEased>Home, {0} brings a shell, a lasting memory of the shrine and steadier faith, and "{1}" weighs less.</CC_PEv2_Impact_HomeEased>
+  <CC_PEv2_Impact_Home>{0} comes home with a shell, a lasting memory of the shrine and steadier faith.</CC_PEv2_Impact_Home>
+  <CC_PEv2_Impact_HomeEased>{0} comes home with a shell, a lasting memory of the shrine and steadier faith, and "{1}" weighs less.</CC_PEv2_Impact_HomeEased>
   <CC_PEv2_Impact_HomeBrief>Home with a shell</CC_PEv2_Impact_HomeBrief>
   <CC_PEv2_Impact_Fellowship>{0} +{1} goodwill when the pilgrim comes home.</CC_PEv2_Impact_Fellowship>
   <CC_PEv2_Impact_FellowshipBrief>The fellowship's thanks</CC_PEv2_Impact_FellowshipBrief>
   <CC_PEv2_ShrineLabel>{0} at the shrine</CC_PEv2_ShrineLabel>
-  <CC_PEv2_Shrine>{PAWN} has walked with {FACTION}'s pilgrims all the way to {PLACE}. {PAWN_pronoun} will keep the shrine with them {DAYS} days, and then take the road home.</CC_PEv2_Shrine>
+  <CC_PEv2_Shrine>{PAWN} has walked with {FACTION}'s pilgrims all the way to {PLACE}. {PAWN_pronoun} will stay at the shrine with them for {DAYS} days, and then take the road home.</CC_PEv2_Shrine>
   <CC_PEv2_PilgrimHome>{PAWN} is home from {PLACE} with {THINGS}, the shrine still on {PAWN_possessive} mind, and {PAWN_possessive} faith steadier for the road. {FACTION} think the better of the colony for it.</CC_PEv2_PilgrimHome>
   <CC_PEv2_PilgrimHomeEased>{PAWN} is home from {PLACE} with {THINGS}, the shrine still on {PAWN_possessive} mind. "{EASED}" weighs less than it did, and {PAWN_possessive} faith is steadier for the road. {FACTION} think the better of the colony for it.</CC_PEv2_PilgrimHomeEased>
   <CC_PEv2_PilgrimHomeEarly>{PAWN} is home from the road to {PLACE}, the pilgrimage cut short.</CC_PEv2_PilgrimHomeEarly>
@@ -71,7 +71,7 @@
   <CC_PEv2_BionicDone>{SURGEON} of {FACTION} has fitted {PAWN} with {PART}.</CC_PEv2_BionicDone>
   <CC_PEv2_BionicDoneTerms>{SURGEON} of {FACTION} has fitted {PAWN} with {PART}. The terms are written, and each season a letter will ask for the next instalment.</CC_PEv2_BionicDoneTerms>
   <CC_PEv2_TermsGone>These terms are settled already.</CC_PEv2_TermsGone>
-  <CC_PEv2_DefaultWhole>A default is settled whole: only all that is owed will do.</CC_PEv2_DefaultWhole>
+  <CC_PEv2_DefaultWhole>A default can only be settled in full: the whole debt has to be paid.</CC_PEv2_DefaultWhole>
   <CC_PEv2_Impact_Instalment>{0} silver is carried out to the gate for {1}'s courier.</CC_PEv2_Impact_Instalment>
   <CC_PEv2_Impact_InstalmentBrief>Paid at the gate</CC_PEv2_Impact_InstalmentBrief>
   <CC_PEv2_InstalmentLabel>the instalment for {0}</CC_PEv2_InstalmentLabel>
@@ -84,7 +84,7 @@
   <CC_PEv2_NoBuilder>The colony has nobody who builds.</CC_PEv2_NoBuilder>
   <CC_PEv2_Impact_Crossing>{0} and the boatmen lay {2} over {1} cells of water and plank both banks, a span at a time.</CC_PEv2_Impact_Crossing>
   <CC_PEv2_Impact_CrossingBrief>A crossing laid</CC_PEv2_Impact_CrossingBrief>
-  <CC_PEv2_Impact_CrossingOurs>The crossing is the colony's, and once a year, on their knot night, {0} ask to rest at it.</CC_PEv2_Impact_CrossingOurs>
+  <CC_PEv2_Impact_CrossingOurs>The crossing is the colony's, and once a year, on knot night (when they tie a knot for everyone pulled from the water that year), {0} ask to rest at it.</CC_PEv2_Impact_CrossingOurs>
   <CC_PEv2_Impact_CrossingOursBrief>The colony's crossing</CC_PEv2_Impact_CrossingOursBrief>
   <CC_PEv2_CrossingName>the crossing on the colony's river</CC_PEv2_CrossingName>
   <CC_PEv2_CrossingDone>{FACTION}'s boatmen have laid the last span, and the crossing over the colony's river is the colony's own.</CC_PEv2_CrossingDone>
@@ -128,7 +128,7 @@
   <CC_PEv2_NoRoomCamp>There's no room on the colony's land for another camp now.</CC_PEv2_NoRoomCamp>
   <CC_PEv2_Impact_DryCamp>{0}'s herders camp by the colony's water five to eight days with {1} head and their dogs. They ask for hay or grazing, offer milk and a hand with the colony's beasts, and leave a young beast after a good stay.</CC_PEv2_Impact_DryCamp>
   <CC_PEv2_Impact_DryCampBrief>A camp by the water</CC_PEv2_Impact_DryCampBrief>
-  <CC_PEv2_Impact_DryRisk>It can turn: the herd may stray into the colony's fields and eat some of the crops, or a predator follow it in.</CC_PEv2_Impact_DryRisk>
+  <CC_PEv2_Impact_DryRisk>Things can go wrong: the herd may stray into the colony's fields and eat some of the crops, or a predator may follow it in.</CC_PEv2_Impact_DryRisk>
   <CC_PEv2_Impact_DryRiskBrief>The herd's risks</CC_PEv2_Impact_DryRiskBrief>
   <CC_PEv2_Impact_DryThanks>{0} +{1} goodwill after a good stay, and the region hears of it.</CC_PEv2_Impact_DryThanks>
   <CC_PEv2_Impact_DryThanksBrief>The herders' thanks</CC_PEv2_Impact_DryThanksBrief>
@@ -154,7 +154,7 @@
   <CC_PEv2_Impact_PadTradeBrief>Trade every day</CC_PEv2_Impact_PadTradeBrief>
   <CC_PEv2_Impact_PadBand>Their stock may draw a band of their enemies against the pad.</CC_PEv2_Impact_PadBand>
   <CC_PEv2_Impact_PadBandBrief>A band may come</CC_PEv2_Impact_PadBandBrief>
-  <CC_PEv2_Impact_PadRaise>The colony asks {0} silver every five days; about {1}% they pay it, else they pack up and go.</CC_PEv2_Impact_PadRaise>
+  <CC_PEv2_Impact_PadRaise>The colony asks {0} silver every five days; there is about a {1}% chance they pay it, otherwise they pack up and go.</CC_PEv2_Impact_PadRaise>
   <CC_PEv2_Impact_PadRaiseBrief>They pay or go</CC_PEv2_Impact_PadRaiseBrief>
   <CC_PEv2_Impact_PadOff>The colony's people keep off the pad while it stands, and the factors notice anyone who walks on it.</CC_PEv2_Impact_PadOff>
   <CC_PEv2_Impact_PadOffBrief>Off the pad</CC_PEv2_Impact_PadOffBrief>
@@ -166,9 +166,9 @@
   <CC_PEv2_ArchiveLabel>the society's books for their cart</CC_PEv2_ArchiveLabel>
   <CC_PEv2_ArchiveLapsed>{FACTION} can no longer come for their archive, and the books stay where they are.</CC_PEv2_ArchiveLapsed>
   <CC_PEv2_ArchiveKeptTitle>The archive goes home</CC_PEv2_ArchiveKeptTitle>
-  <CC_PEv2_ArchiveKept>{X} of {FACTION} has come with the cart and counted the archive: all {TOTAL} there. The society thanks the colony, and leaves it {BOOK} for its keeping.</CC_PEv2_ArchiveKept>
+  <CC_PEv2_ArchiveKept>{X} of {FACTION} has come with the cart and counted the archive: all {TOTAL} there. The society thanks the colony, and gives it {BOOK} for looking after them.</CC_PEv2_ArchiveKept>
   <CC_PEv2_ArchiveWrongedTitle>The archive is short</CC_PEv2_ArchiveWrongedTitle>
-  <CC_PEv2_ArchiveWronged>{X} of {FACTION} has come with the cart and counted the archive: of {TOTAL}, {WHAT}. A book lost is a thing the world doesn't know any more, and the society will not forget it.</CC_PEv2_ArchiveWronged>
+  <CC_PEv2_ArchiveWronged>{X} of {FACTION} has come with the cart and counted the archive: of {TOTAL}, {WHAT}. To the society, every lost book is knowledge lost for good, and they will not forget it.</CC_PEv2_ArchiveWronged>
   <CC_PEv2_ArchiveSold>{0} sold</CC_PEv2_ArchiveSold>
   <CC_PEv2_ArchiveOpened>the tome's seal broken</CC_PEv2_ArchiveOpened>
   <CC_PEv2_ArchiveLost>{0} lost</CC_PEv2_ArchiveLost>
@@ -208,14 +208,14 @@
   <CC_PEv2_NewsWhat_stash>An item stash, heard of on the Signal Line's masts.</CC_PEv2_NewsWhat_stash>
   <CC_PEv2_NewsWhat_wreck>A wrecked ship's cargo, its beacon heard on the Signal Line's masts.</CC_PEv2_NewsWhat_wreck>
   <CC_PEv2_NewsWhat_outpost>A bandit outpost, its talk heard on the Signal Line's masts.</CC_PEv2_NewsWhat_outpost>
-  <CC_PEv2_NoMoreNews>The masts heard nothing else worth selling.</CC_PEv2_NoMoreNews>
-  <CC_PEv2_NewsStale>The place the masts heard of is gone.</CC_PEv2_NewsStale>
+  <CC_PEv2_NoMoreNews>Nothing else worth selling came in on the masts.</CC_PEv2_NoMoreNews>
+  <CC_PEv2_NewsStale>The place they heard of on the masts is gone.</CC_PEv2_NewsStale>
   <CC_PEv2_Impact_News>The game's own site of {0} appears on the world, marked as heard of from the masts at {1}.</CC_PEv2_Impact_News>
   <CC_PEv2_Impact_NewsBrief>A site heard of</CC_PEv2_Impact_NewsBrief>
   <CC_PEv2_Impact_NewsPaid>The silver is carried out to {0} at the gate.</CC_PEv2_Impact_NewsPaid>
   <CC_PEv2_Impact_NewsPaidBrief>Paid at the gate</CC_PEv2_Impact_NewsPaidBrief>
   <CC_PEv2_NewsTeller>{X} of the Signal Line, from the masts at {PLACE}</CC_PEv2_NewsTeller>
-  <CC_PEv2_NewsGone>{X} looked again at the notebook: the place the masts heard of is gone, and no silver changed hands.</CC_PEv2_NewsGone>
+  <CC_PEv2_NewsGone>{X} looked again at the notebook: the place they heard of on the masts is gone, and no silver changed hands.</CC_PEv2_NewsGone>
   <CC_PEv2_NewsSilverLabel>the silver for {X}</CC_PEv2_NewsSilverLabel>
 
 </LanguageData>

@@ -4,7 +4,7 @@
   <CC_Tab_Base>Base</CC_Tab_Base>
   <CC_Plan_From_base>From the base review</CC_Plan_From_base>
   <CC_Base_Header>The base, looked over</CC_Base_Header>
-  <CC_Base_Sub>What stands where it shouldn't, what leads nowhere, and what a click can put right.</CC_Base_Sub>
+  <CC_Base_Sub>What is in the wrong place, what leads nowhere, and what a click can fix.</CC_Base_Sub>
   <CC_Base_HeaderTip>Once an hour the council walks the base: rooms that belong together far apart and rooms that belong apart close together, long walks to meals, doors that separate nothing, stubs of wall, conduits and pipes that lead nowhere, a freezer door that opens into the warm. What matters most comes first. The findings are also proposed on the Plan page.</CC_Base_HeaderTip>
   <CC_Base_Stat>{0} found, {1} worth doing</CC_Base_Stat>
   <CC_Base_LookAgain>Look again</CC_Base_LookAgain>
@@ -51,22 +51,22 @@
   <CC_Base_FarMore>The same goes for {0} more.</CC_Base_FarMore>
   <CC_Base_FarPlan>A new {ROOM} beside it is a few walls' work: Plan the room finds the spot.</CC_Base_FarPlan>
   <CC_Base_Far_kitchenfreezer>{D} cells to the nearest {B}: the cook walks that way and back for the makings of every meal. A freezer with a door into the kitchen saves hours a season.</CC_Base_Far_kitchenfreezer>
-  <CC_Base_Far_kitchendining>{D} cells to the nearest {B}: every meal is carried that far, and the table is where people see the cook's work. Side by side, the kitchen hands straight through.</CC_Base_Far_kitchendining>
-  <CC_Base_Far_diningrec>{D} cells to the nearest {B}: people rest right after they eat, and walk that far to do it. Next door, they drift from the table to the games.</CC_Base_Far_diningrec>
-  <CC_Base_Far_workshopstore>{D} cells to the nearest {B}: every bill starts with a walk for materials and ends with one to put the work away. A store room beside the workshop, or shelves in it, keeps the hands at the bench.</CC_Base_Far_workshopstore>
+  <CC_Base_Far_kitchendining>{D} cells to the nearest {B}: every meal is carried that far before anyone can eat it. With the two side by side, meals go straight from the kitchen to the table.</CC_Base_Far_kitchendining>
+  <CC_Base_Far_diningrec>{D} cells to the nearest {B}: people relax right after they eat, and walk that far to do it. With the two next door, they go straight from the table to the games.</CC_Base_Far_diningrec>
+  <CC_Base_Far_workshopstore>{D} cells to the nearest {B}: every bill starts with a walk for materials and ends with one to put the work away. A store room beside the workshop, or shelves in it, lets the crafters stay at the bench.</CC_Base_Far_workshopstore>
   <CC_Base_Far_hospitalgate>{D} cells from the {B}: the wounded are carried that far across the base after a fight. A hospital near the way in is reached first.</CC_Base_Far_hospitalgate>
-  <CC_Base_Far_barnfields>{D} cells from the nearest {B}: the hay and the animals cross the base each day. A barn by the fields keeps the mud outside.</CC_Base_Far_barnfields>
+  <CC_Base_Far_barnfields>{D} cells from the nearest {B}: hay and animals are taken across the base every day. A barn by the fields keeps that traffic, and the mud, out of the base.</CC_Base_Far_barnfields>
 
   <!-- Rooms close together that belong apart. -->
   <CC_Base_Close>{N} {A}(s) right by a {B}</CC_Base_Close>
-  <CC_Base_Close_bedroomworkshop>{N} bedroom(s) share a wall with the {B} or near enough: benches run early and late, and light sleepers wake. Bedrooms away from the noise sleep better.</CC_Base_Close_bedroomworkshop>
-  <CC_Base_Close_bedroombarn>{N} bedroom(s) right by the {B}: the animals are loud at night and the smell comes through the door. Bedrooms away from the barn sleep better.</CC_Base_Close_bedroombarn>
-  <CC_Base_Close_hospitalworkshop>The hospital lies right by the {B}: the sick rest badly beside the benches, and the dust comes in. Quiet heals.</CC_Base_Close_hospitalworkshop>
+  <CC_Base_Close_bedroomworkshop>{N} bedroom(s) share a wall with the {B} or are close to it: benches are worked early and late, and light sleepers wake. People sleep better in bedrooms away from the noise.</CC_Base_Close_bedroomworkshop>
+  <CC_Base_Close_bedroombarn>{N} bedroom(s) right by the {B}: the animals are loud at night and the smell comes through the door. People sleep better in bedrooms away from the barn.</CC_Base_Close_bedroombarn>
+  <CC_Base_Close_hospitalworkshop>The hospital lies right by the {B}: the sick rest badly beside the benches, and the dust comes in. Patients rest better somewhere quiet.</CC_Base_Close_hospitalworkshop>
   <CC_Base_Close_prisonbedroom>{N} cell(s) right by the colonists' bedrooms: a breakout starts beside sleeping people. Cells apart from the bedrooms, near the gate, are safer.</CC_Base_Close_prisonbedroom>
 
   <!-- Walks. -->
   <CC_Base_MealWalk>Long walks to meals</CC_Base_MealWalk>
-  <CC_Base_MealWalk_Detail>The {N} bedroom(s) lie {D} cells from the nearest dining room on average: three walks a day each, there and back. Bedrooms around the dining room, or a second dining room among the far ones, give the hours back.</CC_Base_MealWalk_Detail>
+  <CC_Base_MealWalk_Detail>The {N} bedroom(s) lie {D} cells from the nearest dining room on average: three walks a day each, there and back. Bedrooms around the dining room, or a second dining room among the far ones, save those hours.</CC_Base_MealWalk_Detail>
 
   <!-- Doors, walls, conduits and pipes. -->
   <CC_Base_Doors>{0} door(s) that separate nothing</CC_Base_Doors>
@@ -83,7 +83,7 @@
   <CC_Relay_Conduits>conduits</CC_Relay_Conduits>
   <CC_Relay_Pipes>{KIND} pipes</CC_Relay_Pipes>
   <CC_Base_Relay>{N} {KIND} in sight could go under the walls</CC_Base_Relay>
-  <CC_Base_Relay_Detail>Laid again under walls, doors and furniture wherever they reach: {LAY} new, {UP} taken up, and {AFTER} of the {BEFORE} in sight now left where nothing else will do. Every piece of the net stays joined, and every powered building stays on its power. The new {KIND} are planned first, and the old ones get their deconstruct orders only once every new one stands, so nothing goes dark or dry on the way. Show it on the map to see both: the new in yellow, the old in white.</CC_Base_Relay_Detail>
+  <CC_Base_Relay_Detail>Laid again under walls, doors and furniture wherever they reach: {LAY} new, {UP} taken up, and {AFTER} of the {BEFORE} in sight now left where nothing else will do. Every piece of the net stays joined, and every powered building stays on its power. The new {KIND} are planned first, and the old ones get their deconstruct orders only once every new one stands, so no building loses its power or water in between. Show it on the map to see both: the new in yellow, the old in white.</CC_Base_Relay_Detail>
   <CC_Base_Relay_Fix>Lay them under the walls</CC_Base_Relay_Fix>
   <CC_Base_Relay_FixTip>Places blueprints for the new lines under the walls. Once a new piece stands, the old line it replaces is ordered taken up, a few at a time, so the power or water never breaks.</CC_Base_Relay_FixTip>
   <CC_Base_Map_Relay>under the walls</CC_Base_Map_Relay>
@@ -98,7 +98,7 @@
   <CC_Relay_Dropped>Some of the new {KIND} under the walls were never built (their orders are gone), so the old ones stay as they are.</CC_Relay_Dropped>
   <CC_Relay_CalledOff>Called off: the orders for the new {KIND} are cancelled, and the old ones stay.</CC_Relay_CalledOff>
   <CC_Base_FreezerDoor>The freezer's door opens into the {B}</CC_Base_FreezerDoor>
-  <CC_Base_FreezerDoor_Detail>{T} °C inside, {TB} °C beyond the door: warm air comes in with every opening and the coolers work to push it out. A second door with a cell between, an airlock, keeps the cold where it belongs.</CC_Base_FreezerDoor_Detail>
+  <CC_Base_FreezerDoor_Detail>{T} °C inside, {TB} °C beyond the door: warm air comes in with every opening and the coolers work to push it out. A second door with a cell between, an airlock, keeps the cold in.</CC_Base_FreezerDoor_Detail>
 
   <!-- The stores (Source/ColonyCouncil/Building/StorageReview.cs). -->
   <CC_Store_CatchAll>{0} stockpiles take everything</CC_Store_CatchAll>

@@ -14,7 +14,7 @@
   <!-- The settings -->
   <CC_Settings_DiplomacyRansom>Ransom</CC_Settings_DiplomacyRansom>
   <CC_SetNote_DiplomacyRansom>Offers for captives both ways, the game's ransom demand by messenger without a comms console, exchanges at the gate.</CC_SetNote_DiplomacyRansom>
-  <CC_Settings_DiplomacyRansom_Tip>Two to six days after one of a people is taken prisoner, if their people want them back (their leader, a notable or a notable's kin always; anyone else six times in ten from a people at peace, three in ten from a hostile one), their messenger comes to the gate, or a go-between of a people at peace with both, or their call at the comms console, with an offer of half to the whole of the captive's market value (half again for a notable, twice for their leader). Accept, ask for more, let them go for nothing, or keep them; refused three times, a grudge. Without a powered comms console, the game's own ransom demand for one of the colony's comes by their messenger at the game's rate and fee. Offer an exchange of theirs for one of the colony's they hold, and both walk at once at the gate. With a hostile people an exchange can be a trap: five times in a hundred, from twice to twenty times with the negotiator's ability, a band of theirs falls on the gate. Off: nothing new comes, and what is under way plays out.</CC_Settings_DiplomacyRansom_Tip>
+  <CC_Settings_DiplomacyRansom_Tip>Two to six days after one of a people is taken prisoner, if their people want them back (their leader, a notable or a notable's kin always; anyone else six times in ten from a people at peace, three in ten from a hostile one), their messenger comes to the gate, or a go-between of a people at peace with both, or their call at the comms console, with an offer of half to the whole of the captive's market value (half again for a notable, twice for their leader). Accept, ask for more, let them go for nothing, or keep them; refused three times, they hold a grudge. Without a powered comms console, the game's own ransom demand for one of the colony's comes by their messenger at the game's rate and fee. Offer an exchange of theirs for one of the colony's they hold, and both are handed over at the gate at the same time. With a hostile people an exchange can be a trap: five times in a hundred, from twice to twenty times with the negotiator's ability, a band of theirs falls on the gate. Off: nothing new comes, and what is under way plays out.</CC_Settings_DiplomacyRansom_Tip>
   <CC_Settings_DiplomacyEnvoys>Envoys</CC_Settings_DiplomacyEnvoys>
   <CC_SetNote_DiplomacyEnvoys>Their envoy as the colony's guest for a season, and the colony's own envoy at their town.</CC_SetNote_DiplomacyEnvoys>
   <CC_Settings_DiplomacyEnvoys_Tip>A people at peace (goodwill 30 or more) whose envoy the colony knows may offer to send them for a season, at most once a year, one at a time at each home; or the colony asks by letter. Their envoy and an attendant stay as guests who do no work: they eat at the colony's table, sleep in a bed set aside for them, talk with its people, sit in at a council meeting, and send a letter home every five days. How the stay goes travels home with them: kept well, their head thinks better of the colony and may owe it a debt of honor; kept poorly, they feel slighted. The colony may send a colonist good with people (Social 6 or more) to live at their town for a season: their work is lost until they come home, their letters bring the town's news, and its notables come to think better of the colony. Off: nothing new is agreed, and a stay under way runs its season.</CC_Settings_DiplomacyEnvoys_Tip>
@@ -131,7 +131,7 @@
   <CC_Ransom_Act_Offer>Offer for ransom</CC_Ransom_Act_Offer>
   <CC_Ransom_Act_Offer_Tip>Write to their head (or call) that the colony will hear an offer for this captive. If their people want them back, their messenger comes sooner.</CC_Ransom_Act_Offer_Tip>
   <CC_Ransom_Act_Exchange>Offer an exchange</CC_Ransom_Act_Exchange>
-  <CC_Ransom_Act_Exchange_Tip>Write to their head offering one of theirs in the colony's cells for one of the colony's they hold. If they agree, both walk at once at the gate.</CC_Ransom_Act_Exchange_Tip>
+  <CC_Ransom_Act_Exchange_Tip>Write to their head offering one of theirs in the colony's cells for one of the colony's they hold. If they agree, both captives are handed over at the gate at the same time.</CC_Ransom_Act_Exchange_Tip>
   <CC_Ransom_Card_Grudge>{PEOPLE} hold a grudge for offers the colony refused, and make none now.</CC_Ransom_Card_Grudge>
   <CC_Ransom_Card_Trap>{PEOPLE} are at war with the colony: an exchange at the gate could be a trap ({ODDS}).</CC_Ransom_Card_Trap>
   <CC_Ransom_Card_GrudgeTie>{PEOPLE} hold a grudge: the colony turned down their offers for {CAPTIVE} {COUNT} times.</CC_Ransom_Card_GrudgeTie>
@@ -211,11 +211,11 @@
 
   <!-- The end of their stay -->
   <CC_Envoy_Leaves_Label>{ENVOY} goes home</CC_Envoy_Leaves_Label>
-  <CC_Envoy_Leaves_Content>{ENVOY}'s season at the colony is over, and they are walking home to {PEOPLE} content. Their report will raise the colony in their head's regard.</CC_Envoy_Leaves_Content>
+  <CC_Envoy_Leaves_Content>{ENVOY}'s season at the colony is over, and they are walking home to {PEOPLE} content. Their report will make their head think better of the colony.</CC_Envoy_Leaves_Content>
   <CC_Envoy_Leaves_Content_2>{ENVOY} is going home to {PEOPLE} with good things to say about the colony: fed well, housed well, and listened to.</CC_Envoy_Leaves_Content_2>
   <CC_Envoy_Leaves_Cool>{ENVOY}'s season at the colony is over. They go home to {PEOPLE} with little to complain of and little to praise.</CC_Envoy_Leaves_Cool>
   <CC_Envoy_Leaves_Cool_2>{ENVOY} is walking home to {PEOPLE}. The stay was neither good nor bad, and their report will say about that much.</CC_Envoy_Leaves_Cool_2>
-  <CC_Envoy_Leaves_Offended>{ENVOY}'s season at the colony is over. They go home to {PEOPLE} offended, and their report will cost the colony in their head's regard.</CC_Envoy_Leaves_Offended>
+  <CC_Envoy_Leaves_Offended>{ENVOY}'s season at the colony is over. They go home to {PEOPLE} offended, and their report will make their head think less of the colony.</CC_Envoy_Leaves_Offended>
   <CC_Envoy_Leaves_Offended_2>{ENVOY} is leaving with a list of grievances for {PEOPLE}, and the colony will hear about it from their head.</CC_Envoy_Leaves_Offended_2>
   <CC_Envoy_Leaves_SeenOff>The colony has sent {ENVOY} home before the season was out. {PEOPLE} will take it as a slight.</CC_Envoy_Leaves_SeenOff>
   <CC_Envoy_Hist_Left_Content>{ENVOY} of {PEOPLE} went home from the colony content ({WORD}).</CC_Envoy_Hist_Left_Content>
@@ -274,7 +274,7 @@
   <CC_Envoy_Act_Recall_Tip>Call the colony's envoy home before the season is out.</CC_Envoy_Act_Recall_Tip>
   <CC_Envoy_Pick>{PAWN} (Social {SOCIAL})</CC_Envoy_Pick>
   <CC_Envoy_Pick_Title>Who goes to {TOWN}?</CC_Envoy_Pick_Title>
-  <CC_Envoy_Ask>Send {PAWN} to live at {TOWN} among {PEOPLE} for a season, as the colony's envoy ({WORD})?\n\n{PAWN} takes food that keeps from the stores and sets out alone, {DISTANCE}. Their work is lost to the colony until they come home, and the road there and back is the world's own, with whatever it holds. While {PAWN} is there, their letters bring the town's news, and its notables come to think better of the colony.</CC_Envoy_Ask>
+  <CC_Envoy_Ask>Send {PAWN} to live at {TOWN} among {PEOPLE} for a season, as the colony's envoy ({WORD})?\n\n{PAWN} takes food that keeps from the stores and sets out alone, {DISTANCE}. Their work is lost to the colony until they come home, and the journey there and back carries the usual dangers of the road. While {PAWN} is there, their letters bring the town's news, and its notables come to think better of the colony.</CC_Envoy_Ask>
   <CC_Envoy_Msg_SettingOut>{PAWN} is getting ready to set out for {TOWN} as the colony's envoy.</CC_Envoy_Msg_SettingOut>
   <CC_Envoy_Msg_SetOut>{PAWN} has set out for {TOWN}.</CC_Envoy_Msg_SetOut>
   <CC_Envoy_Msg_Stayed>{PAWN} didn't set out as the colony's envoy after all.</CC_Envoy_Msg_Stayed>
@@ -293,7 +293,7 @@
   <CC_Envoy_Homeward_2>{PEOPLE} have seen {PAWN} off from {TOWN} with food for the road, and {PAWN} is on the way home.</CC_Envoy_Homeward_2>
   <CC_Envoy_Homeward_Gift>{PAWN} carries a parting gift from their head: {GIFT}.</CC_Envoy_Homeward_Gift>
   <CC_Envoy_Hist_Back>{PAWN} came home from a season at {TOWN} as the colony's envoy ({WORD}).</CC_Envoy_Hist_Back>
-  <CC_Envoy_Msg_Back>{PAWN} is home from {TOWN}, better with people for the season there.</CC_Envoy_Msg_Back>
+  <CC_Envoy_Msg_Back>{PAWN} is home from {TOWN}, and the season there has made {PAWN} better with people.</CC_Envoy_Msg_Back>
   <CC_Envoy_Row_Abroad_Coming>{PAWN} is getting ready to set out for {TOWN}.</CC_Envoy_Row_Abroad_Coming>
   <CC_Envoy_Row_Abroad_Staying>{PAWN} is on the road to {TOWN}.</CC_Envoy_Row_Abroad_Staying>
   <CC_Envoy_Row_Abroad_There>{PAWN} is living at {TOWN} as the colony's envoy.</CC_Envoy_Row_Abroad_There>

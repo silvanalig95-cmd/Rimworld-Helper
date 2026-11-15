@@ -6,7 +6,7 @@
   <!-- Settings -->
   <CC_SetSec_Neighbours>Neighbours and letters</CC_SetSec_Neighbours>
   <CC_Settings_Notables>Neighbours by name</CC_Settings_Notables>
-  <CC_Settings_Notables_Tip>The towns within reach of the colony (the nearest few, and any it has dealt with) each have a few people the colony knows by name: the town's head (their people's own leader at their seat, else a headman, reeve, mayor or administrator by their era), a likely heir, an envoy and a known trader, made with their people's own kinds. Faces the colony met who went home join them: a prisoner set free, a wounded guest tended, a camp's leader, a guest of rank, an envoy, a visiting trader. Each regards the colony and some of its people from their people's goodwill and memory, their own nature, and what passed between them, and remembers it. They age, can die, and are followed in their role. A town's card on the region map shows them, and the region window's Peoples under Faces. Off: nobody is kept, and those kept are let go.</CC_Settings_Notables_Tip>
+  <CC_Settings_Notables_Tip>The towns within reach of the colony (the nearest few, and any it has dealt with) each have a few people the colony knows by name: the town's head (their people's own leader at their seat, else a headman, reeve, mayor or administrator by their era), a likely heir, an envoy and a known trader, made with their people's own kinds. Faces the colony met who went home join them: a prisoner set free, a wounded guest tended, a camp's leader, a guest of rank, an envoy, a visiting trader. Each regards the colony and some of its people from their people's goodwill and memory, their own nature, and what passed between them, and remembers it. They age, can die, and someone else takes over their role. A town's card on the region map shows them, and the region window's Peoples under Faces. Off: nobody is tracked, and those already tracked are dropped.</CC_Settings_Notables_Tip>
   <CC_SetNote_Notables>The nearby towns' head, heir, envoy and trader by name, and the faces the colony met.</CC_SetNote_Notables>
   <CC_Settings_NeighbourLetters>Letters and calls to neighbours</CC_Settings_NeighbourLetters>
   <CC_Settings_NeighbourLetters_Tip>From a town's card on the region map (or the region window's Peoples under Faces) a colonist can write to one of the neighbours: greetings, condolences for a loss the colony knows of, a warning of a threat to them, asking for news, an invitation to visit, or asking for a little help. They sit down at a table to write it (a tribe gives a spoken message instead) and it waits in the mailbag at the gate until someone going their way takes it (the post rider, traders, visitors, a camp breaking up, the colony's own caravan, or your own rider if you send one); the answer comes back the same way, with gifts when it brings some by their messenger. With the post off in the settings, a messenger of their people comes to the gate for each letter, as before. With a powered comms console and a people with the means to answer, a call does the same at once, or an aide takes a message and they call back later; what a call sends still comes by courier. How it is taken follows their nature, how they regard the colony and the writer, and the writer's way with words. One letter at a time to each; with the post, twelve open at most (without it, three).</CC_Settings_NeighbourLetters_Tip>
@@ -64,9 +64,9 @@
 
   <!-- What they remember -->
   <CC_Notable_Note_Met_freed>Set free by {BY} and sent home.</CC_Notable_Note_Met_freed>
-  <CC_Notable_Note_Met_tended>Tended by {BY} and sent home on their own feet.</CC_Notable_Note_Met_tended>
+  <CC_Notable_Note_Met_tended>Tended by {BY} until they could walk home.</CC_Notable_Note_Met_tended>
   <CC_Notable_Note_Met_camp>Camped by the colony, and made a friend of {BY}.</CC_Notable_Note_Met_camp>
-  <CC_Notable_Note_Met_guest>Stayed as the colony's guest, kept by {BY}.</CC_Notable_Note_Met_guest>
+  <CC_Notable_Note_Met_guest>Stayed as the colony's guest, looked after by {BY}.</CC_Notable_Note_Met_guest>
   <CC_Notable_Note_Met_trader>Traded at the colony's gate.</CC_Notable_Note_Met_trader>
   <CC_Notable_Note_Met_visitor>Visited the colony.</CC_Notable_Note_Met_visitor>
   <CC_Notable_Note_Met_envoy>Came to the colony as their people's envoy, and met {BY}.</CC_Notable_Note_Met_envoy>
@@ -107,7 +107,7 @@
   <CC_Letter_Why_NoMessenger>No messenger can come: no people at peace with the colony to carry it. A letter can go once one is.</CC_Letter_Why_NoMessenger>
   <CC_Letter_Why_NoMeans>The {0} have no means to answer a call; a letter by hand reaches them.</CC_Letter_Why_NoMeans>
   <CC_Letter_Why_NoConsole>The colony has no comms console.</CC_Letter_Why_NoConsole>
-  <CC_Letter_Why_DeadAir>The air is dead: no comms console has power and a clear sky to call through.</CC_Letter_Why_DeadAir>
+  <CC_Letter_Why_DeadAir>No call can get through: no comms console has both power and a clear sky.</CC_Letter_Why_DeadAir>
   <CC_Letter_Why_Gone>They are gone.</CC_Letter_Why_Gone>
   <CC_Letter_Why_OneAtATime>One letter at a time to each. {WAIT} Another can go to {NAME} once their answer reaches the colony.</CC_Letter_Why_OneAtATime>
   <CC_Letter_Why_OneAtATime_NoWord>One letter at a time to each. {WAIT} Another can go to {NAME} once their answer comes, or once it is plain that none will.</CC_Letter_Why_OneAtATime_NoWord>
@@ -137,7 +137,7 @@
   <CC_Warn_NotListed_NotTheirEnemy>Not listed: the raiders of the {FACTION}, who are not at war with {PEOPLE}.</CC_Warn_NotListed_NotTheirEnemy>
   <CC_Warn_NotListed_Ended>Not listed: the raiders of the {FACTION}, who are no more.</CC_Warn_NotListed_Ended>
   <CC_Warn_Struck>The {FACTION} struck at {PEOPLE}, as the colony's warning said. {PEOPLE} remember who warned them.</CC_Warn_Struck>
-  <CC_Warn_Struck_Debt>The {FACTION} struck at {PEOPLE}, as the colony's warning said. The debt {PEOPLE} owe for the warning weighs the more for it.</CC_Warn_Struck_Debt>
+  <CC_Warn_Struck_Debt>The {FACTION} struck at {PEOPLE}, as the colony's warning said. {PEOPLE} now owe the colony more for the warning.</CC_Warn_Struck_Debt>
   <CC_Letter_Topic_Site>{SITE}, {DIR} of {TOWN}</CC_Letter_Topic_Site>
   <CC_Letter_Dir_N>north</CC_Letter_Dir_N>
   <CC_Letter_Dir_NE>northeast</CC_Letter_Dir_NE>
@@ -154,7 +154,7 @@
   <CC_Letter_Outlook_Fair>{NAME} may answer, but not warmly.</CC_Letter_Outlook_Fair>
   <CC_Letter_Outlook_Poor>{NAME} is unlikely to welcome it.</CC_Letter_Outlook_Poor>
   <CC_Letter_Outlook_War>Their people are at war with the colony: an answer is uncertain, and won't be warm.</CC_Letter_Outlook_War>
-  <CC_Letter_Outlook_ByHand>A letter in a hand means more to their people than a call would.</CC_Letter_Outlook_ByHand>
+  <CC_Letter_Outlook_ByHand>A handwritten letter means more to their people than a call would.</CC_Letter_Outlook_ByHand>
   <CC_Letter_Outlook_Call>A call is quick, but for something this personal a letter would count for more.</CC_Letter_Outlook_Call>
 
   <!-- Messages as it goes -->
@@ -171,8 +171,8 @@
   <CC_Letter_Msg_Guest>{NAME} of {TOWN} has come to visit, as the colony asked.</CC_Letter_Msg_Guest>
   <CC_Letter_Cancel_Gone>{PAWN}'s letter to {TO} won't go: they are gone.</CC_Letter_Cancel_Gone>
   <CC_Letter_Cancel_Writer>The letter to {TO} won't go: {PAWN} is no longer here to write it.</CC_Letter_Cancel_Writer>
-  <CC_Letter_Cancel_NoTime>{PAWN} never found the time to write to {TO}, and the letter was let go.</CC_Letter_Cancel_NoTime>
-  <CC_Letter_Cancel_NoPickup>{PAWN}'s letter to {TO} was never handed to a messenger, and was let go.</CC_Letter_Cancel_NoPickup>
+  <CC_Letter_Cancel_NoTime>{PAWN} never found the time to write to {TO}, and the letter was dropped.</CC_Letter_Cancel_NoTime>
+  <CC_Letter_Cancel_NoPickup>{PAWN}'s letter to {TO} was never handed to a messenger, and was dropped.</CC_Letter_Cancel_NoPickup>
   <CC_Letter_Cancel_NoMessenger>No messenger can come for {PAWN}'s letter to {TO}: no people at peace with the colony to carry it.</CC_Letter_Cancel_NoMessenger>
   <CC_Letter_Label_Out>{PAWN}'s letter to {TO}</CC_Letter_Label_Out>
   <CC_Letter_Label_Back>a letter from {NAME}</CC_Letter_Label_Back>
@@ -209,7 +209,7 @@
   <CC_Letter_Outcome_Refusal>{NAME} thinks a little less of the colony for asking.</CC_Letter_Outcome_Refusal>
   <CC_Letter_Outcome_Silence>{NAME} said nothing back.</CC_Letter_Outcome_Silence>
   <CC_Letter_Gift>The messenger has set down {GOODS} with the letter, a gift.</CC_Letter_Gift>
-  <CC_Letter_Gift_Call>They are sending {GOODS} as a gift, by courier: words go down the line, things don't.</CC_Letter_Gift_Call>
+  <CC_Letter_Gift_Call>They are sending {GOODS} as a gift by courier, since a call can carry only words.</CC_Letter_Gift_Call>
   <CC_Letter_HelpSent>The messenger has set down {GOODS} with the letter.</CC_Letter_HelpSent>
   <CC_Letter_HelpSent_Call>They are sending {GOODS} by courier.</CC_Letter_HelpSent_Call>
   <CC_Letter_HelpNot>{NAME} sends nothing.</CC_Letter_HelpNot>
@@ -219,7 +219,7 @@
   <CC_Letter_Threat>The letter ends with a threat: the {FACTION} mean to answer the colony in person.</CC_Letter_Threat>
   <CC_Letter_ThreatRaid_Label>The answer of {NAME}</CC_Letter_ThreatRaid_Label>
   <CC_Letter_ThreatRaid_Text>The {FACTION} have come, as {NAME} warned in answer to {PAWN}'s letter.</CC_Letter_ThreatRaid_Text>
-  <CC_Letter_Waylaid>{PAWN}, the messenger, came in hurt: set upon on the road, by the look of the cut.</CC_Letter_Waylaid>
+  <CC_Letter_Waylaid>{PAWN}, the messenger, came in hurt. From the cut, it looks as if someone attacked them on the road.</CC_Letter_Waylaid>
   <CC_Letter_Chronicle>{PAWN} wrote to {NAME}, who answered {TONE}.</CC_Letter_Chronicle>
 
   <!-- News -->
@@ -236,7 +236,7 @@
   <CC_Call_Msg_Aide_Asleep>{PAWN} reached an aide: it is the middle of the night where {NAME} is, and {NAME} will call back in the morning.</CC_Call_Msg_Aide_Asleep>
   <CC_Call_Msg_Aide_Busy>{PAWN} reached an aide: {NAME} is busy with {NAME_possessive} people's troubles, and will call back when {NAME_pronoun} can.</CC_Call_Msg_Aide_Busy>
   <CC_Call_Msg_Ringing>The comms console is ringing: {NAME} is calling back.</CC_Call_Msg_Ringing>
-  <CC_Call_Msg_NoAnswer>{PAWN} said the colony's piece to {NAME}, who listened and cut the line without a word.</CC_Call_Msg_NoAnswer>
+  <CC_Call_Msg_NoAnswer>{PAWN} gave {NAME} the colony's message. {NAME} listened and ended the call without a word.</CC_Call_Msg_NoAnswer>
   <CC_Letter_Label_Gifts>what {NAME} sent</CC_Letter_Label_Gifts>
   <CC_Call_Report>calling {0}.</CC_Call_Report>
   <CC_Call_Report_Answer>taking {0}'s call.</CC_Call_Report_Answer>
@@ -293,7 +293,7 @@
   <CC_Route_Header_NoHead>{WHO}: personal letters. Nobody the colony knows speaks for {TOWN} yet: its head comes to be known once the colony deals with the town (meeting their people, their news).</CC_Route_Header_NoHead>
   <CC_Route_Header_PeopleTo>For matters of the whole people (a pact, a truce, fealty), write to {SPEAKER}.</CC_Route_Header_PeopleTo>
   <CC_Route_WriteTo>Write to {NAME}</CC_Route_WriteTo>
-  <CC_Route_WriteTo_Tip>Write to {NAME} instead: the letter turns to them.</CC_Route_WriteTo_Tip>
+  <CC_Route_WriteTo_Tip>Write to {NAME} instead: the letter goes to them.</CC_Route_WriteTo_Tip>
   <CC_Route_Section_Town>To the town</CC_Route_Section_Town>
   <CC_Route_Section_TownVia>To the town: ask {NAME} to pass it on</CC_Route_Section_TownVia>
   <CC_Route_Section_Person>To {NAME}</CC_Route_Section_Person>
@@ -309,13 +309,13 @@
   <CC_Route_Why_Nothing_Favour_Personal>{NAME} owes the colony nothing in person.</CC_Route_Why_Nothing_Favour_Personal>
   <CC_Route_Why_Nothing_Dealing_Town>Nothing to put to their council now.</CC_Route_Why_Nothing_Dealing_Town>
   <CC_Route_Why_Nothing_Dealing_Personal>{NAME} has no letter waiting for an answer.</CC_Route_Why_Nothing_Dealing_Personal>
-  <CC_Route_Pass_Same>{NAME} will give it to {HEADNAME}, {HEADTITLE}, in {TOWN}: a day more.</CC_Route_Pass_Same>
-  <CC_Route_Pass_Far>{NAME} will send it on from {TOWN} to {HEADNAME}, {HEADTITLE}, at {HEADTOWN}: the road between the two towns more.</CC_Route_Pass_Far>
+  <CC_Route_Pass_Same>{NAME} will give it to {HEADNAME}, {HEADTITLE}, in {TOWN}, which takes a day more.</CC_Route_Pass_Same>
+  <CC_Route_Pass_Far>{NAME} will send it on from {TOWN} to {HEADNAME}, {HEADTITLE}, at {HEADTOWN}, which adds the journey between the two towns.</CC_Route_Pass_Far>
   <CC_Route_Pass_Call>{NAME} will pass it on to {HEADNAME}, {HEADTITLE}, who calls back.</CC_Route_Pass_Call>
   <CC_Route_Word_Warm>{NAME} thinks well of the colony, and their good word goes with it.</CC_Route_Word_Warm>
   <CC_Route_Word_Weighty>{NAME} is their {TITLE}: their good word goes with it, and counts for much.</CC_Route_Word_Weighty>
   <CC_Route_Word_Plain>{NAME} passes it on with no word for or against it.</CC_Route_Word_Plain>
-  <CC_Route_Word_Poor>{NAME} thinks poorly of the colony, and their word tells against it.</CC_Route_Word_Poor>
+  <CC_Route_Word_Poor>{NAME} thinks poorly of the colony, and their word counts against it.</CC_Route_Word_Poor>
   <CC_Route_ToVia>{HEAD}, by way of {NAME}</CC_Route_ToVia>
   <CC_Route_Note_Passed>Passed {PAWN}'s letter on to {HEAD}.</CC_Route_Note_Passed>
   <CC_Route_Msg_Passed>{NAME} has passed {PAWN}'s letter on to {HEAD}, whose answer will come from there.</CC_Route_Msg_Passed>

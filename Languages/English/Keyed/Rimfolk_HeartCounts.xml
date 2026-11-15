@@ -43,7 +43,7 @@
   <CC_Count_DayOff_Cut>{PAWN_nameDef}'s day off was cut short: {WHY}.</CC_Count_DayOff_Cut>
   <CC_Count_BadDay_Start>{PAWN_nameDef} has had enough for today ({WHY}) and leaves {PAWN_possessive} work for the afternoon.</CC_Count_BadDay_Start>
   <CC_Count_BadDay_StartNoWhy>{PAWN_nameDef} has had enough for today and leaves {PAWN_possessive} work for the afternoon.</CC_Count_BadDay_StartNoWhy>
-  <CC_Count_BadDay_Over>{PAWN_nameDef} is back at work after a hard afternoon, a little lighter for it.</CC_Count_BadDay_Over>
+  <CC_Count_BadDay_Over>{PAWN_nameDef} is back at work after a hard afternoon, and feels a little better for it.</CC_Count_BadDay_Over>
   <CC_Count_BadDay_Cut>{PAWN_nameDef}'s afternoon to {PAWN_objective}self was cut short: {WHY}.</CC_Count_BadDay_Cut>
   <CC_Count_Cut_Player>called back to work</CC_Count_Cut_Player>
   <CC_Count_Cut_Away>{PAWN_pronoun} left home</CC_Count_Cut_Away>
@@ -57,7 +57,7 @@
   <CC_Count_WhyNot_Off>Days off are switched off in the heart's settings.</CC_Count_WhyNot_Off>
   <CC_Count_WhyNot_NoHeart>{PAWN_nameDef} has no heart to look after (not one of the colony's own, or too young).</CC_Count_WhyNot_NoHeart>
   <CC_Count_WhyNot_Already>{PAWN_nameDef} has time off already.</CC_Count_WhyNot_Already>
-  <CC_Count_WhyNot_NotStrained>{PAWN_nameDef} isn't strained: a day off is for someone the days have worn on.</CC_Count_WhyNot_NotStrained>
+  <CC_Count_WhyNot_NotStrained>{PAWN_nameDef} isn't strained: a day off is for someone under strain.</CC_Count_WhyNot_NotStrained>
   <CC_Count_WhyNot_Cooldown>{PAWN_nameDef} had a day off lately: another in {DAYS}.</CC_Count_WhyNot_Cooldown>
   <CC_Count_WhyNot_Away>{PAWN_nameDef} isn't at home.</CC_Count_WhyNot_Away>
   <CC_Count_WhyNot_NotFree>Only the colony's free people take time off.</CC_Count_WhyNot_NotFree>
@@ -110,7 +110,7 @@
   <CC_Advice_DecreeCostPlain>{0} of it</CC_Advice_DecreeCostPlain>
   <CC_Advice_Act_Propose>Propose</CC_Advice_Act_Propose>
   <CC_Advice_Act_SeeDecree>See the petition</CC_Advice_Act_SeeDecree>
-  <CC_Advice_Act_ProposeTip>Put {DECREE} to the council as a petition and open the Decrees page, where it is declared. A petition left unanswered lapses after a few days, a little sourly.</CC_Advice_Act_ProposeTip>
+  <CC_Advice_Act_ProposeTip>Put {DECREE} to the council as a petition and open the Decrees page, where it is declared. A petition left unanswered lapses after a few days, and those who asked for it are a little put out.</CC_Advice_Act_ProposeTip>
   <CC_Advice_ColonyHead>What would help the colony's strained</CC_Advice_ColonyHead>
   <CC_Advice_ColonyFor>{PAWN_nameDef}: {WHAT}</CC_Advice_ColonyFor>
   <CC_Advice_ColonyMany>{WHAT} For {WHO}.</CC_Advice_ColonyMany>
@@ -127,8 +127,8 @@
   <CC_Glance_StrainToday>Strain {NOW} now, {THEN} when the day began.</CC_Glance_StrainToday>
   <CC_Glance_LastDayOff>A day off, {WHEN}.</CC_Glance_LastDayOff>
   <CC_Glance_LastBadDay>A bad afternoon, {WHEN}.</CC_Glance_LastBadDay>
-  <CC_Glance_LastEpisode>A day to {PAWN_objective}self at the end of {PAWN_possessive} rope, {WHEN}.</CC_Glance_LastEpisode>
-  <CC_Glance_LastRelease>The good side overflowed ({WHAT}), {WHEN}.</CC_Glance_LastRelease>
+  <CC_Glance_LastEpisode>A day to {PAWN_objective}self when {PAWN_possessive} strain was near breaking, {WHEN}.</CC_Glance_LastEpisode>
+  <CC_Glance_LastRelease>The good side was full and led to {WHAT}, {WHEN}.</CC_Glance_LastRelease>
   <CC_Glance_LastBreak>A break ({WHAT}), {WHEN}.</CC_Glance_LastBreak>
 
   <!-- RimHUD. -->
@@ -149,8 +149,8 @@
   <CC_SetNote_HeartBands_Strong>The heart decides much of a mood: the worn down break noticeably more often.</CC_SetNote_HeartBands_Strong>
   <CC_Settings_HeartEffects>Effects beyond mood</CC_Settings_HeartEffects>
   <CC_Settings_HeartEffects_Tip>Strain and the good side touch more than mood, mildly: work 3% slower when strained, 7% when worn down and 12% near breaking; the worn down learn up to a tenth slower, need a little more sleep, heal up to a tenth slower and fight off illness up to 5% slower; in good heart and in high spirits a little faster learning, healing and immunity. Each shows in the stat's own explanation and on the heart's page. Off: only the old work slowdown from worn down (5% and 10%).</CC_Settings_HeartEffects_Tip>
-  <CC_SetNote_HeartEffects>Work, learning, sleep and recovery feel the heart, a little.</CC_SetNote_HeartEffects>
-  <CC_Settings_HeartBadDays>A bad day from worn</CC_Settings_HeartBadDays>
+  <CC_SetNote_HeartEffects>The heart affects work, learning, sleep and recovery a little.</CC_SetNote_HeartEffects>
+  <CC_Settings_HeartBadDays>Bad afternoons when worn down</CC_Settings_HeartBadDays>
   <CC_Settings_HeartBadDays_Tip>Now and then someone worn down has a bad afternoon: off work for a few hours, a while in their room, a walk, a drink if they drink and their policy and faith allow it, a visit to a grave. Only when it's safe (no danger, enough hands, nobody left uncared for), at most once a week for each colonist and once in two days in the colony; it ends early if danger comes, and eases a good share of their strain. A message says why.</CC_Settings_HeartBadDays_Tip>
   <CC_SetNote_HeartBadDays>The worn down sometimes leave their work for an afternoon.</CC_SetNote_HeartBadDays>
   <CC_Settings_HeartSpread>Hearts spread a little</CC_Settings_HeartSpread>

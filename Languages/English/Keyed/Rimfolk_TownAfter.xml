@@ -75,7 +75,7 @@
 
   <!-- The head's letters: the intro by their age (a runner, a rider, a courier, a message by comms) -->
   <CC_TownAfter_LetterLabel>A letter from {HEAD} of {TOWN}</CC_TownAfter_LetterLabel>
-  <CC_TownAfter_LetterIntro_Tribal>Their messenger from {TOWN} brought word from {HEAD}, {TITLE} of the hearth there, carried by heart:</CC_TownAfter_LetterIntro_Tribal>
+  <CC_TownAfter_LetterIntro_Tribal>Their messenger from {TOWN} brought word from {HEAD}, {TITLE} of the hearth there, learned by heart:</CC_TownAfter_LetterIntro_Tribal>
   <CC_TownAfter_LetterIntro_Medieval>Their messenger from {TOWN} brought a letter from {HEAD}, {TITLE} of the town, sealed with the old charter's seal:</CC_TownAfter_LetterIntro_Medieval>
   <CC_TownAfter_LetterIntro_Industrial>Their courier from {TOWN} brought a letter from {HEAD}, {TITLE} of the township:</CC_TownAfter_LetterIntro_Industrial>
   <CC_TownAfter_LetterIntro_Spacer>A message came in from {TOWN} over comms, from {HEAD}, {TITLE} of the colony there:</CC_TownAfter_LetterIntro_Spacer>

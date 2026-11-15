@@ -151,7 +151,7 @@
   <CC_Found_ActNewcomersTip>The game's own window for new people: who founds the new colony.</CC_Found_ActNewcomersTip>
   <CC_Found_NewcomersPaid>Their passage, {SILVER} silver's worth, was paid from the stores of {MOTHER}.</CC_Found_NewcomersPaid>
   <CC_Found_NewcomersHistory>{NAMES} came to {PLACE} as newcomers.</CC_Found_NewcomersHistory>
-  <CC_Found_NewcomersLapsed>Nobody answered the call for newcomers to {PLACE}, and it was let go.</CC_Found_NewcomersLapsed>
+  <CC_Found_NewcomersLapsed>Nobody answered the call for newcomers to {PLACE}, so the call has lapsed.</CC_Found_NewcomersLapsed>
 
   <!-- Asking to move -->
   <CC_Found_AskMoveLabel>{PAWN} asks to move</CC_Found_AskMoveLabel>

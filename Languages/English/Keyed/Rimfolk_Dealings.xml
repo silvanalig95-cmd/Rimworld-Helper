@@ -124,10 +124,10 @@
   <CC_Deal_Ans_Hire_Crew_Yes>{COUNCIL} send a crew of harvest hands: they come as a group, make camp by the fields and reap for the season, paid in silver when they ask.</CC_Deal_Ans_Hire_Crew_Yes>
   <CC_Deal_Ans_Hire_Crew_No>{COUNCIL} need every hand at home this season.</CC_Deal_Ans_Hire_Crew_No>
   <CC_Deal_Ans_Hire_Guard_Yes>{COUNCIL} send a guard detail for the season: they make camp by the colony, take up arms against whatever comes at it and keep the gate by day, their wage asked at their camp every five days.</CC_Deal_Ans_Hire_Guard_Yes>
-  <CC_Deal_Ans_Hire_Guard_No>{COUNCIL} will not send their fighters to stand on another's wall.</CC_Deal_Ans_Hire_Guard_No>
+  <CC_Deal_Ans_Hire_Guard_No>{COUNCIL} will not send their fighters to guard another people's walls.</CC_Deal_Ans_Hire_Guard_No>
   <CC_Deal_Ans_Petition_Raiders_Yes>{COUNCIL} give their word: their raiders keep away from the colony for two seasons. If any come all the same, their word is broken.</CC_Deal_Ans_Petition_Raiders_Yes>
   <CC_Deal_Ans_Petition_Raiders_No>{COUNCIL} answer that their raiders go where they please.</CC_Deal_Ans_Petition_Raiders_No>
-  <CC_Deal_Ans_Petition_Reparations_Yes>{COUNCIL} own the wrong, and send {SILVER} silver in amends with this answer.</CC_Deal_Ans_Petition_Reparations_Yes>
+  <CC_Deal_Ans_Petition_Reparations_Yes>{COUNCIL} admit the wrong, and send {SILVER} silver in amends with this answer.</CC_Deal_Ans_Petition_Reparations_Yes>
   <CC_Deal_Ans_Petition_Reparations_No>{COUNCIL} owe the colony nothing, they say.</CC_Deal_Ans_Petition_Reparations_No>
   <CC_Deal_Ans_Petition_Settle_Yes>{COUNCIL} will take the refugee family camped at the colony: they may pack up and come to {TOWN}.</CC_Deal_Ans_Petition_Settle_Yes>
   <CC_Deal_Ans_Petition_Settle_No>{COUNCIL} have no room at {TOWN} for strangers.</CC_Deal_Ans_Petition_Settle_No>
@@ -138,7 +138,7 @@
   <CC_Deal_Ans_Work_Well_Yes>{COUNCIL} agree to dig the well together: their porters fetch the colony's share, {GOODS}, from the gate.</CC_Deal_Ans_Work_Well_Yes>
   <CC_Deal_Ans_Work_Well_No>{COUNCIL} have water enough, they say.</CC_Deal_Ans_Work_Well_No>
   <CC_Deal_Ans_Work_Bridge_Yes>{COUNCIL} agree to the bridge: their porters fetch the colony's share, {GOODS}, from the gate.</CC_Deal_Ans_Work_Bridge_Yes>
-  <CC_Deal_Ans_Work_Bridge_No>{COUNCIL} would rather keep the river between them.</CC_Deal_Ans_Work_Bridge_No>
+  <CC_Deal_Ans_Work_Bridge_No>{COUNCIL} don't want a bridge to the colony.</CC_Deal_Ans_Work_Bridge_No>
   <CC_Deal_Ans_Work_Tower_Yes>{COUNCIL} agree to the watchtower: their porters fetch the colony's share, {GOODS}, from the gate, and their watch will send word of raiders coming that way.</CC_Deal_Ans_Work_Tower_Yes>
   <CC_Deal_Ans_Work_Tower_No>{COUNCIL} keep their own watch, and want no tower of the colony's on their border.</CC_Deal_Ans_Work_Tower_No>
   <CC_Deal_Ans_Market_Yes>{COUNCIL} grant the colony a stall in {TOWN}: their porters fetch the fee, {SILVER} silver, from the gate, and the stall opens when it is paid.</CC_Deal_Ans_Market_Yes>
@@ -224,7 +224,7 @@
   <CC_World_Text_NewsQuiet>All is quiet at {TOWN}, and {NAME} hopes it is the same at the colony.</CC_World_Text_NewsQuiet>
   <CC_World_Text_Request>{NAME} of {TOWN} writes with a small request: {PEOPLE} are short of {GOODS}, and would be grateful for it if the colony can spare it. Their porters would fetch it from the gate.</CC_World_Text_Request>
   <CC_World_Text_Invitation>{NAME} of {TOWN} writes to invite the colony's people to their festival: a few of them, by caravan, to sit at their tables and play and stay for the day.</CC_World_Text_Invitation>
-  <CC_World_Text_Friend>It is signed as a friend signs, at the bottom of a long letter.</CC_World_Text_Friend>
+  <CC_World_Text_Friend>It is a long letter, signed as from a friend.</CC_World_Text_Friend>
   <CC_World_HowToAnswer>{NAME} waits for the colony's answer: "Write back" on this card, or from the inbox, or Peoples, "Do something with...". It goes with the next carrier going their way.</CC_World_HowToAnswer>
   <CC_World_Note_Unanswered>wrote to the colony and heard nothing back</CC_World_Note_Unanswered>
   <CC_World_Ask_Thanks>Thank them, and write back with the colony's own news</CC_World_Ask_Thanks>
@@ -244,7 +244,7 @@
   <!-- ===================== Pen friends ===================== -->
   <CC_Pen_Label>A pen friend: {NAME}</CC_Pen_Label>
   <CC_Pen_Text>The letters between the colony and {CALLED} of {TOWN} have become something more than courtesy: {NAME} writes as a friend now. While the letters keep passing, {NAME} will send word ahead of raiders whose towns lie near theirs, the traders of {PEOPLE} give the colony {TERMS} better terms, {NAME} vouches for the colony's letters to peoples beyond its reach, and after a season of friendship there will be a favor owed.</CC_Pen_Text>
-  <CC_Pen_Lapsed>The letters between the colony and {NAME} have grown few, and the friendship has cooled into courtesy.</CC_Pen_Lapsed>
+  <CC_Pen_Lapsed>The colony and {NAME} rarely write to each other now, and {NAME} no longer writes as a friend.</CC_Pen_Lapsed>
   <CC_Pen_FavourLabel>A friend's favor: {NAME}</CC_Pen_FavourLabel>
   <CC_Pen_Favour>{NAME} writes that {PAWN} may count on them for a good turn when one is needed, for the sake of all those letters. It is a favor {NAME} owes {PAWN} in person now, smaller than a debt of all {PEOPLE}, to call in by letter.</CC_Pen_Favour>
   <CC_Dip_For_penFriend>years of letters between friends</CC_Dip_For_penFriend>

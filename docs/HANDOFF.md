@@ -158,13 +158,82 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   glass, the Roll is the Banner's book of names, the Wardens' book, the Kiln Guild's wander-year, a hard turn of the sky
   is bad weather); old words for plain ones ("dear" is expensive, "abed", "players" for actors, "the one in town who has
   letters"); clipped impact lines ("a sheaf in ten", "never more", "plans taken off the ground"). One number fixed to the
-  code: both tips of "Used to the good life" / "Good things grow ordinary" said the spoiled's line falls to 30 and to
-  21; `GoodLifeMath.LineFor` has 45, 35, 25 and 15, and both now say 15. Left as written: everything spoken (bubbles,
+  code: `CC_Settings_GoodLife_Tip` (`Rimfolk_GoodLife.xml`, the older "Used to the good life" tip) said the spoiled's
+  line falls to 30, while `GoodLifeMath.LineFor` has 45, 35, 25 and 15; it now says 15, as `CC_Settings_Ordinary_Tip`
+  does since interface-1. Left as written: everything spoken (bubbles,
   quoted lines, toasts, the camps' and travellers' reported words), groups, gossip, talk, quirks, personas and marks,
   epithets and the one name, trait changes, moods' causes and setbacks, shared memories, ailments and the illness
   budget, the heart's good side bands the player approved, the age forms (`Rimfolk_Ages.xml`, already plain noun
   phrases), and every tag, placeholder, number and chance; no god is named anywhere new. Unused keys with old numbers
   (`CC_Good_Band_*_Desc`, `CC_Good_Explain`) are left as they were.
+- 0.248.0, **Plain words: interface-3** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: ... messages and interface"). The third
+  messages-and-interface batch: 41 files in `Languages/English/Keyed` (planning ahead and building ahead, the base
+  review, hauling, the post, the heart's time off and advice, the colonist bar, answers on the map, the council's
+  automations, the week and dilemmas pages, the region and its variants, trading posts, raiders' camps, camps and their
+  crowds, the peoples' ages and release F's peoples, wards, ransom, diplomacy and fealty variants, renown, faction
+  memory, the town after the hand-over, banishment, beasts, animals' natures and powers, weather, fields, calendar,
+  rooms, journeys, the settings pages, windows). About 4,200 entries (5,230 lines) read, 145 rewritten: things given a
+  will or a voice ("the mast is singing", "the river gives what it always gave", "Bedrooms away from the noise sleep
+  better", "Quiet heals"), riddling or cut-short lines ("the roads are the same roads, walked in better boots", "the way
+  is the way", "whatever the roads hold, the roads hold", "Side by side, the kitchen hands straight through"), wry last
+  lines ("which said enough", "with a look that had already been refused in other places", "and still bows to the cook
+  out of habit", "Nobody likes what it means"), and in-world phrases said plainly ("the Roll" as their roll of the dead,
+  "the book" as the union's book of members, "hold of them" as bound to them, "the glass" read for the weather, "made
+  fast" as secured), the approved sample from `docs/text-style-samples.md` for the ward in the archive. The cute
+  settings notes of the automations ("Research never stands idle", "Odds and ends find a home") now say what each does.
+  Found and fixed: `CC_Dil_Went_FellThrough_Tip` (`Rimfolk_Week.xml`) said an answer that never came about gave its
+  moods anyway, while `PlayOutTracker` gives them only with the setting off and StageTests pins "gives nobody its
+  moods"; it now says nobody has them (the comment on `DilemmaWent.FellThrough` in `UI/DilemmaLog.cs`, which said the
+  old way, was put right on merging). Left as they were: everything spoken (the `_Say` lines, the radio broadcasts and other quoted speech, the
+  toasts), the moods (the omen animals' thriving mood, the familiar's death cause), the natures and persona marks
+  (`Rimfolk_Nature_Variants.xml` whole), the founders' letters in their peoples' own voices, the medieval words of the
+  feudal oaths, the faiths' sayings among the peoples' heads' words (the grove, the Spire),
+  the unused first parting wordings (`CC_Camp_Parting*`, which the code no longer reads), every placeholder, number and
+  fact, and every line already plain (16 files needed nothing: the election, faction memory, camp crowds, weather,
+  Colony Manager and the shopping list, windows, settings pages, building ahead, calendar, rooms, journey advice,
+  trading posts, fields, realistic ways to die, raiders' camps, natures). No test pinned these words; the label,
+  Almanac, save, interaction and play-out audits are as before.
+- 0.247.0, **Plain words: interface-2** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: event cards, advice and building, messages and
+  interface, storytellers"). The second messages-and-interface batch: 22 files in `Languages/English/Keyed` (the item
+  card, the settings, the on-screen panels, the trade screen and trade window, journeys, Hospitality's guests; the
+  neighbours and their letters, the Peoples page, diplomacy, feasts, outsiders, hamlets, hand-overs and fresh starts,
+  camps, defenses, feelings and strain; the peoples' own events, rounds 1 to 3, and the peoples that arise). About 5,070
+  lines read, 207 rewritten: in-world phrases never explained ("wrote the colony in good ink", "red ink in their book",
+  "on their knot night", "The air is dead") now say what is recorded or meant; riddling or clipped lines ("a thing in
+  hand names them", "the road between the two towns more", "until each page has its ending") and wry endings ("words go
+  down the line, things don't", "the road took {PAWN_objective}, as the world's roads do", "the order says nothing, but
+  writes it down") say it plainly; things given a will (what "the dark" sends, "guns that never sleep", the masts that
+  "heard nothing") and dangling "Granted, ...", "Refused, ..." and "Sent, ..." openings now say who does what; the new
+  peoples' founding lines tell how each lives in ordinary words, every custom their town and tests rely on kept. Every
+  placeholder, number, chance and name kept, no god named. Left as they were: the `_Olde` letter lines, everything
+  spoken (the herders' count aloud, quoted speech inside letters), journal lines, the names of peoples and towns, the
+  long settings tooltips that are lists of facts, and every line already plain (Hospitality's guests and the trade
+  window needed nothing). One test followed the new words (`ArisingTests`, the splinter people's grievance).
+- 0.246.0, **Plain words: interface-1** (14
+  November 2026; the player's words: "when you write text for the mod, especially when it's supposed to be flavour, i'd
+  like you to be more neutral, descriptive and "reasonable", over trying to make the text be creative", "the only thing
+  i don't mind and even enjoy, is old medieval writing", "start with: ... messages and interface"). The first
+  messages-and-interface batch: 11 files in `Languages/English/Keyed` (`ColonyCouncil.xml`, the defense lines, what
+  each answer does, ransom and envoys, pacts and truces, fealty and vassals, weapons, wards and hostages, apparel,
+  dealings with towns, marriage alliances). About 5,270 entries read, 115 rewritten: wish reasons with a wry end ("talks
+  about food even while eating", "Better an animal than a colonist."), lofty or archaic words in the answers' flavour
+  lines ("sit ill with", "stung to the quick", "walk taller for it", "cost the colony dear") and in letters and rows ("a
+  colony holds of one liege only", "for want of people", "is handed down no line"), things given a will ("A drone
+  grinds on the minds", "it forgives {PAWN_possessive} Shooting", "guns that never sleep" in the defense lines' own
+  text), riddling tooltips (how good things grow ordinary, the armour roll, tribute that falls short) and clipped
+  clauses ("Sent, ... Refused, worse.") now say what happens, who does it and why. Every placeholder, number and fact
+  kept, labels and buttons as short as before, no god named. Left as they were: everything spoken (co-sign and
+  personal-touch lines, toasts, the contest cries, fallback replies, the in-pack ask), the meeting heckles, the annals,
+  mood and memory causes, dreams, journals, family flavour, the pets' signs of a god's presence as the colony sees them,
+  and every line already plain (most of the advisor, the planner, the defense steps and the weapon and apparel cards).
+  Found, not in this batch, and fixed on merging: `CC_Settings_Ordinary_Tip` (`Rimfolk_OneHeart.xml`) said the line
+  falls "to 21 for the spoiled", while `GoodLifeMath.LineFor` and `CC_GoodTimes_Tip` give 15; it now says 15.
 - 0.245.0, **Plain words: events-2** (14
   November 2026; the player's words: "yes, please rewrite everything", "leave: what colonists say, talk between
   colonists, moods and memories, dreams, character, neighbours talk, ailments, journals", "start with: event cards").

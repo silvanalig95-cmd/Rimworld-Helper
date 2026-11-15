@@ -33,7 +33,7 @@
   <CC_Journey_ShortOf>The stores were short of {0}.</CC_Journey_ShortOf>
   <CC_Journey_ReadyNow>Everyone is ready now: the travellers set off for {0}.</CC_Journey_ReadyNow>
   <CC_Journey_Waiting>The travellers for {0} wait at the gate: they set off at {1} if everyone is ready by then.</CC_Journey_Waiting>
-  <CC_Journey_CalledOff>The journey to {0} is called off: the travellers put their packs back and go back to their days.</CC_Journey_CalledOff>
+  <CC_Journey_CalledOff>The journey to {0} is called off: the travellers put their packs back and go back to work.</CC_Journey_CalledOff>
   <CC_Journey_CalledOffSetting>The journey to {0} is called off: journeys planned ahead are switched off in Rimfolk's settings.</CC_Journey_CalledOffSetting>
   <CC_Journey_NoWayOut>The journey to {0} is called off: there is no way off the map the travellers can reach.</CC_Journey_NoWayOut>
   <CC_Journey_CouldNotForm>The travellers couldn't set off for {0}: the caravan wouldn't form. They put their packs back.</CC_Journey_CouldNotForm>

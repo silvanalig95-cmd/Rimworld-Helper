@@ -212,7 +212,7 @@
   <CC_Settings_WeaponCardFirst_Tip>Opening the info for a weapon (the "i" button on the gear tab, Nice Inventory Tab, a trade screen, a list, the research or architect tab, the inspect pane) opens Rimfolk's weapon card instead of the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before.</CC_Settings_WeaponCardFirst_Tip>
   <CC_SetNote_WeaponCardFirst>A weapon's info opens as Rimfolk's weapon card; the game's card is one button away.</CC_SetNote_WeaponCardFirst>
   <CC_Settings_WeaponSuggestions>Weapon suggestions</CC_Settings_WeaponSuggestions>
-  <CC_Settings_WeaponSuggestions_Tip>The best weapon for each colonist from what the colony has, by their skill, traits, passions and work, their faith, the weapon mods and the fights you meet, with why in a line: on the gear tab (a row in Nice Inventory Tab's equipment box, or under the game's list) with a button to equip it, on a weapon's card (who should carry it), and for the whole colony on the Defenses page, where "Equip all suggested" gives the orders. Two colonists are never told to take the same weapon, and a trade between two is suggested when it is better for both, or when the colony gains clearly by putting the better weapon in the hands of the one who fights more. A lucky weapon or an heirloom given up is always said, never a bar.</CC_Settings_WeaponSuggestions_Tip>
+  <CC_Settings_WeaponSuggestions_Tip>The best weapon for each colonist from what the colony has, by their skill, traits, passions and work, their faith, the weapon mods and the fights you meet, with why in a line: on the gear tab (a row in Nice Inventory Tab's equipment box, or under the game's list) with a button to equip it, on a weapon's card (who should carry it), and for the whole colony on the Defenses page, where "Equip all suggested" gives the orders. Two colonists are never told to take the same weapon, and a trade between two is suggested when it is better for both, or when the colony gains clearly by putting the better weapon in the hands of the one who fights more. Giving up a lucky weapon or an heirloom is always mentioned, but never rules a suggestion out.</CC_Settings_WeaponSuggestions_Tip>
   <CC_SetNote_WeaponSuggestions>The gear tab, a weapon's card and the Defenses page suggest a better weapon from the colony's stores.</CC_SetNote_WeaponSuggestions>
   <CC_Settings_WeaponAsks>Colonists ask for better weapons</CC_Settings_WeaponAsks>
   <CC_Settings_WeaponAsks_Tip>Now and then a colonist says in one line that a clearly better weapon lying in storage would suit them, naming it and why, or proposes a trade to another colonist once the two are together (the one who would gain asks, the one who rarely fights offers theirs), in their free time at home: at most once in five days each and once a day in the colony, and not while you have set their suggestions aside. Nobody offers up their own lucky weapon or heirloom. A quiet entry stays in This week while it still stands.</CC_Settings_WeaponAsks_Tip>
@@ -247,9 +247,9 @@
 
   <!-- Why, in parts joined into one line. -->
   <CC_WeaponPick_Why_SkillHigh_Ranged>{PAWN_possessive} Shooting {LEVEL} makes its accuracy count</CC_WeaponPick_Why_SkillHigh_Ranged>
-  <CC_WeaponPick_Why_SkillHigh_Melee>{PAWN_possessive} Melee {LEVEL} makes every blow tell</CC_WeaponPick_Why_SkillHigh_Melee>
-  <CC_WeaponPick_Why_SkillLow_Ranged>it forgives {PAWN_possessive} Shooting {LEVEL}</CC_WeaponPick_Why_SkillLow_Ranged>
-  <CC_WeaponPick_Why_SkillLow_Melee>it forgives {PAWN_possessive} Melee {LEVEL}</CC_WeaponPick_Why_SkillLow_Melee>
+  <CC_WeaponPick_Why_SkillHigh_Melee>{PAWN_possessive} Melee {LEVEL} makes every blow count</CC_WeaponPick_Why_SkillHigh_Melee>
+  <CC_WeaponPick_Why_SkillLow_Ranged>it works well even with {PAWN_possessive} Shooting {LEVEL}</CC_WeaponPick_Why_SkillLow_Ranged>
+  <CC_WeaponPick_Why_SkillLow_Melee>it works well even with {PAWN_possessive} Melee {LEVEL}</CC_WeaponPick_Why_SkillLow_Melee>
   <CC_WeaponPick_Why_Trait>{TRAIT} suits it ({DELTA})</CC_WeaponPick_Why_Trait>
   <CC_WeaponPick_Why_Mechs>it stands up to the mechanoids you keep meeting</CC_WeaponPick_Why_Mechs>
   <CC_WeaponPick_Why_MechsEmp>its EMP stops the mechanoids you keep meeting</CC_WeaponPick_Why_MechsEmp>
@@ -364,7 +364,7 @@
   <CC_WeaponKit_Head>{GAP}: {FILL}</CC_WeaponKit_Head>
   <CC_WeaponKit_TagMissing>Missing</CC_WeaponKit_TagMissing>
   <CC_WeaponKit_Why_Hand>{PAWN_pronoun} has nothing in hand</CC_WeaponKit_Why_Hand>
-  <CC_WeaponKit_Why_Ranged>{PAWN_pronoun} has nothing to reach them from afar</CC_WeaponKit_Why_Ranged>
+  <CC_WeaponKit_Why_Ranged>{PAWN_pronoun} has nothing to fight with at range</CC_WeaponKit_Why_Ranged>
   <CC_WeaponKit_Why_Melee>{PAWN_pronoun} has nothing for close work</CC_WeaponKit_Why_Melee>
   <CC_WeaponKit_Why_Offhand>{PAWN_possessive} other hand is free</CC_WeaponKit_Why_Offhand>
   <CC_WeaponKit_Why_Pack>it is in {PAWN_possessive} pack already, but Simple Sidearms would unload it to storage</CC_WeaponKit_Why_Pack>

@@ -169,7 +169,7 @@ public static class ArisingTests
         C(Has("CC_Arise_refugees_CoolOurs") && Has("CC_Arise_refugees_Last") && Has("CC_Arise_exiles_CoolGlad") && Has("CC_Arise_exiles_WarmFriend") && Has("CC_Arise_splinter_Parent")
           && Has("CC_Arise_splinter_dropped") && Has("CC_Arise_splinter_added") && Has("CC_Arise_splinter_StandIn") && Has("CC_Arise_Town") && Has("CC_Arise_TownName_Refugees"),
             "the town they took, the last of a people, those glad to see them go, the friend asked after, the creed's change, their town");
-        C(keyed["CC_Arise_refugees_CoolOurs"].Contains("burned") && keyed["CC_Arise_exiles_Cool"].Contains("forgiven") && keyed["CC_Arise_splinter_Parent"].Contains("no love lost"),
+        C(keyed["CC_Arise_refugees_CoolOurs"].Contains("burned") && keyed["CC_Arise_exiles_Cool"].Contains("forgiven") && keyed["CC_Arise_splinter_Parent"].Contains("dislike each other"),
             "a grievance is said, so a cool welcome is never unexplained");
         C(keyed["CC_Arise_refugees_healers"].Contains("sickhouse") && keyed["CC_Arise_refugees_traders"].Contains("waystation") && keyed["CC_Arise_refugees_herders"].Contains("grass")
           && keyed["CC_Arise_exiles_traders"].Contains("waystation") && keyed["CC_Arise_splinter_healers"].Contains("sickhouse"), "how they live is what their town is on the map");

@@ -93,7 +93,7 @@
   <CC_Play_Why_LayingFire>{PAWN_nameDef} was still laying the fire</CC_Play_Why_LayingFire>
   <CC_Play_Why_NoGrave>there was no grave here to sit by</CC_Play_Why_NoGrave>
   <CC_Play_Why_NoCamp>the camp had gone</CC_Play_Why_NoCamp>
-  <CC_Play_Why_Weather>the weather was against it</CC_Play_Why_Weather>
+  <CC_Play_Why_Weather>the weather was too bad</CC_Play_Why_Weather>
   <CC_Play_Why_Away>{OTHER_nameDef} was away</CC_Play_Why_Away>
   <CC_Play_Why_CutShort>it was cut short</CC_Play_Why_CutShort>
 
@@ -174,7 +174,7 @@
   <CC_Play_FellThrough_Carry>The {1} went from the stores all the same.</CC_Play_FellThrough_Carry>
   <CC_Play_FellThrough_CarryRest>The rest of the {1} went from the stores all the same.</CC_Play_FellThrough_CarryRest>
   <CC_Play_Why_NoWork>there was nothing that needed doing</CC_Play_Why_NoWork>
-  <CC_Play_Why_NoOneAble>nobody was able for it</CC_Play_Why_NoOneAble>
+  <CC_Play_Why_NoOneAble>nobody was able to do it</CC_Play_Why_NoOneAble>
   <CC_Play_Why_NoHunter>nobody could hunt it</CC_Play_Why_NoHunter>
   <CC_Play_Why_GameGone>the game was gone</CC_Play_Why_GameGone>
   <CC_Play_Why_GotAway>the game got away</CC_Play_Why_GotAway>

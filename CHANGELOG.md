@@ -5,6 +5,31 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning, the post and the peoples' ages in plain words
+
+*15 November 2026, version 0.248.0*
+
+- Planning, the base review, the post and the colony's automations now say what they do in plain words, without riddles or little twists.
+- Letters about the peoples, their changing ages, wards, camps and the Signal Line's mast say plainly what happened and why.
+- The Dilemmas page now says correctly that an answer which never came about gives nobody its moods.
+
+## Panels, letters and the peoples in plain words
+
+*15 November 2026, version 0.247.0*
+
+- The item card, settings and on-screen panels describe things more plainly, such as what a room's beauty does, why the game's own list is hidden and how long a tending lasts.
+- Letters to neighbours, debts of honour and the league's crates now say what is recorded and who does what, without unexplained phrases such as good ink and red ink.
+- The peoples that arise and the peoples' own events describe in ordinary words how each new people lives and what each answer does.
+
+## Messages and tooltips in plain words: the council, defenses and dealings
+
+*15 November 2026, version 0.246.0*
+
+- Messages, tooltips and wish reasons for the council, the defenses and dealings with other peoples now say plainly what happens, without wry endings or old turns of phrase.
+- The short line under each answer uses everyday words, such as "would be deeply hurt" in place of "stung to the quick".
+- Tooltips that were hard to follow, such as how good things grow ordinary, how armour stops a hit and what happens when tribute falls short, are now written in full sentences.
+- The setting for good things growing ordinary now gives the right line for the spoiled, 15 points, as the game counts it.
+
 ## Event cards in plain words: the peoples and the neighbours
 
 *15 November 2026, version 0.245.0*

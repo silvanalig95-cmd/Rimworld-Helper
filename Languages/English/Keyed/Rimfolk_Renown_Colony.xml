@@ -23,19 +23,19 @@
   <CC_Renown_Colony_UpFor_4>The name of {COLONY} carries further now: it is {RENOWN}, known for {KNOWNFOR}.</CC_Renown_Colony_UpFor_4>
   <CC_Renown_Colony_UpFor_5>What the colony's people have done is talked of beyond its walls: {COLONY} is {RENOWN} now, for {KNOWNFOR}.</CC_Renown_Colony_UpFor_5>
   <CC_Renown_Colony_Down>Fewer speak of {COLONY} than before: its name is {RENOWN} now.</CC_Renown_Colony_Down>
-  <CC_Renown_Colony_Down_2>The talk of {COLONY} has narrowed: its name is {RENOWN} now.</CC_Renown_Colony_Down_2>
+  <CC_Renown_Colony_Down_2>People talk about {COLONY} less than before: its name is {RENOWN} now.</CC_Renown_Colony_Down_2>
   <CC_Renown_Colony_Down_3>Other news has taken the place of {COLONY} in people's talk: its name is {RENOWN} now.</CC_Renown_Colony_Down_3>
-  <CC_Renown_Colony_Down_4>The name of {COLONY} carries less far than it did: it is {RENOWN} now.</CC_Renown_Colony_Down_4>
+  <CC_Renown_Colony_Down_4>{COLONY} is less well known than it was: it is {RENOWN} now.</CC_Renown_Colony_Down_4>
   <CC_Renown_Colony_Down_5>What the colony was known for is older news now, and its name is {RENOWN}.</CC_Renown_Colony_Down_5>
   <CC_Renown_Colony_Faded>The name of {COLONY} has faded from the talk outside the colony.</CC_Renown_Colony_Faded>
   <CC_Renown_Colony_Faded_2>Nobody outside speaks of {COLONY} much any more.</CC_Renown_Colony_Faded_2>
   <CC_Renown_Colony_Faded_3>The talk of {COLONY} outside its walls has died down.</CC_Renown_Colony_Faded_3>
   <CC_Renown_Colony_Faded_4>Whatever was said of {COLONY} out there has been forgotten for now.</CC_Renown_Colony_Faded_4>
-  <CC_Renown_Colony_Faded_5>{COLONY} has gone quiet in the talk of the region.</CC_Renown_Colony_Faded_5>
+  <CC_Renown_Colony_Faded_5>People in the region have stopped talking about {COLONY}.</CC_Renown_Colony_Faded_5>
   <CC_Renown_Colony_Infamous>{COLONY} has a bad name now: outside the colony its people are spoken of for the wrong things.</CC_Renown_Colony_Infamous>
-  <CC_Renown_Colony_Infamous_2>The name of {COLONY} has gone bad: what is said of it outside is said of its wrongs.</CC_Renown_Colony_Infamous_2>
+  <CC_Renown_Colony_Infamous_2>{COLONY} has a bad name now: people outside talk only about its wrongs.</CC_Renown_Colony_Infamous_2>
   <CC_Renown_Colony_Infamous_3>People outside speak of {COLONY} now, and not kindly.</CC_Renown_Colony_Infamous_3>
-  <CC_Renown_Colony_Infamous_4>{COLONY} is known outside for the wrong things now, and its people will meet that name on the road.</CC_Renown_Colony_Infamous_4>
+  <CC_Renown_Colony_Infamous_4>{COLONY} is known outside for the wrong things now, and its people will hear about it on the road.</CC_Renown_Colony_Infamous_4>
   <CC_Renown_Colony_Infamous_5>What the colony has done wrong has carried further than what it did well: {COLONY} has a bad name now.</CC_Renown_Colony_Infamous_5>
   <CC_Renown_Colony_Mended>The bad name of {COLONY} is fading from the talk outside the colony.</CC_Renown_Colony_Mended>
   <CC_Renown_Colony_Mended_2>People outside have stopped holding the old wrongs against {COLONY}, mostly.</CC_Renown_Colony_Mended_2>
@@ -110,7 +110,7 @@
   <CC_RenownPage_Sub>How far the colony's name carries among the peoples and what it is known for, and its people known by name for what they did.</CC_RenownPage_Sub>
   <CC_RenownPage_Colony>The colony</CC_RenownPage_Colony>
   <CC_RenownPage_Named>Known by name</CC_RenownPage_Named>
-  <CC_RenownPage_NoneNamed>Nobody of the colony is known by name outside it yet. A contest won, a ward fostered well, a camp broken or a people's wounded tended, and the name comes.</CC_RenownPage_NoneNamed>
+  <CC_RenownPage_NoneNamed>Nobody of the colony is known by name outside it yet. Winning a contest, fostering a ward well, breaking a raiders' camp or tending another people's wounded can earn someone a name.</CC_RenownPage_NoneNamed>
   <CC_RenownPage_Unnamed>Not yet known by name outside the colony: {NAMES}.</CC_RenownPage_Unnamed>
 
   <!-- Here and away: the peoples the colony is bound to by marriage -->

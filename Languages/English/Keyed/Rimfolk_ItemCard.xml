@@ -9,8 +9,8 @@
   <!-- The settings (How you're told, Items). -->
   <CC_SetSec_Items>Items</CC_SetSec_Items>
   <CC_Settings_ItemCardFirst>Open Rimfolk's item card first</CC_Settings_ItemCardFirst>
-  <CC_Settings_ItemCardFirst_Tip>Opening the info for any item (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's: food, a drink, a drug, medicine, a material (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel and the like), a work of art held or placed, a book, a body part, a techprint, a neurotrainer or psytrainer, a genepack, xenogerm or embryo, something to use (a mech serum, a pulser, a mod's item), a shell, furniture in a crate, and anything else. It shows what the thing is good for in this colony, its tags, and by kind: who at home eats, takes, reads, learns from or could have it installed and why, what a material does to what is made of it, what a work of art or a piece of furniture does for its room, what a book teaches, a part's surgery and the faiths that care, a techprint's project, a xenogerm's genes, a use's risks, the guns that fire a shell; then the colony's stock, where it comes from, and how traders value it. Weapons and apparel keep their own cards; corpses keep the game's. Its button "All the game's stats" opens the game's card, and the game's card keeps its button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot.</CC_Settings_ItemCardFirst_Tip>
-  <CC_SetNote_ItemCardFirst>Every item opens as Rimfolk's item card; weapons and apparel keep theirs, and the game's card is one button away.</CC_SetNote_ItemCardFirst>
+  <CC_Settings_ItemCardFirst_Tip>Opening the info for any item (the "i" button anywhere, a trade screen, a bill, a list, the inspect pane) opens Rimfolk's item card instead of the game's. This covers food, a drink, a drug, medicine, a material (metal, wood, stone blocks, cloth, leather, wool, chunks, components, chemfuel and the like), a work of art held or placed, a book, a body part, a techprint, a neurotrainer or psytrainer, a genepack, xenogerm or embryo, something to use (a mech serum, a pulser, a mod's item), a shell, furniture in a crate, and anything else. The card shows what the thing is good for in this colony and its tags. Then, by kind, it shows who at home eats, takes, reads, learns from or could have it installed and why, what a material does to what is made of it, what a work of art or a piece of furniture does for its room, what a book teaches, a part's surgery and the faiths that care, a techprint's project, a xenogerm's genes, a use's risks, or the guns that fire a shell. Last come the colony's stock, where it comes from, and how traders value it. Weapons and apparel keep their own cards; corpses keep the game's. Its button "All the game's stats" opens the game's card, which has a button back. Links followed inside the game's card stay in it. Off, the game's card opens as before, with a button to Rimfolk's card at its foot.</CC_Settings_ItemCardFirst_Tip>
+  <CC_SetNote_ItemCardFirst>Every item opens as Rimfolk's item card; weapons and apparel keep theirs, and a button opens the game's card.</CC_SetNote_ItemCardFirst>
 
   <!-- The card and its buttons. -->
   <CC_ItemCard_Title>Rimfolk's item card</CC_ItemCard_Title>
@@ -249,7 +249,7 @@
   <CC_ItemCard_Blueprints>The blueprints and frames still need {N}.</CC_ItemCard_Blueprints>
   <CC_ItemCard_Row_Bills>Bills</CC_ItemCard_Row_Bills>
   <CC_ItemCard_BillsNeed>{BILLS} bills take it; those with a count need {N} in all.</CC_ItemCard_BillsNeed>
-  <CC_ItemCard_BillsForever>{BILLS} bills take it, run on and on.</CC_ItemCard_BillsForever>
+  <CC_ItemCard_BillsForever>{BILLS} bills take it, set to do forever.</CC_ItemCard_BillsForever>
   <CC_ItemCard_BillTakes>{RECIPE} at the {BENCH}: {BATCH} a batch ({REPEAT})</CC_ItemCard_BillTakes>
   <CC_ItemCard_BillStarved>{RECIPE} at the {BENCH}: {BATCH} a batch, waiting for it</CC_ItemCard_BillStarved>
   <CC_ItemCard_Row_Repairs>Repairs</CC_ItemCard_Row_Repairs>
@@ -293,24 +293,24 @@
   <CC_ItemCard_Row_Title>Title</CC_ItemCard_Row_Title>
   <CC_ItemCard_Row_Artist>Artist</CC_ItemCard_Row_Artist>
   <CC_ItemCard_Row_Tale>The tale</CC_ItemCard_Row_Tale>
-  <CC_ItemCard_NoTale>No tale of its own: the artist's fancy.</CC_ItemCard_NoTale>
+  <CC_ItemCard_NoTale>No tale: the artist made it from imagination.</CC_ItemCard_NoTale>
   <CC_ItemCard_Row_Room>The room</CC_ItemCard_Row_Room>
   <CC_ItemCard_RoomPlain>room</CC_ItemCard_RoomPlain>
   <CC_ItemCard_Row_RoomBeauty>Its beauty</CC_ItemCard_Row_RoomBeauty>
   <CC_ItemCard_WithWithout>{WITH} with it, {WITHOUT} without</CC_ItemCard_WithWithout>
   <CC_ItemCard_Row_Impressive>Impressiveness</CC_ItemCard_Row_Impressive>
   <CC_ItemCard_ImpressWithWithout>{WITH} ({STAGEWITH}) with it, {WITHOUT} ({STAGEWITHOUT}) without</CC_ItemCard_ImpressWithWithout>
-  <CC_ItemCard_RoomDoes_Bedroom>whoever sleeps here wakes to its impressiveness</CC_ItemCard_RoomDoes_Bedroom>
-  <CC_ItemCard_RoomDoes_Barracks>those who sleep here wake to its impressiveness</CC_ItemCard_RoomDoes_Barracks>
+  <CC_ItemCard_RoomDoes_Bedroom>whoever sleeps here gets a mood from its impressiveness</CC_ItemCard_RoomDoes_Bedroom>
+  <CC_ItemCard_RoomDoes_Barracks>those who sleep here get a mood from its impressiveness</CC_ItemCard_RoomDoes_Barracks>
   <CC_ItemCard_RoomDoes_DiningRoom>everyone who eats here feels its impressiveness</CC_ItemCard_RoomDoes_DiningRoom>
-  <CC_ItemCard_RoomDoes_RecRoom>recreation here is the better for its impressiveness</CC_ItemCard_RoomDoes_RecRoom>
+  <CC_ItemCard_RoomDoes_RecRoom>those who relax here get a mood from its impressiveness</CC_ItemCard_RoomDoes_RecRoom>
   <CC_ItemCard_RoomDoes_ThroneRoom>a noble's throne room, judged by its impressiveness</CC_ItemCard_RoomDoes_ThroneRoom>
   <CC_ItemCard_RoomDoes_Hospital>patients here feel its impressiveness</CC_ItemCard_RoomDoes_Hospital>
   <CC_ItemCard_RoomDoes_PrisonCell>the prisoner here feels its impressiveness</CC_ItemCard_RoomDoes_PrisonCell>
   <CC_ItemCard_RoomDoes_PrisonBarracks>the prisoners here feel its impressiveness</CC_ItemCard_RoomDoes_PrisonBarracks>
   <CC_ItemCard_RoomDoes_Other>its impressiveness gives no mood of its own</CC_ItemCard_RoomDoes_Other>
-  <CC_ItemCard_Outdoors>Outdoors: it lifts no room, only what passers-by see.</CC_ItemCard_Outdoors>
-  <CC_ItemCard_NotPlaced>Not placed: in storage it lifts nothing.</CC_ItemCard_NotPlaced>
+  <CC_ItemCard_Outdoors>Outdoors: it adds to no room, only to the beauty passers-by see.</CC_ItemCard_Outdoors>
+  <CC_ItemCard_NotPlaced>Not placed: in storage it does nothing for any room.</CC_ItemCard_NotPlaced>
   <CC_ItemCard_RoomWouldRise>{ROOM}: {FROM} now, {TO} with it (+{GAIN})</CC_ItemCard_RoomWouldRise>
   <CC_ItemCard_RoomWouldStay>{ROOM}: {FROM} now, the same with it (+{GAIN})</CC_ItemCard_RoomWouldStay>
   <CC_ItemCard_GoRoom_Tip>Go to the room.</CC_ItemCard_GoRoom_Tip>
@@ -396,7 +396,7 @@
   <CC_ItemCard_WhoJoy>recreation at {JOY}</CC_ItemCard_WhoJoy>
   <CC_ItemCard_WhoNoJoy>needs no recreation</CC_ItemCard_WhoNoJoy>
   <CC_ItemCard_WhoReads>reads at {SPEED}</CC_ItemCard_WhoReads>
-  <CC_ItemCard_WhoBookKind>A book in hand names its own skills and research; this is the kind.</CC_ItemCard_WhoBookKind>
+  <CC_ItemCard_WhoBookKind>Each book has its own skills and research; this shows the kind in general.</CC_ItemCard_WhoBookKind>
 
   <!-- Techprints. -->
   <CC_ItemCard_Row_Project>Project</CC_ItemCard_Row_Project>
@@ -414,7 +414,7 @@
   <!-- Trainers. -->
   <CC_ItemCard_TrainerSkill>{XP} experience in {SKILL} at once.</CC_ItemCard_TrainerSkill>
   <CC_ItemCard_Row_Passion>Passion</CC_ItemCard_Row_Passion>
-  <CC_ItemCard_TrainerPassion>A burning passion learns the most of it, none the least: the game's learning by passion.</CC_ItemCard_TrainerPassion>
+  <CC_ItemCard_TrainerPassion>Colonists with a burning passion learn the most from it, those with none the least, by the game's passion rules.</CC_ItemCard_TrainerPassion>
   <CC_ItemCard_Row_Psycast>Psycast</CC_ItemCard_Row_Psycast>
   <CC_ItemCard_TrainerPsycast>{PSYCAST}, a level {LEVEL} psycast: the user needs a psylink of that level or more.</CC_ItemCard_TrainerPsycast>
   <CC_ItemCard_Row_Uses>Uses</CC_ItemCard_Row_Uses>
@@ -489,7 +489,7 @@
   <CC_ItemCard_Row_Adds>Changes</CC_ItemCard_Row_Adds>
   <CC_ItemCard_Row_Abilities>Abilities</CC_ItemCard_Row_Abilities>
   <CC_ItemCard_Row_Surgery>Surgery</CC_ItemCard_Row_Surgery>
-  <CC_ItemCard_SurgeryNone>No operation the colony's game knows installs it.</CC_ItemCard_SurgeryNone>
+  <CC_ItemCard_SurgeryNone>No operation in this game installs it.</CC_ItemCard_SurgeryNone>
   <CC_ItemCard_SurgeryLevel>A doctor of Medicine {LEVEL} or more installs it.</CC_ItemCard_SurgeryLevel>
   <CC_ItemCard_SurgeryAny>Any doctor can install it.</CC_ItemCard_SurgeryAny>
   <CC_ItemCard_SurgeryResearch>The operation waits on {RESEARCH}.</CC_ItemCard_SurgeryResearch>
@@ -515,7 +515,7 @@
 
   <!-- Genepacks, xenogerms and embryos. -->
   <CC_ItemCard_Row_Genes>Genes</CC_ItemCard_Row_Genes>
-  <CC_ItemCard_GenesKind>Chosen when it is made: a thing in hand names them.</CC_ItemCard_GenesKind>
+  <CC_ItemCard_GenesKind>Chosen when it is made: each one lists its own genes.</CC_ItemCard_GenesKind>
   <CC_ItemCard_GenesEmbryoKind>Its parents' genes, known once it is made.</CC_ItemCard_GenesEmbryoKind>
   <CC_ItemCard_GenesSum>{N} genes, complexity {CPX}, metabolism {MET} (hunger x{HUNGER}).</CC_ItemCard_GenesSum>
   <CC_ItemCard_GenesArchite>{ARC} archite capsules to assemble.</CC_ItemCard_GenesArchite>
@@ -562,7 +562,7 @@
   <CC_ItemCard_FurnitureBed>Rest {REST}, comfort {COMFORT}.</CC_ItemCard_FurnitureBed>
   <CC_ItemCard_Row_Comfort>Comfort</CC_ItemCard_Row_Comfort>
   <CC_ItemCard_Row_Table>Table</CC_ItemCard_Row_Table>
-  <CC_ItemCard_FurnitureTable>A table to eat at: without one, colonists eat without a table and mind it.</CC_ItemCard_FurnitureTable>
+  <CC_ItemCard_FurnitureTable>A table to eat at: without one, colonists eat without a table and get a bad mood from it.</CC_ItemCard_FurnitureTable>
   <CC_ItemCard_Row_WorkSpeed>Work speed</CC_ItemCard_Row_WorkSpeed>
   <CC_ItemCard_FurnitureBench>Work at it goes at {SPEED}.</CC_ItemCard_FurnitureBench>
   <CC_ItemCard_FurnitureJoy>{JOY} recreation.</CC_ItemCard_FurnitureJoy>
@@ -574,7 +574,7 @@
   <CC_ItemCard_Row_RoomNeeds>Its room</CC_ItemCard_Row_RoomNeeds>
   <CC_ItemCard_RoomNeeds_Bed>A bedroom of one's own lifts its sleeper's mood by its impressiveness; a shared one, less.</CC_ItemCard_RoomNeeds_Bed>
   <CC_ItemCard_RoomNeeds_Table>A dining room: everyone who eats there feels its impressiveness.</CC_ItemCard_RoomNeeds_Table>
-  <CC_ItemCard_RoomNeeds_Joy>A recreation room: recreation there is the better for its impressiveness.</CC_ItemCard_RoomNeeds_Joy>
+  <CC_ItemCard_RoomNeeds_Joy>A recreation room: those who relax there get a mood from its impressiveness.</CC_ItemCard_RoomNeeds_Joy>
   <CC_ItemCard_RoomNeeds_Bench>A workshop, lit and clean: work in the dark is slower.</CC_ItemCard_RoomNeeds_Bench>
   <CC_ItemCard_RoomNeeds_Seat>Beside a table, a bench or wherever colonists sit.</CC_ItemCard_RoomNeeds_Seat>
   <CC_ItemCard_Row_Recipes>Recipes</CC_ItemCard_Row_Recipes>
@@ -583,7 +583,7 @@
   <CC_ItemCard_FurnitureAtHome>{PLACED} standing, {CRATED} in crates.</CC_ItemCard_FurnitureAtHome>
   <CC_ItemCard_WhoBedless>Without a bed of their own: {WHO}.</CC_ItemCard_WhoBedless>
   <CC_ItemCard_WhoAllBeds>Everyone at home has a bed of their own.</CC_ItemCard_WhoAllBeds>
-  <CC_ItemCard_WhoJoyNew>The colony has nothing for {JOY} recreation yet: each kind wears thin on its own, so a new one helps.</CC_ItemCard_WhoJoyNew>
+  <CC_ItemCard_WhoJoyNew>The colony has nothing for {JOY} recreation yet: colonists tire of each kind separately, so a new kind helps.</CC_ItemCard_WhoJoyNew>
   <CC_ItemCard_WhoJoyHave>The colony has {JOY} recreation already.</CC_ItemCard_WhoJoyHave>
 
   <!-- Anything else. -->
