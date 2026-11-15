@@ -142,6 +142,15 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   fur hats, scarves, wraps, earmuffs and boots from the player's mods, active rows only) and draws among those that are
   warm enough, by each person and their people's own style and tags, so a group comes in mixed clothes; the same for
   heat (light shirts, hats and wraps of different kinds).
+- **To do when the player asks (15 November 2026): porters reach the mailbag, or say why not.** The player, with a
+  screenshot of goods left just outside their killbox: "porters placed the material just before my killbox instead of
+  walking to the mailbag. is this because of the traps? i'll build a door in the wall now". Found: not the traps (the
+  game's visitors know the colony's traps and step round or over them; reach ignores them). `CourierTracker` sets the
+  load down where the porter stands once at the colony when `CanReach(spot, OnCell, Danger.Some)` fails: no open way
+  in (no door in the wall, a locked one), or a way through cold that is deadly for an underdressed porter (the region's
+  danger). When asked: they take any way in that exists (`Danger.Deadly` for the walk, the 0.232.1 dressing keeping them
+  warm), and if there truly is none, the drop says why in a message ("no way in past the wall"), with the porter
+  standing by the goods.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - 0.240.0, **More of Old Powers' kind: the old
