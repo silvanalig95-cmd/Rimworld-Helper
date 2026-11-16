@@ -484,7 +484,7 @@ namespace ColonyCouncil
                 st.lost = null;
             }
             if (f == null || c.Hostile || c.tension >= 40f) return;
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.CalvingGoodwill, false);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.CalvingGoodwill, GoodwillWhy.CampWell);
             FactionMemory.Note(f, "campHelped", "CC_PEv3_CalvingName".Translate().Resolve());
             News.Post("CC_PEv3_CalvingRegion".Translate(f.Name.Named("FACTION"), (st?.calves.Count ?? 0).Named("COUNT")).Resolve(), LookTargets.Invalid, NewsKind.World);
         }
@@ -577,7 +577,7 @@ namespace ColonyCouncil
             {
                 var x = hc.stranger;
                 Couriers.PaySilver(hc.map, x != null && x.Spawned ? x.Position : IntVec3.Invalid, hc.variant, hc.faction, PeoplesG.Up(x, hc.map) ? x : null);
-                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.CalvingTollGoodwill, false);
+                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.CalvingTollGoodwill, GoodwillWhy.Paid);
             }
             SpringCalving.Start(hc);
             Arrivals.SendAway(PeoplesG.Party(hc));

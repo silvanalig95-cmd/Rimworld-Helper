@@ -16,8 +16,9 @@ namespace ColonyCouncil
     /// believe, in their words.</item>
     /// <item>The colony's letter slights their god (<see cref="ShapeOurs"/>): written by someone whose own god is their god's
     /// rival, or by a scoffer, now and then; the words are in the letter, and when they read it their answer says they took
-    /// offense (<see cref="Answered"/>, from Letters/LetterForm.cs): their goodwill falls, and, unseen, their god's favor and
-    /// its grudge against the writer.</item>
+    /// offense (<see cref="Answered"/>, from Letters/LetterForm.cs): unseen, their god's favor and its grudge against the
+    /// writer; their goodwill falls when that answer is in at the colony (<see cref="AnswerIn"/>), its message naming the
+    /// letter that slighted their god.</item>
     /// <item>A friend's invitation to their god's feast (<see cref="Daily"/>), by the feast's own name: a gift for it carried
     /// out to the gate for their messenger, or the colony's regrets.</item>
     /// </list>
@@ -117,9 +118,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Their answer to a letter that slighted their god: they took offence (the narrator says so under it), their
-        /// goodwill falls (never into war), their god is displeased (a scoffer's words count more with a proud god), and the
-        /// colony's writer is remembered by that god.
+        /// Their answer to a letter that slighted their god: they took offence (the narrator says so under it), their god is
+        /// displeased (a scoffer's words count more with a proud god), and the colony's writer is remembered by that god.
+        /// Their goodwill falls (never into war) and they remember it once that answer is in at the colony
+        /// (<see cref="AnswerIn"/>): the colony learns of it from the answer, so the loss comes with it, not the day they read.
         /// </summary>
         public static void Answered(LetterSpec s, NeighbourLetter l, Notable n)
         {
@@ -127,15 +129,20 @@ namespace ColonyCouncil
             if (book == null || s == null || l == null) return;
             try
             {
-                var d = book.Of("slight").FirstOrDefault(x => x.count == l.id);
+                var d = book.Of("slight").FirstOrDefault(x => x.count == l.id && x.stage == GoodwillReasonMath.SlightWritten);
                 if (d == null) return;
-                d.done = true;
                 var g = Gods.ById(d.god);
                 var f = d.faction ?? n?.faction;
-                if (g == null || f == null) return;
+                if (g == null || f == null)
+                {
+                    d.done = true;
+                    return;
+                }
                 s.outcomes.Add("CC_GW_Slight_Taken".Translate(f.Name.Named("PEOPLE"), g.name.Named("GOD"), (d.what ?? "?").Named("WRITER")).Resolve());
-                StoryChains.Goodwill(f, GodWorldMath.SlightGoodwill);
-                FactionMemory.Note(f, "slighted", g.name);
+                // Read: the answer that says so is on its way back; kept until it is in (the road back is days at most).
+                d.stage = GoodwillReasonMath.SlightRead;
+                d.faction = f;
+                d.until = GodWorld.Now + 60 * GodWorldMath.DayTicks;
                 var home = d.Map ?? Homes.Seat;
                 Gods.AddFavour(g, home, GodWorldMath.SlightFavour, "CC_GW_Slight_Why".Translate((d.what ?? "?").Named("WRITER")).Resolve(), FavourSource.Deed, GodOffence.Scoffing);
                 // The god remembers who wrote it: a storm god's lightning finds that roof, a wild god's beasts that trail.
@@ -144,6 +151,32 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods in the world: a slight read", e);
+            }
+        }
+
+        /// <summary>
+        /// The answer to a letter that slighted their god is in at the colony (World/NeighbourLetters.cs, Landed): their
+        /// goodwill falls now, the game's message naming a letter that slighted their god, and their people remember it.
+        /// Once only.
+        /// </summary>
+        public static void AnswerIn(NeighbourLetter l, Faction people)
+        {
+            var book = GodWorld.Book;
+            if (book == null || l == null) return;
+            try
+            {
+                var d = book.Of("slight").FirstOrDefault(x => x.count == l.id && GoodwillReasonMath.SlightLands(x.stage, x.done));
+                if (d == null) return;
+                d.done = true;
+                var g = Gods.ById(d.god);
+                var f = d.faction ?? people;
+                if (f == null) return;
+                StoryChains.Goodwill(f, GodWorldMath.SlightGoodwill, GoodwillWhy.Slight);
+                FactionMemory.Note(f, "slighted", g?.name);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gods in the world: a slight's answer in", e);
             }
         }
 
@@ -199,7 +232,7 @@ namespace ColonyCouncil
             // apart: one of the colony carries the festival's gift out to the gate, where their messenger takes it up the road.
             new DilemmaEffect_CarryOut { what = "silver", count = l.count, steward = false, who = PlayWho.None, to = PlaySpot.Gate, label = "CC_GW_Invite_GiftLabel".Translate().Resolve() }
                 .Apply(ctx);
-            StoryChains.Goodwill(f, GodWorldMath.FestivalGoodwill);
+            StoryChains.Goodwill(f, GodWorldMath.FestivalGoodwill, GoodwillWhy.Feast);
             FactionMemory.Note(f, "gaveGift", GodWays.Feast(g));
             Gods.AddFavour(g, map, GodWorldMath.FestivalFavour, GodWorld.T("CC_GW_Invite_Why", g, f.Name.Named("PEOPLE")), FavourSource.Offering);
             GodWorld.Remark(map, IntVec3.Invalid, "festival", g);
@@ -211,7 +244,7 @@ namespace ColonyCouncil
             var f = l.people;
             if (f == null) return;
             // A proud people notice the empty place at their table; the rest only note it.
-            if (g != null && (g.nature == GodNature.Proud || g.nature == GodNature.Jealous)) StoryChains.Goodwill(f, GodWorldMath.FestivalRegrets);
+            if (g != null && (g.nature == GodNature.Proud || g.nature == GodNature.Jealous)) StoryChains.Goodwill(f, GodWorldMath.FestivalRegrets, GoodwillWhy.Feast);
         }
     }
 }

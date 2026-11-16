@@ -154,7 +154,7 @@ namespace ColonyCouncil
             var loser = wardenWon ? tamer : warden;
             PeoplesG.SayLine(winner, ctx.incident, wardenWon ? "wardenwon" : "tamerwon");
             var losers = loser.Faction;
-            if (losers != null && losers.HasGoodwill && !losers.IsPlayer) WorldSituationWorker.Goodwill(losers, PeopleEventsMath.BoutLoserGoodwill);
+            if (losers != null && losers.HasGoodwill && !losers.IsPlayer) WorldSituationWorker.Goodwill(losers, PeopleEventsMath.BoutLoserGoodwill, GoodwillWhy.Bout);
             Tell.Message(NewsKind.Land, Importance.Notable, map,
                 (wardenWon ? "CC_PEv_BoutWarden" : "CC_PEv_BoutTamer").Translate(warden.LabelShort.Named("WARDEN"), tamer.LabelShort.Named("TAMER"), (ctx.beast ?? "?").Named("BEAST")).Resolve(),
                 new LookTargets(winner), MessageTypeDefOf.NeutralEvent);

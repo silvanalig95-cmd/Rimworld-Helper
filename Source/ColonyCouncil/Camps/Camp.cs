@@ -322,7 +322,7 @@ namespace ColonyCouncil
             if (!Settled) return;
             if (tension >= 100f)
             {
-                LoseGoodwill(8);
+                LoseGoodwill(8, GoodwillWhy.CampSour);
                 Leave("fallout");
                 return;
             }
@@ -340,16 +340,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Their people think less of the colony (asked to go, or a stay gone sour), but never so much that this alone
-        /// makes them enemies: only driving them off, or harming or arresting one of them, can do that.
+        /// makes them enemies: only driving them off, or harming or arresting one of them, can do that. The game's message
+        /// names <paramref name="reason"/> (World/GoodwillWhy.cs).
         /// </summary>
-        public void LoseGoodwill(int amount)
+        public void LoseGoodwill(int amount, HistoryEventDef reason)
         {
             if (faction == null || faction.IsPlayer || amount <= 0 || Hostile) return;
             try
             {
                 // A people turns hostile at -75 goodwill (the game's own line); stop short of it.
                 while (amount > 0 && faction.PlayerGoodwill + faction.CalculateAdjustedGoodwillChange(Faction.OfPlayer, -amount) <= -75) amount--;
-                if (amount > 0) faction.TryAffectGoodwillWith(Faction.OfPlayer, -amount, true, false);
+                if (amount > 0) faction.TryAffectGoodwillWith(Faction.OfPlayer, -amount, true, false, reason);
             }
             catch (Exception e)
             {

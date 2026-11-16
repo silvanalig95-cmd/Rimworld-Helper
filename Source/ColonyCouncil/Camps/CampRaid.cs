@@ -786,7 +786,7 @@ namespace ColonyCouncil
             int goodwill = CampRaidMath.Goodwill(fought, warned, end);
             try
             {
-                if (goodwill > 0 && !c.faction.HostileTo(Faction.OfPlayer)) c.faction.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, true, false);
+                if (goodwill > 0 && !c.faction.HostileTo(Faction.OfPlayer)) c.faction.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, true, false, GoodwillWhy.CampDefended);
                 if (fought)
                 {
                     FactionMemory.Note(c.faction, "sidedWith", b.people?.Name, 14);

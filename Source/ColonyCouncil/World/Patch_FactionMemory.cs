@@ -263,13 +263,16 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Goodwill changed for a reason the game names (a release, a gift, an attack, peace talks...).</summary>
+    /// <summary>
+    /// Goodwill changed for a reason the game names (a release, a gift, an attack, peace talks...). Rimfolk's own reasons
+    /// (World/GoodwillWhy.cs) are left alone: the code that changed the goodwill notes its own deed, never twice.
+    /// </summary>
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryAffectGoodwillWith))]
     public static class Patch_MemoryGoodwill
     {
         public static void Postfix(Faction __instance, Faction other, int goodwillChange, HistoryEventDef reason, GlobalTargetInfo? lookTarget)
         {
-            if (reason == null || !MemoryHooks.Listening) return;
+            if (reason == null || GoodwillReasonMath.Own(reason.defName) || !MemoryHooks.Listening) return;
             try
             {
                 MemoryHooks.Goodwill(__instance, other, goodwillChange, reason, lookTarget);

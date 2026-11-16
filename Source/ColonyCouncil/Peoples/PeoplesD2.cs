@@ -164,7 +164,7 @@ namespace ColonyCouncil
                 string line = Flavor.PickText(ext.lines.Where(l => l.StartsWith(won ? "[won]" : "[lost]")).Select(l => l.Substring(l.IndexOf(']') + 1).TrimStart()).ToList());
                 if (!line.NullOrEmpty()) Speech.Say(tamer, line);
             }
-            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, won ? PeoplesDMath.WinGoodwill : PeoplesDMath.LoseGoodwill);
+            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, won ? PeoplesDMath.WinGoodwill : PeoplesDMath.LoseGoodwill, GoodwillWhy.Bout);
             if (won)
             {
                 var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Evt_BeatTamer");

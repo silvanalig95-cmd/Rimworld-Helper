@@ -713,7 +713,7 @@ namespace ColonyCouncil
                 P("CC_Scheme_Hist_FoundOut", agent.LabelShort.Named("AGENT"), DipWords.People(f).Named("PEOPLE"), what.Named("WHAT"), colonyName.Named("COLONY")), true);
             // Their people remember that the colony caught them at it, and think less of it for it.
             FactionMemory.Note(f, "schemedUs", agent.LabelShort);
-            LoseGoodwill(f, SchemeMath.CaughtGoodwill);
+            LoseGoodwill(f, SchemeMath.CaughtGoodwill, GoodwillWhy.Caught);
             NotableOf(t)?.Remember(P("CC_Scheme_NotableNote", agent.LabelShort.Named("AGENT")), -SchemeMath.CaughtGoodwill);
             string how = How(watch, by, i.act);
             string after = After(i.act, agent, thing, i.hot);
@@ -782,7 +782,7 @@ namespace ColonyCouncil
                     if (o == null || o == f || o.IsPlayer || heard.Contains(o) || !Diplomacy.Deals(o) || Diplomacy.Hostile(o)) continue;
                     heard.Add(o);
                 }
-            foreach (var o in heard) LoseGoodwill(o, SchemeMath.SmearGoodwill);
+            foreach (var o in heard) LoseGoodwill(o, SchemeMath.SmearGoodwill, GoodwillWhy.Smear);
             WorldLedger.Set(t, Tie.State.Kept);
             if (heard.Count == 0) return;
             string where = P("CC_Scheme_SmearWhere_" + t.terms.key);
@@ -809,14 +809,17 @@ namespace ColonyCouncil
             if (p != null) RestUtility.WakeUp(p);
         }
 
-        /// <summary>Their people think less of the colony, never so much that this alone turns them hostile; no message (the letter or the news says it).</summary>
-        private static void LoseGoodwill(Faction f, int amount)
+        /// <summary>
+        /// Their people think less of the colony, never so much that this alone turns them hostile; no message (the letter
+        /// or the news says it), the reason for the Factions tab (World/GoodwillWhy.cs).
+        /// </summary>
+        private static void LoseGoodwill(Faction f, int amount, HistoryEventDef reason)
         {
             if (f == null || f.IsPlayer || !f.HasGoodwill || Diplomacy.Hostile(f) || amount <= 0) return;
             try
             {
                 while (amount > 0 && f.PlayerGoodwill + f.CalculateAdjustedGoodwillChange(Faction.OfPlayer, -amount) <= SchemeMath.HostileAt) amount--;
-                if (amount > 0) f.TryAffectGoodwillWith(Faction.OfPlayer, -amount, false, false);
+                if (amount > 0) f.TryAffectGoodwillWith(Faction.OfPlayer, -amount, false, false, reason);
             }
             catch (Exception e)
             {

@@ -269,7 +269,7 @@ namespace ColonyCouncil
                 .RandomElementWithFallback();
             if (faction == null) return;
             lastWordTick = now;
-            faction.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false);
+            faction.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false, GoodwillWhy.Name);
             string key = amount > 0 ? "CC_Ways_WordGood" : "CC_Ways_WordBad";
             string what = PoleLabel(Mathf.Abs(g) >= Mathf.Abs(o) ? Way.Generosity : Way.Openness, amount > 0);
             News.Post(key.Translate(faction.Name, what, amount.ToStringWithSign()).Resolve(), LookTargets.Invalid,

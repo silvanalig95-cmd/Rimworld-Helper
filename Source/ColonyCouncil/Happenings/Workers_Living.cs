@@ -438,7 +438,7 @@ namespace ColonyCouncil
             if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill || f.HostileTo(Faction.OfPlayer)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             int change = amount >= 0 ? amount : Mathf.Min(0, Mathf.Max(amount, floor - f.PlayerGoodwill));
-            if (change != 0) f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false);
+            if (change != 0) f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false, GoodwillWhy.ForEffects);
         }
     }
 
@@ -788,7 +788,7 @@ namespace ColonyCouncil
             if (!(Avail.IsPreIndustrial && Couriers.Deliver(map, things, ctx.faction, VarietyUtil.Near(ctx.a, map)))) Loot.Deliver(things, map, VarietyUtil.Near(ctx.a, map), true);
             ctx.tale = Loot.Describe(things);
             foreach (var f in ctx.variant == 1 ? new[] { ctx.faction, ctx.enemy } : new[] { ctx.faction })
-                if (f != null && f.HasGoodwill && !f.defeated) f.TryAffectGoodwillWith(Faction.OfPlayer, 4, true, false);
+                if (f != null && f.HasGoodwill && !f.defeated) f.TryAffectGoodwillWith(Faction.OfPlayer, 4, true, false, GoodwillWhy.Judged);
             // Whoever found the middle way hears it held.
             if (ctx.variant == 1 && ctx.a == ctx.b)
             {
@@ -1719,7 +1719,7 @@ namespace ColonyCouncil
             string tier = score < 0f ? "noroom" : score >= 65f ? "great" : score >= 35f ? "good" : "poor";
             var f = m.faction;
             int goodwill = tier == "great" ? 10 : tier == "good" ? 5 : 1;
-            if (f.HasGoodwill) f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, true, false);
+            if (f.HasGoodwill) f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, true, false, GoodwillWhy.Event);
             if (tier == "great")
             {
                 // Left in the guest room, with thanks.

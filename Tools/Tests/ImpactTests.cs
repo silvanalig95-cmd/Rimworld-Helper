@@ -18,6 +18,13 @@ public static class ImpactTests
             check(ok, "answer impact: " + what);
         }
 
+        // The amount written in where the mark is, in either case: the game's words capitalise an argument after a colon
+        // ("Stormriders: %N% goodwill", seen in the player's save of 16 November 2026).
+        C(ImpactMath.Fill("Stormriders: %n% goodwill", 6f, true) == "Stormriders: +6 goodwill"
+          && ImpactMath.Fill("Stormriders: %N% goodwill", 6f, true) == "Stormriders: +6 goodwill"
+          && ImpactMath.Fill("Bautista: %N% trust", -4f, true) == "Bautista: -4 trust" && ImpactMath.Fill("no mark here", 3f, true) == "no mark here",
+            "the amount goes where the mark is, small or capital");
+
         // Chances as "n in d".
         C(ImpactMath.Odds(0.25f) == (1, 4, true), "a quarter is 1 in 4");
         C(ImpactMath.Odds(0.5f) == (1, 2, true), "a half is 1 in 2");

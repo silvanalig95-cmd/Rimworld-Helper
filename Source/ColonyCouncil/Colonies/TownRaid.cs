@@ -172,7 +172,7 @@ namespace ColonyCouncil
             s.Clear("sending");
             s.Set("refused");
             s.SetNum("raidAt", now + Mathf.RoundToInt(Rand.Range(TownLifeMath.RaidAfterMin, TownLifeMath.RaidAfterMax) * GenDate.TicksPerDay));
-            Goodwill(rec?.people, TownLifeMath.RefusedGoodwill, false);
+            Goodwill(rec?.people, TownLifeMath.RefusedGoodwill, GoodwillWhy.WorldEvent);
             if (rec?.people != null && FactionMemory.On) FactionMemory.Note(rec.people, "refused", TownsAfter.TownName(rec));
             return outcome;
         }
@@ -204,7 +204,7 @@ namespace ColonyCouncil
             if (now < s.Num("holdUntil")) return null;
             // Nobody came: the town met them alone, and remembers the colony's word.
             s.Set("nobodyCame");
-            Goodwill(rec.people, TownLifeMath.NoShowGoodwill, false);
+            Goodwill(rec.people, TownLifeMath.NoShowGoodwill, GoodwillWhy.WorldEvent);
             if (FactionMemory.On) FactionMemory.Note(rec.people, "letDown", TownsAfter.TownName(rec));
             return Alone(s, rec);
         }
@@ -448,7 +448,7 @@ namespace ColonyCouncil
             TownLife.LoseGoods(rec.Town, TownLifeMath.GoodsLost(e));
             if (e == TownRaidEnd.Defended)
             {
-                Goodwill(rec.people, TownLifeMath.DefendedGoodwill, false);
+                Goodwill(rec.people, TownLifeMath.DefendedGoodwill, GoodwillWhy.WorldEvent);
                 if (FactionMemory.On) FactionMemory.Note(rec.people, "townDefended", townName);
             }
             foreach (var p in dead) TownLife.FormerDied(rec, p);

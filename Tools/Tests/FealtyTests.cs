@@ -156,7 +156,7 @@ public static class FealtyTests
         C(!dip["Vassals.cs"].Contains("TrySpendPoints") && !dip["Vassals.cs"].Contains("VassalagePointsComponent") && !dip["Vassals.cs"].Contains("ExecuteVassalisation"),
             "nothing of the mod's tribute, purchases or points is touched (decision 12)");
         C(dip["Fealty.cs"].Contains("Ages.IsEmpire(f)") && dip["FealtyPanels.cs"].Contains("Fealty.Titled("), "no fealty to the Empire; its titled colonists shown as its own (decision 9)");
-        C(System.Text.RegularExpressions.Regex.Matches(dip["Fealty.cs"], @"TryAffectGoodwillWith").Count == 1 && dip["Fealty.cs"].Contains("private static void Goodwill(Faction f, int amount)"),
+        C(System.Text.RegularExpressions.Regex.Matches(dip["Fealty.cs"], @"TryAffectGoodwillWith").Count == 1 && dip["Fealty.cs"].Contains("private static void Goodwill(Faction f, int amount, HistoryEventDef reason)"),
             "goodwill moves only with the liege itself, never with its enemies (decision 11)");
         C(Code("Text/Facts/FactsLedger.cs").Contains("FealtyFacts(s, f);"), "the facts read");
         C(Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Rows(f, home)") && Code("Diplomacy/DiplomacyModel.cs").Contains("FealtyPanels.Acts(f, home)"), "the people card's rows and acts");

@@ -61,7 +61,7 @@ namespace ColonyCouncil
                     WorldLedger.TownChanged();
                 }
                 if (rec.people.PlayerGoodwill < TownLifeMath.AskGoodwill)
-                    rec.people.TryAffectGoodwillWith(Faction.OfPlayer, TownLifeMath.AskGoodwill - rec.people.PlayerGoodwill, false, false);
+                    rec.people.TryAffectGoodwillWith(Faction.OfPlayer, TownLifeMath.AskGoodwill - rec.people.PlayerGoodwill, false, false, HistoryEventDefOf.DebugGoodwill);
                 rec.askOpen = false;
                 rec.agreed = false;
                 TownLife.AskBack(rec, Now);
@@ -120,7 +120,7 @@ namespace ColonyCouncil
                     Say("already at war, or no people.");
                     return;
                 }
-                rec.people.TryAffectGoodwillWith(Faction.OfPlayer, -200, true, true);
+                rec.people.TryAffectGoodwillWith(Faction.OfPlayer, -200, true, true, HistoryEventDefOf.DebugGoodwill);
                 Say(rec.people.Name + " are at war with the colony: the bond breaks at the region's next day; their raids come with the storyteller's (try the game's own Raid incident with them).");
             });
         }

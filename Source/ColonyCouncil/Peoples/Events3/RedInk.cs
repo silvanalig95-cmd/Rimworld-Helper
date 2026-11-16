@@ -194,11 +194,11 @@ namespace ColonyCouncil
             if (d != null)
             {
                 FactionMemory.Settle(d);
-                if (r.wronged != null && r.wronged.HasGoodwill && !r.wronged.IsPlayer) WorldSituationWorker.Goodwill(r.wronged, PeopleEvents3Math.GoodwillBack(d.weight), false);
+                if (r.wronged != null && r.wronged.HasGoodwill && !r.wronged.IsPlayer) WorldSituationWorker.Goodwill(r.wronged, PeopleEvents3Math.GoodwillBack(d.weight), GoodwillWhy.Amends);
             }
             r.state = "paid";
             r.done = true;
-            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.PaidGoodwill, false);
+            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.PaidGoodwill, GoodwillWhy.Amends);
         }
     }
 

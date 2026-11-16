@@ -479,8 +479,8 @@ namespace ColonyCouncil
                 // A contract's goodwill at its end (a hired camp's own contract moves their goodwill itself: Camps/CampContract.cs).
                 if (f != null && f.HasGoodwill && !f.IsPlayer && !f.defeated && d.kind == DealKind.Supply)
                 {
-                    if (how == DealStage.Broken) WorldSituationWorker.Goodwill(f, DealingMath.BrokenGoodwill);
-                    else if (how == DealStage.Kept) WorldSituationWorker.Goodwill(f, DealingMath.KeptGoodwill);
+                    if (how == DealStage.Broken) WorldSituationWorker.Goodwill(f, DealingMath.BrokenGoodwill, GoodwillWhy.DealBroken);
+                    else if (how == DealStage.Kept) WorldSituationWorker.Goodwill(f, DealingMath.KeptGoodwill, GoodwillWhy.DealKept);
                 }
                 if (!line.NullOrEmpty())
                     Tell.Letter(NewsKind.World, Importance.Notable, d.home, W("CC_Deal_EndLabel_" + how, Label(d.kind, d.sub).Named("DEAL"), (d.townName ?? f?.Name ?? "?").Named("TOWN")), line,
@@ -536,7 +536,7 @@ namespace ColonyCouncil
             switch (d.kind)
             {
                 case DealKind.Relief:
-                    if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.ReliefGoodwill);
+                    if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.ReliefGoodwill, GoodwillWhy.HardTimes);
                     RegionFortunes.Move(f, d.town, DealingMath.ReliefFortune, W("CC_Deal_Cause_Relief"));
                     End(d, DealStage.Kept, W("CC_Deal_Relief_Kept", Council(f, d.Town).Named("COUNCIL"), (d.townName ?? "?").Named("TOWN"), (f?.Name ?? "?").Named("PEOPLE")));
                     break;
@@ -575,7 +575,7 @@ namespace ColonyCouncil
                     d.next = Feasts.DayStart(home, Feasts.Today(home) + days) + DealingMath.FairHourFrom * GenDate.TicksPerHour;
                     break;
                 case ProclaimKind.Friendship:
-                    if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.FriendshipGoodwill2);
+                    if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.FriendshipGoodwill2, GoodwillWhy.Friendship);
                     var n = NotableBook.Instance?.Get(d.notable);
                     if (n != null) n.personal += DealingMath.FriendshipRegard;
                     End(d, DealStage.Kept);
@@ -910,7 +910,7 @@ namespace ColonyCouncil
             {
                 d.done++;
                 d.missedRow = 0;
-                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.DeliveryGoodwill, false);
+                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.DeliveryGoodwill, GoodwillWhy.DealKept);
                 Tell.Message(NewsKind.World, Importance.Notable, home, W(ours ? "CC_Deal_Supply_OursDue" : "CC_Deal_Supply_TheirsDue", Council(f, d.Town).Named("COUNCIL"),
                     goodsWord.Named("GOODS"), d.silver.Named("SILVER")), LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             }
@@ -1047,7 +1047,7 @@ namespace ColonyCouncil
             if (w == WorkKind.Road && town != null) Road(home, town);
             if (w == WorkKind.Well || w == WorkKind.Bridge)
             {
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.WorkGoodwill);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, DealingMath.WorkGoodwill, GoodwillWhy.Together);
                 RegionFortunes.Move(f, d.town, DealingMath.WorkFortune, W("CC_Deal_Cause_" + w));
             }
             End(d, DealStage.Kept, W("CC_Deal_Work_Built_" + w, (d.townName ?? "?").Named("TOWN"), (f?.Name ?? "?").Named("PEOPLE")));

@@ -196,9 +196,17 @@ namespace ColonyCouncil
         /// <summary>The amount written into a line where it says <see cref="Mark"/>: signed when it adds up, plain otherwise.</summary>
         public static string Fill(string template, float amount, bool signed)
         {
-            if (string.IsNullOrEmpty(template) || template.IndexOf(Mark, StringComparison.Ordinal) < 0) return template ?? "";
-            return template.Replace(Mark, signed ? Signed(amount) : Number(Math.Abs(amount)));
+            if (string.IsNullOrEmpty(template)) return template ?? "";
+            // The game's words capitalise an argument that opens a sentence or follows a colon ("Stormriders: %N% goodwill"),
+            // so the mark is found in either case (answers saved before this kept the capital one).
+            string amountText = signed ? Signed(amount) : Number(Math.Abs(amount));
+            if (template.IndexOf(Mark, StringComparison.Ordinal) >= 0) template = template.Replace(Mark, amountText);
+            if (template.IndexOf(MarkCapital, StringComparison.Ordinal) >= 0) template = template.Replace(MarkCapital, amountText);
+            return template;
         }
+
+        /// <summary>The mark as the game's words leave it when they capitalise it.</summary>
+        public const string MarkCapital = "%N%";
 
         /// <summary>
         /// One line for each thing: the same key once (amounts added; a total of nothing dropped), the same words once,

@@ -305,7 +305,7 @@ namespace ColonyCouncil
                 silver.stackCount = m.reward;
                 CaravanInventoryUtility.GiveThing(here, silver);
                 Missions.Goodwill(m, m.goodwill);
-                StoryChains.Goodwill(town.Faction, 5);
+                StoryChains.Goodwill(town.Faction, 5, GoodwillWhy.Task(5));
                 KinMemory.Note(m.faction, "carriedWord", messenger, town.Name);
                 FactionMemory.Note(town.Faction, "welcomed", messenger.LabelShort, 4);
                 messenger.skills?.Learn(SkillDefOf.Social, 600f);

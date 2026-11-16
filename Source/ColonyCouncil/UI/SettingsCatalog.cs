@@ -803,6 +803,9 @@ namespace ColonyCouncil
             Mod(Toggle("pokemonTypeCalm", "CC_Settings_PokemonTypeCalm", "CC_SetNote_PokemonTypeCalm", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeSpar", "CC_Settings_PokemonTypeSpar", "CC_SetNote_PokemonTypeSpar", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeDouse", "CC_Settings_PokemonTypeDouse", "CC_SetNote_PokemonTypeDouse", "pokemonTypes"), PokeWorldId);
+            // Riding out to far work and back with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs): its job choice, so with the hooks.
+            Section("CC_SetSec_Mod_GiddyUp");
+            Mod(Toggle("rideOut", "CC_Settings_RideOut", "CC_SetNote_RideOut", "deepHooks"), GiddyUpId);
             Section("CC_SetSec_Mod_Vte");
             Mod(Toggle("tradeVte", "CC_Settings_TradeVte", "CC_SetNote_TradeVte"), VteId);
             Mod(Toggle("tradeVteHistory", "CC_Settings_TradeVteHistory", "CC_SetNote_TradeVteHistory", "tradeVte"), VteId);
@@ -818,7 +821,7 @@ namespace ColonyCouncil
         // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
             MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient",
-            VteId = "vanillaexpanded.vanillatradingexpanded", FoodAlertId = "mlie.foodalert";
+            VteId = "vanillaexpanded.vanillatradingexpanded", FoodAlertId = "mlie.foodalert", GiddyUpId = "memegoddess.giddyup";
 
         /// <summary>
         /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead
@@ -838,7 +841,8 @@ namespace ColonyCouncil
             [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient",
             [VteId] = "CC_SetSec_Mod_Vte",
             [FoodAlertId] = "CC_SetSec_Mod_FoodAlert",
-            [PokeWorldId] = "CC_SetSec_Mod_PokeWorld"
+            [PokeWorldId] = "CC_SetSec_Mod_PokeWorld",
+            [GiddyUpId] = "CC_SetSec_Mod_GiddyUp"
         };
 
         /// <summary>A row of the other mods' page: it shows only while all these mods are loaded.</summary>

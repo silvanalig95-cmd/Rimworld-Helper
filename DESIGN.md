@@ -1660,6 +1660,126 @@ shouild be cancelled." The pure rules are `Animals/BodyWhenItDiesMath.cs` (`Body
   creatures, on by default, under the deeper hooks). Harm: none of its own; the animal bleeds from what already happened on
   the map.
 
+### Riding out to far work and back with Giddy-Up 2 (the player's go, 16 November 2026; released 0.258.0)
+
+The player, 15 November 2026, with their save `League_of_Toba`: "pawns should really use mounts whenever they walk away
+out of the base range. sometimes they do, but sometimes they don't, i don't uinderstand. for example now avila did not
+mount up despite going really far to mine. it should mount to go there, and mount back up aftr finishing work. same for
+all other activities where they walk out further out of the base." And on 16 November 2026: "please also do your
+implementation of the pawn mount logic for further distances, it's not really working for all movement orders via giddy
+up default settings." The game's side is `Integrations/GiddyUpRideOut.cs` (with `GiddyUpMounts.MountFirst`), the pure
+rules `Integrations/RideOutMath.cs` (`RideOutTests`).
+
+**How Giddy-Up 2 - Continued rides by itself** (read from its source, version 2.2.5, and the 1.7 assembly the player
+runs, which matches it; `MountUtility.TryAutoMount`, `IsMountableUtility`, `JobDriver_Mounted`, `JobDriver_WaitForRider`,
+its settings in `ModSettings_GiddyUp`):
+
+- **When it looks.** As a colonist's next job is chosen (`Pawn_JobTracker.DetermineNextJob`, a postfix), for a colonist
+  the player controls who is not drafted, not in a mental state, not riding already and not travelling with a caravan,
+  on a map not in a vacuum, with its Ride and Roll part on.
+- **The distance.** A straight line from where the colonist stands to the job's first target (for tending, refuelling
+  and repairs the second target; for a bill its first ingredient), plus, for a haul to a cell or a container only, the
+  carry from the thing to where it goes. Only when that is longer than its setting "Find a mount if trip is longer
+  than..." (`minAutoMountDistance`, 120 cells by default, 20 to 500) does it look for a mount at all. Then the colonist
+  must be "allowed to ride" (its column on the Assign tab), old enough for handling work and not in a wheelchair, not
+  lent to another faction and not forming a caravan.
+- **The beast** (`IsMountable` with every check on): the colony's own; on its list of animals to ride (body size over
+  1.2 by default, or as the player set it in its settings); grown, unless "disregard age"; tame (it asks for Tameness,
+  though its menu line says obedience); the rider's mass within its carrying capacity, unless "disregard carrying
+  capacity"; not carrying someone, laying an egg, nuzzling, mating, vomiting or downed; not led on a rope; not in someone
+  else's forming caravan; not below "Too injured threshold" (75% health), with a wound needing tending, on fire,
+  urgently hungry or very tired; its research done; not reserved by anyone but someone roping it. Then the automount
+  column on the Animals tab (anyone, colonists, slaves, or nobody; "Automount disabled by default" makes new animals
+  nobody's).
+- **Which, and whether.** The beast that gets them there soonest (the walk to it to the power 1.05, the ride 5% longer
+  than the straight line, at its speed under that rider), only when that beats walking, and never when the beast already
+  stands within a quarter of the setting (30 cells) of the work. The rider is given its "Mount" job in front of the
+  chosen job.
+- **On the way and at the work.** The beast carries them while the job is one it lets a rider do in the saddle (going
+  somewhere, hauling, hunting unless "No mounted hunting", fighting, waiting, rescuing, arresting, carrying the downed,
+  trading, roping, a bill not done at its workbench, and a few more). For any other job (mining, building, cutting,
+  growing, cooking and the rest), once within 25 cells of where they are going, they park the beast: at the mount spot
+  nearest the work, else a pen; if that is more than "Autohitch threshold" (50 cells) from the work, at a free cell 5 to
+  35 cells from it, hitched there if the beast needs a pen. Heading into its "forbid riding area" parks the same way.
+- **The wait and the way back.** The parked beast waits for its rider (`WaitForRider`) for "Wait for rider timer"
+  (10000 ticks, 4 hours), keeping within 8 cells of them (or of its hitching spot). Its own lengthening of that wait only
+  happens when under about 60 ticks are set, so with the default it never does; after 4 to 8 hours (the game ends a job
+  on its own interval) the beast stops waiting. While it waits, when its rider's next destination is more than 50 cells
+  from it and the rider is within 15 cells of it, the rider gets on again; further off, the beast walks after them. It
+  also stops when its rider is in bed, downed, in a mental state or gone, when it is hurt, urgently hungry or very tired,
+  or in a barn; then it gives its rider a job to lead it home on a rope that names no pen, which the game's rope job
+  needs, so as the code reads it that job ends at once and the beast stays where it was.
+- **Drafted.** Never by itself. A drafted colonist gets on only by the right-click "Mount" on a beast or its "Mount"
+  button (the nearest free beast, its master's first), and stays in the saddle while drafted. A right-click "Prioritize"
+  order to an undrafted colonist goes through the same 120-cell look.
+- **Why Avila walked.** In the save of 15 November 2026 her steel at (93, 259) lay about 71 cells from the middle of the
+  home area (about (64, 194); 13 cells past its edge), and Bautista's at (137, 260) about 98 (47 past the edge): both under
+  120, so Giddy-Up never looked for a mount. Each later mining job is the next cell of the vein, a few cells off, so no
+  later look passed either, and with no beast brought out there was none to ride back on. In the save of 16 November
+  2026 Bautista was mining components at (96, 85), about 114 cells from the middle and 56 past the edge: still under.
+  Avila was on a titanis there, hunting: she had got on for an earlier, longer job, and hunting is done in the saddle. On
+  the 275-cell map 120 cells is close to half the width. The colony's beasts Giddy-Up lets be ridden by default (body
+  size over 1.2): the horse, the two titanis, the thunderox, the ankylosaurus, the dusk prowler and the companion dryads;
+  the silkies, the blood scarab, the raccoon and the arctic wolf are too small. Which of them have learned tameness, and
+  what the player set in its settings, the save alone doesn't say for certain (its settings live in the player's own
+  config file).
+
+**What Rimfolk adds:**
+
+- **When.** At the same moment, after Giddy-Up's own look (`Patch_RideOutNextJob`: `HarmonyAfter("GiddyUp")`, last), and
+  only when nothing is under way (the last job ended, or the player gave one), never on the game's regular look for a
+  better job. Where Giddy-Up mounted them, nothing changes.
+- **Who.** One of the colony's own free colonists the player controls (no slave, guest, prisoner or quest lodger), up
+  and in their right mind, not with a group (a caravan forming, a ritual, a party), not lent out, not carrying anything,
+  not on the colony's own post rider's errand; and Giddy-Up's own rules for a rider (allowed to ride, old enough, not in
+  a wheelchair, not riding already). Undrafted only with its Ride and Roll on. Drafted only for the player's own
+  movement order (a Goto they gave), and only with its battle mounts on.
+- **Which trips** (`RideOutMath.Kind`). Where the job goes, Giddy-Up's own way; the trip in a straight line plus a haul's
+  carry, 40 cells or more (`TripMin`); and the work, where a haul ends, or the colonist 10 cells or more past the home
+  area's edge (`OutMin`; measured per map in steps any of the eight ways from the home area, again when it changes or
+  after an hour, `BaseEdge`). Work that ends out past the base counts the way back (they ride back on the same beast):
+  `Out`. From out there to anywhere else is one way: `Back`. A movement order is one way: `Order`. Not fleeing, idle,
+  sick, leaving the map, setting out as the post rider, or one of Giddy-Up's own jobs; not where Giddy-Up found no place
+  to leave a beast before (its bad spots). Inside the base, nothing.
+- **Which beast.** Each of the colony's animals on the map that Giddy-Up's own `IsMountable` (all its checks, with the
+  map's reservations as it reads them) and its automount column allow; and Rimfolk's: not downed, not with a group, not
+  led on a rope, not carrying a rider, not kept for another rider (Giddy-Up's own mark: waiting for them, or they are
+  getting on), not at work (a job a work giver gave it, hauling, rescuing, capturing, fighting, hunting, mating, laying,
+  fleeing), not the mother of a baby on the map, not kept for the colony's own post rider, not one that colonist failed
+  to get on in the last hour (`RefusedTicks`), and in reach. Of these, the one that gets them there soonest by Giddy-Up's
+  own sums (`RideOutMath.RideSeconds`: the walk to it to the power 1.05; getting on by its own curves for the "Mount" job,
+  200 to 300 ticks by size, times 0.8 to 2 by wildness, times 1.4 to 0.33 by the rider's Animals skill; the ride 5% over
+  the straight line at the beast's speed under them, its `StatPart_Riding`), when that is no slower than walking by
+  `Slack`: for work, up to a quarter longer (the player wants them in the saddle out past the base, and the waiting beast
+  makes every later trip back and forth quicker; a beast far off the other way isn't fetched), and a movement order only
+  when it gets them there sooner.
+- **Getting on.** Giddy-Up's own `GoMount` with its `Inject` (`GiddyUpMounts.MountFirst`, by name): the chosen job becomes
+  its "Mount" job and waits first in their queue, as its own auto-mount does. Nothing is taught the beast.
+- **After.** Giddy-Up's own driver does the rest as for its own riders: the ride, parking near the work (a mount spot, a
+  pen, or hitched close by), the wait. The way back is Giddy-Up's own (the rider walking off more than 50 cells from the
+  waiting beast) or Rimfolk's next look (the rider out past the base and the next job 40 cells or more off: the waiting
+  beast is the nearest, so it is the one), whichever comes first.
+- **The wait kept** (`KeepWaiting`). Each time a colonist starts a job while they or their work are out past the base,
+  a beast waiting for them within 60 cells has its wait set to Giddy-Up's own timer from now, never shorter than it was
+  and a day at most (`RideOutMath.WaitExpiry`). Giddy-Up still ends it for its own reasons (its rider in bed, the beast
+  hurt, hungry or tired).
+- **A handler's rope job home** (`RopedHome`). The game's own job to lead one of the colony's beasts to its pen (with the
+  pen named), the handler 10 cells or more past the base and the pen 40 or more away, becomes: get on that beast, ride
+  it to the pen and get off there (Giddy-Up's own "Dismount" job), when Giddy-Up and Rimfolk let them ride it. Giddy-Up's
+  own rope job for a beast that stopped waiting is left as it is.
+- **Saved:** nothing (who tried which beast is kept in memory for the session only). No new Sched slot; one Harmony
+  patch, on the same method as Rimfolk's hauling hook (which runs first).
+- **Control:** the setting "Ride out to far work and back" (`rideOut`, Your other mods, under Giddy-Up 2, shown only with
+  it, on by default, under the deeper hooks). Dev mode: "Riding out: why a colonist rides or not (log)..." writes, for a
+  colonist's job now, Giddy-Up's settings, the trip and how far past the home area each end lies, whether Giddy-Up's own
+  look would mount them, every beast with why it may or may not be ridden and its sum, and Rimfolk's answer.
+- **Words and harm:** nothing is said or sent; what shows is the riding. No harm of its own.
+- **Not run in the game** (none of it could be): the patch on the private `DetermineNextJob` beside Giddy-Up's; its
+  `Inject` by reflection with a `ThinkResult` boxed for its `ThinkResult?`; its `IsMountable` with the `out` reason by
+  reflection; the parked beast's wait lengthened while the rider works; a drafted colonist getting on before a movement
+  order and staying mounted at the spot; the handler riding a beast to its pen; how often the quarter's slack has them
+  ride when the pen lies the other way.
+
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
 The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:
@@ -10404,6 +10524,54 @@ are `Letters/LetterWaitMath.cs` (new) and `Diplomacy/FavourMath.cs`, linked; `To
   theirs by name, their deeds remembered, a town within a home's reach), not yet at full goodwill toward it; the coolest
   toward the colony and the nearest first, four shown.
 
+## Every change in goodwill says why (the player's report, 16 November 2026; released 0.258.0)
+
+The player, with the game's message "Relations with Stormriders have changed from 53 to 45." and their save: "sometimes
+my relations with factions change and i have no idea why". Rimfolk changed a people's goodwill in some 230 places and
+gave the game a reason in six; for the rest the game's message named none and the Factions tab listed nothing. The
+pure rules are `World/GoodwillReasonMath.cs`, linked; `Tools/Tests/GoodwillReasonTests.cs` ("goodwill reasons: ").
+
+- **What the save showed.** 53 to 45: Guido's invitation slighted the Stormriders' god, and the loss came at the hour
+  their notable read it, a day before the answer saying they took offence reached the colony. 22 to 23 and 39 to 40: two
+  meetings at the colony with one of theirs (a rescue remembered, a bowl for a traveler). 23 to 31: the council's answer
+  to the hungry at the gate (6, made 8 by the game's pull toward natural goodwill). Every people +1 or +2 on one tick: the
+  gods the colony shares with them, the Stormriders -1 for the god the colony keeps, and the Mossborn's ledger -1 the same
+  hour.
+- **A reason for every change.** Each is a HistoryEventDef of Rimfolk's own
+  (`Defs/HistoryEventDefs/Rimfolk_GoodwillReasons.xml`, 65, one per kind of cause, labels in the game's lower-case
+  style: "a letter that slighted their god", "the council's choice", "a meeting with one of theirs", "a task done for
+  them", "a god they share with the colony"), passed as the game's `reason`. The message ends with it in brackets, and the Factions tab lists it under the people's recent events
+  with what it added up to over 60 days. The wrappers take one each: `WorldSituationWorker.Goodwill`,
+  `StoryChains.Goodwill`, `Missions.Goodwill` (a task done or left undone, by its sign), `Camp.LoseGoodwill` and the
+  diplomacy helpers. A goodwill effect in an answer gives the council's choice, in a meeting a meeting with one of
+  theirs, in an event's own effects or a story's ending how the event turned out (`GoodwillWhy.During`). The two older
+  reasons (a god's touch heard of, the great white beast harmed) stay.
+- **Told, with the message or without.** A change stays without the game's message only where the letter, message or
+  news at the same moment gives the number or says which way it went (fealty, schemes, a vassal breaking away, the
+  letter's answer, the colony's name, a decree's daily goodwill told when it was declared, an article); the reason is
+  still recorded for the Factions tab. The peoples' own events, a truce, a debt of honor refused, a ward home or dead, a
+  vassal's heavy tribute, the warden's welcome, the lamp by the door, a hamlet's harvest and a season's delivery were
+  silent and told by nothing: they show the game's message now. A former patient's word spread to every people at peace
+  is told once in the outcome with the number, not by a message for each.
+- **Nothing noted twice, nothing another mod reads.** The game records a history event for a reason; Ideology's
+  precepts and other mods react to their own defs only, and no def refers to these. The faction memory's two hooks
+  (`Patch_MemoryGoodwill`, `Patch_ModMemoryGoodwill`) skip Rimfolk's own reasons (`GoodwillReasonMath.Own`): the code
+  that changes the goodwill notes its own deed. An outsider's gift gave the game's "gave gift" as well as its own note
+  and was remembered twice; it gives Rimfolk's own now. The camps keep the game's "gave gift" and "attacked member".
+- **A slight lands with the answer.** The slight's goodwill and its memory wait until the answer that says they took
+  offence is in at the colony (`GodLetters.AnswerIn`, from `NeighbourLetters.Landed`: the post set it down, the rider
+  is home with it, a messenger handed it over, a held answer came, a call ended, or at the latest the letter done). The
+  god's displeasure and grudge stay at their reading, unseen. The letter's own goodwill ("Their people's goodwill toward
+  the colony rises for it") waits for the answer too (`NeighbourLetter.goodwillDue`), without a message.
+- **Never into a war** is one rule now (`GoodwillReasonMath.NeverIntoWar`: a loss stops at -60).
+- **In the save.** The game keeps a list per people of every HistoryEventDef once a reason has touched them: 65 more
+  entries in each (about 7 KB a people), and over a long game a list for every people Rimfolk moves (up to about 40 KB
+  each). Adding defs also shifts the saved history of mods loaded after Rimfolk by one load (the game keeps it by
+  position), as any mod update that adds history events does.
+- **Check**: `Tools/Tests/GoodwillReasonTests.cs` reads every source file: no `TryAffectGoodwillWith` that lets the game
+  send its message is left without a reason (`GoodwillReasonMath.Unreasoned`), no wrapper is given a null one, every
+  reason has its def, a plain label and a use.
+
 ## Letters that read like letters (the player's request, 9 November 2026)
 
 The player: "letters exchanged from and to pawns should also read like actual letters, make a varied selection of
@@ -12595,6 +12763,14 @@ interface `ColonistCardEntry.cs`. No saved data, no Sched slot; two Harmony patc
   remembered place and the step down; the arrows across maps and caravans; Vanilla Skills Expanded's passion marks; the
   tabs opening from the foot for someone on another map; the weapon and apparel rows, badges and suggestions on real
   colonists (Simple Sidearms, Dual Wield); the season's verdict on a real map; the event card's button.
+
+#### The game's own description on every card (the player's report, 16 November 2026; released 0.257.1)
+
+The player, with Rimfolk's card for Grav Camp's feedstock beside the game's: "all item cards should always have the
+original description text somewhere at the top". Every Rimfolk card (an item's, `Items/ThingCardWindow.cs`; a piece of
+apparel's, `Apparel/ApparelCardWindow.cs`; a weapon's, `Weapons/WeaponCardWindow.cs`) shows, right under its head and
+across the card, the game's own description as the game words it: the thing's (`Thing.DescriptionFlavor`) or, for a
+kind, its def's (`ItemCardWindow.GameDescription`). Rimfolk's own line stays beside the picture, above it.
 
 #### Rimfolk's own look, stage 3, point 5, step 1: the item card for food, drink, drugs and medicine (docs/design/rimfolk-look.md)
 

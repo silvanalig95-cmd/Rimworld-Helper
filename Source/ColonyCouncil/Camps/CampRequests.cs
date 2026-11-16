@@ -96,7 +96,7 @@ namespace ColonyCouncil
             if (!asksMade.Contains(mark)) asksMade.Add(mark);
             float t = byDefault ? a.refuseTension * 0.5f : a.refuseTension;
             if (t != 0f) AddTension(t);
-            if (a.refuseGoodwill > 0 && !byDefault) LoseGoodwill(a.refuseGoodwill);
+            if (a.refuseGoodwill > 0 && !byDefault) LoseGoodwill(a.refuseGoodwill, GoodwillWhy.CampRefused);
             var who = AskColonist(a);
             var lines = sick != null ? a.refused?.Select(l => Texts.Fill(l, ("SICK", sick.LabelShort))).ToList() : a.refused;
             // A cart left unmended keeps them a day longer.

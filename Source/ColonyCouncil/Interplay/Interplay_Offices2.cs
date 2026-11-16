@@ -154,7 +154,7 @@ namespace ColonyCouncil
                 {
                     // together: the warden is beside one of the visitors, welcoming them.
                     if (!On || !Holds(w, Warden) || people.HostileTo(Faction.OfPlayer)) return;
-                    people.TryAffectGoodwillWith(Faction.OfPlayer, WardenGoodwill, false, false);
+                    people.TryAffectGoodwillWith(Faction.OfPlayer, WardenGoodwill, true, false, GoodwillWhy.Welcome);
                     string text = Line("Council_Pool_Interplay_WardenGuests", w, null, guest.Named("OTHER"), people.Name.Named("FACTION"));
                     if (!text.NullOrEmpty()) News.Post(text, new LookTargets(w, guest), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
                 }, 12f, 0f);

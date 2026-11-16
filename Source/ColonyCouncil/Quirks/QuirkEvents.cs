@@ -220,7 +220,7 @@ namespace ColonyCouncil
                         if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill || f.HostileTo(Faction.OfPlayer)) continue;
                         if (lampFor.TryGetValue(f.loadID, out int at) && now - at < LampRest) continue;
                         lampFor[f.loadID] = now;
-                        f.TryAffectGoodwillWith(Faction.OfPlayer, LampGoodwill, false, false);
+                        f.TryAffectGoodwillWith(Faction.OfPlayer, LampGoodwill, true, false, GoodwillWhy.Welcome);
                         News.Post("CC_Quirk_LampSeen".Translate(keeper.Named("PAWN"), f.Name.Named("FACTION")).Resolve(), keeper, NewsKind.People,
                             MessageTypeDefOf.SilentInput, Importance.Flavor);
                     }

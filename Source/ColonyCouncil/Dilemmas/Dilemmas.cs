@@ -1057,7 +1057,7 @@ namespace ColonyCouncil
             if (ctx.faction == null || ctx.faction.defeated) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             // Never far enough to turn a people hostile on its own: a loss stops at -60, as the world events' do.
-            WorldSituationWorker.Goodwill(ctx.faction, amount);
+            WorldSituationWorker.Goodwill(ctx.faction, amount, GoodwillWhy.ForEffects);
         }
     }
 

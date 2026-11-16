@@ -2501,7 +2501,8 @@ corpses the game's). It opens first wherever you open a thing's info (settings:
 card, which keeps a button back, and links followed inside the game's card stay in it.
 - **At the top**: the thing's own picture, large, as it really is; its label with the stack and quality; what kind it is
   and its worth; and a line in plain words on what it is good for in this colony ("Fine meal: lifts the mood (+5), keeps
-  4 days, enough for 2 colonists' supper." "Herbal medicine: fine for a cut or a cold, risky for surgery.").
+  4 days, enough for 2 colonists' supper." "Herbal medicine: fine for a cut or a cold, risky for surgery."). Under it,
+  across the card, the game's own description of the thing as the game words it (the weapon and apparel cards too).
 - **Tags** in the weapon and apparel cards' six colours, each with why on its tooltip: strengths (nutritious, keeps long,
   mood lift, potent, recreation), weaknesses (spoils fast, raw, bad taste, risky for surgery), risks (food poisoning,
   addictive, overdose risk, forbidden to some of your people, of a person, insect meat), specials (a feast's dish, a
@@ -3026,7 +3027,18 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   them. Rimfolk only reads the mod, by name (checked
   against PokéWorld Updated for 1.6, its 898 species and eight generations); what a version lacks is skipped and said
   once in the log. Five Almanac pages explain it.
-- **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
+- **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own. Colonists **ride out
+  to far work and back** (the setting "Ride out to far work and back", Your other mods). Giddy-Up by itself looks for a
+  mount only when a job is further away than its setting "Find a mount if trip is longer than" (120 cells by default,
+  about half a large map) and never for a drafted colonist, so most work past the walls was walked to. Rimfolk adds the
+  rest: a free colonist whose job is 40 cells or more away, with the work, where a haul goes or the colonist 10 cells or
+  more past the home area's edge, gets on the beast that gets them there soonest (out and back may take up to a quarter
+  longer than walking), leaves it near the work as Giddy-Up does, and rides back on it; the beast keeps waiting while they
+  work out there (Giddy-Up's own wait time again from each job, a day at most). A drafted colonist given a far movement
+  order rides when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by
+  body size, tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to
+  ride"); Rimfolk also leaves alone a beast at work, with a group, with young or kept for someone else. Inside the base
+  nothing changes. Rimfolk calls Giddy-Up's own mount, wait and rules by name.
 
 ### Your mods in Rimfolk's newer systems
 The heart, health, personal stories, the world's memory, the lands and the calendar read the mods in the current
@@ -3776,6 +3788,15 @@ people dead in your keeping. It remembers what it did in turn, too: fighters sen
 time, raids, colonists killed. Most of it comes from the game's own goodwill reasons, so it works with any modlist.
 Each memory fades over the years, the big ones slowest (a gift is mostly forgotten in a few years, a town burned in
 a generation), and a people keeps a dozen at most.
+
+**Every change in goodwill says why.** Whenever Rimfolk raises or lowers a people's goodwill, the game's message names
+the reason ("Relations with Stormriders have changed from 53 to 45 (a letter that slighted their god)."), and the
+Factions tab lists it among that people's recent events with what it added up to: the council's choice, a meeting with
+one of theirs, a task done for them, a god they share with the colony, a dealing kept or broken, and so on. Where a
+letter or a message at the same moment already gives the number (an oath broken, a scheme caught, word of the colony's
+ways), the game's message is left out, and the reason is still listed. What their answer to a letter says lands when
+the answer reaches the colony, not the day they read it: a letter that slighted their god costs goodwill when the answer
+saying they took offense comes in.
 
 What follows from it: an **envoy repays an old debt** (a gift; feast them, tell them they owe nothing, or let a good
 talker bargain), a people **calls in a favor** the colony owes (silver, medicine, or a builder's plans), **old

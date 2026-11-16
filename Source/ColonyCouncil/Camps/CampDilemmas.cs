@@ -172,7 +172,7 @@ namespace ColonyCouncil
         {
             var rival = (ctx as CampRivalContext)?.rival;
             if (rival == null || (chance < 1f && !Rand.Chance(chance))) return;
-            WorldSituationWorker.Goodwill(rival, amount);
+            WorldSituationWorker.Goodwill(rival, amount, GoodwillWhy.Council);
         }
     }
 }

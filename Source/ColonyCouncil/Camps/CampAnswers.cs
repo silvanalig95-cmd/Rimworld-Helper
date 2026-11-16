@@ -93,7 +93,7 @@ namespace ColonyCouncil
                     loss += 3;
                     c.AddTension(10f);
                 }
-                c.LoseGoodwill(loss);
+                c.LoseGoodwill(loss, GoodwillWhy.CampSent);
             }
             float refuse = c.kind.pride * (0.5f + c.tension / 100f) * (c.refusals == 0 ? 1f : 0.5f) * (theyBrokeTerms ? 0.5f : 1f);
             if (c.Settled && Rand.Chance(refuse))
@@ -119,7 +119,7 @@ namespace ColonyCouncil
         public static string Insist(Camp c)
         {
             if (c == null || !c.CanTalk) return null;
-            c.LoseGoodwill(8);
+            c.LoseGoodwill(8, GoodwillWhy.CampSent);
             c.asked = true;
             c.Leave("asked");
             return null;

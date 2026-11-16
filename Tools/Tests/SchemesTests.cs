@@ -175,7 +175,7 @@ public static class SchemesTests
         C(Code("World/Ledger/History.cs").Contains("if (t.kind == ColonyCouncil.Tie.Kind.Scheme && t.origin == SchemeMath.Origin) return;"),
             "unknown until found out: nothing of it in the history (which the History page shows) before then");
         C(sch.Contains("History.Add(SchemeMath.HistoryKind(\"broken\")") && sch.Contains("Diplomacy.Write(DiplomacyMath.FoundOut"), "found out: tie:scheme:theirs:broken and dip:foundout");
-        C(sch.Contains("FactionMemory.Note(f, \"schemedUs\"") && sch.Contains("LoseGoodwill(f, SchemeMath.CaughtGoodwill)"), "their people remember the colony caught them (schemedUs, 5 goodwill)");
+        C(sch.Contains("FactionMemory.Note(f, \"schemedUs\"") && sch.Contains("LoseGoodwill(f, SchemeMath.CaughtGoodwill, GoodwillWhy.Caught)"), "their people remember the colony caught them (schemedUs, 5 goodwill)");
         C(sch.Contains("new LordJob_ExitMapBest(LocomotionUrgency.Jog") && sch.Contains("TryDrop(took"), "caught: the thing dropped, the agent gone at once");
         C(sch.Contains("Sabotage.Job") && sch.Contains("comp.DoBreakdown();") && Code("Harm/Sabotage.cs").Contains("if (!Schemes.Done(pawn, job.targetA.Thing)) Sabotage.Done(pawn, Bench);"),
             "a machine through the rival's sabotage job and the game's own breakdown");

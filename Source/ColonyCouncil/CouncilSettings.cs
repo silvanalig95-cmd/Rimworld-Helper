@@ -148,6 +148,8 @@ namespace ColonyCouncil
         public bool petsHunt = true;
         /// <summary>A bleeding animal that isn't the colony's gets the button "Take the body when it dies": left alone while it lives, its body hauled in once it dies (Animals/BodyWhenItDies.cs).</summary>
         public bool bodyWhenItDies = true;
+        /// <summary>With Giddy-Up 2: colonists ride out to work past the base and back, and drafted ones ride far on the player's movement orders, where Giddy-Up's own auto-mount leaves them on foot (Integrations/GiddyUpRideOut.cs).</summary>
+        public bool rideOut = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -937,6 +939,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref speakingAnimals, "speakingAnimals", AnimalSpeech.Auto);
             Scribe_Values.Look(ref petsHunt, "petsHunt", true);
             Scribe_Values.Look(ref bodyWhenItDies, "bodyWhenItDies", true);
+            Scribe_Values.Look(ref rideOut, "rideOut", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

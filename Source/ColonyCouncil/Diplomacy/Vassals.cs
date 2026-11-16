@@ -243,7 +243,7 @@ namespace ColonyCouncil
                 v.seasonAt = now;
                 if (v.level == TributeLevel.Heavy)
                 {
-                    Goodwill(v.people, -FealtyMath.HeavyGoodwill);
+                    Goodwill(v.people, -FealtyMath.HeavyGoodwill, GoodwillWhy.Tribute, true);
                     Regard(v.town, -FealtyMath.HeavyRegard, FealtyWords.P("CC_Vassal_Note_Heavy"));
                 }
                 else if (v.level == TributeLevel.Light) Regard(v.town, FealtyMath.LightRegard, FealtyWords.P("CC_Vassal_Note_Light"));
@@ -504,12 +504,12 @@ namespace ColonyCouncil
                     if (choice == 0)
                     {
                         Regard(town, FealtyMath.SidedRegard, FealtyWords.P("CC_Vassal_Note_Sided"));
-                        Goodwill(f2, -FealtyMath.JudgementGoodwill);
+                        Goodwill(f2, -FealtyMath.JudgementGoodwill, GoodwillWhy.Judged, true);
                     }
                     else if (choice == 1)
                     {
                         Regard(town, FealtyMath.SidedAgainstRegard, FealtyWords.P("CC_Vassal_Note_SidedAgainst", (n?.Name ?? "?").Named("OTHER")));
-                        Goodwill(f2, FealtyMath.JudgementGoodwill);
+                        Goodwill(f2, FealtyMath.JudgementGoodwill, GoodwillWhy.Judged, true);
                     }
                     else Regard(town, FealtyMath.KeptOutRegard, FealtyWords.P("CC_Vassal_Note_KeptOut"));
                     break;
@@ -730,7 +730,7 @@ namespace ColonyCouncil
                 if (tie != null && tie.Live) WorldLedger.Set(tie, Tie.State.Broken);
             }
             h?.vassals.Remove(v);
-            Goodwill(v.people, -FealtyMath.BreakAwayGoodwill);
+            Goodwill(v.people, -FealtyMath.BreakAwayGoodwill, GoodwillWhy.OathBroken, false);
             Write(home, town, v.people, FealtyWords.P("CC_Vassal_Hist_BrokeAway", NameOf(v).Named("TOWN")), true);
             Tell.Letter(NewsKind.World, Importance.Important, home, FealtyWords.P("CC_Vassal_BrokeAway_Label", NameOf(v).Named("TOWN")),
                 FealtyWords.T("CC_Vassal_BrokeAway", NameOf(v).Named("TOWN"), FealtyWords.People(v.people).Named("PEOPLE"), FealtyMath.BreakAwayGoodwill.Named("GOODWILL")),
@@ -768,12 +768,16 @@ namespace ColonyCouncil
             n.Remember(why, shift);
         }
 
-        private static void Goodwill(Faction f, int amount)
+        /// <summary>
+        /// Their people's goodwill, the game's message naming <paramref name="reason"/> (World/GoodwillWhy.cs); without
+        /// a message where the letter at the same moment gives the number.
+        /// </summary>
+        private static void Goodwill(Faction f, int amount, HistoryEventDef reason, bool message)
         {
             if (f == null || amount == 0 || f.IsPlayer) return;
             try
             {
-                f.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false);
+                f.TryAffectGoodwillWith(Faction.OfPlayer, amount, message, false, reason);
             }
             catch (Exception e)
             {

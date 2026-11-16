@@ -210,7 +210,7 @@ namespace ColonyCouncil
             PeopleEventsBook.Gave(LameBeast.GiftKind, on);
             if (fitted)
             {
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.LegGoodwill, false);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.LegGoodwill, GoodwillWhy.TheirWork);
                 PeoplesG.SayLine(worker, v.incident, "walks");
                 Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_PEv2_BeastLegDone".Translate(worker.LabelShort.Named("DOCTOR"), on.LabelShort.Named("BEAST"), r.addsHediff.label.Named("LEG")).Resolve(),
                     on.Spawned ? new LookTargets(on) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
@@ -275,7 +275,7 @@ namespace ColonyCouncil
                     follow.expiryInterval = 4 * GenDate.TicksPerHour;
                     beast.jobs.StartJob(follow, JobCondition.InterruptForced, null, false, true);
                 }
-                if (x.Faction != null && x.Faction.HasGoodwill && !x.Faction.IsPlayer) WorldSituationWorker.Goodwill(x.Faction, PeopleEvents2Math.StablesGoodwill, false);
+                if (x.Faction != null && x.Faction.HasGoodwill && !x.Faction.IsPlayer) WorldSituationWorker.Goodwill(x.Faction, PeopleEvents2Math.StablesGoodwill, GoodwillWhy.Helped);
                 Tell.Message(NewsKind.Land, Importance.Notable, map,
                     (young != null ? "CC_PEv2_StablesYoung" : "CC_PEv2_Stables").Translate(beast.LabelShort.Named("BEAST"), x.LabelShort.Named("DOCTOR"), (young?.LabelShort ?? "").Named("YOUNG")).Resolve(),
                     new LookTargets(new Thing[] { beast, young }.Where(t => t != null && t.Spawned)), MessageTypeDefOf.NeutralEvent);

@@ -982,7 +982,7 @@ namespace ColonyCouncil
                     sender.personal += regard;
                     sender.Remember(note, regard);
                 }
-                WorldSituationWorker.Goodwill(f, WardMath.HomeGoodwill(r), false);
+                WorldSituationWorker.Goodwill(f, WardMath.HomeGoodwill(r), GoodwillWhy.WardHome);
                 int weight = WardMath.FosteredWeight(r);
                 if (weight > 0) FactionMemory.Note(f, "fostered", p.LabelShort, weight);
                 else FactionMemory.Note(f, "slighted", p.LabelShort);
@@ -1049,7 +1049,7 @@ namespace ColonyCouncil
                     sender.personal += regard;
                     sender.Remember(note, regard);
                 }
-                WorldSituationWorker.Goodwill(f, WardMath.DiedGoodwill(sheltered, byColony), false);
+                WorldSituationWorker.Goodwill(f, WardMath.DiedGoodwill(sheltered, byColony), GoodwillWhy.WardDied);
                 FactionMemory.Note(f, "slighted", p.LabelShort, byColony ? 20 : sheltered ? 6 : 12);
                 if (WardMath.Feud(byColony))
                     WorldLedger.AddTie(Tie.Kind.Grudge, Refs.Of(f), Diplomacy.Colony(map), new TieTerms { key = WardMath.FeudKey, about = Refs.Of(p) }, Tie.Never, WardMath.WardOrigin);

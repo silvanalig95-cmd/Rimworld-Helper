@@ -204,8 +204,8 @@ namespace ColonyCouncil
             var b = PeopleEvents3Book.Instance;
             if (b != null) b.carried += all;
             foreach (var kv in counts)
-                if (kv.Key.HasGoodwill && !kv.Key.defeated) WorldSituationWorker.Goodwill(kv.Key, PeoplesDMath.GoodwillFor(kv.Value), false);
-            if (all > 0 && order != null && order.HasGoodwill && !order.IsPlayer) WorldSituationWorker.Goodwill(order, PeopleEvents3Math.LittersGoodwill, false);
+                if (kv.Key.HasGoodwill && !kv.Key.defeated) WorldSituationWorker.Goodwill(kv.Key, PeoplesDMath.GoodwillFor(kv.Value), GoodwillWhy.Helped);
+            if (all > 0 && order != null && order.HasGoodwill && !order.IsPlayer) WorldSituationWorker.Goodwill(order, PeopleEvents3Math.LittersGoodwill, GoodwillWhy.Helped);
             var party = new List<Pawn> { v.x };
             party.AddRange(v.group);
             if (v.x != null && v.x.Spawned) PeoplesG.SayLine(v.x, v.incident, "gone");

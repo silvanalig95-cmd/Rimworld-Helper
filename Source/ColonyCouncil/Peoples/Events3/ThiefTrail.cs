@@ -390,7 +390,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("peoples' events 3: the riders back", e);
             }
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.AloneGoodwill, false);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.AloneGoodwill, GoodwillWhy.Helped);
             string text = home.Count == 0
                 ? (due != null ? "CC_PEv3_TrailOnlyDue".Translate(f.Name.Named("FACTION"), due.LabelIndefinite().Named("DUE")) : "CC_PEv3_TrailNone".Translate(f.Name.Named("FACTION"))).Resolve()
                 : "CC_PEv3_TrailBack".Translate(f.Name.Named("FACTION"), Kinds(home).Named("BEASTS")).Resolve()
@@ -524,7 +524,7 @@ namespace ColonyCouncil
             var riders = map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == r.herders && p.Faction != null && !p.Dead).ToList();
             RideOff(riders);
             var f = r.herders;
-            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.TrailGoodwill, false);
+            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.TrailGoodwill, GoodwillWhy.Helped);
             if (f != null) FactionMemory.Note(f, "lentHands", "CC_PEv3_TrailDeed".Translate().Resolve());
             Tell.Message(NewsKind.World, Importance.Important, map,
                 (ours.Count > 0 ? "CC_PEv3_TrailWon" : "CC_PEv3_TrailWonNone").Translate((f?.Name ?? "?").Named("FACTION"), Kinds(ours).Named("BEASTS")).Resolve(),

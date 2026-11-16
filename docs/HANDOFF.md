@@ -131,16 +131,41 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
   newest release line ("Three fixes: porters reach the mailbag, the stall's health, world events above the letters").
-- **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
-  player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
-  have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
-  facts in `Items/`) opens with its own one line ("Feedstock: a fuel; none in store.") and the game's description is
-  only on "All the game's stats". To do: the thing's own description (`Thing.DescriptionFlavor`, else
-  `def.description`), as the game words it, just under the name on every item card, and on Rimfolk's weapon and
-  apparel cards (`Apparel/ApparelCardWindow.cs` and the weapon card), with Rimfolk's own line kept below it. Checked:
-  "a fuel" is right for this one. In Grav Camp (`maal.gravcamp`, active) the small and large feedstock boxes
-  (`Maal_ChemfuelTank`, `Maal_LargeChemfuelTank`) take feedstock as the camp's travel fuel, so the card reads it as a
-  fuel; with the description above it, that reads plainly.
+- **To do when the player asks (16 November 2026): every offering is answered, and worth what it costs.** The player:
+  "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event, but
+  sometimes nothing seems to happen. i just wonder whether these offering ressources are "wasted", or if there is
+  always some benefit from them? since it's usually more valuable ressources also". As it stands (0.256.0): a taken
+  offering always raises the god's favour (`Worship.Favour`, `WorshipMath.OfferingFavour`: 1.5 + 1.2 ln(1 + worth/20),
+  at most 6, times the god's liking, its nature, honoured, a priest's rite), which by the unseen rule shows only as that
+  god's doings over time (more kindness, fewer angers, prayers answered); whoever sees it taken or finds the place
+  empty feels it by belief (`GodTouch.Taken`); that god's own effect follows at most once in 4 days per god
+  (`GodTouchMath.SameKeyGapDays`), and of those about a third are moods only and most are small. Pawns pick it
+  themselves (`Offerings.Pick`: the god's liking, spare, a piece worth at most 40 + 8 a colonist, 250 at most, aiming at
+  about 20 + 3 a colonist in all). So many takings show nothing but a passing mood. Proposed in chat (an answer to every
+  taking, a return in kind, a shrine filter, the book keeping every taking); the player's answer: "ok understood! I
+  don't necessarily need every offering answered, as long as there is value to it still. sometimes a return in kind
+  sounds great. the book should track the offerings and in this case also the god's favour should be tracked in the
+  book, but the wording should also be kept a bit ominous, so not with a numeric value or so". So, when they say go:
+  (1) no answer to every taking, but none is wasted: what is given still counts for more the more it was worth (the
+  favour curve not flattening so early), and the god's touch after a taking leans the more likely and the stronger with
+  its worth and fit; (2) now and then a return in kind, of the god's domain and the colony's age, worth about what was
+  given (Smoulder's ore after steel, Morel's mushrooms after food, Ducat's silver after gold), played out on the map;
+  (3) the colony's book of the gods keeps every offering taken, seen or found empty, with what it was and where; (4) the
+  book also keeps each god's temper toward the colony as the keeper reads it, in words only and a little ominous
+  ("Smoulder's fires have burned warm toward us since the steel was given", "some say the Hunger is restless"), drawn
+  from the god's real favour but late and sometimes wrong, as the pawns would read it; never a number. No shrine
+  filter (not asked for). Then, the same day: "also it should please never take very valuable items like components
+  etc. as offering, or only if there is a proper payoff for it. but then it shouldn't take it automatically, but
+  perhaps an event where a pawn asks for approval first." So (5) what pawns carry to a shrine on their own is only
+  what the colony has plenty of and can make or gather again (food, wood, cloth, leather, stone blocks, herbs, simple
+  crafts and the like, by the colony's own recipes and stock, `Offerings.Pick`); anything precious to it (components
+  and advanced components, medicine past herbal, plasteel, uranium, gold, jade, neutroamine, glitterworld goods, a
+  mod's like of these, anything the colony can't make yet or is short of) is never taken unasked; (6) such a gift only
+  through an ask: a devout pawn comes to the player (a card with Yes and No, as the council's asks) wanting to give
+  that thing to that god, saying in plain words why and what they hope it brings (as they believe it, never a promise
+  or a number), and only on Yes do they carry it; it is answered as befits its worth: a stronger favour and a likelier,
+  larger return in kind or one of the god's notable or great doings; on No they let it be (a little disappointed if
+  devout), and the same ask doesn't come back for a while.
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
@@ -182,23 +207,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
   January 2026).
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
-- **To do when the player asks (15 November 2026): colonists ride out to far work, and ride back.** The player, with
-  their save `League_of_Toba` (15 November, afternoon): "pawns should really use mounts whenever they walk away out of
-  the base range. sometimes they do, but sometimes they don't, i don't uinderstand. for example now avila did not mount
-  up despite going really far to mine. it should mount to go there, and mount back up aftr finishing work. same for all
-  other activities where they walk out further out of the base." Read from the save: the colony's riding is Giddy-Up 2
-  - Continued's (`memegoddess.giddyup`, its auto-mount), not Rimfolk's (Rimfolk mounts only its couriers and riders,
-  `GiddyUpMounts.MountUp`); nobody was mounted (its `ExtendedDataStorage` has every `mount` null); Avila was mining steel
-  at (93, 259) and Bautista at (137, 260), 70 to 90 cells from the base around (60, 200), on foot; free animals in the
-  pen around (55 to 80, 160 to 180): an adult horse, two titanis, a thunderox, an ankylosaurus (which of them
-  Giddy-Up lets be ridden is in its own settings, not the save). Proposed when asked: first read Giddy-Up 2 Continued's
-  own auto-mount rules (its source, Owlchemist's GiddyUp2 on GitHub and the continued fork) to say why it skipped
-  Avila (its minimum distance, how far the mount may be from the rider, an animal's hunger or rest, the job kind); then,
-  with Giddy-Up active (soft), Rimfolk fills the gap: a colonist (not drafted, not in a caravan) whose work lies well
-  outside the home area and who isn't mounted first fetches the nearest free animal Giddy-Up allows, rides out,
-  leaves it waiting nearby while working (Giddy-Up's own waiting), mounts it again when the work there is done and
-  rides back; the same for hauling, hunting, gathering, mining and any other job out past the base. Nothing changes
-  inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **What a camp lays out is built,
@@ -249,6 +257,128 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926; its files go to 1.6, kept up) has a stonecutter's
     block (`DankPyon_StonecuttingSpot`), a spot of no cost where a tribal or medieval camp could be seen dressing stone
     by hand; it is a whole overhaul, so only worth it if wanted for itself.
+- 0.258.0, **Colonists ride out to far work
+  and back with Giddy-Up 2** (16 November 2026; the player's words, 15 November 2026, with their save `League_of_Toba`:
+  "pawns should really use mounts whenever they walk away out of the base range. sometimes they do, but sometimes they
+  don't, i don't uinderstand. for example now avila did not mount up despite going really far to mine. it should mount
+  to go there, and mount back up aftr finishing work. same for all other activities where they walk out further out of
+  the base", then on 16 November 2026 "please also do your implementation of the pawn mount logic for further
+  distances, it's not really working for all movement orders via giddy up default settings. let me know if you need
+  files"). DESIGN.md "Riding out to far work and back with Giddy-Up 2" (after "A bleeding animal's body taken when it
+  dies") has Giddy-Up's own rules and Rimfolk's part; README the Giddy-Up 2 line under the other mods; the Almanac's
+  animals page ("Riding out to far work (with Giddy-Up 2)", with a table of what decides riding) and Giddy-Up 2's own
+  page (its distance named, a paragraph "With Rimfolk"); keywords unchanged.
+  - **Why Avila walked** (read from Giddy-Up 2 - Continued's source, `/home/user/memegoddess/giddyup2`, and its 1.7
+    assembly, which matches it): Giddy-Up looks for a mount only as a job is chosen, only when the straight line from
+    where the colonist stands to the job (plus a haul's carry) is longer than its "Find a mount if trip is longer
+    than..." setting, 120 cells by default, and never for a drafted colonist. Her steel was about 71 cells from the home
+    area's middle (13 past its edge), Bautista's about 98 (16 November: his components about 114): all under 120, so it
+    never looked, and no beast was brought out to ride back on. Each later mining job is the next cell of the vein, so no
+    later look passed either. Its waiting beast also stops waiting after 4 to 8 hours whatever the rider does (its own
+    lengthening never takes at the default timer), and its rope job home names no pen, so it ends at once. Movement
+    orders: drafted, never by itself (only its right-click "Mount" and "Mount" button); a "Prioritize" order undrafted,
+    the same 120 cells.
+  - **Built**: as a job is chosen with nothing under way, after Giddy-Up's own look: a free colonist whose job is 40
+    cells or more away, with the work, where a haul ends or the colonist 10 cells or more past the home area's edge, gets
+    on the beast that gets them there soonest, Giddy-Up's own way (its `GoMount` with `Inject`), when out and back is no
+    more than a quarter slower than walking; a drafted colonist's own movement order that far rides when it is quicker
+    (with Giddy-Up's battle mounts on). Giddy-Up's `IsMountable` and automount column decide the beast, and its own
+    driver parks it near the work and keeps it waiting; Rimfolk also passes over a beast at work, with a group, with
+    young, kept for another rider or the post rider, or failed on in the last hour, and keeps the waiting beast waiting
+    while its rider works out there (Giddy-Up's timer again from each job, a day at most). A handler out past the base
+    sent to lead a beast to its pen rides it there. The setting "Ride out to far work and back" (Your other mods, Giddy-Up
+    2, on by default); the dev action "Riding out: why a colonist rides or not (log)...". Nothing is said or sent.
+  - **Code map**: `Integrations/GiddyUpRideOut.cs` (`GiddyUpRideOut`: `NextJob`, `Settle`, `Decide`, `RopedHome`,
+    `KeepWaiting`, `RiderWhyNot`, `RiderGiddyWhyNot`, `JobWhyNot`, `AnimalWhyNot`, `Working`, `WithYoung`, `Targets`,
+    `Explain`; `BaseEdge.CellsOut`; `GiddyUpRules`, Giddy-Up's rules by name: `IsMountable`, `IsAllowed`,
+    `IsCapableOfRiding`, `FetchReservedAnimals`, `GetExtendedPawnData` and its `Mount`, `ReservedMount`, `ReservedBy`,
+    `canRide`, `isMounted`, `BadSpots`, its settings `rideAndRollEnabled`, `battleMountsEnabled`, `waitForRiderTimer`,
+    `minAutoMountDistance`, `StatPart_Riding.GetRidingSpeed`; `Patch_RideOutNextJob` on `Pawn_JobTracker.DetermineNextJob`;
+    `GiddyUpRideOutDebug`), `Integrations/RideOutMath.cs` (pure: `RideTrip`, `Kind`, `Slack`, `WalkSeconds`,
+    `RideSeconds`, `Worth`, `MountSeconds`, `WaitExpiry`, `GiddyUpLooks`), `Integrations/GiddyUpMounts.cs` (`MountFirst`,
+    `CanMountFirst`, `OwnJob`, `WaitingFor`, the job defs `Dismount` and `WaitForRider`), `CouncilSettings.rideOut`,
+    `UI/SettingsCatalog.cs` (`GiddyUpId`, the Giddy-Up 2 heading), `Languages/English/Keyed/Rimfolk_RideOut.xml`,
+    `Rimfolk_Settings_Pages.xml` (`CC_SetSec_Mod_GiddyUp`), `Tools/Tests/RideOutTests.cs` (the trips, the sums, the
+    wait, the player's save, the seams), `SettingsTests` (the row). Saved: nothing.
+  - **Not checked without the game**: the patch beside Giddy-Up's on the private `DetermineNextJob`; its `Inject` and
+    `IsMountable` called by reflection; the ride, the parking and the wait as Giddy-Up does them for a rider Rimfolk sent;
+    the wait lengthened; a drafted colonist getting on before a movement order; the handler riding a beast to its pen;
+    how often the quarter's slack has them ride when the pen lies the other way.
+  - **Try in the game**: 1. Load `League_of_Toba` with the setting on (Your other mods, Giddy-Up 2). Designate steel or
+    components to mine 60 or more cells out past the walls with a free miner in the base: they walk to the pen, get on
+    the fastest free beast Giddy-Up allows, ride out, leave it hitched a few cells from the vein, and mine. 2. Dev mode:
+    "Riding out: why a colonist rides or not (log)..." on the miner says the trip, how far past the home area each end
+    is, every beast and why it may or may not be ridden, and the answer. 3. Leave them mining past 4 hours: the beast is
+    still there (Giddy-Up's "Leave rider" button shows on it while it waits). 4. When they come home to eat or sleep, or
+    haul a chunk home, they get back on it and ride; it is left in the pen or at a mount spot near the base. 5. Draft
+    someone in the base and order them to a spot 80 cells out: they ride when a beast gets them there sooner (try with
+    the pen on their way), and stay mounted there. 6. Set a beast's automount column to nobody, or "allowed to ride" off
+    for a colonist: Rimfolk leaves them on foot too. 7. Turn the setting off: Giddy-Up's own 120 cells alone. If the
+    player wants Giddy-Up itself to look sooner as well, lower its "Find a mount if trip is longer than" (its mod
+    settings); Rimfolk then only adds the shorter trips past the base and the movement orders.
+  - **Files that would help** (the player's offer, "let me know if you need files"): their Giddy-Up settings file,
+    `Mod_3674332861_Mod_GiddyUp.xml` in `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon
+    Studios\Config\`, would show which beasts they let be ridden and their distances; nothing here needs it (the rules
+    are read from Giddy-Up while the game runs). A save just after a miner rode out would show the wait and the parking.
+  - **Mods that would help**: none is needed: Giddy-Up 2 - Continued (Workshop 3674332861, 1.6 and 1.7, kept up) does the
+    riding and its art. Animal Apparel: Framework (Workshop 3513825850, tagged 1.6 and 1.7, updated 20 October) is the
+    one gear mod Giddy-Up 2 draws on a ridden beast (its compatibility names it), with Animal Apparel: Basic Armor
+    (3513849448) for barding; the Workshop page showed a removal notice when looked at, so check it is still up before
+    adding it.
+- 0.258.0 (with the riding above), **Every change in goodwill says
+  why** (16 November 2026; the player, with a screenshot of "Relations with Stormriders have changed from 53 to 45." and
+  their save: "sometimes my relations with factions change and i have no idea why"). A bug fix. DESIGN.md "Every change
+  in goodwill says why" (after "Letters and favours made clear") has all of it; README "What the world remembers".
+  - **The save** (`League of Toba`, day 116): 53 to 45 at tick 7005064, the neighbours' hour, as the Stormriders'
+    Shelara read Guido's invitation (letter 51): it slighted their god, `GodLetters.Answered` took 6 (8 with the game's
+    pull toward natural goodwill) with no reason, a day before the answer saying so could reach the colony. 22 to 23
+    (6652280) and 39 to 40 (6857280): two meetings at the colony with one of theirs (`Council_EncM_RescueThanks`,
+    `Council_EncR_HopesForMeal`, `DilemmaEffect_Goodwill`). 23 to 31 (6692718): the council's answer "Give them silver
+    instead" to "Hungry at the gate" (`Council_DlmS_Beggars`); the "Known as generous" letter at the same tick came from
+    the same answer. Every people +1 or +2 at 6781373 (the region's day): the gods the colony shares with them
+    (`GodPeoples.Shared`), the Stormriders -1 for the god the colony keeps, Teenanuay Grove -1 by the Mossborn's ledger
+    then +1 for a shared god. Seen in passing and fixed with it: the save's answer records keep "Stormriders: %N%
+    goodwill" and "Bautista: %N% trust" (the game's words capitalise an argument after a colon, so the mark "%n%" became
+    "%N%" before `ImpactMath.Fill` looked for it); `Fill` now finds it in either case, old answers too (`ImpactTests`).
+  - **Built**: 65 reasons of Rimfolk's own (HistoryEventDefs, plain lower-case labels: "a letter that slighted their
+    god", "the council's choice", "a meeting with one of theirs", "a task done for them", "a god they share with the
+    colony", "a contract left unpaid"...), given to the game with every goodwill change Rimfolk makes; the game's message
+    ends with it, the Factions tab lists it among the people's recent events. Changes that were silent and told by nothing
+    at the same moment (the peoples' own events, a truce, a debt refused, a ward home or dead, heavy tribute, the warden's
+    welcome, the lamp, a hamlet's harvest, a season's delivery) show the game's message now; those whose letter gives the
+    number stay without one. The slight's goodwill and memory, and the letter's own goodwill, land when the answer is in
+    at the colony. The faction memory's hooks skip Rimfolk's reasons; an outsider's gift, remembered twice through the
+    game's "gave gift", is remembered once.
+  - **Code map**: `World/GoodwillReasonMath.cs` (names, `All`, `Own`, `Task`, `NeverIntoWar`, `SlightLands`,
+    `Unreasoned`), `World/GoodwillWhy.cs` (the defs by name, `ForEffects`, `During`), `Defs/HistoryEventDefs/
+    Rimfolk_GoodwillReasons.xml`; the wrappers `WorldSituationWorker.Goodwill`, `StoryChains.Goodwill`,
+    `Missions.Goodwill`, `Camp.LoseGoodwill`, `Schemes.LoseGoodwill`, `Vassals.Goodwill`, `Fealty.Goodwill`; the scope
+    set in `Encounters.Told`, `IncidentWorker_Happening.Send`, `HappeningWorker_Attack.Send` and the
+    story's ending (Workers_StoryFlow.cs); `NeighbourLetters.Landed` (from `Owed`, `Finish` and a visit's messenger),
+    `NeighbourLetter.goodwillDue` (saved), `GodLetters.AnswerIn`; `Patch_MemoryGoodwill`, `Patch_ModMemoryGoodwill`;
+    `CC_St_WordSpread` (a former patient's word to every people at peace, told once with the number);
+    `Tools/Tests/GoodwillReasonTests.cs` (and three checks in FealtyTests, SchemesTests, PeoplesDTests for the new
+    signatures).
+  - **Not checked without the game**: the message with the reason and the Factions tab's recent events; the slight
+    landing as the post sets the answer down (and a messenger's, a rider's, a call's); the history events recorded with
+    Ideology and the player's mods (no precept refers to them); the save's history lists, about 7 KB more a people and up
+    to about 40 KB for each people Rimfolk moves over a long game; the one-time shift of other mods' saved history events
+    by the 65 new defs (mods loaded after Rimfolk, the game keeps them by position).
+  - **Try in the game**: 1. Load the save and wait for letter 51's answer (in the post): the message "Relations with
+    Stormriders have changed from 53 to 45 (a letter that slighted their god)." comes with the answer letter, not before.
+    2. Open the Factions tab and hover the Stormriders: their recent events list "A letter that slighted their god: -8".
+    3. Answer a council letter that moves goodwill: "(the council's choice)". 4. At the region's day after a shared god's
+    pass: each message names "a god they share with the colony". 5. Finish or fail a task for a people: "(a task done for
+    them)" or "(a task left undone)".
+  - **Mods that would help**: none; it uses the game's own message and Factions tab, and no graphics or sound.
+- 0.257.1, **The game's own description on
+  every card** (the player, 16 November 2026, with screenshots of Rimfolk's card for feedstock next to the game's: "all
+  item cards should always have the original description text somewhere at the top"; built with their go of the same
+  day: "go ahead with this, and if there's other to-dos that make sense to be included in this update, go ahead as
+  well"). `ItemCardWindow.GameDescription` draws the thing's `DescriptionFlavor` (a kind's `def.description`) across
+  the card under the head of the item, apparel and weapon cards. Checked while at it: "a fuel" on feedstock is right
+  (Grav Camp's feedstock boxes take it as the camp's travel fuel). Test in `ItemCardTests`. Try in the game: open the
+  card of feedstock, a fine meal, a weapon and a parka; the game's text sits under the picture.
 - 0.257.0, **Camps keep their goods on their
   shelf, clean their ground and grow over their stay** (15 November 2026; the player's words: "camps should also clean
   up around their campsite", "and also build additional things over their stay, appropriate to the faction, type of
