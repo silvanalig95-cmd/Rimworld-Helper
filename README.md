@@ -3027,7 +3027,18 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   them. Rimfolk only reads the mod, by name (checked
   against PokéWorld Updated for 1.6, its 898 species and eight generations); what a version lacks is skipped and said
   once in the log. Five Almanac pages explain it.
-- **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
+- **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own. Colonists **ride out
+  to far work and back** (the setting "Ride out to far work and back", Your other mods). Giddy-Up by itself looks for a
+  mount only when a job is further away than its setting "Find a mount if trip is longer than" (120 cells by default,
+  about half a large map) and never for a drafted colonist, so most work past the walls was walked to. Rimfolk adds the
+  rest: a free colonist whose job is 40 cells or more away, with the work, where a haul goes or the colonist 10 cells or
+  more past the home area's edge, gets on the beast that gets them there soonest (out and back may take up to a quarter
+  longer than walking), leaves it near the work as Giddy-Up does, and rides back on it; the beast keeps waiting while they
+  work out there (Giddy-Up's own wait time again from each job, a day at most). A drafted colonist given a far movement
+  order rides when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by
+  body size, tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to
+  ride"); Rimfolk also leaves alone a beast at work, with a group, with young or kept for someone else. Inside the base
+  nothing changes. Rimfolk calls Giddy-Up's own mount, wait and rules by name.
 
 ### Your mods in Rimfolk's newer systems
 The heart, health, personal stories, the world's memory, the lands and the calendar read the mods in the current

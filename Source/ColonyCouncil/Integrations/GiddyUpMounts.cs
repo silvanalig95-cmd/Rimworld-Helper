@@ -28,8 +28,11 @@ namespace ColonyCouncil
         private static bool looked;
         private static MethodInfo goMount;
         private static object instant;
+        private static object inject;
         private static JobDef mountJob;
         private static JobDef mountedJob;
+        private static JobDef dismountJob;
+        private static JobDef waitJob;
         private static HashSet<ushort> mountable;
         private static bool allowedSet;
 
@@ -53,11 +56,17 @@ namespace ColonyCouncil
                         instant = Enum.Parse(kind, "Instant");
                         goMount = method;
                     }
+                    // Its way of putting "get on first" in front of the job a colonist just chose (riding out, GiddyUpRideOut).
+                    if (Enum.GetNames(kind).Contains("Inject") && method.GetParameters().Length >= 5) inject = Enum.Parse(kind, "Inject");
                 }
                 var d = DefDatabase<JobDef>.GetNamedSilentFail("Mount");
                 if (d?.driverClass?.Namespace != null && d.driverClass.Namespace.StartsWith("GiddyUp", StringComparison.Ordinal)) mountJob = d;
                 var m2 = DefDatabase<JobDef>.GetNamedSilentFail("Mounted");
                 if (m2?.driverClass?.Namespace != null && m2.driverClass.Namespace.StartsWith("GiddyUp", StringComparison.Ordinal)) mountedJob = m2;
+                var m3 = DefDatabase<JobDef>.GetNamedSilentFail("Dismount");
+                if (m3?.driverClass?.Namespace != null && m3.driverClass.Namespace.StartsWith("GiddyUp", StringComparison.Ordinal)) dismountJob = m3;
+                var m4 = DefDatabase<JobDef>.GetNamedSilentFail("WaitForRider");
+                if (m4?.driverClass?.Namespace != null && m4.driverClass.Namespace.StartsWith("GiddyUp", StringComparison.Ordinal)) waitJob = m4;
             }
             catch (Exception e)
             {
@@ -122,6 +131,95 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("Giddy-Up: jobs done in the saddle", e);
+            }
+        }
+
+        /// <summary>Giddy-Up's own jobs: getting on, carrying a rider, getting off, a beast waiting for its rider (null where one isn't found).</summary>
+        public static JobDef MountJob
+        {
+            get
+            {
+                Look();
+                return mountJob;
+            }
+        }
+
+        public static JobDef MountedJob
+        {
+            get
+            {
+                Look();
+                return mountedJob;
+            }
+        }
+
+        public static JobDef DismountJob
+        {
+            get
+            {
+                Look();
+                return dismountJob;
+            }
+        }
+
+        public static JobDef WaitJob
+        {
+            get
+            {
+                Look();
+                return waitJob;
+            }
+        }
+
+        /// <summary>One of Giddy-Up's own jobs.</summary>
+        public static bool OwnJob(JobDef d)
+        {
+            Look();
+            return d != null && (d == mountJob || d == mountedJob || d == dismountJob || d == waitJob);
+        }
+
+        /// <summary>The beast is waiting for this rider (Giddy-Up's "WaitForRider" job, after they got off near their work).</summary>
+        public static bool WaitingFor(Pawn animal, Pawn rider)
+        {
+            Look();
+            var job = animal?.CurJob;
+            return job != null && waitJob != null && job.def == waitJob && job.targetA.Thing == rider;
+        }
+
+        /// <summary>Getting on first can be put in front of a chosen job, Giddy-Up's own way (its "Inject").</summary>
+        public static bool CanMountFirst
+        {
+            get
+            {
+                Look();
+                return goMount != null && inject != null && mountJob != null;
+            }
+        }
+
+        /// <summary>
+        /// The colonist gets on this beast before doing <paramref name="then"/>, the way Giddy-Up's own auto-mount does it
+        /// (<c>GoMount(rider, animal, GiveJobMethod.Inject, result, then)</c>): the job just chosen becomes Giddy-Up's "Mount"
+        /// job and <paramref name="then"/> waits first in their queue. Null when it can't be done (the caller keeps the job).
+        /// </summary>
+        public static ThinkResult? MountFirst(Pawn rider, Pawn animal, ThinkResult result, Job then)
+        {
+            if (!CanMountFirst || rider == null || animal == null) return null;
+            // The colony's own beast: nothing is taught it here (Giddy-Up asked for its tameness before it was chosen).
+            try
+            {
+                var args = goMount.GetParameters().Select(p => p.HasDefaultValue ? p.DefaultValue : null).ToArray();
+                args[0] = rider;
+                args[1] = animal;
+                args[2] = inject;
+                args[3] = result;
+                args[4] = then;
+                return goMount.Invoke(null, args) is ThinkResult r && r.Job != null ? r : (ThinkResult?)null;
+            }
+            catch (Exception e)
+            {
+                inject = null;
+                CouncilLog.ErrorOnce("Giddy-Up: getting on before a job", e);
+                return null;
             }
         }
 

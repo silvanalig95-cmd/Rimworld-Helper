@@ -425,7 +425,7 @@ Animals of Monterey Bay adds sea otters on temperate and cooler coasts, with int
     <sections>
       <li>
         <heading>Riding around the colony</heading>
-        <text>Colonists pick a mount for jobs far enough away, and skip mounts that are slower than walking or too weak to carry them. Tame and train fast, strong animals for the job. Horses are the obvious choice, and many of the modded giants take riders too.
+        <text>Colonists pick a mount for jobs far enough away (its setting "Find a mount if trip is longer than", 120 cells by default, in a straight line from where they stand), and skip mounts that are slower than walking or too weak to carry them. Tame and train fast, strong animals for the job. Horses are the obvious choice, and many of the modded giants take riders too.
 
 You can draw areas where nobody rides, such as indoors, and spots where riders get off. A no-riding area over your buildings makes riders leave their mounts at the door.</text>
       </li>
@@ -443,7 +443,9 @@ You can draw areas where nobody rides, such as indoors, and spots where riders g
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>A named or bonded horse is a pet like any other. If it falls in battle, its person bids it farewell. A hunter, a restless soul or someone who loves animals may wish for something to ride of their own: one of the colony's mounts with no master is made theirs when the wish is promised, or one is tamed for them. Granted, +3 mood for 5 days.</text>
+        <text>A named or bonded horse is a pet like any other. If it falls in battle, its person bids it farewell. A hunter, a restless soul or someone who loves animals may wish for something to ride of their own: one of the colony's mounts with no master is made theirs when the wish is promised, or one is tamed for them. Granted, +3 mood for 5 days.
+
+With Rimfolk's setting "Ride out to far work and back" (Your other mods), colonists also ride to work 40 cells or more away out past the base and back on the same beast, which keeps waiting while they work there, and drafted colonists ride on a far movement order when it is quicker. Giddy-Up's own rules still decide which beasts may be ridden. The page "the colony's animals" has the whole of it.</text>
       </li>
     </sections>
     <keywords>
