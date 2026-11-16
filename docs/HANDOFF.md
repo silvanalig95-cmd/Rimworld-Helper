@@ -236,7 +236,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     `BuildReport`; `JobDriver_CampBuild`; the debug action `CampBuildDebug`), `CampWork` (`JobFor`'s hours, `Build`,
     `BuildStep`, `CanBuild`, `Skilled`, `Deliver` with what is on its way and their work's logs, `Tree` by wood,
     `HaulToStash`, `Done` for the stone), `CampGrow` (`GrowHour`, `StartGrowth`, `GrowStuff`, `Affords`; the fixed
-    day and a half and `CampBuildMath.GrowGiveUpDays` gone), `CampLife.Hourly` (`BuildHourly`),
+    day and a half and `CampBuildMath.GrowGiveUpDays` gone), `CampLife.Hourly` (`BuildHourly`), `CampLife.PackUp` (what
+    was in a half-built piece back to the stash, packed with the rest),
     `Building/BuildersTrees.cs` (the colony's builds only), Defs/CampDefs/Rimfolk_CampKits.xml (`Rimfolk_CampBuild`,
     `Rimfolk_CampCutStone`), Rimfolk_CampDay_Lines.xml (`[timber]`, `[stone]`), `Tools/Tests/CampGatherTests.cs` (81
     checks, the piece played out hour by hour). Saved: nothing new (`growUntil` is now two days after the last progress).
@@ -247,11 +248,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     and builds it (the construction look and its bar); the news says they put up another shelf. 2. Within a couple of
     hours two seats round their fire are laid out again (the stonecutter's table their calling would want first is passed
     over: it needs steel they don't carry): one of them fells a pine near the camp (a line about wood for the building),
-    carries the logs to the stools, and they stand by the afternoon; nobody gathers in the evening or at night. 3. Dev mode, Debug actions, Rimfolk, "Camps: what their building waits on": the log has each piece, what is in
-    it, and what each of them would do for it or why not, with the game's own view (reservations, a way to it, what
-    stands on it). 4. A camp on bare rock with no trees: a tribal or medieval camp's pieces of stone (rock mined, a chunk
-    dressed by hand at their crafting spot); an industrial one builds its posts and fences of the steel it carries
-    and passes over what would need wood. 5. A camp packing up with a piece half done: its frame is taken up, nothing is said of it.
+    carries the logs to the stools, and they stand by the afternoon; nobody gathers in the evening or at night. 3. Dev
+    mode, Debug actions, Rimfolk, "Camps: what their building waits on": the log has each piece, what is in it, and what
+    each of them would do for it or why not, with the game's own view (reservations, a way to it, what stands on it).
+    4. A camp on bare rock with no trees: a tribal or medieval camp's pieces of stone (rock mined, a chunk dressed by
+    hand at their crafting spot); an industrial one builds its posts and fences of the steel it carries and passes over
+    what would need wood. 5. A camp packing up with a piece half done: its frame is taken up, what was in it packed with
+    their goods, and nothing is said of it.
   - **Mods that would help**: none needed: the felling, mining, stone-cutting look and construction are the game's own,
     the pieces from mods already enabled. Medieval Overhaul (subscribed, not enabled;
     https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926; its files go to 1.6, kept up) has a stonecutter's
