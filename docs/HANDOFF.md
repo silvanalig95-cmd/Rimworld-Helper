@@ -53,10 +53,15 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Quests, and storylines across quests.** The player: "the next thing to include will be more quests, and quests that
-    are storylines across multiple quests". When asked: proposed first, a list of quests by the peoples, the gods and the
-    region, and storylines that run over several quests (a chain whose next quest depends on how the last went), built
-    on the game's own quests (QuestScriptDef) and Rimfolk's chains, letters and missions.
+  - **Quests, and storylines across quests: being built (16 November 2026).** The player: "the next thing to include
+    will be more quests, and quests that are storylines across multiple quests". The go, 16 November 2026: "go ahead
+    with quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and
+    while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
+    consistently go out of base and it's worth it, so keep these quests to a minimum", "unless it's like within only
+    very few tiles". The list and the rules are in `docs/quests-proposals.md`: nearly all at home, away only within
+    3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1
+    is being built (the storyline frame with S1, S4 and S8; Q1, Q2, Q5, Q7, Q9 and Q10 beside it). Rounds 2 and 3
+    wait, and the player can strike or change anything in them before they start.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
