@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Quests at home, round 1 (the player's go of 16 November 2026; docs/quests-proposals.md Q1, Q2, Q5, Q7, Q9, Q10).
+       Each plays out on the colony's own map: their people come to the colony, and what they leave or want is collected
+       by them. Workers: Source/ColonyCouncil/Missions/Workers_MissionHome.cs and Workers_MissionHome2.cs; the pure rules in
+       HomeQuestsMath.cs. Texts may use {A} (who of the colony deals with it), {X} (their prisoner, one of the two who
+       quarrel, the messenger, the outlaw), {FACTION}, {PLACE} (their town), {ENEMY} (the prisoner's or outlaw's own
+       people), {DEAD} (the other in a quarrel; the keepsake's owner), {TALE} (the letter; the keepsake; which way the
+       outlaw hides), {THING} (the animal). In terms, {ITEM} is the reward in words ("240 silver", or a tribe's goods
+       worth as much) and {DAYS} the days the quest names; in endings, {ITEM} is what was paid. Lines are tagged with the
+       quest, its variant, the asking people's age ([their:tribal], [their:medieval], [their:industrial], [their:spacer],
+       [their:lowtech], [their:hightech], [their:empire]) and, for endings, how it ended. -->
+
+  <!-- ===================== Q1. Their prisoner kept ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Prisoner</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>their prisoner kept</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionPrisoner</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep {FACTION}'s prisoner</li>
+          <li>A prisoner from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] The hunters of {FACTION} caught {X_nameDef} of {ENEMY} trying to drive off their goats. {PLACE} has nowhere to keep a prisoner, and the elders want {X_objective} held until they decide what to do with {X_objective}. They ask the colony to keep {X_nameDef} in its prison for a while.</li>
+          <li>[their:medieval] {FACTION} have caught {X_nameDef}, a raider of {ENEMY}. The lord's court at {PLACE} will not sit for some days, and the town has no cell that would hold {X_objective}. They ask the colony to keep {X_nameDef} in its prison until then.</li>
+          <li>[their:industrial] {FACTION}'s militia arrested {X_nameDef} of {ENEMY} after a robbery on the road. The lockup at {PLACE} burned down last month. They ask the colony to hold {X_nameDef} until their marshal can take {X_objective} away for trial.</li>
+          <li>[their:spacer,!their:empire] {FACTION} are holding {X_nameDef}, a fighter of {ENEMY} caught near {PLACE}. Their transport for prisoners is not due for some days. They ask the colony to keep {X_nameDef} in its prison until it comes.</li>
+          <li>[their:empire] An officer of {FACTION} writes that {X_nameDef} of {ENEMY} was taken in an attack on an Imperial convoy. The prisoner must be held until the magistrate's guard can collect {X_objective}, and the officer asks the colony to hold {X_objective} until then.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>citizens</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>Two of {FACTION} will bring {X_nameDef} to the colony's prison soon after the colony agrees. Keep {X_objective} there as a prisoner for {DAYS}, and do not recruit or release {X_objective}. Like any prisoner, {X_nameDef} may try to break out. After that, {FACTION} will come back for {X_nameDef} and pay {ITEM}. If {X_nameDef} escapes, dies, is let go or joins the colony, {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION} will bring {X_nameDef} to the colony's prison soon. Keep a bed in the prison free for {X_objective}.</li>
+        </accepted>
+        <ready>
+          <li>{X_nameDef} is the colony's prisoner now. Keep {X_objective} in the prison for {DAYS}, until {FACTION} come back for {X_objective}.</li>
+        </ready>
+        <doneTitles>
+          <li>[held] {X_nameDef} handed back</li>
+        </doneTitles>
+        <done>
+          <li>[held] {FACTION} came back for {X_nameDef} and paid {ITEM} for keeping {X_objective}. The colony kept its word.</li>
+        </done>
+        <failTitles>
+          <li>[escaped] {X_nameDef} escaped</li>
+          <li>[died] {X_nameDef} died</li>
+          <li>[kept] {X_nameDef} kept</li>
+          <li>[released] {X_nameDef} let go</li>
+          <li>[harmed] {FACTION}'s prisoner</li>
+          <li>[noprison] No room in the prison</li>
+          <li>[ended] {FACTION}'s prisoner</li>
+          <li>[cancelled] {FACTION}'s prisoner</li>
+        </failTitles>
+        <fail>
+          <li>[escaped] {X_nameDef} got away from the colony. {FACTION} trusted the colony to hold {X_objective}, and they are angry that it didn't.</li>
+          <li>[died] {X_nameDef} died while the colony was holding {X_objective}. {FACTION} wanted {X_objective} alive for their own judgement, and they blame the colony.</li>
+          <li>[kept] The colony took {X_nameDef} in instead of handing {X_objective} back. {FACTION} see it as a broken promise.</li>
+          <li>[released] The colony let {X_nameDef} go. {FACTION} had asked the colony to hold {X_objective}, and they are angry about it.</li>
+          <li>[harmed] {X_nameDef} was hurt on the way to the colony's prison. {FACTION} blame the colony for it.</li>
+          <li>[noprison] The colony had no free bed in its prison when {FACTION} were ready to bring {X_nameDef}, so they kept {X_objective} themselves.</li>
+          <li>[ended] {FACTION} will not be bringing {X_nameDef} to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the arrangement about {X_nameDef} is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q2. A dispute judged ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Dispute</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a dispute to judge</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDispute</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Judge a dispute for {FACTION}</li>
+          <li>A dispute from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] Two hunters of {FACTION}, {X_nameDef} and {DEAD}, both say they killed the same elk, and both want its hide. The elders of {PLACE} could not settle it, and the two have agreed to let the colony decide.</li>
+          <li>[their:medieval] {X_nameDef} and {DEAD} of {PLACE} are arguing over a strip of land between their fields. Each says the other moved the boundary stone. {FACTION}'s reeve has given up on them, and they have agreed to let the colony judge it.</li>
+          <li>[their:industrial] {X_nameDef} sold {DEAD} a tractor part last year and says it was never paid for. {DEAD} says the part was broken when it came. Nobody at {PLACE} wants to take sides, so {FACTION} have asked the colony to judge it.</li>
+          <li>[their:spacer,!their:empire] {X_nameDef} and {DEAD} of {FACTION} both claim a salvaged power cell. Their crew's contract says nothing about it. They have agreed to accept the colony's judgement.</li>
+          <li>[their:empire] {X_nameDef} and {DEAD}, two retainers of {FACTION}, are arguing about which of them should sit higher at their lord's table. The steward at {PLACE} will not decide between them, and asks the colony to judge it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>traders</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{X_nameDef} and {DEAD} will come to the colony's gate soon after the colony agrees. {A_nameDef} will hear them, and the colony gives its judgement: for one of them, for the other, or split between them. {FACTION} will pay {ITEM} for the judgement. The one who loses may leave angry, and a quarrel like this can come to blows. If the colony sends them away without a judgement, {FACTION} will think less of it.</li>
+        </terms>
+        <accepted>
+          <li>{X_nameDef} and {DEAD} of {FACTION} are on their way to the colony to have their quarrel judged.</li>
+        </accepted>
+        <doneTitles>
+          <li>[first] The colony found for {X_nameDef}</li>
+          <li>[second] The colony found for {DEAD}</li>
+          <li>[split] The quarrel split</li>
+        </doneTitles>
+        <done>
+          <li>[first,!scuffle] The colony found for {X_nameDef}. {X_nameDef} went home pleased, and {DEAD} went home angry. {FACTION} paid {ITEM} for the judgement.</li>
+          <li>[first,scuffle] The colony found for {X_nameDef}. {DEAD} did not take it well, and the two came to blows before they left. {FACTION} paid {ITEM} for the judgement.</li>
+          <li>[second,!scuffle] The colony found for {DEAD}. {DEAD} went home pleased, and {X_nameDef} went home angry. {FACTION} paid {ITEM} for the judgement.</li>
+          <li>[second,scuffle] The colony found for {DEAD}. {X_nameDef} did not take it well, and the two came to blows before they left. {FACTION} paid {ITEM} for the judgement.</li>
+          <li>[split] The colony split it between {X_nameDef} and {DEAD}. Neither got everything they wanted, but both accepted it and went home. {FACTION} paid {ITEM} for the judgement.</li>
+        </done>
+        <failTitles>
+          <li>[none] No judgement for {FACTION}</li>
+          <li>[harmed] {FACTION}'s quarrel</li>
+          <li>[ended] {FACTION}'s quarrel</li>
+          <li>[cancelled] {FACTION}'s quarrel</li>
+        </failTitles>
+        <fail>
+          <li>[none,!scuffle] The colony gave no judgement, and {X_nameDef} and {DEAD} went home with their quarrel unsettled. {FACTION} feel the colony wasted their time.</li>
+          <li>[none,scuffle] The colony gave no judgement, and {X_nameDef} and {DEAD} came to blows before they went home. {FACTION} feel the colony wasted their time.</li>
+          <li>[harmed] {X_nameDef} and {DEAD} came to the colony to have their quarrel judged, and one of them was hurt or held there. {FACTION} will not forget it.</li>
+          <li>[ended] {X_nameDef} and {DEAD} will not be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and will settle their quarrel without it.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The card that asks for the judgement once they are at the gate (HappeningWorker_MissionJudgement). Never drawn by
+       the storyteller. The answer plays out at the gate (the mission's own code: the judge's words, each side's reaction,
+       the game's own insult and its odds of a fight). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_DisputeJudgement</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a judgement asked</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionJudgement</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The quarrel of {X_nameDef} and {DEAD}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] {X_nameDef} says the elk fell to {X_possessive} spear, and points to the wound. {DEAD} says {DEAD}'s arrow hit it first and brought it down. {A_nameDef} has heard them both, and the colony must give its judgement.</li>
+          <li>[their:medieval] {X_nameDef} says the boundary stone stood two paces further west in {X_possessive} father's time. {DEAD} says the stone has not moved in thirty years. {A_nameDef} has heard them both, and the colony must give its judgement.</li>
+          <li>[their:industrial] {X_nameDef} wants {DEAD} to pay for the part or give it back. {DEAD} says the part was cracked and never worked, and owes nothing for it. {A_nameDef} has heard them both, and the colony must give its judgement.</li>
+          <li>[their:spacer,!their:empire] {X_nameDef} says {X_pronoun} found the cell and only asked {DEAD} to help carry it. {DEAD} says they found it together and should share what it sells for. {A_nameDef} has heard them both, and the colony must give its judgement.</li>
+          <li>[their:empire] {X_nameDef} says {X_possessive} family has served the lord the longest. {DEAD} says {DEAD} was given the higher title at the last ceremony. {A_nameDef} has heard them both, and the colony must give its judgement.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Find for {X_nameDef}</label>
+            <outcome></outcome>
+          </li>
+          <li>
+            <label>Find for {DEAD}</label>
+            <outcome></outcome>
+          </li>
+          <li>
+            <label>Split it between them</label>
+            <outcome></outcome>
+          </li>
+          <li>
+            <label>Send them off without a judgement</label>
+            <outcome></outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q5. A wounded messenger ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Messenger</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a wounded messenger</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionMessenger</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A wounded messenger from {PLACE}</li>
+          <li>Look after {FACTION}'s messenger</li>
+        </titles>
+        <texts>
+          <li>[raiders,their:lowtech] A runner from {PLACE} has brought word that {FACTION}'s messenger, {X_nameDef}, was attacked by raiders on the road and is badly hurt. {X_nameDef} is making for the colony, the nearest safe place, with a {TALE} for {FACTION}.</li>
+          <li>[beasts,their:lowtech] A runner from {PLACE} has brought word that {FACTION}'s messenger, {X_nameDef}, was attacked by wild animals on the road and is badly hurt. {X_nameDef} is making for the colony, the nearest safe place, with a {TALE} for {FACTION}.</li>
+          <li>[raiders,their:hightech,!their:empire] {FACTION} sent a radio message from {PLACE}: their messenger, {X_nameDef}, was shot by raiders on the road and is making for the colony, the nearest safe place. {X_nameDef} is carrying a {TALE} that must not be lost.</li>
+          <li>[beasts,their:hightech,!their:empire] {FACTION} sent a radio message from {PLACE}: their messenger, {X_nameDef}, was attacked by wild animals on the road and is making for the colony, the nearest safe place. {X_nameDef} is carrying a {TALE} that must not be lost.</li>
+          <li>[their:empire] An officer of {FACTION} sends word that the courier {X_nameDef} was attacked on the road and is making for the colony, wounded, with a {TALE} for the household at {PLACE}. The officer asks the colony to take {X_nameDef} in.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>linesmen</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{X_nameDef} will reach the colony's gate soon after the colony agrees, and will hand over the {TALE}. Give {X_nameDef} a bed, have a doctor treat {X_objective}, and keep {X_objective} fed until {X_pronoun} is well. Keep the {TALE} safe for {DAYS}, until {FACTION}'s people come for it. They will pay {ITEM}. If {X_nameDef} dies at the colony, or the {TALE} is lost, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s messenger {X_nameDef} is on the way to the colony, wounded. Have a bed and a doctor ready.</li>
+        </accepted>
+        <ready>
+          <li>{X_nameDef} reached the gate and handed over the {TALE}. Get {X_objective} into a bed and have a doctor treat {X_objective}, and keep the {TALE} safe until {FACTION} come for it.</li>
+        </ready>
+        <doneTitles>
+          <li>[delivered] The {TALE} collected</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] {FACTION}'s people came for the {TALE} and paid {ITEM} for looking after {X_nameDef} and keeping it safe.</li>
+        </done>
+        <failTitles>
+          <li>[died] {X_nameDef} died</li>
+          <li>[lost] The {TALE} is lost</li>
+          <li>[ended] {FACTION}'s messenger</li>
+          <li>[cancelled] {FACTION}'s messenger</li>
+        </failTitles>
+        <fail>
+          <li>[died] {X_nameDef} died at the colony. {FACTION} trusted the colony to look after their messenger, and they blame it.</li>
+          <li>[lost] The {TALE} {X_nameDef} brought is gone. {FACTION} needed it, and they blame the colony for losing it.</li>
+          <li>[ended] {X_nameDef} will not be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and will not send for the {TALE}.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q7. An outlaw in the hills ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Outlaw</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an outlaw on the colony's land</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionOutlaw</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <battle>true</battle>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An outlaw on the colony's land</li>
+          <li>A price on {X_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] {X_nameDef} of {ENEMY} killed a hunter of {FACTION} and ran. The trackers of {PLACE} followed the trail onto the colony's land and lost it there. They ask the colony to catch {X_nameDef}, alive if it can.</li>
+          <li>[their:medieval] {FACTION} have put a price on {X_nameDef}, a bandit of {ENEMY} who has been robbing travellers on the roads near {PLACE}. {X_nameDef} was last seen going onto the colony's land, and is hiding there.</li>
+          <li>[their:industrial] {FACTION} have a bounty out on {X_nameDef} of {ENEMY}, wanted for robbing the store at {PLACE}. Their scouts say {X_nameDef} is hiding somewhere on the colony's land.</li>
+          <li>[their:spacer,!their:empire] {X_nameDef} of {ENEMY} escaped from {FACTION}'s holding cells at {PLACE}. Their trackers followed {X_objective} to the colony's land and lost the trail there.</li>
+          <li>[their:empire] {FACTION} have named {X_nameDef} of {ENEMY} an outlaw for an attack on an Imperial convoy. The Empire offers a reward for {X_objective}, and {X_nameDef} is hiding on the colony's land.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>mercenaries</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[hills] {X_nameDef} is hiding somewhere to the {TALE} of the colony, at the foot of the hills. Find {X_objective} within {DAYS} of the colony agreeing. {X_nameDef} is armed, and will fight or run once found. Capture {X_objective} or kill {X_objective}: {FACTION} will pay {ITEM}. If {X_nameDef} gets away or is never found, {FACTION} will think less of the colony.</li>
+          <li>[edge] {X_nameDef} is hiding somewhere to the {TALE} of the colony, near the edge of its land. Find {X_objective} within {DAYS} of the colony agreeing. {X_nameDef} is armed, and will fight or run once found. Capture {X_objective} or kill {X_objective}: {FACTION} will pay {ITEM}. If {X_nameDef} gets away or is never found, {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{X_nameDef} is hiding somewhere to the {TALE} of the colony. Whoever goes looking for {X_objective} should be ready for a fight.</li>
+        </accepted>
+        <doneTitles>
+          <li>[captured] {X_nameDef} captured</li>
+          <li>[killed] {X_nameDef} is dead</li>
+        </doneTitles>
+        <done>
+          <li>[captured] The colony captured {X_nameDef} and handed {X_objective} over to {FACTION}, who paid {ITEM}.</li>
+          <li>[killed] The colony killed {X_nameDef}. {FACTION} paid {ITEM}, the price they had put on {X_objective}.</li>
+        </done>
+        <failTitles>
+          <li>[fled] {X_nameDef} got away</li>
+          <li>[unfound] {X_nameDef} was never found</li>
+          <li>[kept] {X_nameDef} kept</li>
+          <li>[ended] {FACTION}'s outlaw</li>
+          <li>[cancelled] {FACTION}'s outlaw</li>
+        </failTitles>
+        <fail>
+          <li>[fled] {X_nameDef} got off the colony's land. {FACTION} had counted on the colony to stop {X_objective}.</li>
+          <li>[unfound] Nobody of the colony found {X_nameDef}, and {X_pronoun} has moved on. {FACTION} are disappointed.</li>
+          <li>[kept] The colony took {X_nameDef} in instead of handing {X_objective} over. {FACTION} wanted {X_objective} for their own judgement, and are angry.</li>
+          <li>[ended] {FACTION} no longer need the colony's help with {X_nameDef}.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the price on {X_nameDef} is no longer the colony's business.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q9. A lost heirloom ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Keepsake</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a lost keepsake</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionKeepsake</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{DEAD}'s lost {TALE}</li>
+          <li>A keepsake lost on the colony's land</li>
+        </titles>
+        <texts>
+          <li>[hide] {DEAD} of {FACTION} lost a {TALE} crossing the colony's land. It is painted with the marks of {DEAD}'s family, and {DEAD} has carried it since childhood. {DEAD} knows roughly where it fell and asks the colony to look for it.</li>
+          <li>[book,!their:empire] {DEAD} of {FACTION} dropped a {TALE} on the way through the colony's land. It holds the names of {DEAD}'s family going back many generations, written by hand. {DEAD} knows roughly where it was lost and asks the colony to find it.</li>
+          <li>[book,their:empire] {DEAD}, a retainer of {FACTION}, lost a {TALE} on the road across the colony's land. It records the family's years of service to their lord, and {DEAD} would be ashamed to go home without it. {DEAD} knows roughly where it fell.</li>
+          <li>[photos] {DEAD} of {FACTION} lost a {TALE} crossing the colony's land. The photographs in it are the only ones {DEAD} has of {DEAD}'s family. {DEAD} knows roughly where it was dropped and asks the colony to find it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>pilgrims</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>It lies somewhere in an area that will be marked on the map. To search it, select a colonist and right-click inside the area: they search one spot at a time, about an hour each, until they find it. It lies in the open, and 6 hours of rain or snow on it will ruin it. Find it within {DAYS} of the colony agreeing, and {FACTION}'s people will come for it and pay {ITEM}. If it is ruined or not found in time, {FACTION} will be disappointed in the colony.</li>
+        </terms>
+        <accepted>
+          <li>{DEAD}'s {TALE} lies somewhere in the area marked on the map. Select a colonist and right-click inside the area to search it.</li>
+        </accepted>
+        <ready>
+          <li>{A_nameDef} found {DEAD}'s {TALE}. Keep it safe until {FACTION} come for it.</li>
+        </ready>
+        <doneTitles>
+          <li>[returned] {DEAD}'s {TALE} returned</li>
+        </doneTitles>
+        <done>
+          <li>[returned] {FACTION}'s people came for {DEAD}'s {TALE} and paid {ITEM}. {DEAD} sends thanks.</li>
+        </done>
+        <failTitles>
+          <li>[spoiled] {DEAD}'s {TALE} ruined</li>
+          <li>[theyfound] {DEAD}'s {TALE} found by {FACTION}</li>
+          <li>[toolate] {DEAD}'s {TALE}</li>
+          <li>[lost] {DEAD}'s {TALE} lost</li>
+          <li>[ended] {DEAD}'s {TALE}</li>
+          <li>[cancelled] {DEAD}'s {TALE}</li>
+        </failTitles>
+        <fail>
+          <li>[spoiled] Rain soaked {DEAD}'s {TALE} where it lay, and it is ruined. It is still lying in the area, but it is no use to {DEAD} now.</li>
+          <li>[theyfound] {FACTION} sent someone to search the area, and they found {DEAD}'s {TALE} themselves. They had hoped the colony would find it.</li>
+          <li>[toolate] Nobody found {DEAD}'s {TALE} in time. {FACTION} are disappointed.</li>
+          <li>[lost] {DEAD}'s {TALE} was found and then lost again before {FACTION} came for it. They are angry about it.</li>
+          <li>[ended] {FACTION} no longer need the colony to look for {DEAD}'s {TALE}.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and {DEAD}'s {TALE} is no longer the colony's business.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q10. Tame one for them ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_TameFor</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an animal tamed for them</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionTameFor</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Tame the {THING} for {FACTION}</li>
+          <li>{FACTION} want the {THING}</li>
+        </titles>
+        <texts>
+          <li>[here,their:tribal] {FACTION} have seen a fine wild {THING} on the colony's land and want it for {PLACE}. Their own people can't get near it. They ask the colony to tame it and hand it over.</li>
+          <li>[here,their:medieval] The herd-master of {PLACE} has heard of a fine wild {THING} on the colony's land and would like it for {FACTION}'s herds. {FACTION} ask the colony to tame it and hand it over.</li>
+          <li>[here,their:hightech,!their:empire] {FACTION} want the wild {THING} that has been seen on the colony's land, for their breeding stock at {PLACE}. They ask the colony to tame it and hand it over.</li>
+          <li>[here,their:tamers] The ring at {PLACE} wants the wild {THING} on the colony's land, and {FACTION}'s tamers would rather the colony tamed it than chase it themselves.</li>
+          <li>[here,their:empire] A lord of {FACTION} has heard of a fine wild {THING} on the colony's land and wants it for the menagerie at {PLACE}. The steward asks the colony to tame it and hand it over.</li>
+          <li>[comes,their:lowtech] {FACTION}'s hunters have been following a fine wild {THING}, and it is heading onto the colony's land. They want it for {PLACE}, and ask the colony to tame it and hand it over.</li>
+          <li>[comes,their:hightech,!their:empire] A wild {THING} that {FACTION} have been tracking is heading onto the colony's land. They want it for their breeding stock at {PLACE}, and ask the colony to tame it and hand it over.</li>
+          <li>[comes,their:empire] A wild {THING} that a lord of {FACTION} wants for the menagerie at {PLACE} is heading onto the colony's land. The steward asks the colony to tame it and hand it over.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>tamers</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[here] The {THING} they want is on the colony's land now, and the quest points to it. Tame it within {DAYS} of the colony agreeing; {A_nameDef} is the colony's best handler. Once it is tame, {FACTION}'s handler will come for it and pay {ITEM}. If the {THING} is killed, or wanders off before it is tamed, {FACTION} will think less of the colony.</li>
+          <li>[comes] The {THING} will come onto the colony's land soon after the colony agrees, and the quest will point to it. Tame it within {DAYS} of the colony agreeing; {A_nameDef} is the colony's best handler. Once it is tame, {FACTION}'s handler will come for it and pay {ITEM}. If the {THING} is killed, or wanders off before it is tamed, {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>Tame the {THING} {FACTION} want before it wanders off.</li>
+        </accepted>
+        <ready>
+          <li>The {THING} is tame. {FACTION}'s handler will come for it.</li>
+        </ready>
+        <doneTitles>
+          <li>[handed] The {THING} handed over</li>
+          <li>[bonded] The {THING} stays</li>
+        </doneTitles>
+        <done>
+          <li>[handed] {FACTION}'s handler came for the {THING} and paid {ITEM}.</li>
+          <li>[bonded] {FACTION} heard that the {THING} has bonded with someone of the colony, and will leave it where it is. They won't pay for it, but they are not angry.</li>
+        </done>
+        <failTitles>
+          <li>[killed] The {THING} is dead</li>
+          <li>[gone] The {THING} is gone</li>
+          <li>[untamed] The {THING} is still wild</li>
+          <li>[ended] {FACTION}'s {THING}</li>
+          <li>[cancelled] {FACTION}'s {THING}</li>
+        </failTitles>
+        <fail>
+          <li>[killed] The {THING} {FACTION} wanted was killed on the colony's land. {FACTION} are angry about it.</li>
+          <li>[gone] The {THING} {FACTION} wanted is gone from the colony's land. They are disappointed.</li>
+          <li>[untamed] Nobody of the colony tamed the {THING} in time, and {FACTION} have given up on it.</li>
+          <li>[ended] {FACTION} no longer want the {THING}.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the {THING} is the colony's own business now.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

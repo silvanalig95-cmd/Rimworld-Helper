@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Quests at home (Source/ColonyCouncil/Missions/Workers_MissionHome.cs, Workers_MissionHome2.cs, HomeQuests.cs). -->
+
+  <!-- Which way from the colony. -->
+  <CC_HomeQ_Dir_E>east</CC_HomeQ_Dir_E>
+  <CC_HomeQ_Dir_NE>north-east</CC_HomeQ_Dir_NE>
+  <CC_HomeQ_Dir_N>north</CC_HomeQ_Dir_N>
+  <CC_HomeQ_Dir_NW>north-west</CC_HomeQ_Dir_NW>
+  <CC_HomeQ_Dir_W>west</CC_HomeQ_Dir_W>
+  <CC_HomeQ_Dir_SW>south-west</CC_HomeQ_Dir_SW>
+  <CC_HomeQ_Dir_S>south</CC_HomeQ_Dir_S>
+  <CC_HomeQ_Dir_SE>south-east</CC_HomeQ_Dir_SE>
+
+  <!-- The reward in words, and the favour owed. -->
+  <CC_HomeQ_PaySilver>{COUNT} silver</CC_HomeQ_PaySilver>
+  <CC_HomeQ_PayGoods>goods of their own making worth about {COUNT} silver</CC_HomeQ_PayGoods>
+  <CC_HomeQ_Favour>{FACTION} will also owe the colony a favour for it.</CC_HomeQ_Favour>
+
+  <!-- Where a thing the colony keeps for them is. -->
+  <CC_HomeQ_Thing_Stored>The {THING} is in the stores.</CC_HomeQ_Thing_Stored>
+  <CC_HomeQ_Thing_Lying>The {THING} is lying out, not in the stores.</CC_HomeQ_Thing_Lying>
+  <CC_HomeQ_Thing_Carried>Someone is carrying the {THING}.</CC_HomeQ_Thing_Carried>
+  <CC_HomeQ_Thing_Missing>The {THING} is missing.</CC_HomeQ_Thing_Missing>
+
+  <!-- Their prisoner kept. -->
+  <CC_HomeQ_Prisoner_Coming>{FACTION}'s people are walking {X_nameDef} in to the colony's prison.</CC_HomeQ_Prisoner_Coming>
+  <CC_HomeQ_Prisoner_AtGate>They could not get {X_nameDef} into the prison and left {X_objective} where they stood, so someone needs to take {X_objective} there.</CC_HomeQ_Prisoner_AtGate>
+  <CC_HomeQ_Prisoner_Status0>{X_nameDef} will be brought in. A free bed in the prison: {BED}.</CC_HomeQ_Prisoner_Status0>
+  <CC_HomeQ_Prisoner_BedYes>yes</CC_HomeQ_Prisoner_BedYes>
+  <CC_HomeQ_Prisoner_BedNo>none</CC_HomeQ_Prisoner_BedNo>
+  <CC_HomeQ_Prisoner_Status1>{X_nameDef} is on the way to the prison.</CC_HomeQ_Prisoner_Status1>
+  <CC_HomeQ_Prisoner_Status2>{X_nameDef} held in the prison: {HELD} of {DAYS} days.</CC_HomeQ_Prisoner_Status2>
+  <CC_HomeQ_Prisoner_Status3>{FACTION} are coming for {X_nameDef}.</CC_HomeQ_Prisoner_Status3>
+
+  <!-- A dispute judged. -->
+  <CC_HomeQ_Dispute_Here>{X_nameDef} and {OTHER} of {FACTION} are coming to the gate to have their quarrel judged.</CC_HomeQ_Dispute_Here>
+  <CC_HomeQ_Dispute_Status0>{X_nameDef} and {OTHER} are on their way.</CC_HomeQ_Dispute_Status0>
+  <CC_HomeQ_Dispute_Status1>{X_nameDef} and {OTHER} are waiting for the colony's judgement.</CC_HomeQ_Dispute_Status1>
+  <CC_HomeQ_Dispute_Status3>The colony has given its judgement to {X_nameDef} and {OTHER}.</CC_HomeQ_Dispute_Status3>
+
+  <!-- A wounded messenger. -->
+  <CC_HomeQ_Messenger_Coming>{X_nameDef} of {FACTION} is coming in from the edge of the map, badly hurt.</CC_HomeQ_Messenger_Coming>
+  <CC_HomeQ_Messenger_Mended>{X_nameDef} is well enough to be up again, and will wait at the colony until {X_possessive} people come.</CC_HomeQ_Messenger_Mended>
+  <CC_HomeQ_Messenger_Status0>{X_nameDef} is on the way to the gate.</CC_HomeQ_Messenger_Status0>
+  <CC_HomeQ_Messenger_InBed>{X_nameDef} is in a bed being looked after.</CC_HomeQ_Messenger_InBed>
+  <CC_HomeQ_Messenger_NoBed>{X_nameDef} needs a bed.</CC_HomeQ_Messenger_NoBed>
+  <CC_HomeQ_Messenger_Up>{X_nameDef} is up and waiting at the colony.</CC_HomeQ_Messenger_Up>
+
+  <!-- An outlaw on the colony's land. -->
+  <CC_HomeQ_Outlaw_Price>{ALIVE} if taken alive, or {DEAD} if killed</CC_HomeQ_Outlaw_Price>
+  <CC_HomeQ_Outlaw_Fights>{X_nameDef} has been found, and is fighting.</CC_HomeQ_Outlaw_Fights>
+  <CC_HomeQ_Outlaw_Runs>{X_nameDef} has been found, and is running for the edge of the map.</CC_HomeQ_Outlaw_Runs>
+  <CC_HomeQ_Outlaw_Status1>{X_nameDef} is hiding somewhere to the {WAY} of the colony.</CC_HomeQ_Outlaw_Status1>
+  <CC_HomeQ_Outlaw_Status2>{X_nameDef} has been found.</CC_HomeQ_Outlaw_Status2>
+  <CC_HomeQ_Outlaw_Down>{X_nameDef} is down: capture {X_objective} before {X_pronoun} bleeds to death, if the colony wants {X_objective} alive.</CC_HomeQ_Outlaw_Down>
+  <CC_HomeQ_Outlaw_Status3>{FACTION} are coming to collect {X_nameDef}.</CC_HomeQ_Outlaw_Status3>
+
+  <!-- A lost keepsake. -->
+  <CC_HomeQ_Keepsake_Job>searching for {OWNER}'s {THING}.</CC_HomeQ_Keepsake_Job>
+  <CC_HomeQ_Keepsake_Menu>Search here for {OWNER}'s {THING}</CC_HomeQ_Keepsake_Menu>
+  <CC_HomeQ_Keepsake_NoReach>can't get there</CC_HomeQ_Keepsake_NoReach>
+  <CC_HomeQ_Keepsake_Searched>{PAWN_nameDef} has searched every spot of the area {PAWN_pronoun} can reach.</CC_HomeQ_Keepsake_Searched>
+  <CC_HomeQ_Keepsake_Wet>Rain or snow is falling on the area where {OWNER}'s {THING} lies. {MAX} hours of it will ruin the {THING}.</CC_HomeQ_Keepsake_Wet>
+  <CC_HomeQ_Keepsake_Status1>{OWNER}'s {THING} lies somewhere in the marked area. Hours of rain or snow on it: {WET} of {MAX}.</CC_HomeQ_Keepsake_Status1>
+  <CC_HomeQ_Keepsake_Status2>{FACTION} are coming for it.</CC_HomeQ_Keepsake_Status2>
+  <CC_HomeQ_Keepsake_Status4>{FACTION}'s own searcher is looking for it.</CC_HomeQ_Keepsake_Status4>
+  <CC_HomeQ_Keepsake_TheirSearch>{X_nameDef} of {FACTION} has come to search the marked area.</CC_HomeQ_Keepsake_TheirSearch>
+
+  <!-- An animal tamed for them. -->
+  <CC_HomeQ_Tame_Comes>The wild {THING} for the quest has come onto the colony's land.</CC_HomeQ_Tame_Comes>
+  <CC_HomeQ_Tame_Tamed>The {THING} is tame. {FACTION}'s handler is coming for it.</CC_HomeQ_Tame_Tamed>
+  <CC_HomeQ_Tame_Wild>The {THING} is still wild.</CC_HomeQ_Tame_Wild>
+
+</LanguageData>

@@ -60,9 +60,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     consistently go out of base and it's worth it, so keep these quests to a minimum", "unless it's like within only
     very few tiles". The list and the rules are in `docs/quests-proposals.md`: nearly all at home, away only within
     3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1:
-    the storyline frame with S1, S4 and S8 is built, not released (the entry above the newest release line,
-    "Storylines: the frame, ..."); Q1, Q2, Q5, Q7, Q9 and Q10 are being built beside it. Rounds 2 and 3
-    wait, and the player can strike or change anything in them before they start.
+    the six single quests (Q1, Q2, Q5, Q7, Q9 and Q10) are released (0.261.0, "Quests at home: six single quests"); the
+    storyline frame with S1, S4 and S8 is built, not released (the entry above the newest release line, "Storylines:
+    the frame, ..."). Rounds 2 and 3 wait, and the player can strike or change anything in them before they start.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -152,8 +152,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   clear style i mentioned earlier on", "and while quests that require you to go out of your base are interesting, i
   hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these quests to a
   minimum", "unless it's like within only very few tiles"). Round 1's storyline part of `docs/quests-proposals.md` (the
-  single quests Q1, Q2, Q5, Q7, Q9 and Q10 are being built beside it). DESIGN.md "Quests and storylines: the frame, the factor's
-  goods, the beast and the children" (after "Revel, the Open Cup") has all of it; `docs/quests-proposals.md` marks S1, S4
+  single quests Q1, Q2, Q5, Q7, Q9 and Q10 are released, 0.261.0, the entry below). DESIGN.md "Quests and storylines: the frame, the factor's
+  goods, the beast and the children" (after "Quests at home, round 1") has all of it; `docs/quests-proposals.md` marks S1, S4
   and S8 built; README a paragraph after the missions; the Almanac's Rimfolk events page a "Storylines" section after
   "Missions" (keywords unchanged).
   - **What was built.** The frame: a storyline is a saved run of missions; each part a quest in the Quests tab (or a
@@ -217,6 +217,73 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     (https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856, 1.6 and 1.7) and Vanilla Animals Expanded
     (https://steamcommunity.com/sharedfiles/filedetails/?id=2871933948, 1.6 and 1.7); the factor's crates keep dry on
     LWM's Deep Storage shelves (https://steamcommunity.com/sharedfiles/filedetails/?id=3532608331, 1.6 and 1.7, enabled).
+- 0.261.0, **Quests at home: six single
+  quests** (16 November 2026; the player's words: "go ahead with quests and storylines, make sure they are written in
+  the more clear style i mentioned earlier on", then "and while quests that require you to go out of your base are
+  interesting, i hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these
+  quests to a minimum", "unless it's like within only very few tiles"). Round 1's single quests of
+  `docs/quests-proposals.md` (Q1, Q2, Q5, Q7, Q9, Q10), each a mission kind of its own in the Quests tab, each played
+  out on the colony's own map. DESIGN.md "Quests at home, round 1: six single quests" has all of it; README the missions
+  paragraph and the dev actions; the Almanac's council page, Missions (keywords unchanged).
+  - **What was built.** *Their prisoner kept*: two of theirs walk a disarmed enemy of theirs in to a free prison bed
+    and hand them over inside the cell; held 4 to 7 days as the game holds any prisoner (its own prison breaks); then
+    collected and paid for. *A dispute judged*: two of a people come to the gate with a quarrel of their age; a card
+    gives each claim and asks (for one, the other, split, or none); the peacemaker tells them to their faces; the loser
+    tries the game's own insult on the other three times (the game's own odds of a fight, the game's own message); their
+    town pays. *A wounded messenger*: comes in from the edge with two or three of the game's own wounds (by raiders or
+    wild animals, by their age), hands over a letter (a message stick, a sealed letter or a dispatch case by age), is the
+    colony's guest in a patient's bed until mended, then waits as a visitor; after 4 to 6 days their people collect the
+    letter and pay. *An outlaw on the colony's land*: one of a hostile people's own fighters scaled to the colony hides
+    asleep at the foot of the hills or near the edge (which way in the terms); found (in sight within ten cells, or
+    hurt), fights three times in four within the shared harm budget (`HarmKinds.Outlaw`), else runs; captured pays half
+    as much again (their people collect the prisoner), killed pays the price. *A lost keepsake*: a painted hide, a family
+    book or a photo album by age, somewhere in a radius-7 area drawn on the map; right-click inside it with a colonist to
+    search a spot at a time (an hour each, going on by themselves); six wet hours ruin it (left there, ruined); not found
+    in 3 to 4 days, one of theirs comes and finds it. *Tame one for them*: the finest wild animal of the land the colony's
+    tamer could win over, else one of the land's kinds (every mod's) wanders in; tamed, their handler fetches it and pays;
+    bonded, they leave it. Rewards by the asking people's age and the colony's wealth (a tribe pays in goods), goodwill
+    with the task's reason, and the missions' own favour owed where favours are kept, stated plainly in the terms.
+    Each takes 0.3 of the missions' one draw (1.8), so missions come no oftener than before.
+  - **Decided here** (not asked): Q5 is "a wounded messenger", on foot (no mount comes, so the words don't name a
+    rider); the prisoner walks in as one of the asking people's own until handed over (the colony's doors don't open for
+    an enemy, and a prisoner outside a cell runs at once by the game's own rule), and is handed over where they stand
+    after half a day if the cell can't be reached; the quarrel's card defaults to no judgement; the keepsake's "someone
+    else takes it" is their own searcher coming when the time is up (shown, rather than an unseen passer-by); the outlaw
+    lies low asleep (no threat or alarm until found) and its pay is half as much again alive; each quest's giver is any
+    people at peace, one calling five times likelier (citizens, traders, linesmen, mercenaries, pilgrims, tamers). The
+    harm budget has a new kind, "outlaw", system "quests" (off with the world's battles).
+  - **Code map**: `Missions/HomeQuestsMath.cs` (pure: rewards, days, odds, outcomes; linked in `Tools/Tests/Tests.csproj`),
+    `Missions/HomeQuests.cs` (shared: officers, rewards, enemies, far cells, wounds, the letter and keepsake defs, words;
+    `JobDriver_SearchKeepsake`, `FloatMenuOptionProvider_SearchKeepsake`, `HomeQuestOverlay`), `Missions/Workers_MissionHome.cs`
+    (Q1 `HappeningWorker_MissionPrisoner`, Q2 `HappeningWorker_MissionDispute` and its card `HappeningWorker_MissionJudgement`,
+    Q5 `HappeningWorker_MissionMessenger`), `Missions/Workers_MissionHome2.cs` (Q7 `HappeningWorker_MissionOutlaw`, Q9
+    `HappeningWorker_MissionKeepsake`, Q10 `HappeningWorker_MissionTameFor`), `Missions/HomeQuestsDebug.cs`; changed (small):
+    `Missions/Missions.cs` (`Mission.cell`, `area`, `thing`, `other`, saved; the quest's look targets show the thing and the
+    area; `Missions.Tags` calls `HomeQuests.AddTags`), `Harm/HarmBudgetMath.cs` (`HarmKinds.Outlaw`), `Harm/Harm.cs` (case
+    "quests"). Defs: `Defs/MissionDefs/Rimfolk_Missions_Home.xml` (six quests and the card), `Defs/Misc/Rimfolk_Missions_Home_Misc.xml`
+    (six items, the search job, the quarrel's opinion), `Defs/FlavorPoolDefs/Rimfolk_Lines_HomeQuests.xml`; Keyed
+    `Rimfolk_Missions_Home.xml`; sprites `Textures/ColonyCouncil/Things/Quest*.png`, `Keepsake*.png` (`Tools/make_quest_items.py`).
+    Tests: `Tools/Tests/HomeQuestsTests.cs` (new), `HarmBudgetTests` (the new kind), `NeighboursFourTests` (the new file
+    in the one draw).
+  - **Can't be checked without the game**: the escort walking the prisoner through the colony's doors into the cell and
+    the handover there (a cell behind a door the visitors can't reach falls back to the gate after half a day); the
+    game's prison break on a handed-over prisoner; `Couriers.Fetch` collecting a prisoner from a cell and an animal from a
+    pen; the quarrel's card, the judge finding them, the insults and a social fight between two visitors; the messenger's
+    wounds (walking, bleeding, never dying before the gate), the guest's bed, tending and feeding, and the turn back to a
+    visitor; the outlaw asleep in the open (no alarm), waking when found, the defend lord's fight and the run for the edge;
+    the search area drawn, the right-click option and the job going on spot to spot; the rain count; the animal wandering
+    in and the handler's fetch; how often each comes.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk): 1. With a free prison bed, "Quests at home: offer one now..."
+    → their prisoner kept; "accept the open one"; "what it waits for comes now": two of theirs walk the prisoner to the
+    cell and hand them over; "what it waits for comes now" again: the days are up and someone comes for the prisoner.
+    2. Offer a dispute, accept, "what it waits for comes now": the two come to the gate and the card comes; answer it and
+    watch the peacemaker go over, the bubbles and the insults. 3. Offer a wounded messenger with a bed and a doctor: they
+    come in bleeding, drop the letter at the gate, lie down and are tended. 4. Offer an outlaw (battles on): look the way
+    the terms say; walk a colonist within ten cells: they wake and fight or run. 5. Offer a keepsake: the yellow area on the
+    map; right-click inside it with a colonist ("Search here for ..."). 6. Offer an animal tamed for them, tame it, "what it
+    waits for comes now": their handler comes for it. "end the open one as..." ends any of them with each of its outcomes.
+  - **Mods that would help**: none is needed; the six items' sprites are Rimfolk's own (`Tools/make_quest_items.py`), the
+    prisoner, the wounds, the fight, the insult and the taming the game's own, the animals and fighters every enabled mod's.
 - 0.260.0, **Revel, the Open Cup: a fifteenth
   god of drink, drugs and the long night, in one cup of the stores and as a horned reveller** (16 November 2026; the
   player's words below, from the to-do; the go with the offerings update: "go ahead with this, and if there's other

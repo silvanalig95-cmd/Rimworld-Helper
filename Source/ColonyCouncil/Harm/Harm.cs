@@ -223,6 +223,8 @@ namespace ColonyCouncil
                 case "gods": return Gods.On;
                 // The old powers' strange happenings (OldPowers/), with Rimfolk's world events.
                 case "oldPowers": return s.worldEvents;
+                // An outlaw hiding on the colony's land fights back when found (Missions/Workers_MissionHome2.cs).
+                case "quests": return s.worldEvents && s.worldEventBattles;
                 case "courierSick": return Couriers.On && s.worldSituations && Interplay.On;
                 case "patientIll": return HealthTracker.ReputationOn && AilmentTracker.SeriousOn;
                 case "badBatch": return true;
