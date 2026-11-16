@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    The fourteen's ways in the world (Source/ColonyCouncil/Gods/World/GodWays.cs, GodWaysDef; the characters are those of
+    The fifteen's ways in the world (Source/ColonyCouncil/Gods/World/GodWays.cs, GodWaysDef; the characters are those of
     docs/gods-pantheon-brainstorm.md): what each gives and to whom, the price it asks and its offering, how it comes in a
     dream (unnamed, as the dreamer tells it), the shape of its anger at a home, of a grudge against one colonist and of its
     kindness, its temper, the beasts that are its kin, the holy place its people seek, its feast's name, its sides in the
@@ -255,6 +255,26 @@
     <feast>the Fair of the Glint</feast>
     <side>flow</side>
     <debts>true</debts>
+  </ColonyCouncil.GodWaysDef>
+
+  <!--
+    Revel, the Open Cup: generous first, a cheat after; the barrels ready early, a light heart for the one who talks best;
+    the drink in the stores gone sour when he wants his price. On the warm side of the quarrel with Hush's cold.
+  -->
+  <ColonyCouncil.GodWaysDef>
+    <defName>Rimfolk_GodWays_Revel</defName>
+    <gods><li>Revel</li></gods>
+    <gifts><li>Hand</li></gifts>
+    <chooses>Social</chooses>
+    <hand>Rimfolk_GodGift_Revel</hand>
+    <wrath>Sour</wrath>
+    <wrathDays>40</wrathDays>
+    <blessing>Cask</blessing>
+    <prices><li>Offering</li></prices>
+    <offering>Beer</offering>
+    <dream>a man with goat's horns sat on the end of the bed with a cup in each hand, held one out, and laughed when the dreamer reached for it</dream>
+    <feast>the Long Night</feast>
+    <side>warm</side>
   </ColonyCouncil.GodWaysDef>
 
   <!-- Undertow, the Hunger: gives only by its bargains (GodVoid); the gods that fear it turn away, and Pip goes quiet. -->

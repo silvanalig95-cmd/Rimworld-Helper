@@ -111,6 +111,13 @@
         <li>[notice:watch] The graves smell of warm stone and resin.</li>
         <li>[notice:watch,named] {GOD} keeps the watch, so the dead are safe.</li>
         <li>[notice:watch,scoffer] Cats like graves, they're warm and quiet.</li>
+
+        <li>[notice:revelry] There's a sweet smoke about the place, and nobody's smoking.</li>
+        <li>[notice:revelry] Somebody laughed in the empty room just now.</li>
+        <li>[notice:revelry] Everything tastes better today, I don't know why.</li>
+        <li>[notice:revelry,wrath] Nothing tastes right today, not even the good stuff.</li>
+        <li>[notice:revelry,named] {GOD} is at the table, so somebody pour him a cup.</li>
+        <li>[notice:revelry,scoffer] Someone left a pipe burning somewhere, that's the smell.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -183,6 +190,9 @@
         <li>[way:cat,!scoffer] A cat had it at dawn, that's how she takes it.</li>
         <li>[way:cat,!scoffer] Paw prints all around it, {GOD} sent her cats.</li>
         <li>[way:cat,scoffer] The cats ate it, cats eat everything.</li>
+        <li>[way:cup,!scoffer] It's gone, and the ground smells of drink where it stood.</li>
+        <li>[way:cup,!scoffer] Somebody drank it in the night, and spilled the last of it.</li>
+        <li>[way:cup,scoffer] Someone had a drink on the quiet and spilled the rest.</li>
         <li>[way:given,visitor] This is for me, truly, from your shrine?</li>
         <li>[way:given,visitor] I'll carry it on, as you say, and pass it to someone else.</li>
         <li>[way:given,visitor] Gold given to a stranger, your people are odd and kind.</li>

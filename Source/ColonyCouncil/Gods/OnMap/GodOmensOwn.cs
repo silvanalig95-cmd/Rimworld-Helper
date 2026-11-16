@@ -83,6 +83,8 @@ namespace ColonyCouncil
                 case OmenKind.DogsSilent: return Dogs(map).Count > 0;
                 case OmenKind.GoldEyes:
                 case OmenKind.Sand: return MogsWays.Tombs(map, true).Count > 0 || Open(map).IsValid;
+                case OmenKind.Bleat: return EmptyRoom(map) != null;
+                case OmenKind.Spilled: return RevelGoods.HeldDrink(map) != null;
                 default: return true;
             }
         }
@@ -580,6 +582,52 @@ namespace ColonyCouncil
                     speaker = Witness(map, at, 18f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c1)).FirstOrDefault();
                     return speaker != null;
                 }
+                case OmenKind.Bleat:
+                {
+                    // Late at night a goat bleats in an empty room of the colony's, and there is no goat in there.
+                    int hour = GenLocalDate.HourOfDay(map);
+                    if (hour < 21 && hour > 3) return false;
+                    var room = EmptyRoom(map);
+                    if (room == null) return false;
+                    at = room.Cells.Where(c => c.Standable(map)).RandomElementWithFallback(room.Cells.First());
+                    var c0 = at;
+                    speaker = map.mapPawns.FreeColonistsSpawned.Where(p => Awake(p) && p.Position.InHorDistOf(c0, 20f) && p.GetRoom() != room)
+                        .OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    if (speaker == null) return false;
+                    GodSounds.Play(GodSounds.Sound("Pawn_Goat_Call"), map, at, 0.7f)?.End();
+                    SweetSmoke(map, at, 2);
+                    return true;
+                }
+                case OmenKind.SweetSmoke:
+                {
+                    // A sweet smoke drifts through the colony where nothing is burning.
+                    at = CampSite.ColonyCenter(map);
+                    if (!at.IsValid) at = Open(map);
+                    if (!at.IsValid || SweetSmoke(map, at, 10) < 4) return false;
+                    var c0 = at;
+                    speaker = Witness(map, at, 22f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    return speaker != null;
+                }
+                case OmenKind.Spilled:
+                {
+                    // The drink in the stores found knocked over: one of it gone, a wet patch on the floor, and nobody was near it.
+                    var drink = RevelGoods.HeldDrink(map);
+                    if (drink == null) return false;
+                    at = drink.Position;
+                    try
+                    {
+                        if (drink.stackCount > 1) drink.SplitOff(1).Destroy(DestroyMode.Vanish);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("gods: the drink spilled", e);
+                    }
+                    var wet = GenAdj.CellsAdjacent8Way(new TargetInfo(at, map)).Where(c => c.InBounds(map) && c.Standable(map)).RandomElementWithFallback(at);
+                    if (ThingDefOf.Filth_Water != null) FilthMaker.TryMakeFilth(wet, map, ThingDefOf.Filth_Water, 2);
+                    var c0 = at;
+                    speaker = Witness(map, at, 14f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
+                    return speaker != null;
+                }
                 case OmenKind.Coin:
                 {
                     // A coin where none was dropped, at someone's feet.
@@ -745,6 +793,35 @@ namespace ColonyCouncil
             var c0 = at;
             speaker = Witness(map, at, 15f) ?? map.mapPawns.FreeColonistsSpawned.Where(Awake).OrderBy(p => p.Position.DistanceToSquared(c0)).FirstOrDefault();
             return true;
+        }
+
+        /// <summary>A closed room of the colony's on the home ground with nobody in it, of a size for a bleat to come from, or null.</summary>
+        internal static Room EmptyRoom(Map map) =>
+            map.regionGrid.AllRooms.Where(r => r != null && !r.PsychologicallyOutdoors && !r.IsHuge && r.CellCount >= 6 && r.CellCount <= 200 && !r.Fogged
+                                               && map.areaManager.Home[r.Cells.First()] && !r.ContainedAndAdjacentThings.OfType<Pawn>().Any())
+                .InRandomOrder().FirstOrDefault();
+
+        /// <summary>
+        /// Revel's sweet smoke where nothing burns (Ideology's bong smoke, else the game's smoke, tinted pale rose): curls drifting
+        /// up off open cells round a place. How many curled up.
+        /// </summary>
+        internal static int SweetSmoke(Map map, IntVec3 at, int n)
+        {
+            if (map == null || !at.IsValid) return 0;
+            var smoke = DefDatabase<FleckDef>.GetNamedSilentFail("AutobongSmoke") ?? FleckDefOf.Smoke;
+            var tint = new Color(0.96f, 0.82f, 0.88f, 0.6f);
+            int thrown = 0;
+            foreach (var c in GenRadial.RadialCellsAround(at, 9f, true).Where(c => c.InBounds(map) && c.Standable(map) && !c.Fogged(map)).InRandomOrder().Take(n))
+            {
+                var data = FleckMaker.GetDataStatic(c.ToVector3Shifted() + new Vector3(Rand.Range(-0.4f, 0.4f), 0f, Rand.Range(-0.4f, 0.4f)), map, smoke, Rand.Range(1.2f, 2f));
+                data.rotationRate = Rand.Range(-30f, 30f);
+                data.velocityAngle = Rand.Range(-20f, 20f);
+                data.velocitySpeed = Rand.Range(0.2f, 0.5f);
+                data.instanceColor = tint;
+                map.flecks.CreateFleck(data);
+                thrown++;
+            }
+            return thrown;
         }
 
         internal static void Rime(Map map, IntVec3 c)

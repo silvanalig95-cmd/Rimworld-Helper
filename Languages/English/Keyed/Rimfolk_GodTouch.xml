@@ -23,6 +23,7 @@
   <CC_GodTouch_Bless_Mog>Since what happened at {HOME}, a calm has settled on {WHO}.</CC_GodTouch_Bless_Mog>
   <CC_GodTouch_Bless_Murmur>Since what happened at {HOME}, cooking goes cleanly and quickly for {WHO}.</CC_GodTouch_Bless_Murmur>
   <CC_GodTouch_Bless_Ducat>Since what happened at {HOME}, traders find it hard to cheat {WHO}.</CC_GodTouch_Bless_Ducat>
+  <CC_GodTouch_Bless_Revel>Since what happened at {HOME}, {WHO} take more pleasure in everything, and people warm to them.</CC_GodTouch_Bless_Revel>
 
   <!-- ===================== Small ===================== -->
 
@@ -39,6 +40,7 @@
   <CC_GodTouch_Fog>Fog came down over {HOME}.</CC_GodTouch_Fog>
   <CC_GodTouch_RatsGone>The rats are leaving {HOME}, and the cats are out watching them go.</CC_GodTouch_RatsGone>
   <CC_GodTouch_Sleepless>{WHO} slept badly after what they saw at {HOME}.</CC_GodTouch_Sleepless>
+  <CC_GodTouch_Merry>{WHO} came away from what happened at {HOME} in high spirits.</CC_GodTouch_Merry>
 
   <!-- ===================== Notable ===================== -->
 
@@ -63,6 +65,7 @@
   <CC_GodTouch_Fish>Fish lay on the bank by the water at {HOME}: {WHAT}.</CC_GodTouch_Fish>
   <CC_GodTouch_Breakdown>The {THING} at {HOME} broke down.</CC_GodTouch_Breakdown>
   <CC_GodTouch_Vanish>{COUNT} {WHAT} went missing from the stores at {HOME}, and nobody was seen taking it.</CC_GodTouch_Vanish>
+  <CC_GodTouch_Sour>{COUNT} {WHAT} in the stores at {HOME} went sour overnight and spilled out across the floor.</CC_GodTouch_Sour>
 
   <!-- ===================== Great (a god's moment and its card) ===================== -->
 
@@ -76,6 +79,7 @@
   <CC_GodTouch_Linger_Selene>Since then, the moon over {HOME} has stayed close: the nights are light, and the sleepers heal faster.</CC_GodTouch_Linger_Selene>
   <CC_GodTouch_Linger_Murmur>Since then, the wells at {HOME} have run clean, and the rain has come.</CC_GodTouch_Linger_Murmur>
   <CC_GodTouch_Linger_Ducat>Since then, coins have glinted in the stores at {HOME}, and traders pay better.</CC_GodTouch_Linger_Ducat>
+  <CC_GodTouch_Linger_Revel>Since then, a sweet smoke has hung about {HOME}, and every pleasure there comes easier.</CC_GodTouch_Linger_Revel>
   <CC_GodTouch_Dim_Title>The dark stays at {HOME}</CC_GodTouch_Dim_Title>
   <CC_GodTouch_Dim_Undertow>Since then, a dark has stayed over {HOME}: the lamps reach less far, and people hear things in the quiet.</CC_GodTouch_Dim_Undertow>
   <CC_GodTouch_Vein_Title>Gold in the rock</CC_GodTouch_Vein_Title>

@@ -15,7 +15,8 @@ namespace ColonyCouncil
     /// age, uranium and plasteel later, the player's mods' metals mined from rock), Bellwether's hay, milk and wool, Morel's
     /// mushrooms (the player's mods' too), Ennu's food for the road and cloth, Pip's steel and, with machines, parts and
     /// chemfuel, Hush's hides of the land's animals, Selene's medicine by the age and silver, Murmur's fish (Odyssey's,
-    /// Vanilla Fishing Expanded's) and rice, Ducat's silver and gold. Cirrus, Undertow, Helios and Tamiu give nothing back
+    /// Vanilla Fishing Expanded's) and rice, Ducat's silver and gold, Revel's drink and smoke of the colony's own kind (never a
+    /// hard drug). Cirrus, Undertow, Helios and Tamiu give nothing back
     /// in kind. It is the god's answer to that gift: shown with the god's own look and sound, the camera on it, a message of
     /// what was found where, the finder's own words, and the colony's book (as those who saw it saw it, and on the gift's
     /// line). A god once in ten days at a home, any god once in three; a precious gift whenever.
@@ -173,6 +174,12 @@ namespace ColonyCouncil
                 case "Ducat":
                     Add(ThingDefOf.Silver, 3f);
                     if (age >= 1) Add(ThingDefOf.Gold, 1f);
+                    break;
+                case "Revel":
+                    // Drink and smoke of the colony's own kind, every mod's, never a hard drug: what it can make again first.
+                    foreach (var d in RevelGoods.All.Where(x => !RevelGoods.Hard(x) && RevelGoods.OfAge(x)))
+                        Add(d, map != null && RevelGoods.Unlocked(d, map) ? 2f : RevelGoods.Drink(d) ? 0.6f : 0.4f);
+                    Add(ThingDefOf.Beer, 1f);
                     break;
             }
             return list;

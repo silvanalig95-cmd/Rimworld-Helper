@@ -172,7 +172,11 @@ namespace ColonyCouncil
             ["TraderCaravanArrival"] = H("Ducat", HandKind.Gift, 0.08f),
             ["OrbitalTraderArrival"] = H("Ducat", HandKind.Gift, 0.1f),
             ["VTE_CaravanArriveForItems"] = H("Ducat", HandKind.Gift, 0.2f),
-            ["Council_Evt_FarMarket"] = H("Ducat", HandKind.Gift, 0.3f)
+            ["Council_Evt_FarMarket"] = H("Ducat", HandKind.Gift, 0.3f),
+            // Revel: a brewer at the gate, a feast at a camp, music on the air.
+            ["Rimfolk_Evt_Brewer"] = H("Revel", HandKind.Gift, 0.4f),
+            ["Council_Evt_CampFeast"] = H("Revel", HandKind.Gift, 0.3f),
+            ["Council_Evt_Music"] = H("Revel", HandKind.Sign, 0.3f)
         };
 
         /// <summary>The events by their worker's class (for a mod's event made with the game's worker), when the name says nothing.</summary>

@@ -163,7 +163,12 @@ namespace ColonyCouncil
         /// <summary>Those who saw it sleep badly the night after (Selene).</summary>
         Sleepless,
         /// <summary>The dark stays on the land a day or two (Undertow's own presence).</summary>
-        Dim
+        Dim,
+        // ---- Revel's (the fifteenth; saved by name, so they go at the end) ----
+        /// <summary>Those who saw it come away in high spirits, their recreation filled (Revel).</summary>
+        Merry,
+        /// <summary>Some of the drink in the stores turns sour and spills, never all of it (Revel's anger).</summary>
+        Sour
     }
 
     /// <summary>One of a god's effects: what, how strong, and whether it is one of its angers.</summary>
@@ -239,7 +244,10 @@ namespace ColonyCouncil
             "CC_GodO_Saw_Star", "CC_GodO_Saw_FallDream", "CC_GodO_Saw_Pods", "CC_GodO_Saw_Aurora", "CC_GodO_Saw_Tended", "CC_GodO_Saw_RoadWait",
             "CC_GodO_Saw_OldTree", "CC_GodO_Saw_Walk", "CC_GodO_Saw_WalkAlone", "CC_GodO_Saw_RingBuried", "CC_GodO_Saw_Bowl", "CC_GodO_Saw_Turret",
             "CC_GodO_Saw_Kindest", "CC_GodO_Saw_Sulk",
-            "CC_GodHush_Saw_Thaw", "CC_GodMurmur_Saw_", "CC_GodDucat_Saw_", "CC_GodSelene_Saw_Watch", "CC_GodUndertow_Saw_"
+            "CC_GodHush_Saw_Thaw", "CC_GodMurmur_Saw_", "CC_GodDucat_Saw_", "CC_GodSelene_Saw_Watch", "CC_GodUndertow_Saw_",
+            // Revel's: the long night's joy, the vision walked to, the craving's dose, the stash, the craving eased, his cup shared
+            // (his binge seen has none of its own, so one of his may follow it).
+            "CC_GodRevel_Saw_Night", "CC_GodRevel_Saw_Vision", "CC_GodRevel_Saw_Craving", "CC_GodRevel_Saw_Stash", "CC_GodRevel_Saw_LetGo", "CC_GodRevel_Saw_Shared"
         };
 
         /// <summary>The Guest's small tests' keys begin so (CC_GodO_Saw_TestStory, _TestCook ...).</summary>
@@ -476,7 +484,7 @@ namespace ColonyCouncil
         /// <summary>
         /// Each god's own effects, by its key (Tamiu's is Mog), as different as the gods are: Hollin's green, Smoulder's
         /// fires and ore, Bellwether's beasts, Morel's mushrooms and soil, Ennu's travellers, Pip's machines, Cirrus's sky,
-        /// Hush's cold, the Hunger's taking, Helios's sun, Selene's sleep and healing, Tamiu's cats, Murmur's water, Ducat's
+        /// Hush's cold, the Hunger's taking, Helios's sun, Selene's sleep and healing, Tamiu's cats, Murmur's water, Revel's merry hours, Ducat's
         /// coin. A god with none here (a new one) has the shared small blessing only.
         /// </summary>
         public static readonly Dictionary<string, TouchEntry[]> Table = new Dictionary<string, TouchEntry[]>
@@ -494,7 +502,8 @@ namespace ColonyCouncil
             ["Selene"] = new[] { S(TouchEffect.Bless), N(TouchEffect.Heal), N(TouchEffect.Inspire), G(TouchEffect.ScarGone), G(TouchEffect.Linger), D(TouchEffect.Sleepless, TouchTier.Small) },
             ["Mog"] = new[] { S(TouchEffect.Bless), S(TouchEffect.RatsGone), N(TouchEffect.CatComes), N(TouchEffect.Inspire), G(TouchEffect.Ward) },
             ["Murmur"] = new[] { S(TouchEffect.Bless), S(TouchEffect.Rain), N(TouchEffect.Ripen), N(TouchEffect.Fish), G(TouchEffect.Spring), G(TouchEffect.Linger), D(TouchEffect.Fog, TouchTier.Small) },
-            ["Ducat"] = new[] { S(TouchEffect.Bless), N(TouchEffect.Find), N(TouchEffect.Trader), N(TouchEffect.Inspire), G(TouchEffect.Hoard), G(TouchEffect.Linger), D(TouchEffect.Vanish, TouchTier.Notable) }
+            ["Ducat"] = new[] { S(TouchEffect.Bless), N(TouchEffect.Find), N(TouchEffect.Trader), N(TouchEffect.Inspire), G(TouchEffect.Hoard), G(TouchEffect.Linger), D(TouchEffect.Vanish, TouchTier.Notable) },
+            ["Revel"] = new[] { S(TouchEffect.Bless), S(TouchEffect.Merry), N(TouchEffect.Find), N(TouchEffect.Inspire), G(TouchEffect.Linger), D(TouchEffect.Sour, TouchTier.Notable) }
         };
 
         private static readonly TouchEntry[] Shared = { S(TouchEffect.Bless) };
@@ -533,6 +542,7 @@ namespace ColonyCouncil
                 case "Ennu": return 7f;
                 case "Cirrus": return 7f;
                 case "Ducat": return 7f;
+                case "Revel": return 5f;
                 case "Pip": return 5f;
                 case "Selene": return 5f;
                 case "Murmur": return 4f;
@@ -545,7 +555,7 @@ namespace ColonyCouncil
         /// The gods whose own presence may stay on the land for days: not the long noon, the white silence or the rot (days of
         /// those would harm the colony), and not Tamiu's watch, which is hers only while she walks the land.
         /// </summary>
-        public static readonly string[] Lingers = { "Hollin", "Smoulder", "Bellwether", "Ennu", "Pip", "Cirrus", "Selene", "Murmur", "Ducat", "Undertow" };
+        public static readonly string[] Lingers = { "Hollin", "Smoulder", "Bellwether", "Ennu", "Pip", "Cirrus", "Selene", "Murmur", "Ducat", "Revel", "Undertow" };
 
         /// <summary>How much a small and a notable ripening moves the crops near the place on (a share of their whole growth), and the sun's year every crop.</summary>
         public const float RipenNear = 0.2f, SunYearGrowth = 0.3f;

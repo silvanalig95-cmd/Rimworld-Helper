@@ -382,4 +382,33 @@
     <vows><li>Temple</li></vows>
   </ColonyCouncil.GodWorshipDef>
 
+  <!--
+    Revel, the Open Cup: drink and smoke, poured out for him first. What the colony carries to him on its own is what it can
+    make again (Offerings.Pick passes over anything precious); a dear drink or drug goes only when someone asks and the
+    colony says yes (Gods/Worship/OfferingGifts.cs).
+  -->
+  <ColonyCouncil.GodWorshipDef>
+    <defName>Rimfolk_Worship_Revel</defName>
+    <gods><li>Revel</li></gods>
+    <hope>give us a good night and an easy morning</hope>
+    <temper>
+      <li>{NAME} has soured on us, and every cup we pour tastes of the morning after</li>
+      <li>{NAME} has left our table, and the nights end early</li>
+      <li>{NAME} comes and goes as he likes, and has played no tricks on us lately</li>
+      <li>{NAME} has sat at our table, and the nights have been merry</li>
+      <li>{NAME} pours for us gladly, and every feast of ours runs long</li>
+    </temper>
+    <taking>Cup</taking>
+    <likes>
+      <li><kind>Drink</kind><weight>1.6</weight></li>
+      <li><kind>Drug</kind><weight>1.4</weight></li>
+      <li><kind>Meal</kind><weight>0.9</weight></li>
+    </likes>
+    <festivalSeason>2</festivalSeason><festivalDay>7</festivalDay>
+    <festivalName>the Long Night of {GOD}</festivalName>
+    <festivalDishes>the barrels opened at dusk, the first drop poured on the ground, and the fire kept up until morning</festivalDishes>
+    <chants><li>VME_RitualSustainer_Hedonist</li><li>VFEM2_Viking_RitualSustainer</li><li>RitualSustainer_Rustic</li></chants>
+    <vows><li>Temple</li><li>Pilgrimage</li></vows>
+  </ColonyCouncil.GodWorshipDef>
+
 </Defs>

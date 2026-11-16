@@ -168,6 +168,41 @@ namespace ColonyCouncil
             return DarkWordsIn(type) || DarkWordsIn(name) || DarkWordsIn(relatedMemeLabel);
         }
 
+        /// <summary>
+        /// The gods a deity is tied to only by its own words, never by its domains (Revel, the fifteenth: added after the faiths'
+        /// saints were first tied, so the older ties keep): a deity of wine, revelry, pleasure or the high life is his.
+        /// </summary>
+        public static readonly HashSet<string> ByOwnWords = new HashSet<string> { "Revel" };
+
+        /// <summary>The words that make a deity Revel's, beginning a word of its name, its type or its meme's label.</summary>
+        public static readonly string[] RevelWords =
+        {
+            "revel", "wine", "drink", "drunk", "beer", "brew", "vintner", "grape", "tavern", "carous", "intoxica", "pleasure", "hedon",
+            "debauch", "indulg", "excess", "merriment", "festivit", "party", "parties", "highlife"
+        };
+
+        /// <summary>The memes whose deities are Revel's (Ideology's high life, Vanilla Memes Expanded's party life, Alpha Memes' epicureans, by name).</summary>
+        public static readonly HashSet<string> RevelMemes = new HashSet<string> { "HighLife", "VME_PartyLife", "AM_Epicurean" };
+
+        /// <summary>
+        /// The god a deity is tied to by its own words, ahead of its domains: Revel for a deity of drink, revelry and pleasure
+        /// (never one of the damned, who are the dark gods'); null for any other.
+        /// </summary>
+        public static string OwnWords(string name, string type, string relatedMeme, string relatedMemeLabel, bool damned)
+        {
+            if (damned) return null;
+            if (!string.IsNullOrEmpty(relatedMeme) && RevelMemes.Contains(relatedMeme)) return "Revel";
+            foreach (var s in new[] { name, type, relatedMemeLabel })
+            {
+                if (string.IsNullOrEmpty(s)) continue;
+                foreach (var w in Split(s))
+                    foreach (var r in RevelWords)
+                        if (w.StartsWith(r, StringComparison.Ordinal))
+                            return "Revel";
+            }
+            return null;
+        }
+
         /// <summary>The gods the damned are tied to: the Hunger, and the darker of the rest (the long white, the coil under the mountain).</summary>
         public static readonly HashSet<string> DarkGods = new HashSet<string> { "Undertow", "Hush", "Smoulder" };
 

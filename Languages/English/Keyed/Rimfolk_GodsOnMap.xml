@@ -181,6 +181,9 @@
   <CC_GodM_Saw_HeatHaze>{WHO} watched the air shimmer over the open ground at {HOME} in the noon heat.</CC_GodM_Saw_HeatHaze>
   <CC_GodM_Saw_BigMoon>{WHO} saw the moon come up huge and close over {HOME}, and stay there all night.</CC_GodM_Saw_BigMoon>
   <CC_GodM_Saw_Glint>{WHO} caught a glint of gold out of the corner of their eye, and nothing was there.</CC_GodM_Saw_Glint>
+  <CC_GodM_Saw_Bleat>{WHO} heard a goat bleat in an empty room at {HOME} late at night, and there was no goat in there.</CC_GodM_Saw_Bleat>
+  <CC_GodM_Saw_SweetSmoke>{WHO} smelled a sweet smoke drifting through {HOME} where nothing was burning.</CC_GodM_Saw_SweetSmoke>
+  <CC_GodM_Saw_Spilled>{WHO} found the drink in the stores at {HOME} knocked over and spilled, and nobody had been near it.</CC_GodM_Saw_Spilled>
   <CC_GodM_Saw_Beetle>{WHO} watched a golden beetle walk across a table at {HOME} and off the edge.</CC_GodM_Saw_Beetle>
   <CC_GodM_Saw_Coin>{WHO} found a gold coin at their feet at {HOME} where nobody had dropped one.</CC_GodM_Saw_Coin>
 

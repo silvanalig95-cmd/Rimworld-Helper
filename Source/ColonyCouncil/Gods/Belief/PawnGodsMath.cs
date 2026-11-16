@@ -95,7 +95,9 @@ namespace ColonyCouncil
         /// <summary>Murmur's: a hum at the water's edge or the well.</summary>
         Water,
         /// <summary>Ducat's: a coin turned over at the silver.</summary>
-        Silver
+        Silver,
+        /// <summary>Revel's: the first drop of a cup poured on the ground, in the evening, at a table or a fire.</summary>
+        Cup
     }
 
     /// <summary>What a colonist is, as the draws read it, with no game types (PawnGods.Sketch makes it).</summary>
@@ -209,6 +211,7 @@ namespace ColonyCouncil
             ("Kind", 0, "Ennu", 22f), ("VTE_Wanderlust", 0, "Ennu", 16f), ("VTE_Wanderlust", 0, "Ducat", 6f), ("Rimfolk_TrailWise", 0, "Ennu", 10f),
             ("Rimfolk_BornCook", 0, "Ennu", 10f),
             ("Greedy", 0, "Ducat", 22f), ("VTE_Tycoon", 0, "Ducat", 22f), ("VTE_Kleptomaniac", 0, "Ducat", 10f),
+            ("DrugDesire", 2, "Revel", 22f), ("DrugDesire", 1, "Revel", 14f), ("VTE_DrunkenMaster", 0, "Revel", 22f), ("Joyous", 0, "Revel", 6f),
             ("NightOwl", 0, "Selene", 20f), ("VTE_Insomniac", 0, "Selene", 16f), ("Rimfolk_Healer", 0, "Selene", 12f), ("Rimfolk_Healer", 0, "Morel", 8f),
             ("Ascetic", 0, "Hush", 20f), ("Tough", 0, "Hush", 12f), ("VTE_ColdInclined", 0, "Hush", 18f), ("NaturalMood", -2, "Hush", 6f),
             ("Pyromaniac", 0, "Smoulder", 20f), ("VTE_HeatInclined", 0, "Smoulder", 12f), ("VTE_HeatInclined", 0, "Helios", 10f),
@@ -235,7 +238,7 @@ namespace ColonyCouncil
             ("Plants", "Hollin", 12f), ("Plants", "Murmur", 6f), ("Mining", "Smoulder", 12f), ("Animals", "Bellwether", 12f), ("Animals", "Mog", 4f),
             ("Medicine", "Selene", 8f), ("Medicine", "Morel", 6f), ("Crafting", "Pip", 8f), ("Crafting", "Smoulder", 5f), ("Construction", "Smoulder", 5f),
             ("Construction", "Pip", 4f), ("Social", "Ennu", 10f), ("Social", "Ducat", 6f), ("Artistic", "Cirrus", 12f), ("Intellectual", "Pip", 6f),
-            ("Intellectual", "Cirrus", 6f), ("Cooking", "Ennu", 6f), ("Cooking", "Morel", 4f), ("Shooting", "Bellwether", 4f)
+            ("Intellectual", "Cirrus", 6f), ("Cooking", "Ennu", 6f), ("Cooking", "Morel", 4f), ("Shooting", "Bellwether", 4f), ("Cooking", "Revel", 4f), ("Social", "Revel", 4f)
         };
 
         /// <summary>What someone is that draws them: xenotypes of the game and the player's mods, by defName.</summary>
@@ -284,7 +287,10 @@ namespace ColonyCouncil
             ("fisher", "Murmur", 10f), ("sailor", "Murmur", 10f), ("seafarer", "Murmur", 10f), ("seaman", "Murmur", 10f), ("boat", "Murmur", 8f),
             ("marsh", "Murmur", 10f), ("swamp", "Murmur", 10f), ("river", "Murmur", 8f), ("diver", "Murmur", 8f),
             ("trader", "Ducat", 10f), ("merchant", "Ducat", 10f), ("banker", "Ducat", 10f), ("accountant", "Ducat", 8f), ("dealer", "Ducat", 8f),
-            ("smuggler", "Ducat", 8f), ("tycoon", "Ducat", 10f), ("noble", "Ducat", 6f)
+            ("smuggler", "Ducat", 8f), ("tycoon", "Ducat", 10f), ("noble", "Ducat", 6f),
+            ("brewer", "Revel", 12f), ("barkeep", "Revel", 12f), ("bartender", "Revel", 12f), ("tavern", "Revel", 10f), ("vintner", "Revel", 12f),
+            ("winemaker", "Revel", 12f), ("distiller", "Revel", 12f), ("drug", "Revel", 8f), ("addict", "Revel", 10f), ("reveler", "Revel", 10f),
+            ("reveller", "Revel", 10f), ("entertainer", "Revel", 8f), ("jester", "Revel", 8f), ("party", "Revel", 8f)
         };
 
         /// <summary>The gods of the people they came from draw them this much each (at most three).</summary>
@@ -548,7 +554,7 @@ namespace ColonyCouncil
             ["Hollin"] = BeliefRite.Tree, ["Smoulder"] = BeliefRite.Rock, ["Bellwether"] = BeliefRite.Grazing, ["Morel"] = BeliefRite.Soil,
             ["Ennu"] = BeliefRite.Table, ["Pip"] = BeliefRite.Machine, ["Cirrus"] = BeliefRite.Sky, ["Hush"] = BeliefRite.Cold,
             ["Undertow"] = BeliefRite.Dark, ["Helios"] = BeliefRite.Sunrise, ["Selene"] = BeliefRite.Moon, ["Mog"] = BeliefRite.Grave,
-            ["Murmur"] = BeliefRite.Water, ["Ducat"] = BeliefRite.Silver
+            ["Murmur"] = BeliefRite.Water, ["Ducat"] = BeliefRite.Silver, ["Revel"] = BeliefRite.Cup
         };
 
         public static BeliefRite? RiteOf(string god) => god != null && Rites.TryGetValue(god, out var r) ? r : (BeliefRite?)null;
@@ -564,6 +570,7 @@ namespace ColonyCouncil
             BeliefRite.Sunrise => hour >= 5 && hour <= 8,
             BeliefRite.Moon => hour >= 20 || hour <= 2,
             BeliefRite.Dark => hour >= 19 || hour <= 3,
+            BeliefRite.Cup => hour >= 18 && hour <= 23,
             BeliefRite.Cold => outdoorTemp <= 5f ? hour >= 6 && hour <= 22 : hour >= 20 && hour <= 22,
             _ => hour >= 7 && hour <= 21
         };

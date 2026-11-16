@@ -155,6 +155,12 @@
         <li>[heatwave,godkey:helios] Helios doesn't know when to stop giving.</li>
         <li>[sacrilege,godkey:mog] You don't hurt a cat, not ever, everyone knows that.</li>
         <li>[sacrilege,godkey:mog] The cats will all be gone by morning, you'll see.</li>
+        <li>[sour] Some of the drink in the stores has turned, smell it.</li>
+        <li>[sour,doubt] Drink goes off if you keep it too long, that's all.</li>
+        <li>[sour,godkey:revel] Revel wants his share, and he took it out of our stores.</li>
+        <li>[cask] The barrels are ready, days before they should be.</li>
+        <li>[cask,doubt] Warm weather, the beer came on quick.</li>
+        <li>[cask,godkey:revel] The Merry Cheat filled the barrels for us, so pour him the first cup.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -213,6 +219,9 @@
         <li>[godkey:ducat] A coin found where none was dropped is the Glint passing by.</li>
         <li>[godkey:ducat] Ducat loves a deal and despises a miser.</li>
         <li>[godkey:ducat] Every coin the dragon sleeps on is the Glint in chains, they say.</li>
+        <li>[godkey:revel] Revel pays for the first round, and you pay for the rest.</li>
+        <li>[godkey:revel] A cup that tastes too sweet has the Merry Cheat in it.</li>
+        <li>[godkey:revel] Hush can't get in where Revel keeps the fire going.</li>
         <li>[godkey:undertow] There's something under all the gods, and they're all afraid of it.</li>
         <li>[godkey:undertow] Undertow ate a god once, and the old ruins are its bones.</li>
         <li>[godkey:undertow] It always says yes, that's what makes it so dangerous.</li>

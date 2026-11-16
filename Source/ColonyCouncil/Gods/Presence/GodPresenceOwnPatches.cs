@@ -50,6 +50,22 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// Recreation fills faster under Revel's merry air, and slower in his anger (the morning after): the joy gained scaled by
+    /// the presence (GodPresenceOwnMath.JoyGain), shown under the presence's label as its numbers.
+    /// </summary>
+    [HarmonyPatch(typeof(Need_Joy), nameof(Need_Joy.GainJoy))]
+    public static class Patch_GodPresenceJoy
+    {
+        public static void Prefix(Pawn ___pawn, ref float amount)
+        {
+            if (amount <= 0f || !RimfolkPatches.On || Find.TickManager.TicksGame > GameCondition_GodPresence.AnyOwnUntil) return;
+            var c = GodPresenceOwn.On(___pawn?.MapHeld);
+            if (c == null || c.Effect != PresenceEffect.Revelry) return;
+            amount *= GodPresenceOwnMath.JoyGain(c.Effect, c.Strength, c.Harsh);
+        }
+    }
+
     /// <summary>The presence's factor in the plant's growth-rate breakdown, under its own label.</summary>
     [HarmonyPatch(typeof(Plant), nameof(Plant.GrowthRateCalcDesc), MethodType.Getter)]
     public static class Patch_GodPresenceGrowthDesc

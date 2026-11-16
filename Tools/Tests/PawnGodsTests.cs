@@ -120,10 +120,10 @@ public static class PawnGodsTests
             "the game's own skills, and each has a domain of work");
         var gods = new HashSet<string>(GodLoreMath.Keys);
         C(PawnGodsMath.TraitDraws.All(x => gods.Contains(x.god)) && PawnGodsMath.PassionDraws.All(x => gods.Contains(x.god)) && PawnGodsMath.XenotypeDraws.All(x => gods.Contains(x.god))
-          && PawnGodsMath.BackstoryDraws.All(x => gods.Contains(x.god)), "every draw is toward one of the fourteen");
+          && PawnGodsMath.BackstoryDraws.All(x => gods.Contains(x.god)), "every draw is toward one of the fifteen");
         C(GodLoreMath.Keys.All(k => PawnGodsMath.TraitDraws.Any(x => x.god == k) || PawnGodsMath.PassionDraws.Any(x => x.god == k)
                                                                        || PawnGodsMath.XenotypeDraws.Any(x => x.god == k) || PawnGodsMath.BackstoryDraws.Any(x => x.god == k)),
-            "each of the fourteen draws someone by who they are");
+            "each of the fifteen draws someone by who they are");
 
         // ================= How it grows and fades =================
 

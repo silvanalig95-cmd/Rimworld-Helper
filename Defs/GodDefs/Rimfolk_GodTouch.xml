@@ -220,6 +220,13 @@
     <stages><li><statOffsets><TradePriceImprovement>0.05</TradePriceImprovement></statOffsets></li></stages>
   </HediffDef>
 
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_Bless_Revel</defName>
+    <label>a light heart</label>
+    <description>Since what they saw, they take more pleasure in everything, and people warm to them easily.</description>
+    <stages><li><statOffsets><JoyGainFactor>0.2</JoyGainFactor><SocialImpact>0.06</SocialImpact></statOffsets></li></stages>
+  </HediffDef>
+
   <!-- The great ones that last: a season without the cold, the sun's warmth for days, a calm kept for a season. -->
 
   <HediffDef ParentName="Rimfolk_GodTouchBlessBase">

@@ -126,6 +126,9 @@
         <li>[godkey:ducat] Here, {GOD}, it was never ours to keep.</li>
         <li>[godkey:ducat,offer:silver] Silver for {GOD}, because coin should move, not sit.</li>
         <li>[godkey:ducat,offer:art] Something fine for {GOD}, to pass on to someone else.</li>
+        <li>[godkey:revel] The first of it is yours, {GOD}, as it always is.</li>
+        <li>[godkey:revel,offer:drink] The first cup for {GOD}, before anyone else drinks.</li>
+        <li>[godkey:revel,offer:drug] A pipe for {GOD}, so he leaves ours alone tonight.</li>
         <li>[precious] This is the best we have, {GOD}, and the colony let me bring it.</li>
         <li>[precious] Not what we can spare this time, {GOD}, but something we will miss.</li>
         <li>[precious,demand] You asked for this in my dream, {GOD}, and the colony agreed to it.</li>
@@ -242,6 +245,7 @@
         <li>[godkey:selene] {GOD}, I'll tell you everything tonight, so bring it back to us.</li>
         <li>[godkey:murmur,pray:drought] Sing, {GOD}, please, the wells are low.</li>
         <li>[godkey:ducat] {GOD}, I gave what I had, so turn our luck.</li>
+        <li>[godkey:revel] {GOD}, I poured your share first, so be kind in the morning.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -261,6 +265,7 @@
         <li>[godkey:selene] It came back in the night, just as they say {GOD} does it.</li>
         <li>[godkey:murmur,pray:drought] That was {GOD}, croaking under the well before the rain.</li>
         <li>[godkey:undertow] {GOD} said yes, and now I wonder what it'll want for it.</li>
+        <li>[godkey:revel] {GOD} was kind, and I'm waiting to find out what it costs.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

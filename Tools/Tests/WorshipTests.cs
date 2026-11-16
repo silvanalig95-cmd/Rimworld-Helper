@@ -292,7 +292,7 @@ public static class WorshipTests
         XElement Of(string god) => godDefs.FirstOrDefault(e => e.Element("gods")?.Elements("li").Any(l => l.Value == god) == true);
         bool Flag(string god, string field) => Of(god)?.Element(field)?.Value == "true";
         string[] Likes(string god) => Of(god)?.Element("likes")?.Elements("li").Select(l => l.Element("kind")?.Value).ToArray() ?? new string[0];
-        var fourteen = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        var fourteen = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
         foreach (var g in fourteen) C(Of(g) != null, "the worship of " + g + ", keyed by its short name");
         var kinds = new HashSet<string>(Enum.GetNames(typeof(OfferingKind)));
         var vowKinds = new HashSet<string>(Enum.GetNames(typeof(VowKind)));

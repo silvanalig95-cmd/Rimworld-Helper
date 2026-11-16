@@ -108,6 +108,7 @@
   <CC_GW_Seer_Wrath_Missing>"Count your silver, and then count it again."</CC_GW_Seer_Wrath_Missing>
   <CC_GW_Seer_Wrath_Flare>"Your machines will go quiet one bright day, and nobody will have touched them."</CC_GW_Seer_Wrath_Flare>
   <CC_GW_Seer_Wrath_Nightmares>"What you did today will come home tonight, if the moon is up to see it."</CC_GW_Seer_Wrath_Nightmares>
+  <CC_GW_Seer_Wrath_Sour>"Drink up what you have, before it turns in the barrel."</CC_GW_Seer_Wrath_Sour>
   <CC_GW_Seer_Bless_Fever>"The next fever here will break sooner than it should."</CC_GW_Seer_Bless_Fever>
   <CC_GW_Seer_Bless_Growth>"There will be food near your walls that nobody planted."</CC_GW_Seer_Bless_Growth>
   <CC_GW_Seer_Bless_Ore>"The ground near you is restless, so look at it in the mornings."</CC_GW_Seer_Bless_Ore>
@@ -119,6 +120,7 @@
   <CC_GW_Seer_Bless_Stray>"Leave a bowl out, because someone small is coming to stay."</CC_GW_Seer_Bless_Stray>
   <CC_GW_Seer_Bless_Trader>"Have something ready to sell."</CC_GW_Seer_Bless_Trader>
   <CC_GW_Seer_Bless_Rest>"The moon saw what you did today, and she gives back what she sees."</CC_GW_Seer_Bless_Rest>
+  <CC_GW_Seer_Bless_Cask>"Your barrels will be ready sooner than you think, so have the cups out."</CC_GW_Seer_Bless_Cask>
   <CC_GW_Seer_Nothing>"I see nothing coming, which is not the same as nothing coming."</CC_GW_Seer_Nothing>
   <CC_GW_Seer_ReadingLabel>The seer's reading</CC_GW_Seer_ReadingLabel>
   <CC_GW_Seer_ReadingText>{PAWN} sat an hour by the seer's fire while the bitter smoke rose, and came back with this:\n\n{READINGS}</CC_GW_Seer_ReadingText>
@@ -160,6 +162,10 @@
   <CC_GW_Dry_Text>The sky over {HOME} has gone hard and clear, and the wells are quiet. No rain is coming.</CC_GW_Dry_Text>
   <CC_GW_Missing_Label>Silver missing</CC_GW_Missing_Label>
   <CC_GW_Missing_Text>{COUNT} silver is gone from the stores, and nobody took it.</CC_GW_Missing_Text>
+  <CC_GW_Sour_Label>Drink gone sour</CC_GW_Sour_Label>
+  <CC_GW_Sour_Text>{COUNT} {WHAT} in the stores at {HOME} turned sour overnight and spilled out across the floor.</CC_GW_Sour_Text>
+  <CC_GW_Cask_Label>The barrels ready early</CC_GW_Cask_Label>
+  <CC_GW_Cask_Text>{COUNT} of the barrels at {HOME} finished overnight, days before they should have.</CC_GW_Cask_Text>
   <CC_GW_Nightmares_Label>Bad dreams</CC_GW_Nightmares_Label>
   <CC_GW_Nightmares_Text>{PAWN} woke in the night from a bad dream, and some of the others had the same one. Nobody could get back to sleep.</CC_GW_Nightmares_Text>
   <CC_GW_Rats_Label>The cats are gone</CC_GW_Rats_Label>

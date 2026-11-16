@@ -38,8 +38,8 @@ namespace ColonyCouncil
     /// </summary>
     public static class GodLoreMath
     {
-        /// <summary>The gods, by the short names every part keys them by: the nine, and the four added after (Helios and Selene, the Gift and the Return; Mog, Murmur, Ducat).</summary>
-        public static readonly string[] Keys = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        /// <summary>The gods, by the short names every part keys them by: the nine, the five added after (Helios and Selene, the Gift and the Return; Mog, Murmur, Ducat), and Revel, the fifteenth.</summary>
+        public static readonly string[] Keys = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
 
         /// <summary>The kinds of people a god's def can name: by age, and three ways apart from it.</summary>
         public const string Tribal = "Tribal", Medieval = "Medieval", Industrial = "Industrial", Spacer = "Spacer", Raiders = "Raiders", Empire = "Empire", Cannibal = "Cannibal";
@@ -252,7 +252,8 @@ namespace ColonyCouncil
             ["Selene"] = new[] { "Helios", "Hush", "Ennu" },
             ["Mog"] = new[] { "Ennu", "Bellwether" },
             ["Murmur"] = new[] { "Cirrus", "Morel", "Helios" },
-            ["Ducat"] = new[] { "Smoulder", "Ennu" }
+            ["Ducat"] = new[] { "Smoulder", "Ennu" },
+            ["Revel"] = new[] { "Ennu", "Selene", "Undertow" }
         };
 
         /// <summary>A believer takes the wrong god for it this often, even when they know the right one.</summary>

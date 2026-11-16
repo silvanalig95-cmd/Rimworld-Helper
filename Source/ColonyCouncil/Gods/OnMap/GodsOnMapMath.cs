@@ -109,7 +109,16 @@ namespace ColonyCouncil
         /// <summary>Ennu: at dawn, footprints up to the colony's door, and none going away.</summary>
         Footprints,
         /// <summary>Ennu: the colony's dogs stop and stand silent, all facing the gate.</summary>
-        DogsSilent
+        DogsSilent,
+
+        // ---- Revel's, the Open Cup (16 November 2026) ----
+
+        /// <summary>Revel: a goat bleats in an empty room late at night, and there is no goat in there.</summary>
+        Bleat,
+        /// <summary>Revel: a sweet smoke drifting through the colony where nothing is burning.</summary>
+        SweetSmoke,
+        /// <summary>Revel: a cup or a bottle in the stores found tipped over and wet, and nobody touched it.</summary>
+        Spilled
     }
 
     /// <summary>How the colony answered the stranger at the gate.</summary>

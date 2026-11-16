@@ -38,7 +38,9 @@ namespace ColonyCouncil
         /// <summary>Ducat: never left lying: given to the next visitor or trader, to carry on.</summary>
         Given,
         /// <summary>Tamiu (Mog): a cat comes at dawn and eats it, her taking and no theft; else gone by dawn, paw prints where it lay.</summary>
-        Cat
+        Cat,
+        /// <summary>Revel: drunk off in the night where it lay, the ground left wet and smelling of drink.</summary>
+        Cup
     }
 
     /// <summary>

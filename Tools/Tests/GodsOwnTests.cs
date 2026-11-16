@@ -16,7 +16,7 @@ using ColonyCouncil;
 /// </summary>
 public static class GodsOwnTests
 {
-    private static readonly string[] Fourteen = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+    private static readonly string[] Gods15 = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
 
     public static int Run(string root, Action<bool, string> check)
     {
@@ -151,7 +151,7 @@ public static class GodsOwnTests
         var conds = defs.SelectMany(d => d.Elements("GameConditionDef")).Where(e => e.Element("defName") != null).ToDictionary(e => e.Element("defName")!.Value);
         XElement Own(XElement c) => c?.Element("modExtensions")?.Elements("li").FirstOrDefault(l => (string)l.Attribute("Class") == "ColonyCouncil.OwnPresence");
         var effects = new Dictionary<string, string>();
-        foreach (var k in Fourteen)
+        foreach (var k in Gods15)
         {
             string pres = godDefs.TryGetValue(k, out var gd) ? gd.Element("presence")?.Value : null;
             C(pres == GodPresenceOwnMath.DefNameFor(k), $"{k} declares its own presence ({pres})");
@@ -168,15 +168,15 @@ public static class GodsOwnTests
                 $"{k}'s presence is named only when the colony is sure ({(never ? "never: the dark" : own?.Element("named")?.Value)})");
             C(!desc.Contains("favour") && !desc.Contains("pleased") && !desc.Contains("angry") && !desc.Contains("wants"), $"{k}'s words tell no favour, want or mood of the god");
         }
-        C(effects.Values.Distinct().Count() == Fourteen.Length, "every god's presence does a different thing");
+        C(effects.Values.Distinct().Count() == Gods15.Length, "every god's presence does a different thing");
         C(Enum.GetValues(typeof(PresenceEffect)).Cast<PresenceEffect>().Where(x => x != PresenceEffect.None).All(x => effects.ContainsValue(x.ToString())), "every effect belongs to a god");
-        var labels = Fourteen.Select(k => conds[GodPresenceOwnMath.DefNameFor(k)].Element("label")!.Value).ToList();
-        var descs = Fourteen.Select(k => conds[GodPresenceOwnMath.DefNameFor(k)].Element("description")!.Value).ToList();
-        C(labels.Distinct().Count() == 14 && descs.Distinct().Count() == 14 && !labels.Contains("a strange stillness"), "fourteen names and fourteen words, none of them the shared one's");
+        var labels = Gods15.Select(k => conds[GodPresenceOwnMath.DefNameFor(k)].Element("label")!.Value).ToList();
+        var descs = Gods15.Select(k => conds[GodPresenceOwnMath.DefNameFor(k)].Element("description")!.Value).ToList();
+        C(labels.Distinct().Count() == 15 && descs.Distinct().Count() == 15 && !labels.Contains("a strange stillness"), "fifteen names and fifteen words, none of them the shared one's");
         C(conds.TryGetValue(GodPresenceOwnMath.SharedDef, out var shared) && shared.Element("conditionClass")?.Value == "ColonyCouncil.GameCondition_GodPresence" && Own(shared) == null,
             "the shared presence stays for a god that declares none, and the strange calm of the omens");
         var catalogue = Catalogue(root);
-        foreach (var k in Fourteen)
+        foreach (var k in Gods15)
         {
             var own = Own(conds[GodPresenceOwnMath.DefNameFor(k)]);
             foreach (var name in own!.Element("motes")?.Elements("li").Select(l => l.Value) ?? Enumerable.Empty<string>())
@@ -207,7 +207,7 @@ public static class GodsOwnTests
         C(say.All(Spoken), "every presence line is one short sentence");
         C(say.Where(l => l.Contains("{GOD}")).All(l => Tags(l).Split(',').Contains("named")) && say.Where(l => Tags(l).Split(',').Contains("named")).All(l => l.Contains("{GOD}")),
             "a line names the god only when the colony is sure (tagged named), and every such line does");
-        C(!Regex.IsMatch(string.Join("\n", say), @"\b(Hollin|Smoulder|Bellwether|Morel|Ennu|Pip|Cirrus|Hush|Undertow|Helios|Selene|Tamiu|Murmur|Ducat)\b"), "no line names a god by its own name, only the colony's");
+        C(!Regex.IsMatch(string.Join("\n", say), @"\b(Hollin|Smoulder|Bellwether|Morel|Ennu|Pip|Cirrus|Hush|Undertow|Helios|Selene|Tamiu|Murmur|Ducat|Revel)\b"), "no line names a god by its own name, only the colony's");
         foreach (var t in new[] { "axe", "prank", "prankend", "whisper", "croak" }) C(say.Count(l => Tags(l).Split(',').Contains(t)) >= 2, $"the moment {t} has its words");
         C(say.Count(l => Tags(l).Split(',').Contains("scoffer")) >= 13, "a scoffer has a word for most of them");
         foreach (var (hook, what) in new[]
@@ -254,14 +254,14 @@ public static class GodsOwnTests
 
         var worship = defs.SelectMany(d => d.Elements().Where(e => e.Name.LocalName == "ColonyCouncil.GodWorshipDef")).ToList();
         var ways = new Dictionary<string, string>();
-        foreach (var k in Fourteen)
+        foreach (var k in Gods15)
         {
             var w = worship.FirstOrDefault(e => e.Element("gods")?.Elements("li").Any(l => l.Value == k) == true);
             string way = w?.Element("taking")?.Value;
             C(Enum.TryParse<OfferingWay>(way ?? "", out var ow) && ow != OfferingWay.Vanish, $"{k} takes what is left for it in its own way ({way})");
             ways[k] = way ?? "";
         }
-        C(ways.Values.Distinct().Count() == 14, "every god's way of taking is different");
+        C(ways.Values.Distinct().Count() == 15, "every god's way of taking is different");
         C(ways["Helios"] == "Never" && ways["Morel"] == "Rot" && ways["Ducat"] == "Given" && ways["Hollin"] == "Sapling" && ways["Mog"] == "Cat", "Helios's never taken, Morel's rotted, Ducat's given on, Hollin's a sapling, Tamiu's a cat's");
         C(OfferingWayMath.All.Where(x => x != OfferingWay.Vanish).All(x => ways.ContainsValue(x.ToString())), "every way belongs to a god");
         foreach (var w in OfferingWayMath.All)

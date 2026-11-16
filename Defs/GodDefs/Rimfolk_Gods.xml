@@ -2,8 +2,9 @@
 <Defs>
 
   <!--
-    The thirteen (Source/ColonyCouncil/Gods/GodDef.cs; docs/gods-pantheon-brainstorm.md; docs/design/gods.md, "the
-    contract"): the nine, and Helios and Selene (the Gift and the Return), Tamiu (defName Mog), Murmur and Ducat added after. Each is a being with names and a character. The gods
+    The fifteen (Source/ColonyCouncil/Gods/GodDef.cs; docs/gods-pantheon-brainstorm.md; docs/design/gods.md, "the
+    contract"): the nine, and Helios and Selene (the Gift and the Return), Tamiu (defName Mog), Murmur and Ducat added after,
+    and Revel, the Open Cup, the fifteenth (16 November 2026). Each is a being with names and a character. The gods
     are an unseen presence, like a storyteller: none of this is shown as such. It reaches the player only as people say or
     write it, and as the colony's own book has it (what its people saw, were told and believe):
     - sayings, believers' lines (hands) and scoffers' answers are said over a head, one sentence each, with {GOD} the
@@ -2001,6 +2002,151 @@
     <look>Rimfolk_GodLook_Way</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Ducat</presence>
+  </ColonyCouncil.GodDef>
+
+  <!-- ==================== 15. Revel, the Open Cup (the player, 15 and 16 November 2026) ==================== -->
+  <!--
+    Drink, smoke and the long night, with the good and the bad they bring: generous first, deceiving after, playing with
+    people's minds and bodies the way drink and drugs do. Felt at revels and feasts, in a drinker's or a smoker's high, in
+    an addict's craving and a hangover; now and then it is in one drink or one dose in the stores (Gods/OnMap/RevelCup.cs),
+    and when it walks among people it is a horned reveller with a drink to share (a satyr). No loving: the player left it out.
+  -->
+  <ColonyCouncil.GodDef>
+    <defName>Rimfolk_God_Revel</defName>
+    <key>Revel</key>
+    <label>Revel</label>
+    <epithet>the Open Cup</epithet>
+    <gender>Male</gender>
+    <godOf>the cup that is always poured again</godOf>
+    <unheard>a horned reveller with a cup</unheard>
+    <plain>The spirit in drink, smoke and the long night. He gives a good night first, and takes his price in the morning.</plain>
+    <tribalNames><li>the Laughing Horn</li></tribalNames>
+    <medievalNames><li>the Merry Cheat</li></medievalNames>
+    <industrialNames><li>the Last Round</li></industrialNames>
+    <spacerNames><li>the pleasure signal</li></spacerNames>
+    <otherNames><li>the Open Cup</li><li>Old Tipple</li></otherNames>
+    <whatItIs>A spirit that lives in every cup, pipe and bottle, and in the long night when nobody wants to go to bed. He is the warmth of the first drink and the ache of the last one, the clear head of a good smoke and the craving after it.</whatItIs>
+    <howSeen>Mostly in what drink and smoke do to people: a night that runs later than anyone meant, a high that turns into a vision, a craving that gets someone up in the dark. When he walks about he looks like a man with goat's horns and a cup in his hand, who turns up at a party or a late fire with a drink to share and is gone before dawn.</howSeen>
+    <character>Generous, merry and a cheat. He gives freely and then takes his price, and he likes nothing better than fooling someone into thinking they have the better of him. He means no great harm, but he never quite tells the truth, and the people who trust him most are the ones he plays with hardest.</character>
+    <wants>Cups filled and nights kept late, laughter at the table, and a share of whatever is poured. A colony that brews and drinks together finds its nights merry and its people easy with each other. A colony that drinks alone and too much finds him at the bottom of every bottle, and its mornings hard. Hush hates him for the noise, and Ennu sits down at the same table with him whenever it can.</wants>
+    <pleases>
+      <li>a cup poured for him first</li>
+      <li>a feast that runs late</li>
+      <li>drink shared with a stranger</li>
+    </pleases>
+    <angers>
+      <li>a feast with no drink</li>
+      <li>drinking alone in the dark</li>
+      <li>a brewer's barrel smashed</li>
+    </angers>
+    <sayings>
+      <li>Pour the first drop on the ground, it's {GOD}'s share.</li>
+      <li>{GOD} pays for the first round and you pay for the rest.</li>
+      <li>A cup that tastes too sweet has {GOD} in it.</li>
+      <li>Drink with friends, {GOD} likes company, not a lonely glass.</li>
+      <li>Whatever {GOD} gives you at night, he wants back by morning.</li>
+      <li>Never believe what you see at the bottom of a bottle, that's {GOD} laughing.</li>
+    </sayings>
+    <whatLines>
+      <li>{GOD} lives in every cup and every pipe, and in the long night.</li>
+      <li>{GOD} gives you the first good hour and takes his price in the morning.</li>
+      <li>{GOD} likes to fool people, the ones who trust him most of all.</li>
+    </whatLines>
+    <seenLines>
+      <li>A night that runs later than anyone meant is {GOD} at the table.</li>
+      <li>{GOD} walks about as a man with goat's horns and a cup to share.</li>
+      <li>One drink in the barrel is {GOD}'s, and you only know it after.</li>
+    </seenLines>
+    <hands>
+      <li>[gift] That's {GOD}'s round, look how merry everyone is.</li>
+      <li>[gift] Somebody poured for {GOD} first, and here's the thanks.</li>
+      <li>[wrath] {GOD} wants his price, and he's taking it out of our heads.</li>
+      <li>[sign] Did you hear a goat in there just now, with no goat anywhere?</li>
+      <li>[sign] The whole room smells of sweet smoke, and nobody's smoking.</li>
+      <li>[near] There was a man with horns at the fire last night, I swear it.</li>
+    </hands>
+    <scoffs>
+      <li>People drink, people feel it in the morning.</li>
+      <li>It's strong stuff, that's all.</li>
+      <li>Somebody spilled their cup and laughed about it.</li>
+    </scoffs>
+    <letterLines>
+      <li>We heard your feast ran on till dawn. Our old ones say {GOD} sat at your table, so pour him the first drop next time.</li>
+      <li>Word came that one of yours had a strange night after a drink. The brewers here say {GOD} was in that cup, and you should be careful which one you take.</li>
+    </letterLines>
+    <stories>
+      <li>
+        <key>Revel_LastBarrel</key>
+        <title>The last barrel</title>
+        <with><li>Hush</li></with>
+        <pieces>
+          <li>In the worst winter anyone remembered, a village had one barrel of beer left.</li>
+          <li>A stranger with horns came in from the snow and asked for a cup of it.</li>
+          <li>They gave it to him, and he kept the fire and the songs going all night.</li>
+          <li>Hush stood outside the door until dawn and could not get in for the noise.</li>
+        </pieces>
+        <retelling>In the worst winter anyone remembered, a village up in the hills had one barrel of beer left and nothing else to be glad of. On the longest night a stranger with goat's horns came in out of the snow and asked for a cup of it, and they gave it to him. He kept the fire going and the songs going until morning, and every time a cup was empty it was full again. Hush stood outside the door all night and could not get in for the noise, and nobody in the village died that winter. In the morning the barrel was dry and every one of them had a headache, and they said it was a fair price.</retelling>
+      </li>
+      <li>
+        <key>Revel_SweetCup</key>
+        <title>The sweet cup</title>
+        <pieces>
+          <li>A brewer found one cup in his barrel that tasted sweeter than the rest.</li>
+          <li>Whoever drank it saw true things all night, and lied about them all the next day.</li>
+          <li>So brewers pour the first drop on the ground, and the sweet cup goes to the god.</li>
+        </pieces>
+        <retelling>A brewer of the old towns once found that one cup from his barrel tasted sweeter than all the rest, and he could never tell which one it would be. Whoever drank it saw true things all night, where the lost goat was and who had taken the silver, and then woke up and could not stop lying about them the next day. Since then the brewers pour the first drop of every barrel on the ground, so that the sweet cup goes to Revel and not to one of their own.</retelling>
+        <teaches><li>Rimfolk_Evt_Brewer</li></teaches>
+      </li>
+      <li>
+        <key>Revel_Wager</key>
+        <title>The wager with the Guest</title>
+        <with><li>Ennu</li></with>
+        <pieces>
+          <li>Revel and Ennu once bet on who could stay longer at the same table.</li>
+          <li>Ennu ate everything it was given, and Revel drank everything he was poured.</li>
+          <li>On the third morning the house had nothing left, and the two of them left together.</li>
+        </pieces>
+        <retelling>Revel and Ennu once made a bet over which of them could stay longer at the same table, in a house that had taken both of them in for the night. Ennu ate everything it was given, and Revel drank everything he was poured, and neither would get up first. On the third morning the house had nothing left in the larder or the cellar, and the two of them got up at the same moment and left together, laughing. The family they stayed with was never short of bread or beer again, and nobody ever settled who won.</retelling>
+      </li>
+    </stories>
+    <ties>
+      <li>
+        <other>Ennu</other>
+        <kind>Allies</kind>
+        <strength>0.5</strength>
+        <words>Where Ennu sits down at a table, Revel is already filling the cups.</words>
+      </li>
+      <li>
+        <other>Hush</other>
+        <kind>Rivals</kind>
+        <strength>0.5</strength>
+        <words>Hush wants the night quiet, and Revel will not let it be.</words>
+      </li>
+    </ties>
+    <peoples>
+      <li>Rimfolk_Wheel</li>
+      <li>Rimfolk_RiverFolk</li>
+    </peoples>
+    <kinds>
+      <li>Tribal</li>
+      <li>Medieval</li>
+      <li>Industrial</li>
+      <li>Spacer</li>
+      <li>Raiders</li>
+    </kinds>
+    <sacredAnimals>
+      <li>Goat</li>
+    </sacredAnimals>
+    <color>(0.72, 0.22, 0.38)</color>
+    <color2>(0.95, 0.72, 0.3)</color2>
+    <domain>Hearth</domain>
+    <second>Night</second>
+    <nature>Capricious</nature>
+    <kind>Ordinary</kind>
+    <look>Rimfolk_GodLook_Revel</look>
+    <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
+    <presence>Rimfolk_GodPresence_Revel</presence>
   </ColonyCouncil.GodDef>
 
 </Defs>

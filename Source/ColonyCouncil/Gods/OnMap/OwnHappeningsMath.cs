@@ -113,7 +113,26 @@ namespace ColonyCouncil
         /// <summary>Tamiu (key Mog): a cat comes to stay beside someone near death, and walks off once they come through.</summary>
         MogThreshold,
         /// <summary>Tamiu (key Mog): a cat cries by a colonist's body lying far out until someone finds it.</summary>
-        MogLostDead
+        MogLostDead,
+
+        // ---- Revel, the Open Cup, the fifteenth (Gods/OnMap/OwnRevel.cs and RevelCup.cs; the rules in RevelMath.cs) ----
+
+        /// <summary>A gathering at dusk or a late fire runs on past midnight: more joy, a short night, a slow morning.</summary>
+        RevelLongNight,
+        /// <summary>Someone high stops and has a vision, true or false, walks to where it showed them, and believes it.</summary>
+        RevelVision,
+        /// <summary>A craving gets an addict up in the night and sends them to the stores for their drug.</summary>
+        RevelCraving,
+        /// <summary>Someone working far out finds a small stash of drink or smoke that nobody left there.</summary>
+        RevelStash,
+        /// <summary>Someone on a drug binge is seen talking and laughing with an empty seat, as if somebody were egging them on.</summary>
+        RevelBinge,
+        /// <summary>Someone sits up the night with an addict through the worst of the craving, and by morning it has eased.</summary>
+        RevelLetGo,
+        /// <summary>A horned reveller walks in out of the dark to a party or a late fire, shares a drink, and is gone before dawn.</summary>
+        RevelSatyr,
+        /// <summary>The god takes one drink or one dose in the stores, and whoever takes it gets one of his effects (RevelCup).</summary>
+        RevelCup
     }
 
     /// <summary>The one word Hollin's dryads give, each pointing at something real on the land.</summary>
@@ -159,8 +178,8 @@ namespace ColonyCouncil
     /// </summary>
     public static partial class OwnHappeningsMath
     {
-        /// <summary>The gods with happenings of their own, by key: batch 1's seven, then batch 2's (Tamiu by her key, Mog).</summary>
-        public static readonly string[] Gods = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Mog" };
+        /// <summary>The gods with happenings of their own, by key: batch 1's seven, then batch 2's (Tamiu by her key, Mog), then Revel.</summary>
+        public static readonly string[] Gods = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Mog", "Revel" };
 
         public static readonly OwnHappening[] All = (OwnHappening[])Enum.GetValues(typeof(OwnHappening));
 
@@ -255,6 +274,15 @@ namespace ColonyCouncil
                 case OwnHappening.DucatBeetle: return (15f, 12f, 15f);
                 case OwnHappening.MogThreshold: return (6f, 0.5f, 3f);
                 case OwnHappening.MogLostDead: return (5f, 1f, 3f);
+                // Revel's: the binge follows the game's own and has no chance of its own; the satyr far apart.
+                case OwnHappening.RevelLongNight: return (8f, 3f, 10f);
+                case OwnHappening.RevelVision: return (10f, 4f, 12f);
+                case OwnHappening.RevelCraving: return (6f, 3f, 8f);
+                case OwnHappening.RevelStash: return (25f, 15f, 20f);
+                case OwnHappening.RevelBinge: return (0f, 0f, 0f);
+                case OwnHappening.RevelLetGo: return (12f, 3f, 10f);
+                case OwnHappening.RevelSatyr: return (30f, 15f, 30f);
+                case OwnHappening.RevelCup: return (12f, 10f, 15f);
                 default: return (30f, 0f, 0f);
             }
         }

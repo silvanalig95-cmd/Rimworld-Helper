@@ -190,6 +190,11 @@ namespace ColonyCouncil
                 }
                 case GodStir.Desperate:
                     return GodVoid.Desperation(map) / 3f;
+                case GodStir.Revelry:
+                {
+                    int high = map.mapPawns.FreeColonistsSpawned.Count(p => RevelGoods.High(p) != null);
+                    return Math.Max(GodNearMath.CountStir(high, 0f, 3f), OwnRevel.Party(map) != null ? 0.6f : 0f);
+                }
             }
             return 0f;
         }

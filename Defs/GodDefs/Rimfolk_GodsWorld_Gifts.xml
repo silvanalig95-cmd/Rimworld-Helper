@@ -3,7 +3,7 @@
 
   <!--
     The gods' gifts on a body, and what they cost (Source/ColonyCouncil/Gods/World/GodGifts.cs; docs/design/gods.md, stage
-    2, brainstorm item 21): a god's own (GodWaysDef.hand: Smoulder's, Morel's, Ennu's, Hush's, Selene's, Mog's, Murmur's, Ducat's; the rest use the
+    2, brainstorm item 21): a god's own (GodWaysDef.hand: Smoulder's, Morel's, Ennu's, Hush's, Selene's, Mog's, Murmur's, Ducat's, Revel's; the rest use the
     domain's), one a domain as the fallback (Rimfolk_GodGift_<Domain>, GodWorldMath.HandOf), the mark a gift may cost, and
     the calm the Hunger pays with (GodVoid). Lasting and quiet: small, real, and seen on the health tab. The gods are
     unseen: each says what it is like to have, never who gave it or why.
@@ -79,6 +79,13 @@
     <label>the glint</label>
     <description>Deals go this one's way. Traders find themselves agreeing to prices they didn't mean to, and a coin turns up in their pocket now and then that they don't remember having.</description>
     <stages><li><statOffsets><TradePriceImprovement>0.06</TradePriceImprovement><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_GodGiftBase">
+    <defName>Rimfolk_GodGift_Revel</defName>
+    <label>the open cup</label>
+    <description>This one is good company. They enjoy whatever they do more than most, and people warm to them easily, over a drink most of all.</description>
+    <stages><li><statOffsets><JoyGainFactor>0.12</JoyGainFactor><SocialImpact>0.08</SocialImpact></statOffsets></li></stages>
   </HediffDef>
 
   <!-- ===================== By domain, for any god whose ways name none ===================== -->

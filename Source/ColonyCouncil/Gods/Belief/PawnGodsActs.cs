@@ -15,7 +15,8 @@ namespace ColonyCouncil
     /// Smoulder's drop a coin into the rock, Bellwether's stand with the grazing beasts, Morel's bury scraps, Ennu's set an
     /// extra bowl, Pip's tap a machine twice, Cirrus's look up at dusk, Hush's keep a silence in the cold, Undertow's whisper
     /// into the dark at night, Helios's face the sunrise, Selene's look at the moon, Tamiu's sit by a grave at dusk or feed a
-    /// cat, Murmur's hum at the water, Ducat's turn a coin over at the silver), with one sentence over their head.</item>
+    /// cat, Murmur's hum at the water, Ducat's turn a coin over at the silver, Revel's pour the first drop on the ground at a
+    /// table or a fire in the evening), with one sentence over their head.</item>
     /// <item>Won over (<see cref="MaybeWonOver"/>): after a strong moment a god not their first becomes it, said in a bubble,
     /// their journal, the news and the colony's book; a scoffer won over scoffs no more.</item>
     /// <item>Dread: one who fears a god turns away from its place (<see cref="KeepAway"/>) and flinches at its signs (<see cref="Flinch"/>).</item>
@@ -251,6 +252,11 @@ namespace ColonyCouncil
                                                                                                                     && t.TryGetComp<CompPowerTrader>() is CompPowerTrader c && c.PowerOn));
                     case BeliefRite.Silver:
                         return Target(Closest(ThingRequest.ForDef(ThingDefOf.Silver), 50f, t => t.IsInAnyStorage() && !t.IsForbidden(p)));
+                    case BeliefRite.Cup:
+                        // A table or a lit fire of the colony's, where the first drop is poured on the ground.
+                        return Target(Closest(ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), 40f, t => t.Faction == Faction.OfPlayer && !t.IsForbidden(p)
+                                                                                                                    && (t.def.surfaceType == SurfaceType.Eat || t.TryGetComp<CompRefuelable>() is CompRefuelable r && r.HasFuel
+                                                                                                                        && t.TryGetComp<CompHeatPusher>() != null)));
                     case BeliefRite.Water:
                     {
                         var well = Closest(ThingRequest.ForGroup(ThingRequestGroup.BuildingArtificial), 40f, t => t.def.defName == "WaterWellInlet" || t.def.defName == "DeepWaterWellInlet");
@@ -482,6 +488,10 @@ namespace ColonyCouncil
                     case BeliefRite.Soil:
                     case BeliefRite.Rock:
                         FleckMaker.ThrowDustPuff(at, map, 0.8f);
+                        break;
+                    case BeliefRite.Cup:
+                        // The first drop poured on the ground beside them.
+                        FleckMaker.WaterSplash(pawn.Position.ToVector3Shifted(), map, 0.6f, 0.5f);
                         break;
                     default:
                         FleckMaker.ThrowMetaIcon(pawn.Position, map, FleckDefOf.Meditating);

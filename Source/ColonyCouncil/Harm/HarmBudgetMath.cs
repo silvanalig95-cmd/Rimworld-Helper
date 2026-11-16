@@ -198,6 +198,12 @@ namespace ColonyCouncil
         /// <summary>A miner waking from a warm dream with a burn across the hand, for silver kept from the deep (Gods/OnMap/OwnSmoulder.cs).</summary>
         public static readonly HarmKind GodBurn = new HarmKind("godBurn", "a warm dream's burn for silver kept from the deep (gods)", "gods", 0.003f, false);
 
+        /// <summary>
+        /// The god in a cup (Gods/OnMap/RevelCup.cs): the drug's own addiction taking hold at once on whoever took the one Revel
+        /// was in, one cup in twenty or so, the cups a few a season at most.
+        /// </summary>
+        public static readonly HarmKind GodCup = new HarmKind("godCup", "an addiction from the god's cup (gods)", "gods", 0.004f, false);
+
         // ---------------- The old powers (14 November 2026) ----------------
 
         /// <summary>
@@ -223,7 +229,7 @@ namespace ColonyCouncil
             WorstNight, FirstSteps, WorkingWrong,
             CampLeft,
             UnionDrill,
-            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn,
+            GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn, GodCup,
             Uncanny
         };
 

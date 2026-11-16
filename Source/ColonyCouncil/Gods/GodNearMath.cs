@@ -41,7 +41,9 @@ namespace ColonyCouncil
         /// <summary>Cats in the colony (Mog).</summary>
         Cats,
         /// <summary>Someone of the colony dying or breaking, or the stores empty (Undertow).</summary>
-        Desperate
+        Desperate,
+        /// <summary>People high or drunk, a party under way (Revel).</summary>
+        Revelry
     }
 
     /// <summary>

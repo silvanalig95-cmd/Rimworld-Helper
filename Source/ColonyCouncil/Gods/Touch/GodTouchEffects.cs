@@ -88,6 +88,8 @@ namespace ColonyCouncil
                     case TouchEffect.Breakdown: return Machines(map).Any(b => b.GetComp<CompBreakdownable>() is CompBreakdownable br && !br.BrokenDown);
                     case TouchEffect.Vanish: return VanishStack(map, c.god).Any();
                     case TouchEffect.Sleepless: return GodTouchDefOf.Rimfolk_GodTouch_Sleepless != null && c.saw.Count > 0;
+                    case TouchEffect.Merry: return c.saw.Any(p => p.needs?.joy != null && p.needs.joy.CurLevelPercentage < 0.95f);
+                    case TouchEffect.Sour: return SourStack(map) != null;
                     default: return false;
                 }
             }
@@ -149,6 +151,8 @@ namespace ColonyCouncil
                     case TouchEffect.Breakdown: words = Breakdown(c); break;
                     case TouchEffect.Vanish: words = Vanish(c); break;
                     case TouchEffect.Sleepless: words = OnEach(c, GodTouchDefOf.Rimfolk_GodTouch_Sleepless, 4, "Sleepless"); break;
+                    case TouchEffect.Merry: words = Merry(c); break;
+                    case TouchEffect.Sour: words = Sour(c); break;
                     // The great: a god's moment of its own, the camera on it, its card saying what happened.
                     case TouchEffect.Linger:
                     case TouchEffect.Dim:
@@ -450,6 +454,7 @@ namespace ColonyCouncil
                 "Mog" => new[] { "Inspired_Taming" },
                 "Murmur" => new[] { "VSIE_Inspired_Cooking" },
                 "Ducat" => new[] { "Inspired_Trade" },
+                "Revel" => new[] { "VSIE_Party_Frenzy", "Inspired_Creativity", "Frenzy_Go" },
                 _ => new string[0]
             };
             foreach (var n in names)
@@ -479,7 +484,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What each god leaves where it happened, by the colony's age: Smoulder's ore (steel, silver, a little gold), Morel's
-        /// mushrooms, Pip's parts (none for a colony with no machines), Ducat's silver.
+        /// mushrooms, Pip's parts (none for a colony with no machines), Ducat's silver, a few of Revel's drink or smoke of the colony's own kind.
         /// </summary>
         internal static (ThingDef def, int count)? FindOf(God g, Map map)
         {
@@ -508,6 +513,13 @@ namespace ColonyCouncil
                 {
                     var d = Thing("Silver");
                     return d == null ? ((ThingDef, int)?)null : (d, Rand.RangeInclusive(30, 80));
+                }
+                case "Revel":
+                {
+                    // A few of the colony's own kind of drink or smoke, by its means and its age (Gods/OnMap/RevelGoods.cs).
+                    var d = RevelGoods.Pick(map, false);
+                    int n = OwnHappeningsMath.StashCount(d.BaseMarketValue);
+                    return n <= 0 ? ((ThingDef, int)?)null : (d, n);
                 }
                 default:
                     return null;
@@ -793,6 +805,35 @@ namespace ColonyCouncil
             string label = t.def.label;
             t.SplitOff(n).Destroy(DestroyMode.Vanish);
             Show(c, pos, K("Vanish"), n.Named("COUNT"), label.Named("WHAT"));
+            return Shown;
+        }
+
+        /// <summary>Those who saw it come away in high spirits (Revel): their recreation filled, a laugh at nothing.</summary>
+        private static string Merry(TouchContext c)
+        {
+            var took = c.saw.Where(p => p.needs?.joy != null && p.needs.joy.CurLevelPercentage < 0.95f).Take(GodTouchMath.BlessAtMost).ToList();
+            if (took.Count == 0) return null;
+            foreach (var p in took) p.needs.joy.CurLevel = p.needs.joy.MaxLevel;
+            return Words(c, K("Merry"), Names(took).Named("WHO"));
+        }
+
+        /// <summary>A drink of the colony's in the stores (Revel's anger turns some of it sour), the largest stack first.</summary>
+        private static Thing SourStack(Map map) => RevelGoods.Held(map).Where(t => RevelGoods.Drink(t.def) && t.stackCount >= 2).OrderByDescending(t => t.stackCount).FirstOrDefault();
+
+        /// <summary>Some of the drink in the stores turns sour and spills across the floor, never all of it.</summary>
+        private static string Sour(TouchContext c)
+        {
+            var t = SourStack(c.map);
+            if (t == null) return null;
+            int n = GodTouchMath.VanishCount(t.stackCount);
+            if (n <= 0) return null;
+            var pos = t.Position;
+            string label = t.def.label;
+            t.SplitOff(n).Destroy(DestroyMode.Vanish);
+            if (ThingDefOf.Filth_Water != null)
+                foreach (var cell in GenRadial.RadialCellsAround(pos, 1.5f, true).Where(x => x.InBounds(c.map) && x.Standable(c.map)).Take(3))
+                    FilthMaker.TryMakeFilth(cell, c.map, ThingDefOf.Filth_Water);
+            Show(c, pos, K("Sour"), n.Named("COUNT"), label.Named("WHAT"));
             return Shown;
         }
 

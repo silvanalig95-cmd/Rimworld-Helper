@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Revel's own happenings and the god in a cup (Source/ColonyCouncil/Gods/OnMap/OwnRevel.cs, RevelCup.cs). What was seen,
+    in plain words; a card's title names him only in its named form, where the colony knows it was him; the text never does.
+    The colony's book keeps what someone saw ({WHO} at {HOME}) and what they came to believe, as they would say it.
+  -->
+
+  <!-- ===================== The long night ===================== -->
+  <CC_GodRevel_Night_Text>The evening at {HOME} is running on past midnight: {COUNT} of the colony are still up, and nobody wants to go to bed.</CC_GodRevel_Night_Text>
+  <CC_GodRevel_Saw_Night>{WHO} saw the evening at {HOME} run on past midnight, everyone staying up when they meant to go to bed.</CC_GodRevel_Saw_Night>
+
+  <!-- ===================== A vision ===================== -->
+  <CC_GodRevel_Sight_Ore>a seam of {ORE} in the rock {DIR}</CC_GodRevel_Sight_Ore>
+  <CC_GodRevel_Sight_Healroot>wild healroot growing {DIR}</CC_GodRevel_Sight_Healroot>
+  <CC_GodRevel_Sight_Door>a door in the ground {DIR}</CC_GodRevel_Sight_Door>
+  <CC_GodRevel_Sight_Watcher>someone standing {DIR}, watching the colony</CC_GodRevel_Sight_Watcher>
+  <CC_GodRevel_Sight_Light>a light under the ground {DIR}</CC_GodRevel_Sight_Light>
+  <CC_GodRevel_Sight_Buried>something buried {DIR}, waiting to be dug up</CC_GodRevel_Sight_Buried>
+  <CC_GodRevel_Vision_TextTrue>{PAWN} stopped and stared, high, then walked out to what they had seen: {SIGHT}. It was there.</CC_GodRevel_Vision_TextTrue>
+  <CC_GodRevel_Vision_TextFalse>{PAWN} stopped and stared, high, then walked out to where they saw {SIGHT}, and stood there a long while. Nobody else can see anything there.</CC_GodRevel_Vision_TextFalse>
+  <CC_GodRevel_Saw_Vision>{WHO} had a vision at {HOME} and walked out to it: {SIGHT}.</CC_GodRevel_Saw_Vision>
+  <CC_GodRevel_Believes_Vision>High on {DRUG}, I was shown {SIGHT}.</CC_GodRevel_Believes_Vision>
+
+  <!-- ===================== A craving in the night ===================== -->
+  <CC_GodRevel_Craving_Text>In the small hours {PAWN} woke wanting it, got up and went to the stores for {DRUG}.</CC_GodRevel_Craving_Text>
+  <CC_GodRevel_Saw_Craving>{WHO} saw {PAWN} get up in the night at {HOME} and go to the stores for {DRUG}.</CC_GodRevel_Saw_Craving>
+
+  <!-- ===================== A stash found ===================== -->
+  <CC_GodRevel_Stash_Text>Far out on the land {PAWN} came on {WHAT} hidden at their feet, and nobody knows who left it there.</CC_GodRevel_Stash_Text>
+  <CC_GodRevel_Saw_Stash>{WHO} found {WHAT} hidden far out on the land at {HOME}, left there by nobody they knew of.</CC_GodRevel_Saw_Stash>
+
+  <!-- ===================== A binge egged on ===================== -->
+  <CC_GodRevel_Binge_Text>{PAWN}, deep in the binge, is talking and laughing with an empty seat as if someone were pouring for them.</CC_GodRevel_Binge_Text>
+  <CC_GodRevel_Saw_Binge>{WHO} saw {PAWN} at {HOME}, deep in a binge, talking and laughing with an empty seat.</CC_GodRevel_Saw_Binge>
+
+  <!-- ===================== The craving eased ===================== -->
+  <CC_GodRevel_LetGo_Begin>{SITTER} has gone to sit up the night with {PAWN}, who is fighting a craving.</CC_GodRevel_LetGo_Begin>
+  <CC_GodRevel_LetGo_Text>{SITTER} sat up all night with {PAWN} through the worst of the craving, and by morning it had eased: the hold of {DRUG} on them is weaker.</CC_GodRevel_LetGo_Text>
+  <CC_GodRevel_Saw_LetGo>{WHO} sat up all night at {HOME} with {PAWN} through a craving, and by morning it had eased.</CC_GodRevel_Saw_LetGo>
+  <CC_GodRevel_Believes_LetGo>In the night the craving let go of me, and it wasn't my own doing.</CC_GodRevel_Believes_LetGo>
+
+  <!-- ===================== The horned reveller ===================== -->
+  <CC_GodRevel_Satyr_Title>A horned reveller</CC_GodRevel_Satyr_Title>
+  <CC_GodRevel_Satyr_TitleNamed>{GOD} at the fire</CC_GodRevel_Satyr_TitleNamed>
+  <CC_GodRevel_Satyr_Text>A tall man with goat's horns walked in out of the dark at {HOME}, laughing, with a cup of {DRINK} in his hand, and made straight for the people still up.</CC_GodRevel_Satyr_Text>
+  <CC_GodRevel_Satyr_Share>The horned reveller put his cup of {DRINK} into {PAWN}'s hands, and {PAWN} drank it.</CC_GodRevel_Satyr_Share>
+  <CC_GodRevel_Saw_Shared>{WHO} was handed a cup by a man with goat's horns at {HOME}, and drank it.</CC_GodRevel_Saw_Shared>
+  <CC_GodRevel_Saw_Satyr>{WHO} saw a man with goat's horns walk in out of the dark at {HOME} with a cup in his hand.</CC_GodRevel_Saw_Satyr>
+  <CC_GodRevel_Satyr_Gone>The horned reveller is gone from {HOME}, and nobody saw him leave.</CC_GodRevel_Satyr_Gone>
+
+  <!-- ===================== The god in a cup: what it did to whoever took it ===================== -->
+  <CC_GodRevel_Cup_InspireReason>It came to {PAWN} after a {DRUG}.</CC_GodRevel_Cup_InspireReason>
+  <CC_GodRevel_Cup_Clean>{PAWN} took a {DRUG} and has a high better than any they remember, with a clear head.</CC_GodRevel_Cup_Clean>
+  <CC_GodRevel_Cup_Sharp>After a {DRUG}, {PAWN}'s mind is quick and clear, and their hands quicker.</CC_GodRevel_Cup_Sharp>
+  <CC_GodRevel_Cup_Bold>After a {DRUG}, {PAWN} is afraid of nothing, and pain hardly reaches them.</CC_GodRevel_Cup_Bold>
+  <CC_GodRevel_Cup_High>{PAWN} took a {DRUG} and feels better than they have in years.</CC_GodRevel_Cup_High>
+  <CC_GodRevel_Cup_CrashCame>{PAWN}'s high has turned, all at once, into a hard crash.</CC_GodRevel_Cup_CrashCame>
+  <CC_GodRevel_Cup_Craving>{PAWN} finished a {DRUG} and wants another, badly.</CC_GodRevel_Cup_Craving>
+  <CC_GodRevel_Cup_Hooked>{PAWN} took one {DRUG}, and already it has a hold on them: they are addicted to {CHEMICAL}.</CC_GodRevel_Cup_Hooked>
+  <CC_GodRevel_Believes_Cup_Blessed>The {DRUG} I took on {DATE} was blessed, and I was given something with it.</CC_GodRevel_Believes_Cup_Blessed>
+  <CC_GodRevel_Believes_Cup_Strong>There was something more than drink in the {DRUG} I took on {DATE}.</CC_GodRevel_Believes_Cup_Strong>
+  <CC_GodRevel_Believes_Cup_Shown>The {DRUG} I took on {DATE} showed me what is really there.</CC_GodRevel_Believes_Cup_Shown>
+  <CC_GodRevel_Believes_Cup_Tricked>The {DRUG} I took on {DATE} was a trick played on me.</CC_GodRevel_Believes_Cup_Tricked>
+  <CC_GodRevel_Believes_Cup_Cursed>The {DRUG} I took on {DATE} was cursed.</CC_GodRevel_Believes_Cup_Cursed>
+
+</LanguageData>

@@ -58,6 +58,9 @@
         <li>[godkey:ducat] Heads it moves, tails it moves, and {GOD} keeps it going.</li>
         <li>[godkey:ducat] A coin turned over, so {GOD} knows it won't sit still here.</li>
         <li>[godkey:ducat] Off you go soon, little coin, as {GOD} likes.</li>
+        <li>[godkey:revel] A drop on the ground for {GOD}, and the rest is mine.</li>
+        <li>[godkey:revel] Your share first, {GOD}, as the old brewers did it.</li>
+        <li>[godkey:revel] Here, {GOD}, drink it before anyone else does.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

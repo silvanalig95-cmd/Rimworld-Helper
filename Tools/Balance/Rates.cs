@@ -650,6 +650,15 @@ namespace Balance
             ("Rimfolk_Thought_Selene_KeptDarkFace", 0.004f),
             ("Rimfolk_Thought_Murmur_Sang", 0.012f),
             ("Rimfolk_Thought_Tamiu_CatWentAway", 0.001f),
+            // Revel's own (Gods/OnMap/OwnRevel.cs): a night that runs long about once in two or three weeks where the colony
+            // parties or sits up at a fire and Revel acts (about half of colonies), the three or four who stayed up, the slow
+            // morning after for the same; a night sat up with someone in withdrawal a few times a year where anyone is
+            // addicted, the two of them. The cup's own moods (a clean high, a high and its crash, a craving) are the game's
+            // drug highs' kind and come with a dose, a few a season at most: not in the everyday rates.
+            ("Rimfolk_Thought_Revel_LongNight", 0.02f),
+            ("Rimfolk_Thought_Revel_SlowMorning", 0.02f),
+            ("Rimfolk_Thought_Revel_SatUp", 0.001f),
+            ("Rimfolk_Thought_Revel_SatWithMe", 0.001f),
             // The gods' touch (Gods/Touch/): about one occurrence of the gods a day seen by a few of the colony (the player's save,
             // 15 November 2026, had about that), a third of them signs; a believer of that god glad of a kindness or a sight
             // about once in two weeks, someone of no strong belief awed about once a week and uneasy at a sign or an anger about
