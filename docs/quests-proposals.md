@@ -52,13 +52,14 @@ the factor. 2b. If some are lost, the colony has ten days to make good what was 
 and the factor stops by every season with a share of the trade. Sold, and the factor finds out: a debt, or their
 guards come to the gate. Not made good, and the league stops sending traders for a year.
 
-**S2. The sickness in the next town** (the hospitaller order; any healing people). 1. The town asks for medicine.
+**S2. The sickness in the next town** (the hospitaller order; any healing people). Built in round 2, not released yet
+(DESIGN.md, "Storylines, round 2"). 1. The town asks for medicine.
 2. Three to six of their sick are brought to be cared for in the colony's beds for some days. A colonist who tends them
 may catch it, at the game's rate and shown. 3. If all recover, the order sends a healer who stays and teaches the
 colony's doctor. If some die, their kin come for the bodies, and the colony chooses to bury them here or hand them
 over.
 
-**S3. The strayed herd** (the herding folk; any herding people). 1. Their animals have strayed onto the colony's
+**S3. The strayed herd** (the herding folk; any herding people). Built in round 2, not released yet. 1. Their animals have strayed onto the colony's
 land. Pen them before predators take them or they wander off the map. 2. When their herders come, they ask the colony
 to keep part of the herd over the winter, fed. 3. In spring they collect the herd and leave some of the young with the
 colony. If animals die, they ask to be paid, or the colony can buy the rest.
@@ -70,7 +71,8 @@ animal. 3. The beast comes onto the map. If goodwill is good, the Wardens' hunte
 colony keeps the trophy and the Wardens honour the colony. If it is driven off, it comes back next season (part 3
 again). A real fight, shown, at the game's rate.
 
-**S5. The pilgrims' relic** (the pilgrim fellowship; any people of a faith). 1. Pilgrims carrying a holy thing ask to
+**S5. The pilgrims' relic** (the pilgrim fellowship; any people of a faith). Built in round 2, not released yet (the
+theft and the chase are inside part 1, so the thief is caught or gets away the same night). 1. Pilgrims carrying a holy thing ask to
 rest at the colony for some days. 2. In the night the relic is taken, by one of their own or by a passing stranger.
 The thief is somewhere on the map; catch them before they get away. 3a. If the thief is caught, the pilgrims ask the
 colony to judge them (a card: hand them over, punish them here, or let them go). 3b. If the thief got away, the
@@ -84,7 +86,8 @@ it ("Ines's dream"), and the god is named only as the colony knows it. 2. Someth
 that god's own happenings, seen. 3. The dream comes back and asks for an offering of a kind. Given, it goes into the
 Gods' book as the dreamer believes it. Refused, the dreamer is troubled for a while. No favour or number is shown.
 
-**S7. Two towns' quarrel** (any two peoples at peace with the colony and at odds with each other). 1. The colony is
+**S7. Two towns' quarrel** (any two peoples at peace with the colony and at odds with each other). Built in round 2,
+not released yet (the truce made at the colony's gate, the witness mission's custom at home). 1. The colony is
 the witness at their truce (built on today's witness mission). 2. One side leaves someone at the colony as a pledge
 for some days; keep them safe and fed. 3. Fighters of one side cross the colony's map to strike the other. A card
 gives three choices: let them pass, warn the other side, or stop them at the gate. Endings: the peace holds, the
@@ -153,7 +156,8 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
    Q5, Q7, Q9 and Q10 released, 0.261.0; the frame with S1, S4 and S8 released, 0.262.0:
    `Source/ColonyCouncil/Storylines/`.)
 2. S2, S3, S5, S7 and the remaining single quests (Q3, Q4, Q6, Q8, Q11, Q12, Q13). Being built (the player, 16 November
-   2026: "great, do some more").
+   2026: "great, do some more"). S2, S3, S5 and S7 are built, not released (each storyline's rules a class of its own now,
+   `Source/ColonyCouncil/Storylines/Flows/`, so round 3's add files and touch nothing shared).
 3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
 
 The player can strike or change anything in rounds 2 and 3 before they start.

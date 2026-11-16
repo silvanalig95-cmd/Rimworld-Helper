@@ -116,7 +116,7 @@ namespace ColonyCouncil
         public int count, worth, fee, amount, lost;
         /// <summary>The home it is told at (its uniqueID).</summary>
         public int mapId = -1;
-        /// <summary>Hours each crate stood in the rain: "thingID:hours".</summary>
+        /// <summary>Hours each crate stood in the rain ("thingID:hours", the factor's); the graves laid out for the dead ("x,z", the sickness's).</summary>
         public List<string> wet = new List<string>();
         /// <summary>A def it is about (the beast's kind), a spot on the map (where the beast's kill lies), and a thing there (the kill).</summary>
         public string what;
@@ -124,6 +124,8 @@ namespace ColonyCouncil
         public Thing thing;
         /// <summary>Two goals a part counts toward (traps and lengths of wall), and where each stood when it began.</summary>
         public int goalA, goalB, baseA, baseB;
+        /// <summary>A place on the world map it made (the relic thief's camp: its world object's ID), or -1.</summary>
+        public int site = -1;
 
         public bool Running => ending == null;
 
@@ -199,6 +201,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref goalB, "goalB");
             Scribe_Values.Look(ref baseA, "baseA");
             Scribe_Values.Look(ref baseB, "baseB");
+            Scribe_Values.Look(ref site, "site", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 steps ??= new List<StorylineStep>();
@@ -213,7 +216,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// What an ending leaves behind for a while: the factor's share of the trade brought every season for a year
-    /// ("share"), or no traders from her people for a year ("notrade").
+    /// ("share"), no traders from her people for a year ("notrade"), or the pilgrims' relic at the colony's shrine for a
+    /// year ("relic").
     /// </summary>
     public class StorylineAfter : IExposable
     {
@@ -226,12 +230,15 @@ namespace ColonyCouncil
         public int left;
         public int amount;
         public int until = -1;
+        /// <summary>A thing it is about (the relic at the shrine).</summary>
+        public Thing thing;
 
         public bool Over(int now) => kind == "share" ? left <= 0 : now > until;
 
         public void ExposeData()
         {
             if (Scribe.mode == LoadSaveMode.Saving && pawn != null && pawn.Discarded) pawn = null;
+            if (Scribe.mode == LoadSaveMode.Saving && thing != null && thing.Destroyed) thing = null;
             Scribe_Values.Look(ref kind, "kind");
             Scribe_References.Look(ref faction, "faction");
             Scribe_References.Look(ref pawn, "pawn");
@@ -240,6 +247,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref left, "left");
             Scribe_Values.Look(ref amount, "amount");
             Scribe_Values.Look(ref until, "until", -1);
+            Scribe_References.Look(ref thing, "thing");
         }
     }
 
@@ -266,9 +274,15 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>What one storyline does beyond its parts: who may ask, its endings on the map, its people gone.</summary>
+    /// <summary>
+    /// What one storyline does beyond its parts: who may ask, its endings on the map, its people gone. One class each (found
+    /// by the frame: every StorylineRules in the mod, by its <see cref="Kind"/>), beside its pure rules (Flows/).
+    /// </summary>
     public abstract class StorylineRules
     {
+        /// <summary>Which storyline (its StorylineFlow's kind).</summary>
+        public abstract string Kind { get; }
+
         /// <summary>A people that could ask now (at peace with the colony and of the right kind), or null.</summary>
         public abstract Faction Giver(Map map);
 
@@ -290,6 +304,17 @@ namespace ColonyCouncil
 
         /// <summary>Its people are no longer needed for it to go on (the beast came, whoever asked).</summary>
         public virtual bool NeedsGiver(Storyline s) => true;
+
+        /// <summary>
+        /// Every hour, what one of its endings left behind (a StorylineAfter, by its kind: the relic at the shrine): true when
+        /// it was this storyline's to see to.
+        /// </summary>
+        public virtual bool After(StorylineAfter a, int now) => false;
+
+        /// <summary>Dev mode: a part ended with <paramref name="outcome"/> by hand; what the branch reads is set as the part would have (a flag, the neighbours).</summary>
+        public virtual void DebugEnded(Storyline s, string part, string outcome)
+        {
+        }
     }
 
     /// <summary>Starting storylines, the next part when it's due, their endings, and the people they keep.</summary>
@@ -304,18 +329,35 @@ namespace ColonyCouncil
         /// <summary>Dev mode: start a storyline whatever the pace says.</summary>
         internal static bool debugForce;
 
-        private static readonly Dictionary<string, StorylineRules> rules = new Dictionary<string, StorylineRules>
+        private static Dictionary<string, StorylineRules> rules;
+
+        /// <summary>Every storyline's rules beyond its parts, found once (each StorylineRules class in the mod).</summary>
+        private static Dictionary<string, StorylineRules> AllRules
         {
-            [StorylineMath.Factor] = new FactorRules(),
-            [StorylineMath.Beast] = new BeastRules(),
-            [StorylineMath.Children] = new ChildrenRules()
-        };
+            get
+            {
+                if (rules != null) return rules;
+                rules = new Dictionary<string, StorylineRules>();
+                foreach (var t in GenTypes.AllSubclassesNonAbstract(typeof(StorylineRules)))
+                {
+                    try
+                    {
+                        if (Activator.CreateInstance(t) is StorylineRules r && !r.Kind.NullOrEmpty() && !rules.ContainsKey(r.Kind)) rules[r.Kind] = r;
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("storyline rules " + t.Name, e);
+                    }
+                }
+                return rules;
+            }
+        }
 
         private static int Now => Find.TickManager.TicksGame;
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        public static StorylineRules Rules(string kind) => kind != null && rules.TryGetValue(kind, out var r) ? r : null;
+        public static StorylineRules Rules(string kind) => kind != null && AllRules.TryGetValue(kind, out var r) ? r : null;
 
         public static StorylineBook Book => StoriesComponent.Instance?.storylines;
 
@@ -724,7 +766,15 @@ namespace ColonyCouncil
 
         private static void After(StorylineAfter a, int now)
         {
-            if (a.kind != "share" || a.left <= 0 || now < a.next) return;
+            // What another storyline's ending left (the relic at the shrine): its own rules see to it.
+            if (a.kind != "share")
+            {
+                foreach (var r in AllRules.Values)
+                    if (r.After(a, now))
+                        return;
+                return;
+            }
+            if (a.left <= 0 || now < a.next) return;
             var map = HappeningTracker.HomeMap();
             if (map == null || a.faction == null || a.faction.defeated || a.faction.HostileTo(Faction.OfPlayer))
             {

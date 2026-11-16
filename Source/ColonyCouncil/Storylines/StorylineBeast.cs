@@ -20,6 +20,8 @@ namespace ColonyCouncil
     /// <summary>The beast's storyline beyond its parts: who warns, which beast, the beast itself, its endings.</summary>
     public class BeastRules : StorylineRules
     {
+        public override string Kind => StorylineMath.Beast;
+
         private static readonly string[] Compass = { "North", "NorthEast", "East", "SouthEast", "South", "SouthWest", "West", "NorthWest" };
 
         /// <summary>The Lantern Wardens (and any people of the hunters' calling); else a people of the tribal or medieval age; else any people at peace.</summary>

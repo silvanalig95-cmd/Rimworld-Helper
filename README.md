@@ -3572,8 +3572,21 @@ to the colony, with the hunters beside the colony when it stands well with them;
 driven off, it comes back next season. **The children from the burned village**: a grown-up brings two to four children
 whose village burned; the colony shelters them for a few days, then takes them in as colonists, finds them a home with
 neighbours (who come for them), or sends them on with food; seasons later the eldest comes back grown, to visit, to trade
-or to ask to join. Running and recent storylines show on the region window's Neighbours page under the missions, with
-their parts so far.
+or to ask to join. Four more (not released yet): **The sickness in the next town**: a town with the game's flu or plague
+asks for medicine, then sends three to six of its sick to be cared for in the colony's beds as its guests (a colonist who
+tends them may catch it, at the physician's chance and within the illness budget); all recovered, the order's healer
+stays some days and teaches the colony's doctor at their side; some died, their families come for the bodies, and the
+colony hands them over or buries them here. **The strayed herd**: a herding people's animals (from the game and every
+animal mod that keeps a herd) stray onto the colony's land; the colony pens them until the herders come, then keeps part
+of the herd through the winter, fed, and in spring the herders take it home and leave young animals with the colony, or
+ask to be paid for the ones that died (the colony can buy the rest). **The pilgrims' relic**: pilgrims rest at the colony
+with a relic; on their second night it is taken and the thief runs for the edge of the map; caught, the colony judges the
+thief (handed over, kept prisoner, or let go); got away, the colony may go to the thief's camp if it is within three
+tiles, else the pilgrims search themselves with the colony's food; with the relic back, it stays a year at the colony's
+shrine and pilgrims come to see it. **Two towns' quarrel**: two peoples at odds make a truce at the colony with one of its
+people as witness, one side leaves a pledge for some days, then fighters of the other cross the colony's land to strike,
+and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Running and recent
+storylines show on the region window's Neighbours page under the missions, with their parts so far.
 
 The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and
 relatives on their way, the next stage of a story) and the missions under way with a bar for each thing to deliver and

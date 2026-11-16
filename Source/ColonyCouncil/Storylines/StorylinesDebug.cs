@@ -18,21 +18,8 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        /// <summary>The outcomes each part can end with.</summary>
-        private static readonly Dictionary<string, string[]> Outcomes = new Dictionary<string, string[]>
-        {
-            ["keep"] = new[] { "kept", "lost" },
-            ["rival"] = new[] { "sold", "refused", "told" },
-            ["makegood"] = new[] { "paid", "unpaid" },
-            ["debt"] = new[] { "paid", "unpaid" },
-            ["ready"] = new[] { "ready", "partly", "unready" },
-            ["signs"] = new[] { "found", "missed" },
-            ["beast"] = new[] { "killed", "driven", "left" },
-            ["shelter"] = new[] { "takein", "place", "sendon", "harmed" },
-            ["back"] = new[] { "joined", "visited", "traded", "notjoined" }
-        };
-
-        private static void Start(string kind)
+        /// <summary>Starts a storyline now, whatever the pace says (each storyline's own dev action calls this).</summary>
+        internal static void Start(string kind)
         {
             var map = Find.CurrentMap;
             if (map == null) return;
@@ -77,6 +64,31 @@ namespace ColonyCouncil
         [DebugAction("Rimfolk", "Storylines: start the children from the burned village now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugChildren() => Start(StorylineMath.Children);
 
+        [DebugAction("Rimfolk", "Storylines: start the sickness in the next town now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugSickness() => Start(SicknessFlow.Key);
+
+        [DebugAction("Rimfolk", "Storylines: start the strayed herd now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugHerd() => Start(HerdFlow.Key);
+
+        [DebugAction("Rimfolk", "Storylines: start the pilgrims' relic now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugRelic() => Start(RelicFlow.Key);
+
+        [DebugAction("Rimfolk", "Storylines: start two towns' quarrel now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugQuarrel() => Start(QuarrelFlow.Key);
+
+        [DebugAction("Rimfolk", "Storylines: the pilgrims' relic stolen tonight, now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugTheft()
+        {
+            var s = Storylines.Running.FirstOrDefault(x => x.kind == RelicFlow.Key && x.missionId >= 0);
+            var m = s == null ? null : Missions.ById(s.missionId);
+            if (m == null || !(Missions.Worker(m) is HappeningWorker_RelicRest w) || m.stage != 1)
+            {
+                Say("no pilgrims with their relic are staying at the colony now.");
+                return;
+            }
+            Say(w.DebugSteal(m) ? "the relic is stolen." : "it couldn't be stolen now (the relic isn't lying where they sleep, or the thief isn't here).");
+        }
+
         [DebugAction("Rimfolk", "Storylines: end the current part with...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugEndPart()
         {
@@ -88,19 +100,16 @@ namespace ColonyCouncil
             }
             var m = Missions.ById(s.missionId);
             string part = s.Last?.part ?? "";
+            var flow = StorylineMath.Flow(s.kind);
             var options = new List<FloatMenuOption>();
-            foreach (var o in (Outcomes.TryGetValue(part, out var list) ? list : new string[0]).Concat(new[] { StorylineMath.Declined }))
+            foreach (var o in StorylineMath.Outcomes(s.kind, part).Concat(new[] { StorylineMath.Declined }))
             {
                 string outcome = o;
                 options.Add(new FloatMenuOption(part + ": " + outcome, () =>
                 {
-                    var state = outcome == StorylineMath.Declined ? MissionState.Declined
-                        : outcome == "lost" || outcome == "unpaid" || outcome == "unready" || outcome == "missed" || outcome == "harmed" ? MissionState.Failed : MissionState.Done;
-                    if (outcome == "sold") s.Set("sold");
-                    else if (outcome == "told") s.Set("told");
-                    else if (outcome == "lost") s.amount = StorylineMath.LostDebt(s.worth / 3f);
-                    else if (outcome == "place" || outcome == "sendon") s.Set(outcome);
-                    if (outcome == "place" && s.other == null) s.other = ChildrenRules.Neighbours(s.giver);
+                    var state = outcome == StorylineMath.Declined ? MissionState.Declined : flow != null && flow.Failed(outcome) ? MissionState.Failed : MissionState.Done;
+                    // What the branch reads, set as the part would have (a flag, the neighbours, a sum).
+                    Storylines.Rules(s.kind)?.DebugEnded(s, part, outcome);
                     Missions.Finish(m, state, outcome, null);
                     Say(s.kind + ": " + part + " ended " + outcome + " (the branch only). Next: " + (s.Running ? s.next ?? "-" : "ended " + s.ending) + ".");
                 }));

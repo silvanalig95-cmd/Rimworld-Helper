@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S5, the pilgrims' relic (Source/ColonyCouncil/Storylines/StorylineRelic.cs; the rules in
+       Storylines/Flows/RelicFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml).
+       {GIVER} is the pilgrim who carries the relic, {FACTION} their people, {PLACE} their home, {RIVAL} the thief (one of
+       the pilgrims [own], or a traveller who shared their fire [stranger]), {OTHERPEOPLE} the outlaws the thief runs to,
+       {COUNT} the pilgrims, {ITEM} the goods asked for or the shrine, {DAYS} the time once taken on. Lines tagged [camp] are
+       for a thief's camp within three tiles of the colony, [!camp] for the pilgrims' own search. Answers' words use only
+       {X_nameDef} (the thief, on the card), {FACTION} and {COUNT}. -->
+
+  <!-- ===================== Part 1: the pilgrims rest at the colony ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RelicRest</defName>
+    <label>pilgrims with a relic</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RelicRest</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Shelter the pilgrims and their relic</li>
+        </titles>
+        <texts>
+          <li>[fellowship] A group of {COUNT} pilgrims of {FACTION}, led by {GIVER}, is walking from shrine to shrine with a relic of their faith. They ask to rest at the colony for a few days.</li>
+          <li>[!fellowship] A group of {COUNT} pilgrims of {FACTION}, led by {GIVER}, is on its way to a holy place with a relic of their faith. They ask to rest at the colony for a few days.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them rest here</label>
+            <outcome>The pilgrims are on their way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The pilgrims will rest somewhere else.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[stolen] The relic is gone, someone has taken it.</li>
+          <li>[judge] You caught the thief, so you should decide what happens now.</li>
+          <li>[handed] We will take this one home to answer to our elders.</li>
+          <li>[punished] Then the thief is in your hands.</li>
+          <li>[letgo] You are kinder than we would have been.</li>
+          <li>[escaped] Our relic was taken while we slept under your roof.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>relic</story>
+        <part>rest</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, the pilgrims come within a day and stay about {DAYS}. Each of them needs a bed or sleeping spot under a roof, and meals from the colony's stores, {ITEM} in all. If the stores have nothing for them, they eat what they brought.\n\n{GIVER} carries the relic and will set it down where the pilgrims sleep. If they are well looked after, {FACTION} will be grateful.</li>
+        </terms>
+        <accepted>
+          <li>{COUNT} pilgrims of {FACTION} are on their way to the colony with their relic.</li>
+        </accepted>
+        <notes>
+          <li>[came] The pilgrims of {FACTION} are arriving. {GIVER} will set their relic down where they sleep.</li>
+          <li>[stranger] A traveller, {RIVAL}, has asked the pilgrims of {FACTION} for a place by their fire for the night.</li>
+          <li>[stolen,own] In the night {RIVAL}, one of the pilgrims, took their relic and is running for the edge of the map with it. Stop {RIVAL} before {RIVAL} gets away.</li>
+          <li>[stolen,stranger] In the night {RIVAL}, the traveller who shared the pilgrims' fire, took their relic and is running for the edge of the map with it. Stop {RIVAL} before {RIVAL} gets away.</li>
+          <li>[caught] {RIVAL} has been caught, and the relic is back. The pilgrims ask the colony to decide what happens to {RIVAL}.</li>
+          <li>[back] The pilgrims' relic is back, and {GIVER} will take it again.</li>
+        </notes>
+        <endTitles>
+          <li>[stolen] The relic is stolen</li>
+          <li>[handed] The thief handed over</li>
+          <li>[punished] The thief kept prisoner</li>
+          <li>[letgo] The thief let go</li>
+          <li>[killed] The thief is dead</li>
+          <li>[dropped] The relic is back</li>
+          <li>[escaped] The thief got away</li>
+          <li>[harmed] The pilgrims were harmed</li>
+        </endTitles>
+        <ends>
+          <li>[handed] The pilgrims of {FACTION} have gone on with their relic, and they took {RIVAL} with them to answer to their own people.</li>
+          <li>[punished] The pilgrims of {FACTION} have gone on with their relic. {RIVAL} is the colony's prisoner.</li>
+          <li>[letgo] The pilgrims of {FACTION} have gone on with their relic. The colony let {RIVAL} go.</li>
+          <li>[killed] {RIVAL} died with the relic, and the pilgrims of {FACTION} have gone on with it.</li>
+          <li>[dropped] {RIVAL} got away without the relic, and the pilgrims of {FACTION} have gone on with it.</li>
+          <li>[escaped] {RIVAL} got away with the relic. The pilgrims of {FACTION} blame the colony for it, and have gone on without it.</li>
+          <li>[harmed] The pilgrims of {FACTION} or their relic came to harm in the colony's care. They will not forget it.</li>
+        </ends>
+        <good><li>handed</li><li>punished</li><li>letgo</li><li>killed</li><li>dropped</li></good>
+        <bad><li>escaped</li><li>harmed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The thief judged: handed over to the pilgrims, kept as the colony's prisoner, or let go. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RelicJudge</defName>
+    <label>the thief judged</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Judge the thief</li>
+        </titles>
+        <texts>
+          <li>[own] {RIVAL}, one of the pilgrims, took their relic in the night and was caught. The pilgrims ask the colony to decide what happens to {RIVAL}.\n\nThe colony can hand {RIVAL} over to the pilgrims, who will take {RIVAL} home to answer to their own people. It can keep {RIVAL} as the colony's prisoner. Or it can let {RIVAL} go.</li>
+          <li>[stranger] {RIVAL}, a traveller who shared the pilgrims' fire, took their relic in the night and was caught. The pilgrims ask the colony to decide what happens to {RIVAL}.\n\nThe colony can hand {RIVAL} over to the pilgrims, who will take {RIVAL} with them. It can keep {RIVAL} as the colony's prisoner. Or it can let {RIVAL} go.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hand {X_nameDef} over to the pilgrims</label>
+            <outcome>{X_nameDef} goes with the pilgrims.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>hand</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep {X_nameDef} as the colony's prisoner</label>
+            <outcome>{X_nameDef} is the colony's prisoner.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>punish</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {X_nameDef} go</label>
+            <outcome>{X_nameDef} is free to leave.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>letgo</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>relic</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: after the thief ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RelicTrail</defName>
+    <label>after the relic thief</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RelicTrail</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[camp] Get the relic back from the thief's camp</li>
+          <li>[!camp] Food for the pilgrims' search</li>
+        </titles>
+        <texts>
+          <li>[camp] A day or two ago {RIVAL} got away from the colony with the pilgrims' relic, and {FACTION} blame the colony for it. Their scouts have found {RIVAL}'s camp close to the colony, and {GIVER} asks the colony to get the relic back.</li>
+          <li>[!camp] A day or two ago {RIVAL} got away from the colony with the pilgrims' relic, and {FACTION} blame the colony for it. The pilgrims will go after {RIVAL} themselves, and {GIVER} asks the colony for food for the road.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Agree</label>
+            <outcome>{FACTION} are counting on the colony.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The pilgrims of {FACTION} are on their own now.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>relic</story>
+        <part>trail</part>
+        <terms>
+          <li>[camp] If the colony agrees, {RIVAL}'s camp, a camp of {OTHERPEOPLE} within three tiles of the colony, is marked on the world map for {DAYS}. The colony's people can go there as a caravan. {RIVAL} and the relic are inside, with fighters of {OTHERPEOPLE}. Bring the relic home to the colony before the camp moves on.\n\nIf the relic comes home, the pilgrims will come for it. If not, it is lost to them.</li>
+          <li>[!camp] If the colony agrees, it puts {ITEM} in its stockpiles within a day and a half, and the pilgrims' people come for it. With the food, the pilgrims are more likely to find {RIVAL}. They send word within a few days.\n\nIf they find the relic, they will come back to the colony. If not, it is lost to them.</li>
+        </terms>
+        <accepted>
+          <li>[camp] {RIVAL}'s camp is marked on the world map. Bring the relic home within {DAYS}.</li>
+          <li>[!camp] The colony will put {ITEM} in its stockpiles for the pilgrims of {FACTION}.</li>
+        </accepted>
+        <notes>
+          <li>[setout] The pilgrims of {FACTION} have the colony's food and have set out after {RIVAL}.</li>
+          <li>[setoutshort] The pilgrims of {FACTION} have set out after {RIVAL} without the colony's food.</li>
+        </notes>
+        <endTitles>
+          <li>[recovered] The relic is found</li>
+          <li>[notfound] The relic is lost</li>
+        </endTitles>
+        <ends>
+          <li>[recovered,camp] The pilgrims' relic is back at the colony. {GIVER} of {FACTION} will come for it.</li>
+          <li>[recovered,!camp] The pilgrims of {FACTION} found {RIVAL} and took their relic back. They are grateful for the colony's help.</li>
+          <li>[notfound] The pilgrims' relic was not found, and {FACTION} have given it up for lost.</li>
+        </ends>
+        <good><li>recovered</li></good>
+        <bad><li>notfound</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the relic at the colony's shrine ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RelicShrine</defName>
+    <label>the relic at the shrine</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RelicShrine</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep the relic at the colony's shrine</li>
+        </titles>
+        <texts>
+          <li>[!recovered] When the pilgrims' relic was taken at the colony, the colony got it back. {GIVER} of {FACTION} now asks to leave it at the colony's shrine for a year, so that pilgrims can come to see it there.</li>
+          <li>[recovered] When the pilgrims' relic was stolen, the colony helped them get it back. {GIVER} of {FACTION} now asks to leave it at the colony's shrine for a year, so that pilgrims can come to see it there.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep the relic</label>
+            <outcome>{FACTION} are bringing the relic.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The pilgrims will take the relic home.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[laid] It will be safe here with you for the year.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>relic</story>
+        <part>shrine</part>
+        <terms>
+          <li>[!noshrine] If the colony agrees, {GIVER} comes within a day and sets the relic down beside the colony's shrine. It stays there for a year. Once a season pilgrims of {FACTION} come to see it and leave an offering, and at the end of the year {GIVER} comes and takes it home.\n\nThe relic must stay at the colony while it is there. If it is lost, {FACTION} will hold it against the colony.</li>
+          <li>[noshrine] The colony has no shrine yet: an altar, a shrine, a ritual spot or a work of art. If the colony agrees, it has {DAYS} to put one up, and then {GIVER} comes and sets the relic down beside it. It stays there for a year. Once a season pilgrims of {FACTION} come to see it and leave an offering, and at the end of the year {GIVER} comes and takes it home.\n\nIf there is no shrine by then, {GIVER} takes the relic home. If the relic is lost while it is at the colony, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} of {FACTION} is bringing the relic to the colony's shrine.</li>
+        </accepted>
+        <notes>
+          <li>[came] {GIVER} of {FACTION} has come with the relic.</li>
+        </notes>
+        <endTitles>
+          <li>[kept] The relic at the shrine</li>
+          <li>[noshrine] No shrine for the relic</li>
+        </endTitles>
+        <ends>
+          <li>[kept] {GIVER} of {FACTION} has set the relic down beside the {ITEM}. It will stay at the colony for a year, and pilgrims will come to see it.</li>
+          <li>[noshrine] The colony had no shrine for the relic, so {GIVER} has taken it home.</li>
+        </ends>
+        <good><li>kept</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

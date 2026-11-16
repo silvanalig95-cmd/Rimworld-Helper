@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S7, two towns' quarrel (Source/ColonyCouncil/Storylines/StorylineQuarrel.cs; the rules in
+       Storylines/Flows/QuarrelFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml).
+       {FACTION} is the first people (who ask, and leave the pledge), {OTHERPEOPLE} the second (whose fighters cross the
+       land), {GIVER} the first people's envoy, {RIVAL} the second's, {PLACE} the first people's town, {KIND} the second's,
+       {NAME} the pledge, {COUNT} the fighters, {ITEM} the colony's witness or the goods asked for, {DAYS} the time once
+       taken on. Lines tagged [atwar] are for two peoples at war with each other when it began. Answers' words use only
+       {X_nameDef} (one of the fighters, on the card), {FACTION} and {COUNT}. -->
+
+  <!-- ===================== Part 1: the truce, with the colony as witness ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_QuarrelTruce</defName>
+    <label>a truce at the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_QuarrelTruce</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Witness the truce between {FACTION} and {OTHERPEOPLE}</li>
+        </titles>
+        <texts>
+          <li>[atwar] {FACTION} and {OTHERPEOPLE} are at war with each other. Both sides want it to end, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
+          <li>[!atwar] {FACTION} and {OTHERPEOPLE} have been on bad terms for a long time. Both sides want to settle it, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Be their witness</label>
+            <outcome>The envoys of both peoples are on their way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find a witness somewhere else.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[made] It is done, and you are our witness.</li>
+          <li>[missed] We waited long enough, so we are going home.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>quarrel</story>
+        <part>truce</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, {GIVER} of {FACTION} and {RIVAL} of {OTHERPEOPLE} come to the colony's gate within a day. Someone of the colony must spend two hours with the two of them as their witness, within a day of their coming. The colony's best speaker goes out to them.\n\nIf the truce is made, the two peoples will be at peace with each other, and both will think better of the colony. If nobody of the colony comes, the envoys go home without a truce.</li>
+        </terms>
+        <accepted>
+          <li>The envoys of {FACTION} and {OTHERPEOPLE} are on their way to the colony's gate.</li>
+        </accepted>
+        <notes>
+          <li>[came] The envoys of {FACTION} and {OTHERPEOPLE} have come to the gate. They are waiting for the colony's witness.</li>
+        </notes>
+        <endTitles>
+          <li>[witnessed] The truce is made</li>
+          <li>[missed] No truce</li>
+        </endTitles>
+        <ends>
+          <li>[witnessed] {FACTION} and {OTHERPEOPLE} made their truce at the colony, with {ITEM} as their witness. The two peoples are at peace with each other now.</li>
+          <li>[missed] Nobody of the colony came to witness the truce, so the envoys of {FACTION} and {OTHERPEOPLE} went home without one.</li>
+        </ends>
+        <good><li>witnessed</li></good>
+        <bad><li>missed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the pledge ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_QuarrelPledge</defName>
+    <label>a pledge of the truce</label>
+    <workerClass>ColonyCouncil.HappeningWorker_QuarrelPledge</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep {NAME}, the pledge of {FACTION}</li>
+        </titles>
+        <texts>
+          <li>A few days ago {FACTION} and {OTHERPEOPLE} made a truce at the colony. As a sign that they mean to keep it, {FACTION} want to leave {NAME}, one of their own, at the colony as a pledge for some days.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep the pledge</label>
+            <outcome>{X_nameDef} is on the way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will leave their pledge with another town.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[kept] Thank you, I was well looked after here.</li>
+          <li>[poorly] Thank you, though it was not easy here.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>quarrel</story>
+        <part>pledge</part>
+        <terms>
+          <li>If the colony agrees, {NAME} comes within a day and stays about {DAYS}. {NAME} needs a bed and meals from the colony's stores, {ITEM} in all. If the stores have nothing, {NAME} eats what they brought.\n\nIf {NAME} is well looked after, {FACTION} will be grateful. If {NAME} dies or is taken prisoner at the colony, {FACTION} will blame the colony, and the truce will suffer for it.</li>
+        </terms>
+        <accepted>
+          <li>{NAME} of {FACTION} is on the way to the colony.</li>
+        </accepted>
+        <notes>
+          <li>[came] {NAME}, the pledge of {FACTION}, has arrived.</li>
+        </notes>
+        <endTitles>
+          <li>[kept] {NAME} has gone home</li>
+          <li>[poorly] {NAME} has gone home</li>
+          <li>[harmed] {NAME} came to harm</li>
+        </endTitles>
+        <ends>
+          <li>[kept] {NAME} has gone home to {PLACE}, well looked after. {FACTION} are grateful.</li>
+          <li>[poorly] {NAME} has gone home to {PLACE}. On some days {NAME} had no bed or no food from the colony.</li>
+          <li>[harmed] {NAME}, the pledge of {FACTION}, died or was taken prisoner at the colony. {FACTION} blame the colony, and the truce will suffer for it.</li>
+        </ends>
+        <good><li>kept</li></good>
+        <bad><li>harmed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the fighters cross the land ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_QuarrelFighters</defName>
+    <label>fighters crossing the land</label>
+    <workerClass>ColonyCouncil.HappeningWorker_QuarrelFighters</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{OTHERPEOPLE}'s fighters cross the colony's land</li>
+        </titles>
+        <texts>
+          <li>When {FACTION} and {OTHERPEOPLE} made their truce at the colony, not all of {OTHERPEOPLE} agreed with it. Word has reached the colony that {COUNT} of their fighters are coming across its land on their way to attack {FACTION}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Deal with it</label>
+            <outcome>The colony will decide what to do when the fighters come.</outcome>
+          </li>
+          <li>
+            <label>Stay out of it</label>
+            <outcome>The fighters will pass and attack {FACTION}.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[gate] We were told to wait here, so we will wait.</li>
+          <li>[turnback] Fine, we will go back the way we came.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>quarrel</story>
+        <part>fighters</part>
+        <terms>
+          <li>If the colony agrees, the fighters cross its land within a day, and the colony decides what to do when they come: let them pass, send word to {FACTION}, or stop them at the gate.\n\nIf they pass, they attack {FACTION}, and the two peoples will be at war. If the colony warns {FACTION}, the attack fails, {FACTION} will thank the colony and {OTHERPEOPLE} will resent it. If the colony stops them at the gate, they may turn back, or they may try to force their way in.\n\nIf the colony stays out of it, the fighters pass and attack {FACTION}.</li>
+        </terms>
+        <accepted>
+          <li>{COUNT} fighters of {OTHERPEOPLE} will cross the colony's land within a day.</li>
+        </accepted>
+        <notes>
+          <li>[came] {COUNT} fighters of {OTHERPEOPLE} have come onto the colony's land and are resting at its edge before they go on to attack {FACTION}.</li>
+          <li>[warnsent] The colony has sent word to {FACTION} that fighters of {OTHERPEOPLE} are coming.</li>
+          <li>[forced] The fighters of {OTHERPEOPLE} would not turn back and are forcing their way in. {OTHERPEOPLE} say the fighters broke their word, and no longer count them as their own.</li>
+        </notes>
+        <endTitles>
+          <li>[came] Fighters of {OTHERPEOPLE}</li>
+          <li>[forced] The fighters force the gate</li>
+          <li>[passed] The fighters passed</li>
+          <li>[warned] {FACTION} were warned</li>
+          <li>[stopped] The fighters turned back</li>
+          <li>[fought] The fight at the gate</li>
+        </endTitles>
+        <ends>
+          <li>[passed] The fighters of {OTHERPEOPLE} crossed the colony's land and went on to attack {FACTION}.</li>
+          <li>[warned] The fighters of {OTHERPEOPLE} crossed the colony's land, but {FACTION} were ready for them, and the attack failed. {FACTION} thank the colony for the warning. {OTHERPEOPLE} resent it, and {FACTION} trust {OTHERPEOPLE} less than before.</li>
+          <li>[stopped] The fighters of {OTHERPEOPLE} were stopped at the colony's gate and turned back. The truce between {FACTION} and {OTHERPEOPLE} holds.</li>
+          <li>[fought] The fighters of {OTHERPEOPLE} forced their way in and were fought off at the colony's gate. The truce between {FACTION} and {OTHERPEOPLE} holds.</li>
+        </ends>
+        <good><li>stopped</li><li>fought</li><li>warned</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The fighters on the land: let them pass, warn the first people, or stop them at the gate. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_QuarrelCard</defName>
+    <label>fighters on the land</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Fighters on the colony's land</li>
+        </titles>
+        <texts>
+          <li>{COUNT} fighters of {OTHERPEOPLE} are resting at the edge of the colony's land on their way to attack {FACTION}, who made a truce with them at the colony.\n\nThe colony can let them pass: they attack {FACTION}, and the two peoples will be at war. It can send word to {FACTION}: they will be ready, the attack will fail, and {OTHERPEOPLE} will resent the colony. Or it can stop them at the gate: they may turn back, or they may try to force their way in.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The fighters go on across the land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>pass</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Warn {FACTION}</label>
+            <outcome>The colony sends word to {FACTION}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>warn</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Stop them at the gate</label>
+            <outcome>The fighters are asked to wait at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>stop</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>quarrel</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

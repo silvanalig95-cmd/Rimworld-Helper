@@ -3921,6 +3921,143 @@ Dev mode (Debug actions, Rimfolk): "Storylines: start the factor's goods now", "
 now", "... the children from the burned village now", "Storylines: end the current part with..." (the branch only),
 "Storylines: the next part (or ending) due now", "Storylines: what stands (log)". Tests: `Tools/Tests/StorylineTests.cs`.
 
+### Storylines, round 2: the sickness, the strayed herd, the pilgrims' relic and two towns' quarrel (the player's "great, do some more", 16 November 2026; not released yet)
+
+After round 1 the player said "great, do some more" (16 November 2026), with the go's words still binding: "make sure they
+are written in the more clear style i mentioned earlier on", and away from home only "within only very few tiles". Round
+2's storylines of `docs/quests-proposals.md` (S2, S3, S5, S7), on the frame above; its single quests are their own entry.
+Everything plays out on the colony's own map but one optional part of S5, and only when the place is within three tiles.
+
+**Each storyline's rules a class of its own.** The frame's shared switches (the kinds, parts, endings, what follows a part,
+the endings with a letter) moved out of `StorylineMath` into one pure class per storyline (`Storylines/Flows/`,
+`StorylineFlow`: `FactorFlow`, `BeastFlow` and `ChildrenFlow` unchanged in what they say, then `SicknessFlow`, `HerdFlow`,
+`RelicFlow`, `QuarrelFlow`, each with its own numbers), found by the frame by reflection (`StorylineFlows`, by their number
+in the plan); `StorylineMath`'s static calls answer from them, so nothing that read them changed. The game side likewise:
+each storyline's `StorylineRules` (now with its `Kind`) is found by the frame (`GenTypes.AllSubclassesNonAbstract`), and
+gained `After` (what an ending leaves behind, by its kind: the relic at the shrine) and `DebugEnded` (what the dev menu
+sets for a branch). The dev menu's outcomes come from the flows. A later storyline adds a flow, a rules class and its defs,
+and touches nothing shared. Parts whose people stay at the colony share `HappeningWorker_StorylineHost`
+(`StorylineHost.cs`): the hosting mission's guests (`Hosting`: the colony's table and beds), each day counted fed and
+housed or short and told.
+
+**S2, the sickness in the next town** (`Storylines/StorylineSickness.cs`). A town of a people at peace with a town near
+(the hospitaller order first) has a sickness: the game's own flu or plague, never one made up; the plague four times in ten
+for the tribal and medieval peoples, three in twenty for the industrial, never the spacer age, likelier in a plague year
+among the region's world events (`SicknessFlow.Illness`). The mod pool was checked (`docs/player-mods`): the enabled mods'
+human illnesses (Alpha Biomes' spore allergies, gangrene, parasites and viral abasia; A RimWorld of Magic's mana sickness)
+belong to their biomes or their magic, not to a town's sickness passed from one person to another, so none is used.
+- **Part 1, medicine for the town**: six to fourteen medicine of any kind, by the colony's size, in its stockpiles within six
+  to eight days; their carts collect it within half a day of it being ready (`Couriers.CollectGoals`) and pay half again
+  over its worth. Half or more by the date: they take it at its plain worth; less: none, and it ends.
+- **Part 2, the sick in the colony's beds** (two to five days later): three to six of their sick come within a day, the
+  illness well along (severity about a quarter, their immunity a third or more), and are taken in as the colony's guests,
+  each walked to a patient's bed: the game's own care for a guest, its doctors tending them and feeding them in bed. Each
+  who is well goes home, told; each death is told. Settled when all are well or dead, or after nine days (anyone still in
+  bed stays until they can walk, as any guest). **Catching it**: the game's tending (`Health/HealthPatches.cs`) reaches
+  `SicknessRules.Tended`: the physician's chance (`HarmFourMath.PhysicianChance`, a serious illness: gloves and masks in the
+  industrial age and after, a sterile room and the quarantine or sick-bay decree lower it), through the shared harm budget
+  (`Harm.Roll`, the physician's kind) and the illness budget (`IllnessBudget.Allows`, and `Owe` when it comes), shown a day
+  or two later with the physician's own message and line (`HarmFour.Wait`); the everyday rule (`Catching.Tended`) leaves
+  the town's sick to it. One of them taken prisoner: harmed.
+- **Part 3, all recovered: a healer teaches** (three to eight days later): the order's healer (medicine 12 to 15) stays five
+  or six days as a hosting guest, and each day between 8 and 15 o'clock the colony's best doctor works at their side for
+  two and a half to three and a half hours (the play-out's lesson, `DilemmaEffect_Lesson`: 150 to 320 experience an hour by
+  how far the healer leads, at the game's own pace); with answers not played out, the doctor learns as much by the day.
+  A lesson on half the days or more: taught. Declined: the order sends medicine in thanks a few days later.
+- **Part 3, some died: their families** (a day or two later): one of the family for each of the dead (two to five) come to
+  the gate, and a card asks: **hand the bodies over** (each carries one home off the map, the game's own carrying: the
+  default) or **bury them here** (graves laid out beyond the gate as frames for the colony to dig, `PlayBurial.Plot`; they
+  take the strangers' bodies, the colony's haulers carry them in, the families wait by them about a day; not done in time,
+  they take them home after all). Already in the colony's graves: they visit them. The bodies gone: nothing to take home.
+
+**S3, the strayed herd** (`Storylines/StorylineHerd.cs`). A herding people (the herding folk first, else a tribal or
+medieval people, else any at peace). Only asked in summer or autumn (or where the year has no seasons), so the keeping is a
+winter. The herd's kind: any herd animal the game or an enabled mod adds that roams (so a pen holds it), of a farm's kind
+(milk, wool or farm stock), calm enough (wildness 0.6 at most), no predator, insect, dryad or Pokémon, able to live outside
+here now; the people's age's own animals (`HerdFlow.Kinds`: muffalo, goats, yaks, dromedaries, muskoxen, Megafauna's
+aurochs and Alpha Animals' thunderox and mouflon for the tribal; sheep, goats, cows, yaks and Vanilla Animals Expanded's
+camels for the medieval; cows, sheep, alpacas, goats and yaks later) four times likelier, the land's own twice.
+- **Part 1, pen the strays**: five to nine head, there at the edge of the map as soon as the herders' word comes. Taken on,
+  they are the colony's animals for three or four days (the game's own pen animals: its handlers rope them into a pen;
+  outside one they may roam off the map; the land's predators may take them as any animal); turned down, they wander off.
+  Then the herders come to the gate and count: every one in a pen or a barn, penned (+8); half or more still here, most
+  (+4); fewer, lost (and it ends, -14 in all). Each animal is led out to them (`Rimfolk_Storyline_LedOut`, a walk that crosses
+  fences and gates as a roped animal does, while it is still the colony's so its doors open), then all go home together.
+- **Part 2, keep part of the herd** (two to four days later): three to five of the herd, until spring (10 to 32 days; a
+  season where the year has none), brought onto the colony's land and the colony's to pen and feed (grazing, hay or kibble:
+  the quest shows the hay and kibble in store against what they eat, `SimplifiedPastureNutritionSimulator`, and every three
+  days in winter a word when it won't last). At the end: kept (every one alive and here), or some died.
+- **Part 3, the herders in spring** (a day or two later): kept, they lead them home and leave one or two young animals of
+  the herd with the colony (real animals, the colony's); some died, a card: **pay for the dead** (their worth, the silver
+  carried out to the herders), **buy the ones left** (nine tenths of their worth; they stay the colony's), or **refuse**
+  (the default; -23 in all). Not answered: they take the herd home anyway, and leave nothing.
+
+**S5, the pilgrims' relic** (`Storylines/StorylineRelic.cs`). Pilgrims of a faith (the pilgrim fellowship first, else any
+people at peace) with a relic, Rimfolk's own (`Rimfolk_PilgrimRelic`, a small carved reliquary; `Tools/make_quest_items.py`).
+- **Part 1, shelter the pilgrims** (the card inside it): their keeper and two or three more stay two or three days as
+  hosting guests; the keeper sets the relic down where they sleep. The thief is one of them half the time, else a
+  traveller who comes to their fire on the evening before. On their second night, in the small hours, the thief (an outlaw
+  now: one of the region's raiding peoples, so the colony may stop them) takes the relic and runs for the edge of the map
+  with it (the game's own carrying off, at a jog); a letter says so. Caught (downed, or the colony's prisoner): a card,
+  **hand them over** to the pilgrims (they take the thief with them; the default), **keep them as the colony's prisoner**,
+  or **let them go**; the pilgrims' goodwill by the judgement and whether the thief was one of their own. Killed with it, or
+  gone without it: the relic is back too. The keeper takes it again, and they rest out their stay. Off the map with it:
+  escaped (-8). Still running after a day: they slip away.
+- **Part 2, after the thief** (escaped; a day or two later). The pilgrims blame the colony. **Where a place for the thief's
+  camp can be found within three tiles** (`TileFinder.TryFindNewSiteTile`, one to three), it is there for eight days: the
+  game's own bandit camp of the thief's people (six tenths of the threat now), the thief and the relic inside when the
+  colony's caravan gets there (`Patch_StorylineRelicCamp`); recovered once the relic is on the colony's map (a caravan on
+  its way home with it has three days more). This is the storylines' one away part, optional, and the only quest of round 2
+  that sends anyone from home. **Otherwise** the pilgrims go after the thief themselves and ask for food for the road (four
+  meals each, collected from the stockpiles); they send word three to five days later, finding the thief seven times in ten
+  with the food, about one in three without.
+- **Part 3, the relic at the shrine** (two to five days after it is back): they ask to leave it at the colony's shrine for a
+  year (`Shrines.Is`: an altar, a shrine, a ritual focus or a work of art; with none, the colony has three days to put one
+  up). The keeper sets it down beside it. For the year (`StorylineAfter` "relic"): once a season two or three pilgrims come
+  to see it and leave an offering (40 to 90 silver by the colony's wealth); then the keeper comes and carries it home, with
+  thanks (+10). The relic gone meanwhile: the pilgrims who come find it gone (-15).
+
+**S7, two towns' quarrel** (`Storylines/StorylineQuarrel.cs`). Two peoples at peace with the colony and at odds with each
+other (at war, or their goodwill toward each other below nothing, and the game lets it change); those at war likelier.
+- **Part 1, the truce** (built on the witness mission, at home): their envoys come to the gate within a day, and someone of
+  the colony must spend two hours with both (anyone grown within eight cells of the two; the colony's best speaker goes out
+  to them, the play-out's visit). Made: their goodwill toward each other rises to peace (at least 10, the game's own
+  relations between peoples, shown on the World page), +6 from each, the witness the witness mission's memory. Not within a
+  day: they go home without it. Two peoples at war with each other meet under a ceasefire (their goodwill toward each other
+  at nothing while their envoys are at the colony, or they would fight at the gate; back where it was if no truce is made).
+- **Part 2, the pledge** (two to four days later): someone of the first people (16 to 28) stays four to six days as a
+  hosting guest. Kept (every day fed and housed, +8), poorly (some days short, +2), or harmed (dead or taken prisoner: the first
+  blame the colony, -26 in all, and their goodwill toward the other falls 20). Declined: the pledge stays with another town, and
+  the story goes on.
+- **Part 3, the fighters** (three to eight days later; only with battles on): three to six fighters of the second people
+  (by the threat now, about 120 points each), who don't hold with the truce, come onto the colony's land and rest at its
+  edge; the card asks: **let them pass** (the default: they cross as the game's travellers do, and a day or two later the
+  two peoples are at war, their goodwill toward each other -80), **warn the first** (they cross, the strike fails; the
+  first's goodwill toward the other falls 30, the first +12, the second -10), or **stop them at the gate** (they wait there
+  two hours and turn back, the peace holding, +10 and -5; or they force their way in, 15 % plus 8 % for each of them over
+  the colony's people able to fight, 5 % to 50 %: cast out by their own people as outlaws, a fight at the gate, shown;
+  fought off, +12 and -8). All with the reasons of `Rimfolk_GoodwillReasons` (the peoples' relations change by the game's
+  `TryAffectGoodwillWith` between them, war at -75, which the World page's web of peoples and their page show).
+
+**The rules held.** At home, but S5's one part within three tiles. Every age: the illness by the people's age, the herd by
+their age and the mod pool, the fighters their people's own. Harm only where the plan says: the illness caught at the
+physician's rate through both budgets, the land's predators and roaming as the game has them, the thief's chase and the
+fight at the gate (only when they force it), each shown. Plain words, spoken lines one sentence. One mission at a time.
+
+Code map: `Storylines/Flows/` (pure: `StorylineFlow` and `StorylineFlows`; `RoundOneFlows.cs`; `SicknessFlow.cs`,
+`HerdFlow.cs`, `RelicFlow.cs`, `QuarrelFlow.cs`; linked whole in `Tools/Tests/Tests.csproj`), `StorylineHost.cs`,
+`StorylineSickness.cs`, `StorylineHerd.cs`, `StorylineRelic.cs` (with `Patch_StorylineRelicCamp`), `StorylineQuarrel.cs`.
+Changed: `StorylineMath.cs` (the switches now ask the flows), `Storylines.cs` (rules found by kind, `After` and
+`DebugEnded`, `Storyline.site`, `StorylineAfter.thing`), `StorylinesDebug.cs`, the three round-1 rules (their `Kind`),
+`Health/HealthPatches.cs` (the tending reaches the sickness first). Defs: `Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml`,
+`Defs/MissionDefs/Rimfolk_Storyline_Sickness.xml`, `_Herd.xml`, `_Relic.xml`, `_Quarrel.xml`,
+`Defs/Misc/Rimfolk_Storylines_Misc.xml` (the led-out job, the relic); Keyed `Rimfolk_Storylines2.xml`; the relic's picture.
+Saved: nothing new collected (the sick, the herd, the pilgrims and the fighters in the storyline's people; the graves laid
+out in its list of marks; the thief's camp's id and the relic at the shrine as single values). Dev mode: "Storylines: start
+the sickness in the next town now", "... the strayed herd now", "... the pilgrims' relic now", "... two towns' quarrel
+now", "Storylines: the pilgrims' relic stolen tonight, now", and the frame's. Tests: `Tools/Tests/StorylineTests2.cs`
+(and every storyline's shape in `StorylineTests.cs`).
+
 ### The right-click's things, done by themselves (the player's request, 7 November 2026)
 
 "I'm not really using the right click conversation options, so please integrate them to be done automatically by pawns

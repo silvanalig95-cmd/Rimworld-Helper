@@ -19,6 +19,14 @@ namespace ColonyCouncil
     /// <summary>The children's storyline beyond its parts: who asks, the neighbours, the eldest, its endings.</summary>
     public class ChildrenRules : StorylineRules
     {
+        public override string Kind => StorylineMath.Children;
+
+        public override void DebugEnded(Storyline s, string part, string outcome)
+        {
+            if (outcome == "place" || outcome == "sendon") s.Set(outcome);
+            if (outcome == "place" && s.other == null) s.other = Neighbours(s.giver);
+        }
+
         /// <summary>Any people at peace with the colony that has people to send (children exist with Biotech).</summary>
         public override Faction Giver(Map map) => ModsConfig.BiotechActive ? Arrivals.Friendly(VarietyUtil.OnGoodTerms) : null;
 

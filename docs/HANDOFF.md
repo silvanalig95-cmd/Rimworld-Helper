@@ -62,7 +62,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1
     was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
     is being built on the player's "great, do some more" (16 November 2026): S2, S3, S5 and S7, and Q3, Q4, Q6, Q8,
-    Q11, Q12 and Q13. Round 3 waits, and the player can strike or change anything in it before it starts.
+    Q11, Q12 and Q13. S2, S3, S5 and S7 are built, not released (the entry "Storylines, round 2" above the newest release
+    line). Round 3 waits, and the player can strike or change anything in it before it starts.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -145,6 +146,101 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Storylines, round 2: the sickness
+  in the next town, the strayed herd, the pilgrims' relic and two towns' quarrel** (16 November 2026; the player, after
+  round 1: "great, do some more"; the go's words still bind: "go ahead with quests and storylines, make sure they are
+  written in the more clear style i mentioned earlier on", "and while quests that require you to go out of your base are
+  interesting, i hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these
+  quests to a minimum", "unless it's like within only very few tiles"). S2, S3, S5 and S7 of `docs/quests-proposals.md`
+  (marked built there) on the 0.262.0 frame; round 2's single quests are their own entry. DESIGN.md "Storylines, round 2:
+  the sickness, the strayed herd, the pilgrims' relic and two towns' quarrel" (after round 1's section) has all of it;
+  README's storylines paragraph and the Almanac's "Storylines" section (Rimfolk events page; keywords unchanged) name them.
+  - **What was built.** First the frame: each storyline's pure rules are a class of its own (`Storylines/Flows/`, a
+    `StorylineFlow` each, found by reflection by their number; round 1's three moved there unchanged) and its game rules
+    are found by kind (`StorylineRules.Kind`, `GenTypes`), with `After` (what an ending leaves) and `DebugEnded` (the dev
+    menu's branch); the dev menu reads the outcomes from the flows; parts whose people stay share a hosting base
+    (`StorylineHost.cs`). A later storyline adds files and touches nothing shared. **S2**: a town with the game's own flu
+    or plague (by the people's age) asks for medicine (collected by its carts, paid half again over its worth); then three
+    to six of its sick are cared for in the colony's beds as its guests (the game's own care); a colonist who tends them
+    may catch it at the physician's chance, through the shared harm budget and the illness budget, shown a day or two
+    later; all recovered, the order's healer stays five or six days and teaches the colony's doctor a few hours a day at
+    their side (the play-out's lesson, the game's pace); some died, their families come and the card asks: hand the bodies
+    over (they carry them off the map) or bury them here (graves laid out beyond the gate for the colony to dig, the
+    families waiting by them). **S3**: in summer or autumn five to nine head of a herding people's herd (any herd animal of
+    the game or the enabled mods that a pen holds, the people's age's own likelier) are on the colony's land; the colony's
+    to pen until the herders come (the game's pens, roaming and predators); counted and led out to the herders through
+    fences; then three to five kept until spring and fed (the stores' hay and kibble shown against what they eat); in
+    spring young animals left with the colony, or a card when some died (pay for them, buy the rest, refuse). **S5**:
+    pilgrims rest two or three days with their relic (Rimfolk's own reliquary, a new picture); on their second night one of
+    them, or a traveller who came to their fire, takes it and runs for the edge of the map as an outlaw; caught, a card
+    judges the thief (handed to the pilgrims, kept as the colony's prisoner, let go); got away, the thief's camp (the game's
+    bandit camp of the thief's people) if a place is found within three tiles, else the pilgrims search themselves with the
+    colony's food; with it back, a year at the colony's shrine with pilgrims coming once a season, then home. **S7**: two
+    peoples at peace with the colony and at odds with each other make a truce at its gate with one of the colony as their
+    witness (two hours with both; their goodwill toward each other to peace, the game's own relations); one side leaves a
+    pledge four to six days; then fighters of the other rest at the edge of the land and the card asks: let them pass (war
+    between them a day or two later), warn the first (the strike fails, thanked by one, resented by the other), or stop
+    them at the gate (they turn back, or force it: cast out by their people, a fight).
+  - **Decided here** (not asked): S5's theft and chase sit inside part 1 (the frame keeps parts a day or more apart, and a
+    chase can't wait), so its parts are rest, after the thief, and the shrine; the thief is one of the pilgrims half the time;
+    a thief turns outlaw (a raiding people's) when they take it, so stopping them costs no goodwill; "handed over" means the
+    pilgrims take the thief with them (carried off out of sight if still down when they go), "punished here" means the
+    colony's prisoner; killed, or gone without the relic, counts as the relic back; S5's camp is six tenths of the threat
+    now and stays eight days, and is the storylines' only away part (rule 2), offered only when a place within three tiles
+    is found; S2's illness is only the game's flu or plague (the enabled mods' human illnesses are biome or magic ones); S2's
+    healer has medicine 12 to 15 and teaches 150 to 320 experience an hour; a healer turned down sends medicine in thanks;
+    S2's families take the bodies home by default; S3 asks only in summer or autumn (or where there are no seasons) so the
+    keeping is a winter, and keeps until spring (10 to 32 days, a season with no seasons); the strays are the colony's own
+    animals for the keeping (so its handlers can rope them, and the game's roaming and predators apply); refusing the herd's
+    card is its default; S3's spring part not answered means the herders take their animals anyway and leave nothing; S7's
+    envoys of two peoples at war meet under a ceasefire (their goodwill toward each other at nothing while they are at the
+    colony, so they don't fight at the gate; back where it was without a truce); S7's second people are the ones whose
+    fighters come; the pledge turned down doesn't end it; the fighters rest at the edge
+    until the card is answered (or six hours), and force the gate 5 % to 50 % of the time by how many could stand against
+    them; letting them pass is the card's default, as staying out of it is the part's; all first parts' base chance 0.4,
+    their earliest day 15 (20 for the quarrel).
+  - **Code map**: `Source/ColonyCouncil/Storylines/Flows/` (`StorylineFlow.cs` with `StorylineFlows`, `RoundOneFlows.cs`,
+    `SicknessFlow.cs`, `HerdFlow.cs`, `RelicFlow.cs`, `QuarrelFlow.cs`; pure, linked whole in `Tools/Tests/Tests.csproj`),
+    `StorylineHost.cs`, `StorylineSickness.cs`, `StorylineHerd.cs`, `StorylineRelic.cs` (`Patch_StorylineRelicCamp`),
+    `StorylineQuarrel.cs`. Changed: `StorylineMath.cs` (the switches ask the flows), `Storylines.cs` (rules by kind, `After`,
+    `DebugEnded`, `Storyline.site`, `StorylineAfter.thing`), `StorylinesDebug.cs` (four starts, the theft now, outcomes from
+    the flows), `StorylineFactor.cs`, `StorylineBeast.cs`, `StorylineChildren.cs` (their `Kind`, the factor's and children's
+    debug branch), `Health/HealthPatches.cs` (one line: the tending reaches the sickness first),
+    `Tools/make_quest_items.py` (the relic; names the sprites to draw), `Tools/playout_skips.txt` (the burial answer, laid
+    out by the part's own code). Defs: `Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml`,
+    `Defs/MissionDefs/Rimfolk_Storyline_Sickness.xml`, `_Herd.xml`, `_Relic.xml`, `_Quarrel.xml`,
+    `Defs/Misc/Rimfolk_Storylines_Misc.xml` (the led-out job, the relic); Keyed `Rimfolk_Storylines2.xml`; texture
+    `Things/PilgrimRelic.png`. No new saved collection. Tests: `Tools/Tests/StorylineTests2.cs`, and `StorylineTests.cs` now
+    checks every storyline's shape.
+  - **Can't be checked without the game**: the sick walking in and lying down in patient beds as guests, the doctors
+    tending and feeding them, each going home when well, the caught illness showing; the healer's lesson play-out; the
+    families' carrying the bodies off the map (the game's take-and-exit job on a corpse) and the grave frames, the graves
+    taking strangers' bodies and the haulers filling them; the strays spawning wild at the offer, becoming the colony's on
+    accepting, the handlers roping them, roaming, predators; the led-out job crossing fences and gates and the animals then
+    leaving with the herders; the fodder line; the young; the relic set down where they sleep, the stranger's evening
+    visit, the thief taking it at night and running, the carried relic dropping when they're downed, the judgement card's
+    three outcomes (the prisoner, the thief let go walking off); the camp's map with the thief and the relic, the caravan
+    bringing it home; the relic at the shrine and the season's visits; the envoys at the gate and the witness's visit
+    counting; the fighters resting, crossing as travellers, stopping at the gate, turning back or forcing it, and the two
+    peoples' relation (war shown on the World page's web); how often each storyline comes.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk): 1. "Storylines: start the sickness in the next town now":
+    accept, put the medicine in a stockpile, wait for the carts; "Storylines: end the current part with..." is there for
+    any branch; "Storylines: the next part (or ending) due now": the sick come (keep two beds free); watch a doctor tend
+    them; then the healer (a lesson each day) or, with a death, the families and the card. 2. "Storylines: start the
+    strayed herd now" (works in any season from the dev menu): the strays are at the edge as the quest comes; accept, build
+    a pen with a gate; after three or four days the herders count and lead them out; next part: keep three to five; end it
+    and next part due: spring. 3. "Storylines: start the pilgrims' relic now": accept; they come and the relic lies by their
+    beds; "Storylines: the pilgrims' relic stolen tonight, now" for the theft at once; draft and catch the thief; the card.
+    For the camp, end part 1 with "escaped" and make the next part due (a camp within three tiles if the world allows it).
+    4. "Storylines: start two towns' quarrel now" (needs two peoples at peace with the colony and at odds with each other):
+    accept; stay near both envoys at the gate two hours; then the pledge; then the fighters and the card (try stopping
+    them). 5. "Storylines: what stands (log)"; save and load in the middle of each.
+  - **Mods that would help**: none is needed. The herd already draws on every herd animal of the enabled mods: Alpha
+    Animals (https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856, 1.6 and 1.7, kept up), Vanilla Animals
+    Expanded (https://steamcommunity.com/sharedfiles/filedetails/?id=2871933948, 1.6 and 1.7, kept up) and Megafauna
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=1055485938, tagged up to 1.6, still updated); and the
+    pilgrims' shrine can be any altar, shrine or art the colony has, the Ideology ones and the enabled medieval mods' among
+    them.
 - 0.262.0, **Storylines: the frame, the
   factor's goods, the beast coming down the valley and the children from the burned village** (16 November 2026; the
   player's words, 13 November 2026: "the next thing to include will be more quests, and quests that are storylines across

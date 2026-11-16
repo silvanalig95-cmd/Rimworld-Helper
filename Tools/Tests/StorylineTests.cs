@@ -7,7 +7,8 @@ using System.Xml.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// Storylines, round 1 (docs/quests-proposals.md; Storylines/; DESIGN.md "Quests and storylines"): the pace (one at a time,
+/// Storylines, the frame and round 1 (docs/quests-proposals.md; Storylines/; DESIGN.md "Quests and storylines"; round 2's
+/// four are StorylineTests2, every storyline's shape is checked here): the pace (one at a time,
 /// a second only after the first has run a season), the branching rules of the factor's goods, the beast coming down the
 /// valley and the children from the burned village (every part and outcome leads to a part or an ending, a few days to two
 /// weeks apart, the long waits quiet), the plain ending when the people who asked are gone, the numbers each plays with,
@@ -18,19 +19,8 @@ public static class StorylineTests
 {
     private const int Day = StorylineMath.DayTicks;
 
-    /// <summary>The outcomes each part can end with (besides declined, gone and ended).</summary>
-    private static readonly Dictionary<string, string[]> Outcomes = new Dictionary<string, string[]>
-    {
-        ["keep"] = new[] { "kept", "lost" },
-        ["rival"] = new[] { "sold", "refused", "told" },
-        ["makegood"] = new[] { "paid", "unpaid" },
-        ["debt"] = new[] { "paid", "unpaid" },
-        ["ready"] = new[] { "ready", "partly", "unready" },
-        ["signs"] = new[] { "found", "missed" },
-        ["beast"] = new[] { "killed", "driven", "left" },
-        ["shelter"] = new[] { "takein", "place", "sendon", "harmed" },
-        ["back"] = new[] { "joined", "visited", "traded", "notjoined" }
-    };
+    /// <summary>The outcomes each part can end with (besides declined, gone and ended), as each storyline's own rules list them.</summary>
+    private static string[] Outcomes(string kind, string part) => StorylineMath.Outcomes(kind, part);
 
     public static int Run(string root, Action<bool, string> check)
     {
@@ -43,7 +33,14 @@ public static class StorylineTests
 
         // ================= The storylines =================
 
-        C(StorylineMath.Kinds.SequenceEqual(new[] { "factor", "beast", "children" }), "round 1's three: the factor's goods, the beast, the children");
+        C(StorylineMath.Kinds.SequenceEqual(new[] { "factor", "sickness", "herd", "beast", "relic", "quarrel", "children" }),
+            "round 1's three and round 2's four, in their order: S1, S2, S3, S4, S5, S7, S8 (" + string.Join(", ", StorylineMath.Kinds) + ")");
+        C(StorylineFlows.All.Select(f => f.Number).Distinct().Count() == StorylineFlows.All.Length && StorylineFlows.All.All(f => StorylineFlows.Of(f.Kind) == f),
+            "each storyline's rules found once, by its own number");
+        // The round-1 rules moved out of StorylineMath's switches: their endings with a letter are as before.
+        C(StorylineMath.EndingHasLetter("factor", "share") && StorylineMath.EndingHasLetter("factor", "guards") && !StorylineMath.EndingHasLetter("factor", "madegood")
+          && StorylineMath.EndingHasLetter("beast", "away") && !StorylineMath.EndingHasLetter("beast", "killed") && StorylineMath.EndingHasLetter("children", "gone")
+          && !StorylineMath.EndingHasLetter("children", "grown"), "the endings with a letter of their own, as round 1 had them");
         foreach (var k in StorylineMath.Kinds)
         {
             C(StorylineMath.Parts(k).Length >= 2 && StorylineMath.Parts(k)[0] == StorylineMath.FirstPart(k), k + ": its parts, the first first");
@@ -73,7 +70,8 @@ public static class StorylineTests
         foreach (var kind in StorylineMath.Kinds)
             foreach (var part in StorylineMath.Parts(kind))
             {
-                var every = Outcomes[part].Concat(new[] { StorylineMath.Declined, StorylineMath.Gone, StorylineMath.Ended });
+                C(Outcomes(kind, part).Length > 0, kind + " " + part + ": its outcomes");
+                var every = Outcomes(kind, part).Concat(new[] { StorylineMath.Declined, StorylineMath.Gone, StorylineMath.Ended });
                 foreach (var o in every)
                     foreach (float roll in new[] { 0.05f, 0.95f })
                         foreach (int times in new[] { 1, 2, 3 })
@@ -190,7 +188,7 @@ public static class StorylineTests
         var incidents = defs.SelectMany(d => d.doc.Root!.Elements("IncidentDef")).ToList();
         XElement ModExt(XElement d, string cls) => d.Element("modExtensions")?.Elements("li").FirstOrDefault(li => (string?)li.Attribute("Class") == "ColonyCouncil." + cls);
         var storyDefs = defs.SelectMany(d => d.doc.Root!.Elements("ColonyCouncil.StorylineDef")).ToList();
-        C(storyDefs.Count == 3, "a storyline def each");
+        C(storyDefs.Count == StorylineMath.Kinds.Length, "a storyline def each");
         foreach (var kind in StorylineMath.Kinds)
         {
             var sd = storyDefs.FirstOrDefault(d => (string?)d.Element("kind") == kind);
@@ -206,7 +204,7 @@ public static class StorylineTests
             }
             var outs = sd.Element("outcomes")!.Elements("li").Select(x => x.Value).ToList();
             foreach (var part in StorylineMath.Parts(kind))
-                foreach (var o in Outcomes[part])
+                foreach (var o in Outcomes(kind, part))
                     C(outs.Any(l => l.StartsWith("[" + part + ",outcome:" + o)), kind + ": the World page's words for " + part + " ended " + o);
 
             // Every part has its event: the first drawn by the storyteller, the later ones only by the storyline.
@@ -225,7 +223,7 @@ public static class StorylineTests
                 var opts = h.Element("options")?.Elements("li").ToList() ?? new List<XElement>();
                 C(opts.Count == 2 && (string?)h.Element("defaultOption") == "1", kind + " " + part + ": take it on or decline, declining by default");
                 var ends = p.Element("ends")?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
-                foreach (var o in Outcomes[part].Where(o => !(kind == "factor" && (part == "makegood" || part == "debt") && o == "unpaid")))
+                foreach (var o in Outcomes(kind, part).Where(o => !(kind == "factor" && (part == "makegood" || part == "debt") && o == "unpaid")))
                     C(ends.Any(l => Regex.IsMatch(l, @"^\[[^\]]*\b" + o + @"\b")), kind + " " + part + ": a letter for how it ended (" + o + ")");
                 // A later part opens with what happened before.
                 if (!start)
@@ -269,7 +267,8 @@ public static class StorylineTests
         // The plain-words rules (CLAUDE.md, "Plain, neutral text"): no em dashes or exclamation marks in anything the storylines say.
         var words = defs.Where(d => Path.GetFileName(d.file).StartsWith("Rimfolk_Storyline")).SelectMany(d => d.doc.Descendants()).Where(e => !e.HasElements)
             .Select(e => Regex.Replace(e.Value, @"\[[^\]]*\]", "")).ToList();
-        words.AddRange(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Storylines.xml")).Root!.Elements().Select(e => e.Value));
+        foreach (var keyed in new[] { "Rimfolk_Storylines.xml", "Rimfolk_Storylines2.xml" })
+            words.AddRange(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", keyed)).Root!.Elements().Select(e => e.Value));
         C(words.Count > 100 && words.All(w => !w.Contains('\u2014') && !w.Contains('!')), "no em dashes or exclamation marks");
         C(words.All(w => !Regex.IsMatch(w, @"\bneedeth\b|\bmeaneth\b|\bhath\b|\bthee\b|\bthou\b")), "no archaic voice outside the letters' olde lines and the gods");
 
@@ -293,16 +292,22 @@ public static class StorylineTests
         C(kept.Success && int.Parse(kept.Groups[1].Value) >= StorylineMath.KindRestDays, "an ended storyline is kept as long as its kind rests, so the pace can read it");
         var save = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
         C(new[] { "lines", "steps", "flags", "group", "wet", "afters" }.All(c => save.Contains("\"Storylines/Storylines.cs:" + c + "\"")), "every saved collection has its save model");
+        // Each storyline's rules beyond its parts, found by the frame: one StorylineRules class each, by its kind.
+        foreach (var kind in StorylineMath.Kinds)
+            C(Regex.IsMatch(Code("Storylines/Storyline" + Cap(kind) + ".cs"), @"class \w+Rules : StorylineRules[\s\S]*?public override string Kind => "), kind + ": its rules class, found by its kind");
+        C(all.Contains("GenTypes.AllSubclassesNonAbstract(typeof(StorylineRules))") && !all.Contains("new FactorRules()"), "the frame finds every storyline's rules (no list of them to keep)");
+        C(dbg.Contains("StorylineMath.Outcomes(s.kind, part)") && dbg.Contains("DebugEnded(s, part, outcome)"), "the dev menu ends a part with any of its storyline's own outcomes");
         return n;
     }
 
-    private static string Cap(string kind) => kind == "factor" ? "Factor" : kind == "beast" ? "Beast" : "Children";
+    /// <summary>A storyline's own file: Storylines/Storyline + its kind with a capital ("StorylineFactor.cs").</summary>
+    private static string Cap(string kind) => char.ToUpperInvariant(kind[0]) + kind.Substring(1);
 
     /// <summary>
     /// A storyline played through its rules: each part ends as given after its days, the next comes when the rules say,
     /// and it ends with <paramref name="ending"/> between <paramref name="minDays"/> and <paramref name="maxDays"/> after it began.
     /// </summary>
-    private static void PlayOut(Action<bool, string> C, string kind, (string part, string outcome, float days)[] path, string ending, float roll, float minDays, float maxDays)
+    internal static void PlayOut(Action<bool, string> C, string kind, (string part, string outcome, float days)[] path, string ending, float roll, float minDays, float maxDays)
     {
         string what = "played out, " + kind + " to " + ending;
         float day = 0f;

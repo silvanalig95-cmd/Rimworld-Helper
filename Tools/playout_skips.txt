@@ -596,3 +596,6 @@ Council_Mission_Provisions [option 1] a refusal: they look for help elsewhere, f
 Council_WS_Plague [quarantine/1] a refusal: the rider at the gate goes on (Visitors/); the sickness only a risk
 Council_WS_IceRoad [through/2] a refusal: the driver at the gate goes on, still wet (Visitors/)
 Council_WS_IceRoad [caravan/0] already real: WorldEffect_Sell with toVisitor, a colonist carries the meals out to the caravan at the gate
+
+# Defs/MissionDefs/Rimfolk_Storyline_Sickness.xml
+Rimfolk_Storyline_SicknessDead [option 1] the part's own code lays out the graves as frames for the colony to dig, and the families wait by them (HappeningWorker_SicknessKin.Answered)
