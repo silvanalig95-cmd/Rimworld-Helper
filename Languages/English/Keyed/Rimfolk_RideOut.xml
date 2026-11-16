@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Colonists ride out to far work and back with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs): the setting. -->
+  <CC_Settings_RideOut>Ride out to far work and back</CC_Settings_RideOut>
+  <CC_Settings_RideOut_Tip>Giddy-Up looks for a mount only when a job is further away than its setting "Find a mount if trip is longer than" (120 cells by default), and never for a drafted colonist. With this on, a free colonist whose job is 40 cells or more away, with the work, where a haul goes, or the colonist themselves 10 cells or more past the home area's edge, first gets on the beast that gets them there soonest. They ride out, leave the beast near the work as Giddy-Up does, and ride back on it when the work there is done; the beast keeps waiting while they are still at work out there. A drafted colonist given a movement order that far does the same when riding gets them there sooner. Giddy-Up's own rules decide which beasts may be ridden (its list of animals to ride, tameness, size and weight, health, hunger and rest, the automount column on the Animals tab, "allowed to ride" on the Assign tab); a beast at work, with a group, with young, or kept for someone else is left alone. Inside the base nothing changes. Off, Giddy-Up's own auto-mount alone.</CC_Settings_RideOut_Tip>
+  <CC_SetNote_RideOut>Colonists ride to work past the base and back, and drafted ones ride far on a movement order.</CC_SetNote_RideOut>
+
+</LanguageData>
