@@ -131,6 +131,24 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
   newest release line ("Three fixes: porters reach the mailbag, the stall's health, world events above the letters").
+- **To do when the player asks (16 November 2026): every offering is answered, and worth what it costs.** The player:
+  "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event, but
+  sometimes nothing seems to happen. i just wonder whether these offering ressources are "wasted", or if there is
+  always some benefit from them? since it's usually more valuable ressources also". As it stands (0.256.0): a taken
+  offering always raises the god's favour (`Worship.Favour`, `WorshipMath.OfferingFavour`: 1.5 + 1.2 ln(1 + worth/20),
+  at most 6, times the god's liking, its nature, honoured, a priest's rite), which by the unseen rule shows only as that
+  god's doings over time (more kindness, fewer angers, prayers answered); whoever sees it taken or finds the place
+  empty feels it by belief (`GodTouch.Taken`); that god's own effect follows at most once in 4 days per god
+  (`GodTouchMath.SameKeyGapDays`), and of those about a third are moods only and most are small. Pawns pick it
+  themselves (`Offerings.Pick`: the god's liking, spare, a piece worth at most 40 + 8 a colonist, 250 at most, aiming at
+  about 20 + 3 a colonist in all). So many takings show nothing but a passing mood. Proposed in chat, waiting for the
+  player's go: (1) every taking is answered by something felt on the map: the one who brought it is glad it was
+  accepted, and the god's touch always follows (no moods-only outcome, no 4-day wait for a taking), small at least,
+  its chance of notable or great growing with what the offering was worth and how well it suited the god; (2) now and
+  then a return in kind, of the god's domain and the colony's age, worth about what was given (Smoulder's ore after
+  steel, Morel's mushrooms after food, Ducat's silver after gold); (3) the shrine gets a "may be offered" setting (a
+  filter of kinds and a top worth, cheap by default) so the player decides what leaves the stores; (4) the colony's
+  book keeps every taking, seen or found, so it can be looked back on.
 - **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
   player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
   have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
