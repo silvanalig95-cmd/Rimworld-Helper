@@ -45,7 +45,7 @@ ever reach the stage where I can consistently go out of base and it's worth it, 
 
 Each storyline lists who asks, then its parts with their branches, and how it ends.
 
-**S1. The factor's goods** (the road league; any trading people without one). Built, not released yet (DESIGN.md, "Quests and storylines"). 1. A factor asks the colony to keep
+**S1. The factor's goods** (the road league; any trading people without one). Built, released 0.262.0 (DESIGN.md, "Quests and storylines"). 1. A factor asks the colony to keep
 their crates for a season; the crates must stay dry and must not be stolen or spent. 2a. If they are kept well, a
 rival trader comes and offers to buy them behind the factor's back. A card gives three choices: sell, refuse, or tell
 the factor. 2b. If some are lost, the colony has ten days to make good what was lost. 3. Endings: refused or told,
@@ -63,7 +63,7 @@ land. Pen them before predators take them or they wander off the map. 2. When th
 to keep part of the herd over the winter, fed. 3. In spring they collect the herd and leave some of the young with the
 colony. If animals die, they ask to be paid, or the colony can buy the rest.
 
-**S4. The beast coming down the valley** (the Lantern Wardens; any hunting people. Uses the region's legend beasts). Built, not released yet.
+**S4. The beast coming down the valley** (the Lantern Wardens; any hunting people. Uses the region's legend beasts). Built, released 0.262.0.
 1. The Wardens warn that a great beast is coming the colony's way, and ask the colony to get ready: build a wall or
 traps by a date and keep the animals in. 2. Signs of it appear at the edge of the map, such as tracks and a killed
 animal. 3. The beast comes onto the map. If goodwill is good, the Wardens' hunters come to help. If it is killed, the
@@ -91,7 +91,7 @@ gives three choices: let them pass, warn the other side, or stop them at the gat
 colony is thanked by one and resented by the other, or the two go to war (their goodwill toward each other falls,
 which the world page shows).
 
-**S8. The children from the burned village** (any people at peace). Built, not released yet (needs Biotech, for the children). 1. Children whose village burned come to the gate
+**S8. The children from the burned village** (any people at peace). Built, released 0.262.0 (needs Biotech, for the children). 1. Children whose village burned come to the gate
 with one adult; host them for some days. 2. A card gives three choices: take them in (they join the colony), find
 them a place with a neighbour (their new people come to fetch them), or send them on with food. 3. Seasons later, one
 of them comes back grown, as a visitor, a trader or someone who asks to join.
@@ -120,22 +120,22 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 ## Single quests (one part each, at home)
 
 - **Q1. Their prisoner kept.** A neighbour's prisoner is held at the colony for some days; they may try to escape.
-  *Built in round 1 (not released yet): DESIGN.md "Quests at home, round 1".*
+  *Built in round 1 (released 0.261.0): DESIGN.md "Quests at home, round 1".*
 - **Q2. A dispute judged.** Two people of a neighbour bring their quarrel to the colony; a card for the judgement,
-  then each side's reaction on the map. *Built in round 1 (not released yet).*
+  then each side's reaction on the map. *Built in round 1 (released 0.261.0).*
 - **Q3. A young fighter trained.** Their young fighter stays and trains with the colony's best shot or fighter for
   some days; both gain skill.
 - **Q4. A piece for a wedding.** Make one piece of good quality or better (a sculpture, clothes, furniture) by a date;
   they come to collect it.
 - **Q5. A wounded rider.** A wounded messenger reaches the gate. Treat them, and keep their message safe until
-  someone of theirs comes for it. *Built in round 1 (not released yet), as "a wounded messenger": they come in on foot.*
+  someone of theirs comes for it. *Built in round 1 (released 0.261.0), as "a wounded messenger": they come in on foot.*
 - **Q6. A sick animal tended.** Their animal stays to be tended back to health.
 - **Q7. An outlaw in the hills.** An outlaw with a price on their head hides on the colony's map. Capture them (a
-  bigger reward) or kill them. A fight, shown. *Built in round 1 (not released yet).*
+  bigger reward) or kill them. A fight, shown. *Built in round 1 (released 0.261.0).*
 - **Q8. Guard their camp for a night.** A caravan camps at the edge of the colony's map; something may come for it in
   the night.
 - **Q9. A lost heirloom.** They lost a keepsake on the colony's land; it lies somewhere in a marked area. Find it
-  before the rain spoils it or someone else picks it up. *Built in round 1 (not released yet): when the colony doesn't
+  before the rain spoils it or someone else picks it up. *Built in round 1 (released 0.261.0): when the colony doesn't
   find it in time, one of their own comes and does.*
 - **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over. *Built in round 1
   (not released yet).*
@@ -150,9 +150,10 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 1. **The storyline frame and the first ones.** Parts as quests with branches, the "what happened before" lines, the
    pacing, the World page and chronicle lines, and a choice card that can sit inside a part. With S1 (the factor's
    goods), S4 (the beast) and S8 (the children). Alongside: Q1, Q2, Q5, Q7, Q9 and Q10 on today's mission system. (Q1, Q2,
-   Q5, Q7, Q9 and Q10 released, 0.261.0; the frame with S1, S4 and S8 built, not released yet:
+   Q5, Q7, Q9 and Q10 released, 0.261.0; the frame with S1, S4 and S8 released, 0.262.0:
    `Source/ColonyCouncil/Storylines/`.)
-2. S2, S3, S5, S7 and the remaining single quests.
+2. S2, S3, S5, S7 and the remaining single quests (Q3, Q4, Q6, Q8, Q11, Q12, Q13). Being built (the player, 16 November
+   2026: "great, do some more").
 3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
 
 The player can strike or change anything in rounds 2 and 3 before they start.

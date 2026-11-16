@@ -59,10 +59,10 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
     consistently go out of base and it's worth it, so keep these quests to a minimum", "unless it's like within only
     very few tiles". The list and the rules are in `docs/quests-proposals.md`: nearly all at home, away only within
-    3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1:
-    the six single quests (Q1, Q2, Q5, Q7, Q9 and Q10) are released (0.261.0, "Quests at home: six single quests"); the
-    storyline frame with S1, S4 and S8 is built, not released (the entry above the newest release line, "Storylines:
-    the frame, ..."). Rounds 2 and 3 wait, and the player can strike or change anything in them before they start.
+    3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1
+    was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
+    is being built on the player's "great, do some more" (16 November 2026): S2, S3, S5 and S7, and Q3, Q4, Q6, Q8,
+    Q11, Q12 and Q13. Round 3 waits, and the player can strike or change anything in it before it starts.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
