@@ -260,6 +260,57 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     `vanillaexpanded.vcef`, active), Morel's mushrooms every mod's raw fungus (Alpha Biomes', Alpha Animals') and
     Vanilla Plants Expanded - Mushrooms' raw blisscap and bileceps by name (active), Smoulder's ore every mod's metal
     mined from rock. The card and the book use Rimfolk's own look.
+- 0.258.1, **What a camp lays out is built,
+  and they gather what it needs** (16 November 2026; the player's words, with their save: "in the save you also see that
+  the camp made instructions to build for example new stools, but never actually constructs them. if they lack the
+  materials, they should chop woods, mine stone etc. for it"). DESIGN.md "What a camp lays out is built, and they gather
+  what it needs" (after the growth section) has all of it; the growth section's give-up and material lines point to
+  it; README the camps paragraph; the Almanac's camps page ("What they build, their day and what they leave", prose
+  only, keywords unchanged).
+  - **The bug** (the save, `League of Toba`, the surveyors' camp on 0.257.0): three stools round the fire (75 logs) were
+    laid out with 20 logs in the stash and pines all round; the only felling for them was one more tree on that day's
+    count, so they waited and were given up after a day and a half. A second shelf was laid out of the same 20 logs and
+    its frame held all its wood for 1.3 days untouched: the building step passed it over (no construction time on
+    either camper after their fire, and they cooked the evening after, which the old order allows only when the step
+    hands them nothing); nothing stood on it, nobody held it reserved at the save, both could build, so the save
+    doesn't say which check it was. Fixed: frames are finished by the camp's own construction job, one of them at a frame
+    by the camp's own count rather than the map's reservations; what a piece lacks is gathered by day (trees felled, rock
+    mined and dressed into blocks); a piece is given up only when the land can't give it, nobody can build it, they pack,
+    or nothing moved on it for two days. Also: a piece waiting for its ground was never cleared once the camp stood
+    (building was asked for only with a blueprint standing), and the colony's "builders leave trees to the cutters" rule
+    marked a camp's trees for the colony's cutters; both fixed.
+  - **Code map**: `Camps/CampGatherMath.cs` (new, pure, linked: `CampSource`, `CampGatherStep`, `GatherFacts`,
+    `StuffOption`, `BuildFacts`, `LandGives`, `Next`, `ChooseStuff`, `GiveUpWhy`, `Gatherers`, `BuildHour`, `CutsByHand`,
+    `Cutter`, `TreesFor`, `StallTicks`, `BlocksPerRock`), `Camps/CampGather.cs` (new: `CampGatherDefOf`, `SourceOf`,
+    `BlocksOf`, `BuildWork`, `WorkLeft`, `BuildGoods`, `BuildNeeds`, `BuildHourly`, `Fellable`, `CutterSpot`,
+    `GatherForBuildJob` with `FellFor`, `MineFor`, `PickFor`, `CutFor`, `CutStone`, `CanBuildPiece`, `GrowHoldUp`,
+    `BuildReport`; `JobDriver_CampBuild`; the debug action `CampBuildDebug`), `CampWork` (`JobFor`'s hours, `Build`,
+    `BuildStep`, `CanBuild`, `Skilled`, `Deliver` with what is on its way and their work's logs, `Tree` by wood,
+    `HaulToStash`, `Done` for the stone), `CampGrow` (`GrowHour`, `StartGrowth`, `GrowStuff`, `Affords`; the fixed
+    day and a half and `CampBuildMath.GrowGiveUpDays` gone), `CampLife.Hourly` (`BuildHourly`), `CampLife.PackUp` (what
+    was in a half-built piece back to the stash, packed with the rest),
+    `Building/BuildersTrees.cs` (the colony's builds only), Defs/CampDefs/Rimfolk_CampKits.xml (`Rimfolk_CampBuild`,
+    `Rimfolk_CampCutStone`), Rimfolk_CampDay_Lines.xml (`[timber]`, `[stone]`), `Tools/Tests/CampGatherTests.cs` (81
+    checks, the piece played out hour by hour). Saved: nothing new (`growUntil` is now two days after the last progress).
+  - **Not checked without the game**: the construction job on a frame, the felling, the logs carried straight to a piece,
+    the stone dressed at a table or by hand, the debug report, and above all the save's shelf: the save doesn't say why
+    the old step passed it over, so whether that check is what held it is seen only by loading it.
+  - **Try in the game**: 1. Load the save: at seven in the morning one of the surveyors walks to the second shelf's frame
+    and builds it (the construction look and its bar); the news says they put up another shelf. 2. Within a couple of
+    hours two seats round their fire are laid out again (the stonecutter's table their calling would want first is passed
+    over: it needs steel they don't carry): one of them fells a pine near the camp (a line about wood for the building),
+    carries the logs to the stools, and they stand by the afternoon; nobody gathers in the evening or at night. 3. Dev
+    mode, Debug actions, Rimfolk, "Camps: what their building waits on": the log has each piece, what is in it, and what
+    each of them would do for it or why not, with the game's own view (reservations, a way to it, what stands on it).
+    4. A camp on bare rock with no trees: a tribal or medieval camp's pieces of stone (rock mined, a chunk dressed by
+    hand at their crafting spot); an industrial one builds its posts and fences of the steel it carries and passes over
+    what would need wood. 5. A camp packing up with a piece half done: its frame is taken up, what was in it packed with
+    their goods, and nothing is said of it.
+  - **Mods that would help**: none needed: the felling, mining, stone-cutting look and construction are the game's own,
+    the pieces from mods already enabled. Medieval Overhaul (subscribed, not enabled;
+    https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926; its files go to 1.6, kept up) has a stonecutter's
+    block (`DankPyon_StonecuttingSpot`), a spot of no cost where a tribal or medieval camp could be seen dressing stone
+    by hand; it is a whole overhaul, so only worth it if wanted for itself.
 - 0.258.0, **Colonists ride out to far work
   and back with Giddy-Up 2** (16 November 2026; the player's words, 15 November 2026, with their save `League_of_Toba`:
   "pawns should really use mounts whenever they walk away out of the base range. sometimes they do, but sometimes they

@@ -167,6 +167,8 @@ namespace ColonyCouncil
             WatchDead();
             if (phase == CampPhase.Building) CheckBuilt();
             else PlaceWaiting();
+            // What they carry for their pieces under way goes down at their stash (CampGather.cs).
+            BuildHourly();
             // What they add as they settle in, a day or so apart (CampGrow.cs).
             GrowHour();
             WatchTrade();
@@ -1057,7 +1059,11 @@ namespace ColonyCouncil
         {
             var carriers = Here.Where(p => p.inventory != null).ToList();
             foreach (var t in Unfinished())
+            {
+                // What was put into a half-built piece goes back to their stash, to be packed with the rest (CampGather.cs).
+                if (t is Frame f && f.resourceContainer != null && stash.IsValid) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing), AtStash);
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
+            }
             // Where the fire and their day's work stood, for what they leave there at the end of their stay.
             var fire = FireCell;
             var taskSpot = kind.taskAt != null ? plans.FirstOrDefault(p => p.role == kind.taskAt && !p.dropped)?.cell ?? IntVec3.Invalid : IntVec3.Invalid;

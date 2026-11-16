@@ -142,7 +142,9 @@ namespace ColonyCouncil
             if (carry != null) return carry;
             var job = Tend(camp, pawn);
             if (job != null) return job;
-            if (camp.phase == CampPhase.Building || camp.Unfinished().Count > 0)
+            // Building their camp and what they add to it, and gathering what it needs (CampGather.cs): as they set up, at
+            // any waking hour; once it stands, in their working hours, so meals, sleep and the evening by the fire come first.
+            if (CampGatherMath.BuildHour(hour, camp.phase == CampPhase.Building) && camp.BuildWork())
             {
                 job = Build(camp, pawn);
                 if (job != null) return job;
@@ -205,75 +207,126 @@ namespace ColonyCouncil
 
         // ---------------- Building ----------------
 
+        /// <summary>
+        /// Building their camp and what they add to it: ground a plan waits on cleared first; then, nearest first, a frame
+        /// with all its materials finished, their own materials carried to a blueprint or frame, whatever is in the way
+        /// cleared (BuildStep); and when their pieces are short of something the land gives, it gathered (CampGather.cs).
+        /// </summary>
         private static Job Build(Camp camp, Pawn pawn)
         {
-            bool canBuild = !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Construction);
-            bool canHaul = !pawn.WorkTagIsDisabled(WorkTags.Hauling);
-            if (!canBuild && !canHaul) return null;
-            var goods = camp.Goods();
-            // Ground a plan waits on: plain rock mined, a tree felled first, as a player's builders would.
-            foreach (var plan in camp.plans.Where(x => x.waiting && !x.placed && !x.dropped).OrderBy(x => x.cell.DistanceToSquared(pawn.Position)))
+            if (CanBuild(pawn) || !pawn.WorkTagIsDisabled(WorkTags.Hauling))
             {
-                var block = camp.Blocking(plan);
-                if (block == null || camp.Here.Any(o => o != pawn && o.CurJob?.targetA.Thing == block) || !pawn.CanReserveAndReach(block, PathEndMode.Touch, Danger.Some)) continue;
-                if (block.def.mineable && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Mining))
+                // Ground a plan waits on: plain rock mined, a tree felled first, as a player's builders would.
+                foreach (var plan in camp.plans.Where(x => x.waiting && !x.placed && !x.dropped).OrderBy(x => x.cell.DistanceToSquared(pawn.Position)))
                 {
-                    camp.Worked(block.Position);
-                    var mine = JobMaker.MakeJob(JobDefOf.Mine, block);
-                    mine.ignoreDesignations = true;
-                    return mine;
-                }
-                if (block is Plant tree && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting))
-                {
-                    camp.Worked(tree.Position);
-                    camp.treesFelled++;
-                    return JobMaker.MakeJob(JobDefOf.CutPlant, tree);
-                }
-            }
-            foreach (var t in camp.Unfinished().OrderBy(t => t.Position.DistanceToSquared(pawn.Position)))
-            {
-                if (t.Destroyed || !pawn.CanReserve(t)) continue;
-                if (!pawn.CanReach(t, PathEndMode.Touch, Danger.Some)) continue;
-                // Bushes and trees in the way come down first, and their own goods are moved aside. Anything else (the
-                // colony's things, a plant someone marked or sowed) is left be: the spot waits, and is given up on if
-                // it's still blocked when their time for building runs out.
-                var block = GenConstruct.FirstBlockingThing(t, pawn);
-                if (block != null)
-                {
-                    if (!Clearable(camp, block)) continue;
-                    var clear = GenConstruct.HandleBlockingThingJob(t, pawn);
-                    if (clear != null)
+                    var block = camp.Blocking(plan);
+                    if (block == null || camp.Here.Any(o => o != pawn && o.CurJob?.targetA.Thing == block) || !pawn.CanReserveAndReach(block, PathEndMode.Touch, Danger.Some)) continue;
+                    if (block.def.mineable && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Mining))
                     {
-                        // A tree felled or rock mined to clear the ground: what it leaves is theirs (their logs, their stone).
-                        if (clear.def == JobDefOf.CutPlant || clear.def == JobDefOf.Mine) camp.Worked(block.Position);
-                        if (clear.def == JobDefOf.CutPlant && block is Plant p && p.def.plant.IsTree) camp.treesFelled++;
-                        return clear;
+                        camp.Worked(block.Position);
+                        var mine = JobMaker.MakeJob(JobDefOf.Mine, block);
+                        mine.ignoreDesignations = true;
+                        return mine;
                     }
-                    continue;
-                }
-                if (t is Blueprint_Build bp)
-                {
-                    var cost = bp.TotalMaterialCost();
-                    if (cost.NullOrEmpty())
+                    if (block is Plant tree && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting))
                     {
-                        if (canBuild) return JobMaker.MakeJob(JobDefOf.PlaceNoCostFrame, bp);
-                        continue;
+                        camp.Worked(tree.Position);
+                        camp.treesFelled++;
+                        return JobMaker.MakeJob(JobDefOf.CutPlant, tree);
                     }
-                    var job = Deliver(pawn, bp, cost, goods);
-                    if (job != null) return job;
                 }
-                else if (t is Frame f)
+                var goods = camp.BuildGoods();
+                foreach (var t in camp.Unfinished().OrderBy(t => t.Position.DistanceToSquared(pawn.Position)))
                 {
-                    if (f.IsCompleted())
-                    {
-                        if (canBuild && Skilled(pawn, f)) return JobMaker.MakeJob(JobDefOf.FinishFrame, f);
-                        continue;
-                    }
-                    var job = Deliver(pawn, f, f.TotalMaterialCost(), goods);
+                    var job = BuildStep(camp, pawn, t, goods, out _);
                     if (job != null) return job;
                 }
             }
-            return null;
+            // Short of something the land gives: a tree felled, rock mined, stone dressed (CampGather.cs).
+            return camp.GatherForBuildJob(pawn);
+        }
+
+        /// <summary>Construction is open to this camper (their story and health allow it).</summary>
+        public static bool CanBuild(Pawn pawn) => pawn != null && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Construction);
+
+        /// <summary>This camper has the skill a building asks of its builder (construction, and art for a sculpted piece).</summary>
+        public static bool Skilled(Pawn pawn, BuildableDef def)
+        {
+            if (def == null) return true;
+            int Level(SkillDef s) => pawn.skills?.GetSkill(s) is SkillRecord r && !r.TotallyDisabled ? r.Level : 0;
+            return (def.constructionSkillPrerequisite <= 0 || Level(SkillDefOf.Construction) >= def.constructionSkillPrerequisite)
+                   && (def.artisticSkillPrerequisite <= 0 || Level(SkillDefOf.Artistic) >= def.artisticSkillPrerequisite);
+        }
+
+        /// <summary>
+        /// What this camper does for one blueprint or frame of theirs now, or null with the reason (for the dev report too):
+        /// a frame with all its materials finished by their own construction job (JobDriver_CampBuild); a blueprint of
+        /// nothing set down as a frame; their own materials carried to it; bushes and trees in the way felled and their
+        /// own goods moved aside. Anything else in the way (the colony's things, a plant someone marked or sowed) is left
+        /// be: the piece waits.
+        /// </summary>
+        public static Job BuildStep(Camp camp, Pawn pawn, Thing t, List<Thing> goods, out string why)
+        {
+            why = null;
+            if (t == null || t.Destroyed)
+            {
+                why = "gone";
+                return null;
+            }
+            // One of them at a frame at a time, by their own count rather than the game's reservations: nothing of the colony's
+            // or of another mod's that reserves or refuses a stranger's frame keeps them from their own (CampGather.cs).
+            if (t is Frame && camp.Here.Any(o => o != pawn && o.CurJob != null && o.CurJob.def == CampGatherDefOf.Rimfolk_CampBuild && o.CurJob.targetA.Thing == t))
+            {
+                why = "another of them is building it";
+                return null;
+            }
+            if (!pawn.CanReach(t, PathEndMode.Touch, Danger.Some))
+            {
+                why = "no way to it";
+                return null;
+            }
+            var block = GenConstruct.FirstBlockingThing(t, pawn);
+            if (block != null)
+            {
+                if (!Clearable(camp, block))
+                {
+                    why = "in the way: " + block.LabelShort;
+                    return null;
+                }
+                var clear = GenConstruct.HandleBlockingThingJob(t, pawn);
+                if (clear == null)
+                {
+                    why = "can't clear " + block.LabelShort;
+                    return null;
+                }
+                // A tree felled or rock mined to clear the ground: what it leaves is theirs (their logs, their stone).
+                if (clear.def == JobDefOf.CutPlant || clear.def == JobDefOf.Mine) camp.Worked(block.Position);
+                if (clear.def == JobDefOf.CutPlant && block is Plant p && p.def.plant.IsTree) camp.treesFelled++;
+                return clear;
+            }
+            var builds = t.def.entityDefToBuild;
+            if (t is Frame f && f.IsCompleted())
+            {
+                if (!CanBuild(pawn)) why = "doesn't build";
+                else if (!Skilled(pawn, builds)) why = "lacks the skill";
+                else return JobMaker.MakeJob(CampGatherDefOf.Rimfolk_CampBuild, f);
+                return null;
+            }
+            var cost = t is Frame frame ? frame.TotalMaterialCost() : (t as Blueprint_Build)?.TotalMaterialCost();
+            if (t is Blueprint_Build bp && cost.NullOrEmpty())
+            {
+                if (CanBuild(pawn)) return JobMaker.MakeJob(JobDefOf.PlaceNoCostFrame, bp);
+                why = "doesn't build";
+                return null;
+            }
+            if (cost == null)
+            {
+                why = "not theirs to build";
+                return null;
+            }
+            var job = Deliver(camp, pawn, t, cost, goods);
+            if (job == null) why = pawn.WorkTagIsDisabled(WorkTags.Hauling) ? "doesn't carry" : "nothing of theirs to bring";
+            return job;
         }
 
         /// <summary>What they may clear off a building spot (CampTake): wild plants nobody has sown or marked, chunks and cheap things nobody owns, their own goods, plain rock.</summary>
@@ -284,23 +337,23 @@ namespace ColonyCouncil
             return t.def.mineable && CampTake.PlainRock(t.def) && CampTake.May(t, camp);
         }
 
-        private static bool Skilled(Pawn pawn, Frame f)
-        {
-            var need = f.def.entityDefToBuild?.constructionSkillPrerequisite ?? 0;
-            return need <= 0 || (pawn.skills?.GetSkill(SkillDefOf.Construction)?.Level ?? 0) >= need;
-        }
-
-        /// <summary>Their own materials to a blueprint or frame (never anyone else's).</summary>
-        private static Job Deliver(Pawn pawn, Thing target, List<ThingDefCountClass> cost, List<Thing> goods)
+        /// <summary>
+        /// Their own materials to a blueprint or frame: their goods, or what their own work left lying (the logs of a tree
+        /// they felled for it, carried straight over), never anyone else's; less what is already on its way to it.
+        /// </summary>
+        private static Job Deliver(Camp camp, Pawn pawn, Thing target, List<ThingDefCountClass> cost, List<Thing> goods)
         {
             if (pawn.WorkTagIsDisabled(WorkTags.Hauling)) return null;
             foreach (var need in cost)
             {
-                int n = target is Frame f ? f.ThingCountNeededWithEnroute(need.thingDef, pawn) : ((IConstructible)target).ThingCountNeeded(need.thingDef);
+                if (need?.thingDef == null) continue;
+                int n = target is Frame f ? f.ThingCountNeededWithEnroute(need.thingDef, pawn)
+                    : ((IConstructible)target).ThingCountNeeded(need.thingDef) - (target is IHaulEnroute e ? pawn.Map.enrouteManager.GetEnroute(e, need.thingDef, pawn) : 0);
                 if (n <= 0) continue;
                 var res = goods.Where(g => g.def == need.thingDef && g.Spawned && !g.Destroyed && pawn.CanReserveAndReach(g, PathEndMode.ClosestTouch, Danger.Some))
                     .OrderBy(g => g.Position.DistanceToSquared(pawn.Position)).FirstOrDefault();
                 if (res == null) continue;
+                camp.Own(res);
                 var job = JobMaker.MakeJob(JobDefOf.HaulToContainer, res, target);
                 job.count = Mathf.Min(n, res.stackCount);
                 job.haulMode = HaulMode.ToContainer;
@@ -366,7 +419,7 @@ namespace ColonyCouncil
         /// room (their shelf, a basket, a firewood rack: CampStore.cs), else set down on the ground beside it; a body to
         /// <paramref name="to"/> (the butcher's spot).
         /// </summary>
-        private static Job HaulToStash(Camp camp, Pawn pawn, Thing t, IntVec3? to = null)
+        internal static Job HaulToStash(Camp camp, Pawn pawn, Thing t, IntVec3? to = null)
         {
             if (!(t is Corpse))
             {
@@ -571,19 +624,21 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>A grown tree near the camp that nobody planted and nobody has marked, well away from the colony.</summary>
-        private static Plant Tree(Camp camp, Pawn pawn)
+        /// <summary>
+        /// A grown tree near the camp that nobody planted and nobody has marked, well away from the colony (Camp.Fellable);
+        /// one that gives <paramref name="wood"/> when it is named (a tree felled for their building).
+        /// </summary>
+        internal static Plant Tree(Camp camp, Pawn pawn, ThingDef wood = null)
         {
-            int key = camp.id * 2 + 1;
+            int key = wood == null ? camp.id * 2 + 1 : -(camp.id * 2 + 1);
             if (Searched(key)) return null;
             var map = pawn.Map;
             Plant best = null;
             float bestD = float.MaxValue;
             foreach (var t in GenRadial.RadialDistinctThingsAround(camp.center, map, CampSite.WorkRadius, true))
             {
-                if (!(t is Plant p) || p.def.plant == null || !p.def.plant.IsTree || p.def.plant.treeCategory == TreeCategory.Super) continue;
-                if (p.sown || !p.HarvestableNow || p.def.plant.harvestedThingDef == null || p.Position.InHorDistOf(camp.center, CampSite.CoreRadius + 1)) continue;
-                if (map.designationManager.DesignationOn(p) != null || !camp.MayWork(p.Position)) continue;
+                if (!(t is Plant p) || (wood != null && p.def.plant?.harvestedThingDef != wood) || !camp.Fellable(p)) continue;
+                if (camp.trees.Contains(p) || camp.Here.Any(o => o != pawn && o.CurJob?.targetA.Thing == p)) continue;
                 float d = p.Position.DistanceToSquared(camp.center);
                 if (d >= bestD) continue;
                 if (!pawn.CanReserveAndReach(p, PathEndMode.Touch, Danger.Some) || !PlantUtility.PawnWillingToCutPlant_Job(p, pawn)) continue;
@@ -641,6 +696,7 @@ namespace ColonyCouncil
                 else if (def == CampDayDefOf.Rimfolk_CampCraft) camp.Crafted(pawn, job.targetB.Thing as Building);
                 else if (def == CampDayDefOf.Rimfolk_CampMend) camp.Mended(pawn, job.targetA.Thing);
                 else if (def == CampDayDefOf.Rimfolk_CampPack) camp.Packed(pawn, job.targetA.Thing as Building);
+                else if (def == CampGatherDefOf.Rimfolk_CampCutStone) camp.CutStone(pawn, job.targetC.Thing);
                 else camp.LandJobDone(pawn, job);
             }
             catch (Exception e)
