@@ -3543,7 +3543,16 @@ bring grain, timber, iron or cloth and come back for as much, paying a quarter o
 for in silver), to **raise a young beast** of theirs (their drover hands it over at the gate and leads it home at the
 end, all the pay kept well, half kept poorly), to find **an old one who wandered off** or **a hunter overdue** on your
 land, to see **a trader, a healer or a scholar** to their town by caravan, and for the materials of **a wall** against
-bandits, **fodder** for their herds, **stores for a long road** or **seed** after a blight. When the region knows the
+bandits, **fodder** for their herds, **stores for a long road** or **seed** after a blight. Six more play out on the
+colony's own map: to **keep a prisoner** of theirs in the colony's prison for some days (two of theirs walk them in to a
+free prison bed; they are held as any prisoner, may try to break out at the game's own odds, and are collected at the
+end), to **judge a quarrel** two of their people bring to the gate (a card asks: for one, for the other, or split; the
+one who loses leaves angry and may come to blows with the other at the game's own odds), to take in a **wounded
+messenger** (real wounds; a bed, a doctor, and their letter kept safe until their people come for it), to catch or kill
+an **outlaw** hiding on the colony's land (a real fight once found; worth half as much again alive), to search a marked
+area for a **lost keepsake** before six hours of rain or snow ruin it (right-click inside the area with a colonist
+selected), and to **tame a wild animal** of the land for them. A tribe pays in goods of its own, everyone else in
+silver. When the region knows the
 town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
 one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
@@ -3560,7 +3569,8 @@ Answers shape the colony's character, and the events feed nemeses, secrets, ment
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
 all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
 event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`; a story's first stage is
-`Council_Story_...`, a mission's offer `Council_Mission_...`).
+`Council_Story_...`, a mission's offer `Council_Mission_...`); the quests at home have their own under **Debug actions →
+Rimfolk** ("Quests at home: ...": offer one now, accept it, bring on what it waits for, end it as any of its endings).
 
 ### Camps over a stay, a year and for good
 **A stay with a shape.** Every camp's stay follows a shape, with the day's chance events around it. They arrive and

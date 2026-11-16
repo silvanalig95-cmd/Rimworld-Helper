@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Quests at home (Source/ColonyCouncil/Missions/Workers_MissionHome.cs, Workers_MissionHome2.cs): the messenger's letter
+       and the lost keepsake, each by the asking people's age, the search for the keepsake, and the quarrel two of a
+       people bring to the colony. Sprites: Tools/make_quest_items.py. -->
+
+  <ThingDef Name="Rimfolk_QuestItemBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <stackLimit>1</stackLimit>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <statBases>
+      <MarketValue>15</MarketValue>
+      <Mass>0.2</Mass>
+      <MaxHitPoints>50</MaxHitPoints>
+      <Flammability>1</Flammability>
+      <DeteriorationRate>1</DeteriorationRate>
+      <Beauty>0</Beauty>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>None</tradeability>
+  </ThingDef>
+
+  <!-- ===================== The messenger's letter ===================== -->
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_QuestMessageStick</defName>
+    <label>message stick</label>
+    <description>A short stick carved with notches and marks, carried by a messenger between tribes. The marks show who sent it and what the messenger was told to say. It belongs to another people and is only being kept here until they come for it.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/QuestMessageStick</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_QuestLetter</defName>
+    <label>sealed letter</label>
+    <description>A folded letter closed with a wax seal. It is meant for someone else, and the seal shows whether it has been opened. It is only being kept here until its people come for it.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/QuestLetter</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_QuestDispatch</defName>
+    <label>dispatch case</label>
+    <description>A small locked case for papers sent between towns. It is meant for someone else, and is only being kept here until its people come for it.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/QuestDispatch</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+    <statBases>
+      <Flammability>0.5</Flammability>
+      <DeteriorationRate>0.5</DeteriorationRate>
+    </statBases>
+  </ThingDef>
+
+  <!-- ===================== The lost keepsake ===================== -->
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_KeepsakeHide</defName>
+    <label>painted hide</label>
+    <description>A small piece of tanned hide painted with the marks of a family. Its owner has carried it for years. Rain washes the paint off.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/KeepsakeHide</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_KeepsakeBook</defName>
+    <label>family book</label>
+    <description>A small handwritten book with the names of a family going back many generations. Rain ruins the pages.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/KeepsakeBook</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_KeepsakePhotos</defName>
+    <label>photo album</label>
+    <description>An album of old photographs of a family, the only ones its owner has. Rain ruins them.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/KeepsakePhotos</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===================== The search ===================== -->
+
+  <!-- A look for a lost keepsake: a spot in the marked area searched for about an hour, then the next (JobDriver_SearchKeepsake). -->
+  <JobDef>
+    <defName>Rimfolk_SearchKeepsake</defName>
+    <driverClass>ColonyCouncil.JobDriver_SearchKeepsake</driverClass>
+    <reportString>searching for a lost keepsake.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- ===================== The quarrel ===================== -->
+
+  <!-- What the two who bring a quarrel to the colony think of each other while it lasts. -->
+  <ThoughtDef>
+    <defName>Rimfolk_HomeQ_Quarrel</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>in a quarrel</label>
+        <description>We have a quarrel we couldn't settle between us, and have gone to have it judged.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-25</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

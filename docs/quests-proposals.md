@@ -120,22 +120,25 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 ## Single quests (one part each, at home)
 
 - **Q1. Their prisoner kept.** A neighbour's prisoner is held at the colony for some days; they may try to escape.
+  *Built in round 1 (not released yet): DESIGN.md "Quests at home, round 1".*
 - **Q2. A dispute judged.** Two people of a neighbour bring their quarrel to the colony; a card for the judgement,
-  then each side's reaction on the map.
+  then each side's reaction on the map. *Built in round 1 (not released yet).*
 - **Q3. A young fighter trained.** Their young fighter stays and trains with the colony's best shot or fighter for
   some days; both gain skill.
 - **Q4. A piece for a wedding.** Make one piece of good quality or better (a sculpture, clothes, furniture) by a date;
   they come to collect it.
 - **Q5. A wounded rider.** A wounded messenger reaches the gate. Treat them, and keep their message safe until
-  someone of theirs comes for it.
+  someone of theirs comes for it. *Built in round 1 (not released yet), as "a wounded messenger": they come in on foot.*
 - **Q6. A sick animal tended.** Their animal stays to be tended back to health.
 - **Q7. An outlaw in the hills.** An outlaw with a price on their head hides on the colony's map. Capture them (a
-  bigger reward) or kill them. A fight, shown.
+  bigger reward) or kill them. A fight, shown. *Built in round 1 (not released yet).*
 - **Q8. Guard their camp for a night.** A caravan camps at the edge of the colony's map; something may come for it in
   the night.
 - **Q9. A lost heirloom.** They lost a keepsake on the colony's land; it lies somewhere in a marked area. Find it
-  before the rain spoils it or someone else picks it up.
-- **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over.
+  before the rain spoils it or someone else picks it up. *Built in round 1 (not released yet): when the colony doesn't
+  find it in time, one of their own comes and does.*
+- **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over. *Built in round 1
+  (not released yet).*
 - **Q11. Seed grain kept cold.** Store their seed grain over winter, cold and untouched.
 - **Q12. Their book copied.** A scholar stays while the colony's researcher copies their book at the research bench
   for some hours.
@@ -146,7 +149,8 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 
 1. **The storyline frame and the first ones.** Parts as quests with branches, the "what happened before" lines, the
    pacing, the World page and chronicle lines, and a choice card that can sit inside a part. With S1 (the factor's
-   goods), S4 (the beast) and S8 (the children). Alongside: Q1, Q2, Q5, Q7, Q9 and Q10 on today's mission system.
+   goods), S4 (the beast) and S8 (the children). Alongside: Q1, Q2, Q5, Q7, Q9 and Q10 on today's mission system. (Q1, Q2, Q5, Q7, Q9 and Q10 built, not
+   released yet.)
 2. S2, S3, S5, S7 and the remaining single quests.
 3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
 

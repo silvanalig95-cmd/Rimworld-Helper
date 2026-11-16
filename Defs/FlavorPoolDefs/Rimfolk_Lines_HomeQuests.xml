@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quests at home (Source/ColonyCouncil/Missions/Workers_MissionHome.cs, Workers_MissionHome2.cs): said over a head, one
+    short sentence each. Lines tagged with what happened ([first], [second], [split], [fight], [run]) come for that and
+    nothing else; untagged lines come for any.
+  -->
+
+  <!-- One of their people handing the prisoner over in the colony's prison. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_PrisonerHanded</defName>
+    <lines>
+      <plain>
+        <li>Keep a close eye on this one.</li>
+        <li>We'll be back for this one, so don't let them out.</li>
+        <li>Don't turn your back on this one.</li>
+        <li>Thank you for keeping them for us.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colony's judge giving the judgement to their faces, to the one it favours. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_Ruling</defName>
+    <lines>
+      <plain>
+        <li>[first] {OTHER_nameDef}, the colony finds for you.</li>
+        <li>[first] We've heard you both, and {OTHER_nameDef} is in the right.</li>
+        <li>[second] {OTHER_nameDef}, the colony finds for you.</li>
+        <li>[second] We've heard you both, and {OTHER_nameDef} is in the right.</li>
+        <li>[split] You'll split it between you, {OTHER_nameDef}, half each.</li>
+        <li>[split] Neither of you gets all of it, {OTHER_nameDef}, you share it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one the judgement went for. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_Won</defName>
+    <lines>
+      <plain>
+        <li>That's fair, thank you.</li>
+        <li>I knew I was in the right.</li>
+        <li>Good, that's settled then.</li>
+        <li>Thank you for hearing me out.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one the judgement went against. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_Lost</defName>
+    <lines>
+      <plain>
+        <li>This isn't over.</li>
+        <li>That wasn't fair, and I won't forget it.</li>
+        <li>I came here for a fair hearing and didn't get one.</li>
+        <li>You've all taken their side, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Both of them, when it was split between them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_Split</defName>
+    <lines>
+      <plain>
+        <li>Half is better than nothing, I suppose.</li>
+        <li>Fine, half each, and that's the end of it.</li>
+        <li>It's not what I wanted, but I'll take it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Sent off without a judgement. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_Unjudged</defName>
+    <lines>
+      <plain>
+        <li>We came all this way for nothing.</li>
+        <li>So nobody will decide it, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The wounded messenger at the gate, handing over what they carry. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_MessengerHands</defName>
+    <lines>
+      <plain>
+        <li>Please keep this safe, my people will come for it.</li>
+        <li>Take this and don't let anything happen to it.</li>
+        <li>I need a doctor, and this needs keeping safe.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The outlaw, found. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_OutlawFound</defName>
+    <lines>
+      <plain>
+        <li>[fight] You won't take me alive.</li>
+        <li>[fight] Come any closer and you'll regret it.</li>
+        <li>[fight] So they sent you after me.</li>
+        <li>[run] Not today.</li>
+        <li>[run] You'll have to catch me first.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colonist who found the keepsake. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ_KeepsakeFound</defName>
+    <lines>
+      <plain>
+        <li>Here it is, I've found it.</li>
+        <li>Found it, it was lying in the grass.</li>
+        <li>Got it, they'll be glad to have this back.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

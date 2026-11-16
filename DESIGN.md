@@ -3715,6 +3715,88 @@ texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDef
 - **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
   captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
 
+### Quests at home, round 1: six single quests (the player's go, 16 November 2026; not released yet)
+
+The player, 16 November 2026: "go ahead with quests and storylines, make sure they are written in the more clear style i
+mentioned earlier on", and "while quests that require you to go out of your base are interesting, i hardly ever reach the
+stage where I can consistently go out of base and it's worth it, so keep these quests to a minimum". The plan and its eight
+rules are `docs/quests-proposals.md`; this is its round 1's single quests (Q1, Q2, Q5, Q7, Q9, Q10), beside the storyline
+frame. Each is a mission kind of its own on the missions framework (offered in the Quests tab, accepted or let expire,
+ended with success or failure), and each plays out on the colony's own map: nobody of the colony goes away. The pure
+rules in `Missions/HomeQuestsMath.cs` (`HomeQuestsTests`), the workers in `Missions/Workers_MissionHome.cs` (Q1, Q2, Q5)
+and `Workers_MissionHome2.cs` (Q7, Q9, Q10), what they share in `HomeQuests.cs`, the texts in
+`Defs/MissionDefs/Rimfolk_Missions_Home.xml`, the letter, keepsakes, search job and quarrel in
+`Defs/Misc/Rimfolk_Missions_Home_Misc.xml`, the lines over a head in `Defs/FlavorPoolDefs/Rimfolk_Lines_HomeQuests.xml`.
+
+- **Who asks.** Any people at peace with a town on the map may ask (the missions' `Neighbor`), one of a fitting calling
+  five times likelier (`MissionPeople.prefers`): the Last Republic's citizens a prisoner kept, the road league's traders a
+  dispute judged, the Signal Line's linesmen a wounded messenger, the Ashen Banner's mercenaries an outlaw, the pilgrim
+  fellowship a keepsake, the Circuit of Tamers an animal. Every age asks in its own words (`their:tribal` to
+  `their:spacer`, the Empire with its officers, stewards and retainers apart), and what they bring or lose is of their
+  age: a message stick, a sealed letter or a dispatch case; a painted hide, a family book or a photo album.
+- **Plain terms.** The quest's description says who asks and why, then what to do, for how long, what the colony gets
+  and what failing costs, in that order; the reward in words (`RewardWords`: silver, or a tribe's goods of their own
+  making worth as much), and, where favours are kept, that the people will owe the colony one (the missions' own
+  "mission" deed). Numbers the player needs are stated (the days held, the six wet hours); nothing else counts down.
+- **The reward.** The quest's own range (100 to 340 silver before the rest) times the asking people's age (a tribe 0.8,
+  medieval 1, industrial 1.15, spacer and the Empire 1.3) and the colony's wealth (`WealthFactor`, 0.6 to 2), rounded to
+  tens; a tribe pays in things of the colony's era (`Loot`), everyone else in silver, carried in by their people
+  (`Couriers/`) or set down at once when goods don't come and go. Goodwill for it done (8 to 12, `GoodwillWhy.Task`), a
+  cost for failing it (4 to 8, a death or a broken word twice that).
+- **Q1, their prisoner kept** (`HappeningWorker_MissionPrisoner`, needs a free bed in a prison cell). Someone of a people
+  at war with the colony (the asking people's own enemies likelier, their age nearest; `HomeQuests.Enemy`), disarmed, is
+  walked in by two of theirs as one of their own (so the colony's doors open for them) to the room of a free prison bed
+  and handed over inside it (`SetGuestStatus(..., Prisoner)`, their own people again, kept and not recruited:
+  `MaintainOnly`, the bed claimed). Half a day without reaching it, they hand them over where they stand, and say so. The
+  colony holds them 4 to 7 days as the game holds any prisoner: the game's own prison breaks at its own odds. Then their
+  people come for the prisoner and pay (`Couriers.Fetch`, as a prisoner sold). Escaped, dead, let go, recruited or
+  enslaved, it fails.
+- **Q2, a dispute judged** (`HappeningWorker_MissionDispute`, the card `HappeningWorker_MissionJudgement`). Two of a
+  people come to the gate with a quarrel of their age (an elk's hide, a boundary stone, a tractor part, a salvaged power
+  cell, a seat at the lord's table), each with a poor opinion of the other for it (`Rimfolk_HomeQ_Quarrel`, -25). A card
+  tells each side's claim and asks the colony: for one, for the other, split between them, or (unanswered) no judgement.
+  The colony's peacemaker (else its best talker) goes over in their free time and says it to their faces; the one it went
+  for thanks them, the one it went against says so and has three tries of the game's own insult at the other before they
+  leave (`Insults`), each with the game's own odds of a social fight, shown by the game; a split sends both home grumbling.
+  Their town pays for the judgement; a split pleases it most, a side taken a little less, none costs.
+- **Q5, a wounded messenger** (`HappeningWorker_MissionMessenger`, needs a bed and a doctor). Attacked on the road by
+  raiders or by wild animals, the messenger comes in from the edge with two or three of the game's own wounds (cuts and
+  stabs from a low-tech band, gunshots from a modern one, bites and scratches from animals; never so bad they can't walk
+  or would bleed out within a day and a half: `HomeQuests.Wound`), hands over the letter at the gate, and is taken in as
+  the colony's guest to a patient's bed, tended and fed by its doctors as the game does a guest. Mended, they wait at the
+  colony as a visitor, eating at its table and sleeping in a free bed (the hosting missions' `Tend`). After 4 to 6 days
+  their people come for the letter (`Couriers.CollectThings`) and pay; the messenger goes home with them, or, still in
+  bed, stays the colony's guest until they can walk. The messenger dead, or the letter burned, rotted or carried off,
+  fails it.
+- **Q7, an outlaw on the colony's land** (`HappeningWorker_MissionOutlaw`, drawn within the shared harm budget:
+  `HarmKinds.Outlaw`, system "quests", off with the world's battles). One of a hostile people's own fighters, as strong
+  as a third of the storyteller's threat points (45 to 180 combat power: `OutlawPower`), with the game's own gear, hides
+  at the foot of the hills or near the edge of the map, at least 35 cells out, which way named in the terms; lying low
+  (asleep: no threat to anyone) until someone of the colony comes within ten cells in sight, or they are hurt. Found,
+  three times in four they fight where they stand (the game's own `LordJob_DefendPoint`), through the budget's roll;
+  else they run for the edge. Captured and held, their people collect them and pay half as much again; killed, they pay
+  the price. Gone off the map, never found in 5 to 7 days, or taken into the colony, it fails.
+- **Q9, a lost heirloom** (`HappeningWorker_MissionKeepsake`). It lies somewhere in the open, at least 25 cells out, in
+  an area of radius 7 drawn on the map (`HomeQuestOverlay`), never at its middle. Right-clicking inside the area with a
+  colonist selected searches it (`JobDriver_SearchKeepsake`: walk to the spot, an hour's look with a progress bar),
+  covering 2.9 cells around each spot and going on to the nearest spot not yet covered until it is found (`Covers`; the
+  whole area in about a dozen looks). Every hour of rain or snow on it in the open counts; six of them ruin it, and it is
+  then there to be found, ruined. Found, it is set down where it lay and kept until their people come for it and pay.
+  Not found in 3 to 4 days, one of theirs comes to search the area, finds it and takes it home.
+- **Q10, tame one for them** (`HappeningWorker_MissionTameFor`). A grown wild animal of the colony's land the colony's
+  tamer could win over (the game's `TameUtility.CanTame` and handling skill), one of the finest there; else one of the
+  land's own kinds (`BiomeAnimals.Of`, every mod's) wanders in. Tamed the game's way, their handler comes for it within
+  half a day and pays (`Couriers.Fetch`); bonded to someone of the colony, they leave it and pay nothing. Killed, gone, or
+  still wild after 6 to 9 days, it fails.
+- **Pace.** Each takes 0.3 of the missions' one draw (1.8 in all), so missions as a whole come no oftener than before
+  (`MissionPool`: they still weigh 6.8; the way to play leans them as it leans every mission); one mission at a time; the
+  same quest not again for 75 days.
+- **Shared files, small.** `Mission` keeps four more things for them (`cell`, `area`, `thing`, `other`, saved), the
+  quest's look targets show its thing and its area, and `Missions.Tags` adds their tags (`HomeQuests.AddTags`: `goods`,
+  `favour`, `scuffle`); nothing else of the missions changed.
+- **Dev mode** (Debug actions, Rimfolk): "Quests at home: offer one now...", "accept the open one", "what it waits for
+  comes now", "end the open one as..." (each quest's own outcomes), "what the open one keeps (log)".
+
 ### The right-click's things, done by themselves (the player's request, 7 November 2026)
 
 "I'm not really using the right click conversation options, so please integrate them to be done automatically by pawns
