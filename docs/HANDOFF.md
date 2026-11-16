@@ -62,8 +62,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1
     was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
     is being built on the player's "great, do some more" (16 November 2026): S2, S3, S5 and S7, and Q3, Q4, Q6, Q8,
-    Q11, Q12 and Q13. S2, S3, S5 and S7 are built, not released (the entry "Storylines, round 2" above the newest release
-    line). Round 3 waits, and the player can strike or change anything in it before it starts.
+    Q11, Q12 and Q13. The seven single quests are built and released, 0.263.0 ("Quests at home, round 2"); S2, S3, S5
+    and S7 are built, not released (the entry "Storylines, round 2" above the newest release line). Round 3 waits, and
+    the player can strike or change anything in it before it starts.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -241,6 +242,98 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     (https://steamcommunity.com/sharedfiles/filedetails/?id=1055485938, tagged up to 1.6, still updated); and the
     pilgrims' shrine can be any altar, shrine or art the colony has, the Ideology ones and the enabled medieval mods' among
     them.
+- 0.263.0, **Quests at home, round 2: seven
+  single quests** (16 November 2026; the player's words: "great, do some more", after round 1; the go, "go ahead with
+  quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and while
+  quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can consistently
+  go out of base and it's worth it, so keep these quests to a minimum", "unless it's like within only very few tiles").
+  Round 2's single quests of `docs/quests-proposals.md` (Q3, Q4, Q6, Q8, Q11, Q12, Q13), each a mission kind of its own in
+  the Quests tab, each played out on the colony's own map, built the way round 1's six were. DESIGN.md "Quests at home,
+  round 2: seven single quests" (after round 1's section) has all of it; `docs/quests-proposals.md` marks the seven;
+  README the missions paragraph; the Almanac's council page, Missions (keywords unchanged). Round 2's storylines (S2,
+  S3, S5, S7) are another agent's, built alongside; each quest here is a self-contained mission kind a storyline part can
+  reuse.
+  - **What was built.** *A young fighter trained*: one of their young fighters stays 3 to 5 days as the colony's guest
+    and trains each evening (four to nine, about two hours, when the teacher is free) with the colony's best shot, side by
+    side at its shooting or archery target (Misc. Training's, Medieval 2's) when it has one and the young one has a ranged
+    weapon, else with its best fighter, sparring with pulled blows; sparring rolls once a day for a blow that lands for
+    real at the colony's own drills' rate (one in 25, through the shared budget); both learn the game's own way; the pay is
+    for the hours (half for half). *A piece for a wedding*: one piece of good quality or better that the colony can make
+    now, of the asking people's age (clothes from the mod pool: Medieval 2's dame dress, the settlers' great dress, the
+    fairycore dresses, a headdress for a tribe, Royalty's formal wear; a small work of art; a double bedroll, double bed or
+    royal bed packed up), collected on the day (6 to 9 days off) and paid well. *A sick animal tended*: one of their own
+    animals with the animal flu, the plague (only with a doctor of Medicine 6) or underfed, handed over at the gate,
+    tended by the colony's doctors and handlers (the game's own care), fetched when well (half if still sick after 8 to 12
+    days; dead or lost fails; bonded, they leave it). *Guard their camp for a night*: three or four of theirs and a pack
+    animal camp by a fire of theirs at the edge of the land; one roll within the shared harm budget (a new kind,
+    `HarmKinds.CampNight`, system "quests", off with the world's battles) decides whether raiders at war with both or the
+    land's predators gone manhunter come between ten and three, with a threat letter; at dawn they leave the pay at their
+    camp (a quarter more for a night fought through); one of theirs dead fails it. *Seed kept cold* (autumn and winter,
+    with a room at freezing or colder): 50 to 75 of a crop of their age set down at the gate, carried into the cold store
+    within six hours and forbidden there; looked at every hour; more than 12 warm hours, any used, rotten or gone, it is no
+    good (the colony keeps what is left); at the sowing a colonist carries it out to the gate (visitors keep out of cold
+    stores) and their carts collect it. *Their book copied*: a scholar stays 3 to 4 days while whoever does research copies
+    their book at a research bench for 10 to 16 hours (a job of its own under research work, before the research, the
+    game's look of research and its learning); done, the colony keeps the copy, a novel, textbook or schematic of the game's
+    own, its quality the copier's. *Musicians for a night*: two or three come in the afternoon; from six the colony throws
+    the game's own party and they play at it, on the colony's own instrument near it or on their own (drums for a tribe,
+    harps for the rest, by the sound of Ideology's drum or Royalty's harp); they eat and sleep as guests and leave in the
+    morning, paying for their keep. Each takes 0.3 of the missions' one draw (2.1), so missions come no oftener.
+  - **Decided here** (not asked): the young fighter's skill is lowered to three under the teacher's (they come to learn);
+    the training's experience is about the game's research rate (0.12 a tick taught, 0.06 teaching) through the game's own
+    `Learn`; shooting needs the target (no target, they spar); the sparring blow uses the drills' own kind and rate (so it
+    is off when the drills' system is); the wedding's piece is "one" of it (an article-safe word), the tribe's is a
+    headdress (tribalwear reads badly as "a tribalwear"); the sick animal is the colony's while it is tended (the game only
+    tends the colony's own animals); the camp's raiders are the game's assault from an edge cell near the camp, predators
+    the game's manhunter state; their pay is set down at their feet (at the camp for the caravan) rather than sent by
+    courier, so it is there when they go; the seed's "untouched" is its own stack forbidden (put with the colony's own, the
+    stack it went into counts while it holds as much); the seed quest's kind is `seedkept` and its def
+    `Rimfolk_Mission_SeedKept` (the delivery mission "seed after a blight" already had `seedgrain`); the book's kind by
+    their age (stories, learning, a manual: a novel, textbook or schematic); the musicians' "their own" instruments are
+    drums or harps by the sound the game has; no party by ten, they play for whoever comes. Callings preferred: mercenaries,
+    fishers, herders, traders, grove-keepers, scholars, listeners.
+  - **Code map**: `Missions/HomeQuests2Math.cs` (pure: kinds, rewards, days, hours, odds, outcomes; linked in
+    `Tools/Tests/Tests.csproj`), `Missions/HomeQuests2.cs` (shared: free colonists, pay in person, the wedding's pieces, the
+    cold store, the illness, instruments and their own sound; `JobDriver_HomeQuestTrain` and `TrainSession`,
+    `JobDriver_HomeQuestCopy`, `WorkGiver_HomeQuestCopy`, `JobDriver_HomeQuestPlay`, `HomeQuests2DefOf`),
+    `Missions/Workers_MissionHome3.cs` (Q3 `HappeningWorker_MissionTrainee`, Q4 `HappeningWorker_MissionWeddingPiece`, Q6
+    `HappeningWorker_MissionSickAnimal`, Q8 `HappeningWorker_MissionCampGuard`), `Missions/Workers_MissionHome4.cs` (Q11
+    `HappeningWorker_MissionSeedGrain`, Q12 `HappeningWorker_MissionBookCopy`, Q13 `HappeningWorker_MissionMusicians`);
+    changed (small): `Missions/HomeQuests.cs` (`IsOurs` takes round 2's kinds), `Missions/HomeQuestsDebug.cs` (the seven
+    and their endings), `Harm/HarmBudgetMath.cs` (`HarmKinds.CampNight`). Defs: `Defs/MissionDefs/Rimfolk_Missions_Home2.xml`
+    (seven quests), `Defs/Misc/Rimfolk_Missions_Home2_Misc.xml` (three jobs, the copying work giver),
+    `Defs/FlavorPoolDefs/Rimfolk_Lines_HomeQuests2.xml`; Keyed `Rimfolk_Missions_Home2.xml`. Tests:
+    `Tools/Tests/HomeQuests2Tests.cs` (new), `HarmBudgetTests` (the new kind), `NeighboursFourTests` (the new file in the
+    one draw). No new saved field: each quest keeps its state in the mission's own fields.
+  - **Can't be checked without the game**: the training pair walking to their places and waiting for each other, the
+    pulled blows by turns and the target's shots (sound, flash, the hit), the real blow and its message, a visitor taking
+    the forced job under their visit; the wedding's piece found packed or not, the courier's collection on the day; the
+    sick animal walking in, the handover, the game tending another people's animal once it is the colony's, the illness
+    running its course, the fetch; the caravan's camp, its fire, the sleepers and the watch, raiders spawning near the camp
+    and going for it, manhunters, the threat letter, the dawn leaving and the pay at the camp, the pack animal leading off;
+    the seed's delivery at the gate, the temperature read where it lies, the haul out of the cold store and the carts'
+    collection; the copying work giver choosing a bench before research, the progress bar and the effect, the book copy
+    (its title, author and quality); the party starting for the musicians, them playing an instrument or their own (the
+    sustained sound), sleeping and leaving; how often each comes in a real game.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk): "Quests at home: offer one now..." lists all thirteen; "accept
+    the open one"; then: 1. A young fighter: "what it waits for comes now" brings them in; in the evening, or "end the open
+    one as... train now", they walk to their places and spar (or shoot at a Misc. Training or Medieval 2 target if the colony
+    has one); "trained", "half", "untrained" end it. 2. A piece for a wedding: "make it now" sets one of good quality at the
+    trade spot (packed if furniture or art); "the day now", and their people come for it. 3. A sick animal: "what it waits
+    for comes now", the drover walks it in and hands it over; "well now" cures it and the drover comes back. 4. A camp:
+    "what it waits for comes now" brings them to the edge; "attack now" sends what comes (battles on); "dawn now" ends the
+    night. 5. Seed kept cold (autumn or winter, with a room at freezing or colder): "set down now"; carry it in and forbid
+    it; "kept" brings the sowing, a colonist carries it out, and the carts come. 6. A book: "what it waits for comes now"
+    brings the scholar; a researcher copies at the bench (watch the work tab's research); "copied" ends it with the copy.
+    7. Musicians: "what it waits for comes now" brings them; "evening now" starts the party; "morning now" sees them off.
+    "what the open one keeps (log)" at any point; save and load mid-quest.
+  - **Mods that would help**: none is needed. The training targets are Misc. Training's
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=717575199, 1.0 to 1.7, enabled) and Vanilla Factions Expanded -
+    Medieval 2's archery target (https://steamcommunity.com/sharedfiles/filedetails/?id=3444347874, 1.5 to 1.7, enabled);
+    Misc. Training Medieval Retexture (https://steamcommunity.com/sharedfiles/filedetails/?id=3271602770, tagged up to 1.6,
+    subscribed but not enabled) would give the targets a medieval look. The instruments the musicians play are Royalty's
+    harp, harpsichord and piano, Ideology's drum and any mod's of the game's instrument kind, such as Vanilla Factions
+    Expanded - Empire's organ (https://steamcommunity.com/sharedfiles/filedetails/?id=2938820380, 1.5 to 1.7, enabled).
 - 0.262.0, **Storylines: the frame, the
   factor's goods, the beast coming down the valley and the children from the burned village** (16 November 2026; the
   player's words, 13 November 2026: "the next thing to include will be more quests, and quests that are storylines across

@@ -8,7 +8,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Dev mode: the six quests at home ("Rimfolk", "Quests at home: ..."). Offer one now (into the Quests tab, as the
+    /// Dev mode: the quests at home, round 1's six and round 2's seven ("Rimfolk", "Quests at home: ..."). Offer one now (into the Quests tab, as the
     /// storyteller would), accept the open one, bring on what it waits for now (their people coming, the days held over,
     /// their handler or collector), end it with any of its outcomes, and what it keeps (log).
     /// </summary>
@@ -19,7 +19,10 @@ namespace ColonyCouncil
         private static readonly string[] Defs =
         {
             "Rimfolk_Mission_Prisoner", "Rimfolk_Mission_Dispute", "Rimfolk_Mission_Messenger", "Rimfolk_Mission_Outlaw", "Rimfolk_Mission_Keepsake",
-            "Rimfolk_Mission_TameFor"
+            "Rimfolk_Mission_TameFor",
+            // Round 2 (Workers_MissionHome3.cs, Workers_MissionHome4.cs).
+            "Rimfolk_Mission_Trainee", "Rimfolk_Mission_WeddingPiece", "Rimfolk_Mission_SickAnimal", "Rimfolk_Mission_CampGuard", "Rimfolk_Mission_SeedKept",
+            "Rimfolk_Mission_BookCopy", "Rimfolk_Mission_Musicians"
         };
 
         private static Mission Open() => Missions.All.FirstOrDefault(m => m.Open && HomeQuests.IsOurs(m));
@@ -120,6 +123,34 @@ namespace ColonyCouncil
                 case HappeningWorker_MissionTameFor t:
                     outcomes = HappeningWorker_MissionTameFor.DebugOutcomes;
                     end = o => t.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionTrainee q3:
+                    outcomes = HappeningWorker_MissionTrainee.DebugOutcomes;
+                    end = o => q3.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionWeddingPiece q4:
+                    outcomes = HappeningWorker_MissionWeddingPiece.DebugOutcomes;
+                    end = o => q4.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionSickAnimal q6:
+                    outcomes = HappeningWorker_MissionSickAnimal.DebugOutcomes;
+                    end = o => q6.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionCampGuard q8:
+                    outcomes = HappeningWorker_MissionCampGuard.DebugOutcomes;
+                    end = o => q8.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionSeedGrain q11:
+                    outcomes = HappeningWorker_MissionSeedGrain.DebugOutcomes;
+                    end = o => q11.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionBookCopy q12:
+                    outcomes = HappeningWorker_MissionBookCopy.DebugOutcomes;
+                    end = o => q12.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionMusicians q13:
+                    outcomes = HappeningWorker_MissionMusicians.DebugOutcomes;
+                    end = o => q13.DebugEnd(m, map, o);
                     break;
                 default:
                     Say("not a quest at home.");

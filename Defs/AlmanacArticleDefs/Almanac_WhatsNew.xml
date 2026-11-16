@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.263.0</version>
+        <date>16 November 2026</date>
+        <title>More quests at home</title>
+        <points>
+          <li>Seven more quests at home in the Quests tab: train a neighbour's young fighter, make a piece for a wedding, tend a sick animal, guard a caravan's camp for a night, keep seed cold, copy a scholar's book, and host musicians for a night.</li>
+          <li>A young fighter trains each evening with your best shot at your target, or spars with your best fighter; both learn, and now and then a sparring blow lands for real.</li>
+          <li>A wedding piece is clothes, art or a bed of the asking people's own age that your colony can make, of good quality or better, collected on the day.</li>
+          <li>A caravan camped at the edge of your land may be attacked in the night by raiders or wild animals; they leave more pay at dawn if they had to be defended.</li>
+          <li>Seed kept cold must stay in your cold store at freezing or colder and forbidden; at the sowing one of your people carries it out to their carts.</li>
+          <li>A scholar's book is copied at your research bench and your colony keeps the copy as a book; visiting musicians play at a party for your colony.</li>
+          <li>Missions as a whole come no more often than before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.262.0</version>
         <date>16 November 2026</date>
         <title>Storylines</title>
