@@ -154,7 +154,18 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   book also keeps each god's temper toward the colony as the keeper reads it, in words only and a little ominous
   ("Smoulder's fires have burned warm toward us since the steel was given", "some say the Hunger is restless"), drawn
   from the god's real favour but late and sometimes wrong, as the pawns would read it; never a number. No shrine
-  filter (not asked for).
+  filter (not asked for). Then, the same day: "also it should please never take very valuable items like components
+  etc. as offering, or only if there is a proper payoff for it. but then it shouldn't take it automatically, but
+  perhaps an event where a pawn asks for approval first." So (5) what pawns carry to a shrine on their own is only
+  what the colony has plenty of and can make or gather again (food, wood, cloth, leather, stone blocks, herbs, simple
+  crafts and the like, by the colony's own recipes and stock, `Offerings.Pick`); anything precious to it (components
+  and advanced components, medicine past herbal, plasteel, uranium, gold, jade, neutroamine, glitterworld goods, a
+  mod's like of these, anything the colony can't make yet or is short of) is never taken unasked; (6) such a gift only
+  through an ask: a devout pawn comes to the player (a card with Yes and No, as the council's asks) wanting to give
+  that thing to that god, saying in plain words why and what they hope it brings (as they believe it, never a promise
+  or a number), and only on Yes do they carry it; it is answered as befits its worth: a stronger favour and a likelier,
+  larger return in kind or one of the god's notable or great doings; on No they let it be (a little disappointed if
+  devout), and the same ask doesn't come back for a while.
 - **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
   player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
   have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
