@@ -298,6 +298,13 @@ public static class ItemCardTests
         string keys = Read("Languages/English/Keyed/Rimfolk_ItemCard.xml");
         C(!math.Contains("using Verse") && !math.Contains("using RimWorld") && !math.Contains("using UnityEngine") && Read("Tools/Tests/Tests.csproj").Contains("Items/ItemCardMath.cs"),
             "the rules are pure and tested here");
+        // The player, 16 November 2026: "all item cards should always have the original description text somewhere at the top".
+        string cardBase = Read("Source/ColonyCouncil/UI/ItemCardWindow.cs");
+        C(cardBase.Contains("text = thing != null ? thing.DescriptionFlavor : def?.description;")
+          && cardBase.Contains("return GameDescription(w, Mathf.Max(pic.yMax, ty) + 10f);")
+          && Read("Source/ColonyCouncil/Weapons/WeaponCardWindow.cs").Contains("return ItemCardWindow.GameDescription(w, Mathf.Max(pic.yMax, ty) + 10f, thing, def);")
+          && window.Contains("y = Head(w, y, new HeadFacts") && Read("Source/ColonyCouncil/Apparel/ApparelCardWindow.cs").Contains("y = Head(w, y, HeadOf(r));"),
+            "every card (an item's, a weapon's, a piece of apparel's) shows the game's own description under its head");
         C(hook.Contains("if (ItemCardFirst.Swapped(card)) return false;") && hook.Contains("return !WeaponCardFirst.Swapped(card) && !ApparelCardFirst.Swapped(card);")
           && hook.Contains("if (broken || !(window is Dialog_InfoCard card)) return true;"), "the one hook on the window stack opens the item card first too, every other window untouched");
         C(live.Contains("d.IsWeapon || d.IsApparel"), "the item card never takes a weapon or apparel from the other cards");

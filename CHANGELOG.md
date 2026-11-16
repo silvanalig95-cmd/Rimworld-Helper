@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The game's own description on every card
+
+*16 November 2026, version 0.257.1*
+
+- Every Rimfolk card, for items, weapons and apparel, now shows the game's own description of the thing under its picture, as the game words it.
+- Rimfolk's short line on what it is good for in this colony stays beside the picture, above the description.
+
 ## Camps keep their goods, clean and grow
 
 *15 November 2026, version 0.257.0*

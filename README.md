@@ -2501,7 +2501,8 @@ corpses the game's). It opens first wherever you open a thing's info (settings:
 card, which keeps a button back, and links followed inside the game's card stay in it.
 - **At the top**: the thing's own picture, large, as it really is; its label with the stack and quality; what kind it is
   and its worth; and a line in plain words on what it is good for in this colony ("Fine meal: lifts the mood (+5), keeps
-  4 days, enough for 2 colonists' supper." "Herbal medicine: fine for a cut or a cold, risky for surgery.").
+  4 days, enough for 2 colonists' supper." "Herbal medicine: fine for a cut or a cold, risky for surgery."). Under it,
+  across the card, the game's own description of the thing as the game words it (the weapon and apparel cards too).
 - **Tags** in the weapon and apparel cards' six colours, each with why on its tooltip: strengths (nutritious, keeps long,
   mood lift, potent, recreation), weaknesses (spoils fast, raw, bad taste, risky for surgery), risks (food poisoning,
   addictive, overdose risk, forbidden to some of your people, of a person, insect meat), specials (a feast's dish, a

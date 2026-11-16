@@ -12524,6 +12524,14 @@ interface `ColonistCardEntry.cs`. No saved data, no Sched slot; two Harmony patc
   tabs opening from the foot for someone on another map; the weapon and apparel rows, badges and suggestions on real
   colonists (Simple Sidearms, Dual Wield); the season's verdict on a real map; the event card's button.
 
+#### The game's own description on every card (the player's report, 16 November 2026; released 0.257.1)
+
+The player, with Rimfolk's card for Grav Camp's feedstock beside the game's: "all item cards should always have the
+original description text somewhere at the top". Every Rimfolk card (an item's, `Items/ThingCardWindow.cs`; a piece of
+apparel's, `Apparel/ApparelCardWindow.cs`; a weapon's, `Weapons/WeaponCardWindow.cs`) shows, right under its head and
+across the card, the game's own description as the game words it: the thing's (`Thing.DescriptionFlavor`) or, for a
+kind, its def's (`ItemCardWindow.GameDescription`). Rimfolk's own line stays beside the picture, above it.
+
 #### Rimfolk's own look, stage 3, point 5, step 1: the item card for food, drink, drugs and medicine (docs/design/rimfolk-look.md)
 
 The player (9 November 2026): "also like item card for everything, although i fear that would take a lot of

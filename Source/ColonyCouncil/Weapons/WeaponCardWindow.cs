@@ -196,7 +196,7 @@ namespace ColonyCouncil
             // The line in plain words beside the picture, under the badge (below it when it runs longer).
             float ty = y + 54f;
             if (!r.Plain.NullOrEmpty()) ty += UiKit.Paragraph(x0, ty, w - x0, r.Plain, UiKit.Ink) + 4f;
-            return Mathf.Max(pic.yMax, ty) + 10f;
+            return ItemCardWindow.GameDescription(w, Mathf.Max(pic.yMax, ty) + 10f, thing, def);
         }
 
         private float Subs(float w, float y, WeaponReport r)

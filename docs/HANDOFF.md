@@ -166,16 +166,6 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   or a number), and only on Yes do they carry it; it is answered as befits its worth: a stronger favour and a likelier,
   larger return in kind or one of the god's notable or great doings; on No they let it be (a little disappointed if
   devout), and the same ask doesn't come back for a while.
-- **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
-  player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
-  have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
-  facts in `Items/`) opens with its own one line ("Feedstock: a fuel; none in store.") and the game's description is
-  only on "All the game's stats". To do: the thing's own description (`Thing.DescriptionFlavor`, else
-  `def.description`), as the game words it, just under the name on every item card, and on Rimfolk's weapon and
-  apparel cards (`Apparel/ApparelCardWindow.cs` and the weapon card), with Rimfolk's own line kept below it. Checked:
-  "a fuel" is right for this one. In Grav Camp (`maal.gravcamp`, active) the small and large feedstock boxes
-  (`Maal_ChemfuelTank`, `Maal_LargeChemfuelTank`) take feedstock as the camp's travel fuel, so the card reads it as a
-  fuel; with the description above it, that reads plainly.
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
@@ -236,6 +226,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   inside the base. The Almanac's animals page then says which Giddy-Up settings decide this.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.257.1, **The game's own description on
+  every card** (the player, 16 November 2026, with screenshots of Rimfolk's card for feedstock next to the game's: "all
+  item cards should always have the original description text somewhere at the top"; built with their go of the same
+  day: "go ahead with this, and if there's other to-dos that make sense to be included in this update, go ahead as
+  well"). `ItemCardWindow.GameDescription` draws the thing's `DescriptionFlavor` (a kind's `def.description`) across
+  the card under the head of the item, apparel and weapon cards. Checked while at it: "a fuel" on feedstock is right
+  (Grav Camp's feedstock boxes take it as the camp's travel fuel). Test in `ItemCardTests`. Try in the game: open the
+  card of feedstock, a fine meal, a weapon and a parka; the game's text sits under the picture.
 - 0.257.0, **Camps keep their goods on their
   shelf, clean their ground and grow over their stay** (15 November 2026; the player's words: "camps should also clean
   up around their campsite", "and also build additional things over their stay, appropriate to the faction, type of

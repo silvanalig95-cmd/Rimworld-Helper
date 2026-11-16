@@ -177,7 +177,30 @@ namespace ColonyCouncil
                 ty = y + 60f;
             }
             if (!h.Plain.NullOrEmpty()) ty += UiKit.Paragraph(x0, ty, w - x0, h.Plain, UiKit.Ink) + 4f;
-            return Mathf.Max(pic.yMax, ty) + 10f;
+            return GameDescription(w, Mathf.Max(pic.yMax, ty) + 10f);
+        }
+
+        /// <summary>
+        /// The game's own description of it, as the game words it (the thing's, else its kind's), across the card under the
+        /// head (the player, 16 November 2026: "all item cards should always have the original description text somewhere
+        /// at the top"). Returns the y under it.
+        /// </summary>
+        protected float GameDescription(float w, float y) => GameDescription(w, y, thing, def);
+
+        /// <summary>The same for any card about <paramref name="thing"/> or its kind <paramref name="def"/> (the weapon card too).</summary>
+        public static float GameDescription(float w, float y, Thing thing, ThingDef def)
+        {
+            string text;
+            try
+            {
+                text = thing != null ? thing.DescriptionFlavor : def?.description;
+            }
+            catch (Exception)
+            {
+                text = def?.description;
+            }
+            if (text.NullOrEmpty()) return y;
+            return y + UiKit.Paragraph(0f, y, w, text.Trim(), UiKit.Faint) + 10f;
         }
 
         /// <summary>Sub-ratings as meters in two columns: each its label, its value in its band's colour and its meaning on the tooltip.</summary>
