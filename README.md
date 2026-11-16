@@ -1601,13 +1601,22 @@ nobody can say for certain what it was or why. You see what the colonists see, a
   glowing with no power; a star moving the wrong way; frost by a wall in lines like writing, a sudden silence, a tall
   white figure at the edge of the night; a dark a lamp won't reach, a sweet voice to the most desperate; a deep croaking
   from the wet ground before rain; the sun standing still with the shadows not moving, a heat haze; the moon huge and
-  close all night; a glint of gold, a golden beetle crossing a table, a coin where nobody dropped one.
+  close all night; a glint of gold, a golden beetle crossing a table, a coin where nobody dropped one; a goat bleating in
+  an empty room late at night, a sweet smoke drifting where nothing burns, the drink in the stores found spilled.
 - **The moon's face.** The moon waxes and wanes through each season. People mention it, and it shapes the night's signs.
 - **A stranger at the gate.** Sometimes a lone traveller asks for shelter. Give them a bed, let them sleep by the gate,
   or turn them away. They notice things. When they go, something happens, and what it means is up to you.
 - **Beasts.** A great white thrumbo may pass through, other thrumbos following at a distance. Someone can sit near it
   while it grazes. A gray cat with too-bright eyes may come and stay a season with one colonist, cats following her,
   and she won't be kept. Harm either one and see what follows.
+- **A horned reveller, and one cup in the stores.** At a party, a feast or a late fire a tall man with goat's horns may
+  walk in out of the dark with a cup to share, put it in someone's hands and be gone before dawn. Now and then one drink
+  or one dose in the stores is not like the others, though nothing shows it: whoever takes it may have the best high of
+  their life with no hangover, a quick mind or an inspiration, a vision (true or not) they walk out to, or no fear for a
+  day; or a wonderful high that turns into a hard crash, a sudden craving for another, or, rarely, the drug's own
+  addiction at once. Nights that run past midnight, a craving that gets an addict up in the dark, a stash found far out,
+  a binge seen laughing with an empty seat, a friend sitting up all night with someone through withdrawal: Revel's doings
+  are the colony's own drink and drugs, and the harm in them only the game's own.
 - **Rarer still.** Roots drawing themselves up out of the ground into a shape taller than any tree. A toad the size of a
   house surfacing in the marsh (Odyssey). A colony that keeps mining deep under the mountain, past every warning, may find
   out what it has been disturbing (Dragon's Descent).
@@ -4543,12 +4552,15 @@ they lost, and their card and the region's page of peoples show their age and wh
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
 camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
 
-**The gods.** Fourteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
+**The gods.** Fifteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
 the world; Smoulder, a dragon asleep under the mountains; Bellwether, the first thrumbo; Morel, the soft mother of rot
 and mushrooms; Ennu, the Guest who comes in many human shapes; Pip, the young god in the wires; Cirrus, who drifts
 above the clouds; Hush, who walks with winter; Undertow, the hunger under everything; Helios and Selene, the sun who
-gives without looking and the moon who returns at night what was done by day; Mog, a gray cat; Murmur, the toad who
-sings up the rain; and Ducat, the gold that will not stay still. They are an unseen presence, like a storyteller: no
+gives without looking and the moon who returns at night what was done by day; Tamiu, the great cat who keeps the dead; Murmur, the toad who
+sings up the rain; Ducat, the gold that will not stay still; and Revel, the Open Cup, the spirit in drink and smoke and
+the long night, generous first and a cheat after, who now and then is in one drink or one dose in the stores (whoever
+takes it gets one of his effects, good or bad, and is never told which until it happens) and walks in as a horned
+reveller to a party or a late fire with a drink to share. They are an unseen presence, like a storyteller: no
 page tells you what a god thinks or wants. Their hands are in the world's own events (a thrumbo passing, a cold snap, an
 eclipse, a short circuit, mushrooms after rain), and you hear of them only as your colonists do: a believer says whose
 doing they think it was, sometimes wrongly, and unless the colony knows it was that god, someone near them says it was the weather.
@@ -4579,7 +4591,8 @@ god has its own ways: Hollin's wild food round the walls or her blight, Smoulder
 fever broken in the night or a freezer failing at the worst hour, Pip's machine mended overnight or its short circuit,
 Cirrus's meteorite or its lightning on one roof, Hush's thaw or its cold snap, Helios's long clear days and his
 flares, Selene returning at night what the colony did by day, Murmur's rain or drought, Ducat's trader at the right
-time or silver gone from a hoard, Mog's cat wandering in, and Bellwether's kin, which nobody harms twice. Two gods
+time or silver gone from a hoard, Revel's barrels ready days early or the drink in the stores gone sour, Tamiu's cat
+wandering in, and Bellwether's kin, which nobody harms twice. Two gods
 quarrel where the colony can see it, in snow and warm wind or mushrooms and wild growth. Someone tells a dream at
 breakfast and asks to spend a night under the open sky, and comes back changed (A RimWorld of Magic's classes and
 spells, Vanilla Psycasts Expanded's paths, a green hand, gold, a passion), sometimes marked or older. The dying hear a
@@ -4588,7 +4601,8 @@ sweet voice that always says yes and always takes more. All at the game's own ra
 **Worship.** An altar, a sculpture, a nature shrine or an old terminal can be given to a god: someone walks over and
 says the words, and it becomes the god's shrine (a chapel, a church or a terminal in later ages; a temple in a fine
 room). Now and then someone carries an offering there from the stores, each god's own kind (silver for Smoulder, a
-bowl for the Guest, steel for Pip, a fish for Mog, nothing for Helios), and later it is gone, or an animal had it, or it
+bowl for the Guest, steel for Pip, a fish for Tamiu, the first cup for Revel, nothing for Helios), and later it is gone,
+or an animal had it, or it
 just spoiled. They carry only what the colony has plenty of and can make or gather again; anything precious to it
 (components, medicine past herbal, gold, plasteel, glitterworld goods, what it can't make yet) goes only when someone
 devout asks you first, on a card with Yes and No, saying why and what they hope it brings; a gift like that weighs

@@ -37,11 +37,12 @@ public static class OwnHappeningsTests
         // ================= Whose, and how many =================
 
         var all = OwnHappeningsMath.All;
-        C(all.All(h => OwnHappeningsMath.GodOf(h) != null) && OwnHappeningsMath.Gods.Length == 14
+        C(all.All(h => OwnHappeningsMath.GodOf(h) != null) && OwnHappeningsMath.Gods.Length == 15
           && OwnHappeningsMath.Gods.Take(7).SequenceEqual(new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus" }),
-            "every happening is one of the fourteen gods' (this batch's seven first, then batch 2's: OwnHappeningsSevenTests)");
+            "every happening is one of the fifteen gods' (this batch's seven first, then batch 2's: OwnHappeningsSevenTests, then Revel's: RevelTests)");
         // Tamiu (key Mog) has two more beside the stay, riddle, keepers and wrapped dead she already had (MogsWays).
-        C(OwnHappeningsMath.Gods.All(g => OwnHappeningsMath.Of(g).Count >= (g == "Mog" ? 2 : 3) && OwnHappeningsMath.Of(g).Count <= 5),
+        // Revel, the fifteenth, came whole with eight (his cup and the horned reveller among them).
+        C(OwnHappeningsMath.Gods.All(g => OwnHappeningsMath.Of(g).Count >= (g == "Mog" ? 2 : 3) && OwnHappeningsMath.Of(g).Count <= (g == "Revel" ? 8 : 5)),
             "three to five each: " + string.Join(", ", OwnHappeningsMath.Gods.Select(g => g + " " + OwnHappeningsMath.Of(g).Count)));
         C(all.Select(OwnHappeningsMath.Name).Distinct().Count() == all.Length, "no two gods share a happening's name: each is its own");
         C(all.Contains(OwnHappening.HollinDryads) && all.Contains(OwnHappening.SmoulderBargain) && all.Contains(OwnHappening.MorelMourner)
@@ -279,7 +280,7 @@ public static class OwnHappeningsTests
         C(lists.All(l => save.Contains("\"Gods/OnMap/OwnHappenings.cs:" + l + "\"")), "every saved list is modelled in the save estimate");
         // Batch 1's dev actions are in one file, batch 2's in another (Tamiu's by the name she is said by); what each brings
         // about is named in its own god's file.
-        string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnSevenDebug.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu" }
+        string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnSevenDebug.cs") + Read("Gods/OwnRevelDebug.cs") + Read("Gods/OnMap/RevelCup.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu", "Revel" }
             .Select(g => Read("Gods/OnMap/Own" + g + ".cs")));
         foreach (var h in all)
             C(Regex.IsMatch(dbg, @"DebugAction\(""Rimfolk"", ""Gods: " + (OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h)) + @"'s [^""]+""")

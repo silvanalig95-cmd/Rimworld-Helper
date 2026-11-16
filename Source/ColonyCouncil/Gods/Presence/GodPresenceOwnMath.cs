@@ -39,7 +39,9 @@ namespace ColonyCouncil
         /// <summary>Ducat, "a glint": coins glint in the stores, traders pay better, a few coins trail toward the gate.</summary>
         Glint,
         /// <summary>Tamiu (Mog), "the cats keeping watch": from her coming to her going, the rats run off, the cats sit facing the graves.</summary>
-        Watch
+        Watch,
+        /// <summary>Revel, "a merry air": a sweet smoke where nothing burns, recreation comes easier; in his anger it comes slower.</summary>
+        Revelry
     }
 
     /// <summary>A plant as a presence's growth sees it.</summary>
@@ -240,6 +242,14 @@ namespace ColonyCouncil
 
         /// <summary>How many single coins trail out of a store toward the gate (none from a small one).</summary>
         public static int CoinTrail(int stack) => stack < 50 ? 0 : Math.Min(5, stack / 50);
+
+        // ================= Pleasure =================
+
+        /// <summary>Revel's merry air at full strength: recreation fills this much faster; in his anger, the morning after, this much slower.</summary>
+        public const float MerryJoy = 1.3f, SourJoy = 0.75f;
+
+        /// <summary>How fast recreation fills under a presence (1: as it would).</summary>
+        public static float JoyGain(PresenceEffect e, float s, bool harsh) => e != PresenceEffect.Revelry ? 1f : harsh ? SourJoy : Scaled(MerryJoy, s);
 
         // ================= Light, sky and sleep =================
 

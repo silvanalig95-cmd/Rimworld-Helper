@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Revel's own happenings (Source/ColonyCouncil/Gods/OnMap/OwnRevel.cs, RevelCup.cs; the rules in RevelMath.cs): the long
+    night, a vision, a craving in the night, a stash found, a binge egged on, the craving eased, the horned reveller, and the
+    god in a cup. Their small moods (a night that ran late, the slow morning after, a night sat up with someone through the
+    craving), and what the god's cup does to whoever takes it (a clean high, a sharp mind, no fear, a high and a crash, a
+    craving: hediffs of their own, the moods through the game's own hediff thoughts). The game's own drug effects, hangovers,
+    addictions and overdoses do the rest. Tags of the lines: night, nightend, morning, vision, visiontrue, visionfalse,
+    cravingseen ({OTHER}, {DRUG}), stash ({WHAT}), binge, bingesaw ({OTHER}), letgo and letgoeased ({OTHER}), satyrshare
+    ({OTHER}), cupnotice ({WHAT}), cupclean, cupsharp, cupbold, cuphigh, cupcrash, cupcraving, cuphooked ({DRUG},
+    {CHEMICAL}), named, scoffer.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Revel_LongNight</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a night that ran late</label>
+        <description>We meant to go to bed hours before we did. Nobody wanted the night to end.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Revel_SlowMorning</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a slow morning</label>
+        <description>Too little sleep after a late night. Everything this morning takes twice as long.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Revel_SatUp</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sat up through the craving</label>
+        <description>I sat up all night with someone fighting a craving, and by morning it had eased. I'm worn out, and glad I did it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Revel_SatWithMe</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>someone sat up with me</label>
+        <description>The craving was bad last night. Someone sat with me until morning, and it's easier now.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== What the god's cup does (RevelCup), each seen on the health tab ===================== -->
+
+  <HediffDef Name="Rimfolk_RevelCupBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.86, 0.55, 0.62)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RevelCupBase">
+    <defName>Rimfolk_RevelCleanHigh</defName>
+    <label>a clean high</label>
+    <description>A high better than any they remember, with a clear head and no ache waiting for them in the morning.</description>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>25000~25000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><capMods><li><capacity>Consciousness</capacity><offset>0.05</offset></li></capMods></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RevelCupBase">
+    <defName>Rimfolk_RevelSharp</defName>
+    <label>a sharp mind</label>
+    <description>Their mind is quick and clear and their hands quicker. They pick things up fast and work well.</description>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>30000~30000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><GlobalLearningFactor>0.5</GlobalLearningFactor><WorkSpeedGlobal>0.15</WorkSpeedGlobal></statOffsets></li></stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RevelCupBase">
+    <defName>Rimfolk_RevelBold</defName>
+    <label>no fear</label>
+    <description>Nothing frightens them. Pain hardly reaches them, and their nerve holds where it wouldn't.</description>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000~60000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statOffsets><PainShockThreshold>0.25</PainShockThreshold><MentalBreakThreshold>-0.08</MentalBreakThreshold></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- A high that turns: the high for its first hours (severity above 0.6), then a hard crash until it has worn off. -->
+  <HediffDef ParentName="Rimfolk_RevelCupBase">
+    <defName>Rimfolk_RevelCrash</defName>
+    <label>a high that turned</label>
+    <description>A wonderful high that turns, all at once, into a hard crash: heavy, slow and low.</description>
+    <isBad>true</isBad>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1.5</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>crash</label>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>high</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RevelCupBase">
+    <defName>Rimfolk_RevelCraving</defName>
+    <label>a sudden craving</label>
+    <description>One taste and they want more of it, badly, for the rest of the day.</description>
+    <isBad>true</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~50000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li /></stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RevelCleanHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>Rimfolk_RevelCleanHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>a clean high</label>
+        <description>That was the best I've ever had, and my head is clear as water.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RevelCrash</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>Rimfolk_RevelCrash</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>a hard crash</label>
+        <description>It was wonderful, and now it's gone, and everything is grey and heavy.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+      <li>
+        <label>a wonderful high</label>
+        <description>I feel better than I have in years.</description>
+        <baseMoodEffect>16</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RevelCraving</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>Rimfolk_RevelCraving</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>a sudden craving</label>
+        <description>I only had the one, and now I can't stop thinking about another.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodRevel_Say</defName>
+    <lines>
+      <plain>
+        <li>[night] Nobody's going to bed yet, pour another.</li>
+        <li>[night] One more song, then bed, I promise.</li>
+        <li>[night] It's late, and I don't care, this is a good night.</li>
+        <li>[night,named] {GOD} is at the table tonight, nobody's going to bed.</li>
+        <li>[night,scoffer] We'll pay for this in the morning, but fine, one more.</li>
+        <li>[nightend] That's it, I'm going to bed, what a night.</li>
+        <li>[nightend] Is it really two already, where did the night go?</li>
+        <li>[morning] My head, and the sun's far too bright.</li>
+        <li>[morning] I've been up an hour and done nothing at all.</li>
+        <li>[morning,named] {GOD} always wants his share in the morning.</li>
+
+        <li>[vision] Wait, do you see that, out there?</li>
+        <li>[vision] Something's out there, I have to go and look.</li>
+        <li>[vision,named] {GOD} is showing me something, let me go.</li>
+        <li>[visiontrue] It was right here, just where I saw it.</li>
+        <li>[visiontrue] I knew it, I saw this before I came.</li>
+        <li>[visiontrue,named] {GOD} showed me true, look at it.</li>
+        <li>[visiontrue,scoffer] Well, I must have noticed it earlier without knowing.</li>
+        <li>[visionfalse] It was here, I saw it, I know I did.</li>
+        <li>[visionfalse] It's gone now, but it was here a moment ago.</li>
+        <li>[visionfalse,named] {GOD} showed me this place, there's something here.</li>
+        <li>[visionfalse,scoffer] Strong stuff, that, I'm going to sit down.</li>
+
+        <li>[cravingseen] {OTHER} is up in the stores at this hour, after {DRUG}.</li>
+        <li>[cravingseen] I saw {OTHER} creep out to the stores in the dark.</li>
+        <li>[cravingseen,named] {GOD} has {OTHER} by the throat tonight.</li>
+        <li>[cravingseen,scoffer] {OTHER} can't sleep without it, poor thing.</li>
+
+        <li>[stash] Someone hid {WHAT} out here, and never came back for it.</li>
+        <li>[stash] Look what was tucked in here, {WHAT}.</li>
+        <li>[stash,named] A gift from {GOD}, left right where I'd find it.</li>
+        <li>[stash,scoffer] Some traveller's stash, and finders keepers.</li>
+
+        <li>[binge] Another one, you and me, nobody else is drinking.</li>
+        <li>[binge] You'd say that, wouldn't you, pour me another.</li>
+        <li>[binge] Ha, that's a good one, tell it again.</li>
+        <li>[bingesaw] {OTHER} is laughing with an empty chair.</li>
+        <li>[bingesaw] Who is {OTHER} talking to, there's nobody there.</li>
+        <li>[bingesaw,named] {GOD} is sitting with {OTHER}, pouring for them.</li>
+        <li>[bingesaw,scoffer] {OTHER}'s drunk enough to see double, and then some.</li>
+
+        <li>[letgo] It'll pass, {OTHER}, I'm not going anywhere.</li>
+        <li>[letgo] Just till morning, {OTHER}, then it's easier.</li>
+        <li>[letgoeased] It's easier now, {OTHER}, thank you for staying.</li>
+        <li>[letgoeased] I made it through the night, {OTHER}, because you were here.</li>
+        <li>[letgoeased,named] {GOD} let go of me in the night, {OTHER}.</li>
+        <li>[letgoeased,scoffer] I'm through the worst of it, thanks to you, {OTHER}.</li>
+
+        <li>[satyrshare] Here, {OTHER}, this one's for you.</li>
+        <li>[satyrshare] Drink, {OTHER}, I poured it myself.</li>
+        <li>[satyrshare] You look thirsty, {OTHER}, take it.</li>
+
+        <li>[cupnotice] This {WHAT} smells sweeter than it should.</li>
+        <li>[cupnotice] One of these {WHAT} looks different, I can't say which.</li>
+        <li>[cupnotice,scoffer] This {WHAT} smells odd, someone should check the batch.</li>
+        <li>[cupclean] That's the best I've ever had, and my head is clear.</li>
+        <li>[cupclean,named] {GOD} poured that one for me, I'd swear it.</li>
+        <li>[cupsharp] I can see how everything fits together, let me work.</li>
+        <li>[cupsharp,scoffer] Good batch, my head's never been clearer.</li>
+        <li>[cupbold] Let them come, I'm not afraid of anything tonight.</li>
+        <li>[cupbold] I feel like I could walk through a wall.</li>
+        <li>[cuphigh] Oh, that's good, that is very good.</li>
+        <li>[cuphigh] I haven't felt this good in years.</li>
+        <li>[cupcrash] It's gone, all of it, and I feel terrible.</li>
+        <li>[cupcrash,named] {GOD} gave and now {GOD} takes, that's how he is.</li>
+        <li>[cupcrash,scoffer] Too much of a good thing, that's all.</li>
+        <li>[cupcraving] One more, I need one more of those.</li>
+        <li>[cupcraving] I only had the one, why do I want another so badly?</li>
+        <li>[cuphooked] I can't stop thinking about {DRUG}, after just one.</li>
+        <li>[cuphooked,named] {GOD} has his hook in me now.</li>
+        <li>[cuphooked,scoffer] One drink shouldn't do this to anyone.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

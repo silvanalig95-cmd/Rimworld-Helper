@@ -365,7 +365,7 @@ public static class GodsOnMapTests
         }
         // The pantheon, each by its short name (docs/gods-pantheon-brainstorm.md).
         XElement Shape(string name) => shapes.FirstOrDefault(s => s.Element("gods")?.Elements("li").Any(l => l.Value == name) == true);
-        var pantheon = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        var pantheon = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
         foreach (var name in pantheon)
         {
             var s = Shape(name);

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Open Cup
+
+*16 November 2026, version 0.260.0*
+
+- A fifteenth god, Revel, the Open Cup: the spirit in drink, smoke and the long night, who gives a good night first and takes his price in the morning.
+- Now and then one drink or dose in the stores is his, though it looks like any other: whoever takes it may get the best high of their life, a sharp mind, a vision or no fear, or a crash, a craving or, rarely, an addiction.
+- A man with goat's horns may walk in to a party or a late fire with a cup to share, and is gone before dawn.
+- Nights that run past midnight, a craving that gets someone up in the dark, a stash found far out, and a friend who sits up all night with someone through a craving.
+- His signs, his merry air that makes recreation go further, his feast of the Long Night, and his own way of taking what is left for him: drunk off in the night.
+
 ## Gifts worth what they cost
 
 *16 November 2026, version 0.259.0*

@@ -581,6 +581,9 @@ wishPh.UnionWith(new[] { "RE", "TOFULL", "TONICK", "LASTPEN" });
 // Each god's own happenings (Gods/OnMap/Own*.cs, Rimfolk_Pool_GodOwnSaid): the colony's youngest the white beast bows to,
 // which way from the colony something fell.
 wishPh.UnionWith(new[] { "YOUNG", "WAY" });
+// Revel's own happenings and the god in a cup (Gods/OnMap/OwnRevel.cs, RevelCup.cs, Rimfolk_Pool_GodRevel_Say): the drug or
+// drink someone took, or got up in the night for.
+wishPh.UnionWith(new[] { "DRUG" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

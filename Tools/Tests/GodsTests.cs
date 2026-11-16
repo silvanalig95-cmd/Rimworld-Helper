@@ -10,7 +10,7 @@ using ColonyCouncil;
 /// <summary>
 /// The gods (docs/design/gods.md, "the contract"): the pure rules kept from the core (favor and its drift, natures and
 /// kinds, how near each god is (one way, felt), the ties, how favor spills and how ties shift, the first favor sources, the domain table
-/// as a fallback), the fourteen hand-made gods as defs (names by age, lore, sayings, believers' and scoffers' lines, stories
+/// as a fallback), the fifteen hand-made gods as defs (names by age, lore, sayings, believers' and scoffers' lines, stories
 /// in pieces, authored ties, who reveres them), their hands in the game's events (the table, the quiet spells, a god drawn
 /// near), the lore rules (who reveres whom, names, stories in pieces, who believes, what a believer takes it for, names
 /// worked out), the colony's own book, the unseen rule (no page, no favor told, no symbols), the words, the speech pool,
@@ -301,15 +301,15 @@ public static class GodsTests
         string V(XElement e, string f) => e.Element(f)?.Value ?? "";
         List<string> Li(XElement e, string f) => e.Element(f)?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
         var byKey = godDefs.ToDictionary(e => V(e, "key"));
-        C(godDefs.Count == 14 && GodLoreMath.Keys.Length == 14 && GodLoreMath.Keys.All(byKey.ContainsKey) && GodLoreMath.Keys.Distinct().Count() == 14,
-            $"fourteen gods, one def each, keyed by their short names ({string.Join(", ", byKey.Keys)})");
-        foreach (var k in new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" })
+        C(godDefs.Count == 15 && GodLoreMath.Keys.Length == 15 && GodLoreMath.Keys.All(byKey.ContainsKey) && GodLoreMath.Keys.Distinct().Count() == 15,
+            $"fifteen gods, one def each, keyed by their short names ({string.Join(", ", byKey.Keys)})");
+        foreach (var k in new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" })
             C(byKey.ContainsKey(k) && V(byKey[k], "defName") == "Rimfolk_God_" + k && V(byKey[k], "label") == (k == "Mog" ? "Tamiu" : k), $"{k}: Rimfolk_God_{k}, its short name its label (Mog's remade as Tamiu, its key kept)");
         var domainsWanted = new Dictionary<string, (string, string)>
         {
             ["Hollin"] = ("Wild", "Harvest"), ["Smoulder"] = ("Craft", "Hearth"), ["Bellwether"] = ("Hunt", "Wild"), ["Morel"] = ("Dead", "Harvest"), ["Ennu"] = ("Way", "Hearth"),
             ["Pip"] = ("Machine", "Craft"), ["Cirrus"] = ("Storm", "Night"), ["Hush"] = ("Night", "Dead"), ["Undertow"] = ("Void", ""), ["Helios"] = ("Hearth", "Harvest"),
-            ["Selene"] = ("Night", "Healing"), ["Mog"] = ("Dead", "Hearth"), ["Murmur"] = ("Waters", "Harvest"), ["Ducat"] = ("Way", "Craft")
+            ["Selene"] = ("Night", "Healing"), ["Mog"] = ("Dead", "Hearth"), ["Murmur"] = ("Waters", "Harvest"), ["Ducat"] = ("Way", "Craft"), ["Revel"] = ("Hearth", "Night")
         };
         foreach (var kv in domainsWanted)
             C(V(byKey[kv.Key], "domain") == kv.Value.Item1 && V(byKey[kv.Key], "second") == kv.Value.Item2, $"{kv.Key}: the fallback domains {kv.Value.Item1} and {kv.Value.Item2}");
@@ -391,7 +391,7 @@ public static class GodsTests
         bool Tie(string a, string b, string kind) => tieKinds.Any(t => (t.a == a && t.b == b || t.a == b && t.b == a) && t.kind == kind);
         C(Tie("Hollin", "Morel", "Allies") && Tie("Smoulder", "Hush", "Rivals") && Tie("Pip", "Morel", "Rivals") && Tie("Cirrus", "Bellwether", "Allies")
           && Tie("Undertow", "Hollin", "Rivals") && Tie("Undertow", "Ennu", "Rivals") && Tie("Helios", "Selene", "Return") && Tie("Helios", "Pip", "Rivals")
-          && Tie("Mog", "Ennu", "Rivals") && Tie("Murmur", "Hush", "Rivals") && Tie("Ducat", "Smoulder", "Rivals"),
+          && Tie("Mog", "Ennu", "Rivals") && Tie("Murmur", "Hush", "Rivals") && Tie("Ducat", "Smoulder", "Rivals") && Tie("Revel", "Ennu", "Allies") && Tie("Revel", "Hush", "Rivals"),
             "the ties as the gods stand with each other (the brainstorm's section B)");
         var allNames = godDefs.SelectMany(e => new[] { V(e, "key") }.Concat(new[] { "tribalNames", "medievalNames", "industrialNames", "spacerNames" }.SelectMany(f => Li(e, f)))).ToList();
         foreach (var old in new[] { "Storm-father", "Ferryman", "Herdmother", "Far Light", "Red Captain", "Voice in the Wire", "Deep Mother", "Lady of the Vote", "Silent Captain", "Lattice-mind", "Sleeper", "Broker", "Tinker" })

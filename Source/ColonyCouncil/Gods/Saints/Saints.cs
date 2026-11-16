@@ -93,7 +93,8 @@ namespace ColonyCouncil
                 if (faithCache.TryGetValue(ideo.id, out var c) && c.sig == sig) return c.list;
                 var memes = (ideo.memes ?? new List<MemeDef>()).Where(m => m != null).Select(m => (m.defName, (string)m.label)).ToList();
                 var precepts = ideo.PreceptsListForReading?.Where(x => x?.def != null).Select(x => x.def.defName).ToList();
-                var gods = Gods.All.Where(g => g != null && g.kind != GodKind.Dead).Select(g => (g.Key, g.domain, g.second, g.kind == GodKind.Hunger)).ToList();
+                // A god tied only by its own words (Revel) isn't among those a deity's domains choose from, so the faiths' older ties keep.
+                var gods = Gods.All.Where(g => g != null && g.kind != GodKind.Dead && !SaintsMath.ByOwnWords.Contains(g.Key)).Select(g => (g.Key, g.domain, g.second, g.kind == GodKind.Hunger)).ToList();
                 var taken = new List<GodDomain>();
                 var list = new List<FaithSaint>();
                 foreach (var d in deities)
@@ -103,7 +104,8 @@ namespace ColonyCouncil
                     GodsMath.DeityDomains(d.name, d.type, d.relatedMeme?.defName, d.relatedMeme?.label, memes, precepts, taken, age, seed, out var domain, out var second);
                     taken.Add(domain);
                     bool damned = SaintsMath.Damned(d.relatedMeme?.defName, d.relatedMeme?.label, d.name, d.type, domain);
-                    string key = SaintsMath.GodFor(domain, second, damned, gods, seed);
+                    string own = SaintsMath.OwnWords(d.name, d.type, d.relatedMeme?.defName, d.relatedMeme?.label, damned);
+                    string key = own != null && Gods.ByKey(own) is God og && og.kind != GodKind.Dead ? own : SaintsMath.GodFor(domain, second, damned, gods, seed);
                     list.Add(new FaithSaint
                     {
                         ideo = ideo, name = d.name, type = d.type, gender = d.gender, god = Gods.ByKey(key), damned = damned,

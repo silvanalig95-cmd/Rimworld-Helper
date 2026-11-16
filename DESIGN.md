@@ -15224,6 +15224,135 @@ event where a pawn asks for approval first". The go: "go ahead with this".
   kind (on, off)", "Gods: the keeper reads the gods now (log)". Tests: `Tools/Tests/OfferingGiftTests.cs`; the moods in
   `Tools/Balance/Rates.cs`.
 
+### Revel, the Open Cup: a fifteenth god of drink, drugs and the long night (the player's go, 16 November 2026; released 0.260.0)
+
+The player, 15 November 2026: "a new god ... a god of drugs, the god of excess partying, and so to say, of pleasures. So,
+you know, smoke leaf, alcohol ... more of drugs, with the good and bad that they bring to a colony. And, you know, the god
+likes to deceive or kind of play with pawns, minds and bodies, you know, like drugs do"; then "what would be interesting is
+that the god could take shape inside an actual drug, and once a pawn consumes it, they will get a godly effect from it";
+"and i'd like it to also have some physical shape, perhaps a devil or so?", "satyr would be awesome"; and the name, "Revel
+sounds great". No loving (the player left it out). Built as the other fourteen are, every part of them, and unseen as
+they are: felt at revels and feasts, in a drinker's or a smoker's high, in an addict's craving and a hangover.
+
+- **Who he is** (`Defs/GodDefs/Rimfolk_Gods.xml`, `Rimfolk_God_Revel`, key `Revel`): the spirit in drink and smoke and the
+  long night, generous first and a cheat after. Plain line: "The spirit in drink, smoke and the long night. He gives a
+  good night first, and takes his price in the morning." Names by age: the Laughing Horn, the Merry Cheat, the Last
+  Round, the pleasure signal (and the Open Cup, Old Tipple). Three stories (the last barrel he kept the songs going over
+  while Hush stood outside, the sweet cup that teaches the brewer's cart as his, the wager with Ennu over who could stay
+  longer at a table), sayings, believers' and scoffers' lines, letters. Allies with Ennu, rivals with Hush. Domains
+  Hearth and Night (the fallback only), Capricious, revered by the Wheel and the river folk and by every age's kind and
+  raiders; the goat his sacred animal. Taken now and then for the Guest, the moon or the dark (`GodLoreMath.Confused`).
+- **His sign** (`Tools/make_god_signs.py`, `revel()`): a cup with a goat's horns curling up from its rim and three drops
+  spilling over, in wine red and gold (`Textures/ColonyCouncil/Gods/Signs/Revel.png`; the draft sheet has a fifth row).
+- **His look and his shape** (`Rimfolk_GodsOnMap_Shapes.xml`): `Rimfolk_GodShape_Revel` (never a stranger at the gate,
+  never a beast: he walks only as the horned reveller, by his own code), his signs, his line tag, drawn near by people
+  high or drunk and a party under way (`GodStir.Revelry`); `Rimfolk_GodLook_Revel`: a person drawn larger in wine red and
+  gold, Vanilla Factions Expanded - Classical's toga and wreath (the game's robe and headdress otherwise), Ideology's bong
+  smoke and twinkles, a goat's call and a beer's sound, Vanilla Memes Expanded's hedonist chant, the fairy folk's
+  Scarborough Fair and Odyssey's Baubles for his track.
+- **His signs** (`OmenKind.Bleat`, `SweetSmoke`, `Spilled`; `GodOmensOwn`): a goat bleating in an empty room of the colony's
+  late at night, heard by someone outside it; a sweet smoke drifting through the colony where nothing burns (Ideology's
+  bong smoke, pale rose); the drink in the stores found knocked over, one of it gone and a wet patch beside it. Each said
+  aloud and kept in the book.
+- **His presence** (`Rimfolk_GodPresence_Revel`, `PresenceEffect.Revelry`, "a merry air"; named "{NAME} at the table"):
+  a sweet smoke over the place and curls of it over whoever is at their recreation, a goat calling among the houses;
+  recreation fills 30 % faster at full strength (`GodPresenceOwnMath.JoyGain`, `Patch_GodPresenceJoy` on the game's
+  `Need_Joy.GainJoy`), a quarter slower in his anger (the morning after). Its numbers under its label. It may stay five
+  days as a great effect of his.
+- **His own happenings** (`Gods/OnMap/OwnRevel.cs`, the rules in `RevelMath.cs`, in the second seven's frame: the gods' hour,
+  the steps, the feast, saved with the book as `RevelState`):
+  - *The long night* (`RevelLongNight`): at his feast or a party of the game's own, or with three of the colony at their
+    ease round a late fire, between nine and eleven: someone says nobody is going to bed, a goat calls, and those near
+    stay where they are, at their ease, the recreation coming a little at a time, until two (only the rested and fed;
+    anyone tired or hungry goes). Then a good memory (+4, a day and a half), a fifth of their rest gone, and a slow
+    morning (-2, half a day), someone saying so.
+  - *A vision* (`RevelVision`): someone high (any of the game's or the mods' drug highs) stops and stares, says so, and
+    walks out to what it showed them: true a little under half the time (a seam of ore in the rock nobody has marked,
+    wild healroot), else false (a door in the ground, someone watching, a light under the ground, something buried, and
+    nothing there). Told as seen; the book keeps it as their belief ("High on beer, I was shown a seam of silver in the
+    rock to the east."), true or not, under the god they take it for.
+  - *A craving in the night* (`RevelCraving`): an addict asleep whose craving is on them, between midnight and three,
+    wakes and goes to the stores for their drug (the game's own taking, only where their drug policy allows it for the
+    addiction); someone awake who sees it says so, and the book keeps it.
+  - *A stash found* (`RevelStash`): someone working far out by day comes on a few of the colony's own kind of drink or
+    smoke hidden at their feet (about a hundred silver's worth at most, never a hard drug).
+  - *A binge egged on* (`RevelBinge`): someone on the game's own drug binge is seen talking and laughing with an empty
+    seat, a goat's call and a little of his look there; a witness says so. No chance of its own: it follows the game's
+    binge, half of them.
+  - *The craving eased* (`RevelLetGo`, the cure against him): at night the priest, one devoted to Revel or a friend sits
+    up with an addict in withdrawal until dawn; by morning the addiction (the game's own hediff) is lifted a little
+    (`LetGoEase`, it wears off that much sooner), both glad of the night (+3 and +4, two days), and the addict believes
+    the craving let go of them.
+  - *The horned reveller* (`RevelSatyr`): at a party, his feast, a long night or a late fire, between eight and eleven, a
+    grown man of a people at peace walks in out of the dark with a cup of the colony's kind of drink, made the god's and
+    shown as one (`GodAvatar`, his look) with his moment and card (named "{GOD} at the fire" only where the colony knows
+    him). His shape: a satyr's, where one of the player's mods has a xenotype called so (none is active yet), else Alpha
+    Genes' goat horns (`AG_ForsakenHornsGoat`, `AG_DevilsheepHorns`) or the game's own (`Headbone_MiniHorns`,
+    `Headbone_CenterHorn`). He walks to someone at their ease who would take it (not a teetotaler, a child, or one their
+    drug policy keeps from it), puts the cup in their hands and they drink it (it is his cup, below), and he is gone
+    before dawn, nobody seeing him leave.
+  - *His cup* (`RevelCup`): below.
+- **The god in a cup** (`Gods/OnMap/RevelCup.cs`, the rules `RevelCupMath`): now and then (about once in two or three weeks
+  a home, never with one of his waiting) Revel is in one drink or one dose of a stack of his in the colony's stores, a
+  drink likelier: any one of the stack alike. It looks like any other; at most someone passing near it notices something
+  small about it, once ("This beer smells sweeter than it should."). His one is followed through the game's own stacks:
+  a split (hauled, carried off, eaten from, sold) takes him with the part taken off the front if he was among it; a
+  merge brings him across behind the stack's own; eating takes him if he was among what was taken (`Patch_RevelCupSplit`,
+  `Patch_RevelCupAbsorb`, `Patch_RevelCupIngested` on `Thing.SplitOff`, `TryAbsorbStack`, `Ingested`, behind the deep
+  hooks setting, a single compare while he is in no cup). One of the colony's own who takes him gets one of his effects,
+  never told in advance: two times in three his generosity (a clean high, `Rimfolk_RevelCleanHigh`, +12, ten hours, and
+  no hangover for thirty; a burst of skill, an inspiration of the game's own else a sharp mind for half a day; a vision,
+  as above; no fear for a day, `Rimfolk_RevelBold`); one in three his deceit (a wonderful high that turns into a hard
+  crash after four hours, `Rimfolk_RevelCrash`, +16 then -10; a sudden craving, -8 for most of a day, and another of the
+  same where it isn't a hard drug and their policy allows it; or, about one cup in twenty, the drug's own addiction taking
+  hold at once, the game's own hediff, through the shared harm budget, `HarmKinds.GodCup`, a high and a crash when the
+  budget says no). Each shown as it happens: their word, a little of his look, a message of what it did, the camera on
+  them. A few hours after, the book keeps what they believe it was (`RevelCupMath.Read`): a scoffer that it was only
+  strong stuff (as a doubt), one in dread that it was a trick, the rest a blessing (or only a strong batch, one in four)
+  for a kindness and a trick or a curse for his deceit, a vision a true sight, under the god they take it for (maybe the
+  wrong one). He leaves a cup nobody takes within a month, or one gone from the colony. Guests, prisoners and beasts take
+  only the drink.
+- **His touch** (`GodTouchMath.Table["Revel"]`): a light heart (`Rimfolk_GodTouch_Bless_Revel`: recreation and company
+  come easier for a day), high spirits for those who saw it (their recreation filled, `TouchEffect.Merry`), a few of the
+  colony's kind of drink or smoke left where it happened, an inspiration (a party frenzy, creativity), his merry air for
+  five days; his anger some of the drink in the stores gone sour and spilled across the floor (`TouchEffect.Sour`). His
+  return in kind (`GodTouchReturn`): drink and smoke of the colony's own kind, what it can make again first, never a hard
+  drug, beer always among them. His look where he acts (`GodTouchFx`): bong smoke, twinkles, bubbles, a joint's smoke.
+- **His worship** (`Rimfolk_Worship_Revel`): drink first, then drugs, then a meal; what the colony carries to him on its own
+  is what it can make again (`Offerings.Pick` passes over anything precious), a dear drink or drug only when someone asks
+  (0.259.0's ask). His way of taking (`OfferingWay.Cup`): drunk off in the night where it lay, the ground left wet and
+  smelling of drink, a curl of sweet smoke. His hope ("give us a good night and an easy morning"), his temper in five
+  bands of his own words for the keeper. His feast, the Long Night of Revel (autumn, the 8th): the barrels opened at
+  dusk, the first drop poured on the ground, the fire kept until morning; that night runs long and he may come to the fire.
+  His people's rite (`BeliefRite.Cup`): the first drop of a cup poured on the ground at a table or a lit fire in the
+  evening. Drawn to him: chemical interest and fascination, Vanilla Traits Expanded's drunken master, joyous, a love of
+  cooking or talk, a past as a brewer, a barkeep, a vintner, a distiller, an entertainer.
+- **In the world** (`Rimfolk_GodWays_Revel`): his kindness the colony's brewing barrels ready overnight, days early
+  (`GodBlessing.Cask`, the game's own barrels); his anger some of the drink in the stores turned sour (`GodWrath.Sour`); his
+  blessing on a body the open cup (`Rimfolk_GodGift_Revel`: more pleasure in everything, people warm to them); a dream of
+  a horned man at the end of the bed with a cup in each hand; on the warm side of the quarrel with Hush's cold. His hand
+  seen in a brewer's cart at the gate, a feast at a camp, music on the air (`GodHandsMath`).
+- **His saints** (`SaintsMath.OwnWords`, `ByOwnWords`): a faith's deity of wine, revelry, the tavern, pleasure or the high
+  life (Ideology's high life, Vanilla Memes Expanded's party life, Alpha Memes' epicureans) is his; he is tied by a
+  deity's own words only, never by its domains, so the faiths' older ties keep. Never one of the damned.
+- **Every age its form, from the whole of the player's mods** (`Gods/OnMap/RevelGoods.cs`): his drink and drugs are read
+  from every def loaded (the game's and the DLCs' beer, smokeleaf, psychite tea, ambrosia, psilocap; Vanilla Brewing
+  Expanded's spirits, cocktails, coffees and teas; Vanilla Factions' mead, wine, rum, opium and chemshine; Alpha Crafts'
+  kvass and sake; Rim Bees' mead; whatever else is loaded), never by a list of names: a drug that isn't medicine. What
+  the colony can make again now comes first (its benches with the research done, its barrels, a mod's stills: 0.259.0's
+  reading), then what its age knows (no newer than the colony, nothing dearer than 70 a piece), beer last. Who is high,
+  addicted or craving is the game's own highs, addictions and needs, every mod's.
+- **The unseen rule holds**: no word of what he wants; a card names him only where the colony knows him; what happens is
+  told as seen; the cup looks like any other; the book keeps beliefs, never the truth. The harm is only the game's own
+  drugs (their highs, hangovers, addictions and overdoses), taken by the colony's people themselves as their drug policy
+  allows, and the cup's addiction through the shared budget.
+- Saved: `OwnHappeningsBook.revel` (single records: the night, a vision, a craving, a binge seen, a night sat up, the
+  horned reveller, the cup and who took it); the happenings' list one longer for each (`Tools/save_estimate.py`). Dev mode:
+  "Gods: Revel's long night now", "... vision now", "... craving in the night now", "... stash found now", "... binge
+  egged on now", "... craving eased now", "... horned reveller now", "Gods: Revel in a cup in the stores now", "Gods: where is
+  Revel's cup (log)", "Gods: Revel's next cup does...". Tests: `Tools/Tests/RevelTests.cs` (and every test that counts the
+  gods); the moods in `Tools/Balance/Rates.cs`.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

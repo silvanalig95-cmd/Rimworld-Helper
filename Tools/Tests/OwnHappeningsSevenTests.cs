@@ -299,7 +299,7 @@ public static class OwnHappeningsSevenTests
           && frame.Contains("ExposeSeven();") && frame.Contains("Scribe_Collections.Look(ref last"),
             "saved with the shared book: when each last came (its one list), each god's happening under way, the ruins' rooms heard");
         string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
-        C(est.Contains("\"Gods/OnMap/OwnHappenings.cs:last\": (\"fixed\", 51,") && est.Contains("Gods/OnMap/OwnSeven.cs:ruins"), "the saved lists modelled in the save estimate (one a happening, both batches)");
+        C(est.Contains("\"Gods/OnMap/OwnHappenings.cs:last\": (\"fixed\", 59,") && est.Contains("Gods/OnMap/OwnSeven.cs:ruins"), "the saved lists modelled in the save estimate (one a happening, both batches)");
         C(!Regex.IsMatch(all, @"\bSched\."), "no clock slot of their own: the gods' hour and their own due steps");
         C(File.ReadAllText(Path.Combine(root, "Tools", "Tests", "Tests.csproj")).Contains("OwnSevenMath.cs"), "the pure rules linked for the tests");
 

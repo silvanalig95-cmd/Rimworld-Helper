@@ -26,6 +26,8 @@ namespace ColonyCouncil
         public MurmurState murmur = new MurmurState();
         public DucatState ducat = new DucatState();
         public TamiuState tamiu = new TamiuState();
+        /// <summary>Revel's, the fifteenth (Gods/OnMap/OwnRevel.cs), saved beside the seven's.</summary>
+        public RevelState revel = new RevelState();
 
         /// <summary>Saved with the rest of the book (its ExposeData).</summary>
         internal void ExposeSeven()
@@ -38,6 +40,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref murmur, "murmur");
             Scribe_Deep.Look(ref ducat, "ducat");
             Scribe_Deep.Look(ref tamiu, "tamiu");
+            Scribe_Deep.Look(ref revel, "revel");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ruins ??= new List<string>();
@@ -48,6 +51,7 @@ namespace ColonyCouncil
                 murmur ??= new MurmurState();
                 ducat ??= new DucatState();
                 tamiu ??= new TamiuState();
+                revel ??= new RevelState();
             }
         }
     }
@@ -73,6 +77,7 @@ namespace ColonyCouncil
                 Safe("Murmur's hour", () => OwnMurmur.Hourly(b, map, now));
                 Safe("Ducat's hour", () => OwnDucat.Hourly(b, map, now));
                 Safe("Tamiu's hour", () => OwnTamiu.Hourly(b, map, now));
+                Safe("Revel's hour", () => OwnRevel.Hourly(b, map, now));
             }
         }
 
@@ -86,15 +91,17 @@ namespace ColonyCouncil
             Safe("Murmur's steps", () => OwnMurmur.Step(b, now));
             Safe("Ducat's steps", () => OwnDucat.Step(b, now));
             Safe("Tamiu's steps", () => OwnTamiu.Step(b, now));
+            Safe("Revel's steps", () => OwnRevel.Step(b, now));
         }
 
-        /// <summary>A feast kept (the frame's FestivalKept): Helios's first fruit, Murmur's singing at the wells, Ducat's open purse.</summary>
+        /// <summary>A feast kept (the frame's FestivalKept): Helios's first fruit, Murmur's singing at the wells, Ducat's open purse, Revel's long night.</summary>
         internal static void SevenFestival(OwnHappeningsBook b, God g, Map map)
         {
             if (b == null || g == null || map == null) return;
             if (g.Key == OwnHelios.Key) OwnHelios.Festival(b, map);
             else if (g.Key == OwnMurmur.Key) OwnMurmur.Festival(b, map);
             else if (g.Key == OwnDucat.Key) OwnDucat.Festival(b, map);
+            else if (g.Key == OwnRevel.Key) OwnRevel.Festival(b, map);
         }
 
         /// <summary>

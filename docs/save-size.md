@@ -270,11 +270,11 @@ Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** aft
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
 | `Peoples/Events3/RoadGang.cs:spur` | the spur from the colony's gate to the road, while the road gang's camp stands | fixed | 60 | 60 | 60 | 1.5 |
+| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening (Revel's eight among them) | fixed | 59 | 59 | 59 | 1.4 |
 | `Animals/AnimalPowers.cs:omens` | the omen animals alive: one in 20 days at most, AnimalPowersMath.MaxOmenRecords kept | cap | 3 | 6 | 6 | 1.4 |
 | `Beasts/BeastBook.cs:flights` | beast nemeses that fled hurt: one while it is away or back, dropped when its nemesis ends, BeastsMath.MaxFlights at most | cap | 2 | 4 | 9 | 1.4 |
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
 | `Beasts/BeastBook.cs:oaths` | oaths sworn against a beast that killed or maimed: a few a year, BeastsMath.MaxOaths kept, the ended going first | cap | 1 | 2 | 6 | 1.3 |
-| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening | fixed | 51 | 51 | 51 | 1.2 |
 | `Diplomacy/DiplomacyBook.cs:vassals` | per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone | cap | 1 | 2 | 3 | 1.2 |
 | `World/Region/FollowUps.cs:waiting` | follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows | cap | 1 | 1 | 3 | 1.2 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |

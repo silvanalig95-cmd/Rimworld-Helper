@@ -43,6 +43,8 @@
   <CC_GodPO_Num_Wells>Nobody falls sick from bad water.</CC_GodPO_Num_Wells>
   <CC_GodPO_Num_TradeBetter>Traders deal {PCT} better.</CC_GodPO_Num_TradeBetter>
   <CC_GodPO_Num_TradeWorse>Traders deal {PCT} worse.</CC_GodPO_Num_TradeWorse>
+  <CC_GodPO_Num_JoyFaster>Recreation fills {PCT} faster.</CC_GodPO_Num_JoyFaster>
+  <CC_GodPO_Num_JoySlower>Recreation fills {PCT} slower.</CC_GodPO_Num_JoySlower>
 
   <!-- Where something lies from the colony, in a true dream. -->
   <CC_GodPO_Dir_North>to the north</CC_GodPO_Dir_North>
@@ -115,6 +117,9 @@
   <CC_Wsh_Taken_Way_Cat_Felt>The offering at {SHRINE} was gone at dawn, and there were paw prints where it had lain: {WHAT}.</CC_Wsh_Taken_Way_Cat_Felt>
   <CC_Wsh_Taken_Way_Cat_Plain>The offering at {SHRINE} was gone in a breath before everyone's eyes, and paw prints were left where it had lain: {WHAT}.</CC_Wsh_Taken_Way_Cat_Plain>
 
+  <CC_Wsh_Taken_Way_Cup_Felt>The offering at {SHRINE} was drunk in the night: {WHAT}. The ground where it stood is wet and smells of drink.</CC_Wsh_Taken_Way_Cup_Felt>
+  <CC_Wsh_Taken_Way_Cup_Plain>The offering at {SHRINE} was gone before everyone's eyes, as if someone had drunk it off in one go: {WHAT}.</CC_Wsh_Taken_Way_Cup_Plain>
+
   <!-- What became of the last gift, in the place's inspect line (CC_Wsh_Inspect_Last's {FATE}). -->
   <CC_Wsh_Inspect_Fate_Way_Sapling>it sank into the soil, and a young tree stood there by morning</CC_Wsh_Inspect_Fate_Way_Sapling>
   <CC_Wsh_Inspect_Fate_Way_Crack>it went down a crack in the rock, and the floor was warm after</CC_Wsh_Inspect_Fate_Way_Crack>
@@ -131,5 +136,6 @@
   <CC_Wsh_Inspect_Fate_Way_Well>it went down into the water with a croak</CC_Wsh_Inspect_Fate_Way_Well>
   <CC_Wsh_Inspect_Fate_Way_Given>it was given to a visitor to carry on</CC_Wsh_Inspect_Fate_Way_Given>
   <CC_Wsh_Inspect_Fate_Way_Cat>a cat had it at dawn</CC_Wsh_Inspect_Fate_Way_Cat>
+  <CC_Wsh_Inspect_Fate_Way_Cup>it was drunk in the night, the ground left wet and smelling of drink</CC_Wsh_Inspect_Fate_Way_Cup>
 
 </LanguageData>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Draws the gods' signs, the colony's own holy sign for each of the fourteen (docs/gods-next-proposals.md, section A):
+Draws the gods' signs, the colony's own holy sign for each of the fifteen (docs/gods-next-proposals.md, section A):
 what its people draw for the god they believe in, never a portrait of the god. In the game (Gods/GodSigns.cs) each
 shows in the god's chapter of the colony's book and on its card when the colony is sure, in the form of the colony's
 age: scratched on a stone (tribal), painted on a shield (medieval), stamped on a badge (industrial), lit in a ring
@@ -13,6 +13,7 @@ age: scratched on a stone (tribal), painted on a shield (medieval), stamped on a
     Ennu       an open door with a light left in it             Helios    a sun whose rays all point outward
     Selene     a crescent holding a small full disc             Mog       Tamiu: a cat seated on a tomb's door, eye cut bright
     Murmur     a toad over ripples, rain falling                Ducat     a holed coin, moving
+    Revel      a cup with goat's horns curling from its rim
 
 Each is drawn as a mask at 4x (512x512, in design units of 128) and scaled down, which gives clean edges; the shapes are
 bold, with cutouts wide enough to read at 24 px.
@@ -416,7 +417,45 @@ def ducat():
     return m
 
 
-# ---------------------------------------------------------------- the fourteen, in the defs' order
+def horn(m, pts, w0, w1, steps=18):
+    """A horn along the points (Catmull-Rom), thick at its root and thinning to its tip."""
+    out = []
+    ext = [pts[0]] + list(pts) + [pts[-1]]
+    for i in range(1, len(ext) - 2):
+        p0, p1, p2, p3 = ext[i - 1], ext[i], ext[i + 1], ext[i + 2]
+        for s in range(steps):
+            t = s / steps
+            t2, t3 = t * t, t * t * t
+            x = 0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3)
+            y = 0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)
+            out.append((x, y))
+    out.append(pts[-1])
+    n = len(out)
+    for i, (x, y) in enumerate(out):
+        circle(m, x, y, (w0 + (w1 - w0) * i / max(1, n - 1)) / 2.0)
+
+
+def revel():
+    """A cup with a goat's horns curling up from its rim: the drink poured for the god first."""
+    m = new()
+    # The horns, rising from the rim and curling back and out.
+    horn(m, [(44, 50), (34, 38), (24, 24), (26, 12), (36, 10)], 11, 4)
+    horn(m, [(84, 50), (94, 38), (104, 24), (102, 12), (92, 10)], 11, 4)
+    # The cup: a wide bowl on a short stem and a round foot.
+    rect(m, 30, 46, 98, 54, 3)
+    poly(m, [(34, 52), (94, 52), (88, 72), (76, 84), (52, 84), (40, 72)])
+    rect(m, 59, 82, 69, 102)
+    ellipse(m, 42, 98, 86, 112)
+    # The drink's surface, a line cut across the bowl below the rim.
+    rect(m, 40, 58, 88, 62, 2, OFF)
+    # Three drops spilling over the rim.
+    for x, y in ((50, 40), (64, 34), (78, 40)):
+        circle(m, x, y + 3, 3.4)
+        poly(m, [(x - 3, y + 2), (x, y - 5), (x + 3, y + 2)])
+    return m
+
+
+# ---------------------------------------------------------------- the fifteen, in the defs' order
 
 GODS = [
     ("Hollin", "the Rootmother", hollin, (0.55, 0.78, 0.45), (0.62, 0.5, 0.34),
@@ -447,6 +486,8 @@ GODS = [
      "A huge old toad in the wells and marshes. When it sings, it rains; when it falls silent, the land goes dry."),
     ("Ducat", "the Restless Gold", ducat, (0.96, 0.8, 0.32), (0.72, 0.56, 0.24),
      "The spirit in gold that wants to keep moving. It loves trade and giving, and hates a hoard."),
+    ("Revel", "the Open Cup", revel, (0.72, 0.22, 0.38), (0.95, 0.72, 0.3),
+     "The spirit in drink, smoke and the long night. He gives a good night first, and takes his price in the morning."),
 ]
 
 
@@ -534,7 +575,9 @@ def frame_age(mask, age, size, colour):
 
 def sheet(path):
     cols, cw, ch, gap, margin, head, foot = 4, 300, 350, 18, 30, 150, 70
-    rows = 4
+    # The gods one a cell, then the ages' panel two cells wide (on a row of its own when it wouldn't fit beside them).
+    ages_at = len(GODS) if len(GODS) % cols <= cols - 2 else (len(GODS) // cols + 1) * cols
+    rows = (ages_at + 2 + cols - 1) // cols
     W = margin * 2 + cols * cw + (cols - 1) * gap
     H = head + rows * ch + (rows - 1) * gap + foot
     img = Image.new("RGBA", (W, H), PAPER + (255,))
@@ -547,8 +590,8 @@ def sheet(path):
     d.text((margin, 34), "The gods' signs (draft)", font=f_title, fill=INK)
     d.text((margin, 90), "Each god's holy sign as the colony's people draw it, and what the colony takes the god to be. "
            "Shown only for a god the colony has heard of.", font=f_sub, fill=DIM)
-    cells = [(g, None) for g in GODS] + [(None, "ages")]
-    for i, (g, extra) in enumerate(cells):
+    cells = [(i, g, None) for i, g in enumerate(GODS)] + [(ages_at, None, "ages")]
+    for i, g, extra in cells:
         r, c = divmod(i, cols)
         x = margin + c * (cw + gap)
         y = head + r * (ch + gap)

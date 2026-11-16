@@ -18,9 +18,9 @@ using ColonyCouncil;
 /// </summary>
 public static class GodWorldTests
 {
-    /// <summary>The fourteen, by short name (docs/gods-pantheon-brainstorm.md: the nine, Helios and Selene, Mog, Murmur, Ducat).</summary>
+    /// <summary>The fifteen, by short name (docs/gods-pantheon-brainstorm.md: the nine, Helios and Selene, Mog, Murmur, Ducat; and Revel).</summary>
     private static readonly string[] Nine =
-        { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
 
     public static int Run(string root, Action<bool, string> check)
     {
@@ -218,7 +218,7 @@ public static class GodWorldTests
         var hediffs = gifts.Root.Elements("HediffDef").Select(e => e.Element("defName")?.Value).Where(x => x != null).ToList();
         XElement Ways(string god) => ways.Root.Elements().FirstOrDefault(e => e.Element("gods")?.Elements("li").Any(li => li.Value == god) == true);
         List<string> List(XElement w, string tag) => w?.Element(tag)?.Elements("li").Select(x => x.Value).ToList() ?? new List<string>();
-        C(ways.Root.Elements().All(e => List(e, "gods").All(Nine.Contains)) && ways.Root.Elements().Count() == Nine.Length, "the ways are the fourteen's, keyed by short name, one each");
+        C(ways.Root.Elements().All(e => List(e, "gods").All(Nine.Contains)) && ways.Root.Elements().Count() == Nine.Length, "the ways are the fifteen's, keyed by short name, one each");
         foreach (var god in Nine)
         {
             var w = Ways(god);
@@ -282,7 +282,7 @@ public static class GodWorldTests
         foreach (var h in new[]
                  {
                      "Rimfolk_GodMark", "Rimfolk_VoidCalm", "Rimfolk_BadDreams", "Rimfolk_GodGift_Smoulder", "Rimfolk_GodGift_Morel", "Rimfolk_GodGift_Ennu", "Rimfolk_GodGift_Hush",
-                     "Rimfolk_GodGift_Selene", "Rimfolk_GodGift_Mog", "Rimfolk_GodGift_Murmur", "Rimfolk_GodGift_Ducat"
+                     "Rimfolk_GodGift_Selene", "Rimfolk_GodGift_Mog", "Rimfolk_GodGift_Murmur", "Rimfolk_GodGift_Ducat", "Rimfolk_GodGift_Revel"
                  })
             C(hediffs.Contains(h), "the hediff " + h);
         C(gifts.Root.Elements("HediffDef").Where(e => (e.Element("defName")?.Value ?? "").StartsWith("Rimfolk_GodGift_")).All(e => e.Descendants("statOffsets").Elements().All(s => Math.Abs(float.Parse(s.Value, System.Globalization.CultureInfo.InvariantCulture)) <= 10f)),

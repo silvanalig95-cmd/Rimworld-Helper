@@ -252,8 +252,46 @@ namespace ColonyCouncil
                 case GodWrath.Missing: return Missing(g, map);
                 case GodWrath.Flare: return Incident(g, map, "SolarFlare", "flare");
                 case GodWrath.Nightmares: return Nightmares(g, map);
+                case GodWrath.Sour: return Sour(g, map);
                 default: return false;
             }
+        }
+
+        /// <summary>
+        /// Revel wanting his price: some of the drink in the colony's stores turns sour overnight and spills across the floor
+        /// (a share of each of its largest stacks, never all of one), told as what was found in the morning.
+        /// </summary>
+        private static bool Sour(God g, Map map)
+        {
+            var stacks = RevelGoods.Held(map).Where(t => RevelGoods.Drink(t.def) && t.stackCount >= 2).OrderByDescending(t => t.stackCount).Take(3).ToList();
+            if (stacks.Count == 0) return false;
+            var at = stacks[0].Position;
+            string what = stacks[0].def.label;
+            int gone = 0;
+            foreach (var t in stacks)
+            {
+                int n = Mathf.Min(t.stackCount - 1, 2 * GodTouchMath.VanishCount(t.stackCount));
+                if (n <= 0) continue;
+                var pos = t.Position;
+                t.SplitOff(n).Destroy(DestroyMode.Vanish);
+                gone += n;
+                if (ThingDefOf.Filth_Water != null) FilthMaker.TryMakeFilth(pos, map, ThingDefOf.Filth_Water, 2);
+            }
+            if (gone <= 0) return false;
+            return Told(g, map, at, "sour", PresenceKind.Wrath, gone.Named("COUNT"), what.Named("WHAT"));
+        }
+
+        /// <summary>Revel's kindness: the colony's brewing barrels finished overnight, days early (the game's own barrels, with wort in them).</summary>
+        private static bool Cask(God g, Map map)
+        {
+            var barrels = map.listerBuildings.allBuildingsColonist.OfType<Building_FermentingBarrel>().Where(b => b.Spawned && b.SpaceLeftForWort < Building_FermentingBarrel.MaxCapacity && b.Progress < 1f).ToList();
+            if (barrels.Count == 0) return false;
+            foreach (var b in barrels)
+            {
+                b.Progress = 1f;
+                FleckMaker.ThrowLightningGlow(b.TrueCenter(), map, 0.8f);
+            }
+            return Told(g, map, barrels[0].Position, "cask", barrels.Count.Named("COUNT"));
         }
 
         /// <summary>
@@ -435,6 +473,8 @@ namespace ColonyCouncil
                     return cat != null && Told(g, map, cat.Position, "stray");
                 case GodBlessing.Trader:
                     return Incident(g, map, "TraderCaravanArrival", "trader");
+                case GodBlessing.Cask:
+                    return Cask(g, map);
                 default:
                     return false;
             }

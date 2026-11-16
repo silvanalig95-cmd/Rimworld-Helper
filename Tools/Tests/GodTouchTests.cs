@@ -29,7 +29,7 @@ public static class GodTouchTests
         string touch = Read("Gods/Touch/GodTouch.cs"), effects = Read("Gods/Touch/GodTouchEffects.cs"), fx = Read("Gods/Touch/GodTouchFx.cs"),
             mathSrc = Read("Gods/Touch/GodTouchMath.cs");
         string all = touch + effects + fx + mathSrc + Read("Gods/Touch/GodTouchDebug.cs");
-        var gods = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat" };
+        var gods = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
 
         // ================= Moods and the heart, by belief =================
 
@@ -206,7 +206,7 @@ public static class GodTouchTests
         foreach (var g in gods)
             C(hediffs.ContainsKey("Rimfolk_GodTouch_Bless_" + g) && hediffs["Rimfolk_GodTouch_Bless_" + g].Element("stages") != null, g + ": its own short blessing");
         C(new[] { "Rimfolk_GodTouch_Hardy", "Rimfolk_GodTouch_SunWarmed", "Rimfolk_GodTouch_Ward", "Rimfolk_GodTouch_Sleepless" }.All(hediffs.ContainsKey), "the lasting great ones and a bad night");
-        var godNames = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Tamiu", "Mog", "Murmur", "Ducat", "the Hunger", "the Guest", "the Stranger" };
+        var godNames = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Tamiu", "Mog", "Murmur", "Ducat", "Revel", "the Hunger", "the Guest", "the Stranger" };
         string defsText = string.Join("\n", defsDoc.Descendants().Where(e => e.Name == "label" || e.Name == "description").Select(e => (string)e));
         C(!godNames.Any(gn => defsText.Contains(gn)), "no god named in a mood or a blessing: felt, never whose");
         string keyedAll = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_GodTouch.xml"));

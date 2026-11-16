@@ -254,6 +254,26 @@
   </ColonyCouncil.GodShapeDef>
 
   <!--
+    Revel, the Open Cup: in every cup and pipe, and in the long night. A goat bleating in an empty room, a sweet smoke where
+    nothing burns, the drink in the stores found spilled. He never comes to the gate as a stranger and walks as no beast: when he
+    walks among people it is as a horned reveller at a party or a late fire, with a drink to share (his own code,
+    Gods/OnMap/OwnRevel.cs, in his look below), and now and then he is in one drink or one dose in the stores
+    (Gods/OnMap/RevelCup.cs). Drawn near by people high or drunk, and by a feast or a party under way.
+  -->
+  <ColonyCouncil.GodShapeDef>
+    <defName>Rimfolk_GodShape_Revel</defName>
+    <gods><li>Revel</li><li>Rimfolk_God_Revel</li></gods>
+    <stranger>false</stranger>
+    <beast>false</beast>
+    <weather>false</weather>
+    <leads>false</leads>
+    <feeds>false</feeds>
+    <omens><li>Bleat</li><li>SweetSmoke</li><li>Spilled</li></omens>
+    <lineTag>revel</lineTag>
+    <nearWhen><li>Revelry</li></nearWhen>
+  </ColonyCouncil.GodShapeDef>
+
+  <!--
     Bellwether's look: the game's thrumbo, larger and paler, a soft white light about him, grass growing back greener
     where he walks. minTech and maxTech are the archotech age alone, so no domain's god ever takes it by its age
     (GodLooks.For); his shape names it.
@@ -316,6 +336,72 @@
     </darkTracks>
     <animals>
       <li>Thrumbo</li>
+    </animals>
+  </ColonyCouncil.GodLookDef>
+
+  <!--
+    Revel's look: a person with goat's horns (Gods/OnMap/OwnRevel.cs gives them, a satyr's shape where a mod has one), drawn
+    larger, in wine red and gold, a wreath and a toga where Vanilla Factions Expanded - Classical is loaded, a sweet smoke
+    about him and the sound of a goat and a drink. minTech and maxTech are the archotech age alone, so no domain's god
+    takes it by its age; his def names it.
+  -->
+  <ColonyCouncil.GodLookDef>
+    <defName>Rimfolk_GodLook_Revel</defName>
+    <label>horned reveller</label>
+    <description>A tall man with goat's horns curling back from his brow, red-cheeked and laughing, with a cup in his hand that is never empty. A sweet smoke hangs about him.</description>
+    <domain>Hearth</domain>
+    <sampleName>a horned reveller with a cup</sampleName>
+    <minTech>Archotech</minTech>
+    <maxTech>Archotech</maxTech>
+    <colorA>(0.72, 0.22, 0.38)</colorA>
+    <colorB>(0.95, 0.72, 0.3)</colorB>
+    <glowColor>(1, 0.78, 0.6)</glowColor>
+    <glowRadius>5</glowRadius>
+    <size>1.3</size>
+    <skin>(0.86, 0.6, 0.52)</skin>
+    <hair>(0.25, 0.14, 0.1)</hair>
+    <eyes>(0.95, 0.72, 0.3)</eyes>
+    <animalTint>(0.95, 0.85, 0.8)</animalTint>
+    <body><li>VFEC_Toga</li><li>Apparel_Robe</li></body>
+    <head><li>VFEC_Wreath</li><li>Apparel_TribalHeaddress</li></head>
+    <trail>None</trail>
+    <motes>
+      <li>AutobongSmoke</li>
+      <li>Mote_Twinkle</li>
+    </motes>
+    <flash>
+      <li>Smoke_Joint</li>
+    </flash>
+    <sky>(0.96, 0.86, 0.84)</sky>
+    <still>0.6</still>
+    <mark>None</mark>
+    <wrathMark>Ash</wrathMark>
+    <sting>
+      <li>Pawn_Goat_Call</li>
+      <li>Ingest_Beer</li>
+    </sting>
+    <wrathSting>
+      <li>Pawn_Goat_Angry</li>
+    </wrathSting>
+    <omen>
+      <li>Pawn_Goat_Call</li>
+    </omen>
+    <depart>
+      <li>Ingest_Beer</li>
+    </depart>
+    <hum>
+      <li>VME_RitualSustainer_Hedonist</li>
+      <li>Drum_Music_1</li>
+    </hum>
+    <tracks>
+      <li>FG_ScarboroughFair_Complete</li>
+      <li>Baubles</li>
+    </tracks>
+    <darkTracks>
+      <li>Shamblers_Blues</li>
+    </darkTracks>
+    <animals>
+      <li>Goat</li>
     </animals>
   </ColonyCouncil.GodLookDef>
 

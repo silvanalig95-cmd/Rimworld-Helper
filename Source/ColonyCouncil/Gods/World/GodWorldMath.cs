@@ -76,7 +76,9 @@ namespace ColonyCouncil
         /// <summary>Bad dreams that follow a few of the colony into the day (Selene returning a cruelty done by day).</summary>
         Nightmares,
         /// <summary>The colony's cats leave in one night and the rats come back (Mog's kin harmed): only at the harm.</summary>
-        Rats
+        Rats,
+        /// <summary>Some of the drink in the stores turned sour overnight and spilled (Revel wanting his price).</summary>
+        Sour
     }
 
     /// <summary>The shape a god's kindness takes on the map, now and then, while the colony stands well with it (Gods/World/GodHealth.cs).</summary>
@@ -106,7 +108,9 @@ namespace ColonyCouncil
         /// <summary>A deep sleep that mends: a wounded colonist's hurts a few days better by morning (Selene returning a kindness).</summary>
         Rest,
         /// <summary>Something found at the door in the morning (Selene returning a kindness).</summary>
-        Found
+        Found,
+        /// <summary>The colony's brewing barrels ready overnight, days early (Revel's kindness).</summary>
+        Cask
     }
 
     /// <summary>

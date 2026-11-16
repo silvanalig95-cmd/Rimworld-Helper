@@ -15,7 +15,7 @@ namespace ColonyCouncil
     /// Expanded's flecks, Anomaly's and Biotech's, by name and softly), a different set for each god, in its own colours. Hollin's leaves and green
     /// flashes, Smoulder's embers and heat, Bellwether's dust and the bowed grass's air, Morel's pale spores, Ennu's skip flash
     /// and footprints, Pip's sparks, Cirrus's lightning glow, Hush's snow and frost, the Hunger's dark rings, Helios's light
-    /// shafts, Selene's pale rings and twinkles, Tamiu's sand, Murmur's water, Ducat's gold glints. Shown with every god's
+    /// shafts, Selene's pale rings and twinkles, Tamiu's sand, Murmur's water, Ducat's gold glints, Revel's sweet smoke. Shown with every god's
     /// big moment (GodFx.Flash) and with each of its effects (small, notable, great: the more, the stronger). Nothing saved.
     /// </summary>
     public static class GodTouchFx
@@ -46,7 +46,8 @@ namespace ColonyCouncil
             ["Selene"] = new Look { flecks = new[] { "Bokeh", "Twinkle", "HoraxianWhiteRing", "Mote_BlueTwinkle", "VPE_PsycastSkipFlashEntry_DarkBlue" }, speed = 0.12f, spread = 1.6f },
             ["Mog"] = new Look { flecks = new[] { "SandBits", "DustSlow", "GlimmerSmall", "Mote_Twinkle" }, rise = false, spread = 1.5f },
             ["Murmur"] = new Look { flecks = new[] { "WaterSplash", "WaterRipple", "GroundWaterSplash", "WaterskipSplashParticles" }, rise = false },
-            ["Ducat"] = new Look { flecks = new[] { "GlimmerSmall", "YellowSparkFlash", "Twinkle", "Mote_Twinkle" }, speed = 0.5f }
+            ["Ducat"] = new Look { flecks = new[] { "GlimmerSmall", "YellowSparkFlash", "Twinkle", "Mote_Twinkle" }, speed = 0.5f },
+            ["Revel"] = new Look { flecks = new[] { "AutobongSmoke", "Twinkle", "Mote_Twinkle", "Fleck_VatBubble" }, effecter = "Smoke_Joint", speed = 0.3f, spread = 1.4f }
         };
 
         private static readonly Dictionary<string, Def> named = new Dictionary<string, Def>();

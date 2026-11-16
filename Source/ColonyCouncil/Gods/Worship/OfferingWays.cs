@@ -15,7 +15,8 @@ namespace ColonyCouncil
     /// hoofprint beside it; Morel's rotted into black soil with a mushroom; Ennu's gone with footprints in and none away;
     /// Pip's part gone and a broken machine working again; Cirrus's taken up in a streak of light; Hush's frosted over in
     /// the night and gone at dawn; Undertow's gone and something else with it; Helios's never taken; Selene's gone only
-    /// under a moon; Murmur's down into the well with a croak; Ducat's given to a visitor; Tamiu's eaten by a cat at dawn.
+    /// under a moon; Murmur's down into the well with a croak; Ducat's given to a visitor; Tamiu's eaten by a cat at dawn;
+    /// Revel's drunk off in the night, the ground left wet.
     /// A god whose worship names no way keeps the shared one (gone by morning, nobody saw it go). What it is noticed for by
     /// day is in the way's own words too (Rimfolk_Pool_Worship_Way), as the one who noticed takes it.
     /// </summary>
@@ -262,6 +263,15 @@ namespace ColonyCouncil
                         j.expiryInterval = 1700;
                         cat.jobs.StartJob(j, JobCondition.InterruptForced);
                     }
+                    return felt;
+                }
+                case OfferingWay.Cup:
+                {
+                    // Drunk off where it lay: the ground left wet and smelling of drink, a curl of sweet smoke over it.
+                    Gone(thing);
+                    if (ThingDefOf.Filth_Water != null) FilthMaker.TryMakeFilth(cell, map, ThingDefOf.Filth_Water, 2);
+                    GodOmens.SweetSmoke(map, cell, 2);
+                    GodSounds.Play(GodSounds.Sound("Ingest_Beer"), map, cell, 0.5f)?.End();
                     return felt;
                 }
                 default:

@@ -77,6 +77,7 @@
   <CC_Belief_Report_Grave_Cat>feeding a cat for {GOD}.</CC_Belief_Report_Grave_Cat>
   <CC_Belief_Report_Water>humming at the water for {GOD}.</CC_Belief_Report_Water>
   <CC_Belief_Report_Silver>turning a coin over for {GOD}.</CC_Belief_Report_Silver>
+  <CC_Belief_Report_Cup>pouring the first drop on the ground for {GOD}.</CC_Belief_Report_Cup>
 
   <!-- The Gods' book: under each chapter, who holds to it here and who dreads it, in the keeper's hand. -->
   <CC_GodBook_Part_Holders>Of those who hold to it</CC_GodBook_Part_Holders>

@@ -304,7 +304,8 @@ What every part builds to:
   gods" is one paragraph on the settings). Favour, ties, natures, kinds and what the colony knows are hidden state that
   drives what the gods do.
 - **A god is a def.** `ColonyCouncil.GodDef`, defNames `Rimfolk_God_Hollin`, `_Smoulder`, `_Bellwether`, `_Morel`,
-  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Undertow`, `_Helios`, `_Selene`, `_Mog`, `_Murmur`, `_Ducat`. A `God` record
+  `_Ennu`, `_Pip`, `_Cirrus`, `_Hush`, `_Undertow`, `_Helios`, `_Selene`, `_Mog`, `_Murmur`, `_Ducat`, and `_Revel` (the
+  fifteenth, 16 November 2026). A `God` record
   keeps its runtime state (favour per home, acts, known), and `God.name` is the short name ("Hollin"). `God.def` reaches
   the def, and `Gods.ByKey("Hollin")` finds a god by its short name.
 - **The `Gods` API stays.** The same signatures, fed from the defs:
@@ -317,7 +318,7 @@ What every part builds to:
   Domains as the fallback key: Hollin Wild and Harvest; Smoulder Craft and Hearth; Bellwether Hunt and Wild; Morel Dead
   and Harvest; Ennu Way and Hearth; Pip Machine and Craft; Cirrus Storm and Night; Hush Night and Dead; Undertow Void;
   Helios Hearth and Harvest; Selene Night and Healing; Mog (Tamiu) Dead and Hearth; Murmur Waters and Harvest; Ducat Way and
-  Craft.
+  Craft; Revel Hearth and Night.
 - **Who reveres whom** is the defs': Rimfolk's 23 peoples and some of the player's mods' factions by name (a people a
   def names reveres only the gods that name it), the rest by kind (Tribal, Medieval, Industrial, Spacer, Raiders, Empire,
   Cannibal). The colony holds the gods of its own age's kind. `Gods.Of(faction)` and `ColonyGods(home)` read it.
@@ -325,7 +326,8 @@ What every part builds to:
   `GodWaysDef`, `GodWorshipDef`), with the domain tables as a fallback only. Each part writes its entries from the
   brainstorm's characters, and in people's words:
   - who can come as a stranger: only Ennu takes human shapes;
-  - who has a body: Bellwether, Mog (remade as Tamiu: a great sand-gold cat on the map, never owned or tamed), Murmur (rarely, a house-sized toad in a
+  - who has a body: Bellwether, Mog (remade as Tamiu: a great sand-gold cat on the map, never owned or tamed), Revel (the
+    horned reveller at a party or a late fire, his own happening, never a stranger at the gate), Murmur (rarely, a house-sized toad in a
     marsh, Odyssey's `ColossusToad` larger, softly) and Smoulder (a shadow only);
   - who acts only through plants, rot, machines, sky, frost, light, gold or the dark;
   - what each one likes, refuses, gives and does.
@@ -629,3 +631,22 @@ and variety". DESIGN.md, "The gods felt, and what follows them", has the whole o
 - Each god has its own look where it acts (`GodTouchFx`), in its big moments, omens and effects.
 - The camera goes to every god's doing on the map (0.256.1, `GodPresence.Look`): its moments, omens, its own happenings'
   cards, a gift left, the great cat's doings and a notable effect; not to the small touches, dreams or what is only told.
+
+### Revel, the Open Cup: the fifteenth (the player, 15 and 16 November 2026; not released yet)
+
+"a god of drugs, the god of excess partying ... with the good and bad that they bring to a colony ... the god likes to
+deceive or kind of play with pawns, minds and bodies, you know, like drugs do"; "the god could take shape inside an actual
+drug, and once a pawn consumes it, they will get a godly effect from it"; "satyr would be awesome"; "Revel sounds great".
+DESIGN.md, "Revel, the Open Cup", has the whole of it. For the contract:
+- He is built as the other fourteen are, in every part (his def, worship, shape and look, sign, signs, presence, own
+  happenings, touch, return in kind, temper, ways, belief and rite, saints, hands, stir): a new god plugs in by its defs and
+  by the keyed lists every part keeps (`GodLoreMath.Keys` last, so the older gods keep their order and ids).
+- The god in a cup (`Gods/OnMap/RevelCup.cs`) is his alone: one drink or dose of a stack, followed through the game's own
+  stacks by the pure `RevelCupMath`; it looks like any other and is never marked. What it does is shown as it happens and
+  never named as his; what the one who took it believes is the book's, maybe wrong.
+- His saints are tied by a deity's own words only (`SaintsMath.ByOwnWords`, `OwnWords`), never by domains, so a god added
+  after the faiths' saints were tied takes none of the older ties.
+- Every age: his drink and drugs are the colony's own, read from every def loaded (`RevelGoods`), what it can make again
+  first; never a list of names.
+- Harm: only the game's own drugs, taken as the colony's drug policies allow; the cup's addiction through the shared
+  budget (`HarmKinds.GodCup`). No loving: the player left it out.

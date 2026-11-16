@@ -63,6 +63,18 @@ namespace ColonyCouncil
             return p;
         }
 
+        /// <summary>
+        /// The colony at this home can make it again or gather it again now (its benches, research, barrels, fields, rock and
+        /// beasts, read once a day): what Revel's happenings take for the colony's own drink and drugs (Gods/OnMap/RevelGoods.cs).
+        /// </summary>
+        internal static bool MadeAgain(ThingDef d, Map map)
+        {
+            if (d == null || map == null) return false;
+            int day = Find.TickManager.TicksGame / GenDate.TicksPerDay;
+            if (cacheMap != map || cacheDay != day) Rebuild(map, day);
+            return Renewable(d);
+        }
+
         internal static PreciousFacts FactsOf(ThingDef d) => new PreciousFacts
         {
             named = Named.Contains(d.defName),

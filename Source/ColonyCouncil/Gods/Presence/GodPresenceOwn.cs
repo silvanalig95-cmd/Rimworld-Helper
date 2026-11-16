@@ -154,6 +154,13 @@ namespace ColonyCouncil
                     else if (tr < 0f) Add("CC_GodPO_Num_TradeWorse", Pct(tr).Named("PCT"));
                     break;
                 }
+                case PresenceEffect.Revelry:
+                {
+                    float j = GodPresenceOwnMath.JoyGain(e, s, h);
+                    if (j > 1.001f) Add("CC_GodPO_Num_JoyFaster", Pct(j - 1f).Named("PCT"));
+                    else if (j < 0.999f) Add("CC_GodPO_Num_JoySlower", Pct(1f - j).Named("PCT"));
+                    break;
+                }
             }
             return lines;
         }

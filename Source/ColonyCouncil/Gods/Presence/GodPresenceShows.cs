@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// where the player is looking (motes: drifting leaves, ash, spores, frost, shadows, glints, heat haze, silver over the
     /// sleepers), at each of its turns (Sched.RareGodPresence: the beasts lying down, the hearths kept, the frost by the
     /// walls, the heat under the rock, Pip's prank) and on its hour (the croak in the wells, the Old Horn's call, the
-    /// dream told at dawn). Someone of the colony who sees it says so once, in one sentence; named only where the colony
+    /// dream told at dawn; Revel's sweet smoke). Someone of the colony who sees it says so once, in one sentence; named only where the colony
     /// is sure whose it is. Motes and sounds of the player's mods are used by name (A RimWorld of Magic's), the game's and
     /// Rimfolk's own otherwise.
     /// </summary>
@@ -23,7 +23,7 @@ namespace ColonyCouncil
         private static readonly Color Green = new Color(0.55f, 0.88f, 0.42f), Ember = new Color(1f, 0.55f, 0.25f), Ash = new Color(0.42f, 0.4f, 0.38f, 0.55f),
             Pale = new Color(0.93f, 0.92f, 0.82f), Amber = new Color(1f, 0.72f, 0.35f), Spark = new Color(0.55f, 0.85f, 1f), Sky = new Color(0.82f, 0.9f, 1f),
             Frost = new Color(0.85f, 0.93f, 1f), Shade = new Color(0.12f, 0.08f, 0.16f), Sun = new Color(1f, 0.93f, 0.6f), Silver = new Color(0.78f, 0.84f, 1f),
-            Water = new Color(0.55f, 0.72f, 0.82f, 0.45f), Gold = new Color(1f, 0.84f, 0.35f);
+            Water = new Color(0.55f, 0.72f, 0.82f, 0.45f), Gold = new Color(1f, 0.84f, 0.35f), Smoke = new Color(0.95f, 0.8f, 0.86f, 0.55f);
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -101,6 +101,11 @@ namespace ColonyCouncil
                 case PresenceEffect.Glint:
                     Beetle(map);
                     CoinTrail(map);
+                    break;
+                case PresenceEffect.Revelry:
+                    // A sweet smoke drifts over the place where nothing burns, and a goat calls somewhere among the houses.
+                    GodOmens.SweetSmoke(map, Center(map), c.Harsh ? 4 : 8);
+                    GodSounds.Play(GodSounds.Sound("Pawn_Goat_Call"), map, Center(map), 0.5f)?.End();
                     break;
                 case PresenceEffect.Watch:
                 {
@@ -264,6 +269,21 @@ namespace ColonyCouncil
                     var coins = map.listerThings.ThingsOfDef(ThingDefOf.Silver).Concat(map.listerThings.ThingsOfDef(ThingDefOf.Gold))
                         .Where(t => t.Spawned && Find.CameraDriver.CurrentViewRect.Contains(t.Position)).InRandomOrder().FirstOrDefault();
                     if (coins != null) GodFx.Throw(GodFx.MoteDef, coins.DrawPos + new Vector3(Rand.Range(-0.3f, 0.3f), 0f, Rand.Range(-0.2f, 0.3f)), map, 0.3f, Gold, 0f, 0.05f, 0f, 0.4f);
+                    break;
+                }
+                case PresenceEffect.Revelry:
+                {
+                    // A curl of sweet smoke over someone at their ease (a drink, a smoke, a game), pale and warm.
+                    var easy = map.mapPawns.FreeColonistsSpawned.Where(p => p.CurJob?.def?.joyKind != null && Find.CameraDriver.CurrentViewRect.Contains(p.Position)).InRandomOrder().FirstOrDefault();
+                    Vector3 at;
+                    if (easy != null) at = easy.DrawPos;
+                    else
+                    {
+                        var cell = InView(map, x => !x.Roofed(map));
+                        if (!cell.IsValid) break;
+                        at = cell.ToVector3Shifted();
+                    }
+                    Throw(c, map, at + new Vector3(Rand.Range(-0.3f, 0.3f), 0f, 0.3f), c.Harsh ? Ash : Smoke, Rand.Range(-20f, 20f), Rand.Range(0.2f, 0.4f), Rand.Range(0.35f, 0.55f), 1.8f);
                     break;
                 }
             }

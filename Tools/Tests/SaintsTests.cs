@@ -78,7 +78,19 @@ public static class SaintsTests
                 d: Enum.TryParse<GodDomain>((string?)g.Element("domain"), out var d) ? d : GodDomain.None,
                 s: Enum.TryParse<GodDomain>((string?)g.Element("second"), out var s) ? s : GodDomain.None,
                 hunger: (string?)g.Element("kind") == "Hunger")).ToList();
-        C(gods.Count == 14 && gods.Count(g => g.hunger) == 1, "the fourteen gods read from their defs, one of them the Hunger");
+        C(gods.Count == 15 && gods.Count(g => g.hunger) == 1, "the fifteen gods read from their defs, one of them the Hunger");
+        // Revel, the fifteenth, is tied only by a deity's own words (Saints.Of leaves him out of the domains' choosing), so the
+        // faiths' older ties keep.
+        C(SaintsMath.ByOwnWords.SetEquals(new[] { "Revel" }) && Read("Gods/Saints/Saints.cs").Contains("!SaintsMath.ByOwnWords.Contains(g.Key)")
+          && Read("Gods/Saints/Saints.cs").Contains("SaintsMath.OwnWords(d.name, d.type, d.relatedMeme?.defName, d.relatedMeme?.label, damned)"),
+            "Revel is tied by a deity's own words, never by its domains");
+        gods = gods.Where(g => !SaintsMath.ByOwnWords.Contains(g.key)).ToList();
+        C(SaintsMath.OwnWords("Bacchon", "god of wine", null, null, false) == "Revel" && SaintsMath.OwnWords("Ys", "the reveller", null, null, false) == "Revel"
+          && SaintsMath.OwnWords("Ys", "", "HighLife", "high life", false) == "Revel" && SaintsMath.OwnWords("Ys", "keeper of the tavern", null, null, false) == "Revel",
+            "a deity of wine, revelry, the tavern or the high life is Revel's");
+        C(SaintsMath.OwnWords("Bacchon", "god of wine", null, null, true) == null && SaintsMath.OwnWords("Aranea", "goddess of the harvest", null, null, false) == null
+          && SaintsMath.OwnWords("Ys", "lady of the meadows", null, null, false) == null && SaintsMath.OwnWords("Alexei", "father of kings", null, null, false) == null,
+            "never one of the damned, nor a deity of anything else (a meadow is no mead)");
         string For(GodDomain a, GodDomain b, bool damned, string name = "Aranea") => SaintsMath.GodFor(a, b, damned, gods, SaintsMath.Seed(name));
         C(For(GodDomain.Hunt, GodDomain.None, false) == "Bellwether", "a saint of the hunt is the first thrumbo's");
         C(For(GodDomain.Wild, GodDomain.None, false) == "Hollin" && For(GodDomain.Machine, GodDomain.None, false) == "Pip" && For(GodDomain.Storm, GodDomain.None, false) == "Cirrus"
