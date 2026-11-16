@@ -128,6 +128,8 @@ namespace ColonyCouncil
             y = AwaySection(y, w);
             // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
             y = MissionPanel.Draw(y, w);
+            // Storylines running, with their parts so far (Storylines/StorylinePanel.cs).
+            y = StorylinePanel.Draw(y, w);
             y += 10f;
             if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Married_Title"), dip.houses, DipWords.P("CC_Dip_Married_None"), folds, "houses");
             // Schemes against the colony found out (Diplomacy/Schemes.cs), while schemes can come or one is still remembered.

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S4, the beast coming down the valley (Source/ColonyCouncil/Storylines/StorylineBeast.cs; the storyline's own words in
+       Defs/StorylineDefs/Rimfolk_Storylines.xml). {GIVER} is the hunter who sent the warning, {NAME} the beast, {KIND} its
+       kind (one of the region's legend beasts, from every mod loaded), {WAY} which way from the colony its kill lies,
+       {TRAPS} and {WALLS} the traps and lengths of wall or fence to build, {COUNT} the hunters who come to help, {DAYS} the
+       time once taken on. Answers' words use only {BEAST} (the beast's name) and {FACTION}. -->
+
+  <!-- ===================== Part 1: get ready for the beast ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_BeastReady</defName>
+    <label>a beast coming</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BeastReady</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Get ready for {NAME}</li>
+        </titles>
+        <texts>
+          <li>[their:lowtech] {GIVER}, a hunter of {FACTION}, has sent a runner to warn the colony. {NAME}, a huge {KIND}, is coming down the valley toward the colony's land.</li>
+          <li>[their:hightech] {GIVER}, a hunter of {FACTION}, has radioed the colony with a warning. {NAME}, a huge {KIND}, is coming down the valley toward the colony's land.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Get ready</label>
+            <outcome>{FACTION} will tell the colony when {BEAST} is near.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will try to turn {BEAST} away themselves.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>beast</story>
+        <part>ready</part>
+        <start>true</start>
+        <terms>
+          <li>{GIVER} asks the colony to be ready within {DAYS}: build at least {TRAPS} traps or {WALLS} lengths of wall or fence, and keep at least three in four of the colony's animals in a pen or a room.\n\nIf the colony agrees, the hunters keep watch, and {NAME} is expected to reach the colony's land some days after that. Being ready makes the fight easier, and {FACTION} will think better of the colony for it. If the colony stands well enough with {FACTION}, their hunters will come to help when {NAME} arrives. If the colony declines, the hunters will try to turn {NAME} away themselves.</li>
+        </terms>
+        <accepted>
+          <li>The colony has {DAYS} to get ready for {NAME}: {TRAPS} traps or {WALLS} lengths of wall or fence, and the animals kept in.</li>
+        </accepted>
+        <reminder>
+          <li>The colony has {DAYS} left to get ready for {NAME}.</li>
+        </reminder>
+        <endTitles>
+          <li>[ready] Ready for {NAME}</li>
+          <li>[partly] Partly ready for {NAME}</li>
+          <li>[unready] Not ready for {NAME}</li>
+        </endTitles>
+        <ends>
+          <li>[ready] The traps or walls are built and the colony's animals are kept in. {GIVER} says the colony is as ready as it can be. The hunters of {FACTION} are still watching for {NAME}.</li>
+          <li>[partly] The colony did part of what {GIVER} asked. The hunters of {FACTION} are still watching for {NAME}.</li>
+          <li>[unready] The colony did not get ready in time. The hunters of {FACTION} are still watching for {NAME}.</li>
+        </ends>
+        <good><li>ready</li></good>
+        <bad><li>unready</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the beast's tracks ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_BeastSigns</defName>
+    <label>the beast's tracks</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BeastSigns</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Look at {NAME}'s kill</li>
+        </titles>
+        <texts>
+          <li>Some days ago {GIVER} warned the colony that {NAME}, a huge {KIND}, was coming. The hunters of {FACTION} have now found a fresh kill at the edge of the colony's land, {WAY}, with large tracks leading to it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send someone</label>
+            <outcome>Someone of the colony will go and look at the kill.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>Nobody will go.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>beast</story>
+        <part>signs</part>
+        <terms>
+          <li>{GIVER} asks the colony to send someone to look at the kill within {DAYS}, to see how big {NAME} is and which way it is coming.\n\nIf someone goes, the colony will know which side {NAME} comes from. If nobody goes, it may come from any side.</li>
+        </terms>
+        <accepted>
+          <li>The kill lies at the edge of the colony's land, {WAY}. Send someone to look at it within {DAYS}.</li>
+        </accepted>
+        <endTitles>
+          <li>[found] {NAME}'s tracks</li>
+          <li>[missed] Nobody looked</li>
+        </endTitles>
+        <ends>
+          <li>[found] {A_nameDef} looked at the kill {WAY}. The tracks are huge, and they show that {NAME} will come from that side.</li>
+          <li>[missed] Nobody looked at the kill. The hunters of {FACTION} say {NAME} could come from any side.</li>
+        </ends>
+        <good><li>found</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the beast comes ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_BeastComes</defName>
+    <label>the beast comes</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BeastComes</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[!back] {NAME} comes</li>
+          <li>[back] {NAME} comes back</li>
+        </titles>
+        <texts>
+          <li>[!back,found] A few days ago the colony looked at {NAME}'s kill, {WAY}. Now the hunters of {FACTION} say {NAME} will reach the colony's land within a day, from that side.</li>
+          <li>[!back,!found] A few days ago the hunters of {FACTION} found {NAME}'s kill at the edge of the colony's land. Now they say {NAME}, the huge {KIND}, will reach the colony's land within a day.</li>
+          <li>[back] Last season {NAME} came to the colony's land and got away. The hunters of {FACTION} say it is coming back.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Face {BEAST}</label>
+            <outcome>The colony will fight {BEAST}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will try to turn {BEAST} away themselves.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>beast</story>
+        <part>beast</part>
+        <terms>
+          <li>[help] If the colony takes this on, {NAME} comes within a day and attacks. {COUNT} hunters of {FACTION} come with it to fight beside the colony.\n\nIf {NAME} is killed, the colony keeps its body and a trophy from it, and {FACTION} will honour the colony. If it is badly hurt it runs away, and may come back next season. If the colony declines, the hunters will try to turn {NAME} away themselves.</li>
+          <li>[!help] If the colony takes this on, {NAME} comes within a day and attacks. {FACTION} will not send hunters to help, because the colony does not stand well enough with them.\n\nIf {NAME} is killed, the colony keeps its body and a trophy from it, and {FACTION} will honour the colony. If it is badly hurt it runs away, and may come back next season. If the colony declines, the hunters will try to turn {NAME} away themselves.</li>
+        </terms>
+        <accepted>
+          <li>{NAME} will be here within a day. Get the colony's fighters ready.</li>
+        </accepted>
+        <notes>
+          <li>[came,help] {NAME}, a huge {KIND}, has come onto the colony's land {WAY} and is attacking. Hunters of {FACTION} have come with it to help.</li>
+          <li>[came,!help] {NAME}, a huge {KIND}, has come onto the colony's land {WAY} and is attacking.</li>
+          <li>[fled] {NAME} is badly hurt and running away.</li>
+          <li>[leaving] {NAME} has stopped attacking and is leaving the colony's land.</li>
+          <li>[died] {NAME} has died of its wounds.</li>
+        </notes>
+        <endTitles>
+          <li>[came] {NAME} is here</li>
+          <li>[killed,!tamed] {NAME} is dead</li>
+          <li>[killed,tamed] {NAME} is tamed</li>
+          <li>[driven] {NAME} was driven off</li>
+          <li>[left] {NAME} has left</li>
+        </endTitles>
+        <ends>
+          <li>[killed,!tamed] {NAME} is dead. The colony keeps its body and a trophy from it, and {FACTION} honour the colony for the kill.</li>
+          <li>[killed,tamed] {NAME} has been tamed and belongs to the colony now. {FACTION} honour the colony for it.</li>
+          <li>[driven,!last] {NAME} ran off badly hurt. The hunters of {FACTION} think it will come back next season.</li>
+          <li>[driven,last] {NAME} ran off badly hurt, and the hunters of {FACTION} think it will stay away now.</li>
+          <li>[left,!last] {NAME} left the colony's land. The hunters of {FACTION} think it will come back next season.</li>
+          <li>[left,last] {NAME} left the colony's land, and the hunters of {FACTION} think it will stay away now.</li>
+        </ends>
+        <good><li>killed</li><li>driven</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

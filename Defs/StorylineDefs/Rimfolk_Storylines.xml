@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Storylines (Source/ColonyCouncil/Storylines/; DESIGN.md, "Quests and storylines"): a run of quests told over weeks.
+       Each part is a mission in the Quests tab with an event of its own (Defs/MissionDefs/Rimfolk_Storyline_*.xml); these
+       are the storyline's own words: its name, how each part ended and what is on its way (the World page's Neighbours
+       page, under the missions), and its endings (a letter for those that play out on their own, and a line in the
+       chronicle for all). Lines are tagged with what happened: the storyline's flags, each part's "part:outcome", the
+       part and "outcome:x" for a part's line, "next:part" or "end:key" for what is coming, and the people who asked
+       ([their:lowtech], [their:hightech], their age). {GIVER} is the person who asked, by name; {RIVAL} the second person
+       (the rival trader); {OTHERPEOPLE} the second people; {NAME} the beast or the eldest child; {KIND} the beast's kind;
+       {WAY} which way from the colony; {SILVER} a sum; {COUNT} how many (crates, children). -->
+
+  <!-- ===================== S1, the factor's goods ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Factor</defName>
+    <label>the factor's goods</label>
+    <description>A factor asks the colony to keep crates of goods for a season. What the colony does with them decides how the factor's people deal with it afterwards.</description>
+    <kind>factor</kind>
+    <outcomes>
+      <li>[keep,outcome:kept] all the crates kept, sealed and dry</li>
+      <li>[keep,outcome:lost] some crates lost, opened, sold or spoiled</li>
+      <li>[keep,outcome:declined] turned down</li>
+      <li>[rival,outcome:sold] the crates sold to {RIVAL}</li>
+      <li>[rival,outcome:refused] the offer refused</li>
+      <li>[rival,outcome:told] the offer refused, and word sent to {GIVER}</li>
+      <li>[rival,outcome:declined] the colony did not meet the trader</li>
+      <li>[makegood,outcome:paid] paid for</li>
+      <li>[makegood,outcome:unpaid] not paid for</li>
+      <li>[makegood,outcome:declined] the colony refused to pay</li>
+      <li>[debt,outcome:paid] paid</li>
+      <li>[debt,outcome:unpaid] not paid</li>
+      <li>[debt,outcome:declined] the colony refused to pay</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:rival] {GIVER}'s crates are in the colony's stores until {GIVER} comes for them.</li>
+      <li>[next:makegood] {GIVER} will send word about the lost crates.</li>
+      <li>[next:debt] {GIVER} has heard about the sale of the crates.</li>
+      <li>[end:share] {GIVER} is coming for the crates.</li>
+      <li>[end:neverknew] {GIVER} is coming for the crates.</li>
+      <li>[end:guards] {GIVER} has not been paid for the crates.</li>
+      <li>[end:unpaid] {GIVER}'s people are coming for the crates that are left.</li>
+      <li>[end:madegood] {GIVER}'s people are coming for the crates that are left.</li>
+      <li>[end:faded] {GIVER}'s people are coming for the crates.</li>
+    </coming>
+    <good><li>share</li></good>
+    <bad><li>guards</li><li>unpaid</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{GIVER} of {FACTION} asked the colony to keep some crates of goods, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>share</key>
+        <tone>good</tone>
+        <titles>
+          <li>{GIVER} came for the crates</li>
+        </titles>
+        <texts>
+          <li>[!missing,!told] {GIVER} of {FACTION} came to the gate with porters and took back the crates. {GIVER} paid {SILVER} silver for the season's keeping.\n\nFor the next year, {GIVER} will come by once a season with a share of the trade for the colony.</li>
+          <li>[!missing,told] {GIVER} of {FACTION} came to the gate with porters and took back the crates. {GIVER} paid {SILVER} silver for the season's keeping, and thanked the colony for sending word about the trader who wanted to buy them.\n\nFor the next year, {GIVER} will come by once a season with a share of the trade for the colony.</li>
+          <li>[missing] {GIVER} of {FACTION} came to the gate with porters for the crates. Some went missing or were spoiled after the clerk's count, so {GIVER} paid only {SILVER} silver for the keeping.\n\nFor the next year, {GIVER} will still come by once a season with a share of the trade for the colony.</li>
+        </texts>
+        <summaries>
+          <li>[!told] the colony kept {GIVER}'s crates for a season, and {GIVER} brings it a share of the trade for a year.</li>
+          <li>[told] the colony kept {GIVER}'s crates for a season and refused to sell them behind {GIVER}'s back, and {GIVER} brings it a share of the trade for a year.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>neverknew</key>
+        <titles>
+          <li>The crates are gone</li>
+        </titles>
+        <texts>
+          <li>{GIVER} of {FACTION} came for the crates and found them gone. The colony sold them to {RIVAL}, but {GIVER} does not know that and believes they were stolen.\n\n{GIVER} left without paying for the keeping, and {FACTION} trust the colony a little less.</li>
+        </texts>
+        <summaries>
+          <li>the colony sold {GIVER}'s crates to {RIVAL}, and {GIVER} believes they were stolen.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>debtpaid</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the colony sold {GIVER}'s crates, {GIVER} found out, and the colony paid what they were worth.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>guards</key>
+        <tone>bad</tone>
+        <titles>
+          <li>{FACTION}'s guards at the gate</li>
+        </titles>
+        <texts>
+          <li>The colony did not pay {GIVER} for the crates it sold. Guards of {FACTION} have come to the gate to say that {FACTION} will not trade with the colony for a year.\n\n{FACTION} think much less of the colony now, and none of their traders will come until the year is out.</li>
+        </texts>
+        <summaries>
+          <li>the colony sold {GIVER}'s crates and never paid for them, so {FACTION} stopped trading with it for a year.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>madegood</key>
+        <summaries>
+          <li>some of {GIVER}'s crates were lost in the colony's care, and the colony paid what they were worth.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>unpaid</key>
+        <tone>bad</tone>
+        <titles>
+          <li>No traders from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>The colony did not pay {GIVER} for the crates that were lost. {GIVER}'s people have come for the crates that are left.\n\n{FACTION} will send no traders to the colony for a year.</li>
+        </texts>
+        <summaries>
+          <li>some of {GIVER}'s crates were lost and the colony did not pay for them, so {FACTION} sent no traders for a year.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>Nobody will come for the crates</li>
+        </titles>
+        <texts>
+          <li>[war,opened] {FACTION} are at war with the colony now, so nobody will come for {GIVER}'s crates. The colony opened them and kept what was inside.</li>
+          <li>[destroyed,opened] {FACTION} are gone, so nobody will come for {GIVER}'s crates. The colony opened them and kept what was inside.</li>
+          <li>[war,!opened] {FACTION} are at war with the colony now, and {GIVER}'s business with the colony is over.</li>
+          <li>[destroyed,!opened] {FACTION} are gone, and {GIVER}'s business with the colony is over.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony, and {GIVER}'s business with it ended.</li>
+          <li>[destroyed] {FACTION} are gone, and {GIVER}'s business with the colony ended.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of {GIVER}'s business with the colony.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S4, the beast coming down the valley ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Beast</defName>
+    <label>the beast coming down the valley</label>
+    <description>Hunters warn the colony that a great beast is coming its way. The colony gets ready, finds its tracks, and faces it.</description>
+    <kind>beast</kind>
+    <outcomes>
+      <li>[ready,outcome:ready] traps or walls built and the animals kept in</li>
+      <li>[ready,outcome:partly] partly ready</li>
+      <li>[ready,outcome:unready] not ready in time</li>
+      <li>[ready,outcome:declined] turned down</li>
+      <li>[signs,outcome:found] the kill and the tracks seen</li>
+      <li>[signs,outcome:missed] nobody went to look</li>
+      <li>[signs,outcome:declined] nobody went to look</li>
+      <li>[beast,outcome:killed,!tamed] {NAME} killed</li>
+      <li>[beast,outcome:killed,tamed] {NAME} tamed</li>
+      <li>[beast,outcome:driven] {NAME} driven off</li>
+      <li>[beast,outcome:left] {NAME} left on its own</li>
+      <li>[beast,outcome:declined] the colony stayed in, and the hunters turned {NAME} away</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:signs] {FACTION}'s hunters are watching for {NAME}.</li>
+      <li>[next:beast,!back] {NAME} is close to the colony's land.</li>
+      <li>[next:beast,back] {FACTION}'s hunters think {NAME} will come back next season.</li>
+    </coming>
+    <good><li>killed</li></good>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} warned the colony that {NAME}, a great {KIND}, was coming. The colony did not get ready, and their hunters turned it away.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>killed</key>
+        <tone>good</tone>
+        <summaries>
+          <li>[!tamed] the colony killed {NAME}, the great {KIND} that came down the valley, and {FACTION} honoured it for that.</li>
+          <li>[tamed] the colony tamed {NAME}, the great {KIND} that came down the valley, and {FACTION} honoured it for that.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>away</key>
+        <titles>
+          <li>{NAME} has gone</li>
+        </titles>
+        <texts>
+          <li>[beast:declined] The colony stayed in, and {FACTION}'s hunters turned {NAME} away from the valley. It will not come near the colony now.</li>
+          <li>[!beast:declined] {NAME} has not come back. {FACTION}'s hunters say it has moved on to another part of the region.</li>
+        </texts>
+        <summaries>
+          <li>[beast:declined] the colony left {NAME}, the great {KIND}, to {FACTION}'s hunters, and they turned it away.</li>
+          <li>[!beast:declined] {NAME}, the great {KIND}, was driven off and did not come back.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more warnings from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and their hunters no longer tell the colony anything about {NAME}.</li>
+          <li>[destroyed] {FACTION} are gone, and nobody is watching {NAME} for the colony any more.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while {NAME} was still about.</li>
+          <li>[destroyed] {FACTION} were gone before {NAME} was dealt with.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>{NAME}, the great {KIND}, never came to the colony's land.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S8, the children from the burned village ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Children</defName>
+    <label>the children from the burned village</label>
+    <description>Children whose village burned down come to the colony for shelter. The colony decides what becomes of them, and seasons later one of them comes back.</description>
+    <kind>children</kind>
+    <outcomes>
+      <li>[shelter,outcome:takein] the children taken in</li>
+      <li>[shelter,outcome:place] a home found for them with {OTHERPEOPLE}</li>
+      <li>[shelter,outcome:sendon] sent on with food</li>
+      <li>[shelter,outcome:harmed] some of them died in the colony's care</li>
+      <li>[shelter,outcome:declined] turned away</li>
+      <li>[back,outcome:joined] {NAME} joined the colony</li>
+      <li>[back,outcome:visited] {NAME} came by to visit</li>
+      <li>[back,outcome:traded] {NAME} came by to trade</li>
+      <li>[back,outcome:notjoined] {NAME} asked to join, and the colony said no</li>
+      <li>[back,outcome:declined] {NAME} passed by</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:back,place] The children from the burned village have a new home with {OTHERPEOPLE}.</li>
+      <li>[next:back,sendon] The children from the burned village have gone on.</li>
+    </coming>
+    <good><li>takenin</li><li>joined</li><li>grown</li></good>
+    <bad><li>harmed</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>children whose village burned asked the colony for shelter, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>takenin</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the colony took in {COUNT} children whose village burned, and they are colonists now.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>harmed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>children whose village burned came to the colony for shelter, and some of them died there.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>joined</key>
+        <tone>good</tone>
+        <summaries>
+          <li>{NAME}, one of the children from the burned village, came back grown and joined the colony.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>grown</key>
+        <tone>good</tone>
+        <summaries>
+          <li>[back:visited] {NAME}, one of the children from the burned village, came back grown to visit the colony.</li>
+          <li>[back:traded] {NAME}, one of the children from the burned village, came back grown and traded at the gate.</li>
+          <li>[back:notjoined] {NAME}, one of the children from the burned village, came back grown and asked to join, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>passed</key>
+        <summaries>
+          <li>{NAME}, one of the children from the burned village, did not come by after all.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>The children go on</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, so the children from the burned village will not stay with the colony.</li>
+          <li>[destroyed] {FACTION} are gone, and the children from the burned village will not stay with the colony.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony, and the children from the burned village went on.</li>
+          <li>[destroyed] {FACTION} were gone, and the children from the burned village went on.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more was heard of {NAME} from the burned village.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+</Defs>

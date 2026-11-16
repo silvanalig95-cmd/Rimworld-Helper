@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Storylines
+
+*16 November 2026, version 0.262.0*
+
+- Storylines: runs of quests told over weeks. Each part is its own quest that opens with what happened before, and how it ends decides what comes next.
+- The factor's goods: keep a factor's sealed crates dry and unopened for a season, then decide what to do when a rival trader offers to buy them.
+- The beast coming down the valley: get ready with traps or a wall, look at its kill at the edge of the land, then face one of the region's legend beasts, with the hunters beside you if they think well of the colony.
+- The children from the burned village: shelter them for a few days, then take them in, find them a home with neighbours, or send them on with food. Seasons later one of them comes back grown.
+- Running storylines show on the Neighbours page under the missions, with their parts so far, and their endings go in the chronicle.
+
 ## Quests at home
 
 *16 November 2026, version 0.261.0*

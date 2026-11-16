@@ -3558,6 +3558,23 @@ one draw, so the newer kinds take a share of it and missions come no oftener tha
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
+**Storylines** (not released yet) are runs of quests told over weeks, each part its own quest titled "Part 2: ..."
+whose description opens with what happened before; how a part ended (done, failed, turned down, or the answer to a card
+inside it) decides the next part and how the storyline ends. One runs at a time, a second only after the first has run a
+season, and all of it happens on the colony's own map. **The factor's goods**: a factor asks the colony to keep her
+sealed crates for a season, under a roof and unopened (rain spoils one left out); kept well, a rival trader comes to the
+gate to buy them behind her back (sell, refuse, or refuse and tell her), and she pays for the keeping and brings a share
+of her trade every season for a year, or finds them sold and asks for their worth (unpaid, her guards come to the gate
+and her people stop trading for a year); lost, the colony has ten days to pay for them. **The beast coming down the
+valley**: hunters warn that one of the region's legend beasts is coming; the colony builds traps or a wall and keeps its
+animals in, someone goes to look at its kill and tracks at the edge of the land, and then it comes, a real fight scaled
+to the colony, with the hunters beside the colony when it stands well with them; killed, the colony keeps the trophy;
+driven off, it comes back next season. **The children from the burned village**: a grown-up brings two to four children
+whose village burned; the colony shelters them for a few days, then takes them in as colonists, finds them a home with
+neighbours (who come for them), or sends them on with food; seasons later the eldest comes back grown, to visit, to trade
+or to ask to join. Running and recent storylines show on the region window's Neighbours page under the missions, with
+their parts so far.
+
 The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and
 relatives on their way, the next stage of a story) and the missions under way with a bar for each thing to deliver and
 the time left; the region map's **Threats** lens the fights the colony knows about and how soon; **Peoples**, under

@@ -1259,6 +1259,15 @@ MODEL = {
     "Missions/Missions.cs:group": ("fixed", 4, P, "per mission"),
     "Missions/StoriesComponent.cs:chains": ("window", (120, 0.1), 500, "chains 120 days after they end"),
     "Missions/StoriesComponent.cs:missions": ("window", (2, 0.2), 500, "missions 2 days after they end"),
+    # Storylines (Storylines/Storylines.cs): two running at most (a second only after the first has run a season), each
+    # kept StorylineBook.KeepEndedDays after it ends; a storyline starts every fifteen days at the most.
+    "Storylines/Storylines.cs:lines": ("cap", (2 + const("Storylines/Storylines.cs", "KeepEndedDays", 60) / 15, 0.07), 1400,
+                                       "running storylines (two at most) and those ended in the last StorylineBook.KeepEndedDays"),
+    "Storylines/Storylines.cs:steps": ("fixed", 5, 220, "per storyline: its parts so far, five at most (the beast comes three times) (counted under lines)"),
+    "Storylines/Storylines.cs:flags": ("fixed", 8, 40, "per storyline: what has happened so far (counted under lines)"),
+    "Storylines/Storylines.cs:group": ("fixed", 4, P, "per storyline: the children, or the beast's hunters (counted under lines)"),
+    "Storylines/Storylines.cs:wet": ("fixed", 8, 40, "per storyline: hours in the rain, one per crate of the factor's (counted under lines)"),
+    "Storylines/Storylines.cs:afters": ("cap", (3, 0.05), 200, "what an ending leaves for a year (a season's share, no traders): gone once over"),
     # Defense lines (per home map, gone with it)
     "Weather/WeatherBook.cs:days": ("fixed", const("Weather/WeatherMath.cs", "MaxDays", 30), 70, "WeatherMath.MaxDays: the last month, a short line a day, per home map"),
     "Weather/WeatherBook.cs:quarters": ("fixed", const("Weather/WeatherMath.cs", "MaxQuarters", 12), 90, "WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map"),

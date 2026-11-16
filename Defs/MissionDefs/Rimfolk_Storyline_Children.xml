@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S8, the children from the burned village (Source/ColonyCouncil/Storylines/StorylineChildren.cs; the storyline's own
+       words in Defs/StorylineDefs/Rimfolk_Storylines.xml). {GIVER} is the grown-up who brings the children, {COUNT} the
+       children, {NAME} the eldest, {OTHERPEOPLE} the neighbours who give them a home, {PLACE} the town of their people
+       nearest the burned village, {DAYS} the time once taken on. Answers' words use only {X_nameDef} (the grown-up, or
+       the eldest when they come back) and {FACTION}. Needs Biotech, for the children. -->
+
+  <!-- ===================== Part 1: shelter the children ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_ChildrenShelter</defName>
+    <label>children from a burned village</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChildrenShelter</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Shelter the children from the burned village</li>
+        </titles>
+        <texts>
+          <li>[their:lowtech] A small village of {FACTION} near {PLACE} has burned down. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
+          <li>[their:hightech] A small settlement of {FACTION} near {PLACE} has burned down. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Shelter them</label>
+            <outcome>{X_nameDef} and the children are on their way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{X_nameDef} will take the children to another town.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[ask] What should become of the children now?</li>
+          <li>[takein] Thank you for giving them a home.</li>
+          <li>[place] Thank you, a new home is more than we hoped for.</li>
+          <li>[sendon] Thank you for the food, we'll manage from here.</li>
+          <li>[fetch] We'll look after them now.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>children</story>
+        <part>shelter</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, {GIVER} and the children arrive within a day and stay for about {DAYS}. Each of them needs a bed or sleeping spot under a roof, and meals from the colony's stores: {ITEM} in all. If the stores have no food for them, they eat the little they brought.\n\nAt the end of their stay, {GIVER} will ask the colony what should become of the children. The colony can take them in, and they join the colony. It can find them a home with neighbours, whose people come for them. Or it can give them food and send them on.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} and {COUNT} children from the burned village are on their way to the colony.</li>
+        </accepted>
+        <notes>
+          <li>[came] {GIVER} and the children from the burned village have arrived.</li>
+          <li>[placed] {OTHERPEOPLE} have agreed to give the children a home. Their people will come for the children within a day.</li>
+          <li>[fetchers] People of {OTHERPEOPLE} have come for the children.</li>
+        </notes>
+        <endTitles>
+          <li>[takein] The children stay</li>
+          <li>[place] A new home for the children</li>
+          <li>[sendon] The children go on</li>
+          <li>[harmed] Children dead</li>
+        </endTitles>
+        <ends>
+          <li>[takein] The children from the burned village are part of the colony now: {ITEM}. {GIVER} has gone home to {FACTION}.</li>
+          <li>[place,!samepeople] People of {OTHERPEOPLE} have taken the children to their new home. {GIVER} has gone home to {FACTION}.</li>
+          <li>[place,samepeople] People from another town of {FACTION} have taken the children to their new home.</li>
+          <li>[sendon] The colony gave the children food, and they have gone on with {GIVER}.</li>
+          <li>[harmed] Some of the children from the burned village died while in the colony's care. {FACTION} hold the colony responsible.</li>
+        </ends>
+        <good><li>takein</li><li>place</li></good>
+        <bad><li>harmed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- What becomes of the children: taken in, a home with neighbours, or sent on with food. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_ChildrenChoice</defName>
+    <label>what becomes of the children</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>What becomes of the children</li>
+        </titles>
+        <texts>
+          <li>{GIVER} and the {COUNT} children from the burned village have stayed with the colony for some days. {GIVER} asks what should become of the children now.\n\nThe colony can take them in, and they join the colony as colonists. It can find them a home with neighbours, whose people come for them. Or it can give them food and send them on with {GIVER}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The children are part of the colony now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>takein</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Find them a home with neighbours</label>
+            <outcome>The neighbours' people will come for the children.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>place</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Send them on with food</label>
+            <outcome>Food is being carried out to {X_nameDef}, and they will go on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>sendon</choice>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut">
+                <what>meals</what>
+                <variant>true</variant>
+                <steward>false</steward>
+                <label>food for the road</label>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>children</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the eldest comes back grown ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_ChildrenBack</defName>
+    <label>one of the children comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChildrenBack</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{NAME} comes back</li>
+        </titles>
+        <texts>
+          <li>[place,visitor] Some seasons ago the colony found a home for the children from the burned village. {NAME}, the eldest, is grown now and wants to come by to thank the colony.</li>
+          <li>[place,trader] Some seasons ago the colony found a home for the children from the burned village. {NAME}, the eldest, is grown now, trades for {FACTION}, and wants to come by with goods.</li>
+          <li>[place,joiner] Some seasons ago the colony found a home for the children from the burned village. {NAME}, the eldest, is grown now and wants to come by to ask the colony something.</li>
+          <li>[sendon,visitor] Some seasons ago the colony gave the children from the burned village food and sent them on. {NAME}, the eldest, is grown now and wants to come by to thank the colony.</li>
+          <li>[sendon,trader] Some seasons ago the colony gave the children from the burned village food and sent them on. {NAME}, the eldest, is grown now, trades for {FACTION}, and wants to come by with goods.</li>
+          <li>[sendon,joiner] Some seasons ago the colony gave the children from the burned village food and sent them on. {NAME}, the eldest, is grown now and wants to come by to ask the colony something.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Welcome {X_nameDef}</label>
+            <outcome>{X_nameDef} is on the way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{X_nameDef} will pass by.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[came] I was one of the children you sheltered when our village burned.</li>
+          <li>[joined] Thank you, I'll do my share here.</li>
+          <li>[notjoined] I understand, take care.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>children</story>
+        <part>back</part>
+        <terms>
+          <li>[visitor] If the colony agrees, {NAME} comes to the gate within a day, stays for some hours and brings a gift of thanks.</li>
+          <li>[trader] If the colony agrees, {NAME} comes to the gate within a day and stays for some hours. The colony can trade with {NAME} while {NAME} is there.</li>
+          <li>[joiner] If the colony agrees, {NAME} comes to the gate within a day and will ask to join the colony.</li>
+        </terms>
+        <accepted>
+          <li>{NAME} is on the way to the colony.</li>
+        </accepted>
+        <notes>
+          <li>[came,visitor] {NAME}, grown now, has come to the gate with a gift for the colony: {TALE}.</li>
+          <li>[came,trader] {NAME}, grown now, has come to the gate with goods to trade.</li>
+          <li>[came,joiner] {NAME}, grown now, has come to the gate.</li>
+        </notes>
+        <endTitles>
+          <li>[visited] {NAME} came by</li>
+          <li>[traded] {NAME} came by</li>
+          <li>[joined] {NAME} joins the colony</li>
+          <li>[notjoined] {NAME} went on</li>
+        </endTitles>
+        <ends>
+          <li>[visited] {NAME} visited the colony and has gone on.</li>
+          <li>[traded] {NAME} traded at the gate and has gone on.</li>
+          <li>[joined] {NAME} has joined the colony.</li>
+          <li>[notjoined] The colony said no, and {NAME} has gone on.</li>
+        </ends>
+        <good><li>joined</li><li>visited</li><li>traded</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The eldest asks to join. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_ChildrenJoin</defName>
+    <label>a grown child asks to join</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{NAME} asks to join</li>
+        </titles>
+        <texts>
+          <li>{NAME} was the eldest of the children from the burned village, and is grown now. {NAME} asks to join the colony.\n\nIf the colony agrees, {NAME} joins as a colonist.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} join</label>
+            <outcome>{X_nameDef} is part of the colony now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>join</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} went on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>children</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -584,6 +584,9 @@ wishPh.UnionWith(new[] { "YOUNG", "WAY" });
 // Revel's own happenings and the god in a cup (Gods/OnMap/OwnRevel.cs, RevelCup.cs, Rimfolk_Pool_GodRevel_Say): the drug or
 // drink someone took, or got up in the night for.
 wishPh.UnionWith(new[] { "DRUG" });
+// Storylines (Storylines/Storylines.cs, Fill): the person who asked by name, the second people, a sum, and the traps and lengths
+// of wall a part asks for ({RIVAL}, {NAME}, {KIND} and {WAY} are above).
+wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

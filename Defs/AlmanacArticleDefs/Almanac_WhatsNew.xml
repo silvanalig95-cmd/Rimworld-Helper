@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.262.0</version>
+        <date>16 November 2026</date>
+        <title>Storylines</title>
+        <points>
+          <li>Storylines: runs of quests told over weeks. Each part is its own quest that opens with what happened before, and how it ends decides what comes next.</li>
+          <li>The factor's goods: keep a factor's sealed crates dry and unopened for a season, then decide what to do when a rival trader offers to buy them.</li>
+          <li>The beast coming down the valley: get ready with traps or a wall, look at its kill at the edge of the land, then face one of the region's legend beasts, with the hunters beside you if they think well of the colony.</li>
+          <li>The children from the burned village: shelter them for a few days, then take them in, find them a home with neighbours, or send them on with food. Seasons later one of them comes back grown.</li>
+          <li>Running storylines show on the Neighbours page under the missions, with their parts so far, and their endings go in the chronicle.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.261.0</version>
         <date>16 November 2026</date>
         <title>Quests at home</title>

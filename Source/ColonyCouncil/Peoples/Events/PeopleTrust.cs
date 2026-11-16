@@ -344,7 +344,7 @@ namespace ColonyCouncil
     public class HappeningWorker_LeagueTrust : HappeningWorker_Visitors
     {
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PeoplesD.Friendly(PeoplesMath.Traders) != null && !PeopleTrust.Open(PeoplesMath.Traders) && PeopleTrust.CrateDef != null
+            PeoplesD.Friendly(PeoplesMath.Traders) != null && !PeopleTrust.Open(PeoplesMath.Traders) && !FactorRules.CratesHeld && PeopleTrust.CrateDef != null
             && map.zoneManager.AllZones.OfType<Zone_Stockpile>().Any() && Colonists(map).Count > 0;
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)

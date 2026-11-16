@@ -352,5 +352,6 @@
     <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />
     <Compile Include="../../Source/ColonyCouncil/OldPowers/OldPowersMath.cs" Link="OldPowersMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Storylines/StorylineMath.cs" Link="StorylineMath.cs" />
   </ItemGroup>
 </Project>
