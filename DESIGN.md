@@ -3797,6 +3797,103 @@ and `Workers_MissionHome2.cs` (Q7, Q9, Q10), what they share in `HomeQuests.cs`,
 - **Dev mode** (Debug actions, Rimfolk): "Quests at home: offer one now...", "accept the open one", "what it waits for
   comes now", "end the open one as..." (each quest's own outcomes), "what the open one keeps (log)".
 
+### Quests at home, round 2: seven single quests (the player's go, 16 November 2026; released 0.263.0)
+
+The player, 16 November 2026, after round 1: "great, do some more"; the go for the quests: "go ahead with quests and
+storylines, make sure they are written in the more clear style i mentioned earlier on", and "while quests that require
+you to go out of your base are interesting, i hardly ever reach the stage where I can consistently go out of base and
+it's worth it, so keep these quests to a minimum". This is round 2's single quests of `docs/quests-proposals.md` (Q3, Q4,
+Q6, Q8, Q11, Q12, Q13), built the way round 1's six were: each a mission kind of its own in the Quests tab, played out on
+the colony's own map (their people come to the colony; what they leave or want is collected by them; nobody of the colony
+goes away). The pure rules in `Missions/HomeQuests2Math.cs` (`HomeQuests2Tests`), the workers in
+`Missions/Workers_MissionHome3.cs` (Q3, Q4, Q6, Q8) and `Workers_MissionHome4.cs` (Q11, Q12, Q13), what they share and
+their jobs in `HomeQuests2.cs`, the texts in `Defs/MissionDefs/Rimfolk_Missions_Home2.xml`, the jobs and the work giver in
+`Defs/Misc/Rimfolk_Missions_Home2_Misc.xml`, the lines over a head in `Defs/FlavorPoolDefs/Rimfolk_Lines_HomeQuests2.xml`.
+
+- **Who asks, and plain terms.** As round 1: any people at peace may ask, one of a fitting calling five times likelier
+  (the Ashen Banner's mercenaries a young fighter, the river folk a wedding's piece, the herding folk a sick animal, the
+  road league a camp guarded, the Mossborn's grove-keepers seed kept, the learned society a book copied, the Choir's
+  listeners musicians). Every age asks in its own words, the Empire with its knights and stewards apart. The quest's
+  description says who asks and why, then what to do, by when, what the colony gets and what failing costs, in that order;
+  the numbers the player needs are stated (two hours an evening, the copy's hours, six hours to carry the seed in, twelve
+  warm hours) and the rules hold them (tested). Rewards on round 1's scale (the quest's own range, 60 to 240 silver
+  before the rest, times the asking people's age and the colony's wealth; a tribe pays in goods of its own), round 1's
+  goodwill and costs, and the favour owed where favours are kept.
+- **Q3, a young fighter trained** (`HappeningWorker_MissionTrainee`, a hosted guest). One of their young fighters
+  (16 to 21, one of their own fighter kinds) stays 3 to 5 days, the colony's guest at its table and in its beds, to learn
+  from the colony's best shot or best melee fighter; they come knowing three levels less at most. Each evening from four
+  to nine, when the teacher is free (nothing pressing, not hungry or worn out: the drills' own test), the two train for
+  about two hours: side by side at the colony's shooting or archery target when it has one (Misc. Training's, Medieval 2's;
+  `JobDriver_HomeQuestTrain`: the weapon's own sound, a flash from a gun, the hit on the target) and the young one has a
+  ranged weapon and the best shot is as good as the best fighter; else sparring with pulled blows on open ground (the
+  lunge and the sound, the drills' places). Sparring rolls once a day for a blow that lands for real, at the colony's own
+  drills' rate (one bout in 25, `HarmKinds.Drills`, through the shared budget and its cap; off with the drills' system):
+  a bruise or a cut by the colony's means, said, shown with a message, and the evening ends there. Both learn the game's
+  own way (`Learn`, its passions and daily limit: 0.12 a tick for the one taught, 0.06 for the teacher, about the game's
+  research rate). At the end of the stay they pay for the hours (all, half for half, none for less: then it fails), the
+  young one handing it over; the letter says the skill's levels from and to. Dead or taken prisoner, it fails.
+- **Q4, a piece for a wedding** (`HappeningWorker_MissionWeddingPiece`). Someone of theirs is to be married in 6 to 9
+  days, and they ask for one piece the colony can make now: clothes of their own age (`HomeQuests2.PieceOptions`: a tribe's
+  headdress; Medieval 2's dame dress, the settlers' great dress, the fairycore dresses, a robe, a cape, Royalty's formal
+  shirt or corset; the modern formal shirt, formal vest, corset, button-down shirt or vest; Royalty's prestige robe and
+  formal wear for the Empire and spacers; each by name, only where loaded, only with the research done), a small work of
+  art when it can sculpt (`ThingRole.SmallArt`, every mod's), or furniture for the couple's home (a double bedroll for a
+  tribe, a double bed, the Empire's royal bed) packed up for carrying. Good quality or better (the game's own), not
+  forbidden. The quest's progress shows whether one is ready; on the day their people come for the best of them
+  (`Couriers.CollectThings`) and pay half as much again as it is worth at good quality and the quest's own sum on top.
+  None ready on the day, it fails. The words say only what they wrote: who is marrying and where.
+- **Q6, a sick animal tended** (`HappeningWorker_MissionSickAnimal`). One of their own animals (a pack animal their
+  caravans use on this land, else a farm animal fine here now, every mod's) comes with the game's animal flu, its plague
+  (only when the colony's doctor has Medicine 6, one time in four), or underfed from the road. Their drover walks it in
+  and hands it over at the gate; it is the colony's to tend (its doctors tend it as any of the colony's animals, its
+  handlers feed it). Well again (no illness, not underfed, nothing waiting for a doctor), their drover comes for it within
+  the day and pays (`Couriers.Fetch`); still sick when the days are up (8 to 12), they take it as it is for half. Dead or
+  no longer the colony's, it fails; bonded to someone of the colony, they leave it there and pay nothing (as round 1's
+  animal).
+- **Q8, guard their camp for a night** (`HappeningWorker_MissionCampGuard`). Three or four of their people, with a pack
+  animal where their caravans use one, come in the late afternoon and camp at the edge of the land at least 30 cells
+  out, which way in the terms, by a campfire of theirs (gone with them). They eat what they carry; after ten all but
+  their leader lie down by the fire, the leader keeping watch. One roll at the camp's start, within the shared harm
+  budget (`HarmKinds.CampNight`, system "quests", off with the world's battles; 0.35 at its base, its scale and pass
+  making it rarer), decides whether something comes between ten and three: raiders of a people at war with both (the
+  game's own fighters, a quarter of the threat points, one to three, the game's assault; three times in five where
+  predators could come too) or the land's own predators gone manhunter. Everyone at the camp is woken and the colony gets a threat letter. At
+  dawn, with nothing hostile still about the camp, they pack up and go, leaving the pay at their camp (a quarter more
+  for a night fought through). One of theirs dead (or taken) in the night, it fails at once.
+- **Q11, seed kept cold** (`HappeningWorker_MissionSeedGrain`, offered in autumn and winter and only when the colony has a
+  room at freezing or colder now). 50 to 75 of a crop of their age that rots (`ThingRole.Produce`, every mod's), their
+  seed for the sowing in 10 to 14 days. Their carts set it down at the gate; the colony carries it into its cold store
+  (a cold room, an ice house or a freezer in the words, by the colony's age) within six hours and forbids it there. Every
+  hour after those six, the temperature where it lies is read: more than 12 hours warmer than freezing in all, any of it
+  used (put with the colony's own of the crop, the stack it went into counts while it holds as much), rotten, or gone, it
+  is no good as seed and the colony may keep what is left. At the sowing one of the colony's haulers carries it out to a
+  free place by where traders leave goods (visitors keep out of cold stores: `Visitors/KeepOut.cs`), it is forbidden again,
+  and their carts come for it and pay. Not round 1's "store to keep": that one counts goods in the stockpiles.
+- **Q12, their book copied** (`HappeningWorker_MissionBookCopy`, a hosted guest). Their scholar brings a book of theirs
+  (their stories for a tribe, their learning, a technical manual for the modern) and stays 3 to 4 days. The copy takes 10
+  to 16 hours of work at a research bench: a job of its own (`JobDriver_HomeQuestCopy`, the game's look of research and
+  its learning, 0.1 Intellectual a tick) given by a work giver under research work, before the research
+  (`WorkGiver_HomeQuestCopy`), so whoever does research copies. Done, the scholar pays and the colony keeps the copy: a
+  book of the game's own (a novel, a textbook or a schematic), its quality from the copier's Intellectual, written by the
+  scholar, set down by the bench. Half done when the scholar leaves, half the pay and no copy; less, it fails.
+- **Q13, musicians for a night** (`HappeningWorker_MissionMusicians`, hosted guests; needs a gathering spot). Two or three
+  of their musicians come in the afternoon. From six the colony throws the game's own party (`GatheringDefOf.Party`, its
+  own letter, its own joining and moods), and they play at it (`JobDriver_HomeQuestPlay`): on the colony's own instrument
+  near the party (the game's own or a mod's, the game's own playing) where there's one for them, else on their own,
+  drums for a tribe and harps for the rest (the sound of Ideology's drum or Royalty's harp where those are loaded, and the
+  notes over them). No party possible by ten, they play for whoever comes. They eat at the colony's table, sleep in its
+  beds (half the goodwill if one had none), and leave in the morning paying for their keep.
+- **Pace.** Each takes 0.3 of the missions' one draw, round 1's own share (2.1 for the seven): `MissionPool` still scales
+  every mission to weigh 6.8 together, so missions as a whole come no oftener than before; one mission at a time; the
+  same quest not again for 75 days. Their kinds are their own (the old delivery mission "seed after a blight" keeps
+  `seedgrain`; this one is `seedkept`).
+- **Shared files, small.** `HomeQuests.IsOurs` takes round 2's kinds in (so round 1's tags and the dev actions cover
+  them), the dev actions list the seven, and the harm budget has one more kind (`HarmKinds.CampNight`); nothing of the
+  missions themselves changed, and no new saved field (each quest keeps its state in the mission's own fields).
+- **Dev mode** (Debug actions, Rimfolk): round 1's "Quests at home: offer one now...", "accept the open one", "what it
+  waits for comes now", "end the open one as..." (each quest's own: "train now", "make it now", "the day now", "well now",
+  "attack now", "dawn now", "set down now", "evening now", "morning now", and every ending), "what the open one keeps (log)".
+
 ### Quests and storylines: the frame, the factor's goods, the beast and the children (the player's go, 16 November 2026; released 0.262.0)
 
 The player, 13 November 2026: "the next thing to include will be more quests, and quests that are storylines across

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More quests at home
+
+*16 November 2026, version 0.263.0*
+
+- Seven more quests at home in the Quests tab: train a neighbour's young fighter, make a piece for a wedding, tend a sick animal, guard a caravan's camp for a night, keep seed cold, copy a scholar's book, and host musicians for a night.
+- A young fighter trains each evening with your best shot at your target, or spars with your best fighter; both learn, and now and then a sparring blow lands for real.
+- A wedding piece is clothes, art or a bed of the asking people's own age that your colony can make, of good quality or better, collected on the day.
+- A caravan camped at the edge of your land may be attacked in the night by raiders or wild animals; they leave more pay at dawn if they had to be defended.
+- Seed kept cold must stay in your cold store at freezing or colder and forbidden; at the sowing one of your people carries it out to their carts.
+- A scholar's book is copied at your research bench and your colony keeps the copy as a book; visiting musicians play at a party for your colony.
+- Missions as a whole come no more often than before.
+
 ## Storylines
 
 *16 November 2026, version 0.262.0*

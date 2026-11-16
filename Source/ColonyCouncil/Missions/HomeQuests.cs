@@ -19,7 +19,8 @@ namespace ColonyCouncil
     {
         private static int Now => Find.TickManager.TicksGame;
 
-        public static bool IsOurs(Mission m) => m != null && Array.IndexOf(HomeQuestsMath.Kinds, m.kind) >= 0;
+        /// <summary>One of the quests at home: round 1's six, or round 2's seven (HomeQuests2.cs).</summary>
+        public static bool IsOurs(Mission m) => m != null && (Array.IndexOf(HomeQuestsMath.Kinds, m.kind) >= 0 || HomeQuests2.IsOurs(m));
 
         /// <summary>The open quest at home of this kind, if any.</summary>
         public static Mission Open(string kind) => Missions.All.FirstOrDefault(m => m.Open && m.kind == kind);

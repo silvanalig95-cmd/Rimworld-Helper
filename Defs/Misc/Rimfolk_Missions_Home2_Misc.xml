@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Quests at home, round 2 (Source/ColonyCouncil/Missions/HomeQuests2.cs): a young fighter training with the colony's
+       teacher, a scholar's book copied at the research bench (a job under research work, done before the research), and
+       visiting musicians playing at the colony's party. -->
+
+  <!-- One of the pair at a young fighter's training: sparring with pulled blows, or shots at the colony's target side by side. -->
+  <JobDef>
+    <defName>Rimfolk_HomeQ_Train</defName>
+    <driverClass>ColonyCouncil.JobDriver_HomeQuestTrain</driverClass>
+    <reportString>training.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Copying a visiting scholar's book at a research bench. -->
+  <JobDef>
+    <defName>Rimfolk_HomeQ_Copy</defName>
+    <driverClass>ColonyCouncil.JobDriver_HomeQuestCopy</driverClass>
+    <reportString>copying a book.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+  <!-- The colony's researchers copy the scholar's book before their research, while the quest asks for it. -->
+  <WorkGiverDef>
+    <defName>Rimfolk_HomeQ_CopyBook</defName>
+    <label>copy a visiting scholar's book</label>
+    <giverClass>ColonyCouncil.WorkGiver_HomeQuestCopy</giverClass>
+    <workType>Research</workType>
+    <priorityInType>100</priorityInType>
+    <verb>copy</verb>
+    <gerund>copying</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <!-- A visiting musician playing at the colony's own instrument, or on their own by the party. -->
+  <JobDef>
+    <defName>Rimfolk_HomeQ_Play</defName>
+    <driverClass>ColonyCouncil.JobDriver_HomeQuestPlay</driverClass>
+    <reportString>playing music.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+</Defs>

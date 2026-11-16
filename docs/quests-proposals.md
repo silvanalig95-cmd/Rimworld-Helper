@@ -124,25 +124,27 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 - **Q2. A dispute judged.** Two people of a neighbour bring their quarrel to the colony; a card for the judgement,
   then each side's reaction on the map. *Built in round 1 (released 0.261.0).*
 - **Q3. A young fighter trained.** Their young fighter stays and trains with the colony's best shot or fighter for
-  some days; both gain skill.
+  some days; both gain skill. *Built in round 2 (not released yet): DESIGN.md "Quests at home, round 2".*
 - **Q4. A piece for a wedding.** Make one piece of good quality or better (a sculpture, clothes, furniture) by a date;
-  they come to collect it.
+  they come to collect it. *Built in round 2 (not released yet).*
 - **Q5. A wounded rider.** A wounded messenger reaches the gate. Treat them, and keep their message safe until
   someone of theirs comes for it. *Built in round 1 (released 0.261.0), as "a wounded messenger": they come in on foot.*
-- **Q6. A sick animal tended.** Their animal stays to be tended back to health.
+- **Q6. A sick animal tended.** Their animal stays to be tended back to health. *Built in round 2 (not released yet).*
 - **Q7. An outlaw in the hills.** An outlaw with a price on their head hides on the colony's map. Capture them (a
   bigger reward) or kill them. A fight, shown. *Built in round 1 (released 0.261.0).*
 - **Q8. Guard their camp for a night.** A caravan camps at the edge of the colony's map; something may come for it in
-  the night.
+  the night. *Built in round 2 (not released yet).*
 - **Q9. A lost heirloom.** They lost a keepsake on the colony's land; it lies somewhere in a marked area. Find it
   before the rain spoils it or someone else picks it up. *Built in round 1 (released 0.261.0): when the colony doesn't
   find it in time, one of their own comes and does.*
 - **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over. *Built in round 1
   (not released yet).*
-- **Q11. Seed grain kept cold.** Store their seed grain over winter, cold and untouched.
+- **Q11. Seed grain kept cold.** Store their seed grain over winter, cold and untouched. *Built in round 2 (not released
+  yet).*
 - **Q12. Their book copied.** A scholar stays while the colony's researcher copies their book at the research bench
-  for some hours.
-- **Q13. Musicians for a night.** Host their musicians for a night of music; it works as a party for the colony.
+  for some hours. *Built in round 2 (not released yet).*
+- **Q13. Musicians for a night.** Host their musicians for a night of music; it works as a party for the colony. *Built
+  in round 2 (not released yet).*
 - **Q14. A cache in old ruins** (away, only within 3 tiles). Their old map shows a cache close by. Go and bring it back.
 
 ## Rounds
@@ -153,7 +155,7 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
    Q5, Q7, Q9 and Q10 released, 0.261.0; the frame with S1, S4 and S8 released, 0.262.0:
    `Source/ColonyCouncil/Storylines/`.)
 2. S2, S3, S5, S7 and the remaining single quests (Q3, Q4, Q6, Q8, Q11, Q12, Q13). Being built (the player, 16 November
-   2026: "great, do some more").
+   2026: "great, do some more"); the seven single quests are built, not released yet (DESIGN.md "Quests at home, round 2").
 3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
 
 The player can strike or change anything in rounds 2 and 3 before they start.

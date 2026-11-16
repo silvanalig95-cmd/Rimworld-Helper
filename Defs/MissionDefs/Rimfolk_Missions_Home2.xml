@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Quests at home, round 2 (the player's "great, do some more", 16 November 2026; docs/quests-proposals.md Q3, Q4, Q6,
+       Q8, Q11, Q12, Q13). Each plays out on the colony's own map: their people come to the colony, and what they leave or
+       want is collected by them. Workers: Source/ColonyCouncil/Missions/Workers_MissionHome3.cs and Workers_MissionHome4.cs;
+       the pure rules in HomeQuests2Math.cs. Texts may use {A} (who of the colony deals with it: the teacher, the maker, the
+       doctor, the marshal, the grower, the researcher, the host), {X} (their young fighter, the caravan's leader, the
+       scholar, the first of the musicians), {FACTION}, {PLACE} (their town), {DEAD} (the one marrying; the animal's name),
+       {TALE} (the skill; the piece; the illness; which way the camp is; the colony's cold store; the book; what the
+       musicians play), {THING} (the animal; the crop), {SKILL}, and in the offers {COUNT} (how many of them come; how much
+       seed; the hours of copying). In terms, {ITEM} is the reward in words ("240 silver", or a tribe's goods worth as much)
+       and {DAYS} the days the quest names; in endings, {ITEM} is what was paid (for the seed, what the colony may keep).
+       Lines are tagged with the quest, its variant, the asking people's age ([their:tribal], [their:medieval],
+       [their:industrial], [their:spacer], [their:lowtech], [their:hightech], [their:empire]) and, for endings, how it
+       ended. -->
+
+  <!-- ===================== Q3. A young fighter trained ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Trainee</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a young fighter trained</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionTrainee</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Train {FACTION}'s young fighter</li>
+          <li>A young fighter from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] The hunters of {FACTION} have a young one, {X_nameDef}, who needs to get better at {SKILL}. They have heard that {A_nameDef} is the best at it in the colony, and ask whether {X_nameDef} may stay at the colony for a few days and learn from {A_objective}.</li>
+          <li>[their:medieval] {FACTION} have a young squire, {X_nameDef}, who needs a better teacher in {SKILL} than anyone at {PLACE}. They have heard of {A_nameDef}, and ask whether {X_nameDef} may stay at the colony for a few days and train with {A_objective}.</li>
+          <li>[their:industrial] {FACTION}'s militia at {PLACE} has a new recruit, {X_nameDef}, who is still weak at {SKILL}. They ask whether {X_nameDef} may stay at the colony for a few days and train with {A_nameDef}, who they hear is the colony's best.</li>
+          <li>[their:spacer,!their:empire] {FACTION} want their young guard {X_nameDef} to get more practice at {SKILL} with someone experienced. They ask whether {X_nameDef} may stay at the colony for a few days and train with {A_nameDef}.</li>
+          <li>[their:empire] A knight of {FACTION} has a young squire, {X_nameDef}, who must get better at {SKILL} before the next ceremony at {PLACE}. The knight asks whether {X_nameDef} may stay at the colony for a few days and train with {A_nameDef}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>mercenaries</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[spar] {X_nameDef} will come soon after the colony agrees and stay for {DAYS}. Each evening, when {A_nameDef} is free, the two will spar for about two hours with pulled blows, and both will learn from it. Now and then a blow lands for real, as in any sparring. Give {X_nameDef} meals and a bed while {X_pronoun} is here. At the end of the stay {FACTION} will pay {ITEM}, or half of that for half the hours. If they train for less than half the hours, or {X_nameDef} is killed or taken prisoner, {FACTION} will think less of the colony.</li>
+          <li>[shoot] {X_nameDef} will come soon after the colony agrees and stay for {DAYS}. Each evening, when {A_nameDef} is free, the two will practise at the colony's target for about two hours, and both will learn from it. Give {X_nameDef} meals and a bed while {X_pronoun} is here. At the end of the stay {FACTION} will pay {ITEM}, or half of that for half the hours. If they train for less than half the hours, or {X_nameDef} is killed or taken prisoner, {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{X_nameDef} of {FACTION} is on the way to the colony to train with {A_nameDef}.</li>
+        </accepted>
+        <ready>
+          <li>[spar] {X_nameDef} has arrived and will stay for {DAYS}. {X_nameDef} and {A_nameDef} will spar in the evenings when {A_nameDef} is free. Give {X_nameDef} meals and a bed.</li>
+          <li>[shoot] {X_nameDef} has arrived and will stay for {DAYS}. {X_nameDef} and {A_nameDef} will practise at the target in the evenings when {A_nameDef} is free. Give {X_nameDef} meals and a bed.</li>
+        </ready>
+        <doneTitles>
+          <li>[trained] {X_nameDef} trained</li>
+          <li>[half] {X_nameDef} trained for half the time</li>
+        </doneTitles>
+        <done>
+          <li>[trained] {X_nameDef} trained with {A_nameDef} for all the hours agreed and has gone home better at {TALE}. {FACTION} paid {ITEM}.</li>
+          <li>[half] {X_nameDef} trained with {A_nameDef} for only about half the hours agreed and has gone home a little better at {TALE}. {FACTION} paid {ITEM}, half of what they offered.</li>
+        </done>
+        <failTitles>
+          <li>[untrained] {X_nameDef} hardly trained</li>
+          <li>[died] {X_nameDef} died</li>
+          <li>[harmed] {FACTION}'s young fighter</li>
+          <li>[ended] {FACTION}'s young fighter</li>
+          <li>[cancelled] {FACTION}'s young fighter</li>
+        </failTitles>
+        <fail>
+          <li>[untrained] {X_nameDef} went home after training for less than half the hours agreed. {FACTION} feel the colony did not keep its side of the arrangement.</li>
+          <li>[died] {X_nameDef} died while staying at the colony. {FACTION} had trusted the colony with {X_objective}, and they blame it.</li>
+          <li>[harmed] {X_nameDef} was taken prisoner while staying at the colony. {FACTION} will not forget it.</li>
+          <li>[ended] {X_nameDef} will not be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and {X_nameDef} will not be coming to train.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q4. A piece for a wedding ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_WeddingPiece</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a piece for a wedding</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionWeddingPiece</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>feasts</li></leans>
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The {TALE} for {DEAD}'s wedding</li>
+          <li>Make one {TALE} for {FACTION}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] Word has come from {PLACE} that {DEAD} of {FACTION} is to be married. Their own people cannot make what they want for the day, and they ask the colony to make one {TALE}.</li>
+          <li>[their:medieval] {FACTION} write that {DEAD} of {PLACE} is to be married. The family wants one {TALE} for the day that nobody at {PLACE} can make, and they ask the colony to make it.</li>
+          <li>[their:industrial] {FACTION} sent a message from {PLACE}: {DEAD} is getting married, and the family wants one {TALE} made for the day. They ask the colony to make it.</li>
+          <li>[their:spacer,!their:empire] {FACTION} sent word that {DEAD} is to be married at {PLACE}. They want one {TALE} made by hand for the day, and ask the colony to make it.</li>
+          <li>[their:empire] A steward of {FACTION} writes that {DEAD}, of the household at {PLACE}, is to be married. The household wants one {TALE} for the ceremony, and the steward asks the colony to make it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>fishers</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[clothes] The wedding is in {DAYS}. Make one {TALE} of good quality or better and have it at the colony by then; {A_nameDef} is the colony's best at crafting. On the day, {FACTION}'s people will come for it and pay {ITEM}. If there is no {TALE} of good quality or better at the colony on the day, {FACTION} will be disappointed in the colony.</li>
+          <li>[art] The wedding is in {DAYS}. Make one {TALE} of good quality or better and have it at the colony by then, packed up (uninstalled) so it can be carried; {A_nameDef} is the colony's best artist. On the day, {FACTION}'s people will come for it and pay {ITEM}. If there is no {TALE} of good quality or better ready on the day, {FACTION} will be disappointed in the colony.</li>
+          <li>[bed] The wedding is in {DAYS}, and the couple want one {TALE} for their new home. Build it, of good quality or better, and have it at the colony by then, packed up (uninstalled) so it can be carried; {A_nameDef} is the colony's best builder. On the day, {FACTION}'s people will come for it and pay {ITEM}. If there is no {TALE} of good quality or better ready on the day, {FACTION} will be disappointed in the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION} are counting on the colony for one {TALE} of good quality or better for {DEAD}'s wedding.</li>
+        </accepted>
+        <ready>
+          <li>The {TALE} for {DEAD}'s wedding is ready, of good quality or better. {FACTION}'s people will come for it on the day.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION} have sent to ask how the colony is getting on with the {TALE} for {DEAD}'s wedding. It must be of good quality or better.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] The {TALE} for {DEAD}'s wedding</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] {FACTION}'s people came for the {TALE} on the day of {DEAD}'s wedding and paid {ITEM}.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No {TALE} for the wedding</li>
+          <li>[ended] {DEAD}'s wedding</li>
+          <li>[cancelled] {DEAD}'s wedding</li>
+        </failTitles>
+        <fail>
+          <li>[missed] {FACTION} came on the day of {DEAD}'s wedding, but the colony had no {TALE} of good quality or better for them. They are disappointed.</li>
+          <li>[ended] {FACTION} no longer need the {TALE} for {DEAD}'s wedding.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the {TALE} for {DEAD}'s wedding is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q6. A sick animal tended ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_SickAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a sick animal tended</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionSickAnimal</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Tend {FACTION}'s sick {THING}</li>
+          <li>A sick animal from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[flu,their:lowtech] {FACTION}'s {THING}, {DEAD}, has the animal flu, and nobody at {PLACE} knows how to treat it. They ask the colony to take {DEAD} in and look after it until it is well.</li>
+          <li>[plague,their:lowtech] {FACTION}'s {THING}, {DEAD}, has the animal plague. Their own people cannot treat it, and they have heard the colony has a good doctor. They ask the colony to take {DEAD} in and look after it until it is well.</li>
+          <li>[thin,their:lowtech] {FACTION}'s {THING}, {DEAD}, went short of food on the road and is badly underfed. They ask the colony to take {DEAD} in and feed it up until it is well.</li>
+          <li>[flu,their:hightech,!their:empire] {FACTION}'s {THING}, {DEAD}, has the animal flu, and the vet at {PLACE} is away. They ask the colony to take {DEAD} in and treat it until it is well.</li>
+          <li>[plague,their:hightech,!their:empire] {FACTION}'s {THING}, {DEAD}, has the animal plague, and nobody at {PLACE} can treat it. They have heard the colony has a good doctor, and ask it to take {DEAD} in until it is well.</li>
+          <li>[thin,their:hightech,!their:empire] {FACTION}'s {THING}, {DEAD}, went hungry on a long journey and is badly underfed. They ask the colony to take {DEAD} in and feed it up until it is well.</li>
+          <li>[their:empire] A steward of {FACTION} writes that the household's {THING}, {DEAD}, is unwell with {TALE}. The household at {PLACE} asks the colony to take {DEAD} in and look after it until it is well.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>herders</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[!thin] Their drover will bring {DEAD} to the colony's gate soon after it agrees and hand {DEAD} over. {DEAD} is then the colony's to look after: have a doctor treat it for {TALE} ({A_nameDef} is the colony's best), feed it and keep it safe. Once {DEAD} is well, their drover will come back for it and pay {ITEM}. If {DEAD} is still sick {DAYS} after the colony agrees, they will take {DEAD} home as it is and pay half. If {DEAD} dies at the colony, {FACTION} will hold it against the colony.</li>
+          <li>[thin] Their drover will bring {DEAD} to the colony's gate soon after it agrees and hand {DEAD} over. {DEAD} is then the colony's to look after: feed it well until it is healthy again and keep it safe. Once {DEAD} is well, their drover will come back for it and pay {ITEM}. If {DEAD} is still underfed {DAYS} after the colony agrees, they will take {DEAD} home as it is and pay half. If {DEAD} dies at the colony, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s drover is bringing {DEAD} to the colony.</li>
+        </accepted>
+        <ready>
+          <li>[!thin] {DEAD} is the colony's to look after now. Have a doctor treat it for {TALE}, and keep it fed until it is well.</li>
+          <li>[thin] {DEAD} is the colony's to look after now. Feed it well until it is healthy again.</li>
+        </ready>
+        <doneTitles>
+          <li>[well] {DEAD} is well again</li>
+          <li>[stillsick] {DEAD} goes home</li>
+          <li>[bonded] {DEAD} stays</li>
+        </doneTitles>
+        <done>
+          <li>[well] {DEAD} is well again, and {FACTION}'s drover came for {DEAD} and paid {ITEM}.</li>
+          <li>[stillsick] {DEAD} was still not well when the time was up. {FACTION}'s drover took {DEAD} home as it was and paid {ITEM}, half of what they offered.</li>
+          <li>[bonded] {DEAD} has bonded with someone of the colony. {FACTION} will leave {DEAD} where it is. They won't pay for it, but they are not angry.</li>
+        </done>
+        <failTitles>
+          <li>[died] {DEAD} died</li>
+          <li>[lost] {DEAD} is gone</li>
+          <li>[ended] {FACTION}'s {THING}</li>
+          <li>[cancelled] {FACTION}'s {THING}</li>
+        </failTitles>
+        <fail>
+          <li>[died] {DEAD} died at the colony. {FACTION} had trusted the colony to look after {DEAD}, and they blame it.</li>
+          <li>[lost] {DEAD} is no longer in the colony's care. {FACTION} had trusted the colony with {DEAD}, and they are angry.</li>
+          <li>[ended] {FACTION} will not be bringing {DEAD} to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the arrangement about {DEAD} is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q8. Guard their camp for a night ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_CampGuard</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a camp guarded for a night</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionCampGuard</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Guard {FACTION}'s camp for a night</li>
+          <li>A caravan's camp at the {TALE} edge</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] A band of {FACTION} is travelling to {PLACE} with goods to trade. The way ahead is not safe after dark, and they ask to camp for the night at the edge of the colony's land, where the colony can keep watch over them.</li>
+          <li>[their:medieval] A caravan of {FACTION}, led by {X_nameDef}, is on its way to {PLACE} and will not reach shelter before dark. They ask to camp for the night at the edge of the colony's land and for the colony to keep watch over them.</li>
+          <li>[their:industrial] A convoy of {FACTION}, led by {X_nameDef}, is heading for {PLACE} and has to stop for the night. The road has had raiders on it lately, and they ask to camp at the edge of the colony's land with the colony keeping watch.</li>
+          <li>[their:spacer,!their:empire] A supply team of {FACTION}, led by {X_nameDef}, needs to stop for the night on the way to {PLACE}. They ask to camp at the edge of the colony's land and for the colony to keep watch over them.</li>
+          <li>[their:empire] {X_nameDef}, travelling for {FACTION} with a small escort, asks to camp for the night at the edge of the colony's land on the way to {PLACE}, with the colony keeping watch.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>traders</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{COUNT} of {FACTION}'s people will come in the late afternoon after the colony agrees and make camp at the {TALE} edge of the colony's land. They bring their own food and sleep at their camp. Something may come for them in the night, raiders or wild animals, so keep watch over the camp; {A_nameDef} is the colony's marshal or best shot. At dawn they will pack up and go, leaving {ITEM} at their camp for the colony, or a quarter more if they had to be defended. If any of them dies in the night, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s people will come in the late afternoon and make camp at the {TALE} edge of the colony's land.</li>
+        </accepted>
+        <ready>
+          <li>{X_nameDef} and the others of {FACTION} are making camp at the {TALE} edge of the colony's land. Keep watch over them tonight.</li>
+        </ready>
+        <doneTitles>
+          <li>[quiet] {FACTION}'s caravan left at dawn</li>
+          <li>[defended] {FACTION}'s camp defended</li>
+        </doneTitles>
+        <done>
+          <li>[quiet] The night passed quietly. At dawn {FACTION}'s people packed up their camp, left {ITEM} there for the colony and went on their way.</li>
+          <li>[defended,raiders] Raiders came for {FACTION}'s camp in the night, and none of their people died. At dawn they left {ITEM} at their camp for the colony and went on their way.</li>
+          <li>[defended,beasts] Wild animals came for {FACTION}'s camp in the night, and none of their people died. At dawn they left {ITEM} at their camp for the colony and went on their way.</li>
+          <li>[defended,!raiders,!beasts] Something came for {FACTION}'s camp in the night, and none of their people died. At dawn they left {ITEM} at their camp for the colony and went on their way.</li>
+        </done>
+        <failTitles>
+          <li>[lost] {FACTION}'s camp</li>
+          <li>[ended] {FACTION}'s camp</li>
+          <li>[cancelled] {FACTION}'s camp</li>
+        </failTitles>
+        <fail>
+          <li>[lost,raiders] Raiders attacked {FACTION}'s camp in the night, and one of their people did not survive. {FACTION} had trusted the colony to keep watch, and they blame it.</li>
+          <li>[lost,beasts] Wild animals attacked {FACTION}'s camp in the night, and one of their people did not survive. {FACTION} had trusted the colony to keep watch, and they blame it.</li>
+          <li>[lost,!raiders,!beasts] One of {FACTION}'s people died at their camp on the colony's land. {FACTION} had trusted the colony to keep watch, and they blame it.</li>
+          <li>[ended] {FACTION}'s people will not be camping on the colony's land after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and their people will camp somewhere else.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q11. Seed grain kept cold ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_SeedKept</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>seed kept cold</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionSeedGrain</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep {FACTION}'s seed cold</li>
+          <li>Seed {THING} from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] {FACTION} have kept back {COUNT} {THING} to sow in spring. They have nowhere cold enough at {PLACE} to keep it from spoiling, and they ask the colony to keep it for them until the sowing.</li>
+          <li>[their:medieval] {FACTION} have {COUNT} {THING} put by as seed for next year's sowing, but the cellar at {PLACE} has flooded. They ask the colony to keep it cold for them until the sowing.</li>
+          <li>[their:industrial] The cold store at {PLACE} has broken down, and {FACTION} have {COUNT} {THING} they need as seed for spring. They ask the colony to keep it cold for them until the sowing.</li>
+          <li>[their:spacer,!their:empire] {FACTION} have {COUNT} {THING} kept as seed stock, and the freezer at {PLACE} has failed. They ask the colony to keep it cold for them until the sowing.</li>
+          <li>[their:empire] A steward of {FACTION} asks the colony to keep {COUNT} {THING} cold for the estate at {PLACE}. It is next year's seed, and the estate's own store is full.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>grovekeepers</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION}'s carts will set the {COUNT} {THING} down at the colony's gate soon after it agrees. Carry it into {TALE} within six hours and keep it there at freezing or colder for {DAYS}. Nobody may cook or eat any of it, so it is best forbidden once it is in place. Then their carts will come for it and pay {ITEM}. If it is warmer than freezing for more than 12 hours in all, any of it is used, or it rots or is lost, it is no good as seed and {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s carts are bringing {ITEM} to the colony's gate. It needs to go into {TALE}.</li>
+        </accepted>
+        <ready>
+          <li>{FACTION}'s carts have set down {ITEM} at the gate. Carry it into {TALE} within six hours and forbid it there, so nobody uses it.</li>
+        </ready>
+        <doneTitles>
+          <li>[kept] {FACTION}'s seed kept</li>
+        </doneTitles>
+        <done>
+          <li>[kept] The colony kept {FACTION}'s seed cold and untouched until the sowing. Their carts came for it and paid {ITEM}.</li>
+        </done>
+        <failTitles>
+          <li>[warm] {FACTION}'s seed was kept too warm</li>
+          <li>[eaten] {FACTION}'s seed was used</li>
+          <li>[spoiled] {FACTION}'s seed rotted</li>
+          <li>[lost] {FACTION}'s seed is gone</li>
+          <li>[ended] {FACTION}'s seed</li>
+          <li>[cancelled] {FACTION}'s seed</li>
+        </failTitles>
+        <fail>
+          <li>[warm] {FACTION}'s seed was warmer than freezing for more than 12 hours, and they will not sow it now. They will not come for it, and the colony may keep what is left. They are disappointed in the colony.</li>
+          <li>[eaten] Some of {FACTION}'s seed was used, and what is left is not enough to sow. They will not come for it, and the colony may keep what is left. They are disappointed in the colony.</li>
+          <li>[spoiled] {FACTION}'s seed has started to rot, and they will not sow it now. They will not come for it. They are disappointed in the colony.</li>
+          <li>[lost] {FACTION}'s seed is gone from the colony. They had trusted the colony with it, and they are disappointed.</li>
+          <li>[ended] {FACTION} will not be sending their seed to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and will not come for their seed.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q12. Their book copied ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_BookCopy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a book copied</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionBookCopy</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Copy {FACTION}'s book</li>
+          <li>A scholar from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] {FACTION} keep {TALE}, and the only copy is wearing out. Their storyteller, {X_nameDef}, has heard that the colony's people can write, and asks the colony to make a new copy while {X_pronoun} waits.</li>
+          <li>[their:medieval] {X_nameDef}, a scholar of {FACTION}, has {TALE} that is falling apart. {X_nameDef} asks the colony to copy it out at its research bench while {X_pronoun} stays.</li>
+          <li>[their:industrial] {X_nameDef} of {FACTION} has {TALE} from {PLACE}, the only copy left. {X_nameDef} asks the colony to copy it at its research bench while {X_pronoun} stays.</li>
+          <li>[their:spacer,!their:empire] {X_nameDef} of {FACTION} has {TALE} whose only copy is damaged. {X_nameDef} asks the colony to copy it at its research bench while {X_pronoun} stays.</li>
+          <li>[their:empire] {X_nameDef}, a scholar of {FACTION}'s household at {PLACE}, has {TALE} that the household wants copied. {X_nameDef} asks the colony to copy it at its research bench while {X_pronoun} stays.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>scholars</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{X_nameDef} will come soon after the colony agrees and stay for {DAYS}. The copy takes {COUNT} hours of work at a research bench, done by whoever does research ({A_nameDef} is the colony's best), before their research. Give {X_nameDef} meals and a bed while {X_pronoun} is here. When the copy is done, {X_nameDef} will pay {ITEM} and leave the copy with the colony. If only half of it is done when {X_nameDef} leaves, {FACTION} will pay half and take nothing; less than that, and {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{X_nameDef} of {FACTION} is on the way to the colony with {TALE}.</li>
+        </accepted>
+        <ready>
+          <li>{X_nameDef} has arrived with {TALE} and will stay for {DAYS}. Whoever does research will copy it at a research bench before their research.</li>
+        </ready>
+        <doneTitles>
+          <li>[copied] {X_nameDef}'s book copied</li>
+          <li>[copiednobook] {X_nameDef}'s book copied</li>
+          <li>[half] {X_nameDef}'s book half copied</li>
+        </doneTitles>
+        <done>
+          <li>[copied] {A_nameDef} finished copying {X_nameDef}'s book. {X_nameDef} paid {ITEM} and went home, and left the copy with the colony.</li>
+          <li>[copiednobook] {A_nameDef} finished copying {X_nameDef}'s book. {X_nameDef} paid {ITEM} and went home.</li>
+          <li>[half] Only half of {X_nameDef}'s book was copied before {X_pronoun} had to leave, so there is no copy for the colony. {FACTION} paid {ITEM}, half of what they offered.</li>
+        </done>
+        <failTitles>
+          <li>[uncopied] {X_nameDef}'s book not copied</li>
+          <li>[died] {X_nameDef} died</li>
+          <li>[harmed] {FACTION}'s scholar</li>
+          <li>[ended] {FACTION}'s scholar</li>
+          <li>[cancelled] {FACTION}'s scholar</li>
+        </failTitles>
+        <fail>
+          <li>[uncopied] {X_nameDef} went home with less than half of the book copied. {FACTION} feel the colony wasted {X_nameDef}'s time.</li>
+          <li>[died] {X_nameDef} died while staying at the colony. {FACTION} blame the colony.</li>
+          <li>[harmed] {X_nameDef} was taken prisoner while staying at the colony. {FACTION} will not forget it.</li>
+          <li>[ended] {X_nameDef} will not be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and {X_nameDef} will not be coming.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Q13. Musicians for a night ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Musicians</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>musicians for a night</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionMusicians</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>performers</li></leans>
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Host {FACTION}'s musicians for a night</li>
+          <li>Musicians from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[their:tribal] {COUNT} drummers of {FACTION}, led by {X_nameDef}, are on their way to a gathering at {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
+          <li>[their:medieval] {COUNT} musicians of {FACTION}, led by {X_nameDef}, are travelling to play at {PLACE}. They ask to stay one night at the colony on the way, and offer to play for its people in the evening.</li>
+          <li>[their:industrial] A small band of {FACTION}, {COUNT} players led by {X_nameDef}, is on a tour of the towns around {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
+          <li>[their:spacer,!their:empire] {COUNT} musicians of {FACTION}, led by {X_nameDef}, are passing through on their way to {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
+          <li>[their:empire] {COUNT} court musicians of {FACTION}, led by {X_nameDef}, are on their way to the household at {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>listeners</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>The {COUNT} of them will come in the afternoon after the colony agrees. In the evening the colony throws a party, and they play at it: on the colony's own instrument if it has one near the party, else on their own {TALE}. Give them a meal and a bed for the night, and they will leave in the morning and pay {ITEM} for their keep. If any of them is killed or taken prisoner while at the colony, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{X_nameDef} and the other musicians of {FACTION} will come in the afternoon.</li>
+        </accepted>
+        <ready>
+          <li>{X_nameDef} and the other musicians of {FACTION} have arrived. They will play at a party in the evening, and need a meal and a bed for the night.</li>
+        </ready>
+        <doneTitles>
+          <li>[party] {FACTION}'s musicians played</li>
+          <li>[noparty] {FACTION}'s musicians played</li>
+        </doneTitles>
+        <done>
+          <li>[party] {FACTION}'s musicians played at the colony's party in the evening and stayed the night. In the morning they paid {ITEM} for their keep and went on their way.</li>
+          <li>[noparty] The colony could not hold a party in the evening, so {FACTION}'s musicians played for whoever came by. In the morning they paid {ITEM} for their keep and went on their way.</li>
+        </done>
+        <failTitles>
+          <li>[harmed] {FACTION}'s musicians</li>
+          <li>[ended] {FACTION}'s musicians</li>
+          <li>[cancelled] {FACTION}'s musicians</li>
+        </failTitles>
+        <fail>
+          <li>[harmed] {FACTION}'s musicians came to play at the colony, and one of them was killed or taken prisoner there. {FACTION} will not forget it.</li>
+          <li>[ended] {FACTION}'s musicians will not be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and their musicians will stay somewhere else.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
