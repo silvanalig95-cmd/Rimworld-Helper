@@ -27,6 +27,9 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   favour, wants, rules or truths shown, and no Almanac page of the gods (docs/design/gods.md, "The gods are unseen").
   Events and cards may name a god when the colony knows it was that god (it was seen, revealed itself, or the gods walk
   openly), by the name the colony knows it by; else unnamed or "some say".
+  The colony's book may keep each god's temper toward the colony as the keeper reads it (the player, 16 November 2026:
+  "the god's favour should be tracked in the book, but the wording should also be kept a bit ominous, so not with a
+  numeric value or so"): words only, late and possibly wrong, never a number.
 - New ideas and requests go on the to-do list first (the player's rule since 11 November 2026): every new wish or
   report is written into `docs/HANDOFF.md` as a "To do when the player asks" entry with their words, and nothing is
   built until they say "do this now", "start now" or the like; gathered entries are then planned and built together.
