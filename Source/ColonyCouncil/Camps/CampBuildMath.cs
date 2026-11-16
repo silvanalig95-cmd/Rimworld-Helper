@@ -820,9 +820,6 @@ namespace ColonyCouncil
         /// <summary>They add nothing new in the last day of their stay.</summary>
         public const float GrowStopDays = 1f;
 
-        /// <summary>A step not built within this many days is given up (its blueprints taken up, the materials back in the stash).</summary>
-        public const float GrowGiveUpDays = 1.5f;
-
         /// <summary>Everything a camp can add as it settles in, by the role its pieces take (Camps/CampGrow.cs; the kits' grows, Rimfolk_CampKits.xml).</summary>
         public static readonly string[] GrowRoles = { "fireseat", "post", "fence", "drying", "stonework", "tailoring", "woodpile", "shrine", "banner", "latrine", "basket", "store" };
 

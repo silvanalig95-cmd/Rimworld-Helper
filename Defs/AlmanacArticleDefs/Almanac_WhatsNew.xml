@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.258.1</version>
+        <date>16 November 2026</date>
+        <title>What a camp lays out is built</title>
+        <points>
+          <li>Camps now build what they lay out, with their own construction work in their working hours.</li>
+          <li>When a camp's building is short of wood, one of them fells trees near the camp and carries the logs over.</li>
+          <li>On bare rock, camps mine stone and cut it into blocks, at a stonecutter's table or by hand for a tribe or a medieval people.</li>
+          <li>A camp gives a piece up only when the land can't give what it needs, nobody can build it, or they pack up.</li>
+          <li>Camps' trees are no longer marked for the colony's plant cutters, and what was in a half-built piece is packed when they leave.</li>
+          <li>In dev mode, a debug action shows what a camp's building waits on.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.258.0</version>
         <date>16 November 2026</date>
         <title>Riding out, and goodwill that says why</title>

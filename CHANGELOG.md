@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What a camp lays out is built
+
+*16 November 2026, version 0.258.1*
+
+- Camps now build what they lay out, with their own construction work in their working hours.
+- When a camp's building is short of wood, one of them fells trees near the camp and carries the logs over.
+- On bare rock, camps mine stone and cut it into blocks, at a stonecutter's table or by hand for a tribe or a medieval people.
+- A camp gives a piece up only when the land can't give what it needs, nobody can build it, or they pack up.
+- Camps' trees are no longer marked for the colony's plant cutters, and what was in a half-built piece is packed when they leave.
+- In dev mode, a debug action shows what a camp's building waits on.
+
 ## Riding out, and goodwill that says why
 
 *16 November 2026, version 0.258.0*

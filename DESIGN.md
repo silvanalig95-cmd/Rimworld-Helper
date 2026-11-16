@@ -4141,8 +4141,10 @@ then) and never set down again.
   under two and a half days, about once for every day and a quarter after the first, never more than two and one for
   every two of its people, six at most (three people for seven days: three; six for ten days: five; a hermit alone:
   two). The first 18 to 28 hours after the camp stands, then every 19 to 34 hours; nothing new in their last day, with
-  a threat on the map, at unease of 60 or more, or while they pack; an addition not built in a day and a half is given up
-  (its blueprints taken up, what was put into them back in the stash). What a kind adds, the most fitting first: its
+  a threat on the map, at unease of 60 or more, or while they pack; an addition is given up (its blueprints taken up,
+  what was put into them back in the stash) only when the land can't give what it needs, nobody of them can build it,
+  they pack, or nothing has moved on it for two days (until 16 November 2026: when it wasn't built in a day and a half;
+  "What a camp lays out is built, and they gather what it needs"). What a kind adds, the most fitting first: its
   own (a pen for a camp with beasts, a rack to dry meat for hunters, a stonecutter's table for those who come to cut
   rock, a tailor's bench for those who come to craft, a firewood rack for woodcutters, a small altar for a people of a
   faith with no spot of its own) in turn with what any camp would (seats round the fire, a lean-to over the stash for a
@@ -4166,7 +4168,9 @@ then) and never set down again.
   never on what stands, on a door step, a work spot's place to stand, a hut's or pen's inside or the stash's ground,
   never on the colony's ground, all within ten cells of the fire; everything a camp could add is about fifty cells at
   most. The pieces are of the first listed material they have enough of (their goods and packs), else wood where the
-  land has trees to cut; they set out carrying the materials for what they mean to add (the first of their additions,
+  trees round them give enough, else stone blocks of the rock round them where they can dress it (what they lack they
+  gather by day: "What a camp lays out is built, and they gather what it needs"); they set out carrying the materials
+  for what they mean to add (the first of their additions,
   as many as the stay allows; a firewood rack is of the wood they cut), and set them down at their stash on arriving;
   a camp from an earlier save adds what it has the means for. When it stands, the colony hears it in the evening's news
   (`CC_CampGrow_Done`: "The surveyors have put up a lean-to over their stash at their camp."), and one of them said a
@@ -4192,6 +4196,75 @@ then) and never set down again.
   cleaning job on their ground, the blueprints of each addition and their building, the lean-to's roof, the beasts in
   their pen and walking out through its gap, the drying rack and the banners of the player's mods built by a camp's
   people, the fire of the save's camp set down again.
+
+### What a camp lays out is built, and they gather what it needs (the player's report, 16 November 2026; released 0.258.1)
+
+The player's words, with their save: "in the save you also see that the camp made instructions to build for example new
+stools, but never actually constructs them. if they lack the materials, they should chop woods, mine stone etc. for it".
+
+**What the save showed** (League of Toba, on 0.257.0: the surveyors' camp of three south-east of the colony, one of them
+away in the colony as a guest). A day after the camp stood they laid out three seats round their fire, stools of wood,
+75 logs, with 20 logs in their stash and pines all round. The 20 went into the first stool; nobody went for more, as the
+only felling for it was one more tree on that day's count (the next morning's count set it back), and a day and a half
+later all three were taken up. Their goods then had no room, so a second shelf was laid out at once of the same 20 logs;
+its frame held all its wood for 1.3 days with no work done on it. Neither of the two at the camp had any construction
+time after their fire was built, and one of them cooked supper the evening after, which the building step's place in
+their day allows only when it hands them nothing: the frame was passed over, not tried and failed. Nothing stood on its
+cells, nobody held it reserved at the save, both could build and had the skill, so the save doesn't show which of the
+step's checks passed it over; of them, only the map's reservations can change with what other mods do. The step now asks
+only what is the camp's own (whether another of them is at it, a way to it, what stands on it, who of them can build
+it), and their own job finishes it.
+
+- **Their own construction job** (`JobDriver_CampBuild`, `Rimfolk_CampBuild`): a frame of theirs with all its materials
+  is finished by one of them with the game's own construction work: the builder's construction speed, the material's
+  pace, the frame's construction effect and progress bar, the skill learnt, and the game's own finishing (its quality by
+  the builder's skill). Not the game's finishing job, and none of its checks for the colony's builders (work settings,
+  what the colony forbade, an ideoligion's say on what may be built); one of them at a frame at a time by the camp's own
+  count, not the map's reservations. Anyone of theirs whose construction is open and who has the skill the piece asks
+  (construction, and art for a sculpted piece) builds; a piece nobody of them could build is not laid out. The colony's
+  rule that builders leave the trees in their way to its plant cutters (`BuildersTrees`) is for the colony's builds
+  only: a camp's trees were being marked for the colony's cutters.
+- **When** (`CampGatherMath.BuildHour`, `CampWork.JobFor`): setting up the camp, at any waking hour; once it stands, in
+  their working hours (seven to five), after meals and sleep, never in the evening by the fire. A piece waiting for its
+  ground (a tree on it, plain rock) now counts as building to do once the camp stands; it was cleared only while they
+  set up.
+- **What they gather** (`Camps/CampGather.cs`, the rules in `CampGatherMath`): material by material, what their pieces
+  still need (less what is in them or on its way to them) against what they have (their goods, their packs, the logs and
+  chunks their own work left lying). Short of wood, one of them fells the nearest wild tree that gives it (the trees of
+  their felling: wild, unmarked, outside the camp itself, clear of the colony, asked of the take rule), and its logs are
+  carried straight to the piece. Short of stone blocks, a chunk of theirs is dressed into blocks
+  (`Rimfolk_CampCutStone`, the game's stone-cutting look) at their stonecutter's table or, for a tribal or medieval
+  people, by hand at their crafting spot (`CutsByHand`, `Cutter`); else a chunk lying free on the land is fetched to
+  their stash, else plain rock is mined for one (a chunk of twenty blocks for every four cells, as the game drops them:
+  `BlocksPerRock`). What only a town makes (steel, cloth, chemfuel, components) is only what they carry; what they carry
+  in their packs for a piece goes down at the stash each hour. One of them gathers at a time, two in a camp of six hands
+  (`Gatherers`), never their trader; the rest go on with their day. A line now and then as they fell or cut (`[timber]`,
+  `[stone]`, Rimfolk_Pool_CampWork).
+- **What a piece is made of** (`ChooseStuff`): the first listed material they have enough of; else wood where the trees
+  round them give enough; else stone blocks of the rock round them where they can dress it; none, and the piece isn't
+  laid out. Every age its form: a tribal camp fells and carries logs (and dresses stone by hand on bare rock), an
+  industrial one builds of the steel it carries where its kit lists it, a spacer one of its steel and else of the wood
+  round it; never anything of the colony's.
+- **Given up** (`GiveUpWhy`, `Camp.GrowHoldUp`): an addition is given up only when they pack, nobody of them can build
+  it or carry what it needs, the land can't give what it is short of (no trees or rock within their reach that give
+  enough: `LandGives`), or, the last resort, nothing has moved on it for two days (no material in, no work, no tree
+  felled, rock mined or stone dressed: `StallTicks`). Its blueprints and frames are taken up and what was in them goes
+  back to the stash; nothing is said of it, and the evening's news only ever names what stands. The same addition may be
+  laid out again later in the stay (its old plans make way). Packing up, a half-built piece is taken up the same way and
+  what was in it is packed with their goods (until now it was lost with the frame). Setting up, the camp's own deadline
+  stays as it was.
+- **For a camp that still doesn't build** (dev mode, Debug actions, "Rimfolk", "Camps: what their building waits on"):
+  each piece laid out, what is in it, and for each of them what they would do for it or why not, with what the game
+  itself says (its reservations, a way to it, what stands on it), and each material short with what the land gives. A
+  piece given up writes its reason to the log in dev mode.
+- **Saved**: nothing new (`growUntil` is now two days after the last progress).
+- **Tests** (`Tools/Tests/CampGatherTests.cs`): what the land gives for wood, stone and what only a town makes, the next
+  step, the material chosen by age, the reasons to give up, the hours and the number gathering, and the piece played out
+  hour by hour: the save's stools short of wood with pines round them (two trees, built by the next midday, nothing in
+  the evening or the night), the save's shelf with all its wood (built in the first working hour), six hands felling two
+  at a time, too few trees (given up before one is felled), packing before it's done; the code's seams and the defs.
+- **Not run here**: the construction job on a frame in the game, the felling, fetching and delivering by day, the stone
+  dressed at a table or by hand, the save's shelf and stools built after loading.
 
 ## Harm from everyday life
 

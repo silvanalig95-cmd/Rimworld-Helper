@@ -3397,7 +3397,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   over their stash, a pen for their beasts, a drying rack for hunters, a stonecutter's table or a tailor's bench for
   their trade, a firewood rack for woodcutters, a small altar for a people of a faith, a banner at the edge, a latrine,
   a basket or another shelf when their goods have no room; nothing for a stay under two and a half days, six things at
-  most for a long one, all within ten cells of their fire and never on your ground. In their free hours they clean the
+  most for a long one, all within ten cells of their fire and never on your ground. They build it themselves in their
+  working hours; when what they carried runs short, one of them fells trees round the camp for wood, or mines plain rock
+  and cuts it into blocks, and carries it over; a piece the land round them can't give is taken up again. In their free hours they clean the
   mess on their own ground (blood, ash, trash, dirt), the orderly kinds often and before they go, the careless seldom.
   A wooded spot is as good as an open one:
   they fell the trees in the way, carry chunks aside and mine plain rock, as your builders would. Their day: their own
