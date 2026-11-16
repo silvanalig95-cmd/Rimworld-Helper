@@ -141,14 +141,20 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   empty feels it by belief (`GodTouch.Taken`); that god's own effect follows at most once in 4 days per god
   (`GodTouchMath.SameKeyGapDays`), and of those about a third are moods only and most are small. Pawns pick it
   themselves (`Offerings.Pick`: the god's liking, spare, a piece worth at most 40 + 8 a colonist, 250 at most, aiming at
-  about 20 + 3 a colonist in all). So many takings show nothing but a passing mood. Proposed in chat, waiting for the
-  player's go: (1) every taking is answered by something felt on the map: the one who brought it is glad it was
-  accepted, and the god's touch always follows (no moods-only outcome, no 4-day wait for a taking), small at least,
-  its chance of notable or great growing with what the offering was worth and how well it suited the god; (2) now and
-  then a return in kind, of the god's domain and the colony's age, worth about what was given (Smoulder's ore after
-  steel, Morel's mushrooms after food, Ducat's silver after gold); (3) the shrine gets a "may be offered" setting (a
-  filter of kinds and a top worth, cheap by default) so the player decides what leaves the stores; (4) the colony's
-  book keeps every taking, seen or found, so it can be looked back on.
+  about 20 + 3 a colonist in all). So many takings show nothing but a passing mood. Proposed in chat (an answer to every
+  taking, a return in kind, a shrine filter, the book keeping every taking); the player's answer: "ok understood! I
+  don't necessarily need every offering answered, as long as there is value to it still. sometimes a return in kind
+  sounds great. the book should track the offerings and in this case also the god's favour should be tracked in the
+  book, but the wording should also be kept a bit ominous, so not with a numeric value or so". So, when they say go:
+  (1) no answer to every taking, but none is wasted: what is given still counts for more the more it was worth (the
+  favour curve not flattening so early), and the god's touch after a taking leans the more likely and the stronger with
+  its worth and fit; (2) now and then a return in kind, of the god's domain and the colony's age, worth about what was
+  given (Smoulder's ore after steel, Morel's mushrooms after food, Ducat's silver after gold), played out on the map;
+  (3) the colony's book of the gods keeps every offering taken, seen or found empty, with what it was and where; (4) the
+  book also keeps each god's temper toward the colony as the keeper reads it, in words only and a little ominous
+  ("Smoulder's fires have burned warm toward us since the steel was given", "some say the Hunger is restless"), drawn
+  from the god's real favour but late and sometimes wrong, as the pawns would read it; never a number. No shrine
+  filter (not asked for).
 - **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
   player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
   have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
