@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public const string Camp = "camp";
         /// <summary>A story chain running (Happenings/Workers_Chains2.cs: StoryChains).</summary>
         public const string Chain = "chain";
+        /// <summary>A storyline running, or what its ending leaves (Storylines/Storylines.cs).</summary>
+        public const string Storyline = "storyline";
         /// <summary>Who led settlers to a town being founded or kept in detail (World/Region/RegionFaces.cs).</summary>
         public const string Founding = "founding";
         /// <summary>Settlers on their way to found a hamlet under the colony's protection (World/Region/Hamlet.cs).</summary>
@@ -136,6 +138,7 @@ namespace ColonyCouncil
                     return CampReturns.Past.Any(c => c?.people != null && c.people.Contains(p))
                            || (CampTracker.Instance?.All.Any(c => c?.members != null && c.members.Contains(p)) ?? false);
                 case KeepFor.Chain: return StoryChains.Holds(p);
+                case KeepFor.Storyline: return Storylines.Holds(p) || (Storylines.Book?.afters.Any(a => a?.pawn == p) ?? false);
                 case KeepFor.Founding: return FounderNamed(Refs.Of(p));
                 // A raiders' camp's leader (World/Region/RaidersCamp.cs), and a follow-up's own person while it waits (World/Region/FollowUps.cs).
                 case RaidersCamps.KeepReason: return RaidersCamps.Leads(p);

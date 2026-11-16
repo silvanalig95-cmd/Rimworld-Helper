@@ -15353,6 +15353,129 @@ they are: felt at revels and feasts, in a drinker's or a smoker's high, in an ad
   Revel's cup (log)", "Gods: Revel's next cup does...". Tests: `Tools/Tests/RevelTests.cs` (and every test that counts the
   gods); the moods in `Tools/Balance/Rates.cs`.
 
+### Quests and storylines: the frame, the factor's goods, the beast and the children (the player's go, 16 November 2026; not released yet)
+
+The player, 13 November 2026: "the next thing to include will be more quests, and quests that are storylines across
+multiple quests"; the go, 16 November 2026: "go ahead with quests and storylines, make sure they are written in the more
+clear style i mentioned earlier on", "and while quests that require you to go out of your base are interesting, i hardly
+ever reach the stage where I can consistently go out of base and it's worth it, so keep these quests to a minimum",
+"unless it's like within only very few tiles". The list and the eight rules are `docs/quests-proposals.md`; this is round
+1's storyline frame with S1, S4 and S8 (the single quests of round 1 are built beside it). Everything here plays out on
+the colony's own map: people come to the colony, and nothing sends colonists away.
+
+- **A storyline** (`Storylines/Storylines.cs`, saved in `StoriesComponent.storylines`, a `StorylineBook`) is a run of
+  missions told over weeks. Each part is a mission in the Quests tab (or a letter with the setting off), offered by an
+  event of its own (`Defs/MissionDefs/Rimfolk_Storyline_*.xml`, a `StorylinePart` extension): titled "Part 2: The
+  rival's offer", its description the storyline's name and part ("The factor's goods, part 2."), then its text, which
+  opens with one or two plain sentences on what happened before, then its terms (who asks, what, by when, what the
+  colony gets, what happens if it fails). The first part is drawn by the storyteller like any Rimfolk event (base chance
+  0.4, the story direction's levers apply; the beast's leans to "beasts"); the later ones have no chance of their own and
+  are fired by the storyline when they're due, never while another mission is open, a question waits or a fight is on
+  (tried again every few hours; after 20 days of waiting it fades with a plain ending).
+- **When a part ends** (`Missions.Finish` tells `Storylines.MissionEnded`: done, failed, declined or let expire, its
+  people broken with the colony, or the answer of a card inside it), the storyline's own rules (`StorylineMath.Next`, pure,
+  tested) pick the next part and how long until it comes (one to six days for most, a season for the beast that comes
+  back, two to four seasons for the eldest child grown), or the ending. A long wait is quiet: it doesn't hold another
+  storyline back. Every part and outcome leads somewhere.
+- **A card inside a part** (`HappeningWorker_StorylineCard`): an event letter with answers, asked while the part runs
+  (the rival at the gate; the children's grown-up at the end of their stay; the eldest asking to join). Each answer
+  shows what it will do (`DilemmaEffect_StorylineChoice`: silver, goodwill, who joins; and the game's own carrying where
+  goods are carried out), and the part plays the answer out on the map before it ends.
+- **Endings** (`Defs/StorylineDefs/Rimfolk_Storylines.xml`, a `StorylineDef` each): a line in the chronicle for every
+  ending, and a letter of its own for those that play out at their own time (the factor coming for her crates, her
+  guards, the beast gone for good, the people who asked turned against the colony); the rest were told by the part that
+  led to them. Their people gone, destroyed or at war (`StorylineMath.GiverGone`): a plain ending at once, never stuck.
+- **The World page** (the region window's Neighbours page, "Storylines" under the missions, `StorylinePanel.cs`): each
+  storyline running, and each ended in the last fortnight, with its parts so far ("Part 1: Keep the factor's crates: all
+  the crates kept, sealed and dry"), what is on its way as the colony knows it, or how it ended. Click opens the part's
+  quest.
+- **Pace** (`StorylineMath.CanStart`): one at a time; a second only once the first has run a season (15 days); two at
+  most; the same storyline not again for 60 days after it ended.
+
+**S1, the factor's goods** (`Storylines/StorylineFactor.cs`). A factor of a trading people (the road league and any people
+of the traders' calling first, else the brokers or any people at peace whose traders come with caravans) asks the colony
+to keep five to eight sealed crates until the end of the season, for an eighth of their worth (40 silver at least). Taken
+on, she comes with two porters (a lander's pods for a people of the spacer age) and the crates, the road league's sealed
+crates with goods of her people's age (`PeopleTrust`), are set down by the stores, with a trust record of their own so
+opening, selling and burning are noted as they happen. A crate under the open sky in rain or snow is wet (told at its
+first hour and halfway), and after 12 hours its goods are spoiled. After eight to ten days her clerk walks in and counts
+them where they stand. Part 1 ends **kept** (every crate there, sealed and dry) or **lost**.
+- Kept: two to five days later, **part 2, the rival's offer**: a trader of another trading people (else another people,
+  else another house of hers) asks to meet at the gate. Taken on, the rival walks in and the card asks: **sell** (1.3
+  times their worth, paid into the colony's hands, and the crates carried out to the rival), **refuse**, or **refuse and
+  tell her** (her people +8, the rival's -5). Not met, or refused: three to six days later she comes with porters, the
+  crates are carried out to her, she pays the fee (less what went missing since the count) and comes by once a season for
+  a year with a share of her trade (7 % of the crates' worth a season, 10 % when the colony told her; at least 30), her
+  people +8 (+12 told). Sold: she finds out seven times in ten (**part 3, pay the factor**: their whole worth within 8
+  days, collected from the stockpiles by her people; paid, the matter is settled and her people trust the colony less;
+  not paid, three of her guards come to the gate with her word, -40, and no traders of her people for a year); else she
+  comes, finds them gone and believes they were stolen (no fee, -5).
+- Lost: a day or two later, **part 2, pay for the lost crates**: what they were worth, within 10 days. Paid, her people
+  collect the silver and the crates that are left; not paid, they take what is left, -15, and no traders for a year (the
+  game's caravans of her people held back, `Patch_StorylineNoTrade`).
+- The league's own crates in trust wait while hers are kept (`FactorRules.CratesHeld`). Her people gone or at war: nobody
+  will come for the crates, so the colony opens them.
+
+**S4, the beast coming down the valley** (`Storylines/StorylineBeast.cs`). A hunting people (the Lantern Wardens and any
+of the hunters' calling first, else a people of the tribal or medieval age, else any at peace) sends a runner or a radio
+call: a huge beast is coming down the valley. The beast is one of the region's legends (`LegendWorker.Kinds`: the biggest
+animals loaded that could live here, from every mod enabled, never a Pokémon), the strongest whose combat power fits
+85 % of the threat the storyteller would send now, else the weakest (`StorylineMath.BeastPick`); named from the legends'
+pool, old, scarred and legendary like them. It starts only with fights possible and no region legend running.
+- **Part 1, get ready**: within six to eight days, build at least three to six traps (by the colony's size) or 24 to 60
+  lengths of wall or fence from now, and keep three in four of the colony's animals in a pen or a room. Both: ready
+  (+10); one: partly (+5); neither: unready. Declined: the hunters turn it away themselves.
+- **Part 2, look at its kill** (two to four days later): a wild animal of the land bitten to death at the edge of the
+  map, with blood and a line of tracks to it, there as soon as the hunters speak of it. Someone of the colony who walks
+  within six cells of it within two days has found it (the beast will come from that side); else missed.
+- **Part 3, the beast comes** (one to three days later; a fight, so only with battles possible and nothing else on): it
+  comes within a day of the colony taking it on, enraged (the game's manhunter), from the side of its tracks when they
+  were found. With goodwill 25 or more, two to four hunters of theirs come with it on the game's own assist-the-colony
+  duty (three when the colony got ready, four for a friend at 75). Below 35 % of its health it turns and flees (the
+  game's panic flee); still here a day and a half after it came, it goes off on its own; down at the end of that time,
+  it dies of its wounds. Killed (or tamed): the colony keeps the body and a trophy (its horns or tusks, else a part of its
+  hide), +15 (+20 with their hunters beside it). Driven off or gone: it comes back next season (13 to 17 days, a quiet
+  wait), at most twice, then it stays away. Declined: the hunters turn it away.
+
+**S8, the children from the burned village** (`Storylines/StorylineChildren.cs`; needs Biotech, for the children). A
+small village of a people at peace burned down (never one of their towns on the world map), and one of its grown-ups
+brings two to four of its children (the eldest 12.4 to 12.9 years old) and asks for shelter.
+- **Part 1, shelter them**: they come within a day and stay three or four days as every hosting mission's guests
+  (`HappeningWorker_MissionHost`, `Hosting`): a bed or sleeping spot each and meals from the stores, their own packs when
+  there's nothing; each day counted fed and sheltered or short, and told. Then the grown-up asks (the card): **take them
+  in** (each child joins the colony as a colonist, +10; the colony is the family, so nothing more is tied to it), **find
+  them a home with neighbours** (another people at peace, else another town of their own: two of theirs come to the gate
+  within a day and the children go with them, joined to that people; +15, the neighbours +5; the default), or **send them
+  on with food** (three meals each carried out to the grown-up, +4; they go a few hours later). Half or more of the
+  children dead or taken prisoner in the colony's care ends it.
+- **Part 2, the eldest comes back grown** (two to four seasons later, placed or sent on): at least 13, the game's adult
+  age; to visit with a gift of thanks (about 150 to 350 silver's worth by the colony's wealth, in their own hands), to trade at the gate from a pack of
+  their people's caravan goods, or to ask to join (the card: a colonist, or they go on). Placed, more often to join; sent
+  on, more often to trade. If they can no longer come (dead, their people gone or at war), it ends quietly.
+
+**The rules held.** At home: every part plays out on the colony's own map. Every age: the factor's means and goods, the
+hunters' runner or radio and their weapons, the burned village or settlement and the trader's stock are their people's
+age's. Harm only where the plan says (the beast's fight, shown, scaled to the colony, only with battles on and nothing
+else on the map); the shared everyday harm budget is untouched. Plain words: titles say what the part is, descriptions
+open with what happened before, then who asks, what, by when, for what, and what if it fails; no em dashes or
+exclamation marks; spoken lines one sentence. Every mission rule holds: one at a time, the Quests tab or a letter, the
+people's memory of a promise kept or broken.
+
+Code map: `Storylines/StorylineMath.cs` (pure: kinds, parts, endings, pace, `Next`, the numbers; linked in
+`Tools/Tests/Tests.csproj`), `Storylines.cs` (the def, the saved records, the book, the hourly step, endings, words,
+`Patch_StorylineNoTrade`), `StorylineParts.cs` (the part extension, `StorylineKit` shared by both kinds of part worker,
+`HappeningWorker_StorylinePart`, the card worker, `DilemmaEffect_StorylineChoice`), `StorylineFactor.cs`,
+`StorylineBeast.cs`, `StorylineChildren.cs`, `StorylinePanel.cs`, `StorylinesDebug.cs`. Changed: `Missions/Missions.cs`
+(`Finish` tells the storyline), `Missions/StoriesComponent.cs` (the book saved, the hourly step; an older save loads with
+none), `World/Ledger/LedgerKeep.cs` (`KeepFor.Storyline`), `UI/Region/HereAndAwayView.cs` (the section),
+`Peoples/Events/PeopleTrust.cs` (the league's crates wait), `Tools/DefValidator/Program.cs` (the storylines' names in
+words). Defs: `Defs/StorylineDefs/Rimfolk_Storylines.xml`, `Defs/MissionDefs/Rimfolk_Storyline_Factor.xml`, `_Beast.xml`,
+`_Children.xml`; Keyed `Rimfolk_Storylines.xml`. Saved: the storylines (two running at most, ended ones 60 days) with
+their parts, flags, people and the crates' hours in the rain, and what an ending leaves for a year (`Tools/save_estimate.py`).
+Dev mode (Debug actions, Rimfolk): "Storylines: start the factor's goods now", "... the beast coming down the valley
+now", "... the children from the burned village now", "Storylines: end the current part with..." (the branch only),
+"Storylines: the next part (or ending) due now", "Storylines: what stands (log)". Tests: `Tools/Tests/StorylineTests.cs`.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

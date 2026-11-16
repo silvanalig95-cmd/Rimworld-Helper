@@ -15,6 +15,8 @@ namespace ColonyCouncil
         public List<StoryChain> chains = new List<StoryChain>();
         public List<Mission> missions = new List<Mission>();
         public int nextId = 1;
+        /// <summary>Storylines: runs of missions told over weeks (Storylines/Storylines.cs).</summary>
+        public StorylineBook storylines = new StorylineBook();
 
         private static StoriesComponent cachedInstance;
         private static Game cachedGame;
@@ -59,6 +61,7 @@ namespace ColonyCouncil
             using var clock = PassClock.Time(Pass.Stories);
             Safe("story chains", () => StoryChains.Hourly(t));
             Safe("missions hourly", () => Missions.Hourly(this, t));
+            Safe("storylines", () => Storylines.Hourly(t));
             // What the world's peoples remember fades a little each day (World/FactionMemory.cs).
             if (Sched.FirstHourOfDay(t)) Safe("faction memory", () => FactionMemory.Daily(t));
         }
@@ -81,10 +84,13 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref chains, "chains", LookMode.Deep);
             Scribe_Collections.Look(ref missions, "missions", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
+            Scribe_Deep.Look(ref storylines, "storylines");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (chains == null) chains = new List<StoryChain>();
                 if (missions == null) missions = new List<Mission>();
+                // An older save, from before storylines.
+                storylines ??= new StorylineBook();
                 chains.RemoveAll(c => c == null || c.kind == null);
                 missions.RemoveAll(m => m == null || m.kind == null);
             }

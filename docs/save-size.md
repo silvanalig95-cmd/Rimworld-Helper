@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 717; modelled: 717; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** after two, **4,210 KB** after five.
+Saved collections found: 723; modelled: 723; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,056 KB** after a year, **3,767 KB** after two, **4,219 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -98,6 +98,7 @@ Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** aft
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `World/Notables.cs:letters` | letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; the bringing flag while the writer carries one to the mailbag, cleared once in; the head a town's matter is passed on to | cap | 15 | 15 | 15 | 8.6 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
+| `Storylines/Storylines.cs:lines` | running storylines (two at most) and those ended in the last StorylineBook.KeepEndedDays | cap | 4 | 6 | 6 | 8.2 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
@@ -360,6 +361,7 @@ Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** aft
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
+| `Storylines/Storylines.cs:afters` | what an ending leaves for a year (a season's share, no traders): gone once over | cap | 3 | 3 | 3 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
@@ -710,6 +712,10 @@ Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** aft
 | `Social/Groups/SocialGroup.cs:rivals` | per group: rivalries with groups still there (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/Groups/SocialGroup.cs:views` | per group: 3 views (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/SocialWeb.cs:history` | per tie (counted under ties) | fixed | 10 | 10 | 10 | (in its record) |
+| `Storylines/Storylines.cs:flags` | per storyline: what has happened so far (counted under lines) | fixed | 8 | 8 | 8 | (in its record) |
+| `Storylines/Storylines.cs:group` | per storyline: the children, or the beast's hunters (counted under lines) | fixed | 4 | 4 | 4 | (in its record) |
+| `Storylines/Storylines.cs:steps` | per storyline: its parts so far, five at most (the beast comes three times) (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
+| `Storylines/Storylines.cs:wet` | per storyline: hours in the rain, one per crate of the factor's (counted under lines) | fixed | 8 | 8 | 8 | (in its record) |
 | `Trade/TradeRecord.cs:lines` | per good: its newest trades, TradeMarketMath.MaxLinesPerGood at most (counted under goods) | fixed | 5 | 5 | 5 | (in its record) |
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |

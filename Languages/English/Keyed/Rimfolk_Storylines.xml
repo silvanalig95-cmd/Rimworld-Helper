@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Storylines (Source/ColonyCouncil/Storylines/): the few words the code puts together. Each storyline's own words are
+       in Defs/StorylineDefs/Rimfolk_Storylines.xml, each part's in Defs/MissionDefs/Rimfolk_Storyline_*.xml. -->
+
+  <!-- ===================== A part in the Quests tab ===================== -->
+  <CC_Storyline_PartTitle>Part {N}: {TITLE}</CC_Storyline_PartTitle>
+  <CC_Storyline_Header>{STORY}, part {N}.</CC_Storyline_Header>
+
+  <!-- ===================== The World page (the Neighbours page, under the missions) ===================== -->
+  <CC_Storyline_Section>Storylines</CC_Storyline_Section>
+  <CC_Storyline_UnderWay>under way</CC_Storyline_UnderWay>
+  <CC_Storyline_Offered>offered, waiting for the colony's answer</CC_Storyline_Offered>
+  <CC_Storyline_Next>Next: {TEXT}</CC_Storyline_Next>
+  <CC_Storyline_Ended>How it ended: {TEXT}</CC_Storyline_Ended>
+
+  <!-- ===================== The factor's goods ===================== -->
+  <CC_Storyline_CratesLabel>the factor's crates</CC_Storyline_CratesLabel>
+  <CC_Storyline_Share>{WHO} of {FACTION} came by with the colony's share of this season's trade: {SILVER} silver.</CC_Storyline_Share>
+  <CC_Storyline_Factor_Status>Crates here, sealed and dry: {HELD} of {TOTAL}.</CC_Storyline_Factor_Status>
+  <CC_Storyline_Factor_Unroofed>{COUNT} of them have no roof over them.</CC_Storyline_Factor_Unroofed>
+  <CC_Storyline_Rival_Coming>{RIVAL} is on the way to the gate.</CC_Storyline_Rival_Coming>
+  <CC_Storyline_Rival_Asked>The trader is at the gate, waiting for the colony's answer.</CC_Storyline_Rival_Asked>
+  <CC_Storyline_Pay_Coming>People of {FACTION} come for the silver within {DAYS}.</CC_Storyline_Pay_Coming>
+  <CC_Storyline_Impact_Sell>If {GIVER} finds out who bought the crates, {GIVER} will ask the colony to pay what they were worth.</CC_Storyline_Impact_Sell>
+  <CC_Storyline_Impact_SellBrief>the factor may find out</CC_Storyline_Impact_SellBrief>
+  <CC_Storyline_Impact_Refuse>{GIVER} comes for the crates later in the season and pays {FEE} silver for the keeping.</CC_Storyline_Impact_Refuse>
+  <CC_Storyline_Impact_RefuseBrief>the factor pays for the keeping</CC_Storyline_Impact_RefuseBrief>
+  <CC_Storyline_Impact_Tell>{GIVER} hears that the colony refused the offer.</CC_Storyline_Impact_Tell>
+
+  <!-- ===================== The beast coming down the valley ===================== -->
+  <CC_Storyline_Beast_Ready>Traps built: {TRAPS} of {TRAPGOAL}. Lengths of wall or fence built: {WALLS} of {WALLGOAL}. Animals in a pen or a room: {KEPT} of {ANIMALS} ({NEEDED} needed).</CC_Storyline_Beast_Ready>
+  <CC_Storyline_Beast_Signs>The kill lies at the edge of the colony's land, {WAY}.</CC_Storyline_Beast_Signs>
+  <CC_Storyline_Beast_Coming>{NAME} reaches the colony's land within {DAYS}.</CC_Storyline_Beast_Coming>
+  <CC_Storyline_Beast_Here>{NAME} is on the colony's land.</CC_Storyline_Beast_Here>
+
+  <!-- ===================== The children from the burned village ===================== -->
+  <CC_Storyline_Children_Hungry>The children from the burned village of {FACTION} went short today: when they were hungry the stores had nothing for them, so they ate the food they brought.</CC_Storyline_Children_Hungry>
+  <CC_Storyline_Children_NoRoof>Not every one of the children from the burned village of {FACTION} had a bed today: each of them needs a free bed or sleeping spot under a roof.</CC_Storyline_Children_NoRoof>
+  <CC_Storyline_Children_Neither>The children from the burned village of {FACTION} went short today: when they were hungry the stores had nothing for them, so they ate the food they brought, and not every one of them had a bed or sleeping spot under a roof.</CC_Storyline_Children_Neither>
+  <CC_Storyline_Children_Coming>{COUNT} people from the burned village arrive within {DAYS}.</CC_Storyline_Children_Coming>
+  <CC_Storyline_Children_Asking>The colony is asked what should become of the children.</CC_Storyline_Children_Asking>
+  <CC_Storyline_Children_Fetch>People of {OTHERPEOPLE} are coming for the children.</CC_Storyline_Children_Fetch>
+  <CC_Storyline_Children_Going>The children are about to go on.</CC_Storyline_Children_Going>
+  <CC_Storyline_Impact_TakeIn>The {COUNT} children join the colony as colonists.</CC_Storyline_Impact_TakeIn>
+  <CC_Storyline_Impact_TakeInBrief>they join the colony</CC_Storyline_Impact_TakeInBrief>
+  <CC_Storyline_Impact_Place>People of a neighbouring people come for the children within a day and take them to their new home.</CC_Storyline_Impact_Place>
+  <CC_Storyline_Impact_PlaceBrief>neighbours come for them</CC_Storyline_Impact_PlaceBrief>
+  <CC_Storyline_Impact_Join>{NAME} joins the colony as a colonist.</CC_Storyline_Impact_Join>
+  <CC_Storyline_Impact_JoinBrief>joins the colony</CC_Storyline_Impact_JoinBrief>
+  <CC_Storyline_Back_Coming>{NAME} comes to the gate within a day.</CC_Storyline_Back_Coming>
+
+</LanguageData>

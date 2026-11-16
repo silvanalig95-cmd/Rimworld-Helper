@@ -59,8 +59,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
     consistently go out of base and it's worth it, so keep these quests to a minimum", "unless it's like within only
     very few tiles". The list and the rules are in `docs/quests-proposals.md`: nearly all at home, away only within
-    3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1
-    is being built (the storyline frame with S1, S4 and S8; Q1, Q2, Q5, Q7, Q9 and Q10 beside it). Rounds 2 and 3
+    3 tiles and at most one quest in ten; storylines S1 to S12 and single quests Q1 to Q14 in three rounds. Round 1:
+    the storyline frame with S1, S4 and S8 is built, not released (the entry above the newest release line,
+    "Storylines: the frame, ..."); Q1, Q2, Q5, Q7, Q9 and Q10 are being built beside it. Rounds 2 and 3
     wait, and the player can strike or change anything in them before they start.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
@@ -144,6 +145,78 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Storylines: the frame, the
+  factor's goods, the beast coming down the valley and the children from the burned village** (16 November 2026; the
+  player's words, 13 November 2026: "the next thing to include will be more quests, and quests that are storylines across
+  multiple quests"; the go, 16 November 2026: "go ahead with quests and storylines, make sure they are written in the more
+  clear style i mentioned earlier on", "and while quests that require you to go out of your base are interesting, i
+  hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these quests to a
+  minimum", "unless it's like within only very few tiles"). Round 1's storyline part of `docs/quests-proposals.md` (the
+  single quests Q1, Q2, Q5, Q7, Q9 and Q10 are being built beside it). DESIGN.md "Quests and storylines: the frame, the factor's
+  goods, the beast and the children" (after "Revel, the Open Cup") has all of it; `docs/quests-proposals.md` marks S1, S4
+  and S8 built; README a paragraph after the missions; the Almanac's Rimfolk events page a "Storylines" section after
+  "Missions" (keywords unchanged).
+  - **What was built.** The frame: a storyline is a saved run of missions; each part a quest in the Quests tab (or a
+    letter) titled "Part 2: ...", its description the storyline's name and part, then a text that opens with what
+    happened before, then its terms. When a part ends (done, failed, declined or let expire, its people broken with the
+    colony, or a card's answer inside it) the storyline's pure rules pick the next part (one to six days later; a season
+    for the beast's return and two to four for the eldest child, both quiet waits) or the ending. Cards inside parts are
+    event letters with answers whose impact shows under them. Endings: the chronicle always, a letter of their own when
+    they play out at their own time. One at a time, a second after the first has run a season, two at most, a kind not
+    again for 60 days. A storyline whose people are gone, destroyed or at war ends plainly at once. The World page (the
+    Neighbours page, under the missions) shows each running and recent storyline with its parts so far. S1, the factor's
+    goods (keep the crates under a roof for eight to ten days, her clerk counts them; the rival's offer with sell, refuse
+    or tell; her share every season for a year, or the debt and her guards, or ten days to pay for what was lost). S4, the
+    beast (get ready with traps or a wall and the animals in; look at its kill at the edge of the land; it comes, a real
+    fight with the hunters beside the colony when it stands well with them; the trophy, or back next season at most
+    twice). S8, the children (sheltered three or four days, then taken in as colonists, given a home with neighbours who
+    come for them, or sent on with food; the eldest back grown seasons later to visit, trade or ask to join).
+  - **Decided here** (not asked): every part can be turned down, the beast's coming too (the hunters turn it away), so no
+    fight comes unasked; the rival is a trader of another trading people at peace (else another people, else another
+    house of hers); sold, she finds out seven times in ten (else she believes the crates were stolen); "their guards come
+    to the gate" is three guards with her word and a heavy goodwill loss (never into war) and no traders for a year, no
+    fight (S1 names no harm); "the league stops sending traders for a year" is the factor's own people (the game's
+    caravans of that faction held back); the crates and their goods are the road league's own crates in trust, by her
+    people's age; "dry" is 12 hours unroofed in rain or snow; the beast's givers fall back to tribal or medieval peoples,
+    then any at peace; the beast never while a region legend runs; traps or walls count from the part's start, the
+    animals at the date; the kill and tracks appear when that part is offered, whatever the answer; the children need
+    Biotech, the eldest 12.4 to 12.9 so they are 13 (the game's adult) when they come back, aged to 13 then if the
+    world's clock hadn't got there; the children's default answer is a home with neighbours; the first parts' base chance
+    0.4; a part due waits while another mission is open (one mission at a time), and fades after 20 days of waiting.
+  - **Code map**: `Source/ColonyCouncil/Storylines/` (`StorylineMath.cs` pure and linked in `Tools/Tests/Tests.csproj`;
+    `Storylines.cs` the def, records, book, hourly step, endings, words and `Patch_StorylineNoTrade`; `StorylineParts.cs`
+    the part extension, `StorylineKit`, `HappeningWorker_StorylinePart`, the card worker and `DilemmaEffect_StorylineChoice`;
+    `StorylineFactor.cs`, `StorylineBeast.cs`, `StorylineChildren.cs`; `StorylinePanel.cs`; `StorylinesDebug.cs`).
+    Changed, small: `Missions/Missions.cs` (`Finish` calls `Storylines.MissionEnded`), `Missions/StoriesComponent.cs` (the
+    `storylines` book saved with `Scribe_Deep`, the hourly step, an older save loads with none), `World/Ledger/LedgerKeep.cs`
+    (`KeepFor.Storyline` and its check), `UI/Region/HereAndAwayView.cs` (the section), `Peoples/Events/PeopleTrust.cs`
+    (the league's crates wait while the factor's are kept), `Tools/DefValidator/Program.cs` ({GIVER}, {OTHERPEOPLE},
+    {SILVER}, {TRAPS}, {WALLS}). Defs: `Defs/StorylineDefs/Rimfolk_Storylines.xml`,
+    `Defs/MissionDefs/Rimfolk_Storyline_Factor.xml`, `_Beast.xml`, `_Children.xml`; Keyed `Rimfolk_Storylines.xml`. Save
+    model: `Tools/save_estimate.py` (the storylines and what endings leave). Tests: `Tools/Tests/StorylineTests.cs`.
+  - **Can't be checked without the game**: a part's quest in the Quests tab (title, description, accept, expiry) and the
+    letter path; the porters carrying the crates in and out, the rain on a crate under the open sky, the clerk walking to
+    the crates; the rival reaching the gate and the card, the crates carried out to the rival and the silver handed over;
+    the kill and its tracks at the edge, the beast's rage, flight and leaving, the hunters on the game's assist duty, the
+    same beast coming back; the children's beds and meals, the card at the end, the children joining, the neighbours'
+    fetch, the food carried out, the eldest grown to 13 and a trader's pack; the World page's section; how often each
+    storyline comes in a real game.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk): 1. "Storylines: start the factor's goods now": "Part 1: Keep
+    the factor's crates" is in the Quests tab; accept, and the factor and two porters bring the crates to the stores; drag
+    one outside in the rain to see the message; "Storylines: end the current part with..." (keep: kept), then
+    "Storylines: the next part (or ending) due now": "Part 2: The rival's offer"; accept, and when the rival reaches the
+    gate the card comes; sell, refuse or tell; "next part due now" again for the ending or part 3. 2. "Storylines: start
+    the beast coming down the valley now" (battles on): accept, build traps, end the part (ready), next due now: the kill
+    lies at the edge of the map; send someone; next due now: "Part 3: ... comes"; accept and it comes within a day (with
+    hunters at goodwill 25 or more). 3. "Storylines: start the children from the burned village now" (Biotech): accept;
+    they come within a day; after their stay the card; take them in, or a home with neighbours (their people come), or send
+    them on with food. 4. "Storylines: what stands (log)" at any point; save and load mid-storyline.
+  - **Mods that would help**: none is needed. The beasts already come from every legend-sized animal of the enabled mods:
+    Megafauna (https://steamcommunity.com/sharedfiles/filedetails/?id=1055485938, tagged up to 1.6), Dinosauria
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=1136958577, 1.6 and 1.7), Alpha Animals
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=1541721856, 1.6 and 1.7) and Vanilla Animals Expanded
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=2871933948, 1.6 and 1.7); the factor's crates keep dry on
+    LWM's Deep Storage shelves (https://steamcommunity.com/sharedfiles/filedetails/?id=3532608331, 1.6 and 1.7, enabled).
 - 0.260.0, **Revel, the Open Cup: a fifteenth
   god of drink, drugs and the long night, in one cup of the stores and as a horned reveller** (16 November 2026; the
   player's words below, from the to-do; the go with the offerings update: "go ahead with this, and if there's other

@@ -447,6 +447,15 @@ namespace ColonyCouncil
             }
             // What those who did it remember, and are talked of for (Social/Talk/SharedTimes.cs).
             SharedTimes.MissionEnded(m, state, outcome, wasActive, look);
+            // A storyline's part: its rules pick the next part or the ending (Storylines/Storylines.cs).
+            try
+            {
+                Storylines.MissionEnded(m, state, outcome);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("storyline part ended " + m.kind, e);
+            }
             if (m.questId >= 0)
             {
                 // Rimfolk's watch on finished quests writes the chronicle and the colony's pride.

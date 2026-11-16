@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S1, the factor's goods (Source/ColonyCouncil/Storylines/StorylineFactor.cs; the storyline's own words in
+       Defs/StorylineDefs/Rimfolk_Storylines.xml). Each part is a mission in the Quests tab: its title becomes "Part 2: ...",
+       and its description opens with the storyline's name and part, then the text (which says what happened before),
+       then the terms. {GIVER} is the factor by name, {RIVAL} the rival trader, {OTHERPEOPLE} the rival's people, {COUNT}
+       the crates, {SILVER} the sum the part is about (the keeping's fee, the offer, what is owed), {DAYS} the time once
+       taken on. Answers' words use only {X_nameDef} (the person at the gate), {FACTION} and {COUNT}. -->
+
+  <!-- ===================== Part 1: keep the factor's crates ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_FactorKeep</defName>
+    <label>the factor's crates</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FactorKeep</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep the factor's crates</li>
+        </titles>
+        <texts>
+          <li>[their:tribal|their:medieval] {GIVER}, a factor of {FACTION} from {PLACE}, has more goods than the caravan's pack animals can carry. {GIVER} asks the colony to keep {COUNT} sealed crates until the end of the season.</li>
+          <li>[their:industrial] {GIVER}, a factor of {FACTION} from {PLACE}, has more goods than the trucks can carry this trip. {GIVER} asks the colony to keep {COUNT} sealed crates until the end of the season.</li>
+          <li>[their:spacer] {GIVER}, a factor of {FACTION} from {PLACE}, has more cargo than the next shuttle can lift. {GIVER} asks the colony to keep {COUNT} sealed crates until the end of the season.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept</label>
+            <outcome>The factor will bring the crates.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The factor will find somewhere else to keep the crates.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[kept] All here and dry, thank you.</li>
+          <li>[lost] Some of these crates are not as we left them.</li>
+          <li>[thanks] Everything is here, and here is your pay for the keeping.</li>
+          <li>[cold] I'll take what is left of my goods.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>factor</story>
+        <part>keep</part>
+        <start>true</start>
+        <terms>
+          <li>[their:tribal|their:medieval] {GIVER} brings the crates within a day of the colony agreeing, and porters set them down by the stores. Keep them under a roof, and do not open, sell or lose any of them. After {DAYS}, a clerk of {FACTION} comes to count them.\n\nIf all of them are there, sealed and dry, {GIVER} will come for them later in the season and pay {SILVER} silver for the keeping. A crate left out in the rain or snow for half a day is spoiled. For any crate lost, opened, sold or spoiled, {GIVER} will ask the colony to pay what it was worth.</li>
+          <li>[their:industrial] {GIVER} brings the crates within a day of the colony agreeing, and porters set them down by the stores. Keep them under a roof, and do not open, sell or lose any of them. After {DAYS}, a clerk of {FACTION} comes to count them.\n\nIf all of them are there, sealed and dry, {GIVER} will come for them later in the season and pay {SILVER} silver for the keeping. A crate left out in the rain or snow for half a day is spoiled. For any crate lost, opened, sold or spoiled, {GIVER} will ask the colony to pay what it was worth.</li>
+          <li>[their:spacer] {GIVER}'s shuttle drops the crates by the stores within a day of the colony agreeing. Keep them under a roof, and do not open, sell or lose any of them. After {DAYS}, a clerk of {FACTION} comes to count them.\n\nIf all of them are there, sealed and dry, {GIVER} will come for them later in the season and pay {SILVER} silver for the keeping. A crate left out in the rain or snow for half a day is spoiled. For any crate lost, opened, sold or spoiled, {GIVER} will ask the colony to pay what it was worth.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} of {FACTION} is on the way with {COUNT} crates. Keep them under a roof and sealed for {DAYS}.</li>
+        </accepted>
+        <reminder>
+          <li>A clerk of {FACTION} comes to count {GIVER}'s crates within {DAYS}.</li>
+        </reminder>
+        <notes>
+          <li>[wet] Rain or snow is falling on one of {GIVER}'s crates. Move it under a roof, or the goods inside will spoil.</li>
+          <li>[spoiled] One of {GIVER}'s crates stood in the rain or snow too long, and the goods inside are spoiled.</li>
+          <li>[clerk] A clerk of {FACTION} has come to count {GIVER}'s crates.</li>
+        </notes>
+        <endTitles>
+          <li>[kept] All the crates are there</li>
+          <li>[lost] Crates missing</li>
+        </endTitles>
+        <ends>
+          <li>[kept] The clerk of {FACTION} counted all {COUNT} of {GIVER}'s crates. They are sealed and dry.\n\n{GIVER} will come for them later in the season and pay {SILVER} silver for the keeping.</li>
+          <li>[lost] The clerk of {FACTION} counted {GIVER}'s crates. {ITEM} of the {COUNT} are missing, opened, sold or spoiled.\n\n{GIVER} will send word about what the colony owes for them.</li>
+        </ends>
+        <good><li>kept</li></good>
+        <bad><li>lost</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the rival's offer ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_FactorRival</defName>
+    <label>the rival's offer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FactorRival</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The rival's offer</li>
+        </titles>
+        <texts>
+          <li>[!samepeople] A few days ago the clerk of {FACTION} found all of {GIVER}'s crates safe and dry. Now {RIVAL}, a trader of {OTHERPEOPLE}, wants to meet the colony at the gate. {RIVAL} wants to buy the crates without {GIVER} knowing.</li>
+          <li>[samepeople] A few days ago the clerk of {FACTION} found all of {GIVER}'s crates safe and dry. Now {RIVAL}, another trader of {FACTION}, wants to meet the colony at the gate. {RIVAL} wants to buy the crates without {GIVER} knowing.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Agree to meet</label>
+            <outcome>The trader is on the way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The colony will not meet the trader.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[offer] I'll pay well for those crates, and nobody needs to know.</li>
+          <li>[sold] Good, my people will be glad of these.</li>
+          <li>[refused] That's a pity, it was a good price.</li>
+          <li>[told] You told the factor, so we have nothing more to talk about.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>factor</story>
+        <part>rival</part>
+        <terms>
+          <li>If the colony agrees, {RIVAL} comes to the gate within a day and offers {SILVER} silver for all the crates. The colony can sell them, refuse, or refuse and send word to {GIVER}.\n\nIf the colony sells, {GIVER} may find out who bought them and ask the colony to pay for them. If the colony does not meet {RIVAL}, nothing changes, and {GIVER} comes for the crates later in the season.</li>
+        </terms>
+        <accepted>
+          <li>{RIVAL} of {OTHERPEOPLE} is on the way to the colony's gate.</li>
+        </accepted>
+        <endTitles>
+          <li>[sold] The crates are sold</li>
+          <li>[refused] The offer refused</li>
+          <li>[told] Word sent to {GIVER}</li>
+        </endTitles>
+        <ends>
+          <li>[sold] {RIVAL} paid {SILVER} silver for {GIVER}'s crates, and the colony's people are taking them out to {RIVAL} at the gate. {GIVER} will come for the crates later in the season.</li>
+          <li>[refused] The colony refused {RIVAL}'s offer, and {RIVAL} left without the crates. {GIVER} will come for them later in the season.</li>
+          <li>[told] The colony refused {RIVAL}'s offer and sent word to {GIVER} about it. {FACTION} think better of the colony for it. {GIVER} will come for the crates later in the season.</li>
+        </ends>
+        <good><li>told</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The rival at the gate: sell, refuse, or refuse and tell the factor. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_FactorOffer</defName>
+    <label>an offer for the crates</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{RIVAL}'s offer for the crates</li>
+        </titles>
+        <texts>
+          <li>{RIVAL} of {OTHERPEOPLE} is at the gate and offers {SILVER} silver for {GIVER}'s {COUNT} crates, which is well over what they are worth. {RIVAL} says {GIVER} never needs to know who bought them.\n\nIf the colony sells, it is paid now, and the crates are carried out to {RIVAL}. {GIVER} comes for the crates later in the season and will find them gone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell the crates</label>
+            <outcome>{X_nameDef} paid, and the crates are being carried out to {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>sell</choice>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut">
+                <what>Rimfolk_TrustCrate</what>
+                <steward>false</steward>
+                <who>None</who>
+                <label>the factor's crates</label>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>{X_nameDef} left without the crates.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>refuse</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Refuse, and tell the factor</label>
+            <outcome>{X_nameDef} left without the crates, and the colony sent word to the factor.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>tell</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>factor</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: pay for the lost crates ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_FactorMakeGood</defName>
+    <label>the lost crates</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FactorMakeGood</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Pay for the lost crates</li>
+        </titles>
+        <texts>
+          <li>When the clerk of {FACTION} counted {GIVER}'s crates, {COUNT} were missing, opened, sold or spoiled. {GIVER} asks the colony to pay what they were worth.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Agree to pay</label>
+            <outcome>The colony will put the silver aside.</outcome>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>The factor's people will come for the crates that are left.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>factor</story>
+        <part>makegood</part>
+        <terms>
+          <li>{GIVER} asks for {SILVER} silver within {DAYS}. Once the silver is in the colony's stockpiles, {GIVER}'s people come for it.\n\nIf the colony pays, {GIVER}'s people take the rest of the crates and the matter is settled. If it does not pay in time, {FACTION} will send no traders to the colony for a year.</li>
+        </terms>
+        <accepted>
+          <li>The colony has {DAYS} to put {SILVER} silver in its stockpiles for {GIVER}.</li>
+        </accepted>
+        <reminder>
+          <li>{GIVER} expects {SILVER} silver in the colony's stockpiles within {DAYS}.</li>
+        </reminder>
+        <notes>
+          <li>[ready] The silver for {GIVER} is in the stockpiles. People of {FACTION} come for it within {DAYS}.</li>
+        </notes>
+        <endTitles>
+          <li>[paid] {GIVER} is paid</li>
+        </endTitles>
+        <ends>
+          <li>[paid] People of {FACTION} have come for the {SILVER} silver. {GIVER}'s people will take the crates that are left, and the matter is settled.</li>
+        </ends>
+        <good><li>paid</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: pay the factor for the crates sold ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_FactorDebt</defName>
+    <label>the factor's debt</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FactorDebt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Pay the factor for the crates</li>
+        </titles>
+        <texts>
+          <li>Some days ago the colony sold {GIVER}'s crates to {RIVAL}. {GIVER} has heard about the sale from traders on the road, and asks the colony to pay for them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Agree to pay</label>
+            <outcome>The colony will put the silver aside.</outcome>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>The factor will send guards.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[guards] We are here with the factor's word: no more trade with you for a year.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>factor</story>
+        <part>debt</part>
+        <terms>
+          <li>{GIVER} of {FACTION} asks for {SILVER} silver, what the crates were worth, within {DAYS}. Once the silver is in the colony's stockpiles, {GIVER}'s people come for it.\n\nIf the colony pays, the matter is settled, though {FACTION} will trust the colony less. If it does not pay, guards of {FACTION} will come to the gate, and {FACTION} will not trade with the colony for a year.</li>
+        </terms>
+        <accepted>
+          <li>The colony has {DAYS} to put {SILVER} silver in its stockpiles for {GIVER}.</li>
+        </accepted>
+        <reminder>
+          <li>{GIVER} expects {SILVER} silver in the colony's stockpiles within {DAYS}.</li>
+        </reminder>
+        <notes>
+          <li>[ready] The silver for {GIVER} is in the stockpiles. People of {FACTION} come for it within {DAYS}.</li>
+        </notes>
+        <endTitles>
+          <li>[paid] The crates are paid for</li>
+        </endTitles>
+        <ends>
+          <li>[paid] People of {FACTION} have come for the {SILVER} silver. The matter of the crates is settled, but {FACTION} trust the colony less.</li>
+        </ends>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
