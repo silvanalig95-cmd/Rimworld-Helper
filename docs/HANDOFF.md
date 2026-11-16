@@ -131,41 +131,9 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
   newest release line ("Three fixes: porters reach the mailbag, the stall's health, world events above the letters").
-- **To do when the player asks (16 November 2026): every offering is answered, and worth what it costs.** The player:
-  "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event, but
-  sometimes nothing seems to happen. i just wonder whether these offering ressources are "wasted", or if there is
-  always some benefit from them? since it's usually more valuable ressources also". As it stands (0.256.0): a taken
-  offering always raises the god's favour (`Worship.Favour`, `WorshipMath.OfferingFavour`: 1.5 + 1.2 ln(1 + worth/20),
-  at most 6, times the god's liking, its nature, honoured, a priest's rite), which by the unseen rule shows only as that
-  god's doings over time (more kindness, fewer angers, prayers answered); whoever sees it taken or finds the place
-  empty feels it by belief (`GodTouch.Taken`); that god's own effect follows at most once in 4 days per god
-  (`GodTouchMath.SameKeyGapDays`), and of those about a third are moods only and most are small. Pawns pick it
-  themselves (`Offerings.Pick`: the god's liking, spare, a piece worth at most 40 + 8 a colonist, 250 at most, aiming at
-  about 20 + 3 a colonist in all). So many takings show nothing but a passing mood. Proposed in chat (an answer to every
-  taking, a return in kind, a shrine filter, the book keeping every taking); the player's answer: "ok understood! I
-  don't necessarily need every offering answered, as long as there is value to it still. sometimes a return in kind
-  sounds great. the book should track the offerings and in this case also the god's favour should be tracked in the
-  book, but the wording should also be kept a bit ominous, so not with a numeric value or so". So, when they say go:
-  (1) no answer to every taking, but none is wasted: what is given still counts for more the more it was worth (the
-  favour curve not flattening so early), and the god's touch after a taking leans the more likely and the stronger with
-  its worth and fit; (2) now and then a return in kind, of the god's domain and the colony's age, worth about what was
-  given (Smoulder's ore after steel, Morel's mushrooms after food, Ducat's silver after gold), played out on the map;
-  (3) the colony's book of the gods keeps every offering taken, seen or found empty, with what it was and where; (4) the
-  book also keeps each god's temper toward the colony as the keeper reads it, in words only and a little ominous
-  ("Smoulder's fires have burned warm toward us since the steel was given", "some say the Hunger is restless"), drawn
-  from the god's real favour but late and sometimes wrong, as the pawns would read it; never a number. No shrine
-  filter (not asked for). Then, the same day: "also it should please never take very valuable items like components
-  etc. as offering, or only if there is a proper payoff for it. but then it shouldn't take it automatically, but
-  perhaps an event where a pawn asks for approval first." So (5) what pawns carry to a shrine on their own is only
-  what the colony has plenty of and can make or gather again (food, wood, cloth, leather, stone blocks, herbs, simple
-  crafts and the like, by the colony's own recipes and stock, `Offerings.Pick`); anything precious to it (components
-  and advanced components, medicine past herbal, plasteel, uranium, gold, jade, neutroamine, glitterworld goods, a
-  mod's like of these, anything the colony can't make yet or is short of) is never taken unasked; (6) such a gift only
-  through an ask: a devout pawn comes to the player (a card with Yes and No, as the council's asks) wanting to give
-  that thing to that god, saying in plain words why and what they hope it brings (as they believe it, never a promise
-  or a number), and only on Yes do they carry it; it is answered as befits its worth: a stronger favour and a likelier,
-  larger return in kind or one of the god's notable or great doings; on No they let it be (a little disappointed if
-  devout), and the same ask doesn't come back for a while.
+- **Done (16 November 2026, the player's go: "go ahead with this"; built, not released): every offering worth what it
+  costs, precious things only when asked, a return in kind, the book keeping every gift and each god's temper.** The
+  to-do with the player's words is now one entry above the newest release line ("Gifts worth what they cost").
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
@@ -209,6 +177,89 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Gifts worth what they cost:
+  precious things only when asked, a return in kind, the book keeps every gift and each god's temper** (16 November
+  2026; the player's words: "so as of now i still don't really see or feel the impact of god offerings. sometimes they
+  trigger an event, but sometimes nothing seems to happen. i just wonder whether these offering ressources are
+  "wasted", or if there is always some benefit from them? since it's usually more valuable ressources also"; then "ok
+  understood! I don't necessarily need every offering answered, as long as there is value to it still. sometimes a
+  return in kind sounds great. the book should track the offerings and in this case also the god's favour should be
+  tracked in the book, but the wording should also be kept a bit ominous, so not with a numeric value or so"; then
+  "also it should please never take very valuable items like components etc. as offering, or only if there is a proper
+  payoff for it. but then it shouldn't take it automatically, but perhaps an event where a pawn asks for approval
+  first"; the go: "go ahead with this, and if there's other to-dos that make sense to be included in this update, go
+  ahead as well"). DESIGN.md "Gifts worth what they cost" (after "The camera for every god's doing"); README's worship
+  paragraph (and "steel for Pip" where it said parts: components are precious now); the Almanac's gods page (a few
+  sentences; keywords unchanged). CLAUDE.md's unseen-gods rule already has the player's line on the book's temper. No
+  other to-do of the list belongs with this one (the item card's description, Revel, the riding are other areas), so
+  none was taken along.
+  - **None wasted.** `WorshipMath.OfferingFavour` is now 1 + 0.35 √worth, at most 14 (`OfferingWorthMost`; was 1.5 +
+    1.2 ln(1 + worth/20), at most 6): about the same for an everyday gift (a meal 2.5, a hundred silver's worth 4.5),
+    and still growing past it (five hundred about 9, a thousand about 12). What follows a taking leans by the gift
+    (`OfferingGiftMath.Lean`: 1 for about forty silver's worth the god likes, a half for a token, up to 3; a precious
+    gift at least 2): its own effect likelier, notable and great ones likelier, the god's own waits for those shorter,
+    the four days between two takings' effects shorter for a rich gift, longer for a token, none for a precious one
+    (`GodTouchMath.TierFor`, `NotableWaitPast`, `GapDays`; lean 1 is the old `Tier` exactly).
+  - **A return in kind** (`Gods/Touch/GodTouchReturn.cs`): about one taking in eleven for an everyday gift (up to three
+    in ten for a rich one), about half for a precious one; a god once in ten days at a home, any god once in three, a
+    precious gift whenever; worth about what was given. Each god's goods by the colony's age and the player's mods (Hollin
+    the land's wild food and herbs, Smoulder ore and every mod's mined metal, Bellwether hay, milk, wool, Morel
+    mushrooms, Ennu food for the road and cloth, Pip steel and later parts and chemfuel, Hush hides of the land's
+    animals, Selene medicine by the age and silver, Murmur fish and rice, Ducat silver and gold; Cirrus, Undertow,
+    Helios and Tamiu none). It lies where the gift lay, with the god's look and sound and the camera on it, a message
+    of who found what where, the finder's own line, the book; it takes the place of any other effect for that taking.
+  - **Precious, never taken unasked** (`Gods/Worship/OfferingGifts.cs`, `OfferingGiftMath.Precious`, `Offerings.Pick`):
+    the player's list by name (components, advanced components, plasteel, uranium, gold, jade, neutroamine), every mod's
+    parts (a manufactured piece worth 25 or more), medicine past herbal, glitterworld goods (exotic, or spacer age), a
+    material worth more than 5 a piece, and anything the colony can't make now (a bench it has built, the research done;
+    a barrel's beer; a mod's processor's cheap drink) or gather again (a plant on its land or in its fields, a rock it can
+    mine, an animal on its land or of its own; always food, herbs, wood, hides, wool, cloth, stone blocks, silver).
+  - **Asked first** (`OfferingGifts.Daily`, `Ask`, `Answers`, `Yes`, `No`; the gods' questions' card, `GodAsks.Precious`):
+    someone devout (the priest first) asks to give something precious of the colony's that their god loves, or the kind a
+    dream asked for when nothing plain of it is left (`AskForDemand`): what, where, why, what they hope it brings (each
+    god's `GodWorshipDef.hope`), what the colony holds and would keep. About four everyday gifts' worth, a third of what
+    is held at most, only where twice the gift and the colony's own store stay. A home's ask 12 days apart at least, a
+    god's 20, the same thing a month after a no, a quarter's chance a day after (`AskNow`), only when a question may come
+    (`Tell.CanAsk`), the card waiting two days. Yes: they carry it themselves (`Offerings.SendPrecious`), +3 for two days
+    (`Rimfolk_Worship_OfferedPrecious`), half again the favour (`PreciousFavour`). No: a devout one -2 for a day
+    (`Rimfolk_Worship_GiftKept`, with its mood hint). Their words in four new pools (`Rimfolk_Pool_Worship_AskGift`,
+    `GiftYes`, `GiftNo`, `ReturnFound`) and three precious lines in the offer pool.
+  - **The book** (`Gods/GodLoreGifts.cs`, `GodLore.Gave`, `Returned`, `GiftWords`; `GodLorePage.GiftsPart`): every gift's
+    fate once the colony knows it (found gone and by whom, gone unseen, taken before whose eyes, seen going, given to a
+    visitor, eaten, carried off, back to the stores, spoiled), what it was, who left it at which place, and what lay in
+    its place; 300 kept, 40 a god. **Each god's temper** (`Gods/GodTemper.cs`, `GodTemperMath`; `GodLorePage.TemperPart`):
+    the keeper reads each god the colony has to do with every four to eight days, a step toward its standing at the seat
+    or a step beside it (15 %, 35 % with nothing seen lately, then "some say"), in five bands of each god's own words
+    (`GodWorshipDef.temper`), "since the steel was given" after a gift that came before it warmed. Words only; the page
+    holds no word of favour.
+  - **Code map**: `Gods/Worship/OfferingGiftMath.cs` (pure: precious, the ask, the lean, the return) and
+    `Gods/GodTemperMath.cs` (pure: the reading), both linked in `Tools/Tests/Tests.csproj`; `Gods/Worship/OfferingGifts.cs`
+    (precious by the colony's means, the ask and its card's answers, the stack carried), `OfferingGiftsDebug.cs`;
+    `Gods/Touch/GodTouchReturn.cs`; `Gods/GodLoreGifts.cs` (saved `gifts`, `tempers`), `Gods/GodTemper.cs`; changed:
+    `Offerings.cs` (Pick's filter, `SendPrecious`, `Carry`, `Gift` into the book and the touch, `Forget` telling),
+    `WorshipBook.cs` (`OfferingRecord.precious`, `want`, `wantCount`, `asker`, `worth`, `fit`, `plain`; the asks' marks
+    pruned), `WorshipMath.cs` (the curve), `GodTouch.cs` (`TakenGift`, `Coming`, the return, the lean),
+    `GodTouchMath.cs` (`TierFor`, `NotableWaitPast`, `GapDays`), `GodAsks.cs` (the kind), `GodLorePage.cs` (two parts),
+    `GodLore.cs` (saves the gifts), `GodWorshipDef.cs` (`hope`, `temper`), `Worship.cs` (the day). Defs:
+    `Rimfolk_Worship_Gods.xml` (hope, temper), `Rimfolk_Worship_Pools.xml`, `Rimfolk_Worship_Thoughts.xml`; Keyed
+    `Rimfolk_Offerings.xml`. Tests `Tools/Tests/OfferingGiftTests.cs` (and `WorshipTests`, `GodTouchTests` follow the
+    new curve and seam); balance `Tools/Balance/Rates.cs`; save model `Tools/save_estimate.py`.
+  - **Can't be checked without the game**: what the colony can make or gather by its real benches, fields and rock (and
+    whether a mod's processor marks its drinks as made: Vanilla Brewing Expanded's stills); that a card with Yes and No
+    comes and a Yes walks the asker to the shrine with the stack (the job's count from one stack); the return's spot
+    beside the shrine, its look, sound and the camera; the book's two new parts laid out in the chapter; how often the
+    asks come in a real colony (a devout colonist, a god with a place, something precious it loves, plenty of it).
+  - **Try in the game**: dedicate a shrine to Pip with a devout colonist who holds Pip and 20 components in the stores,
+    then dev "Gods: someone asks to give something precious now": the card, Yes, the colonist carries the components;
+    "Gods: every gift taken answered in kind (on, off)" and "Gods: offerings here taken now, each god's own way" to see a
+    return by the shrine; "Gods: what is precious here (log)"; open the region window's Gods' book at Pip's chapter for
+    "Of its temper toward us" (after "Gods: the keeper reads the gods now (log)") and "Of the gifts given". Say No to an
+    ask and see the small mood and that the same ask doesn't come back for a month.
+  - **Mods that would help**: none needed. Every return is a thing the game or the player's active mods already have,
+    with its own graphic: Murmur's fish are the game's fish category (Odyssey's and Vanilla Fishing Expanded's,
+    `vanillaexpanded.vcef`, active), Morel's mushrooms every mod's raw fungus (Alpha Biomes', Alpha Animals') and
+    Vanilla Plants Expanded - Mushrooms' raw blisscap and bileceps by name (active), Smoulder's ore every mod's metal
+    mined from rock. The card and the book use Rimfolk's own look.
 - 0.258.0, **Colonists ride out to far work
   and back with Giddy-Up 2** (16 November 2026; the player's words, 15 November 2026, with their save `League_of_Toba`:
   "pawns should really use mounts whenever they walk away out of the base range. sometimes they do, but sometimes they

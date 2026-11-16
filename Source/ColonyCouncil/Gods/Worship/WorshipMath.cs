@@ -232,17 +232,20 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The favour an offering moves, before the god's nature and kind (Gods.AddFavour with FavourSource.Offering scales
-        /// it): grows with its worth (a meal about 2, a hundred silver's worth about 3.5, five times that about 5), times
-        /// how well it suits the god and its nature, a quarter more for the god the council honours this year, a fifth more
-        /// when the priest brings it.
+        /// it): grows with its worth and keeps growing (the player, 16 November 2026: none is wasted, and what is given counts
+        /// for more the more it was worth): a meal about 2.5, a hundred silver's worth about 4.5, five hundred about 9, a
+        /// thousand about 12, at most <see cref="OfferingWorthMost"/>; times how well it suits the god and its nature, a
+        /// quarter more for the god the council honours this year, a fifth more when the priest brings it.
         /// </summary>
         public static float OfferingFavour(float marketValue, float fit, float natureFit, bool honoured, bool priest)
         {
             if (fit <= 0f || float.IsNaN(marketValue)) return 0f;
-            float worth = 1.5f + 1.2f * (float)Math.Log(1.0 + Math.Max(0f, marketValue) / 20.0);
-            worth = Math.Min(6f, worth);
+            float worth = Math.Min(OfferingWorthMost, 1f + 0.35f * (float)Math.Sqrt(Math.Max(0f, marketValue)));
             return worth * fit * natureFit * (honoured ? HonourFactor : 1f) * (priest ? PriestRiteFactor : 1f);
         }
+
+        /// <summary>An offering's worth in favour stops growing here (about 1400 silver's worth).</summary>
+        public const float OfferingWorthMost = 14f;
 
         /// <summary>
         /// The day's chance that someone carries an offering to a dedicated place: more with more of the devout at home and a

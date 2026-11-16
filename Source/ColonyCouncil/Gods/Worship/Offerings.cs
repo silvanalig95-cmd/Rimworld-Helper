@@ -18,6 +18,13 @@ namespace ColonyCouncil
     /// light. An animal or someone passing may get to it first. The favour comes then, by its worth, how well it suits the
     /// god and its nature (WorshipMath.OfferingFavour).
     /// Archotechs take none: they judge deeds.
+    /// <para>
+    /// Only what the colony has plenty of and can make or gather again is carried unasked: anything precious to it (components,
+    /// medicine past herbal, glitterworld goods, what it can't make yet; OfferingGifts.Precious) goes only when someone asks the
+    /// colony first and it says yes (Gods/Worship/OfferingGifts.cs), for a stronger favour. Every gift's fate, once the colony
+    /// knows it, goes into its book with what it was and where (GodLore.Gave), and its worth goes with what follows its taking
+    /// (GodTouch.Taken, GodTouch.Coming: leaned by it, and now and then answered in kind, Gods/Touch/GodTouchReturn.cs).
+    /// </para>
     /// </summary>
     public static class Offerings
     {
@@ -164,6 +171,8 @@ namespace ColonyCouncil
                     if (only.HasValue && k != only.Value) continue;
                     float f = GodWorshipDef.Believed(g, k);
                     if (f <= 0f || f < 0.9f && g.kind != GodKind.Hunger && !only.HasValue) continue;
+                    // Never anything precious to the colony unasked (OfferingGifts: components, medicine past herbal, what it can't make again).
+                    if (OfferingGifts.Precious(given.def, map)) continue;
                     int n;
                     if (given != t)
                     {
@@ -226,14 +235,14 @@ namespace ColonyCouncil
             {
                 if (o.shrine == null || o.shrine.Destroyed || !o.shrine.Spawned)
                 {
-                    Forget(b, o);
+                    Forget(b, o, map);
                     continue;
                 }
                 if (!o.set)
                 {
-                    if (now - o.chosen > PlanHours * GenDate.TicksPerHour)
+                    if (now - o.chosen > (o.precious ? OfferingGiftMath.PreciousPlanHours : PlanHours) * GenDate.TicksPerHour)
                     {
-                        Forget(b, o);
+                        Forget(b, o, map);
                         continue;
                     }
                     if (o.carrier == null) Send(b, o, map);
@@ -279,6 +288,9 @@ namespace ColonyCouncil
             if (shrine == null || !shrine.Spawned || shrine.Map != map || Gods.ById(o.god) == null || days > WorshipMath.NoticeDays + 1)
             {
                 o.noticed = true;
+                // Nobody saw it go nor found the place empty: the book has it gone, and nobody saw.
+                var lg = Gods.ById(o.god);
+                if (lg != null) Gift(o, lg, map, "Unseen", null);
                 return;
             }
             int hour = GenLocalDate.HourOfDay(map);
@@ -327,14 +339,39 @@ namespace ColonyCouncil
             if (!scoffer) Worship.Glow(shrine.Map, shrine.Position, g);
             // What they found where it lay, for their own belief in the god of the place (Gods/Belief/PawnGods.cs).
             if (!scoffer) PawnGods.SawTaken(p, g);
-            // What it does to whoever found it, and what follows on the map (Gods/Touch/GodTouch.cs).
-            GodTouch.Taken(g, shrine.Map, shrine.Position, new[] { p });
+            // The colony's book: the place found empty, and by whom; then what it does to whoever found it, and what follows on
+            // the map with the gift's worth (Gods/Touch/GodTouch.cs).
+            var gift = Gift(o, g, shrine.Map, "Found", new List<Pawn> { p });
+            GodTouch.Taken(g, shrine.Map, shrine.Position, new[] { p }, gift);
         }
 
-        private static void Forget(WorshipBook b, OfferingRecord o)
+        private static void Forget(WorshipBook b, OfferingRecord o, Map map)
         {
             if (o.thing != null && o.thing.Spawned && o.set) o.thing.SetForbidden(false, false);
             b.offerings.Remove(o);
+            // A gift the colony said yes to that nobody could carry stays in the stores, and the one who asked is told so.
+            var g = Gods.ById(o.god);
+            if (o.precious && !o.set && g != null && map != null && o.want != null)
+                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, "CC_GodGift_NotCarried".Translate((o.asker?.LabelShort ?? "CC_GodLore_Someone".Translate().ToString()).Named("PAWN"),
+                    o.want.label.Named("THING"), Worship.ShrineOf(g).Named("PLACE")).Resolve(), null);
+        }
+
+        /// <summary>A gift the colony said yes to (OfferingGifts): carried at once by whoever is free for it, the one who asked first.</summary>
+        internal static void Carry(WorshipBook b, OfferingRecord o, Map map)
+        {
+            if (b == null || o == null || map == null || o.set || o.carrier != null) return;
+            Send(b, o, map);
+        }
+
+        /// <summary>
+        /// A gift's fate as the colony knows it: set down in its book (GodLore.Gave: what, by whom, where, what became of it and
+        /// who found or saw it), and what follows its taking needs (its worth, its fit, precious or not, its line in the book).
+        /// </summary>
+        private static TakenGift Gift(OfferingRecord o, God g, Map map, string fate, List<Pawn> saw)
+        {
+            string who = saw == null ? null : TextUtil.JoinAnd(saw.Where(x => x != null).Select(x => x.LabelShort).Distinct().Take(4).ToList());
+            var lore = GodLore.Gave(g, map, o.label, o.plain, o.carrier?.LabelShort, fate, who.NullOrEmpty() ? null : who, o.precious);
+            return new TakenGift { worth = o.worth, fit = o.fit, precious = o.precious, label = o.label, lore = lore };
         }
 
         /// <summary>Someone free carries the planned offering: the priest first, else whoever holds the god (the dreamer of a demand first), else the devout.</summary>
@@ -342,6 +379,11 @@ namespace ColonyCouncil
         {
             var g = Gods.ById(o.god);
             if (g == null) return;
+            if (o.precious)
+            {
+                SendPrecious(o, map, g);
+                return;
+            }
             var demand = o.demand ? b.demands.FirstOrDefault(d => d != null && !d.done && !d.met && d.god == g.id && d.home == o.home) : null;
             var who = new List<Pawn>();
             if (demand?.dreamer != null) who.Add(demand.dreamer);
@@ -368,6 +410,51 @@ namespace ColonyCouncil
                 float worth = given.MarketValue * count;
                 o.favour = WorshipMath.OfferingFavour(worth, fit, WorshipMath.NatureFit(g.nature, o.kind, quality, Rand.Value), Worship.IsHonoured(g, map),
                     Worship.IsPriest(p));
+                o.worth = worth;
+                o.fit = fit;
+                o.plain = given.def.label;
+                return;
+            }
+            // The god asked in a dream for a kind of thing, and only something precious of that kind is left: its dreamer asks the colony.
+            var asker = demand?.dreamer ?? who.FirstOrDefault();
+            if (demand != null && asker != null && Pick(map, g, asker, demand.kind, out _, out _) == null)
+                OfferingGifts.AskForDemand(b, map, g, demand);
+        }
+
+        /// <summary>
+        /// A precious gift the colony said yes to: carried by the one who asked (else the priest, else one who holds the god),
+        /// from the largest stack of it they can reach, for half again the favour of an everyday gift of its worth.
+        /// </summary>
+        private static void SendPrecious(OfferingRecord o, Map map, God g)
+        {
+            var who = new List<Pawn>();
+            if (o.asker != null) who.Add(o.asker);
+            var priest = Worship.Priest(map);
+            if (priest != null) who.Add(priest);
+            who.AddRange(map.mapPawns.FreeColonistsSpawned.Where(p => Worship.GodOf(p) == g).OrderByDescending(Worship.Devout));
+            foreach (var p in who.Distinct())
+            {
+                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) || !WorshipJobs.Free(p, false)) continue;
+                if (!p.CanReach(o.shrine, PathEndMode.Touch, Danger.Some)) continue;
+                var t = OfferingGifts.Stack(map, o.want, p, o.wantCount, out int count);
+                if (t == null) continue;
+                var def = WorshipJobs.Def(WorshipJobs.OfferJob);
+                if (def == null) return;
+                var job = JobMaker.MakeJob(def, t, o.shrine);
+                job.count = count;
+                if (!WorshipJobs.Start(p, job)) continue;
+                o.carrier = p;
+                o.thing = t;
+                o.kind = Kind(t.def);
+                o.label = LabelOf(t, t, count);
+                o.plain = t.def.label;
+                float fit = GodWorshipDef.Believed(g, o.kind);
+                int quality = t.TryGetQuality(out var q) ? (int)q : -1;
+                float worth = t.MarketValue * count;
+                o.favour = WorshipMath.OfferingFavour(worth, fit, WorshipMath.NatureFit(g.nature, o.kind, quality, Rand.Value), Worship.IsHonoured(g, map), Worship.IsPriest(p))
+                           * OfferingGiftMath.PreciousFavour;
+                o.worth = worth;
+                o.fit = fit;
                 return;
             }
         }
@@ -421,10 +508,11 @@ namespace ColonyCouncil
             lying.SetForbidden(true, false);
             var g = Gods.ById(o.god);
             // Why they bring this, in one sentence: every kind of thing has its words, and each god's own for what its people give it.
-            string words = Worship.Line("Rimfolk_Pool_Worship_Offer", p, g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null);
+            string words = Worship.Line("Rimfolk_Pool_Worship_Offer", p, g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null,
+                o.precious ? "precious" : null);
             if (!words.NullOrEmpty()) Speech.Say(p, words);
             Worship.PriestLight(p, shrine.Position);
-            CouncilGameComponent.GiveThought(p, WorshipDefOf.Rimfolk_Worship_Offered);
+            CouncilGameComponent.GiveThought(p, o.precious ? OfferingGiftsDefOf.Rimfolk_Worship_OfferedPrecious : WorshipDefOf.Rimfolk_Worship_Offered);
             // The carrier's own belief in the god it was for (Gods/Belief/PawnGods.cs).
             PawnGods.Offered(p, g);
             // The place keeps what was left last, by whom and with what words, for its inspect line.
@@ -450,7 +538,7 @@ namespace ColonyCouncil
             var g = Gods.ById(o.god);
             if (g == null)
             {
-                Forget(b, o);
+                Forget(b, o, map);
                 return;
             }
             float hours = (now - o.placed) / (float)GenDate.TicksPerHour;
@@ -533,7 +621,9 @@ namespace ColonyCouncil
                 (extra ?? "").Named("EXTRA"), (extra2 ?? "").Named("FACTION")).Resolve();
             if (fate == OfferingFate.Taken && plain)
             {
-                // Before everyone's eyes: the god's moment, a month apart at most at a home (GodTouch.PlainTakingAllowed), and what follows it.
+                // Before everyone's eyes: the god's moment, a month apart at most at a home (GodTouch.PlainTakingAllowed), and what
+                // follows it, with the gift's worth (and the colony's book, taken before whose eyes).
+                GodTouch.Coming(g, map, Gift(o, g, map, "Plain", Gods.Witnesses(map, cell)));
                 Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true,
                     "taken");
                 GodTouch.PlainTaken(g, map);
@@ -544,9 +634,12 @@ namespace ColonyCouncil
                 if (fate == OfferingFate.Taken && !ownWords) Worship.Glow(map, cell, g);
                 Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
                 Worship.Witness(g, map, GodActKind.Favour, text, cell);
-                // Seen going (a cat eating it, given to a visitor), or its own way noticed at once: what follows comes now; else
-                // once someone finds the place empty by day (Noticed).
-                if (fate == OfferingFate.Taken && o.noticed) GodTouch.Taken(g, map, cell, null);
+                // Seen going (a cat eating it, given to a visitor), or its own way noticed at once: the book has it, and what
+                // follows comes now with the gift's worth; else once someone finds the place empty by day (Noticed). Gone some
+                // other way (eaten, carried off, back to the stores): the book has that.
+                if (fate == OfferingFate.Taken && o.noticed)
+                    GodTouch.Taken(g, map, cell, null, Gift(o, g, map, way == OfferingWay.Given ? "Given" : "Seen", Gods.Witnesses(map, cell)));
+                else if (fate != OfferingFate.Taken) Gift(o, g, map, fate.ToString(), null);
             }
             // A demand in a dream met.
             if (o.demand) GodDreams.Met(b, g, map, o);

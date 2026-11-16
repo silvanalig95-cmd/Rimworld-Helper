@@ -318,6 +318,8 @@ namespace ColonyCouncil
             }
             y = Holders(x, y, w, p);
             y = SaintsPart(x, y, w, p);
+            y = TemperPart(x, y, w, p);
+            y = GiftsPart(x, y, w, p);
             // The witnesses: every entry under the name, by date.
             y = PartHead(x, y, w, "CC_GodBook_Part_Witnesses".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
             if (p.entries.Count == 0) return y + Para(x, y, w, "<i>" + "CC_GodBook_Silence_0".Translate() + "</i>", UiKit.Dim, GameFont.Small, TextAnchor.UpperCenter) + 8f;
@@ -375,6 +377,39 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<int, (float at, string head, string hold, string dread)> holdersCache = new Dictionary<int, (float, string, string, string)>();
+
+        /// <summary>
+        /// Its temper toward the colony, as the keeper last read it (Gods/GodTemper.cs): who read it and when, and the reading in
+        /// the god's own words, a little ominous, said as some say where it was a guess. Under the chapter the colony keeps that
+        /// god under only; nothing while the keeper never read it. Words only.
+        /// </summary>
+        private static float TemperPart(float x, float y, float w, Page p)
+        {
+            var g = p?.name != null && p.name.god >= 0 ? Gods.ById(p.name.god) : null;
+            if (g == null || GodLore.Instance?.PageOf(g)?.name != p.title) return y;
+            string line = GodTemper.Line(g, p.title), head = GodTemper.Head(g);
+            if (line.NullOrEmpty()) return y;
+            y = PartHead(x, y, w, "CC_GodTemper_Part".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
+            if (!head.NullOrEmpty()) y += Para(x + Gutter, y, w - Gutter, "<i>" + head + "</i>", UiKit.Quieter(UiKit.Gold, 0.3f), GameFont.Tiny) + 2f;
+            return y + Para(x + Gutter, y, w - Gutter, line, UiKit.Ink, GameFont.Small) + 8f;
+        }
+
+        /// <summary>
+        /// The gifts given it, every one the book keeps under this chapter (GodLore.gifts), oldest first: each dated, what it was,
+        /// who left it where, what became of it as the colony knows it, and what was found in its place.
+        /// </summary>
+        private static float GiftsPart(float x, float y, float w, Page p)
+        {
+            var gifts = GodLore.Instance?.GiftsUnder(p?.title);
+            if (gifts == null || gifts.Count == 0) return y;
+            y = PartHead(x, y, w, "CC_GodGift_Part".Translate(), UiKit.Quieter(UiKit.Gold, 0.35f));
+            foreach (var gift in gifts)
+            {
+                y += Para(x + Gutter, y, w - Gutter, "<i>" + Date(gift.tick) + "</i>", UiKit.Faint, GameFont.Tiny);
+                y += Para(x + Gutter, y, w - Gutter, GodLore.GiftWords(gift), UiKit.Ink, GameFont.Small) + 6f;
+            }
+            return y + 4f;
+        }
 
         /// <summary>How large a chapter's sign is drawn beside its name.</summary>
         private const float SignSize = 56f;

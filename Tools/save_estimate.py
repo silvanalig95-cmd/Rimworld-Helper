@@ -932,6 +932,11 @@ MODEL = {
     # handful a week at most (talk at most once an evening, a hand weeks apart), never twice from one teller nor from more
     # than two; GodBookMath.MaxVerses kept, and then nothing more is set down.
     "Gods/GodLore.cs:verses": ("cap", (const("Gods/GodBookMath.cs", "MaxVerses", 720), 0.6), 260, "the verses of the book's chapters, each with its words, teller and date, GodBookMath.MaxVerses at most"),
+    # The book keeps every gift the colony gave a god (Gods/GodLoreGifts.cs): an offering every few days at a place, a few
+    # places, so about a hundred a year; OfferingGiftMath.BookGifts kept, a god's BookGiftsAGod (the oldest let go). Each
+    # god's temper as the keeper reads it: one reading a god, the fourteen at most, rewritten in place.
+    "Gods/GodLoreGifts.cs:gifts": ("cap", (const("Gods/Worship/OfferingGiftMath.cs", "BookGifts", 300), 0.3), 300, "the gifts given, each what it was, who left it where, its fate and what was found in its place, OfferingGiftMath.BookGifts kept"),
+    "Gods/GodLoreGifts.cs:tempers": ("fixed", 14, 120, "each god's temper as the keeper last read it, one a god"),
     # The gods in the wider world (Gods/World/GodWorldBook.cs): the gifts colonists hold (one of a kind a colonist, spaced
     # with the peoples' gifts: a handful a year at most; GodWorldBook.MaxGifts kept, those no longer held let go first);
     # what is under way (a dream told, a night under the sky, a grudge, the Hunger's due, a quarrel, a holy place a home: a few at

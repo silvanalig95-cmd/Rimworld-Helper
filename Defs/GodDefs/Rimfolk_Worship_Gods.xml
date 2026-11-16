@@ -5,6 +5,9 @@
     How each of Rimfolk's own gods is worshipped, from its own character (Source/ColonyCouncil/Gods/Worship/GodWorshipDef.cs;
     docs/gods-pantheon-brainstorm.md). Keyed by the god's short name; a god no def names falls back to its domain's tables
     (WorshipMath). All of it is hidden: what a god likes, refuses or ignores is never told, only seen in what happens after.
+    Two things here are words the colony's people use: <hope>, what someone asking to give it something precious hopes it
+    brings (after "hopes {GOD} will", their belief), and <temper>, its temper toward the colony as the keeper of the book
+    reads it, one line a band (angry, cold, silent, warm, glad), each beginning with {NAME} (Gods/GodTemper.cs).
     Festival seasons are 0 spring to 3 winter, days 0 to 14. Chants are SoundDef names, the first loaded one kept (Alpha
     Memes' first, Ideology's after; none without either).
   -->
@@ -13,6 +16,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Hollin</defName>
     <gods><li>Hollin</li></gods>
+    <hope>keep the fields and the trees green</hope>
+    <temper>
+      <li>{NAME} has turned against us, and her roots draw back from our fields</li>
+      <li>{NAME} has been slow and dry toward us</li>
+      <li>{NAME} grows as she always has, and has shown no sign that she marks us</li>
+      <li>{NAME} has been green and kind toward us</li>
+      <li>{NAME} holds us close, as she holds her oldest trees</li>
+    </temper>
     <taking>Sapling</taking>
     <likes>
       <li><kind>Plant</kind><weight>1.5</weight></li>
@@ -31,6 +42,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Smoulder</defName>
     <gods><li>Smoulder</li></gods>
+    <hope>keep the rock kind and the fires burning</hope>
+    <temper>
+      <li>{NAME}'s fires burn hot against us, and the mountain is uneasy</li>
+      <li>{NAME}'s fires have burned low toward us</li>
+      <li>{NAME} sleeps under the mountain, and his fires have not turned our way</li>
+      <li>{NAME}'s fires have burned warm toward us</li>
+      <li>{NAME}'s fires burn high and glad for us, and the rock is kind</li>
+    </temper>
     <taking>Crack</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.7</weight></li>
@@ -48,6 +67,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Bellwether</defName>
     <gods><li>Bellwether</li></gods>
+    <hope>let the herds and the game pass well</hope>
+    <temper>
+      <li>{NAME} has turned his horns toward us, and the herds keep away</li>
+      <li>{NAME} passes us by without looking</li>
+      <li>{NAME} walks his long road, and has not marked us either way</li>
+      <li>{NAME} has been gentle with us</li>
+      <li>{NAME} lets us walk beside him, as he lets his own kin</li>
+    </temper>
     <taking>Grazed</taking>
     <likes>
       <li><kind>Plant</kind><weight>1.4</weight></li>
@@ -64,6 +91,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Morel</defName>
     <gods><li>Morel</li></gods>
+    <hope>be gentle with our sick and our dead</hope>
+    <temper>
+      <li>{NAME} is angry with us, and her rot is in our stores</li>
+      <li>{NAME} has been cold to us, and keeps what is hers</li>
+      <li>{NAME} takes what dies, ours as everyone's, and has shown us nothing more</li>
+      <li>{NAME} has been soft toward us</li>
+      <li>{NAME} has taken us to her, and what we lose comes back to us in her soil</li>
+    </temper>
     <taking>Rot</taking>
     <likes>
       <li><kind>Meal</kind><weight>1.3</weight></li>
@@ -84,6 +119,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Ennu</defName>
     <gods><li>Ennu</li><li>Guest</li></gods>
+    <hope>bring good company and safe roads</hope>
+    <temper>
+      <li>{NAME} remembers some wrong of ours, and the road to our door has gone quiet</li>
+      <li>{NAME} has been cool toward us, like a guest who was not made welcome</li>
+      <li>{NAME} has not come to our door that anyone can tell</li>
+      <li>{NAME} has been warm toward us, as a guest who was well kept</li>
+      <li>{NAME} counts us among the houses that keep a place by the fire</li>
+    </temper>
     <taking>Guest</taking>
     <likes>
       <li><kind>Meal</kind><weight>1.6</weight></li>
@@ -103,6 +146,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Pip</defName>
     <gods><li>Pip</li></gods>
+    <hope>keep the machines running</hope>
+    <temper>
+      <li>{NAME} is cross with us, and the machines feel it</li>
+      <li>{NAME} has gone quiet in our wires</li>
+      <li>{NAME} hums in the wires as it always does, and pays us no mind</li>
+      <li>{NAME} has been fond of us</li>
+      <li>{NAME} hums happily in every wire we have</li>
+    </temper>
     <taking>Mended</taking>
     <likes>
       <li><kind>Component</kind><weight>1.7</weight></li>
@@ -121,6 +172,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Cirrus</defName>
     <gods><li>Cirrus</li></gods>
+    <hope>keep the sky kind to us</hope>
+    <temper>
+      <li>{NAME} has looked down at us in anger, and the sky is heavy</li>
+      <li>{NAME} has drifted away from us, and the sky is cold</li>
+      <li>{NAME} drifts high above, and hardly looks down at us</li>
+      <li>{NAME} has looked down on us kindly</li>
+      <li>{NAME} watches over us from the high sky</li>
+    </temper>
     <taking>TakenUp</taking>
     <likes>
       <li><kind>Art</kind><weight>1.3</weight></li>
@@ -139,6 +198,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Hush</defName>
     <gods><li>Hush</li></gods>
+    <hope>spare us the worst of the winter</hope>
+    <temper>
+      <li>{NAME} has come close, and means us harm</li>
+      <li>{NAME} has been cold to us, colder than the season</li>
+      <li>{NAME} comes and goes with the winter, and has not marked us</li>
+      <li>{NAME} has been gentle with us</li>
+      <li>{NAME} has spared us, as it spares those who prepare</li>
+    </temper>
     <taking>Frost</taking>
     <likes>
       <li><kind>Pelt</kind><weight>1.3</weight></li>
@@ -157,6 +224,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Undertow</defName>
     <gods><li>Undertow</li></gods>
+    <hope>look elsewhere for a while</hope>
+    <temper>
+      <li>{NAME} is hungry, and it is looking at us</li>
+      <li>{NAME} is restless</li>
+      <li>{NAME} is quiet, which is not the same as fed</li>
+      <li>{NAME} seems fed</li>
+      <li>{NAME} lies still and fed, and has looked away from us</li>
+    </temper>
     <taking>Hunger</taking>
     <likes>
       <li><kind>Meat</kind><weight>1.2</weight></li>
@@ -188,6 +263,13 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Helios</defName>
     <gods><li>Helios</li></gods>
+    <temper>
+      <li>{NAME} has been harsh with us, as he is with everyone in a hard year</li>
+      <li>{NAME} has been sparing with us, as he is with everyone</li>
+      <li>{NAME} shines on us as he shines on everyone</li>
+      <li>{NAME} has been generous with us, as he is with everyone</li>
+      <li>{NAME} has given us much, as he gives to everyone</li>
+    </temper>
     <taking>Never</taking>
     <takesNoOfferings>true</takesNoOfferings>
     <unmoved>true</unmoved>
@@ -201,6 +283,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Selene</defName>
     <gods><li>Selene</li></gods>
+    <hope>give back to us kindly at night</hope>
+    <temper>
+      <li>{NAME} has been giving back to us the worst of what we did</li>
+      <li>{NAME} has turned her face away from us</li>
+      <li>{NAME} gives back what we do and no more, and has shown no sign of us</li>
+      <li>{NAME} has been kind to us at night</li>
+      <li>{NAME} has given back to us more good than we did</li>
+    </temper>
     <taking>Moon</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.4</weight></li>
@@ -220,6 +310,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Mog</defName>
     <gods><li>Mog</li></gods>
+    <hope>keep watch over our doors and our dead</hope>
+    <temper>
+      <li>{NAME} is displeased with us, and her cats will not come near</li>
+      <li>{NAME} keeps her distance from us</li>
+      <li>{NAME} keeps the threshold as she always has, and has given no sign that she marks us</li>
+      <li>{NAME} has been gracious to us</li>
+      <li>{NAME} watches our door and our dead as her own</li>
+    </temper>
     <taking>Cat</taking>
     <likes>
       <li><kind>Fish</kind><weight>1.6</weight></li>
@@ -236,6 +334,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Murmur</defName>
     <gods><li>Murmur</li></gods>
+    <hope>keep the wells full and the rain coming</hope>
+    <temper>
+      <li>{NAME} has fallen silent against us, and the wells feel it</li>
+      <li>{NAME} has been grumbling at us from the wet ground</li>
+      <li>{NAME} sings when it sings, and not for us</li>
+      <li>{NAME} has sung for us</li>
+      <li>{NAME} sings for us, and the rain comes when it is needed</li>
+    </temper>
     <taking>Well</taking>
     <likes>
       <li><kind>Drink</kind><weight>1.4</weight></li>
@@ -254,6 +360,14 @@
   <ColonyCouncil.GodWorshipDef>
     <defName>Rimfolk_Worship_Ducat</defName>
     <gods><li>Ducat</li></gods>
+    <hope>keep the trade good</hope>
+    <temper>
+      <li>{NAME} has turned away from our hands, and our silver runs off</li>
+      <li>{NAME} has passed us by</li>
+      <li>{NAME} moves as gold moves, and has not stayed with us</li>
+      <li>{NAME} has moved well for us</li>
+      <li>{NAME} stays with us gladly, and passes through our hands</li>
+    </temper>
     <taking>Given</taking>
     <likes>
       <li><kind>Silver</kind><weight>1.6</weight></li>

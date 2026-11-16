@@ -155,7 +155,7 @@ public static class GodTouchTests
         C(GodTouchMath.PlainTaking(30f, 8f) && !GodTouchMath.PlainTaking(29f, 99f) && !GodTouchMath.PlainTaking(99f, 7f),
             "an offering taken before everyone's eyes a month apart at most a god, any god's a week and a day: the Guest's three in a short while can't come again");
         C(Read("Gods/Worship/Offerings.cs").Contains("&& GodTouch.PlainTakingAllowed(g, map);") && Read("Gods/Worship/Offerings.cs").Contains("GodTouch.PlainTaken(g, map);")
-          && Read("Gods/Worship/Offerings.cs").Contains("GodTouch.Taken(g, shrine.Map, shrine.Position, new[] { p });"),
+          && Read("Gods/Worship/Offerings.cs").Contains("GodTouch.Taken(g, shrine.Map, shrine.Position, new[] { p }, gift);"),
             "an offering's taking: plainly a month apart, and what follows once someone sees it go or finds the place empty");
         C(Read("Gods/OnMap/OwnHappenings.cs").Contains("* GodTouch.Turn(g, map));"), "each god's own happenings give the others their turn");
 

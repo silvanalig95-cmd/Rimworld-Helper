@@ -621,6 +621,11 @@ namespace Balance
             ("Rimfolk_Worship_Mocked", 0.005f),
             ("Rimfolk_Worship_VowKept", 0.004f),
             ("Rimfolk_Worship_VowBroken", 0.0008f),
+            // Something precious asked of the colony first (Gods/Worship/OfferingGifts.cs): an ask about once in a fortnight
+            // or three at a home, about half said yes, one carrier among seven or eight; a no a little disappointing for the
+            // devout one who asked.
+            ("Rimfolk_Worship_OfferedPrecious", 0.0036f),
+            ("Rimfolk_Worship_GiftKept", 0.0018f),
             ("Rimfolk_Belief_GodActed", 0.035f),
             ("Rimfolk_Belief_ShrineLost", 0.003f),
             ("Rimfolk_Belief_FeastPassed", 0.004f),

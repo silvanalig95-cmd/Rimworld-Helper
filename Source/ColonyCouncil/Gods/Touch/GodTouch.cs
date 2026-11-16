@@ -178,7 +178,12 @@ namespace ColonyCouncil
             public readonly List<string> keys = new List<string>();
             public readonly List<Pawn> pawns = new List<Pawn>();
             public int at, due;
+            /// <summary>The offering whose taking it is, with what it was worth (null for anything else).</summary>
+            public TakenGift gift;
         }
+
+        /// <summary>A gift taken before everyone's eyes, waiting for its moment's note to carry it (by god and home, two hours).</summary>
+        private static readonly List<(God god, Map map, int at, TakenGift gift)> giftsComing = new List<(God, Map, int, TakenGift)>();
 
         private static readonly List<Pending> pending = new List<Pending>();
         private static Game pendingGame;
@@ -248,12 +253,25 @@ namespace ColonyCouncil
         /// An offering found taken (Gods/Worship/Offerings.cs): by whoever saw it go, or noticed the place empty by day; the
         /// god accepted it, a sight of it at work.
         /// </summary>
-        public static void Taken(God g, Map map, IntVec3 cell, IEnumerable<Pawn> saw)
+        public static void Taken(God g, Map map, IntVec3 cell, IEnumerable<Pawn> saw, TakenGift gift = null)
         {
             if (g == null || map == null || resolving || !Gods.On || !Homes.IsHome(map)) return;
             var pawns = saw?.Where(p => p != null).ToList() ?? new List<Pawn>();
             if (pawns.Count == 0) pawns = Gods.Witnesses(map, cell);
+            if (gift != null) Coming(g, map, gift);
             Add(g, map, cell, TouchTone.Sight, false, false, "taken", pawns, g);
+        }
+
+        /// <summary>
+        /// An offering about to be taken before everyone's eyes (Offerings.Settle): its worth goes with the moment that is
+        /// about to be noted, so what follows leans by it and may be a return in kind (Gods/Touch/GodTouchReturn.cs).
+        /// </summary>
+        public static void Coming(God g, Map map, TakenGift gift)
+        {
+            if (g == null || map == null || gift == null) return;
+            int now = Now;
+            giftsComing.RemoveAll(c => c.god == g && c.map == map || now - c.at > GenDate.TicksPerHour * 2 || c.map == null || c.map.Disposed);
+            giftsComing.Add((g, map, now, gift));
         }
 
         private static void Add(God g, Map map, IntVec3 cell, TouchTone tone, bool plain, bool coming, string key, List<Pawn> pawns, God taken)
@@ -261,6 +279,7 @@ namespace ColonyCouncil
             if (Current.Game != pendingGame)
             {
                 pending.Clear();
+                giftsComing.Clear();
                 pendingGame = Current.Game;
             }
             int now = Now;
@@ -270,6 +289,14 @@ namespace ColonyCouncil
                 p = new Pending { god = g, map = map, at = now, taken = taken };
                 pending.Add(p);
             }
+            if (p.gift == null)
+                for (int i = giftsComing.Count - 1; i >= 0; i--)
+                    if (giftsComing[i].god == g && giftsComing[i].map == map && now - giftsComing[i].at <= GenDate.TicksPerHour * 2)
+                    {
+                        p.gift = giftsComing[i].gift;
+                        giftsComing.RemoveAt(i);
+                        break;
+                    }
             if (!p.cell.IsValid && cell.IsValid && cell.InBounds(map)) p.cell = cell;
             p.tone = Stronger(p.tone, tone);
             p.plain |= plain;
@@ -328,8 +355,12 @@ namespace ColonyCouncil
             if (ours.Count == 0) return;
             int home = Gods.HomeKey(p.map);
             b.Saw(home, p.god.Key, now);
+            bool own = p.keys.Any(GodTouchMath.HasOwnEffect);
+            // A gift answered in kind (now and then, more for a rich one): seen as a kindness, and that is what follows it.
+            bool returned = !own && p.gift != null && GodTouchReturn.Try(b, p, ours, home, now);
+            if (returned) p.tone = TouchTone.Kind;
             Felt(ours, p);
-            if (p.keys.Any(GodTouchMath.HasOwnEffect)) return;
+            if (own || returned) return;
             Follow(b, p, ours, home, now);
         }
 
@@ -395,21 +426,23 @@ namespace ColonyCouncil
         internal static void Follow(GodTouchBook b, Pending p, List<Pawn> ours, int home, int now)
         {
             string god = p.god.Key;
+            // A gift leans what follows its taking by what it was worth and how well it suited the god (OfferingGiftMath.Lean).
+            float lean = p.gift != null ? OfferingGiftMath.Lean(p.gift.worth, p.gift.fit, p.gift.precious) : 1f;
+            bool precious = p.gift?.precious == true;
             var gapKeys = p.keys.Select(k => GodTouchMath.GapKey(k, god)).Where(k => k != null).ToList();
             foreach (var k in gapKeys)
-                if (b.DaysSince("k|" + k + "|" + home, now) < GodTouchMath.SameKeyGapDays(k))
+                if (b.DaysSince("k|" + k + "|" + home, now) < GodTouchMath.GapDays(k, lean, precious))
                     return;
-            var tier = Forced ?? GodTouchMath.Tier(p.tone, GodTouchMath.Big(p.tone, p.coming, p.plain), p.plain, Rand.Value, Rand.Value,
+            var tier = Forced ?? GodTouchMath.TierFor(p.tone, GodTouchMath.Big(p.tone, p.coming, p.plain), p.plain, Rand.Value, Rand.Value,
                 b.DaysSince("s|" + god + "|" + home, now), b.DaysSince("n|" + god + "|" + home, now), b.DaysSince("nc|" + home, now),
-                b.DaysSince("g|" + god + "|" + home, now), b.DaysSince("gc|" + home, now));
+                b.DaysSince("g|" + god + "|" + home, now), b.DaysSince("gc|" + home, now), lean);
             if (tier == TouchTier.None) return;
             var ctx = new TouchContext(p.god, p.map, Place(p, ours), ours, p.taken, p.plain, tier, p.tone == TouchTone.Dark);
             var entries = GodTouchMath.Of(god);
             var recent = b.RecentOf(home, god);
             var tried = new HashSet<TouchEffect>();
             // A great one that can't happen here falls to a notable one only where a notable one's waits are past too.
-            bool notableOk = Forced.HasValue || b.DaysSince("n|" + god + "|" + home, now) >= GodTouchMath.NotableGodDays
-                && b.DaysSince("nc|" + home, now) >= GodTouchMath.NotableColonyDays;
+            bool notableOk = Forced.HasValue || GodTouchMath.NotableWaitPast(b.DaysSince("n|" + god + "|" + home, now), b.DaysSince("nc|" + home, now), lean);
             for (int attempt = 0; attempt < 4; attempt++)
             {
                 var pick = ForcedEffect.HasValue && attempt == 0
@@ -560,6 +593,19 @@ namespace ColonyCouncil
                 ForcedEffect = null;
             }
         }
+    }
+
+    /// <summary>
+    /// An offering as what follows its taking needs it (Gods/Worship/Offerings.cs): what it was worth and how well it suited
+    /// the god, whether it was something precious given with the colony's leave, what it was in words, and its line in the
+    /// colony's book (to add what was found in its place).
+    /// </summary>
+    public sealed class TakenGift
+    {
+        public float worth, fit;
+        public bool precious;
+        public string label;
+        public LoreGift lore;
     }
 
     /// <summary>What an effect needs to know: the god, the home, the place, who saw it, the god they took it for, how plainly, how strong, which side.</summary>

@@ -67,7 +67,7 @@ public static class WorshipTests
             "a capricious god takes it as its fancy takes it");
         float meal = WorshipMath.OfferingFavour(20f, 1f, 1f, false, false), hundred = WorshipMath.OfferingFavour(100f, 1f, 1f, false, false),
             fortune = WorshipMath.OfferingFavour(5000f, 1f, 1f, false, false);
-        C(meal > 1.5f && meal < hundred && hundred < fortune && fortune <= 6f, $"an offering's favour grows with its worth, never past 6 ({meal:0.0}, {hundred:0.0}, {fortune:0.0})");
+        C(meal > 1.5f && meal < hundred && hundred < fortune && fortune <= WorshipMath.OfferingWorthMost, $"an offering's favour grows with its worth, never past {WorshipMath.OfferingWorthMost} ({meal:0.0}, {hundred:0.0}, {fortune:0.0})");
         C(WorshipMath.OfferingFavour(100f, 1f, 1f, true, false) > hundred && WorshipMath.OfferingFavour(100f, 1f, 1f, false, true) > hundred
           && WorshipMath.OfferingFavour(100f, 0f, 1f, true, true) == 0f, "more for the god honoured this year and from the priest; nothing where it isn't taken");
         C(WorshipMath.OfferingValueCap(1) < WorshipMath.OfferingValueCap(20) && WorshipMath.OfferingValueCap(100) == 250f

@@ -593,6 +593,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref signs, "signs", LookMode.Value);
             Scribe_Collections.Look(ref verses, "verses", LookMode.Deep);
             Scribe_Values.Look(ref versesFrom, "versesFrom");
+            ExposeGifts();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 entries ??= new List<LoreEntry>();
