@@ -290,7 +290,8 @@ namespace ColonyCouncil
                 if (def.goodwillPerDay != 0 && gave)
                 {
                     to = GoodwillFaction(def, map);
-                    to?.TryAffectGoodwillWith(Faction.OfPlayer, def.goodwillPerDay, false, false);
+                    // Every day: no message (the decree said so when declared), the reason for the Factions tab.
+                    to?.TryAffectGoodwillWith(Faction.OfPlayer, def.goodwillPerDay, false, false, GoodwillWhy.Decree);
                 }
                 if (def.certaintyPerDay > 0f && ColonyFaith != null)
                 {

@@ -130,7 +130,7 @@ namespace ColonyCouncil
         {
             if (map == null || f == null) return;
             var people = HappeningWorker_RepublicCensus.Counted(map);
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.CountedGoodwill);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.CountedGoodwill, GoodwillWhy.DutyDone);
             string names = TextUtil.JoinAnd(people.Select(p => p.LabelShort).ToList());
             Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_PeoplesF_CensusLabel".Translate(f.Name).Resolve(),
                 "CC_PeoplesF_CensusWritten".Translate(f.Name.Named("FACTION"), people.Count.Named("COUNT"), names.Named("NAMES"), (taker?.LabelShort ?? "?").Named("TAKER")).Resolve(),
@@ -157,7 +157,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var f = ctx?.faction;
-            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.UncountedGoodwill);
+            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.UncountedGoodwill, GoodwillWhy.DutyRefused);
         }
     }
 
@@ -194,7 +194,7 @@ namespace ColonyCouncil
             var v = t.AddVisit(Kind, null, map, null, null, null, now + PeoplesFMath.PapersDays * GenDate.TicksPerDay);
             v.text = f.GetUniqueLoadID();
             v.due = now;
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.PapersGoodwill);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.PapersGoodwill, GoodwillWhy.DutyDone);
             Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PeoplesF_PapersGranted".Translate(f.Name, PeoplesFMath.PapersTerms.ToStringPercent()).Resolve(), LookTargets.Invalid,
                 MessageTypeDefOf.PositiveEvent);
         }
@@ -205,7 +205,7 @@ namespace ColonyCouncil
             var v = Of(f);
             if (v == null) return;
             v.done = true;
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.StruckGoodwill);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.StruckGoodwill, GoodwillWhy.DutyRefused);
             Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PeoplesF_PapersStruck".Translate(f.Name).Resolve(), LookTargets.Invalid, MessageTypeDefOf.NegativeEvent);
         }
 
@@ -368,7 +368,7 @@ namespace ColonyCouncil
         {
             var f = ctx?.faction;
             if (f == null || !f.HasGoodwill || f.IsPlayer) return;
-            WorldSituationWorker.Goodwill(f, PeoplesFMath.RefusedGoodwill);
+            WorldSituationWorker.Goodwill(f, PeoplesFMath.RefusedGoodwill, GoodwillWhy.DutyRefused);
             if (Papers.Holds(f)) Papers.Strike(f, ctx.map);
         }
     }
@@ -588,7 +588,7 @@ namespace ColonyCouncil
                 }
                 var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Mission_ServedRepublic");
                 if (thought != null) CouncilGameComponent.GiveThought(p, thought);
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.ServedGoodwill);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.ServedGoodwill, GoodwillWhy.DutyDone);
             }
             Tell.Message(NewsKind.World, Importance.Notable, map, (served ? "CC_PeoplesF_ConscriptBack" : "CC_PeoplesF_ConscriptBackEarly").Translate(p.Named("PAWN"), (f?.Name ?? "?").Named("FACTION")).Resolve(),
                 new LookTargets(p), MessageTypeDefOf.PositiveEvent);

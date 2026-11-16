@@ -489,8 +489,8 @@ namespace ColonyCouncil
             return tags;
         }
 
-        /// <summary>Goodwill with the neighbor, never enough to turn them hostile.</summary>
-        public static void Goodwill(Mission m, int amount) => StoryChains.Goodwill(m.faction, amount);
+        /// <summary>Goodwill with the neighbor, never enough to turn them hostile: a task done for them, or one failed or let go, by its sign.</summary>
+        public static void Goodwill(Mission m, int amount) => StoryChains.Goodwill(m.faction, amount, GoodwillWhy.Task(amount));
 
         // ---------------- Every few seconds, and every hour ----------------
 

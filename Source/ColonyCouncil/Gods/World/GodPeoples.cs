@@ -64,7 +64,7 @@ namespace ColonyCouncil
                 int up = shared != null ? GodWorldMath.SharedGoodwill(best) : 0;
                 if (up > 0 && f.PlayerGoodwill < 80)
                 {
-                    StoryChains.Goodwill(f, up);
+                    StoryChains.Goodwill(f, up, GoodwillWhy.SharedGod);
                     ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, home, GodWorld.T("CC_GW_Shared", shared, f.Name.Named("PEOPLE")), null);
                     continue;
                 }
@@ -73,7 +73,7 @@ namespace ColonyCouncil
                 int down = rival != null ? GodWorldMath.FeudGoodwill(patronWord) : 0;
                 if (down < 0 && f.PlayerGoodwill + down >= GodWorldMath.FeudFloor && !f.HostileTo(Faction.OfPlayer))
                 {
-                    StoryChains.Goodwill(f, down);
+                    StoryChains.Goodwill(f, down, GoodwillWhy.RivalGod);
                     ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, home,
                         GodWorld.T("CC_GW_Feud", rival, f.Name.Named("PEOPLE"), patron.name.Named("PATRON")), null);
                 }
@@ -172,11 +172,11 @@ namespace ColonyCouncil
             var e = EnemyOf(l);
             var map = l.HomeMap;
             if (f == null) return;
-            StoryChains.Goodwill(f, GodWorldMath.HolyWarStand);
+            StoryChains.Goodwill(f, GodWorldMath.HolyWarStand, GoodwillWhy.HolyWar);
             FactionMemory.Note(f, "sidedWith", e?.Name);
             if (e != null && e.HasGoodwill && !e.HostileTo(Faction.OfPlayer))
             {
-                StoryChains.Goodwill(e, GodWorldMath.HolyWarEnemy);
+                StoryChains.Goodwill(e, GodWorldMath.HolyWarEnemy, GoodwillWhy.HolyWar);
                 FactionMemory.Note(e, "tookSides", f.Name);
             }
             if (l.God != null) Gods.AddFavour(l.God, map, GodWorldMath.HolyWarFavour, GodWorld.T("CC_GW_HolyWar_Why", l.God, f.Name.Named("PEOPLE")), FavourSource.Deed);
@@ -193,7 +193,7 @@ namespace ColonyCouncil
             // apart: the silver goes out to the gate, where their people's courier takes it to the war.
             new DilemmaEffect_CarryOut { what = "silver", count = l.count, steward = false, who = PlayWho.None, to = PlaySpot.Gate, label = "CC_GW_HolyWar_HelpLabel".Translate().Resolve() }
                 .Apply(ctx);
-            StoryChains.Goodwill(f, GodWorldMath.HolyWarHelp);
+            StoryChains.Goodwill(f, GodWorldMath.HolyWarHelp, GoodwillWhy.HolyWar);
             FactionMemory.Note(f, "gaveGift", l.God?.name);
             if (l.God != null) Gods.AddFavour(l.God, map, GodWorldMath.HolyWarHelpFavour, GodWorld.T("CC_GW_HolyWar_WhyHelp", l.God, f.Name.Named("PEOPLE")), FavourSource.Offering);
         }
@@ -202,7 +202,7 @@ namespace ColonyCouncil
         {
             var f = l.people;
             if (f == null) return;
-            StoryChains.Goodwill(f, GodWorldMath.HolyWarOut);
+            StoryChains.Goodwill(f, GodWorldMath.HolyWarOut, GoodwillWhy.HolyWar);
         }
 
         // ================= A temple's envoy and a relic =================
@@ -275,7 +275,7 @@ namespace ColonyCouncil
             if (how == 3)
             {
                 d.done = true;
-                if (d.faction != null) StoryChains.Goodwill(d.faction, GodWorldMath.RelicRefused);
+                if (d.faction != null) StoryChains.Goodwill(d.faction, GodWorldMath.RelicRefused, GoodwillWhy.Relic);
                 if (d.faction != null) FactionMemory.Note(d.faction, "refused", d.thing?.LabelShort);
                 if (g != null) Gods.AddFavour(g, map, GodWorldMath.RelicRefusedFavour, GodWorld.T("CC_GW_Envoy_WhyRefused", g, (d.thing?.LabelShort ?? "?").Named("RELIC")));
                 Arrivals.SendAway(new[] { d.pawn });
@@ -375,7 +375,7 @@ namespace ColonyCouncil
             }
             if (d.faction != null)
             {
-                StoryChains.Goodwill(d.faction, GodWorldMath.RelicGiven);
+                StoryChains.Goodwill(d.faction, GodWorldMath.RelicGiven, GoodwillWhy.Relic);
                 FactionMemory.Note(d.faction, "gift", relic.LabelShort);
             }
             if (g != null) Gods.AddFavour(g, map, GodWorldMath.RelicGivenFavour, GodWorld.T("CC_GW_Envoy_WhyGiven", g, relic.LabelShort.Named("RELIC")), FavourSource.Offering);
@@ -390,7 +390,7 @@ namespace ColonyCouncil
         private static void Prayed(GodDoing d, God g, Map map)
         {
             d.done = true;
-            if (d.faction != null) StoryChains.Goodwill(d.faction, GodWorldMath.RelicLent);
+            if (d.faction != null) StoryChains.Goodwill(d.faction, GodWorldMath.RelicLent, GoodwillWhy.Relic);
             if (g != null) Gods.AddFavour(g, map, GodWorldMath.RelicGivenFavour * 0.4f, GodWorld.T("CC_GW_Envoy_WhyPrayed", g, (d.thing?.LabelShort ?? "?").Named("RELIC")), FavourSource.Rite);
             ColonyCouncil.Tell.Minor(NewsKind.World, Importance.Flavor, map,
                 GodWorld.T("CC_GW_Envoy_PrayedNews", g, d.pawn.Named("ENVOY"), (d.thing?.LabelShort ?? "?").Named("RELIC")), new LookTargets(d.pawn));

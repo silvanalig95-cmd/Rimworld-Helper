@@ -73,13 +73,16 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Goodwill changed for a reason another mod names (beside the memory's own hook, which reads the game's reasons).</summary>
+    /// <summary>
+    /// Goodwill changed for a reason another mod names (beside the memory's own hook, which reads the game's reasons);
+    /// Rimfolk's own reasons are left alone (World/GoodwillWhy.cs).
+    /// </summary>
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryAffectGoodwillWith))]
     public static class Patch_ModMemoryGoodwill
     {
         public static void Postfix(Faction __instance, Faction other, int goodwillChange, HistoryEventDef reason)
         {
-            if (reason == null || !MemoryHooks.Listening) return;
+            if (reason == null || GoodwillReasonMath.Own(reason.defName) || !MemoryHooks.Listening) return;
             try
             {
                 ModMemory.Goodwill(__instance, other, goodwillChange, reason);

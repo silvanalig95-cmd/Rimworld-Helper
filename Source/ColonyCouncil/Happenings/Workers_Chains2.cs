@@ -528,12 +528,15 @@ namespace ColonyCouncil
 
         public static int Silver(Map map, float min, float max) => StorytellerEvents.Silver(map, new FloatRange(min, max));
 
-        /// <summary>Goodwill with a neighbor, never enough to turn them hostile, and never touching a war either way.</summary>
-        public static void Goodwill(Faction f, int amount)
+        /// <summary>
+        /// Goodwill with a neighbor, never enough to turn them hostile, and never touching a war either way; the game's
+        /// message names <paramref name="reason"/> (World/GoodwillWhy.cs).
+        /// </summary>
+        public static void Goodwill(Faction f, int amount, HistoryEventDef reason)
         {
             if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill || amount == 0 || f.HostileTo(Faction.OfPlayer)) return;
-            int change = amount > 0 ? amount : Mathf.Min(0, Mathf.Max(amount, -60 - f.PlayerGoodwill));
-            if (change != 0) f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false);
+            int change = GoodwillReasonMath.NeverIntoWar(amount, f.PlayerGoodwill);
+            if (change != 0) f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false, reason);
         }
 
         /// <summary>
@@ -924,7 +927,7 @@ namespace ColonyCouncil
                     {
                         c.Set("sold");
                         Couriers.PaySilver(map, Near(ctx.a, map), c.amount, c.faction, ctx.stranger);
-                        StoryChains.Goodwill(c.faction, 2);
+                        StoryChains.Goodwill(c.faction, 2, GoodwillWhy.Council);
                         if (c.Has(Hoard)) StoryChains.Next(c, "end:grateful", 9f, 14f);
                         else if (c.Has(Casket) && MakeSleeper(c))
                         {
@@ -1005,12 +1008,12 @@ namespace ColonyCouncil
                     // Paid: the silver was taken by the option itself.
                     if (option == 0)
                     {
-                        if (!hostile) StoryChains.Goodwill(c.enemy, 10);
+                        if (!hostile) StoryChains.Goodwill(c.enemy, 10, GoodwillWhy.Council);
                         StoryChains.End(c, "paid", ctx);
                     }
                     else if (!hostile)
                     {
-                        StoryChains.Goodwill(c.enemy, -15);
+                        StoryChains.Goodwill(c.enemy, -15, GoodwillWhy.Council);
                         StoryChains.End(c, "refused", ctx);
                     }
                     else if (FightsPossible && Raids.CanRaid(c.enemy))
@@ -1025,17 +1028,17 @@ namespace ColonyCouncil
                 case "doorbuyer":
                     if (option == 0)
                     {
-                        StoryChains.Goodwill(c.faction, 4);
+                        StoryChains.Goodwill(c.faction, 4, GoodwillWhy.Council);
                         StoryChains.End(c, "refunded", ctx);
                     }
                     else if (option == 1 && Couriers.TakeFromStoresFor(ctx, ThingDefOf.Silver, c.amount / 2))
                     {
-                        StoryChains.Goodwill(c.faction, -3);
+                        StoryChains.Goodwill(c.faction, -3, GoodwillWhy.Council);
                         StoryChains.End(c, "halved", ctx);
                     }
                     else
                     {
-                        StoryChains.Goodwill(c.faction, -10);
+                        StoryChains.Goodwill(c.faction, -10, GoodwillWhy.Council);
                         StoryChains.End(c, "kept", ctx);
                     }
                     return "";
@@ -1050,14 +1053,14 @@ namespace ColonyCouncil
                 case "grateful":
                     if (!LivingEvents.Friendly(c.faction)) break;
                     string item = StoryChains.Gift(map, IntVec3.Invalid, c.value * 0.3f, true, true, c.faction);
-                    StoryChains.Goodwill(c.faction, 8);
+                    StoryChains.Goodwill(c.faction, 8, GoodwillWhy.Event);
                     StoryChains.End(c, key, null, item);
                     return;
                 case "returned":
                     if (!LivingEvents.Friendly(c.enemy)) break;
                     int fee = VarietyUtil.Round(Mathf.Max(20, Mathf.RoundToInt(c.value * 0.2f)));
                     Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), fee, c.enemy);
-                    StoryChains.Goodwill(c.enemy, 15);
+                    StoryChains.Goodwill(c.enemy, 15, GoodwillWhy.Event);
                     StoryChains.End(c, key, null, fee.ToString());
                     return;
                 default:
@@ -1208,7 +1211,7 @@ namespace ColonyCouncil
                         {
                             // Someone saw: the riders follow the tracks out of the colony.
                             c.Set("foundout");
-                            StoryChains.Goodwill(c.faction, -8);
+                            StoryChains.Goodwill(c.faction, -8, GoodwillWhy.Event);
                             StoryChains.Next(c, "end:caught", 4f, 7f);
                         }
                         else if (c.Has("hid")) StoryChains.Next(c, innocent ? "Council_Story_DebtRepaid" : "Council_Story_DebtGift", 18f, 30f);
@@ -1221,7 +1224,7 @@ namespace ColonyCouncil
                         c.Set("sold");
                         Couriers.PaySilver(map, Near(ctx.a, map), c.amount, c.faction, ctx.stranger);
                     }
-                    StoryChains.Goodwill(c.faction, option == 2 ? 6 : 4);
+                    StoryChains.Goodwill(c.faction, option == 2 ? 6 : 4, GoodwillWhy.Council);
                     if (!innocent) StoryChains.Next(c, "end:justice", 6f, 10f);
                     else if (FightsPossible && Raids.Enemy() != null) StoryChains.Next(c, "Council_Story_DebtRevenge", 15f, 25f, "cursed");
                     else StoryChains.Next(c, "end:cursed", 15f, 25f);
@@ -1242,12 +1245,12 @@ namespace ColonyCouncil
                     if (option == 0 && map != null)
                     {
                         string item = StoryChains.Gift(map, Near(c.x, map), c.value, true, false, c.x?.Faction ?? c.faction, c.x);
-                        if (risk) StoryChains.Goodwill(c.faction, -10);
+                        if (risk) StoryChains.Goodwill(c.faction, -10, GoodwillWhy.Event);
                         StoryChains.End(c, risk ? "exposed" : "accepted", ctx, item);
                     }
                     else if (option == 2)
                     {
-                        StoryChains.Goodwill(c.faction, 10);
+                        StoryChains.Goodwill(c.faction, 10, GoodwillWhy.Council);
                         StoryChains.End(c, "sentback", ctx);
                     }
                     else StoryChains.End(c, "refusedgift", ctx);
@@ -1295,7 +1298,7 @@ namespace ColonyCouncil
                         StoryChains.End(c, null);
                         return;
                     }
-                    StoryChains.Goodwill(c.faction, 6);
+                    StoryChains.Goodwill(c.faction, 6, GoodwillWhy.Event);
                     int n = StoryChains.Silver(map, 60f, 120f);
                     Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                     StoryChains.End(c, key, ctx, n.ToString());
@@ -1413,7 +1416,7 @@ namespace ColonyCouncil
             c.tale = first ? c.dead : c.beast;
             c.relation = first ? c.beast : c.dead;
             c.Set("backed");
-            StoryChains.Goodwill(c.faction, 3);
+            StoryChains.Goodwill(c.faction, 3, GoodwillWhy.Council);
             StoryChains.Next(c, "Council_Story_FeudSided", 6f, 9f, "grudge");
         }
 
@@ -1482,7 +1485,7 @@ namespace ColonyCouncil
                     }
                     else
                     {
-                        StoryChains.Goodwill(c.faction, 4);
+                        StoryChains.Goodwill(c.faction, 4, GoodwillWhy.Council);
                         Vendetta(c, 5f, 9f);
                     }
                     return outcome;
@@ -1492,7 +1495,7 @@ namespace ColonyCouncil
                     else if (FightsPossible && Raids.CanRaid(ctx.enemy))
                     {
                         Raid(c, ctx, ctx.enemy, null);
-                        StoryChains.Goodwill(c.faction, 8);
+                        StoryChains.Goodwill(c.faction, 8, GoodwillWhy.Council);
                         StoryChains.End(c, "vendetta", ctx);
                     }
                     else StoryChains.End(c, "grudge", ctx);
@@ -1504,12 +1507,12 @@ namespace ColonyCouncil
                         // The feast's food went with the option.
                         foreach (var p in StorytellerEvents.Adults(map).ToList()) StoryChains.Give(p, "Council_Story_Wedding", def);
                         foreach (var p in IncidentWorker_Happening.Colonists(map)) p.needs?.joy?.GainJoy(0.2f, JoyKindDefOf.Social);
-                        StoryChains.Goodwill(c.faction, 15);
+                        StoryChains.Goodwill(c.faction, 15, GoodwillWhy.Council);
                         StoryChains.End(c, "wedding", ctx);
                         return "";
                     }
                     Arrivals.SendAway(new[] { c.x, c.y }.Concat(ctx.group));
-                    StoryChains.Goodwill(c.faction, option == 1 ? 8 : 3);
+                    StoryChains.Goodwill(c.faction, option == 1 ? 8 : 3, GoodwillWhy.Council);
                     StoryChains.End(c, option == 1 ? "weddinggift" : "weddingwished", ctx);
                     return "";
             }
@@ -1528,20 +1531,20 @@ namespace ColonyCouncil
             {
                 case "alliance":
                 {
-                    StoryChains.Goodwill(c.faction, 10);
+                    StoryChains.Goodwill(c.faction, 10, GoodwillWhy.Event);
                     string item = StoryChains.Gift(map, IntVec3.Invalid, Rand.Range(200f, 400f) * LivingEvents.WealthFactor(map), false, false, c.faction);
                     StoryChains.End(c, key, ctx, item);
                     return;
                 }
                 case "blood":
-                    StoryChains.Goodwill(c.faction, -5);
+                    StoryChains.Goodwill(c.faction, -5, GoodwillWhy.Event);
                     StoryChains.Give(ctx.a, "Council_Story_FailedPeace", StoryChains.HomeDef(c.kind));
                     break;
                 case "bloodsilver":
-                    StoryChains.Goodwill(c.faction, -12);
+                    StoryChains.Goodwill(c.faction, -12, GoodwillWhy.Event);
                     break;
                 case "grudge":
-                    StoryChains.Goodwill(c.faction, -4);
+                    StoryChains.Goodwill(c.faction, -4, GoodwillWhy.Event);
                     break;
             }
             StoryChains.End(c, key, ctx);
@@ -1922,7 +1925,7 @@ namespace ColonyCouncil
                     else if (option == 1)
                     {
                         c.Set("word");
-                        StoryChains.Goodwill(c.faction, 4);
+                        StoryChains.Goodwill(c.faction, 4, GoodwillWhy.Council);
                         StoryChains.Next(c, "end:theirrescue", 10f, 16f);
                     }
                     else
@@ -1941,7 +1944,7 @@ namespace ColonyCouncil
                         StoryChains.End(c, "joined", ctx, null, new LookTargets(b));
                         return "";
                     }
-                    StoryChains.Goodwill(c.faction, 10);
+                    StoryChains.Goodwill(c.faction, 10, GoodwillWhy.Council);
                     StoryChains.Give(ctx.a, "Council_Story_Rescued", def);
                     StoryChains.End(c, "home", ctx);
                     return "";
@@ -1983,7 +1986,7 @@ namespace ColonyCouncil
                 case "theirrescue":
                     if (!lost && LivingEvents.Friendly(c.faction))
                     {
-                        StoryChains.Goodwill(c.faction, 6);
+                        StoryChains.Goodwill(c.faction, 6, GoodwillWhy.Event);
                         int n = StoryChains.Silver(map, 100f, 220f);
                         Couriers.PaySilver(map, DropCellFinder.TradeDropSpot(map), n, c.faction);
                         StoryChains.End(c, key, ctx, n.ToString());

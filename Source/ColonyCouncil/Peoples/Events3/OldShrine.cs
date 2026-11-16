@@ -244,7 +244,7 @@ namespace ColonyCouncil
                     relic = laid.LabelNoCount;
             }
             if (v.a != null && !v.a.Dead) v.a.skills?.Learn(SkillDefOf.Construction, 1200f, true);
-            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.ShrineGoodwill, false);
+            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.ShrineGoodwill, GoodwillWhy.Helped);
             FactionMemory.Note(f, "welcomed", "CC_PEv3_ShrineDeed".Translate().Resolve());
             Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_PEv3_ShrineLabel".Translate().Resolve(),
                 ("CC_PEv3_ShrineBlessed_" + kind).Translate((f?.Name ?? "?").Named("FACTION"), holyName.Named("HOLY")).Resolve()
@@ -291,7 +291,7 @@ namespace ColonyCouncil
             r.ruined = true;
             r.mournedAt = Now;
             var f = r.faction;
-            if (f != null && !f.defeated && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.MournGoodwill, false);
+            if (f != null && !f.defeated && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.MournGoodwill, GoodwillWhy.ShrineLost);
             Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PEv3_ShrineMourned".Translate((f?.Name ?? "?").Named("FACTION"), (r.holyName ?? "?").Named("HOLY")).Resolve(),
                 r.shrine != null && r.shrine.Spawned ? new LookTargets(r.shrine) : LookTargets.Invalid, MessageTypeDefOf.NegativeEvent);
         }

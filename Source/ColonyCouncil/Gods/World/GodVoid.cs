@@ -159,7 +159,7 @@ namespace ColonyCouncil
             var choir = Choir(g);
             if (choir != null && Arrivals.Usable(choir))
             {
-                StoryChains.Goodwill(choir, GodWorldMath.ChoirGoodwill);
+                StoryChains.Goodwill(choir, GodWorldMath.ChoirGoodwill, GoodwillWhy.Faith);
                 ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, map, "CC_GW_Choir_Label".Translate(choir.Name.Named("PEOPLE")).Resolve(),
                     "CC_GW_Choir_Text".Translate(choir.Name.Named("PEOPLE"), p.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, null, choir);
                 GodWorld.Remember(g, map, GodActKind.Act, "CC_GW_Told_Choir".Translate(choir.Name.Named("PEOPLE"), p.Named("PAWN")).Resolve());
@@ -173,7 +173,7 @@ namespace ColonyCouncil
             if (g == null) return;
             Gods.AddFavour(g, map, GodWorldMath.HungerRefused, GodWorld.T("CC_GW_Hunger_WhyRefused", g, (l.pawn?.LabelShort ?? "?").Named("PAWN")));
             var choir = Choir(g);
-            if (choir != null && Arrivals.Usable(choir)) StoryChains.Goodwill(choir, 1);
+            if (choir != null && Arrivals.Usable(choir)) StoryChains.Goodwill(choir, 1, GoodwillWhy.Faith);
         }
 
         /// <summary>The dying mended: every bleeding wound closed, the blood they lost partly back, an illness about to win set back.</summary>

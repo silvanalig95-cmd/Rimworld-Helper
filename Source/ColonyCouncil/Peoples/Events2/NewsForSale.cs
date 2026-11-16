@@ -166,7 +166,7 @@ namespace ColonyCouncil
             }
             // apart: a colonist carries the silver out to the operator at the gate, who takes it.
             new DilemmaEffect_CarryOut { what = "silver", count = Price(hc), steward = false, who = PlayWho.None, label = "CC_PEv2_NewsSilverLabel".Translate((hc.stranger?.LabelShort ?? "?").Named("X")).Resolve() }.Apply(ctx);
-            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.NewsGoodwill, false);
+            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.NewsGoodwill, GoodwillWhy.Paid);
             FactionMemory.Note(hc.faction, "traded", ("CC_PEv2_News_" + kind).Translate().Resolve());
         }
     }

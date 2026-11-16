@@ -312,10 +312,10 @@ namespace ColonyCouncil
             if (filled)
             {
                 if (carts == null) VarietyUtil.PaySilver(map, spot, ctx.count);
-                f.TryAffectGoodwillWith(Faction.OfPlayer, 6, true, false);
+                f.TryAffectGoodwillWith(Faction.OfPlayer, 6, true, false, GoodwillWhy.OrderFilled);
             }
             // A broken promise costs a little, but never a war.
-            else if (f.PlayerGoodwill > -65) f.TryAffectGoodwillWith(Faction.OfPlayer, -5, true, false);
+            else if (f.PlayerGoodwill > -65) f.TryAffectGoodwillWith(Faction.OfPlayer, -5, true, false, GoodwillWhy.OrderMissed);
             // A filled order may make them regular buyers; a broken one ends that (Workers_Living.cs).
             LivingEvents.Notify_OrderCollected(f, ctx.thing, filled, map);
             string title = VarietyUtil.Line(filled ? more?.doneTitles : more?.failTitles, ctx) ?? ctx.incident.LabelCap.ToString();

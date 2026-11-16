@@ -120,7 +120,7 @@ namespace ColonyCouncil
             {
                 foreach (var p in there) Faiths.Steady(p, PeopleEvents3Math.Steadied);
                 b.settledUntil = Now + PeopleEvents3Math.SettledDays * GenDate.TicksPerDay;
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.TableGoodwill, false);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.TableGoodwill, GoodwillWhy.Helped);
                 Tell.Message(NewsKind.People, Importance.Notable, map, "CC_PEv3_TableSettled".Translate(faiths.Named("FAITHS"), there.Count.Named("COUNT")).Resolve(),
                     palmer != null && palmer.Spawned ? new LookTargets(palmer) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             }

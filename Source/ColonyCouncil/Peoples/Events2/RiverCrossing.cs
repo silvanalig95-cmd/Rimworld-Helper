@@ -283,7 +283,7 @@ namespace ColonyCouncil
                 PeopleEvents2Book.Instance?.AddCrossing(r);
                 var k = CouncilGameComponent.Instance?.happenings?.AddVisit(KnotKind, DefDatabase<IncidentDef>.GetNamedSilentFail("Rimfolk_Evt_KnotNight"), map, null, null, null, Now + 30 * GenDate.TicksPerDay);
                 if (k != null) k.stake = f.loadID;
-                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.CrossingGoodwill, false);
+                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.CrossingGoodwill, GoodwillWhy.TheirWork);
                 FactionMemory.Note(f, "builtTogether", "CC_PEv2_CrossingName".Translate().Resolve());
                 bool whole = cells.All(c => Laid(c, map));
                 Tell.Message(NewsKind.Colony, Importance.Notable, map, (whole ? "CC_PEv2_CrossingDone" : "CC_PEv2_CrossingPart").Translate(f.Name.Named("FACTION")).Resolve(),
@@ -511,7 +511,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("peoples' events 2: the knot night's rest", e);
             }
-            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.KnotGoodwill, false);
+            if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.KnotGoodwill, GoodwillWhy.Helped);
         }
     }
 }

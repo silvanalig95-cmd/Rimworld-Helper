@@ -320,7 +320,7 @@ namespace ColonyCouncil
                             return false;
                         }
                         s.Set("alliesLost");
-                        Goodwill(marching, -5, false);
+                        Goodwill(marching, -5, GoodwillWhy.WorldEvent);
                         return true;
                     }
                 case "captive":

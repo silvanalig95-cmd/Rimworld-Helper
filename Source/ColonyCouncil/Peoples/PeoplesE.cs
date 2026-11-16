@@ -943,7 +943,7 @@ namespace ColonyCouncil
             {
                 int kept = PeoplesEMath.Kept(f.PlayerGoodwill, shift);
                 if (kept == 0) continue;
-                WorldSituationWorker.Goodwill(f, kept);
+                WorldSituationWorker.Goodwill(f, kept, GoodwillWhy.Ledger);
                 Tell.Message(NewsKind.World, Importance.Notable, map,
                     (kept > 0 ? "CC_PeoplesE_LedgerWarm" : "CC_PeoplesE_LedgerCool").Translate(f.Name.Named("FACTION"), felled.Named("FELLED"), planted.Named("PLANTED")).Resolve(),
                     LookTargets.Invalid, kept > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent);

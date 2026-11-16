@@ -352,7 +352,7 @@ namespace ColonyCouncil
             if (v.place != null && v.place.Spawned) v.place.Destroy();
             var f = PeoplesF.PeopleOf(v);
             bool free = Parts(v).Length > 4 && Parts(v)[4] == "free";
-            if (free && f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.CrossedGoodwill, false);
+            if (free && f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.CrossedGoodwill, GoodwillWhy.Helped);
             if (map != null) News.Post("CC_PEv3_DroveGone".Translate((f?.Name ?? "?").Named("FACTION")).Resolve(), LookTargets.Invalid, NewsKind.Land);
         }
 
@@ -521,7 +521,7 @@ namespace ColonyCouncil
             {
                 var x = hc.stranger;
                 Couriers.PaySilver(hc.map, x != null && x.Spawned ? x.Position : IntVec3.Invalid, hc.variant, hc.faction, PeoplesG.Up(x, hc.map) ? x : null);
-                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.DroveTollGoodwill, false);
+                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.DroveTollGoodwill, GoodwillWhy.Paid);
             }
             Drove.Begin(hc, !toll);
         }
@@ -539,7 +539,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            if (ctx?.faction != null && ctx.faction.HasGoodwill && !ctx.faction.IsPlayer) WorldSituationWorker.Goodwill(ctx.faction, PeopleEvents3Math.DroveTurnedGoodwill, false);
+            if (ctx?.faction != null && ctx.faction.HasGoodwill && !ctx.faction.IsPlayer) WorldSituationWorker.Goodwill(ctx.faction, PeopleEvents3Math.DroveTurnedGoodwill, GoodwillWhy.TurnedAway);
         }
     }
 }

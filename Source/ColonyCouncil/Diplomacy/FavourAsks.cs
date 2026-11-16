@@ -316,7 +316,7 @@ namespace ColonyCouncil
             var home = FavoursOwed.HomeOf(t);
             FavoursOwed.Close(t, Tie.State.Broken);
             FactionMemory.Note(f, "refused", DipWords.Why(t));
-            WorldSituationWorker.Goodwill(f, FavourMath.RefusedGoodwill, false);
+            WorldSituationWorker.Goodwill(f, FavourMath.RefusedGoodwill, GoodwillWhy.DebtRefused);
             var form = DipWords.Form(home, f);
             // apart: their call answered (or not) from afar; told in a message.
             Tell.Message(NewsKind.World, Importance.Notable, home,

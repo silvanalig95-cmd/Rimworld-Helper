@@ -106,7 +106,7 @@ namespace ColonyCouncil
             if (!carried) Loot.Deliver(things, home, gate, false);
             try
             {
-                h.people.TryAffectGoodwillWith(Faction.OfPlayer, HamletMath.HarvestGoodwill, false, false);
+                h.people.TryAffectGoodwillWith(Faction.OfPlayer, HamletMath.HarvestGoodwill, true, false, GoodwillWhy.Harvest);
             }
             catch (Exception e)
             {

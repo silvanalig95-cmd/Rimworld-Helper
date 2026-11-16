@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Riding out, and goodwill that says why
+
+*16 November 2026, version 0.258.0*
+
+- With Giddy-Up 2, colonists ride to work 40 cells or more out past the base and ride back on the same beast; the beast waits near the work while its rider is still at it, up to a day.
+- A drafted colonist given a far movement order rides when a free beast gets them there sooner; Giddy-Up's own rules still decide which beasts may be ridden.
+- A new setting under Giddy-Up 2 on Your other mods, and a dev action that says why a colonist rides or not.
+- Every change Rimfolk makes in a people's goodwill now names its reason in the game's message, such as "a letter that slighted their god" or "the council's choice", and the Factions tab lists it.
+- A letter that slighted a people's god now costs their goodwill when their answer saying so reaches the colony, not the day they read it.
+- Goodwill changes that came without a word, such as a toll paid, a truce sworn or a hamlet's harvest, now show the game's message.
+- An answer's goodwill and trust lines show their number again where they showed "%N%".
+
 ## The game's own description on every card
 
 *16 November 2026, version 0.257.1*

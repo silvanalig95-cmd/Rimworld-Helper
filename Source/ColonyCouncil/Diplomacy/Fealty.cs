@@ -609,7 +609,7 @@ namespace ColonyCouncil
             int owed = t.terms.count;
             WorldLedger.Set(t, Tie.State.Broken);
             FactionMemory.Note(f, "tributeShort", owed.ToString());
-            Goodwill(f, -FealtyMath.BrokenGoodwill);
+            Goodwill(f, -FealtyMath.BrokenGoodwill, GoodwillWhy.OathBroken);
             var form = FealtyWords.Form(home, f);
             Tell.Letter(NewsKind.World, Importance.Important, home, FealtyWords.P("CC_Fealty_Broken_Label", FealtyWords.People(f).Named("PEOPLE")),
                 FealtyWords.T("CC_Fealty_BrokenTribute", FealtyWords.People(f).Named("PEOPLE"), owed.Named("OWED"), form.word.Named("WORD"), FealtyMath.BrokenGoodwill.Named("GOODWILL")),
@@ -617,12 +617,16 @@ namespace ColonyCouncil
             Diplomacy.Dirty();
         }
 
-        private static void Goodwill(Faction f, int amount)
+        /// <summary>
+        /// Their people's goodwill, without a message: each letter that comes with it gives the number. The reason is for
+        /// the Factions tab (World/GoodwillWhy.cs).
+        /// </summary>
+        private static void Goodwill(Faction f, int amount, HistoryEventDef reason)
         {
             if (f == null || amount == 0) return;
             try
             {
-                f.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false);
+                f.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false, reason);
             }
             catch (Exception e)
             {
@@ -651,7 +655,7 @@ namespace ColonyCouncil
             t.terms.about = Ref.None;
             WorldLedger.Touch(t);
             FactionMemory.Note(f, "refused", FealtyWords.LevyForm(home, f).word);
-            Goodwill(f, -FealtyMath.LeviesRefusedGoodwill);
+            Goodwill(f, -FealtyMath.LeviesRefusedGoodwill, GoodwillWhy.Levies);
             var actors = new List<HistoryActor> { new HistoryActor(Diplomacy.Colony(home), HistoryRole.Did), new HistoryActor(Refs.Of(f), HistoryRole.Against) };
             Diplomacy.Write(DiplomacyMath.Levy, actors, Diplomacy.Colony(home), FealtyWords.P("CC_Fealty_Hist_LeviesRefused", FealtyWords.People(f).Named("PEOPLE")));
             // apart: the colony's answer (or its silence), told in a message.
@@ -684,7 +688,7 @@ namespace ColonyCouncil
             if (!clean)
             {
                 FactionMemory.Note(f, "renounced", FealtyWords.Form(home, f).word);
-                Goodwill(f, -cost);
+                Goodwill(f, -cost, GoodwillWhy.OathBroken);
             }
             var form = FealtyWords.Form(home, f);
             Tell.Letter(NewsKind.World, Importance.Important, home, FealtyWords.P("CC_Fealty_Renounced_Label", FealtyWords.People(f).Named("PEOPLE")),

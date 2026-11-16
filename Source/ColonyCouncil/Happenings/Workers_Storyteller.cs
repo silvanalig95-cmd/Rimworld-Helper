@@ -1036,7 +1036,7 @@ namespace ColonyCouncil
                 float sent = Mathf.Max(150f, (ctx.thing?.BaseMarketValue ?? 1f) * m.amount);
                 var things = Loot.Make(sent * Rand.Range(1.5f, 2.5f));
                 string what = Loot.Describe(things);
-                if (m.faction.HasGoodwill) m.faction.TryAffectGoodwillWith(Faction.OfPlayer, 8, true, false);
+                if (m.faction.HasGoodwill) m.faction.TryAffectGoodwillWith(Faction.OfPlayer, 8, true, false, GoodwillWhy.Event);
                 StorytellerEvents.Give(m.other, "Council_Evt_OldUnitWon", def);
                 // The colony's share is carried in, the letter with it (Couriers/); else there at once.
                 if (!Couriers.BringHome(map, things, m.faction, spot, ctx, more?.doneTitles, more?.done, new[] { "won" }, LetterDefOf.PositiveEvent, what))
@@ -1047,7 +1047,7 @@ namespace ColonyCouncil
             }
             else
             {
-                if (m.faction.HasGoodwill) m.faction.TryAffectGoodwillWith(Faction.OfPlayer, 3, true, false);
+                if (m.faction.HasGoodwill) m.faction.TryAffectGoodwillWith(Faction.OfPlayer, 3, true, false, GoodwillWhy.Event);
                 StorytellerEvents.Give(m.other, "Council_Evt_OldUnitLost", def);
                 LivingEvents.Tell(ctx, more?.doneTitles, more?.done, new[] { "lost" }, LetterDefOf.NeutralEvent, LookTargets.Invalid);
             }
@@ -1062,6 +1062,9 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_FormerPatient : HappeningWorker_Visitors
     {
+        /// <summary>Goodwill with every people at peace when the patient spreads word of the colony's healer.</summary>
+        private const int WordSpreadGoodwill = 3;
+
         private static bool Healer(Pawn p) => Pasts.Has(p, Past.Healer);
 
         private static IEnumerable<Pawn> Healers(Map map) =>
@@ -1092,8 +1095,13 @@ namespace ColonyCouncil
             if (option == 0 || (option == 1 && risk))
                 Couriers.Loot(Loot.Make(ctx.variant), ctx.map, near, Couriers.PeopleOf(ctx), x);
             if (option == 2 && !byDefault)
+            {
+                // Every people at peace: no message for each, the outcome says it with the number (and the Factions tab, why).
                 foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && f.HasGoodwill && !f.HostileTo(Faction.OfPlayer)))
-                    f.TryAffectGoodwillWith(Faction.OfPlayer, 3, false, false);
+                    f.TryAffectGoodwillWith(Faction.OfPlayer, WordSpreadGoodwill, false, false, GoodwillWhy.Name);
+                string word = "CC_St_WordSpread".Translate(ImpactMath.Signed(WordSpreadGoodwill)).Resolve();
+                outcome = outcome.NullOrEmpty() ? word : outcome + " " + word;
+            }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -1328,7 +1336,7 @@ namespace ColonyCouncil
                 // The silver or the food goes out with the answer's own errand (DilemmaEffect_CarryOut, carried to the
                 // envoy at the gate; taken at once if it never happens).
                 // Lifted to just above zero, where the game ends a war.
-                e.TryAffectGoodwillWith(Faction.OfPlayer, Mathf.Max(5, 5 - e.PlayerGoodwill), true, false);
+                e.TryAffectGoodwillWith(Faction.OfPlayer, Mathf.Max(5, 5 - e.PlayerGoodwill), true, false, GoodwillWhy.Peace);
                 if (!e.HostileTo(Faction.OfPlayer)) CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.Peace, null, e, null, null, false, ctx.a, ctx.map);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);

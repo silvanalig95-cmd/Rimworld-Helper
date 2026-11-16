@@ -207,7 +207,7 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    WorldSituationWorker.Goodwill(f, verdict > 0 ? PeopleEventsMath.PromiseKeptGoodwill : PeopleEventsMath.PromiseBrokenGoodwill);
+                    WorldSituationWorker.Goodwill(f, verdict > 0 ? PeopleEventsMath.PromiseKeptGoodwill : PeopleEventsMath.PromiseBrokenGoodwill, verdict > 0 ? GoodwillWhy.PromiseKept : GoodwillWhy.PromiseBroken);
                     if (verdict < 0) FactionMemory.Note(f, "wordBroken", "CC_PEv_PromiseName".Translate().Resolve());
                     Tell.Message(NewsKind.World, Importance.Notable, map,
                         (verdict > 0 ? "CC_PEv_PromiseKept" : "CC_PEv_PromiseBroken").Translate(f.Name.Named("FACTION"), felled.Named("FELLED"), planted.Named("PLANTED")).Resolve(),

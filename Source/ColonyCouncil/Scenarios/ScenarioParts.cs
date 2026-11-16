@@ -219,7 +219,7 @@ namespace ColonyCouncil
             var f = Liege();
             if (f == null) return;
             string lord = f.leader != null && !f.leader.Dead ? f.leader.LabelShort : null;
-            if (ctx.warmStart && f.PlayerGoodwill < goodwill) f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill - f.PlayerGoodwill, false, false);
+            if (ctx.warmStart && f.PlayerGoodwill < goodwill) f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill - f.PlayerGoodwill, false, false, GoodwillWhy.Beholden);
             var d = FactionMemory.Note(f, deed, lord, weight);
             Hold(f, Refs.Colony(ctx.map), deed, weight, f.leader != null && !f.leader.Dead ? f.leader : null, Find.TickManager.TicksGame);
             string key = "CC_Scen_Beholden_" + deed + (lord != null ? "_Lord" : "");

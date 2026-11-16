@@ -143,14 +143,14 @@ namespace ColonyCouncil
         public static void Unpaid(Camp c)
         {
             if (c?.faction == null) return;
-            if (c.faction.HasGoodwill && !c.faction.IsPlayer) WorldSituationWorker.Goodwill(c.faction, PeoplesEMath.UnpaidGoodwill);
+            if (c.faction.HasGoodwill && !c.faction.IsPlayer) WorldSituationWorker.Goodwill(c.faction, PeoplesEMath.UnpaidGoodwill, GoodwillWhy.Unpaid);
         }
 
         /// <summary>The contract kept to its end: the Banner thinks well of it.</summary>
         public static void Kept(Camp c)
         {
             if (c?.faction == null || !c.faction.HasGoodwill || c.faction.IsPlayer) return;
-            WorldSituationWorker.Goodwill(c.faction, PeoplesEMath.ContractGoodwill);
+            WorldSituationWorker.Goodwill(c.faction, PeoplesEMath.ContractGoodwill, GoodwillWhy.DealKept);
         }
     }
 
@@ -236,7 +236,7 @@ namespace ColonyCouncil
         {
             var f = ctx?.faction;
             if (f == null || !f.HasGoodwill || f.IsPlayer) return;
-            WorldSituationWorker.Goodwill(f, PeoplesEMath.DeserterTaken);
+            WorldSituationWorker.Goodwill(f, PeoplesEMath.DeserterTaken, GoodwillWhy.Deserter);
             Tell.Message(NewsKind.World, Importance.Flavor, ctx.map, "CC_PeoplesE_DeserterHeard".Translate(f.Name, ctx.stranger?.LabelShort ?? "?").Resolve(), LookTargets.Invalid,
                 MessageTypeDefOf.NeutralEvent);
         }

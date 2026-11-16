@@ -209,7 +209,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   The player's pick of name: "Revel sounds great": Revel, the Open Cup.
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colonists ride out to far work
+- 0.258.0, **Colonists ride out to far work
   and back with Giddy-Up 2** (16 November 2026; the player's words, 15 November 2026, with their save `League_of_Toba`:
   "pawns should really use mounts whenever they walk away out of the base range. sometimes they do, but sometimes they
   don't, i don't uinderstand. for example now avila did not mount up despite going really far to mine. it should mount
@@ -277,6 +277,52 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     one gear mod Giddy-Up 2 draws on a ridden beast (its compatibility names it), with Animal Apparel: Basic Armor
     (3513849448) for barding; the Workshop page showed a removal notice when looked at, so check it is still up before
     adding it.
+- 0.258.0 (with the riding above), **Every change in goodwill says
+  why** (16 November 2026; the player, with a screenshot of "Relations with Stormriders have changed from 53 to 45." and
+  their save: "sometimes my relations with factions change and i have no idea why"). A bug fix. DESIGN.md "Every change
+  in goodwill says why" (after "Letters and favours made clear") has all of it; README "What the world remembers".
+  - **The save** (`League of Toba`, day 116): 53 to 45 at tick 7005064, the neighbours' hour, as the Stormriders'
+    Shelara read Guido's invitation (letter 51): it slighted their god, `GodLetters.Answered` took 6 (8 with the game's
+    pull toward natural goodwill) with no reason, a day before the answer saying so could reach the colony. 22 to 23
+    (6652280) and 39 to 40 (6857280): two meetings at the colony with one of theirs (`Council_EncM_RescueThanks`,
+    `Council_EncR_HopesForMeal`, `DilemmaEffect_Goodwill`). 23 to 31 (6692718): the council's answer "Give them silver
+    instead" to "Hungry at the gate" (`Council_DlmS_Beggars`); the "Known as generous" letter at the same tick came from
+    the same answer. Every people +1 or +2 at 6781373 (the region's day): the gods the colony shares with them
+    (`GodPeoples.Shared`), the Stormriders -1 for the god the colony keeps, Teenanuay Grove -1 by the Mossborn's ledger
+    then +1 for a shared god. Seen in passing and fixed with it: the save's answer records keep "Stormriders: %N%
+    goodwill" and "Bautista: %N% trust" (the game's words capitalise an argument after a colon, so the mark "%n%" became
+    "%N%" before `ImpactMath.Fill` looked for it); `Fill` now finds it in either case, old answers too (`ImpactTests`).
+  - **Built**: 65 reasons of Rimfolk's own (HistoryEventDefs, plain lower-case labels: "a letter that slighted their
+    god", "the council's choice", "a meeting with one of theirs", "a task done for them", "a god they share with the
+    colony", "a contract left unpaid"...), given to the game with every goodwill change Rimfolk makes; the game's message
+    ends with it, the Factions tab lists it among the people's recent events. Changes that were silent and told by nothing
+    at the same moment (the peoples' own events, a truce, a debt refused, a ward home or dead, heavy tribute, the warden's
+    welcome, the lamp, a hamlet's harvest, a season's delivery) show the game's message now; those whose letter gives the
+    number stay without one. The slight's goodwill and memory, and the letter's own goodwill, land when the answer is in
+    at the colony. The faction memory's hooks skip Rimfolk's reasons; an outsider's gift, remembered twice through the
+    game's "gave gift", is remembered once.
+  - **Code map**: `World/GoodwillReasonMath.cs` (names, `All`, `Own`, `Task`, `NeverIntoWar`, `SlightLands`,
+    `Unreasoned`), `World/GoodwillWhy.cs` (the defs by name, `ForEffects`, `During`), `Defs/HistoryEventDefs/
+    Rimfolk_GoodwillReasons.xml`; the wrappers `WorldSituationWorker.Goodwill`, `StoryChains.Goodwill`,
+    `Missions.Goodwill`, `Camp.LoseGoodwill`, `Schemes.LoseGoodwill`, `Vassals.Goodwill`, `Fealty.Goodwill`; the scope
+    set in `Encounters.Told`, `IncidentWorker_Happening.Send`, `HappeningWorker_Attack.Send` and the
+    story's ending (Workers_StoryFlow.cs); `NeighbourLetters.Landed` (from `Owed`, `Finish` and a visit's messenger),
+    `NeighbourLetter.goodwillDue` (saved), `GodLetters.AnswerIn`; `Patch_MemoryGoodwill`, `Patch_ModMemoryGoodwill`;
+    `CC_St_WordSpread` (a former patient's word to every people at peace, told once with the number);
+    `Tools/Tests/GoodwillReasonTests.cs` (and three checks in FealtyTests, SchemesTests, PeoplesDTests for the new
+    signatures).
+  - **Not checked without the game**: the message with the reason and the Factions tab's recent events; the slight
+    landing as the post sets the answer down (and a messenger's, a rider's, a call's); the history events recorded with
+    Ideology and the player's mods (no precept refers to them); the save's history lists, about 7 KB more a people and up
+    to about 40 KB for each people Rimfolk moves over a long game; the one-time shift of other mods' saved history events
+    by the 65 new defs (mods loaded after Rimfolk, the game keeps them by position).
+  - **Try in the game**: 1. Load the save and wait for letter 51's answer (in the post): the message "Relations with
+    Stormriders have changed from 53 to 45 (a letter that slighted their god)." comes with the answer letter, not before.
+    2. Open the Factions tab and hover the Stormriders: their recent events list "A letter that slighted their god: -8".
+    3. Answer a council letter that moves goodwill: "(the council's choice)". 4. At the region's day after a shared god's
+    pass: each message names "a god they share with the colony". 5. Finish or fail a task for a people: "(a task done for
+    them)" or "(a task left undone)".
+  - **Mods that would help**: none; it uses the game's own message and Factions tab, and no graphics or sound.
 - 0.257.1, **The game's own description on
   every card** (the player, 16 November 2026, with screenshots of Rimfolk's card for feedstock next to the game's: "all
   item cards should always have the original description text somewhere at the top"; built with their go of the same

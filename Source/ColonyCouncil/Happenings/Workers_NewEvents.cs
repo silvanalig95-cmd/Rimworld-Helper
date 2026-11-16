@@ -733,7 +733,7 @@ namespace ColonyCouncil
                 if (now < m.due) continue;
                 t.Use(m);
                 DropBill(map, m.text);
-                WorldSituationWorker.Goodwill(m.faction, -4);
+                WorldSituationWorker.Goodwill(m.faction, -4, GoodwillWhy.OrderMissed);
                 string title = VarietyUtil.Line(more?.failTitles, ctx) ?? incident.LabelCap.ToString();
                 string text = VarietyUtil.Line(more?.fail, ctx);
                 if (!text.NullOrEmpty()) Tell.Letter(NewsKind.World, Importance.Notable, null, title, text, LetterDefOf.NeutralEvent);
@@ -766,7 +766,7 @@ namespace ColonyCouncil
                 piece.Destroy();
                 VarietyUtil.PaySilver(map, at, price);
             }
-            WorldSituationWorker.Goodwill(ctx.faction, fine ? 8 : 4);
+            WorldSituationWorker.Goodwill(ctx.faction, fine ? 8 : 4, GoodwillWhy.OrderFilled);
             if (fine)
             {
                 var t = comp.happenings;

@@ -275,7 +275,7 @@ namespace ColonyCouncil
         {
             var f = c.faction;
             if (f == null || c.Hostile || c.tension >= 40f) return;
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.DryGoodwill, false);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.DryGoodwill, GoodwillWhy.CampWell);
             FactionMemory.Note(f, "campHelped", "CC_PEv2_DryName".Translate().Resolve());
             News.Post("CC_PEv2_DryRegion".Translate(f.Name.Named("FACTION")).Resolve(), LookTargets.Invalid, NewsKind.World);
         }
@@ -391,7 +391,7 @@ namespace ColonyCouncil
             {
                 var x = hc.stranger;
                 Couriers.PaySilver(hc.map, x != null && x.Spawned ? x.Position : IntVec3.Invalid, hc.variant, hc.faction, PeoplesG.Up(x, hc.map) ? x : null);
-                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.TollGoodwill, false);
+                if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.TollGoodwill, GoodwillWhy.Paid);
             }
             DryWater.Start(hc);
             // The elder goes back to bring the herd in.
@@ -413,7 +413,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var hc = ctx as HappeningContext;
-            if (hc?.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.TurnedAwayGoodwill, false);
+            if (hc?.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.TurnedAwayGoodwill, GoodwillWhy.TurnedAway);
             DryWater.TurnedAway(hc);
         }
     }

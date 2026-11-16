@@ -344,7 +344,7 @@ namespace ColonyCouncil
             PeopleEventsBook.Gave(GuildMark.GiftKind, on);
             var f = worker.Faction;
             if (made == null) return;
-            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.MarkGoodwill, false);
+            if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.MarkGoodwill, GoodwillWhy.TheirWork);
             PeoplesG.SayLine(worker, v.incident, "marked");
             Tell.Message(NewsKind.People, Importance.Notable, map,
                 "CC_PEv2_MarkDone".Translate(worker.LabelShort.Named("SMITH"), on.Named("PAWN"), made.LabelNoCount.Named("PIECE"), (f?.Name ?? "?").Named("FACTION")).Resolve(),

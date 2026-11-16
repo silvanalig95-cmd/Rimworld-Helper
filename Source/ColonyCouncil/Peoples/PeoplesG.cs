@@ -759,7 +759,7 @@ namespace ColonyCouncil
             wardens.Remove(warden.thingIDNumber);
             PeoplesG.SayLine(warden, incident, "relinked");
             if (mech != null && mech.Spawned) FleckMaker.ThrowMicroSparks(mech.DrawPos, mech.Map);
-            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.ReturnedGoodwill);
+            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.ReturnedGoodwill, GoodwillWhy.Returned);
             Tell.Message(NewsKind.World, Importance.Notable, warden.MapHeld, "CC_PeoplesG_Relinked".Translate(warden.LabelShort.Named("PAWN"), (mech?.LabelShort ?? "?").Named("MECH")).Resolve(),
                 new LookTargets(warden), MessageTypeDefOf.PositiveEvent);
             PeoplesG.Home(new List<Pawn> { warden, mech });
@@ -772,7 +772,7 @@ namespace ColonyCouncil
             Lords.Leave(mech);
             mech.SetFaction(Faction.OfPlayer);
             if (keeper.relations != null && MechanitorUtility.GetOverseer(mech) == null) keeper.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mech);
-            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.KeptGoodwill);
+            if (f != null && !f.IsPlayer && f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.KeptGoodwill, GoodwillWhy.KeptTheirs);
             Tell.Message(NewsKind.World, Importance.Notable, mech.MapHeld, "CC_PeoplesG_Kept".Translate(mech.LabelShort.Named("MECH"), keeper.LabelShort.Named("PAWN"),
                 (f?.Name ?? "?").Named("FACTION")).Resolve(), new LookTargets(mech), MessageTypeDefOf.NeutralEvent);
             return true;
@@ -842,7 +842,7 @@ namespace ColonyCouncil
             if (warden != null && PlayOuts.On && mech.Spawned && mech.Map == map && Arrivals.Spawn(warden, map)
                 && PeoplesG.Errand(warden, map, mech, null, PeoplesG.RelinkJob, PeoplesGMath.RelinkTicks, 6f)) return;
             if (warden != null && !warden.Spawned) Arrivals.Discard(warden);
-            if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.ReturnedGoodwill);
+            if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeoplesGMath.ReturnedGoodwill, GoodwillWhy.Returned);
             PeoplesG.Home(new List<Pawn> { mech });
         }
     }

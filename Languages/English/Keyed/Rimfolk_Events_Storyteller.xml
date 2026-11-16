@@ -22,5 +22,7 @@
   <CC_St_Forging>the forging of the {THING}</CC_St_Forging>
   <CC_St_NotPrisoner>{0} is no longer the colony's prisoner.</CC_St_NotPrisoner>
   <CC_St_NoLongerAtWar>The colony is no longer at war with {0}.</CC_St_NoLongerAtWar>
+  <!-- A former patient spreads word of the colony's healer: every people at peace thinks better of it (no message for each). -->
+  <CC_St_WordSpread>Every people at peace with the colony thinks a little better of it for this ({0} goodwill each).</CC_St_WordSpread>
 
 </LanguageData>

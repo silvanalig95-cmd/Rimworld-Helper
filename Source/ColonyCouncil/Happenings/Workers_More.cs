@@ -162,7 +162,7 @@ namespace ColonyCouncil
                 outcome = outcome.NullOrEmpty() ? article : outcome + " " + article;
                 int goodwill = rep > 0 ? 4 : rep < 0 ? -3 : 1;
                 foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && f.HasGoodwill && !f.HostileTo(Faction.OfPlayer)))
-                    f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, false, false);
+                    f.TryAffectGoodwillWith(Faction.OfPlayer, goodwill, false, false, GoodwillWhy.Name);
                 var thought = rep > 0 ? CouncilDefOf.Council_Evt_GoodPress : rep < 0 ? CouncilDefOf.Council_Evt_BadPress : null;
                 if (thought != null && ctx.map != null)
                 {

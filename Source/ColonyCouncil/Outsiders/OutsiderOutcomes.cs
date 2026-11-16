@@ -415,7 +415,7 @@ namespace ColonyCouncil
                 return;
             }
             Say(x, "inviteyes", c);
-            if (f != null) WorldSituationWorker.Goodwill(f, OutsiderMath.InviteGoodwill(reasons), true);
+            if (f != null) WorldSituationWorker.Goodwill(f, OutsiderMath.InviteGoodwill(reasons), GoodwillWhy.Joined);
             InteractionWorker_RecruitAttempt.DoRecruit(c, x, true);
             // together: asked and accepted face to face.
             Good("CC_Out_Msg_InviteYes", x, c.Named("PAWN"), x.Named("OTHER"), (f?.Name ?? "").Named("FACTION"));
@@ -578,7 +578,7 @@ namespace ColonyCouncil
             if (f != null)
             {
                 KinMemory.Note(f, "brawled", c, x?.LabelShort);
-                WorldSituationWorker.Goodwill(f, OutsiderMath.BrawlGoodwill, true);
+                WorldSituationWorker.Goodwill(f, OutsiderMath.BrawlGoodwill, GoodwillWhy.Brawl);
             }
             var n = NotableOf(x);
             if (n != null)
@@ -733,7 +733,7 @@ namespace ColonyCouncil
                 if (gw > 0)
                     try
                     {
-                        f.TryAffectGoodwillWith(Faction.OfPlayer, gw, true, false, HistoryEventDefOf.GaveGift);
+                        f.TryAffectGoodwillWith(Faction.OfPlayer, gw, true, false, GoodwillWhy.Gift);
                     }
                     catch (Exception e)
                     {
@@ -1297,7 +1297,7 @@ namespace ColonyCouncil
             }
             if (f != null)
             {
-                if (won || lost) WorldSituationWorker.Goodwill(f, OutsiderMath.HonourGoodwill(won, theirs), true);
+                if (won || lost) WorldSituationWorker.Goodwill(f, OutsiderMath.HonourGoodwill(won, theirs), GoodwillWhy.Bout);
                 if (won) KinMemory.Note(f, "duel", c, x.LabelShort);
             }
             NotableBook.Changed();

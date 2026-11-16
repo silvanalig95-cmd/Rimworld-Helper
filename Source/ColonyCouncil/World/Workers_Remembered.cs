@@ -450,7 +450,7 @@ namespace ColonyCouncil
             var f = ctx.faction;
             if (f == null || !HappeningWorker_Remembered.CanMakePeace(f)) return;
             int change = Mathf.Max(1, Mathf.Max(1, goodwill) - f.PlayerGoodwill);
-            f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false);
+            f.TryAffectGoodwillWith(Faction.OfPlayer, change, true, false, GoodwillWhy.Peace);
         }
     }
 }

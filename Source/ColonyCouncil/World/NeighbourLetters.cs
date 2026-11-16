@@ -91,6 +91,12 @@ namespace ColonyCouncil
         public int owedSize;
         /// <summary>The warning came after the threat had passed them by (read with thanks and remembered, no debt): its answer says so.</summary>
         public bool late;
+        /// <summary>
+        /// Their people's goodwill for the letter, as their answer says it: it lands when the answer is in at the colony
+        /// (NeighbourLetters.Landed), not when they read it; 0 when none waits (and in an older save's letter, whose
+        /// goodwill landed as it was read).
+        /// </summary>
+        public int goodwillDue;
 
         // ---- The post (Post/): who took it and how, from the outbox ----
 
@@ -188,6 +194,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref owed, "owed");
             Scribe_Values.Look(ref owedSize, "owedSize");
             Scribe_Values.Look(ref late, "late");
+            Scribe_Values.Look(ref goodwillDue, "goodwillDue");
             Scribe_Values.Look(ref carrier, "carrier");
             Scribe_Values.Look(ref carrierName, "carrierName");
             Scribe_Values.Look(ref carrierMeans, "carrierMeans");
@@ -920,6 +927,8 @@ namespace ColonyCouncil
                 }
                 case LetterStage.Visiting:
                     if (l.heldDue >= 0 && now >= l.heldDue) Release(l, n);
+                    // The answer came with a messenger of theirs (it brought things): what it says lands once it is in.
+                    if (l.tripId >= 0 && !AnswerOut(l)) Landed(l, n);
                     if (now >= l.due) TryVisit(l, n, now);
                     return;
                 case LetterStage.Guesting:
@@ -1012,6 +1021,8 @@ namespace ColonyCouncil
 
         private static void Finish(NeighbourLetter l, Notable n)
         {
+            // Whatever its answer said that hasn't landed yet lands now, at the latest.
+            Landed(l, n);
             l.stage = LetterStage.Done;
             l.stageTick = Now;
             NotableBook.Changed();
@@ -1334,9 +1345,9 @@ namespace ColonyCouncil
             else if (!l.topicKey.NullOrEmpty() && !n.done.Contains(l.topicKey)) n.done.Add(l.topicKey);
             while (n.done.Count > 12) n.done.RemoveAt(0);
             n.Remember(NoteText(l, tone, speaker), shift);
-            // Their people's goodwill, a little (never into a war).
+            // Their people's goodwill, a little (never into a war): it lands with their answer, which says so (Landed).
             int gw = NotableMath.GoodwillShift(tone, l.purpose, x.hostile);
-            if (gw != 0) WorldSituationWorker.Goodwill(n.faction, gw, false);
+            if (tone != AnswerTone.Silence) l.goodwillDue = gw;
             // What their people remember of it: a warning heeded, mourning shared, help the colony now owes them for.
             if (tone != AnswerTone.Silence && tone != AnswerTone.Refusal)
             {
@@ -1700,11 +1711,33 @@ namespace ColonyCouncil
         private static bool CanOwe(Faction f) => f != null && FavoursOwed.On && Diplomacy.Deals(f);
 
         /// <summary>
+        /// The answer is in at the colony (or the letter is done): what it says about their people lands now, once. Their
+        /// goodwill for the letter, without a message (the answer says it rises), and a slight in the colony's letter that
+        /// they took offence at, with the game's message naming it (Gods/World/GodLetters.cs). The player, 16 November 2026,
+        /// on a 53 to 45 that came a day before the answer: "sometimes my relations with factions change and i have no idea
+        /// why".
+        /// </summary>
+        private static void Landed(NeighbourLetter l, Notable n)
+        {
+            if (l == null) return;
+            var f = n?.faction;
+            if (l.goodwillDue != 0)
+            {
+                int gw = l.goodwillDue;
+                l.goodwillDue = 0;
+                if (f != null) WorldSituationWorker.Goodwill(f, gw, GoodwillWhy.Letter, false);
+            }
+            GodLetters.AnswerIn(l, f);
+        }
+
+        /// <summary>
         /// A warning heeded warmly, its answer in: their people remember it with the weight of a debt of honour, owed to the
         /// colony (and named for the one who wrote), told in the answer's own words rather than on its own.
         /// </summary>
         private static void Owed(NeighbourLetter l, Notable n)
         {
+            // Their people's goodwill and a slight they took (Landed), with the answer that says so.
+            Landed(l, n);
             // A dealing's answer in: agreed, it starts now (Dealings/DealingLetters.cs).
             DealingLetters.AnswerIn(l);
             // A debt called in and honoured with a word, a captive let go or their help toward peace: done now its answer is in.
