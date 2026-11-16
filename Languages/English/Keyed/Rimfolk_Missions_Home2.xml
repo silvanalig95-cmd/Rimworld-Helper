@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Quests at home, round 2 (Source/ColonyCouncil/Missions/Workers_MissionHome3.cs, Workers_MissionHome4.cs, HomeQuests2.cs). -->
+
+  <!-- How the colony keeps food cold, by its age. -->
+  <CC_HomeQ2_Cold_Tribal>a cold room</CC_HomeQ2_Cold_Tribal>
+  <CC_HomeQ2_Cold_Medieval>an ice house</CC_HomeQ2_Cold_Medieval>
+  <CC_HomeQ2_Cold_Modern>a freezer</CC_HomeQ2_Cold_Modern>
+
+  <!-- A young fighter trained. -->
+  <CC_HomeQ2_Train_ReportSpar>sparring with {OTHER_labelShort}.</CC_HomeQ2_Train_ReportSpar>
+  <CC_HomeQ2_Train_ReportShoot>practising at the {TARGET} with {OTHER_labelShort}.</CC_HomeQ2_Train_ReportShoot>
+  <CC_HomeQ2_Train_Blow>{OTHER_nameDef}'s blow at training landed for real: {PAWN_nameDef} is hurt on the {PART}.</CC_HomeQ2_Train_Blow>
+  <CC_HomeQ2_Train_Levels>{SKILL} (from level {FROM} to {TO})</CC_HomeQ2_Train_Levels>
+  <CC_HomeQ2_Train_Status0>{X_nameDef} will come soon.</CC_HomeQ2_Train_Status0>
+  <CC_HomeQ2_Train_Status1>{X_nameDef} has trained {HOURS} of {TARGET} hours so far, {TODAY} of {DAILY} today. They train in the evenings when {TEACHER} is free.</CC_HomeQ2_Train_Status1>
+
+  <!-- A piece for a wedding. -->
+  <CC_HomeQ2_Wedding_Ready>Ready: the {THING}, of {QUALITY} quality.</CC_HomeQ2_Wedding_Ready>
+  <CC_HomeQ2_Wedding_NotReady>There is no {THING} of good quality or better at the colony yet.</CC_HomeQ2_Wedding_NotReady>
+  <CC_HomeQ2_Wedding_NotReadyPacked>There is no {THING} of good quality or better packed up (uninstalled) at the colony yet.</CC_HomeQ2_Wedding_NotReadyPacked>
+  <CC_HomeQ2_Wedding_Collecting>{FACTION}'s people are coming for the {THING}.</CC_HomeQ2_Wedding_Collecting>
+
+  <!-- A sick animal tended. -->
+  <CC_HomeQ2_Sick_Coming>{DROVER} of {FACTION} is bringing their sick animal, {NAME}, to the colony's gate.</CC_HomeQ2_Sick_Coming>
+  <CC_HomeQ2_Sick_Well>{NAME} is well again. {FACTION}'s drover will come for it.</CC_HomeQ2_Sick_Well>
+  <CC_HomeQ2_Sick_Status0>{DROVER} is bringing {NAME} to the colony.</CC_HomeQ2_Sick_Status0>
+  <CC_HomeQ2_Sick_Status2>{NAME} is still sick with {ILLNESS}. Keep it fed, and have a doctor treat it when it needs it.</CC_HomeQ2_Sick_Status2>
+  <CC_HomeQ2_Sick_StatusTend>{NAME} is sick with {ILLNESS} and needs a doctor to treat it now.</CC_HomeQ2_Sick_StatusTend>
+  <CC_HomeQ2_Sick_StatusWell>{NAME} is well.</CC_HomeQ2_Sick_StatusWell>
+  <CC_HomeQ2_Sick_Status3>{FACTION}'s drover is coming for {NAME}.</CC_HomeQ2_Sick_Status3>
+
+  <!-- Guard their camp for a night. -->
+  <CC_HomeQ2_Camp_Status0>{NAME} and the others, {COUNT} in all, will come in the late afternoon and camp at the {WAY} edge.</CC_HomeQ2_Camp_Status0>
+  <CC_HomeQ2_Camp_Status1>{FACTION}'s people are camped at the {WAY} edge of the colony's land.</CC_HomeQ2_Camp_Status1>
+  <CC_HomeQ2_Camp_Status2>{FACTION}'s camp is under attack.</CC_HomeQ2_Camp_Status2>
+  <CC_HomeQ2_Camp_RaidersTitle>Raiders at {FACTION}'s camp</CC_HomeQ2_Camp_RaidersTitle>
+  <CC_HomeQ2_Camp_BeastsTitle>Animals at {FACTION}'s camp</CC_HomeQ2_Camp_BeastsTitle>
+  <CC_HomeQ2_Camp_Raiders>Raiders of {ENEMY} are attacking {FACTION}'s camp at the {WAY} edge of the colony's land. {FACTION}'s people are up and ready to fight, and the colony agreed to keep watch over them.</CC_HomeQ2_Camp_Raiders>
+  <CC_HomeQ2_Camp_Beast>A wild {THING} is attacking {FACTION}'s camp at the {WAY} edge of the colony's land, going after people. {FACTION}'s people are up and ready to fight, and the colony agreed to keep watch over them.</CC_HomeQ2_Camp_Beast>
+  <CC_HomeQ2_Camp_Beasts>Wild {THING} are attacking {FACTION}'s camp at the {WAY} edge of the colony's land, going after people. {FACTION}'s people are up and ready to fight, and the colony agreed to keep watch over them.</CC_HomeQ2_Camp_Beasts>
+
+  <!-- Seed grain kept cold. -->
+  <CC_HomeQ2_Seed_Warm>{FACTION}'s seed ({ITEM}) is warmer than freezing where it lies. It has to be kept in {STORE} at freezing or colder; after more than {MAX} warm hours in all it is no good as seed.</CC_HomeQ2_Seed_Warm>
+  <CC_HomeQ2_Seed_Status0>{FACTION}'s carts are bringing {ITEM}.</CC_HomeQ2_Seed_Status0>
+  <CC_HomeQ2_Seed_StatusOut>The sowing is near: one of the colony's people will carry the seed out of the cold store for {FACTION}'s carts.</CC_HomeQ2_Seed_StatusOut>
+  <CC_HomeQ2_Seed_Status2>{FACTION}'s carts are coming for their seed.</CC_HomeQ2_Seed_Status2>
+  <CC_HomeQ2_Seed_Cold>Where it lies it is {TEMP}, cold enough.</CC_HomeQ2_Seed_Cold>
+  <CC_HomeQ2_Seed_NotCold>Where it lies it is {TEMP}, warmer than freezing.</CC_HomeQ2_Seed_NotCold>
+  <CC_HomeQ2_Seed_Warmth>Warm hours so far: {WARM} of {MAX}.</CC_HomeQ2_Seed_Warmth>
+  <CC_HomeQ2_Seed_NotForbidden>It is not forbidden, so someone may use it.</CC_HomeQ2_Seed_NotForbidden>
+
+  <!-- Their book copied: the book, by their age. -->
+  <CC_HomeQ2_Book_stories>a book of their people's stories</CC_HomeQ2_Book_stories>
+  <CC_HomeQ2_Book_learning>a book of their learning</CC_HomeQ2_Book_learning>
+  <CC_HomeQ2_Book_manual>a technical manual</CC_HomeQ2_Book_manual>
+  <CC_HomeQ2_Copy_Report>copying {BOOK} for {SCHOLAR}.</CC_HomeQ2_Copy_Report>
+  <CC_HomeQ2_Copy_Status0>{X_nameDef} will come soon.</CC_HomeQ2_Copy_Status0>
+  <CC_HomeQ2_Copy_Status1>Copied so far: {HOURS} of {TARGET} hours of work at a research bench.</CC_HomeQ2_Copy_Status1>
+
+  <!-- Musicians for a night. -->
+  <CC_HomeQ2_Music_Drums>drums</CC_HomeQ2_Music_Drums>
+  <CC_HomeQ2_Music_Harps>harps</CC_HomeQ2_Music_Harps>
+  <CC_HomeQ2_Music_Status0>{NAME} and the others, {COUNT} in all, will come in the afternoon.</CC_HomeQ2_Music_Status0>
+  <CC_HomeQ2_Music_Status1>They will play at a party in the evening, from {HOUR}:00.</CC_HomeQ2_Music_Status1>
+  <CC_HomeQ2_Music_Status2>They are playing at the colony's party.</CC_HomeQ2_Music_Status2>
+  <CC_HomeQ2_Music_Status2NoParty>There is no party tonight, so they are playing for whoever comes.</CC_HomeQ2_Music_Status2NoParty>
+  <CC_HomeQ2_Music_Status3>They are staying the night and will leave in the morning.</CC_HomeQ2_Music_Status3>
+  <CC_HomeQ2_Music_NoBed>One of them had no bed.</CC_HomeQ2_Music_NoBed>
+  <CC_HomeQ2_Play_ReportInstrument>playing the {INSTRUMENT}.</CC_HomeQ2_Play_ReportInstrument>
+  <CC_HomeQ2_Play_ReportOwn>playing music.</CC_HomeQ2_Play_ReportOwn>
+
+</LanguageData>

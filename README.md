@@ -3551,8 +3551,16 @@ one who loses leaves angry and may come to blows with the other at the game's ow
 messenger** (real wounds; a bed, a doctor, and their letter kept safe until their people come for it), to catch or kill
 an **outlaw** hiding on the colony's land (a real fight once found; worth half as much again alive), to search a marked
 area for a **lost keepsake** before six hours of rain or snow ruin it (right-click inside the area with a colonist
-selected), and to **tame a wild animal** of the land for them. A tribe pays in goods of its own, everyone else in
-silver. When the region knows the
+selected), and to **tame a wild animal** of the land for them. Seven more (not released yet): a neighbour's **young
+fighter** stays three to five days and trains each evening with the colony's best shot (at its shooting or archery
+target) or best fighter (sparring with pulled blows; now and then one lands, at the drills' own rate); one **piece for
+a wedding**, of good quality or better and of their age (clothes, a small sculpture, or a double bed packed up), is
+collected on the day; a **sick animal** of theirs is handed over at the gate to be tended back to health and collected
+when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
+fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
+sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
+keeps a copy; and **musicians** stay a night and play at the colony's party. A tribe pays in goods of its own, everyone
+else in silver. When the region knows the
 town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
 one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once

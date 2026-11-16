@@ -221,6 +221,13 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HarmKind Outlaw = new HarmKind("outlaw", "an outlaw found on the colony's land fights back (quests)", "quests", 0.006f, false);
 
+        /// <summary>
+        /// Raiders or predators that come in the night for a neighbour's caravan camped at the edge of the colony's land
+        /// (quests at home, round 2: Missions/Workers_MissionHome3.cs): the game's own fight, one night in three at most. A
+        /// quest the colony took on, a few a year at most.
+        /// </summary>
+        public static readonly HarmKind CampNight = new HarmKind("campNight", "something comes in the night for a neighbour's camp (quests)", "quests", 0.006f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -240,7 +247,7 @@ namespace ColonyCouncil
             UnionDrill,
             GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn, GodCup,
             Uncanny,
-            Outlaw
+            Outlaw, CampNight
         };
 
         public static HarmKind Of(string key)

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quests at home, round 2 (Source/ColonyCouncil/Missions/Workers_MissionHome3.cs, Workers_MissionHome4.cs): said over a
+    head, one short sentence each. Lines tagged with what happened ([raiders], [beasts], [quiet], [attacked], [party],
+    [noparty], [slept], [rough]) come for that and nothing else; untagged lines come for any.
+  -->
+
+  <!-- The teacher to the young fighter, at the start of an evening's sparring. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_TrainSpar</defName>
+    <lines>
+      <plain>
+        <li>Guard up, {OTHER_nameDef}, and watch my feet.</li>
+        <li>Slowly at first, {OTHER_nameDef}, then we'll speed up.</li>
+        <li>Keep your eyes on my shoulders, not my hands.</li>
+        <li>We'll go through the same moves as yesterday, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The teacher to the young fighter, at the start of an evening's practice at the target. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_TrainShoot</defName>
+    <lines>
+      <plain>
+        <li>Take your time, and breathe out before you shoot.</li>
+        <li>Aim for the middle, {OTHER_nameDef}, not the edge.</li>
+        <li>Ten shots each, then we look at where they went.</li>
+        <li>Keep both eyes open, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The teacher, when the evening's hours are done. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_TrainDone</defName>
+    <lines>
+      <plain>
+        <li>That's enough for today, {OTHER_nameDef}.</li>
+        <li>You did better than yesterday, {OTHER_nameDef}.</li>
+        <li>Good work, same time tomorrow.</li>
+        <li>Rest your arms now, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one a sparring blow landed on for real. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_SparHit</defName>
+    <lines>
+      <plain>
+        <li>Ow, that one landed.</li>
+        <li>That one wasn't pulled, {OTHER_nameDef}.</li>
+        <li>I'll feel that tomorrow.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one whose blow landed. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_SparSorry</defName>
+    <lines>
+      <plain>
+        <li>Sorry, I didn't mean that to land.</li>
+        <li>Sorry, {OTHER_nameDef}, let's stop there for today.</li>
+        <li>Are you all right, {OTHER_nameDef}?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their drover, handing the sick animal over at the gate. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_SickHanded</defName>
+    <lines>
+      <plain>
+        <li>Please look after this one for us.</li>
+        <li>Keep it warm and fed, and it should pull through.</li>
+        <li>We'll be back for it once it's well.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The caravan's leader, when something comes for the camp in the night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_CampAlarm</defName>
+    <lines>
+      <plain>
+        <li>[raiders] Raiders are coming, everyone up.</li>
+        <li>[raiders] Wake up, there are raiders out there.</li>
+        <li>[beasts] There are animals at the edge of the camp, everyone up.</li>
+        <li>[beasts] Wake up, something is coming at the camp.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The caravan's leader, leaving at dawn. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_CampLeave</defName>
+    <lines>
+      <plain>
+        <li>[quiet] A quiet night, thank you for keeping watch.</li>
+        <li>[quiet] We slept well, thank you.</li>
+        <li>[attacked] Thank you for keeping watch last night.</li>
+        <li>[attacked] That was a hard night, and we're glad to be on our way.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The scholar, when the copy is done. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_CopyDone</defName>
+    <lines>
+      <plain>
+        <li>Thank you, the copy is good and clear.</li>
+        <li>I'm glad this book won't be lost now.</li>
+        <li>It's a careful copy, thank you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The first of the musicians, when the evening's music starts. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_MusicStart</defName>
+    <lines>
+      <plain>
+        <li>[party] Gather round, we'll play you a few tunes.</li>
+        <li>[party] We'll start with something everyone knows.</li>
+        <li>[noparty] We'll play anyway, for whoever wants to listen.</li>
+        <li>[noparty] Nobody's free tonight, but we'll play for whoever comes.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The first of the musicians, leaving in the morning. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HomeQ2_MusicLeave</defName>
+    <lines>
+      <plain>
+        <li>[slept] Thank you for the supper and the bed.</li>
+        <li>[rough] Thank you for having us, even though there was no bed for us.</li>
+        <li>We'll be sure to come this way again.</li>
+        <li>Thank you for having us.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
