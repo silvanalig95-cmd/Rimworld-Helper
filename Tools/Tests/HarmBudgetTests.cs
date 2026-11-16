@@ -58,15 +58,17 @@ public static class HarmBudgetTests
         int seven0 = Array.IndexOf(all, HarmKinds.SitDown);
         var six = laterKinds.Where(k => Array.IndexOf(all, k) > tamer && Array.IndexOf(all, k) < seven0).ToList();
         int camps0 = Array.IndexOf(all, HarmKinds.CampLeft), peoplesF0 = Array.IndexOf(all, HarmKinds.UnionDrill), gods0 = Array.IndexOf(all, HarmKinds.GodBeasts),
-            old0 = Array.IndexOf(all, HarmKinds.Uncanny);
+            old0 = Array.IndexOf(all, HarmKinds.Uncanny), quests0 = Array.IndexOf(all, HarmKinds.Outlaw);
         var seven = laterKinds.Where(k => Array.IndexOf(all, k) >= seven0 && Array.IndexOf(all, k) < camps0).ToList();
         var camps = laterKinds.Where(k => Array.IndexOf(all, k) >= camps0 && Array.IndexOf(all, k) < peoplesF0).ToList();
         var peoplesF = laterKinds.Where(k => Array.IndexOf(all, k) >= peoplesF0 && Array.IndexOf(all, k) < gods0).ToList();
         var gods = laterKinds.Where(k => Array.IndexOf(all, k) >= gods0 && Array.IndexOf(all, k) < old0).ToList();
-        var oldPowers = laterKinds.Where(k => Array.IndexOf(all, k) >= old0).ToList();
+        var oldPowers = laterKinds.Where(k => Array.IndexOf(all, k) >= old0 && Array.IndexOf(all, k) < quests0).ToList();
+        var quests = laterKinds.Where(k => Array.IndexOf(all, k) >= quests0).ToList();
         C(founding.Count == 18 && four.Count == 16 && five.Count == 14 && six.Count == 23 && seven.Count == 28 && camps.Count == 1 && peoplesF.Count == 1 && gods.Count == 7
-          && oldPowers.Count == 1 && laterKinds.Count == 92 && all.Last() == HarmKinds.Uncanny && gods.All(k => k.system == "gods") && oldPowers.All(k => k.system == "oldPowers"),
-            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({five.Count}), the tamers' bout (peoples, release D), part 6's ({six.Count}), part 7's ({seven.Count}), what a camp left ({camps.Count}), the union's drill (peoples, release F: {peoplesF.Count}), the gods' beasts, lightning, a gift's price in blood, the great cat's cuff, the wrapped dead, a warm dream's burn and an addiction from the god's cup ({gods.Count}) and the old powers' uncanny turn ({oldPowers.Count})");
+          && oldPowers.Count == 1 && quests.Count == 1 && laterKinds.Count == 93 && all.Last() == HarmKinds.Outlaw && gods.All(k => k.system == "gods")
+          && oldPowers.All(k => k.system == "oldPowers") && quests.All(k => k.system == "quests"),
+            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({five.Count}), the tamers' bout (peoples, release D), part 6's ({six.Count}), part 7's ({seven.Count}), what a camp left ({camps.Count}), the union's drill (peoples, release F: {peoplesF.Count}), the gods' beasts, lightning, a gift's price in blood, the great cat's cuff, the wrapped dead, a warm dream's burn and an addiction from the god's cup ({gods.Count}), the old powers' uncanny turn ({oldPowers.Count}) and the outlaw of a quest at home who fights back ({quests.Count})");
         foreach (var id in new[] { "1.1.1", "2.5.2", "2.2.3", "1.2.3", "4.3.1", "3.4.1", "4.7.2", "4.5.3", "4.5.1", "4.9.1", "3.6.1", "1.4.2", "2.5.1", "2.8.1", "4.1.1" })
             C(four.Any(k => k.label.Contains("(" + id + ")")), $"the proposal {id} is a kind of part 4");
         foreach (var id in new[] { "1.2.1", "1.2.2", "3.2.1", "2.4.1", "3.1.1", "2.2.1", "2.1.1", "3.5.1", "1.4.1", "3.3.1" })

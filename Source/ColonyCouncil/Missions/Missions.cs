@@ -104,6 +104,15 @@ namespace ColonyCouncil
         public bool riteOfFaith, royalHost;
         /// <summary>What the guests went without since the day began (<see cref="Hosting.Lack"/>: food, a bed).</summary>
         public int lacks;
+        /// <summary>
+        /// Places and a thing a quest at home keeps (Workers_MissionHome.cs, Workers_MissionHome2.cs): where something lies or someone hides
+        /// (<see cref="cell"/>), the middle of an area marked on the map (<see cref="area"/>), and the thing the quest is
+        /// about once it is on the map (a messenger's letter, a keepsake found).
+        /// </summary>
+        public IntVec3 cell = IntVec3.Invalid, area = IntVec3.Invalid;
+        public Thing thing;
+        /// <summary>A second people a quest at home is about: the prisoner's or the outlaw's own.</summary>
+        public Faction other;
 
         /// <summary>The home it's done at: the one it was taken on at while that's still there, else the colony (its seat).</summary>
         public Map Map
@@ -161,6 +170,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guest, "guest");
             Scribe_Values.Look(ref riteOfFaith, "riteOfFaith");
             Scribe_Values.Look(ref royalHost, "royalHost");
+            Scribe_Values.Look(ref cell, "cell", IntVec3.Invalid);
+            Scribe_Values.Look(ref area, "area", IntVec3.Invalid);
+            if (Scribe.mode == LoadSaveMode.Saving && thing != null && thing.Destroyed) thing = null;
+            Scribe_References.Look(ref thing, "thing");
+            Scribe_References.Look(ref other, "other");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (goals == null) goals = new List<MissionGoal>();
@@ -477,6 +491,8 @@ namespace ColonyCouncil
             if (m.meals > 0) tags.Add("ate");
             // An invitation's rite, royal host and titled guest (InviteForms.cs).
             InviteForms.AddTags(m, tags);
+            // A quest at home's own (HomeQuests.cs): paid in goods, a favour owed, how it went on the map.
+            HomeQuests.AddTags(m, tags);
             // The asking people's ways by their age, and the Empire apart with its own titles and honour.
             if (m.faction != null && !m.faction.IsPlayer)
             {
@@ -782,6 +798,10 @@ namespace ColonyCouncil
                 if (m?.group != null)
                     foreach (var p in m.group)
                         if (p != null && p.Spawned && p != m.x) yield return p;
+                // A quest at home's thing on the map, or the area marked for a search (Workers_MissionHome2.cs).
+                if (m?.thing != null && m.thing.Spawned) yield return m.thing;
+                var map = m != null && m.area.IsValid ? m.Map : null;
+                if (map != null && m.area.InBounds(map)) yield return new GlobalTargetInfo(m.area, map);
             }
         }
 

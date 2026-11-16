@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Quests at home
+
+*16 November 2026, version 0.261.0*
+
+- Six new quests at home in the Quests tab: keep a neighbour's prisoner, judge a quarrel, take in a wounded messenger, catch an outlaw, find a lost keepsake, and tame a wild animal for them.
+- Each one plays out on your own map: their people come to you, and nothing sends your colonists away.
+- Their terms say who asks, what to do, for how long, what you get and what failing costs, in plain words, and every age asks in its own way.
+- A quarrel ends with a card for your judgement, and the one who loses may leave angry and come to blows.
+- A lost keepsake lies in an area marked on the map: right-click inside it with a colonist to search, before six hours of rain or snow ruin it.
+- Missions as a whole come no more often than before.
+
 ## The Open Cup
 
 *16 November 2026, version 0.260.0*

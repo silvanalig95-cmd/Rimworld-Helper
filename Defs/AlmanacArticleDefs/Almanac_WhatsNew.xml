@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.261.0</version>
+        <date>16 November 2026</date>
+        <title>Quests at home</title>
+        <points>
+          <li>Six new quests at home in the Quests tab: keep a neighbour's prisoner, judge a quarrel, take in a wounded messenger, catch an outlaw, find a lost keepsake, and tame a wild animal for them.</li>
+          <li>Each one plays out on your own map: their people come to you, and nothing sends your colonists away.</li>
+          <li>Their terms say who asks, what to do, for how long, what you get and what failing costs, in plain words, and every age asks in its own way.</li>
+          <li>A quarrel ends with a card for your judgement, and the one who loses may leave angry and come to blows.</li>
+          <li>A lost keepsake lies in an area marked on the map: right-click inside it with a colonist to search, before six hours of rain or snow ruin it.</li>
+          <li>Missions as a whole come no more often than before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.260.0</version>
         <date>16 November 2026</date>
         <title>The Open Cup</title>

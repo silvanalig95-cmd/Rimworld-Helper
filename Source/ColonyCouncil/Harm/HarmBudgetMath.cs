@@ -212,6 +212,15 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HarmKind Uncanny = new HarmKind("uncanny", "something uncanny that turns on someone (old powers)", "oldPowers", 0.004f, false);
 
+        // ---------------- Quests at home (16 November 2026) ----------------
+
+        /// <summary>
+        /// An outlaw hiding on the colony's land who fights back when found (Missions/Workers_MissionHome2.cs): the game's own
+        /// fight, the quest drawn and the outlaw fighting rather than running within the budget. A quest the colony took on,
+        /// a few a year at most.
+        /// </summary>
+        public static readonly HarmKind Outlaw = new HarmKind("outlaw", "an outlaw found on the colony's land fights back (quests)", "quests", 0.006f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -230,7 +239,8 @@ namespace ColonyCouncil
             CampLeft,
             UnionDrill,
             GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn, GodCup,
-            Uncanny
+            Uncanny,
+            Outlaw
         };
 
         public static HarmKind Of(string key)
