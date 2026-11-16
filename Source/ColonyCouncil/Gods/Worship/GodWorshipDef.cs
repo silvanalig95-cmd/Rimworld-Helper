@@ -65,6 +65,17 @@ namespace ColonyCouncil
         /// default) is the shared way: gone by morning, nobody saw it go.
         /// </summary>
         public OfferingWay taking = OfferingWay.Vanish;
+        /// <summary>
+        /// What someone asking to give it something precious hopes it brings, after "hopes {GOD} will" (Gods/Worship/OfferingGifts.cs):
+        /// "keep the machines running". Their belief, never a promise.
+        /// </summary>
+        [MustTranslate] public string hope;
+        /// <summary>
+        /// Its temper toward the colony as the keeper of the colony's book reads it (Gods/GodTemper.cs), one line a band: angry,
+        /// cold, silent, warm, glad. Each begins with {NAME} (the name the book keeps it under) and has no full stop, so "since
+        /// the steel was given" can follow. Words only, never a number.
+        /// </summary>
+        [MustTranslate] public List<string> temper;
 
         private static Dictionary<int, GodWorshipDef> cache;
         private static int cacheVersion = -1;
@@ -140,6 +151,9 @@ namespace ColonyCouncil
             if (takesNoOfferings && !likes.NullOrEmpty()) yield return "a god that takes nothing likes nothing";
             if (takesNoOfferings && taking != OfferingWay.Never && taking != OfferingWay.Vanish) yield return "a god that takes nothing has no way of taking but never";
             if (nightFactor <= 0f || dreamFactor <= 0f) yield return "night and dream factors are above zero";
+            if (temper != null && (temper.Count != GodTemperMath.Bands || temper.Any(l => l.NullOrEmpty() || !l.StartsWith("{NAME}") || l.TrimEnd().EndsWith("."))))
+                yield return "a temper is five lines (angry, cold, silent, warm, glad), each beginning with {NAME} and with no full stop";
+            if (!hope.NullOrEmpty() && (hope.EndsWith(".") || char.IsUpper(hope[0]))) yield return "a hope follows \"hopes {GOD} will\": lower case, no full stop";
         }
     }
 }

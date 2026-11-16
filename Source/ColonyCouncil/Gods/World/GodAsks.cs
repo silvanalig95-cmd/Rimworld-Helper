@@ -27,13 +27,16 @@ namespace ColonyCouncil
     /// of letter (<see cref="ChoiceLetter_GodWorld"/>), never the dilemmas. A god never asks in its own name: a person
     /// does, and the player answers what that person asked (a neighbour's invitation to their feast, a people's holy war, a
     /// temple's envoy, a dream told at breakfast, a second dream asking for a gift back, one hunted asking to be hidden, a
-    /// voice heard by someone desperate). Each kind's answers come from its own part; once what it asked about has moved
+    /// voice heard by someone desperate, someone devout asking to give something precious to their god). Each kind's answers come from its own part; once what it asked about has moved
     /// on, only closing is left. Asks that can wait come only when one of Rimfolk's questions may (Tell.CanAsk); the
     /// Hunger's and the second dream come when they come.
     /// </summary>
     public static class GodAsks
     {
         public const string Invite = "invite", HolyWar = "holywar", Envoy = "envoy", Gift = "gift", Undo = "undo", Hide = "hide", Hunger = "hunger";
+
+        /// <summary>Someone devout asks to give something precious of the colony's to their god (Gods/Worship/OfferingGifts.cs).</summary>
+        public const string Precious = "precious";
 
         /// <summary>Each kind's answers, or none when its question no longer stands.</summary>
         private static readonly Dictionary<string, Func<ChoiceLetter_GodWorld, IEnumerable<GodAnswer>>> Kinds = new Dictionary<string, Func<ChoiceLetter_GodWorld, IEnumerable<GodAnswer>>>
@@ -44,7 +47,8 @@ namespace ColonyCouncil
             [Gift] = GodWorldGifts.OfferAnswers,
             [Undo] = GodWorldGifts.UndoAnswers,
             [Hide] = GodDrama.HideAnswers,
-            [Hunger] = GodVoid.BargainAnswers
+            [Hunger] = GodVoid.BargainAnswers,
+            [Precious] = OfferingGifts.Answers
         };
 
         public static IEnumerable<GodAnswer> AnswersOf(ChoiceLetter_GodWorld l)

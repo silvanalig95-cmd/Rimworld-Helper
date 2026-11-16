@@ -126,6 +126,63 @@
         <li>[godkey:ducat] Here, {GOD}, it was never ours to keep.</li>
         <li>[godkey:ducat,offer:silver] Silver for {GOD}, because coin should move, not sit.</li>
         <li>[godkey:ducat,offer:art] Something fine for {GOD}, to pass on to someone else.</li>
+        <li>[precious] This is the best we have, {GOD}, and the colony let me bring it.</li>
+        <li>[precious] Not what we can spare this time, {GOD}, but something we will miss.</li>
+        <li>[precious,demand] You asked for this in my dream, {GOD}, and the colony agreed to it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Something precious, asked of the colony first =====================
+    Said by the devout one who asks to give something precious to their god (Gods/Worship/OfferingGifts.cs): as the card comes
+    (AskGift), on the colony's yes (GiftYes), on its no (GiftNo). What they hope, never what the god will do. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_AskGift</defName>
+    <lines>
+      <plain>
+        <li>[!dream] I'd like to give {GOD} something better than scraps, if the colony allows it.</li>
+        <li>[!dream] {GOD} should have a real gift for once, and I'll ask before I take anything.</li>
+        <li>[!dream] I won't take it without asking, but I think {GOD} has earned something good.</li>
+        <li>[dream] {GOD} asked me for it in a dream, so I'll ask the colony for it.</li>
+        <li>[priest,!dream] It's time we gave {GOD} something we would miss, if the colony agrees.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_GiftYes</defName>
+    <lines>
+      <plain>
+        <li>Thank you, I'll carry it over to {GOD} now.</li>
+        <li>Good, {GOD} will have it today.</li>
+        <li>[priest] Thank you, I'll take it to {GOD} with the proper words.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_GiftNo</defName>
+    <lines>
+      <plain>
+        <li>Then it stays in the stores, and {GOD} gets what we can spare.</li>
+        <li>All right, I won't take it, though I think {GOD} would have liked it.</li>
+        <li>[priest] As the colony says, and {GOD} will have to wait for a better year.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A gift answered in kind =====================
+    Said by whoever is nearest when something is found where an offering lay (Gods/Touch/GodTouchReturn.cs): whose doing they
+    take it for, their own god (mine), the place's as others hold it (theirs), a doubter's maybe, a scoffer's someone. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_ReturnFound</defName>
+    <lines>
+      <plain>
+        <li>[mine,!scoffer,!doubt] {GOD} took our gift and left something back for us.</li>
+        <li>[mine,!scoffer,!doubt] Look at this, {GOD} gave something back for what we left.</li>
+        <li>[theirs,!scoffer,!doubt] Something's been left where the offering was, and the others will say {GOD} left it.</li>
+        <li>[doubt,!scoffer] Something was left where the offering was, maybe by {GOD}, maybe by a traveller.</li>
+        <li>[scoffer] Someone keeps leaving things at that shrine, and I'd like to know who.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

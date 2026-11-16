@@ -4588,8 +4588,15 @@ sweet voice that always says yes and always takes more. All at the game's own ra
 **Worship.** An altar, a sculpture, a nature shrine or an old terminal can be given to a god: someone walks over and
 says the words, and it becomes the god's shrine (a chapel, a church or a terminal in later ages; a temple in a fine
 room). Now and then someone carries an offering there from the stores, each god's own kind (silver for Smoulder, a
-bowl for the Guest, parts for Pip, a fish for Mog, nothing for Helios), and later it is gone, or an animal had it, or it
-just spoiled. In hard moments people pray: for the gravely ill, for the dead, before a raid, for rain in a drought.
+bowl for the Guest, steel for Pip, a fish for Mog, nothing for Helios), and later it is gone, or an animal had it, or it
+just spoiled. They carry only what the colony has plenty of and can make or gather again; anything precious to it
+(components, medicine past herbal, gold, plasteel, glitterworld goods, what it can't make yet) goes only when someone
+devout asks you first, on a card with Yes and No, saying why and what they hope it brings; a gift like that weighs
+more. What is given counts for more the more it was worth, and what follows its taking comes more often and stronger
+for a rich gift; now and then something of the god's own kind is found where it lay, worth about what was given (ore,
+mushrooms, silver, herbs, fish, medicine by the age). The colony's book keeps every gift and what became of it, and
+its keeper's reading of each god's temper toward the colony, in words only, late and sometimes wrong ("some say the
+Hunger is restless"). In hard moments people pray: for the gravely ill, for the dead, before a raid, for rain in a drought.
 Sometimes a fever eases in the night after, or the rain comes; nobody can say for certain why, and believers and
 scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
 unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until

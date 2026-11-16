@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.259.0</version>
+        <date>16 November 2026</date>
+        <title>Gifts worth what they cost</title>
+        <points>
+          <li>Colonists carry to a god's place only what the colony has plenty of and can make or gather again; components, medicine past herbal, gold and the like are never taken unasked.</li>
+          <li>Now and then someone devout asks to give something precious to their god, on a card with Yes and No, and a gift like that weighs more.</li>
+          <li>Every gift counts for more the more it was worth, and what follows its taking comes more often and stronger for a rich gift.</li>
+          <li>Sometimes something of the god's own kind lies where an offering was taken, worth about what was given: ore, mushrooms, silver, herbs, fish or medicine by the colony's age.</li>
+          <li>The Gods' book keeps every gift and what became of it, and its keeper's reading of each god's temper, in words only.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.258.1</version>
         <date>16 November 2026</date>
         <title>What a camp lays out is built</title>

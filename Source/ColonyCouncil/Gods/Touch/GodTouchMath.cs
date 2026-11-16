@@ -401,17 +401,31 @@ namespace ColonyCouncil
         /// each at the home (large for never).
         /// </summary>
         public static TouchTier Tier(TouchTone t, bool big, bool plain, float rollAny, float rollTier, float godSmallDays, float godNotableDays,
-            float colonyNotableDays, float godGreatDays, float colonyGreatDays)
+            float colonyNotableDays, float godGreatDays, float colonyGreatDays) =>
+            TierFor(t, big, plain, rollAny, rollTier, godSmallDays, godNotableDays, colonyNotableDays, godGreatDays, colonyGreatDays, 1f);
+
+        /// <summary>
+        /// The same, leaned by a gift's worth and fit (<paramref name="lean"/>, OfferingGiftMath.Lean; 1 is <see cref="Tier"/>
+        /// itself): a richer or better-loved gift is the likelier followed, and the likelier by something notable or great,
+        /// the god's own waits for those shorter by the lean (the colony's waits stay); a token gift the less often.
+        /// </summary>
+        public static TouchTier TierFor(TouchTone t, bool big, bool plain, float rollAny, float rollTier, float godSmallDays, float godNotableDays,
+            float colonyNotableDays, float godGreatDays, float colonyGreatDays, float lean)
         {
-            if (t == TouchTone.None || rollAny >= AnyChance(t)) return TouchTier.None;
-            float great = GreatChance(t, big, plain), notable = NotableChance(t, big, plain);
-            bool greatOk = godGreatDays >= GreatGodDays && colonyGreatDays >= GreatColonyDays;
-            bool notableOk = godNotableDays >= NotableGodDays && colonyNotableDays >= NotableColonyDays;
+            float l = float.IsNaN(lean) ? 1f : Math.Max(0.5f, Math.Min(3f, lean));
+            if (t == TouchTone.None || rollAny >= Math.Min(0.97f, AnyChance(t) * (float)Math.Sqrt(l))) return TouchTier.None;
+            float great = Math.Min(0.4f, GreatChance(t, big, plain) * l * l), notable = Math.Min(0.75f, NotableChance(t, big, plain) * l);
+            bool greatOk = godGreatDays >= GreatGodDays / Math.Max(1f, l) && colonyGreatDays >= GreatColonyDays;
+            bool notableOk = NotableWaitPast(godNotableDays, colonyNotableDays, l);
             bool smallOk = godSmallDays >= SmallGodDays;
             if (rollTier < great && greatOk) return TouchTier.Great;
             if (rollTier < great + notable && notableOk) return TouchTier.Notable;
             return smallOk ? TouchTier.Small : TouchTier.None;
         }
+
+        /// <summary>A notable effect's waits are past: the god's own (shorter by a gift's lean) and any god's.</summary>
+        public static bool NotableWaitPast(float godNotableDays, float colonyNotableDays, float lean = 1f) =>
+            godNotableDays >= NotableGodDays / Math.Max(1f, float.IsNaN(lean) ? 1f : lean) && colonyNotableDays >= NotableColonyDays;
 
         // ================= Repetition =================
 
@@ -420,6 +434,19 @@ namespace ColonyCouncil
         /// colony offers often), anything else ten.
         /// </summary>
         public static float SameKeyGapDays(string key) => key != null && key.StartsWith("taken", StringComparison.Ordinal) ? 4f : 10f;
+
+        /// <summary>
+        /// The same, for an offering taken with what it was worth (<paramref name="lean"/>, OfferingGiftMath.Lean): the four
+        /// days shorter the richer the gift (a day and a half at the least) and longer for a token one (six at the most); a
+        /// precious gift asked of the colony first is always followed. Anything else as <see cref="SameKeyGapDays"/>.
+        /// </summary>
+        public static float GapDays(string key, float lean, bool precious)
+        {
+            if (key == null || !key.StartsWith("taken", StringComparison.Ordinal)) return SameKeyGapDays(key);
+            if (precious) return 0f;
+            float l = float.IsNaN(lean) || lean <= 0f ? 1f : lean;
+            return Math.Max(1.5f, Math.Min(6f, SameKeyGapDays(key) / l));
+        }
 
         /// <summary>What counts as one occurrence for its gap: an offering taken by any way is "taken|god", else its words key.</summary>
         public static string GapKey(string key, string god) => string.IsNullOrEmpty(key) ? null : key.StartsWith("taken", StringComparison.Ordinal) ? "taken|" + god : key;

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 715; modelled: 715; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,043 KB** after a year, **3,745 KB** after two, **4,182 KB** after five.
+Saved collections found: 717; modelled: 717; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,050 KB** after a year, **3,758 KB** after two, **4,210 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -38,6 +38,7 @@ Rimfolk's part of the save, roughly: **3,043 KB** after a year, **3,745 KB** aft
 | `Gods/GodBook.cs:standings` | the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year | cap | 120 | 200 | 200 | 29.3 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
+| `Gods/GodLoreGifts.cs:gifts` | the gifts given, each what it was, who left it where, its fate and what was found in its place, OfferingGiftMath.BookGifts kept | cap | 18 | 36 | 90 | 26.4 |
 | `Animals/AnimalBook.cs:ties` | pairs asleep side by side, friends and rivals, AnimalNatureMath.MaxTies at most, pairs first to go, ties let go when apart 40 days | cap | 60 | 80 | 80 | 25.8 |
 | `Gods/GodBook.cs:deeds` | the deeds in a domain at a home a newborn god is born of: a year's, GodBook.MaxDeeds at most | cap | 120 | 240 | 240 | 25.8 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
@@ -245,6 +246,7 @@ Rimfolk's part of the save, roughly: **3,043 KB** after a year, **3,745 KB** aft
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
 | `World/Region/RiseFallLedger.cs:ruins` | ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, each gone after 300 days; fights' ruins waiting, six at most | cap | 2 | 4 | 9 | 1.7 |
+| `Gods/GodLoreGifts.cs:tempers` | each god's temper as the keeper last read it, one a god | fixed | 14 | 14 | 14 | 1.6 |
 | `Camps/CampTracker.cs:diaryCounts` | how often each outcome came, one count per kind of outcome | fixed | 18 | 18 | 18 | 1.6 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Building/Automations.cs:billKeys` | bills the council set (bench id and recipe), while they stand on the bench | fixed | 40 | 40 | 40 | 1.6 |

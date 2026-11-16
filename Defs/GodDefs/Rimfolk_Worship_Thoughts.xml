@@ -95,6 +95,35 @@
     </stages>
   </ThoughtDef>
 
+  <!--
+    Gifts asked of the colony first (Source/ColonyCouncil/Gods/Worship/OfferingGifts.cs): something precious carried to the
+    god on the colony's yes is a larger good mood for its carrier than an everyday gift; the colony's no a small setback for
+    the devout one who asked. Both rare: an ask a couple of weeks apart at a home at most. Modelled in Tools/Balance.
+  -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_OfferedPrecious</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>gave something precious to my god</label>
+        <description>The colony let me give it, and I carried it there myself. It was a real gift this time, not just what we could spare.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_GiftKept</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>wasn't allowed to give my gift</label>
+        <description>I asked to give it to my god, and the colony said no. I understand why, but I'm still a little disappointed.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
   <ThoughtDef>
     <defName>Rimfolk_Worship_Mocked</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
@@ -148,6 +177,14 @@
     <defName>Rimfolk_Mood_Worship_VowBroken</defName>
     <thoughts><li>Rimfolk_Worship_VowBroken</li></thoughts>
     <fix>It passes with time. For a vow of no meat, keep vegetarian meals in the stores while it lasts, and let them keep to them in their food policy.</fix>
+    <act>Passes with time</act>
+    <actionable>false</actionable>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_Worship_GiftKept</defName>
+    <thoughts><li>Rimfolk_Worship_GiftKept</li></thoughts>
+    <fix>It passes in a day. Saying yes the next time someone asks to give something to their god, when the stores can spare it, keeps it from coming back.</fix>
     <act>Passes with time</act>
     <actionable>false</actionable>
   </ColonyCouncil.MoodHintDef>

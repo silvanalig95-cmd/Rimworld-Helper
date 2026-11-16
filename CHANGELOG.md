@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Gifts worth what they cost
+
+*16 November 2026, version 0.259.0*
+
+- Colonists carry to a god's place only what the colony has plenty of and can make or gather again; components, medicine past herbal, gold and the like are never taken unasked.
+- Now and then someone devout asks to give something precious to their god, on a card with Yes and No, and a gift like that weighs more.
+- Every gift counts for more the more it was worth, and what follows its taking comes more often and stronger for a rich gift.
+- Sometimes something of the god's own kind lies where an offering was taken, worth about what was given: ore, mushrooms, silver, herbs, fish or medicine by the colony's age.
+- The Gods' book keeps every gift and what became of it, and its keeper's reading of each god's temper, in words only.
+
 ## What a camp lays out is built
 
 *16 November 2026, version 0.258.1*

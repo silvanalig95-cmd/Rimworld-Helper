@@ -75,9 +75,28 @@ namespace ColonyCouncil
         public int stage;
         /// <summary>Tamiu's cat sent to eat it at dawn (her way), while it goes.</summary>
         public Pawn cat;
+        /// <summary>
+        /// Something precious to the colony, given only because someone asked and the colony said yes (Worship/OfferingGifts.cs):
+        /// what (<see cref="want"/>) and how many, and who asked to carry it.
+        /// </summary>
+        public bool precious;
+        public ThingDef want;
+        public int wantCount;
+        public Pawn asker;
+        /// <summary>What it was worth (its market value) and how well it suited the god, worked out as it was chosen, for what follows its taking.</summary>
+        public float worth, fit;
+        /// <summary>Its thing's name ("steel"), for the colony's book ("since the steel was given").</summary>
+        public string plain;
 
         public void ExposeData()
         {
+            Scribe_Values.Look(ref plain, "plain");
+            Scribe_Values.Look(ref precious, "precious");
+            Scribe_Defs.Look(ref want, "want");
+            Scribe_Values.Look(ref wantCount, "wantCount");
+            Scribe_References.Look(ref asker, "asker");
+            Scribe_Values.Look(ref worth, "worth");
+            Scribe_Values.Look(ref fit, "fit");
             Scribe_Values.Look(ref noticed, "noticed");
             Scribe_Values.Look(ref stage, "stage");
             Scribe_References.Look(ref cat, "cat");
@@ -348,6 +367,7 @@ namespace ColonyCouncil
             while (demands.Count > MaxDemands) demands.RemoveAt(0);
             marks.RemoveAll(m => m == null || m.pawn == null || m.pawn.Discarded || m.what == "crisis" && now - m.tick > GenDate.TicksPerDay * WorshipMath.CrisisWindowDays);
             homeMarks.RemoveAll(m => m == null || m.what == "dry" && m.until < now || m.what == "due" && m.until < now - GenDate.TicksPerDay * 3
+                                    || OfferingGifts.Spent(m, now)
                                     || m.what == "answer" && now - m.value > GenDate.TicksPerDay * 20
                                     || m.what == "rain" && now - m.value > GenDate.TicksPerDay * 2 || m.what == "honoured" && now - m.until > GenDate.TicksPerYear * 2);
             byThing = null;

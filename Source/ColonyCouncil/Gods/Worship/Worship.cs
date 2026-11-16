@@ -59,9 +59,11 @@ namespace ColonyCouncil
             {
                 if (map == null || !map.IsPlayerHome) continue;
                 Safe("the day's offerings", () => Offerings.Daily(b, map, now));
+                Safe("a precious gift asked", () => OfferingGifts.Daily(b, map, now));
                 Safe("the day's vows", () => Vows.Daily(b, map, now));
             }
             Safe("demands", () => GodDreams.Daily(b, now));
+            Safe("the keeper's reading of the gods", () => GodTemper.Daily(now));
             Safe("each one's gods", () => PawnGods.Daily(now));
             Safe("the saints", () => Saints.Daily(now));
             Safe("pruning", () => b.Prune(now));

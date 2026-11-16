@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Gifts worth what they cost (Source/ColonyCouncil/Gods/Worship/OfferingGifts.cs, Gods/Touch/GodTouchReturn.cs,
+    Gods/GodLoreGifts.cs, Gods/GodTemper.cs): someone devout asking to give something precious to their god, something left
+    where an offering lay, the colony's book keeping every gift, and each god's temper as the book's keeper reads it. Plain
+    words; what anyone hopes or reads is their belief, never a promise or a number.
+  -->
+
+  <!-- ===== Asked first: the card ===== -->
+  <CC_GodGift_Ask_Label>{PAWN} asks to give {WHAT} to {GOD}</CC_GodGift_Ask_Label>
+  <CC_GodGift_Ask_Text>{PAWN} would like to give {WHAT} from the stores to {GOD}, at {PLACE}. {WHY} {HOPE}\n\nThe colony has {HELD} of it in its stores and would keep {LEFT}. {PAWN} won't take any of it without the colony's leave.</CC_GodGift_Ask_Text>
+  <CC_GodGift_Ask_Why>{PAWN} says the everyday gifts are only what the colony can spare, and that {GOD} should now and then have something the colony values.</CC_GodGift_Ask_Why>
+  <CC_GodGift_Ask_Dream>{PAWN} dreamt that {GOD} asked for this, and wants to give it while the dream is still fresh.</CC_GodGift_Ask_Dream>
+  <CC_GodGift_Ask_Hope>{PAWN} hopes {GOD} will {HOPE}.</CC_GodGift_Ask_Hope>
+  <CC_GodGift_Ask_HopeAny>{PAWN} hopes {GOD} will look kindly on the colony.</CC_GodGift_Ask_HopeAny>
+  <CC_GodGift_Ask_Yes>Let {PAWN} give it</CC_GodGift_Ask_Yes>
+  <CC_GodGift_Ask_No>Keep it in the stores</CC_GodGift_Ask_No>
+  <CC_GodGift_Ask_NoLonger>The colony no longer has that much {THING}.</CC_GodGift_Ask_NoLonger>
+  <CC_GodGift_NotCarried>{PAWN} could not carry the {THING} to {PLACE}, and it stays in the stores.</CC_GodGift_NotCarried>
+
+  <!-- ===== Something left where an offering lay ===== -->
+  <CC_GodGift_ReturnFound>{PAWN} found {WHAT} at {PLACE}, where the offering had lain.</CC_GodGift_ReturnFound>
+  <CC_GodGift_ReturnLeft>{WHAT} lies at {PLACE}, where the offering had lain.</CC_GodGift_ReturnLeft>
+
+  <!-- ===== The book: the gifts given ===== -->
+  <CC_GodGift_Part>Of the gifts given</CC_GodGift_Part>
+  <CC_GodGift_From>from the gifts the colony left it</CC_GodGift_From>
+  <CC_GodGift_PlaceAt>{PLACE} at {HOME}</CC_GodGift_PlaceAt>
+  <CC_GodGift_Line>{WHAT}, left by {BY} at {PLACE}.</CC_GodGift_Line>
+  <CC_GodGift_LineAsked>{WHAT}, given by {BY} at {PLACE} with the colony's leave.</CC_GodGift_LineAsked>
+  <CC_GodGift_Fate_Found>{WHO} found the place empty.</CC_GodGift_Fate_Found>
+  <CC_GodGift_Fate_FoundNobody>The place was found empty.</CC_GodGift_Fate_FoundNobody>
+  <CC_GodGift_Fate_Unseen>It was gone, and nobody saw it go.</CC_GodGift_Fate_Unseen>
+  <CC_GodGift_Fate_Plain>It was taken before the eyes of {WHO}.</CC_GodGift_Fate_Plain>
+  <CC_GodGift_Fate_PlainNobody>It was taken in plain sight.</CC_GodGift_Fate_PlainNobody>
+  <CC_GodGift_Fate_Seen>{WHO} saw it go.</CC_GodGift_Fate_Seen>
+  <CC_GodGift_Fate_SeenNobody>It was seen going.</CC_GodGift_Fate_SeenNobody>
+  <CC_GodGift_Fate_Given>It was given to a visitor to carry on.</CC_GodGift_Fate_Given>
+  <CC_GodGift_Fate_Animal>An animal ate it where it lay.</CC_GodGift_Fate_Animal>
+  <CC_GodGift_Fate_Passerby>Someone passing took it.</CC_GodGift_Fate_Passerby>
+  <CC_GodGift_Fate_Returned>It was still there, and went back to the stores.</CC_GodGift_Fate_Returned>
+  <CC_GodGift_Fate_Spoiled>It spoiled where it lay.</CC_GodGift_Fate_Spoiled>
+  <CC_GodGift_Returned>In its place lay {WHAT}.</CC_GodGift_Returned>
+
+  <!-- ===== The book: its temper, as the keeper reads it (words only) ===== -->
+  <CC_GodTemper_Part>Of its temper toward us</CC_GodTemper_Part>
+  <CC_GodTemper_Head>As {KEEPER} read it, on {DATE}:</CC_GodTemper_Head>
+  <CC_GodTemper_HeadNobody>As it was read, on {DATE}:</CC_GodTemper_HeadNobody>
+  <CC_GodTemper_Said>{READ}.</CC_GodTemper_Said>
+  <CC_GodTemper_SomeSay>Some say {READ}.</CC_GodTemper_SomeSay>
+  <CC_GodTemper_Since>since {WHAT} was given</CC_GodTemper_Since>
+  <CC_GodTemper_Band_0>{NAME} is angry with us</CC_GodTemper_Band_0>
+  <CC_GodTemper_Band_1>{NAME} has been cold toward us</CC_GodTemper_Band_1>
+  <CC_GodTemper_Band_2>{NAME} has given no sign that it marks us</CC_GodTemper_Band_2>
+  <CC_GodTemper_Band_3>{NAME} has been warm toward us</CC_GodTemper_Band_3>
+  <CC_GodTemper_Band_4>{NAME} has been glad of us</CC_GodTemper_Band_4>
+
+</LanguageData>
