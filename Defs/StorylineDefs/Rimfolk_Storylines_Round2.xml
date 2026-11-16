@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Storylines, round 2 (Source/ColonyCouncil/Storylines/; the frame's words and how they're tagged are in
+       Rimfolk_Storylines.xml beside this): the sickness in the next town, the strayed herd, the pilgrims' relic and two
+       towns' quarrel. Each one's part events and cards are in Defs/MissionDefs/Rimfolk_Storyline_*.xml, where the meaning
+       of each name in its words is listed. -->
+
+  <!-- ===================== S2, the sickness in the next town ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Sickness</defName>
+    <label>the sickness in the next town</label>
+    <description>Sickness spreads through a town near the colony. The colony is asked for medicine and to care for some of the sick, and how that goes decides what the town's people do next.</description>
+    <kind>sickness</kind>
+    <outcomes>
+      <li>[medicine,outcome:sent] all the medicine sent</li>
+      <li>[medicine,outcome:partly] part of the medicine sent</li>
+      <li>[medicine,outcome:none] not enough medicine in time</li>
+      <li>[medicine,outcome:declined] turned down</li>
+      <li>[sick,outcome:recovered] none of the sick died</li>
+      <li>[sick,outcome:somedied] some of the sick died</li>
+      <li>[sick,outcome:harmed] one of the sick taken prisoner</li>
+      <li>[sick,outcome:declined] the colony did not take in the sick</li>
+      <li>[healer,outcome:taught] {RIVAL} taught the colony's doctor</li>
+      <li>[healer,outcome:fewlessons] {RIVAL} came, but there was time for only a few lessons</li>
+      <li>[healer,outcome:declined] the colony did not take in the healer</li>
+      <li>[kin,outcome:handed] the families took their dead home</li>
+      <li>[kin,outcome:buried] the dead buried at the colony</li>
+      <li>[kin,outcome:nobodies] the bodies were gone</li>
+      <li>[kin,outcome:declined] the families turned away</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:sick] The sickness at {PLACE} is not over yet.</li>
+      <li>[next:healer] {FACTION} want to thank the colony for caring for their sick.</li>
+      <li>[next:kin] {FACTION} will send word about their dead.</li>
+      <li>[end:thanked] {FACTION} want to thank the colony another way.</li>
+    </coming>
+    <good><li>taught</li><li>thanked</li><li>buried</li></good>
+    <bad><li>harmed</li><li>nobodies</li><li>refused</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} asked the colony for medicine when {KIND} spread through {PLACE}, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>nohelp</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} asked the colony for medicine when {KIND} spread through {PLACE}, and the colony did not have it ready in time.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>turnedaway</key>
+        <summaries>
+          <li>the colony sent medicine to {PLACE} when {KIND} spread there, but would not take in the sick.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>taught</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the colony cared for the sick from {PLACE}, all of them recovered, and {FACTION} sent {RIVAL} to teach the colony's doctor.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>thanked</key>
+        <tone>good</tone>
+        <titles>
+          <li>Thanks from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>{FACTION} are grateful that the colony cared for their sick from {PLACE}. Someone of theirs has brought {SILVER} medicine to the colony's gate as a gift.</li>
+        </texts>
+        <summaries>
+          <li>the colony cared for the sick from {PLACE}, all of them recovered, and {FACTION} sent the colony medicine in thanks.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>handed</key>
+        <summaries>
+          <li>some of the sick from {PLACE} died in the colony's care, and their families took the bodies home.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>buried</key>
+        <tone>good</tone>
+        <summaries>
+          <li>some of the sick from {PLACE} died in the colony's care, and they are buried at the colony.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>refused</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>some of the sick from {PLACE} died in the colony's care, and the colony would not let their families come for them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>nobodies</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>some of the sick from {PLACE} died in the colony's care, and their bodies were gone when their families came.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>harmed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the colony took in the sick from {PLACE} and then took one of them prisoner.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more news from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and the colony will hear no more about the sickness at {PLACE}.</li>
+          <li>[destroyed] {FACTION} are gone, and the colony will hear no more about the sickness at {PLACE}.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while {KIND} was still at {PLACE}.</li>
+          <li>[destroyed] {FACTION} were gone before the sickness at {PLACE} was over.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the sickness at {PLACE}.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S3, the strayed herd ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Herd</defName>
+    <label>the strayed herd</label>
+    <description>A herding people's animals stray onto the colony's land. The colony keeps them for the herders, then keeps part of the herd through a winter, and the herders come back for it in spring.</description>
+    <kind>herd</kind>
+    <outcomes>
+      <li>[stray,outcome:penned] all the strayed {KIND} penned</li>
+      <li>[stray,outcome:most] most of the strayed {KIND} kept</li>
+      <li>[stray,outcome:lost] most of the strayed {KIND} lost</li>
+      <li>[stray,outcome:declined] turned down</li>
+      <li>[winter,outcome:kept] every animal kept alive and well</li>
+      <li>[winter,outcome:somedied] some of the animals died</li>
+      <li>[winter,outcome:declined] the colony would not keep the animals</li>
+      <li>[spring,outcome:young] the herd taken home, and young animals left with the colony</li>
+      <li>[spring,outcome:paid] the dead animals paid for</li>
+      <li>[spring,outcome:bought] the colony bought the rest of the herd</li>
+      <li>[spring,outcome:unpaid] the colony would not pay for the dead animals</li>
+      <li>[spring,outcome:declined] the colony did not answer the herders</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:winter] {FACTION}'s herders have taken their {KIND} home.</li>
+      <li>[next:spring,winter] {FACTION}'s herders will come for their {KIND} now that winter is over.</li>
+      <li>[next:spring,!winter] {FACTION}'s herders will come for their {KIND}.</li>
+      <li>[end:taken] {FACTION}'s herders are coming for their {KIND}.</li>
+    </coming>
+    <good><li>young</li><li>bought</li></good>
+    <bad><li>lost</li><li>unpaid</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION}'s {KIND} strayed onto the colony's land, and the colony would not keep them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>lost</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION}'s {KIND} strayed onto the colony's land, and most of them were lost while the colony kept them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>notkept</key>
+        <summaries>
+          <li>the colony kept {FACTION}'s strayed {KIND} for them, but would not keep part of their herd for a season.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>young</key>
+        <tone>good</tone>
+        <summaries>
+          <li>[winter] the colony kept part of {FACTION}'s herd through the winter, and in spring the herders left it young animals in thanks.</li>
+          <li>[!winter] the colony kept part of {FACTION}'s herd for a season, and the herders left it young animals in thanks.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>paid</key>
+        <summaries>
+          <li>some of the {KIND} the colony kept for {FACTION} died, and the colony paid for them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>bought</key>
+        <tone>good</tone>
+        <summaries>
+          <li>some of the {KIND} the colony kept for {FACTION} died, and the colony bought the ones that were left.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>unpaid</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>some of the {KIND} the colony kept for {FACTION} died, and the colony would not pay for them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>taken</key>
+        <titles>
+          <li>The herders took their {KIND}</li>
+        </titles>
+        <texts>
+          <li>The colony did not answer {FACTION}'s herders, so they came for their {KIND} anyway and took them home. They left nothing for the keeping.</li>
+        </texts>
+        <summaries>
+          <li>the colony kept part of {FACTION}'s herd, and the herders took it home without a word from the colony.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>Nobody will come for the {KIND}</li>
+        </titles>
+        <texts>
+          <li>[war,ours] {FACTION} are at war with the colony now, so nobody will come for their {KIND}. The animals the colony was keeping are its own now.</li>
+          <li>[destroyed,ours] {FACTION} are gone, so nobody will come for their {KIND}. The animals the colony was keeping are its own now.</li>
+          <li>[war,!ours] {FACTION} are at war with the colony now, and their herders' business with the colony is over.</li>
+          <li>[destroyed,!ours] {FACTION} are gone, and their herders' business with the colony is over.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while it was keeping their {KIND}.</li>
+          <li>[destroyed] {FACTION} were gone before their herders came back.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of {FACTION}'s strayed {KIND}.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S5, the pilgrims' relic ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Relic</defName>
+    <label>the pilgrims' relic</label>
+    <description>Pilgrims carrying a relic rest at the colony, and in the night it is stolen. What the colony does about the thief decides whether the relic comes back, and where it stays.</description>
+    <kind>relic</kind>
+    <outcomes>
+      <li>[rest,outcome:handed] the thief caught and handed to the pilgrims</li>
+      <li>[rest,outcome:punished] the thief caught and kept prisoner</li>
+      <li>[rest,outcome:letgo] the thief caught and let go</li>
+      <li>[rest,outcome:killed] the thief killed, and the relic back</li>
+      <li>[rest,outcome:dropped] the thief gone without the relic</li>
+      <li>[rest,outcome:escaped] the thief got away with the relic</li>
+      <li>[rest,outcome:harmed] the pilgrims came to harm</li>
+      <li>[rest,outcome:declined] turned down</li>
+      <li>[trail,outcome:recovered] the relic recovered</li>
+      <li>[trail,outcome:notfound] the relic not found</li>
+      <li>[trail,outcome:declined] the colony would not help</li>
+      <li>[shrine,outcome:kept] the relic left at the colony's shrine</li>
+      <li>[shrine,outcome:noshrine] no shrine for the relic</li>
+      <li>[shrine,outcome:declined] the colony would not keep the relic</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:trail] {FACTION} are deciding what to do about their stolen relic.</li>
+      <li>[next:shrine] {GIVER} of {FACTION} wants to ask the colony something about the relic.</li>
+    </coming>
+    <good><li>shrine</li></good>
+    <bad><li>lost</li><li>harmed</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>pilgrims of {FACTION} with a relic asked to rest at the colony, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>harmed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>pilgrims of {FACTION} rested at the colony with their relic, and came to harm there.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>lost</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{RIVAL} stole the relic of {FACTION}'s pilgrims while they rested at the colony, and it was never found.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>home</key>
+        <summaries>
+          <li>the relic of {FACTION}'s pilgrims was stolen at the colony and came back to them, and they took it home.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>shrine</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the relic of {FACTION}'s pilgrims was stolen at the colony and came back to them, and they left it at the colony's shrine for a year.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more pilgrims from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>[war,ours] {FACTION} are at war with the colony now, so their pilgrims will not come back for the relic. It stays with the colony.</li>
+          <li>[destroyed,ours] {FACTION} are gone, so nobody will come back for the relic. It stays with the colony.</li>
+          <li>[war,!ours] {FACTION} are at war with the colony now, and their pilgrims will not come back.</li>
+          <li>[destroyed,!ours] {FACTION} are gone, and their pilgrims will not come back.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony before the matter of the relic was settled.</li>
+          <li>[destroyed] {FACTION} were gone before the matter of the relic was settled.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the relic of {FACTION}'s pilgrims.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S7, two towns' quarrel ===================== -->
+
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Quarrel</defName>
+    <label>two towns' quarrel</label>
+    <description>Two peoples on bad terms with each other make a truce at the colony. Not everyone keeps to it, and the colony's choice decides whether the peace holds.</description>
+    <kind>quarrel</kind>
+    <outcomes>
+      <li>[truce,outcome:witnessed] the truce made at the colony</li>
+      <li>[truce,outcome:missed] nobody came to witness the truce</li>
+      <li>[truce,outcome:declined] turned down</li>
+      <li>[pledge,outcome:kept] {NAME} kept well</li>
+      <li>[pledge,outcome:poorly] {NAME} kept, but poorly</li>
+      <li>[pledge,outcome:harmed] {NAME} came to harm</li>
+      <li>[pledge,outcome:declined] the colony would not keep the pledge</li>
+      <li>[fighters,outcome:passed] the fighters let pass</li>
+      <li>[fighters,outcome:warned] {FACTION} warned</li>
+      <li>[fighters,outcome:stopped] the fighters stopped at the gate</li>
+      <li>[fighters,outcome:fought] the fighters fought off at the gate</li>
+      <li>[fighters,outcome:declined] the colony stayed out of it</li>
+      <li>[outcome:gone] ended when one of the two turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:pledge] {FACTION} want to show {OTHERPEOPLE} that they mean to keep the truce.</li>
+      <li>[next:fighters] Not all of {OTHERPEOPLE} agree with the truce.</li>
+      <li>[end:war] The fighters of {OTHERPEOPLE} are on their way to attack {FACTION}.</li>
+    </coming>
+    <good><li>peace</li><li>fought</li><li>warned</li></good>
+    <bad><li>war</li><li>blamed</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} and {OTHERPEOPLE} asked the colony to witness their truce, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>nopeace</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} and {OTHERPEOPLE} came to make a truce at the colony, and nobody of the colony came to witness it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>blamed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} left {NAME} at the colony as a pledge of their truce with {OTHERPEOPLE}, and {NAME} came to harm there.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>war</key>
+        <tone>bad</tone>
+        <titles>
+          <li>{FACTION} and {OTHERPEOPLE} are at war</li>
+        </titles>
+        <texts>
+          <li>The fighters of {OTHERPEOPLE} who crossed the colony's land attacked {FACTION}. The truce made at the colony is broken, and the two peoples are at war with each other.</li>
+        </texts>
+        <summaries>
+          <li>the truce {FACTION} and {OTHERPEOPLE} made at the colony was broken, and the two went to war.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>warned</key>
+        <summaries>
+          <li>the colony warned {FACTION} that fighters of {OTHERPEOPLE} were coming to attack them, and the attack failed.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>peace</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the colony turned back fighters of {OTHERPEOPLE} at its gate, and the truce they made with {FACTION} at the colony held.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>fought</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the colony fought off fighters of {OTHERPEOPLE} at its gate, and the truce they made with {FACTION} at the colony held.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more truce at the colony</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and the colony has no more part in their truce with {OTHERPEOPLE}.</li>
+          <li>[destroyed] {FACTION} are gone, and their truce with {OTHERPEOPLE} is over.</li>
+          <li>[otherwar] {OTHERPEOPLE} are at war with the colony now, and the colony has no more part in their truce with {FACTION}.</li>
+          <li>[otherdestroyed] {OTHERPEOPLE} are gone, and their truce with {FACTION} is over.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while their truce with {OTHERPEOPLE} was new.</li>
+          <li>[destroyed] {FACTION} were gone while their truce with {OTHERPEOPLE} was new.</li>
+          <li>[otherwar] {OTHERPEOPLE} turned against the colony while their truce with {FACTION} was new.</li>
+          <li>[otherdestroyed] {OTHERPEOPLE} were gone while their truce with {FACTION} was new.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the truce between {FACTION} and {OTHERPEOPLE}.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+</Defs>

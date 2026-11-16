@@ -20,8 +20,9 @@ namespace ColonyCouncil
             try
             {
                 HealthTracker.Instance?.Notify_Tended(doctor, patient);
-                // The physician may catch what they tend (Harm/Catching.cs).
-                Catching.Tended(doctor, patient);
+                // The physician may catch what they tend (Harm/Catching.cs); one of a sick town's people in the colony's
+                // beds by the storyline's own illness (Storylines/StorylineSickness.cs), through the illness budget too.
+                if (!SicknessRules.Tended(doctor, patient)) Catching.Tended(doctor, patient);
             }
             catch (Exception e)
             {

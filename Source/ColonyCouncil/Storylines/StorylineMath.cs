@@ -16,34 +16,22 @@ namespace ColonyCouncil
         /// <summary>S1, the factor's goods; S4, the beast coming down the valley; S8, the children from the burned village.</summary>
         public const string Factor = "factor", Beast = "beast", Children = "children";
 
-        public static readonly string[] Kinds = { Factor, Beast, Children };
+        /// <summary>Every storyline, by its number: each one's rules are a <see cref="StorylineFlow"/> of its own (Storylines/Flows/).</summary>
+        public static string[] Kinds => StorylineFlows.All.Select(f => f.Kind).ToArray();
+
+        public static StorylineFlow Flow(string kind) => StorylineFlows.Of(kind);
 
         /// <summary>The first part of each storyline.</summary>
-        public static string FirstPart(string kind) => kind == Factor ? "keep" : kind == Beast ? "ready" : kind == Children ? "shelter" : null;
+        public static string FirstPart(string kind) => Flow(kind)?.FirstPart;
 
         /// <summary>Every part of a storyline, in the order they can come.</summary>
-        public static string[] Parts(string kind)
-        {
-            switch (kind)
-            {
-                case Factor: return new[] { "keep", "rival", "makegood", "debt" };
-                case Beast: return new[] { "ready", "signs", "beast" };
-                case Children: return new[] { "shelter", "back" };
-            }
-            return new string[0];
-        }
+        public static string[] Parts(string kind) => Flow(kind)?.Parts ?? new string[0];
 
         /// <summary>Every ending of a storyline (gone: its people are gone or at war; faded: it could not go on).</summary>
-        public static string[] Endings(string kind)
-        {
-            switch (kind)
-            {
-                case Factor: return new[] { "declined", "share", "neverknew", "debtpaid", "guards", "madegood", "unpaid", "gone", "faded" };
-                case Beast: return new[] { "declined", "killed", "away", "gone", "faded" };
-                case Children: return new[] { "declined", "takenin", "harmed", "joined", "grown", "passed", "gone", "faded" };
-            }
-            return new string[0];
-        }
+        public static string[] Endings(string kind) => Flow(kind)?.Endings ?? new string[0];
+
+        /// <summary>The outcomes a part can end with besides declined, gone and ended.</summary>
+        public static string[] Outcomes(string kind, string part) => Flow(kind)?.Outcomes(part) ?? new string[0];
 
         // ================= Outcomes shared by every part =================
 
@@ -129,8 +117,6 @@ namespace ColonyCouncil
             public override string ToString() => (part != null ? "part " + part : "end " + ending) + " in " + min + "-" + max + " days" + (quiet ? " (quiet)" : "") + (flag != null ? " +" + flag : "");
         }
 
-        private static Step To(string part, float min, float max, string flag = null, bool quiet = false) => new Step { part = part, min = min, max = max, flag = flag, quiet = quiet };
-
         private static Step End(string ending, float min = 0f, float max = 0f, string flag = null) => new Step { ending = ending, min = min, max = max, flag = flag };
 
         /// <summary>
@@ -142,73 +128,12 @@ namespace ColonyCouncil
         public static Step Next(string kind, string part, string outcome, int times, float roll)
         {
             if (outcome == Gone) return End(Gone);
-            switch (kind)
-            {
-                case Factor:
-                    switch (part)
-                    {
-                        case "keep":
-                            if (outcome == "kept") return To("rival", 2f, 5f);
-                            if (outcome == "lost") return To("makegood", 1f, 2f);
-                            if (outcome == Declined) return End("declined");
-                            return End(Faded);
-                        case "rival":
-                            // Sold behind her back: she comes for her crates and finds them gone. Most likely she hears who bought them.
-                            if (outcome == "sold") return roll < FoundOutChance ? To("debt", 3f, 6f, "foundout") : End("neverknew", 3f, 6f);
-                            // Refused, told her, or never met the rival: she comes for her crates and pays.
-                            return End("share", 3f, 6f);
-                        case "makegood":
-                            return outcome == "paid" ? End("madegood") : End("unpaid", 0.2f, 1f);
-                        case "debt":
-                            return outcome == "paid" ? End("debtpaid") : End("guards", 0.5f, 1.5f);
-                    }
-                    break;
-                case Beast:
-                    switch (part)
-                    {
-                        case "ready":
-                            if (outcome == Declined) return End("declined");
-                            if (outcome == "ready" || outcome == "partly" || outcome == "unready") return To("signs", 2f, 4f, outcome);
-                            return To("signs", 2f, 4f, "unready");
-                        case "signs":
-                            return outcome == "found" ? To("beast", 1f, 3f, "found") : To("beast", 1f, 2f, "missed");
-                        case "beast":
-                            if (outcome == "killed") return End("killed");
-                            // Driven off or gone on its own: back next season, at most twice, then it stays away.
-                            if ((outcome == "driven" || outcome == "left") && times <= MaxReturns) return To("beast", SeasonDays - 2f, SeasonDays + 2f, "back", true);
-                            return End("away");
-                    }
-                    break;
-                case Children:
-                    switch (part)
-                    {
-                        case "shelter":
-                            if (outcome == "takein") return End("takenin");
-                            if (outcome == "place" || outcome == "sendon") return To("back", ReturnMinDays, ReturnMaxDays, outcome, true);
-                            if (outcome == "harmed") return End("harmed");
-                            if (outcome == Declined) return End("declined");
-                            return End(Faded);
-                        case "back":
-                            if (outcome == "joined") return End("joined");
-                            if (outcome == Declined || outcome == Ended) return End("passed");
-                            return End("grown");
-                    }
-                    break;
-            }
-            return End(Faded);
+            var flow = Flow(kind);
+            return flow != null ? flow.Next(part, outcome, times, roll) : End(Faded);
         }
 
         /// <summary>Endings that show a letter of their own (the rest were told by the part that led to them, and go to the chronicle only).</summary>
-        public static bool EndingHasLetter(string kind, string ending)
-        {
-            switch (kind)
-            {
-                case Factor: return ending == "share" || ending == "neverknew" || ending == "guards" || ending == "unpaid" || ending == "gone";
-                case Beast: return ending == "away" || ending == "gone";
-                case Children: return ending == "gone";
-            }
-            return false;
-        }
+        public static bool EndingHasLetter(string kind, string ending) => Flow(kind)?.EndingHasLetter(ending) ?? false;
 
         // ================= S1, the factor's goods =================
 

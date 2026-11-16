@@ -2,8 +2,10 @@
 """Draws the sprites of the quests at home (Textures/ColonyCouncil/Things/, 128x128 each) in the game's manner: flat fills
 with a little shading under a dark outline, seen from a little above. The messenger's letter by their people's age (a
 carved message stick, a letter sealed in red wax, a small locked dispatch case) and the lost keepsake by its owner's (a
-painted hide, a small family book with a cord tie, a photo album). Drawn at four times the size and scaled down for
-smooth edges. Run: python3 Tools/make_quest_items.py"""
+painted hide, a small family book with a cord tie, a photo album), and the pilgrims' relic of the storylines (a small
+carved reliquary box with a peaked lid and brass corners). Drawn at four times the size and scaled down for smooth edges.
+Run: python3 Tools/make_quest_items.py (every sprite), or name the ones to draw: python3 Tools/make_quest_items.py relic"""
+import sys
 import os
 from PIL import Image, ImageDraw, ImageFilter
 
@@ -151,13 +153,31 @@ def photos():
     save(img, "KeepsakePhotos")
 
 
+def relic():
+    img, d = canvas()
+    # A small carved reliquary: a wooden box under a peaked lid, brass at its corners, a brass disc on its front.
+    poly(d, [(140, 200), (256, 120), (372, 200)], WOOD_DARK)
+    poly(d, [(170, 196), (256, 138), (342, 196)], WOOD, width=0)
+    rrect(d, (132, 196, 380, 362), 10, WOOD)
+    d.rectangle((150, 214, 362, 344), fill=WOOD_LIGHT)
+    d.line((150, 300, 362, 300), fill=WOOD_DARK, width=6)
+    for (x, y) in ((124, 188), (352, 188), (124, 334), (352, 334)):
+        rrect(d, (x, y, x + 36, y + 36), 8, BRASS, width=5)
+    d.ellipse((222, 222, 290, 290), fill=BRASS, outline=LINE, width=OL)
+    d.ellipse((242, 242, 270, 270), fill=BRASS_DARK)
+    rrect(d, (240, 106, 272, 132), 6, BRASS, width=5)
+    save(img, "PilgrimRelic")
+
+
+DRAW = {
+    "stick": message_stick, "letter": letter, "dispatch": dispatch, "hide": hide, "book": book, "photos": photos, "relic": relic,
+}
+
+
 def main():
-    message_stick()
-    letter()
-    dispatch()
-    hide()
-    book()
-    photos()
+    names = sys.argv[1:] or list(DRAW)
+    for n in names:
+        DRAW[n]()
 
 
 if __name__ == "__main__":

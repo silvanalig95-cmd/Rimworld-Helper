@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S2, the sickness in the next town (Source/ColonyCouncil/Storylines/StorylineSickness.cs; the rules in
+       Storylines/Flows/SicknessFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml).
+       {GIVER} is the person of the town who asks, {FACTION} their people, {PLACE} the town, {KIND} the illness (the game's
+       flu or plague), {COUNT} the medicine asked for, then the sick, then the dead, {RIVAL} the healer who comes to teach,
+       {A_nameDef} the colony's doctor, {SILVER} a sum, {ITEM} the goods asked for or a name, {DAYS} the time once taken on.
+       Answers' words use only {X_nameDef} (the person of theirs at the gate), {FACTION} and {COUNT}. -->
+
+  <!-- ===================== Part 1: medicine for the town ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_SicknessMedicine</defName>
+    <label>sickness in the next town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SicknessMedicine</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Medicine for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[order] {GIVER} of {FACTION} has come from {PLACE}, where {KIND} has spread through the town. The order's sickhouse there is full and its medicine is nearly gone, so {GIVER} asks the colony for what it can spare.</li>
+          <li>[!order] {GIVER} of {FACTION} has come from {PLACE}, where {KIND} has spread through the town. The town is short of medicine, so {GIVER} asks the colony for what it can spare.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept</label>
+            <outcome>{X_nameDef} went back to tell {FACTION} the medicine is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to get medicine from another town.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>sickness</story>
+        <part>medicine</part>
+        <start>true</start>
+        <terms>
+          <li>{GIVER} asks for {ITEM} in the colony's stockpiles within {DAYS}. Any kind of medicine counts. Once all of it is there, {FACTION}'s carts come for it within half a day and pay {SILVER} silver, half again what it is worth.\n\nIf only half of it or more is there by the end, they take what there is and pay its plain worth. If there is less than half, they go without, and {FACTION} will remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony has {DAYS} to put {ITEM} in its stockpiles for {FACTION}.</li>
+        </accepted>
+        <reminder>
+          <li>{FACTION}'s carts come for the medicine within {DAYS}. The colony needs {ITEM} in its stockpiles.</li>
+        </reminder>
+        <notes>
+          <li>[ready] The medicine for {PLACE} is in the stockpiles. {FACTION}'s carts come for it within {DAYS}.</li>
+        </notes>
+        <endTitles>
+          <li>[sent] Medicine for {PLACE}</li>
+          <li>[partly] Part of the medicine for {PLACE}</li>
+          <li>[none] No medicine for {PLACE}</li>
+        </endTitles>
+        <ends>
+          <li>[sent] {FACTION}'s carts are coming for the medicine and will pay {SILVER} silver for it. It will go to the sick at {PLACE}.</li>
+          <li>[partly] Only {ITEM} of the {COUNT} medicine {FACTION} asked for was ready. Their carts are coming for it and will pay its plain worth, {SILVER} silver.</li>
+          <li>[none] There was not enough medicine in the stockpiles in time, so {FACTION} went without. The sick at {PLACE} will have to manage with what the town has.</li>
+        </ends>
+        <good><li>sent</li></good>
+        <bad><li>none</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the sick in the colony's beds ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_SicknessSick</defName>
+    <label>the sick from the next town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SicknessSick</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Care for the sick from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[sent] A few days ago the colony sent medicine to {PLACE}. The town still has more sick people than beds, and {FACTION} ask whether the colony will take {COUNT} of them into its beds until they are well.</li>
+          <li>[partly] A few days ago the colony sent part of the medicine {PLACE} asked for. The town still has more sick people than beds, and {FACTION} ask whether the colony will take {COUNT} of them into its beds until they are well.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>{FACTION} are bringing their sick to the colony.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will keep their sick at home.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>sickness</story>
+        <part>sick</part>
+        <terms>
+          <li>If the colony agrees, the {COUNT} sick come within a day. They have {KIND}. They stay as the colony's guests, each in a bed, and the colony's doctors tend them and feed them in bed until they are well. That usually takes four to six days. Each one who is well goes home.\n\nA colonist who tends them can catch {KIND}. If all of them recover, {FACTION} will be grateful. If some of them die, {FACTION} will send word about the dead.</li>
+        </terms>
+        <accepted>
+          <li>{COUNT} sick people from {PLACE} are on their way to the colony. Keep beds free for them.</li>
+        </accepted>
+        <notes>
+          <li>[came] The sick from {PLACE} have arrived. They are the colony's guests until they are well.</li>
+          <li>[died] {ITEM}, one of the sick from {PLACE}, has died.</li>
+          <li>[well] {ITEM} is well again and has gone home to {PLACE}.</li>
+        </notes>
+        <endTitles>
+          <li>[recovered] The sick have recovered</li>
+          <li>[somedied] Some of the sick died</li>
+          <li>[harmed] The sick were harmed</li>
+        </endTitles>
+        <ends>
+          <li>[recovered] None of the sick from {PLACE} died in the colony's care. They have gone home, or are still in the colony's beds until they can walk. {FACTION} are grateful.</li>
+          <li>[somedied] {ITEM} of the sick from {PLACE} died in the colony's care. The others have gone home, or are still in the colony's beds until they can walk. {FACTION} will send word about the dead.</li>
+          <li>[harmed] One of the sick from {PLACE} was taken prisoner by the colony. {FACTION} will not forget it.</li>
+        </ends>
+        <good><li>recovered</li></good>
+        <bad><li>harmed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the order's healer teaches ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_SicknessHealer</defName>
+    <label>a healer comes to teach</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SicknessHealer</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A healer from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[order] When the colony took in the sick from {PLACE}, every one of them recovered. To thank the colony, the order is sending {RIVAL}, one of its healers, to stay for some days and teach the colony's doctor.</li>
+          <li>[!order] When the colony took in the sick from {PLACE}, every one of them recovered. To thank the colony, {FACTION} are sending {RIVAL}, a healer from {PLACE}, to stay for some days and teach the colony's doctor.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Welcome {X_nameDef}</label>
+            <outcome>{X_nameDef} is on the way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will thank the colony another way.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[lesson] Watch how I do this one, and then you do the next.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>sickness</story>
+        <part>healer</part>
+        <terms>
+          <li>If the colony agrees, {RIVAL} comes within a day and stays about {DAYS}. {RIVAL} needs a bed and meals from the colony's stores, {ITEM} in all.\n\nEach day, {A_nameDef}, the colony's doctor, spends a few hours working beside {RIVAL} and learns medicine from {RIVAL}. The more days they have together, the more {A_nameDef} learns.</li>
+        </terms>
+        <accepted>
+          <li>{RIVAL} of {FACTION} is on the way to the colony.</li>
+        </accepted>
+        <reminder>
+          <li>{RIVAL} of {FACTION} arrives within {DAYS}. {RIVAL} needs a bed.</li>
+        </reminder>
+        <notes>
+          <li>[came] {RIVAL}, the healer from {PLACE}, has arrived.</li>
+          <li>[lesson] {A_nameDef} spent the day at {RIVAL}'s side and learned from {RIVAL}.</li>
+        </notes>
+        <endTitles>
+          <li>[taught] {RIVAL} has gone home</li>
+          <li>[fewlessons] {RIVAL} has gone home</li>
+        </endTitles>
+        <ends>
+          <li>[taught] {RIVAL} has gone home to {PLACE}. {A_nameDef} had {ITEM} lessons with {RIVAL} and is a better doctor for it.</li>
+          <li>[fewlessons] {RIVAL} has gone home to {PLACE}. {A_nameDef} was busy and had only a few lessons with {RIVAL}.</li>
+        </ends>
+        <good><li>taught</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the families come for the dead ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_SicknessKin</defName>
+    <label>the families of the dead</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SicknessKin</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The families of the dead from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>When the sick from {PLACE} were in the colony's care, {COUNT} of them died. Their families ask to come to the colony for the bodies.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them come</label>
+            <outcome>The families are on their way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The families will not come.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[ask] We have come to take our dead home, if you will let us.</li>
+          <li>[hand] Thank you, we will carry them home ourselves.</li>
+          <li>[bury] Thank you, we will wait by the graves until it is done.</li>
+          <li>[buried] Thank you for giving them a place to rest.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>sickness</story>
+        <part>kin</part>
+        <terms>
+          <li>If the colony agrees, the families come to the gate within a day. The colony can hand the bodies over, and the families carry them home, or it can bury the dead at the colony while the families wait by the graves.\n\nIf the colony turns them away, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>The families of the dead from {PLACE} are on their way to the colony.</li>
+        </accepted>
+        <notes>
+          <li>[came] The families of the dead from {PLACE} have come to the gate.</li>
+          <li>[graves] Graves for the dead from {PLACE} are marked out beyond the gate. The colony's people need to dig them and carry the bodies in while the families wait.</li>
+          <li>[notburied] The graves were not ready in time, so the families from {PLACE} are taking the bodies home.</li>
+        </notes>
+        <endTitles>
+          <li>[handed] The families took their dead home</li>
+          <li>[buried] The dead are buried</li>
+          <li>[nobodies] Nothing to take home</li>
+        </endTitles>
+        <ends>
+          <li>[handed] The families from {PLACE} carried their dead home.</li>
+          <li>[buried,buriedhere] The dead from {PLACE} are buried at the colony, and their families have gone home.</li>
+          <li>[buried,!buriedhere] The dead from {PLACE} were already buried at the colony. Their families visited the graves and went home.</li>
+          <li>[nobodies] The bodies of the dead from {PLACE} are gone, so their families had nothing to take home. {FACTION} hold it against the colony.</li>
+        </ends>
+        <good><li>buried</li></good>
+        <bad><li>nobodies</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- What is done with the dead: handed over, or buried here. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_SicknessDead</defName>
+    <label>what is done with the dead</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>What is done with the dead</li>
+        </titles>
+        <texts>
+          <li>The families of the {COUNT} people from {PLACE} who died in the colony's care are at the gate. They ask what the colony will do with the bodies.\n\nThe colony can hand the bodies over, and the families carry them home. Or it can bury them here: graves are marked out beyond the gate for the colony's people to dig, and the families wait by them for about a day. If the graves are not ready by then, the families take the bodies home.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hand the bodies over</label>
+            <outcome>The families are carrying their dead home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>hand</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Bury them here</label>
+            <outcome>The graves are marked out, and the families wait by them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>bury</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>sickness</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

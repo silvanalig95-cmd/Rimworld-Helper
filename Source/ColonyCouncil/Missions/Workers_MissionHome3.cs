@@ -48,10 +48,10 @@ namespace ColonyCouncil
         public static TrainSession SessionOf(Pawn p) => p != null && sessions.TryGetValue(p.thingIDNumber, out var s) ? s : null;
 
         /// <summary>The colony's shooting and archery targets (Misc. Training's, Medieval 2's), by name, so a missing mod costs nothing.</summary>
-        private static readonly string[] Targets = { "ShootingRangeTarget", "ArcheryTarget", "VFEM2_ArcheryTarget" };
+        private static readonly string[] TargetDefs = { "ShootingRangeTarget", "ArcheryTarget", "VFEM2_ArcheryTarget" };
 
         public static Thing ShootingTarget(Map map) =>
-            map?.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.Spawned && Array.IndexOf(Targets, b.def.defName) >= 0 && !b.IsForbidden(Faction.OfPlayer) && !b.IsBurning());
+            map?.listerBuildings.allBuildingsColonist.FirstOrDefault(b => b.Spawned && Array.IndexOf(TargetDefs, b.def.defName) >= 0 && !b.IsForbidden(Faction.OfPlayer) && !b.IsBurning());
 
         private static int Level(Pawn p, SkillDef s) => p?.skills?.GetSkill(s)?.Level ?? -1;
 

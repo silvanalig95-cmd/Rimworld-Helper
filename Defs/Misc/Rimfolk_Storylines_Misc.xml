@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Storylines, round 2 (Source/ColonyCouncil/Storylines/): the strayed herd's animals led out to their herders, and the
+       pilgrims' relic. Sprite: Tools/make_quest_items.py. -->
+
+  <!-- An animal of the strayed herd led out of its pen or barn to its herders at the gate: across fences and through
+       gates, as the game leads a roped animal (StorylineHerd.cs, HerdRules.LeadOut). -->
+  <JobDef>
+    <defName>Rimfolk_Storyline_LedOut</defName>
+    <driverClass>JobDriver_Goto</driverClass>
+    <reportString>being led out to its herders.</reportString>
+    <ignoreFenceBlocked>true</ignoreFenceBlocked>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- The pilgrims' relic (StorylineRelic.cs): carried by their keeper, taken in the night, and perhaps kept a year at the
+       colony's shrine. -->
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_PilgrimRelic</defName>
+    <label>pilgrims' relic</label>
+    <description>A small box of carved wood bound with metal, holding a relic of the pilgrims' faith. They carry it from shrine to shrine. It belongs to them, and it is only in the colony's keeping for a while.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/PilgrimRelic</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.7,0.7)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>40</MarketValue>
+      <Mass>1</Mass>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Beauty>3</Beauty>
+    </statBases>
+  </ThingDef>
+
+</Defs>

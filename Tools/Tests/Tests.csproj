@@ -354,5 +354,7 @@
     <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />
     <Compile Include="../../Source/ColonyCouncil/OldPowers/OldPowersMath.cs" Link="OldPowersMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Storylines/StorylineMath.cs" Link="StorylineMath.cs" />
+    <!-- Each storyline's own rules, the whole folder: a new storyline adds a file there and nothing here. -->
+    <Compile Include="../../Source/ColonyCouncil/Storylines/Flows/*.cs" LinkBase="StorylineFlows" />
   </ItemGroup>
 </Project>

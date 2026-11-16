@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Storylines, round 2 (Source/ColonyCouncil/Storylines/): the few words the code puts together. Each storyline's own
+       words are in Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml, each part's in Defs/MissionDefs/Rimfolk_Storyline_*.xml. -->
+
+  <!-- ===================== Guests of a part ===================== -->
+  <CC_Storyline_Host_Hungry>{WHO} went short today: when they were hungry, the stores had nothing for them, so they ate what they brought.</CC_Storyline_Host_Hungry>
+  <CC_Storyline_Host_NoRoof>{WHO} did not all have a bed today: each of them needs a free bed or sleeping spot under a roof.</CC_Storyline_Host_NoRoof>
+  <CC_Storyline_Host_Neither>{WHO} went short today: when they were hungry, the stores had nothing for them, and not all of them had a bed or sleeping spot under a roof.</CC_Storyline_Host_Neither>
+
+  <!-- ===================== The sickness in the next town ===================== -->
+  <CC_Storyline_Sick_Coming>{COUNT} sick people arrive within {DAYS}.</CC_Storyline_Sick_Coming>
+  <CC_Storyline_Sick_Status>Still ill: {ILL}, {INBED} of them in a bed. Well and gone home: {WELL}. Died: {DEAD}.</CC_Storyline_Sick_Status>
+  <CC_Storyline_Healer_Coming>{RIVAL} arrives within {DAYS}.</CC_Storyline_Healer_Coming>
+  <CC_Storyline_Healer_Lessons>Lessons {DOCTOR} has had with {RIVAL}: {COUNT}.</CC_Storyline_Healer_Lessons>
+  <CC_Storyline_Kin_Coming>{COUNT} family members arrive within {DAYS}.</CC_Storyline_Kin_Coming>
+  <CC_Storyline_Kin_Asking>The families are asking what the colony will do with the dead.</CC_Storyline_Kin_Asking>
+  <CC_Storyline_Kin_Burying>Buried: {BURIED} of {COUNT}. The colony's people need to dig the graves beyond the gate and carry the bodies in.</CC_Storyline_Kin_Burying>
+  <CC_Storyline_Kin_Carrying>The families are carrying their dead home.</CC_Storyline_Kin_Carrying>
+  <CC_Storyline_Impact_HandDead>The families from {FACTION} carry the bodies home.</CC_Storyline_Impact_HandDead>
+  <CC_Storyline_Impact_HandDeadBrief>the families carry them home</CC_Storyline_Impact_HandDeadBrief>
+  <CC_Storyline_Impact_BuryDead>Graves are marked out beyond the gate. The colony's people dig them and carry the bodies in, while the families from {FACTION} wait for about a day.</CC_Storyline_Impact_BuryDead>
+  <CC_Storyline_Impact_BuryDeadBrief>buried at the colony</CC_Storyline_Impact_BuryDeadBrief>
+
+  <!-- ===================== The strayed herd ===================== -->
+  <CC_Storyline_Herd_Penned>In a pen or a barn: {PENNED}. Still here: {HERE} of {TOTAL}.</CC_Storyline_Herd_Penned>
+  <CC_Storyline_Herd_Winter>Still here: {HERE} of {TOTAL}, {PENNED} of them in a pen or a barn. Hay and kibble in the stores: {STORED} nutrition. They eat about {NEED} before the end, less where they can graze.</CC_Storyline_Herd_Winter>
+  <CC_Storyline_Herd_Coming>The herders arrive within {DAYS}.</CC_Storyline_Herd_Coming>
+  <CC_Storyline_Impact_BuyHerd>{ANIMALS} stay with the colony.</CC_Storyline_Impact_BuyHerd>
+  <CC_Storyline_Impact_BuyHerdBrief>the animals stay</CC_Storyline_Impact_BuyHerdBrief>
+
+  <!-- ===================== The pilgrims' relic ===================== -->
+  <CC_Storyline_Relic_Pilgrims>The pilgrims from {PLACE}</CC_Storyline_Relic_Pilgrims>
+  <CC_Storyline_Relic_Coming>{COUNT} pilgrims arrive within {DAYS}.</CC_Storyline_Relic_Coming>
+  <CC_Storyline_Relic_Chase>{RIVAL} is running for the edge of the map with the relic.</CC_Storyline_Relic_Chase>
+  <CC_Storyline_Relic_Judging>The pilgrims are waiting for the colony to decide what happens to {RIVAL}.</CC_Storyline_Relic_Judging>
+  <CC_Storyline_Relic_Camp>{RIVAL}'s camp</CC_Storyline_Relic_Camp>
+  <CC_Storyline_Relic_CampStatus>The relic is in {RIVAL}'s camp on the world map. Bring it home to the colony.</CC_Storyline_Relic_CampStatus>
+  <CC_Storyline_Relic_Searching>The pilgrims are searching for the thief.</CC_Storyline_Relic_Searching>
+  <CC_Storyline_Relic_ShrineAt>The relic will be set down beside the {SHRINE}.</CC_Storyline_Relic_ShrineAt>
+  <CC_Storyline_Relic_NoShrine>The colony has no shrine yet: an altar, a shrine, a ritual spot or a work of art.</CC_Storyline_Relic_NoShrine>
+  <CC_Storyline_Relic_Visit>{COUNT} pilgrims of {FACTION} came to see their relic at the colony's shrine and left an offering of {SILVER} silver.</CC_Storyline_Relic_Visit>
+  <CC_Storyline_Relic_Missing>Pilgrims of {FACTION} came to see their relic at the colony's shrine and found it gone. They hold it against the colony.</CC_Storyline_Relic_Missing>
+  <CC_Storyline_Relic_HomeTitle>The relic goes home</CC_Storyline_Relic_HomeTitle>
+  <CC_Storyline_Relic_Home>The year is over. {WHO} of {FACTION} has come to take the relic home, and thanks the colony for keeping it.</CC_Storyline_Relic_Home>
+  <CC_Storyline_Relic_Deed>the relic kept at the shrine</CC_Storyline_Relic_Deed>
+  <CC_Storyline_Impact_HandThief>{RIVAL} goes with the pilgrims, to answer to their people.</CC_Storyline_Impact_HandThief>
+  <CC_Storyline_Impact_HandThiefBrief>handed to the pilgrims</CC_Storyline_Impact_HandThiefBrief>
+  <CC_Storyline_Impact_PunishThief>{RIVAL} becomes the colony's prisoner.</CC_Storyline_Impact_PunishThief>
+  <CC_Storyline_Impact_PunishThiefBrief>the colony's prisoner</CC_Storyline_Impact_PunishThiefBrief>
+  <CC_Storyline_Impact_LetThiefGo>{RIVAL} is free to leave once able to walk.</CC_Storyline_Impact_LetThiefGo>
+  <CC_Storyline_Impact_LetThiefGoBrief>free to leave</CC_Storyline_Impact_LetThiefGoBrief>
+
+  <!-- ===================== Two towns' quarrel ===================== -->
+  <CC_Storyline_Truce_Coming>The envoys arrive within {DAYS}.</CC_Storyline_Truce_Coming>
+  <CC_Storyline_Truce_Witness>Time someone of the colony has spent with both envoys: {HOURS} of {NEED} hours.</CC_Storyline_Truce_Witness>
+  <CC_Storyline_Pledge_Coming>{NAME} arrives within {DAYS}.</CC_Storyline_Pledge_Coming>
+  <CC_Storyline_Fighters_Coming>Fighters of {OTHERPEOPLE} reach the colony's land within {DAYS}.</CC_Storyline_Fighters_Coming>
+  <CC_Storyline_Fighters_Asking>The fighters are resting at the edge of the colony's land, waiting to go on.</CC_Storyline_Fighters_Asking>
+  <CC_Storyline_Fighters_Gate>The fighters are waiting at the gate.</CC_Storyline_Fighters_Gate>
+  <CC_Storyline_Fighters_Fight>The fighters are forcing their way in.</CC_Storyline_Fighters_Fight>
+  <CC_Storyline_Fighters_Crossing>The fighters are crossing the colony's land.</CC_Storyline_Fighters_Crossing>
+  <CC_Storyline_Impact_Pass>The fighters of {OTHERPEOPLE} cross the land and attack {FACTION}, and the two peoples go to war.</CC_Storyline_Impact_Pass>
+  <CC_Storyline_Impact_PassBrief>they attack, and there is war</CC_Storyline_Impact_PassBrief>
+  <CC_Storyline_Impact_Warn>{FACTION} are ready for the fighters of {OTHERPEOPLE}, and the attack fails. {FACTION} trust {OTHERPEOPLE} less than before.</CC_Storyline_Impact_Warn>
+  <CC_Storyline_Impact_WarnBrief>the attack fails</CC_Storyline_Impact_WarnBrief>
+  <CC_Storyline_Impact_Stop>The fighters wait at the gate for two hours, then most likely turn back. If they force their way in instead, it is a fight.</CC_Storyline_Impact_Stop>
+  <CC_Storyline_Impact_StopLikely>The fighters wait at the gate for two hours. They outnumber the colony's defenders and may well force their way in, and then it is a fight.</CC_Storyline_Impact_StopLikely>
+  <CC_Storyline_Impact_StopBrief>they turn back, or fight</CC_Storyline_Impact_StopBrief>
+
+</LanguageData>

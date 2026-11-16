@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.264.0</version>
+        <date>16 November 2026</date>
+        <title>Storylines from the towns nearby</title>
+        <points>
+          <li>Four new storylines told across several quests: the sickness in the next town, the strayed herd, the pilgrims' relic and two towns' quarrel.</li>
+          <li>A nearby town's sick are cared for in your beds; a doctor who tends them can catch it, and when all of them recover a healer stays to teach your doctor.</li>
+          <li>Their strayed animals are roped into your pen, part of the herd is kept through the winter, and in spring the herders leave young animals with you.</li>
+          <li>A pilgrims' relic is stolen in the night and the thief runs for the edge of the map; catch and judge the thief, and the relic stays at your shrine for a year.</li>
+          <li>Two peoples make a truce at your gate; when one side's fighters cross your land, you let them pass, warn the other side, or stop them at the gate.</li>
+          <li>Everything plays out on your own map, and you follow the thief away only when their camp is close by.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.263.0</version>
         <date>16 November 2026</date>
         <title>More quests at home</title>

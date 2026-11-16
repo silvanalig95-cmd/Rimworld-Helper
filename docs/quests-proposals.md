@@ -52,13 +52,14 @@ the factor. 2b. If some are lost, the colony has ten days to make good what was 
 and the factor stops by every season with a share of the trade. Sold, and the factor finds out: a debt, or their
 guards come to the gate. Not made good, and the league stops sending traders for a year.
 
-**S2. The sickness in the next town** (the hospitaller order; any healing people). 1. The town asks for medicine.
+**S2. The sickness in the next town** (the hospitaller order; any healing people). Built in round 2, released 0.264.0
+(DESIGN.md, "Storylines, round 2"). 1. The town asks for medicine.
 2. Three to six of their sick are brought to be cared for in the colony's beds for some days. A colonist who tends them
 may catch it, at the game's rate and shown. 3. If all recover, the order sends a healer who stays and teaches the
 colony's doctor. If some die, their kin come for the bodies, and the colony chooses to bury them here or hand them
 over.
 
-**S3. The strayed herd** (the herding folk; any herding people). 1. Their animals have strayed onto the colony's
+**S3. The strayed herd** (the herding folk; any herding people). Built in round 2, released 0.264.0. 1. Their animals have strayed onto the colony's
 land. Pen them before predators take them or they wander off the map. 2. When their herders come, they ask the colony
 to keep part of the herd over the winter, fed. 3. In spring they collect the herd and leave some of the young with the
 colony. If animals die, they ask to be paid, or the colony can buy the rest.
@@ -70,7 +71,8 @@ animal. 3. The beast comes onto the map. If goodwill is good, the Wardens' hunte
 colony keeps the trophy and the Wardens honour the colony. If it is driven off, it comes back next season (part 3
 again). A real fight, shown, at the game's rate.
 
-**S5. The pilgrims' relic** (the pilgrim fellowship; any people of a faith). 1. Pilgrims carrying a holy thing ask to
+**S5. The pilgrims' relic** (the pilgrim fellowship; any people of a faith). Built in round 2, released 0.264.0 (the
+theft and the chase are inside part 1, so the thief is caught or gets away the same night). 1. Pilgrims carrying a holy thing ask to
 rest at the colony for some days. 2. In the night the relic is taken, by one of their own or by a passing stranger.
 The thief is somewhere on the map; catch them before they get away. 3a. If the thief is caught, the pilgrims ask the
 colony to judge them (a card: hand them over, punish them here, or let them go). 3b. If the thief got away, the
@@ -84,7 +86,7 @@ it ("Ines's dream"), and the god is named only as the colony knows it. 2. Someth
 that god's own happenings, seen. 3. The dream comes back and asks for an offering of a kind. Given, it goes into the
 Gods' book as the dreamer believes it. Refused, the dreamer is troubled for a while. No favour or number is shown.
 
-**S7. Two towns' quarrel** (any two peoples at peace with the colony and at odds with each other). 1. The colony is
+**S7. Two towns' quarrel** (any two peoples at peace with the colony and at odds with each other). Built in round 2, released 0.264.0 (the truce made at the colony's gate, the witness mission's custom at home). 1. The colony is
 the witness at their truce (built on today's witness mission). 2. One side leaves someone at the colony as a pledge
 for some days; keep them safe and fed. 3. Fighters of one side cross the colony's map to strike the other. A card
 gives three choices: let them pass, warn the other side, or stop them at the gate. Endings: the peace holds, the
@@ -124,27 +126,25 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 - **Q2. A dispute judged.** Two people of a neighbour bring their quarrel to the colony; a card for the judgement,
   then each side's reaction on the map. *Built in round 1 (released 0.261.0).*
 - **Q3. A young fighter trained.** Their young fighter stays and trains with the colony's best shot or fighter for
-  some days; both gain skill. *Built in round 2 (not released yet): DESIGN.md "Quests at home, round 2".*
+  some days; both gain skill. *Built in round 2 (released 0.263.0): DESIGN.md "Quests at home, round 2".*
 - **Q4. A piece for a wedding.** Make one piece of good quality or better (a sculpture, clothes, furniture) by a date;
-  they come to collect it. *Built in round 2 (not released yet).*
+  they come to collect it. *Built in round 2 (released 0.263.0).*
 - **Q5. A wounded rider.** A wounded messenger reaches the gate. Treat them, and keep their message safe until
   someone of theirs comes for it. *Built in round 1 (released 0.261.0), as "a wounded messenger": they come in on foot.*
-- **Q6. A sick animal tended.** Their animal stays to be tended back to health. *Built in round 2 (not released yet).*
+- **Q6. A sick animal tended.** Their animal stays to be tended back to health. *Built in round 2 (released 0.263.0).*
 - **Q7. An outlaw in the hills.** An outlaw with a price on their head hides on the colony's map. Capture them (a
   bigger reward) or kill them. A fight, shown. *Built in round 1 (released 0.261.0).*
 - **Q8. Guard their camp for a night.** A caravan camps at the edge of the colony's map; something may come for it in
-  the night. *Built in round 2 (not released yet).*
+  the night. *Built in round 2 (released 0.263.0).*
 - **Q9. A lost heirloom.** They lost a keepsake on the colony's land; it lies somewhere in a marked area. Find it
   before the rain spoils it or someone else picks it up. *Built in round 1 (released 0.261.0): when the colony doesn't
   find it in time, one of their own comes and does.*
-- **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over. *Built in round 1
-  (not released yet).*
-- **Q11. Seed grain kept cold.** Store their seed grain over winter, cold and untouched. *Built in round 2 (not released
-  yet).*
+- **Q10. Tame one for them.** A particular wild animal on the colony's map, tamed and handed over. *Built in round 1 (released 0.261.0).*
+- **Q11. Seed grain kept cold.** Store their seed grain over winter, cold and untouched. *Built in round 2 (released 0.263.0).*
 - **Q12. Their book copied.** A scholar stays while the colony's researcher copies their book at the research bench
-  for some hours. *Built in round 2 (not released yet).*
+  for some hours. *Built in round 2 (released 0.263.0).*
 - **Q13. Musicians for a night.** Host their musicians for a night of music; it works as a party for the colony. *Built
-  in round 2 (not released yet).*
+  in round 2 (released 0.263.0).*
 - **Q14. A cache in old ruins** (away, only within 3 tiles). Their old map shows a cache close by. Go and bring it back.
 
 ## Rounds
@@ -154,8 +154,10 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
    goods), S4 (the beast) and S8 (the children). Alongside: Q1, Q2, Q5, Q7, Q9 and Q10 on today's mission system. (Q1, Q2,
    Q5, Q7, Q9 and Q10 released, 0.261.0; the frame with S1, S4 and S8 released, 0.262.0:
    `Source/ColonyCouncil/Storylines/`.)
-2. S2, S3, S5, S7 and the remaining single quests (Q3, Q4, Q6, Q8, Q11, Q12, Q13). Being built (the player, 16 November
-   2026: "great, do some more"); the seven single quests are built, not released yet (DESIGN.md "Quests at home, round 2").
+2. S2, S3, S5, S7 and the remaining single quests (Q3, Q4, Q6, Q8, Q11, Q12, Q13), on the player's "great, do
+   some more" (16 November 2026). The seven single quests released, 0.263.0 (DESIGN.md "Quests at home, round 2"); S2, S3,
+   S5 and S7 released, 0.264.0 (DESIGN.md "Storylines, round 2"; each storyline's rules a class of its own now,
+   `Source/ColonyCouncil/Storylines/Flows/`, so round 3's add files and touch nothing shared).
 3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
 
-The player can strike or change anything in rounds 2 and 3 before they start.
+The player can strike or change anything in round 3 before it starts.

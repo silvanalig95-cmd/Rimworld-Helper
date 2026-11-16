@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S3, the strayed herd (Source/ColonyCouncil/Storylines/StorylineHerd.cs; the rules in Storylines/Flows/HerdFlow.cs;
+       the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round2.xml). {GIVER} is the herder who asks,
+       {FACTION} their people, {PLACE} their home, {KIND} the herd's animals in the plural ("goats"), {COUNT} how many of
+       them the part is about (the strays, then the ones kept over the winter; on the card, the price of the ones left),
+       {SILVER} a sum, {ITEM} the animals lost, bought or left, in words ("two goats"), {DAYS} the time once taken on. Lines
+       tagged [winter] are for a land with seasons (the keeping lasts until spring), [!winter] for one without. Answers'
+       words use only {X_nameDef} (the herder at the gate), {FACTION} and {COUNT}. -->
+
+  <!-- ===================== Part 1: pen the strayed animals ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_HerdStray</defName>
+    <label>a strayed herd</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdStray</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Pen the strayed {KIND}</li>
+        </titles>
+        <texts>
+          <li>{GIVER} of {FACTION} has sent word that {COUNT} {KIND} strayed from their herd and are now on the colony's land. {GIVER} asks the colony to keep them safe until the herders come for them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep them for {FACTION}</label>
+            <outcome>The strayed animals are the colony's to look after until the herders come.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The strayed animals will wander off.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[penned] They are all here and penned, thank you.</li>
+          <li>[most] Most of them are here, and that will do.</li>
+          <li>[lost] Half of them are gone, which is a poor return.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>herd</story>
+        <part>stray</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, the {KIND} count as the colony's animals until the herders come in {DAYS}, and its handlers can rope them into a pen. {KIND} left outside a pen may wander off the map, and predators may take them.\n\nWhen the herders come, they count the {KIND} and lead them home. If all of them are in a pen or a barn, {FACTION} will be grateful. If half or more are still here, {FACTION} will be satisfied. If fewer are left, {FACTION} will hold it against the colony. If the colony declines, the {KIND} wander off.</li>
+        </terms>
+        <accepted>
+          <li>The strayed {KIND} are the colony's to look after until {FACTION}'s herders come. Rope them into a pen.</li>
+        </accepted>
+        <reminder>
+          <li>{FACTION}'s herders come for their {KIND} within {DAYS}.</li>
+        </reminder>
+        <notes>
+          <li>[herders] {FACTION}'s herders have come to the gate for their {KIND}.</li>
+        </notes>
+        <endTitles>
+          <li>[penned] The {KIND} have gone home</li>
+          <li>[most] The {KIND} have gone home</li>
+          <li>[lost] Strayed {KIND} lost</li>
+        </endTitles>
+        <ends>
+          <li>[penned] {FACTION}'s herders found all {COUNT} of their {KIND} in a pen and led them home. {FACTION} are grateful.</li>
+          <li>[most] {FACTION}'s herders found {SILVER} of their {COUNT} {KIND} in a pen, and led home the ones that were still here.</li>
+          <li>[lost] {FACTION}'s herders found fewer than half of their {KIND}. The rest, {ITEM}, were taken by predators or wandered off. They led home the ones that were left, and they hold it against the colony.</li>
+        </ends>
+        <good><li>penned</li></good>
+        <bad><li>lost</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: keep part of the herd over the winter ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_HerdWinter</defName>
+    <label>part of the herd kept</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdWinter</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[winter] Keep part of the herd over the winter</li>
+          <li>[!winter] Keep part of the herd for a season</li>
+        </titles>
+        <texts>
+          <li>[winter] A few days ago {FACTION}'s herders took their strayed {KIND} home from the colony. There is little grazing on their winter land this year, so {GIVER} asks the colony to keep {COUNT} of the herd over the winter.</li>
+          <li>[!winter] A few days ago {FACTION}'s herders took their strayed {KIND} home from the colony. There is little grazing on their land this season, so {GIVER} asks the colony to keep {COUNT} of the herd until it grows back.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep them</label>
+            <outcome>The herders will bring the animals.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find grazing elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>herd</story>
+        <part>winter</part>
+        <terms>
+          <li>[winter] If the colony agrees, the herders bring {COUNT} {KIND} onto the colony's land. They are the colony's to pen and feed until spring, in {DAYS}: by grazing, hay or kibble. The quest shows the hay and kibble in the stores against what they will eat.\n\nIn spring the herders come back for them. If every one is alive, {FACTION} will be grateful. If some die, {FACTION} will ask to be paid for them.</li>
+          <li>[!winter] If the colony agrees, the herders bring {COUNT} {KIND} onto the colony's land. They are the colony's to pen and feed for {DAYS}: by grazing, hay or kibble. The quest shows the hay and kibble in the stores against what they will eat.\n\nThen the herders come back for them. If every one is alive, {FACTION} will be grateful. If some die, {FACTION} will ask to be paid for them.</li>
+        </terms>
+        <accepted>
+          <li>The herders of {FACTION} have brought {COUNT} {KIND} onto the colony's land. Pen them and keep them fed.</li>
+        </accepted>
+        <notes>
+          <li>[short] There may not be enough hay or kibble in the stores to feed {FACTION}'s {KIND} until the end of the keeping.</li>
+        </notes>
+        <endTitles>
+          <li>[kept] The herd came through</li>
+          <li>[somedied] Some of the herd died</li>
+        </endTitles>
+        <ends>
+          <li>[kept,winter] Winter is over, and all of {FACTION}'s {KIND} are alive and well. The herders will come for them soon.</li>
+          <li>[kept,!winter] The keeping is over, and all of {FACTION}'s {KIND} are alive and well. The herders will come for them soon.</li>
+          <li>[somedied] {FACTION} lost {ITEM} while the colony kept their herd. The herders will come for the rest soon.</li>
+        </ends>
+        <good><li>kept</li></good>
+        <bad><li>somedied</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the herders come in spring ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_HerdSpring</defName>
+    <label>the herders come back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdSpring</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The herders come for their {KIND}</li>
+        </titles>
+        <texts>
+          <li>[winter,!died] When the herders left {COUNT} {KIND} with the colony, they asked it to keep them until spring. Spring has come, and {GIVER} is coming with the herders to take them home.</li>
+          <li>[!winter,!died] When the herders left {COUNT} {KIND} with the colony, they asked it to keep them for a season. The season is over, and {GIVER} is coming with the herders to take them home.</li>
+          <li>[winter,died] When the herders left their {KIND} with the colony, they asked it to keep them until spring. Some of them died. Now {GIVER} is coming with the herders to take the rest home.</li>
+          <li>[!winter,died] When the herders left their {KIND} with the colony, they asked it to keep them for a season. Some of them died. Now {GIVER} is coming with the herders to take the rest home.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hand the animals back</label>
+            <outcome>The herders are on their way.</outcome>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>The herders will come for their animals anyway.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[young] They all came through, and these young ones are yours.</li>
+          <li>[ask] Some of them died, so we need to talk about what is owed.</li>
+          <li>[paid] That settles it, thank you.</li>
+          <li>[bought] They are yours now, look after them.</li>
+          <li>[unpaid] Then we will take the rest and go.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>herd</story>
+        <part>spring</part>
+        <terms>
+          <li>[!died] If the colony agrees, the herders come within a day and lead their {KIND} home. To thank the colony, they leave young animals of their herd with it.\n\nIf the colony does not answer, they come for their {KIND} anyway and leave nothing.</li>
+          <li>[died] If the colony agrees, the herders come within a day. They will ask the colony to pay {SILVER} silver for the {KIND} that died. Or the colony can buy the ones that are left for what they are worth, and keep them.\n\nIf the colony does not answer, they come for their {KIND} anyway.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s herders are on their way for their {KIND}.</li>
+        </accepted>
+        <notes>
+          <li>[came] {FACTION}'s herders have come to the gate for their {KIND}.</li>
+          <li>[young] {FACTION}'s herders left {ITEM} with the colony. They belong to the colony now.</li>
+        </notes>
+        <endTitles>
+          <li>[young] The herd has gone home</li>
+          <li>[paid] The dead animals are paid for</li>
+          <li>[bought] The colony bought the herd</li>
+          <li>[unpaid] The colony would not pay</li>
+        </endTitles>
+        <ends>
+          <li>[young,!noyoung] {FACTION}'s herders led their {KIND} home and left {ITEM} with the colony to thank it.</li>
+          <li>[young,noyoung] {FACTION}'s herders led their {KIND} home and thanked the colony for keeping them.</li>
+          <li>[paid] The colony paid {FACTION} {SILVER} silver for the {KIND} that died, and the herders led the rest home.</li>
+          <li>[bought] The colony paid {FACTION} {SILVER} silver for {ITEM}, which stay with the colony. The herders have gone home.</li>
+          <li>[unpaid] The colony would not pay for the {KIND} that died. {FACTION}'s herders led the rest home, and they hold it against the colony.</li>
+        </ends>
+        <good><li>young</li></good>
+        <bad><li>unpaid</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The herd's dead: pay for them, buy the rest, or refuse. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_HerdDead</defName>
+    <label>the herd's dead animals</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The herd's dead animals</li>
+        </titles>
+        <texts>
+          <li>{GIVER} of {FACTION} has counted the {KIND} the colony kept for them, and some of them died. {GIVER} asks the colony to pay {SILVER} silver for the ones that died. Or the colony can buy the ones that are left for {COUNT} silver, and keep them.\n\nIf the colony refuses, the herders take the rest home and hold it against the colony.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay for the dead animals</label>
+            <outcome>The silver is being carried out to {X_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>pay</choice>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut">
+                <what>silver</what>
+                <variant>true</variant>
+                <steward>false</steward>
+                <label>silver for the herders</label>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Buy the ones that are left</label>
+            <outcome>The silver is being carried out to {X_nameDef}, and the animals stay with the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>buy</choice>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut">
+                <what>silver</what>
+                <steward>false</steward>
+                <label>silver for the herders</label>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>{X_nameDef} will take the rest of the herd home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>refuse</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>herd</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

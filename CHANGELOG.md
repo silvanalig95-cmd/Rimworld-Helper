@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Storylines from the towns nearby
+
+*16 November 2026, version 0.264.0*
+
+- Four new storylines told across several quests: the sickness in the next town, the strayed herd, the pilgrims' relic and two towns' quarrel.
+- A nearby town's sick are cared for in your beds; a doctor who tends them can catch it, and when all of them recover a healer stays to teach your doctor.
+- Their strayed animals are roped into your pen, part of the herd is kept through the winter, and in spring the herders leave young animals with you.
+- A pilgrims' relic is stolen in the night and the thief runs for the edge of the map; catch and judge the thief, and the relic stays at your shrine for a year.
+- Two peoples make a truce at your gate; when one side's fighters cross your land, you let them pass, warn the other side, or stop them at the gate.
+- Everything plays out on your own map, and you follow the thief away only when their camp is close by.
+
 ## More quests at home
 
 *16 November 2026, version 0.263.0*

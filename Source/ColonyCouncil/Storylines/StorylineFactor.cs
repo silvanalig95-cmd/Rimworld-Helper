@@ -19,7 +19,16 @@ namespace ColonyCouncil
     /// <summary>The factor's goods beyond its parts: who asks, the crates, the rain, the endings on the map.</summary>
     public class FactorRules : StorylineRules
     {
+        public override string Kind => StorylineMath.Factor;
+
         private static int Now => Find.TickManager.TicksGame;
+
+        public override void DebugEnded(Storyline s, string part, string outcome)
+        {
+            if (outcome == "sold") s.Set("sold");
+            else if (outcome == "told") s.Set("told");
+            else if (outcome == "lost") s.amount = StorylineMath.LostDebt(s.worth / 3f);
+        }
 
         /// <summary>A people whose traders come with caravans.</summary>
         public static bool Trading(Faction f) => f?.def != null && !f.def.caravanTraderKinds.NullOrEmpty();
