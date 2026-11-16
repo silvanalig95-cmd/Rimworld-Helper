@@ -37,7 +37,8 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <!-- Their day's work: [chop] felling, [craft] at their spot, [pack] packing up in their last hours, [grow] putting up
-       something new as the camp settles in (Camps/CampGrow.cs). -->
+       something new as the camp settles in (Camps/CampGrow.cs), [timber] felling a tree for what they are building and
+       [stone] mining rock or cutting blocks for it (Camps/CampGather.cs). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_CampWork</defName>
     <lines>
@@ -66,6 +67,14 @@
         <li>[grow] A few more days here makes this worth the work.</li>
         <li>[grow] This will make the camp easier to live in.</li>
         <li>[pack] Put the fire out properly, mind.</li>
+        <li>[timber] We're short of wood for the building, so this one comes down.</li>
+        <li>[timber] One more tree should give us enough logs to finish it.</li>
+        <li>[timber] I'll carry the logs over once it's down.</li>
+        <li>[timber] Stand clear, I'm felling this one for the building.</li>
+        <li>[stone] This rock should give us a good chunk for blocks.</li>
+        <li>[stone] A few more blocks and we can finish it.</li>
+        <li>[stone] Cutting blocks is slow work, but they'll hold.</li>
+        <li>[stone] I'll take this chunk back and square it up.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

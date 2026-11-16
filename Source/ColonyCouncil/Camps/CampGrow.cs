@@ -11,14 +11,18 @@ namespace ColonyCouncil
     // day or so apart from then, they add what a camp of their kind would as it settles in (seats round the fire, a lean-to
     // over the stash, a pen for their beasts, a drying rack, a bench for their trade, a firewood rack, a small altar, a
     // banner at the edge, a latrine, a second store when their goods have no room), each of their people's age and the
-    // player's mods (the kits' grows, Rimfolk_CampKits.xml), raised by their own hands from what they carry or cut. A short
+    // player's mods (the kits' grows, Rimfolk_CampKits.xml), raised by their own hands from what they carry or gather on
+    // the land (CampGather.cs: trees felled for wood, rock mined and dressed into blocks). A short
     // stay stays as it was put up; a long one grows to a settled look within the camp's reach of the fire, never on the
     // colony's ground. When they go, what they added is packed or left by the same rules as the rest (CampPack.cs).
     public partial class Camp
     {
         /// <summary>How many times they have added to the camp, and when they next will (-1: not yet set).</summary>
         public int grown, nextGrowTick = -1;
-        /// <summary>The addition under way (its pieces' role), and when it's given up if it isn't built by then.</summary>
+        /// <summary>
+        /// The addition under way (its pieces' role), and when it's given up if nothing has moved on it by then (two days
+        /// after the last progress: CampGather.cs).
+        /// </summary>
         public string growing;
         public int growUntil = -1;
         /// <summary>Additions tried and found no room or no means for (not saved: after a load they're tried once more).</summary>
@@ -72,7 +76,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Each hour of a settled stay: the addition under way is done once all of it stands (the colony hears what they put
-        /// up) or given up when its time is past; when the next is due, the next their kind would add is laid out and its
+        /// up), and given up only when the land can't give what it needs, nobody of them can build it, or nothing has moved
+        /// on it for two days (CampGather.cs); when the next is due, the next their kind would add is laid out and its
         /// blueprints set down. Nothing new in their last day, with a threat on the map, or once things are tense.
         /// </summary>
         private void GrowHour()
@@ -87,12 +92,14 @@ namespace ColonyCouncil
                     GrowDone(growing, mine);
                     growing = null;
                 }
-                else if (mine.Count == 0 || Now > growUntil)
+                else
                 {
+                    string why = mine.Count == 0 ? "gone" : GrowHoldUp(mine);
+                    if (why == null) return;
+                    if (Prefs.DevMode) Log.Message($"[Rimfolk] {Label} of {faction?.Name}: {GrowWord(growing)} given up ({why}).");
                     GiveUpGrowth(growing);
                     growing = null;
                 }
-                else return;
             }
             if (nextGrowTick < 0)
             {
@@ -137,8 +144,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// An addition laid out where it fits (CampBuildMath.GrowPlace) and its blueprints set down, when they have what to
-        /// make it of (their goods, what they carry, or wood they can still cut): what they carry for it goes down at the stash,
-        /// and one of them says so. False when there's no room or no means.
+        /// make it of or the land gives it (their goods, what they carry, wood of the trees round them, blocks of the rock
+        /// round them: CampGather.cs) and one of them can build it: what they carry for it goes down at the stash, and one
+        /// of them says so. False when there's no room or no means.
         /// </summary>
         private bool StartGrowth(string role)
         {
@@ -148,6 +156,8 @@ namespace ColonyCouncil
             int count = CampBuildMath.GrowPieces(role, Here.Count);
             var stuff = GrowStuff(piece, def, role == "fence" ? 16 : count);
             if (def.MadeFromStuff && stuff == null) return false;
+            // Nobody of them could build it (the skill it asks): not laid out.
+            if (!CanBuildPiece(def)) return false;
             var site = GrowSiteNow(out int turn, out var fire);
             var pieces = CampBuildMath.GrowPlace(role, site, def.size.x, def.size.z, count, herd.Count(a => a != null && a.Spawned && !a.Dead));
             if (pieces == null || pieces.Count == 0) return false;
@@ -161,6 +171,8 @@ namespace ColonyCouncil
                 adding.Add(plan);
             }
             if (adding.Count == 0 || !Affords(adding)) return false;
+            // The same addition given up before (its blueprints taken up then): its old plans make way for the new.
+            plans.RemoveAll(p => p.role == role && p.dropped && p.Built(map, faction) == null);
             foreach (var plan in adding)
             {
                 plans.Add(plan);
@@ -171,70 +183,47 @@ namespace ColonyCouncil
                 plans.RemoveAll(adding.Contains);
                 return false;
             }
-            // What they carry for it goes down at their stash; wood short, and they cut another tree today.
+            // What they carry for it goes down at their stash; what they lack of what the land gives is gathered by day as they
+            // build (CampGather.cs).
             DropMaterials(new HashSet<ThingDef>(adding.Where(p => p.placed || p.waiting).SelectMany(Costs).Select(c => c.thingDef)));
-            if (ShortOf(adding, ThingDefOf.WoodLog) > 0) chopsToday++;
             growing = role;
-            growUntil = Now + Mathf.RoundToInt(CampBuildMath.GrowGiveUpDays * GenDate.TicksPerDay);
+            growUntil = Now + CampGatherMath.StallTicks;
+            growMark = -1;
+            BuildNeedsChanged();
             SayLine(Here.Where(p => !p.Downed && !p.DevelopmentalStage.Juvenile() && p.Awake()).RandomElementWithFallback(), "grow", 0.6f);
             return true;
         }
 
         /// <summary>
-        /// What an addition is made of: the first of the piece's listed materials they have enough of (their goods and what
-        /// they carry), else wood where the land has trees for them to cut, else the first listed.
+        /// What an addition is made of (CampGatherMath.ChooseStuff): the first of the piece's listed materials they have
+        /// enough of (their goods and what they carry); else wood where the wild trees round them give enough; else stone
+        /// blocks of the rock round them where they can dress it; null when the land gives nothing it could be made of.
         /// </summary>
         private ThingDef GrowStuff(CampStructure piece, ThingDef def, int count)
         {
             if (!def.MadeFromStuff) return null;
             var allowed = GenStuff.AllowedStuffsFor(def).ToList();
-            var listed = (piece.stuff ?? new List<string>()).Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(s => s != null && allowed.Contains(s)).ToList();
-            int need = def.costStuffCount * Mathf.Max(1, count);
-            foreach (var s in listed)
-                if (Have(s) >= need) return s;
-            if (allowed.Contains(ThingDefOf.WoodLog) && TreesAbout()) return ThingDefOf.WoodLog;
-            return listed.FirstOrDefault() ?? GenStuff.DefaultStuffFor(def);
+            var listed = (piece.stuff ?? new List<string>()).Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(s => s != null && allowed.Contains(s)).Distinct().ToList();
+            var options = new List<ThingDef>(listed);
+            if (allowed.Contains(ThingDefOf.WoodLog) && !options.Contains(ThingDefOf.WoodLog)) options.Add(ThingDefOf.WoodLog);
+            var stone = LocalBlocks();
+            if (stone != null && allowed.Contains(stone) && !options.Contains(stone)) options.Add(stone);
+            var goods = BuildGoods();
+            var choice = options.Select(s => new StuffOption { listed = listed.Contains(s), facts = FactsFor(s, StuffNeed(def, s, count), goods) }).ToList();
+            int i = CampGatherMath.ChooseStuff(choice);
+            return i < 0 ? null : options[i];
         }
 
-        /// <summary>How much of a thing they have: their goods at the camp and what they carry (not their trader's stock).</summary>
-        private int Have(ThingDef def)
-        {
-            int n = Goods().Where(t => t.def == def).Sum(t => t.stackCount);
-            foreach (var p in Here)
-            {
-                var inv = p.inventory?.innerContainer;
-                if (inv == null) continue;
-                foreach (var t in inv)
-                    if (t.def == def && (p != trader || p.inventory.NotForSale(t))) n += t.stackCount;
-            }
-            return n;
-        }
+        /// <summary>How much of a material so many of a piece take.</summary>
+        private static int StuffNeed(ThingDef def, ThingDef stuff, int count) =>
+            Mathf.Max(1, Mathf.RoundToInt(def.costStuffCount / Mathf.Max(0.01f, stuff.VolumePerUnit))) * Mathf.Max(1, count);
 
-        /// <summary>Grown wild trees near the camp they could cut for wood.</summary>
-        private bool TreesAbout()
-        {
-            int n = 0;
-            foreach (var t in GenRadial.RadialDistinctThingsAround(center, map, CampSite.WorkRadius, true))
-                if (t is Plant p && p.def.plant != null && p.def.plant.IsTree && !p.sown && p.HarvestableNow && MayWork(p.Position) && ++n >= 3) return true;
-            return false;
-        }
-
-        /// <summary>How much of a thing the pieces need beyond what they have.</summary>
-        private int ShortOf(List<CampPlan> adding, ThingDef def)
-        {
-            int need = adding.SelectMany(Costs).Where(c => c.thingDef == def).Sum(c => c.count);
-            return Mathf.Max(0, need - Have(def));
-        }
-
-        /// <summary>They have what the pieces need: all of it, but wood, which they can cut more of where the land has trees.</summary>
+        /// <summary>They have what the pieces need, or the land gives what they lack (CampGatherMath.LandGives): wood of the trees round them, blocks of the rock.</summary>
         private bool Affords(List<CampPlan> adding)
         {
-            foreach (var d in adding.SelectMany(Costs).Select(c => c.thingDef).Distinct())
-            {
-                if (ShortOf(adding, d) <= 0) continue;
-                if (d == ThingDefOf.WoodLog && TreesAbout()) continue;
-                return false;
-            }
+            var goods = BuildGoods();
+            foreach (var g in adding.SelectMany(Costs).Where(c => c?.thingDef != null).GroupBy(c => c.thingDef))
+                if (!CampGatherMath.LandGives(FactsFor(g.Key, g.Sum(c => c.count), goods))) return false;
             return true;
         }
 
@@ -272,7 +261,10 @@ namespace ColonyCouncil
             Note(Text("CC_CampGrow_Done", null, null, 0, GrowWord(role)), MessageTypeDefOf.NeutralEvent, Importance.Flavor, look);
         }
 
-        /// <summary>An addition nobody finished in its time: its blueprints and frames taken up, what was put into them back in the stash.</summary>
+        /// <summary>
+        /// An addition given up (the land can't give what it needs, nobody of them can build it, or nothing moved on it for
+        /// two days): its blueprints and frames taken up, what was put into them back in the stash. Nothing is said of it.
+        /// </summary>
         private void GiveUpGrowth(string role)
         {
             var mine = plans.Where(p => p.role == role && !p.dropped).ToList();

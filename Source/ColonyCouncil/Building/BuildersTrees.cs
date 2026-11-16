@@ -28,6 +28,9 @@ namespace ColonyCouncil
             var map = worker?.Map;
             if (map == null || plant == null || !plant.Spawned || plant.def?.plant == null) return false;
             if (!(constructible is Blueprint_Build) && !(constructible is Frame)) return false;
+            // Only the colony's builds and builders: a camp's people fell the trees in their own way themselves, and never
+            // leave them marked for the colony's cutters.
+            if (constructible.Faction != Faction.OfPlayer || worker.Faction != Faction.OfPlayer) return false;
             int now = Find.TickManager.TicksGame;
             var (free, cutter) = State(map, now);
             var dm = map.designationManager;
