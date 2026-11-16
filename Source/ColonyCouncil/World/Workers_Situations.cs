@@ -71,9 +71,9 @@ namespace ColonyCouncil
         public override void Begin(WorldSituation s)
         {
             var f = s.ctx.faction;
-            if (s.Has("kind")) Goodwill(f, 6);
-            else if (s.Has("harsh")) Goodwill(f, -8);
-            if (s.Has("sameCreed")) Goodwill(f, 5);
+            if (s.Has("kind")) Goodwill(f, 6, GoodwillWhy.WorldEvent);
+            else if (s.Has("harsh")) Goodwill(f, -8, GoodwillWhy.WorldEvent);
+            if (s.Has("sameCreed")) Goodwill(f, 5, GoodwillWhy.WorldEvent);
         }
 
     }

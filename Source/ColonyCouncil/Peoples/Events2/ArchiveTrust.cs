@@ -268,13 +268,13 @@ namespace ColonyCouncil
             string text;
             if (kept)
             {
-                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.ArchiveGoodwill);
+                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.ArchiveGoodwill, GoodwillWhy.DealKept);
                 FactionMemory.Note(f, "keptWord", "CC_PEv2_ArchiveName".Translate().Resolve());
                 text = "CC_PEv2_ArchiveKept".Translate(f.Name.Named("FACTION"), total.Named("TOTAL"), (gift?.LabelNoCount ?? "?").Named("BOOK"), (x?.LabelShort ?? rec.master ?? "?").Named("X")).Resolve();
             }
             else
             {
-                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, -PeopleEvents2Math.ArchiveGoodwill);
+                if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, -PeopleEvents2Math.ArchiveGoodwill, GoodwillWhy.DealBroken);
                 FactionMemory.Note(f, "robbed", "CC_PEv2_ArchiveName".Translate().Resolve(), PeopleEvents2Math.LostWeight);
                 var parts = new List<string>();
                 if (sold > 0) parts.Add("CC_PEv2_ArchiveSold".Translate(sold).Resolve());

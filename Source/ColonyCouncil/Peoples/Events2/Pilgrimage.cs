@@ -265,7 +265,7 @@ namespace ColonyCouncil
                     eased = burden.LabelCap;
                     burden.age = PeopleEvents2Math.EasedAge(burden.age, burden.DurationTicks);
                 }
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.PilgrimGoodwill);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.PilgrimGoodwill, GoodwillWhy.Helped);
                 FactionMemory.Note(f, "gift", p.LabelShort);
             }
             string text = (served ? eased != null ? "CC_PEv2_PilgrimHomeEased" : "CC_PEv2_PilgrimHome" : "CC_PEv2_PilgrimHomeEarly").Translate(p.Named("PAWN"), place.Named("PLACE"),

@@ -500,7 +500,7 @@ namespace ColonyCouncil
             var st = RoadGang.StateOf(c);
             var f = c.faction;
             if (st == null || f == null) return;
-            if (!st.round && !c.Hostile && c.tension < 40f && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.RoadGoodwill, false);
+            if (!st.round && !c.Hostile && c.tension < 40f && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.RoadGoodwill, GoodwillWhy.CampWell);
             News.Post("CC_PEv3_RoadStays".Translate(f.Name.Named("FACTION"), RoadGang.FloorWord(f).Named("FLOOR")).Resolve(), c.Look, NewsKind.World);
         }
 
@@ -691,7 +691,7 @@ namespace ColonyCouncil
         {
             var hc = ctx as HappeningContext;
             if (hc?.map == null) return;
-            if (round && hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.LineRefusedGoodwill, false);
+            if (round && hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents3Math.LineRefusedGoodwill, GoodwillWhy.TurnedAway);
             if (RoadGang.Start(hc, fields, round) == null && round)
                 Tell.Message(NewsKind.World, Importance.Notable, hc.map, "CC_PEv3_RoadElsewhere".Translate((hc.faction?.Name ?? "?").Named("FACTION")).Resolve(), LookTargets.Invalid,
                     MessageTypeDefOf.NeutralEvent);

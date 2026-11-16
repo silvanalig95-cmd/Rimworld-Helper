@@ -291,7 +291,7 @@ namespace ColonyCouncil
             {
                 if (rec.fee > 0) Couriers.PaySilver(map, x != null && x.Spawned ? x.Position : IntVec3.Invalid, rec.fee, f, x);
                 if (book != null) book.goodInkUntil = Find.TickManager.TicksGame + PeopleEventsMath.GoodInkDays * GenDate.TicksPerDay;
-                if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, rec.fee > 0 ? PeopleEventsMath.GoodInkGoodwill : PeopleEventsMath.GoodInkGoodwill + PeopleEventsMath.FreeGoodwill);
+                if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, rec.fee > 0 ? PeopleEventsMath.GoodInkGoodwill : PeopleEventsMath.GoodInkGoodwill + PeopleEventsMath.FreeGoodwill, GoodwillWhy.Ledger);
                 FactionMemory.Note(f, "keptWord", "CC_PEv_TrustName".Translate().Resolve());
                 text = (burned > 0 ? "CC_PEv_InkGoodForgiven" : rec.fee > 0 ? "CC_PEv_InkGood" : "CC_PEv_InkGoodFree").Translate(f.Name.Named("FACTION"), total.Named("TOTAL"),
                     burned.Named("BURNED"), rec.fee.Named("FEE"), (x?.LabelShort ?? rec.master ?? "?").Named("X")).Resolve();
@@ -299,7 +299,7 @@ namespace ColonyCouncil
             else
             {
                 if (book != null) book.redInkUntil = Find.TickManager.TicksGame + PeopleEventsMath.RedInkDays * GenDate.TicksPerDay;
-                if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeopleEventsMath.RedInkGoodwill);
+                if (f.HasGoodwill) WorldSituationWorker.Goodwill(f, PeopleEventsMath.RedInkGoodwill, GoodwillWhy.Ledger);
                 FactionMemory.Note(f, "robbed", "CC_PEv_TrustName".Translate().Resolve(), 12);
                 var parts = new List<string>();
                 if (opened > 0) parts.Add("CC_PEv_InkOpened".Translate(opened).Resolve());

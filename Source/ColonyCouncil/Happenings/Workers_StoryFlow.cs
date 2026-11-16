@@ -241,6 +241,7 @@ namespace ColonyCouncil
             try
             {
                 using (Causes.Push(LivingEvents.Cause(home)))
+                using (GoodwillWhy.During(GoodwillWhy.Event))
                 using (PlayOuts.Collect())
                 {
                     // What the ending sets going on the map (PlayOut/) comes first, so it can hold the moods of those taking part.
@@ -248,7 +249,7 @@ namespace ColonyCouncil
                         foreach (var fx in PlayOuts.Ordered(e.effects))
                             HappeningTracker.Safe(fx, ctx);
                 }
-                if (e.goodwill != 0) StoryChains.Goodwill(c.faction, e.goodwill);
+                if (e.goodwill != 0) StoryChains.Goodwill(c.faction, e.goodwill, GoodwillWhy.Event);
                 // From the chain's people: carried in by their courier (Couriers/), or by pod in an industrial colony.
                 if (e.gift > 0f) item = StoryChains.Gift(map, IntVec3.Invalid, c.value * e.gift, e.fancy, !Avail.IsPreIndustrial, c.faction);
                 if (e.silver > 0f)

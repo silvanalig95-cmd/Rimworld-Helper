@@ -27,6 +27,7 @@ namespace ColonyCouncil
         {
             // The raid letter already told the story.
             using (Causes.Push("CC_Cause_EventHappened".Translate(ctx.why).Resolve()))
+            using (GoodwillWhy.During(GoodwillWhy.Event))
             {
                 foreach (var e in ext.effects) HappeningTracker.Safe(e, ctx);
             }

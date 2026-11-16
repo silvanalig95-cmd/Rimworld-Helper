@@ -747,7 +747,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void PutInWord(Faction f, Faction other, Map home, int goodwill)
         {
-            WorldSituationWorker.Goodwill(other, Mathf.Max(1, goodwill), false);
+            WorldSituationWorker.Goodwill(other, Mathf.Max(1, goodwill), GoodwillWhy.Word, false);
             string text = DipWords.T("CC_Dip_WordLetter", DipWords.People(other).Named("PEOPLE"), DipWords.People(f).Named("FRIEND"));
             string label = DipWords.P("CC_Dip_WordLetter_Label", DipWords.People(other).Named("PEOPLE"));
             // Their letter comes by the road from their nearest town, in the post (Post/MailIn.cs); the post off, told now.

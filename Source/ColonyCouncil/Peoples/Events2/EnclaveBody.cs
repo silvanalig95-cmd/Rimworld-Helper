@@ -302,7 +302,7 @@ namespace ColonyCouncil
             if (terms && f != null) EnclaveTerms.Write(f, map, on, r.addsHediff.label, PeopleEvents2Math.TermsTotal(price), down);
             if (fitted)
             {
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.FitGoodwill, false);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.FitGoodwill, GoodwillWhy.TheirWork);
                 PeoplesG.SayLine(worker, v.incident, "fitted");
                 Tell.Message(NewsKind.Health, Importance.Notable, map,
                     (terms ? "CC_PEv2_BionicDoneTerms" : "CC_PEv2_BionicDone").Translate(worker.LabelShort.Named("SURGEON"), on.Named("PAWN"), r.addsHediff.label.Named("PART"), (f?.Name ?? "?").Named("FACTION")).Resolve(),
@@ -393,7 +393,7 @@ namespace ColonyCouncil
             if (all || r.owed <= 0 || r.paid >= PeopleEvents2Math.Instalments)
             {
                 Close(r, Tie.State.Kept);
-                if (r.faction != null && r.faction.HasGoodwill && !r.faction.IsPlayer) WorldSituationWorker.Goodwill(r.faction, PeopleEvents2Math.PaidUpGoodwill);
+                if (r.faction != null && r.faction.HasGoodwill && !r.faction.IsPlayer) WorldSituationWorker.Goodwill(r.faction, PeopleEvents2Math.PaidUpGoodwill, GoodwillWhy.DealKept);
                 FactionMemory.Note(r.faction, "keptWord", r.part);
                 return;
             }
@@ -411,7 +411,7 @@ namespace ColonyCouncil
             if (!r.defaulted)
             {
                 r.defaulted = true;
-                if (r.faction != null && r.faction.HasGoodwill && !r.faction.IsPlayer) WorldSituationWorker.Goodwill(r.faction, PeopleEvents2Math.DefaultGoodwill);
+                if (r.faction != null && r.faction.HasGoodwill && !r.faction.IsPlayer) WorldSituationWorker.Goodwill(r.faction, PeopleEvents2Math.DefaultGoodwill, GoodwillWhy.DealBroken);
                 FactionMemory.Note(r.faction, "contractBroken", r.part);
                 try
                 {

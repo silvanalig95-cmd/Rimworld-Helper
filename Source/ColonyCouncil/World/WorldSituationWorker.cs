@@ -486,16 +486,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Goodwill that never turns a people hostile (or an ally into a stranger beyond what was asked): a loss stops
-        /// at -60, so only the colony's own choices can start a war.
+        /// at -60, so only the colony's own choices can start a war. The game's message names <paramref name="reason"/>
+        /// (World/GoodwillWhy.cs); without a message, the letter or the news at the same moment says it.
         /// </summary>
-        public static void Goodwill(Faction f, int amount, bool message = true)
+        public static void Goodwill(Faction f, int amount, HistoryEventDef reason, bool message = true)
         {
             if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill || amount == 0) return;
-            int change = amount > 0 ? amount : Mathf.Min(0, Mathf.Max(amount, -60 - f.PlayerGoodwill));
+            int change = GoodwillReasonMath.NeverIntoWar(amount, f.PlayerGoodwill);
             if (change == 0) return;
             try
             {
-                f.TryAffectGoodwillWith(Faction.OfPlayer, change, message, false);
+                f.TryAffectGoodwillWith(Faction.OfPlayer, change, message, false, reason);
             }
             catch (System.Exception e)
             {

@@ -105,7 +105,7 @@ namespace ColonyCouncil
         private static void Shunned(God g, Map map, Pawn victim, Pawn killer)
         {
             OwnBellwether.KinKilled();
-            foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(Arrivals.Usable).ToList()) StoryChains.Goodwill(f, GodWorldMath.ShunnedGoodwill);
+            foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(Arrivals.Usable).ToList()) StoryChains.Goodwill(f, GodWorldMath.ShunnedGoodwill, GoodwillWhy.Sacred);
             string why = GodWorld.T("CC_GW_Shunned_Why", g, killer.Named("KILLER"), victim.def.label.Named("BEAST"));
             foreach (var x in GodWorld.Known.Where(x => x != g).ToList()) Gods.AddFavour(x, map, GodWorldMath.ShunnedFavour, why, FavourSource.Sacrilege);
             Gods.AddFavour(g, map, GodWorldMath.ShunnedFavour * 2f, why, FavourSource.Sacrilege);

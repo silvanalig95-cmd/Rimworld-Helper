@@ -275,7 +275,7 @@ namespace ColonyCouncil
             }
             if (thanks)
             {
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.SickRoomGoodwill, false);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.SickRoomGoodwill, GoodwillWhy.Helped);
                 FactionMemory.Note(f, "relief", "CC_PEv3_SickRoomDeed".Translate().Resolve());
                 // The colony's doctor who walked the rounds with her learned the order's ways.
                 if (v.a != null && !v.a.Dead) v.a.skills?.Learn(SkillDefOf.Medicine, PeopleEvents3Math.RoundsXp, true);

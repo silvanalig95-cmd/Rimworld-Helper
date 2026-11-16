@@ -1588,7 +1588,7 @@ namespace ColonyCouncil
             if (c?.kind?.work != "strip" || (chance < 1f && !Rand.Chance(chance))) return;
             if (Rand.Chance(LeaveChance(c)))
             {
-                c.LoseGoodwill(3);
+                c.LoseGoodwill(3, GoodwillWhy.CampSent);
                 c.Note(c.Text("CC_CampLand_RuinsLeave"), MessageTypeDefOf.NeutralEvent, Importance.Notable, null, true);
                 c.Leave("asked");
                 return;

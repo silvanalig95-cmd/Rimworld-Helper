@@ -411,7 +411,7 @@ namespace ColonyCouncil
                 {
                     HarmFour.Say(c, "Rimfolk_Pool_ChallengeRefused", ch);
                     var f = ch.Faction;
-                    if (f != null) WorldSituationWorker.Goodwill(f, -2, true);
+                    if (f != null) WorldSituationWorker.Goodwill(f, -2, GoodwillWhy.Challenge);
                     HarmSeven.Later(HarmMath.HourTicks, () => Arrivals.SendAway(new[] { ch }));
                     return;
                 }

@@ -209,7 +209,7 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("peoples' events 2: the guard's lesson", e);
                 }
-                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.GuardGoodwill);
+                if (f != null && f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents2Math.GuardGoodwill, GoodwillWhy.Helped);
                 FactionMemory.Note(f, "escorted", p.LabelShort);
                 var b = PeopleEvents2Book.Instance;
                 if (b != null) b.guardUntil = Find.TickManager.TicksGame + PeopleEvents2Math.GuardYearDays * GenDate.TicksPerDay;

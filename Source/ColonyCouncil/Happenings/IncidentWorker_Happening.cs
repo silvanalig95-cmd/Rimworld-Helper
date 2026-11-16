@@ -336,7 +336,9 @@ namespace ColonyCouncil
             ctx.cause = label;
             string extra = Extra(ctx);
             string body = ctx.text + (extra.NullOrEmpty() ? "" : "\n\n" + extra);
+            // The event's own effects: a people's goodwill they move is for how the event turned out (World/GoodwillWhy.cs).
             using (Causes.Push("CC_Cause_EventHappened".Translate(label).Resolve()))
+            using (GoodwillWhy.During(GoodwillWhy.Event))
             using (PlayOuts.Collect())
             {
                 // What the event sets going on the map (PlayOut/: the colony gathering to hear a storyteller) comes first,

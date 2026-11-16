@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The reasons Rimfolk gives the game for each change in a people's goodwill (World/GoodwillWhy.cs, named in
+    World/GoodwillReasonMath.cs). The game's message ends with the label in brackets ("Relations with Stormriders have
+    changed from 53 to 45 (a letter that slighted their god)."), and the Factions tab lists it among that people's recent
+    events. No precept or other mod reads these; the faction memory's hooks skip them (each deed is noted by the code that
+    made it). Labels in the game's own style: plain, lower case, what happened.
+  -->
+
+  <!-- Letters, word and the colony's name -->
+  <HistoryEventDef><defName>Rimfolk_GW_Slight</defName><label>a letter that slighted their god</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Letter</defName><label>the colony's letter to them</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Word</defName><label>a friend's good word for the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Name</defName><label>what is said of the colony</label></HistoryEventDef>
+
+  <!-- The council's answers and decrees, meetings and welcomes -->
+  <HistoryEventDef><defName>Rimfolk_GW_Council</defName><label>the council's choice</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Decree</defName><label>the council's decree</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Meeting</defName><label>a meeting with one of theirs</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Welcome</defName><label>a welcome at the colony</label></HistoryEventDef>
+
+  <!-- Tasks, events and world events -->
+  <HistoryEventDef><defName>Rimfolk_GW_TaskDone</defName><label>a task done for them</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_TaskFailed</defName><label>a task left undone</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Event</defName><label>how an event with them turned out</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_WorldEvent</defName><label>the colony's part in a world event</label></HistoryEventDef>
+
+  <!-- Camps near the colony -->
+  <HistoryEventDef><defName>Rimfolk_GW_CampWell</defName><label>a good stay near the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_CampSour</defName><label>a sour stay near the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_CampSent</defName><label>their camp sent away</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_CampRefused</defName><label>their camp's request refused</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_CampDefended</defName><label>help against raiders at their camp</label></HistoryEventDef>
+
+  <!-- Fights, bouts and outsiders -->
+  <HistoryEventDef><defName>Rimfolk_GW_Brawl</defName><label>a brawl with the colony's people</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Bout</defName><label>a bout with one of theirs</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Challenge</defName><label>a challenge turned down</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Joined</defName><label>one of theirs who joined the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Gift</defName><label>a gift from the colony</label></HistoryEventDef>
+
+  <!-- Dealings, orders and work -->
+  <HistoryEventDef><defName>Rimfolk_GW_DealKept</defName><label>a dealing kept</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_DealBroken</defName><label>a dealing broken</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Unpaid</defName><label>a contract left unpaid</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_OrderFilled</defName><label>an order of theirs filled</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_OrderMissed</defName><label>an order of theirs not filled</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_HardTimes</defName><label>help in their hard times</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Friendship</defName><label>friendship declared</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Together</defName><label>work done together</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_TheirWork</defName><label>their people's work for the colony</label></HistoryEventDef>
+
+  <!-- The peoples' own events -->
+  <HistoryEventDef><defName>Rimfolk_GW_Helped</defName><label>help given to their people</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Paid</defName><label>silver paid to them</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_TurnedAway</defName><label>their people turned away</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Amends</defName><label>amends for an old wrong</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Ledger</defName><label>the colony's record in their books</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_PromiseKept</defName><label>a promise kept</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_PromiseBroken</defName><label>a promise broken</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_DutyDone</defName><label>a duty to them done</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_DutyRefused</defName><label>a duty to them refused</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Returned</defName><label>something of theirs given back</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_KeptTheirs</defName><label>something of theirs kept by the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Deserter</defName><label>a deserter of theirs taken in</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_TheirDead</defName><label>their dead seen to</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_ShrineLost</defName><label>their shrine fallen to ruin</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Harvest</defName><label>their hamlet's harvest</label></HistoryEventDef>
+
+  <!-- Diplomacy: schemes, fealty, wards, debts, truces and peace -->
+  <HistoryEventDef><defName>Rimfolk_GW_Caught</defName><label>one of theirs caught scheming</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Smear</defName><label>bad talk about the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Tribute</defName><label>heavy tribute</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Judged</defName><label>a quarrel the colony judged</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_OathBroken</defName><label>an oath broken</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Levies</defName><label>levies refused</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_WardHome</defName><label>a ward sent home</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_WardDied</defName><label>a ward who died at the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_DebtRefused</defName><label>a debt of honor refused</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Truce</defName><label>a truce sworn</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Peace</defName><label>peace made</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Beholden</defName><label>what the colony owes them from its start</label></HistoryEventDef>
+
+  <!-- Faiths and gods, as the colony knows them -->
+  <HistoryEventDef><defName>Rimfolk_GW_SharedGod</defName><label>a god they share with the colony</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_RivalGod</defName><label>the god the colony keeps</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_HolyWar</defName><label>their holy war</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Relic</defName><label>a relic of their faith</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Feast</defName><label>their god's feast</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Faith</defName><label>the colony's part in their faith</label></HistoryEventDef>
+  <HistoryEventDef><defName>Rimfolk_GW_Sacred</defName><label>a sacred animal killed by the colony</label></HistoryEventDef>
+
+</Defs>

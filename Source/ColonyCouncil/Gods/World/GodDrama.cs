@@ -271,7 +271,7 @@ namespace ColonyCouncil
             if (l.God != null) Gods.AddFavour(l.God, map, GodWorldMath.AskDone, GodWorld.T("CC_GW_Hide_WhyHidden", l.God, d.pawn.Named("PAWN")));
             if (l.Other != null) Gods.AddFavour(l.Other, map, GodWorldMath.AskRivalLoss, GodWorld.T("CC_GW_Hide_WhyHidden", l.Other, d.pawn.Named("PAWN")));
             GodWorld.Remark(map, d.pawn.Position, "hidden", l.God, d.pawn);
-            if (d.faction != null && !d.faction.HostileTo(Faction.OfPlayer)) StoryChains.Goodwill(d.faction, GodWorldMath.AskRivalGoodwill);
+            if (d.faction != null && !d.faction.HostileTo(Faction.OfPlayer)) StoryChains.Goodwill(d.faction, GodWorldMath.AskRivalGoodwill, GoodwillWhy.Faith);
             if (d.pawn.Faction != null) FactionMemory.Note(d.pawn.Faction, "sheltered", d.pawn.LabelShort);
         }
 
@@ -292,7 +292,7 @@ namespace ColonyCouncil
             if (!PeoplesG.Up(d.pawn, map)) return;
             ColonyCouncil.Tell.Message(NewsKind.World, Importance.Notable, map, "CC_GW_Hide_Goes".Translate(d.pawn.Named("PAWN")).Resolve(), new LookTargets(d.pawn),
                 MessageTypeDefOf.PositiveEvent);
-            if (d.pawn.Faction != null && !d.pawn.Faction.IsPlayer) StoryChains.Goodwill(d.pawn.Faction, 3);
+            if (d.pawn.Faction != null && !d.pawn.Faction.IsPlayer) StoryChains.Goodwill(d.pawn.Faction, 3, GoodwillWhy.Faith);
             Arrivals.SendAway(new[] { d.pawn });
         }
 

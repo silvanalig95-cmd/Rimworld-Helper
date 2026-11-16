@@ -103,7 +103,7 @@ namespace ColonyCouncil
                                                                                               && f.HostileTo(ctx.faction) && !f.HostileTo(Faction.OfPlayer)));
                     break;
             }
-            foreach (var f in list.Where(f => f != null).Distinct()) WorldSituationWorker.Goodwill(f, amount);
+            foreach (var f in list.Where(f => f != null).Distinct()) WorldSituationWorker.Goodwill(f, amount, GoodwillWhy.WorldEvent);
             // An ending's letter says what it gave (WorldSituations.Moved).
             if (amount == 0) return;
             string signed = ImpactMath.Signed(amount);

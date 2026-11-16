@@ -352,17 +352,19 @@ namespace ColonyCouncil
         private static void Told(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x, DilemmaContext ctx, string text)
         {
             // together: Cast picked a colonist who is with the stranger (Meets), or an animal's scene brought them together.
-            foreach (var e in def.effects)
-            {
-                try
+            // Their people's goodwill, if the moment moves it, is for a meeting with one of theirs (World/GoodwillWhy.cs).
+            using (GoodwillWhy.During(GoodwillWhy.Meeting))
+                foreach (var e in def.effects)
                 {
-                    e.Apply(ctx);
+                    try
+                    {
+                        e.Apply(ctx);
+                    }
+                    catch (Exception ex)
+                    {
+                        CouncilLog.ErrorOnce("encounter effect " + def.defName, ex);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    CouncilLog.ErrorOnce("encounter effect " + def.defName, ex);
-                }
-            }
             CharacterTracker.For(map)?.Shift(def.ways, text);
             Deeds.Encounter(def, a, x);
             // An entity is met where its holding platform stands.

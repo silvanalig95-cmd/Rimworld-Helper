@@ -506,7 +506,7 @@ namespace ColonyCouncil
             Dirty();
             Diplomacy.Dirty();
             string paid = Pay(t, f, home, price, silver, envoy, handed);
-            WorldSituationWorker.Goodwill(f, PactMath.SwornGoodwill(price, silver), false);
+            WorldSituationWorker.Goodwill(f, PactMath.SwornGoodwill(price, silver), GoodwillWhy.Truce);
             FactionMemory.Note(f, "swore", PactWords.P("CC_Truce_Deed"));
             var form = PactWords.TruceForm(home, f);
             Diplomacy.Write(DiplomacyMath.Parley, new List<HistoryActor>

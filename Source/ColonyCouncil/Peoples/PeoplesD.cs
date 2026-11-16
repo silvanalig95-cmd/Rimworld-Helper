@@ -559,7 +559,7 @@ namespace ColonyCouncil
             var map = ctx?.map;
             foreach (var (f, n) in Peoples(map))
             {
-                WorldSituationWorker.Goodwill(f, PeoplesDMath.GoodwillFor(n));
+                WorldSituationWorker.Goodwill(f, PeoplesDMath.GoodwillFor(n), GoodwillWhy.TheirDead);
                 Tell.Message(NewsKind.World, Importance.Flavor, map, "CC_PeoplesD_BellRung".Translate(f.Name, ctx.faction?.Name ?? "?").Resolve(), LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             }
         }

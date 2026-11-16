@@ -10332,6 +10332,54 @@ are `Letters/LetterWaitMath.cs` (new) and `Diplomacy/FavourMath.cs`, linked; `To
   theirs by name, their deeds remembered, a town within a home's reach), not yet at full goodwill toward it; the coolest
   toward the colony and the nearest first, four shown.
 
+## Every change in goodwill says why (the player's report, 16 November 2026; not released yet)
+
+The player, with the game's message "Relations with Stormriders have changed from 53 to 45." and their save: "sometimes
+my relations with factions change and i have no idea why". Rimfolk changed a people's goodwill in some 230 places and
+gave the game a reason in six; for the rest the game's message named none and the Factions tab listed nothing. The
+pure rules are `World/GoodwillReasonMath.cs`, linked; `Tools/Tests/GoodwillReasonTests.cs` ("goodwill reasons: ").
+
+- **What the save showed.** 53 to 45: Guido's invitation slighted the Stormriders' god, and the loss came at the hour
+  their notable read it, a day before the answer saying they took offence reached the colony. 22 to 23 and 39 to 40: two
+  meetings at the colony with one of theirs (a rescue remembered, a bowl for a traveler). 23 to 31: the council's answer
+  to the hungry at the gate (6, made 8 by the game's pull toward natural goodwill). Every people +1 or +2 on one tick: the
+  gods the colony shares with them, the Stormriders -1 for the god the colony keeps, and the Mossborn's ledger -1 the same
+  hour.
+- **A reason for every change.** Each is a HistoryEventDef of Rimfolk's own
+  (`Defs/HistoryEventDefs/Rimfolk_GoodwillReasons.xml`, 65, one per kind of cause, labels in the game's lower-case
+  style: "a letter that slighted their god", "the council's choice", "a meeting with one of theirs", "a task done for
+  them", "a god they share with the colony"), passed as the game's `reason`. The message ends with it in brackets, and the Factions tab lists it under the people's recent events
+  with what it added up to over 60 days. The wrappers take one each: `WorldSituationWorker.Goodwill`,
+  `StoryChains.Goodwill`, `Missions.Goodwill` (a task done or left undone, by its sign), `Camp.LoseGoodwill` and the
+  diplomacy helpers. A goodwill effect in an answer gives the council's choice, in a meeting a meeting with one of
+  theirs, in an event's own effects or a story's ending how the event turned out (`GoodwillWhy.During`). The two older
+  reasons (a god's touch heard of, the great white beast harmed) stay.
+- **Told, with the message or without.** A change stays without the game's message only where the letter, message or
+  news at the same moment gives the number or says which way it went (fealty, schemes, a vassal breaking away, the
+  letter's answer, the colony's name, a decree's daily goodwill told when it was declared, an article); the reason is
+  still recorded for the Factions tab. The peoples' own events, a truce, a debt of honor refused, a ward home or dead, a
+  vassal's heavy tribute, the warden's welcome, the lamp by the door, a hamlet's harvest and a season's delivery were
+  silent and told by nothing: they show the game's message now. A former patient's word spread to every people at peace
+  is told once in the outcome with the number, not by a message for each.
+- **Nothing noted twice, nothing another mod reads.** The game records a history event for a reason; Ideology's
+  precepts and other mods react to their own defs only, and no def refers to these. The faction memory's two hooks
+  (`Patch_MemoryGoodwill`, `Patch_ModMemoryGoodwill`) skip Rimfolk's own reasons (`GoodwillReasonMath.Own`): the code
+  that changes the goodwill notes its own deed. An outsider's gift gave the game's "gave gift" as well as its own note
+  and was remembered twice; it gives Rimfolk's own now. The camps keep the game's "gave gift" and "attacked member".
+- **A slight lands with the answer.** The slight's goodwill and its memory wait until the answer that says they took
+  offence is in at the colony (`GodLetters.AnswerIn`, from `NeighbourLetters.Landed`: the post set it down, the rider
+  is home with it, a messenger handed it over, a held answer came, a call ended, or at the latest the letter done). The
+  god's displeasure and grudge stay at their reading, unseen. The letter's own goodwill ("Their people's goodwill toward
+  the colony rises for it") waits for the answer too (`NeighbourLetter.goodwillDue`), without a message.
+- **Never into a war** is one rule now (`GoodwillReasonMath.NeverIntoWar`: a loss stops at -60).
+- **In the save.** The game keeps a list per people of every HistoryEventDef once a reason has touched them: 65 more
+  entries in each (about 7 KB a people), and over a long game a list for every people Rimfolk moves (up to about 40 KB
+  each). Adding defs also shifts the saved history of mods loaded after Rimfolk by one load (the game keeps it by
+  position), as any mod update that adds history events does.
+- **Check**: `Tools/Tests/GoodwillReasonTests.cs` reads every source file: no `TryAffectGoodwillWith` that lets the game
+  send its message is left without a reason (`GoodwillReasonMath.Unreasoned`), no wrapper is given a null one, every
+  reason has its def, a plain label and a use.
+
 ## Letters that read like letters (the player's request, 9 November 2026)
 
 The player: "letters exchanged from and to pawns should also read like actual letters, make a varied selection of

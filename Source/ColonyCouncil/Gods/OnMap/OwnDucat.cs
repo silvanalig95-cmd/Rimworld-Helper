@@ -319,7 +319,7 @@ namespace ColonyCouncil
             string line = OwnHappenings.LineFrom(p, Pool, g, new[] { v.Named("OTHER") }, "purse");
             if (!line.NullOrEmpty()) Speech.Say(p, line, v);
             FleckMaker.ThrowLightningGlow(v.DrawPos, map, 0.35f);
-            if (v.Faction != null) StoryChains.Goodwill(v.Faction, OwnHappeningsMath.PurseGoodwill);
+            if (v.Faction != null) StoryChains.Goodwill(v.Faction, OwnHappeningsMath.PurseGoodwill, GoodwillWhy.Gift);
             string text = "CC_GodDucat_Purse_Text".Translate(p.Named("PAWN"), given.Named("COUNT"), v.LabelShort.Named("VISITOR"), (v.Faction?.Name ?? "").Named("PEOPLE"),
                 Homes.Name(map).Named("HOME")).Resolve();
             OwnHappenings.Line(map, text, new LookTargets(p));

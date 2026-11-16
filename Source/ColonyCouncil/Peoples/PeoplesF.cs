@@ -913,7 +913,7 @@ namespace ColonyCouncil
             var v = Of(f);
             if (v == null) return;
             v.done = true;
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.SettledGoodwill);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeoplesFMath.SettledGoodwill, GoodwillWhy.Helped);
             var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Rimfolk_Evt_StrikeSettled");
             if (thought != null && by != null && by.Faction != null && by.Faction.IsPlayer) CouncilGameComponent.GiveThought(by, thought);
             Tell.Message(NewsKind.World, Importance.Notable, map, "CC_PeoplesF_StrikeSettled".Translate(f.Name).Resolve(), by != null ? new LookTargets(by) : LookTargets.Invalid,

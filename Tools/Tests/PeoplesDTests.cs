@@ -337,7 +337,7 @@ public static class PeoplesDTests
           && code.Contains("DesignationDefOf.Hunt"), "the Wardens go for the beast, the colony's shot hunting it beside them");
         C(code.Contains("PokeWorldLink.Active") && code.Contains("TypesOf(k.race).Contains(\"Fighting\")") && code.Contains("!PokeWorldLegends.IsLegendary(k.race)"),
             "with PokéWorld a Fighting type, never a legend; else a beast of the land");
-        C(code.Contains("Couriers.Hand(egg") && code.Contains("Couriers.PaySilver(") && code.Contains("WorldSituationWorker.Goodwill(f, PeoplesDMath.GoodwillFor(n))"),
+        C(code.Contains("Couriers.Hand(egg") && code.Contains("Couriers.PaySilver(") && code.Contains("WorldSituationWorker.Goodwill(f, PeoplesDMath.GoodwillFor(n), GoodwillWhy.TheirDead)"),
             "eggs and silver handed over at the gate, the bell's goodwill with the dead's peoples");
         C(Regex.Matches(code, @"Speech\.Say\(").Count >= 3 && !code.Contains("MoteMaker.ThrowText"), "they speak through Rimfolk's speech");
         return n;

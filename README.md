@@ -3775,6 +3775,15 @@ time, raids, colonists killed. Most of it comes from the game's own goodwill rea
 Each memory fades over the years, the big ones slowest (a gift is mostly forgotten in a few years, a town burned in
 a generation), and a people keeps a dozen at most.
 
+**Every change in goodwill says why.** Whenever Rimfolk raises or lowers a people's goodwill, the game's message names
+the reason ("Relations with Stormriders have changed from 53 to 45 (a letter that slighted their god)."), and the
+Factions tab lists it among that people's recent events with what it added up to: the council's choice, a meeting with
+one of theirs, a task done for them, a god they share with the colony, a dealing kept or broken, and so on. Where a
+letter or a message at the same moment already gives the number (an oath broken, a scheme caught, word of the colony's
+ways), the game's message is left out, and the reason is still listed. What their answer to a letter says lands when
+the answer reaches the colony, not the day they read it: a letter that slighted their god costs goodwill when the answer
+saying they took offense comes in.
+
 What follows from it: an **envoy repays an old debt** (a gift; feast them, tell them they owe nothing, or let a good
 talker bargain), a people **calls in a favor** the colony owes (silver, medicine, or a builder's plans), **old
 friends send food or medicine** while times are hard (a plague, famine or hard winter in the region, or empty stores

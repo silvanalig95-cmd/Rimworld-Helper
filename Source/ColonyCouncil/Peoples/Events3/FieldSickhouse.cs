@@ -620,13 +620,13 @@ namespace ColonyCouncil
             var f = c.faction;
             if (f == null || c.Hostile || c.tension >= 40f) return;
             // The colony's name in the Book of the Spared.
-            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.SickhouseGoodwill, false);
+            if (f.HasGoodwill && !f.IsPlayer) WorldSituationWorker.Goodwill(f, PeopleEvents3Math.SickhouseGoodwill, GoodwillWhy.Helped);
             FactionMemory.Note(f, "campHelped", "CC_PEv3_BookOfSpared".Translate().Resolve());
             foreach (string id in st.fed.Distinct())
             {
                 var p = Find.FactionManager.AllFactionsListForReading.FirstOrDefault(x => x.GetUniqueLoadID() == id);
                 if (p == null || p.defeated || !p.HasGoodwill || p.IsPlayer) continue;
-                WorldSituationWorker.Goodwill(p, PeopleEvents3Math.FedGoodwill, false);
+                WorldSituationWorker.Goodwill(p, PeopleEvents3Math.FedGoodwill, GoodwillWhy.Helped);
                 FactionMemory.Note(p, "campHealed", "CC_PEv3_SickFed".Translate().Resolve());
             }
             News.Post("CC_PEv3_SparedNews".Translate(f.Name.Named("FACTION"), st.seen.Named("COUNT")).Resolve(), LookTargets.Invalid, NewsKind.World);
