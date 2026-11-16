@@ -131,6 +131,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
   newest release line ("Three fixes: porters reach the mailbag, the stall's health, world events above the letters").
+- **To do when the player asks (16 November 2026): every item card shows the game's own description at the top.** The
+  player, with screenshots of Rimfolk's card for feedstock next to the game's info card: "all item cards should always
+  have the original description text somewhere at the top". Today Rimfolk's item card (`UI/ItemCardWindow.cs`, the
+  facts in `Items/`) opens with its own one line ("Feedstock: a fuel; none in store.") and the game's description is
+  only on "All the game's stats". To do: the thing's own description (`Thing.DescriptionFlavor`, else
+  `def.description`), as the game words it, just under the name on every item card, and on Rimfolk's weapon and
+  apparel cards (`Apparel/ApparelCardWindow.cs` and the weapon card), with Rimfolk's own line kept below it. Checked:
+  "a fuel" is right for this one. In Grav Camp (`maal.gravcamp`, active) the small and large feedstock boxes
+  (`Maal_ChemfuelTank`, `Maal_LargeChemfuelTank`) take feedstock as the camp's travel fuel, so the card reads it as a
+  fuel; with the description above it, that reads plainly.
 - **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
   idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
   god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
