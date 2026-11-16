@@ -134,49 +134,131 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 - **Done (16 November 2026, the player's go: "go ahead with this"; built, not released): every offering worth what it
   costs, precious things only when asked, a return in kind, the book keeping every gift and each god's temper.** The
   to-do with the player's words is now one entry above the newest release line ("Gifts worth what they cost").
-- **To do when the player asks (15 November 2026): a new god of drugs, drink and revelry.** The player: "Here's an
-  idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
-  god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
-  stuff, or maybe not loving, but, you know, more of drugs, with the good and bad that they bring to a colony. And, you
-  know, the god likes to deceive or kind of play with pawns, minds and bodies, you know, like drugs do." None of the
-  fourteen gods has this domain (Hollin wild, Smoulder craft, Bellwether hunt, Morel and Tamiu the dead, Ennu the way,
-  Pip machines, Cirrus storms, Hush the cold, Helios and Selene, Murmur waters, Ducat gold, Undertow the dark).
-  Sketched in chat: a fifteenth god (name and epithet to pick, e.g. Haze, the Sweet Smoke), generous first and
-  deceiving after, felt by the pawns and never shown (the unseen gods' rule): at revels and feasts, in a drinker's or
-  smoker's high, in an addict's craving and a hangover. Its happenings would play out on the map: a night of revelry
-  that runs late (more joy, worse mornings), a high that turns into a vision someone believes (and may be wrong), a
-  craving that sends someone to the stores at night, a stash or a still found, a binge it seems to egg on, a cure
-  against it; harm only at the game's rate, through the game's own drug effects, addictions and overdoses, and shown.
-  Every age its form, from the colony's own drugs and drink in the full mod pool (the base game's and the DLCs';
-  Vanilla Brewing Expanded and its coffees and teas; Drugs+; Vanilla Factions' opium, draughts, aperitif and
-  chemshine; Odyssey's psilocap), each by what the colony has unlocked. Its sign (Tools/make_god_signs.py), its book
-  chapter and lore, its presence, its saints, its belief and its feast as the other gods have. No loving (the player
-  left it out). A mod that would help, optional: Tavern (ods.tavern, Workshop 3775694305, tagged 1.6 and 1.7, in their
-  list but not active) for tavern tables, counters and drink graphics.
-  The player: "sounds good! except the name, provide some other alternatives. what would be interesting is that the god
-  could take shape inside an actual drug, and once a pawn consumes it, they will get a godly effect from it". Names
-  offered (to pick): Revel, the Open Cup; Lull, the Sweet Smoke; Glimmer, the Bright Lie; Velvet, the Soft Hand; Wisp,
-  the One in the Smoke; Mirth, the Long Night; Honey, the Last Glass; Tipple, the Merry Cheat. The god in a drug,
-  sketched: now and then the god takes a single drug or drink in the colony's stores (a joint, a bottle, a draught,
-  whatever the colony has); it looks like any other (the unseen gods: no label, no glow), and at most someone notices
-  something small about it in passing ("the new keg smells sweeter than it should"). Whoever takes it gets one of the
-  god's own effects for a while, good or bad and never told which in advance: a strong, clean high with no hangover;
-  a burst of skill or an inspiration; a vision that shows something true, or something false they believe; no fear in
-  a fight; or the god's deceit, a wonderful high and then a hard crash, a sudden craving or an addiction that takes
-  hold at once (harm at the game's rate, through the game's own drug effects, shown). Afterwards the colony's book
-  records what they believe it was, perhaps wrongly.
-  The player, then: "and i'd like it to also have some physical shape, perhaps a devil or so?", and "satyr would be
-  awesome". So the god's shape when it walks among them (the gods' avatar, GodAvatar, as the others have) is a satyr: a
-  horned reveller who turns up at a party or a late fire with a drink to share. Soft, by name: a satyr xenotype from
-  the player's mods if one is active (none is yet), else the base game's Biotech horns (`Headbone_MiniHorns` or
-  `Headbone_CenterHorn`) on a person in the god's colours, larger, as the other avatars are. Mods with satyrs, none
-  confirmed for 1.7: Forgotten Realms - Biotech Edition (in their list, not active; Workshop 3068979395; tagged 1.4 to
-  1.6; its satyrs "delight in singing, dancing, feasting, and debauchery"), Roo's Satyr Xenotype (goat legs; the
-  original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
-  January 2026).
-  The player's pick of name: "Revel sounds great": Revel, the Open Cup.
+- **Done (16 November 2026, the player's go: "go ahead with this, and if there's other to-dos that make sense to be
+  included in this update, go ahead as well"; built, not released): a new god of drugs, drink and revelry, Revel, the
+  Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Revel, the Open Cup: a fifteenth
+  god of drink, drugs and the long night, in one cup of the stores and as a horned reveller** (16 November 2026; the
+  player's words below, from the to-do; the go with the offerings update: "go ahead with this, and if there's other
+  to-dos that make sense to be included in this update, go ahead as well"). DESIGN.md "Revel, the Open Cup" (after "Gifts
+  worth what they cost") has all of it; `docs/design/gods.md` its contract notes; README the gods' paragraphs and the
+  gods on the map (his signs, the horned reveller, the cup); the Almanac's gods page (what the colony's own people do: a
+  night sat up with someone fighting a craving, a drink that does more than it should; no god named, keywords
+  unchanged).
+  - **The player's words** (15 November 2026): "Here's an
+    idea for a new god to be added to the to-do list. So it's kind of a god of, it should be kind of a god of drugs, the
+    god of excess partying, and so to say, of pleasures. So, you know, smoke leaf, alcohol, loving, all that kind of
+    stuff, or maybe not loving, but, you know, more of drugs, with the good and bad that they bring to a colony. And, you
+    know, the god likes to deceive or kind of play with pawns, minds and bodies, you know, like drugs do." None of the
+    fourteen gods has this domain (Hollin wild, Smoulder craft, Bellwether hunt, Morel and Tamiu the dead, Ennu the way,
+    Pip machines, Cirrus storms, Hush the cold, Helios and Selene, Murmur waters, Ducat gold, Undertow the dark).
+    Sketched in chat: a fifteenth god (name and epithet to pick, e.g. Haze, the Sweet Smoke), generous first and
+    deceiving after, felt by the pawns and never shown (the unseen gods' rule): at revels and feasts, in a drinker's or
+    smoker's high, in an addict's craving and a hangover. Its happenings would play out on the map: a night of revelry
+    that runs late (more joy, worse mornings), a high that turns into a vision someone believes (and may be wrong), a
+    craving that sends someone to the stores at night, a stash or a still found, a binge it seems to egg on, a cure
+    against it; harm only at the game's rate, through the game's own drug effects, addictions and overdoses, and shown.
+    Every age its form, from the colony's own drugs and drink in the full mod pool (the base game's and the DLCs';
+    Vanilla Brewing Expanded and its coffees and teas; Drugs+; Vanilla Factions' opium, draughts, aperitif and
+    chemshine; Odyssey's psilocap), each by what the colony has unlocked. Its sign (Tools/make_god_signs.py), its book
+    chapter and lore, its presence, its saints, its belief and its feast as the other gods have. No loving (the player
+    left it out). A mod that would help, optional: Tavern (ods.tavern, Workshop 3775694305, tagged 1.6 and 1.7, in their
+    list but not active) for tavern tables, counters and drink graphics.
+    The player: "sounds good! except the name, provide some other alternatives. what would be interesting is that the god
+    could take shape inside an actual drug, and once a pawn consumes it, they will get a godly effect from it". Names
+    offered (to pick): Revel, the Open Cup; Lull, the Sweet Smoke; Glimmer, the Bright Lie; Velvet, the Soft Hand; Wisp,
+    the One in the Smoke; Mirth, the Long Night; Honey, the Last Glass; Tipple, the Merry Cheat. The god in a drug,
+    sketched: now and then the god takes a single drug or drink in the colony's stores (a joint, a bottle, a draught,
+    whatever the colony has); it looks like any other (the unseen gods: no label, no glow), and at most someone notices
+    something small about it in passing ("the new keg smells sweeter than it should"). Whoever takes it gets one of the
+    god's own effects for a while, good or bad and never told which in advance: a strong, clean high with no hangover;
+    a burst of skill or an inspiration; a vision that shows something true, or something false they believe; no fear in
+    a fight; or the god's deceit, a wonderful high and then a hard crash, a sudden craving or an addiction that takes
+    hold at once (harm at the game's rate, through the game's own drug effects, shown). Afterwards the colony's book
+    records what they believe it was, perhaps wrongly.
+    The player, then: "and i'd like it to also have some physical shape, perhaps a devil or so?", and "satyr would be
+    awesome". So the god's shape when it walks among them (the gods' avatar, GodAvatar, as the others have) is a satyr: a
+    horned reveller who turns up at a party or a late fire with a drink to share. Soft, by name: a satyr xenotype from
+    the player's mods if one is active (none is yet), else the base game's Biotech horns (`Headbone_MiniHorns` or
+    `Headbone_CenterHorn`) on a person in the god's colours, larger, as the other avatars are. Mods with satyrs, none
+    confirmed for 1.7: Forgotten Realms - Biotech Edition (in their list, not active; Workshop 3068979395; tagged 1.4 to
+    1.6; its satyrs "delight in singing, dancing, feasting, and debauchery"), Roo's Satyr Xenotype (goat legs; the
+    original has no 1.6 release, an unofficial 1.6 port exists), Fantasy Races and Factions (satyrs; updated for 1.6 in
+    January 2026).
+    The player's pick of name: "Revel sounds great": Revel, the Open Cup.
+  - **What was built.** Revel as the other fourteen are, every part: his def (names by age, lore, three stories, sayings,
+    hands, scoffs, letters; allies with Ennu, rivals with Hush; revered by the Wheel, the river folk and every age's kind),
+    his sign (a cup with a goat's horns curling from its rim), his look, shape and signs (a goat bleating in an empty room,
+    a sweet smoke where nothing burns, the drink in the stores spilled), his presence ("a merry air": recreation 30 %
+    faster, slower in his anger), eight happenings of his own (the long night, a vision true or false, a craving in the
+    night, a stash found, a binge egged on, the craving eased, the horned reveller, his cup), his touch (a light heart,
+    high spirits, a find of drink, an inspiration, his merry air for five days; the drink gone sour in his anger), his
+    return in kind (drink and smoke of the colony's own kind), worship (drink first; drunk off in the night where it lay;
+    his hope and temper; the Long Night of Revel in autumn), belief and rite (the first drop poured on the ground in the
+    evening; drawn by chemical interest, a drunken master, a brewer's past), his ways in the world (the barrels ready
+    early, the drink gone sour, the open cup on a body), his saints (a deity of wine, revelry or the high life, by its own
+    words only), his hand in a brewer's cart, a camp's feast and music, and what draws him near (people high, a party).
+  - **The god in a cup**: now and then he is in one drink or dose of a stack of his in the stores (any one alike), followed
+    through the game's own splitting, merging and eating of stacks; whoever of the colony takes it gets one of his effects,
+    never told in advance: two times in three a clean high with no hangover, a burst of skill, a vision, no fear for a
+    day; one in three a high then a hard crash, a sudden craving (a second one where it isn't hard and the policy
+    allows), or about one cup in twenty the drug's own addiction at once (the shared harm budget, `HarmKinds.GodCup`).
+    Shown as it happens; a few hours after, the book keeps what they believe it was, perhaps wrongly. The horned
+    reveller's own cup is his too.
+  - **The horned reveller**: a grown man of a people at peace, made the god's and shown as one, with a satyr's shape where
+    one of the player's mods has a xenotype called so (none is active), else Alpha Genes' goat horns
+    (`AG_ForsakenHornsGoat`, `AG_DevilsheepHorns`) or Biotech's (`Headbone_MiniHorns`, `Headbone_CenterHorn`), in Vanilla
+    Factions Expanded - Classical's toga and wreath; he walks in to a party, his feast, a long night or a late fire, puts
+    his cup in someone's hands (not a teetotaler, a child or one their policy keeps from it), and is gone before dawn.
+  - **Decided here** (not asked): his domains Hearth and Night (the fallback only), Capricious; revered by every age's kind
+    (so every colony holds him) and by the Wheel and the river folk; the omen of laughter became a goat's bleat (the game
+    has no laughing sound); the binge seen is a sign only (no harm added); the cure is a night sat up that lifts the
+    game's own addiction a little; saints tied by a deity's own words only, so no older faith's saint moves to him; the
+    feast day the 8th of autumn; eight happenings where the others have three to five (his cup and his walking shape are
+    happenings of the frame, with its pace and dev actions).
+  - **Code map**: `Gods/OnMap/OwnRevel.cs` (`RevelState`, saved in `OwnSeven.cs`'s book; the happenings),
+    `Gods/OnMap/RevelCup.cs` (the cup, its three hooks on `Thing.SplitOff`, `TryAbsorbStack`, `Ingested`),
+    `Gods/OnMap/RevelGoods.cs` (his drink and drugs from every def, highs, addictions, policies),
+    `Gods/OnMap/RevelMath.cs` (pure: the happenings' triggers, `RevelCupMath`; linked in `Tools/Tests/Tests.csproj`),
+    `Gods/OwnRevelDebug.cs`; changed: `OwnHappeningsMath` (eight happenings, `Gods` last), `GodsOnMapMath.OmenKind` and
+    `GodOmensOwn` (three signs, `EmptyRoom`, `SweetSmoke`), `GodNearMath`/`GodNear` (`GodStir.Revelry`),
+    `GodPresenceOwnMath` (`PresenceEffect.Revelry`, `JoyGain`), `GodPresenceOwn`, `GodPresenceShows`,
+    `GodPresenceOwnPatches` (`Patch_GodPresenceJoy`), `OfferingWayMath`/`OfferingWays` (`OfferingWay.Cup`),
+    `OfferingGifts.MadeAgain`, `GodTouchMath` (`Merry`, `Sour`, his table), `GodTouchEffects`, `GodTouchFx`,
+    `GodTouchReturn`, `PawnGodsMath`/`PawnGodsActs` (`BeliefRite.Cup`, draws), `GodHandsMath`, `GodLoreMath` (keys,
+    confusions), `GodWorldMath`/`GodHealth` (`GodWrath.Sour`, `GodBlessing.Cask`), `SaintsMath`/`Saints`
+    (`ByOwnWords`, `OwnWords`), `HarmBudgetMath` (`GodCup`). Defs: `Rimfolk_Gods.xml`, `Rimfolk_Worship_Gods.xml`,
+    `Rimfolk_GodsOnMap_Shapes.xml` (shape and look), `Rimfolk_GodPresence_Own.xml` and its lines, `Rimfolk_GodTouch.xml`,
+    `Rimfolk_GodsWorld_Ways.xml`, `_Gifts.xml`, `_Lines.xml`, `Rimfolk_GodsOnMap_Lines.xml`, `Rimfolk_Worship_Pools.xml`,
+    `Rimfolk_Belief_Pools.xml`, `Rimfolk_GodHappenings_Revel.xml` (new: his lines, moods, the cup's hediffs and their
+    thoughts); Keyed `Rimfolk_GodHappenings_Revel.xml` (new) and the gods' files. Sign: `revel()` in
+    `Tools/make_god_signs.py`, `Textures/ColonyCouncil/Gods/Signs/Revel.png`, the sheet (a fifth row). Tests:
+    `Tools/Tests/RevelTests.cs` (new) and every test that counts the gods; `Tools/DefValidator` knows `{DRUG}`; balance
+    `Tools/Balance/Rates.cs`; save model `Tools/save_estimate.py` (the happenings' list one entry each longer).
+  - **Can't be checked without the game**: that the cup's one is followed as the stacks are hauled and drunk (the hooks'
+    order inside the game's eating; a mod's own drinking that skips `Thing.Ingested`); the horned reveller's look (horns
+    on a generated visitor, the toga and wreath, drawn larger), his walk to the fire under a visiting lord and his cup
+    drunk from someone's inventory; the long night holding people at the fire and their rest; a vision's walk; the
+    craving waking an addict from bed; the barrels' progress set; the presence's smoke and the joy factor in play; how
+    often each comes in a real colony.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk): 1. "Gods: the colony knows every god", then "Gods: Revel's
+    horned reveller now" with people at a fire: a tall man with goat's horns walks in with his card, goes to someone and
+    hands them a cup; they drink it and one of the cup's effects shows (a message, their line). 2. Put beer in the
+    stores, "Gods: Revel in a cup in the stores now", "Gods: Revel's next cup does..." (pick Crash), then let someone drink
+    beer until the message comes ("Gods: where is Revel's cup (log)" says which one); four hours later the crash. 3. "Gods:
+    Revel's long night now" in the evening: those near stay up till two, then the good memory and the slow morning.
+    4. With someone high, "Gods: Revel's vision now": they stare, walk out, and the book has their belief. 5. With an
+    addict in withdrawal, "Gods: Revel's craving eased now": a friend sits up, and at dawn the addiction's severity is
+    lower. 6. "Gods: an omen here..." for Revel (Bleat at night, SweetSmoke, Spilled with drink in the stores).
+  - **Mods that would help**: Tavern (ods.tavern, https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305,
+    tagged 1.6 and 1.7, in the list but not enabled) for tavern tables, counters and drink graphics where his nights run
+    long; a satyr xenotype, which the horned reveller takes at once where one is loaded (any xenotype named so):
+    Forgotten Realms - Biotech Edition (in the list, not enabled; https://steamcommunity.com/sharedfiles/filedetails/?id=3068979395;
+    tagged 1.4 to 1.6, no 1.7 tag), Fantasy Races and Factions (satyrs; updated for 1.6 in January 2026, 1.7 not
+    confirmed), Roo's Satyr Xenotype (no 1.6 release of its own, an unofficial port). None is needed: the horns are
+    Alpha Genes' (enabled) or the game's own, the drink every mod's that is enabled.
 - 0.259.0, **Gifts worth what they cost:
   precious things only when asked, a return in kind, the book keeps every gift and each god's temper** (16 November
   2026; the player's words: "so as of now i still don't really see or feel the impact of god offerings. sometimes they

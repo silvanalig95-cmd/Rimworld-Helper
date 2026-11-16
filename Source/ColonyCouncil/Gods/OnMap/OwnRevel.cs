@@ -957,6 +957,7 @@ namespace ColonyCouncil
             }
             var g = God;
             OwnHappenings.Stand(x, to.Position, 300);
+            // together: he walked up to them and stands beside them, the cup in their hands.
             string line = OwnHappenings.LineFrom(x, Pool, null, new[] { to.Named("OTHER") }, "satyrshare");
             if (!line.NullOrEmpty()) Speech.Say(x, line, to);
             OwnHappenings.Glow(map, to.Position, Amber, 5, 0.5f, 0.3f);
