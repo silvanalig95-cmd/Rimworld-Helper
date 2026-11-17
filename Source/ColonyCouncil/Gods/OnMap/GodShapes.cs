@@ -219,6 +219,8 @@ namespace ColonyCouncil
             var args = new List<NamedArgument> { who.Named("WHO"), home.Named("HOME") };
             if (more != null) args.AddRange(more);
             string text = key.Translate(args.ToArray()).Resolve().CapitalizeFirst();
+            // The one its words name, for an effect that goes to whoever saw it (Gods/Touch/GodImpact.cs).
+            GodTouch.Saying(map, key, witness);
             // Its words key tells the gods' touch which occurrence it was (Gods/Touch/GodTouchMath.cs: those with an effect of their own).
             Gods.Remember(new GodAct { god = god.id, home = Gods.HomeKey(map), tick = Find.TickManager.TicksGame, kind = kind, cell = cell, text = text, what = key });
             return text;

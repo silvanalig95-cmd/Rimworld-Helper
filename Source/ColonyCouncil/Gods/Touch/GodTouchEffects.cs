@@ -21,7 +21,7 @@ namespace ColonyCouncil
     /// </summary>
     public static class GodTouchEffects
     {
-        private static ThingDef Thing(string name) => DefDatabase<ThingDef>.GetNamedSilentFail(name);
+        internal static ThingDef Thing(string name) => DefDatabase<ThingDef>.GetNamedSilentFail(name);
 
         private static int Now => Verse.Find.TickManager.TicksGame;
 
@@ -188,10 +188,10 @@ namespace ColonyCouncil
             }
         }
 
-        private static string K(string what) => "CC_GodTouch_" + what;
+        internal static string K(string what) => "CC_GodTouch_" + what;
 
         /// <summary>An effect that showed and told itself where it happened.</summary>
-        private const string Shown = "\u0001shown";
+        internal const string Shown = "\u0001shown";
 
         /// <summary>The words of an effect, filled (its key and the usual {HOME}, then <paramref name="more"/>).</summary>
         internal static string Words(TouchContext c, string key, params NamedArgument[] more)
@@ -205,7 +205,7 @@ namespace ColonyCouncil
         /// A small or notable effect shown: the god's own look at the place (GodTouchFx), the camera and a sound for a notable
         /// one, a message of what happened, and the colony's book keeping it as those who saw it saw it.
         /// </summary>
-        private static void Show(TouchContext c, IntVec3 at, string key, params NamedArgument[] more)
+        internal static void Show(TouchContext c, IntVec3 at, string key, params NamedArgument[] more)
         {
             string text = key.StartsWith("CC_", StringComparison.Ordinal) ? Words(c, key, more) : key;
             if (!at.IsValid || !at.InBounds(c.map)) at = c.cell;
@@ -259,7 +259,7 @@ namespace ColonyCouncil
             return Words(c, K("Bless_" + c.god.Key), Names(took).Named("WHO"));
         }
 
-        private static List<Pawn> Give(IEnumerable<Pawn> pawns, HediffDef def, int most)
+        internal static List<Pawn> Give(IEnumerable<Pawn> pawns, HediffDef def, int most)
         {
             var took = new List<Pawn>();
             if (def == null) return took;
@@ -281,7 +281,7 @@ namespace ColonyCouncil
 
         private static bool Everyone(TouchContext c, HediffDef def) => Give(c.map.mapPawns.FreeColonistsSpawned.Where(Worship.Ours).ToList(), def, 99).Count > 0;
 
-        private static string Names(List<Pawn> pawns) => pawns.Select(p => p.LabelShort).ToCommaList(true);
+        internal static string Names(List<Pawn> pawns) => pawns.Select(p => p.LabelShort).ToCommaList(true);
 
         /// <summary>The skill each god's people take from it (by key), or null.</summary>
         internal static SkillDef SkillOf(God g)
@@ -328,7 +328,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Plants come up round the place on open natural ground, grown as far as <paramref name="growth"/>.</summary>
-        private static bool Plants(TouchContext c, IEnumerable<ThingDef> kinds, float radius, int most, float growth)
+        internal static bool Plants(TouchContext c, IEnumerable<ThingDef> kinds, float radius, int most, float growth)
         {
             var list = kinds.Where(d => d?.plant != null).ToList();
             if (list.Count == 0) return false;
@@ -349,7 +349,7 @@ namespace ColonyCouncil
             return n > 0;
         }
 
-        private static IEnumerable<CompRefuelable> Fires(Map map, IntVec3 at, bool filling)
+        internal static IEnumerable<CompRefuelable> Fires(Map map, IntVec3 at, bool filling)
         {
             return map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned && (!at.IsValid || b.Position.InHorDistOf(at, GodTouchMath.NearRadius * 2f))
                                                                        && (b.GetComp<CompHeatPusher>() != null || b.GetComp<CompFireOverlay>() != null))
@@ -396,7 +396,7 @@ namespace ColonyCouncil
             return n == 0 ? null : Words(c, K("Mend"));
         }
 
-        private static IEnumerable<CompPowerBattery> Batteries(Map map) =>
+        internal static IEnumerable<CompPowerBattery> Batteries(Map map) =>
             map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned).Select(b => b.GetComp<CompPowerBattery>()).Where(b => b != null);
 
         private static string Charge(TouchContext c)
@@ -411,7 +411,7 @@ namespace ColonyCouncil
             return n == 0 ? null : Words(c, K("Charge"));
         }
 
-        private static string Weather(TouchContext c, string def, string key)
+        internal static string Weather(TouchContext c, string def, string key)
         {
             var w = DefDatabase<WeatherDef>.GetNamedSilentFail(def);
             if (w == null || c.map.weatherManager.curWeather == w) return null;
@@ -484,7 +484,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What each god leaves where it happened, by the colony's age: Smoulder's ore (steel, silver, a little gold), Morel's
-        /// mushrooms, Pip's parts (none for a colony with no machines), Ducat's silver, a few of Revel's drink or smoke of the colony's own kind.
+        /// mushrooms, Pip's parts (none for a colony with no machines), Ducat's silver, a few of Revel's drink or smoke of the colony's own kind,
+        /// Hush's few pieces of jade or a little silver (where a word was written in the frost; GodImpactMath).
         /// </summary>
         internal static (ThingDef def, int count)? FindOf(God g, Map map)
         {
@@ -514,6 +515,13 @@ namespace ColonyCouncil
                     var d = Thing("Silver");
                     return d == null ? ((ThingDef, int)?)null : (d, Rand.RangeInclusive(30, 80));
                 }
+                case "Hush":
+                {
+                    // Something small where the word in the frost was written: a few pieces of jade, else a little silver.
+                    var d = Rand.Chance(0.5f) ? Thing("Jade") : null;
+                    d ??= Thing("Silver");
+                    return d == null ? ((ThingDef, int)?)null : (d, d.defName == "Jade" ? Rand.RangeInclusive(2, 4) : Rand.RangeInclusive(15, 30));
+                }
                 case "Revel":
                 {
                     // A few of the colony's own kind of drink or smoke, by its means and its age (Gods/OnMap/RevelGoods.cs).
@@ -526,7 +534,7 @@ namespace ColonyCouncil
             }
         }
 
-        private static string Leave(TouchContext c, (ThingDef def, int count)? what)
+        internal static string Leave(TouchContext c, (ThingDef def, int count)? what)
         {
             if (what?.def == null || what.Value.count <= 0) return null;
             var t = ThingMaker.MakeThing(what.Value.def);
@@ -536,7 +544,7 @@ namespace ColonyCouncil
             return Words(c, K(c.tier == TouchTier.Great ? "Hoard_Text" : "Find"), placed.LabelCap.Named("WHAT"));
         }
 
-        private static IEnumerable<Plant> Crops(Map map, IntVec3 at, float radius)
+        internal static IEnumerable<Plant> Crops(Map map, IntVec3 at, float radius)
         {
             foreach (var z in map.zoneManager.AllZones.OfType<Zone_Growing>())
             foreach (var cell in z.cells)
@@ -585,7 +593,7 @@ namespace ColonyCouncil
             return Shown;
         }
 
-        private static IEnumerable<Pawn> WildGame(Map map) =>
+        internal static IEnumerable<Pawn> WildGame(Map map) =>
             map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == null && p.RaceProps?.Animal == true && !p.Dead && !p.Downed && !p.InMentalState && !p.RaceProps.predator
                                                     && !GodAvatar.Is(p) && p.mindState != null && p.mindState.exitMapAfterTick < 0);
 
@@ -601,7 +609,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Natural ground (not a floor, not water) turned rich soil, <paramref name="most"/> cells at most. True when any was.</summary>
-        private static bool Soil(TouchContext c, IEnumerable<IntVec3> cells, int most)
+        internal static bool Soil(TouchContext c, IEnumerable<IntVec3> cells, int most)
         {
             var rich = DefDatabase<TerrainDef>.GetNamedSilentFail("SoilRich");
             if (rich == null) return false;
@@ -630,7 +638,7 @@ namespace ColonyCouncil
             return Great(c, first, "Fertile");
         }
 
-        private static bool CanIncident(Map map, string name)
+        internal static bool CanIncident(Map map, string name)
         {
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail(name);
             if (def?.Worker == null) return false;
@@ -640,7 +648,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The game's own incident, with the game's own letter.</summary>
-        private static bool Incident(TouchContext c, string name)
+        internal static bool Incident(TouchContext c, string name)
         {
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail(name);
             if (def?.Worker == null) return false;
@@ -649,7 +657,7 @@ namespace ColonyCouncil
             return def.Worker.CanFireNow(parms) && def.Worker.TryExecute(parms);
         }
 
-        private static bool Comms(Map map) => map.listerBuildings.allBuildingsColonist.Any(b => b is Building_CommsConsole && b.GetComp<CompPowerTrader>()?.PowerOn != false);
+        internal static bool Comms(Map map) => map.listerBuildings.allBuildingsColonist.Any(b => b is Building_CommsConsole && b.GetComp<CompPowerTrader>()?.PowerOn != false);
 
         private static string Trader(TouchContext c)
         {

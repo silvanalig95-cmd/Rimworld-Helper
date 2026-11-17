@@ -162,6 +162,7 @@ namespace ColonyCouncil
                     var seer = OwnHappenings.Seer(map, c.Position, 18f);
                     // apart: said of the dead, by someone who sees the cat stay by them.
                     if (seer != null) OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "died");
+                    GodTouch.About(map, "CC_GodTamiu_Saw_Died", p);
                     if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Omen, seer, "CC_GodTamiu_Saw_Died", p.LabelShort.Named("DYING"));
                 }
                 // It stays by the body a while, then goes about its own way.
@@ -200,6 +201,7 @@ namespace ColonyCouncil
                     s.seen = true;
                     // apart: said of the one near death, by someone who sees the cat come to them.
                     OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.LabelShort.Named("OTHER") }, "threshold");
+                    GodTouch.About(map, "CC_GodTamiu_Saw_Threshold", p, c);
                     if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Omen, seer, "CC_GodTamiu_Saw_Threshold", p.LabelShort.Named("DYING"));
                 }
             }
@@ -218,12 +220,15 @@ namespace ColonyCouncil
             string text = "CC_GodTamiu_WentAway_Text".Translate(p.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodTamiu_WentAway_Title", "CC_GodTamiu_WentAway_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             var seer = OwnHappenings.Seer(map, c.Position, 18f);
+            GodTouch.About(map, "CC_GodTamiu_Saw_WentAway", p);
             if (g != null) OwnHappenings.Saw(g, map, c.Position, GodActKind.Blessing, seer, "CC_GodTamiu_Saw_WentAway", p.LabelShort.Named("DYING"));
             Leave(s);
         }
 
         private static void Leave(TamiuState s)
         {
+            // The pain the cat eased while it lay there comes back as it goes (Gods/Touch/GodImpact.cs).
+            GodImpact.CatGone(s.dying);
             if (s.stray && s.cat != null) OwnHappenings.SendOff(s.cat, GenDate.TicksPerHour);
             s.EndThreshold();
         }

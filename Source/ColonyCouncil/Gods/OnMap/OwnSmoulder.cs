@@ -356,6 +356,7 @@ namespace ColonyCouncil
             OwnHappenings.Came(b, OwnHappening.SmoulderName, now);
             OwnHappenings.Say(by, "name", g, null, ProperName.Named("NAME"));
             OwnHappenings.Journal(by, "CC_GodO_Journal_Name", by.Named("PAWN"), ProperName.Named("NAME"));
+            GodTouch.About(map, "CC_GodO_Saw_Name", by, thing: art?.parent);
             OwnHappenings.Saw(g, map, by.PositionHeld, GodActKind.Act, by, "CC_GodO_Saw_Name", ProperName.Named("NAME"));
             return true;
         }
@@ -451,6 +452,7 @@ namespace ColonyCouncil
             Tell.Message(NewsKind.People, Importance.Notable, map, (miners.Count > 1 ? "CC_GodO_Stretch_Text" : "CC_GodO_Stretch_TextOne").Translate(first.Named("PAWN"), miners.Count.Named("COUNT"))
                 .Resolve(), new LookTargets(miners), MessageTypeDefOf.NeutralEvent);
             OwnHappenings.Say(first, "stretch", g);
+            GodTouch.About(map, "CC_GodO_Saw_Stretch", pawns: miners);
             OwnHappenings.Saw(g, map, first.Position, GodActKind.Omen, first, "CC_GodO_Saw_Stretch", miners.Count.Named("COUNT"));
             return true;
         }

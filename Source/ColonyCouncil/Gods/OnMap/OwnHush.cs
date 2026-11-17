@@ -558,8 +558,28 @@ namespace ColonyCouncil
             var at = RingCell(s, 0, map);
             OwnHappenings.CardOf(g, map, null, "CC_GodHush_Walk_Title", "CC_GodHush_Walk_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null);
             var witness = names.Count > 0 ? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.LabelShort == names[0]) : null;
-            if (g != null) OwnHappenings.Saw(g, map, at, names.Count > 0 ? GodActKind.Act : GodActKind.Mark, witness, names.Count > 0 ? "CC_GodHush_Saw_WalkSeen" : "CC_GodHush_Saw_Walk", how.Named("HOW"));
+            string key = names.Count > 0 ? "CC_GodHush_Saw_WalkSeen" : "CC_GodHush_Saw_Walk";
+            // The line of frost it left, for the crops on it (Gods/Touch/GodImpact.cs).
+            GodTouch.About(map, key, cells: FrostLine(s, map));
+            if (g != null) OwnHappenings.Saw(g, map, at, names.Count > 0 ? GodActKind.Act : GodActKind.Mark, witness, key, how.Named("HOW"));
             s.walkMap = null;
+        }
+
+        /// <summary>The cells of the line of frost the walk left: from each step of the ring it walked to the next.</summary>
+        private static List<IntVec3> FrostLine(HushState s, Map map)
+        {
+            var cells = new List<IntVec3>();
+            var last = IntVec3.Invalid;
+            for (int i = 0; i <= Math.Min(s.walkStep, s.walkSteps); i++)
+            {
+                var c = RingCell(s, i, map);
+                if (last.IsValid)
+                    foreach (var x in GenSight.PointsOnLineOfSight(last, c))
+                        if (!cells.Contains(x)) cells.Add(x);
+                if (!cells.Contains(c)) cells.Add(c);
+                last = c;
+            }
+            return cells;
         }
 
         /// <summary>The walk was last night (Helios's sun comes back the morning after).</summary>

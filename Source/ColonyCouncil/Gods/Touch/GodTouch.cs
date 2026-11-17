@@ -29,6 +29,16 @@ namespace ColonyCouncil
 
         public const int MaxSeen = 60;
 
+        /// <summary>
+        /// What an occurrence's own effect keeps doing for a while (Gods/Touch/GodImpact.cs: a body rotting away, a room held
+        /// cold, the warm ground, the long noon, rain on its way ...), <see cref="GodImpactMath.RunningKept"/> at most, each gone
+        /// when its time is up.
+        /// </summary>
+        public List<GodTouchRunning> running = new List<GodTouchRunning>();
+
+        /// <summary>Works named for a god and admired since (their beauty a little higher), <see cref="GodImpactMath.AdmiredKept"/> at most.</summary>
+        public List<Thing> admired = new List<Thing>();
+
         public GodTouchBook(Game game)
         {
         }
@@ -123,6 +133,7 @@ namespace ColonyCouncil
             if (now < nextDue) return;
             nextDue = int.MaxValue;
             GodTouch.Step(this, now);
+            GodImpact.Step(this, now);
         }
 
         public override void FinalizeInit()
@@ -130,6 +141,8 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            GodImpact.Refresh(this);
+            if (running.Count > 0) Due(Find.TickManager.TicksGame + 1);
         }
 
         public override void ExposeData()
@@ -138,11 +151,17 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref last, "last", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref recent, "recent", LookMode.Value);
             Scribe_Collections.Look(ref seen, "seen", LookMode.Value);
+            Scribe_Collections.Look(ref running, "running", LookMode.Deep);
+            Scribe_Collections.Look(ref admired, "admired", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 last ??= new Dictionary<string, int>();
                 recent ??= new List<string>();
                 seen ??= new List<string>();
+                running ??= new List<GodTouchRunning>();
+                running.RemoveAll(r => r == null || r.Gone);
+                admired ??= new List<Thing>();
+                admired.RemoveAll(t => t == null || t.Destroyed);
             }
         }
     }
@@ -180,6 +199,57 @@ namespace ColonyCouncil
             public int at, due;
             /// <summary>The offering whose taking it is, with what it was worth (null for anything else).</summary>
             public TakenGift gift;
+            /// <summary>What each of its words keys was about, for the occurrence's own effect (<see cref="About"/>).</summary>
+            public readonly Dictionary<string, TouchAbout> about = new Dictionary<string, TouchAbout>();
+            /// <summary>Where each of its words keys happened (two signs of one god within the hours are one occurrence, each its own place).</summary>
+            public readonly Dictionary<string, IntVec3> cellOf = new Dictionary<string, IntVec3>();
+        }
+
+        /// <summary>What occurrences were about, waiting for their words to be written (by home and key, two hours at most).</summary>
+        private static readonly List<TouchAbout> abouts = new List<TouchAbout>();
+
+        /// <summary>
+        /// What an occurrence is about, said just before its words are written (Gods.Remember, Gods.Moment), for the effect of
+        /// its own that follows it (GodImpactMath.Table): the one it is about (someone dying, a binger, a dead one), another
+        /// (the second dreamer), a thing (a work of art, a cup), several people (the miners who dreamt, those who watched the
+        /// sunrise), cells (a line of frost). Anything left unsaid is found from the place.
+        /// </summary>
+        public static void About(Map map, string key, Pawn pawn = null, Pawn other = null, Thing thing = null, IEnumerable<Pawn> pawns = null, IEnumerable<IntVec3> cells = null)
+        {
+            if (map == null || key.NullOrEmpty() || !GodImpactMath.Has(key)) return;
+            var a = AboutOf(map, key, true);
+            if (pawn != null) a.pawn = pawn;
+            if (other != null) a.other = other;
+            if (thing != null) a.thing = thing;
+            if (pawns != null) a.pawns = pawns.Where(x => x != null).ToList();
+            if (cells != null) a.cells = cells.ToList();
+        }
+
+        /// <summary>The one named in an occurrence's words ({WHO}), as GodsOnMapWords.Saw writes them.</summary>
+        internal static void Saying(Map map, string key, Pawn who)
+        {
+            if (map == null || who == null || !GodImpactMath.Has(key)) return;
+            AboutOf(map, key, true).who = who;
+        }
+
+        private static TouchAbout AboutOf(Map map, string key, bool make)
+        {
+            if (Current.Game != pendingGame)
+            {
+                pending.Clear();
+                giftsComing.Clear();
+                abouts.Clear();
+                pendingGame = Current.Game;
+            }
+            int now = Now;
+            abouts.RemoveAll(x => x.map == null || x.map.Disposed || now - x.at > GenDate.TicksPerHour * 2);
+            var a = abouts.FirstOrDefault(x => x.map == map && x.key == key);
+            if (a == null && make)
+            {
+                a = new TouchAbout { map = map, key = key, at = now };
+                abouts.Add(a);
+            }
+            return a;
         }
 
         /// <summary>A gift taken before everyone's eyes, waiting for its moment's note to carry it (by god and home, two hours).</summary>
@@ -280,6 +350,7 @@ namespace ColonyCouncil
             {
                 pending.Clear();
                 giftsComing.Clear();
+                abouts.Clear();
                 pendingGame = Current.Game;
             }
             int now = Now;
@@ -304,6 +375,12 @@ namespace ColonyCouncil
             if (plain) p.taken = g;
             else if (p.taken == null) p.taken = taken;
             if (!key.NullOrEmpty() && !p.keys.Contains(key)) p.keys.Add(key);
+            if (!key.NullOrEmpty() && cell.IsValid && cell.InBounds(map) && !p.cellOf.ContainsKey(key)) p.cellOf[key] = cell;
+            if (!key.NullOrEmpty() && !p.about.ContainsKey(key) && AboutOf(map, key, false) is TouchAbout about)
+            {
+                p.about[key] = about;
+                abouts.Remove(about);
+            }
             if (pawns != null)
                 foreach (var x in pawns)
                     if (x != null && !p.pawns.Contains(x))
@@ -350,18 +427,36 @@ namespace ColonyCouncil
 
         private static void Resolve(GodTouchBook b, Pending p, int now)
         {
-            if (p.tone == TouchTone.None) return;
             var ours = p.pawns.Where(x => x != null && !x.Dead && x.Spawned && x.Map == p.map && Worship.Ours(x)).ToList();
-            if (ours.Count == 0) return;
             int home = Gods.HomeKey(p.map);
-            b.Saw(home, p.god.Key, now);
-            bool own = p.keys.Any(GodTouchMath.HasOwnEffect);
-            // A gift answered in kind (now and then, more for a rich one): seen as a kindness, and that is what follows it.
-            bool returned = !own && p.gift != null && GodTouchReturn.Try(b, p, ours, home, now);
-            if (returned) p.tone = TouchTone.Kind;
-            Felt(ours, p);
-            if (own || returned) return;
-            Follow(b, p, ours, home, now);
+            if (p.tone != TouchTone.None && ours.Count > 0)
+            {
+                b.Saw(home, p.god.Key, now);
+                bool own = p.keys.Any(GodTouchMath.HasOwnEffect);
+                // A gift answered in kind (now and then, more for a rich one): seen as a kindness, and that is what follows it.
+                bool returned = !own && p.gift != null && GodTouchReturn.Try(b, p, ours, home, now);
+                if (returned) p.tone = TouchTone.Kind;
+                Felt(ours, p);
+                if (!own && !returned) Follow(b, p, ours, home, now);
+            }
+            // The occurrence's own effect (GodImpactMath.Table): on the place whether or not anyone of the colony saw it, on
+            // those it names, or on those who saw it.
+            foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, impact);
+        }
+
+        /// <summary>Does something of the touch's own without noting it again as an occurrence.</summary>
+        internal static bool Quietly(Func<bool> doing)
+        {
+            bool was = resolving;
+            resolving = true;
+            try
+            {
+                return doing();
+            }
+            finally
+            {
+                resolving = was;
+            }
         }
 
         // ================= Felt =================
@@ -484,7 +579,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Where it happened, or where whoever saw it stands for what the whole sky showed.</summary>
-        private static IntVec3 Place(Pending p, List<Pawn> ours)
+        internal static IntVec3 Place(Pending p, List<Pawn> ours)
         {
             if (p.cell.IsValid && p.cell.InBounds(p.map)) return p.cell;
             var near = ours.FirstOrDefault(x => x.Spawned && x.Map == p.map);
@@ -569,6 +664,28 @@ namespace ColonyCouncil
         /// <summary>The dev action's tier and effect while it fires (every chance and wait gives way).</summary>
         internal static TouchTier? Forced;
         internal static TouchEffect? ForcedEffect;
+
+        /// <summary>
+        /// Dev mode: an occurrence of the table's at <paramref name="cell"/> (GodImpactMath.Table), seen by everyone near, with
+        /// its own effect now (what it is about found from the place and the selection: GodImpact.DevAbout). False when it had
+        /// nothing to do there.
+        /// </summary>
+        internal static bool DevImpact(Map map, IntVec3 cell, string key)
+        {
+            var b = Book;
+            if (b == null || map == null || !GodImpactMath.Has(key)) return false;
+            var g = Gods.ByKey(GodImpact.DevGod(key)) ?? Gods.All.FirstOrDefault(x => x != null && x.kind != GodKind.Dead);
+            if (g == null) return false;
+            var pawns = Gods.Witnesses(map, IntVec3.Invalid).Where(x => !cell.IsValid || x.Position.InHorDistOf(cell, 40f)).ToList();
+            if (pawns.Count == 0) pawns = map.mapPawns.FreeColonistsSpawned.ToList();
+            var p = new Pending { god = g, map = map, cell = cell, tone = TouchTone.Sign, taken = g, at = Now, due = Now };
+            p.keys.Add(key);
+            p.cellOf[key] = cell;
+            p.pawns.AddRange(pawns);
+            p.about[key] = GodImpact.DevAbout(map, cell, key, pawns);
+            var ours = pawns.Where(x => Worship.Ours(x)).ToList();
+            return GodImpact.Follow(b, p, ours, key);
+        }
 
         /// <summary>Dev mode: an occurrence of <paramref name="g"/> at <paramref name="cell"/> seen by everyone near, felt and followed now.</summary>
         internal static void DevNow(God g, Map map, IntVec3 cell, TouchTone tone, TouchTier tier, TouchEffect? effect, bool plain)

@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.265.0</version>
+        <date>17 November 2026</date>
+        <title>What the gods leave behind</title>
+        <points>
+          <li>Most of the gods' signs and happenings now leave something real every time: a body left lying rots away inside its ring of mushrooms and the ground there turns rich, frost on a grave lets the dead one's closest sleep well, and thunder under a clear sky brings rain later that day.</li>
+          <li>What a sign leaves on the land happens whether or not anyone saw it, so there is something to find: silver under the table where a golden beetle walked, a few chunks of stone where the rock rumbled, a light that stays lit all night with no power.</li>
+          <li>Some signs help the people they concern: a cat lying beside someone dying eases their pain, the mourners' grief passes sooner, two who had the same dream think better of each other, and the miners who dreamt of the deep dig faster.</li>
+          <li>A few bring small losses: a line of frost kills a few tender crops, white threads on a floor make the food in that room keep less long, and the fires in a room where a light kept going out have to be lit again.</li>
+          <li>When the wind dies the wind turbines stop and fire doesn't spread, and when the sun stands still the solar panels run full until sundown.</li>
+          <li>How often the gods do things is unchanged; only what follows has changed.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.264.1</version>
         <date>17 November 2026</date>
         <title>A god's sign with its words</title>

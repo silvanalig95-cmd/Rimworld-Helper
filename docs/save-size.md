@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 723; modelled: 723; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,056 KB** after a year, **3,767 KB** after two, **4,219 KB** after five.
+Saved collections found: 725; modelled: 725; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,058 KB** after a year, **3,769 KB** after two, **4,221 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -236,6 +236,7 @@ Rimfolk's part of the save, roughly: **3,056 KB** after a year, **3,767 KB** aft
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
 | `Gods/GodLore.cs:retold` | the stories retold whole in a neighbour's letter, one a story | fixed | 60 | 60 | 60 | 1.8 |
 | `Gods/Saints/SaintsBook.cs:places` | statues raised to a saint, gone with the statue, SaintsMath.MaxPlaces | cap | 1 | 2 | 6 | 1.8 |
+| `Gods/Touch/GodTouch.cs:running` | what occurrences' own effects keep doing (a few days at most each), GodImpactMath.RunningKept at most | fixed | 6 | 6 | 6 | 1.8 |
 | `Gods/Touch/GodTouch.cs:seen` | the occurrences seen lately ('home|god|tick'), a season at most and GodTouchBook.MaxSeen | fixed | 60 | 60 | 60 | 1.8 |
 | `Happenings/Happenings.cs:visits` | visits a month | window | 6 | 6 | 6 | 1.8 |
 | `Harm/Harm.cs:waiting` | hurts still to come (harm, part 4): a sickness caught showing in a day or two, a coughing guest while they stay, a sore loser's walk, a rematch owed within the year, a games day's contests | while | 6 | 6 | 6 | 1.8 |
@@ -459,6 +460,7 @@ Rimfolk's part of the save, roughly: **3,056 KB** after a year, **3,767 KB** aft
 | `Camps/CampLook.cs:props` | goods the camp put out (a few stacks), pruned of the gone, while it stays | while | 6 | 6 | 6 | 0.2 |
 | `Camps/CampRaid.cs:helpers` | per band: the colonists who fought beside the camp, while the band is on the map | while | 6 | 6 | 6 | 0.2 |
 | `Epithets/Epithets.cs:founders` | those here in the colony's first two days (by ThingID) | fixed | 6 | 6 | 6 | 0.2 |
+| `Gods/Touch/GodTouch.cs:admired` | the works named for a god and admired since, GodImpactMath.AdmiredKept at most | cap | 1 | 2 | 6 | 0.2 |
 | `Peoples/Events3/FieldSickhouse.cs:beds` | the beds made up for them, while the camp stands | fixed | 6 | 6 | 6 | 0.2 |
 | `Peoples/Events3/FieldSickhouse.cs:patients` | the field sickhouse's patients, two to six, while its camp stands | fixed | 6 | 6 | 6 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |

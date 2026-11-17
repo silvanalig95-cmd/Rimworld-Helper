@@ -610,13 +610,15 @@ namespace ColonyCouncil
                 }
                 case OmenKind.Spilled:
                 {
-                    // The drink in the stores found knocked over: one of it gone, a wet patch on the floor, and nobody was near it.
+                    // The drink in the stores found knocked over: one of it gone (the last one too), a wet patch on the floor, and
+                    // nobody was near it. The loss is the sign's own effect (GodImpactMath.Table, "Spill"), there whether or not anyone saw.
                     var drink = RevelGoods.HeldDrink(map);
                     if (drink == null) return false;
                     at = drink.Position;
                     try
                     {
                         if (drink.stackCount > 1) drink.SplitOff(1).Destroy(DestroyMode.Vanish);
+                        else drink.Destroy(DestroyMode.Vanish);
                     }
                     catch (Exception e)
                     {
@@ -630,7 +632,7 @@ namespace ColonyCouncil
                 }
                 case OmenKind.Coin:
                 {
-                    // A coin where none was dropped, at someone's feet.
+                    // A coin where none was dropped, at someone's feet: a real one (the sign's own effect, GodImpactMath.Table, "Coin").
                     speaker = map.mapPawns.FreeColonistsSpawned.Where(Awake).RandomElementWithFallback();
                     if (speaker == null) return false;
                     at = speaker.Position;

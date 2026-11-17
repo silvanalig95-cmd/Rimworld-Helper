@@ -367,6 +367,7 @@ namespace ColonyCouncil
                 if (n > 0)
                 {
                     OwnHappenings.Line(map, "CC_GodHelios_Dawn_Text".Translate(n.Named("COUNT"), Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(new TargetInfo(s.dawnAt, map)));
+                    GodTouch.About(map, "CC_GodHelios_Saw_Dawn", pawns: map.mapPawns.FreeColonistsSpawned.Where(p => HeliosState.Has(s.dawnSaw, p)).ToList());
                     if (g != null) OwnHappenings.Saw(g, map, s.dawnAt, GodActKind.Blessing, null, "CC_GodHelios_Saw_Dawn", n.Named("COUNT"));
                 }
                 s.dawnMap = null;

@@ -15593,6 +15593,104 @@ notification appear. I like this and keep it this way, as it creates an exciteme
   in their words, and in no one's if nobody has by then; so the moods and the god's small effects that follow a sign go
   to those who saw it, when they saw it. A ring on open ground is still walked to, to dig at its middle.
 
+### Every god's doing leaves something real (the player's request and go, 17 November 2026; released 0.265.0)
+
+The player, after the ring of mushrooms round an unburied body: "does anything about the body change? like faster decay or
+something? is there a gameplay impact from this god event?"; on the proposals: "these proposals sound great! not every god
+interaction with the world necessarily needs to have a strong impact, but it should also not be completely trivial"; and the
+go: "yes, go ahead with all!". The proposals are `docs/gods-impact-proposals.md` (55 of them, all built).
+
+- **One effect of its own, always** (`Gods/Touch/GodImpactMath.cs`, `Table`): 68 of the 98 kinds of occurrence that had no
+  effect of their own now bring one, fitted to what was seen, every time (how often gods' things happen doesn't change). They
+  count as having their own effect (`GodTouchMath.HasOwnEffect`), so the touch's random effect doesn't come on top; the moods
+  stay as they were. The 21 the proposals leave as they are (`LeftAsTheyAre`: the freezer's threads, the roots through the
+  floor, the heat and the warm voice under the mountain, the horn's weather, the white beast's road turned or opened, the
+  half-written message and the console at night, the bowl, the dryad's word, the true dream, the roots rising, the wrapped
+  dead, the traveller who knew, the body found by the crying cat, the breath in a ring) keep the moods and the random effect;
+  the other nine (`NotCovered`: the book's own wordings of a sighting, the frost melted and the beast's road, two marks with
+  nothing to feel; the mourner seen, the beast surfacing as a god rises, the god's beast staring) are untouched.
+- **Where it lands** (`GodTouch.Resolve`, `GodImpact.Follow`): an effect on the place happens whether or not anyone of the
+  colony saw it, there to be found: `Gods.Remember` and `Gods.Moment` now note an occurrence nobody saw when it has an effect
+  of its own, and the touch's early return no longer stops it (the moods still go only to those who saw it). An effect on
+  people goes to those it names (`GodTouch.About`, said by each happening just before its words: the dead one's closest, the
+  dying, the binger, the dreamers, the miners, those who watched the sunrise, the line of frost's cells, the cup, the work of
+  art) or to the one named in its words (`GodTouch.Saying`, from `GodsOnMapWords.Saw`). Only an inspiration, the sweet
+  smoke's good mood and a bad night need someone to have seen it.
+- **Morel.** The ring round an unburied body: the body rots to bones over a day and a half (the game's own rot moved on,
+  `RotAt`), and the ground inside the ring turns rich soil (the touch's own, radius 1.5). The threads round rot in the
+  stores: the rotten stack is gone and the floor under it clean (never a person's body). The ring where the mourner stood:
+  every memory of grief for a death at the home ends sooner (three tenths of what is left, `GriefAge`), with a small
+  "grief easing" memory (+2, a day) saying why. A ring of mushrooms overnight: the sign already brings up real glowstools;
+  the soil inside the ring turns rich. Fine white threads across a floor: the food stored in that room keeps a day and a
+  half less over three days (half again of its keeping each day, never to rotten from it; a small harm).
+- **Hush.** Frost on a grave at dusk: the three of the colony closest to the dead (kin first, then those who thought most of
+  them, opinion 30 or more) sleep deeply until morning ("sleeping well", rest x1.5). The ring where the grave's frost
+  melted: flowers round the grave (the touch's bloom). The walk in the night: up to four tender crops within a cell and a
+  half of its line of frost take the game's own cold and die (`MakeLeafless(Cold)`; a small harm). The word in the frost:
+  a few pieces of jade or a little silver lie there (the touch's find, Hush's own now). Frost writing by a wall: the room
+  behind it is held at 5°C for a day.
+- **Helios.** The sunrise after the longest night: those who stood there are fully rested. The noon light after the eclipse
+  and the sun standing still: every crop in the open grows a day ahead (a day of its growing), and the solar panels give
+  their most until sundown (a hook on their output, as much as their roof lets them). The air shimmering at noon: a "warm
+  afternoon" condition, +5°C on the open ground until evening (`GameCondition_GodWarmth`).
+- **Selene.** The full moon in still water: the one who stood by it is inspired (the god's own kind, else the game's). The
+  door kept on a night with no moon: while the keeper stands at the door, a threat that would come at the home waits on the
+  game's own queue until a little after their night ends (`HoldTillDawn`, `OwnSelene.KeptNow`); at dawn a line says nothing
+  came, only when something was held. The moon huge and close: everyone at the home sleeps deeper until morning (rest x1.4).
+  A star moving the wrong way: the one who watched it is inspired, to research first (Vanilla Social Interactions
+  Expanded's, by name).
+- **Tamiu.** A cat beside someone near death: their pain is less (x0.6) while it stays, gone when the cat goes. The cat
+  stayed to the end: those who mourn that one find their grief ends sooner (as the mourner's ring does). The cat walked
+  away: the one who lived heals half again as fast for three days. Every cat facing the graves, a cat on a grave: the rats
+  leave (the touch's own). Two gold eyes by the graves: a stray cat comes to stay (the touch's own).
+- **Revel.** The binge laughing with an empty seat: the binge ends within two hours, and the binger's recreation is full. The
+  horned man with a cup: a drink of his own cup's kind (the colony's kind, as `RevelGoods` picks it) lies where he stood. The
+  drink knocked over: one is really lost, the last one too (the sign itself; a small harm). The sweet smoke: those who
+  smelled it are cheered for the day (+3).
+- **Ducat.** The gold coin at someone's feet: the sign already leaves a real one. The glint of gold: a trader comes (the
+  touch's own). The golden beetle on a table: 10 to 25 silver under the table.
+- **Pip.** The lights flickering in a pattern: the batteries on the same line take a quarter of what they hold. The light
+  glowing with no power: it stays lit until dawn. The voice in the static: a trade ship within reach (an orbital trader where
+  the comms work, else a caravan). The machine that ran on its hour: that hour draws no power, runs with or without it, and
+  its fuel is given back at the end (hooks on its power while it lasts). The light going out again and again: the fires and
+  torches in that room go out and have to be fed and lit again (a small harm).
+- **Smoulder.** The rock rumbling in the deep workings: two or three chunks of the place's own rock come down near there,
+  on nobody. The miners' dream: those miners dig a quarter faster for a day ("dreamt of the deep"). Steam from the ground:
+  the ground round it stays warm for three days (no snow lies within five cells; the plants near it grown on a little).
+- **Cirrus.** The wind dying: the calm's wind falls to almost nothing (the turbines stop), and while it lasts fire doesn't
+  spread (a hook on the game's fire). Dry thunder, the smell of wet earth: rain comes two to eight hours later (snow where it
+  is freezing), with its line. The winged shadow, the vast one: up to six of the wild game leave the land, and a day later as
+  many of their kinds come back.
+- **Hollin, Bellwether and the beasts.** The grass bowed flat, the giant hoofprint: game comes onto the land (the touch's
+  own). Leaves and seeds drifting to one place: flowers come up there. The anima tree humming: up to five anima grass
+  around it, and meditating at it +6% focus for a day (in the stat's own breakdown). A goat bleating in an empty room, the
+  beast lowering its head to the young, the dream of the last white beast: one of the colony's female herd animals is with
+  young (the game's own pregnancy, by a male of its kind where there is one). The animals all looking one way, the dogs
+  silent, the thrumbos or dryads still, the birds all gone: everyone at the home handles animals better for a day ("calm
+  animals", taming and training +15%). The god's beast fed: the colony's animals are frost-hardy for three days (the
+  touch's own "frost-hardy").
+- **The eerie signs.** A knock with nobody there, footprints to the door, a tall white figure: the one who saw it sleeps
+  badly (the touch's own bad night; a small harm). A sweet voice: the one who heard it is inspired. A dark the light didn't
+  reach: that spot stays dark until dawn and its light stays out. A deep croaking: fish by the water (the touch's own).
+  Pale sand on a grave: the one closest to that dead person dreams of them kindly the next time they sleep (the dream book,
+  their journal and the game's dream of someone lost). Two waking from the same dream: they think better of each other
+  (+8 opinion, ten days). Everything going silent: everyone at the home works a fifth faster for the next hour. A work named
+  for the god: its beauty x1.2 from then on (in the stat's breakdown; the colony keeps 30 such works at most).
+- **Shown** (`GodImpact.Show`, through `GodTouchEffects.Show`): a line of what happened where it happened, with the god's own
+  look; the camera moves only for the touch's notable effects it already moved for (the inspirations, a trader, a cat, game,
+  fish). What lasts is on the map, or a condition or a memory with a plain label and description saying what it does and
+  why. No line names a god; no favour is shown.
+- **Running on** (`GodTouchBook.running`, `GodTouchRunning`, saved; at most 24, each ends with its time): the body rotting,
+  the food keeping less, the cold room, the long noon, the still air, the humming tree, the free hour, a light held lit or
+  dark, the warm ground, the rain on its way, the game coming back, a kind dream waiting for its night. The works admired are
+  `GodTouchBook.admired` (references, 30 at most).
+- **Dev mode**: Debug actions, Rimfolk, "Gods: an occurrence's own effect here now...": pick a key; it plays at the mouse
+  with everyone near as having seen it (select the one it is about, or the body or the work, first). "Gods: the gods'
+  touch (log)" lists what is running.
+- **Tests**: `GodTouchTests` (every key in the Keyed files, one effect each, the 21 left with none, no key both an old
+  own-effect key and in the table, all 98 accounted for, the harms only the proposals' own, the pure rules and sizes, the
+  words and defs plain and naming no god, saved and capped).
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,
