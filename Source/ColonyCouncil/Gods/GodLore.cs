@@ -385,6 +385,8 @@ namespace ColonyCouncil
             var b = Book;
             var list = pawns?.Where(p => p != null).Distinct().ToList() ?? new List<Pawn>();
             if (b == null || list.Count == 0 || words.NullOrEmpty()) return null;
+            // The book's lines put their own full stop after the words ("... saw it: {WHAT}."): one of the words' own would make two.
+            words = GodLoreMath.WithoutStop(words);
             try
             {
                 var first = list.FirstOrDefault(p => p.IsColonist) ?? list[0];

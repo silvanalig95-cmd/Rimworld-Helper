@@ -28,6 +28,8 @@ namespace ColonyCouncil
         /// <summary>Of the kills, how many were taken alive instead.</summary>
         public int captives;
         public bool settled;
+        /// <summary>When it ended (-1 while open, and for one that ended before this was kept).</summary>
+        public int settledTick = -1;
         public bool peaceNoticed;
         /// <summary>How it ended: blood, captive, home, forgiven, peace, ransom (the blood price paid), apology or heir (null while open, or when it simply lapsed).</summary>
         public string how;
@@ -80,6 +82,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref how, "how");
             Scribe_Values.Look(ref heirOf, "heirOf");
             Scribe_Values.Look(ref heirId, "heirId", VendettaMath.NotNoted);
+            Scribe_Values.Look(ref settledTick, "settledTick", -1);
         }
     }
 
@@ -379,6 +382,7 @@ namespace ColonyCouncil
         {
             using var _cause = Causes.Push("CC_Cause_VendettaSettled".Translate(v.faction?.Name ?? "?", v.victim ?? "?").Resolve());
             v.settled = true;
+            v.settledTick = Find.TickManager.TicksGame;
             if (quietly) return;
             v.how = how;
             bool paid = how == "blood" || how == "captive";

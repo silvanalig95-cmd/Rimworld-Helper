@@ -12,7 +12,7 @@
     <tip>A colonist who holds the line raid after raid may become steadfast; one who keeps breaking under fire may become nervous.</tip>
     <description>What happens to a colonist moves their character (see "character"), and now and then it reaches the game's own traits as well: nerves steady after raid after raid held, an optimist darkens after a year of graves, kindness appears after many kindnesses, an addiction overcome turns someone teetotal. A change is always the end of a story you can read. It comes with a letter that lists what led to it, with the date of each mark, deed and record behind it, a line in the colonist's journal and the chronicle, and it stays on their character page under "Traits gained and lost".
 
-Changes are rare. Once a day the colony is looked over. Each rule that holds for someone rolls its chance (3% to 15% a day), and of those that come up, one happens. Nobody changes twice in 60 days, the colony sees at most one change in 10 days, and the same trait in one person waits 90 to 150 days before it can step again. The setting is "Traits can change", under "Personalities and social life" (on by default).</description>
+Changes are rare. Once a day the colony is looked over. Each rule that holds for someone rolls its chance (3% to 15% a day), and of those that come up, one happens. Nobody changes twice in 60 days (a trait Rimfolk gave can go sooner, once its reason is gone), the colony sees at most one change in 10 days, and the same trait in one person waits 90 to 150 days before it can step again. The setting is "Traits can change", under "Personalities and social life" (on by default).</description>
     <sections>
       <li>
         <heading>How a rule reads a life</heading>
@@ -33,7 +33,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
       </li>
       <li>
         <heading>Where life is taking them</heading>
-        <text>The character page shows, under "Where life is taking them", up to three changes a colonist is heading toward, the furthest along first, each with how many of the things that lead there have happened ("2 of 4"). Hover one for the list: what has happened is in green, what hasn't yet in grey, with how far along each is (marks, deeds, days without a breakdown, hours at a kind of work, a habit and how long it's been lived). Only changes nothing else stands in the way of are shown, once a third of what leads there has happened. When all of it has, the change can come on any day.</text>
+        <text>The character page shows, under "Where life is taking them", up to three changes a colonist is heading toward, the furthest along first, each with how many of the things that lead there have happened ("2 of 4"). Hover one for the list: what has happened is in green, what hasn't yet in grey, with how far along each is (marks, with the kinds that count, deeds, days without a breakdown, hours at a kind of work, a habit and how long it's been lived, a vow of vengeance). Only changes nothing else stands in the way of are shown, once a third of what leads there has happened; a way out of a trait Rimfolk gave is shown from the day it came. When all of it has, the change can come on any day.</text>
       </li>
       <li>
         <heading>From habits</heading>
@@ -122,7 +122,9 @@ Only marks and deeds since that trait last changed count, so one stretch of life
         <table>
           <li>Trait | Change | What it asks for | Chance a day</li>
           <li>Coward (Vanilla Traits Expanded) | fades | 2 marks of danger held; nerve moved +12 | 12%</li>
-          <li>Vengeful (Vanilla Traits Expanded) | appears | a vow of vengeance, and a death or a betrayal among their marks; temper moved +6, warmth 10 or less; not kind | 8%</li>
+          <li>Vengeful (Vanilla Traits Expanded) | appears | a vow of vengeance that has stood 30 days with none of those who did it fallen to them yet, and a death or a betrayal among their marks; temper moved +6, warmth 10 or less; not kind, no rival in the colony (a rivalry, or an opinion of -20 or less), and one person at most for each loss | 3%</li>
+          <li>Vengeful (Vanilla Traits Expanded) | fades | one Rimfolk gave, once no vow of vengeance of theirs is still standing: avenged (three of them fallen to the avenger), laid down, lapsed after two years, the one taken brought home, or those who did it at peace with the colony | 15%</li>
+          <li>Vengeful (Vanilla Traits Expanded) | fades | one Rimfolk gave, after 45 days without a breakdown since it came, and since then a kindness remembered, forgiveness, being nursed back or carried to safety, someone carried out of a fight, a promise kept, a wedding, a child born or grown, a moving ritual, a student taught or a year of peace | 5%</li>
           <li>World weary (Vanilla Traits Expanded) | appears | age 35 or more, 3 marks of loss or hardship; outlook moved -20 | 6%</li>
           <li>Rebel (Vanilla Traits Expanded) | appears | 3 broken promises, elections lost or seats lost; trust moved -12 | 8%</li>
           <li>Workaholic (Vanilla Traits Expanded) | appears | 4% or less of their time at recreation over the last 60 days, and 2 masterworks, masteries, legendary works or students taught in 180 days | 6%</li>
@@ -130,7 +132,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Neat (Vanilla Traits Expanded) | appears | the habit "can't stand a mess", held 90 days and lived on 60 | 10%</li>
           <li>Animal lover (Vanilla Traits Expanded) | appears | the habit "names every animal", held 90 days and lived on 60 | 10%</li>
         </table>
-        <after>A rule for a DLC's or a mod's trait does nothing without it.</after>
+        <after>A rule for a DLC's or a mod's trait does nothing without it. Vengeful makes a colonist unhappy for as long as any of their rivals is alive, so it never comes to someone who already has one. A vengeful colonist's way out shows on their character page under "Where life is taking them" from the day it came. One who came with the trait keeps it.</after>
       </li>
     </sections>
     <keywords><li>trait</li><li>traits</li><li>trait change</li><li>steadfast</li><li>nervous</li><li>optimist</li><li>pessimist</li><li>kind</li><li>psychopath</li><li>cannibal</li><li>personality</li></keywords>

@@ -943,15 +943,17 @@ little goodwill), a promised room has to come within a fortnight, and someone st
 keeping them costs more again.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 53 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
 weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
 bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
 stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
-teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); eight for Vanilla
-Traits Expanded and RimTraits. Two traits of the body can be earned, never lost: tough after being downed or laid up
+teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); ten for Vanilla
+Traits Expanded and RimTraits, among them vengeful, which comes only of a vow of vengeance left unpaid 30 days, never to
+someone with a rival in the colony and to one person at most per loss, and goes again once the vow is over or after 45
+calm days with something good in them. Two traits of the body can be earned, never lost: tough after being downed or laid up
 again and again, and a fast walker after a season of hauling. A habit lived for months grows into a trait: harder work
 from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
@@ -961,7 +963,8 @@ of the things that lead there have happened, and hovering one lists them. A psyc
 hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
 once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
 deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
-under "Traits gained and lost". At most one change per colonist in 60 days and one in the colony in 10; sexuality,
+under "Traits gained and lost". At most one change per colonist in 60 days (a trait Rimfolk gave can go sooner) and
+one in the colony in 10; sexuality,
 the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
 character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
 turns it off; the Almanac page "traits that change" lists every rule.
@@ -4419,6 +4422,21 @@ a fight the peoples' casters cast by the mod's own AI and settings, as allies an
 spells kept out of their hands (the masters' storms, meteors and wraths, resurrection, polymorph, the summoned poppi and
 elementals, sabotage, the sniper's headshot, the mortar and the breaching charge, and the like). Off without the mod; the
 guard off with the deeper game hooks; no visitor casts in peace with the mod's "AI can cast" off.
+
+**Another mod's people: the dark elves.** With Elves (Continued), Rimfolk also dresses its dark elves (in the player's
+world the Stormriders), whose mod gives each of its kinds one fixed outfit. Their soldiers keep their mod's whole kit and
+weapons, the cape in one of a few dark colours, now and then a battle banner or, for a Dark Rider with a crossbow, a bolt
+quiver; their traders and ordinary folk add a merchant's chaperon, a masked hood or a hat, a vest, a gambeson, a pack or
+now and then a travelling robe, and may carry a dark elven dagger. A piece never takes the place of anything their kind's
+own kit requires (only a civilian's cape or tunic may give way) or of one that protects more. Each has one of four looks:
+the colours of their cloth (the Elves' own midnight and purple, charcoal and wine, black-violet and ash, brown and
+midnight) and, for some, a long, braided or loose hair style that fits a man or a woman and a face or body tattoo
+(Ideology's, or the Elves' own elven marks). A few of every kind have a class of A RimWorld of Magic, more among the witch
+elves (bladedancers) and about half of their sorceresses (lightning, ice and fire mages, arcanists); without that mod the
+sorceresses have a psylink instead. Their casters show it as the peoples' do: a caster's own hood where it fits, never a
+wand in place of their weapon, their craft named at the gate, a helpful spell in peace now and then, the mod's own AI in a
+fight with its most broken spells kept out, and their card says what crafts are among them. A few lines of their own when
+they visit. Only pawns made from now on; their xenotype and race are not touched.
 
 **Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
 description on the faction page says in plain words what they do, how they live, what they want from their neighbours

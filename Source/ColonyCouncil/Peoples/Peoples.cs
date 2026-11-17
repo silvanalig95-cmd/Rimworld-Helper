@@ -112,6 +112,8 @@ namespace ColonyCouncil
         {
             string tag = PeoplesMath.Tag(CallingOf(f));
             if (tag != null && tags != null && !tags.Contains(tag)) tags.Add(tag);
+            // Another mod's people Rimfolk knows (Peoples/Foreign/ForeignPeoples.cs): its own tag (folk:darkelves).
+            ForeignPeoples.AddTags(f, tags);
         }
 
         /// <summary>A notable's title by their people's ways ("head", "heir", "envoy", "trader"), or null for the age's own word.</summary>

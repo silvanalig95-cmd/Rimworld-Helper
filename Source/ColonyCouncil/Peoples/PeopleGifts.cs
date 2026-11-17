@@ -34,18 +34,23 @@ namespace ColonyCouncil
             if (ext != null && !ext.ageArms.NullOrEmpty()) AgeArms.Arm(p, ext.ageArms, age);
             // Every age whole (Peoples/PeopleAges.cs): in an age other than the one its kind was made for, nothing of a later age.
             if (Peoples.IsOurs(p.Faction) && age != (int)LedgerMath.AgeOf((int)p.Faction.def.techLevel)) AgeArms.ToAge(p, age, AgeArms.LastArmed, AgeArms.LastKit);
-            if (ext != null && !ext.gifts.NullOrEmpty()) GiveGift(p, ext, age);
+            if (ext != null && !ext.gifts.NullOrEmpty()) GiveFrom(p, ext.gifts, age);
             // A caster looks like one (Peoples/Magic/PeoplesMagic.cs): their class's own piece from the mod, whoever gave the
             // class, this gift or A RimWorld of Magic's own roll.
             PeoplesMagic.Dress(p, age);
         }
 
-        private static void GiveGift(Pawn p, PeopleKindExtension ext, int age)
+        /// <summary>
+        /// At most one of the gifts, by one roll against their shares (also another mod's people's: Peoples/Foreign/
+        /// ForeignPeoples.cs).
+        /// </summary>
+        internal static void GiveFrom(Pawn p, IList<PeopleGift> gifts, int age)
         {
+            if (gifts == null || gifts.Count == 0) return;
             // A gift of another age (the tamers' Wildspeakers in the spacer age) is no share of this one.
-            int i = PeoplesGearMath.Pick(ext.gifts.Select(g => g != null && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max) ? g.chance : 0f).ToList(), Rand.Value);
-            if (i < 0 || ext.gifts[i] == null) return;
-            var gift = ext.gifts[i];
+            int i = PeoplesGearMath.Pick(gifts.Select(g => g != null && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max) ? g.chance : 0f).ToList(), Rand.Value);
+            if (i < 0 || gifts[i] == null) return;
+            var gift = gifts[i];
             if (!gift.trait.NullOrEmpty()) GiveClass(p, gift.trait);
             else if (gift.psylink.max > 0) GivePsylink(p, gift);
             // Genes are put in only by a people whose age has the means (one fallen back to the medieval age has lost them).

@@ -113,12 +113,13 @@ namespace ColonyCouncil
         /// <summary>
         /// Why no trait may change now, or null: "person" (this person changed within <see cref="PersonGapDays"/>), "colony"
         /// (anyone did within <see cref="ColonyGapDays"/>), "trait" (this trait of theirs within <paramref name="gapDays"/>).
-        /// A tick below 0 means never.
+        /// A tick below 0 means never. With <paramref name="undoing"/> (the change takes away a trait Rimfolk gave them),
+        /// the person's own 60 days don't hold it back: what Rimfolk brought may go as soon as its reason does.
         /// </summary>
-        public static string RateBlocked(int lastPerson, int lastColony, int lastSameTrait, int gapDays, int now)
+        public static string RateBlocked(int lastPerson, int lastColony, int lastSameTrait, int gapDays, int now, bool undoing = false)
         {
             if (lastColony >= 0 && now - lastColony < ColonyGapDays * DayTicks) return "colony";
-            if (lastPerson >= 0 && now - lastPerson < PersonGapDays * DayTicks) return "person";
+            if (!undoing && lastPerson >= 0 && now - lastPerson < PersonGapDays * DayTicks) return "person";
             if (lastSameTrait >= 0 && gapDays > 0 && now - lastSameTrait < (long)gapDays * DayTicks) return "trait";
             return null;
         }
@@ -308,5 +309,112 @@ namespace ColonyCouncil
 
         /// <summary>Days since <paramref name="since"/> (a tick), or 0 for never.</summary>
         public static float DaysSince(int since, int now) => since < 0 || now < since ? 0f : (now - since) / (float)DayTicks;
+
+        /// <summary>
+        /// Calm days: since the last breakdown, and with <paramref name="sinceChange"/> only since the trait last changed
+        /// too (a calm that began before they became vengeful doesn't count toward it fading).
+        /// </summary>
+        public static float CalmDays(int calmSince, int lastChange, int now, bool sinceChange)
+        {
+            if (calmSince < 0) return 0f;
+            int from = sinceChange && lastChange > calmSince ? lastChange : calmSince;
+            return DaysSince(from, now);
+        }
+
+        // ---------------- What Rimfolk gave ----------------
+
+        /// <summary>
+        /// Rimfolk gave them this trait: of its changes kept for this person (the change records are Rimfolk's own), the
+        /// newest gave it to them. A trait they came with, or one a change already took away, isn't Rimfolk's to undo.
+        /// </summary>
+        public static bool GaveIt(IList<int> ticks, IList<bool> gave)
+        {
+            if (ticks == null || gave == null) return false;
+            int newest = -1;
+            for (int i = 0; i < ticks.Count && i < gave.Count; i++)
+                if (newest < 0 || ticks[i] >= ticks[newest]) newest = i;
+            return newest >= 0 && gave[newest];
+        }
+
+        // ---------------- Rivals ----------------
+
+        /// <summary>The game calls someone a rival at an opinion of -20 or less (Vanilla Traits Expanded's vengeful reads the same).</summary>
+        public const int RivalOpinion = -20;
+
+        /// <summary>A rival: a rivalry on the Bonds page, or the game's opinion of -20 or less.</summary>
+        public static bool IsRival(int opinion, bool rivalTie) => rivalTie || opinion <= RivalOpinion;
+
+        // ---------------- Vows of vengeance ----------------
+
+        /// <summary>One of a person's vows of vengeance (Secrets/Vendettas.cs) as the trait rules read it.</summary>
+        public struct Vow
+        {
+            /// <summary>When it was sworn.</summary>
+            public int sworn;
+            /// <summary>Not settled, the avenger alive and the people who did it still there.</summary>
+            public bool open;
+            /// <summary>That people still at war with the colony.</summary>
+            public bool atWar;
+            /// <summary>How many of them have fallen to the avenger (or been taken alive) so far.</summary>
+            public int kills;
+            /// <summary>The loss it was sworn for: the lost one's id, or their name in an older save.</summary>
+            public string loss;
+
+            public Vow(int sworn, bool open, bool atWar, int kills, string loss)
+            {
+                this.sworn = sworn;
+                this.open = open;
+                this.atWar = atWar;
+                this.kills = kills;
+                this.loss = loss;
+            }
+
+            /// <summary>Still to be paid: open, against a people at war with the colony.</summary>
+            public bool Standing => open && atWar;
+        }
+
+        /// <summary>
+        /// The vow that has stood longest unpaid: standing, with none of them fallen to the avenger yet, for a loss that hasn't
+        /// already made someone take this trait (<paramref name="taken"/>). Its index, or -1; <paramref name="days"/> is how long.
+        /// </summary>
+        public static int Unpaid(IList<Vow> vows, int now, ICollection<string> taken, out float days)
+        {
+            days = 0f;
+            int pick = -1;
+            if (vows == null) return -1;
+            for (int i = 0; i < vows.Count; i++)
+            {
+                var v = vows[i];
+                if (!v.Standing || v.kills > 0) continue;
+                if (taken != null && v.loss != null && taken.Contains(v.loss)) continue;
+                float d = DaysSince(v.sworn, now);
+                if (pick >= 0 && d <= days) continue;
+                pick = i;
+                days = d;
+            }
+            return pick;
+        }
+
+        /// <summary>Any vow still standing: open against a people at war with the colony.</summary>
+        public static bool AnyStanding(IList<Vow> vows)
+        {
+            if (vows == null) return false;
+            for (int i = 0; i < vows.Count; i++)
+                if (vows[i].Standing) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// The losses behind a change made on <paramref name="changeTick"/>, read from the person's vows when the change
+        /// didn't keep it (an older save): the losses of every vow sworn by then.
+        /// </summary>
+        public static List<string> LossesBehind(IList<Vow> vows, int changeTick)
+        {
+            var list = new List<string>();
+            if (vows == null) return list;
+            for (int i = 0; i < vows.Count; i++)
+                if (vows[i].loss != null && vows[i].sworn <= changeTick && !list.Contains(vows[i].loss)) list.Add(vows[i].loss);
+            return list;
+        }
     }
 }

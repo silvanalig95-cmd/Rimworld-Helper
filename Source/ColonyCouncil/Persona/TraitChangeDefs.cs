@@ -85,8 +85,9 @@ namespace ColonyCouncil
     /// <summary>
     /// A rule for one of the game's traits growing, appearing or fading with what happens to a colonist
     /// (Persona/TraitChanges.cs). Everything it asks for is something the player can read: marks on the character
-    /// page, a side moved from their nature, deeds counted, records the game keeps. When it holds, the chance is rolled
-    /// once a day; the rate limits keep it rare (one change per person in 60 days, one in the colony in 10).
+    /// page, a side moved from their nature, deeds counted, records the game keeps, a vow of vengeance. When it holds, the
+    /// chance is rolled once a day; the rate limits keep it rare (one change per person in 60 days, one in the colony in
+    /// 10; taking away a trait Rimfolk gave isn't held back by the person's 60).
     /// </summary>
     public class TraitChangeDef : Def
     {
@@ -118,6 +119,20 @@ namespace ColonyCouncil
         public List<TraitPace> pace = new List<TraitPace>();
         /// <summary>Days without a breakdown or any other mental state (0: no condition).</summary>
         public int calmDays;
+        /// <summary>The calm days count only since this trait last changed (a calm from before doesn't count).</summary>
+        public bool calmSinceChange;
+        /// <summary>
+        /// Their vows of vengeance (Secrets/Vendettas.cs): "unpaid", one standing against a people still at war with the
+        /// colony for <see cref="vendettaDays"/> days or more with none of them fallen to the avenger yet, for a loss that
+        /// hasn't already made someone take this trait; "over", none left standing (avenged, laid down, lapsed, the one
+        /// taken home, or that people at peace with the colony). With vendettas switched off no vow stands.
+        /// </summary>
+        public string vendetta;
+        public int vendettaDays = 30;
+        /// <summary>Never for someone with a rival in the colony: a rivalry on the Bonds page, or the game's opinion of -20 or less.</summary>
+        public bool noRival;
+        /// <summary>Only takes away a trait Rimfolk gave them (the newest change of it kept here gave it).</summary>
+        public bool onlyGiven;
         /// <summary>Days in the colony (0: no condition).</summary>
         public int daysHere;
         public int minAge;
@@ -288,6 +303,8 @@ namespace ColonyCouncil
 
         public bool IsStep => change == TraitChangeKind.StepUp || change == TraitChangeKind.StepDown;
 
+        public const string VendettaUnpaid = "unpaid", VendettaOver = "over";
+
         /// <summary>The DLC and mods it needs are there, and the colony is far enough along.</summary>
         public bool Available
         {
@@ -327,7 +344,11 @@ namespace ColonyCouncil
             if (journal == null || !journal.Any) yield return "no journal lines";
             if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
             bool evidence = (marks != null && marks.Count > 0) || (tallies != null && tallies.Count > 0) || (pace != null && pace.Count > 0) || calmDays > 0
-                            || !records.NullOrEmpty() || !habit.NullOrEmpty() || !practice.NullOrEmpty();
+                            || !records.NullOrEmpty() || !habit.NullOrEmpty() || !practice.NullOrEmpty() || !vendetta.NullOrEmpty();
+            if (!vendetta.NullOrEmpty() && vendetta != VendettaUnpaid && vendetta != VendettaOver) yield return "vendetta must be unpaid or over, not " + vendetta;
+            if (vendetta == VendettaUnpaid && vendettaDays < 1) yield return "an unpaid vendetta needs its days";
+            if (onlyGiven && change != TraitChangeKind.Lose) yield return "onlyGiven is for a loss: it undoes what Rimfolk gave";
+            if (calmSinceChange && calmDays <= 0) yield return "calmSinceChange needs calmDays";
             if (!habit.NullOrEmpty() && Habit == null) yield return "unknown habit " + habit;
             foreach (var f in Practice)
                 if (!ColonyCouncil.Practice.IsKnown(f.name)) yield return "unknown practice " + f.name;

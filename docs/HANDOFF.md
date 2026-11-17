@@ -23,8 +23,7 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **A god's find with no words, no look and a nameless mood** (17 November 2026, a report with the lead's fix, waiting
-   for the player's go; the to-do entry below). Being built (the player's go, 17 November 2026): the pact's cart,
+1. (Done 17 November 2026: everything from a god told at once, the entry above the newest release line.) Being built (the player's go, 17 November 2026): the pact's cart,
    Vengeful, the Stormriders. **Four reports, 17 November 2026** (the to-do entries below):
    the pact's cart of 8 components, Vengeful from Rimfolk and a way out, rooms (the ballroom over the temple and the
    dining room); and, when asked, more traits that come and go. (Done the same day: the log window at the start, 0.265.1.)
@@ -95,62 +94,23 @@ repo.
 - **Done (17 November 2026, the player's go: "alright", "please fix the bugs"): the log window at the start.** The
   report with the player's words, the cause of each red line and what was built are now one entry above the newest
   release line ("The log window at the start").
-- **To do when the player asks (17 November 2026): a god's find with no words, no look and a nameless mood.** The
-  player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby pawns
-  had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
-  animation for this event, and also no alert for it."
-  - **What happened** (day 125.1, about 9 to 11 in the morning): Revel's own happening "a stash found"
-    (`OwnRevel.FindStash`, key `CC_GodRevel_Saw_Stash`): Lorena, out at the west edge (20, 195), found Vanilla Brewing
-    Expanded's green tea x8 (`RevelGoods.Pick`, about 110 silver's worth, capped at 8); Bautista saw it. The colony
-    doesn't know Revel (no name for it in the book, not seen acting), so `GodLoreMath.Attribute` took it for Undertow,
-    and the book wrote it on Undertow's page; both witnesses hold to Undertow (30 or more), so `GodTouch.Felt` gave
-    `Rimfolk_GodTouch_Blessed` ("my god was good to us", +4) with no cause.
-  - **The causes.** (1) `FindStash` hands the words to the teller (`OwnHappenings.Line`, line 638) before
-    `GodPresence.Look` moves the camera (639), so `Tell.Minor`'s `ByCamera` rule (0.264.1) found no camera move and the
-    line went to the evening's news (it is in the save's waiting list). Revel's vision walked to (`OwnRevel.Arrived`,
-    503/504) has the same order; every other camera move calls `Look` first. With "Colony news: Off", `Minor`'s Off
-    branch archives the words without the `ByCamera` check. (2) No look: the stash's only sight is five small amber
-    flecks (`OwnHappenings.Glow`), thrown with the camera's jump; its key has its own effect, so no touch look follows
-    (and it isn't in 0.265.0's impact table). Most gods' own happenings that move the camera show only what they leave
-    and Rimfolk's small flecks. (3) The mood: `Felt` passes no `cause`, and the def has one fixed line for every god.
-    (4) No alert: Rimfolk has no alert for gods' doings; the message is what was missing.
-  - **The lead's fix, waiting for the player's go**: (A) one helper for a god's happening the camera goes to: the
-    camera, then the god's own look and sting (`GodTouchFx.Show` and `Sound`, which name no god), then the words as a
-    message; used by the stash and the vision, and checked across `Gods/` by a source test (no words handed over before
-    the camera in the same method); the Off branch shows a camera's words too. (B) The mood says what and whose: the
-    occurrence's words carried to `Felt` as its cause ("Why: Lorena found green tea x8 far out on the land ...
-    Bautista holds it was Undertow's doing."), the god named by the colony's own name for the god they took it for,
-    never the true god unless the colony knows it. (C) Text slips seen: a double full stop in 49 of the book's 111
-    lines in this save (the `CC_GodLore_Saw_*` templates end "{WHAT}." after words that already end in one), "found
-    Green tea x8" (`LabelCap` mid-sentence), "at their feet" for one person (`CC_GodRevel_Stash_Text`).
+- **Done (17 November 2026, the player's go: "any information from a god should kind of with its own dedicated pop up
+  on the right"): a god's find with no words, no look and a nameless mood.** The report, the cause and what was built
+  are now one entry above the newest release line ("Everything from a god told at once").
+- **Done (17 November 2026, the player's go: "please go ahead with all the changes right now that I told here"; built,
+  not released): the Stormriders, more varied and with some magic.** The request with the player's words and what was
+  built are one entry above the newest release line ("The Stormriders: their gear, their looks and some magic").
 - **Done (17 November 2026, the player's go on the lead's fix: "it just shouldn't auto take valuable materials"; built,
   not released): the pact's cart, 8 components a season, and the schemes' thefts.** The report with the player's words,
   the cause and what was built are now one entry above the newest release line ("The pact's cart and the schemes'
   thefts").
-- **To do when the player asks (17 November 2026): Vengeful from Rimfolk, and a way out of it.** The player: "i think two
-  of my colonists became vengeful as a result of rimfolk, is that possible? they got it at some point during an event.
-  now they have some rivals within the colony and it gives them quite a huge debuff. ... I've only had this vengeful one
-  come up twice and now i don't really know what I can do against it, as i don't want to evict any pawns."
-  - **The cause: Rimfolk.** `Rimfolk_TC_VTE_Vengeful` (`Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`) gives Vanilla
-    Traits Expanded's `VTE_Vengeful` to someone who swore vengeance after a loss (marks SworeVengeance and Loss or
-    Betrayal, temper moved 6 or more, warmth 10 or less, not Kind), 8% a day. In their save: Alder killed by the
-    mechanoid hive Armmurd on day 98.27; Avila, Bautista and Guido swore vengeance (`Secrets/Vendettas.cs`, open, no kill
-    yet); Avila became vengeful on day 100.01, Bautista on day 112.01. VTE's `VTE_MyRivalsAreAlive` is -20 mood while a
-    rival lives: the rivals in the colony, not the killers. Avila has Rimfolk rival ties with Soot, Ape and Webb and one
-    budding with Bautista (an epithet passed from him to her). No rule ever takes Vengeful away, and Kind can't come
-    while it is there.
-  - **What they can do now**: keep the rivals apart (rooms, work, meal and recreation times) so the ill will fades above
-    -20 (the -20 goes while no rival is left, the trait stays); a moral guide's counsel or a therapist for mood; People
-    Can Change (in their list) makes traits come and go by its own settings.
-  - **The lead's fix, waiting for the player's go**: (A) Vengeful fades: a Lose rule when the vendetta behind it ends
-    (avenged, forgiven, peace with the killers, laid down) or after a long calm with kind marks, told in a plain letter,
-    the 60-day gap between one person's changes not applying to undoing what Rimfolk gave. (B) The gain reined in: only
-    when the vendetta has stood 30 days or more unpaid, at a lower chance, not for someone who already has a rival in the
-    colony, one per loss.
+- **Done (17 November 2026, the player's go: "your fix sound great for the vengeful traits again, also please"; built,
+  not released): Vengeful from Rimfolk, and a way out of it.** The to-do with the player's words and the cause found in
+  their save is now one entry above the newest release line ("Vengeful from Rimfolk reined in, and a way out of it").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
-  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 51 rules: 30 give a
-  trait (9 of them bad ones), 5 take a bad one away, 16 move a trait along its scale; in their save 3 changes in 124
-  days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
+  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
+  trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
+  along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
 - **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
   player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
   spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
@@ -368,6 +328,179 @@ repo.
     silver is set down) or "Refuse and end the pact" (a letter with their answer). Propose a trade pact to another
     people: the list starts on a plain good. Debug: "Pacts: make one..." and "Pacts: their offer now...".
   - **Mods that would help**: none needed; the goods are the player's own.
+- 0.266.0, **The Stormriders: their gear,
+  their looks and some magic** (17 November 2026). The player, with their save `League_of_Toba_5`: "And then also in
+  regard to the Storm Riders, I mean, at the moment, most of the NPCs joining my camp as visitors, etc., are Storm
+  Riders. I mean, I have good relations with them. They have camps nearby, so it makes sense that they're, you know,
+  largely represented. So I wonder if we maybe can enhance on them a little bit, you know, bring a little more variety to
+  maybe their gear, how they look like, um, kind of potentially some maybe can do magic and just kind of spice up the
+  Storm Riders and make them a bit more interesting since they're such an important factor in my current save. Let me
+  know if if you need any files from me. And please go ahead with all the changes right now that I told here."
+  DESIGN.md "The Stormriders: their gear, their looks and some magic".
+  - **The save**: the Stormriders are `Faction_25`, Elves (Continued)'s `DevDesigner_DarkElvesFaction` (ally, goodwill
+    64), the dark elf xenotype, medieval; not one of Rimfolk's peoples. Their 13 people: 8 Dreadspears, 2 Darkshards, 2
+    penitents, a trader, every one in the same tunic, trousers, boots and cape of the same three colours, the soldiers in
+    the same chainmail, Dreadspear armour and helmet and shield with a spear or a crossbow; ten hair styles among
+    thirteen, no tattoos, one chaos mage by A RimWorld of Magic's own roll. The cause: the Elves mod's pawn kinds (its 1.6
+    `PawnKinds_DarkEvles.xml`, read from its GitHub copy) list the whole outfit as required apparel with fixed colours.
+  - **What was built**: a profile for another mod's faction by its def's name (`ForeignPeopleDef`, `Rimfolk_Foreign_DarkElves`),
+    applied to each fresh pawn of the faction (`Patch_ForeignPeoples`, a postfix on `GenerateNewPawnInternal` like the
+    peoples' gifts, the deeper game hooks on). By role (pawn kind): traders and ordinary folk get, each a chance, a
+    chaperon (Medieval 2), a masked hood, a wide hat (Hats and Rags), a hood or headscarf, a vest (Settlers) or quilted vest
+    (Armour Expanded), the elven gambeson, a backpack (Accessories), the high elven cloak in place of a trader's cape,
+    Fairycore's purple travelling robe in place of a penitent's tunic and trousers, and may carry the Elves' dark elven
+    dagger; the Dreadspears, Darkshards, Black Guard and Cold One Knights keep their whole kit and weapon (a battle
+    banner now and then, a bolt quiver for a Dark Rider with a crossbow), the witch elves and sorceresses their whole look.
+    A piece never takes the place of the kind's own required pieces (only a civilian's cape, tunic or trousers) nor of one
+    with more sharp armour. By look (one each): the Elves' own midnight and purple, charcoal and wine, black-violet and ash,
+    brown and midnight on their cloth (soldiers only their cape and banner), and for half of the first three a long,
+    braided or loose hair style that fits their gender and genes, and with Ideology a face or body tattoo (the Elves' own
+    elven marks, war paint, an eclipse, stars, a moon and the like). Magic: a share of every role has a class of A
+    RimWorld of Magic by the peoples' own gifts (only classes the mod has on and allows this faction): the lightning mage
+    commonest (their name), rangers among the crossbows and riders, gladiators and commanders among the guards and
+    knights, bladedancers 15% of the witch elves, about half of the sorceresses and the Supreme Sorceress lightning, ice
+    or fire mages, arcanists or a summoner; without the mod the sorceresses a psylink (Staticlord or Nightstalker with
+    Vanilla Psycasts Expanded). Their casters count as the peoples' do (`PeoplesMagic.Ours`): their craft named at the
+    gate (a new bladedancer line), an ice mage's rain in a dry spell, the mod's AI in a fight with its broken spells kept
+    out, their card "Among them are lightning mages, ..."; a caster's own hood where it fits, never a wand (their weapon
+    stays: the lightning wand rates 3, their spear 6.8). Six plain lines of their own in a visitor's idle hours
+    (`folk:darkelves`). Nothing saved, no letter; xenotype, race, kinds and weapons untouched.
+  - **Code map**: `Peoples/Foreign/ForeignPeopleDef.cs` (the def, its roles, pieces and looks), `ForeignPeoples.cs` (Fit,
+    the patch, the faction table, the role, the pieces, sidearm, caster's hood, hair, tattoos, dye), `ForeignPeoplesMath.cs`
+    (pure: role, look, MayDisplace, StyleFits, Sidearm, Gifts, GiftCap), `ForeignPeoplesDebug.cs` (two dev actions),
+    `Defs/PeopleDefs/Rimfolk_ForeignPeoples.xml`; `Peoples/PeopleGifts.cs` (`GiveFrom`, shared), `Peoples/Magic/
+    PeoplesMagic.cs` (`Ours`, `OnMagic`, `Among` for the profile), `PeoplesMagicWatch.cs` (the peace chance by
+    `OnMagic`), `Peoples/Peoples.cs` (`AddTags` adds the profile's tag), `Peoples/PeoplesDebug.cs` (helpers internal),
+    `Rimfolk_Pool_VisitorIdle.xml`, `Rimfolk_PeoplesMagic_Lines.xml`, the Almanac's peoples page, README. Tests:
+    `Tools/Tests/ForeignPeoplesTests.cs` (new; every name against `docs/player-mods`, every dark elf kind in a role, no
+    fighter's piece on a slot of its kind's own kit, the shares).
+  - **What the player sees in their current game**: the Stormriders already made (the 13 on the map and in the world)
+    keep what they have. Every Stormrider the game makes after loading this version (the next visitors, caravans and their
+    guards, camp folk, raiders or allies sent to help) comes dressed this way. A pawn the game takes back from the world
+    and dresses again (it does that now and then with idle world pawns) gets the Elves mod's own outfit, as with Rimfolk's
+    own peoples.
+  - **Can't be checked without the game**: how the pieces look together on dark elves (the Fairycore robe and the high
+    elven cloak above all), the colours on each piece's texture, the hair under masked hoods, that the Elves' kinds keep
+    every required piece (the code reads `apparelRequired`), RoM's own roll and ours together, its AI casting for them.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, "Peoples of other mods: their gear, looks and gifts (log)...",
+    pick the Stormriders: four new pawns of each kind in the log with role, look, clothes and colours, weapon, class,
+    hair and tattoos. "Peoples of other mods: one of each of their kinds here now, as visitors (testing)..." at the mouse:
+    look them over, open a caster's card (Character tab: the class trait). Wait for the next real visitors or caravan.
+    With a sorceress or lightning mage among visitors, a raid while they are there shows their spells.
+  - **Mods that would help** (graphics first; Rimfolk names a mod's pieces only once they're in the player's list, so each
+    is a small follow-up): Pointed Elf Ears Refined (https://steamcommunity.com/sharedfiles/filedetails/?id=2886966525,
+    1.4 to 1.7, updated 21 October 2026) or the Elves author's own Elf Ears For [NL] Facial Animations
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3284918586, 1.4 to 1.6, last updated July 2025), since Facial
+    Animation is in their list; Show Hair Under Stuff (https://steamcommunity.com/sharedfiles/filedetails/?id=3255379190,
+    1.5 to 1.7, updated October 2026), so the new hair shows under hoods; Erin's Hairstyles - Redux and 2
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=2361911135, ?id=2849477421, 1.3 to 1.7, updated 2 November
+    2026) or Gloomy Hair (?id=2883462751, 1.6 and 1.7) for more long and braided styles; Skyrim Elven Weapons Pack
+    (?id=3066083522, 1.5 to 1.7, updated 26 October 2026) for elven blades and bows; Witch Neophyte Hat and Cloak
+    (?id=3576928906, 1.6 and 1.7, updated 9 November 2026) for the sorceresses and casters; Addie's Mantles and Cloaks
+    (?id=3459406801, 1.5 and 1.6, not tagged 1.7) for the traders and folk. Already subscribed and on 1.7, not enabled:
+    Tasty Armory - High Medieval and Fire and Steel (?id=3480089301, ?id=3469863838) for heavier armour.
+- 0.265.4, **Vengeful from Rimfolk reined in,
+  and a way out of it** (17 November 2026). The player: "i think two of my colonists became vengeful as a result of
+  rimfolk, is that possible? they got it at some point during an event. now they have some rivals within the colony and
+  it gives them quite a huge debuff ... I've only had this vengeful one come up twice and now i don't really know what I
+  can do against it, as i don't want to evict any pawns"; the go: "your fix sound great for the vengeful traits again,
+  also please". DESIGN.md "Vengeful from Rimfolk, and a way out of it".
+  - **The cause** (as found): `Rimfolk_TC_VTE_Vengeful` gave Vanilla Traits Expanded's `VTE_Vengeful` (its
+    `VTE_MyRivalsAreAlive`, -20 mood while any rival lives, a rival being the game's opinion of -20 or less) to someone
+    who swore vengeance after a loss, 8% a day, and nothing took it away. In their save Alder was killed by the
+    mechanoid hive Armmurd on day 98.27; Avila, Bautista and Guido swore on it (open, no kills); Avila became vengeful on
+    day 100.01, Bautista on day 112.01.
+  - **What was built.** (B) The gain reined in, the same rule: only of a vow that has stood 30 days unpaid (open
+    against a people still at war with the colony, none of them fallen to the avenger yet), 3% a day instead of 8, never
+    for someone with a rival among the colony's people (an announced rivalry on the Bonds page, or the game's opinion of
+    -20 or less of a colonist, slave or prisoner), and one person at most for each loss (kept with the change; read from
+    the vows for older changes, so Alder's loss makes nobody else vengeful). (A) Two ways out, each only for a vengeful
+    Rimfolk gave (the newest change of the trait kept for that colonist gave it): `Rimfolk_TC_VTE_VengefulVowOver`, 15%
+    a day once no vow of theirs stands (avenged by three kills, laid down, lapsed two years after it was sworn, the one
+    taken brought home, a blood price or an apology, or peace with those who did it); `Rimfolk_TC_VTE_VengefulCalms`, 5%
+    a day after 45 days without a breakdown counted from when it came, with one good mark since (a kindness remembered,
+    forgiven, nursed back, carried to safety or carrying someone out of a fight, a promise kept, a wedding, a child born
+    or grown, a moving ritual, a student taught, a year of peace), whatever the vow. Neither waits a gap since the trait
+    came, and the person's 60 days between changes don't hold back a change that takes away a trait Rimfolk gave (the
+    colony's 10 days still do). The gain's words now say what the trait does ("has started holding grudges, and is
+    unhappy for as long as any of his rivals is alive"); the fades have their own letters and journal lines; a loss's
+    letter no longer says "the trait now holds what had changed" (`CC_TC_AbsorbedLost`). The character page's "Where life
+    is taking them" shows the way out of a trait Rimfolk gave from the day it came, and every marks line there names the
+    marks that count.
+  - **Numbers, and why.** 45 calm days (three quadrums) and one good mark: Avila's good marks came about one in forty
+    days (three in his first 124), so two marks would put it near day 180, close to the vow's own lapse; with the 5% the
+    trait goes about two months after it came, about as long as the new way in takes (30 days, then about 33 at 3%).
+  - **In their game.** Avila: the calm is counted from day 100 (no breakdown since day 27), so it holds from day 145;
+    he needs one good mark after day 100 (none by day 124). Bautista: from day 112 (calm since day 50), so from day 157,
+    and a good mark after day 112. Either fades on any day after both hold (5% a day; one colonist changes in ten days,
+    Guido changed on day 122). The vow on the hive ends at the latest when it lapses on day 218.3, earlier if three of
+    the hive fall to each of them in fights against it, or if they lay it down (0.8% a day, 1.2 in a good mood, not
+    within 15 days of fighting the hive); then 15% a day. Guido has four traits, so no new one comes to him; Alder's loss
+    can't make him vengeful anyway. An older vengeful whose vow can't be found (or with vendettas switched off) counts as
+    over; one a colonist came with, or whose change is no longer kept, stays theirs.
+  - **Code map**: `Persona/TraitChangeMath.cs` (pure: `Vow`, `Unpaid`, `AnyStanding`, `LossesBehind`, `GaveIt`,
+    `IsRival`, `CalmDays`, `RateBlocked(undoing)`), `Persona/TraitChangeDefs.cs` (`vendetta`, `vendettaDays`, `noRival`,
+    `onlyGiven`, `calmSinceChange`), `Persona/TraitChanges.cs` (`TraitChangeRecord.about`; the daily pass, the gate,
+    `Vows`, `LossesTaken`, `UnpaidVow`, `VowLines`, `HasRival`, `Undoes`, `MarkNames`, the way out shown),
+    `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`Vendetta.settledTick`, saved),
+    `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml` (the gain changed, two fades),
+    `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page "traits that change", README. Tests:
+    `TraitChangeTests` (the limits with undoing, calm since the change, what Rimfolk gave, rivals, the vows from their
+    save, the Vengeful rules).
+  - **Can't be checked without the game**: the letters and the character page's lines as they read, VTE's own rival
+    test (the lead read it as the game's opinion of -20 or less; Rimfolk's gate also counts its own announced rivalries),
+    and a Rimfolk-given vengeful going on a day it holds.
+  - **Try in the game**: Avila's character page, "Where life is taking them": "no longer vengeful after a long calm"
+    (days without a breakdown since becoming vengeful, 24 of 45 on day 124, and the marks that count) and "no longer
+    vengeful once the vow is over". A party or ritual that comes out unforgettable, a wedding, a child, or carrying
+    someone out of a fight gives a good mark; breakdowns start the calm again. When the hive comes, let Avila and
+    Bautista take the shots: the vow's line on the Bonds page counts the kills (three settle it). Dev mode, Debug actions,
+    Rimfolk, "Traits that change: why or why not" on Avila logs each rule's state.
+  - **Mods that would help**: none needed. People Can Change (in their list, tagged up to 1.6) changes traits by its
+    own settings, apart from Rimfolk.
+- 0.265.3, **Everything from a god told at
+  once** (17 November 2026). The player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby pawns
+  had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
+  animation for this event, and also no alert for it."
+  - **What happened** (day 125.1, about 9 to 11 in the morning): Revel's own happening "a stash found"
+    (`OwnRevel.FindStash`, key `CC_GodRevel_Saw_Stash`): Lorena, out at the west edge (20, 195), found Vanilla Brewing
+    Expanded's green tea x8 (`RevelGoods.Pick`, about 110 silver's worth, capped at 8); Bautista saw it. The colony
+    doesn't know Revel (no name for it in the book, not seen acting), so `GodLoreMath.Attribute` took it for Undertow,
+    and the book wrote it on Undertow's page; both witnesses hold to Undertow (30 or more), so `GodTouch.Felt` gave
+    `Rimfolk_GodTouch_Blessed` ("my god was good to us", +4) with no cause.
+  - **The causes.** (1) `FindStash` hands the words to the teller (`OwnHappenings.Line`, line 638) before
+    `GodPresence.Look` moves the camera (639), so `Tell.Minor`'s `ByCamera` rule (0.264.1) found no camera move and the
+    line went to the evening's news (it is in the save's waiting list). Revel's vision walked to (`OwnRevel.Arrived`,
+    503/504) has the same order; every other camera move calls `Look` first. With "Colony news: Off", `Minor`'s Off
+    branch archives the words without the `ByCamera` check. (2) No look: the stash's only sight is five small amber
+    flecks (`OwnHappenings.Glow`), thrown with the camera's jump; its key has its own effect, so no touch look follows
+    (and it isn't in 0.265.0's impact table). Most gods' own happenings that move the camera show only what they leave
+    and Rimfolk's small flecks. (3) The mood: `Felt` passes no `cause`, and the def has one fixed line for every god.
+    (4) No alert: Rimfolk has no alert for gods' doings; the message is what was missing.
+  - **The go**: "So honestly, the evening column in use, I don't really look at anymore because they just pop up every
+    evening, and most of the time it's not really that relevant. So please, any information from a god should kind of
+    with its own dedicated pop up on the right, or it should be visible on screen, after camera changes ... the visual
+    aspect was there, but minor. I mean, then it, I guess, counts. And it's interesting and makes sense that they don't
+    know which god it is ... if they don't know who it was, then, they should guess or say they don't know."
+  - **What was built** (DESIGN.md "Everything from a god told at once"): `Tell.FromGod`, a message at once, at least
+    notable, for every god's own happening (`OwnHappenings.Line`), a god's sign without a moment (`Worship.Sign`), the
+    rain kept away (`WorshipCouncil`), an offering taken or left (`Offerings`), a demand ignored (`GodDreams`); the
+    colony's own faith life stays smaller news. `Tell.Minor`'s Off branch checks `ByCamera`. The stash and the vision
+    move the camera first. The god's look was not added (the player: the small one "counts"). The moods of a god's
+    touch carry the occurrence's words and whose doing the pawn holds it was, by their own name for that god, or that
+    they don't know (`GodTouch.Pending.words`, `WhyFelt`, `GodTouchMath.Why`, keys `CC_GodTouch_Why_Guess` and
+    `CC_GodTouch_Why_Unknown`); "my god was good to us" reads "I believe it was the god I hold to". The book's lines
+    end with one full stop (`GodLoreMath.WithoutStop`), the stash's book line in lower case, "at {PAWN_possessive} feet".
+  - **Code map**: `UI/Tell.cs`, `Gods/OnMap/OwnSeven.cs`, `Gods/OnMap/OwnRevel.cs`, `Gods/Worship/Worship.cs`,
+    `WorshipCouncil.cs`, `Offerings.cs`, `GodDreams.cs`, `Gods/Touch/GodTouch.cs`, `GodTouchMath.cs`, `Gods/GodLore.cs`,
+    `GodLoreMath.cs`, `Languages/English/Keyed/Rimfolk_GodTouch.xml`, `Rimfolk_GodHappenings_Revel.xml`,
+    `Defs/GodDefs/Rimfolk_GodTouch.xml`. Tests: `GodWordsTests` (new).
+  - **Can't be checked without the game**: the message showing with the camera on a busy day, the mood's tooltip.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, a god's own happening near a colonist (or wait for one):
+    the camera moves, then the message on the right at once; the witnesses' mood "my god was good to us" (or awe or
+    unease) says in its tooltip what was seen and whose doing they hold it was. The Gods' book's new lines end with one
+    full stop.
+  - **Mods that would help**: none.
 - 0.265.2, **Ballrooms only for music
   rooms** (17 November 2026). The player's report and go are in the to-do entry "rooms, the ballroom over the temple and
   the dining room" (its fix A built; B, Rimfolk reading a room by what is in it, stays on the list), and "if there's

@@ -106,6 +106,7 @@ namespace ColonyCouncil
                 try
                 {
                     v.settled = true;
+                    v.settledTick = Now;
                     v.how = "heir";
                     if (!v.faction.HostileTo(Faction.OfPlayer) || Vendetta.KillRecord(v.faction) == null) continue;
                     var heir = HeirNow(comp, t, v);

@@ -5,6 +5,34 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Stormriders
+
+*17 November 2026, version 0.266.0*
+
+- The Stormriders, the dark elves of Elves (Continued), no longer all look the same: their traders and ordinary folk add hats, masked hoods, vests, gambesons, packs or a travelling robe and may carry a dagger, and their soldiers keep their whole kit with now and then a banner or a quiver.
+- Each dark elf has one of four looks, their cloth in midnight and purple, charcoal and wine, black-violet and ash, or brown and midnight, and some wear long, braided or loose hair and a face or body tattoo.
+- Some of them can do magic with A RimWorld of Magic: a few of every kind, more of the witch elves as bladedancers and about half of the sorceresses, lightning mages most of all. Without that mod their sorceresses have a psylink.
+- Their casters show it as Rimfolk's peoples do: they name their craft at the gate, an ice mage may bring rain in a dry spell, they fight with the mod's own spells, and their card says what crafts are among them.
+- Dark elf visitors have a few lines of their own in their idle hours. Only Stormriders made from now on are dressed this way.
+
+## A way out of vengeance
+
+*17 November 2026, version 0.265.4*
+
+- Rimfolk makes a colonist vengeful much more rarely: only after a vow of vengeance has stood 30 days with none of the killers fallen, never when they already have a rival in the colony, and to one person at most for each loss.
+- A vengeful streak Rimfolk gave now goes again once the vow is over: avenged, laid down, lapsed, or peace made with those who did it.
+- It also goes after 45 days without a breakdown and one good thing since, such as a wedding, a moving ceremony, a kindness or being carried out of a fight, even while the vow still stands.
+- The character page shows a vengeful colonist's way out under "Where life is taking them", and names the marks that count for each change.
+
+## A god's words at once
+
+*17 November 2026, version 0.265.3*
+
+- Everything a god does now shows as a message on the right as it happens, never held for the evening's colony news: the gods' own happenings, a god's sign, rain kept away, an offering taken or left, a god's demand ignored.
+- Where a god's happening moves the camera, the camera now always moves first and the message follows, as with Revel's stash and visions.
+- The moods after a god's doing now say in their tooltip what was seen and whose doing the colonist holds it was, by the name they know that god by, or that they don't know which god it was.
+- The Gods' book's lines no longer end with two full stops, and a few of its words read better.
+
 ## Ballrooms for music rooms
 
 *17 November 2026, version 0.265.2*

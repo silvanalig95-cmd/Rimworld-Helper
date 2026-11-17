@@ -52,9 +52,18 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>A caster of one of Rimfolk's peoples, not of the colony: their class, or null.</summary>
+        /// <summary>
+        /// A people whose casters Rimfolk knows: one of Rimfolk's own, or another mod's it gives classes to (Peoples/Foreign/
+        /// ForeignPeoples.cs: the Stormriders' dark elves).
+        /// </summary>
+        public static bool Ours(Faction f) => Peoples.IsOurs(f) || ForeignPeoples.Has(f);
+
+        /// <summary>A people built on magic: by its calling (PeoplesMagicMath.BuiltOnMagic), or another mod's people that is (a coven).</summary>
+        public static bool OnMagic(Faction f) => PeoplesMagicMath.BuiltOnMagic(Peoples.CallingOf(f)) || ForeignPeoples.Of(f)?.builtOnMagic == true;
+
+        /// <summary>A caster of one of those peoples (<see cref="Ours"/>), not of the colony: their class, or null.</summary>
         public static string TheirCraft(Pawn p) =>
-            p?.Faction == null || p.Faction.IsPlayer || !Peoples.IsOurs(p.Faction) || p.RaceProps?.Humanlike != true ? null : Craft(p);
+            p?.Faction == null || p.Faction.IsPlayer || !Ours(p.Faction) || p.RaceProps?.Humanlike != true ? null : Craft(p);
 
         /// <summary>The craft in words, one ("druid") or many ("druids"); the trait's own label where Rimfolk has no word for it.</summary>
         public static string Word(string trait, bool plural)
@@ -139,7 +148,7 @@ namespace ColonyCouncil
         /// </summary>
         public static List<string> Among(Faction f)
         {
-            if (!Loaded || f?.def == null || !Peoples.IsOurs(f)) return new List<string>();
+            if (!Loaded || f?.def == null || !Ours(f)) return new List<string>();
             int now = Find.TickManager?.TicksGame ?? 0;
             if (among.TryGetValue(f, out var kept) && now - kept.at < Sched.HourTicks && now >= kept.at) return kept.crafts;
             var list = new List<string>();
@@ -147,16 +156,22 @@ namespace ColonyCouncil
             {
                 int age = Peoples.AgeOf(f);
                 var gifts = new List<(string, float)>();
-                foreach (var kind in DefDatabase<PawnKindDef>.AllDefsListForReading)
-                {
-                    if (kind?.defaultFactionDef != f.def) continue;
-                    var ext = kind.GetModExtension<PeopleKindExtension>();
-                    if (ext?.gifts == null) continue;
-                    foreach (var g in ext.gifts)
-                        if (g != null && !g.trait.NullOrEmpty() && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max)
-                            && DefDatabase<TraitDef>.GetNamedSilentFail(g.trait) != null && PeopleGifts.ClassOn(g.trait, f))
-                            gifts.Add((g.trait, g.chance));
-                }
+                if (Peoples.IsOurs(f))
+                    foreach (var kind in DefDatabase<PawnKindDef>.AllDefsListForReading)
+                    {
+                        if (kind?.defaultFactionDef != f.def) continue;
+                        var ext = kind.GetModExtension<PeopleKindExtension>();
+                        if (ext?.gifts == null) continue;
+                        foreach (var g in ext.gifts)
+                            if (g != null && !g.trait.NullOrEmpty() && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max)
+                                && DefDatabase<TraitDef>.GetNamedSilentFail(g.trait) != null && PeopleGifts.ClassOn(g.trait, f))
+                                gifts.Add((g.trait, g.chance));
+                    }
+                else
+                    // Another mod's people: its roles' classes (Peoples/Foreign/ForeignPeoples.cs).
+                    foreach (var (trait, share) in ForeignPeoples.ClassShares(f))
+                        if (DefDatabase<TraitDef>.GetNamedSilentFail(trait) != null && PeopleGifts.ClassOn(trait, f))
+                            gifts.Add((trait, share));
                 list = PeoplesMagicMath.Among(gifts);
             }
             catch (Exception e)
@@ -181,7 +196,7 @@ namespace ColonyCouncil
             {
                 string words = AmongWords(f);
                 if (words == null) return null;
-                string key = PeoplesMagicMath.BuiltOnMagic(Peoples.CallingOf(f)) ? "CC_PeoplesMagic_Card_Many" : "CC_PeoplesMagic_Card_Few";
+                string key = OnMagic(f) ? "CC_PeoplesMagic_Card_Many" : "CC_PeoplesMagic_Card_Few";
                 return new List<string> { key.Translate(words.Named("CRAFTS")).Resolve() };
             }
             catch (Exception e)
@@ -214,14 +229,14 @@ namespace ColonyCouncil
         // ================= Kept out =================
 
         /// <summary>
-        /// A spell or technique the peoples' casters never use (PeoplesMagicMath.KeptOut): any of Rimfolk's peoples' pawns
-        /// not of the colony (a visitor, an ally, a raider, a town's defender). One of them who joins the colony is the
+        /// A spell or technique the peoples' casters never use (PeoplesMagicMath.KeptOut): any pawn of Rimfolk's peoples, or of
+        /// another mod's people Rimfolk gives classes to, not of the colony (a visitor, an ally, a raider, a town's defender). One of them who joins the colony is the
         /// colony's own and the mod's own rules hold for them.
         /// </summary>
         public static bool KeptFrom(Pawn p, Def ability)
         {
             if (p?.Faction == null || ability == null || p.Faction.IsPlayer) return false;
-            return PeoplesMagicMath.IsKeptOut(ability.defName) && Peoples.IsOurs(p.Faction);
+            return PeoplesMagicMath.IsKeptOut(ability.defName) && Ours(p.Faction);
         }
     }
 

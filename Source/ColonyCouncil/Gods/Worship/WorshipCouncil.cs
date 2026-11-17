@@ -33,7 +33,7 @@ namespace ColonyCouncil
             map.weatherManager.TransitionTo(WeatherDefOf.Clear);
             var g = Gods.ById(m.god);
             if (g != null && Interplay.Ready("worship-dry-told|" + Gods.HomeKey(map), 2f))
-                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, ("CC_Wsh_DryPass_" + Worship.Step(GodNear.Plain(g, map))).Translate().Resolve() + Worship.Hand(g, map, IntVec3.Invalid), null);
+                Tell.FromGod(NewsKind.Colony, map, ("CC_Wsh_DryPass_" + Worship.Step(GodNear.Plain(g, map))).Translate().Resolve() + Worship.Hand(g, map, IntVec3.Invalid), null);
         }
 
         /// <summary>The god the colony honours at a home for the year (the council's answer): marked, pleased, told.</summary>

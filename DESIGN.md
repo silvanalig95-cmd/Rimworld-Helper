@@ -1334,7 +1334,8 @@ stories), sides moved from nature (lasting plus fading) and where they stand, de
 game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
-  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days; the same
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days (except to
+  take away a trait Rimfolk gave, see "Vengeful from Rimfolk" below); the same
   trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
   so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
 - **Never touched.** Sexuality, the body and inborn gifts (`TraitChangeMath.Untouchable`), traits from genes, a
@@ -1348,6 +1349,59 @@ game's records, a share of time from record snapshots every ten days, calm days,
 - **Told.** A letter (good, bad or neither by rule) with the news, what it means and what led to it with dates, a
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
+
+### Vengeful from Rimfolk, and a way out of it (the player's go, 17 November 2026; released 0.265.4)
+
+The player: "i think two of my colonists became vengeful as a result of rimfolk, is that possible? ... now they have some
+rivals within the colony and it gives them quite a huge debuff ... I've only had this vengeful one come up twice and
+now i don't really know what I can do against it, as i don't want to evict any pawns"; the go on the lead's proposal:
+"your fix sound great for the vengeful traits again, also please". Rimfolk's rule `Rimfolk_TC_VTE_Vengeful` gave
+Vanilla Traits Expanded's `VTE_Vengeful` (its `VTE_MyRivalsAreAlive` is -20 mood while any rival lives, a rival being
+the game's opinion of -20 or less) to someone who swore vengeance after a loss, at 8% a day, and nothing ever took it
+away. In their save Avila (vengeful since day 100) and Bautista (since day 112) swore on the mechanoid hive Armmurd for
+Alder (killed day 98.27); the vow is open with no kills, and Avila has Rimfolk rivalries with three colonists.
+
+- **Reined in** (the same rule): only of a vow of vengeance that has stood 30 days unpaid (open against a people still
+  at war with the colony, none of them fallen to the avenger yet), at 3% a day instead of 8 (about a month on average
+  once everything holds, against twelve days before), never for someone with a rival among the colony's people (an
+  announced rivalry on the Bonds page, or the game's opinion of -20 or less of a colonist, slave or prisoner), and one
+  person at most for each loss. The marks, sides and Kind block are as they were. The loss behind it is kept with the
+  change (`TraitChangeRecord.about`, the lost one's id or name); for a change from before (their two), it is read from
+  the vows that person had sworn by then, so Alder's loss has made someone vengeful and makes nobody else so.
+- **Two ways out**, each only for a vengeful Rimfolk gave (`onlyGiven`: the newest change of the trait kept for them
+  gave it), each with no gap since it came (the default 120 days would hold it past day 220 in their game):
+  `Rimfolk_TC_VTE_VengefulVowOver`, at 15% a day once no vow of theirs stands (avenged, three of them fallen to the
+  avenger; laid down; lapsed two years after it was sworn; the one taken brought home; a blood price or an apology; or
+  those who did it at peace with the colony); and `Rimfolk_TC_VTE_VengefulCalms`, at 5% a day after 45 days without a
+  breakdown counted from when it came (`calmSinceChange`), with one good mark since (a kindness remembered, forgiven,
+  nursed back, carried to safety or carrying someone out of a fight, a promise kept, a wedding, a child born or grown, a moving ritual, a student taught,
+  a year of peace), whatever the vow: a mechanoid hive never makes peace.
+- **Why these numbers.** 45 days is three quadrums, a real calm, and with the 5% after it the trait goes about two
+  months after it came, about as long as the new way in takes. One mark rather than two: Avila's good marks came about
+  one in forty days (three in his first 124), so two would put it near day 180, close to the vow's own lapse. In their
+  save: Avila can be past the calm on day 145 and Bautista on day 157, each then needing a good mark since becoming
+  vengeful (none yet on day 124); the vow on the hive ends at the latest when it lapses on day 218.3, earlier if three
+  of the hive fall to each of them in fights against it or they lay it down (0.8% a day, 1.2 in a good mood, not within
+  15 days of fighting the hive).
+- **The person's 60 days** don't hold back a change that takes away a trait Rimfolk gave (`TraitChangeMath.RateBlocked`
+  with `undoing`, `TraitChanges.Undoes`); the colony's 10 days and the rule's own gap still do.
+- **Older saves.** A vengeful Rimfolk gave fades on the first way once no vow of theirs can be found standing: a
+  vendetta that is gone, or vendettas switched off, count as over. A vengeful the colonist came with, or one whose change
+  is no longer kept (eight later changes), is theirs and stays. `Vendetta.settledTick` (new, saved) dates an ending, so
+  the letter names the vows that ended since the trait came.
+- **Told and shown.** The gain's words now say what the trait does ("has started holding grudges, and is unhappy for as
+  long as any of his rivals is alive"); the two fades have their own letters, journal lines in six voices, and the vows
+  behind them in "What led to it" (how long the vow has stood unpaid; how each ended). A loss's letter now says the
+  character stays where it was because what the trait held is counted with what life changed (`CC_TC_AbsorbedLost`; the
+  gain's line was used for losses too). On the character page "Where life is taking them" shows a way out of a trait
+  Rimfolk gave from the day it came (other rules still need a third of their evidence), and a marks line names the
+  marks that count.
+- **Code**: `Persona/TraitChangeMath.cs` (pure: `Vow`, `Unpaid`, `AnyStanding`, `LossesBehind`, `GaveIt`, `IsRival`,
+  `CalmDays`, `RateBlocked(undoing)`), `Persona/TraitChangeDefs.cs` (`vendetta`, `vendettaDays`, `noRival`, `onlyGiven`,
+  `calmSinceChange`), `Persona/TraitChanges.cs` (the daily pass, the gate, `Vows`, `LossesTaken`, `UnpaidVow`, `VowLines`,
+  `HasRival`, `MarkNames`), `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`settledTick`),
+  `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`, `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page
+  "traits that change". Tests: `TraitChangeTests` (the vows from their save, the limits, the rules).
 
 ### The animals' natures (the player's picks, 7 November 2026)
 
@@ -9738,6 +9792,82 @@ happens. The rules are pure, in `Peoples/Magic/PeoplesMagicMath.cs` (`Tools/Test
   ...": the casters on this map (log), a caster of theirs here now as a visitor, a spell in peace now, what each people
   is known for (log). The Almanac's peoples' pages, *What they wear, carry and know*; README "Magic among the peoples".
 
+### The Stormriders: their gear, their looks and some magic (the player's request and go, 17 November 2026; released 0.266.0)
+
+The player: "And then also in regard to the Storm Riders, I mean, at the moment, most of the NPCs joining my camp as
+visitors, etc., are Storm Riders. I mean, I have good relations with them. They have camps nearby, so it makes sense
+that they're, you know, largely represented. So I wonder if we maybe can enhance on them a little bit, you know, bring a
+little more variety to maybe their gear, how they look like, um, kind of potentially some maybe can do magic and just
+kind of spice up the Storm Riders and make them a bit more interesting since they're such an important factor in my
+current save. ... And please go ahead with all the changes right now that I told here."
+
+- **What the save showed** (`League_of_Toba_5`). The Stormriders are `Faction_25`, of Elves (Continued)'s
+  `DevDesigner_DarkElvesFaction` (an ally, goodwill 64), the dark elf xenotype, a medieval people; not one of Rimfolk's
+  peoples. Of their 13 people on the map, 8 were Dreadspears, 2 Darkshards, 2 penitents and a trader, and every one wore
+  the same tunic, trousers, boots and cape in the same three colours; the soldiers all the same chainmail, Dreadspear
+  armour and helmet and dark elven shield, with a spear or a crossbow. Their hair varied (ten styles among thirteen), no
+  one had a tattoo, one had a class of A RimWorld of Magic by the mod's own roll (a chaos mage). The cause is the Elves
+  mod's own pawn kinds (its 1.6 `PawnKinds_DarkEvles.xml`): each kind lists its whole outfit as required apparel with
+  fixed colours, so the game has nothing left to choose.
+- **How it is done.** A profile for another mod's faction by its def's name: `ForeignPeopleDef`
+  (`Defs/PeopleDefs/Rimfolk_ForeignPeoples.xml`, `Rimfolk_Foreign_DarkElves`; `Peoples/Foreign/ForeignPeopleDef.cs`),
+  read by `ForeignPeoples.Fit` from `Patch_ForeignPeoples`, a postfix on the game's `GenerateNewPawnInternal` like the
+  peoples' gifts (fresh pawns only, with the deeper game hooks on: visitors, camps, caravans, guards, raids, town
+  defenders made from now on). The pure rules are `ForeignPeoplesMath` (`Tools/Tests/ForeignPeoplesTests.cs`, "the
+  Stormriders: "). Every name of another mod is MayRequire'd on it; without the Elves mod nothing matches. Their xenotype,
+  race and the kind's own kit stay; no letter, nothing saved.
+- **By role** (the pawn kind; a kind no role names, such as a camp's, plays the folk's or, for a trader, the trader's).
+  Each piece is a chance of one of a short list, taken among those loaded and wearable by the pawn. A piece is worn only
+  where it takes the place of nothing the kind's own kit requires (unless the role names that piece: a civilian's cape or
+  tunic) and of nothing that protects more (sharp armour, a hundredth or two of slack: `MayDisplace`), so no one ends up
+  less protected or armed than the Elves mod made them.
+
+| Role (kind) | More pieces | Colours | Class of A RimWorld of Magic (share) |
+|---|---|---|---|
+| trader | 60% a chaperon (Medieval 2), a masked hood, a wide hat (Hats and Rags) or a hood; 50% a vest (Settlers) or quilted vest (Armour Expanded); 40% a backpack (Accessories); 25% the high elven cloak in place of the cape; half carry a dark elven dagger | tunic, trousers, vest, pack in the look's main colour, cape, cloak and hat its second | enchanter 4% |
+| folk (penitent) | 50% a masked hood, the wood elven hood, a hood or a headscarf; 30% the elven gambeson; 15% Fairycore's purple travelling robe in place of tunic and trousers; 25% a backpack; 30% a dagger | the same | lightning or ice mage, 3% each |
+| spear (Dreadspear) | their whole kit and spear; 12% a battle banner | the cape and banner in the look's second colour | gladiator 5%, lightning mage 3% |
+| crossbow (Darkshard) | their whole kit and crossbow | the cape | ranger 6%, lightning mage 3% |
+| rider (Dark Rider) | 60% a bolt quiver when they carry a crossbow | hood main, cape or cloak second | lightning mage 8%, ranger 4% |
+| guard (Black Guard) | their whole kit; 10% a battle banner | their own | gladiator 8%, commander 4% |
+| knight (Cold One Knight) | their whole kit | their own | commander 6%, gladiator 6% |
+| witch (witch elf) | their whole look | their own | bladedancer 15% |
+| sorceress | their whole look | their own | lightning mage 20%, ice and fire mage 12% each, arcanist 10%; without A RimWorld of Magic a psylink of 1 to 3 levels (Staticlord or Nightstalker with Vanilla Psycasts Expanded), 54% |
+| head (Supreme Sorceress) | their whole look | their own | lightning mage 25%, arcanist 20%, summoner 10%; without it a psylink of 2 to 4, 55% |
+
+- **The shares.** The dark elves are a coven led by sorceresses (`builtOnMagic`), so their ordinary roles have a class up
+  to 15 in a hundred, as among Rimfolk's four peoples built on magic (`PeoplesMagicMath.ShareCap`), and the two kinds that
+  are casters by the Elves mod's own name (Sorceress, Supreme Sorceress) up to the peoples' whole share, 60, never all
+  (`PeoplesGearMath.MaxShare`). The classes are given by the peoples' own gifts (`PeopleGifts.GiveFrom`): only a class the
+  mod has switched on and whose share for this faction in its settings isn't none, never to a pawn that rolled its own.
+  The lightning mage is the most common, for the Stormriders' name. Without A RimWorld of Magic only the sorceresses have
+  a gift, a psylink (Royalty).
+- **Their magic, seen** (Peoples/Magic/, "Magic among the peoples, seen"): `PeoplesMagic.Ours` counts this people with
+  Rimfolk's own, so a caster of theirs names their craft to the first of the colony they meet (a new line for the
+  bladedancer), an allied or content ice mage may call the rain in a dry spell, the mod's own AI casts for them in a
+  fight with its most broken spells kept out of their hands, and their card says "Among them are lightning mages,
+  arcanists and ..., more of them than among most peoples." A caster wears their class's own hood from the mod where it
+  takes the place of nothing their kind requires (a penitent's or trader's hood gives way, a Dreadspear's helmet or a
+  sorceress's crown doesn't), and never a wand: the mod's wands rate far below their own weapons (`docs/weapons`: the
+  lightning wand 3, the dark elven spear 6.8), so their weapon stays.
+- **By look** (one each, by weight): the Elves' own midnight and purple (4), charcoal and dark wine (3), black-violet and
+  ash grey (2), brown and midnight (3). The role's pieces are dyed its two colours (main and second); the soldiers' only
+  their cape and banner, the elite and the casters not at all. Half of each of the first three looks has one of its hair
+  styles (Vanilla Hair Expanded's, Rimsenal's and the game's long, braided or loose styles), taken only among those whose
+  style gender fits the pawn (`StyleFits`) and never when a gene sets or limits their hair; and, with Ideology, a face or
+  body tattoo: the Elves' own elven marks or a plain line for the first, war paint, tiger stripes, a skull, a scar or
+  spikes for the second, an eclipse, stars, an oracle's or a spider's mark, a moon, wings or rings for the third. The
+  fourth leaves hair and skin as they came. No beard: elves have none.
+- **Words.** Their own tag for Rimfolk's lines, `folk:darkelves` (`Peoples.AddTags`): six lines of their own in a
+  visitor's idle hours (`Rimfolk_Pool_VisitorIdle`: company, a fire, the stars, a walk, a blade sharpened), plain.
+- **Not changed**: pawns already in a game (the Stormriders on the map and those the world keeps) keep what they have;
+  the Elves mod's other dark elves (`DevDesigner_RoughDarkElvesFaction`) and its high and wood elves; their xenotype, race,
+  kinds and weapons.
+- Dev actions "Peoples of other mods: their gear, looks and gifts (log)..." (four new pawns of each of their kinds,
+  described with role, look, clothes and colours, weapon, class or psylink, hair and tattoos, not kept) and "... one of
+  each of their kinds here now, as visitors (testing)...". README "Another mod's people: the dark elves"; the Almanac's
+  peoples' page, *What they wear, carry and know*.
+
 ### Peoples whose age changes
 
 The player's words (8 November 2026): "different generations or time spans represented in factions, or that the
@@ -15745,6 +15875,31 @@ ahead".
   deeper hooks.
 - Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
   meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+
+### Everything from a god told at once (the player's report and go, 17 November 2026; released 0.265.3)
+
+The player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby
+pawns had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
+animation for this event, and also no alert for it." Then: "the evening column in use, I don't really look at anymore
+... So please, any information from a god should kind of with its own dedicated pop up on the right, or it should be
+visible on screen, after camera changes ... the visual aspect was there, but minor. I mean, then it, I guess, counts.
+... if they don't know who it was, then, they should guess or say they don't know."
+
+- **A message as it happens.** `Tell.FromGod`: a god's words are a message at once, at least notable, never held for the
+  evening's colony news nor left only in the History tab. It carries every god's own happening (`OwnHappenings.Line`), a
+  god's sign when no moment plays (`Worship.Sign`), a god keeping the rain away, an offering taken or left, and a god's
+  demand ignored. The colony's own faith life (vows, saints, festivals, the peoples' gods) stays smaller news. With the
+  colony news off, a camera's words come with it too (`Tell.Minor`'s Off branch checks `ByCamera`).
+- **The camera first.** Revel's stash and Revel's vision handed their words over before the camera moved; now the
+  camera moves first, as everywhere else. The small look they have (Revel's amber flecks) stays, as the player said.
+- **The mood says what and whose.** A god's touch carries the words of the occurrence (the act's or the moment's
+  text) to the moods it gives (`GodTouch.Pending.words`, `WhyFelt`): "Why: Lorena found green tea x8 hidden far out on
+  the land ... Bautista holds it was Undertow's doing.", the god the colony took it for by the name the pawn knows it
+  by, or "... doesn't know which god it was." when they took it for none or have no name for it. Never the true god
+  unless that is their name for the god they took it for. "my god was good to us" now says "I believe it was the god I
+  hold to".
+- **Text.** The book's lines end with one full stop (`GodLoreMath.WithoutStop`; 49 of 111 lines in the player's save
+  had two); the stash's book line has the find in lower case and its words fit one person ("at her feet").
 
 ### The pact's cart and the schemes' thefts (the player's report and go, 17 November 2026; not released yet)
 

@@ -94,11 +94,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>Every kind of a people's pawns (their defs' kinds: its fighters, its civilians, its traders and its leader).</summary>
-        private static List<PawnKindDef> KindsOf(FactionDef def) =>
+        internal static List<PawnKindDef> KindsOf(FactionDef def) =>
             DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.defaultFactionDef == def && k.race != null).OrderBy(k => k.defName).ToList();
 
         /// <summary>What a new pawn of one of these kinds came with: kind of people, clothes and their colours, weapon, what they carry, a class, a psylink or genes put in.</summary>
-        private static string Describe(Pawn p)
+        internal static string Describe(Pawn p)
         {
             var sb = new StringBuilder("    " + p.kindDef.label + ": " + (p.genes?.Xenotype?.label ?? "baseliner"));
             if (p.apparel != null)
@@ -116,7 +116,7 @@ namespace ColonyCouncil
             return sb.ToString();
         }
 
-        private static Pawn NewOf(PawnKindDef kind, Faction f, Map map) =>
+        internal static Pawn NewOf(PawnKindDef kind, Faction f, Map map) =>
             PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, f, PawnGenerationContext.NonPlayer, map?.Tile, forceGenerateNewPawn: true));
 
         [DebugAction("Rimfolk", "Peoples: their gear, kinds of people and gifts (log)...", allowedGameStates = AllowedGameStates.PlayingOnMap)]

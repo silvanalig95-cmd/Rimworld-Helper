@@ -279,6 +279,19 @@ namespace ColonyCouncil
     /// </summary>
     public static class GodTouchMath
     {
+        /// <summary>
+        /// A god's mood's "Why": what was seen (one sentence, closed with a full stop if it has no end of its own), then whose
+        /// doing the one who felt it holds it was; either alone when the other is missing.
+        /// </summary>
+        public static string Why(string words, string whose)
+        {
+            string w = (words ?? "").Trim();
+            if (w.Length > 0 && !w.EndsWith(".") && !w.EndsWith("!") && !w.EndsWith("?")) w += ".";
+            string h = (whose ?? "").Trim();
+            if (w.Length == 0) return h.Length == 0 ? null : h;
+            return h.Length == 0 ? w : w + " " + h;
+        }
+
         // ================= The occurrence =================
 
         /// <summary>
