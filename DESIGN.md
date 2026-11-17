@@ -15570,6 +15570,29 @@ music, as before.
   in the game's events), an offering taken quietly and found gone, and what follows from an order the player gave (the
   silver set down in the shaft, the beast's road opened or not).
 
+### A god's sign comes with its words (the player's report and go, 17 November 2026; released 0.264.1)
+
+The player, with their save: "so my camera just changed to kasumi's corpse and there were mushrooms around them. i assume
+this was some god event? however there was no indication about what happened exactly." Then: "yes, your fix! so regarding
+the camera it has been that the camera first moves, and then there's a bit a short delay until the animation &
+notification appear. I like this and keep it this way, as it creates an excitement for what it is to come".
+
+- **The cause.** A god's moment moves the camera at once (`GodPresence.Look`, a coming's `Begin`), and its words follow
+  through the teller (`Tell.Message`, `Tell.Letter`, `Tell.Minor`). On a busy day (a threat within six hours) or past the
+  day's count, the teller held the land's news for the evening's colony news, so the camera went to Morel's ring round an
+  unburied body and nothing said what it was until evening.
+- **The words come with it.** Where the camera goes, `Tell.CameraWent` notes the map, the place and the tick; a message,
+  letter or line about a place within 20 cells of it on that map within the hour after (`TellMath.ByCamera`,
+  `CameraTicks`, `CameraCells`), or naming no place, is shown, never held (`TellBook.Judge`'s `seen`) and never sent to
+  the evening's news; the same words again soon are still told once. The order and the pause stay as they were: the
+  camera first, then the god's look and the words.
+- **Who finds it.** `OwnHappenings.Found` (what a god left: a ring, a root through the floor, the bowl, the old tree, the
+  vein and so on) sends the nearest of the colony to look only from a short walk away (`OwnHappeningsMath.LookWalkCells`,
+  40 cells; two hours to get there); farther, or if they never get there, the first of the colony to come within sight
+  of it says it, within a day. The book's line ("Webb found a ring of mushrooms...") is written when someone has seen it,
+  in their words, and in no one's if nobody has by then; so the moods and the god's small effects that follow a sign go
+  to those who saw it, when they saw it. A ring on open ground is still walked to, to dig at its middle.
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

@@ -91,8 +91,7 @@ namespace ColonyCouncil
             string place = room?.Role != null && room.Role != RoomRoleDefOf.None ? room.Role.label : "CC_GodO_Roots_Room".Translate().Resolve();
             bool first = b.rootsLeft == OwnHappeningsMath.RootsMornings - 1;
             if (first) OwnHappenings.Card(g, map, "Roots", false, new LookTargets(cell, map), null, Importance.Notable, place.Named("ROOM"));
-            var seer = OwnHappenings.Found(b, map, cell, "roots", g, place);
-            OwnHappenings.Saw(g, map, cell, GodActKind.Act, seer, first ? "CC_GodO_Saw_Roots" : "CC_GodO_Saw_RootsAgain", place.Named("ROOM"));
+            OwnHappenings.Found(b, map, cell, "roots", g, place, GodActKind.Act, first ? "CC_GodO_Saw_Roots" : "CC_GodO_Saw_RootsAgain", "ROOM", place);
             return true;
         }
 
@@ -464,8 +463,7 @@ namespace ColonyCouncil
             OwnHappenings.Came(b, OwnHappening.HollinOldTree, now);
             string tree0 = tree.def.label;
             OwnHappenings.Card(g, map, "OldTree", true, new LookTargets(tree), LetterDefOf.PositiveEvent, Importance.Notable, tree0.Named("TREE"));
-            var seer = OwnHappenings.Found(b, map, tree.Position, "oldtree", g, tree0);
-            OwnHappenings.Saw(g, map, tree.Position, GodActKind.Blessing, seer, "CC_GodO_Saw_OldTree", tree0.Named("TREE"));
+            OwnHappenings.Found(b, map, tree.Position, "oldtree", g, tree0, GodActKind.Blessing, "CC_GodO_Saw_OldTree", "TREE", tree0);
             b.oldTreeSince = now;
             b.felledSinceTree = 0;
             return true;

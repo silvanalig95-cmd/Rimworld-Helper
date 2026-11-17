@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A god's sign with its words
+
+*17 November 2026, version 0.264.1*
+
+- When a god's sign moves the camera, its message now follows after the same short pause, even on a busy day, instead of waiting for the evening news.
+- Only a colonist a short walk away is sent to look at what a god left; otherwise the first one to pass near it stops and says what they see.
+- The Gods' book writes down who found a sign once they have actually seen it, and the moods and small effects that follow go to them.
+
 ## Storylines from the towns nearby
 
 *16 November 2026, version 0.264.0*

@@ -164,6 +164,8 @@ namespace ColonyCouncil
             {
                 if (!target.IsValid || target.Map == null || !Homes.IsHome(target.Map)) return;
                 CameraJumper.TryJump(target);
+                // Its words follow a moment later: the teller shows them with it, never in the evening's news.
+                Tell.CameraWent(target.Map, target.Cell);
             }
             catch (Exception e)
             {
@@ -194,6 +196,7 @@ namespace ColonyCouncil
             if (GodPresenceMath.SlowsTime(m.kind, (int)tm.CurTimeSpeed)) tm.CurTimeSpeed = TimeSpeed.Normal;
             tm.slower.SignalForceNormalSpeed();
             CameraJumper.TryJump(new GlobalTargetInfo(m.at, m.map));
+            Tell.CameraWent(m.map, m.at);
             // The music fades into a beat of silence.
             m.track = m.music ? GodSounds.TrackFor(m.look, m.kind, (m.name ?? "").GetHashCode() ^ GenTicks.TicksAbs / 2500) : null;
             if (m.music)

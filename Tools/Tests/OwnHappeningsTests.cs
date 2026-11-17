@@ -136,6 +136,11 @@ public static class OwnHappeningsTests
           && OwnHappeningsMath.RingTrigger(false, false, 0.9f) == O, "her ring answers a body left lying, rot in the stores, or her drawing near; nothing else");
         C(OwnHappeningsMath.RingPlace(true, true) == RingAt.Body && OwnHappeningsMath.RingPlace(false, true) == RingAt.Stores && OwnHappeningsMath.RingPlace(false, false) == RingAt.Buried,
             "the ring points at the body first, then the rot, else at something buried");
+        // What a god left, found: only someone a short walk away is sent; farther, the first to come within sight of it says it.
+        C(OwnHappeningsMath.SendToLook(0f) && OwnHappeningsMath.SendToLook(OwnHappeningsMath.LookWalkCells) && !OwnHappeningsMath.SendToLook(100f)
+          && !OwnHappeningsMath.SendToLook(-1f), "someone is sent to look only from a short walk away (the player's colonist walked across the map for a ring)");
+        C(OwnHappeningsMath.LookWalkCells <= 50f && OwnHappeningsMath.LookWalkHours >= 1f && OwnHappeningsMath.LookWaitDays >= 0.5f,
+            "a short walk, time enough to make it, and a while for someone to pass");
         C(OwnHappeningsMath.LeadHoursMin >= 12f && OwnHappeningsMath.LeadHoursMax <= 36f && OwnHappeningsMath.BreathChance < 1f && OwnHappeningsMath.BreathPawnDays >= 30f,
             "the warning comes the day before; her breath is heard now and then, once in a long while each");
 

@@ -12,7 +12,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## Start here for a new chat (17 November 2026)
 
-**Where things stand.** The newest release is 0.264.0 (16 November 2026), pushed on `claude/gifted-noether-32w12b` (the last
+**Where things stand.** The newest release is 0.264.1 (17 November 2026: a god's sign comes with its words), pushed on `claude/gifted-noether-32w12b` (the last
 session's branch) and on `claude/charming-pasteur-9qbjle` (the branch CLAUDE.md names). A new session works on the
 branch its own instructions give it, starting from that state, and pushes it and `claude/charming-pasteur-9qbjle`
 (`git push -u origin <its branch>`, then `git push origin <its branch>:claude/charming-pasteur-9qbjle`). The tree is
@@ -23,8 +23,7 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Bug (17 November 2026): the camera jumps to a god's sign and no words come with it.** The entry is the first one
-   under "State" below, with the player's words, the cause read from their save and the fix to propose.
+1. (Done 17 November 2026: a god's sign comes with its words, the entry above the newest release line.)
 2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
    case, S12 the lost founder's grave, Q14 the one away quest within 3 tiles): `docs/quests-proposals.md`, "Rounds".
    The player can strike or change any of it first. Round 3's storylines only add files in
@@ -81,43 +80,9 @@ repo.
   0.206.2 to 0.213.0. On 12 November 2026, "you can go ahead on the todos": the four small asks (0.222.0) and the
   letters and favours are built; the gods' one way and repeats and magic among the peoples are being built; the
   Gods' book and the peoples' rounds 2 to 10 follow, the rounds one batch at a time.)
-- **To do when the player asks (17 November 2026), a bug: the camera jumped to a body with mushrooms round it, and
-  nothing said what happened.** The player, with their save `League_of_Toba_4` (day 122): "so my camera just changed to
-  kasumi's corpse and there were mushrooms around them. i assume this was some god event? however there was no
-  indication about what happened exactly." Then: "after looking into this, can you fully document all the relevant
-  information and to do- so that i can start a new chat?" Not fixed yet; bug fixes come first, so it is the first thing
-  to propose when the player gives the go.
-  - **What happened** (read from the save, tick 7325535): seven bodies lie unburied on the home map (Mapa): Kasumi
-    Roman of a traders' guild people, killed by the Tynamos 3.4 days before, at (137, 266); the Signal Line's linemen
-    Stench and Chaz; Oversize, a pig town guard; three dark elves, two of them from the fight about three hours before
-    the ring. At the daily look (tick 7321373) the gods' book marked "5 of the dead left lying unburied" against Morel,
-    Hush and Tamiu. That brought Morel's own happening "the ring, pointing" (`Gods/OnMap/OwnMorel.cs`, `Daily` then
-    `RingNow` in the small hours): glowstools in a ring round Kasumi's body, and in the book an omen, "Webb found a ring
-    of mushrooms come up overnight at Mapa round Kasumi, still lying unburied." It works as built; the telling does not.
-  - **Why no words came.** `OwnHappenings.Card` (`Gods/OnMap/OwnHappenings.cs`, about line 525) moves the camera first
-    (`GodPresence.Look`, the camera for every god moment the player asked for in 0.256.1) and then gives the line to the
-    teller, `Tell.Message` (`UI/Tell.cs`). The teller held it: the land's news on a busy day (a threat within six hours,
-    `TellMath.BusyHours`; here the fight three hours before) waits for the evening's colony news
-    (`TellBook.Judge`, `TellVerdict.Held`). The save shows it waiting there: "A ring of mushrooms came up overnight round
-    Kasumi, who is still lying unburied." So the camera moved at once and the words were kept for the evening.
-    `GodPresence.Omen` does the same (camera, then `Tell.Message`), and about 60 places jump the camera
-    (`GodPresence.Look` or `CameraJumper.TryJump`, most in `Gods/`): each needs the same look.
-  - **Why nobody said it either.** Nobody awake was within sight, so `OwnHappenings.Found` sent the nearest awake
-    colonist, Webb, to walk over and look (a forced Goto, up to three hours, `lookUntil`); Webb was at (46, 211), about
-    100 cells off, still walking when the game was saved. Webb's bubble only comes on arrival, and if the three hours
-    run out it never comes. The book already says "Webb found..." before Webb got there (`OwnHappenings.Saw` takes the
-    one sent as the seer).
-  - **The fix to propose** (when asked): a god moment that moves the camera shows its words at the same moment: the
-    teller never holds a line whose moment moved the camera (a flag on `Tell.Message`/`Tell.Letter`, set by
-    `OwnHappenings.Card` and `GodPresence.Omen` and the other camera sites), with a test on the pure verdict in
-    `TellMath`; every camera site checked for words that can be held. The finder: send someone only within a short
-    walk (else the first of the colony to pass within sight says it, from the ring's own step that already runs every
-    250 ticks), and write the book's line when they get there. Also worth telling the player: burying or burning the
-    bodies (seven lie on the map) is what the book's "left lying unburied" is about.
-  - **Try in the game** (once fixed): with a body left lying, dev mode, Debug actions, Rimfolk, "Gods: Morel's ring of
-    mushrooms now" (`Gods/OwnHappeningsDebug.cs`), right after a raid: the camera moves and the message comes with it;
-    with every colonist far away, the walk is short or someone nearer says it.
-  - **Mods that would help**: none; the glowstool is the game's own plant.
+- **Done (17 November 2026, the player's go: "yes, your fix!"): a god's sign comes with its words.** The report with
+  the player's words, the cause and what was built are now one entry above the newest release line ("A god's sign
+  comes with its words").
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -244,6 +209,49 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.264.1, **A god's sign comes with its
+  words** (17 November 2026). The player, with their save `League_of_Toba_4` (day 122): "so my camera just changed to
+  kasumi's corpse and there were mushrooms around them. i assume this was some god event? however there was no
+  indication about what happened exactly." Then the go: "yes, your fix! so regarding the camera it has been that the
+  camera first moves, and then there's a bit a short delay until the animation & notification appear. I like this and
+  keep it this way, as it creates an excitement for what it is to come". And, asked whether it did anything ("did this
+  event have any effect on the corpses? or is it mainly flavour impact?", "just this god event in general"): no; the
+  body is untouched; the dead left lying count against three of the gods each day (the cause of the sign); the sign
+  gives a small mood to those who see it and, about one time in three, a small effect of the god's for them; in their
+  game nobody was near, so nothing followed. DESIGN.md "A god's sign comes with its words".
+  - **What happened in their save** (read with scripts outside the save's folder, tick 7325535): seven bodies lay
+    unburied on the home map (Kasumi Roman of a traders' guild people, killed by the Tynamos 3.4 days before, at
+    (137, 266); the Signal Line's linemen Stench and Chaz; Oversize, a pig town guard; three dark elves, two from the
+    fight about three hours before). The daily look marked "5 of the dead left lying unburied" against Morel, Hush and
+    Tamiu, and that night Morel's ring came up round Kasumi (`OwnMorel.RingNow`). `OwnHappenings.Card` moved the camera
+    and gave the line to the teller, which held it for the evening's news (the land's news on a busy day, a threat within
+    six hours); nobody was within sight, so `Found` sent Webb from (46, 211), about 100 cells off, and the book already
+    said "Webb found..." before Webb got there.
+  - **Built.** The words come with the camera: `Tell.CameraWent` (called by `GodPresence.Look` and a coming's `Begin`)
+    notes the map, place and tick; `Tell.Message`, `Tell.Letter` and `Tell.Minor` show a line about a place within 20
+    cells of it on that map within the hour after, or naming no place, and never hold it or send it to the evening's
+    news (`TellMath.ByCamera`, `CameraTicks`, `CameraCells`; `TellBook.Judge`'s `seen`); the same words again soon are
+    still told once. The camera first and the pause before the god's look and its words are as they were. Who finds
+    it: `OwnHappenings.Found` takes the book's words with it (key, kind, one named argument) and sends the nearest only
+    from a short walk away (`OwnHappeningsMath.SendToLook`, `LookWalkCells` 40, `LookWalkHours` 2); farther, or if the
+    one sent never gets there, the first of the colony to come within sight of it says it, within a day
+    (`LookWaitDays`); the book's line is written then, in that one's words (in no one's after the day), so the moods
+    and small effects that follow a sign go to whoever saw it. The ten finds (Smoulder's vein and seam, Morel's mourner
+    gone, ring and threads, Hollin's roots and old tree, Pip's stars and sulk, Ennu's bowl) use it.
+  - **Code map**: `UI/TellMath.cs` (`CameraTicks`, `CameraCells`, `ByCamera`, `TellBook.Judge(..., seen)`), `UI/Tell.cs`
+    (`CameraWent`, `ByCamera`, the three channels), `Gods/Presence/GodPresence.cs` (`Look`, `Begin`),
+    `Gods/OnMap/OwnHappenings.cs` (`Found`, `SendToLook`, `Wait`, `Seen`, `Look`; the book's new saved `lookMap`,
+    `lookWait`, `lookSaw`, `lookKind`, `lookArg`, `lookValue`), `Gods/OnMap/OwnHappeningsMath.cs` (`LookWalkCells`,
+    `LookWalkHours`, `LookWaitDays`, `SendToLook`), the ten callers in `OwnSmoulder`, `OwnMorel`, `OwnHollin`, `OwnPip`,
+    `OwnEnnu`. Tests: `TellTests` (the camera's words shown on a busy day and past the count, a letter too, merged
+    still once, the window and the distance), `OwnHappeningsTests` (the short walk).
+  - **Can't be checked without the game**: the message showing a moment after the camera on a busy day; a colonist
+    passing within sight of a ring and saying it; a save made while someone waits or walks, loaded again.
+  - **Try in the game**: right after a raid (so the day is busy), with a body left lying: dev mode, Debug actions,
+    Rimfolk, "Gods: Morel's ring of mushrooms now": the camera goes there, and the message comes with it. With every
+    colonist far from it, nobody walks across the map; the first to pass near it stops and says it, and the Gods' book
+    names them.
+  - **Mods that would help**: none; the glowstool is the game's own plant.
 - 0.264.0, **Storylines, round 2: the sickness
   in the next town, the strayed herd, the pilgrims' relic and two towns' quarrel** (16 November 2026; the player, after
   round 1: "great, do some more"; the go's words still bind: "go ahead with quests and storylines, make sure they are

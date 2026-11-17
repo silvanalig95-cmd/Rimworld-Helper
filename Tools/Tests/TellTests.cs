@@ -60,6 +60,25 @@ public static class TellTests
         book.Clear();
         book.Important(Oak, t - H, t);
         C(book.Busy(Oak, 0, t) && book.Judge("p", Oak, People, false, Notable, 12, t) == TellVerdict.Held, "the storyteller's raid an hour ago makes the day busy too");
+
+        // ---------------- The words of a moment the camera went to (the player, 17 November 2026) ----------------
+
+        book.Clear();
+        book.Important(Oak, t - H * 3, t);
+        C(book.Judge("ring", Oak, Land, false, Notable, 12, t) == TellVerdict.Held, "on a busy day the land's news waits for the evening (the ring round the body, as it was)");
+        C(book.Judge("ring2", Oak, Land, false, Notable, 12, t + 1, true) == TellVerdict.Show, "but the words of a moment the camera went to are shown with it");
+        C(book.Judge("ring3", Oak, Land, true, Notable, 4, t + 2, true) == TellVerdict.Show, "a letter too");
+        C(book.Judge("ring2", Oak, Land, false, Notable, 12, t + 3, true) == TellVerdict.Merged, "the same words again soon are still told once");
+        book.Clear();
+        C(book.Judge("full", Oak, Colony, false, Notable, 1, t) == TellVerdict.Show && book.Judge("full2", Oak, Colony, false, Notable, 1, t + 1) == TellVerdict.Held,
+            "past the day's count the rest wait");
+        C(book.Judge("full3", Oak, Land, false, Notable, 1, t + 2, true) == TellVerdict.Show, "but not the words of a moment the camera went to");
+        C(TellMath.ByCamera(t, t + 300, true, 2f), "the camera went there a moment ago, the line's place is where it went: the same moment");
+        C(TellMath.ByCamera(t, t + 300, true, -1f), "a line naming no place on that map, just after: the same moment");
+        C(!TellMath.ByCamera(t, t + 300, false, 2f), "another map: not");
+        C(!TellMath.ByCamera(t, t + TellMath.CameraTicks + 1, true, 2f), "over an hour later: not");
+        C(!TellMath.ByCamera(t, t + 300, true, TellMath.CameraCells + 5f), "far from where it went: not");
+        C(!TellMath.ByCamera(-1, t, true, 0f) && !TellMath.ByCamera(t + 10, t, true, 0f), "the camera never went, or a clock gone back: not");
         book.Clear();
         book.Important(Oak, t - TellMath.BusyTicks - 1, t);
         C(!book.Busy(Oak, 0, t), "a raid long past doesn't");
@@ -169,8 +188,10 @@ public static class TellTests
         int aboutAt = tell.IndexOf("var about = entry.about;"), writeAt = tell.IndexOf("History.FromChronicle(entry);");
         C(aboutAt >= 0 && aboutAt < writeAt && !tell.Contains("entry.about?.MapHeld"),
             "a chronicle line is counted for the colony it is about, read before the history lets go of who it is about");
-        C(Regex.IsMatch(tell, @"Book\.Judge\(""M\|"" \+ colony[^;]*item\.weight, MessagesADay, Now\)") && Regex.IsMatch(tell, @"Book\.Judge\(""L\|""[^;]*WeightOf\(importance\), LettersADay, Now\)"),
-            "messages and letters are weighed by importance and kind against the colony's day");
+        C(Regex.IsMatch(tell, @"Book\.Judge\(""M\|"" \+ colony[^;]*item\.weight, MessagesADay, Now, ByCamera\(map, look\)\)")
+          && Regex.IsMatch(tell, @"Book\.Judge\(""L\|""[^;]*WeightOf\(importance\), LettersADay, Now, ByCamera\(map, look\)\)"),
+            "messages and letters are weighed by importance and kind against the colony's day, and the words of a moment the camera went to are shown with it");
+        C(tell.Contains("if (ByCamera(map, look)) break;"), "a line of a moment the camera went to is not kept for the evening's news either");
         C(tell.Contains("if (Book.Told(\"M|\" + colony + \"|\" + text, Now)) return;"), "the evening's news doesn't repeat a message just shown");
         C(tell.Contains("LastThreatBigTick") && tell.Contains("Book.Important(colony, threat, Now)"), "a raid on the home makes its day busy");
         string newsCode = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "News.cs"));

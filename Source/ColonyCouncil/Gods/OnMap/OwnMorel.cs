@@ -128,8 +128,7 @@ namespace ColonyCouncil
             if (map == null || g == null || !Homes.IsHome(map) || !at.IsValid) return;
             if (Ring(b, map, at, 1.6f) == 0) return;
             OwnHappenings.Card(g, map, "MournerGone", false, new LookTargets(at, map));
-            var seer = OwnHappenings.Found(b, map, at, "mournergone", g);
-            OwnHappenings.Saw(g, map, at, GodActKind.Mark, seer, "CC_GodO_Saw_MournerGone");
+            OwnHappenings.Found(b, map, at, "mournergone", g, null, GodActKind.Mark, "CC_GodO_Saw_MournerGone");
             GodMarks.Note(g, map, at, "CC_GodO_Mourner_Act".Translate().Resolve(), PresenceKind.Appear, false);
         }
 
@@ -207,8 +206,8 @@ namespace ColonyCouncil
             if (n == 0 && where != RingAt.Stores) return false;
             Remember(b, map, at);
             OwnHappenings.Card(g, map, "Ring" + where, false, new LookTargets(at, map), null, Importance.Notable, what.Named("WHAT"));
-            var seer = OwnHappenings.Found(b, map, at, where == RingAt.Buried ? "ringdig" : "ring" + where.ToString().ToLowerInvariant(), g, what);
-            OwnHappenings.Saw(g, map, at, GodActKind.Omen, seer, OwnHappenings.K("Saw_Ring" + where), what.Named("WHAT"));
+            OwnHappenings.Found(b, map, at, where == RingAt.Buried ? "ringdig" : "ring" + where.ToString().ToLowerInvariant(), g, what, GodActKind.Omen,
+                OwnHappenings.K("Saw_Ring" + where), "WHAT", what);
             return true;
         }
 
@@ -269,8 +268,7 @@ namespace ColonyCouncil
             b.warnAt = at;
             OwnHappenings.Came(b, OwnHappening.MorelThreads, Now);
             OwnHappenings.Card(g, map, "Threads", false, new LookTargets(at, map), null, Importance.Notable, cooler.LabelNoCount.Named("THING"));
-            var seer = OwnHappenings.Found(b, map, at, "threads", g);
-            OwnHappenings.Saw(g, map, at, GodActKind.Omen, seer, "CC_GodO_Saw_Threads");
+            OwnHappenings.Found(b, map, at, "threads", g, null, GodActKind.Omen, "CC_GodO_Saw_Threads");
             return true;
         }
 

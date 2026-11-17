@@ -175,8 +175,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("gods: the message on the screen", e);
             }
             OwnHappenings.Card(g, map, term ? "StarsTerminal" : "Stars", true, new LookTargets(console), LetterDefOf.NeutralEvent, Importance.Notable, message.Named("MESSAGE"));
-            var seer = OwnHappenings.Found(b, map, console.Position, "starsmorning", g, message);
-            OwnHappenings.Saw(g, map, console.Position, GodActKind.Omen, seer, "CC_GodO_Saw_Stars", message.Named("MESSAGE"));
+            OwnHappenings.Found(b, map, console.Position, "starsmorning", g, message, GodActKind.Omen, "CC_GodO_Saw_Stars", "MESSAGE", message);
             return true;
         }
 
@@ -244,8 +243,7 @@ namespace ColonyCouncil
             b.warnAt = at;
             OwnHappenings.Came(b, OwnHappening.PipSulk, Now);
             OwnHappenings.Card(g, map, "Sulk", false, new LookTargets(lights.Select(l => new GlobalTargetInfo(l))));
-            var seer = OwnHappenings.Found(b, map, at, "sulk", g);
-            OwnHappenings.Saw(g, map, at, GodActKind.Omen, seer, "CC_GodO_Saw_Sulk");
+            OwnHappenings.Found(b, map, at, "sulk", g, null, GodActKind.Omen, "CC_GodO_Saw_Sulk");
             return true;
         }
 

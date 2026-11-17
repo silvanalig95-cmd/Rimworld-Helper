@@ -278,8 +278,7 @@ namespace ColonyCouncil
             if (!first.IsValid) return false;
             OwnHappenings.Card(g, map, kept ? "Vein" : "VeinBent", true, new LookTargets(first, map), kept ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent,
                 Importance.Notable, b.thrown.Named("COUNT"));
-            var seer = OwnHappenings.Found(b, map, first, kept ? "vein" : "veinbent", g);
-            OwnHappenings.Saw(g, map, first, kept ? GodActKind.Blessing : GodActKind.Wrath, seer, kept ? "CC_GodO_Saw_Vein" : "CC_GodO_Saw_VeinBent");
+            OwnHappenings.Found(b, map, first, kept ? "vein" : "veinbent", g, null, kept ? GodActKind.Blessing : GodActKind.Wrath, kept ? "CC_GodO_Saw_Vein" : "CC_GodO_Saw_VeinBent");
             GodMarks.Note(g, map, b.shaft, (kept ? "CC_GodO_Vein_Act" : "CC_GodO_VeinBent_Act").Translate().Resolve(), kept ? PresenceKind.Blessing : PresenceKind.Wrath, false);
             return true;
         }
@@ -374,8 +373,7 @@ namespace ColonyCouncil
             if (!at.IsValid) return;
             string who = b.nameBy?.LabelShort ?? "";
             OwnHappenings.Card(g, map, "Seam", false, new LookTargets(at, map), null, Importance.Notable, who.Named("PAWN"));
-            var seer = OwnHappenings.Found(b, map, at, "seam", g);
-            OwnHappenings.Saw(g, map, at, GodActKind.Blessing, seer, "CC_GodO_Saw_Seam", who.Named("ARTIST"));
+            OwnHappenings.Found(b, map, at, "seam", g, null, GodActKind.Blessing, "CC_GodO_Saw_Seam", "ARTIST", who);
         }
 
         // ================= The heat from below =================

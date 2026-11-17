@@ -56,6 +56,37 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager?.TicksGame ?? 0;
 
+        // ---------------- The camera ----------------
+
+        private static Map cameraMap;
+        private static IntVec3 cameraAt = IntVec3.Invalid;
+        private static int cameraTick = -1;
+        private static Game cameraGame;
+
+        /// <summary>
+        /// A god's moment moved the camera to <paramref name="at"/> (Gods/Presence/GodPresence.cs): its words, which follow a
+        /// moment later, are shown with it and never held for the evening (<see cref="TellMath.ByCamera"/>).
+        /// </summary>
+        public static void CameraWent(Map map, IntVec3 at)
+        {
+            if (map == null) return;
+            cameraGame = Current.Game;
+            cameraMap = map;
+            cameraAt = at;
+            cameraTick = Now;
+        }
+
+        /// <summary>A line on <paramref name="map"/> about <paramref name="look"/> is the words of the moment the camera just went to.</summary>
+        private static bool ByCamera(Map map, LookTargets look)
+        {
+            if (cameraTick < 0 || cameraMap == null || Current.Game != cameraGame) return false;
+            var target = look != null && look.IsValid ? look.PrimaryTarget : GlobalTargetInfo.Invalid;
+            var on = map ?? (target.IsValid ? target.Map : null);
+            float cells = -1f;
+            if (target.IsValid && target.Map == cameraMap && cameraAt.IsValid) cells = target.Cell.DistanceTo(cameraAt);
+            return TellMath.ByCamera(cameraTick, Now, on == cameraMap, cells);
+        }
+
         // ---------------- Messages ----------------
 
         /// <summary>
@@ -90,6 +121,8 @@ namespace ColonyCouncil
                     case NewsMode.Digest:
                         var waiting = NewsComponent.Instance;
                         if (waiting == null) break;
+                        // The words of a moment the camera just went to come with it, not in the evening's news.
+                        if (ByCamera(map, look)) break;
                         var home = HomeOf(map, look);
                         int colony = ColonyOf(home, look);
                         // Told once: the same words shown as a message a little while ago aren't the evening's news too.
@@ -132,7 +165,7 @@ namespace ColonyCouncil
                 item = Item(kind, home, text, look, type);
                 item.weight = WeightOf(importance);
                 NoteThreat(home, colony);
-                verdict = Book.Judge("M|" + colony + "|" + (key ?? text), colony, (int)kind, false, item.weight, MessagesADay, Now);
+                verdict = Book.Judge("M|" + colony + "|" + (key ?? text), colony, (int)kind, false, item.weight, MessagesADay, Now, ByCamera(map, look));
             }
             catch (Exception e)
             {
@@ -170,7 +203,7 @@ namespace ColonyCouncil
                 var home = HomeOf(map, look);
                 int colony = ColonyOf(home, look);
                 NoteThreat(home, colony);
-                verdict = Book.Judge("L|" + colony + "|" + (key ?? label + "\n" + text), colony, (int)kind, true, WeightOf(importance), LettersADay, Now);
+                verdict = Book.Judge("L|" + colony + "|" + (key ?? label + "\n" + text), colony, (int)kind, true, WeightOf(importance), LettersADay, Now, ByCamera(map, look));
                 if (verdict == TellVerdict.Held)
                 {
                     line = Item(kind, home, TellMath.LetterLine(label, text), look, TypeOf(def));

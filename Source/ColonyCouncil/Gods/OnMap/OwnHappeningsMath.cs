@@ -505,6 +505,17 @@ namespace ColonyCouncil
         /// <summary>Someone in a ring hears her at this chance, once in this many days each; a ring is remembered this long.</summary>
         public const float BreathChance = 0.35f, BreathPawnDays = 60f, RingDays = 6f;
 
+        /// <summary>
+        /// What a god left, found (OwnHappenings.Found): the nearest of the colony is sent to look only from this many cells away
+        /// at most (a short walk; the player, 17 November 2026, whose colonist walked across the map for it); farther, the
+        /// first to come within sight of it says it, within <see cref="LookWaitDays"/>. One sent has <see cref="LookWalkHours"/>
+        /// to get there.
+        /// </summary>
+        public const float LookWalkCells = 40f, LookWalkHours = 2f, LookWaitDays = 1f;
+
+        /// <summary>The nearest of the colony, <paramref name="cells"/> away, is sent to look.</summary>
+        public static bool SendToLook(float cells) => cells >= 0f && cells <= LookWalkCells;
+
         // ================= Ennu =================
 
         /// <summary>The tests the Guest may ask now: the cold's coat only in the cold, a fire's story only with a fire, the graves only with graves, the cook's name only with a cook.</summary>

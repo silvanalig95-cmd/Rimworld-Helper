@@ -395,8 +395,7 @@ namespace ColonyCouncil
             }
             if (b.bowlCook != null) OwnHappenings.Memory(b.bowlCook, BowlThought);
             OwnHappenings.Card(g, map, "Bowl", true, new LookTargets(table), LetterDefOf.PositiveEvent, Importance.Notable, cook.Named("COOK"), chalk.Named("CHALK"));
-            var seer = OwnHappenings.Found(b, map, table.Position, "bowl", g, cook);
-            OwnHappenings.Saw(g, map, table.Position, GodActKind.Blessing, seer, "CC_GodO_Saw_Bowl", cook.Named("COOK"));
+            OwnHappenings.Found(b, map, table.Position, "bowl", g, cook, GodActKind.Blessing, "CC_GodO_Saw_Bowl", "COOK", cook);
             return true;
         }
 

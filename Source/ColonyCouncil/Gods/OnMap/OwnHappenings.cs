@@ -27,6 +27,16 @@ namespace ColonyCouncil
         public string lookTag, lookWhat;
         public int lookGod = -1, lookUntil = -1;
 
+        /// <summary>
+        /// What a god left that nobody has seen yet: the home it is at, whether the colony waits for someone to come within
+        /// sight of it (nobody near enough to send), and the book's words for it once someone has (its key, kind and one
+        /// named argument), written then and in that one's words.
+        /// </summary>
+        public Map lookMap;
+        public bool lookWait;
+        public string lookSaw, lookArg, lookValue;
+        public int lookKind;
+
         // ---- Hollin ----
         /// <summary>A dryad walking to the one it gives its word to: the dryad, the one, the word, what it points at, until when.</summary>
         public Pawn dryad, dryadTo;
@@ -238,6 +248,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lookWhat, "lookWhat");
             Scribe_Values.Look(ref lookGod, "lookGod", -1);
             Scribe_Values.Look(ref lookUntil, "lookUntil", -1);
+            Scribe_References.Look(ref lookMap, "lookMap");
+            Scribe_Values.Look(ref lookWait, "lookWait");
+            Scribe_Values.Look(ref lookSaw, "lookSaw");
+            Scribe_Values.Look(ref lookKind, "lookKind");
+            Scribe_Values.Look(ref lookArg, "lookArg");
+            Scribe_Values.Look(ref lookValue, "lookValue");
             Scribe_References.Look(ref dryad, "dryad");
             Scribe_References.Look(ref dryadTo, "dryadTo");
             Scribe_Values.Look(ref dryadWord, "dryadWord");
@@ -641,49 +657,125 @@ namespace ColonyCouncil
             map?.mapPawns.FreeColonistsSpawned.Where(p => p != not && GodOmens.Awake(p)).OrderBy(p => at.IsValid ? p.Position.DistanceToSquared(at) : 0).FirstOrDefault();
 
         /// <summary>
-        /// Someone finds what a god left at <paramref name="at"/> and says so (<paramref name="tag"/>): one of the colony who can
-        /// see it now says it at once; else the nearest awake walks over to look and says it there. The book keeps whoever saw it.
+        /// Someone finds what a god left at <paramref name="at"/> and says so (<paramref name="tag"/>), and the colony's book keeps
+        /// it in their words (<paramref name="sawKey"/> of <paramref name="kind"/>, with one named argument) once they have seen it:
+        /// one of the colony who can see it now says it at once; else the nearest awake, if a short walk away
+        /// (<see cref="OwnHappeningsMath.SendToLook"/>), walks over and says it there; else the first of the colony to come
+        /// within sight of it, within a day (then, if nobody has, the book keeps it in no one's words). A ring on open
+        /// ground ("ringdig") is always walked to, for its middle is dug.
         /// </summary>
-        public static Pawn Found(OwnHappeningsBook b, Map map, IntVec3 at, string tag, God g, string what = null)
+        public static void Found(OwnHappeningsBook b, Map map, IntVec3 at, string tag, God g, string what, GodActKind kind, string sawKey,
+            string argName = null, string argValue = null)
         {
-            if (b == null || map == null || !at.IsValid) return null;
+            if (b == null || map == null || !at.IsValid) return;
             var seer = tag == "ringdig" ? null : Witness(map, at, 14f);
             if (seer != null)
             {
                 Say(seer, tag, g, null, (what ?? "").Named("WHAT"));
-                return seer;
+                Saw(g, map, at, kind, seer, sawKey, Args(argName, argValue));
+                return;
             }
-            var p = Nearest(map, at);
-            if (p == null || b.lookBy != null) return null;
-            var near = CellFinder.StandableCellNear(at, map, 2f);
-            if (!near.IsValid || !GoTo(p, near)) return null;
-            b.lookBy = p;
+            // Someone is already on their way to another: this one goes into the book now, in no one's words.
+            if (b.lookBy != null || b.lookWait)
+            {
+                Saw(g, map, at, kind, null, sawKey, Args(argName, argValue));
+                return;
+            }
+            b.lookMap = map;
             b.lookAt = at;
             b.lookTag = tag;
             b.lookWhat = what;
             b.lookGod = g?.id ?? -1;
-            b.lookUntil = Now + GenDate.TicksPerHour * 3;
-            b.Due(Now + 120);
-            return p;
+            b.lookSaw = sawKey;
+            b.lookKind = (int)kind;
+            b.lookArg = argName;
+            b.lookValue = argValue;
+            var p = Nearest(map, at);
+            if (p != null && OwnHappeningsMath.SendToLook(p.Position.DistanceTo(at)) && SendToLook(b, p)) return;
+            Wait(b, Now);
         }
 
-        /// <summary>The one sent to look gets there and says what they see.</summary>
+        private static NamedArgument[] Args(string name, string value) => name.NullOrEmpty() ? new NamedArgument[0] : new[] { (value ?? "").Named(name) };
+
+        /// <summary>One of the colony walks over to look.</summary>
+        private static bool SendToLook(OwnHappeningsBook b, Pawn p)
+        {
+            var near = CellFinder.StandableCellNear(b.lookAt, p.Map, 2f);
+            if (!near.IsValid || !GoTo(p, near)) return false;
+            b.lookBy = p;
+            b.lookWait = false;
+            b.lookUntil = Now + Mathf.RoundToInt(OwnHappeningsMath.LookWalkHours * GenDate.TicksPerHour);
+            b.Due(Now + 120);
+            return true;
+        }
+
+        /// <summary>Nobody near enough: the first of the colony to come within sight of it says it, within a day.</summary>
+        private static void Wait(OwnHappeningsBook b, int now)
+        {
+            b.lookBy = null;
+            b.lookWait = true;
+            b.lookUntil = now + Mathf.RoundToInt(OwnHappeningsMath.LookWaitDays * GenDate.TicksPerDay);
+            b.Due(now + 250);
+        }
+
+        /// <summary>The one who saw it said so: the book keeps it in their words (null: someone at the home), and the look is over.</summary>
+        private static void Seen(OwnHappeningsBook b, Pawn by)
+        {
+            var map = b.lookMap ?? by?.Map;
+            if (map != null && !b.lookSaw.NullOrEmpty()) Saw(Gods.ById(b.lookGod), map, b.lookAt, (GodActKind)b.lookKind, by, b.lookSaw, Args(b.lookArg, b.lookValue));
+            b.lookBy = null;
+            b.lookWait = false;
+            b.lookMap = null;
+            b.lookSaw = null;
+        }
+
+        /// <summary>The one sent to look gets there and says what they see; or, waiting, the first to come within sight of it says it.</summary>
         private static void Look(OwnHappeningsBook b, int now)
         {
+            if (b.lookWait)
+            {
+                var map = b.lookMap;
+                if (map == null || !Homes.IsHome(map) || now > b.lookUntil)
+                {
+                    Seen(b, null);
+                    return;
+                }
+                var w = Witness(map, b.lookAt, 14f);
+                if (w == null)
+                {
+                    b.Due(now + 250);
+                    return;
+                }
+                // A ring on open ground: they walk over and dig at its middle.
+                if (b.lookTag == "ringdig")
+                {
+                    if (!SendToLook(b, w)) b.Due(now + 250);
+                    return;
+                }
+                Stand(w, b.lookAt, 200);
+                Say(w, b.lookTag, Gods.ById(b.lookGod), null, (b.lookWhat ?? "").Named("WHAT"));
+                Seen(b, w);
+                return;
+            }
             var p = b.lookBy;
             if (p == null) return;
             if (p.Dead || !p.Spawned || p.Downed || now > b.lookUntil)
             {
-                b.lookBy = null;
+                // They never got there: the first of the colony to come within sight of it says it.
+                Wait(b, now);
                 return;
             }
             if (p.Position.InHorDistOf(b.lookAt, 3f))
             {
                 Stand(p, b.lookAt, 200);
                 // Morel's ring on open ground: they kneel at its middle and dig, and something small comes up out of the earth.
-                if (b.lookTag == "ringdig") b.lookWhat = OwnMorel.Dug(p.Map, b.lookAt, p) ?? b.lookWhat;
+                if (b.lookTag == "ringdig")
+                {
+                    b.lookWhat = OwnMorel.Dug(p.Map, b.lookAt, p) ?? b.lookWhat;
+                    if (b.lookArg == "WHAT") b.lookValue = b.lookWhat;
+                }
                 Say(p, b.lookTag, Gods.ById(b.lookGod), null, (b.lookWhat ?? "").Named("WHAT"));
-                b.lookBy = null;
+                Seen(b, p);
                 return;
             }
             if (p.CurJobDef != JobDefOf.Goto) GoTo(p, CellFinder.StandableCellNear(b.lookAt, p.Map, 2f));

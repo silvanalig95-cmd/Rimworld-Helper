@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.264.1</version>
+        <date>17 November 2026</date>
+        <title>A god's sign with its words</title>
+        <points>
+          <li>When a god's sign moves the camera, its message now follows after the same short pause, even on a busy day, instead of waiting for the evening news.</li>
+          <li>Only a colonist a short walk away is sent to look at what a god left; otherwise the first one to pass near it stops and says what they see.</li>
+          <li>The Gods' book writes down who found a sign once they have actually seen it, and the moods and small effects that follow go to them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.264.0</version>
         <date>16 November 2026</date>
         <title>Storylines from the towns nearby</title>

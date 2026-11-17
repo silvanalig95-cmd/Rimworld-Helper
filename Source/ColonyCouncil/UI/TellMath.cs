@@ -52,6 +52,25 @@ namespace ColonyCouncil
 
         public const int BusyTicks = BusyHours * Sched.HourTicks;
 
+        /// <summary>
+        /// A god's moment moves the camera to where it happens (Gods/Presence/GodPresence.cs), then its line follows a moment
+        /// later: a line about a place the camera went to within this many ticks (an hour) on that map is shown with it, never
+        /// held for the evening (the player, 17 November 2026: the camera on a body ringed with mushrooms, "however there
+        /// was no indication about what happened exactly").
+        /// </summary>
+        public const int CameraTicks = Sched.HourTicks;
+
+        /// <summary>How near the place the camera went to a line's own place must be, in cells, to be the same moment.</summary>
+        public const float CameraCells = 20f;
+
+        /// <summary>
+        /// A line is the words of the moment the camera went to: the camera went at <paramref name="cameraTick"/> (below 0:
+        /// never), on the line's own map (<paramref name="sameMap"/>), within <see cref="CameraTicks"/>, and the line's place
+        /// is <paramref name="cells"/> from where it went (below 0: the line names no place).
+        /// </summary>
+        public static bool ByCamera(int cameraTick, int now, bool sameMap, float cells) =>
+            sameMap && cameraTick >= 0 && now >= cameraTick && now - cameraTick <= CameraTicks && (cells < 0f || cells <= CameraCells);
+
         /// <summary>The most lines the evening's colony news carries, on a quiet day; past it, the lightest go to the History tab.</summary>
         public const int EveningLines = 8;
 
@@ -268,9 +287,10 @@ namespace ColonyCouncil
         /// (0 or less: no cap). Hard to miss: shown, always, and the day is busy for a while. Worth knowing: shown until the
         /// cap, then held for the evening; on a busy day one person's news, health and the land's are held while the
         /// colony's and the world's are still shown. A thing shown or held is remembered, so the same again within the window
-        /// is merged either way.
+        /// is merged either way. <paramref name="seen"/>: the words of a moment the camera just went to (<see
+        /// cref="TellMath.ByCamera"/>), shown with it whatever the day.
         /// </summary>
-        public TellVerdict Judge(string key, int colony, int kind, bool letter, int weight, int cap, int now)
+        public TellVerdict Judge(string key, int colony, int kind, bool letter, int weight, int cap, int now, bool seen = false)
         {
             Roll(now);
             Prune(now);
@@ -281,6 +301,11 @@ namespace ColonyCouncil
             if (weight >= TellWeight.Important)
             {
                 lastImportant[colony] = now;
+                today[slot] = n + 1;
+                return Tallied(colony, letter ? "letter" : "message", TellVerdict.Show);
+            }
+            if (seen)
+            {
                 today[slot] = n + 1;
                 return Tallied(colony, letter ? "letter" : "message", TellVerdict.Show);
             }
