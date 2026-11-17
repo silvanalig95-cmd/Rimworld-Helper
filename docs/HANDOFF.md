@@ -284,6 +284,11 @@ repo.
   - **Try in the game**: wait for the trade pact's season (the Stormriders' caravan), open the letter: the four answers;
     "Choose other goods" lists the carts with worth and pay; the one picked is carried out to the gate.
   - **Mods that would help**: none.
+  - **Decided after the release** (17 November 2026): the player asked whether "Not this season" defies the pact ("i
+    pay this 20% fee on my goods to consistently have a trader coming"); answered that the caravan comes every season
+    whatever the cart, and the cart is a sale at four fifths of its worth, not a fee; offered to make the cart the pact's
+    price (a skip costs a little goodwill, two in a row and they end it). The player: "ok nevermind, sounds good then".
+    The cart stays optional and the caravan free; don't propose it again unless they ask.
 - 0.266.1, **The pact's cart and the schemes'
   thefts** (17 November 2026). The player, with their save `League_of_Toba_5` (day 124): "i somehow need to give 8
   components regularly to my allies the stormriders. why components exactly? did i select this at some point? since
