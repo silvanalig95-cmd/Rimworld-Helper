@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list from 17 November 2026** (the to-do entries below): Rimfolk reading a room by what is in it, not
+1. **Still on the list from 17 November 2026** (the to-do entries below): choosing the pact's cart each season (the
+   lead's proposal waits for the player's go); Rimfolk reading a room by what is in it, not
    by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
    the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
    everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
@@ -108,6 +109,16 @@ repo.
 - **Done (17 November 2026, the player's go: "your fix sound great for the vengeful traits again, also please"; built,
   not released): Vengeful from Rimfolk, and a way out of it.** The to-do with the player's words and the cause found in
   their save is now one entry above the newest release line ("Vengeful from Rimfolk reined in, and a way out of it").
+- **To do when the player asks (17 November 2026): choose the pact's cart each season.** The player, after 0.266.1:
+  "so i'm not sure about this pact anymore, what exactly does it do? it sounds like this pact is more expensive for me.
+  is this the protection pact? can i just not always select what items to give whenever such a cart is required".
+  Answered: it is the trade pact (theirs and the colony's since day 109, to day 169), not the defence pact (their own
+  offer, since day 59, to day 175, which stays as it is); each season their trader caravan comes and the colony may sell
+  them a cart of about 250 silver's worth for four fifths of it; ending it costs nothing. Today the season's letter
+  (`ChoiceLetter_PactCart`) has only "Send it" and "Refuse and end the pact", and the cart is set by "Change the cart"
+  on the pact's card until changed again. **The lead's proposal, waiting for the player's go**: the season's letter
+  offers "Send it", "Choose other goods" (the cart list with worth and pay, plain goods first and valuables marked, for
+  this season only), "Not this season" (no cart, the pact holds, as an unanswered letter does now) and "End the pact".
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
