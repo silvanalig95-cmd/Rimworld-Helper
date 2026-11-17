@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Vanilla Factions Expanded - Empire's ballroom only where the room is for music (Integrations/BallroomByUse.cs). -->
+  <CC_Settings_BallroomByUse>Ballrooms only for music rooms</CC_Settings_BallroomByUse>
+  <CC_Settings_BallroomByUse_Tip>Vanilla Factions Expanded - Empire calls any room with a musical instrument a ballroom, unless it has a bed, throne or workbench, so a drum makes a dining room or a temple a ballroom. With this on, a room with an altar of your faith stays a temple, a room with dining tables stays a dining room, and a drum on its own doesn't make a ballroom. A room with a harp, harpsichord or piano and no altar or dining table is still a ballroom, for the titles and balls that need one. Off, the mod's own rule.</CC_Settings_BallroomByUse_Tip>
+  <CC_SetNote_BallroomByUse>A temple or dining room keeps its name with an instrument in it, and a drum alone makes no ballroom.</CC_SetNote_BallroomByUse>
+</LanguageData>

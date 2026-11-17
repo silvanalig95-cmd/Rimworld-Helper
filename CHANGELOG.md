@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ballrooms for music rooms
+
+*17 November 2026, version 0.265.2*
+
+- With Vanilla Factions Expanded - Empire, a musical instrument no longer turns a temple or a dining room into a ballroom: a room with an altar of your faith stays a temple, and one with dining tables stays a dining room.
+- A drum on its own no longer makes a ballroom. A room with a harp, harpsichord or piano and no altar or dining table is still a ballroom, for the titles and balls that need one.
+- The setting "Ballrooms only for music rooms" on the Your other mods page brings back the mod's own rule when switched off.
+
 ## A cleaner start
 
 *17 November 2026, version 0.265.1*

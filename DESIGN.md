@@ -15720,6 +15720,30 @@ RealRuins' news file read by HugsLib, Map Mode Framework's ReGrowth layer; HANDO
   PlanetTile, int?)`, calls RoM's own postfix with no start layer (its body never reads it) while its own patch isn't
   on: a caravan with a `TM_Wanderer` crosses land without its movement difficulty, as RoM means.
 
+### Ballrooms only for music rooms (the player's report and go, 17 November 2026; released 0.265.2)
+
+The player: "as soon as I have this drum in the room, it's counted as a ballroom, which, you know, is not appropriate at
+all. It's not even counted as kind of an ideology room ... it's definitely not a dining room ... I just want to have the
+drum somewhere, but not immediately have that become a ballroom"; "ballroom seems to override temple, which is not
+correct in my opinion"; then "if there's other things on the to-do list that make sense to also do at the same time, go
+ahead".
+
+- **The cause.** Vanilla Factions Expanded - Empire's `RoomRoleWorker_Ballroom` scores 10000 for any musical instrument
+  (Ideology's drum among them), unless the room holds a bed, throne, work table or entity holder; the game's dining room
+  scores 12 a table, the temple (Ideology's worship room) at least 2000 with an altar of the colony's faith. Only the
+  highest shows. The game's eating and recreation moods read the room's impressiveness, not its name.
+- **The rule** (`Integrations/BallroomMath.StandsDown`): the ballroom stands down where the game's worship room scores
+  (an altar of the colony's faith), where there is a dining table (a building with an eating surface, as the game's
+  dining room counts), or where every instrument is a drum (`BallroomByUse.IsDrum`: Ideology's `Drum`, or another mod's
+  instrument named a drum). A room with a harp, harpsichord or piano and recreation stays the mod's ballroom, for its
+  titles and balls.
+- **The hooks** (`Integrations/BallroomByUse.cs`): postfixes on the worker's `GetScore` and
+  `GetScoreDeltaIfBuildingPlaced` (the note while placing an instrument), found by name; they stand down quietly without
+  the mod. The setting "Ballrooms only for music rooms" (`ballroomByUse`, on), on the "Your other mods" page under the
+  deeper hooks.
+- Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
+  meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

@@ -163,9 +163,8 @@ repo.
     play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
     `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
     a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix, waiting for the player's go**: (A) the ballroom stands down where an altar makes the room a
-    temple or dining tables make it a dining room (a postfix on VFEE's `GetScore`, softly by name), so an instrument
-    alone or with recreation still makes VFE's ballroom; optionally a drum alone never does. (B) Rimfolk reads a room by
+  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
+    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
     what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
     advice, one with recreation things as a rec room, whatever the game shows.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
@@ -294,6 +293,26 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.265.2, **Ballrooms only for music
+  rooms** (17 November 2026). The player's report and go are in the to-do entry "rooms, the ballroom over the temple and
+  the dining room" (its fix A built; B, Rimfolk reading a room by what is in it, stays on the list), and "if there's
+  other things on the to-do list that make sense to also do at the same time, go ahead". DESIGN.md "Ballrooms only for
+  music rooms".
+  - **What it does.** With Vanilla Factions Expanded - Empire, a room with an altar of the colony's faith stays a temple,
+    one with dining tables stays a dining room, and a drum on its own makes no ballroom; a room with a harp, harpsichord
+    or piano and neither is still the mod's ballroom. In the player's game the dining room (tables, altar, lectern, drum)
+    reads as their temple (the altar's 2000 beats the tables' 12 a table); with the altar and lectern moved elsewhere it
+    reads as the dining room, and Rimfolk's meetings and gatherings go there.
+  - **Code map**: `Integrations/BallroomByUse.cs` (new: `BallroomByUse`, `Patch_BallroomByUse`,
+    `Patch_BallroomByUsePlacing`), `Integrations/BallroomMath.cs` (new, linked in the tests), `CouncilSettings.ballroomByUse`,
+    `UI/SettingsCatalog.cs` (the section, `VfeEmpireId`), `Languages/English/Keyed/Rimfolk_Ballroom.xml` (new),
+    `Rimfolk_Settings_Pages.xml` (`CC_SetSec_Mod_VfeEmpire`), README. Tests: `BallroomTests` (new).
+  - **Can't be checked without the game**: the room's name changing as the drum, altar or a table is placed or removed
+    (roles are recomputed when the room changes), and the placing note.
+  - **Try in the game**: look at the room with the drum (the room's name in the bottom left over it): the temple while
+    the altar is there, the dining room once the altar and lectern are moved out; a room with only the drum is no
+    ballroom. Settings, Rimfolk, Your other mods, "Ballrooms only for music rooms" off brings the mod's rule back.
+  - **Mods that would help**: none.
 - 0.265.1, **The log window at the
   start** (17 November 2026). The player, with their startup log
   (RimWorld 1.7.5011 rev24, Harmony 3.0.0-rc.6, HugsLib 12): "got this log window pop up on the latest start". The game
