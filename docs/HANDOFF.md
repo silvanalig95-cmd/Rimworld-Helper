@@ -23,7 +23,9 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. (Done 17 November 2026: the log window at the start, the entry above the newest release line.)
+1. **Four reports, 17 November 2026, each with the lead's fix, waiting for the player's go** (the to-do entries below):
+   the pact's cart of 8 components, Vengeful from Rimfolk and a way out, rooms (the ballroom over the temple and the
+   dining room); and, when asked, more traits that come and go. (Done the same day: the log window at the start, 0.265.1.)
 2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
    case, S12 the lost founder's grave, Q14 the one away quest within 3 tiles): `docs/quests-proposals.md`, "Rounds".
    The player can strike or change any of it first. Round 3's storylines only add files in
@@ -91,6 +93,81 @@ repo.
 - **Done (17 November 2026, the player's go: "alright", "please fix the bugs"): the log window at the start.** The
   report with the player's words, the cause of each red line and what was built are now one entry above the newest
   release line ("The log window at the start").
+- **To do when the player asks (17 November 2026): the pact's cart, 8 components a season.** The player, with their
+  save `League_of_Toba_5` (day 124): "i somehow need to give 8 components regularly to my allies the stormriders. why
+  components exactly? did i select this at some point? since this is a very valuable good and I'd rather give something
+  else instead. can you update this?"
+  - **The cause.** The trade pact (`Diplomacy/Pacts.cs`, `PactMath.cs`): each season a cart of the colony's goods goes
+    to the partner's porters, who pay 4/5 of its worth. What goes in it is fixed when the pact is made, by
+    `Pacts.CartGoods`: the stores ranked by total worth (count x unit value), leaving out only silver, unstackable and
+    untradeable things, unit values outside 0.3 to 60 and fewer than 3 in stock; the count is about 250 silver's worth,
+    at most a third of the stock. Components (32 each, about 68 in stores) came first, so 8. Not the people's want, age
+    or a table: the Stormriders are the dark elves (`DevDesigner_DarkElvesFaction`), a medieval people. The colony
+    proposed the pact by letter (Guido to their head, answered warmly on day 109.1), and the letter window's "Ask" is
+    pre-filled with the first of the list (`DiplomacyLetters.cs`, `now = asks.FirstOrDefault(...)`) and shows no worth
+    or pay; renewing and hand-overs take the first with no choice at all (`Pacts.cs`, `HandOvers.cs`). So they did
+    choose it, without being shown it. The cart goes out by itself whenever 8 unforbidden components are in store; with
+    fewer, "no cart goes out this season" and nothing else.
+  - **In their save**: tie 114, a trade pact with Faction_25 (ally, goodwill 64), goods `ComponentIndustrial` x 8, since
+    day 109.13, ends day 169.13; carts on days 109 and 124 (203 silver for the second). Also a defence pact (theirs).
+  - **What they can do now**: "End it by letter" on the pact's card (no goodwill cost in the code), then propose a new
+    trade pact and open the Ask list to pick something else.
+  - **The lead's fix, waiting for the player's go**: (A) the cart picks a real surplus, never a crafting or precious
+    input (components, advanced components, plasteel, medicine, gold, jade, uranium, chemfuel and the like, by thing
+    category), counted above a reserve, preferring what the partner's age uses (`DealingMath.RequestGoods` already
+    knows: wood, cloth, leather, food, blocks for the tribal and medieval); a live pact on a good now left out is
+    re-picked, with a message. (B) No silent default in the letter: the Ask list shows each cart's worth and pay ("8
+    components a season, about 256 silver's worth; they pay 203"), and the pact's card gets "Change the cart", a letter
+    to their head. `CartGoods` is shared with face-to-face pacts, hand-overs and Dealings' supply contracts.
+  - **Found on the way**: the letter says "8 component" (`Couriers.Counted` skips the plural; cause not yet found). And
+    the allied Stormriders schemed against the colony while allied: tie 138, a theft of 60 to 180 silver of components
+    by a visitor at night, succeeded unseen on day 122.7 (`Schemes.cs`; schemes run for any people at peace with a
+    grudge of 20 or more, pact allies too). To ask the player whether pact allies should scheme at all.
+- **To do when the player asks (17 November 2026): Vengeful from Rimfolk, and a way out of it.** The player: "i think two
+  of my colonists became vengeful as a result of rimfolk, is that possible? they got it at some point during an event.
+  now they have some rivals within the colony and it gives them quite a huge debuff. ... I've only had this vengeful one
+  come up twice and now i don't really know what I can do against it, as i don't want to evict any pawns."
+  - **The cause: Rimfolk.** `Rimfolk_TC_VTE_Vengeful` (`Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`) gives Vanilla
+    Traits Expanded's `VTE_Vengeful` to someone who swore vengeance after a loss (marks SworeVengeance and Loss or
+    Betrayal, temper moved 6 or more, warmth 10 or less, not Kind), 8% a day. In their save: Alder killed by the
+    mechanoid hive Armmurd on day 98.27; Avila, Bautista and Guido swore vengeance (`Secrets/Vendettas.cs`, open, no kill
+    yet); Avila became vengeful on day 100.01, Bautista on day 112.01. VTE's `VTE_MyRivalsAreAlive` is -20 mood while a
+    rival lives: the rivals in the colony, not the killers. Avila has Rimfolk rival ties with Soot, Ape and Webb and one
+    budding with Bautista (an epithet passed from him to her). No rule ever takes Vengeful away, and Kind can't come
+    while it is there.
+  - **What they can do now**: keep the rivals apart (rooms, work, meal and recreation times) so the ill will fades above
+    -20 (the -20 goes while no rival is left, the trait stays); a moral guide's counsel or a therapist for mood; People
+    Can Change (in their list) makes traits come and go by its own settings.
+  - **The lead's fix, waiting for the player's go**: (A) Vengeful fades: a Lose rule when the vendetta behind it ends
+    (avenged, forgiven, peace with the killers, laid down) or after a long calm with kind marks, told in a plain letter,
+    the 60-day gap between one person's changes not applying to undoing what Rimfolk gave. (B) The gain reined in: only
+    when the vendetta has stood 30 days or more unpaid, at a lower chance, not for someone who already has a rival in the
+    colony, one per loss.
+- **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
+  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 51 rules: 30 give a
+  trait (9 of them bad ones), 5 take a bad one away, 16 move a trait along its scale; in their save 3 changes in 124
+  days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
+- **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
+  player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
+  spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
+  you know, is not appropriate at all. It's not even counted as kind of an ideology room ... it's definitely not a
+  dining room ... I just want to have the drum somewhere, but not immediately have that become a ballroom, as it's just
+  weird ... I want the gatherings where food is involved, of course, happening in my dining room"; then "ballroom seems
+  to override temple, which is not correct in my opinion".
+  - **The cause.** Vanilla Factions Expanded - Empire's `VFEE_Ballroom` (`RoomRoleWorker_Ballroom`, 1.7 source): any
+    musical instrument (the Ideology drum among them) scores 10000, unless the room holds a bed, throne, work table or an
+    entity holder; the game's dining room scores 12 a table, the rec room 7 a recreation thing, the temple (Ideology's
+    worship room) 75 an altar, at least 2000. The highest wins and only one name shows. In the game's code (RW-Decompile,
+    `Toils_Ingest`, `JoyUtility`) the "ate in impressive dining room" and recreation moods read the room's
+    impressiveness, not its name. The name matters for VFE Empire's titles and balls, and for Rimfolk: council meetings,
+    play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
+    `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
+    a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
+  - **The lead's fix, waiting for the player's go**: (A) the ballroom stands down where an altar makes the room a
+    temple or dining tables make it a dining room (a postfix on VFEE's `GetScore`, softly by name), so an instrument
+    alone or with recreation still makes VFE's ballroom; optionally a drum alone never does. (B) Rimfolk reads a room by
+    what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
+    advice, one with recreation things as a rec room, whatever the game shows.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
