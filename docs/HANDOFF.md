@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. (Done 17 November 2026: a god's sign comes with its words, the entry above the newest release line.)
+1. **The log window at the start** (17 November 2026, a report; bug fixes come first): the to-do entry "the log window
+   at the start" below, with the cause of each red line and the lead's fix (A, B, C), waiting for the player's go.
 2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
    case, S12 the lost founder's grave, Q14 the one away quest within 3 tiles): `docs/quests-proposals.md`, "Rounds".
    The player can strike or change any of it first. Round 3's storylines only add files in
@@ -88,6 +89,58 @@ repo.
 - **Done (17 November 2026, the player's go: "yes, your fix!"): a god's sign comes with its words.** The report with
   the player's words, the cause and what was built are now one entry above the newest release line ("A god's sign
   comes with its words").
+- **To do when the player asks (17 November 2026): the log window at the start.** The player, with their startup log
+  (RimWorld 1.7.5011 rev24, Harmony 3.0.0-rc.6, HugsLib 12): "got this log window pop up on the latest start". The game
+  opens its log window by itself whenever something logs an error while it loads. The red lines in their log, whose
+  each is and what it does:
+  1. Lunar Framework 1.2.1 (the loader of Geological Landforms, Map Preview's TrueTerrainColors and Biome Transitions):
+     "Error in HarmonyInliningFixer", a TargetParameterCountException. Its fixer calls a Harmony method by reflection
+     with the old number of arguments, which Harmony 3.0 rc.6 changed. Theirs; the mods load and run.
+  2. HugsLib's news, three lines "Type title / text / important is not a Def type ... in file 2026-11.xml": RealRuins'
+     new news file (its own format; the text is RealRuins' November update) sits in a `News` folder, which HugsLib reads
+     in every mod. Harmless: that news just isn't shown.
+  3. Map Mode Framework: "BiomesKitWorldLayer [ReGrowthCore] not found. Render patch not applied.": its ReGrowth
+     compatibility looks for a world layer ReGrowth 2 (5.3) no longer has. Theirs.
+  4. Giddy-Up, five lines: RG_Dodo and RG_Thrinaxodon (ReGrowth's) listed twice in one land, the cause found in 0.141.0.
+     It is not only Giddy-Up's: the game's dictionary of a land's animals stays half filled after that first throw, so
+     in TemperateForest, TemperateSwamp, TropicalRainforest, TropicalSwamp and AridShrubland the game's own wild-animal
+     spawns (and everything else that asks the game) miss each animal it reaches after the first repeat. Rimfolk reads
+     around it for itself (the five yellow `[Rimfolk] the game can't read the wild animals of ...` lines, one per land,
+     RG_Synthetion repeated too); the game doesn't.
+  5. A RimWorld of Magic, "Failed to apply Harmony patches": its healing-rain patch, the cause found in 0.140.0. HugsLib
+     logs the error before Rimfolk's rescue runs; the rescue worked ("Rimfolk applied 73 of its patches that were left
+     out"). One more of its patches is refused, the yellow `[Rimfolk] ... CostToMove_Caravan_Patch` line: its postfix
+     names the start tile a `PlanetLayer` where the game has a `PlanetTile`. What it does (RWoM master e4cd350,
+     `HarmonyPatches.cs`): a caravan with a Wanderer (its `TM_Wanderer` trait) crosses land without its movement
+     difficulty (`__result / WorldPathGrid.CalculatedMovementDifficultyAt(end, false, ticksAbs, ...)`); the body never
+     reads the start. In their game Wanderers travel at the normal pace.
+  6. HugsLib, "Exception during Execute ... Log file path is unknown ... Player.log": from clicking "Open log file" in
+     that window; this game's log isn't where HugsLib looks for it. Not a fault of the start.
+  **The lead's fix, waiting for the player's go:**
+  - A. Mend the lands' lists at load, for everyone. An action queued from `ColonyCouncilMod`'s constructor
+    (`LongEventHandler.ExecuteWhenFinished`: in their log those run after every def has loaded and before every mod's
+    startup classes, Giddy-Up's `Setup` among them); no Harmony. In each land: an animal listed more than once in its own
+    list, its pollution list or its coastal list, or in its own list and its race's `wildBiomes`, is kept once at the
+    mean (the rule of `BiomeAnimalsMath.Merge`; where it is the land's list and the race's, the land's record goes and
+    the race's takes the mean, as the race's record already serves the game's loop); a record whose animal's def is
+    missing is dropped; the game's three caches (`cachedAnimalCommonalities`, `cachedPollutionAnimalCommonalities`,
+    `cachedCoastalAnimalCommonalities`, names checked in the 1.6 reference) are cleared in case something read them
+    first. One plain message line names what was merged. Giddy-Up's five errors and Rimfolk's five warnings go, and the
+    game's own spawns there are whole again. A pawn kind without a race can't be mended this way; `BiomeAnimals` still
+    reads around it. Pure part in `BiomeAnimalsMath` with tests.
+  - B. A RimWorld of Magic without its red line. A prefix on HugsLib's `ModBase.ApplyHarmonyPatches`, for RoM's
+    `HugsMod` only, that does what HugsLib does there (HugsLib 12 source: the `HarmonyAutoPatch` and
+    `HugsLibController.Instance.ShouldHarmonyAutoPatch(assembly, id)` checks, `HarmonyInst = new Harmony(id)` with the
+    mod's `PackageIdPlayerFacing`) but applies the classes one at a time (`HarmonyRescue`), leaving out the two this
+    Harmony refuses, and returns false. On anything unexpected it returns true and HugsLib runs as now, with the
+    postfix rescue still after it. RoM's `HugsMod` never uses `HarmonyInst` (source checked). The error and the warning
+    become one message line.
+  - C. The Wanderer's travel back: a postfix on `Caravan_PathFollower.CostToMove(Caravan, PlanetTile, PlanetTile, int?)`
+    that calls RoM's own `CostToMove_Caravan_Postfix` with `start.Layer`, only while its own patch isn't on (as
+    `Patch_MagicHealingRain` does for the rain).
+  The other red lines (Lunar Framework, RealRuins' news file, Map Mode Framework) are those mods' own and stay; the
+  window will still open while they log them. Rimfolk doesn't hide other mods' errors; the player can report each to
+  its author.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
