@@ -23,7 +23,9 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Four reports, 17 November 2026, each with the lead's fix, waiting for the player's go** (the to-do entries below):
+1. **A god's find with no words, no look and a nameless mood** (17 November 2026, a report with the lead's fix, waiting
+   for the player's go; the to-do entry below). Being built (the player's go, 17 November 2026): the pact's cart,
+   Vengeful, the Stormriders. **Four reports, 17 November 2026** (the to-do entries below):
    the pact's cart of 8 components, Vengeful from Rimfolk and a way out, rooms (the ballroom over the temple and the
    dining room); and, when asked, more traits that come and go. (Done the same day: the log window at the start, 0.265.1.)
 2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
@@ -93,6 +95,34 @@ repo.
 - **Done (17 November 2026, the player's go: "alright", "please fix the bugs"): the log window at the start.** The
   report with the player's words, the cause of each red line and what was built are now one entry above the newest
   release line ("The log window at the start").
+- **To do when the player asks (17 November 2026): a god's find with no words, no look and a nameless mood.** The
+  player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby pawns
+  had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
+  animation for this event, and also no alert for it."
+  - **What happened** (day 125.1, about 9 to 11 in the morning): Revel's own happening "a stash found"
+    (`OwnRevel.FindStash`, key `CC_GodRevel_Saw_Stash`): Lorena, out at the west edge (20, 195), found Vanilla Brewing
+    Expanded's green tea x8 (`RevelGoods.Pick`, about 110 silver's worth, capped at 8); Bautista saw it. The colony
+    doesn't know Revel (no name for it in the book, not seen acting), so `GodLoreMath.Attribute` took it for Undertow,
+    and the book wrote it on Undertow's page; both witnesses hold to Undertow (30 or more), so `GodTouch.Felt` gave
+    `Rimfolk_GodTouch_Blessed` ("my god was good to us", +4) with no cause.
+  - **The causes.** (1) `FindStash` hands the words to the teller (`OwnHappenings.Line`, line 638) before
+    `GodPresence.Look` moves the camera (639), so `Tell.Minor`'s `ByCamera` rule (0.264.1) found no camera move and the
+    line went to the evening's news (it is in the save's waiting list). Revel's vision walked to (`OwnRevel.Arrived`,
+    503/504) has the same order; every other camera move calls `Look` first. With "Colony news: Off", `Minor`'s Off
+    branch archives the words without the `ByCamera` check. (2) No look: the stash's only sight is five small amber
+    flecks (`OwnHappenings.Glow`), thrown with the camera's jump; its key has its own effect, so no touch look follows
+    (and it isn't in 0.265.0's impact table). Most gods' own happenings that move the camera show only what they leave
+    and Rimfolk's small flecks. (3) The mood: `Felt` passes no `cause`, and the def has one fixed line for every god.
+    (4) No alert: Rimfolk has no alert for gods' doings; the message is what was missing.
+  - **The lead's fix, waiting for the player's go**: (A) one helper for a god's happening the camera goes to: the
+    camera, then the god's own look and sting (`GodTouchFx.Show` and `Sound`, which name no god), then the words as a
+    message; used by the stash and the vision, and checked across `Gods/` by a source test (no words handed over before
+    the camera in the same method); the Off branch shows a camera's words too. (B) The mood says what and whose: the
+    occurrence's words carried to `Felt` as its cause ("Why: Lorena found green tea x8 far out on the land ...
+    Bautista holds it was Undertow's doing."), the god named by the colony's own name for the god they took it for,
+    never the true god unless the colony knows it. (C) Text slips seen: a double full stop in 49 of the book's 111
+    lines in this save (the `CC_GodLore_Saw_*` templates end "{WHAT}." after words that already end in one), "found
+    Green tea x8" (`LabelCap` mid-sentence), "at their feet" for one person (`CC_GodRevel_Stash_Text`).
 - **To do when the player asks (17 November 2026): the pact's cart, 8 components a season.** The player, with their
   save `League_of_Toba_5` (day 124): "i somehow need to give 8 components regularly to my allies the stormriders. why
   components exactly? did i select this at some point? since this is a very valuable good and I'd rather give something
