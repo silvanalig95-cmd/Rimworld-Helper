@@ -41,6 +41,8 @@ or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug
    talk piece and 21 of the 23 faiths' descriptions still tell their start through one named founder.
 7. **Pokémon**: the review against PokéWorld Updated (0.135.0) and its voices list are done; pairings are changed when
    the player flags one.
+8. **Every god's doing leaves something real** (17 November 2026): `docs/gods-impact-proposals.md`, 55 proposals for the
+   98 kinds of god occurrence that have no effect of their own; the entry under "State" below has the player's words.
 
 **How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
 container has 4 cores): each gets a brief (`docs/agent-brief.md` holds the part every brief shares), builds and checks
@@ -80,6 +82,17 @@ repo.
   0.206.2 to 0.213.0. On 12 November 2026, "you can go ahead on the todos": the four small asks (0.222.0) and the
   letters and favours are built; the gods' one way and repeats and magic among the peoples are being built; the
   Gods' book and the peoples' rounds 2 to 10 follow, the rounds one batch at a time.)
+- **To do when the player asks (17 November 2026): every god's doing leaves something real, small or larger.** After
+  0.264.1 the player asked: "does anything about the body change? like faster decay or something? is there a gameplay
+  impact from this god event?" (the answer: the body is untouched; the sign gives a small mood to whoever sees it and,
+  about one time in three, a small effect of the god's for them; the dead left lying count against three of the gods each
+  day). On the offer to make the ring do something to the body (rot it away faster and leave richer soil): "these
+  proposals sound great! not every god interaction with the world necessarily needs to have a strong impact, but it
+  should also not be completely trivial". Proposed in `docs/gods-impact-proposals.md`: 98 of the 189 kinds of god
+  occurrence have no effect of their own today (only the moods and the touch's random small effect); 55 proposals give
+  each one a fitting effect of its own, always (the ring round a body rots it away and leaves rich soil; a real gold coin;
+  rain after thunder under a clear sky; the turbines stopping when the wind dies; and so on), and the ones that already
+  lead to something stay as they are. Waits for the player's pick or go; one or two releases.
 - **Done (17 November 2026, the player's go: "yes, your fix!"): a god's sign comes with its words.** The report with
   the player's words, the cause and what was built are now one entry above the newest release line ("A god's sign
   comes with its words").
