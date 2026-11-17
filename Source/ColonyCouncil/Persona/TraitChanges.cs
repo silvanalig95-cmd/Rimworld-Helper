@@ -1113,8 +1113,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Section 26: the changes their life is heading toward, the furthest along first, each with how many of the
         /// things that lead there have happened; hover one for the list. Only rules nothing else stands in the way of
-        /// (the gate), with at least a third of their evidence there; a way out of a trait Rimfolk gave them is shown from
-        /// the start, so the player can see what would undo it. Kept a few hours of game time.
+        /// (the gate), with at least a third of their evidence there; a way out of a trait Rimfolk gave them is shown first
+        /// and from the start, so the player can see what would undo it. Kept a few hours of game time.
         /// </summary>
         public static CharacterSection Building(Pawn p)
         {
@@ -1143,7 +1143,8 @@ namespace ColonyCouncil
             if (rows.Count > 0)
             {
                 s = new CharacterSection { title = "CC_TCB_Section".Translate() };
-                foreach (var row in rows.OrderByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have).Take(BuildingShown))
+                // A way out of a trait Rimfolk gave first, then the furthest along.
+                foreach (var row in rows.OrderByDescending(x => x.def.onlyGiven).ThenByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have).Take(BuildingShown))
                 {
                     string count = row.have >= row.total ? "CC_TCB_All".Translate().ToString() : "CC_TCB_Of".Translate(row.have, row.total).Resolve();
                     var tip = new StringBuilder("CC_TCB_Tip".Translate(TraitWord(row.def, p)).Resolve());

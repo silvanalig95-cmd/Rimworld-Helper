@@ -1334,7 +1334,8 @@ stories), sides moved from nature (lasting plus fading) and where they stand, de
 game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
-  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days; the same
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days (except to
+  take away a trait Rimfolk gave, see "Vengeful from Rimfolk" below); the same
   trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
   so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
 - **Never touched.** Sexuality, the body and inborn gifts (`TraitChangeMath.Untouchable`), traits from genes, a
@@ -1348,6 +1349,59 @@ game's records, a share of time from record snapshots every ten days, calm days,
 - **Told.** A letter (good, bad or neither by rule) with the news, what it means and what led to it with dates, a
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
+
+### Vengeful from Rimfolk, and a way out of it (the player's go, 17 November 2026; not released yet)
+
+The player: "i think two of my colonists became vengeful as a result of rimfolk, is that possible? ... now they have some
+rivals within the colony and it gives them quite a huge debuff ... I've only had this vengeful one come up twice and
+now i don't really know what I can do against it, as i don't want to evict any pawns"; the go on the lead's proposal:
+"your fix sound great for the vengeful traits again, also please". Rimfolk's rule `Rimfolk_TC_VTE_Vengeful` gave
+Vanilla Traits Expanded's `VTE_Vengeful` (its `VTE_MyRivalsAreAlive` is -20 mood while any rival lives, a rival being
+the game's opinion of -20 or less) to someone who swore vengeance after a loss, at 8% a day, and nothing ever took it
+away. In their save Avila (vengeful since day 100) and Bautista (since day 112) swore on the mechanoid hive Armmurd for
+Alder (killed day 98.27); the vow is open with no kills, and Avila has Rimfolk rivalries with three colonists.
+
+- **Reined in** (the same rule): only of a vow of vengeance that has stood 30 days unpaid (open against a people still
+  at war with the colony, none of them fallen to the avenger yet), at 3% a day instead of 8 (about a month on average
+  once everything holds, against twelve days before), never for someone with a rival among the colony's people (an
+  announced rivalry on the Bonds page, or the game's opinion of -20 or less of a colonist, slave or prisoner), and one
+  person at most for each loss. The marks, sides and Kind block are as they were. The loss behind it is kept with the
+  change (`TraitChangeRecord.about`, the lost one's id or name); for a change from before (their two), it is read from
+  the vows that person had sworn by then, so Alder's loss has made someone vengeful and makes nobody else so.
+- **Two ways out**, each only for a vengeful Rimfolk gave (`onlyGiven`: the newest change of the trait kept for them
+  gave it), each with no gap since it came (the default 120 days would hold it past day 220 in their game):
+  `Rimfolk_TC_VTE_VengefulVowOver`, at 15% a day once no vow of theirs stands (avenged, three of them fallen to the
+  avenger; laid down; lapsed two years after it was sworn; the one taken brought home; a blood price or an apology; or
+  those who did it at peace with the colony); and `Rimfolk_TC_VTE_VengefulCalms`, at 5% a day after 45 days without a
+  breakdown counted from when it came (`calmSinceChange`), with one good mark since (a kindness remembered, forgiven,
+  nursed back, carried to safety or carrying someone out of a fight, a promise kept, a wedding, a child born or grown, a moving ritual, a student taught,
+  a year of peace), whatever the vow: a mechanoid hive never makes peace.
+- **Why these numbers.** 45 days is three quadrums, a real calm, and with the 5% after it the trait goes about two
+  months after it came, about as long as the new way in takes. One mark rather than two: Avila's good marks came about
+  one in forty days (three in his first 124), so two would put it near day 180, close to the vow's own lapse. In their
+  save: Avila can be past the calm on day 145 and Bautista on day 157, each then needing a good mark since becoming
+  vengeful (none yet on day 124); the vow on the hive ends at the latest when it lapses on day 218.3, earlier if three
+  of the hive fall to each of them in fights against it or they lay it down (0.8% a day, 1.2 in a good mood, not within
+  15 days of fighting the hive).
+- **The person's 60 days** don't hold back a change that takes away a trait Rimfolk gave (`TraitChangeMath.RateBlocked`
+  with `undoing`, `TraitChanges.Undoes`); the colony's 10 days and the rule's own gap still do.
+- **Older saves.** A vengeful Rimfolk gave fades on the first way once no vow of theirs can be found standing: a
+  vendetta that is gone, or vendettas switched off, count as over. A vengeful the colonist came with, or one whose change
+  is no longer kept (eight later changes), is theirs and stays. `Vendetta.settledTick` (new, saved) dates an ending, so
+  the letter names the vows that ended since the trait came.
+- **Told and shown.** The gain's words now say what the trait does ("has started holding grudges, and is unhappy for as
+  long as any of his rivals is alive"); the two fades have their own letters, journal lines in six voices, and the vows
+  behind them in "What led to it" (how long the vow has stood unpaid; how each ended). A loss's letter now says the
+  character stays where it was because what the trait held is counted with what life changed (`CC_TC_AbsorbedLost`; the
+  gain's line was used for losses too). On the character page "Where life is taking them" shows a way out of a trait
+  Rimfolk gave from the day it came (other rules still need a third of their evidence), and a marks line names the
+  marks that count.
+- **Code**: `Persona/TraitChangeMath.cs` (pure: `Vow`, `Unpaid`, `AnyStanding`, `LossesBehind`, `GaveIt`, `IsRival`,
+  `CalmDays`, `RateBlocked(undoing)`), `Persona/TraitChangeDefs.cs` (`vendetta`, `vendettaDays`, `noRival`, `onlyGiven`,
+  `calmSinceChange`), `Persona/TraitChanges.cs` (the daily pass, the gate, `Vows`, `LossesTaken`, `UnpaidVow`, `VowLines`,
+  `HasRival`, `MarkNames`), `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`settledTick`),
+  `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`, `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page
+  "traits that change". Tests: `TraitChangeTests` (the vows from their save, the limits, the rules).
 
 ### The animals' natures (the player's picks, 7 November 2026)
 
@@ -15719,6 +15773,30 @@ RealRuins' news file read by HugsLib, Map Mode Framework's ReGrowth layer; HANDO
   refuses it. `Patch_MagicWandererTravel`, a postfix on `Caravan_PathFollower.CostToMove(Caravan, PlanetTile,
   PlanetTile, int?)`, calls RoM's own postfix with no start layer (its body never reads it) while its own patch isn't
   on: a caravan with a `TM_Wanderer` crosses land without its movement difficulty, as RoM means.
+
+### Ballrooms only for music rooms (the player's report and go, 17 November 2026; released 0.265.2)
+
+The player: "as soon as I have this drum in the room, it's counted as a ballroom, which, you know, is not appropriate at
+all. It's not even counted as kind of an ideology room ... it's definitely not a dining room ... I just want to have the
+drum somewhere, but not immediately have that become a ballroom"; "ballroom seems to override temple, which is not
+correct in my opinion"; then "if there's other things on the to-do list that make sense to also do at the same time, go
+ahead".
+
+- **The cause.** Vanilla Factions Expanded - Empire's `RoomRoleWorker_Ballroom` scores 10000 for any musical instrument
+  (Ideology's drum among them), unless the room holds a bed, throne, work table or entity holder; the game's dining room
+  scores 12 a table, the temple (Ideology's worship room) at least 2000 with an altar of the colony's faith. Only the
+  highest shows. The game's eating and recreation moods read the room's impressiveness, not its name.
+- **The rule** (`Integrations/BallroomMath.StandsDown`): the ballroom stands down where the game's worship room scores
+  (an altar of the colony's faith), where there is a dining table (a building with an eating surface, as the game's
+  dining room counts), or where every instrument is a drum (`BallroomByUse.IsDrum`: Ideology's `Drum`, or another mod's
+  instrument named a drum). A room with a harp, harpsichord or piano and recreation stays the mod's ballroom, for its
+  titles and balls.
+- **The hooks** (`Integrations/BallroomByUse.cs`): postfixes on the worker's `GetScore` and
+  `GetScoreDeltaIfBuildingPlaced` (the note while placing an instrument), found by name; they stand down quietly without
+  the mod. The setting "Ballrooms only for music rooms" (`ballroomByUse`, on), on the "Your other mods" page under the
+  deeper hooks.
+- Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
+  meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
