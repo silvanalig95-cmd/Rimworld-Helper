@@ -83,6 +83,8 @@ namespace ColonyCouncil
         public string story;
         /// <summary>How the trait moved their nature on each side (taken out of what life had moved, so nothing doubled).</summary>
         public List<float> absorbed = new List<float>();
+        /// <summary>The loss behind a trait that came of an unpaid vow of vengeance (the lost one's id, or name), or null.</summary>
+        public string about;
 
         public void ExposeData()
         {
@@ -98,6 +100,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref summary, "summary");
             Scribe_Values.Look(ref story, "story");
             Scribe_Collections.Look(ref absorbed, "absorbed", LookMode.Value);
+            Scribe_Values.Look(ref about, "about");
             if (Scribe.mode == LoadSaveMode.PostLoadInit) absorbed ??= new List<float>();
         }
     }
@@ -227,7 +230,8 @@ namespace ColonyCouncil
     /// The game's traits can grow, appear or fade with what happens to a colonist (<see cref="TraitChangeDef"/>), and a
     /// change is always the visible end of a story the player can read: the marks behind it with their dates, the deeds
     /// counted, the records the game keeps. Rare by design: once a day the colony is looked over (CouncilDynamics, the
-    /// second half of the council's day), at most one person changes, nobody twice in 60 days, the colony once in 10.
+    /// second half of the council's day), at most one person changes, nobody twice in 60 days (unless the change takes
+    /// away a trait Rimfolk gave them), the colony once in 10.
     /// A trait's nature is taken out of what life had moved them (so gaining kind after many kindnesses doesn't add its
     /// warmth again) and their character stays where it was. The letter, a journal line, the chronicle and the
     /// character page ("Traits gained and lost") tell it. Behind "Traits can change", under "Personalities and social
@@ -419,12 +423,14 @@ namespace ColonyCouncil
             var ready = new List<(Pawn p, TraitChangeDef def, TraitStep step)>();
             foreach (var p in people)
             {
-                if (TraitChangeMath.RateBlocked(t.LastChange(p.thingIDNumber), -1, -1, 0, now) != null) continue;
+                // Within their 60 days, only a change that takes away a trait Rimfolk gave them.
+                bool waiting = TraitChangeMath.RateBlocked(t.LastChange(p.thingIDNumber), -1, -1, 0, now) != null;
                 foreach (var def in TraitChangeDef.All)
                 {
+                    if (waiting && def.change == TraitChangeKind.Gain) continue;
                     try
                     {
-                        if (Why(p, def, now, out var step) == null && Rand.Chance(def.chance)) ready.Add((p, def, step));
+                        if (Why(p, def, now, out var step) == null && (!waiting || Undoes(p, def, step)) && Rand.Chance(def.chance)) ready.Add((p, def, step));
                     }
                     catch (Exception e)
                     {
@@ -528,13 +534,114 @@ namespace ColonyCouncil
             if (!TraitChangeMath.RoomFor(step, traits.allTraits.Count)) return "no room";
             if (step.hasAfter && !Allowed(p, td, step.to, cur)) return "not allowed";
             if ((step.Removes || (has && step.hasAfter)) && HeldByRole(p)) return "role";
+            if (def.onlyGiven && !GaveIt(p, td.defName)) return "not given";
             int lastSame = t.LastChange(p.thingIDNumber, td.defName);
             string rate = TraitChangeMath.RateBlocked(-1, -1, lastSame, def.gapDays, now);
             if (rate != null) return rate;
             if (def.minAge > 0 && (p.ageTracker?.AgeBiologicalYears ?? 0) < def.minAge) return "age";
             if (def.daysHere > 0 && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < def.daysHere * (float)GenDate.TicksPerDay) return "new";
+            if (def.noRival && HasRival(p)) return "rival";
             return null;
         }
+
+        /// <summary>
+        /// Rimfolk gave them this trait: the newest of its changes kept for them added it (a trait they came with, or one a
+        /// change already took away, isn't Rimfolk's to undo).
+        /// </summary>
+        public static bool GaveIt(Pawn p, string trait)
+        {
+            var t = Tracker;
+            if (t == null || p == null || trait == null) return false;
+            var mine = t.changes.Where(c => c.pawn == p.thingIDNumber && c.trait == trait).ToList();
+            return TraitChangeMath.GaveIt(mine.Select(c => c.tick).ToList(), mine.Select(c => c.hasAfter && !c.hadTrait).ToList());
+        }
+
+        /// <summary>The change takes away a trait Rimfolk gave them: the person's 60 days don't hold it back.</summary>
+        private static bool Undoes(Pawn p, TraitChangeDef def, TraitStep step) => step.Removes && GaveIt(p, def.Trait?.defName);
+
+        /// <summary>
+        /// A rival among the colony's people (colonists, slaves and prisoners): a rivalry on the Bonds page, or the game's
+        /// opinion of -20 or less, which is what the game calls a rival and what vengeful reads.
+        /// </summary>
+        private static bool HasRival(Pawn p)
+        {
+            if (p?.relations == null) return false;
+            var social = CouncilGameComponent.Instance?.social;
+            var others = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.Concat(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_PrisonersOfColony);
+            foreach (var o in others)
+            {
+                if (o == null || o == p || !o.RaceProps.Humanlike) continue;
+                bool tie = social != null && social.ties.Any(x => x.kind == TieKind.Rivals && x.announced && x.Between(p, o));
+                if (TraitChangeMath.IsRival(p.relations.OpinionOf(o), tie)) return true;
+            }
+            return false;
+        }
+
+        // ---------------- Vows of vengeance ----------------
+
+        /// <summary>Their vows of vengeance as the rules read them, with the vendettas behind them (none with vendettas switched off).</summary>
+        private static List<(Vendetta v, TraitChangeMath.Vow vow)> Vows(Pawn p)
+        {
+            var list = new List<(Vendetta, TraitChangeMath.Vow)>();
+            var t = CouncilGameComponent.Instance?.vendettas;
+            if (t == null || p == null || ColonyCouncilMod.Settings?.vendettas != true) return list;
+            foreach (var v in t.vendettas)
+                if (v != null && v.avenger == p) list.Add((v, VowOf(v)));
+            return list;
+        }
+
+        private static TraitChangeMath.Vow VowOf(Vendetta v) =>
+            new TraitChangeMath.Vow(v.tick, v.Active, v.faction != null && v.faction.HostileTo(Faction.OfPlayer), v.kills, LossOf(v));
+
+        /// <summary>The loss a vow was sworn for: the lost one's id, or their name in an older save.</summary>
+        private static string LossOf(Vendetta v) => v.victimId.NullOrEmpty() ? v.victim : v.victimId;
+
+        /// <summary>
+        /// The losses that have already made someone take this trait, one person per loss: kept with each change, or, for a
+        /// change from before that was kept (an older save), the losses of the vows that person had sworn by then.
+        /// </summary>
+        private static HashSet<string> LossesTaken(string trait)
+        {
+            var set = new HashSet<string>();
+            var t = Tracker;
+            if (t == null) return set;
+            var vendettas = CouncilGameComponent.Instance?.vendettas?.vendettas;
+            foreach (var c in t.changes)
+            {
+                if (c.trait != trait || c.hadTrait || !c.hasAfter) continue;
+                if (!c.about.NullOrEmpty())
+                {
+                    set.Add(c.about);
+                    continue;
+                }
+                if (vendettas == null || DefDatabase<TraitChangeDef>.GetNamedSilentFail(c.rule ?? "")?.vendetta != TraitChangeDef.VendettaUnpaid) continue;
+                var theirs = vendettas.Where(v => v?.avenger != null && v.avenger.thingIDNumber == c.pawn).Select(VowOf).ToList();
+                foreach (var loss in TraitChangeMath.LossesBehind(theirs, c.tick)) set.Add(loss);
+            }
+            return set;
+        }
+
+        /// <summary>The vow that has stood longest unpaid for a loss that has made nobody take this trait yet, or null; and how long.</summary>
+        private static Vendetta UnpaidVow(Pawn p, TraitChangeDef def, int now, out float days)
+        {
+            var vows = Vows(p);
+            int i = TraitChangeMath.Unpaid(vows.Select(x => x.vow).ToList(), now, LossesTaken(def.trait), out days);
+            return i >= 0 ? vows[i].v : null;
+        }
+
+        /// <summary>No vow of theirs still standing.</summary>
+        private static bool VowsOver(Pawn p) => !TraitChangeMath.AnyStanding(Vows(p).Select(x => x.vow).ToList());
+
+        /// <summary>The rule's vow of vengeance holds: one unpaid long enough, or none left standing.</summary>
+        private static bool VowHolds(Pawn p, TraitChangeDef def, int now)
+        {
+            if (def.vendetta == TraitChangeDef.VendettaOver) return VowsOver(p);
+            return UnpaidVow(p, def, now, out float days) != null && days >= def.vendettaDays;
+        }
+
+        /// <summary>Calm days as the rule counts them: since the last breakdown, and with calmSinceChange since this trait last changed too.</summary>
+        private static float CalmDays(TraitWatch w, TraitChangeDef def, int lastSame, int now) =>
+            w == null ? 0f : TraitChangeMath.CalmDays(w.calmSince, lastSame, now, def.calmSinceChange);
 
         /// <summary>The first piece of evidence the rule still lacks, or null when all of it is there.</summary>
         private static string Lacks(Pawn p, TraitChangeDef def, int now)
@@ -574,7 +681,8 @@ namespace ColonyCouncil
             }
             foreach (var pace in def.pace)
                 if (!pace.Holds(Share(w, p, pace, now))) return "pace " + pace.record;
-            if (def.calmDays > 0 && (w == null || TraitChangeMath.DaysSince(w.calmSince, now) < def.calmDays)) return "calm";
+            if (def.calmDays > 0 && CalmDays(w, def, lastSame, now) < def.calmDays) return "calm";
+            if (!def.vendetta.NullOrEmpty() && !VowHolds(p, def, now)) return "vendetta";
             if (def.meleeFighter && !MeleeFighter(p)) return "melee";
             foreach (var f in def.Practice)
                 if (!f.Holds(Practice.Hours(p, f.name))) return "practice " + f.name;
@@ -702,6 +810,9 @@ namespace ColonyCouncil
             var traits = p.story.traits;
             // The story first, while the marks behind it are as they were.
             string evidence = Evidence(p, def, now);
+            // The loss behind a trait that came of an unpaid vow: no one else takes it for the same loss.
+            var vow = def.vendetta == TraitChangeDef.VendettaUnpaid ? UnpaidVow(p, def, now, out _) : null;
+            string about = vow != null ? LossOf(vow) : null;
             string oldLabel = step.hadTrait ? DegreeLabel(td, step.from, p) : null;
             string newLabel = step.hasAfter ? DegreeLabel(td, step.to, p) : null;
             // Their nature fresh (it's kept for an hour), so the difference is this trait's alone.
@@ -734,11 +845,11 @@ namespace ColonyCouncil
             var body = new StringBuilder(news);
             if (!endsAtNone && !def.meaning.NullOrEmpty()) body.Append(" ").Append(def.meaning.Formatted(p.Named("PAWN"), traitArg).Resolve());
             if (!evidence.NullOrEmpty()) body.Append("\n\n").Append("CC_TC_LedTo".Translate()).Append("\n").Append(evidence);
-            body.Append("\n\n").Append("CC_TC_Absorbed".Translate(p.Named("PAWN")).Resolve());
+            body.Append("\n\n").Append((step.hasAfter ? "CC_TC_Absorbed" : "CC_TC_AbsorbedLost").Translate(p.Named("PAWN")).Resolve());
             var record = new TraitChangeRecord
             {
                 pawn = p.thingIDNumber, name = p.LabelShort, tick = now, rule = def.defName, trait = td.defName, hadTrait = step.hadTrait, hasAfter = step.hasAfter,
-                from = step.from, to = step.to, summary = summary, story = body.ToString(), absorbed = delta.ToList()
+                from = step.from, to = step.to, summary = summary, story = body.ToString(), absorbed = delta.ToList(), about = about
             };
             t.changes.Add(record);
             t.lastChange = now;
@@ -810,7 +921,8 @@ namespace ColonyCouncil
                 if (share < 0f) continue;
                 ordered.Add("CC_TC_Pace".Translate((pace.label ?? pace.record).CapitalizeFirst(), Mathf.RoundToInt(share * 100f), pace.days).Resolve());
             }
-            if (def.calmDays > 0 && w != null) ordered.Add("CC_TC_Calm".Translate(Mathf.FloorToInt(TraitChangeMath.DaysSince(w.calmSince, now))).Resolve());
+            if (def.calmDays > 0 && w != null) ordered.Add("CC_TC_Calm".Translate(Mathf.FloorToInt(CalmDays(w, def, lastSame, now))).Resolve());
+            ordered.AddRange(VowLines(p, def, lastSame, now));
             foreach (var f in def.Skills)
             {
                 var sd = DefDatabase<SkillDef>.GetNamedSilentFail(f.name);
@@ -834,6 +946,43 @@ namespace ColonyCouncil
                 }
             }
             return string.Join("\n", ordered.Select(l => "  - " + l));
+        }
+
+        /// <summary>
+        /// The vows behind a rule, for the letter: the unpaid one and how long it has stood; or, for vows that are over, how
+        /// each ended since the trait came (or that nothing is left standing).
+        /// </summary>
+        private static List<string> VowLines(Pawn p, TraitChangeDef def, int lastSame, int now)
+        {
+            var lines = new List<string>();
+            if (def.vendetta == TraitChangeDef.VendettaUnpaid)
+            {
+                var v = UnpaidVow(p, def, now, out float days);
+                if (v != null)
+                    lines.Add("CC_TC_VowUnpaid".Translate(Mathf.FloorToInt(days), v.faction?.Name ?? "?", v.victim ?? "?").Resolve());
+                return lines;
+            }
+            if (def.vendetta != TraitChangeDef.VendettaOver) return lines;
+            foreach (var (v, vow) in Vows(p).OrderBy(x => x.v.tick))
+            {
+                if (vow.Standing || !EndedSince(v, vow, lastSame)) continue;
+                string line = v.LineKey.Translate(p.LabelShort, v.faction?.Name ?? "?", v.victim ?? "?", v.kills, Vendetta.KillsToSettle).Resolve();
+                if (vow.open && !vow.atWar) line += " " + "CC_TC_VowPeace".Translate(v.faction?.Name ?? "?").Resolve();
+                lines.Add(line);
+            }
+            if (lines.Count == 0) lines.Add("CC_TC_VowNone".Translate(p.Named("PAWN")).Resolve());
+            return lines;
+        }
+
+        /// <summary>
+        /// A vow that ended (or whose people made peace) since the trait came: settled after that, or open with that people at
+        /// peace; one settled before this was kept (an older save) counts if it was sworn after, or less than 120 days before.
+        /// </summary>
+        private static bool EndedSince(Vendetta v, TraitChangeMath.Vow vow, int since)
+        {
+            if (vow.open) return !vow.atWar;
+            if (v.settledTick >= 0) return v.settledTick >= since;
+            return v.tick > since - 120 * GenDate.TicksPerDay;
         }
 
         private static string Signed(float v)
@@ -870,7 +1019,10 @@ namespace ColonyCouncil
             foreach (var need in def.marks)
             {
                 int have = r == null ? 0 : EvidenceMarks(r, need, lastSame, now).Count;
-                parts.Add(("CC_TCB_Marks".Translate(Mathf.Min(have, need.count), need.count).Resolve(), have >= need.count));
+                string names = MarkNames(need);
+                string text = names.NullOrEmpty() ? "CC_TCB_Marks".Translate(Mathf.Min(have, need.count), need.count).Resolve()
+                    : "CC_TCB_MarksNamed".Translate(Mathf.Min(have, need.count), need.count, names).Resolve();
+                parts.Add((text, have >= need.count));
             }
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
@@ -900,9 +1052,19 @@ namespace ColonyCouncil
             }
             if (def.calmDays > 0)
             {
-                int days = w == null ? 0 : Mathf.FloorToInt(TraitChangeMath.DaysSince(w.calmSince, now));
-                parts.Add(("CC_TCB_Calm".Translate(Mathf.Min(days, def.calmDays), def.calmDays).Resolve(), days >= def.calmDays));
+                int days = Mathf.FloorToInt(CalmDays(w, def, lastSame, now));
+                string text = def.calmSinceChange
+                    ? "CC_TCB_CalmSince".Translate(Mathf.Min(days, def.calmDays), def.calmDays, TraitWord(def, p, true)).Resolve()
+                    : "CC_TCB_Calm".Translate(Mathf.Min(days, def.calmDays), def.calmDays).Resolve();
+                parts.Add((text, days >= def.calmDays));
             }
+            if (def.vendetta == TraitChangeDef.VendettaUnpaid)
+            {
+                UnpaidVow(p, def, now, out float unpaid);
+                int days = Mathf.FloorToInt(unpaid);
+                parts.Add(("CC_TCB_VowUnpaid".Translate(Mathf.Min(days, def.vendettaDays), def.vendettaDays).Resolve(), days >= def.vendettaDays));
+            }
+            else if (def.vendetta == TraitChangeDef.VendettaOver) parts.Add(("CC_TCB_VowOver".Translate().ToString(), VowsOver(p)));
             if (def.meleeFighter) parts.Add(("CC_TCB_Melee".Translate().ToString(), MeleeFighter(p)));
             foreach (var f in def.Practice)
             {
@@ -923,6 +1085,16 @@ namespace ColonyCouncil
             return parts;
         }
 
+        /// <summary>The marks a need counts, by their names on the character page: "a kindness remembered, forgiven, ..." (twelve at most).</summary>
+        private static string MarkNames(TraitMarkNeed need)
+        {
+            var labels = new List<string>();
+            foreach (var def in DefDatabase<PersonaMarkDef>.AllDefsListForReading)
+                if (need.Matches(def) && !def.label.NullOrEmpty() && !labels.Contains(def.label)) labels.Add(def.label);
+            if (labels.Count > 12) labels = labels.Take(11).Append("CC_TCB_MarksMore".Translate().ToString()).ToList();
+            return string.Join(", ", labels);
+        }
+
         private static string AxisName(int axis) => ("CC_Persona_Axis_" + (PersonaAxis)axis).Translate().CapitalizeFirst();
 
         /// <summary>"+16 or more", "10 or less".</summary>
@@ -941,7 +1113,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Section 26: the changes their life is heading toward, the furthest along first, each with how many of the
         /// things that lead there have happened; hover one for the list. Only rules nothing else stands in the way of
-        /// (the gate), with at least a third of their evidence there. Kept a few hours of game time.
+        /// (the gate), with at least a third of their evidence there; a way out of a trait Rimfolk gave them is shown from
+        /// the start, so the player can see what would undo it. Kept a few hours of game time.
         /// </summary>
         public static CharacterSection Building(Pawn p)
         {
@@ -958,7 +1131,7 @@ namespace ColonyCouncil
                     if (Gate(p, def, now, out _) != null) continue;
                     var parts = Parts(p, def, now);
                     int have = parts.Count(x => x.ok);
-                    if (parts.Count == 0 || have == 0 || have < parts.Count * BuildingFrom) continue;
+                    if (parts.Count == 0 || (!def.onlyGiven && (have == 0 || have < parts.Count * BuildingFrom))) continue;
                     rows.Add((def, have, parts.Count, parts));
                 }
                 catch (Exception e)
@@ -984,11 +1157,15 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>The trait a rule leads to, as the player would read it: "kind", "no longer abrasive", "steadier nerves".</summary>
-        private static string TraitWord(TraitChangeDef def, Pawn p)
+        /// <summary>
+        /// The trait a rule leads to, as the player would read it: "kind", "no longer abrasive", "steadier nerves"; with
+        /// <paramref name="now"/>, the trait as they have it now ("vengeful").
+        /// </summary>
+        private static string TraitWord(TraitChangeDef def, Pawn p, bool now = false)
         {
             var td = def.Trait;
             var cur = p.story?.traits?.GetTrait(td);
+            if (now) return cur != null ? DegreeLabel(td, cur.Degree, p) : td.label;
             var degrees = td.degreeDatas?.Select(d => d.degree).ToList() ?? new List<int>();
             var step = TraitChangeMath.Plan(def.change, cur != null, cur?.Degree ?? 0, def.degree, def.anyDegree, degrees, def.from);
             if (step.ok && step.hasAfter) return DegreeLabel(td, step.to, p);
