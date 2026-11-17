@@ -175,7 +175,7 @@ namespace ColonyCouncil
                 if (g == null) continue;
                 string text = "CC_Wsh_DemandIgnored".Translate(Worship.Called(g).Named("GOD"), ("CC_Wsh_Kind_" + d.kind).Translate().Named("WHAT")).Resolve();
                 Worship.Favour(g, map, WorshipMath.DemandIgnored, text, FavourSource.Neglect, GodOffence.Neglect);
-                Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, d.shrine != null && d.shrine.Spawned ? new LookTargets(d.shrine) : null);
+                Tell.FromGod(NewsKind.Colony, map, text, d.shrine != null && d.shrine.Spawned ? new LookTargets(d.shrine) : null);
             }
         }
 

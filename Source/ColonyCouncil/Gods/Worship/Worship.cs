@@ -342,7 +342,7 @@ namespace ColonyCouncil
                 {
                     Glow(map, cell, g, kind == PresenceKind.Wrath, !spec.veiled);
                     if (letter) Tell.Letter(NewsKind.Colony, Importance.Notable, map, title, text, LetterDefOf.NeutralEvent, look);
-                    else Tell.Minor(NewsKind.Colony, Importance.Notable, map, text, look);
+                    else Tell.FromGod(NewsKind.Colony, map, text, look);
                 }
                 Witness(g, map, act, seen, cell, what);
             }

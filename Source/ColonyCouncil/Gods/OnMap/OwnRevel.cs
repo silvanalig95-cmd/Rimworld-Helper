@@ -500,8 +500,8 @@ namespace ColonyCouncil
             OwnHappenings.Glow(map, s.visionAt, Amber, 6, 1f, 0.35f);
             OwnHappenings.SayFrom(p, Pool, g, s.visionTrue ? "visiontrue" : "visionfalse");
             string text = (s.visionTrue ? "CC_GodRevel_Vision_TextTrue" : "CC_GodRevel_Vision_TextFalse").Translate(p.Named("PAWN"), (s.visionSight ?? "").Named("SIGHT")).Resolve();
-            OwnHappenings.Line(map, text, new LookTargets(new TargetInfo(s.visionAt, map)));
             GodPresence.Look(new LookTargets(new TargetInfo(s.visionAt, map)));
+            OwnHappenings.Line(map, text, new LookTargets(new TargetInfo(s.visionAt, map)));
             if (g == null) return;
             OwnHappenings.Saw(g, map, s.visionAt, GodActKind.Omen, p, "CC_GodRevel_Saw_Vision", (s.visionSight ?? "").Named("SIGHT"));
             var taken = TakenFor(g, map);
@@ -635,9 +635,9 @@ namespace ColonyCouncil
             OwnHappenings.Glow(map, placed.Position, Amber, 5, 0.5f, 0.3f);
             OwnHappenings.SayFromWith(p, Pool, g, new[] { placed.LabelNoCount.Named("WHAT") }, "stash");
             string text = "CC_GodRevel_Stash_Text".Translate(p.Named("PAWN"), placed.Label.Named("WHAT")).Resolve();
-            OwnHappenings.Line(map, text, new LookTargets(placed));
             GodPresence.Look(new LookTargets(placed));
-            if (g != null) OwnHappenings.Saw(g, map, placed.Position, GodActKind.Blessing, p, "CC_GodRevel_Saw_Stash", placed.LabelCap.Named("WHAT"));
+            OwnHappenings.Line(map, text, new LookTargets(placed));
+            if (g != null) OwnHappenings.Saw(g, map, placed.Position, GodActKind.Blessing, p, "CC_GodRevel_Saw_Stash", placed.Label.Named("WHAT"));
             return true;
         }
 

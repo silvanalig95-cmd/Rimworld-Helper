@@ -38,6 +38,17 @@ namespace ColonyCouncil
     /// </summary>
     public static class GodLoreMath
     {
+        /// <summary>
+        /// Words going into a line of the book that ends with its own full stop: their one closing full stop taken off
+        /// (an ellipsis and other ends are kept), so a line never ends in two.
+        /// </summary>
+        public static string WithoutStop(string words)
+        {
+            if (string.IsNullOrEmpty(words)) return words;
+            string w = words.TrimEnd();
+            return w.EndsWith(".") && !w.EndsWith("..") ? w.Substring(0, w.Length - 1) : w;
+        }
+
         /// <summary>The gods, by the short names every part keys them by: the nine, the five added after (Helios and Selene, the Gift and the Return; Mog, Murmur, Ducat), and Revel, the fifteenth.</summary>
         public static readonly string[] Keys = { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Mog", "Murmur", "Ducat", "Revel" };
 

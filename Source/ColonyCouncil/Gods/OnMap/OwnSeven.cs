@@ -141,11 +141,11 @@ namespace ColonyCouncil
             Tell.Letter(NewsKind.Land, Importance.Notable, map, title, text, def ?? LetterDefOf.NeutralEvent, look);
         }
 
-        /// <summary>A line in the news of what was seen, with nothing to decide.</summary>
+        /// <summary>What was seen, with nothing to decide: a message at once, as everything from a god (Tell.FromGod).</summary>
         public static void Line(Map map, string text, LookTargets look)
         {
             if (map == null || text.NullOrEmpty()) return;
-            Tell.Minor(NewsKind.Land, Importance.Notable, map, text, look);
+            Tell.FromGod(NewsKind.Land, map, text, look);
         }
 
         /// <summary>One sentence from a god's pool over someone's head (tagged with the moment, "named" where the colony is sure, "scoffer"); false when none fits.</summary>
