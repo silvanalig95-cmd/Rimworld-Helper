@@ -18,6 +18,9 @@ namespace ColonyCouncil
             Pack = content;
             Settings = GetSettings<CouncilSettings>();
             // The game hooks are applied later, once every def has loaded (see RimfolkPatchesStartup).
+            // The lands' wild-animal lists are mended once every def has loaded and before any mod's startup class reads
+            // them (actions queued here run first): Animals/BiomeAnimalsMend.cs.
+            LongEventHandler.ExecuteWhenFinished(BiomeAnimalsMend.Run);
         }
 
         public override string SettingsCategory() => "Rimfolk";

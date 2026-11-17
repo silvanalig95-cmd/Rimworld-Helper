@@ -15691,6 +15691,35 @@ go: "yes, go ahead with all!". The proposals are `docs/gods-impact-proposals.md`
   own-effect key and in the table, all 98 accounted for, the harms only the proposals' own, the pure rules and sizes, the
   words and defs plain and naming no god, saved and capped).
 
+### The log window at the start (the player's report and go, 17 November 2026; released 0.265.1)
+
+The player, with their startup log: "got this log window pop up on the latest start"; then "alright" and "please fix the
+bugs". The game opens its log window by itself whenever something logs an error while it loads. Of the red lines, three
+touched Rimfolk; the others are other mods' own and stay (Lunar Framework's inlining fixer under Harmony 3.0 rc.6,
+RealRuins' news file read by HugsLib, Map Mode Framework's ReGrowth layer; HANDOFF lists each).
+
+- **The lands' wild animals, mended at load.** Two mods adding the same animal to the same land (ReGrowth's RG_Dodo,
+  RG_Thrinaxodon and RG_Synthetion in TemperateForest, TemperateSwamp, TropicalRainforest, TropicalSwamp and
+  AridShrubland) make the game's dictionary of that land's animals throw at the repeat and stay half filled, so the game's
+  own wild spawns there and Giddy-Up's mounts missed every animal after it; 0.141.0 only read around it for Rimfolk.
+  `Animals/BiomeAnimalsMend.cs`, queued from `ColonyCouncilMod`'s constructor (`LongEventHandler.ExecuteWhenFinished`,
+  which runs once every def has loaded and before every mod's startup class), and run again harmlessly before
+  `BiomeAnimals` first reads a land: in each land, the own list and the races naming it (`BiomeAnimalsMath.MendPlain`)
+  and the pollution and coastal lists with their expansion (`KeepOnce`) keep each animal once at the mean of its
+  listings. Where the land's list and the animal's race both name it, the land's record goes and the race's stays (the
+  game's loop reads it for every kind of that race); it takes the mean only when the race has that one kind. Records
+  whose animal's def is missing are dropped; a mended land's three cached dictionaries are cleared. One message line
+  says what was merged. No Harmony; a pawn kind without a race still can't be mended, and `BiomeAnimals` reads around it.
+- **A RimWorld of Magic in HugsLib's place.** A prefix on HugsLib's `ModBase.ApplyHarmonyPatches`, for that mod only,
+  does what HugsLib 12 does there (`HarmonyAutoPatch`, `ShouldHarmonyAutoPatch`, `HarmonyInst` under the mod's
+  `PackageIdPlayerFacing`) and applies its classes one at a time (`HarmonyRescue`), leaving out the two this Harmony
+  refuses, so no error is logged. It steps aside when nothing of the mod is refused or a member isn't found, and the
+  postfix rescue (0.140.0) still follows for when HugsLib ran first.
+- **A Wanderer's caravan travel.** RoM's `CostToMove_Caravan_Patch` names the start tile a `PlanetLayer`; Harmony 3
+  refuses it. `Patch_MagicWandererTravel`, a postfix on `Caravan_PathFollower.CostToMove(Caravan, PlanetTile,
+  PlanetTile, int?)`, calls RoM's own postfix with no start layer (its body never reads it) while its own patch isn't
+  on: a caravan with a `TM_Wanderer` crosses land without its movement difficulty, as RoM means.
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

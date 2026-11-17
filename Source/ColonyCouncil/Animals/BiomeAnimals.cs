@@ -16,10 +16,12 @@ namespace ColonyCouncil
     /// then its pollution and its coastal list, each their own) and throws when an animal is in a list twice: two mods
     /// adding the same animal to the same land (seen with ReGrowth's RG_Dodo and RG_Thrinaxodon). It throws too on a record
     /// whose animal's def is missing and on a pawn kind without a race. After that first throw its dictionary stays half
-    /// filled, so later answers come back short without a word. So each land's lists are read here once: where nothing in
-    /// them would make the game throw, every answer is the game's own, as before; where something would, or the game's
-    /// answer throws anyway, the answers come from the lists read here, the repeats merged
-    /// (<see cref="BiomeAnimalsMath.Merge"/>), with one line in the log naming the land and what is wrong in it.
+    /// filled, so later answers come back short without a word. The repeats and the missing defs are mended in the lists
+    /// themselves at load (Animals/BiomeAnimalsMend.cs), for the whole game. Each land's lists are still read here once,
+    /// for what the mend can't reach: where nothing in them would make the game throw, every answer is the game's own;
+    /// where something would (a pawn kind without a race), or the game's answer throws anyway, the answers come from the
+    /// lists read here, the repeats merged (<see cref="BiomeAnimalsMath.Merge"/>), with one line in the log naming the
+    /// land and what is wrong in it.
     /// </summary>
     public static class BiomeAnimals
     {
@@ -39,9 +41,9 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<BiomeDef, Land> lands = new Dictionary<BiomeDef, Land>();
 
-        private static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> WildRecords = Field("wildAnimals");
-        private static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> PollutionRecords = Field("pollutionWildAnimals");
-        private static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> CoastalRecords = Field("coastalWildAnimals");
+        internal static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> WildRecords = Field("wildAnimals");
+        internal static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> PollutionRecords = Field("pollutionWildAnimals");
+        internal static readonly AccessTools.FieldRef<BiomeDef, List<BiomeAnimalRecord>> CoastalRecords = Field("coastalWildAnimals");
 
         /// <summary>The wild animals of this land, as <c>BiomeDef.AllWildAnimals</c> lists them; none for no land.</summary>
         public static IEnumerable<PawnKindDef> Of(BiomeDef biome)
@@ -88,6 +90,8 @@ namespace ColonyCouncil
         private static Land LandOf(BiomeDef biome)
         {
             if (lands.TryGetValue(biome, out var land)) return land;
+            // The lists are mended at load (BiomeAnimalsMend); this makes sure of it before they are read here.
+            BiomeAnimalsMend.Run();
             land = new Land();
             lands[biome] = land;
             var repeated = new List<PawnKindDef>();

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A cleaner start
+
+*17 November 2026, version 0.265.1*
+
+- When two mods add the same wild animal to the same land, as ReGrowth's dodo and thrinaxodon do in five of them, the game stopped reading that land's animals at the repeat, so the animals after it never appeared wild. Rimfolk now merges the repeats when the game loads, so every animal of those lands can turn up again.
+- This also ends the five Giddy-Up errors and Rimfolk's five warnings about it in the log at the start.
+- A RimWorld of Magic's patches are now applied one at a time in HugsLib's place, so the two this version of Harmony refuses no longer stop the rest with an error in the log.
+- A caravan with a Wanderer from A RimWorld of Magic crosses rough land at full pace again, as that mod means it to.
+
 ## What the gods leave behind
 
 *17 November 2026, version 0.265.0*
