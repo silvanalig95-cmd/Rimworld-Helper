@@ -373,6 +373,19 @@ namespace ColonyCouncil
             return s != null && s.darkMap == map && s.darkUntil > Now && s.darkKeeper != null && !s.darkKeeper.Dead;
         }
 
+        /// <summary>
+        /// The dark face is being kept at this home's door right now, its keeper standing there: nothing comes to the colony
+        /// until <paramref name="until"/> (Gods/Touch/GodImpact.cs, HoldTillDawn).
+        /// </summary>
+        public static bool KeptNow(Map map, out int until)
+        {
+            var s = OwnHappenings.Book?.selene;
+            until = -1;
+            if (s == null || s.darkMap != map || s.darkUntil <= Now || !s.darkStood || s.darkKeeper == null || s.darkKeeper.Dead || s.darkKeeper.Downed) return false;
+            until = s.darkUntil;
+            return true;
+        }
+
         private static void DarkStep(OwnHappeningsBook b, int now)
         {
             var s = b.selene;

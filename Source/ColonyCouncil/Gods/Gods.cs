@@ -259,7 +259,12 @@ namespace ColonyCouncil
                 var map = Homes.MapOf(act.home) ?? Homes.Seat;
                 var pawns = act.witnesses.NullOrEmpty() ? Witnesses(map, act.cell) : WitnessPawns(map, act.witnesses);
                 if (act.witnesses.NullOrEmpty()) act.witnesses = pawns.Select(p => p.LabelShort).ToList();
-                if (pawns.Count == 0 || act.text.NullOrEmpty()) return;
+                if (pawns.Count == 0 || act.text.NullOrEmpty())
+                {
+                    // Nobody saw it: what it leaves on the place, or does to those it names, still happens (GodImpactMath).
+                    if (GodImpactMath.Has(act.what)) GodTouch.Note(act, pawns, map, null);
+                    return;
+                }
                 var g = ById(act.god);
                 var lore = GodLore.Instance;
                 string taken = g == null || lore == null ? null : GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value);
@@ -309,7 +314,12 @@ namespace ColonyCouncil
             {
                 var lore = GodLore.Instance;
                 var witnesses = Witnesses(spec.map, spec.kind == PresenceKind.Omen ? IntVec3.Invalid : spec.cell);
-                if (lore == null || witnesses.Count == 0) return;
+                if (lore == null || witnesses.Count == 0)
+                {
+                    // Nobody saw it: what it leaves on the place still happens (GodImpactMath).
+                    if (GodImpactMath.Has(spec.what)) GodTouch.NoteMoment(spec, witnesses, false, null);
+                    return;
+                }
                 var taken = ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
                 string words = !spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve();
                 // Seen plainly (not veiled), or a disguised god revealing itself: the colony knows it was this god, and names it.

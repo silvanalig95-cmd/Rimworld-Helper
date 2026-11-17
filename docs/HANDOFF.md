@@ -41,8 +41,8 @@ or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug
    talk piece and 21 of the 23 faiths' descriptions still tell their start through one named founder.
 7. **Pokémon**: the review against PokéWorld Updated (0.135.0) and its voices list are done; pairings are changed when
    the player flags one.
-8. **Every god's doing leaves something real** (17 November 2026): `docs/gods-impact-proposals.md`, 55 proposals for the
-   98 kinds of god occurrence that have no effect of their own; the entry under "State" below has the player's words.
+8. **Every god's doing leaves something real** (17 November 2026): all 55 proposals of `docs/gods-impact-proposals.md`
+   are built, not released (the player's go: "yes, go ahead with all!"); the entry above the newest release line has it.
 
 **How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
 container has 4 cores): each gets a brief (`docs/agent-brief.md` holds the part every brief shares), builds and checks
@@ -82,17 +82,9 @@ repo.
   0.206.2 to 0.213.0. On 12 November 2026, "you can go ahead on the todos": the four small asks (0.222.0) and the
   letters and favours are built; the gods' one way and repeats and magic among the peoples are being built; the
   Gods' book and the peoples' rounds 2 to 10 follow, the rounds one batch at a time.)
-- **To do when the player asks (17 November 2026): every god's doing leaves something real, small or larger.** After
-  0.264.1 the player asked: "does anything about the body change? like faster decay or something? is there a gameplay
-  impact from this god event?" (the answer: the body is untouched; the sign gives a small mood to whoever sees it and,
-  about one time in three, a small effect of the god's for them; the dead left lying count against three of the gods each
-  day). On the offer to make the ring do something to the body (rot it away faster and leave richer soil): "these
-  proposals sound great! not every god interaction with the world necessarily needs to have a strong impact, but it
-  should also not be completely trivial". Proposed in `docs/gods-impact-proposals.md`: 98 of the 189 kinds of god
-  occurrence have no effect of their own today (only the moods and the touch's random small effect); 55 proposals give
-  each one a fitting effect of its own, always (the ring round a body rots it away and leaves rich soil; a real gold coin;
-  rain after thunder under a clear sky; the turbines stopping when the wind dies; and so on), and the ones that already
-  lead to something stay as they are. Waits for the player's pick or go; one or two releases.
+- **Done (17 November 2026, the player's go: "yes, go ahead with all!"; built, not released): every god's doing leaves
+  something real.** The to-do with the player's words is now one entry above the newest release line ("Every god's doing
+  leaves something real").
 - **Done (17 November 2026, the player's go: "yes, your fix!"): a god's sign comes with its words.** The report with
   the player's words, the cause and what was built are now one entry above the newest release line ("A god's sign
   comes with its words").
@@ -222,6 +214,73 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Every god's doing leaves something
+  real** (17 November 2026). The player, after the ring of mushrooms round Kasumi's body (0.264.1): "does anything about
+  the body change? like faster decay or something? is there a gameplay impact from this god event?"; on the proposals:
+  "these proposals sound great! not every god interaction with the world necessarily needs to have a strong impact, but
+  it should also not be completely trivial"; the go: "yes, go ahead with all!". All 55 proposals of
+  `docs/gods-impact-proposals.md` are built (each marked there); DESIGN.md "Every god's doing leaves something real" has
+  each one as built.
+  - **What it does.** 68 of the 98 kinds of god occurrence that had no effect of their own now bring one, always, fitted
+    to what was seen: the ring round an unburied body rots it to bones in a day and a half and leaves rich soil inside the
+    ring; the threads round rot in the stores take the rotten stack; the mourner's ring and the cat that stayed to the end
+    ease the mourners' grief (their memories of it end sooner); frost on a grave lets the dead one's closest sleep well;
+    Hush's walk kills up to four tender crops on its line of frost (the game's own cold); the word in the frost leaves jade
+    or silver; frost writing holds the room behind it at 5°C for a day; the sunrise rests those who watched it; the long
+    noon grows the open crops a day ahead and runs the solar panels full until sundown; the shimmer at noon brings a warm
+    afternoon (+5°C); the dark face kept at the door holds the night's threats until dawn; the close moon deepens everyone's
+    sleep; the cat at the threshold eases pain while it stays, and the one who lived heals faster; a binge ends sooner;
+    the horned man leaves a drink of his cup's kind; the sweet smoke cheers; silver under the beetle's table; a flicker
+    charges the batteries on its line; an unpowered light stays lit all night; the machine's hour running on is free; the
+    guttering light's room loses its fires; the rumble drops chunks of the place's rock; the miners' dream speeds their
+    digging; steam keeps the ground warm three days; the calm stops the turbines and fire spreading; dry thunder and the
+    smell of earth bring rain within the day; the winged shadows send the game off for a day; the anima tree's grass
+    spreads and meditating there is better for a day; three of the beasts' signs put one of the herd with young; five of
+    them calm the animals for the colony's handlers; feeding the god's beast makes the animals frost-hardy three days;
+    pale sand on a grave brings the closest a kind dream; the same dream makes two think better of each other; the silence
+    makes the next hour's work faster; a work named for Smoulder is admired more (beauty x1.2). The rest reuse the touch's
+    own (flowers, the find, rats gone, a cat, a trader, game, fish, an inspiration, a bad night). The 21 the proposals
+    leave as they are keep the moods and the random effect; the other nine are not occurrences the proposals touch.
+  - **Decided here.** Where a proposal's tag and its words differ, the words were built: 15 holds threats (not the touch's
+    season-long calm, "Ward"), 37 warm ground (not the touch's pool, "Spring"), 45 one of the herd with young (not animals
+    walking in, "Herd"), 50 one spot dark for the night (not the dark god's two days, "Dim"). The coin (27) and the spilled
+    drink (25) were already real in their signs (the last drink is now lost too). The rich soil stays, as the touch's own
+    does. A place effect happens whether or not anyone saw it: `Gods.Remember` and `Gods.Moment` note an occurrence nobody
+    saw when it has an effect of its own, and `GodTouch.Resolve` gives the moods only to those who saw it but the effect
+    regardless; only an inspiration, the sweet smoke and a bad night need someone to have seen it. The calm's wind now
+    falls to 0.01 (was 0.05), so the turbines really stop.
+  - **Code map**: `Gods/Touch/GodImpactMath.cs` (new, pure, linked in the tests: `Impact`, `Table`, `LeftAsTheyAre`,
+    `NotCovered`, `NeedsWitness`, `Harm`, the sizes, `GriefAge`, `RotAt`, `KeepsLess`, `ColdStep`, `HoursUntil`,
+    `HoursOfLight`, `Silver`, `Chunks`, `RainHours`, `Charge`), `Gods/Touch/GodImpact.cs` (new: `TouchAbout`,
+    `GodTouchRunning`, `GodImpact.Follow`, `Do` and each effect, `Step` and each running one, `Refresh` and what the hooks
+    read, `HoldTillDawn`, `DevAbout`, `DevGod`; `StatPart_GodTouch` and `GodTouchStats` on beauty and meditation focus;
+    `GameCondition_GodWarmth`; `GodImpactDefOf`), `Gods/Touch/GodImpactPatches.cs` (new: fire in the still air, the solar
+    panels' long noon, the free hour's power, the door kept at night on `Storyteller.TryFire`), `Gods/Touch/GodTouch.cs`
+    (`About`, `Saying`, `Pending.about`, the new `Resolve`, `Quietly`, `DevImpact`; the book's saved `running` and
+    `admired`), `GodTouchMath.cs` (the new `TouchEffect`s at the end, `InOwnEffectKeys`, `HasOwnEffect` with the table),
+    `GodTouchEffects.cs` (helpers opened to the new effects, Hush's find), `GodTouchDebug.cs` (the dev action and the
+    log), `Gods/Gods.cs` (the unseen note in `Remember` and `Moment`), `Gods/OnMap/GodShapes.cs` (`GodTouch.Saying`),
+    `GodOmens.cs` (the calm's wind, `Hold`, `Held`, the dream's `About`), `GodOmensOwn.cs` (the last drink spilled),
+    `OwnHush.cs` (`FrostLine` and its `About`), `OwnHelios.cs`, `OwnTamiu.cs` (and `CatGone` on the cat's leaving),
+    `OwnRevel.cs`, `OwnSmoulder.cs`, `OwnSelene.cs` (`KeptNow`), `Defs/GodDefs/Rimfolk_GodImpact.xml` (seven conditions,
+    three memories, the warm afternoon), `Languages/English/Keyed/Rimfolk_GodImpact.xml`, `Tools/save_estimate.py` (the
+    two saved lists). Tests: `GodTouchTests` (the new section: every key in the Keyed files, one effect each, the 21 left
+    with none, none both an old own-effect key and in the table, all 98 accounted for, the harms only the proposals' own,
+    the pure rules and sizes, the words and defs).
+  - **Can't be checked without the game**: each effect played out on a real map (the corpse's rot stages moving on, the
+    solar panels' output in the power tab, the fire hook stopping a spread, the free hour's machine running with no power,
+    the threat held on the queue until dawn and coming after, the pregnancy and its birth, the stat breakdowns of beauty
+    and meditation focus, the warm afternoon in the conditions list); a save made while effects run, loaded again.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, "Gods: an occurrence's own effect here now...", with the mouse
+    over the place and, where it names someone or something, that one selected first: CC_GodO_Saw_RingBody over a body
+    left lying (it rots over a day and a half; the soil inside goes dark), CC_GodM_Saw_StillSun on a day with crops and
+    solar panels (the crops jump a day; the panels read full until 18:00), CC_GodM_Saw_Calm after "Gods: an omen here..."
+    with the calm, then set a fire outdoors (it doesn't spread), CC_GodO_Saw_Name with a sculpture selected (its beauty
+    breakdown shows the admired line), CC_GodM_Saw_Bleat with a female animal of the colony (it is with young). "Gods: the
+    gods' touch (log)" lists what is running.
+  - **Mods that would help**: none needed; everything is the game's own (rot, rich soil, the cold, chunks, pregnancy,
+    inspirations, wind, fire). Vanilla Social Interactions Expanded (already in the list) gives the wrong-way star its
+    research inspiration.
 - 0.264.1, **A god's sign comes with its
   words** (17 November 2026). The player, with their save `League_of_Toba_4` (day 122): "so my camera just changed to
   kasumi's corpse and there were mushrooms around them. i assume this was some god event? however there was no

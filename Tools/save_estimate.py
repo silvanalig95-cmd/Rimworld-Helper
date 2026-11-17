@@ -391,6 +391,11 @@ MODEL = {
     "Gods/Touch/GodTouch.cs:last": ("fixed", 14 * 4 + 3 + 60, 90, "when each god's effects and each occurrence's last came at the home, one key each, overwritten"),
     "Gods/Touch/GodTouch.cs:recent": ("fixed", const("Gods/Touch/GodTouchMath.cs", "RecentKept", 40), 40, "the effects lately ('home|god|effect|tick'), GodTouchMath.RecentKept at most"),
     "Gods/Touch/GodTouch.cs:seen": ("fixed", const("Gods/Touch/GodTouch.cs", "MaxSeen", 60), 30, "the occurrences seen lately ('home|god|tick'), a season at most and GodTouchBook.MaxSeen"),
+    # Every god's doing leaves something real (Gods/Touch/GodImpact.cs): what an occurrence's own effect keeps doing a while
+    # (a body rotting, a room held cold, the warm ground, rain on its way: hours to a few days each, a handful at once,
+    # GodImpactMath.RunningKept at most), and the works named for a god and admired since (one every few seasons, capped).
+    "Gods/Touch/GodTouch.cs:running": ("fixed", min(6, const("Gods/Touch/GodImpactMath.cs", "RunningKept", 24)), 300, "what occurrences' own effects keep doing (a few days at most each), GodImpactMath.RunningKept at most"),
+    "Gods/Touch/GodTouch.cs:admired": ("cap", (const("Gods/Touch/GodImpactMath.cs", "AdmiredKept", 30), 0.02), 40, "the works named for a god and admired since, GodImpactMath.AdmiredKept at most"),
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
     # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).

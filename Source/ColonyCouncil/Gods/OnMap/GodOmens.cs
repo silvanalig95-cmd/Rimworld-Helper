@@ -230,7 +230,10 @@ namespace ColonyCouncil
 
         // ================= The calm =================
 
-        /// <summary>A strange calm: the wind dies for a few hours, the plants stop swaying ("a strange stillness", the presence's own sky barely tinted).</summary>
+        /// <summary>
+        /// A strange calm: the wind dies for a few hours (the wind turbines stop with it), the plants stop swaying ("a strange
+        /// stillness", the presence's own sky barely tinted); while it lasts fire doesn't spread (Gods/Touch/GodImpact.cs).
+        /// </summary>
         internal static bool Calm(Map map)
         {
             var def = DefDatabase<GameConditionDef>.GetNamedSilentFail(GameCondition_GodPresence.DefName);
@@ -239,7 +242,7 @@ namespace ColonyCouncil
             cond.tint = Color.white;
             cond.tintStrength = 0.06f;
             cond.darken = 0f;
-            cond.wind = 0.05f;
+            cond.wind = 0.01f;
             cond.veiled = true;
             map.gameConditionManager.RegisterCondition(cond);
             return true;
@@ -271,6 +274,7 @@ namespace ColonyCouncil
             // apart: two dreams had the same night, each in their own bed; they speak of it below, together.
             Tell.Message(NewsKind.People, Importance.Notable, map, text, new LookTargets(new[] { a, b }.Select(x => new GlobalTargetInfo(x))), MessageTypeDefOf.NeutralEvent);
             GodPresenceSeam.Call(new PresenceSpec { god = god, map = map, cell = a.Position, kind = PresenceKind.Omen, veiled = true });
+            GodTouch.About(map, "CC_GodM_Saw_Dream", a, b);
             GodsOnMapWords.Saw(god, map, a.Position, GodActKind.Omen, a, "CC_GodM_Saw_Dream", b.LabelShort.Named("OTHER"));
             Together.When("godDream|" + a.thingIDNumber + "|" + b.thingIDNumber, a, b, () =>
             {
@@ -361,6 +365,29 @@ namespace ColonyCouncil
             GodsOnMapBook.Instance?.Due(Math.Min(next, now + 250));
             return 1;
         }
+
+        /// <summary>
+        /// A light held as a god's sign left it until <paramref name="until"/>: glowing with no power (<paramref name="lit"/>,
+        /// Pip's light that stays lit all night), or out and not coming back (the dark that stays). False with no light.
+        /// </summary>
+        internal static bool Hold(Map map, ThingWithComps light, int until, bool lit)
+        {
+            var c = light?.GetComp<CompGlower>();
+            int now = Now;
+            if (c == null || map == null || until <= now) return false;
+            if (gutterGame != Current.Game)
+            {
+                guttering.Clear();
+                gutterGame = Current.Game;
+            }
+            guttering[c] = (map, until, until, false, false, lit);
+            Toggle(c, map, lit);
+            GodsOnMapBook.Instance?.Due(Math.Min(until, now + 250));
+            return true;
+        }
+
+        /// <summary>The light is being held lit or dark by a sign now.</summary>
+        internal static bool Held(ThingWithComps light) => guttering.Count > 0 && light?.GetComp<CompGlower>() is CompGlower c && guttering.ContainsKey(c);
 
         private static void Toggle(CompGlower c, Map map, bool lit)
         {

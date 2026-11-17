@@ -63,8 +63,10 @@ public static class GodTouchTests
                      "CC_GodMurmur_Saw_Rain", "CC_GodUndertow_Saw_Ear", "CC_GodM_Saw_StrangerShown", "CC_GodO_Saw_Burn" })
             C(GodTouchMath.HasOwnEffect(k), k + " has an effect of its own: the moods only");
         foreach (var k in new[] { "taken", "vow", null, "", "CC_GodO_Saw_BowlSet", "CC_GodO_Saw_BurnDream", "CC_GodO_Saw_StarsNight", "CC_GodO_Saw_Stars", "CC_GodO_Saw_Roots",
-                     "CC_GodM_Saw_Rising", "CC_GodHelios_Saw_Dawn", "CC_GodSelene_Saw_Water", "CC_GodO_Saw_Mourner", "CC_GodM_Saw_Candle" })
+                     "CC_GodM_Saw_Rising", "CC_GodO_Saw_Mourner", "CC_GodM_Saw_Surfaced", "CC_GodM_Saw_Stare" })
             C(!GodTouchMath.HasOwnEffect(k), (k ?? "null") + " has none of its own: one of its god's follows");
+        foreach (var k in new[] { "CC_GodHelios_Saw_Dawn", "CC_GodSelene_Saw_Water", "CC_GodM_Saw_Candle", "CC_GodO_Saw_RingBody" })
+            C(GodTouchMath.HasOwnEffect(k) && !GodTouchMath.InOwnEffectKeys(k), k + " has its own now, from the table of every god's doing (the moods only besides)");
         C(GodTouchMath.WordsOnly("told") && GodTouchMath.WordsOnly("mark") && !GodTouchMath.WordsOnly("taken"), "a letter's tale and a mark talked of are no occurrence at all");
 
         // ================= Each god's own =================
@@ -220,6 +222,10 @@ public static class GodTouchTests
         foreach (var w in new[] { "Vein", "Herd", "Wanderer", "Hardy", "SunYear", "ScarGone", "Ward", "Spring", "Hoard", "Fertile", "Linger", "Dim" })
             C(keyed.ContainsKey("CC_GodTouch_" + w + "_Title"), w + ": its card's title");
 
+        // ================= Every god's doing leaves something real (docs/gods-impact-proposals.md) =================
+
+        n += Impacts(root, src, C);
+
         // ================= No harm, the mod pool, saved and small =================
 
         C(!Regex.IsMatch(all, @"Harm\.(Injure|Ail|Fight)|TakeDamage|DamageInfo"), "nothing here hurts anyone: the angers spoil, break, chill and frighten");
@@ -228,5 +234,163 @@ public static class GodTouchTests
         C(touch.Contains("Scribe_Collections.Look(ref last, \"last\", LookMode.Value, LookMode.Value);") && touch.Contains("while (recent.Count > GodTouchMath.RecentKept) recent.RemoveAt(0);")
           && touch.Contains("while (seen.Count > MaxSeen) seen.RemoveAt(0);"), "saved small: a few keys a god and a home, two capped lists");
         return n;
+    }
+
+    /// <summary>
+    /// Every god's doing leaves something real (Gods/Touch/GodImpact.cs, GodImpactMath.cs; the player, 17 November 2026: "not
+    /// every god interaction with the world necessarily needs to have a strong impact, but it should also not be completely
+    /// trivial", then "yes, go ahead with all!"): each covered occurrence's key is real and has exactly one effect, the ones
+    /// left as they are have none, nothing is both an old own-effect key and in the table, every one of the 98 is accounted
+    /// for, the small harms are only the proposals' own, and the pure rules of the new effects.
+    /// </summary>
+    private static int Impacts(string root, string src, Action<bool, string> C)
+    {
+        int before = 0;
+        void D(bool ok, string what)
+        {
+            before++;
+            C(ok, "every god's doing: " + what);
+        }
+        string Read(string rel) => File.ReadAllText(Path.Combine(src, rel));
+        string impact = Read("Gods/Touch/GodImpact.cs"), patches = Read("Gods/Touch/GodImpactPatches.cs"), touch = Read("Gods/Touch/GodTouch.cs");
+        var table = GodImpactMath.Table;
+
+        // The words keys of every occurrence the colony's book can record (CC_God*_Saw_*), from the Keyed files.
+        var keyedDir = Path.Combine(root, "Languages", "English", "Keyed");
+        var keys = new HashSet<string>();
+        foreach (var f in Directory.GetFiles(keyedDir, "*.xml"))
+            foreach (Match m in Regex.Matches(File.ReadAllText(f), @"<(CC_God[A-Za-z]*_Saw_[A-Za-z_]+)>"))
+                keys.Add(m.Groups[1].Value);
+        D(keys.Count >= 189, $"the occurrences the colony's book can record are all read ({keys.Count})");
+        foreach (var k in table.Keys) D(keys.Contains(k), k + ": its words are in the Keyed files");
+        foreach (var k in GodImpactMath.LeftAsTheyAre.Concat(GodImpactMath.NotCovered)) D(keys.Contains(k), k + ": its words are in the Keyed files");
+        D(table.Count == 68, $"the 55 proposals cover 68 occurrences ({table.Count})");
+        D(table.Values.All(v => v.effect != TouchEffect.None), "each maps to exactly one effect, never none");
+        D(GodImpactMath.LeftAsTheyAre.Length == 21 && GodImpactMath.LeftAsTheyAre.All(k => !GodImpactMath.Has(k) && !GodTouchMath.HasOwnEffect(k)),
+            "the ones left as they are map to none: the moods, and the touch's random effect as before");
+        D(!table.Keys.Any(GodTouchMath.InOwnEffectKeys), "none is both an old own-effect key and in the table");
+        D(table.Keys.All(GodTouchMath.HasOwnEffect), "every one in the table counts as having its own effect, so the random one doesn't come on top");
+        var accounted = table.Keys.Concat(GodImpactMath.LeftAsTheyAre).Concat(GodImpactMath.NotCovered).ToList();
+        D(accounted.Count == accounted.Distinct().Count(), "the table, the ones left and the rest never overlap");
+        var none = keys.Where(k => !GodTouchMath.InOwnEffectKeys(k)).ToList();
+        D(none.Count == 98 && none.All(accounted.Contains) && accounted.All(none.Contains),
+            $"every one of the 98 with no effect of its own is in the table, left as it is, or not an occurrence the proposals touch ({none.Count})");
+
+        // Every effect the table uses is done, and the place effects need no one to have seen them.
+        foreach (var e in table.Values.Select(v => v.effect).Distinct())
+            D(Regex.IsMatch(impact, @"case TouchEffect\." + e + @"\b"), e + ": done when its occurrence comes");
+        D(GodImpactMath.NeedsWitness(TouchEffect.Inspire) && GodImpactMath.NeedsWitness(TouchEffect.Cheered) && GodImpactMath.NeedsWitness(TouchEffect.Sleepless)
+          && !GodImpactMath.NeedsWitness(TouchEffect.RotAway) && !GodImpactMath.NeedsWitness(TouchEffect.Coin) && !GodImpactMath.NeedsWitness(TouchEffect.RestKin),
+            "only an inspiration, the sweet smoke's good mood and a bad night need someone to have seen it; the rest happen there to be found, or to those named");
+        string godsSrc = Read("Gods/Gods.cs");
+        D(godsSrc.Contains("if (GodImpactMath.Has(act.what)) GodTouch.Note(act, pawns, map, null);") && godsSrc.Contains("if (GodImpactMath.Has(spec.what)) GodTouch.NoteMoment(spec, witnesses, false, null);"),
+            "an occurrence nobody saw still reaches the touch when it has an effect of its own");
+        D(touch.Contains("if (p.tone != TouchTone.None && ours.Count > 0)") && touch.Contains("foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, home, now, impact);"),
+            "the touch's early return no longer stops them: the moods for those who saw it, the effect regardless");
+        D(Read("Gods/OnMap/GodShapes.cs").Contains("GodTouch.Saying(map, key, witness);"), "the one named in its words is the one who saw it");
+        foreach (var (file, key) in new[] { ("Gods/OnMap/OwnHush.cs", "CC_GodHush_Saw_Walk"), ("Gods/OnMap/OwnHelios.cs", "\"CC_GodHelios_Saw_Dawn\""), ("Gods/OnMap/OwnTamiu.cs", "\"CC_GodTamiu_Saw_Threshold\""),
+                     ("Gods/OnMap/OwnTamiu.cs", "\"CC_GodTamiu_Saw_Died\""), ("Gods/OnMap/OwnTamiu.cs", "\"CC_GodTamiu_Saw_WentAway\""), ("Gods/OnMap/OwnRevel.cs", "\"CC_GodRevel_Saw_Binge\""),
+                     ("Gods/OnMap/OwnRevel.cs", "\"CC_GodRevel_Saw_Satyr\""), ("Gods/OnMap/OwnSmoulder.cs", "\"CC_GodO_Saw_Stretch\""), ("Gods/OnMap/OwnSmoulder.cs", "\"CC_GodO_Saw_Name\""),
+                     ("Gods/OnMap/GodOmens.cs", "\"CC_GodM_Saw_Dream\"") })
+            D(Regex.IsMatch(Read(file), @"GodTouch\.About\(map, " + (key.StartsWith("\"") ? Regex.Escape(key) : "key")), file + ": says what " + key.Trim('"') + " was about");
+
+        // Harm only where the proposals say, never to anyone's body.
+        var harmful = table.Where(kv => GodImpactMath.Harm(kv.Value.effect)).Select(kv => kv.Key).OrderBy(k => k).ToList();
+        var proposed = new[] { "CC_GodM_Saw_Threads", "CC_GodHush_Saw_Walk", "CC_GodHush_Saw_WalkSeen", "CC_GodM_Saw_Spilled", "CC_GodM_Saw_Candle", "CC_GodM_Saw_Knock",
+            "CC_GodM_Saw_Footprints", "CC_GodM_Saw_WhiteFigure" }.OrderBy(k => k).ToList();
+        D(harmful.SequenceEqual(proposed), "the small harms are only the proposals' own (5, 8, 25, 34, 48): " + string.Join(", ", harmful));
+        D(table.Values.Where(v => v.dark).All(v => GodImpactMath.Harm(v.effect) || v.effect == TouchEffect.GameLeaves || v.effect == TouchEffect.StaysDark),
+            "only the harms and the eerie ones (the game gone a day, the dark kept) look like an anger");
+        D(!Regex.IsMatch(impact + patches, @"Harm\.(Injure|Ail|Fight)|TakeDamage|DamageInfo|\.Kill\("), "nothing hurts anyone: the frost's crops die by the game's own cold");
+        D(impact.Contains("p.MakeLeafless(Plant.LeaflessCause.Cold, false);") && GodImpactMath.FrostCropsMost <= 4, "a few tender crops on the frost line, by the game's own cold");
+        D(impact.Contains("!(t is Corpse body && body.InnerPawn?.RaceProps?.Humanlike == true)"), "the threads never take a person's body");
+
+        // How often doesn't change: nothing in the table touches the pace.
+        D(!Regex.IsMatch(impact, @"OwnHappenings\.(Calls|Due|Came)\(|GodOmens\.Before\("), "how often gods' things happen doesn't change: only what follows them");
+
+        // ================= The pure rules =================
+
+        D(GodImpactMath.GriefAge(0, 60000) > 0 && GodImpactMath.GriefAge(0, 60000) < 60000 && GodImpactMath.GriefAge(59999, 60000) == 59999
+          && GodImpactMath.GriefAge(70000, 60000) == 70000 && GodImpactMath.GriefAge(30000, 60000) == 30000 + (int)Math.Round(30000 * GodImpactMath.GriefShare),
+            "grief eased: a share of what is left of it goes, never all of it");
+        D(GodImpactMath.RotAt(100f, 1000f, 0, 100, 0) == 100f && GodImpactMath.RotAt(100f, 1000f, 0, 100, 50) == 550f && GodImpactMath.RotAt(100f, 1000f, 0, 100, 200) == 1000f
+          && GodImpactMath.RotAt(2000f, 1000f, 0, 100, 50) == 2000f, "the body's rot moves on to bones by its end, never back");
+        D(GodImpactMath.RotAwayDays >= 1f && GodImpactMath.RotAwayDays <= 2f, "the body rots away to bones within a day or two");
+        float kept = GodImpactMath.KeepsLess(0f, 600000f, (int)(GodImpactMath.KeepsLessDays * 60000), 2500f);
+        D(Math.Abs(kept - GodImpactMath.KeepsLessDays * 60000 * GodImpactMath.KeepsLessShare) < 1f && kept <= 2f * 60000f,
+            $"the food keeps a little less long: {kept / 60000f:0.0} days less over the threads' days");
+        D(GodImpactMath.KeepsLess(590000f, 600000f, 60000, 2500f) == 600000f - 2500f && GodImpactMath.KeepsLess(10f, 600000f, 0, 2500f) == 10f,
+            "never to rotten from it");
+        D(GodImpactMath.ColdStep(20f) == 17f && GodImpactMath.ColdStep(6f) == GodImpactMath.ColdRoomTemp && GodImpactMath.ColdStep(-3f) == -3f && GodImpactMath.ColdRoomTemp > 0f,
+            "the cold room goes down to the cold it is held at, never colder, never freezing");
+        D(GodImpactMath.HoursUntil(22, 6) == 8 && GodImpactMath.HoursUntil(3, 6) == 3 && GodImpactMath.HoursUntil(6, 6) == 24, "the hours until dawn");
+        D(GodImpactMath.HoursOfLight(12) == 6 && GodImpactMath.HoursOfLight(17) == 1 && GodImpactMath.HoursOfLight(18) == 0 && GodImpactMath.HoursOfLight(20) == 0,
+            "the long noon and the warm afternoon last until sundown, and nothing after it");
+        D(GodImpactMath.Silver(0f) == GodImpactMath.SilverMin && GodImpactMath.Silver(0.99999f) == GodImpactMath.SilverMax && GodImpactMath.SilverMax <= 25,
+            "a little silver under the table");
+        D(GodImpactMath.Chunks(0f) == 2 && GodImpactMath.Chunks(0.99999f) == 3, "a few chunks of stone");
+        D(GodImpactMath.RainHours(8f, 0f) == GodImpactMath.RainSoonest && GodImpactMath.RainHours(8f, 1f) == 8f && GodImpactMath.RainHours(8f, 1f) < 24f, "the rain comes within the day");
+        D(GodImpactMath.Charge(1000f, 100f, 0.25f) == 100f && GodImpactMath.Charge(1000f, 900f, 0.25f) == 250f && GodImpactMath.Charge(1000f, 0f, 0.25f) == 0f,
+            "the batteries on the line fill a little, never past full");
+        D(GodImpactMath.WarmOffset > 0f && GodImpactMath.WarmOffset <= 6f && GodImpactMath.AdmiredFactor > 1f && GodImpactMath.AdmiredFactor <= 1.25f && GodImpactMath.AnimaFocus <= 0.1f,
+            "a few degrees warmer, a little more beautiful, meditating a little better");
+        D(table["CC_GodM_Saw_FairyRing"].size > 0f && table["CC_GodM_Saw_FairyRing"].size <= 2f && table["CC_GodM_Saw_Fed"].size >= 2f && table["CC_GodM_Saw_Fed"].size <= 5f
+          && table["CC_GodM_Saw_Knock"].size == 1f && table["CC_GodM_Saw_Flicker"].size <= 0.5f && table["CC_GodO_Saw_Thunder"].size <= 12f,
+            "the sizes: the soil inside the ring, the animals hardy a few days, one bad night, a little charge, rain within the day");
+
+        // ================= Shown, in plain words, never naming the god =================
+
+        string keyedText = File.ReadAllText(Path.Combine(keyedDir, "Rimfolk_GodImpact.xml"));
+        var words = Regex.Matches(keyedText, @"<(CC_GodImpact_[A-Za-z_]+)>(.*?)</\1>").Cast<Match>().ToDictionary(m => m.Groups[1].Value, m => m.Groups[2].Value);
+        // Every name inside a K(...) (a choice between several too), and every key written out whole.
+        var used = new List<string>();
+        foreach (Match m in Regex.Matches(impact, @"\bK\("))
+        {
+            int start = m.Index + m.Length, i = start, depth = 0;
+            for (; i < impact.Length; i++)
+            {
+                if (impact[i] == '(') depth++;
+                else if (impact[i] == ')' && depth-- == 0) break;
+            }
+            used.AddRange(Regex.Matches(impact.Substring(start, i - start), @"""([A-Za-z_]+)""").Cast<Match>().Select(q => "CC_GodImpact_" + q.Groups[1].Value));
+        }
+        used.AddRange(Regex.Matches(impact, @"""(CC_GodImpact_[A-Za-z_]+)""").Cast<Match>().Select(m => m.Groups[1].Value));
+        used = used.Distinct().ToList();
+        D(used.Count >= 40 && used.All(words.ContainsKey), $"every word the effects use is there ({used.Count}; missing: " + string.Join(", ", used.Where(k => !words.ContainsKey(k))) + ")");
+        D(words.Keys.All(k => used.Contains(k)), "and no word there that nothing uses: " + string.Join(", ", words.Keys.Where(k => !used.Contains(k))));
+        var godNames = new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus", "Hush", "Undertow", "Helios", "Selene", "Tamiu", "Mog", "Murmur", "Ducat", "Revel", "the Hunger" };
+        D(!godNames.Any(g => words.Values.Any(v => v.Contains(g))), "no god named in what follows");
+        D(words.Values.All(v => !v.Contains("—") && !v.Contains("!")), "plain words: no dashes, no exclamations");
+        var defsDoc = XDocument.Load(Path.Combine(root, "Defs", "GodDefs", "Rimfolk_GodImpact.xml"));
+        string defsText = string.Join("\n", defsDoc.Descendants().Where(e => e.Name == "label" || e.Name == "description").Select(e => (string)e));
+        D(!godNames.Any(g => defsText.Contains(g)) && !defsText.Contains("—") && !defsText.Contains("!"), "the moods and conditions it leaves name no god, in plain words");
+        var defNames = defsDoc.Root.Elements().Select(e => (string)e.Element("defName")).Where(x => x != null).ToList();
+        foreach (Match m in Regex.Matches(impact, @"public static (?:HediffDef|ThoughtDef) (Rimfolk_GodTouch_[A-Za-z]+);"))
+            D(defNames.Contains(m.Groups[1].Value), m.Groups[1].Value + ": its def is there");
+        foreach (var d in defsDoc.Root.Elements("HediffDef").Concat(defsDoc.Root.Elements("ThoughtDef")))
+            D(((string)d.Descendants("description").FirstOrDefault() ?? "").Length > 40, (string)d.Element("defName") + ": says what it does and why");
+        D(defNames.Contains("Rimfolk_GodTouch_WarmAfternoon") && impact.Contains("public const string DefName = \"Rimfolk_GodTouch_WarmAfternoon\";"), "the warm afternoon shown with the game's conditions");
+        D(impact.Contains("ExplanationPart(StatRequest req)") && impact.Contains("\"CC_GodImpact_Stat_Admired\"") && impact.Contains("\"CC_GodImpact_Stat_Humming\""),
+            "a work admired and the tree humming are shown in the stat's own breakdown");
+
+        // ================= The game's own, the mod pool, saved and small, the dev action =================
+
+        foreach (var name in new[] { "VSIE_Inspired_Research", "Plant_GrassAnima", "Glowstool" })
+            D((impact + Read("Gods/OnMap/GodOmensOwn.cs")).Contains("\"" + name + "\""), "by name, softly: " + name);
+        D(Read("Gods/Touch/GodTouchEffects.cs").Contains("case \"Hush\":") && Read("Gods/Touch/GodTouchEffects.cs").Contains("Thing(\"Jade\")"), "something small where the word was written: the game's jade or silver");
+        D(impact.Contains("RevelGoods.Pick(c.map, true)") && impact.Contains("about?.thing?.def"), "the horned man's drink is of his own cup's kind, as Revel's code picks it");
+        D(impact.Contains("b.isNaturalRock ? b.mineableThing") && impact.Contains("NaturalRockTypesIn(map.Tile)"), "stone chunks are the rock of that place");
+        D(impact.Contains("HediffMaker.MakeHediff(HediffDefOf.Pregnant, mother)") && impact.Contains("rot.RotProgress = want") && impact.Contains("GodTouchEffects.Soil("),
+            "the game's own pregnancy, rot and rich soil");
+        D(patches.Contains("[HarmonyPatch(typeof(Fire), \"TrySpread\")]") && patches.Contains("[HarmonyPatch(typeof(Storyteller), nameof(Storyteller.TryFire))]")
+          && patches.Contains("incidentQueue") == false && impact.Contains("Find.Storyteller.incidentQueue.Add(new QueuedIncident(fi, at,"),
+            "fire doesn't spread in the still air, and a threat waits for daylight on the game's own queue");
+        D(Read("Gods/OnMap/GodOmens.cs").Contains("cond.wind = 0.01f;"), "the calm's wind dies to almost nothing, and the turbines stop with it");
+        D(touch.Contains("Scribe_Collections.Look(ref running, \"running\", LookMode.Deep);") && touch.Contains("Scribe_Collections.Look(ref admired, \"admired\", LookMode.Reference);")
+          && impact.Contains("while (b.running.Count > GodImpactMath.RunningKept) b.running.RemoveAt(0);") && impact.Contains("while (b.admired.Count > GodImpactMath.AdmiredKept) b.admired.RemoveAt(0);"),
+            "saved small: what keeps running and the works admired, both capped");
+        D(Read("Gods/Touch/GodTouchDebug.cs").Contains("\"Gods: an occurrence's own effect here now...\"") && touch.Contains("internal static bool DevImpact(Map map, IntVec3 cell, string key)"),
+            "a dev action tries one occurrence's effect at the mouse");
+        return before;
     }
 }

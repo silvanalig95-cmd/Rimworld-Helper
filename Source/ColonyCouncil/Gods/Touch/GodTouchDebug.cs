@@ -44,6 +44,29 @@ namespace ColonyCouncil
             })).ToList()));
         }
 
+        /// <summary>
+        /// Every god's doing leaves something real (GodImpactMath.Table): one occurrence's own effect at the mouse now, as if
+        /// everyone near had seen it there. Select first the one it is about where it names someone (the dying, the binger, a
+        /// dreamer), or the thing (a body, a work of art); a line of frost runs east to west through the place.
+        /// </summary>
+        [DebugAction("Rimfolk", "Gods: an occurrence's own effect here now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugImpact()
+        {
+            var map = Find.CurrentMap;
+            if (map == null || !Gods.On)
+            {
+                Say("no gods in this game.");
+                return;
+            }
+            var cell = UI.MouseCell();
+            if (!cell.InBounds(map)) cell = map.Center;
+            Find.WindowStack.Add(new FloatMenu(GodImpactMath.Table.OrderBy(kv => kv.Key).Select(kv => new FloatMenuOption(kv.Key + ": " + kv.Value, () =>
+            {
+                bool done = GodTouch.DevImpact(map, cell, kv.Key);
+                Say(kv.Key + ": " + kv.Value + (done ? " (done here)." : " (nothing for it to do here: select who or what it is about, or try another place)."));
+            })).ToList()));
+        }
+
         [DebugAction("Rimfolk", "Gods: the gods' touch (log)", allowedGameStates = AllowedGameStates.Playing)]
         private static void DebugLog()
         {
@@ -56,6 +79,11 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             var sb = new StringBuilder("The gods' touch:\n");
             foreach (var kv in b.last.OrderBy(k => k.Key)) sb.AppendLine("  " + kv.Key + ": " + ((now - kv.Value) / (float)GenDate.TicksPerDay).ToString("0.0") + " days ago");
+            sb.AppendLine("Running on (an occurrence's own effect, until):");
+            foreach (var r in b.running.Where(x => x != null))
+                sb.AppendLine("  " + r.kind + " at " + (r.map != null ? Homes.Name(r.map) : "?") + " " + r.cell + (r.thing != null ? " (" + r.thing.LabelShort + ")" : "")
+                              + (r.pawn != null ? " (" + r.pawn.LabelShort + ")" : "") + ": " + ((r.until - now) / (float)GenDate.TicksPerHour).ToString("0.0") + " hours left");
+            sb.AppendLine("Works admired: " + string.Join(", ", b.admired.Where(t => t != null).Select(t => t.LabelShort)));
             sb.AppendLine("Lately (home|god|effect|tick):");
             foreach (var r in b.recent) sb.AppendLine("  " + r);
             sb.AppendLine("Occurrences seen in the last " + GodTouchMath.TurnDays + " days, by god at each home (their own happenings that much less likely):");

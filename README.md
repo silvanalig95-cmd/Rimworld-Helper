@@ -1636,6 +1636,15 @@ nobody can say for certain what it was or why. You see what the colonists see, a
   presence staying on the land for days, a seam of gold in the rock, animals or a person come to stay, the fields made
   rich, a winter without the cold, a day of sun that grows every crop, an old wound gone, a spring welling up, gold on
   the ground). The angry gods spoil, break and chill, never wound. None of it names a god; what you see is what happened.
+  Many of the signs and happenings leave something of their own every time, fitted to what was seen and there to be found
+  whether or not anyone saw it: a body left lying rots away inside its ring of mushrooms and the ground there turns rich,
+  white threads round rot in the stores take the rotten stack, frost on a grave lets the dead one's closest sleep well, a
+  line of frost kills a few tender crops it crosses, frost writing by a wall leaves the room behind it cold for a day, the
+  sun standing still grows the crops a day ahead and runs the solar panels full until sundown, a cat by someone dying eases
+  their pain, a golden beetle on a table leaves silver under it, a light glowing with no power stays lit all night, the rock
+  rumbling drops a few chunks of stone, the wind dying stops the turbines and keeps fire from spreading, thunder under a
+  clear sky brings rain, a goat bleating in an empty room means one of the herd is with young, two who had the same dream
+  think better of each other, and a work named for a god is admired more.
   The same thing seldom comes back soon: an offering is taken before everyone's eyes a month apart at most, and a god
   that came often lately gives the others their turn.
 

@@ -676,6 +676,7 @@ namespace ColonyCouncil
             if (seer != null)
             {
                 OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.Named("OTHER") }, "bingesaw");
+                GodTouch.About(map, "CC_GodRevel_Saw_Binge", p);
                 if (g != null) OwnHappenings.Saw(g, map, seat, GodActKind.Omen, seer, "CC_GodRevel_Saw_Binge", p.LabelShort.Named("PAWN"));
             }
             return true;
@@ -806,6 +807,8 @@ namespace ColonyCouncil
                 var cup = ThingMaker.MakeThing(drink);
                 cup.stackCount = 1;
                 x.inventory?.innerContainer?.TryAdd(cup);
+                // A drink of his kind is left where he stood (Gods/Touch/GodImpact.cs).
+                GodTouch.About(map, "CC_GodRevel_Saw_Satyr", x, thing: cup);
             }
             catch (Exception e)
             {

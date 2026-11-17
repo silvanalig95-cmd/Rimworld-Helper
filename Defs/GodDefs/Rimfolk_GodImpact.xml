@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Every god's doing leaves something real (Source/ColonyCouncil/Gods/Touch/GodImpact.cs, GodImpactMath.cs;
+    docs/gods-impact-proposals.md; the player, 17 November 2026: "not every god interaction with the world necessarily
+    needs to have a strong impact, but it should also not be completely trivial"). What some of the gods' occurrences leave
+    on the people they touch: each label and description says what it does and why, as the colony's people would put it,
+    never whose doing it was. Sized like the gods' touch's own: about a day, a modest help.
+  -->
+
+  <!-- 6. Frost on a grave: those closest to the dead person sleep well that night (its time is set to the morning). -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_GraveRest</defName>
+    <label>sleeping well</label>
+    <description>Since frost lay on the grave of someone they were close to, they feel easier about them. They sleep deeply tonight and wake rested.</description>
+    <stages><li><statFactors><RestRateMultiplier>1.5</RestRateMultiplier></statFactors></li></stages>
+  </HediffDef>
+
+  <!-- 16. The moon huge and close all night: everyone at the home sleeps deeper that night. -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_MoonSleep</defName>
+    <label>sleeping deeply</label>
+    <description>The moon came up huge and close over the colony tonight. Everyone sleeps deeper under it and wakes more rested.</description>
+    <stages><li><statFactors><RestRateMultiplier>1.4</RestRateMultiplier></statFactors></li></stages>
+  </HediffDef>
+
+  <!-- 18. A cat beside someone near death: their pain is less while it stays (taken off when the cat goes). -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_PainEased</defName>
+    <label>a cat close by</label>
+    <description>A cat came and lay down beside them while they were near death. With it there, they feel less pain. It lasts while the cat stays.</description>
+    <stages><li><painFactor>0.6</painFactor></li></stages>
+  </HediffDef>
+
+  <!-- 20. The cat walked away once they came through: the one who lived heals faster for a few days. -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_HealFaster</defName>
+    <label>on the mend</label>
+    <description>Since the cat that lay beside them got up and walked away, they have felt sure they will get better. Their wounds mend faster for a few days.</description>
+    <comps Inherit="False">
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>180000~180000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statFactors><InjuryHealingFactor>1.5</InjuryHealingFactor></statFactors></li></stages>
+  </HediffDef>
+
+  <!-- 36. The miners' shared dream: those miners dig faster for a day. -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_DeepDream</defName>
+    <label>dreamt of the deep</label>
+    <description>Since they dreamt of something huge stretching under the mountain, the rock seems to give way more easily under their picks. They dig faster today.</description>
+    <stages><li><statFactors><MiningSpeed>1.25</MiningSpeed></statFactors></li></stages>
+  </HediffDef>
+
+  <!-- 54. Everything went silent at once: everyone's next hour of work goes better. -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_StillHour</defName>
+    <label>a clear head</label>
+    <description>Everything went silent at once a little while ago. Since then they have been working with a clear head, and their work goes faster for about an hour.</description>
+    <comps Inherit="False">
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>2500~2500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages><li><statFactors><WorkSpeedGlobal>1.2</WorkSpeedGlobal></statFactors></li></stages>
+  </HediffDef>
+
+  <!-- 46. The animals all stood still looking one way: the colony's animals calm and easy to handle for a day. -->
+  <HediffDef ParentName="Rimfolk_GodTouchBlessBase">
+    <defName>Rimfolk_GodTouch_AnimalsCalm</defName>
+    <label>calm animals</label>
+    <description>Since the animals all stood still and looked the same way, they have been calm and easy to handle. Taming and training go better today.</description>
+    <stages><li><statOffsets><TameAnimalChance>0.15</TameAnimalChance><TrainAnimalChance>0.15</TrainAnimalChance></statOffsets></li></stages>
+  </HediffDef>
+
+  <!-- 3 and 19. Those who mourn: their grief eases sooner (its memories end sooner), and they know why. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_GriefEased</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>grief easing</label>
+        <description>A ring of mushrooms came up at the graves where the pale figure stood all night. Since then my grief has been easier to bear, and it will pass sooner.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+      <li>
+        <label>grief easing</label>
+        <description>The cat stayed with them to the end, so they weren't alone. Knowing that makes the grief easier to bear, and it will pass sooner.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- 26. A sweet smoke through the colony: those who smell it are cheered for the day. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_GodTouch_SweetSmoke</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a sweet smoke</label>
+        <description>A sweet smoke drifted through the colony where nothing was burning. I liked the smell, and it has put me in a good mood.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- 53. Two of the colony woke from the same dream: they think better of each other. -->
+  <ThoughtDef>
+    <defName>Rimfolk_GodTouch_SameDream</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>had the same dream</label><description>We both woke from the same dream on the same night. It feels like a bond between us now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- 13. The air shimmering over the open ground at noon: the open ground a few degrees warmer for the afternoon. -->
+  <GameConditionDef>
+    <defName>Rimfolk_GodTouch_WarmAfternoon</defName>
+    <conditionClass>ColonyCouncil.GameCondition_GodWarmth</conditionClass>
+    <label>warm afternoon</label>
+    <description>Since the air shimmered over the open ground at noon, it has been a few degrees warmer outside. It lasts until evening.</description>
+    <endMessage>The warm afternoon is over.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+</Defs>

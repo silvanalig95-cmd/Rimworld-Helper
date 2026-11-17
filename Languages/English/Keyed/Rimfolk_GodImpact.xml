@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Every god's doing leaves something real (Source/ColonyCouncil/Gods/Touch/GodImpact.cs; docs/gods-impact-proposals.md):
+    what follows each covered occurrence, told as what happened, never whose doing it was. {HOME} is the home; {WHO} the
+    ones it touched, by name. Effects the gods' touch already had keep their own words (Rimfolk_GodTouch.xml).
+  -->
+
+  <CC_GodImpact_Room>room</CC_GodImpact_Room>
+
+  <!-- ===================== Morel ===================== -->
+
+  <CC_GodImpact_RotAway>{DEAD}'s body at {HOME} is rotting away fast inside the ring of mushrooms, and the ground inside the ring has turned rich.</CC_GodImpact_RotAway>
+  <CC_GodImpact_RotAway_NoSoil>{DEAD}'s body at {HOME} is rotting away fast inside the ring of mushrooms.</CC_GodImpact_RotAway_NoSoil>
+  <CC_GodImpact_RotAway_Soil>The ground inside the ring of mushrooms at {HOME} has turned rich.</CC_GodImpact_RotAway_Soil>
+  <CC_GodImpact_RotGone>The white threads have taken the rotten {WHAT} in the stores at {HOME}, and the floor where it lay is clean.</CC_GodImpact_RotGone>
+  <CC_GodImpact_GriefEased_Ring>{WHO} found their grief easier to bear after the ring of mushrooms came up at the graves of {HOME}.</CC_GodImpact_GriefEased_Ring>
+  <CC_GodImpact_GriefEased_Cat>{WHO} found their grief for {DEAD} easier to bear, knowing the cat stayed with {DEAD} to the end.</CC_GodImpact_GriefEased_Cat>
+  <CC_GodImpact_RichSoil_Ring>The ground inside the ring of mushrooms at {HOME} has turned dark and rich.</CC_GodImpact_RichSoil_Ring>
+  <CC_GodImpact_KeepsLess>The food stored in the {ROOM} at {HOME}, where the white threads lie, will keep a little less long for the next few days.</CC_GodImpact_KeepsLess>
+
+  <!-- ===================== Hush ===================== -->
+
+  <CC_GodImpact_RestKin>{WHO} will sleep deeply tonight, feeling easier about {DEAD} since the frost lay on the grave at {HOME}.</CC_GodImpact_RestKin>
+  <CC_GodImpact_FrostLine>The line of frost across {HOME} killed {COUNT} of the crops it crossed.</CC_GodImpact_FrostLine>
+  <CC_GodImpact_ColdRoom>The {ROOM} behind the wall with the frost writing at {HOME} has gone cold, and it is staying cold.</CC_GodImpact_ColdRoom>
+
+  <!-- ===================== Helios ===================== -->
+
+  <CC_GodImpact_Rested>{WHO} came back from watching the sunrise at {HOME} fully rested.</CC_GodImpact_Rested>
+  <CC_GodImpact_LongNoon>The crops in the open fields at {HOME} have grown a day ahead, and the solar panels are giving all they can until sundown.</CC_GodImpact_LongNoon>
+  <CC_GodImpact_LongNoon_Crops>The crops in the open fields at {HOME} have grown a day ahead.</CC_GodImpact_LongNoon_Crops>
+  <CC_GodImpact_LongNoon_Panels>The solar panels at {HOME} are giving all they can until sundown.</CC_GodImpact_LongNoon_Panels>
+  <CC_GodImpact_Warmth>The air over the open ground at {HOME} is a few degrees warmer this afternoon.</CC_GodImpact_Warmth>
+
+  <!-- ===================== Selene ===================== -->
+
+  <CC_GodImpact_NightWard>Nothing came to {HOME} in the night while {PAWN} kept the door.</CC_GodImpact_NightWard>
+  <CC_GodImpact_MoonSleep>With the moon so close over {HOME}, everyone there will sleep deeper tonight.</CC_GodImpact_MoonSleep>
+
+  <!-- ===================== Tamiu ===================== -->
+
+  <CC_GodImpact_PainEased>{WHO} is in less pain with the cat lying close by.</CC_GodImpact_PainEased>
+  <CC_GodImpact_HealFaster>{WHO}'s wounds have been mending faster since the cat walked away.</CC_GodImpact_HealFaster>
+
+  <!-- ===================== Revel ===================== -->
+
+  <CC_GodImpact_BingeEnds>{PAWN} is coming out of the binge early, and in good spirits.</CC_GodImpact_BingeEnds>
+  <CC_GodImpact_BingeEnds_Over>{PAWN} is in good spirits after laughing with the empty seat.</CC_GodImpact_BingeEnds_Over>
+  <CC_GodImpact_Drink>{WHAT} lay where the man with goat's horns had stood at {HOME}.</CC_GodImpact_Drink>
+  <CC_GodImpact_Cheered>{WHO} smelled the sweet smoke at {HOME}, and it put them in a good mood for the day.</CC_GodImpact_Cheered>
+
+  <!-- ===================== Ducat ===================== -->
+
+  <CC_GodImpact_Silver>{COUNT} silver lay under the table where the golden beetle walked at {HOME}.</CC_GodImpact_Silver>
+
+  <!-- ===================== Pip ===================== -->
+
+  <CC_GodImpact_Charge>The batteries on the same line as the flickering lights at {HOME} have more charge in them than before.</CC_GodImpact_Charge>
+  <CC_GodImpact_StaysLit>The {LIGHT} at {HOME} is still glowing with no power to it, and it stays lit through the night.</CC_GodImpact_StaysLit>
+  <CC_GodImpact_FreeHour>The {THING} at {HOME} is running on its own, and it draws no power while it does.</CC_GodImpact_FreeHour>
+  <CC_GodImpact_FiresOut>The fires and torches in the {ROOM} at {HOME} went out together, and they will have to be lit again.</CC_GodImpact_FiresOut>
+  <CC_GodImpact_FiresOut_Out>The fires near the light that kept going out at {HOME} went out together, and they will have to be lit again.</CC_GodImpact_FiresOut_Out>
+
+  <!-- ===================== Smoulder ===================== -->
+
+  <CC_GodImpact_StoneChunks>{COUNT} chunks of stone came down from the rock overhead at {HOME}. Nobody was under them.</CC_GodImpact_StoneChunks>
+  <CC_GodImpact_DigFaster>Since the dream of something stretching under the mountain, the rock has given way more easily for {WHO}.</CC_GodImpact_DigFaster>
+  <CC_GodImpact_WarmGround>The ground where the steam came up at {HOME} has stayed warm. The plants near it have grown, and snow won't lie there for a few days.</CC_GodImpact_WarmGround>
+  <CC_GodImpact_WarmGround_Bare>The ground where the steam came up at {HOME} has stayed warm, and snow won't lie there for a few days.</CC_GodImpact_WarmGround_Bare>
+
+  <!-- ===================== Cirrus ===================== -->
+
+  <CC_GodImpact_StillAir>The wind has died at {HOME}. The wind turbines have stopped, and fire won't spread while the air stays this still.</CC_GodImpact_StillAir>
+  <CC_GodImpact_GameBack>The wild animals that left {HOME} have come back onto the land.</CC_GodImpact_GameBack>
+
+  <!-- ===================== Hollin, Bellwether and the beasts ===================== -->
+
+  <CC_GodImpact_AnimaHum>Anima grass has spread round the anima tree at {HOME}, and meditating at the tree comes easier today.</CC_GodImpact_AnimaHum>
+  <CC_GodImpact_AnimaHum_NoGrass>Meditating at the anima tree at {HOME} comes easier today.</CC_GodImpact_AnimaHum_NoGrass>
+  <CC_GodImpact_WithYoung>{WHO} at {HOME} is with young.</CC_GodImpact_WithYoung>
+  <CC_GodImpact_AnimalsCalm>The animals at {HOME} have been calm and easy to handle since they all stood looking one way. Taming and training go better today.</CC_GodImpact_AnimalsCalm>
+  <CC_GodImpact_Hardy>Since the beast ate the food it was given, the colony's animals at {HOME} have been bearing the cold better.</CC_GodImpact_Hardy>
+
+  <!-- ===================== The eerie signs ===================== -->
+
+  <CC_GodImpact_StaysDark>The dark by the {LIGHT} at {HOME} has not lifted, and the light there won't stay lit tonight.</CC_GodImpact_StaysDark>
+  <CC_GodImpact_StaysDark_NoLight>The spot at {HOME} that the light didn't reach is still dark, and it will stay dark tonight.</CC_GodImpact_StaysDark_NoLight>
+  <CC_GodImpact_KindDream>{PAWN} dreamt of {DEAD} in the night, and it was a kind dream.</CC_GodImpact_KindDream>
+  <CC_GodImpact_KindDream_Dream>I dreamt of {DEAD}. It was a kind dream, and I woke up feeling better about everything.</CC_GodImpact_KindDream_Dream>
+  <CC_GodImpact_SameDream>{PAWN} and {OTHER} think better of each other since they had the same dream.</CC_GodImpact_SameDream>
+  <CC_GodImpact_StillHour>After everything at {HOME} went silent, everyone works with a clear head for the next hour.</CC_GodImpact_StillHour>
+  <CC_GodImpact_Admired>People at {HOME} stop to look at {TITLE}, the work {PAWN} named. It counts as a little more beautiful than before.</CC_GodImpact_Admired>
+
+  <!-- ===================== In a stat's breakdown ===================== -->
+
+  <CC_GodImpact_Stat_Admired>Admired since it was named: x{0}</CC_GodImpact_Stat_Admired>
+  <CC_GodImpact_Stat_Humming>The tree is humming today: +{0}</CC_GodImpact_Stat_Humming>
+
+</LanguageData>

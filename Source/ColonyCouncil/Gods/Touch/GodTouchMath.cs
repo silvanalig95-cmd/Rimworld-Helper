@@ -168,7 +168,76 @@ namespace ColonyCouncil
         /// <summary>Those who saw it come away in high spirits, their recreation filled (Revel).</summary>
         Merry,
         /// <summary>Some of the drink in the stores turns sour and spills, never all of it (Revel's anger).</summary>
-        Sour
+        Sour,
+        // ---- Each occurrence's own (Gods/Touch/GodImpact.cs, GodImpactMath.Table; saved by name, so they go at the end) ----
+        /// <summary>A body rots away to bones in a day or two, and the ground inside the ring round it turns rich.</summary>
+        RotAway,
+        /// <summary>The rotten stack in the stores is gone, and the floor under it clean.</summary>
+        RotGone,
+        /// <summary>Those who mourn the dead feel their grief ease sooner.</summary>
+        GriefEased,
+        /// <summary>The food stored in a room keeps a little less long for a few days.</summary>
+        KeepsLess,
+        /// <summary>Those closest to a dead person sleep well that night and wake rested.</summary>
+        RestKin,
+        /// <summary>A few tender crops on a line of frost take the cold (the game's own).</summary>
+        FrostLine,
+        /// <summary>A room stays cold for a day.</summary>
+        ColdRoom,
+        /// <summary>Those who stood there are fully rested.</summary>
+        Rested,
+        /// <summary>The crops in the open grow a day ahead, and solar panels give their most until sundown.</summary>
+        LongNoon,
+        /// <summary>The open ground a few degrees warmer for the afternoon.</summary>
+        Warmth,
+        /// <summary>Nothing comes to the colony in the night while the door is kept.</summary>
+        NightWard,
+        /// <summary>Everyone at the home sleeps deeper that night.</summary>
+        MoonSleep,
+        /// <summary>Someone near death feels less pain while a cat stays by them.</summary>
+        PainEased,
+        /// <summary>Someone who came through heals faster for a few days.</summary>
+        HealFaster,
+        /// <summary>A binge ends sooner, and the binger's recreation is full.</summary>
+        BingeEnds,
+        /// <summary>A drink of the colony's kind left where it happened.</summary>
+        Drink,
+        /// <summary>A drink spilled and lost (the sign's own).</summary>
+        Spill,
+        /// <summary>Those who were there cheered for the day.</summary>
+        Cheered,
+        /// <summary>A gold coin lying there (the sign's own).</summary>
+        Coin,
+        /// <summary>A little silver under a table.</summary>
+        Silver,
+        /// <summary>A light keeps glowing all night with no power.</summary>
+        StaysLit,
+        /// <summary>A machine's hour running on costs no power and no fuel.</summary>
+        FreeHour,
+        /// <summary>A few chunks of the place's own stone come down.</summary>
+        StoneChunks,
+        /// <summary>Miners dig faster for a day.</summary>
+        DigFaster,
+        /// <summary>The ground round a place stays warm a few days: no snow on it, the plants near it growing.</summary>
+        WarmGround,
+        /// <summary>While the wind is dead, the turbines stop and fire doesn't spread.</summary>
+        StillAir,
+        /// <summary>The anima tree's grass spreads a little, and meditating at it is better for a day.</summary>
+        AnimaHum,
+        /// <summary>One of the colony's herd animals is with young.</summary>
+        WithYoung,
+        /// <summary>The colony's animals calm and easy to handle for a day.</summary>
+        AnimalsCalm,
+        /// <summary>A spot stays dark for the night.</summary>
+        StaysDark,
+        /// <summary>The one closest to a dead person dreams of them kindly.</summary>
+        KindDream,
+        /// <summary>Two who had the same dream think better of each other.</summary>
+        SameDream,
+        /// <summary>Everyone's next hour of work goes better.</summary>
+        StillHour,
+        /// <summary>A work of art is admired more.</summary>
+        Admired
     }
 
     /// <summary>One of a god's effects: what, how strong, and whether it is one of its angers.</summary>
@@ -258,9 +327,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Its words key (or the part's own word for it: "world", "prayer", "council") names an occurrence that brings
-        /// its own effect: the moods only. Exact, or under a key ending in "_".
+        /// its own effect: the moods only. Exact, or under a key ending in "_"; and every occurrence the gods' doings table
+        /// gives an effect of its own (GodImpactMath.Table).
         /// </summary>
-        public static bool HasOwnEffect(string key)
+        public static bool HasOwnEffect(string key) => GodImpactMath.Has(key) || InOwnEffectKeys(key);
+
+        /// <summary>Its key is one of <see cref="OwnEffectKeys"/> (exact, or under one ending in "_"), or one of the small tests'.</summary>
+        public static bool InOwnEffectKeys(string key)
         {
             if (string.IsNullOrEmpty(key)) return false;
             foreach (var k in OwnEffectKeys)
