@@ -93,6 +93,9 @@ repo.
 - **Done (17 November 2026, the player's go: "alright", "please fix the bugs"): the log window at the start.** The
   report with the player's words, the cause of each red line and what was built are now one entry above the newest
   release line ("The log window at the start").
+- **Done (17 November 2026, the player's go: "please go ahead with all the changes right now that I told here"; built,
+  not released): the Stormriders, more varied and with some magic.** The request with the player's words and what was
+  built are one entry above the newest release line ("The Stormriders: their gear, their looks and some magic").
 - **To do when the player asks (17 November 2026): the pact's cart, 8 components a season.** The player, with their
   save `League_of_Toba_5` (day 124): "i somehow need to give 8 components regularly to my allies the stormriders. why
   components exactly? did i select this at some point? since this is a very valuable good and I'd rather give something
@@ -294,6 +297,77 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The Stormriders: their gear,
+  their looks and some magic** (17 November 2026). The player, with their save `League_of_Toba_5`: "And then also in
+  regard to the Storm Riders, I mean, at the moment, most of the NPCs joining my camp as visitors, etc., are Storm
+  Riders. I mean, I have good relations with them. They have camps nearby, so it makes sense that they're, you know,
+  largely represented. So I wonder if we maybe can enhance on them a little bit, you know, bring a little more variety to
+  maybe their gear, how they look like, um, kind of potentially some maybe can do magic and just kind of spice up the
+  Storm Riders and make them a bit more interesting since they're such an important factor in my current save. Let me
+  know if if you need any files from me. And please go ahead with all the changes right now that I told here."
+  DESIGN.md "The Stormriders: their gear, their looks and some magic".
+  - **The save**: the Stormriders are `Faction_25`, Elves (Continued)'s `DevDesigner_DarkElvesFaction` (ally, goodwill
+    64), the dark elf xenotype, medieval; not one of Rimfolk's peoples. Their 13 people: 8 Dreadspears, 2 Darkshards, 2
+    penitents, a trader, every one in the same tunic, trousers, boots and cape of the same three colours, the soldiers in
+    the same chainmail, Dreadspear armour and helmet and shield with a spear or a crossbow; ten hair styles among
+    thirteen, no tattoos, one chaos mage by A RimWorld of Magic's own roll. The cause: the Elves mod's pawn kinds (its 1.6
+    `PawnKinds_DarkEvles.xml`, read from its GitHub copy) list the whole outfit as required apparel with fixed colours.
+  - **What was built**: a profile for another mod's faction by its def's name (`ForeignPeopleDef`, `Rimfolk_Foreign_DarkElves`),
+    applied to each fresh pawn of the faction (`Patch_ForeignPeoples`, a postfix on `GenerateNewPawnInternal` like the
+    peoples' gifts, the deeper game hooks on). By role (pawn kind): traders and ordinary folk get, each a chance, a
+    chaperon (Medieval 2), a masked hood, a wide hat (Hats and Rags), a hood or headscarf, a vest (Settlers) or quilted vest
+    (Armour Expanded), the elven gambeson, a backpack (Accessories), the high elven cloak in place of a trader's cape,
+    Fairycore's purple travelling robe in place of a penitent's tunic and trousers, and may carry the Elves' dark elven
+    dagger; the Dreadspears, Darkshards, Black Guard and Cold One Knights keep their whole kit and weapon (a battle
+    banner now and then, a bolt quiver for a Dark Rider with a crossbow), the witch elves and sorceresses their whole look.
+    A piece never takes the place of the kind's own required pieces (only a civilian's cape, tunic or trousers) nor of one
+    with more sharp armour. By look (one each): the Elves' own midnight and purple, charcoal and wine, black-violet and ash,
+    brown and midnight on their cloth (soldiers only their cape and banner), and for half of the first three a long,
+    braided or loose hair style that fits their gender and genes, and with Ideology a face or body tattoo (the Elves' own
+    elven marks, war paint, an eclipse, stars, a moon and the like). Magic: a share of every role has a class of A
+    RimWorld of Magic by the peoples' own gifts (only classes the mod has on and allows this faction): the lightning mage
+    commonest (their name), rangers among the crossbows and riders, gladiators and commanders among the guards and
+    knights, bladedancers 15% of the witch elves, about half of the sorceresses and the Supreme Sorceress lightning, ice
+    or fire mages, arcanists or a summoner; without the mod the sorceresses a psylink (Staticlord or Nightstalker with
+    Vanilla Psycasts Expanded). Their casters count as the peoples' do (`PeoplesMagic.Ours`): their craft named at the
+    gate (a new bladedancer line), an ice mage's rain in a dry spell, the mod's AI in a fight with its broken spells kept
+    out, their card "Among them are lightning mages, ..."; a caster's own hood where it fits, never a wand (their weapon
+    stays: the lightning wand rates 3, their spear 6.8). Six plain lines of their own in a visitor's idle hours
+    (`folk:darkelves`). Nothing saved, no letter; xenotype, race, kinds and weapons untouched.
+  - **Code map**: `Peoples/Foreign/ForeignPeopleDef.cs` (the def, its roles, pieces and looks), `ForeignPeoples.cs` (Fit,
+    the patch, the faction table, the role, the pieces, sidearm, caster's hood, hair, tattoos, dye), `ForeignPeoplesMath.cs`
+    (pure: role, look, MayDisplace, StyleFits, Sidearm, Gifts, GiftCap), `ForeignPeoplesDebug.cs` (two dev actions),
+    `Defs/PeopleDefs/Rimfolk_ForeignPeoples.xml`; `Peoples/PeopleGifts.cs` (`GiveFrom`, shared), `Peoples/Magic/
+    PeoplesMagic.cs` (`Ours`, `OnMagic`, `Among` for the profile), `PeoplesMagicWatch.cs` (the peace chance by
+    `OnMagic`), `Peoples/Peoples.cs` (`AddTags` adds the profile's tag), `Peoples/PeoplesDebug.cs` (helpers internal),
+    `Rimfolk_Pool_VisitorIdle.xml`, `Rimfolk_PeoplesMagic_Lines.xml`, the Almanac's peoples page, README. Tests:
+    `Tools/Tests/ForeignPeoplesTests.cs` (new; every name against `docs/player-mods`, every dark elf kind in a role, no
+    fighter's piece on a slot of its kind's own kit, the shares).
+  - **What the player sees in their current game**: the Stormriders already made (the 13 on the map and in the world)
+    keep what they have. Every Stormrider the game makes after loading this version (the next visitors, caravans and their
+    guards, camp folk, raiders or allies sent to help) comes dressed this way. A pawn the game takes back from the world
+    and dresses again (it does that now and then with idle world pawns) gets the Elves mod's own outfit, as with Rimfolk's
+    own peoples.
+  - **Can't be checked without the game**: how the pieces look together on dark elves (the Fairycore robe and the high
+    elven cloak above all), the colours on each piece's texture, the hair under masked hoods, that the Elves' kinds keep
+    every required piece (the code reads `apparelRequired`), RoM's own roll and ours together, its AI casting for them.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, "Peoples of other mods: their gear, looks and gifts (log)...",
+    pick the Stormriders: four new pawns of each kind in the log with role, look, clothes and colours, weapon, class,
+    hair and tattoos. "Peoples of other mods: one of each of their kinds here now, as visitors (testing)..." at the mouse:
+    look them over, open a caster's card (Character tab: the class trait). Wait for the next real visitors or caravan.
+    With a sorceress or lightning mage among visitors, a raid while they are there shows their spells.
+  - **Mods that would help** (graphics first; Rimfolk names a mod's pieces only once they're in the player's list, so each
+    is a small follow-up): Pointed Elf Ears Refined (https://steamcommunity.com/sharedfiles/filedetails/?id=2886966525,
+    1.4 to 1.7, updated 21 October 2026) or the Elves author's own Elf Ears For [NL] Facial Animations
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3284918586, 1.4 to 1.6, last updated July 2025), since Facial
+    Animation is in their list; Show Hair Under Stuff (https://steamcommunity.com/sharedfiles/filedetails/?id=3255379190,
+    1.5 to 1.7, updated October 2026), so the new hair shows under hoods; Erin's Hairstyles - Redux and 2
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=2361911135, ?id=2849477421, 1.3 to 1.7, updated 2 November
+    2026) or Gloomy Hair (?id=2883462751, 1.6 and 1.7) for more long and braided styles; Skyrim Elven Weapons Pack
+    (?id=3066083522, 1.5 to 1.7, updated 26 October 2026) for elven blades and bows; Witch Neophyte Hat and Cloak
+    (?id=3576928906, 1.6 and 1.7, updated 9 November 2026) for the sorceresses and casters; Addie's Mantles and Cloaks
+    (?id=3459406801, 1.5 and 1.6, not tagged 1.7) for the traders and folk. Already subscribed and on 1.7, not enabled:
+    Tasty Armory - High Medieval and Fire and Steel (?id=3480089301, ?id=3469863838) for heavier armour.
 - 0.265.1, **The log window at the
   start** (17 November 2026). The player, with their startup log
   (RimWorld 1.7.5011 rev24, Harmony 3.0.0-rc.6, HugsLib 12): "got this log window pop up on the latest start". The game

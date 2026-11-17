@@ -10,7 +10,8 @@
     target), spar (with their shadow), archery, fish, catch (said when a fish comes out), mend, sharpen (a blade), bow, gun,
     cards, dice, stones (a tribal people's game), sing, and giveway (said to one of the colony's people they give a game or
     a seat up to).
-    Tagged by their people's age (theirLowtech, theirHightech) and calling (their:herders), as Rimfolk_VisitorLines.
+    Tagged by their people's age (theirLowtech, theirHightech) and calling (their:herders), as Rimfolk_VisitorLines, and
+    another mod's people Rimfolk knows by their own tag (folk:darkelves, the Stormriders' dark elves: Rimfolk_ForeignPeoples).
   -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_VisitorIdle</defName>
@@ -21,9 +22,12 @@
         <li>[company] How long have you lived here?</li>
         <li>[company] We've been on the road a while, so it's good to talk to someone new.</li>
         <li>[company,their:traders] Business is slow today, so I came over to say hello.</li>
+        <li>[company,folk:darkelves] My people don't visit many places, but we like coming here.</li>
+        <li>[company,folk:darkelves] Most people keep away from dark elves, so it's good to be welcome somewhere.</li>
         <li>[fire] It's good to sit by a fire after a long walk.</li>
         <li>[fire] I'll sit here by the fire for a while.</li>
         <li>[fire] We don't often get to sit by a fire like this on the road.</li>
+        <li>[fire,folk:darkelves] We keep our fires small at camp so they can't be seen from far off.</li>
         <li>[fire,theirLowtech] At home we sit around the fire every evening.</li>
         <li>[warm] My hands are freezing.</li>
         <li>[warm] It's cold out, so I need to warm up a bit.</li>
@@ -51,6 +55,7 @@
         <li>[stars] It's a clear night, so it's a good time to look at the stars.</li>
         <li>[stars] I've never looked through one of these before.</li>
         <li>[stars,theirHightech] We had one like this back home.</li>
+        <li>[stars,folk:darkelves] We often travel at night, so I know these stars well.</li>
         <li>[art] Someone here put a lot of work into this.</li>
         <li>[art] That's well made.</li>
         <li>[art] I'd like to know who made this.</li>
@@ -85,6 +90,7 @@
         <li>[walk] I'm going to stretch my legs and have a look round.</li>
         <li>[walk] It's a nice day for a walk.</li>
         <li>[walk] I'd like to see a bit more of the place while we're here.</li>
+        <li>[walk,folk:darkelves] I like to know the ground around a place before it gets dark.</li>
         <li>[garden] Someone here keeps a good garden.</li>
         <li>[garden] I wanted to have a closer look at these flowers.</li>
         <li>[grave] I always stop at a grave when I pass one.</li>
@@ -124,6 +130,7 @@
         <li>[mend] It won't last the road if I don't fix it now.</li>
         <li>[sharpen] I'll put an edge back on this.</li>
         <li>[sharpen] A blunt blade is no use to anyone.</li>
+        <li>[sharpen,folk:darkelves] I sharpen my blade every evening, as everyone in my camp does.</li>
         <li>[bow] The string is wearing thin, so I'll put a new one on.</li>
         <li>[bow] A little oil keeps the wood from cracking.</li>
         <li>[gun] I'll clean this before the dust gets into it.</li>

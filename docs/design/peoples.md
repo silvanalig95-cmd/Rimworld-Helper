@@ -467,6 +467,11 @@ people and gifts (log)..." (four new pawns of each kind of a people, described i
 of each of their kinds here now, as visitors (testing)..." (spawned at the mouse under a visitors' lord for half a day).
 Tests: `Tools/Tests/PeoplesGearTests.cs`.
 
+**Another mod's people** (17 November 2026, the player's Stormriders): the dark elves of Elves (Continued) are given more
+gear by role, a look (colours, hair, tattoos) and the same gifts as each is made, by a profile for their faction's def
+(`ForeignPeopleDef`, `Peoples/Foreign/`), with the same rule that a piece never takes the place of the kind's own kit;
+DESIGN.md "The Stormriders: their gear, their looks and some magic".
+
 **Softness**
 
 | Missing | What happens |

@@ -4413,6 +4413,21 @@ spells kept out of their hands (the masters' storms, meteors and wraths, resurre
 elementals, sabotage, the sniper's headshot, the mortar and the breaching charge, and the like). Off without the mod; the
 guard off with the deeper game hooks; no visitor casts in peace with the mod's "AI can cast" off.
 
+**Another mod's people: the dark elves.** With Elves (Continued), Rimfolk also dresses its dark elves (in the player's
+world the Stormriders), whose mod gives each of its kinds one fixed outfit. Their soldiers keep their mod's whole kit and
+weapons, the cape in one of a few dark colours, now and then a battle banner or, for a Dark Rider with a crossbow, a bolt
+quiver; their traders and ordinary folk add a merchant's chaperon, a masked hood or a hat, a vest, a gambeson, a pack or
+now and then a travelling robe, and may carry a dark elven dagger. A piece never takes the place of anything their kind's
+own kit requires (only a civilian's cape or tunic may give way) or of one that protects more. Each has one of four looks:
+the colours of their cloth (the Elves' own midnight and purple, charcoal and wine, black-violet and ash, brown and
+midnight) and, for some, a long, braided or loose hair style that fits a man or a woman and a face or body tattoo
+(Ideology's, or the Elves' own elven marks). A few of every kind have a class of A RimWorld of Magic, more among the witch
+elves (bladedancers) and about half of their sorceresses (lightning, ice and fire mages, arcanists); without that mod the
+sorceresses have a psylink instead. Their casters show it as the peoples' do: a caster's own hood where it fits, never a
+wand in place of their weapon, their craft named at the gate, a helpful spell in peace now and then, the mod's own AI in a
+fight with its most broken spells kept out, and their card says what crafts are among them. A few lines of their own when
+they visit. Only pawns made from now on; their xenotype and race are not touched.
+
 **Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
 description on the faction page says in plain words what they do, how they live, what they want from their neighbours
 and where their ways came from, each in a shape of its own, as for all twenty-three peoples), a few sayings, and what
