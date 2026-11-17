@@ -51,6 +51,9 @@ public static class TraitChangeTests
         "KillsHumanlikes", "Kills", "TimesInMentalState", "TimeGettingJoy", "TimeUnderRoof", "TimeAsColonistOrColonyAnimal", "TimeInBed"
     };
 
+    /// <summary>A vow as the player's save has it: open, the colony at war with those who did it, none of them fallen yet.</summary>
+    private static TraitChangeMath.Vow OpenVow(int sworn, string loss) => new TraitChangeMath.Vow(sworn, true, true, 0, loss);
+
     public static int Run(string root, Action<bool, string> check)
     {
         int cases = 0;
@@ -100,6 +103,9 @@ public static class TraitChangeTests
         Check(TraitChangeMath.RateBlocked(now - 61 * Day, -1, -1, 0, now) == null, "after sixty days the same person may change again");
         Check(TraitChangeMath.RateBlocked(-1, -1, now - 100 * Day, 120, now) == "trait" && TraitChangeMath.RateBlocked(-1, -1, now - 130 * Day, 120, now) == null,
             "the same trait waits out its rule's gap");
+        Check(TraitChangeMath.RateBlocked(now - 20 * Day, -1, -1, 0, now, true) == null, "taking away a trait Rimfolk gave isn't held back by the person's sixty days");
+        Check(TraitChangeMath.RateBlocked(now - 20 * Day, now - 5 * Day, -1, 0, now, true) == "colony", "but the colony's ten days still hold");
+        Check(TraitChangeMath.RateBlocked(now - 20 * Day, -1, now - 20 * Day, 45, now, true) == "trait", "and so does the rule's own gap");
         // A year of daily checks with something always ready: the colony sees at most one change per ten days, a person one per sixty.
         int last = -1;
         var lastBy = new Dictionary<int, int>();
@@ -242,6 +248,53 @@ public static class TraitChangeTests
             Check(TraitChangeMath.Pace(st, nums, dens, now, 80 * Day * 0.03f, 40 * Day, 60f) < 0f, "away for most of the stretch: no pace");
         }
         Check(TraitChangeMath.DaysSince(-1, now) == 0f && Math.Abs(TraitChangeMath.DaysSince(now - 3 * Day, now) - 3f) < 0.001f, "calm days count from the last breakdown");
+        Check(Math.Abs(TraitChangeMath.CalmDays(now - 97 * Day, now - 24 * Day, now, true) - 24f) < 0.001f, "calm since the trait came: a calm from before it doesn't count");
+        Check(Math.Abs(TraitChangeMath.CalmDays(now - 97 * Day, now - 24 * Day, now, false) - 97f) < 0.001f, "plain calm counts from the last breakdown");
+        Check(Math.Abs(TraitChangeMath.CalmDays(now - 10 * Day, now - 24 * Day, now, true) - 10f) < 0.001f, "a breakdown since the trait came starts the calm again");
+        Check(TraitChangeMath.CalmDays(-1, now - 24 * Day, now, true) == 0f, "never looked at: no calm days");
+
+        // ---------- What Rimfolk gave, rivals ----------
+        Check(TraitChangeMath.GaveIt(new List<int> { 100 * Day }, new List<bool> { true }), "a trait a change gave is Rimfolk's to undo");
+        Check(!TraitChangeMath.GaveIt(new List<int>(), new List<bool>()), "a trait they came with isn't (no change of it kept)");
+        Check(!TraitChangeMath.GaveIt(new List<int> { 100 * Day, 200 * Day }, new List<bool> { true, false }), "nor one a later change already took away");
+        Check(TraitChangeMath.GaveIt(new List<int> { 300 * Day, 100 * Day, 200 * Day }, new List<bool> { true, true, false }), "the newest change decides, in any order");
+        Check(TraitChangeMath.IsRival(-20, false) && TraitChangeMath.IsRival(5, true) && !TraitChangeMath.IsRival(-19, false),
+            "a rival: a rivalry on the Bonds page, or an opinion of -20 or less, as the game calls it");
+
+        // ---------- Vows of vengeance (the player's save, 17 November 2026) ----------
+        {
+            // Alder, killed by the mechanoid hive on day 98.27; Avila, Bautista and Guido swore on day 98.29. Avila became
+            // vengeful on day 100.01, Bautista on day 112.01 (the old rule). Guido also swore on the people who carried off
+            // Gocrirnas, on day 86.21. The save is on day 124.2.
+            int sworn = (int)(98.29f * Day), at = (int)(124.2f * Day);
+            var alder = OpenVow(sworn, "Human187324");
+            var avila = new List<TraitChangeMath.Vow> { alder };
+            var guido = new List<TraitChangeMath.Vow> { OpenVow((int)(86.21f * Day), "Human202409"), alder };
+            Check(TraitChangeMath.AnyStanding(avila), "Avila's vow on the hive still stands (open, at war, none fallen)");
+            int i = TraitChangeMath.Unpaid(avila, at, null, out float days);
+            Check(i == 0 && Math.Abs(days - 25.9f) < 0.1f, $"it has stood unpaid {days:0.0} days");
+            // One person per loss: the old changes kept no loss, so it's read from the vows sworn by then.
+            var taken = new HashSet<string>(TraitChangeMath.LossesBehind(avila, (int)(100.01f * Day)));
+            Check(taken.SetEquals(new[] { "Human187324" }), "Avila's vengeful is read as Alder's loss");
+            Check(TraitChangeMath.LossesBehind(avila, (int)(98f * Day)).Count == 0, "a vow sworn after a change isn't behind it");
+            i = TraitChangeMath.Unpaid(guido, at + 10 * Day, taken, out days);
+            Check(i == 0 && Math.Abs(days - 48f) < 0.1f, "Guido's vow for Alder can't make him vengeful too; his other vow, for Gocrirnas, could");
+            Check(TraitChangeMath.Unpaid(new List<TraitChangeMath.Vow> { alder }, at + 30 * Day, taken, out days) < 0 && days == 0f,
+                "a loss that has made someone vengeful makes nobody else so");
+            // Paid in part, over, or at peace.
+            var paid = alder;
+            paid.kills = 1;
+            Check(TraitChangeMath.Unpaid(new List<TraitChangeMath.Vow> { paid }, at, null, out _) < 0 && TraitChangeMath.AnyStanding(new List<TraitChangeMath.Vow> { paid }),
+                "one of them fallen: not unpaid any more, though the vow still stands");
+            var over = alder;
+            over.open = false;
+            Check(!TraitChangeMath.AnyStanding(new List<TraitChangeMath.Vow> { over }), "avenged, laid down or lapsed: no vow stands");
+            var peace = alder;
+            peace.atWar = false;
+            Check(!TraitChangeMath.AnyStanding(new List<TraitChangeMath.Vow> { peace }) && TraitChangeMath.Unpaid(new List<TraitChangeMath.Vow> { peace }, at, null, out _) < 0,
+                "peace with those who did it: the vow no longer stands, and isn't unpaid");
+            Check(!TraitChangeMath.AnyStanding(new List<TraitChangeMath.Vow>()), "no vow at all (or vendettas switched off): none stands");
+        }
 
         // ---------- The rules ----------
         var markNames = new HashSet<string>();
@@ -334,6 +387,44 @@ public static class TraitChangeTests
             if (trait == "Cannibal") Check(r.Element("tallies")!.Elements("li").All(li => ((int?)li.Element("count") ?? 1) >= 3), $"{name}: cannibalism needs at least three separate meals");
         }
         Check(rules.Count(r => (string)r.Element("trait") == "Psychopath") >= 1 && rules.Count(r => (string)r.Element("trait") == "Cannibal") >= 1, "the two extreme traits have their rules");
+        foreach (var r in rules)
+        {
+            string name = (string)r.Element("defName")!;
+            string vendetta = (string)r.Element("vendetta");
+            if (vendetta != null) Check(vendetta == "unpaid" || vendetta == "over", $"{name}: a vow is unpaid or over");
+            if (r.Element("onlyGiven") != null) Check((string)r.Element("change") == "Lose", $"{name}: only a loss undoes what Rimfolk gave");
+            if (r.Element("calmSinceChange") != null) Check(((int?)r.Element("calmDays") ?? 0) > 0, $"{name}: calm since the change needs calm days");
+        }
+
+        // ---------- Vengeful: reined in, and a way out (the player's go, 17 November 2026) ----------
+        {
+            var vengeful = rules.Where(r => (string)r.Element("trait") == "VTE_Vengeful").ToList();
+            var oath = vengeful.FirstOrDefault(r => ((string)r.Element("change") ?? "Gain") == "Gain");
+            Check(oath != null, "vengeful still comes of an oath");
+            if (oath != null)
+            {
+                Check((string)oath.Element("vendetta") == "unpaid" && ((int?)oath.Element("vendettaDays") ?? 30) >= 30, "only after a vow has stood 30 days unpaid");
+                Check(((float?)oath.Element("chance") ?? 0.1f) < 0.08f, "at a lower chance than 8% a day");
+                Check((bool?)oath.Element("noRival") == true, "never to someone with a rival in the colony");
+                string meaning = (string)oath.Element("meaning") ?? "";
+                Check(!meaning.Contains("roof") && meaning.Contains("rivals"), "the words say what the trait does: unhappy while a rival lives");
+            }
+            var outs = vengeful.Where(r => (string)r.Element("change") == "Lose").ToList();
+            Check(outs.Count >= 2 && outs.All(r => (bool?)r.Element("onlyGiven") == true), "two ways out, each for a vengeful Rimfolk gave");
+            Check(outs.All(r => ((int?)r.Element("gapDays") ?? 120) == 0), "neither waits out a gap since it came (the default 120 would hold it past day 220)");
+            Check(outs.Any(r => (string)r.Element("vendetta") == "over"), "one when no vow of theirs stands");
+            var calm = outs.FirstOrDefault(r => r.Element("calmDays") != null);
+            Check(calm != null, "one after a long calm");
+            if (calm != null)
+            {
+                int calmDays = (int?)calm.Element("calmDays") ?? 0;
+                int need = calm.Element("marks")?.Elements("li").Sum(li => (int?)li.Element("count") ?? 1) ?? 0;
+                Check(calm.Element("calmSinceChange") != null && calmDays >= 30 && calmDays <= 60, $"the calm is counted since it came, a season or more and at most a year ({calmDays} days)");
+                Check(need >= 1 && need <= 2 && calm.Element("vendetta") == null, "with a good mark or two, and whatever the vow: a mechanoid hive never makes peace");
+                // Avila: vengeful since day 100.01, no breakdown since day 27; Bautista since day 112.01, calm since day 50.
+                Check(100.01f + calmDays < 160f && 112.01f + calmDays < 160f, "both of the player's colonists can be past the calm before day 160");
+            }
+        }
         Check(rules.Select(r => (string)r.Element("defName")).Distinct().Count() == rules.Count, "every rule has its own name");
         return cases;
     }

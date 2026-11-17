@@ -37,9 +37,16 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!--
+    Vengeful (17 November 2026, the player's go): it comes only of a vow of vengeance left unpaid 30 days (a standing
+    vendetta, none of the killers fallen to the avenger yet), never to someone with a rival in the colony (vengeful's
+    mood is -20 while any rival lives), and one person at most per loss. A vengeful Rimfolk gave goes again once no vow
+    of theirs stands (avenged, laid down, lapsed after two years, the one taken home, or peace with the killers), or after
+    45 days without a breakdown since it came and one good mark since; the person's 60 days don't hold that back.
+  -->
   <ColonyCouncil.TraitChangeDef>
     <defName>Rimfolk_TC_VTE_Vengeful</defName>
-    <label>vengeful after a loss and an oath</label>
+    <label>vengeful after a vow left unpaid</label>
     <trait>VTE_Vengeful</trait>
     <change>Gain</change>
     <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
@@ -47,13 +54,16 @@
       <li><any>SworeVengeance</any></li>
       <li><any>Loss, Betrayal</any></li>
     </marks>
+    <vendetta>unpaid</vendetta>
+    <vendettaDays>30</vendettaDays>
+    <noRival>true</noRival>
     <moved>temper>=6</moved>
     <now>warmth&lt;=10</now>
     <blockedBy><li>Kind</li></blockedBy>
-    <chance>0.08</chance>
+    <chance>0.03</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become vengeful.</news>
-    <meaning>After the loss and the oath that followed it, spite has taken root in {PAWN_nameDef}, and {PAWN_pronoun} can't bear a rival under the same roof.</meaning>
+    <meaning>After the loss and a vow of vengeance left unpaid, {PAWN_nameDef} has started holding grudges, and is unhappy for as long as any of {PAWN_possessive} rivals is alive.</meaning>
     <journal>
       <plain>
         <li>I remember every one of them. Every face, every name. I'm keeping a list.</li>
@@ -64,6 +74,62 @@
       <cheerful><li>I'm cheerful about most things. Not about them. Them, I'll see to.</li></cheerful>
       <gloomy><li>The anger is all that's left of them that I can hold on to.</li></gloomy>
       <cold><li>Debts are meant to be settled. I intend to settle mine.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_VengefulVowOver</defName>
+    <label>no longer vengeful once the vow is over</label>
+    <trait>VTE_Vengeful</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <onlyGiven>true</onlyGiven>
+    <vendetta>over</vendetta>
+    <gapDays>0</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer vengeful.</news>
+    <meaning>With the vow of vengeance over, {PAWN_nameDef} has let go of {PAWN_possessive} grudges, and having a rival no longer spoils {PAWN_possessive} mood.</meaning>
+    <journal>
+      <plain>
+        <li>It's over. I thought I'd feel more than this, but mostly I'm tired, and I'm done keeping score.</li>
+        <li>I went through my list of everyone who ever wronged me today. Most of it doesn't matter anymore.</li>
+      </plain>
+      <warm><li>I held on to the anger because it felt like holding on to them. I can remember them without it now.</li></warm>
+      <blunt><li>It's done. I'm done with it.</li></blunt>
+      <cheerful><li>I slept the whole night for the first time in a long while. Not being angry all the time suits me better.</li></cheerful>
+      <gloomy><li>Finishing it didn't bring anyone back. At least I can stop carrying it.</li></gloomy>
+      <cold><li>That debt is closed. I see no reason to keep the smaller ones open.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_VengefulCalms</defName>
+    <label>no longer vengeful after a long calm</label>
+    <trait>VTE_Vengeful</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <onlyGiven>true</onlyGiven>
+    <calmDays>45</calmDays>
+    <calmSinceChange>true</calmSinceChange>
+    <marks>
+      <li><any>Kindness, ForgivenBy, NursedBack, SavedBy, SavedSomeone, PromiseKept, Married, BecameParent, RaisedChild, MovingRitual, TaughtWell, LongPeace</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.05</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer vengeful.</news>
+    <meaning>After a long calm stretch with something good in it, {PAWN_nameDef} has let go of {PAWN_possessive} grudges, and having a rival no longer spoils {PAWN_possessive} mood.</meaning>
+    <journal>
+      <plain>
+        <li>Someone got on my nerves today and I let it go. Last season I'd have held it against them for days.</li>
+        <li>I haven't added a name to my list in a long time. I don't think I'll start again.</li>
+      </plain>
+      <warm><li>The people here kept being good to me while I was at my worst. I owe it to them to stop holding grudges.</li></warm>
+      <blunt><li>I'm not angry all the time anymore. That's enough.</li></blunt>
+      <cheerful><li>Had an argument with someone and we were laughing about it by supper. I'd forgotten that could happen.</li></cheerful>
+      <gloomy><li>The anger has worn off. I'm not sure what's left without it, but it's quieter.</li></gloomy>
+      <cold><li>Keeping grudges took effort and gained me nothing. I've stopped.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 

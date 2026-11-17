@@ -127,30 +127,13 @@ repo.
     the allied Stormriders schemed against the colony while allied: tie 138, a theft of 60 to 180 silver of components
     by a visitor at night, succeeded unseen on day 122.7 (`Schemes.cs`; schemes run for any people at peace with a
     grudge of 20 or more, pact allies too). To ask the player whether pact allies should scheme at all.
-- **To do when the player asks (17 November 2026): Vengeful from Rimfolk, and a way out of it.** The player: "i think two
-  of my colonists became vengeful as a result of rimfolk, is that possible? they got it at some point during an event.
-  now they have some rivals within the colony and it gives them quite a huge debuff. ... I've only had this vengeful one
-  come up twice and now i don't really know what I can do against it, as i don't want to evict any pawns."
-  - **The cause: Rimfolk.** `Rimfolk_TC_VTE_Vengeful` (`Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`) gives Vanilla
-    Traits Expanded's `VTE_Vengeful` to someone who swore vengeance after a loss (marks SworeVengeance and Loss or
-    Betrayal, temper moved 6 or more, warmth 10 or less, not Kind), 8% a day. In their save: Alder killed by the
-    mechanoid hive Armmurd on day 98.27; Avila, Bautista and Guido swore vengeance (`Secrets/Vendettas.cs`, open, no kill
-    yet); Avila became vengeful on day 100.01, Bautista on day 112.01. VTE's `VTE_MyRivalsAreAlive` is -20 mood while a
-    rival lives: the rivals in the colony, not the killers. Avila has Rimfolk rival ties with Soot, Ape and Webb and one
-    budding with Bautista (an epithet passed from him to her). No rule ever takes Vengeful away, and Kind can't come
-    while it is there.
-  - **What they can do now**: keep the rivals apart (rooms, work, meal and recreation times) so the ill will fades above
-    -20 (the -20 goes while no rival is left, the trait stays); a moral guide's counsel or a therapist for mood; People
-    Can Change (in their list) makes traits come and go by its own settings.
-  - **The lead's fix, waiting for the player's go**: (A) Vengeful fades: a Lose rule when the vendetta behind it ends
-    (avenged, forgiven, peace with the killers, laid down) or after a long calm with kind marks, told in a plain letter,
-    the 60-day gap between one person's changes not applying to undoing what Rimfolk gave. (B) The gain reined in: only
-    when the vendetta has stood 30 days or more unpaid, at a lower chance, not for someone who already has a rival in the
-    colony, one per loss.
+- **Done (17 November 2026, the player's go: "your fix sound great for the vengeful traits again, also please"; built,
+  not released): Vengeful from Rimfolk, and a way out of it.** The to-do with the player's words and the cause found in
+  their save is now one entry above the newest release line ("Vengeful from Rimfolk reined in, and a way out of it").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
-  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 51 rules: 30 give a
-  trait (9 of them bad ones), 5 take a bad one away, 16 move a trait along its scale; in their save 3 changes in 124
-  days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
+  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
+  trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
+  along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
 - **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
   player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
   spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
@@ -297,6 +280,65 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.265.4, **Vengeful from Rimfolk reined in,
+  and a way out of it** (17 November 2026). The player: "i think two of my colonists became vengeful as a result of
+  rimfolk, is that possible? they got it at some point during an event. now they have some rivals within the colony and
+  it gives them quite a huge debuff ... I've only had this vengeful one come up twice and now i don't really know what I
+  can do against it, as i don't want to evict any pawns"; the go: "your fix sound great for the vengeful traits again,
+  also please". DESIGN.md "Vengeful from Rimfolk, and a way out of it".
+  - **The cause** (as found): `Rimfolk_TC_VTE_Vengeful` gave Vanilla Traits Expanded's `VTE_Vengeful` (its
+    `VTE_MyRivalsAreAlive`, -20 mood while any rival lives, a rival being the game's opinion of -20 or less) to someone
+    who swore vengeance after a loss, 8% a day, and nothing took it away. In their save Alder was killed by the
+    mechanoid hive Armmurd on day 98.27; Avila, Bautista and Guido swore on it (open, no kills); Avila became vengeful on
+    day 100.01, Bautista on day 112.01.
+  - **What was built.** (B) The gain reined in, the same rule: only of a vow that has stood 30 days unpaid (open
+    against a people still at war with the colony, none of them fallen to the avenger yet), 3% a day instead of 8, never
+    for someone with a rival among the colony's people (an announced rivalry on the Bonds page, or the game's opinion of
+    -20 or less of a colonist, slave or prisoner), and one person at most for each loss (kept with the change; read from
+    the vows for older changes, so Alder's loss makes nobody else vengeful). (A) Two ways out, each only for a vengeful
+    Rimfolk gave (the newest change of the trait kept for that colonist gave it): `Rimfolk_TC_VTE_VengefulVowOver`, 15%
+    a day once no vow of theirs stands (avenged by three kills, laid down, lapsed two years after it was sworn, the one
+    taken brought home, a blood price or an apology, or peace with those who did it); `Rimfolk_TC_VTE_VengefulCalms`, 5%
+    a day after 45 days without a breakdown counted from when it came, with one good mark since (a kindness remembered,
+    forgiven, nursed back, carried to safety or carrying someone out of a fight, a promise kept, a wedding, a child born
+    or grown, a moving ritual, a student taught, a year of peace), whatever the vow. Neither waits a gap since the trait
+    came, and the person's 60 days between changes don't hold back a change that takes away a trait Rimfolk gave (the
+    colony's 10 days still do). The gain's words now say what the trait does ("has started holding grudges, and is
+    unhappy for as long as any of his rivals is alive"); the fades have their own letters and journal lines; a loss's
+    letter no longer says "the trait now holds what had changed" (`CC_TC_AbsorbedLost`). The character page's "Where life
+    is taking them" shows the way out of a trait Rimfolk gave from the day it came, and every marks line there names the
+    marks that count.
+  - **Numbers, and why.** 45 calm days (three quadrums) and one good mark: Avila's good marks came about one in forty
+    days (three in his first 124), so two marks would put it near day 180, close to the vow's own lapse; with the 5% the
+    trait goes about two months after it came, about as long as the new way in takes (30 days, then about 33 at 3%).
+  - **In their game.** Avila: the calm is counted from day 100 (no breakdown since day 27), so it holds from day 145;
+    he needs one good mark after day 100 (none by day 124). Bautista: from day 112 (calm since day 50), so from day 157,
+    and a good mark after day 112. Either fades on any day after both hold (5% a day; one colonist changes in ten days,
+    Guido changed on day 122). The vow on the hive ends at the latest when it lapses on day 218.3, earlier if three of
+    the hive fall to each of them in fights against it, or if they lay it down (0.8% a day, 1.2 in a good mood, not
+    within 15 days of fighting the hive); then 15% a day. Guido has four traits, so no new one comes to him; Alder's loss
+    can't make him vengeful anyway. An older vengeful whose vow can't be found (or with vendettas switched off) counts as
+    over; one a colonist came with, or whose change is no longer kept, stays theirs.
+  - **Code map**: `Persona/TraitChangeMath.cs` (pure: `Vow`, `Unpaid`, `AnyStanding`, `LossesBehind`, `GaveIt`,
+    `IsRival`, `CalmDays`, `RateBlocked(undoing)`), `Persona/TraitChangeDefs.cs` (`vendetta`, `vendettaDays`, `noRival`,
+    `onlyGiven`, `calmSinceChange`), `Persona/TraitChanges.cs` (`TraitChangeRecord.about`; the daily pass, the gate,
+    `Vows`, `LossesTaken`, `UnpaidVow`, `VowLines`, `HasRival`, `Undoes`, `MarkNames`, the way out shown),
+    `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`Vendetta.settledTick`, saved),
+    `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml` (the gain changed, two fades),
+    `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page "traits that change", README. Tests:
+    `TraitChangeTests` (the limits with undoing, calm since the change, what Rimfolk gave, rivals, the vows from their
+    save, the Vengeful rules).
+  - **Can't be checked without the game**: the letters and the character page's lines as they read, VTE's own rival
+    test (the lead read it as the game's opinion of -20 or less; Rimfolk's gate also counts its own announced rivalries),
+    and a Rimfolk-given vengeful going on a day it holds.
+  - **Try in the game**: Avila's character page, "Where life is taking them": "no longer vengeful after a long calm"
+    (days without a breakdown since becoming vengeful, 24 of 45 on day 124, and the marks that count) and "no longer
+    vengeful once the vow is over". A party or ritual that comes out unforgettable, a wedding, a child, or carrying
+    someone out of a fight gives a good mark; breakdowns start the calm again. When the hive comes, let Avila and
+    Bautista take the shots: the vow's line on the Bonds page counts the kills (three settle it). Dev mode, Debug actions,
+    Rimfolk, "Traits that change: why or why not" on Avila logs each rule's state.
+  - **Mods that would help**: none needed. People Can Change (in their list, tagged up to 1.6) changes traits by its
+    own settings, apart from Rimfolk.
 - 0.265.3, **Everything from a god told at
   once** (17 November 2026). The player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby pawns
   had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no

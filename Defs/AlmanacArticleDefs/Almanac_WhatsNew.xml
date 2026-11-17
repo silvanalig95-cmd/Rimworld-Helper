@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.265.4</version>
+        <date>17 November 2026</date>
+        <title>A way out of vengeance</title>
+        <points>
+          <li>Rimfolk makes a colonist vengeful much more rarely: only after a vow of vengeance has stood 30 days with none of the killers fallen, never when they already have a rival in the colony, and to one person at most for each loss.</li>
+          <li>A vengeful streak Rimfolk gave now goes again once the vow is over: avenged, laid down, lapsed, or peace made with those who did it.</li>
+          <li>It also goes after 45 days without a breakdown and one good thing since, such as a wedding, a moving ceremony, a kindness or being carried out of a fight, even while the vow still stands.</li>
+          <li>The character page shows a vengeful colonist's way out under "Where life is taking them", and names the marks that count for each change.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.265.3</version>
         <date>17 November 2026</date>
         <title>A god's words at once</title>

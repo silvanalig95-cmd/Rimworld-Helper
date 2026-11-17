@@ -3,7 +3,7 @@
 
   <!-- Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs). -->
   <CC_Settings_TraitChanges>Traits can change</CC_Settings_TraitChanges>
-  <CC_Settings_TraitChanges_Tip>Now and then, after a long stretch of the same kind of life, one of a colonist's traits grows, appears or fades: steadier nerves after raid after raid held, kindness after years of kindnesses, a pessimist after a year of graves. Each change comes with a letter that tells what led to it, with dates, and is kept on the character page. Rare: at most one change per colonist in 60 days, and one in the colony in 10. Traits of the body, sexuality and traits from genes or a backstory never change.</CC_Settings_TraitChanges_Tip>
+  <CC_Settings_TraitChanges_Tip>Now and then, after a long stretch of the same kind of life, one of a colonist's traits grows, appears or fades: steadier nerves after raid after raid held, kindness after years of kindnesses, a pessimist after a year of graves. Each change comes with a letter that tells what led to it, with dates, and is kept on the character page. Rare: at most one change per colonist in 60 days (a trait Rimfolk gave can go sooner), and one in the colony in 10. Traits of the body, sexuality and traits from genes or a backstory never change.</CC_Settings_TraitChanges_Tip>
   <CC_SetNote_TraitChanges>Rarely, a trait grows, appears or fades after what a colonist went through.</CC_SetNote_TraitChanges>
 
   <!-- What changed, on the character page: "gained kind", "lost abrasive", "steadfast became iron-willed". -->
@@ -16,31 +16,41 @@
   <CC_TC_NewsLost>{PAWN_nameDef} is no longer {TRAIT}.</CC_TC_NewsLost>
   <CC_TC_LedTo>What led to it:</CC_TC_LedTo>
   <CC_TC_Absorbed>The trait now holds what had already changed in {PAWN_objective}, so {PAWN_possessive} character stays where it was, and that part of the change is for good.</CC_TC_Absorbed>
+  <CC_TC_AbsorbedLost>What the trait held is now counted with what life has changed in {PAWN_objective}, so {PAWN_possessive} character stays where it was.</CC_TC_AbsorbedLost>
   <CC_TC_Record>{0}: {1}.</CC_TC_Record>
   <CC_TC_Pace>{0}: {1}% of the time over the last {2} days.</CC_TC_Pace>
   <CC_TC_Calm>No breakdown or other mental state for {0} days.</CC_TC_Calm>
   <CC_TC_Skill>{0} skill: {1}.</CC_TC_Skill>
   <CC_TC_Practice>{0}: about {1} hours lately.</CC_TC_Practice>
   <CC_TC_Habit>The habit "{0}": held {1} days, lived on {2} of them.</CC_TC_Habit>
+  <!-- A vow of vengeance behind a change (Secrets/Vendettas.cs): {0} days, {1} the people, {2} the one lost. -->
+  <CC_TC_VowUnpaid>{0} days since swearing vengeance on {1} for {2}, and none of them has fallen yet.</CC_TC_VowUnpaid>
+  <CC_TC_VowPeace>{0} is at peace with the colony now.</CC_TC_VowPeace>
+  <CC_TC_VowNone>{PAWN_nameDef} has no vow of vengeance still standing.</CC_TC_VowNone>
 
   <!-- Where life is taking them: the character page's section 26 (Persona/TraitChanges.cs, Building). -->
   <CC_TCB_Section>Where life is taking them</CC_TCB_Section>
   <CC_TCB_Of>{0} of {1}</CC_TCB_Of>
   <CC_TCB_All>all of it has happened</CC_TCB_All>
   <CC_TCB_Tip>Toward {0}. What leads there, and what has happened (green):</CC_TCB_Tip>
-  <CC_TCB_TipEnd>When all of it has, the change can come on any day, but only one colonist changes in ten days, and nobody twice in sixty.</CC_TCB_TipEnd>
+  <CC_TCB_TipEnd>When all of it has, the change can come on any day, but only one colonist changes in ten days, and nobody twice in sixty (a trait Rimfolk gave can go sooner).</CC_TCB_TipEnd>
   <CC_TCB_NoLonger>no longer {0}</CC_TCB_NoLonger>
   <CC_TCB_Moved>{0}: moved {1} from their nature (needs {2})</CC_TCB_Moved>
   <CC_TCB_Now>{0}: {1} now (needs {2})</CC_TCB_Now>
   <CC_TCB_OrMore>{0} or more</CC_TCB_OrMore>
   <CC_TCB_OrLess>{0} or less</CC_TCB_OrLess>
   <CC_TCB_Marks>Marks on their character page that count: {0} of {1}</CC_TCB_Marks>
+  <CC_TCB_MarksNamed>Marks on their character page that count ({2}): {0} of {1}</CC_TCB_MarksNamed>
+  <CC_TCB_MarksMore>and others</CC_TCB_MarksMore>
   <CC_TCB_Count>{0}: {1} of {2}</CC_TCB_Count>
   <CC_TCB_Fact>{0}: {1} (needs {2})</CC_TCB_Fact>
   <CC_TCB_Pace>{0}: {1}% of their time ({2})</CC_TCB_Pace>
   <CC_TCB_AtLeast>needs at least {0}%</CC_TCB_AtLeast>
   <CC_TCB_AtMost>needs at most {0}%</CC_TCB_AtMost>
   <CC_TCB_Calm>Days without a breakdown: {0} of {1}</CC_TCB_Calm>
+  <CC_TCB_CalmSince>Days without a breakdown since becoming {2}: {0} of {1}</CC_TCB_CalmSince>
+  <CC_TCB_VowUnpaid>A vow of vengeance unpaid, none of them fallen yet: {0} of {1} days</CC_TCB_VowUnpaid>
+  <CC_TCB_VowOver>No vow of vengeance still standing (avenged, laid down, lapsed after two years, or those who did it at peace with the colony)</CC_TCB_VowOver>
   <CC_TCB_Melee>Fights in melee</CC_TCB_Melee>
   <CC_TCB_Practice>{0}: about {1} hours lately (needs {2})</CC_TCB_Practice>
   <CC_TCB_NoHabit>The habit "{0}"</CC_TCB_NoHabit>
