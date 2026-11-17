@@ -85,8 +85,11 @@ namespace ColonyCouncil
 
         // ================= Following an occurrence =================
 
-        /// <summary>The occurrence's own effect (its words key in GodImpactMath.Table), after the moods. False when it had nothing to do.</summary>
-        internal static bool Follow(GodTouchBook b, GodTouch.Pending p, List<Pawn> ours, int home, int now, string key)
+        /// <summary>
+        /// The occurrence's own effect (its words key in GodImpactMath.Table), after the moods. False when it had nothing to
+        /// do. Not kept among the touch's effects lately: the random effects lean away from their own, as before.
+        /// </summary>
+        internal static bool Follow(GodTouchBook b, GodTouch.Pending p, List<Pawn> ours, string key)
         {
             var im = GodImpactMath.Of(key);
             if (im.effect == TouchEffect.None || p.map == null || p.god == null) return false;
@@ -103,7 +106,6 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("gods: what an occurrence leaves (" + key + ")", e);
             }
-            if (done) b.Did(home, p.god.Key, im.effect, now);
             return done;
         }
 

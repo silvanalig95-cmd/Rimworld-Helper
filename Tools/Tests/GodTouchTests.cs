@@ -285,7 +285,7 @@ public static class GodTouchTests
         string godsSrc = Read("Gods/Gods.cs");
         D(godsSrc.Contains("if (GodImpactMath.Has(act.what)) GodTouch.Note(act, pawns, map, null);") && godsSrc.Contains("if (GodImpactMath.Has(spec.what)) GodTouch.NoteMoment(spec, witnesses, false, null);"),
             "an occurrence nobody saw still reaches the touch when it has an effect of its own");
-        D(touch.Contains("if (p.tone != TouchTone.None && ours.Count > 0)") && touch.Contains("foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, home, now, impact);"),
+        D(touch.Contains("if (p.tone != TouchTone.None && ours.Count > 0)") && touch.Contains("foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, impact);"),
             "the touch's early return no longer stops them: the moods for those who saw it, the effect regardless");
         D(Read("Gods/OnMap/GodShapes.cs").Contains("GodTouch.Saying(map, key, witness);"), "the one named in its words is the one who saw it");
         foreach (var (file, key) in new[] { ("Gods/OnMap/OwnHush.cs", "CC_GodHush_Saw_Walk"), ("Gods/OnMap/OwnHelios.cs", "\"CC_GodHelios_Saw_Dawn\""), ("Gods/OnMap/OwnTamiu.cs", "\"CC_GodTamiu_Saw_Threshold\""),

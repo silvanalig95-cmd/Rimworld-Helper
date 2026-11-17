@@ -441,7 +441,7 @@ namespace ColonyCouncil
             }
             // The occurrence's own effect (GodImpactMath.Table): on the place whether or not anyone of the colony saw it, on
             // those it names, or on those who saw it.
-            foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, home, now, impact);
+            foreach (var impact in p.keys.Where(GodImpactMath.Has).ToList()) GodImpact.Follow(b, p, ours, impact);
         }
 
         /// <summary>Does something of the touch's own without noting it again as an occurrence.</summary>
@@ -684,7 +684,7 @@ namespace ColonyCouncil
             p.pawns.AddRange(pawns);
             p.about[key] = GodImpact.DevAbout(map, cell, key, pawns);
             var ours = pawns.Where(x => Worship.Ours(x)).ToList();
-            return GodImpact.Follow(b, p, ours, Gods.HomeKey(map), Now, key);
+            return GodImpact.Follow(b, p, ours, key);
         }
 
         /// <summary>Dev mode: an occurrence of <paramref name="g"/> at <paramref name="cell"/> seen by everyone near, felt and followed now.</summary>
