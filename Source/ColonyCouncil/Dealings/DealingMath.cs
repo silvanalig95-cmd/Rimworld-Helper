@@ -112,7 +112,7 @@ namespace ColonyCouncil
         public bool settingOn, hostile, noOne, unreachable, already, lately;
         public int goodwill;
         public int regard;
-        /// <summary>The colony has goods to spare for a contract (Pacts.CartGoods), silver for what it pays.</summary>
+        /// <summary>The colony has goods to spare for a contract (Pacts.CartChoices), silver for what it pays.</summary>
         public bool surplus, silver;
         /// <summary>The town in hard times the colony has heard of (struggling, a bad world event on their people).</summary>
         public bool hardTimes;

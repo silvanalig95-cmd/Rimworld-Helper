@@ -103,12 +103,17 @@ namespace ColonyCouncil
                 switch (k)
                 {
                     case DealKind.Supply:
+                        // The colony's load: its plain goods first, the first chosen unless another is picked; a valuable good
+                        // (components, medicine, gold) marked, and taken only when picked on purpose (Things/Goods.cs).
                         if (s == (byte)SupplyWay.Ours)
-                            foreach (var (def, count) in Pacts.CartGoods(home))
+                            foreach (var (def, count, valuable) in Pacts.CartChoices(home, f))
                                 list.Add(new FavourCalls.Option
                                 {
                                     code = TermsPrefix + def.defName + ":" + count,
                                     label = W("CC_Deal_Ask_OurLoad", Couriers.Amount(count, null, def).Named("GOODS"), PactMath.CartPay(def.BaseMarketValue, count).Named("SILVER"))
+                                            + (valuable ? " " + PactWords.P("CC_Pact_CartValuable") : ""),
+                                    group = valuable ? 1 : 0, onPurpose = valuable,
+                                    what = valuable ? PactWords.P("CC_Pact_CartValuable_What") : null
                                 });
                         else if (f != null) list.AddRange(Dealings.TheirGoods(f, home));
                         break;

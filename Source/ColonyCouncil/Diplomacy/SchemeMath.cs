@@ -7,7 +7,7 @@ namespace ColonyCouncil
     {
         /// <summary>A machine broken down in the night (industrial and after): the game's own breakdown.</summary>
         Machine,
-        /// <summary>A small valuable taken from a stockpile in the night: a totem, a purse, a tool.</summary>
+        /// <summary>Plain goods taken from a stockpile in the night (cloth, leather, food, a common metal: never a valuable good).</summary>
         Theft,
         /// <summary>A colonist with a hot temper set against another by a word in their ear, by day: the game's social fight.</summary>
         Fight,
@@ -123,17 +123,25 @@ namespace ColonyCouncil
         /// <summary>A machine's form by the colony's means: a console's breakdown in a spacer colony, a jammed machine otherwise.</summary>
         public static string MachineForm(WorldAge ours, bool console) => ours >= WorldAge.Spacer && console ? "Console" : "Machine";
 
-        /// <summary>What a theft takes, by the colony's means: a totem (a small carving), a purse (silver, gold, jade), a tool (components).</summary>
-        public const string Totem = "Totem", Purse = "Purse", Tool = "Tool";
+        /// <summary>
+        /// The form a theft takes now: plain goods from the stores (the player, 17 November 2026: "they shouldn't steal
+        /// components again and other valuable things"; Things/GoodsMath.cs). A carving (a totem), a purse of silver, gold
+        /// or jade and components (a tool) were taken until then; those forms stay readable in the ties of a save.
+        /// </summary>
+        public const string Stores = "Stores", Totem = "Totem", Purse = "Purse", Tool = "Tool";
 
-        /// <summary>What a thief looks for first, by the colony's age: a tribe's totem, a medieval purse, an industrial or spacer colony's tools.</summary>
-        public static string[] TheftOrder(WorldAge ours)
+        /// <summary>
+        /// The plain goods a thief looks for first, by the colony's means: a tribe's food, leather and cloth; a medieval
+        /// colony's cloth, leather and food, then its metal; an industrial or spacer colony's metal, cloth and food. Never
+        /// a valuable good (components, medicine, silver, gold), never wood or stone blocks (too heavy to slip away with).
+        /// </summary>
+        public static GoodsKind[] TheftOrder(WorldAge ours)
         {
             switch (ours)
             {
-                case WorldAge.Tribal: return new[] { Totem, Purse, Tool };
-                case WorldAge.Medieval: return new[] { Purse, Totem, Tool };
-                default: return new[] { Tool, Purse, Totem };
+                case WorldAge.Tribal: return new[] { GoodsKind.Food, GoodsKind.Leather, GoodsKind.Cloth };
+                case WorldAge.Medieval: return new[] { GoodsKind.Cloth, GoodsKind.Leather, GoodsKind.Food, GoodsKind.Metal };
+                default: return new[] { GoodsKind.Metal, GoodsKind.Cloth, GoodsKind.Food, GoodsKind.Leather };
             }
         }
 
@@ -164,6 +172,7 @@ namespace ColonyCouncil
                 case "Console":
                     return SchemeAct.Machine;
                 case "Theft":
+                case Stores:
                 case Totem:
                 case Purse:
                 case Tool:
@@ -175,10 +184,13 @@ namespace ColonyCouncil
             }
         }
 
-        // ================= A small valuable =================
+        // ================= What a thief carries off =================
 
-        /// <summary>A small valuable: a theft takes about 60 to 180 silver's worth, never one thing worth more than 600 nor heavier than 3 kg a piece.</summary>
-        public const float LootMin = 60f, LootMax = 180f, LootMaxUnit = 600f, LootMaxMass = 3f;
+        /// <summary>
+        /// A theft takes about 60 to 180 silver's worth, never one thing worth more than 600 nor heavier than 3 kg a piece,
+        /// and no more than one person's pack holds (35 kg).
+        /// </summary>
+        public const float LootMin = 60f, LootMax = 180f, LootMaxUnit = 600f, LootMaxMass = 3f, PackMass = 35f;
 
         public static bool SmallValuable(float unitValue, float unitMass) => unitValue > 0f && unitValue <= LootMaxUnit && unitMass <= LootMaxMass;
 
@@ -189,6 +201,14 @@ namespace ColonyCouncil
             float want = LootMin + (LootMax - LootMin) * Clamp01(roll);
             int n = (int)Math.Round(want / unitValue);
             return Math.Max(1, Math.Min(stack, n));
+        }
+
+        /// <summary>The same, and no more than a pack of <see cref="PackMass"/> holds of something that weighs <paramref name="unitMass"/> a piece.</summary>
+        public static int LootCount(float unitValue, float unitMass, int stack, float roll)
+        {
+            int n = LootCount(unitValue, stack, roll);
+            if (n <= 0 || unitMass <= 0f) return n;
+            return Math.Max(1, Math.Min(n, (int)(PackMass / unitMass)));
         }
 
         // ================= Caught at it =================

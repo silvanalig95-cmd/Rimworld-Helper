@@ -54,6 +54,7 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FeastMath.cs" Link="Linked/FeastMath.cs" />
     <!-- Schemes against the colony (SchemeSim.cs, with &#45;&#45;schemes): the day's chance, the acts, who catches them. -->
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="Linked/SchemeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Things/GoodsMath.cs" Link="Linked/GoodsMath.cs" />
     <!-- The wild's alphas and bosses (BeastSim.cs, after the everyday hurts with &#45;&#45;harm): the stampedes' and the beast nemeses' rates. -->
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="Linked/BeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="Linked/HaulMath.cs" />

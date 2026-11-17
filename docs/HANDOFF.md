@@ -123,36 +123,10 @@ repo.
     never the true god unless the colony knows it. (C) Text slips seen: a double full stop in 49 of the book's 111
     lines in this save (the `CC_GodLore_Saw_*` templates end "{WHAT}." after words that already end in one), "found
     Green tea x8" (`LabelCap` mid-sentence), "at their feet" for one person (`CC_GodRevel_Stash_Text`).
-- **To do when the player asks (17 November 2026): the pact's cart, 8 components a season.** The player, with their
-  save `League_of_Toba_5` (day 124): "i somehow need to give 8 components regularly to my allies the stormriders. why
-  components exactly? did i select this at some point? since this is a very valuable good and I'd rather give something
-  else instead. can you update this?"
-  - **The cause.** The trade pact (`Diplomacy/Pacts.cs`, `PactMath.cs`): each season a cart of the colony's goods goes
-    to the partner's porters, who pay 4/5 of its worth. What goes in it is fixed when the pact is made, by
-    `Pacts.CartGoods`: the stores ranked by total worth (count x unit value), leaving out only silver, unstackable and
-    untradeable things, unit values outside 0.3 to 60 and fewer than 3 in stock; the count is about 250 silver's worth,
-    at most a third of the stock. Components (32 each, about 68 in stores) came first, so 8. Not the people's want, age
-    or a table: the Stormriders are the dark elves (`DevDesigner_DarkElvesFaction`), a medieval people. The colony
-    proposed the pact by letter (Guido to their head, answered warmly on day 109.1), and the letter window's "Ask" is
-    pre-filled with the first of the list (`DiplomacyLetters.cs`, `now = asks.FirstOrDefault(...)`) and shows no worth
-    or pay; renewing and hand-overs take the first with no choice at all (`Pacts.cs`, `HandOvers.cs`). So they did
-    choose it, without being shown it. The cart goes out by itself whenever 8 unforbidden components are in store; with
-    fewer, "no cart goes out this season" and nothing else.
-  - **In their save**: tie 114, a trade pact with Faction_25 (ally, goodwill 64), goods `ComponentIndustrial` x 8, since
-    day 109.13, ends day 169.13; carts on days 109 and 124 (203 silver for the second). Also a defence pact (theirs).
-  - **What they can do now**: "End it by letter" on the pact's card (no goodwill cost in the code), then propose a new
-    trade pact and open the Ask list to pick something else.
-  - **The lead's fix, waiting for the player's go**: (A) the cart picks a real surplus, never a crafting or precious
-    input (components, advanced components, plasteel, medicine, gold, jade, uranium, chemfuel and the like, by thing
-    category), counted above a reserve, preferring what the partner's age uses (`DealingMath.RequestGoods` already
-    knows: wood, cloth, leather, food, blocks for the tribal and medieval); a live pact on a good now left out is
-    re-picked, with a message. (B) No silent default in the letter: the Ask list shows each cart's worth and pay ("8
-    components a season, about 256 silver's worth; they pay 203"), and the pact's card gets "Change the cart", a letter
-    to their head. `CartGoods` is shared with face-to-face pacts, hand-overs and Dealings' supply contracts.
-  - **Found on the way**: the letter says "8 component" (`Couriers.Counted` skips the plural; cause not yet found). And
-    the allied Stormriders schemed against the colony while allied: tie 138, a theft of 60 to 180 silver of components
-    by a visitor at night, succeeded unseen on day 122.7 (`Schemes.cs`; schemes run for any people at peace with a
-    grudge of 20 or more, pact allies too). To ask the player whether pact allies should scheme at all.
+- **Done (17 November 2026, the player's go on the lead's fix: "it just shouldn't auto take valuable materials"; built,
+  not released): the pact's cart, 8 components a season, and the schemes' thefts.** The report with the player's words,
+  the cause and what was built are now one entry above the newest release line ("The pact's cart and the schemes'
+  thefts").
 - **To do when the player asks (17 November 2026): Vengeful from Rimfolk, and a way out of it.** The player: "i think two
   of my colonists became vengeful as a result of rimfolk, is that possible? they got it at some point during an event.
   now they have some rivals within the colony and it gives them quite a huge debuff. ... I've only had this vengeful one
@@ -323,6 +297,77 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The pact's cart and the schemes'
+  thefts** (17 November 2026). The player, with their save `League_of_Toba_5` (day 124): "i somehow need to give 8
+  components regularly to my allies the stormriders. why components exactly? did i select this at some point? since
+  this is a very valuable good and I'd rather give something else instead. can you update this?"; their go, on the
+  lead's fix: "I like your fix for the component Stormrider aspect. Now, yeah, it just shouldn't auto take valuable
+  materials, you know. If I have to confirm first, then that makes sense, but it shouldn't just take them automatically.
+  Instead, you know, wood and cloth and leather are more, I guess, okay. But then ideally, I still can confirm whether I
+  want to give it or whether I actually refuse and end the pact. Other than that, yeah, the letter should show what the
+  card is worth, change the card option, and please also change the existing pact. Now, the scheme of a Stormrider
+  stealing, it sounds very cool. I like it, but maybe they shouldn't steal components again and other valuable things."
+  DESIGN.md "The pact's cart and the schemes' thefts".
+  - **The cause** (from the to-do entry). A trade pact's cart was fixed when the pact was made by `Pacts.CartGoods`: the
+    stores ranked by total worth (count x unit value), so components (32 each, 68 in stores) came first, 8 a season; the
+    letter window's "Ask" was pre-filled with the first (`DiplomacyLetters.DrawRows`, `asks.FirstOrDefault`) and showed
+    no worth or pay; renewals and hand-overs took the first with no choice; the cart went out by itself each season. In
+    their save: tie 114, a trade pact with the Stormriders (Faction_25, the dark elves, a medieval people, ally, goodwill
+    64), `ComponentIndustrial` x 8 since day 109.13, ends day 169.13. The allied Stormriders' scheme (tie 138) took 60 to
+    180 silver of components unseen on day 122.7: a thief took a carving, a purse (silver, gold, jade) or components by
+    design (`Schemes.LootKind`).
+  - **What it does.** One rule for valuable and plain goods (by categories and def properties, no mod named): components,
+    plasteel, medicine of every kind, gold, jade, uranium, silver, chemfuel, neutroamine, drugs, spacer goods, a material
+    worth 4 or more a unit, and a mod's parts, fuels and potions are valuable; wood, cloth and wool, leather, food, stone
+    blocks and steel are plain. A pact's cart (and a supply contract's load) is a plain good the colony can spare above
+    its reserve, the kinds the partner's age uses first; a valuable one only when picked on purpose, marked. Every cart in
+    the lists says what it is worth and what they pay. Each season a letter asks first: "Send it" or "Refuse and end the
+    pact"; unanswered, no cart that season. "Change the cart" on the pact's card writes to their head. A live pact on a
+    valuable cart nobody picked gets a plain cart once the game is loaded, with a message: in the player's save the
+    Stormriders' 8 components a season become 102 plainleather a season, about 215 silver's worth, for 171 silver
+    (their ten colonists and day 124's stores; leather first because wood and cloth are below the colony's reserve). A
+    thief takes plain goods only (cloth, leather, food, steel; no components, medicine, silver, gold, jade or carvings),
+    no more than one pack holds. "8 component" is "8 components".
+  - **Decided here.** Steel is plain (the bulk metal the colony mines; the biggest reserve, 200 and 30 a colonist; last for
+    a tribal or medieval partner). Food is plain whatever it is worth (meals too), with five days of each food kept for
+    everyone. The precious line is 4 silver a unit (about twice steel), so synthread, the silks of Alpha Animals and
+    leathers of 4.2 count as valuable; a cart under 60 silver's worth isn't offered. Medicine of every kind is valuable
+    here, unlike the gods' offerings' own "precious" rule (`OfferingGiftMath.Precious`, which lets herbal medicine go and
+    asks whether the colony can make a thing again); the two stay separate. The season's question waits two days. A cart
+    changed by letter is always agreed to (it is the colony's own surplus at the same share). Refusing the cart ends the
+    pact at once through its own end, with their answer to an end (`CC_Pact_Ans_Ended`) and their head's own words for an
+    end sent back with the porters (no letter of the colony's goes). The thief never takes logs or blocks (too heavy to
+    slip away with). In English the game's language worker is no longer asked for plurals: it gave "component" back in
+    the player's 1.7 game, though the decompiled 1.6 English worker should pluralize, so the cause inside the game
+    wasn't pinned down; other languages still use it.
+  - **Code map**: `Things/GoodsMath.cs` (new, pure: `GoodsKind`, `GoodsFacts`, `Kind`, `CartOrder`, `Rank`, `Reserve`),
+    `Things/Goods.cs` (new: the live game's facts, `KindOf`, `Valuable`, `Plain`), `Diplomacy/PactMath.cs` (`CartCount`
+    with a reserve, `CartWorth`, `CartWorthGoing`, `MinCartWorth`, `CartAnswerDays`, `CartStock`, `CartPick`,
+    `CartPicks`), `Diplomacy/Pacts.cs` (`CartChoices`, `CartGoods` plain only, `CartOf`, `ChosenOnPurpose`, `SetCart`,
+    `PlainCarts`, `AskCart`, `SendCart`, `RefuseCart`, `ChoiceLetter_PactCart`, `PactsDefOf.Rimfolk_PactCart`),
+    `DiplomacyBook.chosenCarts` (saved; modelled in `Tools/save_estimate.py`), `DiplomacyLetters` (`PactCartPrefix`,
+    `CartOptions`, the topic, the answer, `PactCartTag`, `PactCartMootTag`, `DrawRows` never defaulting to a valuable
+    good), `FavourCalls.Option.onPurpose`, `PactWords.CartLine`, `PactsPanels` ("Change the cart", the state line, the
+    inbox row), `DiplomacyActs.ChoosePact`, `DealingLetters` and `Dealings` (a supply contract's load), `HandOvers`,
+    `PactsDebug`, `NeighbourLetters.TheirWords`, `Couriers.Counted`, `SchemeMath` (`TheftOrder` by plain kinds,
+    `Stores`, `PackMass`, `LootCount` by mass), `Schemes` (`Loot`, `Lootable`, `Form`, `ThingWords`), `AnswerMath`
+    (`pactCart`), `EventCardMath`; `Defs/Misc/Rimfolk_Pacts.xml` (`Rimfolk_PactCart`), `Rimfolk_Lines_PactEnds.xml`
+    (pactcart, pactcartmoot), keyed `Rimfolk_Pacts.xml`, `Rimfolk_Diplomacy.xml` (`CC_Dip_Dlg_PickOne`),
+    `Rimfolk_Schemes.xml` (`Stores`); the Almanac's diplomacy and schemes pages. Tests: `PactCartTests` (new: the rule on
+    clear cases and on the catalogue's active rows, the order, the reserve and the count, the player's colony, the thief,
+    the plural, the seams, the words), `SchemesTests`, `LetterShapeTests`.
+  - **Can't be checked without the game**: the season's letter and its two answers (the carry-out and the silver; the
+    end's letter with their words), the Ask list's "(valuable)" marks and its first choice in the letter window,
+    "Change the cart" and their answer, the message for the player's pact after loading (and its new cart from the live
+    stores, which `resourceCounter` counts in storage only), a thief carrying off cloth or steel, "8 components" in the
+    player's 1.7 game.
+  - **Try in the game**: load the save: a message says the trade pact with the Stormriders no longer sends 8 components
+    and what it sends now. Open the pact's card (Region, Peoples, the Stormriders, the trade pact): the cart line with its
+    worth and pay, and "Change the cart"; write that letter and open the Ask list (plain goods first, valuable ones
+    marked). On the next season (about day 139) a letter asks about the cart: "Send it" (someone carries it to the gate,
+    silver is set down) or "Refuse and end the pact" (a letter with their answer). Propose a trade pact to another
+    people: the list starts on a plain good. Debug: "Pacts: make one..." and "Pacts: their offer now...".
+  - **Mods that would help**: none needed; the goods are the player's own.
 - 0.265.2, **Ballrooms only for music
   rooms** (17 November 2026). The player's report and go are in the to-do entry "rooms, the ballroom over the temple and
   the dining room" (its fix A built; B, Rimfolk reading a room by what is in it, stays on the list), and "if there's

@@ -11433,7 +11433,8 @@ its rules pure and tested (`PactMath.cs`; `Tools/Tests/PactTests.cs`).
   (`WarCamps.MakeFighters`, `Start`, the band's `called`: only their fallen leave a debt). A debt of honour called in
   for fighters (`FavourAsk.Fighters`) brings a band the same way. A trade pact: `IncidentDefOf.TraderCaravanArrival` for
   them each season, and the cart carried out to the gate (`DilemmaEffect_CarryOut`, their porters waiting) and paid for
-  (`Couriers.PaySilver`, four fifths of its worth).
+  (`Couriers.PaySilver`, four fifths of its worth). Since 17 November 2026 the cart is a plain good unless the player
+  picks a valuable one, and each season the colony is asked first ("The pact's cart and the schemes' thefts" below).
 - **A war band on the map** (`Camps/WarBandOrders.cs`, the duty `Rimfolk_WarBandHunt` set by `LordToil_WarBandHunt`, a
   subclass of the game's `LordToil_HuntEnemies` so saved groups load unchanged; the player, 15 November 2026: "the
   delegation came but is neither attacking the enemies nor following my pawns"). Every band (a pact's, a debt's, a
@@ -12079,7 +12080,7 @@ Secret stays reserved (the envoy who learns a colonist's secret was left out wit
   (`SchemeMath.YearRate`). The design's "a roll every 15 days at 8% (about two a year)" can't be both: a roll every 15
   days at 8% is a third of one a year, so the roll is daily with the season's wait, which gives the two a year the design
   asks for and the design's performance notes put on the daily pass. The act is picked from what the home has, whatever
-  the hour: a machine that can break down (industrial and after), a small valuable in its stores, a hot temper (a
+  the hour: a machine that can break down (industrial and after), plain goods in its stores, a hot temper (a
   fighting temper of 2 or more) with another grown-up, each weighing one (a fight times the harm scale, so none with
   hurts at nothing), a smear always.
 - **The tie.** `WorldLedger.AddTie(Scheme, schemer, colony, key: the act, until: a season, origin "theirs")`; given up
@@ -12093,9 +12094,10 @@ Secret stays reserved (the envoy who learns a colonist's secret was left out wit
   danger and nobody of the colony awake within 6 cells of the place. A forced job, the agent back with their group after:
   - *a machine*: the rival's sabotage job (`Rimfolk_Sabotage`, now at any building, from beside one with no place to
     stand), the game's breakdown (`CompBreakdownable.DoBreakdown`, sparks), a spacer colony's comms console first;
-  - *a theft* (`Rimfolk_SchemeTake`): from a stockpile or shelf by the colony's age, a tribe's totem (a small minified
-    sculpture), a purse (silver, gold, jade), a tool (components), 60 to 180 silver's worth, into their pack (split off as
-    the act ends, so a job left over from before a load takes nothing);
+  - *a theft* (`Rimfolk_SchemeTake`): from a stockpile or shelf by the colony's age, plain goods only since 17 November
+    2026 (cloth, leather, food, a common metal; never components, medicine, silver, gold or jade: "The pact's cart and
+    the schemes' thefts" below; a tribe's totem, a purse and a tool until then), 60 to 180 silver's worth, into their pack
+    (split off as the act ends, so a job left over from before a load takes nothing);
   - *a quarrel stirred up* (`Rimfolk_SchemeWord`): to the colony's hottest temper by day, a lie about the one they like
     least (kin and lovers left out) said at their side; unheard, the hot temper goes to the other (`Together.When` with a
     walk) and it is `Harm.Fight`, or hard words when the cap holds, with a message;
@@ -15743,6 +15745,78 @@ ahead".
   deeper hooks.
 - Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
   meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+
+### The pact's cart and the schemes' thefts (the player's report and go, 17 November 2026; not released yet)
+
+The player, with their save `League_of_Toba_5`: "i somehow need to give 8 components regularly to my allies the
+stormriders. why components exactly? did i select this at some point? since this is a very valuable good and I'd rather
+give something else instead. can you update this?"; then, on the lead's fix: "it just shouldn't auto take valuable
+materials, you know. If I have to confirm first, then that makes sense, but it shouldn't just take them automatically.
+Instead, you know, wood and cloth and leather are more, I guess, okay. But then ideally, I still can confirm whether I want
+to give it or whether I actually refuse and end the pact. Other than that, yeah, the letter should show what the card is
+worth, change the card option, and please also change the existing pact. Now, the scheme of a Stormrider stealing, it
+sounds very cool. I like it, but maybe they shouldn't steal components again and other valuable things."
+
+- **The cause.** A trade pact's cart was fixed when the pact was made by `Pacts.CartGoods`: the stores ranked by total
+  worth, so components (32 silver each, 68 in stores) came first, 8 a season. The letter's Ask list was pre-filled with
+  the first and showed no worth or pay; renewals and hand-overs took the first with no choice; and each season the cart
+  went out by itself. The thief of a scheme took a carving, silver, gold, jade or components by design.
+- **Valuable and plain goods, one rule** (`Things/GoodsMath.cs`, read from the live game by `Things/Goods.cs`): of a
+  person, never (unfit); money (silver), medicine of every kind, a drug of any kind (beer too), something special (a
+  comp that is used, bonded or hatches, or a trade tag the game marks exotic or only a mod uses) or of the spacer age or
+  later, valuable; food eaten for itself (raw food, meals, kibble, hay; not a condiment or plant matter grown for brewing
+  or dye), plain whatever it is worth; a material worth 4 silver a unit or more (about twice steel: gold, plasteel,
+  uranium, jade, devilstrand, synthread, a thrumbo's fur), valuable; then logs (wood), cloth and wool, leather, stone
+  blocks and building stone, and a raw metal (steel, bronze) are plain; anything else (components, chemfuel, neutroamine,
+  shells, wort, a mod's parts, fuels, boosters and potions) is a crafting input and valuable. By categories and def
+  properties, never a mod's name; checked on the player's catalogue's active rows (`PactCartTests`). **Steel is plain**: it
+  is the bulk metal the colony mines and the game's traders deal in by the hundred; the colony keeps the biggest reserve
+  of it, and it comes last for a tribal or medieval partner. The offerings to the gods keep their own "precious" rule
+  (`OfferingGiftMath.Precious`, which also asks whether the colony can make the thing again).
+- **The carts offered** (`PactMath.CartPicks`, `Pacts.CartChoices`): the plain goods the colony can spare, the kinds the
+  partner's age uses first (`GoodsMath.CartOrder`: tribal wood, leather, food, cloth, blocks, metal; medieval wood, cloth,
+  leather, food, blocks, metal; industrial and spacer metal, cloth, food, wood, leather, blocks), then the most to
+  spare; each counted above what the colony keeps (`GoodsMath.Reserve`: of each food five days for everyone; wood 150 and
+  20 a colonist; cloth or leather 50 and 15 a colonist; blocks 100 and 30; metal 200 and 30), half of what is above it at
+  most, about 250 silver's worth, a third of the stores at most; a cart under 60 silver's worth isn't offered. Then the
+  valuable goods (the most in stores first, a third of the stores at most), marked "(valuable)" with a note, taken only
+  when picked on purpose (`FavourCalls.Option.onPurpose`: the letter's list never starts on one; with nothing plain, it
+  waits on "Choose one from the list"). At most six plain and four valuable. Each says what it is, what it is worth and
+  what they pay: "102 plainleather a season, about 215 silver's worth; they pay 171" (`PactWords.CartLine`). The same
+  list for a supply contract's load (`DealingLetters`), and face to face ("Speak of a pact", `DiplomacyActs`). A pact
+  nobody chooses a cart for (their offer accepted, a hand-over's pact) takes the first plain one, never a valuable one;
+  a renewal keeps its cart.
+- **Each season the colony is asked** (`Pacts.AskCart`, `ChoiceLetter_PactCart`, letter def `Rimfolk_PactCart`): the
+  season's letter names the cart, its worth and the pay, with "Send it" (carried out to the gate for their porters as
+  before, their silver set down: `Pacts.SendCart`) and "Refuse and end the pact" (`Pacts.RefuseCart`: ended without
+  blame through the pact's own end, then a letter with their answer to an end, `CC_Pact_Ans_Ended`, and their head's
+  own words for an end sent back with the porters, the "pactend" lines without a letter's or a call's tag, picked by
+  `NeighbourLetters.TheirWords`). Unanswered when the letter goes (two days, `PactMath.CartAnswerDays`), no cart this
+  season and the pact goes on; with too few goods in store, as before, none goes and nothing is asked. In the inbox's
+  "Needs you" while it waits; recorded in the answers' log as "pactCart".
+- **"Change the cart"** on a trade pact's card (`PactsPanels`): a letter to their head with the topic "pactcart:ID", the
+  new cart chosen in the Ask list from the same carts less the one it has; their answer agrees (`CC_Pact_Ans_Cart`, their
+  own words under "pactcart", cordial or cool; overtaken by events, "pactcartmoot") and the cart changes when they read it
+  (`Pacts.SetCart`).
+- **Existing pacts** (`Pacts.PlainCarts`, once after loading and then each day): a live trade pact whose cart is a
+  valuable good nobody picked gets the first plain cart, with one message saying what changed and why. A valuable cart
+  picked on purpose is kept: the pacts that have one are saved in `DiplomacyBook.chosenCarts` (one id a live pact, dropped
+  when the pact ends; an old save loads with none). In the player's save the Stormriders' tie 114 (8 components a season)
+  becomes 102 plainleather a season, about 215 silver's worth, for 171 silver (their ten colonists and stores of day 124).
+- **"8 components"** (`Couriers.Counted`): the label went through the game's language worker, which gave "component"
+  back unchanged in the player's 1.7 game (the save's cart letters, written after the update to 0.265.0, say "8
+  component"); the decompiled 1.6 English worker should pluralize, so the cause inside the game wasn't pinned down. In
+  English Rimfolk now uses its own rule (`CourierMath.English`), the game's worker only in other languages.
+- **The thefts** (`Diplomacy/Schemes.cs`, `SchemeMath.TheftOrder`): a thief takes plain goods only, never a valuable good
+  (no components, medicine, silver, gold or jade) and no carving: what the colony's age keeps most of first (a tribe's
+  food, leather and cloth; a medieval colony's cloth, leather, food and metal; an industrial or spacer colony's metal,
+  cloth, food and leather), never logs or blocks, 3 kg a piece at most, about 60 to 180 silver's worth and no more than a
+  pack of 35 kg holds (`LootCount`). The form is "Stores" ("stealing 40 cloth from the colony's stores"); the old forms
+  (Totem, Purse, Tool) still read in a save. The rest of the scheme is as it was.
+- **Not checked without the game:** the season's letter and its two answers on the map, the carry-out and the silver,
+  the end's letter with their words, the Ask list's marks and default in the letter window, "Change the cart" and its
+  answer, the message for the player's pact after loading, a thief carrying off cloth or steel, "8 components" in the
+  player's 1.7 game.
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 

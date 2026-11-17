@@ -883,7 +883,8 @@ namespace ColonyCouncil
                 int count = 0;
                 if (k == PactKind.Trade && bound != null)
                 {
-                    var goods = Pacts.CartGoods(bound);
+                    // Nobody chooses here: the first plain cart, never a valuable good.
+                    var goods = Pacts.CartGoods(bound, people);
                     if (goods.Count > 0) (cart, count) = goods[0];
                 }
                 if (Pacts.Make(people, bound, k, true, cart, count) != null) termsLine = ("CC_HandOver_Terms_Made_" + plan.terms).Translate(people.Name.Named("PEOPLE")).Resolve();

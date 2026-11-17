@@ -809,6 +809,9 @@ MODEL = {
                                          "per home: wards and hostages either way, WardMath.MaxPerHome at most, each dropped once they are home again"),
     # Its own vassals (Diplomacy/Vassals.cs): the hamlet once sworn and up to two towns under its protection, each about
     # fifteen values and a reference; a protected town asks once a year at most, and one let go is dropped.
+    # The trade pacts whose valuable cart the player picked on purpose (Diplomacy/Pacts.cs, ChosenOnPurpose): one id a live
+    # pact, dropped at saving once the pact has ended; a pact or two at a time.
+    "Diplomacy/DiplomacyBook.cs:chosenCarts": ("fixed", 2, V, "trade pacts whose valuable cart was picked on purpose, one id a live pact, dropped when it ends"),
     "Diplomacy/DiplomacyBook.cs:vassals": ("cap", (C["VassalsPerHome"], 0.02), 420,
                                            "per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone"),
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,

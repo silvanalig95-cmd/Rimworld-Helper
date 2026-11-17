@@ -119,7 +119,7 @@ namespace ColonyCouncil
             if (Diplomacy.Hostile(f)) return DipWords.P("CC_Dip_Why_War", PactWords.People(f).Named("PEOPLE"));
             if (Goodwill(f) < PactMath.PactGoodwill) return PactWords.P("CC_Pact_Why_Goodwill", PactWords.People(f).Named("PEOPLE"), PactMath.PactGoodwill.Named("NEED"));
             if (Of(f, home, k) != null) return PactWords.P("CC_Pact_Why_Already", PactWords.People(f).Named("PEOPLE"), PactWords.Kind(k).Named("KIND"));
-            if (k == PactKind.Trade && CartGoods(home).Count == 0) return PactWords.P("CC_Pact_Why_NoSurplus");
+            if (k == PactKind.Trade && CartChoices(home, f).Count == 0) return PactWords.P("CC_Pact_Why_NoSurplus");
             return null;
         }
 
@@ -148,7 +148,7 @@ namespace ColonyCouncil
             if (t == null) return PactWords.T("CC_Pact_Ans_Moot", PactWords.People(f).Named("PEOPLE"));
             accepted = true;
             return PactWords.T("CC_Pact_Ans_Yes", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"), form.rite.Named("RITE"), PactWords.Kind(k).Named("KIND"))
-                   + (k == PactKind.Trade && cart != null ? " " + PactWords.P("CC_Pact_CartTerms", Couriers.Amount(cartCount, null, cart).Named("GOODS")) : "");
+                   + (k == PactKind.Trade && cart != null ? " " + PactWords.P("CC_Pact_CartTerms", PactWords.CartLine(cart, cartCount).Named("CART")) : "");
         }
 
         /// <summary>A pact made: from whoever offered it, a year from now, the cart in a trade pact's terms; their people remember the oath.</summary>
@@ -165,6 +165,7 @@ namespace ColonyCouncil
             }
             var t = WorldLedger.AddTie(Tie.Kind.Pact, oursOffered ? colony : people, oursOffered ? people : colony, terms, Tie.Never, Origin);
             if (t == null) return null;
+            if (k == PactKind.Trade) NoteChoice(t, cart);
             FactionMemory.Note(f, "swore", PactWords.Kind(k));
             Diplomacy.Dirty();
             return t;
@@ -172,30 +173,115 @@ namespace ColonyCouncil
 
         // ================= The trade pact's cart =================
 
-        /// <summary>What a cart could carry: the colony's most plentiful goods in its stores (bulk goods, not silver), with the count for a cart.</summary>
-        public static List<(ThingDef def, int count)> CartGoods(Map home)
+        /// <summary>
+        /// The carts the colony could send (a trade pact's, a supply contract's load), in the order offered
+        /// (PactMath.CartPicks): first the plain goods it can spare (Things/Goods.cs: wood, cloth, leather, food, stone
+        /// blocks, a common metal), the kinds the partner's age uses first, each counted above what the colony keeps; then
+        /// the valuable goods (components, plasteel, medicine, gold, chemfuel, drugs), marked, which go only when the player
+        /// picks one. Silver, things of a person and untradeable things never.
+        /// </summary>
+        public static List<(ThingDef def, int count, bool valuable)> CartChoices(Map home, Faction partner)
         {
-            var list = new List<(ThingDef def, int count)>();
+            var list = new List<(ThingDef def, int count, bool valuable)>();
             if (home?.resourceCounter == null) return list;
             try
             {
-                foreach (var kv in home.resourceCounter.AllCountedAmounts.OrderByDescending(kv => kv.Value * (kv.Key?.BaseMarketValue ?? 0f)))
+                var age = partner != null ? Ages.Of(partner) : Ages.Of(home);
+                int colonists = Math.Max(1, home.mapPawns?.FreeColonistsSpawnedCount ?? 1);
+                var stores = new List<PactMath.CartStock>();
+                var defs = new Dictionary<string, ThingDef>();
+                foreach (var kv in home.resourceCounter.AllCountedAmounts)
                 {
                     var d = kv.Key;
-                    if (d == null || kv.Value <= 0 || d == ThingDefOf.Silver || d.category != ThingCategory.Item || d.stackLimit <= 1 || d.IsCorpse) continue;
-                    if (d.tradeability != Tradeability.All && d.tradeability != Tradeability.Sellable) continue;
-                    if (d.BaseMarketValue < 0.3f || d.BaseMarketValue > 60f) continue;
-                    int n = PactMath.CartCount(d.BaseMarketValue, kv.Value);
-                    if (n <= 0 || kv.Value < 3) continue;
-                    list.Add((d, n));
-                    if (list.Count >= 5) break;
+                    if (!Cartable(d) || kv.Value < 3) continue;
+                    defs[d.defName] = d;
+                    stores.Add(new PactMath.CartStock { def = d.defName, kind = Goods.KindOf(d), value = d.BaseMarketValue, have = kv.Value, nutrition = ThingRoles.Facts(d)?.nutrition ?? 0f });
                 }
+                foreach (var p in PactMath.CartPicks(stores, age, colonists))
+                    if (defs.TryGetValue(p.def, out var d))
+                        list.Add((d, p.count, p.valuable));
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("pacts: the cart's goods", e);
             }
             return list;
+        }
+
+        /// <summary>The plain carts only (<see cref="CartChoices"/>), the first the one taken when nobody chooses: a pact the colony accepts from them, a hand-over's pact.</summary>
+        public static List<(ThingDef def, int count)> CartGoods(Map home, Faction partner = null) =>
+            CartChoices(home, partner).Where(c => !c.valuable).Select(c => (c.def, c.count)).ToList();
+
+        /// <summary>A good that can go in a cart at all: an item kept in stacks, traded, not silver, worth 0.3 to 60 a unit.</summary>
+        private static bool Cartable(ThingDef d)
+        {
+            if (d == null || d == ThingDefOf.Silver || d.category != ThingCategory.Item || d.stackLimit <= 1) return false;
+            if (ThingRoles.Facts(d)?.untradeable ?? true) return false;
+            return d.BaseMarketValue >= 0.3f && d.BaseMarketValue <= 60f;
+        }
+
+        /// <summary>A trade pact's cart now, or null.</summary>
+        public static ThingDef CartOf(Tie t) => t != null && KindOf(t) == PactKind.Trade ? DefDatabase<ThingDef>.GetNamedSilentFail(t.terms.goods ?? "") : null;
+
+        /// <summary>The trade pacts whose valuable cart the player picked on purpose (DiplomacyBook.chosenCarts): never changed to a plain one.</summary>
+        public static bool ChosenOnPurpose(Tie t) => t != null && (DiplomacyBook.Instance?.chosenCarts?.Contains(t.id) ?? false);
+
+        /// <summary>A cart set: a valuable good can only have been picked on purpose (no list ever offers one first), and is kept so.</summary>
+        private static void NoteChoice(Tie t, ThingDef cart)
+        {
+            var book = DiplomacyBook.Instance;
+            if (book == null || t == null) return;
+            book.chosenCarts ??= new List<int>();
+            book.chosenCarts.Remove(t.id);
+            if (cart != null && Goods.Valuable(cart)) book.chosenCarts.Add(t.id);
+        }
+
+        /// <summary>A trade pact's cart changed (their answer to the colony's letter, or a valuable cart nobody chose made plain).</summary>
+        public static void SetCart(Tie t, ThingDef def, int count)
+        {
+            if (t == null || def == null || KindOf(t) != PactKind.Trade) return;
+            t.terms.goods = def.defName;
+            t.terms.count = Mathf.Max(1, count);
+            NoteChoice(t, def);
+            WorldLedger.Touch(t);
+            Diplomacy.Dirty();
+        }
+
+        /// <summary>The game this session last looked at its carts in (once after loading, then each day).</summary>
+        private static Game cartsLooked;
+
+        /// <summary>
+        /// A live trade pact whose cart is a valuable good nobody picked (made before carts kept to plain goods, the player's
+        /// 8 components a season): a plain cart instead, the first of <see cref="CartGoods"/>, with one message saying what
+        /// changed and why. With no plain good to spare yet it stays, is asked about each season, and is looked at again
+        /// the next day.
+        /// </summary>
+        public static void PlainCarts()
+        {
+            cartsLooked = Current.Game;
+            foreach (var t in Live())
+            {
+                try
+                {
+                    var def = CartOf(t);
+                    if (def == null || !Goods.Valuable(def) || ChosenOnPurpose(t)) continue;
+                    var f = PeopleOf(t);
+                    var home = HomeOf(t);
+                    if (f == null || home == null) continue;
+                    var goods = CartGoods(home, f);
+                    if (goods.Count == 0) continue;
+                    string was = Couriers.Amount(t.terms.count, null, def);
+                    var (nd, nc) = goods[0];
+                    SetCart(t, nd, nc);
+                    // apart: what changed in the pact's terms, told in a message; the cart itself goes out on the map each season.
+                    Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_Msg_CartPlain", PactWords.People(f).Named("PEOPLE"),
+                        PactWords.CartLine(nd, nc).Named("CART"), was.Named("WAS")), LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("pacts: a valuable cart made plain", e);
+                }
+            }
         }
 
         // ================= Their offer =================
@@ -211,7 +297,9 @@ namespace ColonyCouncil
         /// <summary>The day's look: a friend with an enemy in common, whose head thinks 50 or more of the colony, may offer a pact (once a year at most).</summary>
         public static void Daily(int now)
         {
-            if (!On || !Tell.CanAsk) return;
+            if (!On) return;
+            PlainCarts();
+            if (!Tell.CanAsk) return;
             var home = Homes.Seat;
             if (home == null) return;
             foreach (var r in RegionTowns.Reach)
@@ -278,7 +366,8 @@ namespace ColonyCouncil
             int count = 0;
             if (k == PactKind.Trade)
             {
-                var goods = CartGoods(home);
+                // Nobody chooses here: the first plain cart, never a valuable good.
+                var goods = CartGoods(home, f);
                 if (goods.Count > 0) (cart, count) = goods[0];
             }
             if (Make(f, home, k, false, cart, count) == null) return;
@@ -293,6 +382,8 @@ namespace ColonyCouncil
         public static void Hourly(int now)
         {
             float day = now / (float)PactMath.DayTicks;
+            // Once after loading, before any season's cart: a valuable cart nobody chose made plain.
+            if (cartsLooked != Current.Game) PlainCarts();
             foreach (var t in Live())
             {
                 try
@@ -588,24 +679,77 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("pacts: their caravan", e);
             }
-            // The colony's cart: carried out to the gate, where their porters take it and pay for it.
-            var def = DefDatabase<ThingDef>.GetNamedSilentFail(t.terms.goods ?? "");
+            string season = PactWords.T(came ? "CC_Pact_Season" : "CC_Pact_Season_NoCaravan", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"));
+            // The colony's cart: the player is asked first (send it, or refuse and end the pact); nothing leaves the stores
+            // until they say so. With less in the stores than the cart, none goes this season and nothing is asked.
+            var def = CartOf(t);
             int count = t.terms.count;
-            string cart;
-            if (def != null && count > 0 && PlayCarry.Have(home, def.defName, def) >= count)
-            {
-                var ctx = new DilemmaContext { map = home, faction = f };
-                // apart: one of the colony carries the cart's load out to the gate, where their porters wait for it.
-                new DilemmaEffect_CarryOut { what = def.defName, count = count, steward = false, who = PlayWho.None, to = PlaySpot.Gate, label = PactWords.P("CC_Pact_CartLabel", PactWords.People(f).Named("PEOPLE")) }
-                    .Apply(ctx);
-                int pay = PactMath.CartPay(def.BaseMarketValue, count);
-                Couriers.PaySilver(home, DropCellFinder.TradeDropSpot(home), pay, f);
-                cart = PactWords.P("CC_Pact_Cart", Couriers.Amount(count, null, def).Named("GOODS"), pay.Named("SILVER"));
-            }
-            else cart = def != null ? PactWords.P("CC_Pact_CartShort", Couriers.Amount(count, null, def).Named("GOODS")) : null;
+            if (def != null && count > 0 && PlayCarry.Have(home, def.defName, def) >= count && AskCart(t, f, home, def, count, season)) return;
+            string cart = def != null ? PactWords.P("CC_Pact_CartShort", Couriers.Amount(count, null, def).Named("GOODS")) : null;
             Tell.Letter(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_Season_Label", PactWords.People(f).Named("PEOPLE")),
-                PactWords.T(came ? "CC_Pact_Season" : "CC_Pact_Season_NoCaravan", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD")) + (cart.NullOrEmpty() ? "" : "\n\n" + cart),
-                LetterDefOf.PositiveEvent, LookTargets.Invalid, f);
+                season + (cart.NullOrEmpty() ? "" : "\n\n" + cart), LetterDefOf.PositiveEvent, LookTargets.Invalid, f);
+        }
+
+        /// <summary>
+        /// The season's question, with the season's news: the cart, what it is worth and what they pay; "Send it" or "Refuse
+        /// and end the pact". Unanswered by the time the letter goes, no cart goes this season and the pact goes on.
+        /// </summary>
+        private static bool AskCart(Tie t, Faction f, Map home, ThingDef def, int count, string season)
+        {
+            var ld = PactsDefOf.Rimfolk_PactCart;
+            if (ld == null) return false;
+            string text = season + "\n\n" + PactWords.P("CC_Pact_CartAsk", PactWords.People(f).Named("PEOPLE"), PactWords.CartLine(def, count, false).Named("CART"));
+            var letter = LetterMaker.MakeLetter(PactWords.P("CC_Pact_Season_Label", PactWords.People(f).Named("PEOPLE")), text, ld, LookTargets.Invalid, f);
+            if (!(letter is ChoiceLetter_PactCart l)) return false;
+            l.people = f;
+            l.home = Homes.KeyOf(home);
+            l.pact = t.id;
+            l.goods = def.defName;
+            l.count = count;
+            l.StartTimeout(Mathf.RoundToInt(PactMath.CartAnswerDays * PactMath.DayTicks));
+            Tell.Ask(letter, home);
+            return true;
+        }
+
+        /// <summary>"Send it": the cart carried out to the gate, where their porters take it and pay for it; short now, none goes this season.</summary>
+        public static void SendCart(Tie t, Map home, ThingDef def, int count)
+        {
+            var f = PeopleOf(t);
+            if (f == null || home == null || def == null || count <= 0) return;
+            if (PlayCarry.Have(home, def.defName, def) < count)
+            {
+                // apart: the colony's answer to the season's question; nothing is carried out.
+                Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_CartShort", Couriers.Amount(count, null, def).Named("GOODS")), LookTargets.Invalid,
+                    MessageTypeDefOf.NeutralEvent);
+                return;
+            }
+            var ctx = new DilemmaContext { map = home, faction = f };
+            // apart: one of the colony carries the cart's load out to the gate, where their porters wait for it.
+            new DilemmaEffect_CarryOut { what = def.defName, count = count, steward = false, who = PlayWho.None, to = PlaySpot.Gate, label = PactWords.P("CC_Pact_CartLabel", PactWords.People(f).Named("PEOPLE")) }
+                .Apply(ctx);
+            int pay = PactMath.CartPay(def.BaseMarketValue, count);
+            Couriers.PaySilver(home, DropCellFinder.TradeDropSpot(home), pay, f);
+            Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_Cart", Couriers.Amount(count, null, def).Named("GOODS"), pay.Named("SILVER")), LookTargets.Invalid,
+                MessageTypeDefOf.PositiveEvent);
+        }
+
+        /// <summary>
+        /// "Refuse and end the pact": no cart goes, and the pact ends without blame as it would by the colony's letter; their
+        /// head's word comes back with the porters, as their answer to such a letter would (CC_Pact_Ans_Ended and their own
+        /// words for an end, the "pactend" lines).
+        /// </summary>
+        public static void RefuseCart(Tie t)
+        {
+            var f = PeopleOf(t);
+            var home = HomeOf(t);
+            if (t == null || f == null || !t.Live) return;
+            End(t, Tie.State.Ended, null);
+            var head = FavourCalls.HeadOf(f, home);
+            string text = PactWords.P("CC_Pact_CartRefused", PactWords.People(f).Named("PEOPLE")) + "\n\n" + PactWords.T("CC_Pact_Ans_Ended", PactWords.People(f).Named("PEOPLE"));
+            string words = head != null ? NeighbourLetters.TheirWords(head, DiplomacyLetters.PactEndTag, NotableBook.Opinion(head) >= 0 ? AnswerTone.Cool : AnswerTone.Curt) : null;
+            if (!words.NullOrEmpty()) text += "\n\n" + PactWords.P("CC_Pact_CartRefused_Words", NotableBook.Called(head).Named("WHO"), words.Named("WORDS"));
+            Tell.Letter(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_CartRefused_Label", PactWords.People(f).Named("PEOPLE")), text, LetterDefOf.NeutralEvent,
+                LookTargets.Invalid, f);
         }
 
         // ================= Broken =================
@@ -729,6 +873,83 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// A trade pact's season: their porters wait for the colony's cart. "Send it" (carried out to the gate, and their silver
+    /// set down), or "Refuse and end the pact" (ended without blame, their head's word back). Unanswered by the time the
+    /// letter goes, no cart this season, and the pact goes on.
+    /// </summary>
+    public class ChoiceLetter_PactCart : RimfolkLetter
+    {
+        public Faction people;
+        public int home = HomesMath.None;
+        public int pact = -1;
+        public string goods;
+        public int count;
+
+        private ThingDef Def => DefDatabase<ThingDef>.GetNamedSilentFail(goods ?? "");
+
+        private bool Valid(out Map map, out Tie t)
+        {
+            map = Homes.MapOf(home) ?? Homes.Seat;
+            t = Pacts.Get(pact);
+            return people != null && !people.defeated && !Diplomacy.Hostile(people) && map != null && t != null && t.Live && Pacts.KindOf(t) == PactKind.Trade
+                   && Pacts.PeopleOf(t) == people && Def != null;
+        }
+
+        /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>
+        public bool Waiting => !ArchivedOnly && Valid(out _, out _);
+
+        public override IEnumerable<DiaOption> Choices
+        {
+            get
+            {
+                if (ArchivedOnly || !Valid(out var map, out _))
+                {
+                    yield return Option_Close;
+                    yield break;
+                }
+                var m = map;
+                // Each answer is written in the history's answers' log.
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Pact_Opt_SendCart"))
+                {
+                    action = () =>
+                    {
+                        Find.LetterStack.RemoveLetter(this);
+                        if (Valid(out var mm, out var tt)) Pacts.SendCart(tt, mm, Def, count);
+                    },
+                    resolveTree = true
+                }, this, "pactCart", people, null, () => m);
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Pact_Opt_RefuseCart"))
+                {
+                    action = () =>
+                    {
+                        Find.LetterStack.RemoveLetter(this);
+                        if (Valid(out _, out var tt)) Pacts.RefuseCart(tt);
+                    },
+                    resolveTree = true
+                }, this, "pactCart", people, null, () => m);
+                yield return Option_Postpone;
+            }
+        }
+
+        /// <summary>The event card: the people it comes from, the goods asked for.</summary>
+        public override void Describe(EventCardFacts facts)
+        {
+            facts.faction ??= people;
+            facts.thingDef ??= Def;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref people, "people");
+            Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref pact, "pact", -1);
+            Scribe_Values.Look(ref goods, "goods");
+            Scribe_Values.Look(ref count, "count");
+        }
+    }
+
     /// <summary>Their offer of a truce after a raid of theirs was beaten, as a letter: accept (their envoy comes to the gate), or refuse.</summary>
     public class ChoiceLetter_TruceOffer : RimfolkLetter
     {
@@ -797,6 +1018,7 @@ namespace ColonyCouncil
     {
         public static LetterDef Rimfolk_TruceOffer;
         public static LetterDef Rimfolk_PactOffer;
+        public static LetterDef Rimfolk_PactCart;
         public static LetterDef Rimfolk_CallToArms;
         public static JobDef Rimfolk_TruceParley;
         public static JobDef Rimfolk_SignalFire;

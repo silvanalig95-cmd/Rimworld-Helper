@@ -111,7 +111,7 @@ namespace ColonyCouncil
                 switch (k)
                 {
                     case DealKind.Supply:
-                        if (sub == (byte)SupplyWay.Ours) x.surplus = Pacts.CartGoods(home).Count > 0;
+                        if (sub == (byte)SupplyWay.Ours) x.surplus = Pacts.CartChoices(home, f).Count > 0;
                         else x.silver = TheirGoods(f, home).Any(o => o.why == null);
                         break;
                     case DealKind.Relief:

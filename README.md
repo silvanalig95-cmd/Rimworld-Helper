@@ -4198,8 +4198,10 @@ breaks up; once per truce their firebrands may raid anyway, and at its end it is
 face ("Speak of a pact"), or takes one they offer. While a threat is on the colony it calls a defense partner by its
 comms console or a signal fire by the gate, and their band walks in some hours later; when a partner's town is
 attacked, the colony's fighters go there by caravan and fight on the game's caravan battle map (or in Faction
-Territories' invasion). A trade pact brings their caravan each season and takes a cart of the colony's surplus for
-silver. Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
+Territories' invasion). A trade pact brings their caravan each season, and the colony is asked each season whether to
+send its cart for their silver or refuse and end the pact; the cart is a plain good it can spare (wood, cloth, leather,
+food, stone blocks, steel), a valuable one only when picked on purpose, and every cart in the lists says what it is
+worth and what they pay ("Change the cart" on the pact's card picks another). Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
 card, the inbox and the map's lenses. 67 conversation pieces, 69 letter lines and 48 spoken lines speak of them. Settings: *Pacts and
 truces*, *Truces keep raids away*.
 
@@ -4314,8 +4316,8 @@ questions name it first, and an oath or the same act twice in a year may leave a
 **Schemes against the colony.** A people at peace that holds a grudge against the colony, or a notable who thinks
 little of it, may scheme against a home, about twice a year and never more than once a season, but only while one of
 theirs is there: one of their visitors, or a guard of their trader's caravan. In the night they slip away to break a
-machine down (industrial and after; a spacer colony's comms console first), take something small and valuable from
-the stores (a tribe's carving, a purse of silver, gold or jade, a few components), or go through an empty room for
+machine down (industrial and after; a spacer colony's comms console first), take plain goods from the stores (cloth,
+leather, food or steel, never components, medicine, silver, gold or jade), or go through an empty room for
 tales to tell, which a day or so later cost the colony a little with every other people in reach (at their fires, in
 their halls, in the papers, on the feeds, at the Empire's court); by day one may whisper a lie in a hot temper's ear,
 and the hot temper goes after the one it was about (a fight under the shared cap of hurts from everyday life). Someone

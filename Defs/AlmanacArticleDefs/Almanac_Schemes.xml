@@ -9,7 +9,7 @@
     <label>schemes against the colony</label>
     <category>Council</category>
     <order>16</order>
-    <summary>A people that holds a grudge against the colony, or a notable who thinks little of it, may scheme against it while one of theirs is at the colony: a machine broken down in the night, something small and valuable taken from the stores, a quarrel stirred up among the colony's people, or ill words gathered to carry round the region. Someone awake, a guard or a dog may catch them at it.</summary>
+    <summary>A people that holds a grudge against the colony, or a notable who thinks little of it, may scheme against it while one of theirs is at the colony: a machine broken down in the night, goods taken from the stores, a quarrel stirred up among the colony's people, or ill words gathered to carry round the region. Someone awake, a guard or a dog may catch them at it.</summary>
     <tip>The night is when they move. Someone up late, a guard on duty under the "on guard" decree or drafted, and a dog loose about the place are what catch them; a stores room or a machine out where nobody passes is where they try.</tip>
     <description>Nothing is said of a scheme while it runs: the colony doesn't know of it. Only when one of theirs is caught at it does it come to light, and then the colony knows who and what. A scheme that works is noticed only the way the game shows such things: a machine broken down, something missing from the stores, a fight. Schemes take the form of the colony's own means, and a smear takes the form of their people's ways.</description>
     <sections>
@@ -27,7 +27,7 @@
         <table>
           <li>Act | When | What it is</li>
           <li>A machine broken down | In the night, eleven to four | An industrial colony or later: one of theirs slips away to a machine and works at it a few seconds; the game's own breakdown, mended with a component. A spacer colony's comms console first.</li>
-          <li>Something taken | In the night | From a stockpile or a shelf, about 60 to 180 silver's worth into their pack: a small carving in a tribe (a totem), a purse of silver, gold or jade in a medieval colony, components in an industrial or spacer one (a tool). It goes with them when they leave.</li>
+          <li>Something taken | In the night | From a stockpile or a shelf, about 60 to 180 silver's worth of plain goods into their pack, no more than one pack holds: food, leather or cloth in a tribe, cloth, leather, food or steel in a medieval colony, steel, cloth or food in an industrial or spacer one. Never a valuable good (components, medicine, silver, gold, jade) and never a carving. It goes with them when they leave.</li>
           <li>A quarrel stirred up | By day | A word in the ear of one of the colony with a hot temper, about the one they like least (never kin or a lover). The hot temper goes to have it out: the game's social fight under the shared cap of hurts from everyday life, or hard words when the cap holds. None with hurts from everyday life at 0%.</li>
           <li>Ill words gathered | In the night | One of theirs goes through one of the colony's empty rooms. A day to three later the tales are told round the region: at other peoples' fires, in other lords' halls, in the papers, on the feeds, or at the Empire's court. Every other people at peace within reach thinks 3 less of the colony, never so much as to turn hostile.</li>
         </table>

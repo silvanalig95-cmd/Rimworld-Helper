@@ -48,6 +48,9 @@ namespace ColonyCouncil
             /// <summary>Folded under "Others" (a word with a people it would help less).</summary>
             public bool more;
 
+            /// <summary>Taken only when picked on purpose, never the list's first choice (a valuable good for a cart: Diplomacy/Pacts.cs).</summary>
+            public bool onPurpose;
+
             public string Code => code ?? FavourMath.AskCode(ask, arg);
         }
 

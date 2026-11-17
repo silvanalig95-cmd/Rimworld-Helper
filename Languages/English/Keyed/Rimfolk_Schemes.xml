@@ -15,6 +15,7 @@
 
   <CC_Scheme_What_Machine>at {THING} in the night, working to jam it</CC_Scheme_What_Machine>
   <CC_Scheme_What_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_What_Console>
+  <CC_Scheme_What_Stores>stealing {THING} from the colony's stores</CC_Scheme_What_Stores>
   <CC_Scheme_What_Totem>carrying off {THING} from the colony's stores, a carving to take home</CC_Scheme_What_Totem>
   <CC_Scheme_What_Purse>stealing {THING} from the colony's stores</CC_Scheme_What_Purse>
   <CC_Scheme_What_Tool>pocketing {THING} from the colony's stores</CC_Scheme_What_Tool>
@@ -28,6 +29,7 @@
   <!-- The same, short, for a row of the pages. -->
   <CC_Scheme_Short_Machine>at {THING} in the night, working to jam it</CC_Scheme_Short_Machine>
   <CC_Scheme_Short_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_Short_Console>
+  <CC_Scheme_Short_Stores>stealing goods from the colony's stores</CC_Scheme_Short_Stores>
   <CC_Scheme_Short_Totem>carrying off a carving from the colony's stores</CC_Scheme_Short_Totem>
   <CC_Scheme_Short_Purse>stealing valuables from the colony's stores</CC_Scheme_Short_Purse>
   <CC_Scheme_Short_Tool>pocketing tools from the colony's stores</CC_Scheme_Short_Tool>

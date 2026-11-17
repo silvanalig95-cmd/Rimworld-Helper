@@ -95,7 +95,7 @@ public static class LetterShapeTests
         C(CourierMath.Counted(3, "berry", false) == "berries" && CourierMath.Counted(3, "match box", false) == "match boxes" && CourierMath.Counted(3, "component", false) == "components"
           && CourierMath.Counted(3, "packaged survival meal", false) == "packaged survival meals", "things counted one by one in the plural");
         C(CourierMath.Counted(3, "quill", false, (s, k) => s + "-pl") == "quill-pl", "the game's own plural when given");
-        C(Code("Couriers/Couriers.cs").Contains("Counted(n, first.def.label, first.def)") && Code("Couriers/Couriers.cs").Contains("CourierMath.Counted(n, label, def?.IsStuff ?? false, Find.ActiveLanguageWorker.Pluralize)")
+        C(Code("Couriers/Couriers.cs").Contains("Counted(n, first.def.label, first.def)") && Code("Couriers/Couriers.cs").Contains("CourierMath.Counted(n, label, def?.IsStuff ?? false, English ? null : (Func<string, int, string>)Find.ActiveLanguageWorker.Pluralize)")
           && Code("Diplomacy/Schemes.cs").Contains("Couriers.Counted(t.stackCount, t.def.label, t.def)"), "goods counted in words go through the one rule");
         // 4. Write back from the card, the reading window and the People page.
         C(LetterKindMath.ReplyOf(true, true) == ReplyAs.Answer && LetterKindMath.ReplyOf(false, true) == ReplyAs.Greetings && LetterKindMath.ReplyOf(false, false) == ReplyAs.Any,

@@ -2,13 +2,18 @@
 <Defs>
 
   <!--
-    Their own words in two answers of round a that had none of their own (Source/ColonyCouncil/Diplomacy/
+    Their own words in answers that had none of their own (two of round a, and the cart's: Source/ColonyCouncil/Diplomacy/
     DiplomacyLetters.cs, QuoteTags), in the pool Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml):
     - pactend: the colony's letter ending a pact without blame. Nothing was asked of them, so nothing is refused: they
       take it cool or curt. The answer is picked under this tag instead of "pact", so a refused offer's lines never fit.
     - trucebyword: a truce they agree to that is sworn by word, because no people at peace with both can vouch for their
       envoy on the colony's land. Picked under this tag instead of "truce", whose lines promise their envoy at the gate;
       cordial or cool (a people at war is never warm). A refusal keeps the truce's own lines.
+    - pactcart: the colony's letter changing a trade pact's cart (17 November 2026). Any cart is agreed to, so they take
+      it cordial or cool, and the answer is picked under this tag instead of "pact". Overtaken by events (the pact over,
+      the goods gone), under pactcartmoot, with no tone tag.
+    The pactend lines without letter or call also answer a trade pact ended when the colony refuses its season's cart
+    (Diplomacy/Pacts.cs, RefuseCart; World/NeighbourLetters.cs, TheirWords), their word sent back with the porters.
     By their ways only theirLowtech (tribes, the middle ages and the Empire's court) and theirHightech; call for a call.
   -->
 
@@ -27,6 +32,17 @@
         <li>[pactend,curt,theirLowtech] The oath is set aside, as you ask. We will remember who asked.</li>
         <li>[pactend,curt,theirHightech] Agreement ended at your request. Our records are updated.</li>
         <li>[pactend,curt,call] So that's the end of it, {WRITER}. We heard you.</li>
+        <!-- A trade pact's cart changed by the colony's letter -->
+        <li>[pactcart,cordial] A different cart is no trouble. Our porters will take what you send.</li>
+        <li>[pactcart,cordial,theirLowtech] Our porters will load whatever you send, and we will pay for it as before.</li>
+        <li>[pactcart,cordial,theirHightech] The change to the cart is noted. Payment stays at the agreed share.</li>
+        <li>[pactcart,cool] Very well, send the new goods instead.</li>
+        <li>[pactcart,cool,letter] We have your letter. Our porters will take the new goods from now on.</li>
+        <li>[pactcart,cool,call] All right, {WRITER}. We'll take the new goods from now on.</li>
+        <!-- The same, overtaken by events -->
+        <li>[pactcartmoot] Things have changed since you wrote, and there is no cart left to change.</li>
+        <li>[pactcartmoot,theirLowtech] By the time your words reached us, there was no cart to speak of anymore.</li>
+        <li>[pactcartmoot,call] There's nothing to change now, {WRITER}. Things have moved on.</li>
         <!-- A truce agreed, sworn by word -->
         <li>[trucebyword,cordial,war] Nobody will vouch for an envoy of ours on your land, so take this letter as our word. We accept.</li>
         <li>[trucebyword,cordial,war,theirHightech] Terms accepted. With no third party to escort an envoy, consider this letter our signature.</li>

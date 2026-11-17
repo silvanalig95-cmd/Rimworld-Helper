@@ -27,6 +27,8 @@ namespace ColonyCouncil
                 r => IsPact(ThingRefs.Tie(r), PactKind.Defence), 20f, PactWords.P("CC_Pact_Act_Call_Tip"), "pact-call");
             CardActs.Register(CardKind.Tie, r => PactWords.P("CC_Pact_Act_End"), r => EndWhyNot(ThingRefs.Tie(r)), r => EndByLetter(ThingRefs.Tie(r)),
                 r => IsPact(ThingRefs.Tie(r), null), 60f, PactWords.P("CC_Pact_Act_End_Tip"), "pact-end");
+            CardActs.Register(CardKind.Tie, r => PactWords.P("CC_Pact_Act_Cart"), r => CartWhyNot(ThingRefs.Tie(r)), r => CartByLetter(ThingRefs.Tie(r)),
+                r => IsPact(ThingRefs.Tie(r), PactKind.Trade), 55f, PactWords.P("CC_Pact_Act_Cart_Tip"), "pact-cart");
             CardActs.Register(CardKind.People, r => PactWords.P("CC_Truce_Act_Offer"), r => OfferAct(ThingRefs.Faction(r)).why, r => OfferAct(ThingRefs.Faction(r)).run?.Invoke(),
                 r => Diplomacy.Hostile(ThingRefs.Faction(r)) && Truces.On, 30f, PactWords.P("CC_Truce_Act_Offer_Tip"), "truce-offer");
             CardActs.Register(CardKind.People, r => PactWords.P("CC_Pact_Act_Propose"), r => ProposeAct(ThingRefs.Faction(r)).why, r => ProposeAct(ThingRefs.Faction(r)).run?.Invoke(),
@@ -101,7 +103,7 @@ namespace ColonyCouncil
             if (Pacts.KindOf(t) == PactKind.Trade)
             {
                 var def = DefDatabase<ThingDef>.GetNamedSilentFail(t.terms.goods ?? "");
-                if (def != null) return since + "; " + PactWords.P("CC_Pact_State_Cart", Couriers.Amount(t.terms.count, null, def).Named("GOODS"));
+                if (def != null) return since + "; " + PactWords.P("CC_Pact_State_Cart", PactWords.CartLine(def, t.terms.count).Named("CART"));
             }
             return since;
         }
@@ -177,6 +179,24 @@ namespace ColonyCouncil
             if (head != null) Find.WindowStack.Add(new Dialog_NeighbourLetter(head, LetterPurpose.Pact, DiplomacyLetters.PactEndPrefix + t.id));
         }
 
+        /// <summary>Why a trade pact's cart can't be changed by letter now, or null: nothing else to send, no head to write to, or the letter's own rules.</summary>
+        private static string CartWhyNot(Tie t)
+        {
+            string why = EndWhyNot(t);
+            if (why != null) return why;
+            var f = Pacts.PeopleOf(t);
+            var head = FavourCalls.HeadOf(f, Pacts.HomeOf(t));
+            if (!NeighbourLetters.Topics(head, LetterPurpose.Pact).Any(x => x.key == DiplomacyLetters.PactCartPrefix + t.id)) return PactWords.P("CC_Pact_Why_NoOtherCart");
+            return null;
+        }
+
+        /// <summary>"Change the cart": a letter to their head, the new cart chosen there from the same list (each with its worth and their pay).</summary>
+        private static void CartByLetter(Tie t)
+        {
+            var head = FavourCalls.HeadOf(Pacts.PeopleOf(t), Pacts.HomeOf(t));
+            if (head != null) Find.WindowStack.Add(new Dialog_NeighbourLetter(head, LetterPurpose.Pact, DiplomacyLetters.PactCartPrefix + t.id));
+        }
+
         // ================= The tie's card =================
 
         private static List<string> TieLines(ThingRef r)
@@ -224,7 +244,8 @@ namespace ColonyCouncil
         private static IEnumerable<Letter> Waiting()
         {
             foreach (var l in Find.LetterStack.LettersListForReading)
-                if (l is ChoiceLetter_TruceOffer t && t.Waiting || l is ChoiceLetter_PactOffer p && p.Waiting || l is ChoiceLetter_CallToArms c && c.WaitingOnPact)
+                if (l is ChoiceLetter_TruceOffer t && t.Waiting || l is ChoiceLetter_PactOffer p && p.Waiting || l is ChoiceLetter_PactCart k && k.Waiting
+                    || l is ChoiceLetter_CallToArms c && c.WaitingOnPact)
                     yield return l;
         }
 
@@ -246,7 +267,8 @@ namespace ColonyCouncil
                     var letter = l;
                     Action read = () => letter.OpenLetter();
                     var f = l.relatedFaction;
-                    string kind = l is ChoiceLetter_TruceOffer ? "CC_Pact_Week_TruceOffer" : l is ChoiceLetter_PactOffer ? "CC_Pact_Week_PactOffer" : "CC_Pact_Week_Arms";
+                    string kind = l is ChoiceLetter_TruceOffer ? "CC_Pact_Week_TruceOffer" : l is ChoiceLetter_PactOffer ? "CC_Pact_Week_PactOffer"
+                        : l is ChoiceLetter_PactCart ? "CC_Pact_Week_PactCart" : "CC_Pact_Week_Arms";
                     rows.Add(new WeekRow
                     {
                         icon = l is ChoiceLetter_CallToArms ? Icons.Raid : Icons.Promise ?? Icons.Trust,

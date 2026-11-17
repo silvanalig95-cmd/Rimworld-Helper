@@ -1868,6 +1868,26 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// Their own words on a matter settled without a letter of the colony's (a trade pact ended when the colony refused
+        /// its season's cart: Diplomacy/Pacts.cs, RefuseCart): a line of the pool's under <paramref name="tag"/>, by how
+        /// they took it and their people's ways, never one written for a letter or a call. Null when none fits.
+        /// </summary>
+        public static string TheirWords(Notable n, string tag, AnswerTone tone)
+        {
+            if (n?.faction == null || tag.NullOrEmpty()) return null;
+            var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(WritePool);
+            if (pool == null) return null;
+            var tags = new HashSet<string> { tag, tone.ToString().ToLowerInvariant() };
+            tags.Add(Traditional(n.faction) ? "theirLowtech" : "theirHightech");
+            Peoples.AddTags(n.faction, tags);
+            var lines = pool.lines.For(Tone.Plain);
+            string line = Flavor.PickTagged(lines.Where(x => LineTags.Of(x).tags?.Contains(tag) ?? false), tags);
+            if (line.NullOrEmpty()) return null;
+            var values = new Dictionary<string, string> { ["NAME"] = n.Name, ["TOWN"] = n.townName ?? "", ["FACTION"] = n.faction.Name ?? "" };
+            return Texts.Fill(line, values);
+        }
+
+        /// <summary>
         /// What they tell of when asked for news: real things near them (a world event, a place, a quest of theirs, their
         /// wars), the world's news the facts service read for the letter.
         /// </summary>

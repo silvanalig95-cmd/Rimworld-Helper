@@ -128,10 +128,14 @@ namespace ColonyCouncil
                     opts.Add(new FloatMenuOption(label, () => Pick(c, x, a, PactMath.KindKey(k))));
                     continue;
                 }
-                foreach (var (def, count) in Pacts.CartGoods(home))
+                // Each cart with what it is worth and what they pay: the plain goods first, then the valuable ones, marked
+                // (Diplomacy/Pacts.cs, CartChoices); picking one here is the choice.
+                foreach (var (def, count, valuable) in Pacts.CartChoices(home, f))
                 {
                     string code = PactMath.KindKey(k) + "|" + def.defName + ":" + count;
-                    opts.Add(new FloatMenuOption(label + ": " + PactWords.P("CC_Pact_CartOption", Couriers.Amount(count, null, def).Named("GOODS")), () => Pick(c, x, a, code)));
+                    var o = new FloatMenuOption(label + ": " + PactWords.CartLine(def, count), () => Pick(c, x, a, code));
+                    if (valuable) o.tooltip = new TipSignal(PactWords.P("CC_Pact_CartValuable_What"));
+                    opts.Add(o);
                 }
             }
             if (opts.Count == 0) opts.Add(new FloatMenuOption("CC_Out_Nothing".Translate().Resolve(), null));
