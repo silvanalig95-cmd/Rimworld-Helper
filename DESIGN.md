@@ -9792,6 +9792,82 @@ happens. The rules are pure, in `Peoples/Magic/PeoplesMagicMath.cs` (`Tools/Test
   ...": the casters on this map (log), a caster of theirs here now as a visitor, a spell in peace now, what each people
   is known for (log). The Almanac's peoples' pages, *What they wear, carry and know*; README "Magic among the peoples".
 
+### The Stormriders: their gear, their looks and some magic (the player's request and go, 17 November 2026; released 0.266.0)
+
+The player: "And then also in regard to the Storm Riders, I mean, at the moment, most of the NPCs joining my camp as
+visitors, etc., are Storm Riders. I mean, I have good relations with them. They have camps nearby, so it makes sense
+that they're, you know, largely represented. So I wonder if we maybe can enhance on them a little bit, you know, bring a
+little more variety to maybe their gear, how they look like, um, kind of potentially some maybe can do magic and just
+kind of spice up the Storm Riders and make them a bit more interesting since they're such an important factor in my
+current save. ... And please go ahead with all the changes right now that I told here."
+
+- **What the save showed** (`League_of_Toba_5`). The Stormriders are `Faction_25`, of Elves (Continued)'s
+  `DevDesigner_DarkElvesFaction` (an ally, goodwill 64), the dark elf xenotype, a medieval people; not one of Rimfolk's
+  peoples. Of their 13 people on the map, 8 were Dreadspears, 2 Darkshards, 2 penitents and a trader, and every one wore
+  the same tunic, trousers, boots and cape in the same three colours; the soldiers all the same chainmail, Dreadspear
+  armour and helmet and dark elven shield, with a spear or a crossbow. Their hair varied (ten styles among thirteen), no
+  one had a tattoo, one had a class of A RimWorld of Magic by the mod's own roll (a chaos mage). The cause is the Elves
+  mod's own pawn kinds (its 1.6 `PawnKinds_DarkEvles.xml`): each kind lists its whole outfit as required apparel with
+  fixed colours, so the game has nothing left to choose.
+- **How it is done.** A profile for another mod's faction by its def's name: `ForeignPeopleDef`
+  (`Defs/PeopleDefs/Rimfolk_ForeignPeoples.xml`, `Rimfolk_Foreign_DarkElves`; `Peoples/Foreign/ForeignPeopleDef.cs`),
+  read by `ForeignPeoples.Fit` from `Patch_ForeignPeoples`, a postfix on the game's `GenerateNewPawnInternal` like the
+  peoples' gifts (fresh pawns only, with the deeper game hooks on: visitors, camps, caravans, guards, raids, town
+  defenders made from now on). The pure rules are `ForeignPeoplesMath` (`Tools/Tests/ForeignPeoplesTests.cs`, "the
+  Stormriders: "). Every name of another mod is MayRequire'd on it; without the Elves mod nothing matches. Their xenotype,
+  race and the kind's own kit stay; no letter, nothing saved.
+- **By role** (the pawn kind; a kind no role names, such as a camp's, plays the folk's or, for a trader, the trader's).
+  Each piece is a chance of one of a short list, taken among those loaded and wearable by the pawn. A piece is worn only
+  where it takes the place of nothing the kind's own kit requires (unless the role names that piece: a civilian's cape or
+  tunic) and of nothing that protects more (sharp armour, a hundredth or two of slack: `MayDisplace`), so no one ends up
+  less protected or armed than the Elves mod made them.
+
+| Role (kind) | More pieces | Colours | Class of A RimWorld of Magic (share) |
+|---|---|---|---|
+| trader | 60% a chaperon (Medieval 2), a masked hood, a wide hat (Hats and Rags) or a hood; 50% a vest (Settlers) or quilted vest (Armour Expanded); 40% a backpack (Accessories); 25% the high elven cloak in place of the cape; half carry a dark elven dagger | tunic, trousers, vest, pack in the look's main colour, cape, cloak and hat its second | enchanter 4% |
+| folk (penitent) | 50% a masked hood, the wood elven hood, a hood or a headscarf; 30% the elven gambeson; 15% Fairycore's purple travelling robe in place of tunic and trousers; 25% a backpack; 30% a dagger | the same | lightning or ice mage, 3% each |
+| spear (Dreadspear) | their whole kit and spear; 12% a battle banner | the cape and banner in the look's second colour | gladiator 5%, lightning mage 3% |
+| crossbow (Darkshard) | their whole kit and crossbow | the cape | ranger 6%, lightning mage 3% |
+| rider (Dark Rider) | 60% a bolt quiver when they carry a crossbow | hood main, cape or cloak second | lightning mage 8%, ranger 4% |
+| guard (Black Guard) | their whole kit; 10% a battle banner | their own | gladiator 8%, commander 4% |
+| knight (Cold One Knight) | their whole kit | their own | commander 6%, gladiator 6% |
+| witch (witch elf) | their whole look | their own | bladedancer 15% |
+| sorceress | their whole look | their own | lightning mage 20%, ice and fire mage 12% each, arcanist 10%; without A RimWorld of Magic a psylink of 1 to 3 levels (Staticlord or Nightstalker with Vanilla Psycasts Expanded), 54% |
+| head (Supreme Sorceress) | their whole look | their own | lightning mage 25%, arcanist 20%, summoner 10%; without it a psylink of 2 to 4, 55% |
+
+- **The shares.** The dark elves are a coven led by sorceresses (`builtOnMagic`), so their ordinary roles have a class up
+  to 15 in a hundred, as among Rimfolk's four peoples built on magic (`PeoplesMagicMath.ShareCap`), and the two kinds that
+  are casters by the Elves mod's own name (Sorceress, Supreme Sorceress) up to the peoples' whole share, 60, never all
+  (`PeoplesGearMath.MaxShare`). The classes are given by the peoples' own gifts (`PeopleGifts.GiveFrom`): only a class the
+  mod has switched on and whose share for this faction in its settings isn't none, never to a pawn that rolled its own.
+  The lightning mage is the most common, for the Stormriders' name. Without A RimWorld of Magic only the sorceresses have
+  a gift, a psylink (Royalty).
+- **Their magic, seen** (Peoples/Magic/, "Magic among the peoples, seen"): `PeoplesMagic.Ours` counts this people with
+  Rimfolk's own, so a caster of theirs names their craft to the first of the colony they meet (a new line for the
+  bladedancer), an allied or content ice mage may call the rain in a dry spell, the mod's own AI casts for them in a
+  fight with its most broken spells kept out of their hands, and their card says "Among them are lightning mages,
+  arcanists and ..., more of them than among most peoples." A caster wears their class's own hood from the mod where it
+  takes the place of nothing their kind requires (a penitent's or trader's hood gives way, a Dreadspear's helmet or a
+  sorceress's crown doesn't), and never a wand: the mod's wands rate far below their own weapons (`docs/weapons`: the
+  lightning wand 3, the dark elven spear 6.8), so their weapon stays.
+- **By look** (one each, by weight): the Elves' own midnight and purple (4), charcoal and dark wine (3), black-violet and
+  ash grey (2), brown and midnight (3). The role's pieces are dyed its two colours (main and second); the soldiers' only
+  their cape and banner, the elite and the casters not at all. Half of each of the first three looks has one of its hair
+  styles (Vanilla Hair Expanded's, Rimsenal's and the game's long, braided or loose styles), taken only among those whose
+  style gender fits the pawn (`StyleFits`) and never when a gene sets or limits their hair; and, with Ideology, a face or
+  body tattoo: the Elves' own elven marks or a plain line for the first, war paint, tiger stripes, a skull, a scar or
+  spikes for the second, an eclipse, stars, an oracle's or a spider's mark, a moon, wings or rings for the third. The
+  fourth leaves hair and skin as they came. No beard: elves have none.
+- **Words.** Their own tag for Rimfolk's lines, `folk:darkelves` (`Peoples.AddTags`): six lines of their own in a
+  visitor's idle hours (`Rimfolk_Pool_VisitorIdle`: company, a fire, the stars, a walk, a blade sharpened), plain.
+- **Not changed**: pawns already in a game (the Stormriders on the map and those the world keeps) keep what they have;
+  the Elves mod's other dark elves (`DevDesigner_RoughDarkElvesFaction`) and its high and wood elves; their xenotype, race,
+  kinds and weapons.
+- Dev actions "Peoples of other mods: their gear, looks and gifts (log)..." (four new pawns of each of their kinds,
+  described with role, look, clothes and colours, weapon, class or psylink, hair and tattoos, not kept) and "... one of
+  each of their kinds here now, as visitors (testing)...". README "Another mod's people: the dark elves"; the Almanac's
+  peoples' page, *What they wear, carry and know*.
+
 ### Peoples whose age changes
 
 The player's words (8 November 2026): "different generations or time spans represented in factions, or that the

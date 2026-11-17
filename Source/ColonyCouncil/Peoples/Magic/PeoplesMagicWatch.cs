@@ -234,7 +234,7 @@ namespace ColonyCouncil
         private static bool Peace(PeoplesMagicBook book, Pawn x, string trait, Map map)
         {
             if (!PeoplesMagicMath.Helps(trait) || Waiting(x) || !RomSpells.Ready || !RomSpells.AiMayCast) return false;
-            return MayNow(book, x, map, out _) && Rand.Chance(PeoplesMagicMath.PeaceChance(PeoplesMagicMath.BuiltOnMagic(Peoples.CallingOf(x.Faction))));
+            return MayNow(book, x, map, out _) && Rand.Chance(PeoplesMagicMath.PeaceChance(PeoplesMagic.OnMagic(x.Faction)));
         }
 
         /// <summary>The rules, without the roll: may this visitor cast for the colony now (and why not).</summary>

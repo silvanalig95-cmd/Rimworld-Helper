@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Another mod's people, given more than their mod gives them as each is made (Source/ColonyCouncil/Peoples/Foreign/;
+    DESIGN.md "The Stormriders: their gear, their looks and some magic"). The player, 17 November 2026, of the Stormriders
+    in their save, the dark elves of Elves (Continued): "bring a little more variety to maybe their gear, how they look
+    like, um, kind of potentially some maybe can do magic and just kind of spice up the Storm Riders".
+
+    The Elves mod dresses each of its dark elf kinds in one fixed kit (its apparelRequired) and colours, so every Dreadspear
+    looks the same. Here, by role (its pawn kinds): a few more pieces, each a chance, from the Elves mod and the player's
+    other mods, worn only where they take the place of nothing the kind's own kit requires (unless the role names it: a
+    civilian's cape or tunic) and nothing that protects more; the soldiers keep their whole kit and weapon, the elite and
+    the casters their whole look. The unarmed (traders, civilians) may carry the Elves' dark elven dagger. A share of each
+    role has a class of A RimWorld of Magic (only classes the mod has switched on and allows this faction in its settings),
+    the sorceresses most; without that mod the sorceresses have a psylink instead. By look: four sets of colours for their
+    cloth (the Elves' own midnight and purple, charcoal and wine, black-violet and ash, brown and midnight), with a share of
+    long, braided or loose hair styles and of face and body tattoos. Their xenotype and race are not touched.
+
+    Every name of another mod is MayRequire'd on its mod (the base game's are plain): without the Elves mod nothing here
+    matches, and a piece whose mod isn't loaded is never given. Checked against the player's mods (docs/player-mods,
+    active rows) by Tools/Tests/ForeignPeoplesTests.cs and Tools/poolcheck.py.
+  -->
+
+  <ColonyCouncil.ForeignPeopleDef>
+    <defName>Rimfolk_Foreign_DarkElves</defName>
+    <label>dark elves</label>
+    <factions>
+      <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElvesFaction</li>
+    </factions>
+    <tag>folk:darkelves</tag>
+    <!-- A coven, led by sorceresses, with witch elves in its warbands. -->
+    <builtOnMagic>true</builtOnMagic>
+    <roles>
+
+      <!-- The trader of a caravan: a merchant's hat or a masked hood, a vest, a pack, now and then a cloak in place of the cape. -->
+      <li>
+        <name>trader</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Trader</li>
+        </kinds>
+        <pieces>
+          <li>
+            <chance>0.6</chance>
+            <apparel>
+              <li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Apparel_Chaperon</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodA</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodB</li>
+              <li MayRequire="vanillaexpanded.viehar">VIEHAR_Apparel_WideHat</li>
+              <li>Apparel_HatHood</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.5</chance>
+            <apparel>
+              <li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Apparel_Vest</li>
+              <li MayRequire="vanillaexpanded.varme">VAE_Apparel_QuiltedVest</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.4</chance>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_Backpack</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.25</chance>
+            <apparel>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_HighElves_Cloak</li>
+            </apparel>
+          </li>
+        </pieces>
+        <replaceable>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+        </replaceable>
+        <dyeMain>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_Tunic</li>
+          <li>Apparel_Pants</li>
+          <li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Apparel_Vest</li>
+          <li MayRequire="vanillaexpanded.varme">VAE_Apparel_QuiltedVest</li>
+          <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_Backpack</li>
+        </dyeMain>
+        <dyeAccent>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_HighElves_Cloak</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodA</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodB</li>
+          <li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Apparel_Chaperon</li>
+          <li MayRequire="vanillaexpanded.viehar">VIEHAR_Apparel_WideHat</li>
+          <li>Apparel_HatHood</li>
+        </dyeAccent>
+        <sidearms>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Dagger</li>
+        </sidearms>
+        <sidearmChance>0.5</sidearmChance>
+        <gifts>
+          <li><trait>Enchanter</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+
+      <!-- Their ordinary folk (the penitents, and any kind no other role names): a hood or headscarf, a gambeson, a pack,
+           now and then a travelling robe in place of tunic and trousers. -->
+      <li>
+        <name>folk</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Penitent</li>
+        </kinds>
+        <pieces>
+          <li>
+            <chance>0.5</chance>
+            <apparel>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodA</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodB</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_Hood</li>
+              <li>Apparel_HatHood</li>
+              <li MayRequire="vanillaexpanded.viehar">VIEHAR_Apparel_Headscarf</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.3</chance>
+            <apparel>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_Elves_Gambeson</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.15</chance>
+            <apparel>
+              <li MayRequire="homebrew.fairycoreapparel2">FCA2_PurpleTravelRobe</li>
+            </apparel>
+          </li>
+          <li>
+            <chance>0.25</chance>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_Backpack</li>
+            </apparel>
+          </li>
+        </pieces>
+        <replaceable>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_Tunic</li>
+          <li>Apparel_Pants</li>
+        </replaceable>
+        <dyeMain>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_Tunic</li>
+          <li>Apparel_Pants</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_Elves_Gambeson</li>
+          <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_Backpack</li>
+        </dyeMain>
+        <dyeAccent>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodA</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodB</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_Hood</li>
+          <li>Apparel_HatHood</li>
+          <li MayRequire="vanillaexpanded.viehar">VIEHAR_Apparel_Headscarf</li>
+        </dyeAccent>
+        <sidearms>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Dagger</li>
+        </sidearms>
+        <sidearmChance>0.3</sidearmChance>
+        <gifts>
+          <li><trait>StormBorn</trait><chance>0.03</chance></li>
+          <li><trait>HeartOfFrost</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The Dreadspears, the spear line: their whole kit, the cape in the look's colour, now and then a banner. -->
+      <li>
+        <name>spear</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Dreadspear</li>
+        </kinds>
+        <pieces>
+          <li>
+            <chance>0.12</chance>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_BattleBanner</li>
+            </apparel>
+          </li>
+        </pieces>
+        <dyeAccent>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+          <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_BattleBanner</li>
+        </dyeAccent>
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.05</chance></li>
+          <li><trait>StormBorn</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The Darkshards, the crossbow line: their whole kit, the cape in the look's colour. -->
+      <li>
+        <name>crossbow</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Darkshard</li>
+        </kinds>
+        <dyeAccent>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+        </dyeAccent>
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.06</chance></li>
+          <li><trait>StormBorn</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The Dark Riders, their scouts: a bolt quiver with a crossbow, hood and cloak in the look's colours. -->
+      <li>
+        <name>rider</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_DarkRider</li>
+        </kinds>
+        <pieces>
+          <li>
+            <chance>0.6</chance>
+            <ranged>true</ranged>
+            <apparel>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Quiver</li>
+            </apparel>
+          </li>
+        </pieces>
+        <dyeMain>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodA</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_MaskedHoodB</li>
+        </dyeMain>
+        <dyeAccent>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Cape</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_HighElves_Cloak</li>
+        </dyeAccent>
+        <gifts>
+          <li><trait>StormBorn</trait><chance>0.08</chance></li>
+          <li><trait>Ranger</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The Black Guard: their whole kit and colours, now and then a banner. -->
+      <li>
+        <name>guard</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_BlackGuard</li>
+        </kinds>
+        <pieces>
+          <li>
+            <chance>0.1</chance>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_BattleBanner</li>
+            </apparel>
+          </li>
+        </pieces>
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.08</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The Cold One Knights: their whole kit and colours. -->
+      <li>
+        <name>knight</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_ColdOneKnight</li>
+        </kinds>
+        <gifts>
+          <li><trait>TM_Commander</trait><chance>0.06</chance></li>
+          <li><trait>Gladiator</trait><chance>0.06</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The witch elves: their whole look; some are bladedancers. -->
+      <li>
+        <name>witch</name>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Witch</li>
+        </kinds>
+        <gifts>
+          <li><trait>Bladedancer</trait><chance>0.15</chance></li>
+        </gifts>
+      </li>
+
+      <!-- The sorceresses, casters by their own name: their whole look; about half have a class of A RimWorld of Magic,
+           without it a psylink (with Vanilla Psycasts Expanded the Staticlord's or the Nightstalker's path). -->
+      <li>
+        <name>sorceress</name>
+        <casters>true</casters>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Sorceress</li>
+        </kinds>
+        <gifts>
+          <li><trait>StormBorn</trait><chance>0.2</chance></li>
+          <li><trait>HeartOfFrost</trait><chance>0.12</chance></li>
+          <li><trait>InnerFire</trait><chance>0.12</chance></li>
+          <li><trait>Arcanist</trait><chance>0.1</chance></li>
+        </gifts>
+        <giftsWithoutMagic>
+          <li>
+            <psylink>1~3</psylink>
+            <paths>
+              <li MayRequire="vanillaexpanded.vpsycastse">VPE_Staticlord</li>
+              <li MayRequire="vanillaexpanded.vpsycastse">VPE_Nightstalker</li>
+            </paths>
+            <chance>0.54</chance>
+          </li>
+        </giftsWithoutMagic>
+      </li>
+
+      <!-- The Supreme Sorceress, their head. -->
+      <li>
+        <name>head</name>
+        <casters>true</casters>
+        <kinds>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Morathi</li>
+        </kinds>
+        <gifts>
+          <li><trait>StormBorn</trait><chance>0.25</chance></li>
+          <li><trait>Arcanist</trait><chance>0.2</chance></li>
+          <li><trait>Summoner</trait><chance>0.1</chance></li>
+        </gifts>
+        <giftsWithoutMagic>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li MayRequire="vanillaexpanded.vpsycastse">VPE_Staticlord</li>
+              <li MayRequire="vanillaexpanded.vpsycastse">VPE_Nightstalker</li>
+            </paths>
+            <chance>0.55</chance>
+          </li>
+        </giftsWithoutMagic>
+      </li>
+    </roles>
+
+    <looks>
+      <!-- The Elves mod's own colours, long straight hair, now and then the Elves' own elven tattoos. -->
+      <li>
+        <label>midnight and purple</label>
+        <weight>4</weight>
+        <main>(36,38,55)</main>
+        <accent>(63,53,85)</accent>
+        <hairChance>0.5</hairChance>
+        <hair>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Long</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Straight</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_SideBraid</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Queen</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Chosen</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Annointed</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Distinguished</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Regal</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Slicked</li>
+          <li MayRequire="rimsenal.hair">StraightLong</li>
+          <li MayRequire="rimsenal.hair">Hime</li>
+          <li>Long</li>
+          <li>Flowy</li>
+        </hair>
+        <faceTattooChance>0.2</faceTattooChance>
+        <faceTattoos>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooFaceA</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooFaceB</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooFaceC</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Line</li>
+        </faceTattoos>
+        <bodyTattooChance>0.15</bodyTattooChance>
+        <bodyTattoos>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooBodyA</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooBodyB</li>
+          <li MayRequire="devdesigner.elves.continued">DevDesigner_WoodElves_TattooBodyC</li>
+        </bodyTattoos>
+      </li>
+
+      <!-- Charcoal and dark wine, braids and shaved sides, war paint. -->
+      <li>
+        <label>charcoal and wine</label>
+        <weight>3</weight>
+        <main>(58,57,64)</main>
+        <accent>(92,38,50)</accent>
+        <hairChance>0.5</hairChance>
+        <hair>
+          <li MayRequire="vanillaexpanded.vhe">VHE_BattleBraid</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_BattleBraids</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_HalfShaved</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_BraidedHawk</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Warrior</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Hardened</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Braid</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Tower</li>
+          <li MayRequire="rimsenal.hair">HalfShaved</li>
+          <li MayRequire="rimsenal.hair">RBraid</li>
+          <li>ShaveTopBraid</li>
+          <li>BraidedKnot</li>
+        </hair>
+        <faceTattooChance>0.45</faceTattooChance>
+        <faceTattoos>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Warpaint</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Tiger</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Line</li>
+        </faceTattoos>
+        <bodyTattooChance>0.3</bodyTattooChance>
+        <bodyTattoos>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Skull</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Scar</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Spike</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Tiger</li>
+        </bodyTattoos>
+      </li>
+
+      <!-- Black-violet and ash grey, long loose hair, marks of the night sky. -->
+      <li>
+        <label>black-violet and ash</label>
+        <weight>2</weight>
+        <main>(40,32,50)</main>
+        <accent>(108,104,116)</accent>
+        <hairChance>0.5</hairChance>
+        <hair>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Mystic</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Widow</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Dusk</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Unkept</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Wrap</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_TwoTails</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Monk</li>
+          <li MayRequire="vanillaexpanded.vhe">VHE_Wilderness</li>
+          <li MayRequire="rimsenal.hair">Veil</li>
+          <li MayRequire="rimsenal.hair">Melusine</li>
+          <li>Locks</li>
+        </hair>
+        <faceTattooChance>0.4</faceTattooChance>
+        <faceTattoos>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Eclipse</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Stars</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Oracle</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Face_Spider</li>
+        </faceTattoos>
+        <bodyTattooChance>0.3</bodyTattooChance>
+        <bodyTattoos>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Moon</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Wings</li>
+          <li MayRequire="Ludeon.RimWorld.Ideology">Body_Rings</li>
+        </bodyTattoos>
+      </li>
+
+      <!-- Plain brown and midnight, hair and skin as they came. -->
+      <li>
+        <label>brown and midnight</label>
+        <weight>3</weight>
+        <main>(90,75,60)</main>
+        <accent>(36,38,55)</accent>
+      </li>
+    </looks>
+  </ColonyCouncil.ForeignPeopleDef>
+
+</Defs>

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Stormriders
+
+*17 November 2026, version 0.266.0*
+
+- The Stormriders, the dark elves of Elves (Continued), no longer all look the same: their traders and ordinary folk add hats, masked hoods, vests, gambesons, packs or a travelling robe and may carry a dagger, and their soldiers keep their whole kit with now and then a banner or a quiver.
+- Each dark elf has one of four looks, their cloth in midnight and purple, charcoal and wine, black-violet and ash, or brown and midnight, and some wear long, braided or loose hair and a face or body tattoo.
+- Some of them can do magic with A RimWorld of Magic: a few of every kind, more of the witch elves as bladedancers and about half of the sorceresses, lightning mages most of all. Without that mod their sorceresses have a psylink.
+- Their casters show it as Rimfolk's peoples do: they name their craft at the gate, an ice mage may bring rain in a dry spell, they fight with the mod's own spells, and their card says what crafts are among them.
+- Dark elf visitors have a few lines of their own in their idle hours. Only Stormriders made from now on are dressed this way.
+
 ## A way out of vengeance
 
 *17 November 2026, version 0.265.4*
