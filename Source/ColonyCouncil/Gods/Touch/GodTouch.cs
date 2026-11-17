@@ -199,6 +199,8 @@ namespace ColonyCouncil
             public int at, due;
             /// <summary>The offering whose taking it is, with what it was worth (null for anything else).</summary>
             public TakenGift gift;
+            /// <summary>What was seen, in the words of the first that told it (the mood's "Why"; null when none were said).</summary>
+            public string words;
             /// <summary>What each of its words keys was about, for the occurrence's own effect (<see cref="About"/>).</summary>
             public readonly Dictionary<string, TouchAbout> about = new Dictionary<string, TouchAbout>();
             /// <summary>Where each of its words keys happened (two signs of one god within the hours are one occurrence, each its own place).</summary>
@@ -307,7 +309,7 @@ namespace ColonyCouncil
             if (g == null || map == null || !Homes.IsHome(map)) return;
             if (GodTouchMath.WordsOnly(act.what)) return;
             bool coming = act.kind == GodActKind.Appear || act.kind == GodActKind.Reveal;
-            Add(g, map, act.cell, ToneOf(act.kind, g), false, coming, act.what, pawns, taken);
+            Add(g, map, act.cell, ToneOf(act.kind, g), false, coming, act.what, pawns, taken, act.text);
         }
 
         /// <summary>A god's moment played (Gods.Moment): who saw it, plainly or not, under the god they took it for.</summary>
@@ -316,7 +318,7 @@ namespace ColonyCouncil
             if (spec?.god == null || resolving || !Gods.On || spec.map == null || !Homes.IsHome(spec.map)) return;
             var kind = PawnGods.KindOf(spec.kind);
             bool coming = spec.kind == PresenceKind.Appear || spec.kind == PresenceKind.Reveal;
-            Add(spec.god, spec.map, spec.cell, ToneOf(kind, spec.god), plain, coming, spec.what, witnesses, taken);
+            Add(spec.god, spec.map, spec.cell, ToneOf(kind, spec.god), plain, coming, spec.what, witnesses, taken, spec.text);
         }
 
         /// <summary>
@@ -344,7 +346,8 @@ namespace ColonyCouncil
             giftsComing.Add((g, map, now, gift));
         }
 
-        private static void Add(God g, Map map, IntVec3 cell, TouchTone tone, bool plain, bool coming, string key, List<Pawn> pawns, God taken)
+        private static void Add(God g, Map map, IntVec3 cell, TouchTone tone, bool plain, bool coming, string key, List<Pawn> pawns, God taken,
+            string words = null)
         {
             if (Current.Game != pendingGame)
             {
@@ -360,6 +363,7 @@ namespace ColonyCouncil
                 p = new Pending { god = g, map = map, at = now, taken = taken };
                 pending.Add(p);
             }
+            if (p.words == null && !words.NullOrEmpty()) p.words = words;
             if (p.gift == null)
                 for (int i = giftsComing.Count - 1; i >= 0; i--)
                     if (giftsComing[i].god == g && giftsComing[i].map == map && now - giftsComing[i].at <= GenDate.TicksPerHour * 2)
@@ -461,6 +465,20 @@ namespace ColonyCouncil
 
         // ================= Felt =================
 
+        /// <summary>
+        /// The mood's "Why": what was seen, and whose doing this one holds it was, by the name they know that god by (the god
+        /// the colony took it for, possibly wrong), or that they don't know (the player, 17 November 2026: "if they don't know
+        /// who it was, then, they should guess or say they don't know"). Never the true god's name unless it is theirs for it.
+        /// </summary>
+        internal static string WhyFelt(Pawn x, Pending p)
+        {
+            string name = p.taken != null ? GodLore.NameOf(p.taken, x) : null;
+            string whose = name.NullOrEmpty()
+                ? "CC_GodTouch_Why_Unknown".Translate(x.Named("PAWN")).Resolve()
+                : "CC_GodTouch_Why_Guess".Translate(x.Named("PAWN"), name.Named("GOD")).Resolve();
+            return GodTouchMath.Why(p.words, whose);
+        }
+
         /// <summary>How someone of the colony stands toward the god they took it for (null: nothing they can name).</summary>
         public static TouchStance StanceOf(Pawn p, God taken)
         {
@@ -487,7 +505,7 @@ namespace ColonyCouncil
                 {
                     // Their god's kindness seen takes the place of the smaller "my god showed itself" the belief round gave them.
                     if (mood == TouchMood.Blessed) x.needs.mood.thoughts.memories.RemoveMemoriesOfDef(PawnGodsDefOf.Rimfolk_Belief_GodActed);
-                    CouncilGameComponent.GiveThought(x, def, stage: stage);
+                    CouncilGameComponent.GiveThought(x, def, stage: stage, cause: WhyFelt(x, p));
                 }
                 string why = def?.stages != null && stage < def.stages.Count ? def.stages[stage]?.label : null;
                 why ??= GodTouchDefOf.Rimfolk_GodTouch_Wonder?.stages?[0]?.label;

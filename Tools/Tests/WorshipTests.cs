@@ -174,8 +174,8 @@ public static class WorshipTests
 
         C(!Regex.IsMatch(all, @"\bGodBook\.Instance\b") && !Regex.IsMatch(all, @"\.standings\b") && !Regex.IsMatch(all, @"\bPantheon\."),
             "worship reaches the gods through Gods only: never the core's book, standings or pantheon maker");
-        C(files["Worship.cs"].Contains("GodPresenceSeam.Call(spec)") && files["Worship.cs"].Contains("Tell.Letter(") && files["Worship.cs"].Contains("Tell.Minor("),
-            "a god's sign goes to the presence part, and falls back to a plain card or news while it isn't there");
+        C(files["Worship.cs"].Contains("GodPresenceSeam.Call(spec)") && files["Worship.cs"].Contains("Tell.Letter(") && files["Worship.cs"].Contains("Tell.FromGod("),
+            "a god's sign goes to the presence part, and falls back to a plain card or a message at once while it isn't there");
         C(files["Worship.cs"].Contains("PresenceSpec.For(g, map, kind, cell)"), "the sign's moment veiled by how real the gods are (PresenceSpec.For)");
         C(Regex.Matches(all, @"\bMessages\.Message\(").Count <= 4 && !files["Prayers.cs"].Contains("Messages.Message(\"CC_Wsh_Answer"),
             "the player is told through Tell and the news; a direct message only answers their own click or a dev action");

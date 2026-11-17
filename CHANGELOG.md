@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A god's words at once
+
+*17 November 2026, version 0.265.3*
+
+- Everything a god does now shows as a message on the right as it happens, never held for the evening's colony news: the gods' own happenings, a god's sign, rain kept away, an offering taken or left, a god's demand ignored.
+- Where a god's happening moves the camera, the camera now always moves first and the message follows, as with Revel's stash and visions.
+- The moods after a god's doing now say in their tooltip what was seen and whose doing the colonist holds it was, by the name they know that god by, or that they don't know which god it was.
+- The Gods' book's lines no longer end with two full stops, and a few of its words read better.
+
+## Ballrooms for music rooms
+
+*17 November 2026, version 0.265.2*
+
+- With Vanilla Factions Expanded - Empire, a musical instrument no longer turns a temple or a dining room into a ballroom: a room with an altar of your faith stays a temple, and one with dining tables stays a dining room.
+- A drum on its own no longer makes a ballroom. A room with a harp, harpsichord or piano and no altar or dining table is still a ballroom, for the titles and balls that need one.
+- The setting "Ballrooms only for music rooms" on the Your other mods page brings back the mod's own rule when switched off.
+
 ## A cleaner start
 
 *17 November 2026, version 0.265.1*

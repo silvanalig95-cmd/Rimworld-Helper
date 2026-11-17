@@ -15796,6 +15796,55 @@ RealRuins' news file read by HugsLib, Map Mode Framework's ReGrowth layer; HANDO
   PlanetTile, int?)`, calls RoM's own postfix with no start layer (its body never reads it) while its own patch isn't
   on: a caravan with a `TM_Wanderer` crosses land without its movement difficulty, as RoM means.
 
+### Ballrooms only for music rooms (the player's report and go, 17 November 2026; released 0.265.2)
+
+The player: "as soon as I have this drum in the room, it's counted as a ballroom, which, you know, is not appropriate at
+all. It's not even counted as kind of an ideology room ... it's definitely not a dining room ... I just want to have the
+drum somewhere, but not immediately have that become a ballroom"; "ballroom seems to override temple, which is not
+correct in my opinion"; then "if there's other things on the to-do list that make sense to also do at the same time, go
+ahead".
+
+- **The cause.** Vanilla Factions Expanded - Empire's `RoomRoleWorker_Ballroom` scores 10000 for any musical instrument
+  (Ideology's drum among them), unless the room holds a bed, throne, work table or entity holder; the game's dining room
+  scores 12 a table, the temple (Ideology's worship room) at least 2000 with an altar of the colony's faith. Only the
+  highest shows. The game's eating and recreation moods read the room's impressiveness, not its name.
+- **The rule** (`Integrations/BallroomMath.StandsDown`): the ballroom stands down where the game's worship room scores
+  (an altar of the colony's faith), where there is a dining table (a building with an eating surface, as the game's
+  dining room counts), or where every instrument is a drum (`BallroomByUse.IsDrum`: Ideology's `Drum`, or another mod's
+  instrument named a drum). A room with a harp, harpsichord or piano and recreation stays the mod's ballroom, for its
+  titles and balls.
+- **The hooks** (`Integrations/BallroomByUse.cs`): postfixes on the worker's `GetScore` and
+  `GetScoreDeltaIfBuildingPlaced` (the note while placing an instrument), found by name; they stand down quietly without
+  the mod. The setting "Ballrooms only for music rooms" (`ballroomByUse`, on), on the "Your other mods" page under the
+  deeper hooks.
+- Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
+  meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+
+### Everything from a god told at once (the player's report and go, 17 November 2026; released 0.265.3)
+
+The player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby
+pawns had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
+animation for this event, and also no alert for it." Then: "the evening column in use, I don't really look at anymore
+... So please, any information from a god should kind of with its own dedicated pop up on the right, or it should be
+visible on screen, after camera changes ... the visual aspect was there, but minor. I mean, then it, I guess, counts.
+... if they don't know who it was, then, they should guess or say they don't know."
+
+- **A message as it happens.** `Tell.FromGod`: a god's words are a message at once, at least notable, never held for the
+  evening's colony news nor left only in the History tab. It carries every god's own happening (`OwnHappenings.Line`), a
+  god's sign when no moment plays (`Worship.Sign`), a god keeping the rain away, an offering taken or left, and a god's
+  demand ignored. The colony's own faith life (vows, saints, festivals, the peoples' gods) stays smaller news. With the
+  colony news off, a camera's words come with it too (`Tell.Minor`'s Off branch checks `ByCamera`).
+- **The camera first.** Revel's stash and Revel's vision handed their words over before the camera moved; now the
+  camera moves first, as everywhere else. The small look they have (Revel's amber flecks) stays, as the player said.
+- **The mood says what and whose.** A god's touch carries the words of the occurrence (the act's or the moment's
+  text) to the moods it gives (`GodTouch.Pending.words`, `WhyFelt`): "Why: Lorena found green tea x8 hidden far out on
+  the land ... Bautista holds it was Undertow's doing.", the god the colony took it for by the name the pawn knows it
+  by, or "... doesn't know which god it was." when they took it for none or have no name for it. Never the true god
+  unless that is their name for the god they took it for. "my god was good to us" now says "I believe it was the god I
+  hold to".
+- **Text.** The book's lines end with one full stop (`GodLoreMath.WithoutStop`; 49 of 111 lines in the player's save
+  had two); the stash's book line has the find in lower case and its words fit one person ("at her feet").
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

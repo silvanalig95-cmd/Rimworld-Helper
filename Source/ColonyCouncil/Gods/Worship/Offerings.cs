@@ -632,7 +632,7 @@ namespace ColonyCouncil
             {
                 // The shared way leaves a small light where it lay; a god's own way leaves its own sign (made as it took it).
                 if (fate == OfferingFate.Taken && !ownWords) Worship.Glow(map, cell, g);
-                Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
+                Tell.FromGod(NewsKind.Colony, map, text, o.shrine != null && o.shrine.Spawned ? new LookTargets(o.shrine) : null);
                 Worship.Witness(g, map, GodActKind.Favour, text, cell);
                 // Seen going (a cat eating it, given to a visitor), or its own way noticed at once: the book has it, and what
                 // follows comes now with the gift's worth; else once someone finds the place empty by day (Noticed). Gone some

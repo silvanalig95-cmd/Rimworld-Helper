@@ -28,7 +28,7 @@
   <CC_GodRevel_Saw_Craving>{WHO} saw {PAWN} get up in the night at {HOME} and go to the stores for {DRUG}.</CC_GodRevel_Saw_Craving>
 
   <!-- ===================== A stash found ===================== -->
-  <CC_GodRevel_Stash_Text>Far out on the land {PAWN} came on {WHAT} hidden at their feet, and nobody knows who left it there.</CC_GodRevel_Stash_Text>
+  <CC_GodRevel_Stash_Text>Far out on the land {PAWN} came on {WHAT} hidden at {PAWN_possessive} feet, and nobody knows who left it there.</CC_GodRevel_Stash_Text>
   <CC_GodRevel_Saw_Stash>{WHO} found {WHAT} hidden far out on the land at {HOME}, left there by nobody they knew of.</CC_GodRevel_Saw_Stash>
 
   <!-- ===================== A binge egged on ===================== -->

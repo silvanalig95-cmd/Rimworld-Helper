@@ -289,6 +289,7 @@
     <Compile Include="../../Source/ColonyCouncil/Animals/HuntMath.cs" Link="HuntMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/BodyWhenItDiesMath.cs" Link="BodyWhenItDiesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/BiomeAnimalsMath.cs" Link="BiomeAnimalsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/BallroomMath.cs" Link="BallroomMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/LandingMath.cs" Link="LandingMath.cs" />

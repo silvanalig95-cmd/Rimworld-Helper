@@ -103,4 +103,7 @@
   <CC_GodTouch_Fertile_Title>Rich ground</CC_GodTouch_Fertile_Title>
   <CC_GodTouch_Fertile_Text>The soil of the fields at {HOME} has turned dark and rich.</CC_GodTouch_Fertile_Text>
 
+  <!-- A god's mood's "Why" after what was seen (GodTouch.WhyFelt): the god the colony took it for, by their name for it, or none. -->
+  <CC_GodTouch_Why_Guess>{PAWN_nameDef} holds it was {GOD}'s doing.</CC_GodTouch_Why_Guess>
+  <CC_GodTouch_Why_Unknown>{PAWN_nameDef} doesn't know which god it was.</CC_GodTouch_Why_Unknown>
 </LanguageData>

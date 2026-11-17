@@ -105,6 +105,16 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// What a god did, or what the colony saw of it: a message as it happens, never held for the evening's colony news nor
+        /// left only in the History tab, and told as notable so "How many messages" keeps it (the player, 17 November 2026:
+        /// "any information from a god should come with its own dedicated pop up on the right"). The gods' own happenings,
+        /// a god's sign, a god keeping the rain away, an offering taken or left, a god's demand ignored. The colony's own
+        /// faith life (vows, saints, festivals) stays smaller news.
+        /// </summary>
+        public static void FromGod(NewsKind kind, Map map, string text, LookTargets look, MessageTypeDef type = null) =>
+            Message(kind, Importance.Notable, map, text, look, type);
+
+        /// <summary>
         /// The smaller news: a line in the evening's colony news, a message as it happens, or only the History tab, by the
         /// "Colony news" setting (UI/News.cs). With an importance, "How many messages" first decides whether it's told at
         /// all; without one it always is.
@@ -134,6 +144,8 @@ namespace ColonyCouncil
                         return;
                     case NewsMode.Off:
                         if (Find.Archive == null) break;
+                        // The words of a moment the camera just went to come with it here too.
+                        if (ByCamera(map, look)) break;
                         News.Archive(Item(kind, HomeOf(map, look), text, look, type));
                         return;
                 }

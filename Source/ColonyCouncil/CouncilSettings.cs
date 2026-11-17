@@ -150,6 +150,8 @@ namespace ColonyCouncil
         public bool bodyWhenItDies = true;
         /// <summary>With Giddy-Up 2: colonists ride out to work past the base and back, and drafted ones ride far on the player's movement orders, where Giddy-Up's own auto-mount leaves them on foot (Integrations/GiddyUpRideOut.cs).</summary>
         public bool rideOut = true;
+        /// <summary>With Vanilla Factions Expanded - Empire: its ballroom only where the room is for music, not a temple or dining room (Integrations/BallroomByUse.cs).</summary>
+        public bool ballroomByUse = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -940,6 +942,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petsHunt, "petsHunt", true);
             Scribe_Values.Look(ref bodyWhenItDies, "bodyWhenItDies", true);
             Scribe_Values.Look(ref rideOut, "rideOut", true);
+            Scribe_Values.Look(ref ballroomByUse, "ballroomByUse", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

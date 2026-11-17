@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Four reports, 17 November 2026, each with the lead's fix, waiting for the player's go** (the to-do entries below):
+1. (Done 17 November 2026: everything from a god told at once, the entry above the newest release line.) Being built (the player's go, 17 November 2026): the pact's cart,
+   Vengeful, the Stormriders. **Four reports, 17 November 2026** (the to-do entries below):
    the pact's cart of 8 components, Vengeful from Rimfolk and a way out, rooms (the ballroom over the temple and the
    dining room); and, when asked, more traits that come and go. (Done the same day: the log window at the start, 0.265.1.)
 2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
@@ -93,6 +94,9 @@ repo.
 - **Done (17 November 2026, the player's go: "alright", "please fix the bugs"): the log window at the start.** The
   report with the player's words, the cause of each red line and what was built are now one entry above the newest
   release line ("The log window at the start").
+- **Done (17 November 2026, the player's go: "any information from a god should kind of with its own dedicated pop up
+  on the right"): a god's find with no words, no look and a nameless mood.** The report, the cause and what was built
+  are now one entry above the newest release line ("Everything from a god told at once").
 - **Done (17 November 2026, the player's go: "please go ahead with all the changes right now that I told here"; built,
   not released): the Stormriders, more varied and with some magic.** The request with the player's words and what was
   built are one entry above the newest release line ("The Stormriders: their gear, their looks and some magic").
@@ -166,9 +170,8 @@ repo.
     play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
     `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
     a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix, waiting for the player's go**: (A) the ballroom stands down where an altar makes the room a
-    temple or dining tables make it a dining room (a postfix on VFEE's `GetScore`, softly by name), so an instrument
-    alone or with recreation still makes VFE's ballroom; optionally a drum alone never does. (B) Rimfolk reads a room by
+  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
+    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
     what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
     advice, one with recreation things as a rec room, whatever the game shows.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
@@ -368,6 +371,69 @@ repo.
     (?id=3576928906, 1.6 and 1.7, updated 9 November 2026) for the sorceresses and casters; Addie's Mantles and Cloaks
     (?id=3459406801, 1.5 and 1.6, not tagged 1.7) for the traders and folk. Already subscribed and on 1.7, not enabled:
     Tasty Armory - High Medieval and Fire and Steel (?id=3480089301, ?id=3469863838) for heavier armour.
+- 0.265.3, **Everything from a god told at
+  once** (17 November 2026). The player, with their save `League_of_Toba_6`: "the camera just centered on a pawn and 8 green tea was there. nearby pawns
+  had some mood impact "my god was good to us", but it doesn't specify which god and what it did. also there was no
+  animation for this event, and also no alert for it."
+  - **What happened** (day 125.1, about 9 to 11 in the morning): Revel's own happening "a stash found"
+    (`OwnRevel.FindStash`, key `CC_GodRevel_Saw_Stash`): Lorena, out at the west edge (20, 195), found Vanilla Brewing
+    Expanded's green tea x8 (`RevelGoods.Pick`, about 110 silver's worth, capped at 8); Bautista saw it. The colony
+    doesn't know Revel (no name for it in the book, not seen acting), so `GodLoreMath.Attribute` took it for Undertow,
+    and the book wrote it on Undertow's page; both witnesses hold to Undertow (30 or more), so `GodTouch.Felt` gave
+    `Rimfolk_GodTouch_Blessed` ("my god was good to us", +4) with no cause.
+  - **The causes.** (1) `FindStash` hands the words to the teller (`OwnHappenings.Line`, line 638) before
+    `GodPresence.Look` moves the camera (639), so `Tell.Minor`'s `ByCamera` rule (0.264.1) found no camera move and the
+    line went to the evening's news (it is in the save's waiting list). Revel's vision walked to (`OwnRevel.Arrived`,
+    503/504) has the same order; every other camera move calls `Look` first. With "Colony news: Off", `Minor`'s Off
+    branch archives the words without the `ByCamera` check. (2) No look: the stash's only sight is five small amber
+    flecks (`OwnHappenings.Glow`), thrown with the camera's jump; its key has its own effect, so no touch look follows
+    (and it isn't in 0.265.0's impact table). Most gods' own happenings that move the camera show only what they leave
+    and Rimfolk's small flecks. (3) The mood: `Felt` passes no `cause`, and the def has one fixed line for every god.
+    (4) No alert: Rimfolk has no alert for gods' doings; the message is what was missing.
+  - **The go**: "So honestly, the evening column in use, I don't really look at anymore because they just pop up every
+    evening, and most of the time it's not really that relevant. So please, any information from a god should kind of
+    with its own dedicated pop up on the right, or it should be visible on screen, after camera changes ... the visual
+    aspect was there, but minor. I mean, then it, I guess, counts. And it's interesting and makes sense that they don't
+    know which god it is ... if they don't know who it was, then, they should guess or say they don't know."
+  - **What was built** (DESIGN.md "Everything from a god told at once"): `Tell.FromGod`, a message at once, at least
+    notable, for every god's own happening (`OwnHappenings.Line`), a god's sign without a moment (`Worship.Sign`), the
+    rain kept away (`WorshipCouncil`), an offering taken or left (`Offerings`), a demand ignored (`GodDreams`); the
+    colony's own faith life stays smaller news. `Tell.Minor`'s Off branch checks `ByCamera`. The stash and the vision
+    move the camera first. The god's look was not added (the player: the small one "counts"). The moods of a god's
+    touch carry the occurrence's words and whose doing the pawn holds it was, by their own name for that god, or that
+    they don't know (`GodTouch.Pending.words`, `WhyFelt`, `GodTouchMath.Why`, keys `CC_GodTouch_Why_Guess` and
+    `CC_GodTouch_Why_Unknown`); "my god was good to us" reads "I believe it was the god I hold to". The book's lines
+    end with one full stop (`GodLoreMath.WithoutStop`), the stash's book line in lower case, "at {PAWN_possessive} feet".
+  - **Code map**: `UI/Tell.cs`, `Gods/OnMap/OwnSeven.cs`, `Gods/OnMap/OwnRevel.cs`, `Gods/Worship/Worship.cs`,
+    `WorshipCouncil.cs`, `Offerings.cs`, `GodDreams.cs`, `Gods/Touch/GodTouch.cs`, `GodTouchMath.cs`, `Gods/GodLore.cs`,
+    `GodLoreMath.cs`, `Languages/English/Keyed/Rimfolk_GodTouch.xml`, `Rimfolk_GodHappenings_Revel.xml`,
+    `Defs/GodDefs/Rimfolk_GodTouch.xml`. Tests: `GodWordsTests` (new).
+  - **Can't be checked without the game**: the message showing with the camera on a busy day, the mood's tooltip.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, a god's own happening near a colonist (or wait for one):
+    the camera moves, then the message on the right at once; the witnesses' mood "my god was good to us" (or awe or
+    unease) says in its tooltip what was seen and whose doing they hold it was. The Gods' book's new lines end with one
+    full stop.
+  - **Mods that would help**: none.
+- 0.265.2, **Ballrooms only for music
+  rooms** (17 November 2026). The player's report and go are in the to-do entry "rooms, the ballroom over the temple and
+  the dining room" (its fix A built; B, Rimfolk reading a room by what is in it, stays on the list), and "if there's
+  other things on the to-do list that make sense to also do at the same time, go ahead". DESIGN.md "Ballrooms only for
+  music rooms".
+  - **What it does.** With Vanilla Factions Expanded - Empire, a room with an altar of the colony's faith stays a temple,
+    one with dining tables stays a dining room, and a drum on its own makes no ballroom; a room with a harp, harpsichord
+    or piano and neither is still the mod's ballroom. In the player's game the dining room (tables, altar, lectern, drum)
+    reads as their temple (the altar's 2000 beats the tables' 12 a table); with the altar and lectern moved elsewhere it
+    reads as the dining room, and Rimfolk's meetings and gatherings go there.
+  - **Code map**: `Integrations/BallroomByUse.cs` (new: `BallroomByUse`, `Patch_BallroomByUse`,
+    `Patch_BallroomByUsePlacing`), `Integrations/BallroomMath.cs` (new, linked in the tests), `CouncilSettings.ballroomByUse`,
+    `UI/SettingsCatalog.cs` (the section, `VfeEmpireId`), `Languages/English/Keyed/Rimfolk_Ballroom.xml` (new),
+    `Rimfolk_Settings_Pages.xml` (`CC_SetSec_Mod_VfeEmpire`), README. Tests: `BallroomTests` (new).
+  - **Can't be checked without the game**: the room's name changing as the drum, altar or a table is placed or removed
+    (roles are recomputed when the room changes), and the placing note.
+  - **Try in the game**: look at the room with the drum (the room's name in the bottom left over it): the temple while
+    the altar is there, the dining room once the altar and lectern are moved out; a room with only the drum is no
+    ballroom. Settings, Rimfolk, Your other mods, "Ballrooms only for music rooms" off brings the mod's rule back.
+  - **Mods that would help**: none.
 - 0.265.1, **The log window at the
   start** (17 November 2026). The player, with their startup log
   (RimWorld 1.7.5011 rev24, Harmony 3.0.0-rc.6, HugsLib 12): "got this log window pop up on the latest start". The game
