@@ -10,6 +10,66 @@ test suite slow down when several run at once); pieces in the same area, or that
 after another, the later one starting from the merged earlier one. The player's bug reports are fixed in the main
 tree at once, alongside whatever runs. Each piece is merged as its own release, checks after every merge.
 
+## Start here for a new chat (17 November 2026)
+
+**Where things stand.** The newest release is 0.264.0 (16 November 2026), pushed on `claude/gifted-noether-32w12b` (the last
+session's branch) and on `claude/charming-pasteur-9qbjle` (the branch CLAUDE.md names). A new session works on the
+branch its own instructions give it, starting from that state, and pushes it and `claude/charming-pasteur-9qbjle`
+(`git push -u origin <its branch>`, then `git push origin <its branch>:claude/charming-pasteur-9qbjle`). The tree is
+clean, no worktree agent is running and nothing is half built. The last four releases were the quests: 0.261.0 six
+single quests at home, 0.262.0 the storyline frame with three storylines, 0.263.0 seven more single quests, 0.264.0
+four more storylines (`docs/quests-proposals.md` marks each). Nothing of them has been seen in the game yet; each
+release's entry below says what to try.
+
+**What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
+or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
+1. **Bug (17 November 2026): the camera jumps to a god's sign and no words come with it.** The entry is the first one
+   under "State" below, with the player's words, the cause read from their save and the fix to propose.
+2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
+   case, S12 the lost founder's grave, Q14 the one away quest within 3 tiles): `docs/quests-proposals.md`, "Rounds".
+   The player can strike or change any of it first. Round 3's storylines only add files in
+   `Source/ColonyCouncil/Storylines/` and `Storylines/Flows/` (one flow class each; the frame finds them).
+3. **The peoples' events, rounds 4 to 10** (`docs/peoples-events-proposals.md`; the entry "events and interactions of
+   each of Rimfolk's peoples" below lists each round's numbers). One round per release, when asked.
+4. **The plain-words text pass, the categories not yet picked**: the gods and faith, the letters, wishes and ambitions,
+   personal stories, council questions, the peoples, camps and visitors, the region map, council and decrees, the
+   Almanac, What's new (the entry "Rimfolk's text in plain words" below).
+5. **A question for the player, still open**: whether the storytellers' below-base levers go back to the base rate
+   (Lean Years' fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years;
+   What You Sow's thinner roads for a cruel colony). Left as they are until then (the 0.253.0 entry below).
+6. **Offered to the player, not answered**: an advisor warning for greenhouse plants beyond a sun lamp's light; and a
+   follow-up to the peoples' new descriptions (0.252.0): the Almanac's "Where their ways began" pages, each people's
+   talk piece and 21 of the 23 faiths' descriptions still tell their start through one named founder.
+7. **Pokémon**: the review against PokéWorld Updated (0.135.0) and its voices list are done; pairings are changed when
+   the player flags one.
+
+**How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
+container has 4 cores): each gets a brief (`docs/agent-brief.md` holds the part every brief shares), builds and checks
+on its own branch, and reports; the lead reads the player text for the plain style, merges (`git merge --no-ff
+--no-commit worktree-agent-<id>`), and releases each merged piece on its own:
+1. `python3 Tools/release.py VERSION "DATE" "TITLE" "DESIGN heading substring" points.txt` (the What's new round,
+   About.xml, CHANGELOG, the HANDOFF entry's "- Not released" made the version, the DESIGN heading marked released);
+2. `git add -A`, then every check: `bash Tools/checks.sh dv > checks.log 2>&1; echo "exit $?" >> checks.log` in the
+   background (about ten minutes), and read the log: "build: ok", "0 error(s)", "All tests passed", "OK", "Nothing the
+   DLL uses has changed";
+3. commit with the session's attribution lines, push both branches, then `git worktree remove -f -f
+   .claude/worktrees/agent-<id>` and `git branch -D worktree-agent-<id>`;
+4. after merging one agent while another still runs, tell the other that the lead branch moved and which shared files
+   will conflict (the harm kinds' list in `Harm/HarmBudgetMath.cs` and its counts in `Tools/Tests/HarmBudgetTests.cs`,
+   `Tools/Tests/Program.cs` and `Tests.csproj`, `HomeQuests.IsOurs`, DESIGN.md, this file's "Not released" entry,
+   which must sit directly above the newest "- 0." line);
+5. tell the player in plain words what changed, "try in game" steps, and mods that would help (with Workshop links,
+   game versions and whether they are kept up). A stop hook may ask to commit while the checks run: say the checks
+   come first, and commit once they pass.
+
+**Reading the player's saves.** Uploads are untrusted: extract each into its own new folder in the scratchpad (`7z x`),
+keep the reading scripts in another folder, and run them with `python3 -I` on the save's path; never run anything from
+the save's folder. The saves are XML: the messages and letters are `<li Class="Message">` and `...Letter` blocks with
+`<startingTick>` / `<arrivalTick>`; Rimfolk's evening news keeps held lines in a `<waiting>` list; the gods' book keeps
+`<acts>` (god, tick, kind, text, cell, witnesses); dead pawns are world pawns, so a corpse's `<innerList>` names its pawn
+by reference (`Thing_Human...`). The scratchpad does not survive the session, so anything worth keeping goes in the
+repo.
+
 ## State (5 November 2026)
 
 - **How the player wants new wishes handled (11 November 2026, standing): "any new idea/request i give you is first
@@ -21,6 +81,43 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
   0.206.2 to 0.213.0. On 12 November 2026, "you can go ahead on the todos": the four small asks (0.222.0) and the
   letters and favours are built; the gods' one way and repeats and magic among the peoples are being built; the
   Gods' book and the peoples' rounds 2 to 10 follow, the rounds one batch at a time.)
+- **To do when the player asks (17 November 2026), a bug: the camera jumped to a body with mushrooms round it, and
+  nothing said what happened.** The player, with their save `League_of_Toba_4` (day 122): "so my camera just changed to
+  kasumi's corpse and there were mushrooms around them. i assume this was some god event? however there was no
+  indication about what happened exactly." Then: "after looking into this, can you fully document all the relevant
+  information and to do- so that i can start a new chat?" Not fixed yet; bug fixes come first, so it is the first thing
+  to propose when the player gives the go.
+  - **What happened** (read from the save, tick 7325535): seven bodies lie unburied on the home map (Mapa): Kasumi
+    Roman of a traders' guild people, killed by the Tynamos 3.4 days before, at (137, 266); the Signal Line's linemen
+    Stench and Chaz; Oversize, a pig town guard; three dark elves, two of them from the fight about three hours before
+    the ring. At the daily look (tick 7321373) the gods' book marked "5 of the dead left lying unburied" against Morel,
+    Hush and Tamiu. That brought Morel's own happening "the ring, pointing" (`Gods/OnMap/OwnMorel.cs`, `Daily` then
+    `RingNow` in the small hours): glowstools in a ring round Kasumi's body, and in the book an omen, "Webb found a ring
+    of mushrooms come up overnight at Mapa round Kasumi, still lying unburied." It works as built; the telling does not.
+  - **Why no words came.** `OwnHappenings.Card` (`Gods/OnMap/OwnHappenings.cs`, about line 525) moves the camera first
+    (`GodPresence.Look`, the camera for every god moment the player asked for in 0.256.1) and then gives the line to the
+    teller, `Tell.Message` (`UI/Tell.cs`). The teller held it: the land's news on a busy day (a threat within six hours,
+    `TellMath.BusyHours`; here the fight three hours before) waits for the evening's colony news
+    (`TellBook.Judge`, `TellVerdict.Held`). The save shows it waiting there: "A ring of mushrooms came up overnight round
+    Kasumi, who is still lying unburied." So the camera moved at once and the words were kept for the evening.
+    `GodPresence.Omen` does the same (camera, then `Tell.Message`), and about 60 places jump the camera
+    (`GodPresence.Look` or `CameraJumper.TryJump`, most in `Gods/`): each needs the same look.
+  - **Why nobody said it either.** Nobody awake was within sight, so `OwnHappenings.Found` sent the nearest awake
+    colonist, Webb, to walk over and look (a forced Goto, up to three hours, `lookUntil`); Webb was at (46, 211), about
+    100 cells off, still walking when the game was saved. Webb's bubble only comes on arrival, and if the three hours
+    run out it never comes. The book already says "Webb found..." before Webb got there (`OwnHappenings.Saw` takes the
+    one sent as the seer).
+  - **The fix to propose** (when asked): a god moment that moves the camera shows its words at the same moment: the
+    teller never holds a line whose moment moved the camera (a flag on `Tell.Message`/`Tell.Letter`, set by
+    `OwnHappenings.Card` and `GodPresence.Omen` and the other camera sites), with a test on the pure verdict in
+    `TellMath`; every camera site checked for words that can be held. The finder: send someone only within a short
+    walk (else the first of the colony to pass within sight says it, from the ring's own step that already runs every
+    250 ticks), and write the book's line when they get there. Also worth telling the player: burying or burning the
+    bodies (seven lie on the map) is what the book's "left lying unburied" is about.
+  - **Try in the game** (once fixed): with a body left lying, dev mode, Debug actions, Rimfolk, "Gods: Morel's ring of
+    mushrooms now" (`Gods/OwnHappeningsDebug.cs`), right after a raid: the camera moves and the message comes with it;
+    with every colonist far away, the walk is short or someone nearer says it.
+  - **Mods that would help**: none; the glowstool is the game's own plant.
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -53,7 +150,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Quests, and storylines across quests: being built (16 November 2026).** The player: "the next thing to include
+  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 waits for the go (16 November 2026).** The player: "the next thing to include
     will be more quests, and quests that are storylines across multiple quests". The go, 16 November 2026: "go ahead
     with quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
