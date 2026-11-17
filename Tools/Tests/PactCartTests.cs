@@ -260,6 +260,15 @@ public static class PactCartTests
           && pacts.Contains("Pacts.SendCart(tt, mm, Def, count)") && pacts.Contains("Pacts.RefuseCart(tt)") && pacts.Contains("l.StartTimeout("), "send it, or refuse and end the pact; unanswered, it goes");
         C(Regex.IsMatch(pacts, @"public static void RefuseCart[\s\S]*?End\(t, Tie\.State\.Ended, null\)[\s\S]*?CC_Pact_Ans_Ended[\s\S]*?TheirWords\(head, DiplomacyLetters\.PactEndTag"),
             "refused, the pact ends without blame and their head's word comes back as for an end by letter");
+        // Each season the colony may choose (the player, 17 November 2026: "can i just not always select what items to give
+        // whenever such a cart is required"): send it, choose other goods for this season, not this season, or end the pact.
+        C(pacts.Contains("\"CC_Pact_Opt_OtherCart\"") && pacts.Contains("\"CC_Pact_Opt_SkipCart\"") && pacts.Contains("{ action = OtherCart, resolveTree = true }")
+          && pacts.Contains("Pacts.SkipCart(tt)"), "four answers: send it, choose other goods, not this season, end the pact");
+        C(Regex.IsMatch(pacts, @"private void OtherCart\(\)[\s\S]*?Pacts\.CartChoices\(map, people\)[\s\S]*?CC_Pact_CartValuable[\s\S]*?Pacts\.SendCart\(tt, mm, def, amount\)[\s\S]*?Answers\.Record\(")
+          && !Regex.IsMatch(pacts, @"private void OtherCart\(\)[\s\S]*?t\.terms[\s\S]*?/// <summary>The event card"),
+            "other goods: every cart with its worth and pay, valuables marked, for this season only (the pact's own cart unchanged), the pick written down");
+        C(pacts.Contains("if (PlayCarry.Have(m, Def.defName, Def) < count) send.Disable(") && pacts.Contains("if (!have && CartChoices(home, f).Count == 0) return false;"),
+            "the usual cart short: the letter still asks for other goods, with \"Send it\" closed; nothing to spare at all, nothing asked");
         C(Regex.IsMatch(pacts, @"public static void Hourly[\s\S]*?if \(cartsLooked != Current\.Game\) PlainCarts\(\);") && Regex.IsMatch(pacts, @"public static void Daily[\s\S]*?PlainCarts\(\);")
           && Regex.IsMatch(pacts, @"public static void PlainCarts[\s\S]*?ChosenOnPurpose\(t\)[\s\S]*?CC_Pact_Msg_CartPlain"),
             "a valuable cart nobody chose is made plain once loaded, with a message; one picked on purpose stays");
@@ -285,7 +294,8 @@ public static class PactCartTests
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
             foreach (var e in XDocument.Load(file).Root!.Elements())
                 keyed[e.Name.LocalName] = e.Value;
-        var mine = new[] { "CC_Pact_CartLine", "CC_Pact_CartLineOnce", "CC_Pact_CartValuable", "CC_Pact_CartValuable_What", "CC_Pact_CartAsk", "CC_Pact_Opt_SendCart", "CC_Pact_Opt_RefuseCart",
+        var mine = new[] { "CC_Pact_CartLine", "CC_Pact_CartLineOnce", "CC_Pact_CartValuable", "CC_Pact_CartValuable_What", "CC_Pact_CartAsk", "CC_Pact_Opt_SendCart", "CC_Pact_Opt_RefuseCart", "CC_Pact_CartAsk_Short",
+            "CC_Pact_Opt_OtherCart", "CC_Pact_Opt_SkipCart", "CC_Pact_Why_CartShort", "CC_Pact_Menu_Cart", "CC_Pact_CartSkipped",
             "CC_Pact_CartRefused_Label", "CC_Pact_CartRefused", "CC_Pact_CartRefused_Words", "CC_Pact_Msg_CartPlain", "CC_Pact_Ans_Cart", "CC_Pact_TopicCart", "CC_Pact_Act_Cart",
             "CC_Pact_Act_Cart_Tip", "CC_Pact_Why_NoOtherCart", "CC_Pact_Week_PactCart", "CC_Dip_Dlg_PickOne", "CC_Scheme_What_Stores", "CC_Scheme_Short_Stores" };
         foreach (var k in mine)

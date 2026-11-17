@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.266.2</version>
+        <date>17 November 2026</date>
+        <title>Your pick each season</title>
+        <points>
+          <li>The trade pact's season letter now has four answers: send the usual cart, choose other goods for this season, send nothing this season, or end the pact.</li>
+          <li>"Choose other goods" lists everything the colony can send with what it is worth and what they pay, valuable goods marked, and the one you pick goes this season only; the pact's own cart stays as it was.</li>
+          <li>When the stores hold less than the usual cart, the letter still comes so you can pick something else; "Not this season" keeps the pact going without sending anything.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.1</version>
         <date>17 November 2026</date>
         <title>Plain goods for a pact</title>

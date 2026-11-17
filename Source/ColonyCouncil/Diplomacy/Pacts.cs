@@ -680,25 +680,33 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("pacts: their caravan", e);
             }
             string season = PactWords.T(came ? "CC_Pact_Season" : "CC_Pact_Season_NoCaravan", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"));
-            // The colony's cart: the player is asked first (send it, or refuse and end the pact); nothing leaves the stores
-            // until they say so. With less in the stores than the cart, none goes this season and nothing is asked.
+            // The colony's cart: the player is asked first (send it, choose other goods, not this season, or end the pact);
+            // nothing leaves the stores until they say so. With the usual cart short, they are asked for other goods; with
+            // nothing at all to spare, none goes this season and nothing is asked.
             var def = CartOf(t);
             int count = t.terms.count;
-            if (def != null && count > 0 && PlayCarry.Have(home, def.defName, def) >= count && AskCart(t, f, home, def, count, season)) return;
+            if (def != null && count > 0 && AskCart(t, f, home, def, count, season)) return;
             string cart = def != null ? PactWords.P("CC_Pact_CartShort", Couriers.Amount(count, null, def).Named("GOODS")) : null;
             Tell.Letter(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_Season_Label", PactWords.People(f).Named("PEOPLE")),
                 season + (cart.NullOrEmpty() ? "" : "\n\n" + cart), LetterDefOf.PositiveEvent, LookTargets.Invalid, f);
         }
 
         /// <summary>
-        /// The season's question, with the season's news: the cart, what it is worth and what they pay; "Send it" or "Refuse
-        /// and end the pact". Unanswered by the time the letter goes, no cart goes this season and the pact goes on.
+        /// The season's question, with the season's news (the player, 17 November 2026: "can i just not always select what
+        /// items to give whenever such a cart is required"): the usual cart, what it is worth and what they pay; "Send it",
+        /// "Choose other goods" (this season only), "Not this season" or "End the pact". With the usual cart short, the
+        /// letter says so and "Send it" is closed; with nothing at all to spare, nothing is asked. Unanswered by the time the
+        /// letter goes, no cart goes this season and the pact goes on.
         /// </summary>
         private static bool AskCart(Tie t, Faction f, Map home, ThingDef def, int count, string season)
         {
             var ld = PactsDefOf.Rimfolk_PactCart;
             if (ld == null) return false;
-            string text = season + "\n\n" + PactWords.P("CC_Pact_CartAsk", PactWords.People(f).Named("PEOPLE"), PactWords.CartLine(def, count, false).Named("CART"));
+            bool have = PlayCarry.Have(home, def.defName, def) >= count;
+            if (!have && CartChoices(home, f).Count == 0) return false;
+            string text = season + "\n\n" + (have
+                ? PactWords.P("CC_Pact_CartAsk", PactWords.People(f).Named("PEOPLE"), PactWords.CartLine(def, count, false).Named("CART"))
+                : PactWords.P("CC_Pact_CartAsk_Short", PactWords.People(f).Named("PEOPLE"), Couriers.Amount(count, null, def).Named("GOODS")));
             var letter = LetterMaker.MakeLetter(PactWords.P("CC_Pact_Season_Label", PactWords.People(f).Named("PEOPLE")), text, ld, LookTargets.Invalid, f);
             if (!(letter is ChoiceLetter_PactCart l)) return false;
             l.people = f;
@@ -733,8 +741,19 @@ namespace ColonyCouncil
                 MessageTypeDefOf.PositiveEvent);
         }
 
+        /// <summary>"Not this season": no cart goes, and the pact goes on as if the letter had gone unanswered, said in a message.</summary>
+        public static void SkipCart(Tie t)
+        {
+            var f = PeopleOf(t);
+            var home = HomeOf(t);
+            if (t == null || f == null || !t.Live) return;
+            // apart: the colony's answer to the season's question; nothing is carried out.
+            Tell.Message(NewsKind.World, Importance.Notable, home, PactWords.P("CC_Pact_CartSkipped", PactWords.People(f).Named("PEOPLE")), LookTargets.Invalid,
+                MessageTypeDefOf.NeutralEvent);
+        }
+
         /// <summary>
-        /// "Refuse and end the pact": no cart goes, and the pact ends without blame as it would by the colony's letter; their
+        /// "End the pact": no cart goes, and the pact ends without blame as it would by the colony's letter; their
         /// head's word comes back with the porters, as their answer to such a letter would (CC_Pact_Ans_Ended and their own
         /// words for an end, the "pactend" lines).
         /// </summary>
@@ -874,9 +893,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A trade pact's season: their porters wait for the colony's cart. "Send it" (carried out to the gate, and their silver
-    /// set down), or "Refuse and end the pact" (ended without blame, their head's word back). Unanswered by the time the
-    /// letter goes, no cart this season, and the pact goes on.
+    /// A trade pact's season: their porters wait for the colony's cart. "Send it" (the usual cart carried out to the gate,
+    /// and their silver set down; closed while the stores hold less), "Choose other goods" (the colony's carts with their
+    /// worth and pay, the valuable ones marked, for this season only), "Not this season" (no cart, the pact goes on), or
+    /// "End the pact" (ended without blame, their head's word back). Unanswered by the time the letter goes, no cart this
+    /// season, and the pact goes on.
     /// </summary>
     public class ChoiceLetter_PactCart : RimfolkLetter
     {
@@ -910,12 +931,27 @@ namespace ColonyCouncil
                 }
                 var m = map;
                 // Each answer is written in the history's answers' log.
-                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Pact_Opt_SendCart"))
+                var send = new DiaOption(PactWords.P("CC_Pact_Opt_SendCart"))
                 {
                     action = () =>
                     {
                         Find.LetterStack.RemoveLetter(this);
                         if (Valid(out var mm, out var tt)) Pacts.SendCart(tt, mm, Def, count);
+                    },
+                    resolveTree = true
+                };
+                if (PlayCarry.Have(m, Def.defName, Def) < count) send.Disable(PactWords.P("CC_Pact_Why_CartShort"));
+                yield return send.disabled ? send : Answers.Recorded(send, this, "pactCart", people, null, () => m);
+                // Other goods for this season: the menu's pick is the answer, written down when made.
+                var other = new DiaOption(PactWords.P("CC_Pact_Opt_OtherCart")) { action = OtherCart, resolveTree = true };
+                if (Pacts.CartChoices(m, people).Count == 0) other.Disable(PactWords.P("CC_Pact_Why_NoOtherCart"));
+                yield return other;
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Pact_Opt_SkipCart"))
+                {
+                    action = () =>
+                    {
+                        Find.LetterStack.RemoveLetter(this);
+                        if (Valid(out _, out var tt)) Pacts.SkipCart(tt);
                     },
                     resolveTree = true
                 }, this, "pactCart", people, null, () => m);
@@ -930,6 +966,34 @@ namespace ColonyCouncil
                 }, this, "pactCart", people, null, () => m);
                 yield return Option_Postpone;
             }
+        }
+
+        /// <summary>
+        /// "Choose other goods": the colony's carts (Pacts.CartChoices: the plain goods it can spare first, then the valuable
+        /// ones, marked), each with what it is worth and what they pay; the one picked goes this season only, and the pact's
+        /// own cart stays as it is ("Change the cart" on its card changes that). Closed without a pick, the letter waits.
+        /// </summary>
+        private void OtherCart()
+        {
+            if (!Valid(out var map, out _)) return;
+            var opts = new List<FloatMenuOption>();
+            foreach (var (d, n, valuable) in Pacts.CartChoices(map, people))
+            {
+                var def = d;
+                int amount = n;
+                string label = PactWords.CartLine(def, amount, false).CapitalizeFirst() + (valuable ? " " + PactWords.P("CC_Pact_CartValuable") : "");
+                var o = new FloatMenuOption(label, () =>
+                {
+                    if (!Valid(out var mm, out var tt)) return;
+                    Find.LetterStack.RemoveLetter(this);
+                    Pacts.SendCart(tt, mm, def, amount);
+                    Answers.Record("pactCart", Label.Resolve(), label, null, null, people, mm);
+                });
+                if (valuable) o.tooltip = new TipSignal(PactWords.P("CC_Pact_CartValuable_What"));
+                opts.Add(o);
+            }
+            if (opts.Count == 0) return;
+            Find.WindowStack.Add(new FloatMenu(opts, PactWords.P("CC_Pact_Menu_Cart", PactWords.People(people).Named("PEOPLE"))));
         }
 
         /// <summary>The event card: the people it comes from, the goods asked for.</summary>

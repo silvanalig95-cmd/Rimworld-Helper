@@ -206,9 +206,15 @@
   <CC_Pact_Season_NoCaravan>{PEOPLE} could send no caravan this season, though the pact stands: {WORD}.</CC_Pact_Season_NoCaravan>
   <CC_Pact_Cart>The colony's cart this season: {GOODS}, carried out to the gate for their porters, who will pay {SILVER} silver for it.</CC_Pact_Cart>
   <CC_Pact_CartShort>The stores hold less than the {GOODS} the colony promised, so no cart goes out this season.</CC_Pact_CartShort>
-  <CC_Pact_CartAsk>This season's cart for their porters would be {CART}. If the colony sends it, someone carries it out to the gate and they pay for it there. If the colony refuses, the trade pact with {PEOPLE} ends.</CC_Pact_CartAsk>
+  <CC_Pact_CartAsk>This season's cart for their porters would be {CART}. If the colony sends it, someone carries it out to the gate and they pay for it there. The colony can also choose other goods for this season, send nothing this season, or end the trade pact with {PEOPLE}.</CC_Pact_CartAsk>
+  <CC_Pact_CartAsk_Short>The stores hold less than the {GOODS} of the usual cart. The colony can choose other goods to send this season, send nothing this season, or end the trade pact with {PEOPLE}.</CC_Pact_CartAsk_Short>
   <CC_Pact_Opt_SendCart>Send it</CC_Pact_Opt_SendCart>
-  <CC_Pact_Opt_RefuseCart>Refuse and end the pact</CC_Pact_Opt_RefuseCart>
+  <CC_Pact_Opt_OtherCart>Choose other goods</CC_Pact_Opt_OtherCart>
+  <CC_Pact_Opt_SkipCart>Not this season</CC_Pact_Opt_SkipCart>
+  <CC_Pact_Opt_RefuseCart>End the pact</CC_Pact_Opt_RefuseCart>
+  <CC_Pact_Why_CartShort>the stores hold less than the usual cart</CC_Pact_Why_CartShort>
+  <CC_Pact_Menu_Cart>What to send to the porters of {PEOPLE} this season</CC_Pact_Menu_Cart>
+  <CC_Pact_CartSkipped>No cart goes to the porters of {PEOPLE} this season. The trade pact goes on.</CC_Pact_CartSkipped>
   <CC_Pact_CartRefused_Label>The trade pact with {PEOPLE} is over</CC_Pact_CartRefused_Label>
   <CC_Pact_CartRefused>The colony refused this season's cart, so the trade pact with {PEOPLE} has ended, without blame on either side.</CC_Pact_CartRefused>
   <CC_Pact_CartRefused_Words>{WHO} sent back word: "{WORDS}"</CC_Pact_CartRefused_Words>

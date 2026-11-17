@@ -15943,11 +15943,16 @@ sounds very cool. I like it, but maybe they shouldn't steal components again and
   a renewal keeps its cart.
 - **Each season the colony is asked** (`Pacts.AskCart`, `ChoiceLetter_PactCart`, letter def `Rimfolk_PactCart`): the
   season's letter names the cart, its worth and the pay, with "Send it" (carried out to the gate for their porters as
-  before, their silver set down: `Pacts.SendCart`) and "Refuse and end the pact" (`Pacts.RefuseCart`: ended without
+  before, their silver set down: `Pacts.SendCart`; closed while the stores hold less), "Choose other goods" (added after
+  the release, the player: "can i just not always select what items to give whenever such a cart is required": a menu
+  of `Pacts.CartChoices` with worth and pay, valuables marked, the pick sent this season only and written in the
+  answers' log, the pact's own cart unchanged: `ChoiceLetter_PactCart.OtherCart`), "Not this season" (`Pacts.SkipCart`:
+  no cart, the pact goes on, said in a message) and "End the pact" (`Pacts.RefuseCart`: ended without
   blame through the pact's own end, then a letter with their answer to an end, `CC_Pact_Ans_Ended`, and their head's
   own words for an end sent back with the porters, the "pactend" lines without a letter's or a call's tag, picked by
   `NeighbourLetters.TheirWords`). Unanswered when the letter goes (two days, `PactMath.CartAnswerDays`), no cart this
-  season and the pact goes on; with too few goods in store, as before, none goes and nothing is asked. In the inbox's
+  season and the pact goes on; with too few of the usual goods in store the letter still comes, to choose other goods
+  (`CC_Pact_CartAsk_Short`), and only with nothing at all to spare is nothing asked. In the inbox's
   "Needs you" while it waits; recorded in the answers' log as "pactCart".
 - **"Change the cart"** on a trade pact's card (`PactsPanels`): a letter to their head with the topic "pactcart:ID", the
   new cart chosen in the Ask list from the same carts less the one it has; their answer agrees (`CC_Pact_Ans_Cart`, their

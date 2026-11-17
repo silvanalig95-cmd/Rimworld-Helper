@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Your pick each season
+
+*17 November 2026, version 0.266.2*
+
+- The trade pact's season letter now has four answers: send the usual cart, choose other goods for this season, send nothing this season, or end the pact.
+- "Choose other goods" lists everything the colony can send with what it is worth and what they pay, valuable goods marked, and the one you pick goes this season only; the pact's own cart stays as it was.
+- When the stores hold less than the usual cart, the letter still comes so you can pick something else; "Not this season" keeps the pact going without sending anything.
+
 ## Plain goods for a pact
 
 *17 November 2026, version 0.266.1*
