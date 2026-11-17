@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.266.1</version>
+        <date>17 November 2026</date>
+        <title>Plain goods for a pact</title>
+        <points>
+          <li>A trade pact's cart is now one of the colony's plain goods it can spare (wood, cloth, leather, food, stone blocks or steel), the kinds the other people use first, and never a valuable good like components, medicine or gold unless you pick it yourself.</li>
+          <li>Each season a letter asks before the cart goes: send it, or refuse and end the pact. With no answer, no cart goes that season and the pact stays.</li>
+          <li>Every cart in the lists says what it is, what it is worth and what they pay, and "Change the cart" on the pact's card asks their head for another by letter.</li>
+          <li>A pact that was sending a valuable good gets a plain cart when you load your game, with a message saying what changed.</li>
+          <li>Thieves from a scheme now take plain goods such as cloth, leather, food or steel, never components, medicine, silver, gold or jade.</li>
+          <li>Letters now say "8 components" rather than "8 component".</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.0</version>
         <date>17 November 2026</date>
         <title>The Stormriders</title>

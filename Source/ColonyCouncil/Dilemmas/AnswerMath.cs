@@ -57,6 +57,7 @@ namespace ColonyCouncil
             ("favour", ChronicleKind.World, "ChoiceLetter_FavourAsk"),
             ("fealty", ChronicleKind.World, "ChoiceLetter_FealtyOffer"),
             ("pact", ChronicleKind.World, "ChoiceLetter_PactOffer"),
+            ("pactCart", ChronicleKind.World, "ChoiceLetter_PactCart"),
             ("truce", ChronicleKind.World, "ChoiceLetter_TruceOffer"),
             ("founding", ChronicleKind.World, "ChoiceLetter_Founding"),
             ("gods", ChronicleKind.World, "ChoiceLetter_GodWorld"),

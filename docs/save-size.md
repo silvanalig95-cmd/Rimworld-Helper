@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 725; modelled: 725; growing without end: 0.
+Saved collections found: 726; modelled: 726; growing without end: 0.
 Rimfolk's part of the save, roughly: **3,058 KB** after a year, **3,769 KB** after two, **4,221 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -579,6 +579,7 @@ Rimfolk's part of the save, roughly: **3,058 KB** after a year, **3,769 KB** aft
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `Colonies/LandingRecord.cs:conditions` | the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open | while | 2 | 2 | 2 | 0.0 |
+| `Diplomacy/DiplomacyBook.cs:chosenCarts` | trade pacts whose valuable cart was picked on purpose, one id a live pact, dropped when it ends | fixed | 2 | 2 | 2 | 0.0 |
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |
 | `UI/WeekMemory.cs:pinnedWishes` | pins of open wishes | fixed | 2 | 2 | 2 | 0.0 |
 | `World/Region/Hamlet.cs:refused` | per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year | cap | 3 | 4 | 4 | 0.0 |

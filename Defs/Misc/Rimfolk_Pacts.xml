@@ -26,6 +26,17 @@
     <bounce>true</bounce>
   </LetterDef>
 
+  <!-- A trade pact's season: their porters wait for the colony's cart. Send it, or refuse and end the pact. -->
+  <LetterDef>
+    <defName>Rimfolk_PactCart</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_PactCart</letterClass>
+    <color>(175, 160, 215)</color>
+    <flashColor>(200, 185, 240)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
   <!-- A partner (or a people the colony owes) asks for fighters at their town: send them by caravan, or refuse. -->
   <LetterDef>
     <defName>Rimfolk_CallToArms</defName>

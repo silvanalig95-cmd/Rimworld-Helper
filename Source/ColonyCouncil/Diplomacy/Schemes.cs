@@ -20,8 +20,9 @@ namespace ColonyCouncil
     /// <list type="bullet">
     /// <item>a machine broken down in the night (industrial and after; the job of a rival's sabotage, Harm/Sabotage.cs, and
     /// the game's own breakdown): a jammed machine, a spacer colony's comms console first;</item>
-    /// <item>a small valuable taken from a stockpile in the night: a tribe's totem (a small carving), a purse (silver, gold,
-    /// jade), a tool (components), into their pack;</item>
+    /// <item>plain goods taken from a stockpile in the night (Things/Goods.cs: cloth, leather, food, a common metal, what
+    /// the colony's age keeps most of first), into their pack; never a valuable good (components, medicine, silver, gold,
+    /// jade) nor a carving, since 17 November 2026;</item>
     /// <item>a word in a hot-tempered colonist's ear by day, about the one they like least: the game's social fight through
     /// the harm service and its cap, or hard words when the cap holds;</item>
     /// <item>the colony's rooms gone through in the night: a smear, ill words told round the region by their people's ways a
@@ -215,7 +216,7 @@ namespace ColonyCouncil
             return SchemeMath.Pick(machine, theft, fight, Harm.On ? Harm.ScaleFor(HarmKinds.SchemeFight) : 0f, Rand.Value);
         }
 
-        /// <summary>The act can be done at this home at all (a machine, a small valuable, a hot temper with someone to set against; a smear always).</summary>
+        /// <summary>The act can be done at this home at all (a machine, plain goods to carry off, a hot temper with someone to set against; a smear always).</summary>
         private static bool Possible(SchemeAct act, Map home)
         {
             switch (act)
@@ -373,7 +374,7 @@ namespace ColonyCouncil
                             agent = Nearest(agents, thing, PathEndMode.ClosestTouch, true);
                             if (agent == null) continue;
                             target = thing;
-                            count = kind == SchemeMath.Totem ? 1 : SchemeMath.LootCount(thing.MarketValue, thing.stackCount, Rand.Value);
+                            count = SchemeMath.LootCount(thing.MarketValue, thing.GetStatValue(StatDefOf.Mass), thing.stackCount, Rand.Value);
                             break;
                         }
                         if (target != null) break;
@@ -426,33 +427,25 @@ namespace ColonyCouncil
             return comp != null && !comp.BrokenDown;
         }
 
-        /// <summary>Small valuables of a kind in the colony's stockpiles and shelves.</summary>
-        private static IEnumerable<Thing> Loot(Map home, string kind)
+        /// <summary>Plain goods of a kind in the colony's stockpiles and shelves, light enough to slip away with.</summary>
+        private static IEnumerable<Thing> Loot(Map home, GoodsKind kind)
         {
             var groups = home.haulDestinationManager?.AllGroupsListForReading;
             if (groups == null) yield break;
             foreach (var g in groups)
             {
                 foreach (var t in g.HeldThings)
-                    if (t != null && t.Spawned && !t.IsBurning() && LootKind(t) == kind)
+                    if (t != null && t.Spawned && !t.IsBurning() && Lootable(t) && Goods.KindOf(t.def) == kind)
                         yield return t;
             }
         }
 
-        /// <summary>What a thing would be to a thief: a totem (a small carving), a purse (silver, gold, jade), a tool (components); or null.</summary>
-        private static string LootKind(Thing t)
-        {
-            if (t is MinifiedThing m)
-            {
-                var inner = m.InnerThing;
-                return inner is Building_Art && inner.def.size.x * inner.def.size.z == 1 && m.MarketValue <= SchemeMath.LootMaxUnit ? SchemeMath.Totem : null;
-            }
-            var d = t.def;
-            string kind = d == ThingDefOf.Silver || d == ThingDefOf.Gold || d == ThingDefOf.Jade ? SchemeMath.Purse
-                : d == ThingDefOf.ComponentIndustrial || d == ThingDefOf.ComponentSpacer ? SchemeMath.Tool : null;
-            if (kind == null) return null;
-            return SchemeMath.SmallValuable(t.MarketValue, t.GetStatValue(StatDefOf.Mass)) ? kind : null;
-        }
+        /// <summary>
+        /// A thief takes plain goods only (Things/Goods.cs: cloth, leather, food, a common metal), never a valuable good
+        /// (components, medicine, silver, gold, jade) nor a carving, and only what one can carry off (3 kg a piece at most).
+        /// </summary>
+        private static bool Lootable(Thing t) =>
+            !(t is MinifiedThing) && t.def.stackLimit > 1 && Goods.Plain(t.def) && SchemeMath.SmallValuable(t.MarketValue, t.GetStatValue(StatDefOf.Mass));
 
         /// <summary>The colony's hot tempers who could be set against someone now, the hottest first.</summary>
         private static IEnumerable<Pawn> Hot(Map home) =>
@@ -560,7 +553,7 @@ namespace ColonyCouncil
             switch (i.act)
             {
                 case SchemeAct.Machine: return SchemeMath.MachineForm(Ages.Ours, i.target?.def == ThingDefOf.CommsConsole);
-                case SchemeAct.Theft: return (took != null ? LootKind(took) : null) ?? SchemeMath.Purse;
+                case SchemeAct.Theft: return SchemeMath.Stores;
                 case SchemeAct.Fight: return "Fight";
                 default:
                     var f = i.agent?.Faction;
@@ -833,14 +826,12 @@ namespace ColonyCouncil
 
         private static string P(string key, params NamedArgument[] args) => key.Translate(args).Resolve();
 
-        /// <summary>The thing in words: "the comms console", "120 silver", "a small sculpture".</summary>
+        /// <summary>The thing in words: "the comms console", "40 cloth", "12 packaged survival meals".</summary>
         private static string ThingWords(Thing target, Thing took)
         {
             var t = took ?? target;
             if (t == null) return "";
             if (t is MinifiedThing m && m.InnerThing != null) return Find.ActiveLanguageWorker.WithIndefiniteArticle(m.InnerThing.def.label);
-            // Silver, gold and jade are counted as they are ("120 silver"); components as things ("3 components").
-            if (LootKind(t) == SchemeMath.Purse) return t.stackCount + " " + t.def.label;
             if (t.def.stackLimit > 1) return t.stackCount > 1 ? t.stackCount + " " + Couriers.Counted(t.stackCount, t.def.label, t.def) : Find.ActiveLanguageWorker.WithIndefiniteArticle(t.def.label);
             return Find.ActiveLanguageWorker.WithDefiniteArticle(t.def.label);
         }
@@ -974,7 +965,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One of theirs at the colony on a scheme's errand (Schemes): at a stockpile taking a small valuable into their pack, in
+    /// One of theirs at the colony on a scheme's errand (Schemes): at a stockpile taking plain goods into their pack, in
     /// one of the colony's rooms looking about, or at a hot temper's side with a word in their ear; a few seconds at it,
     /// then what it does (Schemes.Done). A machine broken down uses the rival's sabotage job (Harm/Sabotage.cs).
     /// </summary>

@@ -54,6 +54,7 @@ namespace ColonyCouncil
             // Other peoples.
             ["Rimfolk_TruceOffer"] = "Peoples",
             ["Rimfolk_PactOffer"] = "Peoples",
+            ["Rimfolk_PactCart"] = "Peoples",
             ["Rimfolk_CallToArms"] = "Peoples",
             ["Rimfolk_FeastSuggest"] = "Peoples",
             ["Rimfolk_FealtyOffer"] = "Peoples",

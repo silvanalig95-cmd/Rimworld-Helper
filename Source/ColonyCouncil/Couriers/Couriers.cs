@@ -844,8 +844,17 @@ namespace ColonyCouncil
         /// <summary>"250 corn", "40 raw food", "150 silver".</summary>
         public static string Amount(int n, string what, ThingDef def) => "CC_Courier_Amount".Translate(n, Counted(n, PlayCarry.Label(what, def), def)).Resolve();
 
-        /// <summary>A label counted ("36 medicinal cactipine quills", "50 silver"): the game's own plural for more than one of a thing counted one by one (CourierMath.Counted).</summary>
-        public static string Counted(int n, string label, ThingDef def) => CourierMath.Counted(n, label, def?.IsStuff ?? false, Find.ActiveLanguageWorker.Pluralize);
+        /// <summary>
+        /// A label counted ("36 medicinal cactipine quills", "8 components", "50 silver"; CourierMath.Counted): in English by
+        /// Rimfolk's own rule, in another language by the game's language worker. The player's 1.7 game gave the label back
+        /// unchanged from the worker in English ("8 component" in their pact's letters, 17 November 2026), so English no
+        /// longer goes through it.
+        /// </summary>
+        public static string Counted(int n, string label, ThingDef def) =>
+            CourierMath.Counted(n, label, def?.IsStuff ?? false, English ? null : (Func<string, int, string>)Find.ActiveLanguageWorker.Pluralize);
+
+        /// <summary>The game's language is English (the default language, or no other loaded).</summary>
+        private static bool English => LanguageDatabase.activeLanguage == null || LanguageDatabase.activeLanguage == LanguageDatabase.defaultLanguage;
 
         /// <summary>"150 silver", "a longsword and 40 steel", "45 silver, 30 steel and 2 more things".</summary>
         public static string Describe(List<Thing> things)

@@ -89,7 +89,7 @@ namespace ColonyCouncil
                     var kind = k;
                     options.Add(new FloatMenuOption(f.Name + ": " + PactWords.Kind(k), () =>
                     {
-                        var goods = Pacts.CartGoods(home);
+                        var goods = Pacts.CartGoods(home, people);
                         var (def, count) = goods.Count > 0 ? goods[0] : (null, 0);
                         var t = Pacts.Make(people, home, kind, true, def, count);
                         Say(t != null ? "made." : "one of that kind is live already.");

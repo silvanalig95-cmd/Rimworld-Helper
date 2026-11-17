@@ -17,14 +17,14 @@ namespace ColonyCouncil
     /// Envoy (asking for their envoy) in release 2a.3, their own rules in RansomLetters; Match, Ward and Fealty come with
     /// their releases (DiplomacyMath.Purposes).
     /// <para>The letter keeps what it is about in its topic ("tie:12" a debt of theirs, "side:15" the colony's word on a
-    /// call of theirs, "pact:trade:7" a pact proposed to people 7, "pactend:9" pact 9 ended, "truce:year:7" a truce offered)
-    /// and what is asked in its help field (FavourMath.AskCode; a truce's price "price:Ours:200"; a trade pact's cart
-    /// "cart:Corn:75").</para>
+    /// call of theirs, "pact:trade:7" a pact proposed to people 7, "pactend:9" pact 9 ended, "pactcart:9" pact 9's cart
+    /// changed, "truce:year:7" a truce offered) and what is asked in its help field (FavourMath.AskCode; a truce's price
+    /// "price:Ours:200"; a trade pact's cart "cart:Corn:75").</para>
     /// </summary>
     public static class DiplomacyLetters
     {
-        public const string TiePrefix = "tie:", SidePrefix = "side:", PactPrefix = "pact:", PactEndPrefix = "pactend:", TrucePrefix = "truce:", PricePrefix = "price:",
-            CartPrefix = "cart:";
+        public const string TiePrefix = "tie:", SidePrefix = "side:", PactPrefix = "pact:", PactEndPrefix = "pactend:", PactCartPrefix = "pactcart:", TrucePrefix = "truce:",
+            PricePrefix = "price:", CartPrefix = "cart:";
 
         public static string TieKey(Tie t) => TiePrefix + t.id;
 
@@ -105,10 +105,14 @@ namespace ColonyCouncil
                     foreach (PactKind k in Enum.GetValues(typeof(PactKind)))
                         if (Pacts.WhyNot(f, home, k) == null)
                             list.Add(new LetterTopic { key = PactPrefix + PactMath.KindKey(k) + ":" + f.loadID, text = PactWords.P("CC_Pact_Topic", PactWords.Kind(k).Named("KIND")) });
-                    // A pact of the colony's with them ended by its own letter, without blame.
+                    // A pact of the colony's with them ended by its own letter, without blame; a trade pact's cart changed.
                     foreach (var t in Pacts.With(f))
                         if (Pacts.HomeOf(t) == home && !Pacts.CallUnderWay(t))
+                        {
                             list.Add(new LetterTopic { key = PactEndPrefix + t.id, text = PactWords.P("CC_Pact_TopicEnd", PactWords.Kind(Pacts.KindOf(t)).Named("KIND")) });
+                            if (Pacts.KindOf(t) == PactKind.Trade && CartAsks(t, home).Count > 0)
+                                list.Add(new LetterTopic { key = PactCartPrefix + t.id, text = PactWords.P("CC_Pact_TopicCart") });
+                        }
                 }
             }
             catch (Exception e)
@@ -154,6 +158,11 @@ namespace ColonyCouncil
                 asks = DealingLetters.Asks(topicKey, map ?? Home);
             else if (topicKey != null && topicKey.StartsWith(TrucePrefix, StringComparison.Ordinal)) asks = TruceAsks(topicKey, map);
             else if (topicKey != null && topicKey.StartsWith(PactPrefix, StringComparison.Ordinal)) asks = CartAsks(topicKey, map);
+            else if (topicKey != null && topicKey.StartsWith(PactCartPrefix, StringComparison.Ordinal))
+            {
+                var t = int.TryParse(topicKey.Substring(PactCartPrefix.Length), out int id) ? Pacts.Get(id) : null;
+                asks = t != null && t.Live ? CartAsks(t, map ?? Home) : new List<FavourCalls.Option>();
+            }
             else if (topicKey != null && topicKey.StartsWith(MatchMath.TopicPrefix, StringComparison.Ordinal)) asks = MatchLetters.Asks(topicKey, map ?? Home);
             else if (topicKey == WardMath.AskTopic || topicKey == WardMath.SendTopic) asks = WardLetters.Asks(topicKey, map ?? Home);
             else
@@ -199,8 +208,29 @@ namespace ColonyCouncil
             if (!ParseTopic(topicKey, PactPrefix, out string what, out var pf)) return list;
             if (what == PactMath.Defence) return Hostages.PactOptions(pf, map ?? Home);
             if (what != PactMath.Trade) return list;
-            foreach (var (def, count) in Pacts.CartGoods(map ?? Home))
-                list.Add(new FavourCalls.Option { code = CartPrefix + def.defName + ":" + count, label = PactWords.P("CC_Pact_CartOption", Couriers.Amount(count, null, def).Named("GOODS")) });
+            return CartOptions(map ?? Home, pf, null);
+        }
+
+        /// <summary>A trade pact's new cart (its card's "Change the cart"): the same list, less the cart it has now.</summary>
+        private static List<FavourCalls.Option> CartAsks(Tie t, Map map) => CartOptions(Pacts.HomeOf(t) ?? map ?? Home, Pacts.PeopleOf(t), Pacts.CartOf(t));
+
+        /// <summary>
+        /// The carts to choose from, each with what it is worth and what they pay: the plain goods first, the first of them
+        /// chosen unless another is picked; then the valuable ones, marked, taken only when picked on purpose
+        /// (FavourCalls.Option.onPurpose).
+        /// </summary>
+        public static List<FavourCalls.Option> CartOptions(Map home, Faction partner, ThingDef besides, string prefix = CartPrefix)
+        {
+            var list = new List<FavourCalls.Option>();
+            foreach (var (def, count, valuable) in Pacts.CartChoices(home, partner))
+            {
+                if (def == besides) continue;
+                list.Add(new FavourCalls.Option
+                {
+                    code = prefix + def.defName + ":" + count, label = PactWords.CartLine(def, count).CapitalizeFirst(), group = valuable ? 1 : 0, onPurpose = valuable,
+                    what = valuable ? PactWords.P("CC_Pact_CartValuable_What") : null
+                });
+            }
             return list;
         }
 
@@ -263,13 +293,15 @@ namespace ColonyCouncil
             y += 30f;
             var asks = Asks(topic.key, map);
             if (asks.Count == 0) return y - start;
-            // What is asked: the first that can be, unless one is chosen.
+            // What is asked: the first that can be, unless one is chosen; never one that is only taken on purpose (a valuable
+            // good for a cart), which waits to be picked.
             string now = ask;
-            if (now == null || !asks.Any(o => o.Code == now && o.why == null)) now = asks.FirstOrDefault(o => o.why == null)?.Code;
+            if (now == null || !asks.Any(o => o.Code == now && o.why == null)) now = asks.FirstOrDefault(o => o.why == null && !o.onPurpose)?.Code;
             ask = now;
             var chosen = asks.FirstOrDefault(o => o.Code == now);
             Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_Ask".Translate());
-            string shown = chosen?.label ?? DipWords.P("CC_Dip_Dlg_NothingToAsk");
+            bool toPick = chosen == null && asks.Any(o => o.why == null && o.onPurpose);
+            string shown = chosen?.label ?? DipWords.P(toPick ? "CC_Dip_Dlg_PickOne" : "CC_Dip_Dlg_NothingToAsk");
             // A short list by kind, what can be asked now first; a word with the peoples it would help less under "Others",
             // and what can't be asked now under "Not now" with why (FavourCalls.Menu).
             if (UiKit.Button(new Rect(inRect.x + 124f, y, inRect.width - 124f, 26f), shown.Truncate(inRect.width - 140f)))
@@ -279,7 +311,7 @@ namespace ColonyCouncil
                 ask = Asked;
                 Asked = null;
             }
-            if (chosen == null) why = DipWords.P("CC_Dip_Dlg_NothingToAsk");
+            if (chosen == null) why = DipWords.P(toPick ? "CC_Dip_Dlg_PickOne" : "CC_Dip_Dlg_NothingToAsk");
             y += 30f;
             // What the chosen ask does and how much, under it.
             string what = chosen?.what;
@@ -307,6 +339,13 @@ namespace ColonyCouncil
         /// they speak of an end and never of an offer refused (Rimfolk_Lines_PactEnds.xml).
         /// </summary>
         public const string PactEndTag = "pactend";
+
+        /// <summary>
+        /// A trade pact's cart changed by the colony's letter: their own words are picked as this purpose's, not "pact", so
+        /// they speak of the new cart and never of an offer sworn or refused; overtaken by events, under its own moot tag
+        /// (Rimfolk_Lines_PactEnds.xml).
+        /// </summary>
+        public const string PactCartTag = "pactcart", PactCartMootTag = "pactcartmoot";
 
         /// <summary>
         /// A truce they agree to that is sworn by word (no people at peace with both to vouch for their envoy): their own
@@ -353,6 +392,11 @@ namespace ColonyCouncil
                 {
                     tags.Remove("pact");
                     tags.Add(PactEndTag);
+                }
+                if (l.purpose == LetterPurpose.Pact && l.topicKey != null && l.topicKey.StartsWith(PactCartPrefix, StringComparison.Ordinal))
+                {
+                    tags.Remove("pact");
+                    tags.Add(IsMoot(l) ? PactCartMootTag : PactCartTag);
                 }
                 if (l.purpose == LetterPurpose.Truce && n?.faction != null && !tags.Contains("refusal") && Truces.ByWord(n.faction))
                 {
@@ -490,6 +534,26 @@ namespace ColonyCouncil
                 // picked for an end, QuoteTags' "pactend", never a refused offer's).
                 if (tone < AnswerTone.Cool) tone = AnswerTone.Cool;
                 else if (tone > AnswerTone.Curt) tone = AnswerTone.Curt;
+                return;
+            }
+            else if (l.topicKey != null && l.topicKey.StartsWith(PactCartPrefix, StringComparison.Ordinal))
+            {
+                // A trade pact's cart changed: any cart is agreed to (it is the colony's own surplus, paid for at the same
+                // share); overtaken by events (the pact over by the time they read it), answered without a yes or a no.
+                var t = int.TryParse(l.topicKey.Substring(PactCartPrefix.Length), out int id) ? Pacts.Get(id) : null;
+                ParseCode(l.help, CartPrefix, out string defName, out int c);
+                var def = defName != null ? DefDatabase<ThingDef>.GetNamedSilentFail(defName) : null;
+                if (t == null || !t.Live || Pacts.PeopleOf(t) != f || Pacts.KindOf(t) != PactKind.Trade || def == null || c <= 0)
+                {
+                    Moot(l);
+                    a.line = PactWords.T("CC_Pact_Ans_Moot", PactWords.People(f).Named("PEOPLE"));
+                    tone = AnswerTone.Cool;
+                    return;
+                }
+                Pacts.SetCart(t, def, c);
+                a.line = PactWords.T("CC_Pact_Ans_Cart", PactWords.People(f).Named("PEOPLE"), PactWords.CartLine(def, c).Named("CART"));
+                if (tone < AnswerTone.Cordial) tone = AnswerTone.Cordial;
+                else if (tone > AnswerTone.Cool) tone = AnswerTone.Cool;
                 return;
             }
             else

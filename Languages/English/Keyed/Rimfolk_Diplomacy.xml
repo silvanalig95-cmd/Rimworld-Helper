@@ -142,6 +142,7 @@
   <CC_Dip_Opt_Peace>Their help toward peace with {PEOPLE}</CC_Dip_Opt_Peace>
   <CC_Dip_Opt_PeaceAny>Their help toward peace with a people at war with the colony</CC_Dip_Opt_PeaceAny>
   <CC_Dip_Dlg_NothingToAsk>Nothing they can do now</CC_Dip_Dlg_NothingToAsk>
+  <CC_Dip_Dlg_PickOne>Choose one from the list</CC_Dip_Dlg_PickOne>
   <CC_Dip_Why_Nothing>nothing is owed here</CC_Dip_Why_Nothing>
   <CC_Dip_Why_Off>favors owed are switched off in the settings</CC_Dip_Why_Off>
   <CC_Dip_Why_Called>called in already, and waiting for their answer</CC_Dip_Why_Called>

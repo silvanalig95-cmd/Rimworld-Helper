@@ -26,6 +26,18 @@ namespace ColonyCouncil
         /// <summary>"a defence pact", "a trade pact".</summary>
         public static string Kind(PactKind k) => P("CC_Pact_Kind_" + k);
 
+        /// <summary>
+        /// A cart in words, what it is, what it is worth and what they pay: "102 plainleather a season, about 215 silver's
+        /// worth; they pay 171" (one season's: without "a season"), with "(valuable)" after a valuable good (Things/Goods.cs).
+        /// </summary>
+        public static string CartLine(ThingDef def, int count, bool perSeason = true)
+        {
+            if (def == null) return "";
+            string line = P(perSeason ? "CC_Pact_CartLine" : "CC_Pact_CartLineOnce", Couriers.Amount(count, null, def).Named("GOODS"),
+                PactMath.CartWorth(def.BaseMarketValue, count).Named("WORTH"), PactMath.CartPay(def.BaseMarketValue, count).Named("SILVER"));
+            return Goods.Valuable(def) ? line + " " + P("CC_Pact_CartValuable") : line;
+        }
+
         /// <summary>"for a season", "for a year".</summary>
         public static string Term(TruceTerm t) => P("CC_Truce_Term_" + t);
 

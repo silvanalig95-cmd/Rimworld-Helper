@@ -363,6 +363,11 @@ namespace ColonyCouncil
         public int nextId = 1;
         /// <summary>The colony's band of renown last told (RenownBand; RenownMath.NotRead before the first day's look), so a change is told once; the renown itself is read, never kept (Diplomacy/Renown.cs).</summary>
         public int renownBand = RenownMath.NotRead;
+        /// <summary>
+        /// The live trade pacts whose cart is a valuable good the player picked on purpose (Pacts.ChosenOnPurpose): kept as
+        /// it is, where any other valuable cart is made plain (Pacts.PlainCarts). One id a pact, dropped when the pact ends.
+        /// </summary>
+        public List<int> chosenCarts = new List<int>();
 
         private static DiplomacyBook cached;
         private static Game cachedGame;
@@ -469,10 +474,13 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref homes, "homes", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref renownBand, "renownBand", RenownMath.NotRead);
+            if (Scribe.mode == LoadSaveMode.Saving) chosenCarts?.RemoveAll(id => !(Pacts.Get(id)?.Live ?? false));
+            Scribe_Collections.Look(ref chosenCarts, "chosenCarts", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 homes ??= new List<DiplomacyHome>();
                 homes.RemoveAll(h => h == null);
+                chosenCarts ??= new List<int>();
             }
         }
     }

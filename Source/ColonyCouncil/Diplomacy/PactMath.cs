@@ -273,15 +273,94 @@ namespace ColonyCouncil
         /// <summary>What their porters pay for the cart: four fifths of its worth, a fair price between partners.</summary>
         public const float CartPayShare = 0.8f;
 
-        /// <summary>How many make up the cart: about 250 silver's worth, a third of the stores at most, one at least.</summary>
-        public static int CartCount(float unitValue, int inStores)
+        /// <summary>
+        /// How many make up the cart: about 250 silver's worth, a third of the stores at most, one at least; with a
+        /// <paramref name="reserve"/> the colony keeps (GoodsMath.Reserve: a plain good), half of what is above it at most,
+        /// and none when nothing is above it.
+        /// </summary>
+        public static int CartCount(float unitValue, int inStores, int reserve = 0)
         {
             if (unitValue <= 0f || inStores <= 0) return 0;
             int want = Math.Max(1, (int)Math.Round(CartValue / unitValue));
+            if (reserve > 0)
+            {
+                int spare = (inStores - reserve) / 2;
+                if (spare <= 0) return 0;
+                want = Math.Min(want, spare);
+            }
             return Math.Max(1, Math.Min(want, inStores / 3));
         }
 
         public static int CartPay(float unitValue, int count) => Math.Max(1, (int)Math.Round(Math.Max(0f, unitValue) * Math.Max(0, count) * CartPayShare));
+
+        /// <summary>A cart worth less than this (a quarter of a full one) isn't worth the porters' walk, and isn't offered.</summary>
+        public const float MinCartWorth = 60f;
+
+        /// <summary>A cart's worth in words, "about 215 silver's worth": to the nearest 5 (the nearest 1 under 20), 1 at least.</summary>
+        public static int CartWorth(float unitValue, int count)
+        {
+            float w = Math.Max(0f, unitValue) * Math.Max(0, count);
+            return Math.Max(1, w < 20f ? (int)Math.Round(w) : (int)Math.Round(w / 5f) * 5);
+        }
+
+        public static bool CartWorthGoing(float unitValue, int count) => count > 0 && unitValue * count >= MinCartWorth;
+
+        /// <summary>
+        /// The season's question (send the cart, or refuse and end the pact) waits this long for an answer; unanswered, no
+        /// cart goes that season and the pact goes on.
+        /// </summary>
+        public const float CartAnswerDays = 2f;
+
+        /// <summary>One good in the colony's stores as the cart reads it: its def's name, what it is (GoodsMath), a unit's worth, how many, its nutrition.</summary>
+        public struct CartStock
+        {
+            public string def;
+            public GoodsKind kind;
+            public float value;
+            public int have;
+            public float nutrition;
+        }
+
+        /// <summary>A cart that could go: the good, how many, and whether it is valuable (taken only when picked on purpose).</summary>
+        public struct CartPick
+        {
+            public string def;
+            public int count;
+            public bool valuable;
+        }
+
+        /// <summary>At most this many plain carts and this many valuable ones are offered to choose from.</summary>
+        public const int PlainShown = 6, ValuableShown = 4;
+
+        /// <summary>
+        /// The carts the colony could send, in the order offered: first its plain goods, the kinds the partner's age uses
+        /// first (GoodsMath.CartOrder) and then the most to spare, each counted above what the colony keeps
+        /// (GoodsMath.Reserve); then its valuable goods, the most in stores first, counted as the cart always was (a third
+        /// of the stores at most). A cart worth less than <see cref="MinCartWorth"/> is left out, and so is a good of a person.
+        /// The first plain cart is the one taken when nobody chooses; a valuable one never is.
+        /// </summary>
+        public static List<CartPick> CartPicks(IEnumerable<CartStock> stores, WorldAge age, int colonists, int plainShown = PlainShown, int valuableShown = ValuableShown)
+        {
+            var plain = new List<(CartStock s, int n, int rank, float spare)>();
+            var dear = new List<(CartStock s, int n, float worth)>();
+            if (stores != null)
+                foreach (var s in stores)
+                {
+                    if (s.def == null || s.have < 3 || s.value <= 0f || s.kind == GoodsKind.Unfit) continue;
+                    bool valuable = s.kind == GoodsKind.Valuable;
+                    int reserve = valuable ? 0 : GoodsMath.Reserve(s.kind, colonists, s.nutrition);
+                    int n = CartCount(s.value, s.have, reserve);
+                    if (!CartWorthGoing(s.value, n)) continue;
+                    if (valuable) dear.Add((s, n, s.have * s.value));
+                    else plain.Add((s, n, GoodsMath.Rank(s.kind, age), (s.have - reserve) * s.value));
+                }
+            plain.Sort((a, b) => a.rank != b.rank ? a.rank.CompareTo(b.rank) : b.spare.CompareTo(a.spare));
+            dear.Sort((a, b) => b.worth.CompareTo(a.worth));
+            var list = new List<CartPick>();
+            for (int i = 0; i < plain.Count && i < plainShown; i++) list.Add(new CartPick { def = plain[i].s.def, count = plain[i].n, valuable = false });
+            for (int i = 0; i < dear.Count && i < valuableShown; i++) list.Add(new CartPick { def = dear[i].s.def, count = dear[i].n, valuable = true });
+            return list;
+        }
 
         // ---------------- Their call to arms ----------------
 

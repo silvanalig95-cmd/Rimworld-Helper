@@ -290,8 +290,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A count of a thing in words, the label only ("36 medicinal cactipine quills" is the key's "{0} {1}" round it): one
-        /// as it is; more than one pluralized by <paramref name="pluralize"/> (the game's language worker; else the plain
-        /// English rule), except a stuff (<paramref name="stuff"/>: steel, wood, leather, cloth, stone blocks), a mass
+        /// as it is; more than one pluralized by <paramref name="pluralize"/> (the game's language worker, for a language
+        /// other than English; else the plain English rule: "8 components"), except a stuff (<paramref name="stuff"/>: steel, wood, leather, cloth, stone blocks), a mass
         /// (<see cref="Uncounted"/>) or a label already plural ("potatoes", "mech parts"), which keep their form (the
         /// player's card, 10 November 2026: "36 medicinal cactipine quill").
         /// </summary>

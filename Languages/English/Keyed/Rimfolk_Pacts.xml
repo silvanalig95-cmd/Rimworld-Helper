@@ -9,7 +9,7 @@
   <CC_Pact_Kind_Defence>a defense pact</CC_Pact_Kind_Defence>
   <CC_Pact_Kind_Trade>a trade pact</CC_Pact_Kind_Trade>
   <CC_Pact_What_Defence>A defense pact: each comes when the other is attacked. While enemies are on the colony's land, it can call {PEOPLE} once a season, and their band walks in some hours later. When a town of theirs is attacked, they may ask the colony for fighters.</CC_Pact_What_Defence>
-  <CC_Pact_What_Trade>A trade pact: each season a trader caravan of {PEOPLE} comes to the colony, and a cart of the colony's surplus goes out to their porters, who pay for it in silver.</CC_Pact_What_Trade>
+  <CC_Pact_What_Trade>A trade pact: each season a trader caravan of {PEOPLE} comes to the colony, and the colony is asked whether to send a cart of its spare goods to their porters, who pay for it in silver.</CC_Pact_What_Trade>
   <CC_Truce_Term_Season>for a season</CC_Truce_Term_Season>
   <CC_Truce_Term_Year>for a year</CC_Truce_Term_Year>
   <CC_Truce_Price_None>no price either way</CC_Truce_Price_None>
@@ -64,8 +64,12 @@
   <CC_Truce_Topic>A truce {TERM}</CC_Truce_Topic>
   <CC_Pact_Topic>{KIND}</CC_Pact_Topic>
   <CC_Pact_TopicEnd>End {KIND} with them, without blame</CC_Pact_TopicEnd>
-  <CC_Pact_CartOption>A cart of {GOODS} each season</CC_Pact_CartOption>
-  <CC_Pact_CartTerms>Each season a cart of {GOODS} goes out to their porters.</CC_Pact_CartTerms>
+  <CC_Pact_TopicCart>Change the cart of the trade pact</CC_Pact_TopicCart>
+  <CC_Pact_CartTerms>The cart: {CART}. The colony is asked each season before it goes out to their porters.</CC_Pact_CartTerms>
+  <CC_Pact_CartLine>{GOODS} a season, about {WORTH} silver's worth; they pay {SILVER}</CC_Pact_CartLine>
+  <CC_Pact_CartLineOnce>{GOODS}, about {WORTH} silver's worth; they pay {SILVER}</CC_Pact_CartLineOnce>
+  <CC_Pact_CartValuable>(valuable)</CC_Pact_CartValuable>
+  <CC_Pact_CartValuable_What>A valuable good: the colony needs it for crafting or building, or it is worth a lot on its own. It goes in a cart only when the colony chooses it.</CC_Pact_CartValuable_What>
   <CC_Pact_Menu_Title>What pact to speak of with {OTHER}</CC_Pact_Menu_Title>
   <CC_Pact_Note_Yes>a pact sworn</CC_Pact_Note_Yes>
   <CC_Pact_Note_No>a pact refused</CC_Pact_Note_No>
@@ -202,6 +206,15 @@
   <CC_Pact_Season_NoCaravan>{PEOPLE} could send no caravan this season, though the pact stands: {WORD}.</CC_Pact_Season_NoCaravan>
   <CC_Pact_Cart>The colony's cart this season: {GOODS}, carried out to the gate for their porters, who will pay {SILVER} silver for it.</CC_Pact_Cart>
   <CC_Pact_CartShort>The stores hold less than the {GOODS} the colony promised, so no cart goes out this season.</CC_Pact_CartShort>
+  <CC_Pact_CartAsk>This season's cart for their porters would be {CART}. If the colony sends it, someone carries it out to the gate and they pay for it there. If the colony refuses, the trade pact with {PEOPLE} ends.</CC_Pact_CartAsk>
+  <CC_Pact_Opt_SendCart>Send it</CC_Pact_Opt_SendCart>
+  <CC_Pact_Opt_RefuseCart>Refuse and end the pact</CC_Pact_Opt_RefuseCart>
+  <CC_Pact_CartRefused_Label>The trade pact with {PEOPLE} is over</CC_Pact_CartRefused_Label>
+  <CC_Pact_CartRefused>The colony refused this season's cart, so the trade pact with {PEOPLE} has ended, without blame on either side.</CC_Pact_CartRefused>
+  <CC_Pact_CartRefused_Words>{WHO} sent back word: "{WORDS}"</CC_Pact_CartRefused_Words>
+  <CC_Pact_Msg_CartPlain>The trade pact with {PEOPLE} no longer sends {WAS} each season. Its cart is now {CART}. A pact's cart takes valuable goods only when the colony chooses them, and the colony is asked each season before the cart goes. "Change the cart" on the pact's card picks another.</CC_Pact_Msg_CartPlain>
+  <CC_Pact_Ans_Cart>{PEOPLE} agree to the new cart. From now on it is {CART}.</CC_Pact_Ans_Cart>
+  <CC_Pact_Ans_Cart_2>The new cart suits {PEOPLE}: {CART}.</CC_Pact_Ans_Cart_2>
   <CC_Pact_CartLabel>The cart for {PEOPLE}</CC_Pact_CartLabel>
 
   <!-- A pact broken by the colony -->
@@ -247,7 +260,7 @@
   <CC_Pact_State_Calling>a call is being made</CC_Pact_State_Calling>
   <CC_Pact_State_Band>the band of {PEOPLE} is on its way</CC_Pact_State_Band>
   <CC_Pact_State_Arms>they ask for the colony's fighters at {TOWN}</CC_Pact_State_Arms>
-  <CC_Pact_State_Cart>a cart of {GOODS} each season</CC_Pact_State_Cart>
+  <CC_Pact_State_Cart>the cart: {CART}</CC_Pact_State_Cart>
   <CC_Pact_Card_Calls>Called {COUNT} times.</CC_Pact_Card_Calls>
   <CC_Card_OfferedByUs>The colony offered it.</CC_Card_OfferedByUs>
   <CC_Card_OfferedByThem>{PEOPLE} offered it.</CC_Card_OfferedByThem>
@@ -257,10 +270,14 @@
   <CC_Pact_Act_Propose_Tip>A letter or a call to their head: a defense pact, or a trade pact with the cart the colony sends each season.</CC_Pact_Act_Propose_Tip>
   <CC_Pact_Act_End>End it by letter</CC_Pact_Act_End>
   <CC_Pact_Act_End_Tip>A letter to their head ending the pact, without blame on either side.</CC_Pact_Act_End_Tip>
+  <CC_Pact_Act_Cart>Change the cart</CC_Pact_Act_Cart>
+  <CC_Pact_Act_Cart_Tip>A letter to their head with a new cart for the pact, chosen from the colony's goods, each with what it is worth and what they pay. Valuable goods are marked and go only if chosen.</CC_Pact_Act_Cart_Tip>
+  <CC_Pact_Why_NoOtherCart>the stores hold no other good to send</CC_Pact_Why_NoOtherCart>
 
   <!-- This week -->
   <CC_Pact_Week_TruceOffer>{PEOPLE} offer a truce</CC_Pact_Week_TruceOffer>
   <CC_Pact_Week_PactOffer>{PEOPLE} offer a pact</CC_Pact_Week_PactOffer>
+  <CC_Pact_Week_PactCart>The season's cart for {PEOPLE}: send it or refuse</CC_Pact_Week_PactCart>
   <CC_Pact_Week_Arms>{PEOPLE} ask for the colony's fighters</CC_Pact_Week_Arms>
   <CC_Pact_WeekNote>waiting for an answer</CC_Pact_WeekNote>
   <CC_Pact_Week_Truce>A truce with {PEOPLE}, to be sworn at the gate</CC_Pact_Week_Truce>

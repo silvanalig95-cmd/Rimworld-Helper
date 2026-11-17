@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Plain goods for a pact
+
+*17 November 2026, version 0.266.1*
+
+- A trade pact's cart is now one of the colony's plain goods it can spare (wood, cloth, leather, food, stone blocks or steel), the kinds the other people use first, and never a valuable good like components, medicine or gold unless you pick it yourself.
+- Each season a letter asks before the cart goes: send it, or refuse and end the pact. With no answer, no cart goes that season and the pact stays.
+- Every cart in the lists says what it is, what it is worth and what they pay, and "Change the cart" on the pact's card asks their head for another by letter.
+- A pact that was sending a valuable good gets a plain cart when you load your game, with a message saying what changed.
+- Thieves from a scheme now take plain goods such as cloth, leather, food or steel, never components, medicine, silver, gold or jade.
+- Letters now say "8 components" rather than "8 component".
+
 ## The Stormriders
 
 *17 November 2026, version 0.266.0*

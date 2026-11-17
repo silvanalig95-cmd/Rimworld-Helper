@@ -100,17 +100,21 @@ public static class SchemesTests
 
         C(SchemeMath.MachineForm(WorldAge.Spacer, true) == "Console" && SchemeMath.MachineForm(WorldAge.Spacer, false) == "Machine" && SchemeMath.MachineForm(WorldAge.Industrial, true) == "Machine",
             "a console's breakdown in a spacer colony, a jammed machine otherwise");
-        C(SchemeMath.TheftOrder(WorldAge.Tribal)[0] == SchemeMath.Totem && SchemeMath.TheftOrder(WorldAge.Medieval)[0] == SchemeMath.Purse
-          && SchemeMath.TheftOrder(WorldAge.Industrial)[0] == SchemeMath.Tool && SchemeMath.TheftOrder(WorldAge.Spacer)[0] == SchemeMath.Tool,
-            "a stolen totem from a tribe, a cut purse, a tool in an industrial or spacer colony");
+        // Plain goods only since 17 November 2026 (the player: "they shouldn't steal components again and other valuable
+        // things"; Things/GoodsMath.cs): what the colony's age keeps most of first.
+        C(SchemeMath.TheftOrder(WorldAge.Tribal)[0] == GoodsKind.Food && SchemeMath.TheftOrder(WorldAge.Medieval)[0] == GoodsKind.Cloth
+          && SchemeMath.TheftOrder(WorldAge.Industrial)[0] == GoodsKind.Metal && SchemeMath.TheftOrder(WorldAge.Spacer)[0] == GoodsKind.Metal,
+            "a tribe's food, a medieval colony's cloth, an industrial or spacer colony's steel");
         foreach (WorldAge age in Enum.GetValues(typeof(WorldAge)))
-            C(SchemeMath.TheftOrder(age).OrderBy(x => x).SequenceEqual(new[] { SchemeMath.Purse, SchemeMath.Tool, SchemeMath.Totem }), $"{age}: the thief looks for each kind in turn");
+            C(SchemeMath.TheftOrder(age).All(GoodsMath.Plain) && SchemeMath.TheftOrder(age).Distinct().Count() == SchemeMath.TheftOrder(age).Length,
+                $"{age}: the thief looks for each kind of plain goods in turn, never a valuable one");
         C(SchemeMath.SmearForm(WorldAge.Tribal, false) == "Fires" && SchemeMath.SmearForm(WorldAge.Medieval, false) == "Halls" && SchemeMath.SmearForm(WorldAge.Industrial, false) == "Papers"
           && SchemeMath.SmearForm(WorldAge.Spacer, false) == "Feeds", "a smear by their people's ways: other fires, other halls, the papers, the feeds");
         C(Enum.GetValues(typeof(WorldAge)).Cast<WorldAge>().All(a => SchemeMath.SmearForm(a, true) == "Court"), "intrigue at court for the Empire, whatever its age");
         C(Enum.GetValues(typeof(WorldAge)).Cast<WorldAge>().All(a => SchemeMath.SmearForms.Contains(SchemeMath.SmearForm(a, false))), "every smear's form is one of the five");
         foreach (SchemeAct a in Enum.GetValues(typeof(SchemeAct))) C(SchemeMath.ActOf(a.ToString()) == a, $"{a}: its key names it");
-        C(SchemeMath.ActOf("Console") == SchemeAct.Machine && SchemeMath.ActOf(SchemeMath.Totem) == SchemeAct.Theft && SchemeMath.ActOf(SchemeMath.Purse) == SchemeAct.Theft
+        C(SchemeMath.ActOf("Console") == SchemeAct.Machine && SchemeMath.ActOf(SchemeMath.Stores) == SchemeAct.Theft && SchemeMath.ActOf(SchemeMath.Totem) == SchemeAct.Theft
+          && SchemeMath.ActOf(SchemeMath.Purse) == SchemeAct.Theft
           && SchemeMath.ActOf(SchemeMath.Tool) == SchemeAct.Theft && SchemeMath.SmearForms.All(s => SchemeMath.ActOf(s) == SchemeAct.Smear) && SchemeMath.ActOf(null) == SchemeAct.Smear,
             "the form it took names its act");
 
@@ -207,7 +211,7 @@ public static class SchemesTests
             C(keyed.ContainsKey(key) && keyed.ContainsKey(key + "_2"), $"{key} has two wordings");
         C(keyed.Values.All(v => !v.Contains("—") && !v.Contains("!")), "no em dashes or exclamation marks");
         C(!keyed.Values.Any(v => Regex.IsMatch(v, @"(^|[.?]\s+|\\n)\{[A-Z]+_(pronoun|possessive|objective)\}")), "no sentence opens with a pronoun the game won't capitalize");
-        foreach (var form in new[] { "Machine", "Console", SchemeMath.Totem, SchemeMath.Purse, SchemeMath.Tool })
+        foreach (var form in new[] { "Machine", "Console", SchemeMath.Stores, SchemeMath.Totem, SchemeMath.Purse, SchemeMath.Tool })
             C(keyed.ContainsKey("CC_Scheme_What_" + form) && keyed.ContainsKey("CC_Scheme_Short_" + form), $"{form}: its words for the letter and the row");
         foreach (var form in SchemeMath.SmearForms)
             C(keyed.ContainsKey("CC_Scheme_What_Smear_" + form) && keyed.ContainsKey("CC_Scheme_SmearWhere_" + form), $"the smear by {form}: its words");
