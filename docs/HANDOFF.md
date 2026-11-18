@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list** (the to-do entries below): Rimfolk reading a room by what is in it, not
+1. **Still on the list** (the to-do entries below): riding out to far work (18 November, a bug, the lead's fix waits
+   for the player's go); Rimfolk reading a room by what is in it, not
    by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
    the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
    everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
@@ -114,6 +115,25 @@ repo.
   and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
 - **Done (18 November 2026, the player sent the mod's DLL as the go): clothes made for someone, worn when they are
   back.** The report and what was built are now one entry above the newest release line ("Clothes made for someone").
+- **To do when the player asks (18 November 2026): riding out to far work, Bautista walked.** The player, with their save
+  `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to mine without mounting up first? then the
+  mount should wait for him until he's done". What the save shows (tick 7668315): Bautista mines steel at (136, 264),
+  44 cells past the home area's edge, about 95 cells from the dining hall where he chose the job after a meal (under
+  Giddy-Up's own 120, so Giddy-Up never looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts are
+  in or by the pen inside the base, about 34 cells the other way from the vein. Giddy-Up refuses the horses (Stallion 1,
+  Tatyana, Mare 1), the Thunderox and the yak: Tameness not learned; Tatyana, Mare 1 and Tara are with young; Zoe (titanis)
+  is "kept for Soot" by a Giddy-Up reservation that has stood since tick 7453676 while both are at home (stale); Calvin
+  (titanis) is the best left, about 6 cells/s under him against his 4.6 on foot. The cause (`GiddyUpRideOut.Decide`,
+  lines 198-201, `RideOutMath.Worth`): riding must beat walking by the trip's slack (1.25), counting the walk to the beast
+  first; to the pen and back out on a titanis is slower than walking straight there, so "walking is quicker". Rimfolk
+  keeps no record of the decision, so the save can't prove it; the dev action on Avila (walking to the next vein) would.
+  The wait (`KeepWaiting`) holds cell to cell for a day by default, renewed only at a job chosen with nothing under way.
+  **The lead's fix, waiting for the player's go**: (1) for far work (an Out trip), ride whenever a beast is free and the
+  walk to it isn't longer than the trip itself, the quickest beast picked; the strict time check kept for the ride back
+  and orders; (2) a Giddy-Up reservation counts only while that beast waits for, carries or is being mounted by that
+  rider (Zoe freed); (3) each colonist's last decision kept and shown by the dev action, and "check myself" says when
+  riding out switched itself off or a Giddy-Up member wasn't found; (4) the wait renewed on a rare tick while the rider
+  works out there, its cap counted from the last job. Told to the player: the horses need Tameness trained first.
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
