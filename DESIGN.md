@@ -16000,6 +16000,28 @@ to be placed in the kitchen, no? what makes more sense?"; then "please, go ahead
   the game's workshop.
 - The setting "Breweries work in the kitchen too" (`breweryInKitchen`, on), under the deeper hooks.
 
+### Clothes made for someone, put on when they are back (the player's report and go, 18 November 2026; released 0.266.4)
+
+The player: "the target pawn immediately gets a job into the queue to wear this item. But I think due to our change that
+each pawn, after they do work, take the item to their inventory, this is now no longer happening ... And even better
+would be that the pawn who's supposed to wear it doesn't immediately go ... they just wear it once they are kind of
+close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
+
+- **The cause** (the mod's DLL, decompiled outside the game, never loaded): Nice Inventory Tab keeps which bill is for
+  whom (`BillFinished_Patch.wearRequests`) and finishes such a bill itself (`ExecuteFinishRecipeLogic`): it makes the
+  product, calls `RecordsUtility.Notify_BillDone`, places the piece by the crafter and orders the one it is for to wear
+  it (`TryTakeOrderedJob`, queued, forced) with its message. Rimfolk's carrying (`Patch_HaulBillProducts`) pocketed the
+  product inside `Notify_BillDone`, so the mod had nothing to place.
+- **The fix** (`Integrations/MadeForWear.cs`): a prefix and finalizer on the mod's `ExecuteFinishRecipeLogic` note whom
+  it is for; meanwhile the crafter keeps nothing, so the mod places and orders as before.
+- **Put on when back** (the setting "Clothes made for someone, put on when they are back", Your other mods, on): the
+  mod's order to wear (`Pawn_JobTracker.TryTakeOrderedJob`, the Wear job for that pawn, during the mod's finishing) is
+  held when they aren't near (`MadeForWearMath.GoNow`: free, in the home area, the piece in the home area too or within
+  40 cells); Rimfolk says the piece is ready (the mod's own message after it left out); `MadeForWearBook` (saved) keeps
+  it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
+  forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
+  something off. Someone nearby goes at once, as before.
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

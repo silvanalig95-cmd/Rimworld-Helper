@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.266.4</version>
+        <date>18 November 2026</date>
+        <title>Made for you</title>
+        <points>
+          <li>With Nice Inventory Tab, a piece of clothing or armour ordered for a colonist from their gear tab no longer ends up in the crafter's pocket, so the colonist it was made for gets to put it on again.</li>
+          <li>A colonist who is away keeps working instead of walking across the map for it: the piece goes to storage, a message says it is ready, and they put it on when back in the base near it. Someone nearby goes at once, as before.</li>
+          <li>The setting "Clothes made for someone, put on when they are back" on the Your other mods page brings back the mod's own way when switched off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.3</version>
         <date>18 November 2026</date>
         <title>The brewery in the kitchen</title>

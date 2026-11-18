@@ -811,6 +811,9 @@ namespace ColonyCouncil
             // The ballroom stands down in a temple, a dining room and a room with only drums (Integrations/BallroomByUse.cs).
             Section("CC_SetSec_Mod_VfeEmpire");
             Mod(Toggle("ballroomByUse", "CC_Settings_BallroomByUse", "CC_SetNote_BallroomByUse", "deepHooks"), VfeEmpireId);
+            // A piece made for someone with Nice Inventory Tab, put on when they are back (Integrations/MadeForWear.cs).
+            Section("CC_SetSec_Mod_NiceInventoryTab");
+            Mod(Toggle("madeForWearLater", "CC_Settings_MadeForWearLater", "CC_SetNote_MadeForWearLater", "deepHooks"), NiceInventoryTabId);
             Section("CC_SetSec_Mod_Vte");
             Mod(Toggle("tradeVte", "CC_Settings_TradeVte", "CC_SetNote_TradeVte"), VteId);
             Mod(Toggle("tradeVteHistory", "CC_Settings_TradeVteHistory", "CC_SetNote_TradeVteHistory", "tradeVte"), VteId);
@@ -827,7 +830,7 @@ namespace ColonyCouncil
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
             MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient",
             VteId = "vanillaexpanded.vanillatradingexpanded", FoodAlertId = "mlie.foodalert", GiddyUpId = "memegoddess.giddyup",
-            VfeEmpireId = "oskarpotocki.vfe.empire";
+            VfeEmpireId = "oskarpotocki.vfe.empire", NiceInventoryTabId = "andromeda.niceinventorytab";
 
         /// <summary>
         /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead

@@ -58,6 +58,9 @@ namespace ColonyCouncil
         public static void Postfix(Pawn billDoer, List<Thing> products)
         {
             if (billDoer == null || products == null || WorkProducts.finishing != billDoer || !RimfolkPatches.On) return;
+            // A piece Nice Inventory Tab made for someone stays out of the crafter's pocket: the mod places it and has its
+            // wearer put it on (Integrations/MadeForWear.cs).
+            if (MadeForWear.finishingFor != null) return;
             HaulHook.Run(() => WorkProducts.PocketBill(billDoer, products), "a bill's products");
         }
     }

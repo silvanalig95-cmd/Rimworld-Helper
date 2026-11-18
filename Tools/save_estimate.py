@@ -964,6 +964,8 @@ MODEL = {
     # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
     # the skills and work givers of the work, the stockpile a bill picked for a kind, and a run's one or two materials.
     # All of a load's lists empty with it (HaulLoad.Reset).
+    # Nice Inventory Tab's pieces made for someone away (Integrations/MadeForWear.cs): each waits until they put it on.
+    "Integrations/MadeForWear.cs:waiting": ("fixed", 3, 120, "a piece or two made for someone away, let go of once worn, gone or after 15 days"),
     "Hauling/HaulBook.cs:loads": ("colonists", 1, 260, "one per pawn carrying something for Rimfolk, dropped once it carries nothing"),
     "Hauling/HaulBook.cs:owed": ("fixed", 4, 90, "per load: the kinds owed to storage, a few (counted under loads)"),
     "Hauling/HaulBook.cs:skills": ("fixed", 2, 40, "per load: the skills of the work that made it (counted under loads)"),

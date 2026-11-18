@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Made for you
+
+*18 November 2026, version 0.266.4*
+
+- With Nice Inventory Tab, a piece of clothing or armour ordered for a colonist from their gear tab no longer ends up in the crafter's pocket, so the colonist it was made for gets to put it on again.
+- A colonist who is away keeps working instead of walking across the map for it: the piece goes to storage, a message says it is ready, and they put it on when back in the base near it. Someone nearby goes at once, as before.
+- The setting "Clothes made for someone, put on when they are back" on the Your other mods page brings back the mod's own way when switched off.
+
 ## The brewery in the kitchen
 
 *18 November 2026, version 0.266.3*

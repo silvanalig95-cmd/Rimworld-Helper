@@ -154,6 +154,8 @@ namespace ColonyCouncil
         public bool ballroomByUse = true;
         /// <summary>A brewery (any cooking bench of the workshop) works at full speed in a kitchen and counts toward it (Building/BreweryKitchen.cs).</summary>
         public bool breweryInKitchen = true;
+        /// <summary>With Nice Inventory Tab: a piece made for someone away is put on when they are back near the base (Integrations/MadeForWear.cs).</summary>
+        public bool madeForWearLater = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -946,6 +948,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref rideOut, "rideOut", true);
             Scribe_Values.Look(ref ballroomByUse, "ballroomByUse", true);
             Scribe_Values.Look(ref breweryInKitchen, "breweryInKitchen", true);
+            Scribe_Values.Look(ref madeForWearLater, "madeForWearLater", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

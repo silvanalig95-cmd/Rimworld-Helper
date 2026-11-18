@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- A piece made for someone with Nice Inventory Tab, put on when they are back (Integrations/MadeForWear.cs). -->
+  <CC_MadeForWear_Held>The {PIECE} made for {PAWN_nameDef} is ready. {PAWN_nameDef} will put it on when back near the base.</CC_MadeForWear_Held>
+  <CC_Settings_MadeForWearLater>Clothes made for someone, put on when they are back</CC_Settings_MadeForWearLater>
+  <CC_Settings_MadeForWearLater_Tip>Nice Inventory Tab lets you order a piece of clothing or armour for a colonist from their gear tab, and once it is made it sends them to put it on at once, even from the far side of the map. With this on, a colonist who is away keeps working: the piece goes to storage, a message says it is ready, and they put it on the next time they pick a job while back in the home area near it. Someone already nearby goes at once, as before. Off, the mod's own way.</CC_Settings_MadeForWearLater_Tip>
+  <CC_SetNote_MadeForWearLater>A colonist away puts their new piece on when back near the base.</CC_SetNote_MadeForWearLater>
+</LanguageData>

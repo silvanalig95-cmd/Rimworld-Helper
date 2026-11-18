@@ -3064,6 +3064,9 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   game names one room for each workbench and slows it to 80% anywhere else, and the brewery's is the workshop. Brewing is
   cooking work, so a brewery (and any workshop bench whose work is all cooking) works at full speed in a kitchen as well,
   and beside a stove it counts toward the kitchen, so it never turns the kitchen into a workshop and slows the stoves.
+- **Nice Inventory Tab:** a piece of clothing or armour ordered for a colonist from their gear tab stays out of the
+  crafter's pocket, so the mod still has them put it on; and a colonist who is away keeps working and puts it on when back
+  near the base (the setting "Clothes made for someone, put on when they are back", Your other mods).
 - **Vanilla Factions Expanded - Empire:** its ballroom only where the room is for music (the setting "Ballrooms only for
   music rooms", Your other mods). The mod calls any room with a musical instrument a ballroom, unless it has a bed,
   throne or workbench, so a drum turned a dining room or a temple into a ballroom. With the setting on, a room with an

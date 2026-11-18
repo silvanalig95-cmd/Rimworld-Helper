@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 726; modelled: 726; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,058 KB** after a year, **3,769 KB** after two, **4,221 KB** after five.
+Saved collections found: 727; modelled: 727; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,059 KB** after a year, **3,769 KB** after two, **4,221 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -428,6 +428,7 @@ Rimfolk's part of the save, roughly: **3,058 KB** after a year, **3,769 KB** aft
 | `Colonies/HomesMerge.cs:merges` | a colony whose home was lost while its people come to live at another, then the merge's first season (at most 24, one per home lost; let go after the old council's 30 days if nobody of theirs settles) | while | 1 | 1 | 1 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
+| `Integrations/MadeForWear.cs:waiting` | a piece or two made for someone away, let go of once worn, gone or after 15 days | fixed | 3 | 3 | 3 | 0.4 |
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
 | `OldPowers/OldPowersBook.cs:last` | when each old power's happening last came, one a happening | fixed | 14 | 14 | 14 | 0.3 |
