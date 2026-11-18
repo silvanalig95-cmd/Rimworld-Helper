@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The brewery in the kitchen
+
+*18 November 2026, version 0.266.3*
+
+- A brewery now works at full speed in the kitchen as well as in the workshop, since brewing is cooking work done by your cooks. The same goes for other mods' workshop benches whose work is all cooking.
+- Beside a stove, a brewery counts toward the kitchen, so two breweries no longer turn your kitchen into a workshop and slow its stoves.
+- The setting "Breweries work in the kitchen too", under the deeper game hooks, brings back the game's own rule when switched off.
+
 ## Your pick each season
 
 *17 November 2026, version 0.266.2*

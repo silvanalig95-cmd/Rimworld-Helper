@@ -152,6 +152,8 @@ namespace ColonyCouncil
         public bool rideOut = true;
         /// <summary>With Vanilla Factions Expanded - Empire: its ballroom only where the room is for music, not a temple or dining room (Integrations/BallroomByUse.cs).</summary>
         public bool ballroomByUse = true;
+        /// <summary>A brewery (any cooking bench of the workshop) works at full speed in a kitchen and counts toward it (Building/BreweryKitchen.cs).</summary>
+        public bool breweryInKitchen = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -943,6 +945,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref bodyWhenItDies, "bodyWhenItDies", true);
             Scribe_Values.Look(ref rideOut, "rideOut", true);
             Scribe_Values.Look(ref ballroomByUse, "ballroomByUse", true);
+            Scribe_Values.Look(ref breweryInKitchen, "breweryInKitchen", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

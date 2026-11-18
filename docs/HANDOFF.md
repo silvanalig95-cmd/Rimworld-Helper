@@ -23,8 +23,7 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list** (the to-do entries below): the brewery in the kitchen (18 November, the lead's proposal
-   waits for the player's go); Rimfolk reading a room by what is in it, not
+1. **Still on the list** (the to-do entries below): Rimfolk reading a room by what is in it, not
    by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
    the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
    everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
@@ -111,16 +110,8 @@ repo.
   their save is now one entry above the newest release line ("Vengeful from Rimfolk reined in, and a way out of it").
 - **Done (17 November 2026, the player's go: "yes, please"): choose the pact's cart each season.** The question, the
   answer and what was built are now one entry above the newest release line ("Choose the pact's cart each season").
-- **To do when the player asks (18 November 2026): the brewery in the kitchen.** The player: "so the brewery gets a
-  debuff once it's not in the workshop, however, i think the brewery should also be able to be placed in the kitchen,
-  no? what makes more sense?" The cause is the base game's: the `Brewery` def's `workTableRoomRole` is Workshop with
-  `workTableNotInRoomRoleFactor` 0.8 (the game's `StatPart_WorkTableRoomRole`; RimWorld Wiki, "Brewery": "not associated
-  with the kitchen room role"); one role per bench, so it can't name both. Answered: the kitchen makes more sense, as
-  brewing is Cooking work done by the cooks with the cooks' skill, next to the food stores. **The lead's proposal,
-  waiting for the player's go**: a brewery (and the brewing benches of the player's mods that name the workshop, checked
-  in their defs) works at full speed in a kitchen as well as a workshop (a postfix on the stat part, softly, by the
-  bench's def), and a brewery placed in a kitchen counts toward the kitchen, not the workshop, so it never turns the
-  kitchen into a workshop or slows its stoves (to check in 1.6's `RoomRoleWorker_Workshop` and `_Kitchen` scoring first).
+- **Done (18 November 2026, the player's go: "please, go ahead"): the brewery in the kitchen.** The question, the cause
+  and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -271,6 +262,27 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.266.3, **The brewery at home in the
+  kitchen** (18 November 2026). The player: "so the brewery gets a
+  debuff once it's not in the workshop, however, i think the brewery should also be able to be placed in the kitchen,
+  no? what makes more sense?" The cause is the base game's: the `Brewery` def's `workTableRoomRole` is Workshop with
+  `workTableNotInRoomRoleFactor` 0.8 (the game's `StatPart_WorkTableRoomRole`; RimWorld Wiki, "Brewery": "not associated
+  with the kitchen room role"); one role per bench, so it can't name both. Answered: the kitchen makes more sense, as
+  brewing is Cooking work done by the cooks with the cooks' skill, next to the food stores. The go: "please, go ahead". DESIGN.md "The brewery at home in the kitchen".
+  - **What was built**: the game (1.6) scores a kitchen 28 a stove and a workshop 27 a bench (the brewery among them),
+    the workshop first on a tie, and slows a bench to 80% outside its own room (stoves too). `Building/BreweryKitchen.cs`:
+    a cooking bench (`BreweryKitchenMath.CookingBench`: a workshop bench whose recipes are all Cooking work, read from its
+    def, so mods' brewing benches count) has no penalty in a room the game calls a kitchen (postfixes on the stat part's
+    static `Applies` and `WouldApplyToBuildingIfPlaced`), and beside a stove its share of the workshop score comes off
+    (`RoomRoleWorker_Workshop.GetScore` and `GetScoreDeltaIfBuildingPlaced`, `BreweryKitchenMath.WorkshopScore`), so the
+    kitchen stays a kitchen; with no stove, the game's workshop as before. Setting `breweryInKitchen` (on, under the
+    deeper hooks). README. Tests: `BreweryKitchenTests` (new).
+  - **Can't be checked without the game**: the brewery's work speed breakdown in a kitchen (no "not in workshop" line),
+    the room's name with a stove and two breweries, which of the player's mods' brewing benches count as cooking benches.
+  - **Try in the game**: put the brewery in the kitchen beside a stove; select it and look at its work speed: no 80%
+    line; the room still reads "kitchen" with two breweries. Settings, Rimfolk, Deeper game hooks, "Breweries work in the
+    kitchen too" off brings the game's rule back.
+  - **Mods that would help**: none.
 - 0.266.2, **Choose the pact's cart each
   season** (17 November 2026). The player, after 0.266.1:
   "so i'm not sure about this pact anymore, what exactly does it do? it sounds like this pact is more expensive for me.

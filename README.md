@@ -3060,6 +3060,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   body size, tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to
   ride"); Rimfolk also leaves alone a beast at work, with a group, with young or kept for someone else. Inside the base
   nothing changes. Rimfolk calls Giddy-Up's own mount, wait and rules by name.
+- **The brewery at home in the kitchen** (the setting "Breweries work in the kitchen too", under the deeper hooks): the
+  game names one room for each workbench and slows it to 80% anywhere else, and the brewery's is the workshop. Brewing is
+  cooking work, so a brewery (and any workshop bench whose work is all cooking) works at full speed in a kitchen as well,
+  and beside a stove it counts toward the kitchen, so it never turns the kitchen into a workshop and slows the stoves.
 - **Vanilla Factions Expanded - Empire:** its ballroom only where the room is for music (the setting "Ballrooms only for
   music rooms", Your other mods). The mod calls any room with a musical instrument a ballroom, unless it has a bed,
   throne or workbench, so a drum turned a dining room or a temple into a ballroom. With the setting on, a room with an

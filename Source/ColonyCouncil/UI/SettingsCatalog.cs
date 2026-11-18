@@ -597,6 +597,8 @@ namespace ColonyCouncil
             // The deeper game hooks, this colony's era, a check of what's working and a full reset.
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
+            // A brewery at home in the kitchen as well as the workshop (Building/BreweryKitchen.cs).
+            Toggle("breweryInKitchen", "CC_Settings_BreweryInKitchen", "CC_SetNote_BreweryInKitchen", "deepHooks");
             Section("CC_Settings_Era");
             var era = Choice("colonyEra", "CC_SetLabel_Era", "CC_SetTip_Era", "CC_Era_", "CC_SetNote_Era_", new[] { "Auto", "PreIndustrial", "Industrial" });
             era.notAField = true;

@@ -15978,6 +15978,28 @@ sounds very cool. I like it, but maybe they shouldn't steal components again and
   answer, the message for the player's pact after loading, a thief carrying off cloth or steel, "8 components" in the
   player's 1.7 game.
 
+### The brewery at home in the kitchen (the player's request and go, 18 November 2026; released 0.266.3)
+
+The player: "so the brewery gets a debuff once it's not in the workshop, however, i think the brewery should also be able
+to be placed in the kitchen, no? what makes more sense?"; then "please, go ahead".
+
+- **The cause.** The game (1.6.4518 on) names one room for each production bench and slows it to 80% anywhere else
+  (`StatPart_WorkTableRoomRole`, `workTableRoomRole`, `workTableNotInRoomRoleFactor`): the brewery's is the workshop,
+  the stoves' the kitchen. A kitchen scores 28 a stove, a workshop 27 a bench (the brewery among them), the workshop
+  first on a tie (RimWorld Wiki, "Room roles"), so a second brewery beside one stove turns the kitchen into a workshop and
+  slows the stove.
+- **A cooking bench** (`BreweryKitchenMath.CookingBench`): a workshop bench whose recipes are all Cooking work (the
+  brewery's wort, and any mod's brewing bench read from its own def). Brewing is done by the cooks, by their skill.
+- **At full speed in a kitchen.** Postfixes on the stat part's static `Applies(Thing)` (its speed and its line in the
+  breakdown) and `WouldApplyToBuildingIfPlaced` (the note while placing): no penalty for a cooking bench in a room the
+  game calls a kitchen.
+- **The kitchen stays a kitchen.** A postfix on `RoomRoleWorker_Workshop.GetScore`: where the room holds a stove (the
+  game's kitchen score above nothing), the cooking benches' share of the workshop score comes off
+  (`BreweryKitchenMath.WorkshopScore`), so breweries beside a stove count toward the kitchen; and on
+  `GetScoreDeltaIfBuildingPlaced`, so placing one there isn't shown as making a workshop. Breweries with no stove keep
+  the game's workshop.
+- The setting "Breweries work in the kitchen too" (`breweryInKitchen`, on), under the deeper hooks.
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,

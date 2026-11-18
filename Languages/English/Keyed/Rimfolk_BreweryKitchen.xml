@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- A brewery at home in the kitchen as well as the workshop (Building/BreweryKitchen.cs). -->
+  <CC_Settings_BreweryInKitchen>Breweries work in the kitchen too</CC_Settings_BreweryInKitchen>
+  <CC_Settings_BreweryInKitchen_Tip>The game names one room for each workbench and slows it to 80% anywhere else: the brewery's room is the workshop. Brewing is cooking work, done by your cooks, so with this on a brewery (and any other workshop bench whose work is all cooking) works at full speed in a kitchen as well. Beside a stove it counts toward the kitchen, not the workshop, so it never turns your kitchen into a workshop and slows the stoves. Off, the game's own rule.</CC_Settings_BreweryInKitchen_Tip>
+  <CC_SetNote_BreweryInKitchen>A brewery works at full speed in the kitchen as well as the workshop.</CC_SetNote_BreweryInKitchen>
+</LanguageData>
