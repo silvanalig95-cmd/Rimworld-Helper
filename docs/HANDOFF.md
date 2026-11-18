@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list** (the to-do entries below): Rimfolk reading a room by what is in it, not
+1. **Still on the list** (the to-do entries below): clothes made for someone, worn when they are back (18 November,
+   waiting for the player's go and Nice Inventory Tab's DLL); Rimfolk reading a room by what is in it, not
    by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
    the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
    everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
@@ -112,6 +113,23 @@ repo.
   answer and what was built are now one entry above the newest release line ("Choose the pact's cart each season").
 - **Done (18 November 2026, the player's go: "please, go ahead"): the brewery in the kitchen.** The question, the cause
   and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
+- **To do when the player asks (18 November 2026): clothes made for someone, worn when they are back.** The player:
+  "So I have this mod where I can directly from a pawn's inventory give the task to craft like a certain piece of
+  clothing or armor ... I also see then in the recipe list a cowboy hat for whomever. And normally after it's finished
+  crafting, the target pawn immediately gets a job into the queue to wear this item. But I think due to our change that
+  each pawn, after they do work, take the item to their inventory, this is now no longer happening ... Could this be
+  done? And even better would be that the pawn who's supposed to wear it doesn't immediately go, wear the item, since
+  they could be halfway around the map doing work. Instead, that they just wear it once they are kind of close by again
+  or back into the base." The mod is most likely Nice Inventory Tab (`andromeda.niceinventorytab`, Workshop
+  3609897594; Rimfolk already draws into its tab: `Weapons/WeaponNiceTab.cs`, `Apparel/ApparelNiceTab.cs`); no public
+  source found. The cause on Rimfolk's side: `Hauling/WorkProductPatches.cs` `Patch_HaulBillProducts` (a postfix on
+  `RecordsUtility.Notify_BillDone`, last) takes a bill's products into the worker's inventory before the game places
+  them (`HaulMath.BillPockets`: a bill storing to a stockpile, not forced), so a hook that gives the wear order on the
+  placed product finds none. **The lead's proposal, waiting for the player's go and the mod's DLL** (to see how it marks
+  the bill's pawn and gives the order): (1) a bill made for someone isn't pocketed; (2) instead of the mod's immediate
+  order, Rimfolk keeps it: the piece is stored as usual, and the one it was made for goes to put it on when back near
+  the base (in the home area, not drafted, not in a fight or a mental state, between jobs, the piece within a short
+  walk), with a message when it's ready.
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
