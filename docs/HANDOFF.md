@@ -23,7 +23,8 @@ release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
 or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list from 17 November 2026** (the to-do entries below): Rimfolk reading a room by what is in it, not
+1. **Still on the list** (the to-do entries below): the brewery in the kitchen (18 November, the lead's proposal
+   waits for the player's go); Rimfolk reading a room by what is in it, not
    by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
    the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
    everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
@@ -110,6 +111,16 @@ repo.
   their save is now one entry above the newest release line ("Vengeful from Rimfolk reined in, and a way out of it").
 - **Done (17 November 2026, the player's go: "yes, please"): choose the pact's cart each season.** The question, the
   answer and what was built are now one entry above the newest release line ("Choose the pact's cart each season").
+- **To do when the player asks (18 November 2026): the brewery in the kitchen.** The player: "so the brewery gets a
+  debuff once it's not in the workshop, however, i think the brewery should also be able to be placed in the kitchen,
+  no? what makes more sense?" The cause is the base game's: the `Brewery` def's `workTableRoomRole` is Workshop with
+  `workTableNotInRoomRoleFactor` 0.8 (the game's `StatPart_WorkTableRoomRole`; RimWorld Wiki, "Brewery": "not associated
+  with the kitchen room role"); one role per bench, so it can't name both. Answered: the kitchen makes more sense, as
+  brewing is Cooking work done by the cooks with the cooks' skill, next to the food stores. **The lead's proposal,
+  waiting for the player's go**: a brewery (and the brewing benches of the player's mods that name the workshop, checked
+  in their defs) works at full speed in a kitchen as well as a workshop (a postfix on the stat part, softly, by the
+  bench's def), and a brewery placed in a kitchen counts toward the kitchen, not the workshop, so it never turns the
+  kitchen into a workshop or slows its stoves (to check in 1.6's `RoomRoleWorker_Workshop` and `_Kitchen` scoring first).
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
