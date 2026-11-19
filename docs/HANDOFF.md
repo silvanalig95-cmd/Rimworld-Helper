@@ -444,7 +444,27 @@ repo.
   and sermons (pools), moods (`ThoughtDefs`), what the gods leave on the body (`HediffDefs`, the gifts of
   `Rimfolk_GodsWorld_Gifts` and the touch's blessings among them: ailments), the dev tools' words for the gods' hidden
   state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer).
-  Still to pick, when the player asks: the peoples, the Almanac, What's new.
+  The Almanac, part 1: the council's pages, done (19 November 2026, the same go; built, not released): the entry "Plain
+  words: the Almanac's council pages" above the newest release line. Files taken: the 22 files
+  `Defs/AlmanacArticleDefs/Almanac_Council*.xml` but for `Almanac_Council_Faith.xml` (`Almanac_Council`,
+  `_AnimalNature`, `_Animals`, `_Arcs`, `_Calendar`, `_Callers`, `_Character`, `_ColonistBar`, `_Couriers`, `_Gossip`,
+  `_Interplay`, `_Lists`, `_Meetings`, `_Panels`, `_PlayOut`, `_Pressures`, `_SeeAndHear`, `_Setbacks`, `_Talk`,
+  `_TraitChanges`, `_Visitors`, `_Weather`: 45 pages, their summaries, tips, descriptions, sections, points and tables'
+  prose cells, read against the code they describe and against the names the earlier batches gave the ambitions,
+  decrees, questions, story stages, storylines and encounters). Left: every label, keyword and link (the Almanac's
+  search and its links go by them), the names of things in the game quoted on the pages (settings, marks' and quirks'
+  names, a question's answer quoted, the seats' names by age), and the speech and journal lines quoted as examples.
+  The Almanac's other pages, still to do: the remaining 64 files of `Defs/AlmanacArticleDefs/` but What's new
+  (`Almanac_Advisor`, `_Ahead`, `_Ailments`, `_Apparel`, `_Basics`, `_Beasts`, `_Camps`, `_DLC`, `_Defending`,
+  `_DefendingLines`, `_Defense`, `_Diplomacy`, `_Faith`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`, `_Groups`,
+  `_Guide`, `_HandOver`, `_Hauling`, `_Health`, `_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`,
+  `_Mistakes`, the ten `_Mods_*` files, `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_Peoples`,
+  `_PeoplesC` to `_PeoplesG`, `_RaidersCamps`, `_Region`, `_RoomDesign`, `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`,
+  `_Schemes`, `_SocialLife`, `_Storytellers`, `_TownAfter`, `_TownLife`, `_TradeScreen`, `_VisitorsMore2`,
+  `_Weapons`, `_WorldMemory`, `_WorldSituations`), and `Almanac_Council_Faith.xml`, which waited for the gods' and
+  faith's batch and was not in it: the gods' and faith's pages (`_Council_Faith`, `_Gods`, `_Faith`) are best taken
+  together, keeping the gods unseen.
+  Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -457,6 +477,71 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.270.3, **Plain words: the Almanac's
+  council pages** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for
+  the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more
+  neutral, descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The twenty-first batch of the plain-words pass and the first of the Almanac: its pages about the council
+  and the colony's life (wishes, trust, standards, decrees, dilemmas, names and annals, offices, traditions, bonds,
+  dreams, life goals, secrets, strangers, the colony's character, moods, Rimfolk's events, scenarios, the heart, the
+  animals, personal stories, the calendar, callers, character and family, the colonist bar, couriers, gossip and
+  reputation, how it fits together, the look-up lists, meetings, panels, answers on the map, pressures, what you see and
+  hear, setbacks, conversations and shared memories, traits that change, visitors, the weather). File list, and the
+  Almanac's pages still to do, in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 2,000 pieces of prose read in the 45 pages of 22 files (summaries, tips, descriptions,
+    sections, points and tables' cells), each against the code it describes; 90 rewritten and two table rows added. The
+    Almanac explains, so most of it was plain already. Tips that were jokes or twists are advice now ("Write the year
+    down before people start remembering it differently." is "The annals letter comes on each anniversary of the
+    landing. Past years can be reread from the Chronicle page, one button a year."; "Whatever the council decides,
+    someone at the table will hold it against them." is "Read the line under each answer before choosing: it says who
+    would be glad, who would mind and what it costs."; "Give the old dog the warm spot by the fire. Someone will
+    notice.", "Turn away enough beggars and word gets around.", "Not every colony starts with a clean slate." and "The
+    colony remembers its hard winters by name..." each say where to look or what to do). Figures of speech said plainly
+    ("Fed outweighs feared in what the colonists say of it." is "Once the colony has fed it, the colonists talk of it as
+    an animal they feed, whatever else was decided about it."; "Welcome them and the thread between you deepens; turn
+    them away and it frays" is "the tie between you grows stronger ... it weakens"; "stories that hear the world" is
+    "personal stories moved on by what happens around them"; "A feeling and the world together dream deepest", "Ailments
+    color dreams", "asked in its moment", "its year is spent, with no blame", "comfort can't buy it off quickly", "at
+    the very end of the rope", "friendships with newcomers cut both ways", "prospectors who strike color", "a shiny
+    rumour on the wind", "the enemy's banners at the walls", "a restless heart", "they keep the pen"), and the marks'
+    names on "what shapes a person" ("Eyes down, thoughts their own" is "Keeps their head down and their thoughts to
+    themselves", "A hardness" is "Hardened", "Head held up" is "Holds their head up again").
+  - **Put right against the code.** Days of rest drain strain 75% faster (`strainRelief` 1.75), not "about twice" ("feelings
+    and strain"; the decrees batch fixed the decree's own text). "Reading moods" named the old rule "used to the good
+    life": it is "good things grow ordinary" now. "Everyday pressures" still said that rising standards shrink the
+    council's rewards and the game's comforts (down to 70%): that was the rule until November 2026 (`Standards.cs`
+    scales no good mood now); now good moods grow ordinary sooner, the line lower for higher standards. The seats'
+    table: the quartermaster's quarter less covers decrees too and the quartermaster gets 6% better prices, the physician
+    5% faster healing and 4% faster immunity, the herdmaster 3% more milk and wool, the marshal also the militia's drills
+    (the seats' duties). A feast day costs a 15% slower day, not "half a day's work"; three of the newest decrees mark
+    work on the map, not "five". 129 kinds of wish, not 106 (the `WishDef`s); 103 life goals, not 84, and "every life
+    goal" now lists the four animals' goals and PokéWorld's two, the only ones it lacked. The play-out counts from
+    `Tools/playout_audit.py --counts`: 980 answers (399 in 212 dilemmas, 431 in 240 events, 32 in 21 events told in
+    stages, 118 in 56 world events), 36 stages of 22 personal stories and 22 encounters, where it said 431 answers of 134
+    dilemmas and 125 events, 20 stages of 17 stories and 7 moments. About 8,500 conversation lines, not 6,900. The art
+    collector and the animal doctor come back as familiar faces (the regulars' `collector` and `vet`), which the visitors'
+    page left out. The road calls begins on what `ArcWorker_CampRoad` reads (two evenings at the camp's fire, and
+    restlessness or curiosity, freedom under 55, under half a year here, or five evenings), not "a restless heart". The
+    traditions' tip named a midsummer feast, which isn't a custom (the bonfire is); the goals list's tip called a child's
+    goal a wish. Words only: no code or def setting changed.
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the
+    names quoted from the game (settings, marks, quirks and habits, a question's answer such as "Sorry changes nothing",
+    the seats' names by age, "the beast that stays", the bands "in good heart" and "in high spirits"), the speech and
+    journal lines quoted as examples, and the pages already plain throughout (the colonist bar, goods carried by hand,
+    council meetings, on-screen panels, what you see and hear, setbacks, traits that change). `Tools/textcheck.py --base`
+    the lead branch and `Tools/almanaccheck.py --base` the lead branch find only the meant number changes: 106 and 84 on
+    the lists, the old play-out counts, the 70% of the old standards rule, the 6,900 lines; keywords, labels and links
+    unchanged.
+  - **Code map.** Text only: 15 of the 22 files (`Almanac_Council`, `_AnimalNature`, `_Animals`, `_Arcs`, `_Calendar`,
+    `_Callers`, `_Character`, `_Gossip`, `_Interplay`, `_Lists`, `_PlayOut`, `_Pressures`, `_Talk`, `_Visitors`,
+    `_Weather`); the to-do entry's file list.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line, and the two added rows
+    in "every life goal".
+  - **Try in the game.** Open the Almanac, Council: "feelings and strain" says days of rest drain strain 75% faster;
+    "reading moods" names "good things grow ordinary"; "offices and elections" gives the quartermaster's quarter less on
+    decrees too; "every life goal" says 103 and lists the animals' and PokéWorld's goals; "visitors on the map" names the
+    art collector and the animal doctor among the faces that come back.
+  - **Mods that would help.** None for this; it is text only.
 - 0.270.2, **Plain words: the gods and faith**
   (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
   you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council's Almanac pages in plain words
+
+*19 November 2026, version 0.270.3*
+
+- The Almanac's pages about the council and the colony's life are in plain words: tips give advice instead of jokes, and figures of speech say what they mean.
+- Numbers on those pages that no longer matched the game are put right: days of rest drain strain 75% faster, the quartermaster's saving covers decrees, and the counts of wishes, life goals and answers that play out are current.
+- The life goals list now includes the animals' and PokéWorld's goals, and the art collector and the animal doctor are listed among the visitors who come back.
+
 ## The gods' words in plain words
 
 *19 November 2026, version 0.270.2*
