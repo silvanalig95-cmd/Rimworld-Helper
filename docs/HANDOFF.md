@@ -292,8 +292,26 @@ repo.
   (`Council_Arc_Thoughts`, `Rimfolk_Arc_Lives_Thoughts`, the ThoughtDefs in the story files) and the quirks and names
   they leave (`Council_Arc_Keepsakes`: character). The region's follow-ups and the memory of single colonists
   (`World/Region/FollowUps.cs`, `World/ColonistMemory.cs`) are the region's, not personal stories: for the region map.
-  Still to pick, when the player asks: the gods and faith, council questions, the peoples, camps and visitors, the
-  region map, council and decrees, the Almanac, What's new.
+  Council questions, part 1, done (19 November 2026, the same go; built, not released): the entry "Plain words: council
+  questions, part 1" above the newest release line. Files taken: the 29 files `Defs/DilemmaDefs/Council_*.xml`
+  (`Council_Dilemmas`, `2`, `3`, `_ComingOfAge`, `_Customs`, `_Customs2`, `_Goals`, `_Health`, `_Life`,
+  `_Mods_Hospitality`, `_Pets`, `_Reputation`, `_Seasons`, `_Secrets`, `_Social`, `_Strangers`, and their variants
+  files `Council_Dilemmas_Variants`, `2_Variants`, `3_Variants`, `_AfterBattle_Variants`, `_Customs_Variants`,
+  `_Goals_Variants`, `_Life_Variants`, `_Reputation_Variants`, `_Seasons_Variants`, `_Secrets_Variants`,
+  `_Social_Variants`, `_Strangers_Variants`, `_Strangers_Variants2`: each question's name, its texts and the variants'
+  texts, the answers' labels, the names of what plays out, the customs' names and the greyed answers' reasons; the
+  outcomes, done in 0.251.0, read again for agreement), and the Keyed words those questions use (the answers'
+  descriptions in `Rimfolk_DilemmaImpact.xml`, the letter's, the dilemmas page's and the traditions' keys of
+  `ColonyCouncil.xml`, `Rimfolk_Choices.xml`, the planting day's and the play-outs' keys, read again: plain since the
+  interface batches but for four lines). Left as the player said: the lines said at the gatherings the answers set going
+  (the effects' `lines`: speech) and the moods the answers give (`ThoughtDefs`). Still to do: council questions, part
+  2, the 26 files `Defs/DilemmaDefs/Rimfolk_Dilemmas_*.xml` (`Animals`, `Animals2`, `Banish`, `Beast`, `Camps`,
+  `Camps_Variants`, `Choices`, `Customs_New`, `Customs_YearFour`, `Faith`, `Family`, `Fealty`, `Guests`, `Lives`,
+  `Lives_Customs`, `Lives_Variants`, `Match`, `MovingOn`, `New`, `Pokemon`, `SacredDay`, `TownKin`, `Truce`,
+  `Variety2`, `Variety3`, `YearFour`) with the Keyed words of their own workers (`Dilemmas/DilemmaWorkers_*.cs`: keys in
+  `Rimfolk_DilemmasVariety`, `Rimfolk_Variety2`, `Rimfolk_Variety3`, `Rimfolk_YearFour`, `Rimfolk_Faith_Council`).
+  Still to pick, when the player asks: the gods and faith, council questions part 2, the peoples, camps and visitors,
+  the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -306,6 +324,75 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: council questions,
+  part 1** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The thirteenth batch of the plain-words pass, the first half of the council's questions: the 29 `Council_*`
+  dilemma files (the thief in the stores, the feud, the cook's feast, the customs through the year, life goals,
+  illness and the camps' troubles, the colony's name on the roads, secrets come out, friends and rivals, strangers at
+  the gate): each question's name and texts with its variants, the answers' labels, the names of what plays out, and
+  the Keyed words of what each answer does. File list in the to-do entry "Rimfolk's text in plain words"; part 2 (the
+  26 `Rimfolk_Dilemmas_*` files) is still to do.
+  - **What changed.** About 2,630 lines read in the 29 files (some 1,550 in this batch's fields, the other 1,080 the
+    outcomes of 0.251.0, read for agreement) and the 800 Keyed lines of what each answer does; 327 rewritten (220
+    question texts and variants, 103 names and answer labels, 4 Keyed). Riddling or cut-short openings said plainly
+    ("Still chewing, pockets stuffed full. That was how {B_nameDef} found {A_nameDef} in the storeroom" is
+    "{B_nameDef} found {A_nameDef} in the storeroom in the middle of the night, still chewing"; "Four pieces.", "One
+    minute on the table, that was all.", "Missing from the stores this week:"), twists and punchlines at the end ("Most
+    of them begin with "High."", "Items two through eleven assume item one", "{A_nameDef} can recite every course, and
+    did", "{B_nameDef} has offered to sign the copies", "and both are probably right"), images and made-up phrases
+    ("the biting things" are insects, "worn each other down to the nerve", "the winter dark has got into
+    {A_objective}", "as calmly as if asking for the salt", "a voice the council had to lean in to hear"), and colon
+    lists as plain sentences (the planting day, the midsummer swim, the funeral plan, the hoarder's haul, the tally of
+    the hungry at the gate). Question names that were images say what the question is about: "a path: the workshop",
+    "the healer", "the scholar" and "the wall" are **an apprentice crafter**, **healer**, **scholar**, **fighter**; "a
+    hungry look" **a plan to eat a pet**; "blood on old hands" **a violent past**; "the one still breathing" **a wounded
+    enemy**; "a voice through the door" **a prisoner's plea**; "elbow to elbow" **too crowded**; "the empty chair" **a
+    missed meeting**; 36 more (46 names and 55 answers in all). Answers that were sayings say what the council does
+    ("Hands before books" is **Put them on the building crew instead**, "Play is a child's work" **Tell them to go and
+    play**, "Fill their pot" **Give them food**), and answers that pay out silver name the sum the effect takes ("Send
+    silver instead" **Send 80 silver instead**, "Pay for the bite" **Pay 50 silver for the bite**, "Send {X_nameDef} off
+    with a gift" **with 50 silver**). DESIGN.md's list of the answers that play out uses the new names;
+    `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py` (it also picks up seven newer questions of
+    other rounds).
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("{A_nameDef} says it was a small
+    jar", "{A_nameDef} says it was a compliment", "{B_nameDef} would blame {A_objective} for the rain"). Quoted speech
+    keeps the speaker's voice; the faiths' words in the customs keep theirs (the tree song, the vigil, the water's
+    blessing, the ancestors' supper); the customs' names stay as they are (a tradition in a save is known by its name);
+    the one-word name "inseparable" stays (`Tools/textcheck.py` holds a single word as an identifier). The lines said at
+    the gatherings the answers set going (the `lines` of the feast, bonfire, gathering, toast and words effects: speech)
+    and the moods the answers give (`ThoughtDefs`) are on the player's leave list; the outcomes are 0.251.0's. Every
+    tag, placeholder and key kept (the rewrite tool refused any line whose placeholder people, grammar symbols or tag
+    block changed, and `Tools/textcheck.py --base` on the rewritten files finds nothing broken). No line of
+    `Lean/ShippedLines.cs` is in these files.
+  - **Put right against the code.** "Take {PET_nameDef} on one last walk" read as putting the animal down, but the
+    answer walks it out and lets it go (`DilemmaEffect_ReleasePet`: it leaves the land alive); it is "Walk
+    {PET_nameDef} out past the walls and let {PET_objective} go". "Let {A_nameDef} off the chores for a season" and
+    "Keep {A_nameDef} under watch for a season": nothing lasts a season (the first gives the rest of today's work hours
+    off, `DilemmaEffect_Rest`; the second gives moods only), so the answers no longer name one. "Repairs first,
+    celebrations later": no celebration follows (a work party and the mood of none), so it is "Get straight to the
+    repairs". The midsummer bonfire's question promised "the night shift let off until dawn", but the answer lights a
+    fire with music for five or six hours and changes no one's hours; it says singing and drinking late into the night
+    (also the variant's "until the sky goes pale"). The remembrance night was to cost "a day of everyone's work", but it
+    is an evening gathering (from 17 h, four to five hours); it says a late night. Checked and true as written: every
+    silver sum in an answer and in the questions' texts against the effect that pays or takes it (25 to 400: the
+    hunters' 300 and the false trail's 150, the pirates' 400 and half of it, the tonic's 100 and 60, the guest's 150),
+    the greyed answers' skill levels (Animals 4, Social 6, Medicine 2), the lanterns along the walls, the torch at each
+    door and the fire of the harvest dance. Still narrative and left (no outcome text was redone): "One free afternoon
+    in three" and the storeroom corner for the crowded colonist play out only once or not at all, as the outcomes of
+    0.251.0 tell it.
+  - **Code map.** No code changed: def text in the 29 `Council_*` files; four lines of `Rimfolk_DilemmaImpact.xml`
+    ("A gamble, this one" and "A long shot, this one" said plainly, "The old way would hold" is the old custom carrying
+    on, a vendetta "laid down" is given up); DESIGN.md's play-out list; `docs/dilemma-balance.md`.
+  - **Can't be checked without the game.** How the plainer questions read in the letter beside the outcomes and the
+    gathering lines, which keep their voice; whether the new names read well in the letter's title ("Dilemma: A plan to
+    eat a pet") and on the dilemmas page.
+  - **Try in the game.** With dev mode on, open the council window's decrees page and press "Dev: dilemma now" a few
+    times; read each letter, the line under each answer and the title. Wait for a coming of age (an apprentice crafter,
+    healer, scholar or fighter), a pet growing old ("Walk ... out past the walls and let ... go": the pet leaves the
+    land), the midsummer bonfire and a life goal (time off for a dream: the rest of the day off).
+  - **Mods that would help.** None for this; it is text only.
 - 0.268.4, **Plain words: personal stories**
   (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
   you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive

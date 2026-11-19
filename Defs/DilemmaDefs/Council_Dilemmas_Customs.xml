@@ -51,7 +51,7 @@
         <ways><tradition>4</tradition><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the planting day</label><count>6</count><tasks><li>Sow</li></tasks><near><li>Fields</li></near><hours>6~13</hours><duration>3~4</duration><pool>Council_Pool_PlantingWork</pool></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a few words at the field's edge</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~20</hours><duration>0.75~1</duration><pool>Council_Pool_PlantingWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word at the field's edge</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~20</hours><duration>0.75~1</duration><pool>Council_Pool_PlantingWords</pool></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Blessing</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_PlantingWatch" />
