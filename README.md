@@ -4692,6 +4692,26 @@ a **red cord** on the hunter's sleeve (the Hunter expertise with Vanilla Skills 
 **manhunt** and keep the hides of what they fell, and burn out insect **hives** near the colony with torches, molotovs or an
 incendiary launcher by their age, beside the colony's fighters or alone.
 
+**The peoples' own events, the fifth round.** Eleven more, from the Quiet Bell, the Circuit of Tamers and the Wheel, each
+only while that people is at peace with the colony. With Anomaly, when bodies left lying on the colony's land **rise as
+shamblers**, the **Bell's** gravewardens come running to put them down beside the colony, bury them beyond the wall with
+the bell rung over each, and ask the colony to bury its dead from now on (it may promise, and the Bell remembers). A season
+after the Bell buried raiders there, two **mourners of the raiders' people** come under the Bell's protection to stand an
+hour at the graves, and a people at war with the colony may then offer a truce. Two sextons make the colony's graves a
+**grave-garden** of flagstones, roses and a bell-post, where the ground is quiet, a funeral is a fuller rite and, with
+Anomaly, the dead do not rise; and after a fight leaves a dozen dead or more, the Bell camps at the **field of the fallen**
+to dig a row of graves and ring the bell at dusk, the dead's peoples sending mourners, or coming to take their dead home.
+A tamer of the **Circuit** finishes the training of one of the colony's animals in an afternoon and leaves it **bonded** to
+the colony's best hand with animals (the Trainer expertise with Vanilla Skills Expanded); another brings a rare **egg from
+the crater** (Dinosauria, Megafauna, ReGrowth, Alpha Animals or PokéWorld first) to be kept warm and hatched, bonding with
+whoever tended it most, and comes back a season later to see it grown; while a great fair runs, the Circuit pitches a
+**bout-ring** by the colony and the colony's best challenger takes home its token and an egg. The **Wheel's** night crew
+**mends** the colony's walls, doors and turrets by lamplight the night after a raid, paid in the raiders' broken gear; a
+fixer takes a colonist's weapon or armour to their cart for a day and brings it back **a quality better**; with Vehicle
+Framework and Vanilla Vehicles Expanded a fixer builds the colony **a wagon of its own** (a small truck from the industrial
+age) at the gate from its stores; and when a Wheel town moves near, its **yard stops by** for three days at the edge with a
+scrap market and a mending tent.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

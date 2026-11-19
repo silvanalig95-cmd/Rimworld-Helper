@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 5
+
+*19 November 2026, version 0.269.0*
+
+- The Quiet Bell's gravewardens come running when the colony's unburied dead rise, bury them beyond the wall with the bell rung over each, and ask the colony to bury its dead from now on.
+- A season after the Bell buries raiders, mourners of the raiders' people come to stand at the graves, and a people at war may then offer a truce.
+- Sextons can make the colony's graves a grave-garden of flagstones, roses and a bell-post, and after a big fight the Bell camps at the field of the fallen to bury the dead.
+- A tamer of the Circuit can finish training one of the colony's animals and bond it to the best handler, or bring a rare egg to hatch that bonds with whoever looks after it most.
+- While a fair runs, the Circuit pitches a bout-ring by the colony, and the colony's best challenger wins a token and an egg.
+- The Wheel's crew mends what a raid damaged overnight, and a fixer can take a colonist's weapon or armour away for a day and bring it back a quality better.
+- With Vehicle Framework and Vanilla Vehicles Expanded, a fixer builds the colony a wagon or small truck at the gate, and a Wheel town that moves near sends its yard to camp three days with a scrap market and mending.
+
 ## The council's questions in plain words
 
 *19 November 2026, version 0.268.5*

@@ -405,6 +405,8 @@ namespace ColonyCouncil
                     case "sow": FleckMaker.ThrowDustPuff(Place.IsValid ? Place.Cell : on.Position, map, 0.5f); break;
                     // Talk or a cord tied (round 4's examination and page): nothing over their heads but the bar.
                     case "quiet": break;
+                    // A beast put through its paces (round 5's tamers): dust kicked up at its feet.
+                    case "train": FleckMaker.ThrowDustPuff(on.Position, map, 0.6f); break;
                     default: FleckMaker.ThrowMetaIcon(on.Position, map, FleckDefOf.HealingCross); break;
                 }
             };

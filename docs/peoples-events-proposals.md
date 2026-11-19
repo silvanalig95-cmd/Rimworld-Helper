@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -359,24 +359,24 @@ Where it lives:
 - The undertakers (callers); mourning (world event).
 - Favoured camps: mourners, penitents, procession.
 
-35. **The field that stirs** (Anomaly).
+35. **The field that stirs** (Anomaly). *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - When the colony's unburied dead rise as shamblers, three gravewardens come at a run and put them down beside the colony (the game's fight).
     - Then they bury them beyond the wall with the bell rung, and ask the colony to bury its dead from now on.
     - Ages: torches and maces, then molotovs and incinerators.
     - Reuses: the hunt's assault lord, the Bell's burial. **Medium.**
 
-36. **Mourners from the other side.**
+36. **Mourners from the other side.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - A season after the Bell buried raiders the colony killed, two mourners of the raiders' people come under the Bell's escort to stand at their graves.
     - Let through for an hour, their people warm a little, and a truce can be talked of.
     - Turned away, the Bell is saddened.
     - Reuses: truces, the Bell's graves, the escort lord. **Medium.**
 
-37. **A grave-garden for the colony.**
+37. **A grave-garden for the colony.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - Two sextons work three days laying stones and roses among the colony's graves, and set up a bell-post, a building of the colony's.
     - From then on, visiting the graves gives "quiet ground" (a mood), and a funeral there is a fuller rite. With Anomaly, the dead buried there do not rise.
     - Reuses: the relay mast's building pattern, funerals. **Medium.**
 
-38. **(camp) The field of the fallen.**
+38. **(camp) The field of the fallen.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - After a fight leaves a dozen or more dead on or near the land, bell-keepers and sextons camp three to six days, dig a row of graves beyond the wall, and ring the bell at each dusk.
     - They ask for wood and cloth. Mourners of the dead's peoples come to stand at the graves, and each of those peoples thinks better of the colony.
     - It can turn: the field stirs (35), or the dead's people send a band to take them home (talked down, or a fight against the camp).
@@ -389,7 +389,7 @@ Where it lives:
 - The vet (caller); the fair (world event).
 - Favoured camps: trainers (PokéWorld), beast show, beast-catchers.
 
-39. **(gift) The bond freely given.**
+39. **(gift) The bond freely given.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - A roaming tamer finishes one of the colony's animals' training in an afternoon at the pen, with the colony's best hand at beasts beside them.
     - The beast learns every task it can, and is bonded to that hand. The hand gets a lesson, and with Vanilla Skills Expanded the Trainer expertise.
     - Mods: PokéWorld (a Pokémon trained the same way).
@@ -401,13 +401,13 @@ Where it lives:
     - Tribal and medieval: she takes the beast to their stables to live out its days, and leaves a young one of its kind.
     - Reuses: the operation, the stray's lead. **Medium.**
 
-41. **(gift) An egg from the crater.**
+41. **(gift) An egg from the crater.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - A tamer brings a rare egg of a beast the land doesn't have (Dinosauria, Megafauna, ReGrowth, Alpha Animals or PokéWorld, else the base game's) and asks the colony to hatch it.
     - It must be kept warm until it hatches. The beast is the colony's, bonded to whoever tended it most.
     - The tamer comes back a season later to see it grown.
     - Reuses: the egg-trader, arrivals. **Medium.**
 
-42. **(camp) The Circuit's ring.**
+42. **(camp) The Circuit's ring.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - When the fair comes, six to ten tamers pitch a bout-ring by the colony for four to six days, with a bout each afternoon, and the colony's hands are invited to challenge.
     - Bouts use the friendly bout's rules: the winner by skill, a rare bruise through the harm budget, shown.
     - The colony's best wins a token and an egg, and the region hears of it.
@@ -420,22 +420,22 @@ Where it lives:
 - The tinker (caller); iron scarce (world event).
 - Favoured camps: salvagers, travelling smith, prospectors.
 
-43. **Mend it tonight.**
+43. **Mend it tonight.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - The night after a raid, a crew with lamps goes round mending the colony's damaged walls, doors, turrets and furniture (sparks, a bar), while a runner gathers the raiders' broken gear.
     - They are paid in that scrap and a little silver, and are gone by morning.
     - Reuses: the scrap-runners' carrying, queued play-out work. **Medium.**
 
-44. **(gift) Made better.**
+44. **(gift) Made better.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - A fixer takes one colonist's own weapon or armour out to their cart for a day.
     - It comes back a quality higher (masterwork at most) and fully mended, paid in silver and steel.
     - Reuses: the fixer's worker. **Small.**
 
-45. **A wagon of our own.**
+45. **A wagon of our own.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - With Vehicle Framework and Vanilla Vehicles Expanded, a fixer builds the colony a vehicle of its age from its steel and scrap, over a day at the gate: the wagon in the medieval age, a car or truck in the industrial.
     - Only with those mods.
     - Reuses: play-out work. **Large** (Vehicle Framework by name).
 
-46. **(camp) The Wheel stops by.**
+46. **(camp) The Wheel stops by.** *(Built, round 5: `Source/ColonyCouncil/Peoples/Events5/`.)*
     - When a Wheel town's move brings it within a few tiles, its yard camps three days at the map's edge: carts, a mending tent, and a scrap market (the game's trading).
     - The colony buys, sells scrap, and has things mended.
     - It can turn: a fixer and a colonist argue a price (the camp quarrel), or the yard decides to stay a few days longer.

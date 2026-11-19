@@ -33,7 +33,8 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is built, not released (the entry above the newest release line).
+   lists each round's numbers). Round 4 is released (0.268.0); round 5 is built, not released (the entry above the newest
+   release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -149,15 +150,15 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 is built, not released,
-  on the player's go of 19 November 2026 ("Events sounds great"), and rounds 5 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), and round 5
+  built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 6 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
-  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Built, not released (19 November 2026).
-  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
+  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
+  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Built, not released (19 November 2026).
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
@@ -324,6 +325,98 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.269.0, **The peoples' own events, round 5**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 35, 36, 37, 38, 39, 41, 42, 43, 44, 45 and 46 of `docs/peoples-events-proposals.md` (eleven, all built): the Quiet
+  Bell's gravewardens when the colony's unburied dead rise (Anomaly), mourners of the raiders' people at the graves the Bell
+  dug, a grave-garden laid out among the colony's graves and a camp at the field of the fallen; the Circuit of Tamers' bond
+  freely given, an egg from the crater and a bout-ring while a fair runs; the Wheel's crew mending by night after a raid, a
+  piece made better at their cart, a wagon of the colony's own (Vehicle Framework and Vanilla Vehicles Expanded) and the
+  yard that stops by when its town moves near. DESIGN.md "The peoples' own events, round 5" has every rule; README "The
+  peoples' own events, the fifth round"; the Almanac's peoples' page, *Of their own: gifts, trust and camps*
+  (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events5/` (new): `PeopleEvents5Math.cs` (pure, linked), `PeopleEvents5Book.cs` (a
+    game component: the burials of the risen and the colony's promise, the mourners due, the gardens, the crater eggs and
+    their tenders, the pieces at the cart and a holder that keeps them off every map, the yards due, the raids rolled),
+    `PeopleEvents5.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv5Work` with a queue and its `PEv5Work` marks,
+    `JobDriver_PEv5Bury`), `FieldStirs.cs` (35), `OtherSideMourners.cs` (36), `GraveGarden.cs` (37, and `Patch_GardenQuiet`),
+    `FieldOfFallen.cs` (38, `CampWorker_FieldOfFallen` and the dead's people's own event), `BondGiven.cs` (39), `CraterEgg.cs`
+    (41, and the tamer's return), `CircuitRing.cs` (42, `CampWorker_CircuitRing`), `MendTonight.cs` (43), `MadeBetter.cs`
+    (44), `WagonOfOurOwn.cs` (45), `WheelStopsBy.cs` (46, `CampWorker_WheelYard`), `PeopleEvents5Debug.cs`. Small hooks:
+    `PeopleEvents4.Hour` and `Hourly` (round 5's, one line each), `HappeningWorker_BellForTheDead.Resolved` (the burial beyond
+    the wall marks the mourners' day), `HappeningWorker_TamerBout.Done` (a bout at the ring goes by the ring's own book),
+    `WheelTowns.Move` (a town moved near brings its yard), `FactsMath` (the three camps' tags), round 1's `PeopleWorkOn` (a
+    "train" mark), round 4's `BoatBuilders` (`Vehicle(name)` and `MakeVehicle`, the dinghy's reflection shared). Defs:
+    `Rimfolk_Events_PeopleEvents5.xml` (thirteen events; six fired from code: the gravewardens, the mourners, the dead's
+    people at the field, the hatchling grown, the night crew, the yard), `Rimfolk_CampKinds_PeopleEvents5.xml` (three camps),
+    `Rimfolk_PeopleEvents5_Misc.xml` (thirteen jobs, the bell-post, the Circuit's token, three moods), Keyed
+    `Rimfolk_PeopleEvents5.xml`, `Textures/ColonyCouncil/Things/BellPost.png` (drawn by `Tools/make_bell_post.py`). Tools: the
+    play-out audit's effects and seven skips, the save model's lists.
+  - Decided here (open in the proposals): the risen are told apart by Rimfolk noting each hour whose bodies lie unburied on
+    the land, so a shambler that walked in from elsewhere does not bring the Bell (but the gravewardens fight every shambler
+    up once they are there); the letter comes once they are already fighting, so no answer means the burial (the first
+    answer), and the second answer is the colony's promise to bury its dead, broken only if its dead rise again within sixty
+    days of the gravewardens leaving; mourners of a people at war with the colony come as the Bell's guests, as a parley's
+    envoy does, and "a truce can be talked of" is that people's own truce letter afterwards (at 0.5, always with the colony's
+    talker standing with them); the grave-garden's stones are flagstones of the land's own rock and its roses the game's,
+    its keep six meals, and the bell-post alone is the cheaper second answer; "a funeral there is a fuller rite" is a memory
+    for those at a funeral at one of its graves (the game's ritual or any Rimfolk play-out at the grave) and the post rung;
+    "the dead buried there do not rise" is already the game's rule for the buried, so the garden keeps a body lying in its
+    ground from rising (with the deeper game hooks); the field's stirring is Rimfolk's only rising, rare (0.12 once a stay)
+    and only with Anomaly, the void awake and Rimfolk's world events allowed to bring a fight; the dead's people at peace with
+    the colony ask at the gate, those at war with it and the Bell send a band against the camp (the camps' own), and "talked
+    down" is the talker's Social on the card; the bond's afternoon is where the beast stands, the hand kept at its side; the
+    egg's "tended most" is hours spent within three cells of it or carrying it; the ring's champion is the colony's challenger
+    with the most wins, crowned as the ring leaves; the night crew's pay in gear is the raiders' weapons and clothes lying
+    forbidden, broken or tainted; the piece is kept by the record while the fixer walks off the map to the cart, so a fixer
+    lost on the road never takes it; the wagon is `VVE_Wagon` before the industrial age and `VVE_Mule` (else
+    `VVE_Highwayman`) after (the catalogue has no tech levels for vehicles: the choice is mine, see below), from the colony's
+    wood and steel or steel and components; the yard comes within six tiles, and its argument needs a colonist at the stall
+    beside the fixer.
+  - Harm: only the ring's bruise, the friendly bout's own (`HarmKinds.TamerBout`, one in 25, shown); the gravewardens' fight,
+    the band against the field's camp and the field's stirring are the game's own. No new harm kind.
+  - Tests: `Tools/Tests/PeopleEvents5Tests.cs` (about 220 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the shamblers told apart from the ones that walk in, the
+    gravewardens' run and their graves with the undertakers' own jobs, the bell's sound over each, the mourners as the
+    Bell's guests and their lords side by side, the colonist kept beside the grave, the truce letter; the sextons' flagstones
+    by `SetTerrain`, the roses spawned in bloom, the bell-post raised, the quiet ground and the fuller rite from the game's
+    ritual lord, `Patch_GardenQuiet` on the death pall; the field's dig and bury jobs under the camp's lord, the dusk ring,
+    the mourners walking to the row, `MutantUtility.ResurrectAsShambler`, the dead carried off by the game's steal job, the band
+    against the camp; the beast held and trained with the hand beside it, the game's training to the end, the bond; the
+    crater egg handed over, its tending, its hatching and the newborn found by where it lay, the tamer's return; the ring's
+    animals, the colony's challenger's bout and the hook in the bout's end, the tamers' own spar, the token tied on; the
+    night crew's queues of buildings and the gear gathered into a pack; the piece taken off a colonist into the record's
+    holder, the fixer walking off and back in a day later, the piece worn again; the wagon's goods set down and used up,
+    Vehicle Framework's `GenerateVehicle` for `VVE_Wagon` or `VVE_Mule` at the gate; a town's move bringing its yard, the
+    yard's stall and mending tent, the fixer's mending of worn things, the argument and the stay).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 5: what the record keeps (log)" shows the state and what each
+    event would find here; the drawn events with the game's own incident tool): 1. The field that stirs (Anomaly): a few
+    raiders' bodies left lying, then the game's death pall (or any shamblers on the map and "Peoples' events 5: the
+    gravewardens to the risen now"); they come in fighting; afterwards the graves beyond the wall, the bell, their word. 2.
+    The mourners: the Bell's bell for the dead (`Rimfolk_Evt_BellForTheDead`), first answer; "Peoples' events 5: the mourners
+    due now"; let them through, or with a colonist; with a people at war, the truce letter. 3. The grave-garden: three graves
+    of the colony's together: `Rimfolk_Evt_GraveGarden`; three days of stones and roses and the post, or the post alone; a
+    colonist at leisure there (the mood), a funeral at one of its graves (the fuller rite). 4. The field of the fallen: a
+    dozen bodies lying (a big raid): `Rimfolk_Evt_FieldOfFallen` (or "Peoples' events 5: one of their camps here now..."); the
+    row of graves, the dusk's bell; "Peoples' events 5: the field of the fallen turns now..." for the mourners, the stirring
+    or the dead's people. 5. The bond: an animal with tasks left and a hand at Animals: `Rimfolk_Evt_BondGiven`; the
+    afternoon's training, the bond, the expertise with VSE. 6. The egg: `Rimfolk_Evt_CraterEgg`; keep it warm near someone;
+    "Peoples' events 5: the crater egg hatches, or its tamer is due, now" twice (the hatching, then the tamer's return). 7.
+    The ring: start `Council_WS_Fair` ("Start world event..."), then `Rimfolk_Evt_CircuitRing` (or the camp now); send a
+    challenger from the camp's page and "Peoples' events 5: the ring's bout now"; the token when they leave. 8. The night
+    crew: damage some walls, "Peoples' events 5: the night crew now" (at night); the mending and the gear gathered. 9. Made
+    better: a colonist with a weapon or armour below masterwork: `Rimfolk_Evt_MadeBetter`; the hand-over, then "Peoples'
+    events 5: the fixer back from the cart now"; the piece a grade better. 10. The wagon (Vehicle Framework and Vanilla
+    Vehicles Expanded): `Rimfolk_Evt_WagonOfOurOwn`; the goods carried out and set down, the day's work, the vehicle. 11. The
+    yard: "Peoples' events 5: a Wheel yard due here now" (a Wheel at peace); the camp at the edge, trade, mending, scrap.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Anomaly, Vanilla Skills Expanded,
+    Vehicle Framework with Vanilla Vehicles Expanded, Dinosauria, Megafauna, ReGrowth 2 and its Extinct Animals and Boiling
+    Forest, Alpha Animals, PokéWorld, Vanilla Animals Expanded). The bell-post is drawn here; Outland - Furniture and Decor (in
+    the player's subscriptions, not enabled) has gravestones the grave-garden could set by each grave if it were enabled.
+    The vehicles' tech levels are not in the catalogue, so which of Vanilla Vehicles Expanded's vehicles is "a car or truck
+    in the industrial age" (`VVE_Mule`, else `VVE_Highwayman`) is worth a look in the game.
 - 0.268.5, **Plain words: council questions,
   part 1** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

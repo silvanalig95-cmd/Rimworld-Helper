@@ -9988,6 +9988,122 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `Interplay.Notify_GatheringOver`, the river folk's catch and nets, round 2's knot night rest, `FactsMath`, round 1's
     `PeopleWorkOn` ("quiet" mark), `Expertise` (giving one). Dev actions "Peoples' events 4: ...". The Almanac's peoples'
     pages, *Of their own: gifts, trust and camps*.
+- **The peoples' own events, round 5** (the player's go, 19 November 2026: "Events sounds great"; released 0.269.0)
+  `docs/peoples-events-proposals.md`, items 35, 36, 37, 38, 39, 41, 42, 43, 44, 45 and 46 (the Quiet Bell, the Circuit of
+  Tamers and the Wheel); `Source/ColonyCouncil/Peoples/Events5/`, the pure rules in `PeopleEvents5Math.cs`,
+  `Tools/Tests/PeopleEvents5Tests.cs` ("the peoples' events, round 5: "). As rounds 1 to 4: only from a people of its calling
+  at peace (`PeoplesD.Friendly`), in the Visitors group, base chance 0.4 to 0.7, 30 to 60 days apart and never in the first
+  ten days, every age in its own form, played out on the map. Six come from code at their moment (base chance 0,
+  `PeopleEvents2.Fire`): the gravewardens when the dead rise, the mourners a season on, the dead's people at the field, the
+  tamer back to see the hatchling grown, the night crew after a raid and the yard when its town moves near; the
+  gravewardens and the crew at a chance times the storytellers' lean on visitors.
+  - **The field that stirs** (Bell; with Anomaly; `FieldStirs`): each hour Rimfolk notes who lies dead and unburied on a home's
+    land (humanlike bodies), so a shambler up and hostile whose body lay there is one of the colony's risen dead
+    (`PeopleEvents5Math.Risen`). Once a rising at 0.5, within the hour, fifteen days apart: three gravewardens (their kind's own
+    arms by their age: maces and spades, firebombs and flamers from the industrial age) in at the edge nearest them, straight
+    into the game's assault on every shambler up. The letter asks what follows (no answer: the first): when the shamblers are
+    down, a grave each beyond the wall for their humanlike bodies, twelve at most (the undertakers' own play-out,
+    `Callers.Graves`; at once with the play-outs off), the game's small bell rung over each grave as it is filled; then their
+    word, "Bury your dead from now on, and the ground will stay quiet", +3. Or the same and the colony's promise to bury its
+    dead (+2 more; should its dead rise again within sixty days after the gravewardens have gone, the Bell hears of it, -5,
+    once). Or thanked and sent off.
+  - **Mourners from the other side** (Bell; `OtherSideMourners`): when the Bell's bell for the dead buries raiders beyond the
+    wall (its first answer), each of their peoples (three at most, never one that is everyone's enemy for good) is due a
+    season (fifteen days) on, while their graves still hold them. A bell-keeper and two mourners of that people walk in;
+    mourners of a people at war with the colony come as the Bell's guests (`SetGuestStatus`, as a parley's envoy), their own
+    lord beside the keeper's. Let through: all walk to the graves, the bell rung as they reach them, an hour there, then +5
+    with their people and a `mourned` deed; with one of the colony (the best talker) sent to stand with them (kept beside the
+    grave), +8 and the deed naming them. A people at war may then offer a truce by its own letter (`Truces.Offer`: at 0.5,
+    always with the colony's talker there). Turned away: the Bell -3. Unanswered thirty days past their day, let go.
+  - **A grave-garden for the colony** (Bell; `GraveGarden`): three or more of the colony's graves together (the most within ten
+    cells of one), no garden standing there. Two sextons. The whole garden for six meals: three days' work by day
+    (`Rimfolk_PEv5_Stone`, `_Rose`, `_Post`): up to thirty flagstones of the land's own stone (`Flagstone` + its rock, else
+    granite's) on the open cells round the graves, up to ten roses (the game's `Plant_Rose`, in bloom) beside them on good
+    soil, and the bell-post (`Rimfolk_BellPost`, drawn, the colony's, beauty 6, not buildable by hand) by the graves' middle,
+    its ground reaching the farthest grave (6 to 14 cells); +4. Or the bell-post alone in an afternoon, +2. Called away before
+    the post is up, there is no garden (what was laid stays). While the post stands: anyone of the colony at their leisure in
+    its ground (any recreation, a grave visited) gets `Rimfolk_Thought_QuietGround` (+3, a day); a funeral at one of its
+    graves (the game's ritual with Ideology, or the Bell's funeral or any vigil Rimfolk plays out at the grave) is watched, and
+    those who were there when it ends get `Rimfolk_Thought_FullerRite` (+4, six days), the post rung. With Anomaly and the
+    deeper game hooks, a body lying in its ground does not rise (`Patch_GardenQuiet` on `MutantUtility.CanResurrectAsShambler`;
+    the buried never rise by the game's own rule).
+  - **The field of the fallen** (Bell; a camp, `Rimfolk_Camp_FieldOfFallen`, `CampWorker_FieldOfFallen`): a dozen humanlike dead
+    or more lying on the land, not the colony's own, no threat on. Four to six bell-keepers and sextons camp three to six
+    days; a row of graves beyond the wall for the dead (sixteen at most, `PlayBurial.Plot`), dug (`Rimfolk_PEv5_Dig`, the
+    game's grave, the colony's) and filled one by one (`Rimfolk_PEv5_Bury`, carrying the body in); the bell at each dusk (a
+    bell-keeper walks to the row, `Rimfolk_PEv5_Ring`). They ask for forty wood and twenty cloth (the camps' own asking; sent
+    with them by the second answer, +2). From a day and a half, mourners of up to three peoples among the buried walk in to
+    stand at the row five hours (the Bell's guests if at war with the colony), each people +3 to +8 by its dead and
+    `mourned`. It can turn, once a stay each: at night after the first day, with Anomaly, the void awake and Rimfolk's world
+    events allowed to bring a fight, at 0.12 up to three of the dead still lying out rise (told as a threat; the gravewardens
+    may come to them); by day, at 0.2, the dead's people come for them: a people at peace with the colony at the gate (their
+    own event, `Rimfolk_Evt_FallenClaimed`: let them carry their dead off the land, one each, the game's own taking-away, +4;
+    send the colony's talker, by Social, `ClaimTalkFails` 0.75 less 3.5% a level, and they leave the dead with the Bell, +2,
+    else as refused; or refuse: -4, and if at war with the Bell a band against its camp (`CampRaids.Send`), else they take
+    them anyway); a people at war with the colony and the Bell sends a band against the camp straight away. Going: +2 when
+    any were buried.
+  - **The bond freely given** (Circuit; a gift, `BondGiven`): the colony's best hand with animals (never given this gift) and a
+    beast of the colony's, grown, with tasks left it can learn and free to bond with them (a Pokémon first with PokéWorld).
+    A roaming tamer spends the afternoon with it where it stands (round 1's `PeopleWorkOn` on a beast, `Rimfolk_PEv5_Bond`,
+    a new "train" mark: dust at its feet), the hand kept at its side. Then every task it can learn is trained (the game's
+    own training, prerequisites first), it bonds with the hand (`RelationsUtility.TryDevelopBondRelation`) and takes them as
+    master, the hand learns (1,500 Animals) and with Vanilla Skills Expanded gets the Trainer expertise; +3. Or only a few
+    pointers at the gate (500).
+  - **An egg from the crater** (Circuit; a gift, `CraterEgg`): a fertile egg of a beast that neither lives wild on the land nor
+    is kept by the colony, its young able to stand the weather, never an insect's, a dryad's or a legendary Pokémon's; from
+    Dinosauria, Megafauna, ReGrowth, Alpha Animals or PokéWorld first (`EggPackages`), else the game's own, weighted by worth.
+    Handed over at the gate, its young the colony's (`CompHatcher.hatcheeFaction`), +3 (+2 more with food for the road).
+    Each hour whoever of the colony is within three cells of it or carries it has tended it an hour; when it hatches (the
+    game's own hatching, kept warm or not: a cold egg spoils and is told), the newborn by where it lay bonds with who tended
+    it most, else the keeper named on the card. A season on, the tamer comes back (`Rimfolk_Evt_CraterEggGrown`): an hour
+    with the grown beast where it stands (a step of its training, +4), or only told how it does (+2).
+  - **The Circuit's ring** (Circuit; a camp, `Rimfolk_Camp_CircuitRing`, `CampWorker_CircuitRing`): while a world event of the
+    fair's kind runs. Six to ten tamers four to six days, four torches, their animals (dogs and wolves, Vanilla Animals
+    Expanded's German shepherd; Pokémon with PokéWorld). Each afternoon (13h to 17h) the colony's challengers sent from the
+    camp's page (two a day) step up to one of their animals in turn, the friendly bout's own job (`JobDriver_TamerBout`) and
+    rules (`CircuitRing.BoutDone`, asked first by `HappeningWorker_TamerBout.Done`): won by `PeoplesDMath.WinChance`, a lesson,
+    one in 25 a bruise through the harm budget (`HarmKinds.TamerBout`), told; otherwise the tamers spar among themselves now
+    and then. Going: the challenger with the most wins (one at least) has `Rimfolk_CircuitToken` tied on (shown, no effect),
+    `Rimfolk_Thought_RingChampion` (+6, thirty days), an egg of the hatchery, a `duel` deed naming them; +5, +2 to the ring
+    besides when any fought.
+  - **Mend it tonight** (Wheel; `MendTonight`): the night after a raid (the storyteller's last big threat within a day, now
+    between 19h and 23h, no threat on), three or more of the colony's buildings damaged; once a raid at 0.5, ten days apart.
+    A fixer and two hands with lamps. Paid in the raiders' broken gear (weapons and clothes lying forbidden outside the stores,
+    below 60% or tainted, twelve at most) and `MendSilver` (40 to 250 by the hit points missing), or `MendSilverOnly` and the
+    gear kept. Through the night each takes the three damaged buildings nearest them (`Rimfolk_PEv5_Mend`, sparks and a
+    lamp's glow, a bar, each mended whole), the last of them gathering the gear into their pack (`Rimfolk_PEv5_Gather`);
+    gone at first light whatever is left, +3.
+  - **Made better** (Wheel; a gift, `MadeBetter`): a colonist's own equipped weapon or worn armour (sharp armour 0.2 or more)
+    with a quality below masterwork, the dearest. Paid `BetterSilver` (80 to 800, three tenths of its worth) and
+    `BetterSteel`, or half again in silver alone. The fixer takes it at the colonist's side (`Rimfolk_PEv5_HandOver`), the
+    piece kept by the record off every map (`PeopleEvents5Book.held`), and walks off to their cart beyond the edge; a day on
+    walks back in and hands it back (`_HandBack`): a quality higher (masterwork at most), whole, worn or carried again; +2.
+    Should the fixer not come back (dead, their people at war, the colonist away), a runner brings it to the gate, made
+    better all the same.
+  - **A wagon of our own** (Wheel; with Vehicle Framework and Vanilla Vehicles Expanded; `WagonOfOurOwn`): by the colony's age,
+    `VVE_Wagon` before the industrial age (120 wood and 30 steel), `VVE_Mule` (else `VVE_Highwayman`) after (150 steel and five
+    components), and 150 or 350 silver; open ground by the gate for it. The goods carried out to the fixer and set down
+    where they build; a day's work in turns (`Rimfolk_PEv5_Frame`, sparks), the colony's crafter beside them learning if sent
+    (the second answer, 2,500 Crafting over the day); then the goods are used up and the vehicle stands there, the colony's
+    (`BoatBuilders.MakeVehicle`, Vehicle Framework's own way by reflection). Never finished: the goods left for the colony.
+    +4.
+  - **The Wheel stops by** (Wheel; a camp, `Rimfolk_Camp_WheelYard`, `CampWorker_WheelYard`): a Wheel town's move
+    (`WheelTowns.Move`) to within six tiles of a home brings its yard within the day (`Rimfolk_Evt_WheelStopsBy`). Five to
+    eight for three days at the edge nearest the colony: their trader (the game's trading), a stall, a mending tent, pack
+    animals; nothing left behind. Asks: the colony's worn clothes and weapons mended where they are (the fixer's own mending,
+    `VisitorServices.Mend`, at `YardMendPrice`, a third of the wear's worth), its scrap sold (the scrap-runners' price), forty
+    wood for their forge (theirs to ask). It can turn, once a stay each: when one of the colony is at the stall beside the
+    fixer, at 0.3 they argue over a price (the camp's tension +6, the mending a tenth dearer); on the second day at 0.35 the
+    yard stays two days longer. +3 going when they traded or mended.
+  - Harm of Rimfolk's own: only the ring's bruise, the friendly bout's own kind through the harm budget; the fights (the
+    gravewardens', a band against the field's camp) and the field's stirring are the game's own (the stirring only with
+    Anomaly and while Rimfolk's world events may bring a fight). No new harm kind. Saved: `PeopleEvents5Book` (the burials,
+    the promise, the mourners, the gardens, the eggs, the pieces at the cart and the cart's holder, the yards, the raids
+    rolled) and the camps' states, modelled in `Tools/save_estimate.py`. Small hooks: `PeopleEvents4.Hour`/`Hourly`,
+    `HappeningWorker_BellForTheDead.Resolved` (the mourners' day), `HappeningWorker_TamerBout.Done` (the ring's bouts),
+    `WheelTowns.Move` (a yard due), `FactsMath`, round 1's `PeopleWorkOn` ("train" mark), round 4's `BoatBuilders` (a vehicle by
+    name). One game hook, `Patch_GardenQuiet`. Dev actions "Peoples' events 5: ...". The Almanac's peoples' pages, *Of their
+    own: gifts, trust and camps* (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 
