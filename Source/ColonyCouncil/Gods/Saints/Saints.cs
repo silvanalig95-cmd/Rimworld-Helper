@@ -183,7 +183,7 @@ namespace ColonyCouncil
 
         public static string Title(ColonySaint s) => s == null ? "" : Title(s.name, SetOf(s));
 
-        /// <summary>Why a colony saint is one, in a phrase: "who kept the sick for years".</summary>
+        /// <summary>Why a colony saint is one, in a phrase: "who cared for the sick for years".</summary>
         public static string Deed(ColonySaint s) => s == null ? "" : ("CC_Saint_Deed_" + s.reason).Translate().Resolve();
 
         /// <summary>"a saint of Hollin", "an Ancestor who walks with Hollin"; "a saint" where the colony doesn't know the god.</summary>

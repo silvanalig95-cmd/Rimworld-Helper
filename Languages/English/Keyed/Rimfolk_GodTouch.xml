@@ -15,7 +15,7 @@
   <CC_GodTouch_Bless_Morel>Since what happened at {HOME}, sickness has a weaker hold on {WHO}.</CC_GodTouch_Bless_Morel>
   <CC_GodTouch_Bless_Ennu>Since what happened at {HOME}, strangers warm quickly to {WHO}.</CC_GodTouch_Bless_Ennu>
   <CC_GodTouch_Bless_Pip>Since what happened at {HOME}, the machines give {WHO} less trouble than usual.</CC_GodTouch_Bless_Pip>
-  <CC_GodTouch_Bless_Cirrus>Since what happened at {HOME}, the wind seems to be behind {WHO} wherever they go.</CC_GodTouch_Bless_Cirrus>
+  <CC_GodTouch_Bless_Cirrus>Since what happened at {HOME}, walking and running come easily to {WHO}.</CC_GodTouch_Bless_Cirrus>
   <CC_GodTouch_Bless_Hush>Since what happened at {HOME}, the cold doesn't reach {WHO} as it did.</CC_GodTouch_Bless_Hush>
   <CC_GodTouch_Bless_Undertow>Since what happened at {HOME}, the world sounds louder and closer to {WHO}.</CC_GodTouch_Bless_Undertow>
   <CC_GodTouch_Bless_Helios>Since what happened at {HOME}, a warmth has stayed with {WHO}, and their work goes faster.</CC_GodTouch_Bless_Helios>
@@ -33,7 +33,7 @@
   <CC_GodTouch_Refuel>The fires near where it happened at {HOME} are burning full again, though nobody fed them.</CC_GodTouch_Refuel>
   <CC_GodTouch_FiresOut>The fires near where it happened at {HOME} went out all at once.</CC_GodTouch_FiresOut>
   <CC_GodTouch_Mend>The machines near where it happened at {HOME} are working again, and the worn walls and machines there look whole.</CC_GodTouch_Mend>
-  <CC_GodTouch_Charge>Every battery at {HOME} is full, though nothing changed in the power.</CC_GodTouch_Charge>
+  <CC_GodTouch_Charge>Every battery at {HOME} is full, though nothing charged them.</CC_GodTouch_Charge>
   <CC_GodTouch_ClearSky>The sky cleared over {HOME}.</CC_GodTouch_ClearSky>
   <CC_GodTouch_Snow>Snow began to fall over {HOME}.</CC_GodTouch_Snow>
   <CC_GodTouch_Rain>Rain began to fall over {HOME}.</CC_GodTouch_Rain>
@@ -47,7 +47,7 @@
   <CC_GodTouch_Inspire_Reason>It came to {PAWN} after what they saw at {HOME}.</CC_GodTouch_Inspire_Reason>
   <CC_GodTouch_Find>Something lay where it happened at {HOME}, and nobody had put it there: {WHAT}.</CC_GodTouch_Find>
   <CC_GodTouch_Healroot>Wild healroot came up where it happened at {HOME}.</CC_GodTouch_Healroot>
-  <CC_GodTouch_Ripen>The crops near where it happened at {HOME} have grown on overnight.</CC_GodTouch_Ripen>
+  <CC_GodTouch_Ripen>The crops near where it happened at {HOME} have suddenly grown a good deal.</CC_GodTouch_Ripen>
   <CC_GodTouch_Game>A group of {ANIMALS} came onto the land at {HOME}.</CC_GodTouch_Game>
   <CC_GodTouch_GameLeaves>The wild animals at {HOME} are walking off the land.</CC_GodTouch_GameLeaves>
   <CC_GodTouch_RichSoil>The ground where it happened at {HOME} has turned dark and rich.</CC_GodTouch_RichSoil>
@@ -65,7 +65,7 @@
   <CC_GodTouch_Fish>Fish lay on the bank by the water at {HOME}: {WHAT}.</CC_GodTouch_Fish>
   <CC_GodTouch_Breakdown>The {THING} at {HOME} broke down.</CC_GodTouch_Breakdown>
   <CC_GodTouch_Vanish>{COUNT} {WHAT} went missing from the stores at {HOME}, and nobody was seen taking it.</CC_GodTouch_Vanish>
-  <CC_GodTouch_Sour>{COUNT} {WHAT} in the stores at {HOME} went sour overnight and spilled out across the floor.</CC_GodTouch_Sour>
+  <CC_GodTouch_Sour>{COUNT} {WHAT} in the stores at {HOME} has gone sour and spilled out across the floor.</CC_GodTouch_Sour>
 
   <!-- ===================== Great (a god's moment and its card) ===================== -->
 
@@ -74,14 +74,14 @@
   <CC_GodTouch_Linger_Smoulder>Since then, the stone at {HOME} has stayed warm, and the miners bring up more from the rock.</CC_GodTouch_Linger_Smoulder>
   <CC_GodTouch_Linger_Bellwether>Since then, the animals at {HOME} have stayed calm, and none has turned on anyone.</CC_GodTouch_Linger_Bellwether>
   <CC_GodTouch_Linger_Ennu>Since then, the evenings at {HOME} have stayed warm: the hearths burn longer, and people talk more kindly.</CC_GodTouch_Linger_Ennu>
-  <CC_GodTouch_Linger_Pip>Since then, the wires at {HOME} have hummed: the batteries hold, and the machines run faster.</CC_GodTouch_Linger_Pip>
-  <CC_GodTouch_Linger_Cirrus>Since then, the sky over {HOME} has stayed high and clear, and the weather holds.</CC_GodTouch_Linger_Cirrus>
-  <CC_GodTouch_Linger_Selene>Since then, the moon over {HOME} has stayed close: the nights are light, and the sleepers heal faster.</CC_GodTouch_Linger_Selene>
+  <CC_GodTouch_Linger_Pip>Since then, the wires at {HOME} have hummed: the batteries lose less charge, and the powered benches work faster.</CC_GodTouch_Linger_Pip>
+  <CC_GodTouch_Linger_Cirrus>Since then, the sky over {HOME} has stayed clear, and the weather has not changed.</CC_GodTouch_Linger_Cirrus>
+  <CC_GodTouch_Linger_Selene>Since then, the nights at {HOME} have been light, and those asleep heal faster.</CC_GodTouch_Linger_Selene>
   <CC_GodTouch_Linger_Murmur>Since then, the wells at {HOME} have run clean, and the rain has come.</CC_GodTouch_Linger_Murmur>
   <CC_GodTouch_Linger_Ducat>Since then, coins have glinted in the stores at {HOME}, and traders pay better.</CC_GodTouch_Linger_Ducat>
   <CC_GodTouch_Linger_Revel>Since then, a sweet smoke has hung about {HOME}, and every pleasure there comes easier.</CC_GodTouch_Linger_Revel>
   <CC_GodTouch_Dim_Title>The dark stays at {HOME}</CC_GodTouch_Dim_Title>
-  <CC_GodTouch_Dim_Undertow>Since then, a dark has stayed over {HOME}: the lamps reach less far, and people hear things in the quiet.</CC_GodTouch_Dim_Undertow>
+  <CC_GodTouch_Dim_Undertow>Since then, a darkness has stayed over {HOME}: the lamps reach less far, and people hear things in the quiet.</CC_GodTouch_Dim_Undertow>
   <CC_GodTouch_Vein_Title>Gold in the rock</CC_GodTouch_Vein_Title>
   <CC_GodTouch_Vein_Text>A seam of gold has come up in the rock near {HOME}, glinting where there was only stone.</CC_GodTouch_Vein_Text>
   <CC_GodTouch_Herd_Title>Animals came to stay</CC_GodTouch_Herd_Title>

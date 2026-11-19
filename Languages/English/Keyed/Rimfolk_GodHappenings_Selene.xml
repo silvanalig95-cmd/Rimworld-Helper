@@ -24,17 +24,17 @@
 
   <CC_GodSelene_Water_Title>The moon in the water</CC_GodSelene_Water_Title>
   <CC_GodSelene_Water_TitleNamed>{GOD}'s face in the water</CC_GodSelene_Water_TitleNamed>
-  <CC_GodSelene_Water_Text>At the full of the moon, {PAWN} found the moon lying in the still water by the colony, bright as a face, though the moon itself was behind {PAWN_objective}. {PAWN_pronoun} stood at the water's edge a long while.</CC_GodSelene_Water_Text>
+  <CC_GodSelene_Water_Text>At the full of the moon, {PAWN} saw the moon's reflection in the still water by the colony, as bright as a face, though the moon itself was behind {PAWN_objective}. {PAWN} stood at the water's edge for a long while.</CC_GodSelene_Water_Text>
   <CC_GodSelene_Saw_Water>{WHO} saw the full moon lying in the still water at {HOME}, though the moon was behind them, and stood by it a long while.</CC_GodSelene_Saw_Water>
 
   <!-- ===================== The watch she keeps company ===================== -->
 
-  <CC_GodSelene_Watch_Text>The moonlight is keeping {PAWN} company on {PAWN_possessive} watch tonight: {PAWN_pronoun} sees further than the night should allow, and {PAWN_possessive} aim is steadier.</CC_GodSelene_Watch_Text>
+  <CC_GodSelene_Watch_Text>The moonlight is bright on {PAWN}'s watch tonight: {PAWN_pronoun} can see further than usual in the dark, and {PAWN_possessive} aim is steadier.</CC_GodSelene_Watch_Text>
   <CC_GodSelene_Saw_Watch>{WHO} kept the night out of doors at {HOME} with the moonlight about them like company.</CC_GodSelene_Saw_Watch>
 
   <!-- ===================== The dark face kept ===================== -->
 
-  <CC_GodSelene_DarkFace_Text>There was no moon, so {PAWN} kept the night at the door until the small hours, looking out.</CC_GodSelene_DarkFace_Text>
+  <CC_GodSelene_DarkFace_Text>There was no moon, so {PAWN} kept watch at the door until the small hours, looking out.</CC_GodSelene_DarkFace_Text>
   <CC_GodSelene_Saw_DarkFace>{WHO} kept the door at {HOME} on a night with no moon.</CC_GodSelene_Saw_DarkFace>
 
 </LanguageData>
