@@ -41,7 +41,8 @@ most sense." So, in this order, three builds at a time:
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
 7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts (the entries below).
+   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
+   entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -117,12 +118,22 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
   walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
   above the newest release line ("Riding out to far work: the beast taken first").
-- **To do when the player asks (19 November 2026): a day off lifts the mood while it lasts.** The player: "giving
-  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
-  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
-  eased faster) has no mood of its own. **The lead's proposal, waiting for the player's go**: a situational mood "a day
-  off" (+6, about a party's) while the heart's day off runs (a `ThoughtWorker` reading `h.Off(TimeOffKind.DayOff)`),
-  gone when it ends or is cut short by danger; plain words ("A whole day to myself, with nothing I have to do.").
+- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
+  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
+  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
+  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
+  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
+  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
+  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
+  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
+  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
+  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
+  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
+  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
+  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
+  what was left.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
+  The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
   player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
   would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
@@ -145,26 +156,10 @@ repo.
   of the bad traits colonists arrive with, of the mods' bad traits, new good traits from good things, a few from the
   mods' traits for flavour, and how often and how it shows), with the lead's first batch (37, 38, 1, 2, 4, 5, 6, 14,
   10, 16, 26, 27). Nothing is built until the player picks.
-- **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
-  player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
-  spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
-  you know, is not appropriate at all. It's not even counted as kind of an ideology room ... it's definitely not a
-  dining room ... I just want to have the drum somewhere, but not immediately have that become a ballroom, as it's just
-  weird ... I want the gatherings where food is involved, of course, happening in my dining room"; then "ballroom seems
-  to override temple, which is not correct in my opinion".
-  - **The cause.** Vanilla Factions Expanded - Empire's `VFEE_Ballroom` (`RoomRoleWorker_Ballroom`, 1.7 source): any
-    musical instrument (the Ideology drum among them) scores 10000, unless the room holds a bed, throne, work table or an
-    entity holder; the game's dining room scores 12 a table, the rec room 7 a recreation thing, the temple (Ideology's
-    worship room) 75 an altar, at least 2000. The highest wins and only one name shows. In the game's code (RW-Decompile,
-    `Toils_Ingest`, `JoyUtility`) the "ate in impressive dining room" and recreation moods read the room's
-    impressiveness, not its name. The name matters for VFE Empire's titles and balls, and for Rimfolk: council meetings,
-    play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
-    `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
-    a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
-    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
-    what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
-    advice, one with recreation things as a rec room, whatever the game shows.
+- **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
+  released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
+  for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
+  entry above the newest release line ("Rooms judged by what is in them").
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -329,6 +324,66 @@ repo.
     say "fewer fights". 5. The Almanac, "ways to play": the opening says which ways bring something less often, and each
     section says what.
   - **Mods that would help**: none needed.
+- 0.266.7, **A day off lifts the mood**
+  (19 November 2026). The player: "giving
+  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
+  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
+  eased faster) has no mood of its own. The go: "yes, please", "all the three". **What was built**: `ThoughtWorker_HeartDayOff` (in
+  `Heart/HeartTimeOff.cs`) and `Defs/ThoughtDefs/Rimfolk_Thoughts_DayOff.xml` (`Rimfolk_Heart_DayOff`, "a day off", +6,
+  "A whole day to myself, with nothing I have to do."): situational, there while `h.Off(TimeOffKind.DayOff)`, with the
+  mood effects and the day off's setting on; not for a bad afternoon. Almanac (the council page's "A day off you give").
+  Tests: `HeartDayOffMoodTests` (new). Try in the game: give a strained colonist a day off from the Mood tab; their
+  moods list "a day off" +6 until it ends or "End it early". Mods that would help: none.
+- 0.266.6, **Rooms judged by what is in
+  them** (19 November 2026). The player (17 November 2026): "I have a dining room ... But what I also have in there is a
+  drum and also the ideology, lectern and ritual spot ... The altar and the lectern ... I want the gatherings where food
+  is involved, of course, happening in my dining room, even if maybe another room is kind of the one for the ideological
+  items"; then "ballroom seems to override temple, which is not correct in my opinion". Fix A (VFE Empire's ballroom
+  only for music rooms) was released in 0.265.2. The go for fix B, on the overview of the open list (19 November 2026):
+  "Rooms judged by what's in them. That sounds good." DESIGN.md "Rooms judged by what is in them".
+  - **The cause.** The game shows one role per room, the highest score (a dining table 12, a recreation building 7, an
+    altar of the colony's faith at least 2000, a stove 28, a bench 27). Rimfolk read only that role: council meetings,
+    play-outs and feasts, visitors and the advisor looked for the room named dining room, then rec room. The player's
+    dining room with the altar shows as a temple, so its meetings and meals went to another room or out into the open
+    air, and a rec room shown as something else brought the idea of building one. (The game's eating and recreation
+    moods read the room's impressiveness wherever it happens, not its name.)
+  - **What it does.** A room with a dining table of the colony's counts as a room where people eat, and one with a
+    recreation building as a rec room, whatever the game shows (a temple, a ballroom, a throne room, a kitchen with a
+    table); never a bedroom, barracks, hospital, prison, nursery, guest room, bathroom or sauna. Each place keeps its
+    order with the room the game calls a dining room (or rec room) first, then one that serves as one, larger first.
+    With the player's rooms, meetings, meals and feasts go to their real dining room, or to the temple with the tables,
+    and never out into the open for lack of a room named dining room; the advisor no longer suggests a rec room while a
+    room with games stands. A rec room the game calls something else is named as the map shows it ("in the temple").
+  - **Code map**: `RoomUseMath.cs` (new, linked in the tests: `PrivateRoles`, `Private`, `ServesAsDining`,
+    `ServesAsRec`, `Rank`, `Order`, `ReadAs`), `RoomUtil.cs` (`ServesAsDining`, `ServesAsRec`, `IsDiningRoom`,
+    `IsRecRoom`, `IsCommonRoom`, `DiningRank`, `DiningRooms`, `RecRooms`, `AnyDiningRoom`, `AnyRecRoom`, `RoomsFor`,
+    the reading kept 60 ticks). Read so in `Ambitions/CouncilMeeting.cs` (`FindVenue`), `Ambitions/Ambitions.cs`
+    (`MeetingVenue`), `PlayOut/PlaySpots.cs` (`TryFind`, new `RecVenue`), `Visitors/Visitors.cs` (`IndoorsCell`),
+    `Happenings/VisitorServices.cs` (`Corner`), `Happenings/Workers_Callers.cs` (the wedding), `Advisor/AdvisorSignals.cs`
+    (the rec room and dining ideas, the recreation advice's room plan), `AdvisorSignals_Rooms.cs` (dining outgrown, rec
+    room outgrown), `AdvisorSignals_Rooms2.cs` (dining cramped), `AdvisorSignals2.cs` (darkness), `AdvisorSignals5.cs`
+    (no seat), `Wishes/WishWorkers_Work.cs` (the art wish), `Wishes/WishWorkers_LifeNew.cs` (the roofed way's table),
+    `Ambitions/AmbitionGoals.cs`, `AmbitionGoals2.cs` (`Goal_Room`, `Goal_RoomStat`), `Building/TemplatePlanner.cs`
+    (`RoleCenters`), `Building/BaseReview.cs` (`RoleName`, the `also` readings, the little map's colours),
+    `Items/ItemCardArt.cs` (`MoodRole`), `Dilemmas/DilemmaWorkers_Faith.cs` (the faiths' corners),
+    `Integrations/GuestWill.cs`, `Harm/Quarrels.cs`, `Lives/LifeNew.cs`, `Social/Groups/GroupHabits.cs`,
+    `Pressures/Pressures.cs` (crowded rooms). Keyed: `CC_Venue_InRoom` (ColonyCouncil.xml), `CC_FaithClash_CornerIn`
+    (Rimfolk_Faith_Council.xml). Almanac "dining room" and "recreation room" pages (a paragraph each, keywords
+    unchanged), README (council meetings). Tests: `RoomUseTests` (new).
+  - **Kept on the game's one role**: the game's own roles and moods; words that name a room as the game shows it (a
+    guest lodged in a room, the crowded room's name, a god's doing, the base map's tooltip, a custom room's offered name);
+    `Social/Autonomy.cs` `OkRole` (where someone with no bed may lie down goes by what the room is for, so a kitchen or
+    temple with a table stays out); the rooms of every other role; the visitors' private rooms (`KeepOut`,
+    `GuestHelpMath.PrivateRoom`); the journal's moods (the game's own thoughts).
+  - **Can't be checked without the game**: the meetings and feasts going to the temple with tables, the venue's words,
+    the advisor's cards with and without a room that serves as a rec room, the base review's little map colouring a
+    temple with tables as a dining room, Ideology's drum counting as recreation (only if its def has a kind of
+    recreation).
+  - **Try in the game**: with the dining room holding the altar (the game shows "temple" over it) and no other room the
+    game calls a dining room, call a council meeting from the Ambition page: it is announced "around the dining table"
+    and held at a table there. A feast from a council answer gathers at that table too. The Priorities page has
+    no "Idea: a recreation room" while the rec room, or any room with a game in it, stands.
+  - **Mods that would help**: none.
 - 0.266.5, **Riding out to far work: the beast
   taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
   still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's

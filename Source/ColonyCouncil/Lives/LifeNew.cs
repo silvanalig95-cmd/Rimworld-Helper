@@ -131,7 +131,7 @@ namespace ColonyCouncil
             {
                 var room = p.GetRoom();
                 bool there = job != null && (job.def == JobDefOf.Ingest || job.def == JobDefOf.LayDown)
-                             || (room != null && (room == RoomUtil.BedRoom(p) || room.Role == RoomUtil.DiningRoom));
+                             || (room != null && (room == RoomUtil.BedRoom(p) || RoomUtil.IsDiningRoom(room)));
                 if (there) soaked[p] = now;
             }
         }

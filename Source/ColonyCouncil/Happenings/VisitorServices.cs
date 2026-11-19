@@ -565,7 +565,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Where the guest sleeps: a corner of the warmest of the colony's rooms that fit (dining and rec rooms first when
-        /// they're warm enough), by a wall if there's room by one. Invalid when the colony has no such room.
+        /// they're warm enough, read by what is in them: RoomUtil.IsCommonRoom), by a wall if there's room by one. Invalid
+        /// when the colony has no such room.
         /// </summary>
         public static IntVec3 Corner(Map map, Pawn x)
         {
@@ -582,8 +583,7 @@ namespace ColonyCouncil
                 float temp = r.Temperature;
                 // As warm as they'd like counts most; past that, a common room before a workshop.
                 float score = -Mathf.Max(0f, comfy.min - temp) * 3f - Mathf.Max(0f, temp - comfy.max);
-                string role = r.Role?.defName;
-                if (role == "DiningRoom" || role == "RecRoom") score += 4f;
+                if (RoomUtil.IsCommonRoom(r)) score += 4f;
                 if (score <= bestScore) continue;
                 bestScore = score;
                 best = r;

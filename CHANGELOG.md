@@ -5,6 +5,22 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A day off, felt
+
+*19 November 2026, version 0.266.7*
+
+- A colonist you give a day off now has the mood "a day off" (+6) for as long as it lasts, gone when it ends or you end it early.
+- The day off still eases strain faster while it runs and more when it runs its course, as before.
+
+## Rooms by what is in them
+
+*19 November 2026, version 0.266.6*
+
+- Rimfolk now reads a room by what is in it: a room with dining tables counts as a dining room, and one with games as a rec room, whatever name the game shows over it.
+- Council meetings, feasts and other gatherings go to the room the game calls a dining room first, then to any room with tables, such as a dining room the game calls a temple because of its altar.
+- Guests kept in from the cold, the art wish, the dining hall ambitions and the base review count those rooms too.
+- The advisor no longer suggests building a rec room while a room with games in it stands. Bedrooms, barracks, hospitals and prison cells never count as dining or rec rooms.
+
 ## Mount up for far work
 
 *19 November 2026, version 0.266.5*

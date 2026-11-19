@@ -114,7 +114,9 @@ The exact mood penalty for sleeping in a shared room isn't confirmed, but commun
         <heading>What makes it a dining room</heading>
         <text>Each table counts toward the dining room role. Tables come as 1x2, 2x2, 2x4 and 3x3. Keep beds and stoves out: a bed turns the room into a bedroom or barracks, and one stove (28) outscores two tables (24).
 
-Build enough chairs for everyone who eats at the same time. Eating without a table costs -3 mood for a day. When the colony grows past its seats, the council's priorities suggest the next size up.</text>
+Build enough chairs for everyone who eats at the same time. Eating without a table costs -3 mood for a day. When the colony grows past its seats, the council's priorities suggest the next size up.
+
+The game shows one name per room, the highest score, so an altar of the colony's faith (a temple, 2000 or more) outscores any number of tables. The council goes by what is in the room: any room with a dining table of the colony's counts as a place to eat, whatever name the game shows. Meetings, feasts, guests and the council's advice use the room the game calls a dining room first, then any other room with tables. Bedrooms, barracks, hospitals and prison cells never count.</text>
       </li>
       <li>
         <heading>The mood bonus</heading>
@@ -180,7 +182,9 @@ Many colonies combine dining and recreation in one big room, so one set of decor
       </li>
       <li>
         <heading>Laying it out</heading>
-        <text>Put the rec room between the dining room and the bedrooms. Leave walking room between buildings, because every blocked tile costs space and impressiveness. Each recreation building adds 7 to the rec room score, against 12 per table for a dining room. With less than one recreation building for every three colonists, the council's priorities suggest a larger room.</text>
+        <text>Put the rec room between the dining room and the bedrooms. Leave walking room between buildings, because every blocked tile costs space and impressiveness. Each recreation building adds 7 to the rec room score, against 12 per table for a dining room. With less than one recreation building for every three colonists, the council's priorities suggest a larger room.
+
+The council goes by what is in a room, not only by its name: a room with a recreation building of the colony's counts as a rec room, whatever name the game shows (a dining room with a chess table, say). The council won't suggest building a rec room while one of those stands.</text>
       </li>
     </sections>
     <keywords>

@@ -216,6 +216,11 @@ namespace ColonyCouncil
             /// <summary>The room's own cell nearest its middle: where a walk to or from it starts.</summary>
             public IntVec3 middle;
             public string label;
+            /// <summary>
+            /// A second reading of a room that has a kind of its own: a kitchen or a rec room with dining tables is a dining
+            /// room too, for the walks to meals. The little map colours each room once, by its own kind.
+            /// </summary>
+            public bool also;
         }
 
         /// <summary>The map's cells as people walk them (walls and rock closed, doors open but never passed on the slant), for walks between rooms.</summary>
@@ -252,15 +257,20 @@ namespace ColonyCouncil
             return best.IsValid ? best : mid;
         }
 
-        /// <summary>The colony's rooms with the review's roles, for the little map.</summary>
+        /// <summary>The colony's rooms with the review's roles, for the little map: each room once, by its own kind.</summary>
         public static List<(Room room, string role)> RoomsByRole(Map map)
         {
             var list = new List<(Room, string)>();
-            foreach (var r in Rooms(map)) list.Add((r.room, r.role));
+            foreach (var r in Rooms(map))
+                if (!r.also) list.Add((r.room, r.role));
             return list;
         }
 
-        /// <summary>The role the review reckons by: a cold room with storage is a freezer, barracks sleep like bedrooms, prison barracks like a cell.</summary>
+        /// <summary>
+        /// The role the review reckons by: a cold room with storage is a freezer, barracks sleep like bedrooms, prison
+        /// barracks like a cell. A room of a kind the review doesn't tell apart (a temple, a throne room, a ballroom) is read
+        /// by what is in it: dining tables make it a dining room, games a rec room (RoomUseMath.ReadAs).
+        /// </summary>
         private static string RoleName(Room room, Map map)
         {
             var role = room.Role;
@@ -276,7 +286,8 @@ namespace ColonyCouncil
             if (role == RoomUtil.Barn) return "Barn";
             if (role == RoomUtil.Hospital) return "Hospital";
             if (role.Worker is RoomRoleWorker_StoreRoom) return "StoreRoom";
-            return name;
+            if (role == RoomRoleDefOf.Bedroom || role == RoomRoleDefOf.PrisonCell) return name;
+            return RoomUseMath.ReadAs(name, false, RoomUtil.ServesAsDining(room), RoomUtil.ServesAsRec(room));
         }
 
         private static bool HasStorage(Room room, Map map)
@@ -306,7 +317,15 @@ namespace ColonyCouncil
                 string role = RoleName(room, map);
                 if (role == null) continue;
                 var mid = room.ExtentsClose.CenterCell;
-                list.Add(new RoomInfo { room = room, role = role, mid = (mid.x, mid.z), middle = MiddleOf(room), label = role == "Freezer" ? RoleLabel(role) : room.GetRoomRoleLabel() });
+                var middle = MiddleOf(room);
+                string label = role == "Freezer" ? RoleLabel(role) : room.GetRoomRoleLabel();
+                list.Add(new RoomInfo { room = room, role = role, mid = (mid.x, mid.z), middle = middle, label = label });
+                // A room of another kind where people also eat or relax (a kitchen with a table, a rec room with tables)
+                // counts as a dining or rec room as well, for the walks to meals and to the games.
+                if (role != "DiningRoom" && RoomUtil.ServesAsDining(room))
+                    list.Add(new RoomInfo { room = room, role = "DiningRoom", mid = (mid.x, mid.z), middle = middle, label = label, also = true });
+                if (role != "RecRoom" && RoomUtil.ServesAsRec(room))
+                    list.Add(new RoomInfo { room = room, role = "RecRoom", mid = (mid.x, mid.z), middle = middle, label = label, also = true });
             }
             return list;
         }
