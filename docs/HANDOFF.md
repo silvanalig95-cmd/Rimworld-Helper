@@ -276,8 +276,21 @@ repo.
   `Rimfolk_Letters_Bring.xml`, `Rimfolk_YearLetter.xml`, `Rimfolk_Notables.xml`' route lines, the letter keys of
   `Rimfolk_Dealings`, `_Diplomacy`, `_Fealty`, `_Feasts`, `_Matches`, `_Pacts`, `_Ransom`, `_Wards`, `_Couriers`, read
   again: already plain since the interface batches).
-  Still to pick, when the player asks: the gods and faith, wishes and ambitions, personal stories, council questions,
-  the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
+  Wishes and ambitions, done (19 November 2026, the same go; built, not released): the entry "Plain words: wishes and
+  ambitions" above the newest release line. Files taken: every wish in `Defs/WishDefs/` (all 24 files: label,
+  description, reasons, what fulfils it, what's lost, and its request, request for another, thanks, lapse and reminder
+  lines), the ambitions in `Defs/AmbitionDefs/` (`Council_Ambitions` to `Council_Ambitions7`, `Extra_AmbitionLines`,
+  `Extra_AmbitionLines2`, `Rimfolk_Ambitions_Defense`, `Rimfolk_Ambitions_Mods_PokeWorld`: names, descriptions, pitches,
+  what's said when reached, the gathering's name), the life goals in `Defs/AspirationDefs/` (all 15 files: names, goal
+  and deed, the lines when chosen and when reached; the two ThoughtDefs in `Rimfolk_Aspirations_Lives.xml` left, moods),
+  and the Keyed words of wishes and goals (`CC_Reason_*` wherever they sit, the wish, promise, self-help, petition,
+  promises-kept, ambition and life-goal keys of `ColonyCouncil.xml`, `Rimfolk_WishesGoals`, `Rimfolk_Aspirations_Sparks`,
+  `Rimfolk_Kept`, `Rimfolk_Wishes_Petitions`, `Rimfolk_Lives`, `Rimfolk_LifeNew`, `Rimfolk_People4`, read again: plain
+  since the interface batches but for one reason). Left as the brief said: the wish lines in `Defs/FlavorPoolDefs/`
+  (`Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, `Council_Wish_Voices`,
+  the wish parts of `Council_Mods_People_Lines`), and the wishes' talk in `InteractionDefs`.
+  Still to pick, when the player asks: the gods and faith, personal stories, council questions, the peoples, camps and
+  visitors, the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -290,6 +303,59 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.268.2, **Plain words: wishes and
+  ambitions** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The eleventh batch of the plain-words pass: the colonists' wishes (what they ask for, for themselves and for
+  others, their thanks, their reminders and what they say when they give up, with each wish's name, description,
+  reason, what fulfils it and what's lost), the council's ambitions (names, descriptions, pitches, what's said when
+  reached) and the life goals (goal and deed, the lines when chosen and when reached). File list in the to-do entry
+  "Rimfolk's text in plain words".
+  - **What changed.** About 5,950 lines read, 244 rewritten (wishes 172, ambitions 34, life goals 37, one Keyed reason).
+    Punchlines and twists at the end said plainly ("{OTHER_nameDef} makes it look easy. When I try, it looks like an
+    accident" is "I'd like to get that good at it", the approved sample; "Mine. Well, ours. Mostly mine!"; "The fence
+    posts and I will carry on sparring. They're losing."; "A rack would get me down to two"), things given a will ("The
+    rock and I will have to work things out", "the land bites the careless", "Hunger always comes back, and it never
+    sends word first", "the roads will learn our name"), invented images and idioms ("Wood walls are just firewood we've
+    agreed to live inside", "Every broken promise is a stone in somebody's pocket", "Pemmican tastes like a boot that
+    went to war", "sky-metal"), riddling lines ("Every day without it is a week", "It looks at me before it does
+    anything now. I think that means something", "When somebody snaps out here, it isn't a plate that gets broken"),
+    and a few descriptions given a subject or a plain verb ("the heat turns the food" is "spoils"). Four ambition names
+    say what they ask: "a ring of iron" is **turrets on the approaches**, "teeth in the mud" **traps on the approaches**,
+    "the long store" **a store of pemmican**, "nobody is the only one" **two healers, two cooks**; the walls' bonfire is
+    "a fire for the new walls", the life goal "a town on the Rim" has its capital. The Almanac's ambition table
+    (`Almanac_Council_Lists.xml`, keywords unchanged), DESIGN.md ("Ambitions are offered only if...") and README ("Only
+    those the colony can achieve now are pitched") use the new names. Bedroom wishes' "fulfilled when" lines name whose
+    room ("{FOR_nameDef}'s bedroom"), so a wish asked for someone else reads right.
+  - **Left as they were.** Most lines were already plain, and ordinary jokes a person would make stay ("I've seen nicer
+    rooms in a pirate outpost", "Crate labels again. Riveting."); each voice keeps its tone (the cold voice clipped, the
+    child's lines a child's) and every cheerful line not rewritten keeps its exclamation mark. The wish lines in
+    `Defs/FlavorPoolDefs/` (about 2,100 more request, thanks, lapse and reminder lines for the same wishes in
+    `Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, and the shared reminder,
+    last call and envy pools) were left as the brief said, and the wishes' talk (`InteractionDefs`), moods and granted
+    thoughts (`ThoughtDefs`) and journals are on the player's leave list. Every tag, placeholder and key kept (the
+    rewrite tool refused any line whose tag block or placeholder people changed, and `Tools/textcheck.py` finds nothing
+    broken).
+  - **Put right against the code.** `CC_Reason_Justice` said the prisoner "is the only raider still alive", but the wish
+    takes any hostile grown prisoner on the map (`WishWorker_Justice`, a short-tempered colonist within two days of a
+    raid); it now says the colonist is still angry about the last raid and the prisoner is one of the enemy. A child's
+    reading goal said the colony has "only four" books; it now says there aren't many. The tea wish's lapse ("Sick and
+    thirsty, then"): the approved sample's rewrite spoke of clean water, but the wish is for tea, so it says there's still
+    no tea. Checked and true as written: the faith evening's sway, about 12% and more with openness and liking
+    (`FaithCouncilMath.WishSway`, `FaithMath.Sway`), and its couple of hours; six plants of the home crop
+    (`SownEnough`); the sun lamp over six cells; snow nine in ten cleared (`PeopleFourMath.SnowCleared`); six spare parts;
+    five beers; the treasury spent below half (`keepShare`); half a year before the travel wish (`minDaysInColony` 30);
+    every ambition's numbers against its goals, and every life goal's count against its amount.
+  - **Code map.** No code changed: def text, one Keyed line, the Almanac table's names, DESIGN.md and README names.
+  - **Can't be checked without the game.** How the plainer request and thanks lines read in a wish letter beside the
+    FlavorPoolDefs lines for the same wish, which keep their old voice; whether a cheerful colonist reads flat without
+    the punchline.
+  - **Try in the game.** Open the council window and wait for a few wishes (a room, a telescope, honey, a bench lamp, a
+    pack animal); read each letter, promise one and read the thanks, let another lapse. Call a council meeting and read
+    the pitches; in a colony with turrets researched, look for "turrets on the approaches", and in a small one "two
+    healers, two cooks". Watch a colonist choose a life goal (the message at the top) and reach one (the letter).
+  - **Mods that would help.** None for this; it is text only.
 - 0.268.1, **Choose the material when
   ordering a piece** (19 November 2026). The player: "when you know giving a order through the inventory to create like a
   piece of clothing or armor or whatever, it would really be cool to also be able to select from which material that

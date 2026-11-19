@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.268.2</version>
+        <date>19 November 2026</date>
+        <title>Wishes in plain words</title>
+        <points>
+          <li>Wishes, ambitions and life goals are written in plain words: what the colonist wants and why, without punchlines or invented sayings.</li>
+          <li>Four ambitions have clearer names: turrets on the approaches, traps on the approaches, a store of pemmican, and two healers, two cooks.</li>
+          <li>A bedroom wish asked for someone else now names whose room it is.</li>
+          <li>A colonist who wants a prisoner executed after a raid no longer claims it is the last raider alive.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.268.1</version>
         <date>19 November 2026</date>
         <title>Pick the material</title>

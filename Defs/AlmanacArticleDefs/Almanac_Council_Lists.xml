@@ -195,7 +195,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>a greenhouse | Food grown indoors (where winter stops the fields) and 20 days of food.</li>
           <li>fine dining | A kitchen and 20 fine meals.</li>
           <li>the brewmasters | 3 fermenting barrels and 25 drinks.</li>
-          <li>the long store | 150 pemmican.</li>
+          <li>a store of pemmican | 150 pemmican.</li>
           <li>the long night | 300 wood before winter, when the colony burns wood.</li>
           <li>a full treasury | 2000 silver.</li>
           <li>the great feast | A lavish meal for every colonist (at least 10) and a dining room of impressiveness 50. Colonies of 8 or more.</li>
@@ -229,7 +229,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>Project | What it asks</li>
           <li>hold the line | Defenses that match the raids you attract, and 8 new pieces of cover.</li>
           <li>hold the way in | A gate across the way in most raids take, with 3 pieces of cover behind it; on open ground with no narrow place, the home walled in. The defense window shows where.</li>
-          <li>a ring of iron, teeth in the mud | 3 turrets; 6 traps.</li>
+          <li>turrets on the approaches, traps on the approaches | 3 turrets; 6 traps.</li>
           <li>keep the lights on | 2 batteries and 1500 Wd stored.</li>
           <li>law and order | A prison cell with a bed.</li>
           <li>settle the score | Destroy a hostile settlement. Only while grieving or just after a raid.</li>
@@ -280,7 +280,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>the pursuit of knowledge | A laboratory and 3 research projects.</li>
           <li>a master's hand | Someone at Crafting 12.</li>
           <li>the finer things, a masterwork | 2 new things of excellent quality; 1 masterwork.</li>
-          <li>nobody is the only one | Two people at Medicine 6 and two at Cooking 6. Colonies of 5 or fewer.</li>
+          <li>two healers, two cooks | Two people at Medicine 6 and two at Cooking 6. Colonies of 5 or fewer.</li>
           <li>ready for every season | In stages, over 60 days: 30 days of food, then everyone dressed for -5°C, then 12 medicine.</li>
           <li>the starlight archive | In stages: 3 research projects, then three people at Intellectual 10. Spacer colonies of 4 or more.</li>
         </table>

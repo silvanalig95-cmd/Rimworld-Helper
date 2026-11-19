@@ -102,9 +102,9 @@
       <cold><li>A Pokémon without a trainer gains nothing in a fight. Assign the {SUBJECT} to me.</li></cold>
     </request>
     <thanks>
-      <plain><li>It looks at me before it does anything now. I think that means something.</li></plain>
+      <plain><li>It looks to me before it does anything now. I think it trusts me.</li></plain>
       <warm><li>We'll look after each other, the two of us.</li></warm>
-      <cheerful><li>Watch this! Well, it'll do it next time.</li></cheerful>
+      <cheerful><li>Watch this. It's still learning, but it nearly did it.</li></cheerful>
       <cold><li>Training starts tomorrow. It will learn quickly, or not at all.</li></cold>
     </thanks>
     <expired>

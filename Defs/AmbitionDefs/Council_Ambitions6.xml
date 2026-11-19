@@ -39,7 +39,7 @@
         <li>Right now this is a camp with walls. I'd like it to be a place we live.</li>
         <li>[rain] Another night on a wet floor. Proper beds, please, and a roof over the table.</li>
         <li>[small] There aren't many of us. That makes it easier to give every one of us a bed.</li>
-        <li>[tribal] A people with a home tell stories by its fire. We're still telling ours on the bare ground.</li>
+        <li>[tribal] A people with a real home tell their stories by its fire. We still sleep and eat on the bare ground.</li>
       </plain>
       <warm>
         <li>Everyone should wake up in a real bed and sit down to a real table. It isn't much to ask.</li>
@@ -105,7 +105,7 @@
         <li>We hardly see each other except at work. Meals are all we have left.</li>
       </gloomy>
       <cold>
-        <li>People who eat together argue less. I've watched it go both ways.</li>
+        <li>People who eat together argue less. I've seen it.</li>
       </cold>
     </pitch>
     <achieved>
@@ -414,7 +414,7 @@
         <li>Warm coats for everybody! We'll look like a herd of muffalo, but we'll be warm.</li>
       </cheerful>
       <gloomy>
-        <li>Last winter took toes off somebody. I'd rather not count toes again.</li>
+        <li>Last winter somebody lost toes to frostbite. I'd rather it didn't happen again.</li>
       </gloomy>
       <cold>
         <li>Frostbite cripples workers. Insulated clothing costs leather and a few days at the bench.</li>
@@ -487,11 +487,11 @@
     </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
-  <!-- ===================== Nobody is the only one (small colonies) ===================== -->
+  <!-- ===================== Two healers, two cooks (small colonies) ===================== -->
 
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_NoOneIndispensable</defName>
-    <label>nobody is the only one</label>
+    <label>two healers, two cooks</label>
     <description>In a small colony, losing the only doctor or the only cook can end it. Train a second person in each: two people at Medicine 6 or better, and two at Cooking 6 or better.</description>
     <days>40</days>
     <maxColonists>5</maxColonists>
@@ -533,7 +533,7 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>Two who can heal and two who can cook. We can lose a bad day now without losing everything.</li></plain>
+      <plain><li>Two who can heal and two who can cook. If one of them is hurt now, someone else can still do the work.</li></plain>
       <warm><li>Our second cook made supper tonight without asking anyone a single question.</li></warm>
       <gloomy><li>Less fragile than we were.</li></gloomy>
       <cold><li>Any one of us could die now, and the rest would still eat and still be stitched up.</li></cold>
@@ -578,7 +578,7 @@
         <li>Voices on the console every evening, and traders who know our name!</li>
       </cheerful>
       <gloomy>
-        <li>We could shout all night out here and only the wind would hear us.</li>
+        <li>We could shout for help all night out here, and nobody would hear us.</li>
       </gloomy>
       <cold>
         <li>A console costs a few components. Not having one could cost us the colony.</li>
@@ -586,7 +586,7 @@
     </pitch>
     <achieved>
       <plain><li>Two neighbors who'll answer when we call. We're not alone out here.</li></plain>
-      <warm><li>Friends abroad. It changes how the night sounds.</li></warm>
+      <warm><li>We have friends abroad now. The nights don't feel so lonely.</li></warm>
       <cheerful><li>I've talked to more strangers this week than in my whole life!</li></cheerful>
       <cold><li>Two factions will answer when we call. I've written down what each of them wants.</li></cold>
     </achieved>
@@ -632,7 +632,7 @@
         <li>A colony ready for anything! I'll make a list. Several lists.</li>
       </cheerful>
       <gloomy>
-        <li>The year always finds the one thing we forgot. Let's forget less.</li>
+        <li>Every year there's one thing we forgot to prepare. Let's forget less.</li>
       </gloomy>
       <cold>
         <li>Seasonal shortfalls are predictable. Prepare for them once and they stop being emergencies.</li>
@@ -651,7 +651,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_HealingGarden</defName>
     <label>the healing garden</label>
-    <description>Before industrial medicine, healing grows in the ground. Grow and dry twenty-five healroot, and train two people to Medicine 5 or better to use it.</description>
+    <description>Before industrial medicine, the colony's medicine has to be grown. Grow and dry twenty-five healroot, and train two people to Medicine 5 or better to use it.</description>
     <days>30</days>
     <eras><li>lowtech</li></eras>
     <relevantCategories><li>Health</li></relevantCategories>

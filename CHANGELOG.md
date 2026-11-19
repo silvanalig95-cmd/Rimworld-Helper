@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wishes in plain words
+
+*19 November 2026, version 0.268.2*
+
+- Wishes, ambitions and life goals are written in plain words: what the colonist wants and why, without punchlines or invented sayings.
+- Four ambitions have clearer names: turrets on the approaches, traps on the approaches, a store of pemmican, and two healers, two cooks.
+- A bedroom wish asked for someone else now names whose room it is.
+- A colonist who wants a prisoner executed after a raid no longer claims it is the last raider alive.
+
 ## Pick the material
 
 *19 November 2026, version 0.268.1*

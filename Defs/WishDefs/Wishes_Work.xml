@@ -182,7 +182,7 @@
       <plain>
         <li>Our dining room is so bare. A sculpture or two would make every meal better.</li>
         <li>We get by well enough. Could we have some art in the common rooms, though?</li>
-        <li>There's a crack in the rec room wall I've started to think of as art. We can do better.</li>
+        <li>The only thing on the rec room wall is a crack. We can do better.</li>
         <li>[rich] We're well off now. The common rooms should show it.</li>
       </plain>
       <warm>
@@ -192,7 +192,7 @@
         <li>These walls are depressing. Somebody sculpt something.</li>
       </blunt>
       <cheerful>
-        <li>I've got the perfect idea for a sculpture! It's a squirrel. A really heroic squirrel.</li>
+        <li>I've got the perfect idea for a sculpture, a squirrel standing up proud.</li>
       </cheerful>
       <gloomy>
         <li>We eat surrounded by blank walls. It's like eating in a cell.</li>
@@ -209,7 +209,7 @@
         <li>I keep staring at it during dinner. Is that weird? I don't care.</li>
       </cheerful>
       <gloomy>
-        <li>A beautiful thing, in here. It looks lost.</li>
+        <li>It's a beautiful thing, and it looks out of place in here.</li>
       </gloomy>
     </thanks>
     <expired>
@@ -257,7 +257,7 @@
         <li>I don't do my best work with a stick and a prayer.</li>
       </blunt>
       <cheerful>
-        <li>I'd give a new {SUBJECT} a name. I'd oil it every night and tell it stories.</li>
+        <li>I'd give a new {SUBJECT} a name and oil it every night.</li>
       </cheerful>
       <gloomy>
         <li>One day this old thing will fail me in the middle of a fight. I'd rather have a better {SUBJECT} before then.</li>
@@ -413,7 +413,7 @@
         <li>Now that is a meal.</li>
       </plain>
       <cheerful>
-        <li>I want to marry this meal.</li>
+        <li>This is the best meal I've had in ages.</li>
       </cheerful>
       <blunt>
         <li>See? Was that so hard?</li>
@@ -424,7 +424,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>Raw food again. My stomach has filed a complaint.</li>
+        <li>Raw food again. My stomach isn't happy about it.</li>
         <li>Gruel. Again.</li>
       </plain>
     </expired>
@@ -433,7 +433,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Freezer</defName>
     <label>a freezer for the food</label>
-    <description>Cold storage, so food stops spoiling: a cook asks, or someone who just ate something rotten, and in hot country anyone who watches the food turn in the heat. Only what the colony can build is asked for: an electric cooler, a fridge from a mod, or a cooler that freezes without power from a mod. Before electricity in the base game a passive cooler can't keep food, so hot country doesn't ask.</description>
+    <description>Someone wants cold storage, so food stops spoiling: a cook, someone who just ate something rotten, or in hot country anyone who watches the food go off in the heat. Only what the colony can build is asked for: an electric cooler, a fridge from a mod, or a cooler that freezes without power from a mod. Before electricity in the base game a passive cooler can't keep food, so hot country doesn't ask.</description>
     <workerClass>ColonyCouncil.WishWorker_Freezer</workerClass>
     <lasting>true</lasting>
     <lostText>The colony has no freezer any more, after {FOR_nameDef} asked for one.</lostText>
@@ -455,7 +455,7 @@
         <li>[hot] It's hot enough to cook the food in the storeroom, and not in a good way.</li>
         <li>[hot] Everything we bring in starts to turn by the next morning. In heat like this, food needs a cold room.</li>
         <li>[day] I opened the storeroom at noon and had to step back from the smell.</li>
-        <li>[skill:Plants] I grow it, and then I watch it rot in the store. A freezer would keep the harvest a harvest.</li>
+        <li>[skill:Plants] I grow it, and then I watch it rot in the store. A freezer would stop the harvest going to waste.</li>
         <li>[skill:Cooking] A cook is only as good as what's in the larder, and ours is going off.</li>
       </plain>
       <warm>
@@ -483,7 +483,7 @@
       <plain>
         <li>Cold storage. Nothing has to go to waste now.</li>
         <li>Cold air, fresh food, no flies. Beautiful.</li>
-        <li>[hot] I stood in the freezer for a whole minute. For the food, obviously.</li>
+        <li>[hot] I stood in the freezer for a whole minute just to cool down.</li>
       </plain>
       <warm><li>The harvest keeps now. I'll stop dreading the storeroom door.</li></warm>
       <blunt><li>Keep the door shut.</li></blunt>
