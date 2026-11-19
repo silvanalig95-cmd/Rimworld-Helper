@@ -191,13 +191,14 @@ namespace ColonyCouncil
                     {
                         rec.passion = (Passion)next;
                         text = (next == 2 ? "CC_PEv10_ArtBurning" : "CC_PEv10_ArtPassion").Translate((x?.LabelShort ?? "?").Named("TEACHER"), p.Named("PAWN"),
-                            (skill?.label ?? "?").Named("SKILL"), f.Name.Named("FACTION")).Resolve();
+                            HappeningText.SkillNoun(skill).Named("SKILL"), f.Name.Named("FACTION")).Resolve();
                         break;
                     }
                     goto default;
                 default:
                     rec?.Learn(PeopleEvents10Math.GreatLessonXp, true);
-                    text = "CC_PEv10_ArtLesson".Translate((x?.LabelShort ?? "?").Named("TEACHER"), p.Named("PAWN"), (skill?.label ?? "?").Named("SKILL"), f.Name.Named("FACTION")).Resolve();
+                    text = "CC_PEv10_ArtLesson".Translate((x?.LabelShort ?? "?").Named("TEACHER"), p.Named("PAWN"), HappeningText.SkillNoun(skill).Named("SKILL"), f.Name.Named("FACTION"))
+                        .Resolve();
                     break;
             }
             PeopleEvents10Book.Instance?.GaveArt(f);
@@ -289,11 +290,11 @@ namespace ColonyCouncil
                         "pev10art");
                     break;
                 case "passion":
-                    sheet.Add(ImpactKind.Skill, 1, "CC_PEv10_Impact_ArtPassion".Translate(hc.a.LabelShort, hc.skill?.label ?? "?").Resolve(),
+                    sheet.Add(ImpactKind.Skill, 1, "CC_PEv10_Impact_ArtPassion".Translate(hc.a.LabelShort, HappeningText.SkillNoun(hc.skill)).Resolve(),
                         "CC_PEv10_Impact_ArtPassionBrief".Translate().Resolve(), "pev10art");
                     break;
                 default:
-                    sheet.Add(ImpactKind.Skill, 1, "CC_PEv10_Impact_ArtLesson".Translate(hc.a.LabelShort, hc.skill?.label ?? "?").Resolve(),
+                    sheet.Add(ImpactKind.Skill, 1, "CC_PEv10_Impact_ArtLesson".Translate(hc.a.LabelShort, HappeningText.SkillNoun(hc.skill)).Resolve(),
                         "CC_PEv10_Impact_ArtLessonBrief".Translate().Resolve(), "pev10art");
                     break;
             }

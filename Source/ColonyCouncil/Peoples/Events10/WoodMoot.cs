@@ -157,7 +157,9 @@ namespace ColonyCouncil
                 PeopleEvents10Book.Instance?.AddPrice(thing, factor, Now + PeopleEvents10Math.SeasonDays * GenDate.TicksPerDay, (ruling == "wood" ? moss : union).Name);
             string text = key.Translate((talker?.LabelShort ?? "?").Named("TALKER"), union.Name.Named("UNION"), moss.Name.Named("MOSSBORN"),
                 Mathf.RoundToInt((1f - factor) * 100f).Named("PCT")).Resolve();
-            if (!atTable) text = "CC_PEv10_MootByWord".Translate().Resolve() + " " + text;
+            string where = (v.place != null ? "CC_PEv10_AtTable" : "CC_PEv10_AtGate").Translate().Resolve();
+            text = (atTable ? "CC_PEv10_MootHeard".Translate((talker?.LabelShort ?? "?").Named("TALKER"), where.Named("WHERE")).Resolve() : "CC_PEv10_MootByWord".Translate().Resolve())
+                   + " " + text;
             Tell.Letter(NewsKind.People, Importance.Notable, map, "CC_PEv10_MootLetterLabel".Translate().Resolve(), text, LetterDefOf.NeutralEvent,
                 talker != null && talker.Spawned ? new LookTargets(talker) : LookTargets.Invalid, ruling == "wood" ? moss : union);
             string heard = (ruling == "shaft" ? "CC_PEv10_HeardShaft" : ruling == "wood" ? "CC_PEv10_HeardWood" : struck ? "CC_PEv10_HeardBargain" : "CC_PEv10_HeardNoBargain")

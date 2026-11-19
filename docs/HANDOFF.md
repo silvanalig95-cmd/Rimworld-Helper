@@ -32,8 +32,9 @@ most sense." So, in this order, three builds at a time:
 1. **Riding out to far work** (a bug): released 0.266.5.
 2. **Rooms judged by what is in them** (released 0.266.6) and **quests, round 3** (released 0.267.0).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0); round 9 is
-   built, not released (the entry above the newest release line).
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 (0.273.0);
+   round 10, the last, is built, not released (the entry above the newest release line). All ten rounds are built, and the
+   whole list of 100 is done.
 4. **The plain-words text pass**: every category done and released (0.266.9 to 0.271.1) but the peoples' own texts and
    Almanac pages, which wait for the player's answer (below; the entry "Rimfolk's text in plain words").
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -163,7 +164,8 @@ repo.
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
   entry above the newest release line ("Rooms judged by what is in them").
-- **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
+- **Done (19 November 2026, the player's go: "Events sounds great"; all ten rounds built, round 10 not released): events and
+  interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
   Super cool idea and these should be applied to the other factions according to their lore, design and theme! don't
@@ -175,7 +177,7 @@ repo.
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
   round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0),
-  round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and round 10 follows. Ten
+  round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 (0.273.0), round 10, the last, built, not released, on the player's go of 19 November 2026 ("Events sounds great"): all 100 are built. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
@@ -186,8 +188,9 @@ repo.
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Released 0.270.0 (19 November 2026).
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Released 0.271.0 (19 November 2026).
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82. Released 0.272.0 (19 November 2026).
-  9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94. Built, not released (19 November 2026).
-  10. Between peoples 96 to 99; every people's art handed on, 100.
+  9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94. Released 0.273.0 (19 November 2026).
+  10. Between peoples 96 to 99; every people's art handed on, 100. Built, not released (19 November 2026; the entry "The peoples'
+     own events, round 10, the last" above the newest release line).
 - **To do when the player asks (13 November 2026, gathered while the usage limit was reached; the player: "gather all
   the comments since the limit is reached and add to to-do"):**
   - **Disturbed sleep, as asked** ("do pawns also get the 'disturbed sleep' when something happens outside of their
@@ -519,7 +522,83 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 9**
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 10, the last**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 96 to 100 of `docs/peoples-events-proposals.md` (five, all built; with them all 100 are built, and the doc marks each item and
+  the whole list done): the events between peoples, each with two of Rimfolk's peoples at once, both at peace with the colony and not at
+  war with each other: the Deepwell Union and the Mossborn bring their quarrel over an old wood to the colony as neutral ground, its best
+  talker hears both envoys two hours at its table and rules for the shaft (steel a fifth cheaper with every trader for a season), for the
+  wood (the Mossborn's herbal medicine a fifth cheaper) or for terms both can accept (by the talker's Social), the side ruled against
+  thinking less of the colony and the region hearing of it; the road league tolls the road past the colony while a Wheel cart train
+  (its wheelwright, a hand or two and two or three loaded pack beasts) stops at the edge of the colony's land rather than pay, and the
+  colony lets the carts cross its land to the far edge, turns them back, or sits with both at the gate over a meal and sets a fair toll;
+  in a plague year the hospitaller order asks for the colony's doctor and the Quiet Bell for two diggers for a town within reach, each
+  going as a caravan of one for four to six days and maybe bringing the sickness home, all three sent remembered by both peoples; a
+  copyist of the learned society and a technician of the Sunken Vault sit three days at the colony's table, copying the vault's records
+  each morning while the colony's crafter teaches them each afternoon (a book of the copy left for the colony, the vault's craft as
+  supply, both ages moved by the teaching rule); and once a game a people at good terms hands its own art to the colonist it remembers
+  best for a good turn: with A RimWorld of Magic its class book, read by the mod's own rules, else a passion in its calling's skill.
+  DESIGN.md "The peoples' own events, round 10, the last" has every rule; README "The peoples' own events, the tenth and last round"; the
+  Almanac's peoples' page, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events10/` (new): `PeopleEvents10Math.cs` (pure, linked; each calling's art table),
+    `PeopleEvents10Book.cs` (a game component: the season's prices, the peoples that handed on their art; `SeasonPrice`),
+    `PeopleEvents10.cs` (the visits' dispatch, the homes' hour, the jobs' ends, `PeopleEvents10.Pair`, and the round's one game hook,
+    `Patch_SeasonPrices` on `Tradeable.GetPriceFor`), `WoodMoot.cs` (96), `RoadToll.cs` (97), `PlagueYear.cs` (98, `PlagueAway`),
+    `LearningTraded.cs` (99), `ArtHandedOn.cs` (100), `PeopleEvents10Debug.cs`. Small hooks: `PeopleEvents9.Hour`, `Hourly` and
+    `WorkDone` (round 10's, one line each; round 10's jobs are round 9's `JobDriver_PEv9Work`), round 2's `SeasonAway.Kinds` (the
+    plague town), `SickHome.Lodged` (new: one of the colony's lodged at a sick town outside a caravan, for the illness budget's own
+    roll), `FactionMemory` (the deed `plagueYear`, its words), `FavourMath.OurGoodTurns` (a debt of honour). Defs:
+    `Rimfolk_Events_PeopleEvents10.xml` (five events), `Rimfolk_PeopleEvents10_Misc.xml` (eight jobs, two moods), Keyed
+    `Rimfolk_PeopleEvents10.xml`. Tools: the play-out audit's effects and one skip, the save model's two lists.
+  - Decided here (open in the proposals): two peoples come only when one of each calling is at peace with the colony and the second
+    isn't at war with the first; each arrives under a lord of its own, and four answers instead of the rule's three (the fourth sends
+    both on). The moot: the union's shift-captain and a Mossborn grove-tender; the hearing at the colony's table nearest the gate (the
+    gate itself without one, and the card says which), two hours; "steel cheaper for a season" is a fifth off the price of steel with
+    every trader for 15 days (buying and selling both, so the spread is the game's), through one hook on the game's own price; "for
+    the wood, the reverse" is the goodwill reversed and the Mossborn's herbal medicine a fifth cheaper (the old wood's herbs); the
+    bargain is 25 in 100 plus 4 a Social level, at most 85, on the card: struck, the shaft at the wood's edge with a seedling planted for
+    every tree felled (their saying), both +3 and steel a tenth cheaper; failed, both -2; the sides +6 and -6; remembered as the world
+    events' moot remembers a side taken or a quarrel mediated. The toll: the league's factor at the gate, the Wheel's carts just
+    inside an edge; the pack beasts are half the time the Wheel's own caravans' (its faction's carriers that suit the land and season),
+    else any pack beast of the game's or the player's mods that the land allows and the season suits (the full pool, read at the time),
+    their packs loaded with steel so they show; let through, they walk to the farthest reachable edge (a great herd's crossing); +5 and -5, a side
+    taken; the fair toll 35 silver a pack beast, paid by the wheelwright to the factor after the talker's two hours, both +3. The plague
+    year: a town of a people at peace within 15 tiles that the region's plague reaches (the illness budget's own reading); "the
+    colony's doctor" is its best at Medicine, "two diggers" its two best at building (the game's graves are dug as building), never
+    the doctor; all three, the doctor only or the diggers only; the sickness home is the illness budget's own rule for a stay at a sick
+    town (one in six, halved for the doctor in the order's sickhouse and for an industrial colony); "a lasting deed" is a new deed kind,
+    `plagueYear` (+25, slow to fade, a debt of honour), noted by each people as its own come home; their help also counts for the plague's
+    world event. The table: a copyist (the society's fellow) and the vault's technician; three mornings and three afternoons (a day more
+    at most if they came late or were interrupted); the book is a textbook before the industrial age, a schematic after (the society's
+    own copyist's rule), only for the whole copy; the second answer is the copying only (no lessons, the ages unmoved, the book still
+    left). The art: "once a game" is once for each people; "at good terms" is goodwill 50 or more; "the colonist who did most for them"
+    is the one their memory names best (`KinMemory.Friend`); the book only when the colonist carries the latent gift it needs (else they
+    could not read it), and each people's book a class among its own kinds (the eight the proposal names, and the rest by their kinds);
+    the calling's skills as DESIGN.md lists them; a burning passion (or a mod's own) gets a long lesson instead; the second answer is
+    the colony's gift in return (250 silver by wealth), the third leaves the offer for another time.
+  - Harm: none of Rimfolk's own. The plague town's sickness is the illness budget's own (`HarmKinds.SickHome`, its chance, cap and
+    letter); the roads are the game's own; the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents10Tests.cs` (about 160 checks: the rules, each calling's art against the player's catalogue and the
+    peoples' own kinds, the defs, the words, the seams).
+  - Not run here (none of it could be): every play-out on the map (both envoys at the table and the talker between them, the ruling's
+    letter and the prices in the trade window; the carts at the edge, crossing to the far side or turned back, the meal and the toll at
+    the gate; the caravans of one to the plague town and home, a sickness showing days later; the copyist and the technician at the
+    table each morning, the lessons at the bench, their meals and beds, the book set down; the afternoon at the gate, the class book
+    read by A RimWorld of Magic's own use, the passion in the colonist's skills).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 10: what the record keeps (log)" shows the state and what each event would
+    find here; the events with the game's own incident tool): 1. The moot: the Union and the Mossborn at peace, `Rimfolk_Evt_WoodMoot`,
+    each ruling; "the hearing at the table or the gate done now"; the price of steel (or herbal medicine) with the next trader. 2. The
+    toll: the league and the Wheel at peace, `Rimfolk_Evt_RoadToll`; watch the carts cross or go back; the fair toll at the gate. 3. The
+    plague year: start a plague in the region with the world events' tools, then `Rimfolk_Evt_PlagueYear`; "the days at the plague town
+    done now" once they get there; the sickness may show a few days after they are home, at the illness budget's own chance. 4. The table:
+    the society and the vault at peace, a table and a crafter's bench, `Rimfolk_Evt_LearningTraded`; "the next morning and afternoon at
+    the table now" three times for the book. 5. The art: "a people remembers a colonist now..." (a good turn noted and the goodwill
+    raised), then `Rimfolk_Evt_ArtHandedOn`; with A RimWorld of Magic, give that colonist the latent gift first to see the book read.
+  - Mods that would help: none needed; all the round draws on is in the player's list (A RimWorld of Magic's class books and latent
+    gifts, the game's steel, herbal medicine, textbooks and schematics, the pack beasts of the game and the player's animal mods).
+- 0.273.0, **The peoples' own events, round 9**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
   gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").

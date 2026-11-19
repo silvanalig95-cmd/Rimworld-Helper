@@ -43,17 +43,22 @@ namespace ColonyCouncil
 
         public static bool Here(List<Pawn> carts, Map map) => carts.Any(p => p.RaceProps.Humanlike && PeoplesG.Up(p, map));
 
-        /// <summary>A pack beast of the Wheel's own caravans that suits the land and the season, else one of the usual ones that can stand it.</summary>
+        /// <summary>
+        /// A pack beast for the cart train: half the time one of the Wheel's own caravans' beasts that suits the land and the season, else any
+        /// pack beast of the game's or the player's mods (a grown one big enough to carry, never a predator, an insect, a dryad or a
+        /// Pokémon) that the land allows as a pack beast or that lives wild here, and that can stand the season.
+        /// </summary>
         public static PawnKindDef BeastKind(Faction f, Map map)
         {
-            var kind = Couriers.AnimalKind(f, map);
-            if (kind != null) return kind;
-            foreach (var n in new[] { "Muffalo", "Dromedary", "Horse", "Yak" })
-            {
-                var k = DefDatabase<PawnKindDef>.GetNamedSilentFail(n);
-                if (k?.race?.race != null && k.RaceProps.packAnimal && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)) return k;
-            }
-            return null;
+            if (map == null) return null;
+            var own = Couriers.AnimalKind(f, map);
+            if (own != null && Rand.Bool) return own;
+            var biome = map.Biome;
+            var pool = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k?.race?.race != null && k.RaceProps.Animal && k.RaceProps.packAnimal && !k.RaceProps.predator
+                && !k.RaceProps.Insect && !k.RaceProps.Dryad && k.RaceProps.baseBodySize >= 1f && !PokeWorldLink.IsPokemon(k)
+                && (biome == null || biome.IsPackAnimalAllowed(k.race) || BiomeAnimals.LivesIn(biome, k)) && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f))
+                .ToList();
+            return pool.RandomElementWithFallback() ?? own;
         }
 
         /// <summary>A pack beast of theirs, its packs loaded with salvage so they show.</summary>

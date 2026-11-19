@@ -20,7 +20,7 @@ namespace ColonyCouncil
     /// holds its age, round G's); both peoples remember one of theirs who learned at the colony, which moves their ages by the teaching
     /// rule (Peoples/PeopleAges.cs). Or the colony hosts them for the copying only, the crafter kept at their own work. One of the events'
     /// visits (kind "pev:learning"): x the copyist, group the technician, a the crafter, place the table, stake the mornings copied, due the
-    /// afternoons taught, text "society|vault|teach or copy|start|last copy day|last lesson day".
+    /// afternoons taught, text "society|vault|teach or copy|the tick they began|the map's day of the last copying|of the last lesson".
     /// </summary>
     public static class LearningTraded
     {
@@ -45,8 +45,6 @@ namespace ColonyCouncil
         public static Faction Vault(Visit v) => PeopleEvents10.PeopleById(Parts(v).ElementAtOrDefault(1));
 
         public static bool Teaching(Visit v) => Parts(v).ElementAtOrDefault(2) == "teach";
-
-        private static int Start(Visit v) => Int(v, 3, Now);
 
         public static Visit Open() => CouncilGameComponent.Instance?.happenings?.visits?.FirstOrDefault(v => v != null && v.kind == Kind && !v.done);
 
@@ -98,7 +96,7 @@ namespace ColonyCouncil
             if (v.done) return false;
             var map = v.map;
             var here = PeopleEvents10.Up(v);
-            int day = PeopleEvents10Math.DayOf(Start(v), now);
+            int day = map == null ? -1 : GenLocalDate.Year(map) * GenDate.DaysPerYear + GenLocalDate.DayOfYear(map);
             bool all = PeopleEvents10Math.CopyWhole(v.stake) && (!Teaching(v) || v.due >= PeopleEvents10Math.HostDays);
             if (map == null || here.Count == 0 || now >= v.until || all)
             {
@@ -251,7 +249,7 @@ namespace ColonyCouncil
                 PeoplesG.SayLine(copyist, v.incident, "thanks");
                 string key = book != null ? lessons > 0 ? "CC_PEv10_LearnDone" : "CC_PEv10_CopyDone" : mornings > 0 ? "CC_PEv10_CopyPart" : "CC_PEv10_LearnNone";
                 Tell.Message(NewsKind.People, Importance.Notable, map,
-                    key.Translate((society?.Name ?? "?").Named("SOCIETY"), (vault?.Name ?? "?").Named("VAULT"), (book?.LabelNoCount ?? "").Named("BOOK"), lessons.Named("COUNT"),
+                    key.Translate((society?.Name ?? "?").Named("SOCIETY"), (vault?.Name ?? "?").Named("VAULT"), (book?.def?.label ?? "").Named("BOOK"), lessons.Named("COUNT"),
                         (v.a?.LabelShort ?? "?").Named("CRAFTER")).Resolve(), book != null ? new LookTargets(book) : LookTargets.Invalid,
                     book != null || lessons > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
                 foreach (var p in PeopleEvents10.Up(v)) Hosting.GiveBack(p, map);

@@ -13,11 +13,14 @@
   <!-- ===================== 96. The moot over the old wood ===================== -->
 
   <CC_PEv10_MootLetterLabel>The ruling on the old wood</CC_PEv10_MootLetterLabel>
-  <CC_PEv10_MootShaft>{TALKER} heard both envoys at the colony's table and ruled for the shaft: {UNION} may sink it under the old wood. {UNION} think better of the colony for it, and {MOSSBORN} think worse. For the next season, steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootShaft>
-  <CC_PEv10_MootWood>{TALKER} heard both envoys at the colony's table and ruled that the old wood stays as it is. {MOSSBORN} think better of the colony for it, and {UNION} think worse. For the next season, herbal medicine, which {MOSSBORN} gather in that wood, will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootWood>
-  <CC_PEv10_MootBargain>{TALKER} heard both envoys at the colony's table and found terms both could accept: {UNION} will sink the shaft at the edge of the old wood, and plant a seedling for every tree they fell there, which {MOSSBORN} will count. Both think a little better of the colony, and for the next season steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootBargain>
-  <CC_PEv10_MootNoBargain>{TALKER} heard both envoys at the colony's table and tried to find terms both could accept, but neither would give way. {UNION} and {MOSSBORN} have gone home to settle it themselves, and both think a little less of the colony for it.</CC_PEv10_MootNoBargain>
-  <CC_PEv10_MootByWord>The envoys could not be heard at the colony's table, so the colony sent its ruling to them by word.</CC_PEv10_MootByWord>
+  <CC_PEv10_MootShaft>The ruling is for the shaft: {UNION} may sink it under the old wood. {UNION} think better of the colony for it, and {MOSSBORN} think worse. For the next season, steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootShaft>
+  <CC_PEv10_MootWood>The ruling is that the old wood stays as it is. {MOSSBORN} think better of the colony for it, and {UNION} think worse. For the next season, herbal medicine, which {MOSSBORN} gather in that wood, will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootWood>
+  <CC_PEv10_MootBargain>Both sides accepted the colony's terms: {UNION} will sink the shaft at the edge of the old wood and plant a seedling for every tree they fell there, which {MOSSBORN} will count. Both think a little better of the colony, and for the next season steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootBargain>
+  <CC_PEv10_MootNoBargain>{TALKER} looked for terms both could accept, but neither side would give way. {UNION} and {MOSSBORN} will settle it themselves, and both think a little less of the colony for it.</CC_PEv10_MootNoBargain>
+  <CC_PEv10_MootHeard>{TALKER} heard both envoys {WHERE} and gave the colony's ruling.</CC_PEv10_MootHeard>
+  <CC_PEv10_AtTable>at the colony's table</CC_PEv10_AtTable>
+  <CC_PEv10_AtGate>at the gate</CC_PEv10_AtGate>
+  <CC_PEv10_MootByWord>The envoys could not wait to be heard, so the colony sent its ruling after them by word.</CC_PEv10_MootByWord>
   <CC_PEv10_HeardShaft>Word on the roads: the colony ruled for {UNION}'s shaft under the old wood, and {MOSSBORN} took it badly.</CC_PEv10_HeardShaft>
   <CC_PEv10_HeardWood>Word on the roads: the colony ruled that the old wood stays, and {UNION} took it badly.</CC_PEv10_HeardWood>
   <CC_PEv10_HeardBargain>Word on the roads: the colony found terms over the old wood that {UNION} and {MOSSBORN} could both accept.</CC_PEv10_HeardBargain>
@@ -86,7 +89,7 @@
   <CC_PEv10_LearnNone>The copyist of {SOCIETY} and the technician of {VAULT} have gone home without copying anything at the colony's table.</CC_PEv10_LearnNone>
   <CC_PEv10_TableGone>The colony's table is gone.</CC_PEv10_TableGone>
   <CC_PEv10_CrafterGone>The colony's crafter, or their bench, is gone.</CC_PEv10_CrafterGone>
-  <CC_PEv10_Impact_Host>They stay {1} days: each morning at the colony's {0} copying, eating the colony's meals and sleeping in its beds or on the floor</CC_PEv10_Impact_Host>
+  <CC_PEv10_Impact_Host>They stay {1} days, each morning copying at the colony's table, eating the colony's meals and sleeping in its beds or on the floor</CC_PEv10_Impact_Host>
   <CC_PEv10_Impact_HostBrief>hosted at the table</CC_PEv10_Impact_HostBrief>
   <CC_PEv10_Impact_Book>With the copy finished, the society leaves the colony a {0} of it</CC_PEv10_Impact_Book>
   <CC_PEv10_Impact_BookBrief>a book</CC_PEv10_Impact_BookBrief>
@@ -100,7 +103,7 @@
   <!-- ===================== 100. Their art handed on ===================== -->
 
   <CC_PEv10_ArtLetterLabel>An art handed on: {0}</CC_PEv10_ArtLetterLabel>
-  <CC_PEv10_ArtTome>{TEACHER} spent the afternoon with {PAWN_nameDef} at the gate and then handed {PAWN_objective} {TOME}, the art of {FACTION}. {PAWN_nameDef} has sat down to read it.</CC_PEv10_ArtTome>
+  <CC_PEv10_ArtTome>{TEACHER} spent the afternoon with {PAWN_nameDef} at the gate and then handed {PAWN_objective} {TOME}, the art of {FACTION}. {PAWN_nameDef} has started to read it.</CC_PEv10_ArtTome>
   <CC_PEv10_ArtTomeLater>{TEACHER} spent the afternoon with {PAWN_nameDef} at the gate and then handed {PAWN_objective} {TOME}, the art of {FACTION}. It is lying beside {PAWN_objective}, for {PAWN_objective} to read when {PAWN_pronoun} can.</CC_PEv10_ArtTomeLater>
   <CC_PEv10_ArtPassion>{TEACHER} spent the afternoon at the gate showing {PAWN_nameDef} how {FACTION} go about {SKILL}. {PAWN_nameDef} has taken an interest in it.</CC_PEv10_ArtPassion>
   <CC_PEv10_ArtBurning>{TEACHER} spent the afternoon at the gate showing {PAWN_nameDef} how {FACTION} go about {SKILL}. {PAWN_nameDef} was already interested in it, and now {PAWN_pronoun} cares about it more than anything else.</CC_PEv10_ArtBurning>

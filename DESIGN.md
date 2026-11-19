@@ -10544,7 +10544,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     warning), `FactionMemory` (the deed `medal`), `ArisingMath` and `Arising` (the disembarked), `FactsMath`, the def check's
     placeholders. No game hooks of its own. Dev actions "Peoples' events 8: ...". The Almanac's peoples' pages, *Of their own: gifts,
     trust and camps* (Almanac_PeoplesD.xml).
-- **The peoples' own events, round 9** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 9** (the player's go, 19 November 2026: "Events sounds great"; released 0.273.0)
   `docs/peoples-events-proposals.md`, items 84 to 94 (the Lattice, the Choir of the Spire and the Sunken Vault);
   `Source/ColonyCouncil/Peoples/Events9/`, the pure rules in `PeopleEvents9Math.cs`, `Tools/Tests/PeopleEvents9Tests.cs` ("the
   peoples' events, round 9: "). As rounds 1 to 8: only from a people of its calling at peace (`PeoplesD.Friendly`), in the Visitors
@@ -10682,9 +10682,10 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     unless a ruling moved a price (`PeopleEvents10Book.AnyPrice`) and with the deeper hooks on; buying and selling move together, so
     the spread stays the game's. At most four kept; one whose season is over is told and dropped.
   - **A toll on the road** (the road league and the Wheel; `RoadToll`): the league's factor (and a guard) at the gate, and a cart train
-    of the Wheel stopped just inside the edge of the colony's land: its wheelwright, one or two hands and two or three pack beasts of
-    the Wheel's own caravans (its faction's carriers that suit the land and season, `Couriers.AnimalKind`), their packs loaded with
-    25 steel of salvage so they show. Let through: the carts walk across the colony's land to the farthest edge they can reach and off
+    of the Wheel stopped just inside the edge of the colony's land: its wheelwright, one or two hands and two or three pack beasts, half
+    the time of the Wheel's own caravans (its faction's carriers that suit the land and season, `Couriers.AnimalKind`), else any pack
+    beast of the game's or the player's mods big enough to carry that the land allows or that lives wild there and that can stand the
+    season (never a predator, an insect, a dryad or a Pokémon), their packs loaded with 25 steel of salvage so they show. Let through: the carts walk across the colony's land to the farthest edge they can reach and off
     (`LordJob_ExitMapNear`, a great herd's crossing), the Wheel +5, the league -5, a side taken. Turned back: out the way they came, the
     reverse. A fair toll: a meal carried out to each, the talker with both at the gate two hours, the toll 35 silver a pack beast which
     the wheelwright pays the factor, both +3 and `mediated`, the talker 400 Social; the carts then go on by the road. Stayed out of:
@@ -10721,8 +10722,10 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     Line Technomancy, the Choir and the Republic the Bard's, the league and the Fleet the Commander's, the pilgrims the Paladin's, the
     society the Arcanist's, the enclave the Psionic's, the Conclave the Lightning tome, the Works the Chronomancer's, the vault the Super
     Soldier serum; each a class among the people's own kinds. Otherwise a passion in their calling's skill (none an interest, an
-    interest a burning passion; the order Medicine, the herders Animals, the Wardens Shooting, the Bell Construction, the Banner Melee,
-    the Guild Artistic, the union Mining and so on), or where it burns already (or is a mod's own) a long lesson (6000). A good mood,
+    interest a burning passion; the league, the pilgrims, the enclave and the Republic Social; the order and the Works Medicine; the
+    herders, the river folk and the Circuit Animals; the society, the Conclave and the Fleet Intellectual; the Wardens Shooting; the
+    Bell and the Signal Line Construction; the Wheel, the Lattice and the vault Crafting; the Mossborn Plants; the Banner Melee; the
+    Guild and the Choir Artistic; the union Mining), or where it burns already (or is a mod's own) a long lesson (6000). A good mood,
     +4 (+8 with the colony's gift in return, 250 silver by wealth), and the colony owes them a lesson (`taught`, which moves their age by
     the teaching rule). Not now: they go home, and the offer may come again. `pev:art`.
   - Harm of Rimfolk's own: none. The sickness from the plague town is the illness budget's own (`HarmKinds.SickHome`, its chance, its

@@ -74,8 +74,6 @@ public static class PeopleEvents10Tests
         C(PeopleEvents10Math.HostDays == 3 && PeopleEvents10Math.CopyTicks == 4 * H && PeopleEvents10Math.LessonTicks == 2 * H, "three days: four hours of copying each morning, two of lessons each afternoon");
         C(PeopleEvents10Math.CopyHour(8) && PeopleEvents10Math.CopyHour(11) && !PeopleEvents10Math.CopyHour(14) && PeopleEvents10Math.LessonHour(14) && !PeopleEvents10Math.LessonHour(9),
             "copying in the morning, lessons in the afternoon");
-        C(PeopleEvents10Math.DayOf(1000, 1000) == 0 && PeopleEvents10Math.DayOf(1000, 1000 + 60000) == 1 && PeopleEvents10Math.DayOf(-1, 5) == 0 && PeopleEvents10Math.DayOf(500, 100) == 0,
-            "which day of their stay");
         C(PeopleEvents10Math.CopyWhole(3) && !PeopleEvents10Math.CopyWhole(2), "the copy whole after a morning for each day, and then the book");
         C(PeopleEvents10Math.LearnGoodwill > PeopleEvents10Math.CopyGoodwill && PeopleEvents10Math.CopyGoodwill > 0 && PeopleEvents10Math.CraftWorth > 0f && PeopleEvents10Math.LessonSocialXp > 0f,
             "more thanks with the lessons than for the copying only; the vault's craft as supply");
@@ -167,7 +165,8 @@ public static class PeopleEvents10Tests
           && toll[0].Descendants("enemy").Any(x => x.Value == "true") && toll[0].Descendants("amount").Select(a => a.Value).SequenceEqual(new[] { "5", "-5" })
           && toll[1].Descendants("amount").Select(a => a.Value).SequenceEqual(new[] { "5", "-5" }), "the toll: the Wheel up and the league down for the carts let through, the reverse turned back");
         C(code.Contains("new LordJob_ExitMapNear(edge, LocomotionUrgency.Walk") && code.Contains("FarEdge(map, from)") && code.Contains("Couriers.AnimalKind(f, map)")
-          && code.Contains("PeoplesD.KindNamed(ctx.enemy, \"Rimfolk_Wheel_Wheelwright\")"), "the Wheel's own cart train walks across the colony's land to the far edge, or back the way it came");
+          && code.Contains("k.RaceProps.packAnimal && !k.RaceProps.predator") && code.Contains("BiomeAnimals.LivesIn(biome, k)")
+          && code.Contains("PeoplesD.KindNamed(ctx.enemy, \"Rimfolk_Wheel_Wheelwright\")"), "the Wheel's own cart train (its caravans' beasts, or any pack beast of the game's or the player's mods the land allows) walks across the colony's land to the far edge, or back the way it came");
         var plague = Ext(events["Rimfolk_Evt_PlagueYear"], "HappeningExtension")!.Element("options")!.Elements("li").ToList();
         C(plague.Take(3).Select(o => (o.Descendants("doctor").Single().Value, o.Descendants("diggers").Single().Value))
             .SequenceEqual(new[] { ("true", "true"), ("true", "false"), ("false", "true") }), "the plague year: all three, the doctor only, or the two diggers only");

@@ -128,9 +128,6 @@ namespace ColonyCouncil
 
         public static bool LessonHour(int hour) => hour >= 13 && hour <= 16;
 
-        /// <summary>Which day of their stay it is (0 the first).</summary>
-        public static int DayOf(int start, int now) => start < 0 || now < start ? 0 : (now - start) / DayTicks;
-
         /// <summary>The copy is whole after a morning for each day: then the society leaves the colony a book of it.</summary>
         public static bool CopyWhole(int mornings) => mornings >= HostDays;
 
