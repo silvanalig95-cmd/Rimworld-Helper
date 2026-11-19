@@ -68,8 +68,8 @@
         </doneTitles>
         <done>
           <li>[attended,entertainers] The colony's entertainers played the festival at {PLACE} to the end, and {FACTION} sent them home with gifts: {ITEM}.</li>
-          <li>[attended,invited] The colony's people kept the festival at {PLACE} with {FACTION}, and came home with gifts: {ITEM}.</li>
-          <li>[attended] The colony's people were made welcome at {PLACE}'s festival and came home with gifts: {ITEM}.</li>
+          <li>[attended,invited] The colony's people kept the festival at {PLACE} with {FACTION}, and were given gifts to take home: {ITEM}.</li>
+          <li>[attended] The colony's people were made welcome at {PLACE}'s festival and were given gifts to take home: {ITEM}.</li>
           <li>[brief] The colony's people reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
         </done>
         <failTitles>
@@ -81,7 +81,7 @@
           <li>[absent] Nobody from the colony came to the festival at {PLACE}, after all that was promised.</li>
         </fail>
         <cancelled>
-          <li>The festival at {PLACE} is no longer awaited.</li>
+          <li>The invitation to the festival at {PLACE} no longer stands.</li>
         </cancelled>
       </li>
     </modExtensions>
