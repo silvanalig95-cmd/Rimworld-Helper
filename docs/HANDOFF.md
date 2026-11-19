@@ -22,32 +22,29 @@ four more storylines (`docs/quests-proposals.md` marks each). Nothing of them ha
 release's entry below says what to try.
 
 **What is open, in the order the lead would take it** (nothing here is built until the player says "go", "do this now"
-or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features):
-1. **Still on the list** (the to-do entries below): riding out to far work (18 November, a bug, the lead's fix waits
-   for the player's go); Rimfolk reading a room by what is in it, not
-   by the one name the game shows (the rooms entry's fix B); more traits that come and go (propose a list first). Done
-   the same day, each its own release: the log window at the start (0.265.1), ballrooms only for music rooms (0.265.2),
-   everything from a god told at once (0.265.3), a way out of vengeance (0.265.4), the Stormriders (0.266.0), the
-   pact's cart and the schemes' thefts (0.266.1).
-2. **Quests, round 3** (S6 a dream of the gods, S9 raiders settling nearby, S10 the town's well, S11 the vault's sealed
-   case, S12 the lost founder's grave, Q14 the one away quest within 3 tiles): `docs/quests-proposals.md`, "Rounds".
-   The player can strike or change any of it first. Round 3's storylines only add files in
-   `Source/ColonyCouncil/Storylines/` and `Storylines/Flows/` (one flow class each; the frame finds them).
-3. **The peoples' events, rounds 4 to 10** (`docs/peoples-events-proposals.md`; the entry "events and interactions of
-   each of Rimfolk's peoples" below lists each round's numbers). One round per release, when asked.
-4. **The plain-words text pass, the categories not yet picked**: the gods and faith, the letters, wishes and ambitions,
-   personal stories, council questions, the peoples, camps and visitors, the region map, council and decrees, the
-   Almanac, What's new (the entry "Rimfolk's text in plain words" below).
-5. **A question for the player, still open**: whether the storytellers' below-base levers go back to the base rate
-   (Lean Years' fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years;
-   What You Sow's thinner roads for a cruel colony). Left as they are until then (the 0.253.0 entry below).
-6. **Offered to the player, not answered**: an advisor warning for greenhouse plants beyond a sun lamp's light; and a
-   follow-up to the peoples' new descriptions (0.252.0): the Almanac's "Where their ways began" pages, each people's
-   talk piece and 21 of the 23 faiths' descriptions still tell their start through one named founder.
-7. **Pokémon**: the review against PokéWorld Updated (0.135.0) and its voices list are done; pairings are changed when
-   the player flags one.
-8. **Every god's doing leaves something real** (17 November 2026): all 55 proposals of `docs/gods-impact-proposals.md`
-   are built and released as 0.265.0 (the player's go: "yes, go ahead with all!"); its entry is the newest release line.
+or the like; CLAUDE.md, "New ideas and requests go on the to-do list first"; bug fixes come before features).
+The player's go of 19 November 2026, on the overview: "All right, so you can go ahead. Rooms judged by what's in them.
+That sounds good. Quests round 3 sounds great. Events sounds great. Plain words text sounds great. More trades come and
+go sounds great. Some storytellers and fewer traders and fewer fights. That's also good. Depending, you know, if it's
+fitting for the scenario, it should also just be reflected in the description. The advisor warning for greenhouse
+plants dying is fine. I'm aware of that now. You don't need to do it. Yeah, you can go ahead in the order that makes
+most sense." So, in this order, three builds at a time:
+1. **Riding out to far work** (a bug, built, not released; the entry "Riding out to far work: the beast taken first"
+   above the newest release line).
+2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
+3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
+   lists each round's numbers).
+4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
+   words" below).
+5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
+6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
+   storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
+7. **New wish, 18-19 November 2026, on the to-do list** (the entry "choose the material" below), waiting for its go.
+- Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
+  now. You don't need to do it").
+- Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
+  the 23 faiths' descriptions still tell their start through one named founder.
+- Pokémon: pairings are changed when the player flags one.
 
 **How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
 container has 4 cores): each gets a brief (`docs/agent-brief.md` holds the part every brief shares), builds and checks
@@ -118,6 +115,19 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
   walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
   above the newest release line ("Riding out to far work: the beast taken first").
+- **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
+  player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
+  would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
+  basically create the task and then have to go to the task in the tailor's table or whatever and kind of go deselect all
+  materials and then only enable those that I actually want them to use ... when I select the open item slot, select the
+  item that I want to create, and then I have to select where it's created from, and then maybe I could also immediately
+  select which material it uses. So it would just list or show materials that I have enough of for the job, and then
+  create the job, but only select this one material as a allowed material and by default deselect everything else". The
+  mod is Nice Inventory Tab (its DLL decompiled in the session's scratchpad, `nit_out2/`: its slot's float menus, then
+  `BillFinished_Patch.Register` for the bill). **The lead's proposal**: after the bench is chosen, one more menu step
+  listing the stuff the colony holds enough of for one piece (by the recipe's stuff cost, counted on the map), each with
+  how much there is; the bill then made with only that stuff allowed in its ingredient filter; "any material" kept as the
+  first choice for the mod's own way.
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
