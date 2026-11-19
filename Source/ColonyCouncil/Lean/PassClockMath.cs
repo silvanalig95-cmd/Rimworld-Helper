@@ -46,6 +46,8 @@ namespace ColonyCouncil
         RareWeather,
         RareWelcome,
         RareHealth,
+        /// <summary>Riding out with Giddy-Up 2: beasts kept waiting for riders at work out past the base (Sched.RareRideOut).</summary>
+        RareRideOut,
         RarePeoplesMagic,
         RareFightSides,
         RareBeasts,
@@ -158,6 +160,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareWeather, "CC_Clock_Pass_RareWeather", nameof(Sched.RareWeather), R, Sched.RareWeather),
             new PassInfo(Pass.RareWelcome, "CC_Clock_Pass_RareWelcome", nameof(Sched.RareWelcome), R, Sched.RareWelcome),
             new PassInfo(Pass.RareHealth, "CC_Clock_Pass_RareHealth", nameof(Sched.RareHealth), R, Sched.RareHealth),
+            new PassInfo(Pass.RareRideOut, "CC_Clock_Pass_RareRideOut", nameof(Sched.RareRideOut), R, Sched.RareRideOut),
             new PassInfo(Pass.RarePeoplesMagic, "CC_Clock_Pass_RarePeoplesMagic", nameof(Sched.RarePeoplesMagic), R, Sched.RarePeoplesMagic),
             new PassInfo(Pass.RareFightSides, "CC_Clock_Pass_RareFightSides", nameof(Sched.RareFightSides), R, Sched.RareFightSides),
             new PassInfo(Pass.RareBeasts, "CC_Clock_Pass_RareBeasts", nameof(Sched.RareBeasts), R, Sched.RareBeasts),
