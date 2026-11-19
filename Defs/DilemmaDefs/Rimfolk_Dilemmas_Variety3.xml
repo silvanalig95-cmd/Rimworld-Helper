@@ -13,21 +13,21 @@
   <!-- ===================== The inspired hands ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmE_Inspired</defName>
-    <label>the inspired hands</label>
+    <label>an inspired artist</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Inspired</workerClass>
     <weight>1.3</weight>
     <cooldownDays>30</cooldownDays>
     <answerDays>0.75</answerDays>
     <texts>
-      <li>{A_nameDef} has been drawing on every flat surface since morning and can't sit still: {A_pronoun} has a piece in {A_possessive} head and wants to make it now, while it's there. {A_pronoun} asks for the colony's {THING}. {B_nameDef}, who works the stores, says {THING} is worth more as {THING}, and that {PLAIN} takes a chisel just as well.</li>
-      <li>[precious] {A_nameDef} wants to work the piece in {THING}, and {A_pronoun} says it plainly: a thing like this comes once, and it should be made of something that lasts. {B_nameDef} says the colony's {THING} buys food and help in a bad year, and that {PLAIN} would do.</li>
-      <li>[lowtech] {A_nameDef} has had a carving in {A_possessive} hands all night, the elders say, and woke with it still there. {A_pronoun} wants the colony's {THING} for it. {B_nameDef} would sooner {A_pronoun} cut it from {PLAIN} and keep the {THING} for trade.</li>
-      <li>[!lowtech] {A_nameDef} is inspired, and anyone who has seen {A_objective} this week can tell. {A_pronoun} has asked for the colony's {THING} to make the piece in. {B_nameDef} has done the sums and would rather it were {PLAIN}.</li>
+      <li>{A_nameDef} has been drawing on every flat surface since morning and can't sit still: {A_pronoun} has a piece in {A_possessive} head and wants to make it now, while it's there. {A_nameDef} asks for the colony's {THING}. {B_nameDef}, who works the stores, says the {THING} is worth more kept as it is, and that {PLAIN} carves just as well.</li>
+      <li>[precious] {A_nameDef} wants to make the piece in {THING}, and says so plainly: an idea like this doesn't come often, and it should be made of something that lasts. {B_nameDef} says the colony's {THING} buys food and help in a bad year, and that {PLAIN} would do.</li>
+      <li>[lowtech] {A_nameDef} dreamt of a carving all night, woke up still seeing it, and wants the colony's {THING} for it. {B_nameDef} would rather {A_pronoun} cut it from {PLAIN} and keep the {THING} for trade.</li>
+      <li>[!lowtech] {A_nameDef} is inspired, and anyone who has seen {A_objective} this week can tell. {A_nameDef} has asked for the colony's {THING} to make the piece in. {B_nameDef} has done the sums and would rather it were {PLAIN}.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>{A_nameDef} works it in {THING}</label>
+        <label>{A_nameDef} makes it in {THING}</label>
         <outcome>{A_nameDef} has the bench and the colony's {THING} for the piece, and has gone to make it while the idea is fresh. {B_nameDef} has given up counting the cost.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} carries the {THING} to the bench {A_objective}self and starts on it before anyone can change their mind.</li>
@@ -41,7 +41,7 @@
         </effects>
       </li>
       <li>
-        <label>{A_nameDef} works it in {PLAIN}</label>
+        <label>{A_nameDef} makes it in {PLAIN}</label>
         <outcome>{A_nameDef} has the bench and the colony's {PLAIN} for the piece. The {THING} stays in the stores, and {B_nameDef} is pleased with that.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
@@ -51,7 +51,7 @@
         </effects>
       </li>
       <li>
-        <label>The work comes first</label>
+        <label>Not now; the colony's work comes first</label>
         <outcome>The council would rather {A_nameDef} kept to the colony's work. The idea will keep, or it won't.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
@@ -65,14 +65,14 @@
   <!-- ===================== The shakes ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmE_Withdrawal</defName>
-    <label>the shakes</label>
+    <label>withdrawal</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Withdrawal</workerClass>
     <weight>1.3</weight>
     <cooldownDays>25</cooldownDays>
     <answerDays>0.5</answerDays>
     <texts>
-      <li>{A_nameDef} has the shakes and can't hide it. It's the {THING}: there's some in the stores, and {A_pronoun} knows exactly where. {B_nameDef} says the only way out is through, and that it's a hard few days. {A_nameDef} asks for a little, to get through today.</li>
-      <li>[drink] {A_nameDef} was at the stores before breakfast, looking at the {THING} and not touching it. {A_possessive} hands won't keep still. {B_nameDef} says {A_pronoun} can be off it in a few bad days, if the colony keeps it from {A_objective}.</li>
+      <li>{A_nameDef} has the shakes and can't hide it. It's the {THING}: there's some in the stores, and {A_pronoun} knows exactly where. {B_nameDef} says the only cure is to go without, and that it will be a hard few days. {A_nameDef} asks for a little, to get through today.</li>
+      <li>[drink] {A_nameDef} was at the stores before breakfast, looking at the {THING} and not touching it. {A_nameDef}'s hands won't keep still. {B_nameDef} says {A_pronoun} can be off it in a few bad days, if the colony keeps it from {A_objective}.</li>
       <li>[lowtech] {A_nameDef} has gone grey and sweating for want of the {THING}, and the colony has some put by. The old healers say ride it out and tie the door if need be; {B_nameDef} says the same, more kindly. {A_nameDef} asks for a little, just today.</li>
       <li>[!lowtech] {A_nameDef} is in withdrawal from the {THING}, and the colony keeps some in the stores. {B_nameDef} has seen it before: a few hard days and it's over, if nobody gives in. {A_nameDef} would rather not have the few hard days.</li>
     </texts>
@@ -126,7 +126,7 @@
       <li>{A_nameDef} lifted the cover off the {THING} this morning and put it straight back: it's on the turn, and by tomorrow it'll be past saving. There's enough for {COUNT} meals and more. {B_nameDef} brought it in and hates to see it go; {A_nameDef} says {A_pronoun} can cook it all, if the stove is {A_possessive} for the day.</li>
       <li>[meat] The {THING} {B_nameDef} brought in won't keep another day where it lies. {A_nameDef} can cook it, all of it, if the colony can spare {A_objective} at the stove from dawn to dark, or just enough for tonight's supper.</li>
       <li>[crop] The {THING} in the stores has started to go soft and smell sweet, and {A_nameDef} gives it a day. {B_nameDef} grew every bit of it. {A_nameDef} can cook it into meals, all of it or some, if someone else does {A_possessive} work today.</li>
-      <li>[lowtech] There's {THING} in the stores that won't see another dawn, by the smell of it. {A_nameDef} could keep the cookfire going all day and save it, {COUNT} bowls and more, or cook enough for one supper and let the rest go.</li>
+      <li>[lowtech] There's {THING} in the stores that won't last another day, by the smell of it. {A_nameDef} could keep the cookfire going all day and save it, {COUNT} bowls and more, or cook enough for one supper and let the rest go.</li>
       <li>[!lowtech] The {THING} in the stores is going off, and nobody built anywhere cold enough to keep it. {A_nameDef} can cook it all today, about {COUNT} meals, or just tonight's.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -150,7 +150,7 @@
         </effects>
       </li>
       <li>
-        <label>Let it go</label>
+        <label>Let it spoil</label>
         <outcome>The {THING} is left where it lies, and the work goes on as it was.</outcome>
         <ways><toil>-1</toil></ways>
         <effects>
@@ -172,7 +172,7 @@
     <texts>
       <li>{A_nameDef} came in soaked and said what everyone knows: half the stockpile lies under the open sky, and the rain has been at it all week. {COUNT} stacks out there are going to ruin. {B_nameDef} says a roof can go over the part the walls can carry. {A_nameDef} would sooner give the open part up and carry it all in.</li>
       <li>[allopen] The whole stockpile is out in the weather, and after the rain {A_nameDef} found {COUNT} stacks there spotted and swelling. {B_nameDef} says the builders can roof what the walls can carry, and the rest takes its chances.</li>
-      <li>[lowtech] The rain got into the stores again. {A_nameDef} carries them and says {COUNT} bundles out under the sky are going soft. {B_nameDef} could put a roof of poles and thatch over what the walls will hold up.</li>
+      <li>[lowtech] The rain got into the stores again. {A_nameDef}, who hauls for the colony, says {COUNT} bundles out under the sky are going soft. {B_nameDef} could put a roof of poles and thatch over what the walls will hold up.</li>
       <li>[!lowtech] After the rain, {A_nameDef} counted {COUNT} stacks in the open part of the stockpile with their wear showing. {B_nameDef} wants a roof over it; {A_nameDef} says pull the stockpile in under the roof the colony already has.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -219,11 +219,11 @@
     <cooldownDays>60</cooldownDays>
     <answerDays>1.5</answerDays>
     <texts>
-      <li>Somebody built here before the colony did, and left {COUNT} pieces of wall of {THING} standing near the colony to say so. {A_nameDef} has been looking at them with a builder's eye: good {THING}, already cut. {B_nameDef}, the eldest, says walls that old have stood long enough to be left alone, or built on.</li>
+      <li>Somebody built here before the colony did, and {COUNT} pieces of {THING} wall are still standing near the colony. {A_nameDef} has been looking at them with a builder's eye: good {THING}, already cut. {B_nameDef}, the eldest, says walls that old should be left alone or built on, not pulled down.</li>
       <li>[timber] An old timber ruin stands near the colony, {COUNT} pieces of wall gone grey. {A_nameDef} says the wood is sound under the weathering and wants it for the colony's own work. {B_nameDef} says leave it, or put a roof on it and call it ours.</li>
-      <li>[lowtech] The old ones' walls stand near the colony, {COUNT} pieces of {THING} that nobody living put up. {A_nameDef} wants the stone. {B_nameDef} says the old ones built them for a reason, and that a colony could do worse than build on them.</li>
+      <li>[lowtech] Old walls stand near the colony, {COUNT} pieces of {THING} that nobody living put up. {A_nameDef} wants the {THING}. {B_nameDef} says the people who built them had a reason, and that the colony could do worse than build on them.</li>
       <li>[!lowtech] The ruin near the colony is {COUNT} pieces of {THING} wall from before anyone's time. {A_nameDef} wants it pulled down for the material. {B_nameDef} would claim it and build on it, or leave it as it is.</li>
-      <li>[land:mountains] The ruin under the slope near the colony is {COUNT} pieces of {THING}, wind-scoured and still standing. {A_nameDef} wants the stone; {B_nameDef} wants the ruin.</li>
+      <li>[land:mountains] The ruin under the slope near the colony is {COUNT} pieces of {THING}, wind-scoured and still standing. {A_nameDef} wants the stone; {B_nameDef} wants to keep the ruin.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -272,13 +272,13 @@
     <answerDays>1</answerDays>
     <texts>
       <li>The new room is finished, with its bed made and nobody in it yet. {A_nameDef} has been with the colony longest of those who still sleep in a shared room, and says so. {B_nameDef} says {B_pronoun} has never had a door to close in {B_possessive} life.</li>
-      <li>[lowtech] A hut of its own, with one bed in it, and two who want it: {A_nameDef}, who came before most, and {B_nameDef}, who sleeps by the door in the long house and wakes every time it opens.</li>
-      <li>[!lowtech] One new bedroom, one bed, nobody's yet. {A_nameDef} has the longer claim by time served; {B_nameDef} sleeps worst of anyone in the barracks. Whoever gets it, the other stays where they are.</li>
+      <li>[lowtech] There is a new hut with one bed in it, and two people who want it: {A_nameDef}, who came before most, and {B_nameDef}, who sleeps by the door in the long house and wakes every time it opens.</li>
+      <li>[!lowtech] There is one new bedroom with one bed, and it isn't anyone's yet. {A_nameDef} has the longer claim by time served; {B_nameDef} sleeps worst of anyone in the barracks. Whoever gets it, the other stays where they are.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>{A_nameDef} has it</label>
+        <label>{A_nameDef} gets it</label>
         <outcome>The new room is {A_nameDef}'s from tonight. {B_nameDef} stays where {B_pronoun} is.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
@@ -289,7 +289,7 @@
         </effects>
       </li>
       <li>
-        <label>{B_nameDef} has it</label>
+        <label>{B_nameDef} gets it</label>
         <outcome>The new room is {B_nameDef}'s from tonight. {A_nameDef} thinks time served ought to count for something.</outcome>
         <ways><mercy>1</mercy></ways>
         <effects>
@@ -319,8 +319,8 @@
     <cooldownDays>20</cooldownDays>
     <answerDays>0.75</answerDays>
     <texts>
-      <li>Nobody has said what the colony should learn next, and {A_nameDef} has been tidying the study benches for a day instead. {A_pronoun} would take up {STUDY1}, which is close to hand. {B_nameDef} wants {STUDY2}, which will take longer and, {B_pronoun} says, change more.</li>
-      <li>[lowtech] The one who keeps the colony's learning, {A_nameDef}, sits idle at the study for want of a question. {A_pronoun} says {STUDY1} is the next thing to know. {B_nameDef} says {STUDY2} is the thing worth knowing.</li>
+      <li>Nobody has said what the colony should learn next, and {A_nameDef} has been tidying the study benches for a day instead. {A_nameDef} would take up {STUDY1}, which is close to hand. {B_nameDef} wants {STUDY2}, which will take longer and, {B_pronoun} says, change more.</li>
+      <li>[lowtech] {A_nameDef}, who does most of the colony's studying, has nothing to work on. {A_nameDef} says {STUDY1} is the next thing to know. {B_nameDef} says {STUDY2} is the thing worth knowing.</li>
       <li>[!lowtech] The research benches have stood idle since the last study was done. {A_nameDef} has {STUDY1} ready to begin; {B_nameDef} has been asking about {STUDY2} for weeks. The council can choose, or leave the benches to wait.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -358,7 +358,7 @@
   <!-- ===================== The hurt beast ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmE_HurtBeast</defName>
-    <label>the hurt beast</label>
+    <label>a hurt wild animal</label>
     <workerClass>ColonyCouncil.DilemmaWorker_HurtBeast</workerClass>
     <weight>1.2</weight>
     <cooldownDays>20</cooldownDays>
@@ -366,15 +366,15 @@
     <texts>
       <li>A wild {X_kind} is down out past the colony and can't get up. {A_nameDef} went close enough to see it breathing, and says it might mend and might be tamed after. {B_nameDef} says the kind thing is a clean end, and the meat besides.</li>
       <li>[predator] A wild {X_kind} lies hurt and down out past the colony, and even down it watches anyone who comes close. {A_nameDef} thinks it could be tamed once it's on its feet. {B_nameDef} would end it now, while it can't fight back.</li>
-      <li>[untameable] A wild {X_kind} is down out past the colony, too wild for anyone to tame. {B_nameDef} says end it cleanly; {A_nameDef} says leave it to the wild, which has its own ways of ending things.</li>
+      <li>[untameable] A wild {X_kind} is down out past the colony, too wild for anyone to tame. {B_nameDef} says end it cleanly; {A_nameDef} says to leave it alone and let nature take its course.</li>
       <li>[lowtech] There's a hurt {X_kind} down in the grass past the colony. The hunters' way is a quick end and thanks for the meat; {A_nameDef} says if it lives, it might be the colony's. {B_nameDef} has already taken up {B_possessive} weapon.</li>
       <li>[!lowtech] A wild {X_kind} is lying hurt past the colony and can't stand. {A_nameDef} would leave it to mend and try to tame it after; {B_nameDef} would end it now and save it the suffering.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>{B_nameDef} ends its pain</label>
-        <outcome>The {X_kind} is marked for the hunters, and {B_nameDef} goes out to give it a clean end.</outcome>
+        <label>Have the hunters end its pain</label>
+        <outcome>The {X_kind} is marked for the hunters, and the first hunter free will go out and give it a clean end.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_MarkBeast" />
@@ -392,7 +392,7 @@
         </effects>
       </li>
       <li>
-        <label>Leave it to the wild</label>
+        <label>Leave it where it lies</label>
         <outcome>The {X_kind} is left where it lies, to live or die on its own.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LeftHurt</thought><chance>0.5</chance></li>

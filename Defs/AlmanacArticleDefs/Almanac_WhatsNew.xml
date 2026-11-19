@@ -31,6 +31,28 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.269.2</version>
+        <date>19 November 2026</date>
+        <title>The council's other questions in plain words</title>
+        <points>
+          <li>The council's other questions are in plain words too: the herd and the pens, the camp on the colony's land, the customs of the year, the children and the elders, moving on, and the colony's own troubles.</li>
+          <li>Question names say what each question is about, such as an animal in the crops, an inspired artist or research nearly done, and answers say what the council does.</li>
+          <li>A few answers now match what happens: the hurt animal is marked for the hunters, a night watch is one night, the food sold to the neighbours names its 40 silver, and the youngster's guardian really goes on the long walk past the fields.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.1</version>
+        <date>19 November 2026</date>
+        <title>The camps in plain words</title>
+        <points>
+          <li>The camps' letters and asks are in plain words: who came, why, what they ask and what happens.</li>
+          <li>The camp's own people now come to the suppers, feasts, evenings at their fire, prayers, plays and songs the colony agrees to, and the minstrels sing their song about the colony themselves.</li>
+          <li>The camps' letters now match the map: who prays at a sick colonist's side, who goes hunting, what the salt caravan pays and when things happen.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.269.0</version>
         <date>19 November 2026</date>
         <title>The peoples' own events, round 5</title>

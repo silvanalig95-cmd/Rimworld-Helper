@@ -23,7 +23,7 @@
     <texts>
       <li>[started] {A_nameDef} has been in {FIGHTS} this past month, with {WITH}, and threw the first punch at least once. Most of the colony gives {A_objective} a wide berth now, and hardly anyone takes {A_possessive} side.\n\n{B_nameDef}, the colony's {TITLE}, has brought it to the council. Nobody is asking for anything drastic yet, only what the council means to do about it.</li>
       <li>[joined] {A_nameDef} has been in {FIGHTS} this past month, with {WITH}. Whoever swung first, most of the colony has stopped taking {A_possessive} side, and hardly anyone sits near {A_objective} at supper.\n\n{B_nameDef}, the colony's {TITLE}, wants the council to decide what to do before the next one.</li>
-      <li>[insults] Hard words, then fists: {A_nameDef} has been in {FIGHTS} this past month, with {WITH}, and has been throwing insults around besides. Most of the colony can't stand {A_objective} now, and almost nobody stands up for {A_objective}.\n\n{B_nameDef}, the colony's {TITLE}, has asked the council what it means to do.</li>
+      <li>[insults] {A_nameDef} has been in {FIGHTS} this past month, with {WITH}, and has been throwing insults around besides. Most of the colony can't stand {A_objective} now, and almost nobody stands up for {A_objective}.\n\n{B_nameDef}, the colony's {TITLE}, has asked the council what it means to do.</li>
       <li>{A_nameDef} has been in {FIGHTS} this past month, with {WITH}. The rest of the colony has had enough, and almost nobody stands by {A_objective}.\n\n{B_nameDef}, the colony's {TITLE}, has brought it to the council.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -75,7 +75,7 @@
       <li>[warned,started] After the council's word, {A_nameDef} has thrown punches again: {FIGHTS} since, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put the question to the council plainly: how much longer?\n\n{VOICES}</li>
       <li>[apart] The nights apart didn't settle it. Since then {A_nameDef} has been in {FIGHTS} more, with {WITH}, and some at the table now say the colony would be better off without {A_objective}.\n\n{VOICES}</li>
       <li>{A_nameDef} is in trouble again: {FIGHTS} since the council last stepped in, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put it to the council once more.\n\n{VOICES}</li>
-      <li>[apart,insults] Kept to the nights for a while, {A_nameDef} found trouble anyway: {FIGHTS} since, with {WITH}, and hard words besides. {B_nameDef}, the colony's {TITLE}, wants the council to decide, once and for all.\n\n{VOICES}</li>
+      <li>[apart,insults] Even working nights, {A_nameDef} has found trouble: {FIGHTS} since, with {WITH}, and hard words besides. {B_nameDef}, the colony's {TITLE}, wants the council to decide, once and for all.\n\n{VOICES}</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>

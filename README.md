@@ -3440,8 +3440,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   or a rush, minstrels a season of songs, mourners a people's mourning, wounded fighters a war, stonecutters a great
   work. Every kind can be asked for something
   from their page (80 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
-  a song about the colony, a vigil with the mourners, a colonist out hunting with the party, a supper for the refugee
-  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (29
+  a song about the colony, a vigil with the mourners, a colonist out hunting on the party's advice, a supper with the
+  refugee family, the smith's mending, a walk with the hermit, the players' show; the camp's own people come to the
+  evenings, suppers, feasts, prayers, plays and songs these set going. And **camps ask things of the colony** (29
   requests, by letter, when things are calm and no other question came lately): the drovers would water their herd at
   your water, the healers' apprentice wants practice on your sick, the players want an audience, the prospectors a test
   hole on your side, the traders a day's stall at your gate, the pilgrims to pray at your graves, the hermit, once, a

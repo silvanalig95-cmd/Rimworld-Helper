@@ -39,14 +39,14 @@
     <asks>
       <li>
         <key>watch</key>
-        <label>Ask them to walk the colony's bounds tonight</label>
+        <label>Ask them to keep watch at the gate tonight</label>
         <tip>Two of the wardens walk up to the colony's gate at dusk and keep an eye on the road from there for a few hours. They like being asked.</tip>
         <needs>evening</needs>
         <once>false</once>
         <tension>-3</tension>
         <warm>1</warm>
         <outcomes>
-          <li>Two of the wardens came up to the gate at dusk with their spears and a lantern, and stood the colony's watch with it until the small hours.</li>
+          <li>Two of the wardens will come up to the gate at dusk with a lantern, and keep the colony's watch there for a few hours.</li>
           <li>{X_nameDef} sent two of the wardens up to the gate for the night watch. "Our road, your gate," {X_pronoun} said. "Same thing."</li>
         </outcomes>
         <effects>
@@ -57,7 +57,7 @@
       <li>
         <key>pay</key>
         <label>Pay them for keeping the road ({COUNT} silver)</label>
-        <tip>Wardens are paid, where their people come from. Silver for the road they keep puts the colony in good standing with them, and with their people.</tip>
+        <tip>Among their people, wardens are paid. Silver for the road they keep puts the colony in good standing with them, and with their people.</tip>
         <silver>100</silver>
         <tension>-6</tension>
         <warm>1</warm>
@@ -126,7 +126,7 @@
       <li>{FACTION}'s road wardens make camp</li>
     </titles>
     <texts>
-      <li>{FACTION}'s road wardens have made camp {PLACE} to put up their post: {X_nameDef} and the others, with their spears stacked and a palisade already marked out with stakes.</li>
+      <li>{FACTION}'s road wardens have made camp {PLACE} to put up their post. {X_nameDef} and the others have already marked out the ground for it.</li>
       <li>The road wardens of {FACTION} have pitched camp {PLACE}, where the post is to go. {X_nameDef} walked the ground twice before letting anyone unpack.</li>
     </texts>
     <settled>
@@ -137,7 +137,7 @@
       <li>{X_nameDef}, one of the wardens camped {PLACE}, came to the gate at the end of {X_possessive} watch. "I've kept other people's roads long enough," {X_pronoun} said. "I'd keep this one as one of yours, if there's a place."</li>
     </joinTexts>
     <farewell>
-      <li>The wardens of {FACTION} have packed up {PLACE} and ridden back to their people. Their post stands empty.</li>
+      <li>The wardens of {FACTION} have packed up {PLACE} and gone back to their people. Their post stands empty.</li>
       <li>{FACTION}'s wardens are gone from {PLACE}, called back down the road. {X_nameDef} said, at the gate: "Keep the road for us a while."</li>
     </farewell>
     <lines>
@@ -200,7 +200,7 @@
       <li>
         <key>guard</key>
         <label>Ask them to stand guard while they're here</label>
-        <tip>They have fought before and would rather fight for a roof than run from one. From now on they take up arms against whatever threatens the colony while their camp stands, as a war party does.</tip>
+        <tip>They are experienced fighters and would rather defend a place that took them in than keep running. From now on they take up arms against whatever threatens the colony while their camp stands, as a war party does.</tip>
         <tension>-4</tension>
         <warm>2</warm>
         <deed>aid</deed>
@@ -215,7 +215,7 @@
       <li>
         <key>pay</key>
         <label>Give them silver for the road ({COUNT} silver)</label>
-        <tip>They came away with their weapons and little else. Silver to go on with eases their stay and sends them off better than they came.</tip>
+        <tip>They came away with their weapons and little else. Silver for the road eases their stay, and they leave better off than they came.</tip>
         <silver>60</silver>
         <tension>-8</tension>
         <warm>1</warm>
@@ -238,7 +238,7 @@
         <warm>1</warm>
         <deed>aid</deed>
         <askTexts>
-          <li>{X_nameDef} came up from the deserters' camp {PLACE} with a cracked blade and a question. Their gear is a season past mending, and a little of the colony's steel would see it right. They'd work for it, {X_pronoun} says, if the colony likes.</li>
+          <li>{X_nameDef} came up from the deserters' camp {PLACE} with a cracked blade and a question. Their gear needed mending long ago, and a little of the colony's steel would put it right. They'd work for it, {X_pronoun} says, if the colony likes.</li>
           <li>[ws:war|ws:creed|ws:sellswords|ws:levy] The deserters camped {PLACE} came out of {SITUATION} with their weapons and nothing to keep them with. {X_nameDef} asked {A_nameDef} for a few bars of steel to mend what they carry.</li>
         </askTexts>
         <tip>Fifteen steel is carried out to their camp. They mend their gear by the fire, and remember whose steel it was.</tip>
@@ -256,12 +256,12 @@
     </asks>
     <titles>
       <li>Deserters at the edge of the land</li>
-      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] Men out of {SITUATION}</li>
+      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] Deserters from {SITUATION}</li>
     </titles>
     <texts>
       <li>A handful of fighters of {FACTION} have made camp {PLACE}, well out of sight of the road. {X_nameDef} says, without being asked, that they are done with soldiering. They ask only to rest a few days, and that nobody who comes asking after them is told.</li>
-      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] {FACTION} sent them to fight in {SITUATION}, and they have come away from it: {X_nameDef} and a few others, armed still, hungry, and done. They have camped {PLACE} and asked {A_nameDef} for leave to stay a while, out of sight.</li>
-      <li>[lowtech] Spears and a dented shield lean against a tree {PLACE}, and the people who carried them have lit a small fire and sat down as if they didn't mean to get up again. {X_nameDef} of {FACTION} asked {A_nameDef} for a few days' rest on the colony's land, and no questions.</li>
+      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] {FACTION} sent them to fight in {SITUATION}, and they have walked away from it. {X_nameDef} and a few others, still armed and hungry, have camped {PLACE} and asked {A_nameDef} for leave to stay a while, out of sight.</li>
+      <li>[lowtech] A few fighters of {FACTION} with spears and a dented shield have lit a small fire {PLACE} and sat down, too tired to go on. {X_nameDef} asked {A_nameDef} for a few days' rest on the colony's land, and no questions.</li>
     </texts>
     <settled>
       <li>The deserters' camp {PLACE} is small and hard to see from the road, which is how they want it. Someone is always awake.</li>
@@ -269,7 +269,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, from the deserters' camp {PLACE}, came to the gate without {X_possessive} weapon and asked whether the colony could use someone who knows how to hold a line and would rather never have to again.</li>
-      <li>{X_nameDef} has been splitting the colony's wood in the mornings without being asked. Tonight {X_pronoun} asked whether there might be a place here for good, for someone done with soldiering.</li>
+      <li>{X_nameDef} from the deserters' camp asked today whether there might be a place at the colony for good, for someone done with soldiering.</li>
     </joinTexts>
     <farewell>
       <li>The deserters' camp {PLACE} is empty this morning, the fire cold. They went in the night, as people do who don't want to be followed.</li>

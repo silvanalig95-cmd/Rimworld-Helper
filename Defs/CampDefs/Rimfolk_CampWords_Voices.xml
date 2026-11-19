@@ -456,7 +456,7 @@
     <farewell>
       <li>The penitents from {FACTION} have taken up their packs and set off again, walking in silence.</li>
       <li>[morning] The penitents from {FACTION} set off this morning, as they set off every morning.</li>
-      <li>[ideology] The penitents of {IDEO} have left their camp {PLACE} to the wind and walked on.</li>
+      <li>[ideology] The penitents of {IDEO} have taken down their camp {PLACE} and walked on.</li>
     </farewell>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -474,7 +474,7 @@
     </campLines>
     <farewell>
       <li>The tree-singers from {FACTION} have packed up their camp {PLACE} and gone on to the next grove.</li>
-      <li>[left:seeds] The tree-singers from {FACTION} have set off, leaving a ring of planted seeds where their fire was.</li>
+      <li>[left:seeds] The tree-singers from {FACTION} have set off, leaving a ring of young saplings planted where their fire was.</li>
       <li>[evening] The tree-singers from {FACTION} set off in the evening, when they say the trees listen best.</li>
     </farewell>
   </ColonyCouncil.FlavorExtensionDef>
