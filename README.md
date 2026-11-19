@@ -3055,13 +3055,16 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   mount only when a job is further away than its setting "Find a mount if trip is longer than" (120 cells by default,
   about half a large map) and never for a drafted colonist, so most work past the walls was walked to. Rimfolk adds the
   rest: a free colonist whose job is 40 cells or more away, with the work, where a haul goes or the colonist 10 cells or
-  more past the home area's edge, gets on the beast that gets them there soonest (out and back may take up to a quarter
-  longer than walking), leaves it near the work as Giddy-Up does, and rides back on it; the beast keeps waiting while they
-  work out there (Giddy-Up's own wait time again from each job, a day at most). A drafted colonist given a far movement
-  order rides when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by
-  body size, tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to
-  ride"); Rimfolk also leaves alone a beast at work, with a group, with young or kept for someone else. Inside the base
-  nothing changes. Rimfolk calls Giddy-Up's own mount, wait and rules by name.
+  more past the home area's edge, gets on the beast that gets them there soonest, leaves it near the work as Giddy-Up
+  does, and rides back on it. Going out they ride whenever a beast is free that is no further from them than the work and
+  no slower than they walk, even with the pen the other way; coming back they ride when it takes no more than a quarter
+  longer than walking. The beast keeps waiting while they work out there (Giddy-Up's own wait time from now, looked at
+  every few seconds, until a day after the last job they began). A drafted colonist given a far movement order rides
+  when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by body size,
+  tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to ride");
+  Rimfolk also leaves alone a beast at work, with a group, with young, or kept for someone it is waiting for, carrying or
+  being got on by (an older mark of Giddy-Up's is left aside). Inside the base nothing changes. Rimfolk calls Giddy-Up's
+  own mount, wait and rules by name; "Rimfolk: check myself" says when riding out is off and why.
 - **The brewery at home in the kitchen** (the setting "Breweries work in the kitchen too", under the deeper hooks): the
   game names one room for each workbench and slows it to 80% anywhere else, and the brewery's is the workshop. Brewing is
   cooking work, so a brewery (and any workshop bench whose work is all cooking) works at full speed in a kitchen as well,

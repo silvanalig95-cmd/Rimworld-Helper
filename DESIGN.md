@@ -1806,7 +1806,9 @@ its settings in `ModSettings_GiddyUp`):
   the straight line at the beast's speed under them, its `StatPart_Riding`), when that is no slower than walking by
   `Slack`: for work, up to a quarter longer (the player wants them in the saddle out past the base, and the waiting beast
   makes every later trip back and forth quicker; a beast far off the other way isn't fetched), and a movement order only
-  when it gets them there sooner.
+  when it gets them there sooner. Since 19 November 2026 out to work rides whenever a beast near enough is free, and the
+  slack holds only for the way back and movement orders (the next section, "Riding out to far work: the beast taken
+  first").
 - **Getting on.** Giddy-Up's own `GoMount` with its `Inject` (`GiddyUpMounts.MountFirst`, by name): the chosen job becomes
   its "Mount" job and waits first in their queue, as its own auto-mount does. Nothing is taught the beast.
 - **After.** Giddy-Up's own driver does the rest as for its own riders: the ride, parking near the work (a mount spot, a
@@ -1816,13 +1818,14 @@ its settings in `ModSettings_GiddyUp`):
 - **The wait kept** (`KeepWaiting`). Each time a colonist starts a job while they or their work are out past the base,
   a beast waiting for them within 60 cells has its wait set to Giddy-Up's own timer from now, never shorter than it was
   and a day at most (`RideOutMath.WaitExpiry`). Giddy-Up still ends it for its own reasons (its rider in bed, the beast
-  hurt, hungry or tired).
+  hurt, hungry or tired). Since 19 November 2026 also every 250 ticks, and the day counted from the rider's last job (the
+  next section).
 - **A handler's rope job home** (`RopedHome`). The game's own job to lead one of the colony's beasts to its pen (with the
   pen named), the handler 10 cells or more past the base and the pen 40 or more away, becomes: get on that beast, ride
   it to the pen and get off there (Giddy-Up's own "Dismount" job), when Giddy-Up and Rimfolk let them ride it. Giddy-Up's
   own rope job for a beast that stopped waiting is left as it is.
-- **Saved:** nothing (who tried which beast is kept in memory for the session only). No new Sched slot; one Harmony
-  patch, on the same method as Rimfolk's hauling hook (which runs first).
+- **Saved:** nothing (who tried which beast is kept in memory for the session only). No new Sched slot (one since 19
+  November 2026, the next section); one Harmony patch, on the same method as Rimfolk's hauling hook (which runs first).
 - **Control:** the setting "Ride out to far work and back" (`rideOut`, Your other mods, under Giddy-Up 2, shown only with
   it, on by default, under the deeper hooks). Dev mode: "Riding out: why a colonist rides or not (log)..." writes, for a
   colonist's job now, Giddy-Up's settings, the trip and how far past the home area each end lies, whether Giddy-Up's own
@@ -1833,6 +1836,71 @@ its settings in `ModSettings_GiddyUp`):
   reflection; the parked beast's wait lengthened while the rider works; a drafted colonist getting on before a movement
   order and staying mounted at the spot; the handler riding a beast to its pen; how often the quarter's slack has them
   ride when the pen lies the other way.
+
+### Riding out to far work: the beast taken first (the player's report and go, 19 November 2026; released 0.266.5)
+
+The player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to
+mine without mounting up first? then the mount should wait for him until he's done". The go, 19 November 2026, on the
+lead's fix: "yes, sounds good". A bug fix to the section above; the code is the same files.
+
+- **What the save showed** (tick 7668315). Bautista mined steel at (136, 264), 44 cells past the home area's edge, and
+  had chosen the job in the dining hall about (62, 205) after a meal, about 95 cells off: under Giddy-Up's own 120, so
+  Giddy-Up never looked. He was not drafted, Animals 4, walking 4.6 cells a second, nothing stored against riding. The
+  colony's 18 beasts were in or by the pen in the base, about 34 cells the other way from the vein. Giddy-Up refused the
+  horses, the thunderox and the yak (tameness not learned), and Tatyana, Mare 1 and Tara were with young. Giddy-Up's
+  saved data still kept Tatyana for Soot (Tatyana's `reservedBy`) and Zoe, a titanis, for Wyninn (Wyninn's
+  `reservedMount`; Zoe's own `reservedBy` is saved empty), with everyone at home. Calvin, the other titanis, about 6
+  cells a second under him, was the best left.
+- **The cause.** `Decide` asked riding out and back (`RideOutMath.Worth`) to be no more than a quarter slower than
+  walking there and back, counting the walk to the beast first. To the pen, getting on a titanis (body size 3), then 119
+  cells from the pen to the vein and 95 back at 6 cells a second, came to about 52 seconds against 41 on foot (for any
+  wildness from a half up), over the quarter's 51: "walking is quicker". Rimfolk kept no record of the decision, so the
+  save alone couldn't prove it. Its wait was kept up only as a job was chosen with nothing under way, and ran out a day
+  after the beast was left, whatever the rider was doing.
+- **Out to work: the beast taken first.** For an `Out` trip they now ride whenever a beast is free whose walk to it is
+  no longer than the trip itself (`RideOutMath.NearEnough`: straight lines, the trip plus a haul's carry) and that
+  carries them at least as fast as they walk (`FastEnough`; Giddy-Up passes slower ones over too; decided by the
+  builder, not asked); of those, the one that gets them there soonest by the same sums as before (`RideSeconds`). The
+  pen on the way, beside them or the other way within the trip's length all count; a beast further off than the work is
+  never fetched. `RideOutMath.Rides`: out to work, any beast found; the way back (`Back`) and the player's movement
+  orders (`Order`) keep `Worth` with their slack (a quarter longer, and only when sooner). In their save Bautista now
+  rides Calvin out.
+- **Giddy-Up's old marks left aside** (`AnimalWhyNot`, `KeptFor`, `RideOutMath.KeptFor`). A beast marked by Giddy-Up as
+  kept for another rider (`ReservedBy`) is passed over only while it waits for that rider (`WaitingFor`), carries them
+  (`Riding`) or they are getting on it, now or next in their queue (`GiddyUpMounts.MountingOnto`); otherwise the mark is
+  old and left aside (Tatyana's for Soot; Zoe's for Wyninn, where Giddy-Up links it to her when the game loads). The dev
+  action names such a beast and the old mark. Giddy-Up's own `IsMountable` still has its say; where it refuses such a
+  beast, the dev action gives its reason.
+- **The wait kept while they work out there** (`GiddyUpRideOut.Rare`, `GameComponent_RideOut`, every 250 ticks at
+  `Sched.RareRideOut` = 143, timed as `Pass.RareRideOut`, only with riding out on): each of the colony's beasts on any
+  map doing Giddy-Up's "WaitForRider" for a rider of the colony who is up and out past the base (they, or where their
+  current job takes them, 10 cells or more past the home area) has its wait set again, as at each job chosen
+  (`KeepWaiting`). The cap now counts from the rider's last job (`RideOutMath.WaitExpiry(start, now, expiry, timer,
+  lastJob)`): Giddy-Up's timer from now, never past a day after their current job began, never shorter than it was,
+  never at or below the time already waited (the game ends a job when that reaches its length), and a wait with no end
+  of its own left alone. Two days of mining cell after cell keeps the beast there throughout; a single job lasting more
+  than a day lets it go a day after the job began; once the rider has gone back into the base, it ends within Giddy-Up's
+  timer.
+- **The last decision kept** (`RideOutNote`, `RideMount`, `GiddyUpRideOut.Note`, `LastOf`; memory only, cleared when a
+  game is loaded or begun, 64 colonists at most). Each colonist's last decision on a trip of 40 cells or more (or a
+  ride), except while they are in the saddle: the tick, the job, the trip's kind and cells, why not, the quickest beast
+  found with its seconds against walking, and what came of it (Giddy-Up didn't take the order, sent, in the saddle at
+  their next job choice, or not, so the beast is passed over by them for an hour). The dev action "Riding out: why a
+  colonist rides or not (log)..." writes it first, then the look at their job now (the rule for the trip's kind, each
+  beast with its reason).
+- **Check myself** (`UI/SelfCheck.cs`, under "Mods Rimfolk works with", only with Giddy-Up; `GiddyUpRideOut.CheckLine`):
+  riding out on or off and why (its setting, the deeper hooks, switched itself off for the session after an error,
+  `Patch_RideOutNextJob.Broken`; Giddy-Up's `GoMount` with `Inject` not found or failed, `GiddyUpMounts.InjectFailed`;
+  its rules not all found; its game hook not applied), that nobody rides out when Giddy-Up's `canRide` or
+  `IsCapableOfRiding` wasn't found (`GiddyUpRules.CanRideFound`, `CapableFound`), and the other members not found with
+  what is done instead (`GiddyUpRules.Missing`). A warning colour when riding out can't work.
+- **Saved:** nothing. One new 250-tick slot (`Sched.RareRideOut`, in `RareOffsets`, on its own tick of the cycle and off
+  every hourly pass), one game component with nothing saved; no new Harmony patch.
+- **Words:** nothing new is said or sent; the setting's tooltip, the Almanac's animals page and README say the new rule.
+- **Not run in the game**: Bautista riding Calvin out from the dining hall; Giddy-Up getting him on a beast marked for
+  someone else (if its own `GoMount` refuses such a beast, the note says "Giddy-Up didn't take the order"); the wait set
+  every 250 ticks on its job's `expiryInterval` (as before, the game is read to end a job when the time since it began
+  reaches it); the self-check's line.
 
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
@@ -16765,6 +16833,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 | 119 | Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record waits to be let go): each guest's hours today against the cap, unhappy or overworked, the trouble's work types on and off, a trouble's job put down when it ends, side by side with a colonist, hurt at the work, a thanks day offered; a guest gone, their farewell. Then, while a feast's guests or an envoy are at a home and Hospitality is loaded, the invited guests in its care (Integrations/InvitedGuests.cs): the feast's look their own group would have given, each group steered where the visit wants it, an envoy's meal or night counted | per guest: their job, their troubles (each home map's fires, downed, wounded, frost harvest and food looked at once a pass), colonists within six cells |
 | 7 | Carrying and hauling (Hauling/HaulBook.cs; only while a pawn carries something for Rimfolk): never more owed than it has, the run's build area looked at (what it still needs of each material, for the other builders' cover) and a run over sent to storage, a load the job choice can't send queued for storage | per pawn carrying something: a radial look round its run's frame per material carried (15 cells at most) |
+| 143 | Riding out with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs; only with Giddy-Up and "Ride out to far work and back" on): a beast waiting for its rider keeps waiting while the rider is at work out past the base, until a day after their last job began | per map, the colony's animals (their current job read); per waiting beast, its rider's place and job (the home area's edge, worked out once an hour) |
 
 **Other rhythms**
 

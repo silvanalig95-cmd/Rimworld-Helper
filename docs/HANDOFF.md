@@ -29,7 +29,8 @@ go sounds great. Some storytellers and fewer traders and fewer fights. That's al
 fitting for the scenario, it should also just be reflected in the description. The advisor warning for greenhouse
 plants dying is fine. I'm aware of that now. You don't need to do it. Yeah, you can go ahead in the order that makes
 most sense." So, in this order, three builds at a time:
-1. **Riding out to far work** (a bug, being built; the to-do entry below).
+1. **Riding out to far work** (a bug, built, not released; the entry "Riding out to far work: the beast taken first"
+   above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
    lists each round's numbers).
@@ -38,7 +39,8 @@ most sense." So, in this order, three builds at a time:
 5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
 6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
    storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
-7. **New wish, 18-19 November 2026, on the to-do list** (the entry "choose the material" below), waiting for its go.
+7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
+   piece from the gear tab; a day off lifts the mood while it lasts (the entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -111,25 +113,15 @@ repo.
   and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
 - **Done (18 November 2026, the player sent the mod's DLL as the go): clothes made for someone, worn when they are
   back.** The report and what was built are now one entry above the newest release line ("Clothes made for someone").
-- **To do when the player asks (18 November 2026): riding out to far work, Bautista walked.** The player, with their save
-  `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to mine without mounting up first? then the
-  mount should wait for him until he's done". What the save shows (tick 7668315): Bautista mines steel at (136, 264),
-  44 cells past the home area's edge, about 95 cells from the dining hall where he chose the job after a meal (under
-  Giddy-Up's own 120, so Giddy-Up never looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts are
-  in or by the pen inside the base, about 34 cells the other way from the vein. Giddy-Up refuses the horses (Stallion 1,
-  Tatyana, Mare 1), the Thunderox and the yak: Tameness not learned; Tatyana, Mare 1 and Tara are with young; Zoe (titanis)
-  is "kept for Soot" by a Giddy-Up reservation that has stood since tick 7453676 while both are at home (stale); Calvin
-  (titanis) is the best left, about 6 cells/s under him against his 4.6 on foot. The cause (`GiddyUpRideOut.Decide`,
-  lines 198-201, `RideOutMath.Worth`): riding must beat walking by the trip's slack (1.25), counting the walk to the beast
-  first; to the pen and back out on a titanis is slower than walking straight there, so "walking is quicker". Rimfolk
-  keeps no record of the decision, so the save can't prove it; the dev action on Avila (walking to the next vein) would.
-  The wait (`KeepWaiting`) holds cell to cell for a day by default, renewed only at a job chosen with nothing under way.
-  **The lead's fix, waiting for the player's go**: (1) for far work (an Out trip), ride whenever a beast is free and the
-  walk to it isn't longer than the trip itself, the quickest beast picked; the strict time check kept for the ride back
-  and orders; (2) a Giddy-Up reservation counts only while that beast waits for, carries or is being mounted by that
-  rider (Zoe freed); (3) each colonist's last decision kept and shown by the dev action, and "check myself" says when
-  riding out switched itself off or a Giddy-Up member wasn't found; (4) the wait renewed on a rare tick while the rider
-  works out there, its cap counted from the last job. Told to the player: the horses need Tameness trained first.
+- **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
+  walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
+  above the newest release line ("Riding out to far work: the beast taken first").
+- **To do when the player asks (19 November 2026): a day off lifts the mood while it lasts.** The player: "giving
+  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
+  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
+  eased faster) has no mood of its own. **The lead's proposal, waiting for the player's go**: a situational mood "a day
+  off" (+6, about a party's) while the heart's day off runs (a `ThoughtWorker` reading `h.Off(TimeOffKind.DayOff)`),
+  gone when it ends or is cut short by danger; plain words ("A whole day to myself, with nothing I have to do.").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
   player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
   would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
@@ -327,6 +319,65 @@ repo.
     and held at a table there. A feast from a council answer gathers at that table too. The Priorities page has
     no "Idea: a recreation room" while the rec room, or any room with a game in it, stands.
   - **Mods that would help**: none.
+- 0.266.5, **Riding out to far work: the beast
+  taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
+  still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's
+  done"; the go on the lead's fix, 19 November 2026: "yes, sounds good"). A bug fix. DESIGN.md "Riding out to far work:
+  the beast taken first" (after "Riding out to far work and back with Giddy-Up 2"); README's Giddy-Up 2 line; the
+  Almanac's animals page ("Riding out to far work (with Giddy-Up 2)", keywords unchanged); the setting's tooltip.
+  - **What the save showed** (tick 7668315): Bautista mined steel at (136, 264), 44 cells past the home area's edge,
+    about 95 cells from the dining hall where he chose the job after a meal (under Giddy-Up's own 120, so Giddy-Up never
+    looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts were in or by the pen inside the base,
+    about 34 cells the other way from the vein. Giddy-Up refused the horses (Stallion 1, Tatyana, Mare 1), the Thunderox
+    and the yak (Tameness not learned); Tatyana, Mare 1 and Tara were with young; Giddy-Up's saved data still kept
+    Tatyana for Soot (Tatyana's `reservedBy`) and Zoe (titanis) for Wyninn (Wyninn's `reservedMount`; Zoe's own
+    `reservedBy` is saved empty, so the to-do's "Zoe kept for Soot" was these two read together), everyone at home;
+    Calvin (titanis), about 6 cells a second under him against his 4.6 on foot, was the best left. The cause
+    (`GiddyUpRideOut.Decide`, `RideOutMath.Worth`): riding out and back had to be within a quarter of walking, counting
+    the walk to the beast first; to the pen and then out on a titanis came to about 52 s against 41 on foot (over 51),
+    so "walking is quicker". The wait (`KeepWaiting`) was kept up only at a job chosen with nothing under way, and a day
+    from the start of the wait at most.
+  - **What was built**: (1) out to work (an `Out` trip) they ride whenever a beast is free whose walk is no longer than
+    the trip (`RideOutMath.NearEnough`) and that carries them at least as fast as they walk (`FastEnough`, the builder's
+    own addition: Giddy-Up passes slower beasts over too), the quickest of them by the same sums; `Worth` with its slack
+    stays for the way back and drafted movement orders (`RideOutMath.Rides`). In their save Bautista rides Calvin out.
+    (2) Giddy-Up's mark keeping a beast for someone (`ReservedBy`) counts only while it waits for, carries or is being
+    got on by that rider (their current job or queue, `GiddyUpMounts.MountingOnto`; `RideOutMath.KeptFor`); an old one
+    is left aside and named in the dev action (Tatyana's for Soot, Zoe's for Wyninn). (3) Each colonist's last decision
+    on a trip of 40 cells or more kept in memory (`RideOutNote`: tick, job, kind and cells, why, best beast and seconds
+    against walking, and what came of it: not taken by Giddy-Up, sent, in the saddle at the next job choice or not),
+    written first by the dev action "Riding out: why a colonist rides or not (log)..."; "Rimfolk: check myself" (under
+    "Mods Rimfolk works with") says riding out is on or off and why, warns when it switched itself off this session
+    (`Patch_RideOutNextJob.Broken`, Giddy-Up's `Inject` failed, `GiddyUpMounts.InjectFailed`) or when Giddy-Up's
+    `canRide` or `IsCapableOfRiding` wasn't found (nobody rides out then), and lists the other members not found. (4)
+    The wait set again every 250 ticks while the rider is at work out past the base (`GiddyUpRideOut.Rare`,
+    `GameComponent_RideOut`, new slot `Sched.RareRideOut` = 143, `Pass.RareRideOut` on the clock, only with riding out
+    on), and its cap counted from the rider's last job (`RideOutMath.WaitExpiry(..., lastJob)`: a day after their
+    current job began at most, never at or below the time already waited).
+  - **Code map**: `Integrations/GiddyUpRideOut.cs` (`NextJob`, `Note`, `Settle`, `Decide`, `KeepWaiting`, `Rare`,
+    `OutThere`, `AnimalWhyNot`, `KeptFor`, `StaleKeeper`, `Explain`, `CheckLine`, `Reset`, `LastOf`;
+    `GiddyUpRules.CanRideFound`, `CapableFound`, `Missing`; `Patch_RideOutNextJob.Broken`; `GameComponent_RideOut`),
+    `Integrations/RideOutMath.cs` (pure: `NearEnough`, `FastEnough`, `Rides`, `KeptFor`, `WaitExpiry` with `lastJob`,
+    `RideMount`, `RideOutNote.Describe`), `Integrations/GiddyUpMounts.cs` (`MountingOnto`, `InjectFailed`,
+    `InjectFound`), `UI/SelfCheck.cs` (the line), `Lean/Sched.cs` (`RareRideOut`), `Lean/PassClockMath.cs`
+    (`Pass.RareRideOut`), `Languages/English/Keyed/Rimfolk_RideOut.xml` (the tooltip, `CC_Clock_Pass_RareRideOut`),
+    DESIGN.md's ticking table. Tests: `RideOutTests` (out to work, the marks, the wait with two days of mining
+    simulated, the notes, the save redone with League_of_Toba_7's numbers, the seams). Saved: nothing.
+  - **Can't be checked without the game**: Bautista getting on Calvin in the base and riding out; whether Giddy-Up's own
+    `GoMount` takes a beast that still carries an old mark for someone else (the note then says "Giddy-Up didn't take
+    the order"); the wait's `expiryInterval` set every 250 ticks; the self-check's line; titanis's wildness (its time to
+    get on) is not in the catalogue, so the old sums are shown for any wildness from a half up.
+  - **Try in the game**: 1. Load `League_of_Toba_7` with "Ride out to far work and back" on. Let Bautista finish a meal
+    in the dining hall with the steel vein designated: he walks to the pen, gets on Calvin (or Zoe), rides out, leaves
+    the beast near the vein and mines. 2. Dev mode, "Riding out: why a colonist rides or not (log)..." on him: the first
+    line is his last decision (out to work, about 95 cells, they ride Calvin, they got in the saddle); Tatyana's line
+    (and Zoe's, where Giddy-Up links Wyninn's mark to her) names the old mark as left aside, with Giddy-Up's own reason
+    if it refuses her. 3. Let him mine past 4 hours, then past a day: the beast is still waiting (Giddy-Up's "Leave
+    rider" button shows on it). 4. When he comes home to eat, he gets back on and rides. 5. "Rimfolk: check myself":
+    under "Mods Rimfolk works with", "Riding out with Giddy-Up 2: on." 6. Train Tameness on the horses (the Animals tab)
+    and they become the choice when they are quicker.
+  - **Mods that would help**: none is needed. Giddy-Up 2 - Continued (Workshop 3674332861, 1.6 and 1.7, kept up) does
+    the riding and its art.
 - 0.266.4, **Clothes made for someone, put
   on when they are back** (18 November 2026). The player:
   "So I have this mod where I can directly from a pawn's inventory give the task to craft like a certain piece of

@@ -4,8 +4,10 @@ using ColonyCouncil;
 /// Riding out to far work and back with Giddy-Up 2 (the player, 15 November 2026: "pawns should really use mounts whenever
 /// they walk away out of the base range ... avila did not mount up despite going really far to mine. it should mount to go
 /// there, and mount back up aftr finishing work"; 16 November 2026: "it's not really working for all movement orders via
-/// giddy up default settings"; Integrations/RideOutMath.cs, GiddyUpRideOut.cs): which trips count, the sums against walking,
-/// getting on, the wait kept, the player's save, the setting and the seams.
+/// giddy up default settings"; 18 November 2026: "WHY DOES bautista still walk halfway across the map to mine without
+/// mounting up first? then the mount should wait for him until he's done"; Integrations/RideOutMath.cs, GiddyUpRideOut.cs):
+/// which trips count, the sums against walking, out to work on any beast near enough, Giddy-Up's old marks, getting on,
+/// the wait kept, the last decision kept, the player's saves, the setting and the seams.
 /// </summary>
 public static class RideOutTests
 {
@@ -20,7 +22,9 @@ public static class RideOutTests
 
         Trips(C);
         Sums(C);
+        OutToWork(C);
         Wait(C);
+        Notes(C);
         TheirSave(C);
         Seams(root, C);
         return cases;
@@ -75,38 +79,122 @@ public static class RideOutTests
             "the curves held flat past their ends, as the game's curves are");
     }
 
+    /// <summary>Out to work: any free beast no further from them than the work and no slower than they walk, the quickest taken.</summary>
+    private static void OutToWork(Action<bool, string> C)
+    {
+        C(RideOutMath.NearEnough(34f, 95f) && RideOutMath.NearEnough(95f, 95f) && !RideOutMath.NearEnough(95.5f, 95f),
+            "a beast counts when the walk to it is no longer than the trip itself");
+        C(!RideOutMath.NearEnough(float.NaN, 95f) && !RideOutMath.NearEnough(10f, float.NaN) && !RideOutMath.NearEnough(-1f, 95f), "no distance read: no");
+        C(RideOutMath.FastEnough(6f, 4.6f) && RideOutMath.FastEnough(4.6f, 4.6f) && !RideOutMath.FastEnough(4f, 4.6f) && !RideOutMath.FastEnough(0f, 0f),
+            "never a beast slower under them than they walk");
+        // Out to work, any sum rides; the way back and movement orders keep the sums against walking.
+        C(RideOutMath.Rides(RideTrip.Out, 60f, 40f) && RideOutMath.Rides(RideTrip.Out, 500f, 40f) && !RideOutMath.Rides(RideTrip.Out, float.MaxValue, 40f),
+            "out to work: they ride whenever a beast was found, however the sums come out");
+        C(RideOutMath.Rides(RideTrip.Back, 12f, 10f) && !RideOutMath.Rides(RideTrip.Back, 13f, 10f), "back from out there: up to a quarter longer than walking, as before");
+        C(RideOutMath.Rides(RideTrip.Order, 10f, 10f) && !RideOutMath.Rides(RideTrip.Order, 10.5f, 10f), "a movement order: only when no slower, as before");
+        C(!RideOutMath.Rides(RideTrip.None, 1f, 100f), "no trip of Rimfolk's: no ride");
+        // Giddy-Up's mark keeping a beast for someone holds only while it waits for them, carries them or they are getting on.
+        C(RideOutMath.KeptFor(true, false, false) && RideOutMath.KeptFor(false, true, false) && RideOutMath.KeptFor(false, false, true),
+            "a mark holds while the beast waits for that rider, carries them, or they are getting on it");
+        C(!RideOutMath.KeptFor(false, false, false), "otherwise the mark is old and left aside");
+    }
+
     private static void Wait(Action<bool, string> C)
     {
-        C(RideOutMath.WaitExpiry(1000, 9000, 10000, 10000) == 18000, "a new job out there: Giddy-Up's own timer again from now");
-        C(RideOutMath.WaitExpiry(1000, 2000, 10000, 5000) == 10000, "never shorter than it was");
-        C(RideOutMath.WaitExpiry(0, 70000, 10000, 10000) == RideOutMath.WaitCap && RideOutMath.WaitCap == 60000, "a day at most");
-        C(RideOutMath.WaitExpiry(0, 1000, 70000, 10000) == 70000, "a wait already longer is left as it is");
-        C(RideOutMath.WaitExpiry(5000, 4000, 10000, 10000) == 10000, "a clock that went back: as it was");
-        C(RideOutMath.RefusedTicks == 2500, "a beast a rider failed to get on is passed over by them for an hour");
+        C(RideOutMath.WaitExpiry(1000, 9000, 10000, 10000, 9000) == 18000, "a new job out there: Giddy-Up's own timer again from now");
+        C(RideOutMath.WaitExpiry(1000, 2000, 10000, 5000, 2000) == 10000, "never shorter than it was");
+        C(RideOutMath.WaitExpiry(0, 1000, 70000, 10000, 1000) == 70000, "a wait already longer is left as it is");
+        C(RideOutMath.WaitExpiry(5000, 4000, 10000, 10000, 4000) == 10000, "a clock that went back: as it was");
+        C(RideOutMath.WaitExpiry(0, 1000, -1, 10000, 1000) == -1 && RideOutMath.WaitExpiry(0, 1000, 0, 10000, 1000) == 0, "a wait with no end of its own is left as it is");
+        C(RideOutMath.RefusedTicks == 2500 && RideOutMath.WaitCap == 60000, "a beast a rider failed to get on is passed over by them for an hour; a day after the last job at most");
+        // The cap counts from the rider's last job, not from the start of the wait.
+        C(RideOutMath.WaitExpiry(0, 70000, 75000, 10000, 65000) == 80000, "still at work more than a day after the beast was left: it keeps waiting");
+        C(RideOutMath.WaitExpiry(0, 50000, 52000, 10000, 0) == 60000, "a job begun long ago: a day after it began at most");
+        C(RideOutMath.WaitExpiry(0, 58000, 60000, 10000, 0) == 60000, "and no further");
+        C(RideOutMath.WaitExpiry(0, 70000, 72000, 10000, 5000) == 72000, "never set at or below the time already waited (the game would carry it on another round)");
+        C(RideOutMath.WaitExpiry(0, 9000, 10000, 10000, 20000) == 19000, "a last job read as later than now counts as now");
+
+        // Two days of mining out there, a new cell every 2000 ticks, the wait looked at every 250 ticks: it never runs out
+        // while he works (Giddy-Up's 10000 ticks alone would end it after 4 hours); once he has gone home it ends within the
+        // timer, and when he starts no new job it ends a day after his last one.
+        int expiry = 10000, lastJob = 0, endedAt = -1;
+        for (int now = 0; now <= 140000; now += Sched.RareTicks)
+        {
+            if (now < 120000 && now % 2000 == 0) lastJob = now;
+            if (now >= expiry)
+            {
+                endedAt = now;
+                break;
+            }
+            if (now < 120000) expiry = RideOutMath.WaitExpiry(0, now, expiry, 10000, lastJob);
+        }
+        C(endedAt >= 120000 && endedAt <= 120000 + 10000, $"two days of work out there: the beast waits the whole time and leaves within the timer once he has gone ({endedAt})");
+        int stuck = 10000, stuckEnd = -1;
+        for (int now = 0; now <= 100000; now += Sched.RareTicks)
+        {
+            if (now >= stuck)
+            {
+                stuckEnd = now;
+                break;
+            }
+            stuck = RideOutMath.WaitExpiry(0, now, stuck, 10000, 1000);
+        }
+        C(stuckEnd == 1000 + RideOutMath.WaitCap, $"one job and no other after it: the beast waits a day after it began, then goes ({stuckEnd})");
+    }
+
+    /// <summary>A colonist's last decision kept for the dev action, in plain words.</summary>
+    private static void Notes(Action<bool, string> C)
+    {
+        var walked = new RideOutNote { tick = 7668315, job = "Mine", kind = RideTrip.Out, cells = 94.6f, why = "walking is quicker (41 s on foot against 52 s on Calvin)", beast = "Calvin", rideSeconds = 52f, walkSeconds = 41f };
+        string w = walked.Describe(7668315 + 5000);
+        C(w.Contains("2.0 hours ago") && w.Contains("Mine") && w.Contains("out to work") && w.Contains("94 cells") && w.Contains("no ride, walking is quicker")
+          && !w.Contains("(Calvin:"), "a walk: when, the job, the trip, and why (the sums named once): " + w);
+        var rode = new RideOutNote { tick = 100, job = "Mine", kind = RideTrip.Out, cells = 95f, beast = "Calvin", rideSeconds = 53f, walkSeconds = 41f, mount = RideMount.InSaddle };
+        string r = rode.Describe(100);
+        C(r.Contains("they ride (Calvin: 53 s riding against 41 s on foot)") && r.Contains("they got in the saddle"), "a ride: the beast, its sums and what came of it: " + r);
+        var none = new RideOutNote { tick = 100, job = "Mine", kind = RideTrip.Out, cells = 95f, why = "no beast Giddy-Up lets them ride is free" };
+        C(none.Describe(50).Contains("the clock went back") && none.Describe(100).EndsWith("no beast Giddy-Up lets them ride is free."), "no beast: no sums; a clock that went back is said");
+        C(RideOutNote.MountWords(RideMount.NotTaken).Contains("didn't take") && RideOutNote.MountWords(RideMount.DidNotGetOn).Contains("passed over")
+          && RideOutNote.MountWords(RideMount.Sent).Contains("not yet known"), "what came of the order to get on, each in words");
     }
 
     /// <summary>
-    /// The player's save League_of_Toba (15 November 2026, read with a script outside the save's folder): the home area's
-    /// middle about (64, 194), Avila mining steel at (93, 259), 13 cells past the home area; Bautista at (137, 260), 47 past it;
-    /// the pen's beasts about 25 cells south of the base's middle, the other way from the steel.
+    /// The player's save League_of_Toba_7 (18 November 2026, tick 7668315, read with a script outside the save's folder):
+    /// Bautista mining steel at (136, 264), 44 cells past the home area's edge, having chosen the job in the dining hall
+    /// about (62, 205) after a meal; walking 4.6 cells a second, Animals 4. The colony's beasts in and by the pen in the base,
+    /// about 36 to 53 cells from him the other way: Stallion 1 (65, 166), Calvin the titanis (64, 169), Zoe (65, 169), Takuya
+    /// (78, 161), Gonzalo (93, 185), Emma (53, 153). Giddy-Up refused the horses and the rest (tameness not learned, with
+    /// young); its data still kept Tatyana the horse for Soot and Zoe for Wyninn, all of them at home; Calvin, about 6 cells
+    /// a second under him, was the best left.
     /// </summary>
     private static void TheirSave(Action<bool, string> C)
     {
-        float avila = Dist(64, 194, 93, 259), bautista = Dist(64, 194, 137, 260);
-        C(avila > 70f && avila < 72f && bautista > 97f && bautista < 99f, "the save's distances: about 71 and 98 cells from the base's middle");
-        C(!RideOutMath.GiddyUpLooks(avila, RideOutMath.GiddyUpTripDefault, false) && !RideOutMath.GiddyUpLooks(bautista, RideOutMath.GiddyUpTripDefault, false),
-            "why they walked: both under Giddy-Up's 120 cells, so it never looked for a mount");
-        C(RideOutMath.Kind(avila, 0, 13, 13, false) == RideTrip.Out && RideOutMath.Kind(bautista, 0, 47, 47, false) == RideTrip.Out, "Rimfolk: both are work out past the base");
-        // Avila: walks 4.6 cells a second; a horse under her rides 6.5; the pen 25 cells off the other way; the horse 93 cells from the steel.
-        float mount = RideOutMath.MountSeconds(2.4f, 0.08f, 6);
-        float walk = RideOutMath.WalkSeconds(avila, 0f, avila, 4.6f, RideTrip.Out);
-        float ride = RideOutMath.RideSeconds(25f, Dist(65, 170, 93, 259), 0f, avila, 4.6f, 6.5f, mount, RideTrip.Out);
-        C(ride > walk && RideOutMath.Worth(ride, walk, RideTrip.Out), "Avila rides out and back, though the pen lies the other way (within the quarter)");
-        C(!RideOutMath.Worth(ride, walk, RideTrip.Order), "the same sums as a movement order: on foot, as it is quicker");
-        // The way home from the steel, her beast waiting a few cells off: about as quick as walking on a horse, quicker on a faster beast.
-        float home = RideOutMath.RideSeconds(5f, avila, 0f, 0f, 4.6f, 6.5f, mount, RideTrip.Back), onFoot = RideOutMath.WalkSeconds(avila, 0f, 0f, 4.6f, RideTrip.Back);
-        C(RideOutMath.Kind(avila, 13, 0, 0, false) == RideTrip.Back && RideOutMath.Worth(home, onFoot, RideTrip.Back), "and rides home on the beast that waited");
-        C(RideOutMath.RideSeconds(5f, avila, 0f, 0f, 4.6f, 9f, mount, RideTrip.Back) < onFoot, "on a fast beast the ride home is quicker than walking");
+        float trip = Dist(62, 205, 136, 264), toCalvin = Dist(62, 205, 64, 169), calvinToVein = Dist(64, 169, 136, 264);
+        C(trip > 94f && trip < 96f && toCalvin > 35f && toCalvin < 37f && calvinToVein > 118f && calvinToVein < 121f,
+            "the save's distances: the steel about 95 cells from the dining hall, the pen about 36 the other way, 119 from the pen to the steel");
+        C(!RideOutMath.GiddyUpLooks(trip, RideOutMath.GiddyUpTripDefault, false), "under Giddy-Up's 120 cells, so it never looked for a mount itself");
+        C(RideOutMath.Kind(trip, 0, 44, 44, false) == RideTrip.Out, "Rimfolk: work out past the base, out and back");
+        // What Rimfolk decided before: out and back on Calvin against walking there and back, with a titanis's time to get
+        // on (body size 3, Animals 4; any wildness from a half up): over the quarter's slack, so "walking is quicker".
+        float walk = RideOutMath.WalkSeconds(trip, 0f, trip, 4.6f, RideTrip.Out);
+        bool walkedBefore = true;
+        foreach (float wild in new[] { 0.5f, 0.75f, 0.985f })
+        {
+            float ride = RideOutMath.RideSeconds(toCalvin, calvinToVein, 0f, trip, 4.6f, 6f, RideOutMath.MountSeconds(3f, wild, 4), RideTrip.Out);
+            walkedBefore &= !RideOutMath.Worth(ride, walk, RideTrip.Out) && RideOutMath.Rides(RideTrip.Out, ride, walk);
+        }
+        C(walkedBefore, "the old sums said walking is quicker; now he rides Calvin out");
+        C(RideOutMath.NearEnough(toCalvin, trip) && RideOutMath.FastEnough(6f, 4.6f), "Calvin is nearer to him than the steel is, and quicker than his feet");
+        int[,] pen = { { 65, 166 }, { 64, 169 }, { 65, 169 }, { 78, 161 }, { 93, 185 }, { 53, 153 } };
+        bool allNear = true;
+        for (int i = 0; i < pen.GetLength(0); i++) allNear &= RideOutMath.NearEnough(Dist(62, 205, pen[i, 0], pen[i, 1]), trip);
+        C(allNear, "every beast in the pen counts by distance; Giddy-Up's own rules and Rimfolk's say which may be ridden");
+        C(!RideOutMath.KeptFor(false, false, false), "a beast still marked as kept for someone at home, neither waiting for, carrying nor being got on by them: the mark is left aside");
+        // The way home from the steel, Calvin waiting a few cells off: the sums against walking, as before.
+        float home = RideOutMath.RideSeconds(5f, trip, 0f, 0f, 4.6f, 6f, RideOutMath.MountSeconds(3f, 0.5f, 4), RideTrip.Back), onFoot = RideOutMath.WalkSeconds(trip, 0f, 0f, 4.6f, RideTrip.Back);
+        C(RideOutMath.Kind(trip, 44, 0, 0, false) == RideTrip.Back && RideOutMath.Rides(RideTrip.Back, home, onFoot), "and rides home on the beast that waited");
+        // A beast further off than the work is never fetched first: from the steel to another vein 50 cells on, the pen is 120 away.
+        C(!RideOutMath.NearEnough(calvinToVein, 50f), "out there, the pen's beasts are too far to fetch for the next far job");
     }
 
     private static void Seams(string root, Action<bool, string> C)
@@ -133,17 +221,42 @@ public static class RideOutTests
             "Giddy-Up's settings read: Ride and Roll for work, battle mounts for movement orders, its wait timer and distance");
         C(ride.Contains("if (Working(a))") && ride.Contains("if (WithYoung(a))") && ride.Contains("GiddyUpMounts.CarryingRider(a)") && ride.Contains("a.GetLord() != null")
           && ride.Contains("keeper != rider") && ride.Contains("a.Downed"), "never a beast at work, with young, carrying a rider, with a group, kept for someone else or downed");
+        C(ride.Contains("keeper.Spawned && KeptFor(a, keeper))")
+          && ride.Contains("RideOutMath.KeptFor(GiddyUpMounts.WaitingFor(a, keeper), GiddyUpMounts.Riding(keeper, a), GiddyUpMounts.MountingOnto(keeper, a))")
+          && mounts.Contains("public static bool MountingOnto(Pawn rider, Pawn animal)") && mounts.Contains("rider.jobs.jobQueue"),
+            "Giddy-Up's mark counts only while the beast waits for, carries or is being got on by that rider (their queue too)");
+        C(ride.Contains("bool outTrip = plan.kind == RideTrip.Out;") && ride.Contains("outTrip && !RideOutMath.NearEnough(toAnimal, reach)")
+          && ride.Contains("outTrip && !RideOutMath.FastEnough(speed, walk)") && ride.Contains("float reach = plan.trip + plan.carry;"),
+            "out to work: beasts further off than the trip, or slower than walking, are passed over; the quickest of the rest is taken");
         C(ride.Contains("job.workGiverDef != null") && ride.Contains("d == JobDefOf.HaulToCell") && ride.Contains("d == JobDefOf.PredatorHunt"),
             "at work: hauling, hunting and anything a work giver gave it");
         C(ride.Contains("p.IsFreeNonSlaveColonist") && ride.Contains("p.GetLord() != null") && ride.Contains("job.def != JobDefOf.Goto || !job.playerForced")
           && ride.Contains("p.IsQuestLodger()"), "free colonists only (no slave, guest, prisoner or lodger, no caravan or ritual); drafted ones on a movement order only");
-        C(ride.Contains("RideOutMath.Kind(plan.trip + plan.carry, plan.riderOut, plan.targetOut, plan.finalOut, order)") && ride.Contains("RideOutMath.Worth(bestSeconds, plan.walkSeconds, plan.kind)"),
-            "the trip and the sums by the pure rules");
+        C(ride.Contains("RideOutMath.Kind(plan.trip + plan.carry, plan.riderOut, plan.targetOut, plan.finalOut, order)") && ride.Contains("RideOutMath.Rides(plan.kind, bestSeconds, plan.walkSeconds)")
+          && !ride.Contains("RideOutMath.Worth(bestSeconds"), "the trip and the sums by the pure rules (out to work whenever a beast was found)");
         C(ride.Contains("map.areaManager?.Home") && ride.Contains("BaseEdge.CellsOut(map, pawn.Position)"), "out past the base: measured from the home area's edge");
         C(ride.Contains("job.def == JobDefOf.TendPatient || d == JobDefOf.Refuel") || ride.Contains("d == JobDefOf.TendPatient || d == JobDefOf.Refuel || d == JobDefOf.FixBrokenDownBuilding"),
             "where a job goes, Giddy-Up's own way (tending, refuelling and repairs; a bill's first ingredient)");
-        C(ride.Contains("RideOutMath.WaitExpiry(wait.startTick, now, wait.expiryInterval, GiddyUpRules.WaitTimer)") && ride.Contains("GiddyUpMounts.WaitingFor(beast, rider)"),
-            "the beast waiting for its rider out there keeps waiting");
+        C(ride.Contains("RideOutMath.WaitExpiry(wait.startTick, now, wait.expiryInterval, GiddyUpRules.WaitTimer, lastJob)") && ride.Contains("GiddyUpMounts.WaitingFor(beast, rider)"),
+            "the beast waiting for its rider out there keeps waiting, until a day after their last job");
+        C(ride.Contains("KeepWaiting(pawn, GiddyUpRules.ReservedMount(pawn), now, now)") && ride.Contains("KeepWaiting(rider, beast, rider.CurJob.startTick, now)")
+          && ride.Contains("job.def != GiddyUpMounts.WaitJob") && ride.Contains("if (!OutThere(rider, map)) continue;"),
+            "the wait looked at as a job is chosen and every 250 ticks while the rider works out there");
+        C(ride.Contains("public class GameComponent_RideOut : GameComponent") && ride.Contains("Sched.Every(now, Sched.RareTicks, Sched.RareRideOut) || !GiddyUpRideOut.On")
+          && ride.Contains("PassClock.Time(Pass.RareRideOut)") && ride.Contains("GiddyUpRideOut.Reset();") && keys.Contains("<CC_Clock_Pass_RareRideOut>"),
+            "its pass on a 250-tick slot of its own, timed and named on the clock, only with riding out on; nothing kept across games");
+        var otherRare = PassTable.All.Where(p => p.period == Sched.RareTicks && p.pass != Pass.RareRideOut).Select(p => p.offset).Concat(Sched.HourlyOnCycle).ToList();
+        C(Sched.RareOffsets.Count(o => o == Sched.RareRideOut) == 1 && !otherRare.Contains(Sched.RareRideOut) && Sched.HourlyOffsets.All(h => h % Sched.RareTicks != Sched.RareRideOut)
+          && Sched.RareRideOut < Sched.RareTicks, "riding out's pass has a tick of the cycle of its own, off every hourly pass");
+        // The last decision kept and shown; the self-check's line.
+        C(ride.Contains("var note = Note(pawn, job, plan, now);") && ride.Contains("note.mount = mounted == null ? RideMount.NotTaken : RideMount.Sent;")
+          && ride.Contains("note.mount = on ? RideMount.InSaddle : RideMount.DidNotGetOn;") && ride.Contains("last.Describe(Now)"),
+            "each colonist's last decision kept in memory, what came of it, and shown by the dev action");
+        C(!ride.Contains("Scribe_"), "nothing of riding out is saved");
+        string check = Code("UI/SelfCheck.cs");
+        C(check.Contains("GiddyUpRideOut.CheckLine()") && ride.Contains("Patch_RideOutNextJob.Broken") && ride.Contains("GiddyUpMounts.InjectFailed")
+          && ride.Contains("GiddyUpRules.CanRideFound") && ride.Contains("GiddyUpRules.CapableFound") && mounts.Contains("InjectFailed = true;"),
+            "check myself says when riding out switched itself off or Giddy-Up's canRide or IsCapableOfRiding wasn't found");
         C(ride.Contains("job.targetC.Thing == null") && ride.Contains("JobMaker.MakeJob(GiddyUpMounts.DismountJob, plan.penCell)"),
             "a handler's rope job home from out past the base: ridden to the pen instead (Giddy-Up's own rope job left alone)");
         C(ride.Contains("refused[") && ride.Contains("RideOutMath.RefusedTicks"), "a failed try isn't repeated with the same beast for an hour");
