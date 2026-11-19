@@ -40,11 +40,12 @@ namespace ColonyCouncil
             PeopleEvents7Book.Instance?.AddMark(new PieceRecord { thing = thing, maker = worker, map = map, tick = Now, quality = (int)q });
         }
 
-        /// <summary>The piece is still the colony's on its home: lying there, or held, carried or worn by someone there.</summary>
+        /// <summary>
+        /// The piece is still at its home: standing or lying there, packed up (a sculpture comes off the bench minified), or held,
+        /// carried or worn by someone there; whatever holds it is on the map.
+        /// </summary>
         public static bool Here(PieceRecord r) =>
-            r?.thing != null && !r.thing.Destroyed && r.map != null && r.thing.MapHeld == r.map && (r.thing.Spawned || r.thing.ParentHolder is Pawn_EquipmentTracker
-                                                                                                     || r.thing.ParentHolder is Pawn_ApparelTracker || r.thing.ParentHolder is Pawn_InventoryTracker
-                                                                                                     || r.thing.ParentHolder is Pawn_CarryTracker);
+            r?.thing != null && !r.thing.Destroyed && r.map != null && r.thing.MapHeld == r.map && (r.thing.Spawned || ThingOwnerUtility.GetFirstSpawnedParentThing(r.thing) != null);
 
         private static bool MakerHere(PieceRecord r) => r?.maker != null && !r.maker.Dead && r.maker.Spawned && r.maker.Map == r.map && r.maker.Faction == Faction.OfPlayer;
 
@@ -270,7 +271,8 @@ namespace ColonyCouncil
             PeopleEvents.AgeTags(tags, ctx.faction);
             tags.Add(ctx.skill == SkillDefOf.Artistic ? "art" : "craft");
             if (ctx.variant >= PeopleEvents7Math.Legendary) tags.Add("legend");
-            if (ctx.place != null && !ctx.place.Spawned) tags.Add("held");
+            // Held, carried or worn by someone (not packed up in the stores): the master looks at it on them.
+            if (ctx.place != null && !ctx.place.Spawned && ThingOwnerUtility.GetFirstSpawnedParentThing(ctx.place) is Pawn) tags.Add("held");
         }
 
         public override string Unavailable(HappeningContext ctx, int option)

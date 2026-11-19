@@ -19,16 +19,16 @@
     <cooldownDays>40</cooldownDays>
     <minColonists>3</minColonists>
     <texts>
-      <li>{A_nameDef} has come to the council with a question that can't wait for the year to turn: which god does the colony honour this year? {GOD}, {GOD2}, or another? Whichever god is named, {A_pronoun} says, has its festival kept first and the most offerings carried to it this year.</li>
+      <li>{A_nameDef} has come to the council with a question for the year ahead: which god does the colony honour this year? {GOD}, {GOD2}, or another? Whichever god is named, {A_pronoun} says, has its festival kept first and the most offerings carried to it this year.</li>
       <li>A new year, and {A_nameDef} asks the council to name the god the colony will keep it for. {GOD} has carried us this far, {A_pronoun} says, but {GOD2} has been owed a year for a long time.</li>
-      <li>[lowtech] {A_nameDef} has laid out the god-stones by the fire and asks the council to choose one to carry through the year: {GOD}, {GOD2}, or another.</li>
+      <li>[lowtech] {A_nameDef} has laid out a stone for each god by the fire and asks the council to choose one to carry through the year: {GOD}, {GOD2}, or another.</li>
       <li>[priest] A year belongs to one god, {A_nameDef} keeps reminding everyone, and it's the priest's work to ask which. {GOD}, {GOD2}, or another?</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>Honour {GOD} this year</label>
-        <outcome>The council named {GOD} the colony's god for the year. {A_nameDef} said the words at {PLACE} that evening, and {GOD2}'s people went home quieter than they came.</outcome>
+        <outcome>The council named {GOD} the colony's god for the year. {A_nameDef} said the words at {PLACE} that evening, and those who keep {GOD2} were quiet afterwards.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HonourGod"><god>1</god></li>
@@ -65,7 +65,7 @@
     <cooldownDays>45</cooldownDays>
     <minColonists>5</minColonists>
     <texts>
-      <li>{A_nameDef} wants a temple for {GOD}: a room of its own around {PLACE}, fine enough that nobody walking in could mistake what it is for. {A_pronoun} would vow it to {GOD} before the council, and asks the colony to build it.</li>
+      <li>{A_nameDef} wants a temple for {GOD}: a room of its own around {PLACE}, fine enough that nobody walking in could mistake what it is for. {A_nameDef} would vow it to {GOD} before the council, and asks the colony to build it.</li>
       <li>{A_nameDef} says {GOD} has been worshipped in a corner long enough. A temple, {A_pronoun} says, a proper room with walls and a door, and {A_pronoun} will vow it.</li>
       <li>[lowtech] {A_nameDef} wants a house for {GOD}, with a roof over {PLACE} and good things on the walls, and will swear before the council to see it raised.</li>
     </texts>
@@ -73,7 +73,7 @@
     <options>
       <li>
         <label>Raise a temple: {A_nameDef} vows it to {GOD}</label>
-        <outcome>{A_nameDef} vowed a temple to {GOD} before the council, and walked to {PLACE} that evening to say so there. The colony has a month to give {GOD} a fine room of its own.</outcome>
+        <outcome>{A_nameDef} vowed a temple to {GOD} before the council, and walked to {PLACE} that evening to say so there. The colony has two seasons to give {GOD} a fine room of its own.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_TempleVow"><days>30</days></li>
@@ -112,7 +112,7 @@
     <minColonists>3</minColonists>
     <texts>
       <li>{A_nameDef} woke shaking and came straight to the council. {GOD} spoke in {A_possessive} dream, {A_pronoun} says, and asked for {PET_labelShort}, the finest beast the colony has. Give it, {A_pronoun} says, and the rain keeps coming; refuse, and {A_pronoun} is sure the sky will stay dry.</li>
-      <li>{A_nameDef} says {GOD} wants {PET_labelShort}. {A_pronoun} dreamt it three nights running: the beast walking out past the last field, and the sky dry as bone behind it if it doesn't.</li>
+      <li>{A_nameDef} says {GOD} wants {PET_labelShort}. {A_nameDef} has dreamt it three nights running: the beast walking out past the last field, and no rain if it stays.</li>
       <li>[bonded] {A_nameDef} says {GOD} wants {PET_labelShort}, of all the beasts, and knows exactly whose heart that breaks. {GOD} was very clear, {A_pronoun} says. Give it, or the rain stays away.</li>
       <li>[lowtech] {A_nameDef} read the bones and read them again. {GOD} wants {PET_labelShort} given to the wild, or no rain will come to the fields.</li>
       <li>{A_nameDef} is sure of it: {GOD} wants {PET_labelShort} let go into the wild, and a dry spell will follow if the colony holds on to it. Half the council thinks it was a bad dream. The other half has seen what a dry spell does.</li>
@@ -164,7 +164,7 @@
     <roleB />
     <texts>
       <li>{A_nameDef} prays to {GOD}, {B_nameDef} to {GOD2}, and the stories say the two gods have never been able to stand each other. Now {A_nameDef} and {B_nameDef} can't either. Each wants the colony's next rite for their own god, and says the other god will take it as an insult.</li>
-      <li>{GOD} and {GOD2} are old rivals, and the colony has people of both. {A_nameDef} says {GOD} won't share a shrine's smoke with {GOD2}. {B_nameDef} says {GOD2} was here first. The council is asked to settle it.</li>
+      <li>{GOD} and {GOD2} are old rivals, and the colony has people of both. {A_nameDef} says {GOD} won't share a shrine with {GOD2}. {B_nameDef} says {GOD2} was here first. The council is asked to settle it.</li>
       <li>[lowtech] There's one fire and two gods who hate each other. {A_nameDef} will tend it for {GOD}, {B_nameDef} for {GOD2}, and neither will step back.</li>
     </texts>
     <defaultOption>2</defaultOption>

@@ -9,8 +9,8 @@
 
   <!-- ===================== Her coming ===================== -->
 
-  <CC_Mog_Came_Text>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. She is walking toward the graves as if she knows the way.</CC_Mog_Came_Text>
-  <CC_Mog_Came_TextKin>A {BEAST} has come in from the edge of the land, larger than any lion, gold-eyed, with a collar of lapis and gold that nobody put on her. Cats are following her, and she is walking toward the graves as if she knows the way.</CC_Mog_Came_TextKin>
+  <CC_Mog_Came_Text>A {BEAST} has come in from the edge of the land. She is larger than any lion, with gold eyes and a collar of lapis and gold that nobody here put on her. She is walking toward the graves as if she knows the way.</CC_Mog_Came_Text>
+  <CC_Mog_Came_TextKin>A {BEAST} has come in from the edge of the land. She is larger than any lion, with gold eyes and a collar of lapis and gold that nobody here put on her. Cats are following her, and she is walking toward the graves as if she knows the way.</CC_Mog_Came_TextKin>
 
   <!-- ===================== The riddle at the threshold ===================== -->
 
@@ -66,10 +66,10 @@
 
   <!-- Her keeper comes in at dusk with a cat. {KEEPER} is the keeper, {PEOPLE} their people, {DEAD} the one buried, {HOME} the colony; by the colony's age. -->
   <CC_Mog_Keeper_Title>A keeper at the grave</CC_Mog_Keeper_Title>
-  <CC_Mog_Keeper_Text_0>{KEEPER_nameDef} of {PEOPLE} came in from the edge of the land at dusk in a cloak of undyed hide, with a cat walking at {KEEPER_possessive} heel, and asked only the way to {DEAD}'s grave, to sit there through the night.</CC_Mog_Keeper_Text_0>
-  <CC_Mog_Keeper_Text_1>{KEEPER_nameDef} of {PEOPLE} came to the gate at dusk in undyed linen, with a cat walking at {KEEPER_possessive} heel, and asked nothing of {HOME} but the way to {DEAD}'s grave, to sit there tonight and sing under {KEEPER_possessive} breath.</CC_Mog_Keeper_Text_1>
-  <CC_Mog_Keeper_Text_2>{KEEPER_nameDef} of {PEOPLE} came to the gate at dusk in a plain gray coat, with a cat walking at {KEEPER_possessive} heel, and asked only to sit the night by {DEAD}'s grave, as {KEEPER_possessive} people do.</CC_Mog_Keeper_Text_2>
-  <CC_Mog_Keeper_Text_3>{KEEPER_nameDef} of {PEOPLE} walked in at dusk in a gray suit, with a cat at {KEEPER_possessive} heel, and asked only to sit the night by {DEAD}'s grave, as {KEEPER_possessive} people do for every one of their dead.</CC_Mog_Keeper_Text_3>
+  <CC_Mog_Keeper_Text_0>At dusk, {KEEPER_nameDef} of {PEOPLE} came onto the land in a cloak of undyed hide, with a cat walking beside {KEEPER_objective}, and is making for {DEAD}'s grave. {KEEPER_nameDef} has come to sit by it through the night.</CC_Mog_Keeper_Text_0>
+  <CC_Mog_Keeper_Text_1>At dusk, {KEEPER_nameDef} of {PEOPLE} came to {HOME} in undyed linen, with a cat walking beside {KEEPER_objective}, and is making for {DEAD}'s grave. {KEEPER_nameDef} has come to sit by it tonight and sing quietly.</CC_Mog_Keeper_Text_1>
+  <CC_Mog_Keeper_Text_2>At dusk, {KEEPER_nameDef} of {PEOPLE} came in wearing a plain gray coat, with a cat walking beside {KEEPER_objective}, and is making for {DEAD}'s grave. Among {PEOPLE}, someone sits through the night by a new grave, and {KEEPER_nameDef} has come to do that.</CC_Mog_Keeper_Text_2>
+  <CC_Mog_Keeper_Text_3>At dusk, {KEEPER_nameDef} of {PEOPLE} came in wearing a gray suit, with a cat beside {KEEPER_objective}, and is making for {DEAD}'s grave. Among {PEOPLE}, someone sits through the night by every new grave, and {KEEPER_nameDef} has come to do that.</CC_Mog_Keeper_Text_3>
 
   <!-- ===================== The wrapped dead ===================== -->
 
@@ -80,7 +80,7 @@
   <CC_Mog_Risen_Text_1>Among {HOME}'s graves the ground moved, and figures wrapped from head to foot in gray linen stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_1>
   <CC_Mog_Risen_Text_2>Among {HOME}'s graves the ground moved, and figures in old gray burial wraps stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_2>
   <CC_Mog_Risen_Text_3>Among {HOME}'s graves the ground moved, and figures in gray burial shrouds stood up out of it, slow and silent, and turned toward the raiders. They will not leave the graves, and they turn on anything that comes near them.</CC_Mog_Risen_Text_3>
-  <CC_Mog_Risen_Down>The wrapped dead lay down again among the graves of {HOME}, and were dust.</CC_Mog_Risen_Down>
+  <CC_Mog_Risen_Down>The wrapped dead lay down again among the graves of {HOME} and turned to dust.</CC_Mog_Risen_Down>
   <!-- What happened there, in a few words (the place where they say {GOD} ...), and what those who saw it remember. -->
   <CC_Mog_Risen_Act>woke the wrapped dead among the graves</CC_Mog_Risen_Act>
   <CC_Mog_Memory_Risen>the night the dead stood up among the graves</CC_Mog_Memory_Risen>

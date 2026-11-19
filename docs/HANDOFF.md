@@ -33,8 +33,8 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0); rounds 6 and 7 are built, not released
-   (the entries above the newest release line).
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0); round 7 is built,
+   not released (the entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -126,6 +126,32 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
   when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
   now one entry above the newest release line ("Choose the material when ordering a piece").
+- **To do when the player asks (found 19 November 2026 in the plain-words pass on the region map; no words of the
+  player's yet): a colonist a world event sends to a far town stays at the colony.** Fifteen answers of thirteen world
+  events say a colonist goes off to another people's town for a day or several (to advise, build, teach, read old
+  writing, speak or keep watch), and the colonist's skill and the people's goodwill count at once, but nobody leaves
+  the map: the drought's well and the road's bridge ("Lend them {A_nameDef} for a day", `Council_WS_Region`), the
+  herdsman in the sickness of the herds, the great fire's roofs and the bumper harvest's sickle (`Rimfolk_WS_Beyond`;
+  there too the blood feud's talks, told at the colony's table with neither family on the map), the toll's petition, the iron's smiths and the exiles' plea (`Rimfolk_WS_Beyond2`), the
+  rebuilt bridge (`Rimfolk_WS_FollowUps`), the vault's old writing and the closed markets' talks (`Rimfolk_WS_Wider`),
+  the moot's speaker and the old thrumbo's watch (`Rimfolk_WS_Wider2`), and the other settlers' traps
+  (`Rimfolk_WS_World`). The plain-words pass made their words tell it as set going, with no time that can't have come
+  ("{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge"), and the road's
+  builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
+  storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
+  {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
+- **To do when the player asks (found 19 November 2026 in the plain-words pass on the Almanac, part 2; no words of the
+  player's yet): the defense survey counts a shut door as a way raiders might break through.** The survey of the ways
+  in (`Defense/DefenseMath.cs`, a Dijkstra from home with `DoorCost` 400, about thirty cells of walking) lets a shut
+  door stand on the raiders' way when the open way round is some thirty cells longer. In the game's 1.6 pathing a
+  closed colony door is no way at all for an ordinary assault raider: their goto, attack and trash jobs have
+  `canBashDoors` false, so they take the open way however long it is (`docs/defense-research/mechanics.md`, 1.2 and
+  1.3). A back door near the edge can so be shown as the raiders' way in, with its choke points and raid counts, while
+  the game sends them the long way to the killbox. The Almanac now says what the game does and names the survey's own
+  count ("how raiders pick their way"); the defense lines' help on a shut gate (`CC_DefLine_How_Gate` in
+  `Rimfolk_DefenseLines.xml`, "if breaking it is no cheaper than somewhere else, they pick their own stretch of wall")
+  still follows the survey's count. When asked: count a shut door as closed while any open way reaches home, and at
+  400 only when none does (a colony walled in all round, where they break in at random).
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -150,8 +176,8 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0)
-  and rounds 6 and 7 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 8 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0),
+  round 6 (0.270.0), and round 7 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 8 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
@@ -159,7 +185,7 @@ repo.
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
-  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Built, not released (19 November 2026).
+  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Released 0.270.0 (19 November 2026).
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Built, not released (19 November 2026).
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
@@ -385,7 +411,86 @@ repo.
   for seven lines). Left as the player said: the decrees' `support` and `oppose` lines and `Rimfolk_DecreeLines_Year`
   (talk, said in bubbles and quoted in the letters), the militia's first muster's `lines` (speech), the co-sign lines
   and the meeting's pools (talk), the decrees' and seats' moods (`ThoughtDefs`) and their hediffs (ailments).
-  Still to pick, when the player asks: the gods and faith, the peoples, the region map, the Almanac, What's new.
+  The region map, done (19 November 2026, the same go; built, not released): the entry "Plain words: the region map"
+  above the newest release line. Files taken: the world events in `Defs/WorldSituationDefs/` (the 25 files
+  `Council_WS_Hardship`, `_Land`, `_Mods_Factions`, `_Places`, `_Powers`, `_Region`, `_Warlord`, and `Rimfolk_WS_Beyond`,
+  `_Beyond2`, `_FollowUps`, `_GrownTown`, `_Legend`, `_Mods_Peoples`, `_New`, `_Region`, `_RiseFall`, `_Run`,
+  `_TownRaid`, `_Variety2`, `_Variety3`, `_Variety3_Roads`, `_WarlordSon`, `_Wider`, `_Wider2`, `_World`: names,
+  titles, the letters, summaries and beats' texts, the answers' labels and the deeds the chronicle keeps, the endings
+  and their chronicle lines, the lines kept in `SituationText`; the answers' outcomes and the message beats, made plain
+  in 0.251.0, read again for agreement and changed where they disagreed with the map; the moods' five files
+  `Council_WS_Misc`, `_Thoughts`, `_Thoughts_Region`, `Rimfolk_WS_Beyond_Thoughts`, `_Wider_Thoughts` left), the
+  storylines' frames in `Defs/StorylineDefs/` (`Rimfolk_Storylines`, `_Round2`, `_Round3`: read, already plain; their
+  parts are the missions'), the region's follow-ups (the warlord's son and the town that grew: `Rimfolk_WS_WarlordSon`,
+  `Rimfolk_WS_GrownTown`, `Rimfolk_WS_FollowUps`, and the Keyed words of `World/Region/FollowUps.cs` in
+  `Rimfolk_FollowUps.xml`) and the memory of single colonists (`World/ColonistMemory.cs`, its Keyed words in
+  `Rimfolk_ColonistMemory.xml`: read, already plain), and the Keyed words of the region map and its window read again
+  (`Rimfolk_Region`, `Rimfolk_RegionMap`, `Rimfolk_RegionVariants`, `Rimfolk_RegionVariants_Voices`, `Rimfolk_Hamlets`,
+  `Rimfolk_RaidersCamps`, `Rimfolk_TradingPosts`, `Rimfolk_RiseFall`, `Rimfolk_WorldSituations`, the world events
+  corner's keys of `Rimfolk_News`; plain since the interface batches but for the founder's first letter). Left as the
+  player said: the moods (`ThoughtDefs`), the speech in the effects' `lines`, and the region's bubbles
+  (`CC_RaidCamp_Say_*`, `CC_FarNews_Say_*`, `CC_Travel_Quarrel_Say_*`).
+  The gods and faith, done (19 November 2026, the same go; built, not released): the entry "Plain words: the gods and
+  faith" above the newest release line. Files taken: the gods' and worship's Keyed words (`Rimfolk_Gods`,
+  `Rimfolk_GodBook`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`, `Rimfolk_GodsWorld`, `Rimfolk_GodPresence`,
+  `Rimfolk_GodPresenceOwn`, `Rimfolk_GodOwnHappenings`, `Rimfolk_GodHappenings_Ducat`, `_Helios`, `_Hush`, `_Murmur`,
+  `_Revel`, `_Selene`, `_Tamiu`, `_Undertow`, `Rimfolk_GodTouch`, `Rimfolk_GodImpact`, `Rimfolk_Worship`,
+  `Rimfolk_Offerings`, `Rimfolk_Saints`, `Rimfolk_Belief`; the ideoligions' `Rimfolk_Faith`, `Rimfolk_Faith_Council`,
+  `Rimfolk_Faith_People`, `Rimfolk_RoleClothes` and `Rimfolk_TurretFaith` read again: plain since interface-4), and the
+  texts in `Defs/GodDefs/` that tell what happened on the map or that a player reads as a thing, a place or a button:
+  each god's own presence on the land (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, Tamiu's in
+  `Rimfolk_GodsOnMap_Mog`: the name and description), the stranger at the gate, its answers and the deeds it leaves
+  (`Rimfolk_GodsOnMap`), Tamiu's riddle at the door (`Rimfolk_GodsOnMap_Mog`), the bargain in a dream and the wounded
+  thrumbo (`Rimfolk_GodOwnHappenings`), the council's questions about the gods and the saints (`Rimfolk_Worship_Dilemmas`,
+  `Rimfolk_Saints`), the gods' two camps (`Rimfolk_GodsWorld_Camps`, the camps' round left it for this one), the
+  priest's seat (`Rimfolk_Worship_Office`), the mood hints' advice (`Rimfolk_Worship_Thoughts`), the job reports, the
+  saint's relic, the god's light and the warm afternoon (`Rimfolk_GodImpact`). Kept in the old voice, as the player
+  asked ("the only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"): the gods'
+  own lore in `Rimfolk_Gods.xml` (names, epithets, the chapters' plain lines, sayings, what people tell of each god and
+  how it is seen, tales and their pieces, the ties between gods, the neighbours' letter lines), the book's verses and the
+  keeper's notes (`Rimfolk_GodBook`, the book's entries in `Rimfolk_Gods` and its "Saw" lines), the festivals' names and
+  customs and the keeper's reading of each god's temper (`Rimfolk_Worship_Gods`, `Rimfolk_GodsWorld_Ways`,
+  `Rimfolk_Pantheon_Domains`), the seer's sayings (but for the unclear ones), Tamiu's riddles and the Choir's letter.
+  Left as the player said: the bubbles and talk (every `FlavorPoolDef` in `Defs/GodDefs/`, the gods' hands and scoffs,
+  the `TalkLinesDef`s and `InteractionDefs`), journals, dreams (the `GodWaysDef` dreams and the dream pools), prayers
+  and sermons (pools), moods (`ThoughtDefs`), what the gods leave on the body (`HediffDefs`, the gifts of
+  `Rimfolk_GodsWorld_Gifts` and the touch's blessings among them: ailments), the dev tools' words for the gods' hidden
+  state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer).
+  The Almanac, part 1: the council's pages, done (19 November 2026, the same go; built, not released): the entry "Plain
+  words: the Almanac's council pages" above the newest release line. Files taken: the 22 files
+  `Defs/AlmanacArticleDefs/Almanac_Council*.xml` but for `Almanac_Council_Faith.xml` (`Almanac_Council`,
+  `_AnimalNature`, `_Animals`, `_Arcs`, `_Calendar`, `_Callers`, `_Character`, `_ColonistBar`, `_Couriers`, `_Gossip`,
+  `_Interplay`, `_Lists`, `_Meetings`, `_Panels`, `_PlayOut`, `_Pressures`, `_SeeAndHear`, `_Setbacks`, `_Talk`,
+  `_TraitChanges`, `_Visitors`, `_Weather`: 45 pages, their summaries, tips, descriptions, sections, points and tables'
+  prose cells, read against the code they describe and against the names the earlier batches gave the ambitions,
+  decrees, questions, story stages, storylines and encounters). Left: every label, keyword and link (the Almanac's
+  search and its links go by them), the names of things in the game quoted on the pages (settings, marks' and quirks'
+  names, a question's answer quoted, the seats' names by age), and the speech and journal lines quoted as examples.
+  The Almanac, part 2: the pages A to H, done (19 November 2026, the same go; built, not released): the entry "Plain
+  words: the Almanac, part 2" above the newest release line. Files taken: the 22 files `Almanac_Advisor`, `_Ahead`,
+  `_Ailments`, `_Apparel`, `_Basics`, `_Beasts`, `_Camps`, `_DLC`, `_Defending`, `_DefendingLines`, `_Defense`,
+  `_Diplomacy`, `_Faith`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`, `_Groups`, `_Guide`, `_HandOver`, `_Hauling`,
+  `_Health` (153 pages: summaries, tips, descriptions, sections, points and tables' prose cells, read against the code
+  they describe, the game's own constants in the 1.6 reference assemblies and the defense research's reading of the
+  game's code in `docs/defense-research/mechanics.md`; the gods' and faith's pages with the gods kept unseen). Left:
+  every label, keyword and link, the names of things in the game quoted on the pages, and the pages already plain
+  throughout (planning ahead, the almanac's first page, ideoligions in the colony, a town of our own, the medical
+  pages).
+  The Almanac, part 3: the pages J to W and the council's faith page, done (19 November 2026, the same go; built, not
+  released): the entry "Plain words: the Almanac's pages J to W" above the newest release line. Files taken: the 27
+  files `Almanac_Council_Faith`, `Almanac_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`,
+  `_Mistakes`, `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_RaidersCamps`, `_Region`, `_RoomDesign`,
+  `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`, `_Schemes`, `_SocialLife`, `_Storytellers`, `_TownAfter`, `_TownLife`,
+  `_TradeScreen`, `_VisitorsMore2`, `_Weapons`, `_WorldMemory`, `_WorldSituations` (170 pages: summaries, tips,
+  descriptions, sections, points and tables' prose cells; Rimfolk's read against the code and against the names the
+  earlier batches gave the decrees, questions, world events and missions, the base game's guides read for plain
+  words). Left: every label, keyword and link, the names of things in the game quoted on the pages, and the base
+  game's numbers on the guide pages (the repository has no Core defs to read them against). The council's faith page
+  is about the game's ideoligions and names no god. The pages A to H with the gods' and faith's pages (`_Gods`,
+  `_Faith`) are the Almanac's part 2, above (0.270.4).
+  The Almanac's other pages, still to do: the mods' pages (the ten `Almanac_Mods_*` files), the peoples' pages
+  (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`) and What's new (`Almanac_WhatsNew`, which writes CHANGELOG.md).
+  Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -491,7 +596,357 @@ repo.
   - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Furniture Expanded - Architect's
     stone bridges, Vanilla Furniture Expanded - Art's grand statue and monument, Alpha Props - Parks' fountains, Dubs Bad
     Hygiene's fountain, Rimefeller's wells, Vanilla Skills Expanded's quality expertise). The flag-and-lamp tower is drawn here.
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 6**
+- 0.270.5, **Plain words: the Almanac's pages J
+  to W** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The Almanac's part 3 of the plain-words pass: its pages J to W (journeys, another landing site, low tech,
+  running the colony, many colonies, beginners' mistakes, neighbours and letters, new peoples, the numbers at a glance,
+  small letdowns and good things grown ordinary, raiders' camps, the region, room design, room plans, rooms and mood, a
+  scenario's start, schemes, social life, ways to play, the town afterwards and its life, the trade screen, visitors
+  for what the colony keeps, judging a weapon, what the world remembers, world events) and the council's faith page
+  (ideoligions and the council). File list, and the Almanac's pages still to do, in the to-do entry "Rimfolk's text in
+  plain words".
+  - **What changed.** About 2,600 pieces of prose read in the 170 pages of 27 files (summaries, tips, descriptions,
+    sections, points and tables' cells), Rimfolk's each against the code it describes; 64 lines rewritten, two table
+    rows and one paragraph added. The base game's guides (running the colony, mistakes, low tech, numbers, room design,
+    rooms and mood, room plans) were plain already, and so were most of Rimfolk's pages. Tips that were sayings are
+    advice now ("One cold supper is nothing. A week of them is something." is "A single letdown passes in half a day.
+    The ones that keep coming wear on the heart, and the heart's section of the Mood tab names them."; "The first fine
+    meal is a treat. The tenth is supper.", "A dog that sleeps warm is a dog that fights well.", "No power, no harvest.
+    Batteries before basins.", "No teacher awake, no lesson.", "A feast in a fine hall is remembered for days.", "Busy
+    children don't wander into the workshop.", "A letter of condolence in a careful hand means more to a tribe than any
+    call could." and "The prisoner you let go this spring may be why a cart of food comes up the road..." each say what
+    to do or what the rule is). Figures of speech said plainly: the ways to play's table ("The world calls the colony
+    out", "The peoples around are the story", "The world feels watched", "Scarcity is the enemy", "The colony as a
+    market" now say what each way does, as the storytellers' own descriptions have since 0.250.0), "the region's word
+    leans to" (the region's news turns to), "Nothing is told: the world simply answers.", "It leans the world toward the
+    uncanny and names nothing.", "as the cups go up", "The two at a time stay two.", "the seat's ways carry word",
+    "welcomes itself in full", "where its land is kindly", "the heart of a tribal kitchen", "the most walked road in the
+    colony", "This advice is gentle", "carry themselves taller", "a people never forgets the first who helped", "a marked
+    beast goes home over their shoulders", "at the turning of the year", "sour on the colony", "walks up in his
+    stockings", "a letter in a hand", "within earshot", and the landing page's knotted "whatever of it someone who comes
+    holds". The faith page's cut-short lines are full sentences ("Every faith its evening, a decree too, is the other
+    way, and never in force with it. Ten days, twenty to wait after."; "can be sat with for an hour ... through the
+    shared core"; "The advisor mentions a faith without a guide too, gently.").
+  - **Put right against the code.** The faith page: a doubter of the faith is under 35% certain
+    (`YearFourMath.Doubting`), not "under a third"; the three questions named as the council shows them (ideoligions at
+    odds, doubts in the faith, the faith without a guide). Journeys: medicine is half a dose each and one more each for
+    every 8 days (`JourneyMath.Medicine`), not one more for the party; a doctor also goes on an escort where there is
+    any danger (`JourneyAdviceMath.WantsDoctor`); the guard more is for some danger, two for high. The region: a town
+    may be given up after 30 days under 15 (`RiseFallMath.LowDays`), not "a month", and after two bad world events
+    within a year while under 25 (`BlowDays` 60), not "in a season"; the fortunes table lacked six world events that
+    move fortunes (a blight in the region -10, a war between neighbors -8 and -4 for the other people's towns, a year
+    without a summer -8, medicine gone scarce -5, a ban on drink -4, a great work +4: their `prosperity` and
+    `prosperityOther`), and the war between neighbors moves the second people's towns too. The town's life: the same
+    rule, and the town asks to come back at most once a season (`TownLifeMath.AskGapDays`), not "a season apart at
+    most". Judging a weapon: Dual Wield puts its penalties on the main hand too (10% cooldown, 10% aim) and adds 5% and
+    0.5% for each skill level under 20 (`WeaponForMath.DualWieldRules`); the page named the off hand's alone. World
+    events: the table's names as the game shows them (a long drought, the great fire, drove season, the old thrumbo,
+    where it said a long drought upriver, a great fire, the drove roads, an old thrumbo), and the world events told on
+    other pages are named (a new town's welcome, a town given up, the town that grew, a raid on a town the colony was,
+    a legend of the region, a lord's progress, the clans gathering). New peoples: the table gave only river folk and
+    scholars as other ways; survivors and bands take many more (`ArisingMath.Lean`: the Bell's, the Wheel's, the Signal
+    Line's, the crew's and the vault's ways for survivors; tamers, wardens, seers, a choir, a free company, a guild, a
+    grove, a union, a republic, a gene works and a lattice by a band's leader), now said, pointing to the peoples'
+    pages. Schemes: a word in the ear is overheard within 7 cells (`SchemeMath.EarRange`).
+    One bug in the code, found reading the faith page: every faith its evening's daily trust passed a colonist's
+    openness (-100 to 100) into a rule written for 0 to 1 (`YearFourMath.ToleranceTrust`), so anyone the least bit
+    open got the full half point. Now `/ 100f` at the call (`Decrees/DecreeWork.cs`, `EveryFaithDaily`): a quarter of a
+    point for the closed and the neutral, rising to half for the most open, as the decree's text, the page and the
+    rule's own comment say. The only code change; the rule and its test are as they were.
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the
+    names quoted from the game and other mods (settings, the groups' roles such as the anchor and the firebrand, the
+    world events' endings such as "bad blood", the decrees' and questions' names), the base game's numbers on the guide
+    pages (no Core defs in the repository to read them against; Rimfolk's numbers were read against the code and agree
+    but for the above), and the pages plain throughout (another landing site but one line, a scenario's start, the town
+    afterwards, the trade screen, visitors for what the colony keeps, raiders' camps, running the colony, mistakes,
+    numbers, room design, rooms and mood). `Tools/textcheck.py --base` the lead branch and `Tools/almanaccheck.py
+    --base` HEAD and the lead branch find nothing: no number lost, keywords, labels and links unchanged. The two rows
+    added to the fortunes table go at its end, since the check compares a table's rows by position.
+  - **Code map.** Text in 17 of the 27 files (`Almanac_Council_Faith`, `_Journeys`, `_Landing`, `_LowTech`,
+    `_ManyColonies`, `_Neighbours`, `_NewPeoples`, `_OneHeart`, `_Region`, `_RoomPlans`, `_Schemes`, `_SocialLife`,
+    `_Storytellers`, `_TownLife`, `_Weapons`, `_WorldMemory`, `_WorldSituations`), one line in
+    `Source/ColonyCouncil/Decrees/DecreeWork.cs`, and the to-do entry's file list.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line; the fortunes table
+    with its two rows at the end; the every-faith decree's trust with the scale put right (a colonist of openness 40
+    now gains 0.35 a morning, where they gained 0.5).
+  - **Try in the game.** Open the Almanac: "the region" lists a blight, a war between neighbors, a year without a
+    summer, medicine gone scarce, a ban on drink and a great work among the fortunes; "ideoligions and the council"
+    names doubts in the faith at 35%; "world events" uses drove season and the old thrumbo; "ways to play" says what
+    each way does in its table. With Ideology and two ideoligions, declare every faith its evening and hover a
+    colonist's trust: a closed-minded colonist of another ideoligion gains a quarter of a point each morning, the most
+    open half a point.
+  - **Mods that would help.** None for this; it is text and one fix.
+- 0.270.4, **Plain words: the Almanac, part
+  2** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass:
+  "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The twenty-second batch of the plain-words pass and the second of the Almanac: its pages A to H (the
+  advisor's priorities and planning ahead, ailments and illnesses, judging armour and clothes, the almanac's first
+  page, alphas, legends and great herds, camps on the map, the DLCs' pages, planning the colony's defense and the
+  defense lines, raids and disasters, diplomacy, ideoligions in the colony, food and farming, a fresh start, the gods,
+  the heart's good side, groups and their roles, start here and the checklist, a town of our own, carrying and
+  hauling, health and medicine). File list, and the Almanac's pages still to do, in the to-do entry "Rimfolk's text in
+  plain words".
+  - **What changed.** About 2,570 pieces of prose read in the 153 pages of 22 files (summaries, tips, descriptions,
+    headings, sections, points and tables' cells), each against what it describes; 75 changed in 17 files, 23 of them
+    the plants' numbers below. The Almanac explains, so most of it was plain already, the base game's pages above all.
+    Tips that were jokes, twists or sayings are advice now ("Put the new one on the same shift as the hunters and give
+    it a week. They'll be telling each other the same bad jokes by then." is "Put a newcomer on the same shift as the
+    hunters and give it a week: working side by side is the quickest way into a group."; "A line people only find in
+    the middle of a raid is no line." is "Decide where the fallback line is and show it to everyone before a raid, not
+    during one."; "The hour after a raid decides how the next one goes.", "A gate you can hold this week beats a
+    killbox you'll finish next year.", "Every crowd has one who talks, one who laughs and one who just turns up. Ours
+    has two who talk.", "A camp is a neighbor for a week.", "Raiders don't see your traps, but they do count your
+    walls.", "...and the world's attention follows you there" each say what to do or what happens). Figures of speech
+    said plainly: "The wild has its leaders and its giants" ("Some wild animals lead packs, some come back after
+    hurting one of the colony, and some are very large"), "the heart fills on the other side" ("a colonist builds up
+    the good side of the heart"), "How real they are is the same in every game: felt but never certain ... and what
+    happens decides which" ("No setting changes how plainly they show themselves: most of the time nobody can be sure
+    what a god did"), "the council's walk round the base", "a calm dark ground", "a sworn fury" (the condition's name
+    and what it does), "handed down no line", "the road there and back is the world's own", "when the world shows a
+    need", "a stay with a shape", "the dirt flying", "That cuts both ways", "dear" for costly or expensive, and the
+    quiet one's "a cup kept full, a nod across the fire". The ailments' long list of hurts from everyday life lost its
+    history ("Since harm's fourth part", "Since its seventh part, which builds the last of the harm review's
+    proposals") and is split into short paragraphs by kind (doctors, guests, the weather, animals and tempers;
+    sickness and the cold; work, animals and contests; tempers, visitors and the colonists' own stories; those outside
+    the budget; the budget and its setting), every hurt and number kept, the decree named as "one ideoligion for the
+    colony" and the banked fires as the decree.
+  - **Put right against the code.** The plants' rest hours: the game's `Plant.Resting` (before 0.25 and after 0.8 of
+    the day, so 6:00 to 19:12; `FieldWeatherMath.RestBefore`/`RestAfter`, `AheadMath.GrowingShareOfDay` 0.55) gives
+    13.2 growing hours and 1.82 times the listed grow days, as "growing season" and the management page already said;
+    "food numbers at a glance" said 13 hours and 1.846, the season's summary 1.85, and every crop page's real days and
+    harvest per tile per day were worked out at 1.846. Each is worked out again: rice 1.10, 1.54 and 3.08 a tile a day,
+    potatoes 10.5 days and 0.92, 1.04, 1.21 and 1.79, corn 20.5 days and 0.75, 1.07, 1.50, a rice basin 24 every 1.95
+    days (12.3 a day, 0.62 nutrition), strawberries 10.7 and potatoes 7.2 a basin, haygrass and healroot 12.7 days
+    (haygrass 1.41), strawberries 8.4 days (0.96, 2.68), cotton 14.5 days (0.69), devilstrand 40.9 days and about 41
+    days of season (0.15), smokeleaf 13.6 days (0.66, 1.85 in a basin), psychoid 16.4 days (0.49), hops 9.1 days
+    (0.88, 1.99), and the Gauranlen tree about 18.2 days (was 18.46). The camps' daily try: "each such morning at ten"
+    was the rule until 0.56.2; a camp's try comes once a day at any hour (`CampTimer.NextTry`), as the camps' own tooltip
+    says. Closed doors and raiders (from the game's 1.6 code as `docs/defense-research/mechanics.md` reads it: an
+    ordinary assault raider's jobs have `canBashDoors` false): "how a killbox works" said a door to break "costs as much
+    as a good long walk", "where a killbox fits" that "a raider weighs breaking a door against the walk round, and a
+    long walk loses", "how raiders pick their way" that a door "adds a great deal" and that a raider shut out "breaks in
+    wherever it's cheapest", and the helper's line that raiders "break a gate rather than walk far round": a closed
+    door they can't open is no way at all while any way is open, they take the open way however long, and with none
+    left they pick a stretch of wall or a door at random (the choke points page already said so); the survey's own
+    count of a shut door (about thirty cells) is named as the survey's. The camp fee's answers name "insist on the full
+    fee" (the answer's label), not "the terms are the terms". The survey's count itself is a to-do above ("the defense
+    survey counts a shut door as a way raiders might break through").
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the names
+    quoted from the game (settings, "the beast that stays", "sworn fury", "in good heart", "in high spirits", a
+    question's answers), the base game's figures where nothing in the code or the reference assemblies says otherwise
+    (the pages marked approximate keep their sources), the gods' page's account of what the colony sees and keeps in its
+    book (no favour, wants or rules shown), and the pages already plain throughout (planning ahead, the almanac's first
+    page, ideoligions in the colony, a town of our own, the medical pages). `Tools/textcheck.py --base` the lead branch
+    and `Tools/almanaccheck.py --base` the lead branch find only the meant number changes (the plants' rest hours on 14
+    pages of food and farming and the Gauranlen page); keywords, labels and links unchanged.
+  - **Code map.** Text only: 17 of the 22 files (`Almanac_Advisor`, `_Ailments`, `_Apparel`, `_Beasts`, `_Camps`,
+    `_DLC`, `_Defending`, `_DefendingLines`, `_Defense`, `_Diplomacy`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`,
+    `_Groups`, `_Guide`, `_Hauling`); the to-do entry's file list and the new to-do about the defense survey.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line, and the ailments' list
+    of hurts in its new paragraphs on a narrow window.
+  - **Try in the game.** Open the Almanac: "growing season" and "food numbers at a glance" both say 1.82 times the
+    listed days, and "rice" gives 1.10 a tile a day on soil; sow rice on soil in early summer and it should be ready to
+    harvest in about five and a half days. "Camps on the map" says a camp's try comes once a day at any hour. "How
+    raiders pick their way" says a closed door is no way at all while another is open. "Ailments and illnesses",
+    "Working through it, and hurts from everyday life", reads as short paragraphs by kind.
+  - **Mods that would help.** None for this; it is text only.
+- 0.270.3, **Plain words: the Almanac's
+  council pages** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for
+  the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more
+  neutral, descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The twenty-first batch of the plain-words pass and the first of the Almanac: its pages about the council
+  and the colony's life (wishes, trust, standards, decrees, dilemmas, names and annals, offices, traditions, bonds,
+  dreams, life goals, secrets, strangers, the colony's character, moods, Rimfolk's events, scenarios, the heart, the
+  animals, personal stories, the calendar, callers, character and family, the colonist bar, couriers, gossip and
+  reputation, how it fits together, the look-up lists, meetings, panels, answers on the map, pressures, what you see and
+  hear, setbacks, conversations and shared memories, traits that change, visitors, the weather). File list, and the
+  Almanac's pages still to do, in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 2,000 pieces of prose read in the 45 pages of 22 files (summaries, tips, descriptions,
+    sections, points and tables' cells), each against the code it describes; 90 rewritten and two table rows added. The
+    Almanac explains, so most of it was plain already. Tips that were jokes or twists are advice now ("Write the year
+    down before people start remembering it differently." is "The annals letter comes on each anniversary of the
+    landing. Past years can be reread from the Chronicle page, one button a year."; "Whatever the council decides,
+    someone at the table will hold it against them." is "Read the line under each answer before choosing: it says who
+    would be glad, who would mind and what it costs."; "Give the old dog the warm spot by the fire. Someone will
+    notice.", "Turn away enough beggars and word gets around.", "Not every colony starts with a clean slate." and "The
+    colony remembers its hard winters by name..." each say where to look or what to do). Figures of speech said plainly
+    ("Fed outweighs feared in what the colonists say of it." is "Once the colony has fed it, the colonists talk of it as
+    an animal they feed, whatever else was decided about it."; "Welcome them and the thread between you deepens; turn
+    them away and it frays" is "the tie between you grows stronger ... it weakens"; "stories that hear the world" is
+    "personal stories moved on by what happens around them"; "A feeling and the world together dream deepest", "Ailments
+    color dreams", "asked in its moment", "its year is spent, with no blame", "comfort can't buy it off quickly", "at
+    the very end of the rope", "friendships with newcomers cut both ways", "prospectors who strike color", "a shiny
+    rumour on the wind", "the enemy's banners at the walls", "a restless heart", "they keep the pen"), and the marks'
+    names on "what shapes a person" ("Eyes down, thoughts their own" is "Keeps their head down and their thoughts to
+    themselves", "A hardness" is "Hardened", "Head held up" is "Holds their head up again").
+  - **Put right against the code.** Days of rest drain strain 75% faster (`strainRelief` 1.75), not "about twice" ("feelings
+    and strain"; the decrees batch fixed the decree's own text). "Reading moods" named the old rule "used to the good
+    life": it is "good things grow ordinary" now. "Everyday pressures" still said that rising standards shrink the
+    council's rewards and the game's comforts (down to 70%): that was the rule until November 2026 (`Standards.cs`
+    scales no good mood now); now good moods grow ordinary sooner, the line lower for higher standards. The seats'
+    table: the quartermaster's quarter less covers decrees too and the quartermaster gets 6% better prices, the physician
+    5% faster healing and 4% faster immunity, the herdmaster 3% more milk and wool, the marshal also the militia's drills
+    (the seats' duties). A feast day costs a 15% slower day, not "half a day's work"; three of the newest decrees mark
+    work on the map, not "five". 129 kinds of wish, not 106 (the `WishDef`s); 103 life goals, not 84, and "every life
+    goal" now lists the four animals' goals and PokéWorld's two, the only ones it lacked. The play-out counts from
+    `Tools/playout_audit.py --counts`: 980 answers (399 in 212 dilemmas, 431 in 240 events, 32 in 21 events told in
+    stages, 118 in 56 world events), 36 stages of 22 personal stories and 22 encounters, where it said 431 answers of 134
+    dilemmas and 125 events, 20 stages of 17 stories and 7 moments. About 8,500 conversation lines, not 6,900. The art
+    collector and the animal doctor come back as familiar faces (the regulars' `collector` and `vet`), which the visitors'
+    page left out. The road calls begins on what `ArcWorker_CampRoad` reads (two evenings at the camp's fire, and
+    restlessness or curiosity, freedom under 55, under half a year here, or five evenings), not "a restless heart". The
+    traditions' tip named a midsummer feast, which isn't a custom (the bonfire is); the goals list's tip called a child's
+    goal a wish. Words only: no code or def setting changed.
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the
+    names quoted from the game (settings, marks, quirks and habits, a question's answer such as "Sorry changes nothing",
+    the seats' names by age, "the beast that stays", the bands "in good heart" and "in high spirits"), the speech and
+    journal lines quoted as examples, and the pages already plain throughout (the colonist bar, goods carried by hand,
+    council meetings, on-screen panels, what you see and hear, setbacks, traits that change). `Tools/textcheck.py --base`
+    the lead branch and `Tools/almanaccheck.py --base` the lead branch find only the meant number changes: 106 and 84 on
+    the lists, the old play-out counts, the 70% of the old standards rule, the 6,900 lines; keywords, labels and links
+    unchanged.
+  - **Code map.** Text only: 15 of the 22 files (`Almanac_Council`, `_AnimalNature`, `_Animals`, `_Arcs`, `_Calendar`,
+    `_Callers`, `_Character`, `_Gossip`, `_Interplay`, `_Lists`, `_PlayOut`, `_Pressures`, `_Talk`, `_Visitors`,
+    `_Weather`); the to-do entry's file list.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line, and the two added rows
+    in "every life goal".
+  - **Try in the game.** Open the Almanac, Council: "feelings and strain" says days of rest drain strain 75% faster;
+    "reading moods" names "good things grow ordinary"; "offices and elections" gives the quartermaster's quarter less on
+    decrees too; "every life goal" says 103 and lists the animals' and PokéWorld's goals; "visitors on the map" names the
+    art collector and the animal doctor among the faces that come back.
+  - **Mods that would help.** None for this; it is text only.
+- 0.270.2, **Plain words: the gods and faith**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward", and "the
+  only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"). The nineteenth batch of
+  the plain-words pass: everything about the gods and faith said in plain modern words (the gods' and worship's
+  interface and messages, the god cards' framing words, the worship, offering and rite buttons and tips, the god events'
+  cards that tell what happened on the map, each god's presence on the land, the council's questions about the gods and
+  the saints, the gods' camps, the priest's seat), while the gods' and faiths' own texts keep their old voice. File list
+  and what was kept in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 2,090 Keyed entries read (the gods' Keyed files, which the interface batches left for this
+    round, and the ideoligions' again) and about 700 lines of `Defs/GodDefs/` in this batch's fields, beside the gods'
+    own lore (some 600 lines of sayings, tales and what people tell of each god) read for riddles; 217 rewritten (156
+    Keyed, 61 in the defs). Images and similes said plainly ("the light went wrong", "a sound like a door opening",
+    "eyes like wet stones", "a light about it that the dusk doesn't dim", "a color nobody has a word for", "as cold and
+    quiet as a frozen pond", "a bruise that goes all the way down", "in letters no hand had made"), riddling lines said
+    as meant ("quieter than quiet, and now and then something on the other side of the quiet says {PAWN_possessive}
+    name" is "that ear has gone completely silent, and now and then {PAWN_pronoun} hears {PAWN_possessive} own name said
+    from somewhere far away"; "Give it back to nobody" is "Dedicate it to no god"; "smoke or dreams" is "something to
+    smoke or take"), twists at the end gone ("It names no price. It never does." is "It does not say what it wants in
+    return."; "it seems to have decided that it does"; "as if it isn't sure it may"; "The ground there has not
+    forgotten"), things given a will ("the kind fields love", "one door has taken against one person", "coins have
+    wandered off", "The moonlight is keeping {PAWN} company"), and "Nobody can say why." taken off every presence, as the
+    approved samples in `docs/text-style-samples.md` did (Hollin's, Cirrus's and Smoulder's presences are those samples).
+    The seer keeps speaking darkly, but the unclear sayings say what they warn of ("The sky here has two minds" is "Two
+    powers are pulling at the sky here, and the weather will turn back and forth more than once before it settles";
+    "Something below was promised something, and it keeps count" is the approved sample's "Something under the ground
+    was promised a payment, and it remembers what it is owed").
+  - **Put right against the code** (DESIGN.md, "The gods' words told as they happen"). Hours: the gods' kindnesses and
+    angers in the world, a god's touch, the dream of a gift and a gift taken back, the voice in the dark's bargain and
+    price, an answered prayer and its rain, the stranger at the gate, and the gods' camps' farewells no longer name an
+    hour the code doesn't keep ("overnight", "this morning", "at breakfast", "tonight", "in the night", "as the light
+    goes", "at dawn"); the moon's return, at three at night, finds the wounded still asleep. The map: the beast the voice
+    takes vanishes in a puff of smoke, the food it gives lies in the middle of the colony, the god's beast leaves because
+    someone tried to tame it (and says so), Pip's batteries lose less charge, a god's clear days are dry, not long; the
+    temple vow has two seasons, not "a month". The unseen gods: "{GOD} displeased" (a god's mind, in a card's title) is
+    "A burn from {GOD}"; the deeds "was kind to a stranger who was more" and "followed a god's beast" say what the colony
+    saw ("a strange visitor at the gate", "a strange beast"). Fourteen lines that opened a sentence with a pronoun
+    placeholder (shown in lower case) now open with the name. Words only: no code or def setting changed.
+  - **Kept in the old voice.** The gods' own lore (`Rimfolk_Gods.xml`: "Whoever finds the first tree hears Hollin's whole
+    name, and never sleeps again", "Never promise {GOD} anything you haven't read twice"), the book's verses and the
+    keeper's notes ("It was given to {WHO} to see it", "{PAWN} doubts, and I pray it passes"), the keeper's reading of
+    each god's temper ("{NAME} is quiet, which is not the same as fed"), the festivals and their customs ("the Shuttered
+    Night: the shutters closed and every lamp lit, so that it passes by"), Tamiu's riddles, the Choir's letter, and every
+    line already plain (most of the newer happenings' cards, the offerings' words and the saints' were). Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block, placeholder people or numbers changed;
+    `Tools/textcheck.py --base` the lead branch finds nothing broken). No line of `Lean/ShippedLines.cs` is in these
+    files. Left as the player said: bubbles and talk, journals, dreams, prayers and sermons, moods, and what the gods
+    leave on the body (ailments).
+  - **Code map.** Keyed text in 16 files (`Rimfolk_GodsWorld`, `Rimfolk_GodsOnMap`, `Rimfolk_Worship`,
+    `Rimfolk_GodPresence`, `Rimfolk_GodPresenceOwn`, `Rimfolk_GodTouch`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_GodOwnHappenings`, `Rimfolk_Belief`, `Rimfolk_GodHappenings_Selene`, `_Helios`, `_Ducat`, `_Hush`,
+    `_Undertow`, `Rimfolk_Offerings`, `Rimfolk_Saints`); def text in 7 files of `Defs/GodDefs/`
+    (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_Worship_Dilemmas`, `Rimfolk_Saints`, `Rimfolk_GodsWorld_Camps`); two comments in `Gods/Saints/`; DESIGN.md
+    (the new section under "Everything from a god told at once", and two quoted phrases elsewhere).
+  - **Can't be checked without the game.** How the plainer cards read beside the gods' own presences, music and marks
+    on the map; the presences' longer descriptions in the top-right list's tooltip.
+  - **Try in the game.** Dev mode, Debug actions, Rimfolk: "Gods: a god's own presence here now..." for Cirrus, Pip or
+    Hush, and hover the presence in the top-right list: it says plainly what it does. "Gods in the world: a god's
+    kindness in its own shape now...", the mended machine or the barrels: the message names no hour. "Gods: a stranger
+    at the gate now...", turn the stranger away, and read the card when it goes. "Gods in the world: the Hunger takes
+    now" with a colony animal bonded to nobody: the animal it takes vanishes in a puff of smoke, as the card says.
+  - **Mods that would help.** None for this; it is text only.
+- 0.270.1, **Plain words: the region map** (19
+  November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
+  write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
+  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  nineteenth batch of the plain-words pass: the region around the colony and the world beyond it as the player reads
+  it. The 78 world events (their names, start letters, summaries, beats, answers, endings and chronicle lines), the
+  storylines' frames, the region's follow-ups (the warlord's son, the town that grew, rebuilding, the road reopened),
+  the memory of single colonists, and the Keyed words of the region map and its window. File list in the to-do entry
+  "Rimfolk's text in plain words".
+  - **What changed.** About 3,500 lines read in the world events (1,141 letters and endings, 620 labels, 550 titles,
+    454 outcomes, 207 chronicle lines, 200 deeds, 159 names, 102 summaries), about 550 in the storylines' frames and
+    about 840 Keyed lines; 389 rewritten: 291 letters and endings, 81 outcomes (made plain in 0.251.0, changed only
+    where they disagreed with the map), 8 summaries, 4 answers' labels, 3 of the warlord's and the locusts' extra lines,
+    and 2 Keyed lines. The storylines, the follow-ups' and the colonists' memory's Keyed words and the region map's
+    were already plain. Images and riddles said plainly: the great herds' "the ground shakes at dusk, the birds follow
+    the dust" is the approved sample ("Large herds are crossing the area"), "the far country has emptied into the
+    region", "a war on the wind", "the way a fire does under ash", "the colony's name is said hard in their house",
+    "It isn't quite true... It isn't quite untrue either" ("only partly true"). Wry last lines say what is so ("Some of
+    that may even be true", "The stories about {X_objective} will last longer than some of the cures", "the colony
+    will take that", "which may be the point", "now that it can't argue", "Everyone has a new respect for nails").
+    The Empire's ban on drink and the other settlers' hunters use the approved samples of `docs/text-style-samples.md`.
+  - **Put right against the code: the hour.** A world event's letters come at any hour (a beat at its day after the
+    start, an ending when it times out or is called), so about 60 lines that named an hour that may not have come
+    ("arrived at noon ... By evening it was done", "left the colony at dawn", "came in out of the snow at dusk", "this
+    morning", "before dark", "tonight") now name none or one that has passed ("last night", "yesterday"). Hours a
+    visit's own effect keeps are true as written: the mourners pass in the afternoon (`hourFrom` 13 to 18), the
+    herders and the great caravan come toward evening, the pilgrims sing after dark.
+  - **Put right against the code: what the map shows.** Where the words named someone at the gate that no effect
+    brought, the words now say a message came (the plague's first rider, the bandit's hoard map, the mercenary
+    captain's offer, the warlord's second price), or the map now shows them (below); a herald or envoy who may be a
+    woman is no longer "he". What is told as done is what the effects do at once: the healer has come and treats the colonist
+    (`SituationWorker_Healer`), the fair's and the strike's silver is on its way with a courier (`Couriers.PaySilver`),
+    the stargazer's colonist "will sit up" with her (a visit at 21 to 23 h), the mage "sits up" studying the surge with
+    no old stones on a hill the colony may not have; no well, wall, stream, ridge or hill is named where a colony may
+    have none (the comet's watch is by a fire, the stargazer on the far ground). The strange herds' summary said a
+    careless handler "may regret trying"; the creature only bolts (`Council_Evt_RareCreature`), and it says so, in the
+    Almanac too. Three small def changes make the map true where the whole letter is about people at the gate: the gold
+    fever's prospector comes to the gate with his mule (`VisitEffect_AtGate`), the war of words' two preachers stand at
+    the gate, one of each creed (the second only while its people is at peace with the colony), and the peace talks'
+    two delegations come to the gate a day or two after the answer and stay two nights before the talks are settled
+    (`VisitEffect_Come` with `holdBeat` "talks"). Fifteen answers that send a colonist to a far town for days still
+    leave them at the colony: their words tell it as set going, and the to-do "a colonist a world event sends to a far
+    town stays at the colony" holds the rest.
+  - **Left as they were.** The moods (`ThoughtDefs`), the speech in the effects' `lines`, the region's bubbles,
+    ordinary jokes and quoted words (the Empire's levy letter, the canvassers, the work song of the stone road, the
+    song about the colony's long table), the medieval founder's "greeting", and every tag, placeholder and key; the
+    four lines of a raid on a town the colony was that `Lean/ShippedLines.cs` pins stay word for word. One placeholder
+    was dropped on purpose: the healer's leaving no longer has the colonist walk the healer to the edge of the land,
+    which nothing staged.
+  - **Code map.** No code changed: def text in 21 of the 25 world events' files (`Rimfolk_WS_GrownTown`, `_Run`,
+    `_TownRaid` and `_WarlordSon` were read and needed nothing), the three def changes in `Council_WS_Mods_Factions.xml` and
+    `Council_WS_Powers.xml` (a commit of their own), the founder's first letter in `Rimfolk_Region.xml`, five rows of
+    the Almanac's world events table (`Almanac_WorldSituations.xml`, keywords unchanged), two README lines, one line
+    added to `Tools/playout_skips.txt` and one reason there updated, DESIGN.md (the new section "The region's words
+    against the map").
+  - **Can't be checked without the game.** How the plainer letters read beside the game's own; the prospector and the
+    preachers waiting at the gate with their letters, and the delegations' two nights at the gate before the peace
+    talks' letter.
+  - **Try in the game.** Dev actions "Rimfolk": "Start world event..." with gold fever (Settlers), a war of words
+    (Ideology) and peace talks (two neighbors at war with each other), then "Next world event beat now": the prospector
+    and the two preachers stand at the gate with their letters; host the talks, and the two delegations come to the
+    gate within two days and stay two nights before the ending letter. Start a famous healer and read the visit's
+    letter at any hour: it names no noon and no evening.
+  - **Mods that would help.** None for this; it is text and three def settings.
+- 0.270.0, **The peoples' own events, round 6**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
   gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").

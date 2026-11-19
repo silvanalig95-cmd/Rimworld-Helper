@@ -3800,7 +3800,8 @@ the colony half.
   (pen your animals or risk it spreading home, lend a handler).
 - **The powers:** a neighbor's **leader dies** and the next one takes over (kind, greedy, harsh or steady, and it
   shows), **two claimants** fight over a seat and the colony may back one, a **war of words** between two creeds
-  (Ideology), **peace talks** the colony can host to end a war between two neighbors for good, a **mercenary company**
+  (Ideology), **peace talks** the colony can host to end a war between two neighbors for good (both delegations stay two nights
+  at its gate), a **mercenary company**
   for hire (against a rising warlord's people, if there is one), **bandits** on the road to a neighbor's town, a
   **bandit lord's fall** that scatters deserters, wounded stragglers and buried loot (a lieutenant may rise as a
   warlord, or the band turn sellswords), and a **holy year** with pilgrims on every road and fewer fights.
@@ -3890,7 +3891,7 @@ the colony half.
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
   the old families or the reformers with silver) and **gold fever** (Settlers: prospectors on every road, one who
-  wants to work the colony's stream for a share).
+  comes to the gate to pan the colony's land for a share).
 
 Some days or weeks after a world event ends, its people may come back about it, depending on how it ended: survivors
 of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town

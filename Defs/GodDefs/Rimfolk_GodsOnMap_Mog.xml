@@ -17,7 +17,7 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Mog</defName>
     <label>the cats keeping watch</label>
-    <description>A great sand-gold cat is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin. Nobody can say why.</description>
+    <description>A great sand-gold cat is on the land. The rats have run off it, every few hours the colony's cats go and sit facing the graves, and the air by the graves smells of warm stone and resin.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Mog</god>
@@ -56,11 +56,11 @@
           <li>A riddle at the threshold</li>
         </titles>
         <texts>
-          <li>The {BEAST} has lain down across the way in and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
-          <li>[age0] The {BEAST} has lain down across the way into the camp, like a cat on a cairn, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
-          <li>[age1] The {BEAST} has lain down across the gate, still as the carvings at a crypt door, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
-          <li>[age2] The {BEAST} has lain down across the doorway and will not move, and the colony's cats sit in a row behind her. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
-          <li>[age3] The {BEAST} has lain down across the way in, as the old stories put the Sphinx at the door, and will not move. Whoever goes near her hears a question in no voice at all: "{TALE}" She is waiting for an answer.</li>
+          <li>The {BEAST} has lain down across the way in and will not move. Whoever goes near her hears a question, though nobody speaks it: "{TALE}" She is waiting for an answer.</li>
+          <li>[age0] The {BEAST} has lain down across the way into the camp and will not move. Whoever goes near her hears a question, though nobody speaks it: "{TALE}" She is waiting for an answer.</li>
+          <li>[age1] The {BEAST} has lain down across the gate, as still as a carved stone, and will not move. Whoever goes near her hears a question, though nobody speaks it: "{TALE}" She is waiting for an answer.</li>
+          <li>[age2] The {BEAST} has lain down across the doorway and will not move, and the colony's cats sit in a row behind her. Whoever goes near her hears a question, though nobody speaks it: "{TALE}" She is waiting for an answer.</li>
+          <li>[age3] The {BEAST} has lain down across the way in, like the sphinx in the old stories, and will not move. Whoever goes near her hears a question, though nobody speaks it: "{TALE}" She is waiting for an answer.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

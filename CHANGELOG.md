@@ -5,6 +5,59 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Almanac from journeys to world events in plain words
+
+*19 November 2026, version 0.270.5*
+
+- The Almanac's pages J to W and its page on ideoligions and the council are in plain words: tips that were sayings now give advice, and figures of speech say plainly what happens.
+- Facts on those pages checked against the game: the region's fortunes table lists the six world events it lacked, a town is given up after 30 days under 15 or two bad world events within a year, and journeys pack one more medicine each for every 8 days.
+- Every faith its evening gives colonists of other ideoligions a quarter of a point of trust each morning, rising to half for the most open-minded, as its description says; before, anyone even slightly open got the full half.
+
+## The Almanac from advisor to health in plain words
+
+*19 November 2026, version 0.270.4*
+
+- The Almanac's pages from the advisor to health are in plain words: tips that were jokes or sayings now give advice, and the long list of everyday hurts is split into short paragraphs by kind.
+- The food pages now use the game's own growing hours: crops grow 13.2 hours a day, so they take about 1.82 times their listed days, and every crop's numbers are worked out again.
+- The defense pages say what the game does with closed doors, and the camps page says a camp can come at any hour of the day.
+
+## The council's Almanac pages in plain words
+
+*19 November 2026, version 0.270.3*
+
+- The Almanac's pages about the council and the colony's life are in plain words: tips give advice instead of jokes, and figures of speech say what they mean.
+- Numbers on those pages that no longer matched the game are put right: days of rest drain strain 75% faster, the quartermaster's saving covers decrees, and the counts of wishes, life goals and answers that play out are current.
+- The life goals list now includes the animals' and PokéWorld's goals, and the art collector and the animal doctor are listed among the visitors who come back.
+
+## The gods' words in plain words
+
+*19 November 2026, version 0.270.2*
+
+- The gods' cards, messages and buttons are in plain words: what was seen and heard on the map, while the gods' tales, sayings and the colony's book keep their old voice.
+- Each god's presence on the land now says plainly what it does, and no god's card names an hour that isn't the hour it comes.
+- A god's beast that leaves because someone tried to tame it now says so, and what the voice in the dark takes is told as the map shows it.
+
+## World events in plain words
+
+*19 November 2026, version 0.270.1*
+
+- World events in plain words: their letters, summaries and endings say what happens, who does it and why.
+- World event letters no longer name an hour that hasn't come yet, and no longer mention people at the gate, or a well, wall or hill, that aren't on the map.
+- The gold fever's prospector and the war of words' two preachers now wait at the gate with their letters, and the peace talks' delegations stay two nights at the colony's gate before the talks are settled.
+
+## The peoples' own events, round 6
+
+*19 November 2026, version 0.270.0*
+
+- In a drought or a heat wave, two storm-walkers of the Stormglass Conclave can set their rods on the colony's high ground for a night and bring the rain at first light.
+- While the Conclave watches the colony's sky, a psychic drone or soothe is foreseen a day ahead and the warning names everyone it will touch; when a drone comes, a reader sits with whoever it hits hardest.
+- In spring and summer the Conclave may camp a week on the high ground with a glass mast and rods that take the lightning near them, and leave a sealed vial and the season's forecast.
+- When fire takes the colony's woods, the Mossborn's thorn-guards come running to beat it out, and their grove-keepers may camp in the burn for a week to clear and replant it.
+- A Mossborn herb-trader brings seeds of a plant the colony doesn't grow yet and sows a plot of it with the colony's grower.
+- The Ashen Banner offers contracts on the colony's enemies, fighting beside the colony's people at an enemy camp for half the silver found there.
+- An old Banner soldier may settle with the colony with a war-horse, and a people at war with the colony may hire the Banner for its next raid: buy the contract, pay them to stand aside, or let them march.
+- Put right: four of round 5's visits now find their people, so the Quiet Bell's gravewardens, the sextons, the night crew and the wagon's fixer give their thanks and name who came.
+
 ## The decrees in plain words
 
 *19 November 2026, version 0.269.5*

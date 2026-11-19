@@ -2796,6 +2796,28 @@ is told, and a grown-up of the visitors does the pulling back. "A herd passing" 
 animal would do: a stranger may now ask for its kin (`minKin`, wild animals of its kind on the map, itself included),
 the herd asks for six, and its words say a herd grazed past, with no count and no hours.
 
+### The region's words against the map (the plain-words pass, 19 November 2026; released 0.270.1)
+
+A world event's letters are told when they come (`WorldSituations.Run` for a beat, the ending when it times out or is
+called), at any hour, and no tag gives the hour, so its words name no part of the day that may not have come yet: no
+noon, evening, dusk, dawn, "this morning", "before dark" or "tonight" for what happens as the letter is read, and
+"last night" or "yesterday" for what is past. A visit's own effect may keep an hour, and the words then say it: the
+mourners pass in the afternoon (`VisitEffect_Come`, `hourFrom` 13 to 18), herders and the great caravan come toward
+evening, pilgrims sing at their camp after dark, a fire is laid for tonight's watch. What is told as done is what the
+effects do at once: the healer has come and treats the colonist (`SituationWorker_Healer.Treat`, as the healer walks
+in), silver owed is on its way with a courier (`WorldSituations` pays `owed` by `Couriers.PaySilver` as the ending
+comes), a gift is carried out to the gate. Someone the words put at the gate is brought there by a
+`VisitEffect_AtGate` in the beat; where no effect brings them, the words say a message or a rider came and went. No
+well, wall, stream, ridge or hill is named where the colony may have none: the comet's watch is at a fire outside, the
+stargazer on the far ground (`VisitSpot.Far`), the prospectors on the colony's land. Three world events now bring the
+people their letters are about: the gold fever's prospector comes to the gate with his mule, the war of words' two
+preachers stand there, one of each creed (the second only while its people is at peace with the colony), and the
+peace talks' two delegations come to the gate a day or two after the colony agrees and stay two nights
+(`VisitEffect_Come`, `holdBeat` "talks"), the talks settled by `SituationWorker_PeaceTalks` once they have gone. Answers
+that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
+and the colonist stays at the colony for now (a to-do in docs/HANDOFF.md; the town's well storyline sends its digger
+away, `Storylines/StorylineWell.cs`).
+
 ## Pace: how often the colony gathers
 
 The staging review (`docs/review-2026-11/staged-scenes.md`) counted about four gatherings a week and a group outing
@@ -10156,7 +10178,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `WheelTowns.Move` (a yard due), `FactsMath`, round 1's `PeopleWorkOn` ("train" mark), round 4's `BoatBuilders` (a vehicle by
     name). One game hook, `Patch_GardenQuiet`. Dev actions "Peoples' events 5: ...". The Almanac's peoples' pages, *Of their
     own: gifts, trust and camps* (Almanac_PeoplesD.xml).
-- **The peoples' own events, round 6** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 6** (the player's go, 19 November 2026: "Events sounds great"; released 0.270.0)
   `docs/peoples-events-proposals.md`, items 48, 49, 50, 52, 53, 54, 55, 56, 57 and 58 (the Stormglass Conclave, the Mossborn
   and the Ashen Banner); `Source/ColonyCouncil/Peoples/Events6/`, the pure rules in `PeopleEvents6Math.cs`,
   `Tools/Tests/PeopleEvents6Tests.cs` ("the peoples' events, round 6: "). As rounds 1 to 5: only from a people of its calling
@@ -15670,7 +15692,7 @@ under the world. Tamiu is the one who keeps the dead whole and lies across the d
   cat harmed sends the cats off in one night and brings the rats (`kinWrath`).
 - **The riddle at the threshold** (`MogsWays.Ask`, `HappeningWorker_GodRiddle`, `Rimfolk_Evt_GodRiddle`, `MogMath`): once
   a stay at most, from her second day, in the day (`RiddleDue`: about three seasons in four), she lies across the way in
-  (outside the colony's outermost door) and a card puts her riddle, heard "in no voice at all", one of the colony's age's
+  (outside the colony's outermost door) and a card puts her riddle, heard though nobody speaks it, one of the colony's age's
   four (`CC_Mog_RiddleQ_<age>_<i>`): send the sharpest wits (Intellectual), the best talker (Social), or let her lie.
   The one sent walks out to her and says their answer aloud; it is wrong by the card's risk, at their own skill
   (`WrongChance`: three in four with none, one in three at ten, one in ten from fifteen), told only when they reach her.
@@ -16007,7 +16029,7 @@ passes to anyone, and nothing reads a family.
   toward each saint's god a little more (`SaintsMath.WithSaints`, +0.35 of the strongest lean, never past it); its damned
   leave each believer uneasy about the god each is tied to, once (`SaintsMath.DamnedDread` 20, with its line of why).
 - **The book** (`Saints.BookLines`, `GodLorePage.SaintsPart`): "Of its saints", in the keeper's hand, under the chapter the
-  colony keeps the god under: its own ("Saint Mira, who kept the sick for years, named by the council on 5th of Aprimay,
+  colony keeps the god under: its own ("Saint Mira, who cared for the sick for years, named by the council on 5th of Aprimay,
   5502. Her day is kept each year on the day she died."), its faiths' ("The faith of the Way of Ash holds Saint Aranea among
   its saints."), the damned ("The faith of the Way of Ash fears Vorgath the Damned, and never prays to them.") and those
   kept no more.
@@ -16651,6 +16673,39 @@ visible on screen, after camera changes ... the visual aspect was there, but min
   hold to".
 - **Text.** The book's lines end with one full stop (`GodLoreMath.WithoutStop`; 49 of 111 lines in the player's save
   had two); the stash's book line has the find in lower case and its words fit one person ("at her feet").
+
+#### The gods' words told as they happen (released 0.270.2)
+
+Found in the plain-words pass on the gods and faith (19 November 2026). Many of the gods' cards and messages named an
+hour, or told a thing the map doesn't show, and a few said more than the colony can know:
+- **The hour.** The gods' kindnesses and angers in the world (`GodHealth.Kindness`, `Anger`) come on the region's day
+  (`RegionBook.Daily`), at whatever hour that is on the map, so the wild growth, the vein, the mended machine, the full
+  battery, the barrels finished early and the drink gone sour are no longer told as "overnight" or "this morning"; the
+  same for a sour store and a crop grown on after a god's touch (`GodTouch`). The dream of a god's gift is told when
+  the region's day comes (`GodWorldGifts`), not "at breakfast", and a gift taken back goes when the colony answers, not
+  "in the night". The voice in the dark (`GodVoid`) speaks at any hour and pays the moment the colony answers, so its
+  offer no longer says "tonight" or "by morning", the paid card is "{PAWN} said yes", and what it takes days later is
+  told as seen then ("woke with" went). The moon's return of a kindness comes at three at night (`GodReturn`): the
+  wounded colonist is still asleep, with the wounds already days better. A prayer is answered at any hour (the night
+  only makes it likelier, `Prayers.Answer`), and the rain some six to fourteen hours after, or within the hour with
+  thunder when the god shows itself (`RainComing`), not "in the night" and "the evening after". The stranger at the gate
+  comes at any hour (`GodStranger.Fire`): no "as the light goes", no "heavy all afternoon". The gods' camps leave
+  whenever their stay ends: the pilgrims' and the seer's farewells no longer say dawn (`CampLook.FarewellText`). One of
+  the seer's sayings promised "tonight", and the moon's return comes on a night of its own choosing; it doesn't now.
+- **What the map shows.** The beast the voice takes vanishes in a puff of smoke (`GodVoid.TakeDue`), it doesn't "walk
+  into the dark"; the food it gives lies in the middle of the colony (`Feed`). The god's beast that "would not be kept"
+  leaves because someone marked it to be tamed or took it (`SacredAnimal`), and its message says so. A presence's lines
+  say what each does with its numbers' words: Pip's batteries lose less charge (`BatteryKept`, the drain cut), not "keep
+  what they give out"; a god's clear days are dry for a while (`DisableRainFor`), not "long"; "Nobody can say why" went
+  from the presences' descriptions. The temple vowed before the council has two seasons (30 days, as its impact line
+  says), not "a month".
+- **The unseen gods.** A card's named title said a god was "displeased", a god's mind: it is "A burn from {GOD}". The
+  stranger's and the god's beast's deeds on a colonist's record called it "a stranger who was more" and "a god's beast";
+  they say "a strange visitor at the gate" and "a strange beast", as the colony saw it.
+
+Every line's tags, placeholders and keys kept; no code or def setting changed. Pronoun placeholders that opened a
+sentence (shown in lower case) were rewritten with the name in the saint's, the temple's and the god's-ask questions,
+the gods' camps, the stranger at the gate, the dream card, and the moon's and the dark's cards.
 
 ### The pact's cart and the schemes' thefts (the player's report and go, 17 November 2026; released 0.266.1)
 

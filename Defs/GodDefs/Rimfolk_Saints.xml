@@ -23,11 +23,11 @@
     <answerDays>3</answerDays>
     <texts>
       <li>{A_nameDef} has come to the council about {DEAD}, {DEED}. Some are already saying {SAINT}, {A_pronoun} says, and {A_pronoun} asks the council to say so too: name {DEAD} {ASAINT}, and let the grave be a place to pray.</li>
-      <li>[reason:rescuer] {A_nameDef} can't stop talking about how {DEAD} died, carrying someone out while the fighting was still going on. {A_pronoun} asks the council to name {DEAD} {ASAINT}, so the colony never forgets it.</li>
+      <li>[reason:rescuer] {A_nameDef} can't stop talking about how {DEAD} died, carrying someone out while the fighting was still going on, and asks the council to name {DEAD} {ASAINT}, so the colony never forgets it.</li>
       <li>[reason:defender] {DEAD} held the line until the end, and {A_nameDef} wants it remembered properly: {ASAINT}, {A_pronoun} says, with a day of {DEAD}'s own every year.</li>
-      <li>[reason:healer] Half the colony owes {DEAD} a life or a limb, {A_nameDef} says. {A_pronoun} asks the council to name {DEAD} {ASAINT}, and to let the sick pray at the grave.</li>
-      <li>[reason:keeper] {DEAD} kept faith longer and more surely than anyone here, {A_nameDef} says. {A_pronoun} asks the council to name {DEAD} {ASAINT}.</li>
-      <li>[reason:vow] {DEAD} died with a vow still being kept, {A_nameDef} says, and kept it to the very end. {A_pronoun} asks the council to name {DEAD} {ASAINT}.</li>
+      <li>[reason:healer] Half the colony owes {DEAD} a life or a limb, {A_nameDef} says, and asks the council to name {DEAD} {ASAINT} and to let the sick pray at the grave.</li>
+      <li>[reason:keeper] {DEAD} kept the faith longer and more surely than anyone here, {A_nameDef} says, and asks the council to name {DEAD} {ASAINT}.</li>
+      <li>[reason:vow] {DEAD} died still keeping a vow, {A_nameDef} says, and kept it to the very end. {A_nameDef} asks the council to name {DEAD} {ASAINT}.</li>
       <li>[priest] It falls to the priest to ask, {A_nameDef} says: {DEAD}, {DEED}, should be named {ASAINT}, and the grave made a place to pray.</li>
     </texts>
     <defaultOption>2</defaultOption>

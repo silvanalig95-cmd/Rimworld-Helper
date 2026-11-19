@@ -60,11 +60,11 @@
       <li>The pilgrims have made a ring of bedrolls round their fire {PLACE}, facing {SITE}.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the pilgrims {PLACE}, has prayed at {SITE} every dawn and dusk and says {GOD} has told {X_objective} to stay. {X_pronoun} asks whether the colony would have {X_objective}.</li>
+      <li>{X_nameDef}, one of the pilgrims {PLACE}, has prayed at {SITE} every dawn and dusk and says {GOD} has told {X_objective} to stay. {X_nameDef} asks whether the colony will take {X_objective} in.</li>
     </joinTexts>
     <farewell>
-      <li>The pilgrims prayed at {SITE} one last time at dawn and walked home, leaving their ashes raked and nothing else behind.</li>
-      <li>[joined] The pilgrims left at first light, and {X_nameDef} thanked the colony for praying with them at {SITE}. {GOD} will remember it, {X_pronoun} said.</li>
+      <li>The pilgrims prayed at {SITE} one last time and walked home, leaving their ashes raked and nothing else behind.</li>
+      <li>[joined] The pilgrims have left, and {X_nameDef} thanked the colony for praying with them at {SITE}. {GOD} will remember it, {X_pronoun} said.</li>
       <li>[desecrated] The pilgrims left in silence. {SITE} was gone, and they would not stay where it had been.</li>
     </farewell>
     <lines>
@@ -157,7 +157,7 @@
     <texts>
       <li>A hermit of {FACTION} has come to the very edge of the colony's land and is building a hut {PLACE}. {X_nameDef} told {A_nameDef}, without being asked, that the gods talk more where the land runs out, and that anyone who wants to know what they say may come and sit by the fire.</li>
       <li>[lowtech] An old seer, once of {FACTION}, has settled {PLACE} with a bag of bones and a bundle of smoke-herbs. {X_nameDef} looked at {A_nameDef} for a long moment and said that the gods had a lot to say about this place.</li>
-      <li>[!lowtech] {X_nameDef}, who left {FACTION} to live on the edges of things, has pitched a hut {PLACE}. {X_pronoun} told {A_nameDef} that {X_pronoun} reads the gods the way others read the weather, and gets about as much thanks for it.</li>
+      <li>[!lowtech] {X_nameDef}, who left {FACTION} to live on the edges of things, has pitched a hut {PLACE}. {X_nameDef} told {A_nameDef} that {X_pronoun} reads the gods the way others read the weather, and gets about as much thanks for it.</li>
     </texts>
     <settled>
       <li>[shelter:hut] The seer's hut is up {PLACE}, with a fire before its door and a smell of strange smoke on the wind.</li>
@@ -168,7 +168,7 @@
     </joinTexts>
     <farewell>
       <li>The seer's hut {PLACE} is empty. {X_nameDef} left the stones in their row, and nobody has dared move them.</li>
-      <li>{X_nameDef} walked off along the edge of the land at dawn, muttering to someone who wasn't there.</li>
+      <li>{X_nameDef} walked off along the edge of the land, muttering to someone who wasn't there.</li>
     </farewell>
     <lines>
       <li>The gods talk, you know, and most people don't listen.</li>

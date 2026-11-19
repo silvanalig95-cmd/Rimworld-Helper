@@ -275,7 +275,7 @@
     <days>30~30</days>
     <ages>18~58</ages>
     <huntsPerDay>0</huntsPerDay>
-    <chopsPerDay>0.3</chopsPerDay>
+    <chopsPerDay>0</chopsPerDay>
     <hireChance>0</hireChance>
     <joinChance>0.02</joinChance>
     <helpChance>0.1</helpChance>

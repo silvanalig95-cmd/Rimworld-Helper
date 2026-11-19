@@ -10,7 +10,7 @@
     <category>Council</category>
     <order>16</order>
     <summary>Every people out there remembers what the colony did for them and against them, for years, and acts on it.</summary>
-    <tip>The prisoner you let go this spring may be why a cart of food comes up the road in a famine two years from now.</tip>
+    <tip>Deeds are remembered for years: a prisoner set free this spring can be the reason their people send food in a hard year two years later.</tip>
     <description>Goodwill is a number that moves up and down. Memory is the story behind it. Every people in the world keeps a record of the colony: what it did for them, what it did to them, and what they did in turn, each deed with its date and its size. A prisoner set free is remembered; so are traders robbed, a camp driven off, raiders killed on the colony's land, and fighters they sent when the colony called.
 
 Memories fade over the years, the big ones slowest, and a people keeps a dozen at most: when there are more, a deed already repaid or put right makes way first, then the faintest. The same kind of deed again within a few days adds to the first instead of standing alone (a run of trades, a raid's dead), up to a limit. Most of it comes from the game's own reasons for changing goodwill, so it works with the game's quests and with mods that use those reasons.</description>
@@ -53,7 +53,7 @@ Memories fade over the years, the big ones slowest, and a people keeps a dozen a
       </li>
       <li>
         <heading>The one who did it</heading>
-        <text>A people remembers not only what the colony did but who. When a colonist carries out a prisoner's release, or a colony doctor tends one of a people's own (a guest, a wounded visitor, a prisoner), it is noted; when that person goes home and the deed is remembered, the deed names the colonist. A pilgrim walked home, word carried to a far town, a lost child found and hands sent for a harvest name the colonist who did it too. A deed that already names someone keeps them: a people never forgets the first who helped.
+        <text>A people remembers not only what the colony did but who. When a colonist carries out a prisoner's release, or a colony doctor tends one of a people's own (a guest, a wounded visitor, a prisoner), it is noted; when that person goes home and the deed is remembered, the deed names the colonist. A pilgrim walked home, word carried to a far town, a lost child found and hands sent for a harvest name the colonist who did it too. A deed that already names someone keeps that name: the first colonist who helped stays the one remembered.
 
 A colonist named in deeds worth 6 or more (adding up everything they did for that people, as it fades) is remembered by name. Their people's travellers stop that colonist to thank them; their envoys, the riders of their world events and their camps ask for that colonist at the gate and send them to meet the visitors; and their letters can name them ("they've asked for Ana by name"). At 20 or more, the colonist is a dear friend of that people, and the letters say so. Names are only remembered while the colonist is still with the colony, and fade with the deed.</text>
         <after>The region window's Peoples view shows the colonist with each deed that names them ("They remember Ana for it"). Saves from before keep their deeds; they just name nobody.</after>

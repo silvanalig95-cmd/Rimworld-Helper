@@ -128,7 +128,7 @@
         </titles>
         <texts>
           <li>Two buyers are at the gate, one of {FACTION} and one of {ENEMY}, and both want the colony's {THING}. Each says the other offered a price only to spoil the sale, and each wants the colony to say who has the better claim.\n\nWhoever the colony sides with will remember it, and so will the other.</li>
-          <li>A buyer of {FACTION} and a buyer of {ENEMY} have been arguing at the gate over the colony's {THING} since first light. It started over the price and is now about everything their two peoples have ever done to each other.\n\nThey want the colony to settle it.</li>
+          <li>A buyer of {FACTION} and a buyer of {ENEMY} are arguing at the gate over the colony's {THING}. It started over the price and is now about everything their two peoples have ever done to each other.\n\nThey want the colony to settle it.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -211,7 +211,7 @@
     </titles>
     <texts>
       <li>The comms console has been busy all week. Ships are running the orbital lanes over the region in numbers nobody here has seen before, and every few hours another one hails the colony with a list of goods.\n\nA trading house of {FACTION} has asked for the colony by name. They may send someone down.</li>
-      <li>Somewhere above the clouds, the orbital lanes have filled up. The comms console picks up a new trader's call most evenings, and the night sky has more moving lights in it than stars.\n\nOne of the calls was from a trading house of {FACTION}, asking what the colony has to sell.</li>
+      <li>Somewhere above the clouds, the orbital lanes have filled up. The comms console picks up a new trader's call most evenings, and there are far more moving lights in the night sky than usual.\n\nOne of the calls was from a trading house of {FACTION}, asking what the colony has to sell.</li>
     </texts>
     <summaries>
       <li>Orbital traders call much more often. Debris from the lanes can come down, and a trading house of {FACTION} may send an agent down to buy.</li>
@@ -240,7 +240,7 @@
         </titles>
         <texts>
           <li>A trading house of {FACTION} has sent an agent down. Their shuttle set down beyond the ridge, and the agent walked the last of the way and is waiting at the gate in a good coat and clean boots.\n\nThey want {ITEM}, and will pay half again its worth, in silver, here and now.</li>
-          <li>The agent at the gate came down from orbit this morning and walked up from where the shuttle landed, out past the colony's land. They are polite, in a hurry, and want exactly one thing: {ITEM}.\n\nHalf again its worth, they say, paid on the spot. They might go higher, if pushed. They might also walk away.</li>
+          <li>The agent at the gate has come down from orbit and walked up from where the shuttle landed, out past the colony's land. They are polite, in a hurry, and want exactly one thing: {ITEM}.\n\nHalf again its worth, they say, paid on the spot. They might go higher if pushed, or they might walk away.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -407,7 +407,7 @@
           <li>The judge at the gate</li>
         </titles>
         <texts>
-          <li>The judge of {NAME} is on the road to the next town on the circuit, and has stopped at the colony's gate with a clerk at their side. It will be dark before they reach anywhere else.\n\nThey ask for a bed for the night, or failing that, water and bread at the gate.</li>
+          <li>The judge of {NAME} is on the road to the next town on the circuit, and has stopped at the colony's gate with a clerk. The next town is too far to reach today.\n\nThey ask for a bed for the night, or failing that, water and bread at the gate.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -432,7 +432,7 @@
           </li>
           <li>
             <label>Send them on</label>
-            <outcome>The gate stays shut, and the judge and the clerk go on in the dusk.</outcome>
+            <outcome>The gate stays shut, and the judge and the clerk go on their way.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
             </effects>

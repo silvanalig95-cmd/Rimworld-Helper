@@ -112,7 +112,7 @@
         <texts>
           <li>[gift,!timber] {PLACE} has found its feet. The fields are marked out, the walls are up, and the bell bought with the colony's silver rings for market every week.</li>
           <li>[timber] {PLACE} has found its feet. There are colony timbers in half the roofs there, and the settlers say so when they come by to trade.</li>
-          <li>[!gift,!timber] {PLACE} has found its feet: walls up, fields marked out, a market on the first day of every week. The colony has new neighbors, for better or worse.</li>
+          <li>[!gift,!timber] {PLACE} has found its feet. Its walls are up, its fields are marked out, and it holds a market on the first day of every week. The colony has new neighbors.</li>
         </texts>
         <chronicle>The colony welcomed {PLACE}, the new town of {FACTION}.</chronicle>
       </li>
