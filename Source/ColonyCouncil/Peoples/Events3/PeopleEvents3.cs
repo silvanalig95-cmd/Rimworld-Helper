@@ -33,7 +33,8 @@ namespace ColonyCouncil
                 case TwoFaiths.BlessKind: return TwoFaiths.BlessHour(v, now);
                 case RoadGang.HandKind: return RoadGang.HandHour(v, now);
             }
-            return false;
+            // Round 4's (Peoples/Events4/): the broker's lander, the water cleaned, the lanterns, the manhunt, the hive.
+            return PeopleEvents4.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -55,6 +56,8 @@ namespace ColonyCouncil
             Safe("the thieves' trail", () => ThiefTrail.Hourly(now));
             Safe("the palmer's table", TwoFaiths.Tidy);
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("the league's pages", LeagueRedInk.Tidy);
+            // Round 4's watch (Peoples/Events4/): the fellows' books, the contracts, the pods, the lanterns, a page, a manhunt.
+            Safe("round 4", () => PeopleEvents4.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

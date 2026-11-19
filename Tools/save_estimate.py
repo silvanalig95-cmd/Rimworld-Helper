@@ -874,6 +874,28 @@ MODEL = {
     "Peoples/Events3/FieldSickhouse.cs:asked": ("fixed", 4, V, "the sickhouse's asks made, four at most, while the camp stands"),
     "Peoples/Events3/SpringCalving.cs:inCalf": ("fixed", 7, 40, "the calving camp's beasts in calf, four to seven, while its camp stands"),
     "Peoples/Events3/SpringCalving.cs:calves": ("fixed", 8, 40, "the calves born at the calving camp, while its camp stands"),
+    # The peoples' own events, round 4 (Peoples/Events4/PeopleEvents4Book.cs): the society's corresponding fellows,
+    # PeopleEvents4Math.MaxFellows kept, whom it examined (twice that) and its best students; the enclave's contracts and pods,
+    # the open ones and the last few done; the fouled water left, four at most; the knot nights' lanterns, twelve years; the
+    # great beasts brought down waiting for their page, PeopleEvents4Math.MaxPages kept. The camps' own states live while the
+    # camp does: the school's students and books, the flooded families' guests.
+    "Peoples/Events4/PeopleEvents4Book.cs:fellows": ("cap", (const("Peoples/Events4/PeopleEvents4Math.cs", "MaxFellows", 12), 1 / 120), 160,
+                                                     "the society's corresponding fellows, PeopleEvents4Math.MaxFellows kept"),
+    "Peoples/Events4/PeopleEvents4Book.cs:examined": ("cap", (24, 1 / 60), 40, "the colonists examined lately (an id and a day), twice the fellows kept"),
+    "Peoples/Events4/PeopleEvents4Book.cs:schoolBest": ("cap", (const("Peoples/Events4/PeopleEvents4Math.cs", "MaxFellows", 12), 1 / 120), 30,
+                                                        "the summer school's best students, by id, PeopleEvents4Math.MaxFellows kept"),
+    "Peoples/Events4/PeopleEvents4Book.cs:contracts": ("cap", (6, 1 / 45), 260, "the enclave's contracts, one open at a time and the last few done"),
+    "Peoples/Events4/PeopleEvents4Book.cs:pods": ("cap", (4, 1 / 60), 240, "the brokers' pods come down, one open at a home and the last few done"),
+    "Peoples/Events4/PeopleEvents4Book.cs:cargo": ("fixed", 3, 40, "per pod: the cargo's crates, two or three (counted under pods)"),
+    "Peoples/Events4/PeopleEvents4Book.cs:fouled": ("cap", (4, 1 / 90), 160, "the fouled water the colony left, four at most"),
+    "Peoples/Events4/PeopleEvents4Book.cs:cells": ("fixed", 8, V, "per fouled water: its spots, eight at most (counted under fouled)"),
+    "Peoples/Events4/PeopleEvents4Book.cs:lanternYears": ("cap", (12, 1 / 60), 30, "the knot nights whose lanterns came, a people and a year, twelve kept"),
+    "Peoples/Events4/PeopleEvents4Book.cs:pages": ("cap", (const("Peoples/Events4/PeopleEvents4Math.cs", "MaxPages", 6), 1 / 60), 220,
+                                                   "the great beasts brought down waiting for the Wardens' page, PeopleEvents4Math.MaxPages kept"),
+    "Peoples/Events4/SummerSchool.cs:students": ("fixed", 8, 40, "the summer school's students, while its camp stands"),
+    "Peoples/Events4/SummerSchool.cs:lessons": ("fixed", 8, V, "their lessons counted, one a student, while the camp stands"),
+    "Peoples/Events4/SummerSchool.cs:ownBooks": ("fixed", 4, V, "the books the fellows brought themselves, by id, while the camp stands"),
+    "Peoples/Events4/FloodedOut.cs:guests": ("fixed", 3, 40, "the flooded families' old and young taken in as guests, three at most, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at

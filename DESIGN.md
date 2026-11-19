@@ -9679,6 +9679,100 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     raiders driving off beasts is a loss of stock, not a hurt, at a raid's small chance. Saved: `PeopleEvents3Book` (red ink,
     shrines, thefts, the table) and the camps' states, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 3:
     ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*.
+- **The peoples' own events, round 4** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+  `docs/peoples-events-proposals.md`, items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 (the society, the enclave, the river
+  folk and the Wardens); `Source/ColonyCouncil/Peoples/Events4/`, the pure rules in `PeopleEvents4Math.cs`,
+  `Tools/Tests/PeopleEvents4Tests.cs` ("the peoples' events, round 4: "). As rounds 1 to 3: only from a people of its calling
+  at peace (`PeoplesD.Friendly`), in the Visitors group, base chance 0.4 to 0.6, 30 to 60 days apart and never in the first
+  fifteen days, every age in its own form, played out on the map. Four come from code at their moment (base chance 0,
+  `PeopleEvents2.Fire`): the contract's day, the knot night's lanterns, the Wardens' page and their run to a manhunt; the
+  last two at a small chance times the storytellers' lean on visitors.
+  - **The fellowship examined** (society; a gift, `Fellowship`): a colonist at Intellectual 12 (the summer school's best
+    student at 10), never named, not examined in the last sixty days. A fellow or a don at the gate. Before the colony: an
+    evening gathering (the night of the fire's disputation pool), the verdict kept and given at its end
+    (`Fellowship.GatheringOver`), the roll on the card by Intellectual and Social (`ExamFail`: 0.95 less 3.5% a level of
+    each). Quietly: the fellow at the colonist's side (round 1's `PeopleWorkOn`, `Rimfolk_PEv4_Examine`), Intellectual alone,
+    a fail heard by nobody. Passed: a corresponding fellow (`Rimfolk_Thought_FellowNamed` +6 for sixty days, the society's
+    word naming them, +4, the gift noted), a book carried to the gate each season by the post (`Couriers.Deliver`; the
+    game's textbook, schematic or novel, Vanilla Food Variety Expanded's recipe book; never Anomaly's tome), and with Vanilla
+    Skills Expanded the Researcher expertise (`Expertise.Give`, the mod's own tracker by reflection, when there is room).
+    Failed before the colony: "Strictly speaking, that is two questions," and stung (-4, six days, with its mood hint).
+    600 Intellectual either way.
+  - **The summer school** (society; a camp, `Rimfolk_Camp_SummerSchool`, `CampWorker_SummerSchool`): in summer, two or three
+    fellows for a week, their table, a lesson each afternoon (13h to 18h) at most two a day: learning, medicine or
+    speaking (`DilemmaEffect_SchoolLesson`, the play-outs' lesson, 150 an hour, 225 with the colony's books on the table).
+    Books lent (the event's second answer or the camp's page: up to three of the kind the colony has most of, carried out
+    by the camps' own carrying, set down for the colony as the school goes); six meals asked. Once a stay after the second
+    day at 0.35, two fellows argue at their table: the colony's talker walks over (`Rimfolk_PEv4_Settle`, `SettleOdds`
+    0.35 plus 4% a Social level), or after four hours a sulk: no more lessons that day, the camp's tension up. Going: the
+    best student (two lessons or more) left a textbook and examined sooner; +4 after lessons.
+  - **A contract to the last digit** (enclave; `EnclaveContract`): something the colony makes, found on its benches and
+    stores (meals, cloth from its cotton or stores, beer from a fermenting barrel, the dearest drug a recipe of its makes,
+    art from a sculptor's bench, components), `ContractWorth` by wealth and the last contracts' size, due on a set date
+    fifteen to thirty days on, a fifth over its worth (a tenth after a default, for sixty days). Half the contract may be
+    signed. On the day (`Rimfolk_Evt_ContractDue`): their marshals by pod at the trade spot (a runner and porters on foot to
+    a tribal or medieval colony), the goods carried out (`DilemmaEffect_ContractCarry`). In full: paid, +4, the next half
+    again bigger (three times at most). Short: what came at its worth less the fee. Not delivered (or no letter possible a
+    day after): the fee carried out if the stores hold it, else a debt tie in the world's ledger; -6, the first size again.
+  - **Stranded with something to sell** (enclave; `BrokerPod`): the broker hurt until downed in a pod with slag, two or three
+    pods of spacer goods (`CargoDefs`, worth `CargoWorth`) beside them, sealed. Brought in: the colony's doctor carries them
+    to a bed (the game's rescue; tended there by the game's own doctors), or tends them at the crash without a bed; the
+    lander two or three days on: two marshals by pod, the broker carried to the edge (round 3's litter job) or walking with
+    them, each crate lifted aboard (`Rimfolk_PEv4_Lift`), a fifth paid (`Share`), +10, the care remembered. A crate gone by
+    then is taken. Taken: unsealed, `robbed` weight 25 and -20, the lander for the broker alone the next morning. Left: the
+    lander the next morning, nothing owed.
+  - **Fouled water** (river folk; `FouledWater`): a flesh body half a day or more in water, Biotech's poisoned ground or a
+    wastepack within three cells of it. The river warden walks to the spot. With the colony's hands: the warden and a
+    colonist go spot to spot (`Rimfolk_PEv4_Clean`, a bar): a body or wastepack carried up onto dry ground away from the
+    water, the bank cleared of poison; +5. The warden alone: +2. Left: `polluted` weight 8, and the boat-trader and the nets
+    (`HappeningWorker_RiverCatch`, `HappeningWorker_RiverNets`) stop until a day's look finds it clean, sixty days at most.
+  - **Lanterns on the water** (river folk; `KnotLanterns`): on a river folk people's knot night (round 2's `KnotDay`) at dusk,
+    the colony's bank (`HappeningWorker_RiverNets.Bank`), once a year. Boatmen set their light on the bank and come with a
+    lantern for each of the colony's lost (its graves and dead) and taken in, three to twelve, at most six set. Gather: an
+    evening gathering at their light (17h to 23h, the boatmen its guests), `Rimfolk_Thought_KnotLanterns` +4 held for those
+    who came (the play-outs' held moods). With Goji's
+    Fantasy Race: Merren its floating lanterns set on the water, fuelled, the colony's; otherwise torches along the bank,
+    taken back with the light in the morning. Where a crossing of theirs stands, round 2's knot night rest sets them there
+    instead (`KnotLanterns.AtCrossing`). Unanswered, they set them.
+  - **Flooded out** (river folk; a camp, `Rimfolk_Camp_FloodedOut`, `CampWorker_FloodedOut`): while `Council_WS_Flood` runs,
+    five to eight of the families by the colony's fresh water five to ten days; they fish (the camps' own fishing), ask for
+    eight meals a day their first three days, offer their catch, mend what is worn, put up two drying racks (VFE Classical's,
+    else Vanilla Furniture Expanded - Props and Decor's) left standing, may join (0.2), and ask to stay longer (0.4, the camps' own). With
+    Hospitality (the invited guests' setting on): their old and young, three at most, handed to it as the colony's guests
+    (`InvitedGuests.HandOver`) until the camp goes. Once a stay at 0.06, flu through the harm and illness budgets
+    (`HarmKinds.CampFever`). Going on good terms: a knot in the net, +12, `sheltered`. Turned away -3.
+  - **The boat-builders** (river folk; a camp, `Rimfolk_Camp_BoatBuilders`, `CampWorker_BoatBuilders`): spring to autumn, fresh
+    water and ten grown wild trees. Three or four for a week, a shed (`sleep` Hut, left standing), the camps' own felling (none
+    if the colony refuses its trees: -2). The hull on the bank by days worked (`HullStage`: keel, frame, planked hull, three
+    drawn stages), the builders at it (`Rimfolk_PEv4_Hull`), the colony's crafter beside them (a lesson). Heavy rain (0.5)
+    costs a day once and a day more of stay. With Vehicle Framework and Vanilla Vehicles Expanded the finished hull sold as
+    `VVE_Dinghy` for silver (350 by wealth) and 60 wood, set on the water (`Vehicles.VehicleSpawner.GenerateVehicle` by
+    reflection); otherwise floated home. +3.
+  - **A page in the book** (Wardens; a gift, `WardensPage`): a legend of the region, a beast nemesis or a pack's alpha killed by
+    one of the colony (its kind read before its death: `HappeningTracker.DeathNote.great`). Six hours to ten days on, at
+    0.15 an hour: a keeper of the book at the gate. The cord tied there (`PeopleWorkOn` beside the gate, `Rimfolk_PEv4_Cord`):
+    `Rimfolk_RedCord` on the arm (shown in health, no effect), `Rimfolk_Thought_PageInBook` +6 for sixty days, the Wardens'
+    word naming them, +6, Vanilla Skills Expanded's Hunter expertise when there is room, else a passion in Shooting or Melee
+    by the weapon that made the kill. The pelt (the beast's leather, as much as its hide gave and the stores hold) bought at
+    twice its worth.
+  - **Wardens at the manhunt** (Wardens; `WardensManhunt`): a manhunting pack (three or more) or a mad beast of body size 1 or
+    more, once a manhunt at 0.4, an hour or two in, fifteen days apart. Two to four of their fighters come in at the edge
+    nearest the beasts straight into the game's assault on them; the letter asks the terms (no answer: the hunt's own):
+    hides theirs and meat the colony's (round 1's `PeoplesD.Divide`, `Rimfolk_PEv4_Dress`), all of it theirs (+2 more), or
+    sent home. Their kills counted from the death hook; the last beast down, they gather at the carcasses. +3.
+  - **The hive burned** (Wardens; `HiveBurned`): the game's hives and Vanilla Factions Expanded - Insectoids 2's wild hives
+    and burrows (`HiveDefs`, never a colony's artificial one), seen. Three to five come in at the edge nearest it, armed by
+    their age (`Fire`: their own arms and torches, molotovs, an incendiary launcher for one). Together: they wait at the edge
+    up to three hours for the colony's drafted fighters within 15 cells of the hive, then the game's assault on the hives and
+    the insects about them; alone: at once; refused: a day's watch at the edge. With torches, a Warden by a hive and not
+    fighting holds one to it (`Rimfolk_PEv4_Burn`, the game's fire). The hives gone: +4.
+  - Harm of Rimfolk's own: only the flooded families' flu, through the harm and illness budgets; the broker's crash is the
+    game's own pod crash; the fights, the fire and the insects are the game's own. Saved: `PeopleEvents4Book` (fellows,
+    examined, best students, contracts, pods, fouled water, lanterns, pages, the examination waiting) and the camps' states,
+    modelled in `Tools/save_estimate.py`. Small hooks: `PeopleEvents3.Hour`/`Hourly`, `HappeningTracker.Before`/`Notify_Killed`,
+    `Interplay.Notify_GatheringOver`, the river folk's catch and nets, round 2's knot night rest, `FactsMath`, round 1's
+    `PeopleWorkOn` ("quiet" mark), `Expertise` (giving one). Dev actions "Peoples' events 4: ...". The Almanac's peoples'
+    pages, *Of their own: gifts, trust and camps*.
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

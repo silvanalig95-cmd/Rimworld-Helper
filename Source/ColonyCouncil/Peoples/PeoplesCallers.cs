@@ -165,7 +165,8 @@ namespace ColonyCouncil
                 .RandomElementWithFallback();
         }
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Fish(map) != null && base.CanHappen(map, ext);
+        // Fouled water the colony left stops the boat-trader until it is clean (Peoples/Events4/FouledWater.cs).
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Fish(map) != null && !FouledWater.CatchesStopped(map) && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Linq;
 using System.Reflection;
 using RimWorld;
 using UnityEngine;
@@ -20,6 +22,8 @@ namespace ColonyCouncil
         private static FieldInfo recordDef, defSkill;
         private static object settings;
         private static FieldInfo maxField, levelField;
+        private static Type defType;
+        private static MethodInfo addExpertise;
 
         private static void Look()
         {
@@ -31,7 +35,13 @@ namespace ColonyCouncil
                 expertiseOf = trackers?.GetMethod("Expertise", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(Pawn) }, null);
                 allExpertise = GenTypes.GetTypeInAnyAssembly("VSE.ExpertiseTracker")?.GetProperty("AllExpertise", BindingFlags.Public | BindingFlags.Instance);
                 recordDef = GenTypes.GetTypeInAnyAssembly("VSE.ExpertiseRecord")?.GetField("def", BindingFlags.Public | BindingFlags.Instance);
-                defSkill = GenTypes.GetTypeInAnyAssembly("VSE.Expertise.ExpertiseDef")?.GetField("skill", BindingFlags.Public | BindingFlags.Instance);
+                defType = GenTypes.GetTypeInAnyAssembly("VSE.Expertise.ExpertiseDef");
+                defSkill = defType?.GetField("skill", BindingFlags.Public | BindingFlags.Instance);
+                // Giving one (the peoples' events, round 4: a corresponding fellow's Researcher, a page's Hunter): the tracker's
+                // own Add... taking the def first, any further arguments optional.
+                addExpertise = defType == null ? null : GenTypes.GetTypeInAnyAssembly("VSE.ExpertiseTracker")?.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                    .FirstOrDefault(m => m.Name.StartsWith("Add", StringComparison.Ordinal) && m.GetParameters().Length >= 1 && m.GetParameters()[0].ParameterType.IsAssignableFrom(defType)
+                                         && m.GetParameters().Skip(1).All(x => x.IsOptional));
                 var mod = GenTypes.GetTypeInAnyAssembly("VSE.SkillsMod");
                 settings = mod?.GetField("Settings", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
                 maxField = settings?.GetType().GetField("MaxExpertise", BindingFlags.Public | BindingFlags.Instance);
@@ -80,6 +90,43 @@ namespace ColonyCouncil
                 if (def != null && defSkill.GetValue(def) as SkillDef == skill) return true;
             }
             return false;
+        }
+
+        /// <summary>One of VSE's expertises by name (Researcher, Hunter), or null without the mod.</summary>
+        public static Def Named(string defName)
+        {
+            Look();
+            return defType == null || defName == null ? null : GenDefDatabase.GetDefSilentFail(defType, defName, false);
+        }
+
+        /// <summary>This expertise could be given to them now: the mod's own way of adding one found, the def there, none for its skill yet, room for one more.</summary>
+        public static bool CanGive(Pawn p, string defName)
+        {
+            if (!Available || addExpertise == null || p?.skills == null) return false;
+            var def = Named(defName);
+            if (def == null || HasFor(p, defSkill.GetValue(def) as SkillDef)) return false;
+            int n = Count(p);
+            return n >= 0 && n < Max;
+        }
+
+        /// <summary>Gives them this expertise by the mod's own way (a people's gift); true when they hold it afterwards.</summary>
+        public static bool Give(Pawn p, string defName)
+        {
+            if (!CanGive(p, defName)) return false;
+            var def = Named(defName);
+            try
+            {
+                var tracker = expertiseOf.Invoke(null, new object[] { p });
+                if (tracker == null) return false;
+                var args = addExpertise.GetParameters().Select((x, i) => i == 0 ? (object)def : x.DefaultValue).ToArray();
+                addExpertise.Invoke(tracker, args);
+                return HasFor(p, defSkill.GetValue(def) as SkillDef);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("expertise given", e);
+                return false;
+            }
         }
 
         /// <summary>Most expertises a colonist may hold (VSE's setting; 1 if unreadable).</summary>

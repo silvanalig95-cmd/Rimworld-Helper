@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 4 (docs/peoples-events-proposals.md, items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and
+    33; Source/ColonyCouncil/Peoples/Events4/). Each only from a people of its calling at peace with the colony, each played
+    out on the map. Four come only from code when their moment comes (base chance 0): the enclave's lander on a contract's
+    day, the river folk's lanterns on their knot night at dusk, a Warden with the book some hours after a great beast fell
+    to one of the colony, and the Wardens' run to a manhunt. {BEAST}, {DEAD} and {TALE} carry what the event's own code says
+    they do (a price, a date, a count); every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 18. The fellowship examined (the learned society) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FellowExamined</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the fellowship examined</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FellowExamined</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~75</ages>
+        <stayHours>16~22</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The fellowship examined</li>
+          <li>An examiner at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fellow of {FACTION}, has come to the gate. The society has heard that {A_nameDef} is one of the most learned people in the region, and it names people like that corresponding fellows after an examination. {X_nameDef} would hold it this evening where the colony gathers, as a disputation in front of everyone, or quietly with {A_nameDef} alone.</li>
+          <li>[student] {X_nameDef}, a fellow of {FACTION}, has come to the gate. The fellows of the summer school wrote that {A_nameDef} was their best student, and the society would like to examine {A_objective} for a corresponding fellowship. {X_nameDef} would hold the examination this evening where the colony gathers, or quietly with {A_nameDef} alone.</li>
+          <li>[tribal] {X_nameDef}, a fellow of {FACTION}, has walked to the gate. The society has heard that {A_nameDef} knows more of the old stories and the ways of things than anyone near, and would like to examine {A_objective} on them by question and answer, told aloud. If {A_pronoun} answers well, the society will name {A_objective} one of its corresponding fellows.</li>
+          <li>[medieval] {X_nameDef}, a fellow of {FACTION}, has come to the gate with a slate and a bag of chalk. The society would like to examine {A_nameDef}, whose learning it has heard about, on questions written on the slate and answered aloud. If {A_pronoun} answers well, the society will name {A_objective} one of its corresponding fellows.</li>
+          <li>[industrial] {X_nameDef}, a fellow of {FACTION}, has come up the road with a case of books and examination papers. The society would like to examine {A_nameDef} for a corresponding fellowship, tonight in front of the colony or in private. Fellows are sent a book each season and are counted among the society's own.</li>
+          <li>[spacer] {X_nameDef}, a fellow of {FACTION}, has come to the gate with the society's questions on a data slate. {A_nameDef}'s work has reached the archive, and the society would like to examine {A_objective} for a corresponding fellowship, tonight in front of the colony or in private.</li>
+          <li>[their:grateful] The society thinks well of the colony, and {X_nameDef}, one of its fellows, has come to examine {A_nameDef} for a corresponding fellowship. {X_nameDef} would hold it this evening where the colony gathers, or quietly with {A_nameDef} alone.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Examine {A_nameDef} this evening before the colony</label>
+            <outcome>The colony will gather this evening to hear {X_nameDef} examine {A_nameDef}. The society will give its verdict when the evening is over.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The colony will gather this evening to hear {X_nameDef} examine {A_nameDef}. The society will give its verdict when the evening is over.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the examination</label><guests>stranger</guests><guestCount>1</guestCount><pool>Rimfolk_Pool_PlayDisputation</pool><spots><li>Gather</li><li>Fire</li><li>Dining</li><li>Rec</li></spots><hours>18~23</hours><duration>2~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FellowExamined"><pass>true</pass></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the examination</label><guests>stranger</guests><guestCount>1</guestCount><pool>Rimfolk_Pool_PlayDisputation</pool><spots><li>Gather</li><li>Fire</li><li>Dining</li><li>Rec</li></spots><hours>18~23</hours><duration>2~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FellowExamined"><pass>false</pass></li>
+            </riskEffects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Examine {A_nameDef} quietly, the two of them</label>
+            <outcome>{X_nameDef} will sit with {A_nameDef} and examine {A_objective} in private. Nobody else will hear how it goes.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} will sit with {A_nameDef} and examine {A_objective} in private. Nobody else will hear how it goes.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FellowExamined"><pass>true</pass><quiet>true</quiet></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FellowExamined"><pass>false</pass><quiet>true</quiet></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} writes down that the examination was put off, and goes back to the road. The society will not ask again for a while.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FellowDeclined" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tonight] This evening, then, and everyone may listen.</li>
+          <li>[quiet] Just the two of us, then, and no audience.</li>
+          <li>[later] Another time, then.</li>
+          <li>[passed] That was well argued, and the society will be glad to have you.</li>
+          <li>[failed] Strictly speaking, that is two questions.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 21. The summer school (the learned society) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SummerSchool</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the summer school</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SummerSchool</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <titles>
+          <li>The summer school</li>
+          <li>A school for the summer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fellow of {FACTION}, has come to the gate. Each summer the society sends a few of its fellows out to teach, and they would like to camp on the colony's land for a week and give a lesson every afternoon at their table. The colony could send one or two of its people a day, in learning, medicine or how to talk with people.</li>
+          <li>[books] {X_nameDef}, a fellow of {FACTION}, has come to the gate. The society holds a summer school each year, and its fellows would like to camp on the colony's land for a week and teach every afternoon. {X_nameDef} has heard the colony keeps books, and says the lessons go better with more of them on the table.</li>
+          <li>[tribal] {X_nameDef} of {FACTION} has walked to the gate with a bundle of counting sticks. The society's fellows would like to camp on the colony's land for a week in the summer and teach every afternoon, with tallies and told lessons, whoever the colony sends them.</li>
+          <li>[medieval] {X_nameDef}, a fellow of {FACTION}, has come to the gate with a stack of slates on a strap. The society's summer school would like to camp on the colony's land for a week, and teach every afternoon at its table.</li>
+          <li>[industrial] {X_nameDef}, a fellow of {FACTION}, has come up the road with a crate of schoolbooks on a cart. The society's summer school would like to camp on the colony's land for a week and give a lesson every afternoon.</li>
+          <li>[spacer] {X_nameDef}, a fellow of {FACTION}, has come to the gate with a case of data slates. The society's summer school would like to camp on the colony's land for a week and give a lesson every afternoon.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Welcome the school</label>
+            <outcome>{X_nameDef} goes back for the other fellows. The school will camp on the colony's land, and the lessons can be asked for from its page in the afternoons.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SummerSchool" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Welcome the school, and lend them our books</label>
+            <outcome>{X_nameDef} goes back for the other fellows. Once they have made camp, some of the colony's books will be carried out to their table, and they will set them down for the colony when they leave.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SummerSchool"><lend>true</lend></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Not this summer</label>
+            <outcome>{X_nameDef} thanks the colony and goes on to look for another place to teach.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[welcome] Afternoons at the table, then, for whoever wants to come.</li>
+          <li>[thanks] Another summer, perhaps.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 23. A contract to the last digit (the spacer enclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclaveContract</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a contract to the last digit</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclaveContract</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A contract to the last digit</li>
+          <li>The enclave's contract</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a factor of {FACTION}, has come to the gate with a contract. The enclave would buy {TALE} from the colony, delivered by {DEAD}, and pay {BEAST} silver for it, a fifth more than it is worth. On that day the enclave's people will come to the colony's trade spot to collect it. If it is short or late, the colony pays a fee.</li>
+          <li>[pod] {FACTION}'s factor, {X_nameDef}, came down by pod by the colony's trade spot with a contract: {TALE}, to be ready by {DEAD}, for {BEAST} silver, a fifth over its worth. Their lander will come down on that day to take it aboard. A short or late delivery means a fee and less favourable terms.</li>
+          <li>[walk] {X_nameDef}, a factor of {FACTION}, has walked up to the gate with a contract written on thin plastic. The enclave would buy {TALE}, ready by {DEAD}, for {BEAST} silver, a fifth over its worth. On that day a runner and porters will come on foot to carry it away.</li>
+          <li>[cool] {X_nameDef} of {FACTION} has come to the gate with a contract, though the enclave remembers the last one going badly. It offers {BEAST} silver for {TALE} by {DEAD}, only a tenth over its worth this time.</li>
+          <li>[bigger] {X_nameDef} of {FACTION} has come back with a larger contract, since the last one was delivered in full. The enclave would buy {TALE} by {DEAD}, for {BEAST} silver.</li>
+          <li>[their:grateful] {FACTION} count the colony among their preferred accounts, and {X_nameDef} has brought a contract: {TALE} by {DEAD}, for {BEAST} silver, a fifth over its worth.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sign the contract</label>
+            <outcome>{X_nameDef} copies the colony's mark into the enclave's manifest. The goods are due by {DEAD}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveContract" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sign for half as much</label>
+            <outcome>{X_nameDef} halves the figures, copies the colony's mark into the manifest and says the smaller contract is due by {DEAD}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveContract"><half>true</half></li>
+            </effects>
+          </li>
+          <li>
+            <label>No contract</label>
+            <outcome>{X_nameDef} notes the refusal in the manifest and leaves.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[signed] Noted, to the last digit.</li>
+          <li>[noted] Noted, and no offence taken.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The contract's day: fired only then (EnclaveContract.Watch). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ContractDue</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the contract's day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ContractDue</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~50</ages>
+        <stayHours>8~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The contract's day</li>
+          <li>The enclave collects</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s people have come for the contract: {TALE}, for {COUNT} silver. The stores hold {DEAD} of it. A short delivery is paid at its worth, less a fee of {BEAST} silver.</li>
+          <li>[pod,ready] {FACTION}'s lander came down by the colony's trade spot, and {X_nameDef}, a marshal, is waiting there for the contract: {TALE}, for {COUNT} silver. It is all in the stores.</li>
+          <li>[pod,short] {FACTION}'s lander came down by the colony's trade spot, and {X_nameDef}, a marshal, is waiting for the contract: {TALE}, for {COUNT} silver. The stores only hold {DEAD} of it. A short delivery is paid at its worth, less a fee of {BEAST} silver.</li>
+          <li>[pod,none] {FACTION}'s lander came down by the colony's trade spot, and {X_nameDef}, a marshal, is waiting for the contract: {TALE}. The stores hold none of it. Not delivering means a fee of {BEAST} silver and less favourable terms.</li>
+          <li>[walk,ready] {X_nameDef}, a runner of {FACTION}, has walked in with porters to collect the contract: {TALE}, for {COUNT} silver. It is all in the stores.</li>
+          <li>[walk] {X_nameDef}, a runner of {FACTION}, has walked in with porters to collect the contract: {TALE}, for {COUNT} silver. The stores hold {DEAD} of it, and a short delivery costs a fee of {BEAST} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hand over all of it</label>
+            <outcome>The goods are being carried out to {X_nameDef}, who pays {COUNT} silver for them. A bigger contract will follow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractCarry"><label>the contract's goods</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractSettle"><how>kept</how></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Hand over what we have</label>
+            <outcome>What the stores hold is being carried out to {X_nameDef}. The enclave pays for it at its worth, less the fee, and notes the shortfall.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractCarry"><label>the contract's goods</label><partial>true</partial></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractSettle"><how>short</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>We cannot deliver</label>
+            <outcome>{X_nameDef} notes the default. The fee of {BEAST} silver is carried out if the stores hold it, and otherwise it is added to what the colony owes the enclave.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractFee"><label>the default's fee</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ContractSettle"><how>default</how></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[aboard] All aboard and paid, to the last digit.</li>
+          <li>[short] Short, and the manifest says so.</li>
+          <li>[default] A default is written down, and it stays written down.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 24. Stranded with something to sell (the spacer enclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BrokerPod</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a broker's pod</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BrokerPod</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A broker's pod</li>
+          <li>Stranded with something to sell</li>
+        </titles>
+        <texts>
+          <li>A drop pod came down hard on the colony's land, with cargo pods beside it. Inside is {X_nameDef}, a broker of {FACTION}, hurt and unable to stand. The cargo is {TALE}, worth about {COUNT} silver. If the colony takes {X_objective} in and tends {X_objective}, the enclave's lander will come for {X_objective} and pay a fifth of the cargo, {BEAST} silver.</li>
+          <li>[age3] A drop pod from one of {FACTION}'s ships came down too fast on the colony's land, and its cargo pods landed around it. {X_nameDef}, the broker riding with it, is hurt and lying in the wreck. The cargo is {TALE}, about {COUNT} silver's worth. The enclave pays a fifth of a cargo to whoever looks after its people, {BEAST} silver here.</li>
+          <li>[lowcolony] Something fell out of the sky onto the colony's land with a crash and smoke. It is a drop pod of {FACTION}, the people who trade with the ships above, and {X_nameDef}, a broker, is lying hurt inside it beside crates of {TALE}, worth about {COUNT} silver. The enclave pays a fifth of a cargo, {BEAST} silver, to those who look after its people.</li>
+          <li>[age2] A pod of {FACTION} crashed on the colony's land with its cargo, {TALE}, about {COUNT} silver's worth. The broker on board, {X_nameDef}, is hurt and cannot walk. The enclave's lander will come for {X_objective}, and pays a fifth of the cargo, {BEAST} silver, to whoever tends {X_objective} until then.</li>
+          <li>[their:grateful] A pod of {FACTION} came down hard on the colony's land, and {X_nameDef}, the broker on board, is hurt among the cargo. The enclave knows the colony and would expect it to help; it pays a fifth of the cargo, {BEAST} silver, for that.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Bring {X_objective} in and tend {X_objective}</label>
+            <outcome>{A_nameDef} is going to the crash to bring {X_nameDef} in. The cargo stays sealed for the enclave, whose lander will come in two or three days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BrokerPod"><how>rescue</how></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Take the cargo</label>
+            <outcome>The colony is taking the cargo. The enclave will come for {X_nameDef} tomorrow, and it will remember what the colony did.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BrokerPod"><how>robbed</how></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Leave it for their own lander</label>
+            <outcome>The colony leaves the crash alone. The enclave's lander will come for {X_nameDef} and the cargo tomorrow morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BrokerPod"><how>left</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[paid] Paid in full for the care, and the enclave will not forget it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 27. Fouled water (the river folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FouledWater</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>fouled water</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FouledWater</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Fouled water</li>
+          <li>A river warden at the water</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a river warden of {FACTION}, has walked along the water to where the colony has fouled it: {TALE}. The river folk say nobody should foul water that others drink downstream, and {X_nameDef} asks for it to be cleaned. {A_nameDef} could help.</li>
+          <li>[corpse] {X_nameDef}, a river warden of {FACTION}, is standing on the bank where {DEAD} has been lying in the water and rotting. The river folk drink and fish downstream. {X_nameDef} asks the colony to pull the body out and bury it away from the water.</li>
+          <li>[pollution] {X_nameDef}, a river warden of {FACTION}, has come to the bank where the ground beside the water is poisoned, and says it is running into the river. {X_nameDef} asks the colony to clear it.</li>
+          <li>[wastepack] {X_nameDef}, a river warden of {FACTION}, has found wastepacks lying beside the colony's water and is waiting next to them. The river folk drink and fish downstream, and {X_nameDef} asks for the wastepacks to be carried away from the water.</li>
+          <li>[lowtech,corpse] {X_nameDef}, a river warden of {FACTION} with a fishing spear over {X_possessive} shoulder, has found {DEAD} lying dead in the colony's water. The river folk drink and fish downstream, and {X_nameDef} asks for the body to be pulled out and buried away from the water.</li>
+          <li>[industrial|spacer,pollution] {X_nameDef}, a river warden of {FACTION}, is standing where the colony's poisoned ground runs into the water. Every rain washes the poison into the river, {X_pronoun} says, and asks for the bank to be cleared.</li>
+          <li>[many] {X_nameDef}, a river warden of {FACTION}, has walked the colony's water and found {COUNT} places where it is fouled, starting with {TALE}. {X_nameDef} asks for them to be cleaned, and would work beside {A_nameDef}.</li>
+          <li>[their:grateful] {X_nameDef} of {FACTION} has come to the colony's water, as a friend would, to say it is fouled ({TALE}) and to ask for help cleaning it before it reaches the people downstream.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Clean it with {X_objective}; {A_nameDef} helps</label>
+            <outcome>{A_nameDef} is going down to the water to work beside {X_nameDef} until it is clean.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FouledClean"><together>true</together></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} clean it alone</label>
+            <outcome>{X_nameDef} will clean it alone. It will take longer, and the river folk will remember that the colony did not help.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FouledClean" />
+            </effects>
+          </li>
+          <li>
+            <label>Leave it as it is</label>
+            <outcome>{X_nameDef} leaves without another word. The river folk will remember this, and their boats will stop coming to the colony until the water is clean.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FouledLeft" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[clean] Clean water for everyone downstream, then.</li>
+          <li>[left] Somebody downstream will drink that.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 28. Lanterns on the water (the river folk) ===================== -->
+
+  <!-- Fired only at dusk on a river folk's knot night (KnotLanterns.Watch). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_KnotLanterns</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>lanterns on the water</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KnotLanterns</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~70</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.15</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Lanterns on the water</li>
+          <li>Knot night</li>
+        </titles>
+        <texts>
+          <li>Boatmen of {FACTION} have come down to the colony's bank at dusk. It is their knot night, when they remember everyone their people pulled out of the flood, and they set lanterns on the water for the people of the places they pass. They have {COUNT} lanterns, one for each person the colony has lost or taken in, and {X_nameDef} asks whether the colony would like to stand on the bank with them.</li>
+          <li>[dead] Boatmen of {FACTION} have come down to the colony's bank at dusk on their knot night. {X_nameDef} says they set lanterns on the water for the people of the places they pass, and they have {COUNT} for the colony, for those it took in and for those it lost: {DEAD}. {X_nameDef} asks whether the colony would like to stand on the bank with them.</li>
+          <li>[nodead] Boatmen of {FACTION} have come down to the colony's bank at dusk on their knot night. They set lanterns on the water for the people of the places they pass, and have {COUNT} for the colony, one for each person it has taken in. {X_nameDef} asks whether the colony would like to watch with them.</li>
+          <li>[floating] Boatmen of {FACTION} have carried {COUNT} floating lanterns down to the colony's bank at dusk. It is their knot night, and they set them on the water for everyone a place has lost or taken in. The lanterns will stay on the water afterwards. {X_nameDef} asks whether the colony would like to stand on the bank with them.</li>
+          <li>[torches] Boatmen of {FACTION} have come down to the colony's bank at dusk with torches for their knot night. They set lights along the water for everyone a place has lost or taken in, {COUNT} for the colony, and take them home in the morning. {X_nameDef} asks whether the colony would like to watch with them.</li>
+          <li>[their:grateful] The river folk count the colony among their friends, and their boatmen have come to its bank on their knot night with {COUNT} lanterns, one for each person it has lost or taken in.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Gather on the bank with them</label>
+            <outcome>The boatmen are setting the lanterns, and the colony will gather on the bank to watch them this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>lanterns on the water</label><guests>stranger</guests><guestCount>3</guestCount><spots><li>Place</li><li>Outdoors</li></spots><hours>17~23</hours><duration>1.5~2.5</duration><lines><li>One for everyone who came here.</li><li>One for everyone we lost.</li><li>Look how far that one has gone.</li></lines></li>
+              <li Class="ColonyCouncil.DilemmaEffect_KnotLanterns" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_KnotLanterns</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let them set the lanterns</label>
+            <outcome>The boatmen will set the lanterns on the colony's water and rest on the bank until morning, while the colony goes on with its evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KnotLanterns" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not on our water</label>
+            <outcome>The boatmen pick up their things and go back down the river.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[set] A knot for each of them, and a light.</li>
+          <li>[thanks] Another place, then, and another year.</li>
+          <li>[lantern] That one is for someone of yours.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 29. Flooded out (the river folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FloodedOut</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>flooded out</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FloodedOut</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Flooded out</li>
+          <li>Boats on the colony's bank</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a boatman of {FACTION}, has come to the gate. The flood at {TALE} has put their landing under water, and the families are coming down the river in their boats with what they could save. {X_nameDef} asks whether they could camp on the colony's bank and be fed until they catch enough fish to feed themselves.</li>
+          <li>[hospitality] {X_nameDef}, a boatman of {FACTION}, has come to the gate. The flood at {TALE} took their landing, and the families are on the river with nowhere to go. {X_nameDef} asks whether they could camp on the colony's bank, and whether their old people and children could sleep under the colony's roof as its guests.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come up from the river with mud to the knees. The water rose at {TALE} and their houses are gone. The families are bringing their boats down to the colony's bank and ask to camp there until the water goes down.</li>
+          <li>[age1] {X_nameDef}, a boatman of {FACTION}, has come to the gate wet through. The flood at {TALE} took their landing and their drying racks. The families ask to camp on the colony's bank, mend their nets and fish there until the river is lower.</li>
+          <li>[age2] {X_nameDef}, a boatman of {FACTION}, has come to the gate. The flood at {TALE} put their landing under water, and the families are coming down the river in their boats. They ask for a place to camp on the colony's bank and food until their catch comes in.</li>
+          <li>[their:grateful] The river folk count the colony among their friends, and {X_nameDef} has come straight to it: the flood at {TALE} took their landing, and the families ask to camp on its bank for a while.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp on our bank</label>
+            <outcome>{X_nameDef} goes back down to the boats. The families will camp on the colony's bank until the river goes down.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FloodCamp" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them camp, and take their old and young in as guests</label>
+            <outcome>{X_nameDef} goes back down to the boats. The families will camp on the colony's bank, and once they have arrived their old people and children will stay under the colony's roof as its guests.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FloodCamp"><guests>true</guests></li>
+            </effects>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>No room on our bank</label>
+            <outcome>{X_nameDef} nods and goes back to the boats. The families will go on down the river.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FloodTurned" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[bank] We'll bring the boats in by your bank, then.</li>
+          <li>[thanks] There's another bank further down.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 30. The boat-builders (the river folk) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BoatBuilders</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the boat-builders</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BoatBuilders</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <titles>
+          <li>The boat-builders</li>
+          <li>A hull on the bank</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a boatwright of {FACTION}, has come to the gate. The river folk need a new boat, and the colony's water has good trees growing near it. {X_nameDef} asks whether three or four of them could camp by the water for a week, fell some of the wild trees and build a hull on the bank.</li>
+          <li>[dinghy] {X_nameDef}, a boatwright of {FACTION}, has come to the gate. They would like to camp by the colony's water for a week and build a boat from its wild trees. When it is finished, the colony could buy it for wood and silver, or they will float it home.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with an adze over {X_possessive} shoulder. The river folk would like to build a boat by the colony's water from its trees, and camp there while they do.</li>
+          <li>[age1] {X_nameDef}, a boatwright of {FACTION}, has come to the gate with a roll of tools. They would like to fell some of the colony's wild trees and build a boat on its bank over a week.</li>
+          <li>[age2] {X_nameDef}, a boatwright of {FACTION}, has driven up with a cart of tools and pitch. They would like to camp by the colony's water for a week and build a boat there from its trees.</li>
+          <li>[their:grateful] The river folk count the colony among their friends, and {X_nameDef} has come to ask whether their boatwrights could camp by its water for a week and build a boat from its wild trees.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them fell our wild trees</label>
+            <outcome>{X_nameDef} goes back for the others. The boatwrights will camp by the water, fell the wild trees they need and build the hull on the bank.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BoatBuilders" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them camp, but use their own timber</label>
+            <outcome>{X_nameDef} says they will bring their own timber, though it will slow them down, and goes back for the others.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BoatBuilders"><trees>false</trees></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not here</label>
+            <outcome>{X_nameDef} thanks the colony and goes back to the river.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[trees] We'll take only what the hull needs.</li>
+          <li>[own] Our own timber, then, and a slower week.</li>
+          <li>[thanks] There are other banks.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 31. A page in the book (the Lantern Wardens) ===================== -->
+
+  <!-- Fired only some hours after a great beast fell to one of the colony (WardensPage.Watch). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WardensPage</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a page in the book</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WardensPage</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>5~8</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A page in the book</li>
+          <li>The Wardens' book</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a keeper of the book of {FACTION}, has come to the gate. The Wardens heard that {A_nameDef} brought down {BEAST}, {TALE}, and they keep a page in their book for every beast like that. {X_nameDef} would write it in and tie a red cord on {A_nameDef}'s sleeve, as the Wardens do for each other.</li>
+          <li>[pelt] {X_nameDef}, a keeper of the book of {FACTION}, has come to the gate to write {A_nameDef}'s kill into the Wardens' book: {BEAST}, {TALE}. {X_nameDef} would also like the pelt for the Wardens' hall, {COUNT} {THING}, and would pay twice its worth, {DEAD} silver.</li>
+          <li>[legend] {X_nameDef} of {FACTION} has come to the gate with the Wardens' book open at an empty page. {BEAST} was a beast the Wardens have been following for a long time, and {A_nameDef} brought it down. {X_nameDef} would write it in and tie a red cord on {A_nameDef}'s sleeve.</li>
+          <li>[nemesis] {X_nameDef} of {FACTION} has come to the gate. {BEAST} had killed people, and {A_nameDef} brought it down. The Wardens give a page in their book and a red cord to whoever does that, and {X_nameDef} has brought both.</li>
+          <li>[alpha] {X_nameDef} of {FACTION} has come to the gate. {A_nameDef} brought down {BEAST}, the leader of its pack, and the Wardens write every pack leader into their book. {X_nameDef} would write it in and tie a red cord on {A_nameDef}'s sleeve.</li>
+          <li>[nopelt] {X_nameDef}, a keeper of the book of {FACTION}, has come to write {A_nameDef}'s kill of {BEAST} into the Wardens' book and tie a red cord on {A_objective}. {X_nameDef} would have bought the pelt too, but the colony has none of it in its stores.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked in carrying the Wardens' book wrapped in hide. {A_nameDef} brought down {BEAST}, {TALE}, and the Wardens give a page and a red cord for that.</li>
+          <li>[age2] {X_nameDef} of {FACTION} has come to the gate with the Wardens' book in a waxed case. The Wardens heard on the road that {A_nameDef} brought down {BEAST}, {TALE}, and {X_nameDef} would write it in and tie a red cord on {A_nameDef}'s sleeve.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Write it in, and sell them the pelt</label>
+            <outcome>The pelt is being carried out to {X_nameDef}, who pays {DEAD} silver for it. {A_nameDef} will meet {X_objective} at the gate for the cord.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the pelt for the Wardens' hall</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WardensPage" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Write it in; the pelt stays here</label>
+            <outcome>{A_nameDef} will meet {X_nameDef} at the gate, where {X_pronoun} will write the page and tie the cord.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WardensPage" />
+            </effects>
+          </li>
+          <li>
+            <label>No page for this</label>
+            <outcome>{X_nameDef} closes the book and goes. The Wardens will write the kill in anyway, but without a name.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[write] Another page filled, and a good one.</li>
+          <li>[noted] It goes in the book all the same.</li>
+          <li>[cord] There, a red cord, and every Warden will know what it means.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 32. Wardens at the manhunt (the Lantern Wardens) ===================== -->
+
+  <!-- Fired only during a manhunt (WardensManhunt.Watch). The Wardens are already fighting when it comes, so no answer
+       means the hunt's own terms. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WardensManhunt</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>Wardens at the manhunt</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WardensManhunt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~55</ages>
+        <stayHours>12~18</stayHours>
+        <answerDays>0.2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Wardens at the manhunt</li>
+          <li>The Wardens come to fight</li>
+        </titles>
+        <texts>
+          <li>{COUNT} Wardens of {FACTION} saw {TALE} going after the colony's people and came running from the edge of the land to fight them, {X_nameDef} in front. Unless the colony says otherwise, they will keep the hides of whatever they bring down and leave the meat for the colony, as on their hunts.</li>
+          <li>[pack] A pack of {TALE} is attacking the colony, and {COUNT} Wardens of {FACTION} have come running from the edge of the land to fight them, {X_nameDef} in front. On a hunt the Wardens keep the hides and leave the meat; they ask whether that suits the colony.</li>
+          <li>[mad] {TALE} has gone mad and is attacking the colony's people, and {COUNT} Wardens of {FACTION} who were following it have come running in from the edge of the land to fight it. They would keep its hide and leave the meat for the colony.</li>
+          <li>[age0] {COUNT} Wardens of {FACTION} came running from the treeline with spears and bows when they saw {TALE} attacking the colony. They are already fighting. They would keep the hides and leave the meat, as on their hunts.</li>
+          <li>[age2] {COUNT} Wardens of {FACTION} came running with rifles when they saw {TALE} attacking the colony, and are already shooting. They would keep the hides and leave the meat, as on their hunts.</li>
+          <li>[their:grateful] The Wardens count the colony among their friends, and {COUNT} of them came running as soon as they saw {TALE} attacking it. They would keep the hides and leave the meat, as on their hunts.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>The hides are yours, the meat stays here</label>
+            <outcome>The Wardens fight on. When the beasts are down they will skin what they killed, keep the hides and leave the meat for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WardensManhunt"><how>split</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep everything you bring down</label>
+            <outcome>The Wardens fight on, and will take everything they bring down. They are pleased with the offer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WardensManhunt"><how>keep</how></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank them; we'll see to it ourselves</label>
+            <outcome>The Wardens break off the fight and walk back to the edge of the land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WardensManhunt"><how>away</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[split] Hides for us, meat for you, as on any hunt.</li>
+          <li>[keep] That's generous, and we'll take you up on it.</li>
+          <li>[away] As you like, the edge is ours if you need us.</li>
+          <li>[done] That's the last of them down.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 33. The hive burned (the Lantern Wardens) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HiveBurned</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the hive burned</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HiveBurned</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~55</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The hive burned</li>
+          <li>Wardens with fire</li>
+        </titles>
+        <texts>
+          <li>{COUNT} Wardens of {FACTION} have come in at the edge of the land nearest the insects' {BEAST}, with {TALE}. The Wardens burn out every hive they find near a settlement, and {X_nameDef} asks whether they could go in beside the colony's fighters.</li>
+          <li>[hives] {COUNT} Wardens of {FACTION} have come in at the edge of the land with {TALE}. The insects have dug in near the colony in more than one place, and {X_nameDef} would burn out every hive, together with the colony's fighters or by themselves.</li>
+          <li>[torch] {COUNT} Wardens of {FACTION} have come in at the edge of the land carrying torches. They burn out insect hives wherever they find them, and {X_nameDef} would hold a torch to the {BEAST} near the colony, beside its fighters or alone.</li>
+          <li>[molotov] {COUNT} Wardens of {FACTION} have come in at the edge of the land with crates of firebombs. {X_nameDef} would like to throw them into the insects' {BEAST}, together with the colony's fighters or by themselves.</li>
+          <li>[incendiary] {COUNT} Wardens of {FACTION} have come in at the edge of the land, one of them carrying an incendiary launcher. {X_nameDef} would burn out the insects' {BEAST} near the colony, together with its fighters or by themselves.</li>
+          <li>[their:grateful] The Wardens count the colony among their friends, and {COUNT} of them came with {TALE} as soon as they heard the insects had dug in near it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Go in together</label>
+            <outcome>The Wardens will wait at the edge for the colony's fighters to come up to the hive, and then go in with them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HiveBurned"><how>together</how></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them go in alone</label>
+            <outcome>The Wardens are going in now, while the colony watches.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HiveBurned"><how>alone</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>The Wardens will keep watch at the edge of the land for a day in case the insects come out, and then go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HiveBurned"><how>watch</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[together] We'll wait for your people, then go in together.</li>
+          <li>[alone] Keep your people back, we're going in.</li>
+          <li>[watch] We'll keep watch at the edge in case they come out.</li>
+          <li>[in] Fire first, then the blades.</li>
+          <li>[burn] That one's caught, keep back from it.</li>
+          <li>[done] The hive's burned out.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
