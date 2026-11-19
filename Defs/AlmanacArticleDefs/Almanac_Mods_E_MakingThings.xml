@@ -19,8 +19,8 @@
       <li>vanillaexpanded.vcookesushi</li>
       <li>vanillaexpanded.vcef</li>
     </mods>
-    <summary>Grills, cheese, stews, sushi and condiments, and what a medieval kitchen can use</summary>
-    <tip>Leave the cheese in the press a while longer. It only gets better.</tip>
+    <summary>Grills, cheese, stews, sushi and condiments, and what a kitchen without power can use</summary>
+    <tip>Cheese gains quality and value the longer it stays in the press.</tip>
     <description>Vanilla Cooking Expanded and its add-ons give your cooks new kinds of food: grilled, baked and stewed meals, cheese and sushi, plus condiments that turn a meal into a gourmet one. The Stews and Sushi add-ons are both in your modlist, and Vanilla Fishing Expanded adds its fish to Odyssey's fishing. Much of it runs on wood, which makes it one of the best sources of mood a kitchen has before electricity.</description>
     <sections>
       <li>
@@ -39,7 +39,7 @@
         <heading>Cooking on wood</heading>
         <text>Research Grilling and Stew Cooking early. Both run on wood, so your cooks can make fine meals long before you have power. Keep a stack of wood beside every stew pot and leave auto-refuel on. Refueling is hauling work, so check the pots during a long raid, when nobody is hauling.
 
-Medieval Overhaul has its own cheese press and cheese, so build both presses only if you keep enough milk animals to supply them. Save gourmet meals for feasts, rituals and the noble's table, where their 12-hour effect counts most.</text>
+If Medieval Overhaul is loaded too, it has its own cheese press and cheese, so build both presses only if you keep enough milk animals to supply them. Save gourmet meals for feasts, rituals and the noble's table, where their 12-hour effect counts most.</text>
       </li>
       <li>
         <heading>Fishing</heading>
@@ -89,7 +89,7 @@ Medieval Overhaul has its own cheese press and cheese, so build both presses onl
       <li>vanillaexpanded.vbrewecandt</li>
     </mods>
     <summary>Whiskey, vodka, gin and tequila with real buffs, plus tea, coffee and tobacco</summary>
-    <tip>We save the whiskey for building days. The walls go up faster, and nobody gets a taste for it.</tip>
+    <tip>Give whiskey on heavy building days for faster work, but not every day, so nobody gets addicted.</tip>
     <description>Vanilla Brewing Expanded adds liquors that each age in their own building and each give a different buff, from faster work to better melee accuracy. Tea and coffee are made at a campfire and help against sickness, tiredness and the weather, and the Coffees and Teas add-on brings many more blends. All of them are drugs, so set up a drug policy for them before the first batch is ready.</description>
     <sections>
       <li>
@@ -216,7 +216,7 @@ A fey may fly out of a cask when a drink is finished. Feys are fast, and their w
       <li>det.epochspottery</li>
     </mods>
     <summary>Incense for a calmer mood, and clay for pots, bricks and walls</summary>
-    <tip>We keep an incense burner in the hospital. The patients complain less.</tip>
+    <tip>An incense burner lifts the mood of everyone within 4 cells, so one in the hospital helps the patients.</tip>
     <description>Two small Epochs mods by DetVisor for tribal and medieval colonies. Incense adds burners that lift the mood of anyone nearby and help with meditation, and Pottery turns stone chunks into clay for decorative pots, clay bricks and clay walls. Neither needs electricity.</description>
     <sections>
       <li>
@@ -260,7 +260,7 @@ Pots can be made at a crafting spot; big pots need the potter's wheel (Stonecutt
     <order>520</order>
     <mods><li>vanillaexpanded.vfecore</li></mods>
     <summary>Basic and artisan furniture for every era, from firepits to the royal poster bed</summary>
-    <tip>The baron stopped complaining once we built him the royal poster bed.</tip>
+    <tip>The royal poster bed, end table and dresser make a noble's bedroom much easier to build.</tip>
     <description>Vanilla Furniture Expanded, the base mod of the series, adds over 30 pieces of furniture with their own small perks, unlocked by modular research. For a medieval colony the useful pieces are the stone firepit, simple beds and benches early on, and later the artisan set: a royal poster bed, end tables, dressers, wardrobes, chairs and tables fit for a noble. Its package id ends in "core", but it is a content mod, not a library.</description>
     <sections>
       <li>
@@ -319,7 +319,7 @@ The firepit is a stone campfire that burns wood and warms its room, and it also 
     <order>525</order>
     <mods><li>vanillaexpanded.vfeart</li></mods>
     <summary>Statues, reliefs, pottery and rugs that give artists work in every era</summary>
-    <tip>The relief in the dining hall took our artist most of a season. People still stop to look at it.</tip>
+    <tip>Put a large statue or a relief where most colonists pass it every day, such as the dining hall.</tip>
     <description>VFE Art gives artists far more to make than the vanilla sculptures: small, large and grand statues, reliefs, pillars, obelisks and monuments, plus pottery for tribes and embroidered rugs for the tailor. An artist who is good at little else now has steady work in every era.</description>
     <sections>
       <li>
@@ -383,7 +383,7 @@ Rugs are made at a tailoring bench in three sizes, up to a 3x5 grand rug. Lay th
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Catapults and ballistas also count toward the defense check, manned or not.</text>
+        <text>Bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Catapults and ballistas also count toward the defense check, manned or not, each a third as much as a turret that fires by itself.</text>
       </li>
     </sections>
     <keywords>
@@ -468,7 +468,7 @@ The fueled smelter burns wood and needs only Smithing. It recovers metal from sl
       <li>vanillaexpanded.vfepropsanddecor</li>
     </mods>
     <summary>New floors, walls and fences, and hundreds of props bought with silver</summary>
-    <tip>The log cabins went up in a day. We rebuilt them in stone after the first fire.</tip>
+    <tip>Log walls are quick and cheap, but they burn: rebuild them in stone when you can.</tip>
     <description>VFE Architect adds a tailored set of floors, walls, fences and bridges: cobblestone, polished stone and slabs in every stone, wood floors in four colors, log and hedge walls, animal gates and more. VFE Props and Decor adds hundreds of purely decorative props in their own palette, paid for in silver and placed at once.</description>
     <sections>
       <li>
@@ -581,7 +581,7 @@ Some wishes go by what a thing is called, so a prop banner, statue or weapon rac
       <li>sbz.bookcase</li>
     </mods>
     <summary>Vanilla Books Expanded and [sbz] Bookcase: write your own skill books, shelve them neatly</summary>
-    <tip>Our new cook learned more from the old cook's book than from the old cook.</tip>
+    <tip>Have an expert write a skill book while their skill is at its peak, so the colony keeps what they know.</tip>
     <description>Vanilla Books Expanded lets your colonists write books: at a writer's table, an expert turns cloth into a textbook about their skill and passes it on to readers. [sbz] Bookcase adds four bookcases that work like the vanilla one but line up and layer properly, including small ones that sit on tables.</description>
     <sections>
       <li>
@@ -636,7 +636,7 @@ Blueprints and maps come only from traders. Reading a blueprint long enough fini
     <order>555</order>
     <mods><li>dubwise.dubsbadhygiene</li></mods>
     <summary>Hygiene, bladder and thirst needs, latrines, wells, baths and plumbing</summary>
-    <tip>Burn the sludge and walk away. Standing by the burn pit makes people sick.</tip>
+    <tip>Colonists who spend too long near a burn pit can get sick, so build it away from where people work.</tip>
     <description>Dubs Bad Hygiene gives colonists hygiene and bladder needs (and thirst, if you switch it on) and builds a whole water, sewage and heating system around them. A medieval colony starts with latrines, water tubs, wells and burn pits, and medieval research brings plumbing, bathtubs, septic tanks, log boilers, saunas and swimming pools. It is hard to remove from a save, so decide early.</description>
     <sections>
       <li>
@@ -667,7 +667,7 @@ Blueprints and maps come only from traders. Reading a blueprint long enough fini
       </li>
       <li>
         <heading>If it's too much</heading>
-        <text>The settings offer a Lite mode, applied after a restart. DBH for Medieval, also in your list, adds pumps, toilets and baths that need no power; its own page covers them.</text>
+        <text>The settings offer a Lite mode, applied after a restart. DBH for Medieval, a separate add-on, adds pumps, toilets and baths that need no power; its own page covers them.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
@@ -708,7 +708,7 @@ Its moods reach Rimfolk's feelings: being walked in on is shame, cold water and 
     <approximate>true</approximate>
     <mods><li>van.dacrypts</li></mods>
     <summary>Candles, ossuary walls, wall tombs, a reliquary and statues for the dead</summary>
-    <tip>Keep candles lit in the crypt. It's a cold place to visit in the dark.</tip>
+    <tip>Light the crypt with the mod's candles or candelabra.</tip>
     <description>Dark Ages: Crypts and Tombs adds furniture and decoration for your colony's crypt: candles and candelabra, ossuary walls, a wall tomb, a sepulchral brazier, a reliquary for a relic, and grim statues. It is made to sit beside Medieval Overhaul and adds nothing MO already covers.</description>
     <sections>
       <li>
@@ -757,7 +757,7 @@ Lay out the crypt with the council's room plan, then add candles, a brazier and 
       <li>mlie.deepstorageplus</li>
     </mods>
     <summary>Shelves, hooks, hampers and racks that hold several stacks per cell</summary>
-    <tip>The meat hooks freed up the whole back wall of the freezer.</tip>
+    <tip>Meat hooks hold several stacks of meat on one cell, which saves room in the freezer.</tip>
     <description>LWM's Deep Storage adds storage that holds several stacks on one cell, each piece made for a kind of thing: meat hooks, hampers for clothes, weapon cabinets, medicine cabinets, food baskets, pallets, skips and taller shelves. Deep Storage Plus fills the gaps with a barrel for liquids, a firewood rack, bins and an organ fridge. Together they fit a sprawling storeroom into a few rooms.</description>
     <sections>
       <li>
@@ -879,7 +879,7 @@ Rimfolk gives Food Alert its count of the stores: meals as they are, and raw foo
       <li>unon.noburnmetal</li>
     </mods>
     <summary>More Floors, Floors Are Worthless, QualityBuilder, MinifyEverything, Tucked Furniture, signs, No Burn Metal</summary>
-    <tip>The workshop is in the wrong spot again. Uninstall the bench and carry it over.</tip>
+    <tip>With MinifyEverything, a bench in the wrong place can be uninstalled and moved instead of rebuilt.</tip>
     <description>Seven small mods for builders: more floors and a rule that floors add no wealth, a way to make your best builder do the quality work, the power to move any building, furniture that tucks against walls, extra signs, and metal that doesn't burn.</description>
     <sections>
       <li>
@@ -891,7 +891,7 @@ Rimfolk gives Food Alert its count of the stores: meals as they are, and raw foo
           <li>QualityBuilder | Mark things so only your best builder builds them, and set a minimum quality. Anything worse is torn down and rebuilt with the same material.</li>
           <li>MinifyEverything | Any building can be uninstalled and moved. It is experimental: if a reinstall fails, uninstall it and install it again.</li>
           <li>Tucked Furniture | Nudge furniture toward walls and tuck chairs under tables to clear walkways. Chairs pull out when someone sits.</li>
-          <li>Medieval Overhaul Extra Signs | A few more shop signs in Medieval Overhaul's style, and every sign can be reinstalled.</li>
+          <li>Medieval Overhaul Extra Signs | A few more shop signs in Medieval Overhaul's style, and every sign can be reinstalled. It needs Medieval Overhaul.</li>
           <li>No Burn Metal | Steel, silver, gold, Medieval Overhaul's iron and other metals no longer burn. In 1.6 the settings have a switch for each metal.</li>
         </table>
       </li>
@@ -936,7 +936,7 @@ Rimfolk gives Food Alert its count of the stores: meals as they are, and raw foo
       <li>costel.layeredapparel</li>
     </mods>
     <summary>Vanilla Textures Expanded and Variations, Animal Variety Coats, FEB's medicine, Layered Apparel</summary>
-    <tip>The new muffalo calves came out spotted. The old herd is still plain brown.</tip>
+    <tip>Animal Variety Coats only changes animals born or arriving after it is added.</tip>
     <description>Five mods that change how things look and never how they work: sharper vanilla textures, random looks for common furniture, coat colors for animals, new medicine icons, and a wardrobe that lets colonists wear one thing and look like another.</description>
     <sections>
       <li>

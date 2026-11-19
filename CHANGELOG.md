@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The mods' Almanac pages in plain words
+
+*19 November 2026, version 0.270.6*
+
+- The Almanac's pages about the player's other mods are in plain words: tips that were little scenes in a colonist's voice now say what to do.
+- The mod pages match the mod list: mods not enabled are no longer called part of it, and the Endangered, Royal Animals and frameworks pages name what is really there.
+- The mod pages say what Rimfolk really does: the advisor's warnings for Vanilla Events Expanded and Seasonal Weather, how votes weigh faith, siege engines in the defense check, and the Empire's ballroom only for music rooms.
+
 ## The Almanac from journeys to world events in plain words
 
 *19 November 2026, version 0.270.5*

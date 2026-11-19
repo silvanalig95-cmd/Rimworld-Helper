@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.270.6</version>
+        <date>19 November 2026</date>
+        <title>The mods' Almanac pages in plain words</title>
+        <points>
+          <li>The Almanac's pages about the player's other mods are in plain words: tips that were little scenes in a colonist's voice now say what to do.</li>
+          <li>The mod pages match the mod list: mods not enabled are no longer called part of it, and the Endangered, Royal Animals and frameworks pages name what is really there.</li>
+          <li>The mod pages say what Rimfolk really does: the advisor's warnings for Vanilla Events Expanded and Seasonal Weather, how votes weigh faith, siege engines in the defense check, and the Empire's ballroom only for music rooms.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.270.5</version>
         <date>19 November 2026</date>
         <title>The Almanac from journeys to world events in plain words</title>

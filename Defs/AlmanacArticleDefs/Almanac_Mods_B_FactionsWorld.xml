@@ -16,7 +16,7 @@
     <order>200</order>
     <mods><li>orion.hospitality</li></mods>
     <summary>Host visiting factions as guests: guest beds, shopping, entertaining and recruiting</summary>
-    <tip>The guests bought two old swords and a tunic before they left, and paid in silver.</tip>
+    <tip>Put spare weapons and clothes in the guests' shopping area: they buy what lies there and pay in silver.</tip>
     <description>Hospitality turns visiting groups into proper guests. They stay a few days, sleep in beds you mark for guests, shop in an area you choose and judge their stay when they leave. Treat them well and their faction thinks better of you, and a guest who has made enough friends among your people can be invited to join. You don't have to wait for them to turn up, either: when you talk to a faction, Hospitality adds an option to invite them for a visit.</description>
     <sections>
       <li>
@@ -41,10 +41,10 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
           <li>A guest whose visit is going well, who has grown close to a colonist and who would stay (below) may ask the council to stay. Taking them in uses Hospitality's own way of adopting a guest, the same as its join request, and their people take it better with a parting gift. A guest whose visit is going badly may bring a complaint instead. The council never sends guests away: their visit ends when Hospitality says.</li>
           <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
           <li>A group of guests stays only as many as the guest beds free on the map: Hospitality picks a group's size from its own settings and the years played, not from your beds. Half the groups fit the free beds exactly; the others bring one or two more, who sleep where they can (setting "Extra guests a group may bring", 2). The rest of the group walk past instead: they come in at the edge, cross the map like any travellers and leave by the far side, with one message saying so. With every guest bed taken by guests already here and no extra this time, the whole group walks past. With no guest bed at all, Hospitality's own rule stands (it asks first, and can refuse guests until there are beds). Setting "Guest groups fit your guest beds".</li>
-          <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a guest room worth the name: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
+          <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a proper guest room: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
           <li>The guests' people remember each visit: one that goes home delighted leaves the colony a good name with them, one that ends in disappointment a poor one, and a run of either adds up. The region window's Peoples view lists it among what that people remembers, and a raid letter can name a poor welcome.</li>
           <li>Those the colony invites come as Hospitality's guests (the setting "Invited visitors are guests"): a notable who took up a letter's invitation (a pen friend, a gathering day), a town's folk asked to a feast or fair, a guest of note who wrote ahead and was told yes, a feast's or a wedding's guests, and an envoy for a season. They show on the guest tab, sleep in guest beds, keep to the guest area and can be recruited by its rules, and what they came for comes first: a feast's guests keep to the gate, the contests, the table and indoors for the night; an envoy is fed and bedded, sits in at a council meeting and writes home. They leave when the feast or the season is over, as Hospitality's guests do when their stay ends. A hosting mission's guests, errands at the gate and strangers stay as they were.</li>
-          <li>Guests are part of the colony's everyday life without leaving Hospitality's hands: a lonely colonist may go and keep a guest company in their free time (the colonist goes to them; the guest is never moved), guests standing near one of the council's toasts raise their cups with everyone else, and now and then a guest on screen says a word about their stay, from how it's going, the bed they were given or the feast they've wandered into. This week, the council window's first view, lists each party staying and how their visit is going; click to go to them.</li>
+          <li>Guests take part in the colony's everyday life while Hospitality stays in charge of them: a lonely colonist may go and keep a guest company in their free time (the colonist goes to them; the guest is never moved), guests standing near one of the council's toasts raise their cups with everyone else, and now and then a guest on screen says a word about their stay, from how it's going, the bed they were given or the feast they've wandered into. This week, the council window's first view, lists each party staying and how their visit is going; click to go to them.</li>
         </points>
       </li>
       <li>
@@ -76,12 +76,12 @@ It counts both ways. A guest and a colonist working side by side think a little 
 The guest tab shows, above the recruiting checklist, what each guest would help with and why ("Cooking: burning passion", "No hauling: titled"), today's hours against the three, the trouble they're pitching in to or the day of thanks, and a switch, "Let them help", on by default.</text>
       </li>
       <li>
-        <heading>Their people, and the colony's say</heading>
+        <heading>Their people, and objections at the council</heading>
         <text>What taking someone costs their people (Hospitality's recruiting price) goes by who they are: about a third less for someone with no family among them, a third more with family there, twice for the leader's family, and more for one who holds a role of their faith. The price's breakdown on the guest tab shows why.
 
-Before a guest is recruited from the guest tab, someone of the colony who objects has their say at the council: someone who can't stand them, a colonist who holds fast to the colony's faith when the guest doesn't share it, a kind colonist when the guest is to be taken by force, someone with no room of their own when there's no bed free, or the cook when the food won't last. The council can take them in all the same, which the one who objected remembers, or keep them a guest for now. While another of the council's questions waits, answer it first.
+Before a guest is recruited from the guest tab, a colonist who objects can say so at the council: someone who can't stand them, a colonist who holds fast to the colony's faith when the guest doesn't share it, a kind colonist when the guest is to be taken by force, someone with no room of their own when there's no bed free, or the cook when the food won't last. The council can take them in all the same, which the one who objected remembers, or keep them a guest for now. While another of the council's questions waits, answer it first.
 
-Weeks after someone joins from a visit, their family may walk in from their people to take them home: a partner most likely, then a parent, a grown child, a brother or sister, and likelier when they were taken by force. They wait at the gate for the council's answer. The colony can let them go home together, send the visitor home with silver, or keep them, at the cost of goodwill and a longing like that of anyone kept from moving on.</text>
+Weeks after someone joins from a visit, their family may walk in from their people to take them home: a partner most likely, then a parent, a grown child, a brother or sister, and likelier when they were taken by force. They wait at the gate for the council's answer. The colony can let them go home together, send the visitor home with silver, or keep them, which costs goodwill and leaves them unhappy at being held back, like anyone the council keeps from moving on.</text>
       </li>
     </sections>
     <keywords>
@@ -113,16 +113,16 @@ Weeks after someone joins from a visit, their family may walk in from their peop
     <order>202</order>
     <mods><li>forti.rimmarket</li></mods>
     <summary>A market in the colony: caravans set up shop at your stalls, and your own stalls sell to shoppers and guests</summary>
-    <tip>Put the poor-quality bows on the counter at a bargain and the masterwork ones dear.</tip>
+    <tip>Sell poor-quality pieces at a bargain price and masterwork ones at a high price.</tip>
     <description>RimMarket brings trade caravans into the colony: place a market marker, build stalls around it, and a caravan that finds a free stall sets up shop there for a market day, paying a stall fee. Any stall can also be kept for the colony's own goods. Its sales table says what it sells, how many and at what price; haulers bring the goods to the counter, and shoppers, visitors and campers (and guests, with Hospitality) pay in silver. The marker's Guide button says what the market still needs.</description>
     <sections>
       <li>
         <heading>Selling your own goods</heading>
-        <text>Switch a stall to "Colony stall", then set it up. Each line on its table is an article, how many to sell, the quality range that goes on the counter, and the price as a share of the article's sell value (weapons sell for a fifth of their worth, as with traders). The dearer the price, the more customers walk on, and the cheaper the colony's prices overall, the more often shoppers come. A line ends when its count is sold.</text>
+        <text>Switch a stall to "Colony stall", then set it up. Each line on its table is an article, how many to sell, the quality range that goes on the counter, and the price as a share of the article's sell value (weapons sell for a fifth of their worth, as with traders). The higher the price, the more customers walk past without buying, and the lower the colony's prices overall, the more often shoppers come. A line ends when its count is sold.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>"Set up the stall" opens Rimfolk's sales table instead of RimMarket's (the setting "RimMarket's sales table, Rimfolk's way", on the Your other mods page). On the left are the colony's goods by category, with a search and a sort by worth, count or name: a click puts all of an article on the counter, a right-click asks how many. On the right is only what is for sale, a card a line: how many (Shift for 10, Ctrl for 100), the quality range, the price on a slider with what it fetches each and for the whole line, how well it sells at that price, and what has sold and lies on the counter. Weapons and apparel show their health on both sides ("health 62%", or "health 45-100%" for several of one kind, amber when worn and red when badly worn) and how many are tainted, taken from the dead, which sells for a tenth of the price. RimMarket's lines go by quality only, so a line can't be held to pieces above a condition: the haulers bring the nearest pieces in its quality range, worn or not. With RimMarket 1.0.13 or later a card also has Refill (the stall keeps that many on the counter for good, and haulers bring more after every sale) and Keep home (haulers stop bringing it once the colony is down to that many). Below them, one price for every line at once (a bargain, the usual, dear), and at the foot what it all comes to and how often shoppers come at these prices. It reads and sets RimMarket's own sale lines and nothing else, so either window can be used on the same stall. If RimMarket changes its stalls in a later version, its own window opens until Rimfolk catches up. The journey planner lists what lies on the colony's own stalls beside the stores, marked with its stall, and recommends the stalls' goods first when a journey goes to trade; the stores' are taken first, and in the last hours a traveller walks to the stall and takes the rest out of its stock, its sale line lowered by as many as a sale lowers it, with no takings or sale counted (see "journeys planned ahead").</text>
+        <text>"Set up the stall" opens Rimfolk's sales table instead of RimMarket's (the setting "RimMarket's sales table, Rimfolk's way", on the Your other mods page). On the left are the colony's goods by category, with a search and a sort by worth, count or name: a click puts all of an article on the counter, a right-click asks how many. On the right is only what is for sale, a card a line: how many (Shift for 10, Ctrl for 100), the quality range, the price on a slider with what it fetches each and for the whole line, how well it sells at that price, and what has sold and lies on the counter. Weapons and apparel show their health on both sides ("health 62%", or "health 45-100%" for several of one kind, amber when worn and red when badly worn) and how many are tainted, taken from the dead, which sells for a tenth of the price. RimMarket's lines go by quality only, so a line can't be held to pieces above a condition: the haulers bring the nearest pieces in its quality range, worn or not. With RimMarket 1.0.13 or later a card also has Refill (the stall keeps that many on the counter for good, and haulers bring more after every sale) and Keep home (haulers stop bringing it once the colony is down to that many). Below them, one price for every line at once (a bargain, the usual, expensive), and at the foot what it all comes to and how often shoppers come at these prices. It reads and sets RimMarket's own sale lines and nothing else, so either window can be used on the same stall. If RimMarket changes its stalls in a later version, its own window opens until Rimfolk is updated for it. The journey planner lists what lies on the colony's own stalls beside the stores, marked with its stall, and recommends the stalls' goods first when a journey goes to trade; the stores' are taken first, and in the last hours a traveller walks to the stall and takes the rest out of its stock, its sale line lowered by as many as a sale lowers it, with no takings or sale counted (see "journeys planned ahead").</text>
       </li>
       <li>
         <heading>Trade ships and the stalls</heading>
@@ -134,11 +134,11 @@ Weeks after someone joins from a visit, their family may walk in from their peop
       </li>
       <li>
         <heading>Visitors and campers at the market</heading>
-        <text>Visitors staying the night out on the colony's land, and people from a camp near it, now and then walk over to the colony's own stalls in the market's hours and buy something lying on the counter that suits them: drovers feed for their herd, a smith metal, a refugee family a meal and clothes, pilgrims food for the pot, anyone on the road food that keeps or medicine. Whoever carries their coin stands at the counter a while, then the article goes off the counter and off its sale line into their pack, and their silver is set down at the stall for someone to put away, as with RimMarket's own shoppers. The line's price, a keeper at the stall and the market's demand count as they do for them, and a dear price may put them off. A visit buys twice at most, a camp once a day and three times in a stay, only at peace and with the map quiet. The setting "Campers buy at RimMarket's stalls" (Your other mods page) turns it off.</text>
+        <text>Visitors staying the night out on the colony's land, and people from a camp near it, now and then walk over to the colony's own stalls in the market's hours and buy something lying on the counter that suits them: drovers feed for their herd, a smith metal, a refugee family a meal and clothes, pilgrims food for the pot, anyone on the road food that keeps or medicine. Whoever carries their coin stands at the counter a while, then the article goes off the counter and off its sale line into their pack, and their silver is set down at the stall for someone to put away, as with RimMarket's own shoppers. The line's price, a keeper at the stall and the market's demand count as they do for them, and a high price may put them off. A visit buys twice at most, a camp once a day and three times in a stay, only at peace and with the map quiet. The setting "Campers buy at RimMarket's stalls" (Your other mods page) turns it off.</text>
       </li>
       <li>
         <heading>Every visitor at the market</heading>
-        <text>Every other visitor at the colony may stop at an open stall too: the game's visitors passing a day, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and the guests you invited. One of a group with nothing else to do near their spot walks over in the market's hours and buys what fits who they are, with their own silver: a trader's people what their trader deals in, paid from the trader's own silver; an envoy or a notable something fine, of good quality or better; a feast's guests something to take home; one of Rimfolk's peoples by its calling (healers medicine, tamers feed, artisans metal); anyone else on the road food that keeps. It goes as it does for campers: they stand at the counter, the article goes into their pack and their silver is set down at the stall, and now and then the keeper at the stall says a word as the sale is made. A purchase or two a group a day, one of them at a time, never more than three at the stalls at once, the first a little after they settle. Never on their way out, at war, with the map in danger, or while something keeps them where they are (an answer you still owe them, their own errand, a quest). When their group sets off they go with it, so a caravan's guards leave with the caravan. Hospitality's guests shop by RimMarket's own way (above). The setting "Visitors shop at RimMarket's stalls" (Your other mods page, needs the deeper game hooks) turns it off.</text>
+        <text>Every other visitor at the colony may stop at an open stall too: the game's visitors passing a day, a trade caravan's guards, envoys, notables, a feast's guests, the peoples' callers and the guests you invited. One of a group with nothing else to do near their spot walks over in the market's hours and buys what fits who they are, with their own silver: a trader's people what their trader deals in, paid from the trader's own silver; an envoy or a notable something fine, of good quality or better; a feast's guests something to take home; one of Rimfolk's peoples by its calling (healers medicine, tamers feed, artisans metal); anyone else on the road food that keeps. It goes as it does for campers: they stand at the counter, the article goes into their pack and their silver is set down at the stall, and now and then the keeper at the stall says a word as the sale is made. A purchase or two a group a day, one of them at a time, never more than three at the stalls at once, the first a little after they settle. Never on their way out, at war, with the map in danger, or while something keeps them where they are (an answer you still owe them, their own errand, a quest). When their group sets off they go with it, so a caravan's guards leave with the caravan. Hospitality's guests shop in RimMarket's own way (above). The setting "Visitors shop at RimMarket's stalls" (Your other mods page, needs the deeper game hooks) turns it off.</text>
       </li>
     </sections>
     <keywords>
@@ -163,7 +163,7 @@ Weeks after someone joins from a visit, their family may walk in from their peop
     <order>205</order>
     <mods><li>vanillaexpanded.outposts</li></mods>
     <summary>Settle colonists in camps on the world map that run themselves and send goods home</summary>
-    <tip>Every sixty days a load of timber comes in from the logging camp.</tip>
+    <tip>A logging outpost sends its timber home every sixty days by default.</tip>
     <description>Vanilla Outposts Expanded lets a caravan settle a spot on the world map as an outpost: a farm, a mine, a hunting or logging camp, a trading post, a town. The people there look after themselves with no upkeep, and every so often the outpost sends its produce home. Outposts can be raided, and the people posted there don't improve their skills while away.</description>
     <sections>
       <li>
@@ -171,7 +171,7 @@ Weeks after someone joins from a visit, their family may walk in from their peop
         <text>Take a caravan to an empty tile with at least one tile between it and any settlement or other outpost, and choose Create outpost. Each type checks the combined skill of everyone you leave there. Since nobody learns while posted away, send colonists whose skills are already where you want them, and keep the ones still learning at home.</text>
       </li>
       <li>
-        <heading>Outposts for a medieval world</heading>
+        <heading>The outposts</heading>
         <table>
           <li>Outpost | What it needs and what it's for</li>
           <li>Farming | Plants 10 and a growing season. Feeds your kitchen.</li>
@@ -183,7 +183,7 @@ Weeks after someone joins from a visit, their family may walk in from their peop
           <li>Defensive | 3 or more armed fighters.</li>
           <li>Town | 5 people, and 3 settlements within 10 tiles.</li>
         </table>
-        <after>Outposts that make goods deliver every 15 days by default; farming, logging and scavenging outposts every 60 days. Drilling, production and artillery outposts deal in chemfuel, components and mortar strikes, so skip them in an early medieval world.</after>
+        <after>Outposts that make goods deliver every 15 days by default; farming, logging and scavenging outposts every 60 days. Drilling, production and artillery outposts deal in chemfuel, components and mortar strikes, so they are of most use to a colony that has reached the industrial age.</after>
       </li>
       <li>
         <heading>Deliveries and raids</heading>
@@ -301,7 +301,7 @@ The hidden pot traps hold chemfuel fire, smoke or knockout gas. They can't sit n
           <li>Redburn Pact | Orc-led goblinoids (varags, goblins, hobgoblins and orcs), described as raiders | War forks and spears, obsidian swords, crossbows, a catapult and giant skull decorations</li>
           <li>Vathun Nobles | Fauns, deer-like people with small horns and a strict caste system, led by a lord | War axes, bardiches, long axes, a bow and banners</li>
         </table>
-        <after>All four are medieval-tech factions. Their peoples need Outland - Genetics, which is in your list, and each module also adds a start scenario. Their weapons and armor are made at Outland's forge, so to arm your own soldiers with katanas, rapiers or war axes, build the forge from Outland - Core.</after>
+        <after>All four are medieval-tech factions. Their peoples need Outland - Genetics, which has to be loaded too, and each module also adds a start scenario. Their weapons and armor are made at Outland's forge, so to arm your own soldiers with katanas, rapiers or war axes, build the forge from Outland - Core.</after>
       </li>
       <li>
         <heading>Living alongside them</heading>
@@ -348,7 +348,7 @@ Each of the four also has an encounter of its own: an Eastborn visitor makes tea
       <li>neronix17.outland.terrain</li>
     </mods>
     <summary>Wood and stone furniture sets, wood-burning lights, new floors and a fresh look for the land</summary>
-    <tip>We put wooden beds in the bedrooms, a stone table in the hall and a sconce on every wall.</tip>
+    <tip>Use stone furniture near fires, and wall sconces in bedrooms to keep the floor free.</tip>
     <description>Three Outland modules about how your colony looks. Furniture and Decor adds matching wood and stone furniture, rugs and lights that burn wood instead of power. More Floors adds wooden and stone floors, and Terrain repaints the ground itself.</description>
     <sections>
       <li>
@@ -397,7 +397,7 @@ Its lanterns, street lamps and wall sconces burn wood or chemfuel and need refue
       <li>neronix17.outland.genetics</li>
     </mods>
     <summary>Dozens of fantasy peoples as xenotypes: dwarves, elves, tieflings, dragonborn and more</summary>
-    <tip>The next band of tribal visitors might include a dwarf, a halfling and a dragonborn.</tip>
+    <tip>These peoples turn up among the outlander and tribal factions, as visitors, raiders and recruits.</tip>
     <description>Forgotten Realms brings the peoples of a famous fantasy setting into RimWorld as Biotech xenotypes, and Outland - Genetics supplies the big library of genes they're built from. There are no new factions: these peoples turn up among outlander and tribal factions, so your visitors, raiders and recruits become far more varied.</description>
     <sections>
       <li>
@@ -458,8 +458,8 @@ Its lanterns, street lamps and wall sconces burn wood or chemfuel and need refue
       <li>al9000.sengoku</li>
     </mods>
     <summary>Historical weapons and armor in five packs, from Norse raiders to samurai and pike and shot</summary>
-    <tip>Our smith can make anything from a nasal helm to a matchlock musket, given the research.</tip>
-    <description>Tasty Armory is a set of item packs built on a shared core: historical clothing, armor and weapons, and nothing else. Your list has the Core plus High Medieval, In Shining Armor, Fire and Steel, Steppe Warriors and Sengoku, so your smiths and tailors have a long list of pieces to choose from.</description>
+    <tip>Each pack's pieces need their own research, from smithing and plate armor to gunpowder.</tip>
+    <description>Tasty Armory is a set of item packs built on a shared core: historical clothing, armor and weapons, and nothing else. The packs are High Medieval, In Shining Armor, Fire and Steel, Steppe Warriors and Sengoku, so with all of them smiths and tailors have a long list of pieces to choose from.</description>
     <sections>
       <li>
         <heading>The packs</heading>
@@ -513,7 +513,7 @@ Compare armor values in the info card before you mass-produce anything. The auth
     <order>235</order>
     <mods><li>ods.tavern</li></mods>
     <summary>Cozy medieval furniture for an inn or a home, plus a home kitchen set</summary>
-    <tip>The inn has a long table, candles on the walls and a soft bed for every guest.</tip>
+    <tip>Use Tavern's furniture for the rooms guests see: the dining hall, the guest wing and the bar.</tip>
     <description>Tavern is a large set of medieval furniture for an inn or a cozy home, with a home kitchen set and some home-style meals. Many pieces come in several looks you can pick in game. It adds furniture only: pair it with Hospitality if you want guests who stay the night.</description>
     <sections>
       <li>
@@ -557,7 +557,7 @@ Its candles burn tallow rendered from carcasses. The author added a patch so the
     <order>240</order>
     <mods><li>sr.modrimworld.factionalwarcontinued</li></mods>
     <summary>Rival factions fight each other on and near your map; you choose whether to join in</summary>
-    <tip>The battle in the south field was between two other factions. We watched it from the wall.</tip>
+    <tip>When two other factions fight on your map, you can stay behind your walls and let them fight it out.</tip>
     <description>Factional War adds four events in which two other factions fight each other and you decide whether to step in. Their soldiers follow their own tactics: they finish off wounded enemies, rescue their own, loot and take captives.</description>
     <sections>
       <li>
@@ -647,7 +647,7 @@ Factions invade each other and your vassals. You can join these warzones to help
     <order>250</order>
     <mods><li>ionfrigate12345.diplomaticmarriageplus</li></mods>
     <summary>Marry your leader's child into an allied faction for a permanent alliance</summary>
-    <tip>Our leader's son married into the allied house, and their goodwill has risen every day since.</tip>
+    <tip>A marriage alliance raises goodwill with the ally every day for as long as it lasts.</tip>
     <description>Inspired by Crusader Kings, this mod lets an allied faction propose a marriage to a child of your ideoligion's leader. If you accept, the child goes to live with their new family and you gain a permanent alliance whose goodwill grows every day. The mod needs Ideology.</description>
     <sections>
       <li>
@@ -701,7 +701,7 @@ Accepting brings the other spouse to your colony with guards. If your child is t
     <order>255</order>
     <mods><li>albion.goexplore</li></mods>
     <summary>Lost cities, prison camps, research requests and other places worth a caravan</summary>
-    <tip>A neighboring faction asked for our best researcher, and the visit earned us their goodwill.</tip>
+    <tip>When a neighbor asks for your best researcher, sending one earns goodwill and research points.</tip>
     <description>Go Explore adds events that point you at places on the world map: ruined cities full of loot and danger, a friendly faction's prisoners to free, a neighbor asking for your best researcher. None of them is required, and each one gives a caravan a reason to set out.</description>
     <sections>
       <li>
@@ -752,7 +752,7 @@ In a research request, a non-hostile faction asks for your best researcher. Send
     <order>260</order>
     <mods><li>vanillaexpanded.vee</li></mods>
     <summary>More events, from earthquakes and droughts to long purple world events</summary>
-    <tip>The whiteout went on for days, and the woodpile got smaller every morning.</tip>
+    <tip>After the colony's first half year, keep more food and firewood than you think you need: a long world event can last many days.</tip>
     <description>Vanilla Events Expanded adds a batch of new events in the game's own style, from small surprises to long purple world events that run as chains over many days. Every event can be tuned or switched off in its mod options.</description>
     <sections>
       <li>
@@ -775,7 +775,7 @@ During a whiteout, desperate refugees may beg for shelter. Take them in and they
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The advisor warns about vanilla weather events such as heat waves, cold snaps and droughts, but not yet about this mod's own drought, whiteout, scorch and long night, so watch for those letters yourself.
+        <text>The advisor warns about this mod's drought, whiteout, scorch and long night as it does about the game's heat waves and cold snaps: while one lasts it says how long is left and what to do (lean on the stores in a drought, keep everyone indoors and the fires fed in a whiteout, keep people in cool rooms in the scorch, light and heat the colony through the long night), and links to this page.
 
 Its psychic aurora is felt as awe in Rimfolk's feelings, and the superbloom's drone as dread.</text>
       </li>
@@ -858,7 +858,7 @@ Other mods can add achievements of their own, and some Vanilla Expanded mods do.
       <li>ninagoblin.alliesarehelpful</li>
     </mods>
     <summary>Raids that go wrong, raiders' animals, safer fistfights and allies who tend your wounded</summary>
-    <tip>One raid arrived drunk, and the next one arrived with manhunters chasing it.</tip>
+    <tip>With Sometimes Raids Go Wrong, a raid can arrive drunk, on fire or chased by manhunters.</tip>
     <description>Four smaller mods that change how fights play out. Some raids go comically wrong, raiders bring their animals, social fights stop before anyone is killed, and allied soldiers tend your wounded and carry them to bed.</description>
     <sections>
       <li>

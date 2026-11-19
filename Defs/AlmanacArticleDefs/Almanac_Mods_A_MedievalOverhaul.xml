@@ -12,9 +12,9 @@
     <category>Mods</category>
     <order>100</order>
     <mods><li>dankpyon.medieval.overhaul</li></mods>
-    <summary>The core of this modlist: a medieval tech tree, raw materials to process, and a new world</summary>
+    <summary>A medieval tech tree, raw materials to process, and a new world</summary>
     <tip>Logs and ore need working before you can build with them. Plan the workshops first.</tip>
-    <description>Medieval Overhaul rebuilds RimWorld around the Middle Ages: its own Medieval research tab, raw materials that must be worked before you can use them, rustic furniture, castle walls, siege engines, and a world of noble houses, brigands, cultists and monsters. Almost everything else in this modlist is balanced around it, so learn its production chains before your first winter.</description>
+    <description>Medieval Overhaul rebuilds RimWorld around the Middle Ages: its own Medieval research tab, raw materials that must be worked before you can use them, rustic furniture, castle walls, siege engines, and a world of noble houses, brigands, cultists and monsters. Many medieval mods are balanced around it, so learn its production chains before your first winter.</description>
     <sections>
       <li>
         <heading>The production chains</heading>
@@ -82,7 +82,7 @@ Camps on your land put up tents of its hide or cloth walls: a hunting party, tra
     <mods><li>dankpyon.medieval.overhaul</li></mods>
     <summary>Bread, smoked meat, cheese, ale, wine and mead, and how to keep them coming</summary>
     <tip>Wine and cheese get better the longer they sit.</tip>
-    <description>Medieval Overhaul turns the kitchen into a small economy. Wheat becomes flour and flour becomes bread; meat is smoked or dried so it keeps without a freezer; milk is pressed into cheese; grain, grapes and honey become ale, wine and mead in barrels. Good food and drink are the cheapest mood a medieval colony can buy, and aged wine is one of the few luxuries you can make yourself.</description>
+    <description>Medieval Overhaul turns the kitchen into a small economy. Wheat becomes flour and flour becomes bread; meat is smoked or dried so it keeps without a freezer; milk is pressed into cheese; grain, grapes and honey become ale, wine and mead in barrels. Good food and drink are the cheapest way to lift moods in a medieval colony, and aged wine is one of the few luxuries you can make yourself.</description>
     <sections>
       <li>
         <heading>Brewing</heading>
@@ -182,7 +182,7 @@ Brigands and the Cultists have no towns you can visit; they guard ruins and hide
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>A beast that mauls a colonist and gets away can become a named nemesis, and a house that kills one of yours can earn a vendetta. The council's defense advice counts cavalry spikes as traps, but not manned ballistas as turrets.</text>
+        <text>A beast that mauls a colonist and gets away can become a named nemesis, and a house that kills one of yours can earn a vendetta. The council's defense check counts cavalry spikes as traps. Its ballistas and trebuchets, which need a crew, count a third as much as a turret that fires by itself.</text>
       </li>
     </sections>
     <keywords>
@@ -324,7 +324,7 @@ Every part of the mod can be switched off on its own, and its settings list what
     <mods><li>ogam.rimedieval</li></mods>
     <summary>Keeps the whole world medieval: no guns, no mechanoids, no high-tech events</summary>
     <tip>No mechanoids, no orbital traders, no toxic fallout. Raids, disease and winter are still there.</tip>
-    <description>Rimedieval does not delete technology; it hides it. Research beyond the medieval era disappears from your tree, every faction and pawn from every mod is re-equipped with medieval or neolithic gear, and the events and quests that only make sense in a spacer world are removed. It is the reason a raider in this modlist carries a crossbow instead of a charge rifle.</description>
+    <description>Rimedieval does not delete technology; it hides it. Research beyond the medieval era disappears from your tree, every faction and pawn from every mod is re-equipped with medieval or neolithic gear, and the events and quests that only make sense in a spacer world are removed. With it, raiders carry crossbows instead of charge rifles.</description>
     <sections>
       <li>
         <heading>The research limit</heading>
@@ -630,7 +630,7 @@ The Order's warhorse is larger, stronger and faster than a regular horse. The Or
     <approximate>true</approximate>
     <mods><li>joedaly.medmeds.mo</li></mods>
     <summary>Three tiers of medieval medicine, four tiers of prosthetics, potions and a medieval cryptosleep</summary>
-    <tip>Keep some of the ale back for the doctor.</tip>
+    <tip>The late medieval medicine is made with alcohol, so keep some ale back for it.</tip>
     <description>Medieval Medicines fills the long gap between herbal medicine and industrial kits. It adds tiered medicines made from herbs, cloth and alcohol, prosthetic limbs from a crude hook up to emerald-enchanted Paresian limbs, healing and mana potions, and Entosomnia, a medieval stand-in for the cryptosleep casket.</description>
     <sections>
       <li>
@@ -729,7 +729,7 @@ Read the talent on every recruit and prisoner: a rare talent is often worth more
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council does not read talents yet. Life goals and wishes still come from passions, traits and what happens to people. A few talents set a colonist's character (see the page "character"): a hero or an adventurer starts bolder, a herald prouder, a scholar, philosopher or scout more curious, a recruiter or veterinarian warmer.</text>
+        <text>Talents don't change wishes, life goals, decrees or votes: those come from passions, traits and what happens to people. A few talents set a colonist's character (see the page "character"): a hero or an adventurer starts bolder, a herald prouder, a scholar, philosopher or scout more curious, a recruiter or veterinarian warmer.</text>
       </li>
     </sections>
     <keywords>

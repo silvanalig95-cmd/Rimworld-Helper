@@ -17,7 +17,7 @@
       <li>spino.megafauna</li>
     </mods>
     <summary>How Alpha Animals, Vanilla Animals Expanded, Dinosauria and Megafauna share the wild</summary>
-    <tip>With four animal mods loaded, the herd at the tree line might be deer, aurochs or triceratops.</tip>
+    <tip>With four animal mods sharing the spawn lists, each mod's animals turn up less often than on their own.</tip>
     <description>Your list loads several big animal mods together, and they all draw from the same biome spawn lists. Each mod's creatures turn up less often than its author planned, but the wild as a whole is stranger and more dangerous than in vanilla, with giant herbivores, new predators and many more animals that can carry a caravan's packs.</description>
     <sections>
       <li>
@@ -42,7 +42,7 @@ Many of the new giants are pack animals, so caravans and Giddy-Up riders have fa
         <heading>With Rimfolk</heading>
         <text>Rimfolk treats a wild animal as a great beast when it is very large or about as wild as a thrumbo, so with these mods colonists meet great beasts much more often. An animal that downs or maims a colonist and gets away gets a name and keeps prowling. Hunt it as a group; seeing it dead lifts its victim's mood.
 
-Hunting wishes only ever ask for ordinary game, and the "den in the brush" dilemma only picks a predator that fights no harder than a bear. Still check what it is before you answer "hunt it".</text>
+Hunting wishes only ever ask for ordinary game, and the council's question "a predator's den near the colony" only picks a predator no bigger or stronger than a large bear. Still check what it is before you answer "Hunt it".</text>
       </li>
     </sections>
     <keywords>
@@ -71,7 +71,7 @@ Hunting wishes only ever ask for ordinary game, and the "den in the brush" dilem
     <order>401</order>
     <mods><li>sarg.alphaanimals</li></mods>
     <summary>Over a hundred strange creatures, the Black Hive insects and some very large visitors</summary>
-    <tip>Our arrows did nothing to the summit crab, so we stayed out of its way until it left.</tip>
+    <tip>Leave the summit crab alone: gunfire barely hurts it, and it leaves on its own.</tip>
     <description>Alpha Animals adds more than a hundred odd but vanilla-styled creatures, each built around a mechanic of its own: walking tanks, living resource farms, night stalkers, giant spiders. They spawn by biome, a few come only from traders, and some arrive in special events. It also adds the Black Hive, an aggressive insect faction that can raid you.</description>
     <sections>
       <li>
@@ -127,7 +127,7 @@ Its creatures' moods reach Rimfolk's feelings: psychic harmony is contentment (o
     <order>403</order>
     <mods><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
     <summary>Dozens of vanilla-style animals for every biome, plus dog and cat breeds</summary>
-    <tip>Beavers dam the river now, and crocodiles wait along its banks.</tip>
+    <tip>On a river map, beavers build dams and crocodiles live along the banks.</tip>
     <description>Vanilla Animals Expanded gathers the Vanilla Expanded biome packs into one mod: dozens of animals drawn in the vanilla style, from house cats and rottweilers to anacondas and Indian elephants. Most turn up in temperate forests, the rest in the biomes they belong to. With Odyssey active, animals the DLC already has are left out, so you never get two versions.</description>
     <sections>
       <li>
@@ -180,7 +180,7 @@ The megawolverine counts as a great beast, and one that mauls a colonist and esc
     <mods><li>vanillaexpanded.vaeroy</li></mods>
     <dlc>Royalty</dlc>
     <summary>Empire animals with noble perks: cranes, orangutan tutors, quail, megachickens and more</summary>
-    <tip>The baron wanted cranes, and it took five of them before he was any happier.</tip>
+    <tip>Cranes only lift your nobles' mood while the colony has five or more of them.</tip>
     <description>Royal Animals adds nine animals bred for the Empire's nobility, each with a special effect beyond meat and leather. They never spawn in the wild: you get them from Imperial traders and quests. With Odyssey active, its swan, peacock and quail are the DLC's own birds, given the royal abilities.</description>
     <sections>
       <li>
@@ -195,6 +195,7 @@ The megawolverine counts as a great beast, and one that mauls a colonist and esc
           <li>Angora rabbit | Once bonded, helps its master's neural heat dissipation. It dies of grief if the master dies.</li>
           <li>Megachicken | Keeps growing through five stages, at 0, 3, 8, 12 and 18 years.</li>
           <li>Pheasant | When it flees, nearby colonists get brief psychic invisibility, once a day.</li>
+          <li>Royal tiger | A large cat bred for the nobility; its info card says what it does.</li>
         </table>
       </li>
       <li>
@@ -231,12 +232,12 @@ Think twice before bonding an angora rabbit to a fighter. If the fighter falls, 
     <order>407</order>
     <mods><li>vanillaexpanded.vaeendandext</li></mods>
     <summary>Rare pairs of endangered animals pass through; tame and breed them, then release the young for goodwill</summary>
-    <tip>A pair of quaggas crossed the map, and we had about two days to tame them.</tip>
-    <description>Endangered adds eleven rare or extinct animals that never spawn in the wild, from pandas and pangolins to quaggas and thylacines. Instead, a male and a female of one species now and then wander onto the map, and you have a short window to tame them. Animals bred from them can be released back into the wild to win friends.</description>
+    <tip>A rare pair leaves after a day and a half to two and a half days, so start taming at once.</tip>
+    <description>Endangered adds eleven rare or extinct animals that never spawn in the wild, from pangolins to quaggas and thylacines (ten with Odyssey active: Odyssey has a panda of its own, so the mod leaves out its giant panda). Instead, a male and a female of one species now and then wander onto the map, and you have a short window to tame them. Animals bred from them can be released back into the wild to win friends.</description>
     <sections>
       <li>
-        <heading>The eleven species</heading>
-        <text>Black rhino, giant panda, moa, quagga, thylacine, African wild dog, bonobo, Tasmanian devil, black-footed ferret, giant pangolin and rockhopper penguin. Only species that can live in your current weather appear, and never during toxic fallout. Of the eleven, the quagga is a pack animal.</text>
+        <heading>The species</heading>
+        <text>Black rhino, giant panda (not with Odyssey), moa, quagga, thylacine, African wild dog, bonobo, Tasmanian devil, black-footed ferret, giant pangolin and rockhopper penguin. Only species that can live in your current weather appear, and never during toxic fallout. Of these, the quagga is a pack animal.</text>
       </li>
       <li>
         <heading>When a pair arrives</heading>
@@ -279,7 +280,7 @@ Think twice before bonding an angora rabbit to a fighter. If the fighter falls, 
     <order>409</order>
     <mods><li>spincrus.dinosauria</li></mods>
     <summary>32 dinosaurs and pterosaurs across the biomes, rare and hard to tame</summary>
-    <tip>The tracks by the river had three toes and were a yard across.</tip>
+    <tip>Big theropods are harder to tame than thrumbos: hunt them only as a group, from behind cover.</tip>
     <description>Dinosauria brings 32 species of dinosaurs and pterosaurs to the Rim, from the tiny compsognathus to the brachiosaurus and Tyrannosaurus rex. They are rarer than vanilla animals and spawn across many biomes. The author keeps it running on new versions but adds no new features. It comes with patches for Giddy-Up and A Dog Said, and More Vanilla Biomes and Alpha Biomes bring its species into their biomes.</description>
     <sections>
       <li>
@@ -372,7 +373,7 @@ The plant-eaters are the better catch. The stegosaurus, triceratops, magyarosaur
       <li>ezfi.montereybayaquariumanimals</li>
     </mods>
     <summary>Animals Logic, the extra animal beds and the Monterey Bay animals</summary>
-    <tip>The alert told us the goat was bleeding before anyone had noticed.</tip>
+    <tip>Keep Animals Logic's medical alerts on: they say which animal needs a doctor.</tip>
     <description>Three smaller animal mods: one that smooths out the handling of animals, one that adds nicer animal beds, and one that adds two coastal animals. None changes the game much on its own, but together they make keeping animals less of a chore.</description>
     <sections>
       <li>
@@ -420,7 +421,7 @@ Animals of Monterey Bay adds sea otters on temperate and cooler coasts, with int
     <order>415</order>
     <mods><li>memegoddess.giddyup</li></mods>
     <summary>Ride animals to work, into battle and on caravans, and expect mounted raiders</summary>
-    <tip>About a third of the raiders rode in on horseback.</tip>
+    <tip>By default a third of the pre-industrial raiders who can ride arrive mounted.</tip>
     <description>Giddy-Up 2 lets your colonists ride animals. They mount up for long walks across the map, fight from the saddle and ride out with caravans. Enemies and visitors can arrive mounted too, and in a medieval world that happens a lot.</description>
     <sections>
       <li>
@@ -471,7 +472,7 @@ With Rimfolk's setting "Ride out to far work and back" (Your other mods), coloni
     <order>417</order>
     <mods><li>arandomkiwi.huntforme</li></mods>
     <summary>Train animals to hunt for the colony, alone or in packs; cats bring gifts</summary>
-    <tip>The wolves brought a deer back to the stockpile, and the cat brought a rat.</tip>
+    <tip>Trained hunters haul their kill to the nearest stockpile, and cats bring in small prey as gifts.</tip>
     <description>Hunt for Me adds hunting as a new animal training. Trained predators go out alone or in packs, bring down prey and haul the corpse to the nearest stockpile. Cats bring small gifts, and you choose how bold or careful your hunters are.</description>
     <sections>
       <li>
@@ -516,8 +517,8 @@ Rimfolk's "Pets hunt for themselves" is something else: an animal feeding itself
     <order>419</order>
     <mods><li>haplo.miscellaneous.training</li></mods>
     <summary>Shooting targets, martial arts dummies and archery targets to train and relax</summary>
-    <tip>Between raids, the fighters take turns at the dummy and the shooting target.</tip>
-    <description>Misc. Training adds three practice buildings: a shooting target and a martial arts dummy that train combat skills, and an archery target colonists shoot at for fun. In this modlist, the Medieval Retexture gives them a look that matches Medieval Overhaul.</description>
+    <tip>Put a dummy and a target near the barracks, so fighters train in their spare time.</tip>
+    <description>Misc. Training adds three practice buildings: a shooting target and a martial arts dummy that train combat skills, and an archery target colonists shoot at for fun. Misc. Training Medieval Retexture, a separate mod, gives them a look that matches Medieval Overhaul.</description>
     <sections>
       <li>
         <heading>The three buildings</heading>
@@ -529,7 +530,7 @@ Rimfolk's "Pets hunt for themselves" is something else: an animal feeding itself
         </table>
         <after>This version comes with its own training task. Put a dummy and a target near the barracks so fighters with spare time train between raids, and use the archery target as cheap recreation in the early game.
 
-The Medieval Retexture changes the materials they accept, so pieces built before you added it keep their old material color.</after>
+The Medieval Retexture, if you load it, changes the materials they accept, so pieces built before you added it keep their old material color.</after>
       </li>
       <li>
         <heading>With Rimfolk</heading>
@@ -556,7 +557,7 @@ The Medieval Retexture changes the materials they accept, so pieces built before
     <order>421</order>
     <mods><li>sarg.rimbees</li></mods>
     <summary>Beekeeping: honey, wax, mead, candles, pollinated crops and over 100 kinds of bee</summary>
-    <tip>Mead from our own honey is slightly stronger than beer.</tip>
+    <tip>Mead is a social drink, a little stronger than beer.</tip>
     <description>Alpha Bees, once called RimBees, makes beekeeping a craft of its own. Catch wild bees, house them in beehouses, collect their combs and spin them into honey and wax. Breed and cross them to discover more than a hundred kinds of bee, some of which make far stranger things than honey.</description>
     <sections>
       <li>
@@ -664,8 +665,8 @@ Its weathers and waters reach the feelings too: forsaken nights and storms and r
     <order>432</order>
     <mods><li>zylle.morevanillabiomes</li></mods>
     <summary>Ten vanilla-style biomes, from alpine meadows to ice floes</summary>
-    <tip>Fog lies over the cloud forest most days, and animals wander up from the forests below.</tip>
-    <description>More Vanilla Biomes adds ten new biomes that look and play like the base game's. They range from the gentle alpine meadow and oasis to the brutal glacial shield and ice floes. It already brings in the animals and plants of many other mods in this list, with patches for Alpha Animals, Dinosauria, Megafauna, Medieval Overhaul, ReGrowth, Vanilla Plants Expanded and Vanilla Animals Expanded.</description>
+    <tip>The alpine meadow and the oasis are the friendliest of its ten biomes.</tip>
+    <description>More Vanilla Biomes adds ten new biomes that look and play like the base game's. They range from the gentle alpine meadow and oasis to the brutal glacial shield and ice floes. It has patches for Alpha Animals, Dinosauria, Megafauna, Medieval Overhaul, ReGrowth, Vanilla Plants Expanded and Vanilla Animals Expanded, so their animals and plants live in its biomes too.</description>
     <sections>
       <li>
         <heading>The ten biomes</heading>
@@ -758,7 +759,7 @@ A soak in a hot spring eases strain and helps someone convalescing, as a hot bat
       <li>m00nl1ght.geologicallandforms.biometransitions</li>
     </mods>
     <summary>43 landforms, from valleys and canyons to islands and caves, and maps that mix biomes</summary>
-    <tip>Our canyon has one way in, and barely enough soil for the rice.</tip>
+    <tip>A canyon is easy to defend but has little room or soil for fields.</tip>
     <description>Geological Landforms changes the shape of the colony map: valleys, canyons, islands, cave entrances, craters and dozens more, on top of whatever biome you choose. Some make defense easy and farming hard, others the reverse. Its add-on, Biome Transitions, gives maps on a biome border a mix of up to seven biomes, each with its own plants and animals.</description>
     <sections>
       <li>
@@ -779,7 +780,7 @@ On the world map, a tile's Terrain tab has a "Search for landform nearby" button
         <heading>With Rimfolk</heading>
         <text>In cave and canyon colonies, colonists spend long stretches indoors and will ask for time outside, and the advisor warns about insects under overhead mountain.
 
-Its landforms tell Rimfolk what shape the land is: a valley, a canyon or gorge, an island or atoll, caves, cliffs, an oasis or a crater. Each has encounters of its own (an echo across the canyon, mist filling the valley at dawn, the sea on every side of the island, the cave breathing out cold air at dusk, the gold light on the cliffs, animals drinking at the oasis, a traveler's tale of how the crater came), and lines can ask for the land by name. A dry lake no longer counts as a lake.</text>
+Its landforms tell Rimfolk what shape the land is: a valley, a canyon or gorge, an island or atoll, caves, cliffs, an oasis or a crater. Each has encounters of its own (an echo across the canyon, mist filling the valley at dawn, the sea on every side of the island, cold air coming out of the cave at dusk, the evening light on the cliffs, animals drinking at the oasis, a traveler's story of how the crater was made), and some lines are written for one kind of land. A dry lake no longer counts as a lake.</text>
       </li>
     </sections>
     <keywords>
@@ -826,11 +827,11 @@ The seasonal changes cover the eleven vanilla biomes. Biomes added by other mods
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and lines can ask for them.
+        <text>Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and some lines are written for them.
 
-Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes. Wildfires themselves come by letter: act on those yourself.
+Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes. While an earthquake or a wildfire lasts, the advisor says how long is left and what to do (in an earthquake keep people clear of the fault line and firefighters ready; in a wildfire fight it, cut firebreaks by clearing plants and keep people, stores and animals away), but fighting the fire is yours to order.
 
-Rimfolk's weather that changes like weather keeps its seasons: it only weighs each season's own weathers (spells, what follows what, events), leaves the double rainbow's chance as it is, and adds no seasons of its own to the biomes this mod covers. Its windy and cloudy weathers and its dust are read as wind, cloud and dust, and the dry duststorm as a storm without rain (see "the weather, as the colony knows it").</text>
+Rimfolk's setting "Weather that changes like weather" keeps this mod's seasons: it only weighs each season's own weathers (spells, what follows what, events), leaves the double rainbow's chance as it is, and adds no seasons of its own to the biomes this mod covers. Its windy and cloudy weathers and its dust are read as wind, cloud and dust, and the dry duststorm as a storm without rain (see "the weather, as the colony knows it").</text>
       </li>
     </sections>
     <keywords>
@@ -862,7 +863,7 @@ Rimfolk's weather that changes like weather keeps its seasons: it only weighs ea
       <li>vanillaexpanded.vplantsesucculents</li>
     </mods>
     <summary>Beautiful Outdoors, Grand Rivers Reborn, Tilled Soil and the succulents</summary>
-    <tip>Flowers and riverbanks look better to our people now, and mud looks worse.</tip>
+    <tip>With Beautiful Outdoors, flowers and water look better to colonists and mud looks worse.</tip>
     <description>Four smaller mods that shape the land your colony lives on: how beautiful nature looks to your colonists, how wide the rivers run, how fertile you can make a field, and a set of decorative plants that need little care.</description>
     <sections>
       <li>
@@ -969,7 +970,7 @@ Sandy zones on sand and aquatic zones in shallow water or marsh grow special cro
     <order>452</order>
     <mods><li>vanillaexpanded.vplantsemushrooms</li></mods>
     <summary>Mushrooms that give wood, medicine, cloth, light and food underground</summary>
-    <tip>Under the mountain, timbercaps give us wood and glowcaps give us light.</tip>
+    <tip>Under a mountain, timbercaps give wood and glowcaps give light.</tip>
     <description>Mushrooms is a Vanilla Plants Expanded module for colonies that live under rock. Its mushrooms fill the gaps a tunnel colony has: wood, herbal medicine, food, cloth, light, even a little power. Some grow wild in caves, and some grow only in flower pots.</description>
     <sections>
       <li>
@@ -1064,7 +1065,7 @@ Once Farming Techniques is researched, a grower may wish for a scarecrow from sp
     <mods><li>mlie.gauranlentreeexpanded</li></mods>
     <dlc>Ideology</dlc>
     <summary>Up to four colonists per Gauranlen tree, replanting, and a ritual to break the bond</summary>
-    <tip>Four of our people tend the same Gauranlen tree now, and it gives us more dryads.</tip>
+    <tip>Up to four colonists can share one tree, and more colonists connected to it mean more dryads.</tip>
     <description>Gauranlen Tree Expanded rewrites how a Gauranlen tree's connection works. Several colonists can share one tree, the tree can be moved, and a new ritual lets a colonist tear their connection when it has to end. A button calls the dryads home to guard the tree for a few hours.</description>
     <sections>
       <li>
@@ -1105,8 +1106,8 @@ Gauranlen trees can be replanted and keep their connections, so plant the tree w
     <order>460</order>
     <mods><li>vanillaexpanded.temperature</li></mods>
     <summary>Central heating and air conditioning, mostly for colonies with power</summary>
-    <tip>Before electricity, the only piece we can use is the wall-mounted vent.</tip>
-    <description>Vanilla Temperature Expanded adds central climate control: air ducts carry heated or cooled air from AC units to the rooms that need it, and compressors keep the network efficient. It also adds heaters, coolers and ceiling fans. Nearly all of it needs electricity, so a medieval colony will barely see it.</description>
+    <tip>Before electricity, the only piece you can use is the wall-mounted vent.</tip>
+    <description>Vanilla Temperature Expanded adds central climate control: air ducts carry heated or cooled air from AC units to the rooms that need it, and compressors keep the network efficient. It also adds heaters, coolers and ceiling fans. Nearly all of it needs electricity, so a colony without power can use almost none of it.</description>
     <sections>
       <li>
         <heading>Before electricity</heading>
@@ -1118,7 +1119,7 @@ Gauranlen trees can be replanted and keep their connections, so plant the tree w
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council never suggests powered buildings before you have electricity, so these stay out of its advice in a medieval game.</text>
+        <text>The council never suggests powered buildings before you have electricity, so these stay out of its advice until then.</text>
       </li>
     </sections>
     <keywords>
@@ -1146,16 +1147,16 @@ Gauranlen trees can be replanted and keep their connections, so plant the tree w
       <li>rabiosus.minesight</li>
       <li>proxyer.dismantleancientjunk</li>
     </mods>
-    <summary>Medieval deep mining, ore highlights and salvaging ancient junk</summary>
-    <tip>The mining bird keeps the mineshaft running without a generator.</tip>
-    <description>Three small mods for getting more out of rock and ruins: a Medieval Overhaul patch that turns deep drilling into medieval mine shafts, a highlight for ore veins, and the ability to take apart every piece of ancient junk.</description>
+    <summary>Ore highlights, salvaging ancient junk, and deep mining for Medieval Overhaul</summary>
+    <tip>Hold Shift with the mine order to mark a whole ore vein at once.</tip>
+    <description>Three small mods for getting more out of rock and ruins: a highlight for ore veins, the ability to take apart every piece of ancient junk, and, for a game with Medieval Overhaul, a patch that turns deep drilling into medieval mine shafts.</description>
     <sections>
       <li>
-        <text>Medieval Overhaul Deep Vein Mining turns the deep drill into a deep vein mineshaft and the ground-penetrating scanner into a prospecting desk, both medieval. They still need a trickle of power, which a "mining bird" provides. The patch also removes gold, silver, plasteel and steel from deep deposits, so Medieval Overhaul's own ores turn up instead. Set up a prospecting desk early to find deep veins, then sink mineshafts on them.
+        <text>Mine Sight highlights ores while the mine order is selected, and holding Shift designates a whole vein, so one shift-click mines it all.
 
-Mine Sight highlights ores while the mine order is selected, and holding Shift designates a whole vein, so one shift-click mines it all.
+Dismantle Ancient Junk lets you take apart every piece of an ancient ruin for twice what destroying it gives (with Medieval Overhaul, its ruined battering rams and siege towers too). Strip the ruins near your base for materials instead of burning them down.
 
-Dismantle Ancient Junk lets you take apart every piece of an ancient ruin for twice what destroying it gives, including Medieval Overhaul's ruined battering rams and siege towers. Strip the ruins near your base for materials instead of burning them down.</text>
+Medieval Overhaul Deep Vein Mining needs Medieval Overhaul. It turns the deep drill into a deep vein mineshaft and the ground-penetrating scanner into a prospecting desk, both medieval. They still need a trickle of power, which a "mining bird" provides. The patch also removes gold, silver, plasteel and steel from deep deposits, so Medieval Overhaul's own ores turn up instead. Set up a prospecting desk early to find deep veins, then sink mineshafts on them.</text>
       </li>
     </sections>
     <keywords>
