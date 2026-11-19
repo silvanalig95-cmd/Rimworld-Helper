@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Quests, round 3: Q14, a cache in old ruins (docs/quests-proposals.md), the one quest that sends the colony's people
+       out: offered only when the ruins are within three tiles of the colony, at half the chance of the quests at home (rule 2
+       of the proposals). Worker: Source/ColonyCouncil/Missions/Workers_MissionHome5.cs; the pure rules in HomeQuests3Math.cs.
+       Texts may use {A} (who of the colony deals with it), {FACTION}, {PLACE} (their town), and, once taken on, {TALE} (where
+       the ruins are: "two tiles north of the colony"). In terms, {ITEM} is the reward in words ("240 silver", or a tribe's
+       goods worth as much) and {DAYS} the time once taken on. Lines are tagged with their old map by their age: [hide] painted
+       on a hide, [parchment] drawn on old parchment, [survey] a survey map, [slate] a data slate. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_RuinsCache</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a cache in old ruins</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionRuinsCache</workerClass>
+    <baseChance>0.15</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A cache in old ruins</li>
+          <li>{FACTION}'s old map</li>
+        </titles>
+        <texts>
+          <li>[hide] {FACTION} have an old map painted on a hide, kept at {PLACE} for generations. It shows a cache hidden in ruins close to the colony, and they ask the colony to go and bring it back for them.</li>
+          <li>[parchment] {FACTION} have found an old map drawn on parchment in a chest at {PLACE}. It shows a cache hidden in ruins close to the colony, and they ask the colony to go and bring it back for them.</li>
+          <li>[survey] {FACTION} have an old survey map from before the towns were rebuilt. It shows a cache hidden in ruins close to the colony, and they ask the colony to go and bring it back for them.</li>
+          <li>[slate] {FACTION} have recovered an old data slate with a map on it. It shows a cache hidden in ruins close to the colony, and they ask the colony to go and bring it back for them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have marked the ruins for the colony.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>salvagers</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>If the colony agrees, the ruins are marked on the world map. They are within three tiles of the colony, about a day on foot. Send a caravan there within {DAYS}, find the old cache in the ruins and bring it home to the colony. Their people then come for it and pay {ITEM}. Whatever else is lying with the cache, the colony may keep.\n\nIf the cache is not brought home in time, or it is destroyed, {FACTION} will be disappointed in the colony.</li>
+        </terms>
+        <accepted>
+          <li>The ruins are marked on the world map, {TALE}. Send a caravan there and bring the old cache home.</li>
+        </accepted>
+        <ready>
+          <li>The old cache is at the colony, and {FACTION}'s people are coming for it.</li>
+        </ready>
+        <reminder>
+          <li>The old cache in the ruins has not been brought home yet.</li>
+        </reminder>
+        <doneTitles>
+          <li>[returned] {FACTION}'s cache brought home</li>
+        </doneTitles>
+        <done>
+          <li>[returned] The colony brought the old cache home from the ruins, and {FACTION}'s people have it now. They paid {ITEM}.</li>
+        </done>
+        <failTitles>
+          <li>[lost] {FACTION}'s cache is gone</li>
+          <li>[notfound] {FACTION}'s cache was not brought home</li>
+          <li>[ended] {FACTION}'s cache</li>
+          <li>[cancelled] {FACTION}'s cache</li>
+        </failTitles>
+        <fail>
+          <li>[lost] The old cache from the ruins is gone. {FACTION} are disappointed in the colony.</li>
+          <li>[notfound] The colony did not bring the old cache home from the ruins in time. {FACTION} are disappointed in the colony.</li>
+          <li>[ended] {FACTION} no longer need the colony to fetch their cache.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and will not come for the cache.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

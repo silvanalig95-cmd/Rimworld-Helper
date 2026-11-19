@@ -5,6 +5,35 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pick the material
+
+*19 November 2026, version 0.268.1*
+
+- Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.
+- The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.
+- The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.
+
+## The peoples' events, round 4
+
+*19 November 2026, version 0.268.0*
+
+- The learned society examines a colonist who becomes learned enough, in the evening before the colony or quietly. If they pass, they are named a fellow and get a book each season, and with Vanilla Skills Expanded the Researcher expertise.
+- In summer the society's school camps for a week and gives a lesson every afternoon at its table. Lend it your books, and the best student goes home with one.
+- The spacer enclave offers contracts for goods your colony makes, collected by its lander on the day. A broker's pod may also crash on your land with cargo to look after.
+- The river folk ask you to clean water you have fouled and set lanterns on your water on their knot night. When a flood takes their landing they camp on your bank, and their boat-builders build a hull by your water that you can buy as a dinghy.
+- The Lantern Wardens write a great beast your colonist brings down into their book and tie a red cord on the hunter's sleeve. They also come to help against a manhunt, and burn out insect hives near the colony.
+
+## Storylines, round 3
+
+*19 November 2026, version 0.267.0*
+
+- A dream of the gods: one of your devout dreams of a place for their god on your land. Build it, keep a night's watch there, and give the offering the dream asks for.
+- Raiders settling nearby: a neighbour warns of a raiders' camp. Build defences, meet their test raid, and help break the camp, or pay their price each season.
+- The town's well ran dry: send water or meals and lend a miner or builder for a few days. The well is found, or some of the town's people ask to join you.
+- The vault's sealed case: components for a failing vault and an engineer at your bench, then a sealed case left in your care to keep or to open.
+- The lost founder's grave: search a marked area for a people's founder and host their mourners. They come back each year while the grave is kept.
+- A cache in old ruins: the one quest that sends your people out, offered only when the ruins are within three tiles.
+
 ## Letters in plain words
 
 *19 November 2026, version 0.266.9*

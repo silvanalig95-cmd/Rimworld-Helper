@@ -227,6 +227,22 @@ PLAY = {
     "DilemmaEffect_HardBirth": "a birth worked at the mother's side",
     "DilemmaEffect_OldShrine": "stones set and a lamp lit",
     "DilemmaEffect_TwoFaithsApart": "blessed one by one",
+    # The peoples' own events, round 4 (Peoples/Events4/): the examination at the colonist's side, the summer school's camp,
+    # the contract's goods carried out and the fee, the broker carried in, the fouled water cleaned spot by spot, the
+    # lanterns set on the water, the flooded families' camp, the boat-builders' camp, the cord tied at the gate, the
+    # Wardens' fight and the carcasses skinned, the Wardens at the hive.
+    "DilemmaEffect_FellowExamined": "examined before the colony or at their side",
+    "DilemmaEffect_SummerSchool": "a school's camp",
+    "DilemmaEffect_ContractCarry": "the goods carried out",
+    "DilemmaEffect_ContractFee": "the fee carried out",
+    "DilemmaEffect_BrokerPod": "the broker carried in",
+    "DilemmaEffect_FouledClean": "the water cleaned",
+    "DilemmaEffect_KnotLanterns": "lanterns set on the water",
+    "DilemmaEffect_FloodCamp": "a camp on the bank",
+    "DilemmaEffect_BoatBuilders": "a hull built on the bank",
+    "DilemmaEffect_WardensPage": "a cord tied at the gate",
+    "DilemmaEffect_WardensManhunt": "the fight and the skinning",
+    "DilemmaEffect_HiveBurned": "the Wardens at the hive",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

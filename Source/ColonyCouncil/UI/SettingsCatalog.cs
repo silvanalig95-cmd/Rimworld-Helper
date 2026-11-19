@@ -811,9 +811,11 @@ namespace ColonyCouncil
             // The ballroom stands down in a temple, a dining room and a room with only drums (Integrations/BallroomByUse.cs).
             Section("CC_SetSec_Mod_VfeEmpire");
             Mod(Toggle("ballroomByUse", "CC_Settings_BallroomByUse", "CC_SetNote_BallroomByUse", "deepHooks"), VfeEmpireId);
-            // A piece made for someone with Nice Inventory Tab, put on when they are back (Integrations/MadeForWear.cs).
+            // A piece made for someone with Nice Inventory Tab, put on when they are back (Integrations/MadeForWear.cs), and its
+            // material chosen when it is ordered (Integrations/MaterialChoice.cs).
             Section("CC_SetSec_Mod_NiceInventoryTab");
             Mod(Toggle("madeForWearLater", "CC_Settings_MadeForWearLater", "CC_SetNote_MadeForWearLater", "deepHooks"), NiceInventoryTabId);
+            Mod(Toggle("materialChoice", "CC_Settings_MaterialChoice", "CC_SetNote_MaterialChoice", "deepHooks"), NiceInventoryTabId);
             Section("CC_SetSec_Mod_Vte");
             Mod(Toggle("tradeVte", "CC_Settings_TradeVte", "CC_SetNote_TradeVte"), VteId);
             Mod(Toggle("tradeVteHistory", "CC_Settings_TradeVteHistory", "CC_SetNote_TradeVteHistory", "tradeVte"), VteId);

@@ -31,6 +31,44 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.268.1</version>
+        <date>19 November 2026</date>
+        <title>Pick the material</title>
+        <points>
+          <li>Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.</li>
+          <li>The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.</li>
+          <li>The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' events, round 4</title>
+        <points>
+          <li>The learned society examines a colonist who becomes learned enough, in the evening before the colony or quietly. If they pass, they are named a fellow and get a book each season, and with Vanilla Skills Expanded the Researcher expertise.</li>
+          <li>In summer the society's school camps for a week and gives a lesson every afternoon at its table. Lend it your books, and the best student goes home with one.</li>
+          <li>The spacer enclave offers contracts for goods your colony makes, collected by its lander on the day. A broker's pod may also crash on your land with cargo to look after.</li>
+          <li>The river folk ask you to clean water you have fouled and set lanterns on your water on their knot night. When a flood takes their landing they camp on your bank, and their boat-builders build a hull by your water that you can buy as a dinghy.</li>
+          <li>The Lantern Wardens write a great beast your colonist brings down into their book and tie a red cord on the hunter's sleeve. They also come to help against a manhunt, and burn out insect hives near the colony.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.267.0</version>
+        <date>19 November 2026</date>
+        <title>Storylines, round 3</title>
+        <points>
+          <li>A dream of the gods: one of your devout dreams of a place for their god on your land. Build it, keep a night's watch there, and give the offering the dream asks for.</li>
+          <li>Raiders settling nearby: a neighbour warns of a raiders' camp. Build defences, meet their test raid, and help break the camp, or pay their price each season.</li>
+          <li>The town's well ran dry: send water or meals and lend a miner or builder for a few days. The well is found, or some of the town's people ask to join you.</li>
+          <li>The vault's sealed case: components for a failing vault and an engineer at your bench, then a sealed case left in your care to keep or to open.</li>
+          <li>The lost founder's grave: search a marked area for a people's founder and host their mourners. They come back each year while the grave is kept.</li>
+          <li>A cache in old ruins: the one quest that sends your people out, offered only when the ruins are within three tiles.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.9</version>
         <date>19 November 2026</date>
         <title>Letters in plain words</title>

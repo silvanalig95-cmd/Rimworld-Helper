@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S6, a dream of the gods (Source/ColonyCouncil/Storylines/StorylineDream.cs; the rules in
+       Storylines/Flows/DreamFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml).
+       The gods are unseen: everything here is the dreamer's own account, and the god is named only by the name the colony
+       knows it by. {GIVER} is the dreamer, {NAME} their god, {KIND} the colony's word for a god's place (a shrine, a chapel,
+       a church), {WAY} which way the place lies from the colony, {ITEM} the offering the dream asks for (in its terms), the
+       place built or who kept the watch (in its letters), {DAYS} the time once taken on. Lines tagged [priest] are for a
+       dreamer who is the colony's priest. -->
+
+  <!-- ===================== Part 1: the place in the dream ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_DreamPlace</defName>
+    <label>a dream of a place for a god</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DreamPlace</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{GIVER}'s dream</li>
+        </titles>
+        <texts>
+          <li>[!priest] {GIVER} woke this morning and told the others at breakfast about a dream. In it, {GIVER} says, {NAME} showed them a place on the colony's land, {WAY} of the colony, and asked for a {KIND} to be built there.</li>
+          <li>[priest] {GIVER}, who leads the colony's prayers, told the others at breakfast about a dream. In it, {GIVER} says, {NAME} showed them a place on the colony's land, {WAY} of the colony, and asked for a {KIND} to be built there.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Build it</label>
+            <outcome>The colony will build a {KIND} where {GIVER} dreamed it.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{GIVER} will be disappointed.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[built] This is the place I saw in my dream.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>dream</story>
+        <part>place</part>
+        <start>true</start>
+        <terms>
+          <li>The place {GIVER} saw is marked on the map. If the colony agrees, it has {DAYS} to build an altar, a shrine or a work of art inside the marked area. Once one stands there, someone of the colony will go and give it to {NAME}.\n\nIf it is built and given to {NAME} in time, {GIVER} will be glad. If not, {GIVER} will be troubled for a while.</li>
+        </terms>
+        <accepted>
+          <li>The place {GIVER} dreamed of is marked on the map, {WAY} of the colony. Build an altar, a shrine or a work of art inside it.</li>
+        </accepted>
+        <reminder>
+          <li>Nothing for {NAME} has been built yet at the place {GIVER} dreamed of.</li>
+        </reminder>
+        <notes>
+          <li>[standing] A place for {NAME} stands where {GIVER} dreamed it. Someone of the colony will go and give it to {NAME}.</li>
+        </notes>
+        <endTitles>
+          <li>[built] A {KIND} for {NAME}</li>
+          <li>[notbuilt] {GIVER}'s dream</li>
+        </endTitles>
+        <ends>
+          <li>[built] The colony built {ITEM} where {GIVER} dreamed it, and gave it to {NAME}. {GIVER} is glad.</li>
+          <li>[notbuilt] Nothing was built for {NAME} at the place {GIVER} dreamed of, and {GIVER} is troubled by it.</li>
+        </ends>
+        <good><li>built</li></good>
+        <bad><li>notbuilt</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the watch at the place ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_DreamWatch</defName>
+    <label>a watch at the new place</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DreamWatch</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A watch at the new {KIND}</li>
+        </titles>
+        <texts>
+          <li>A few days ago the colony built a {KIND} for {NAME} where {GIVER} dreamed it. Now {GIVER} wants someone to keep a watch there one night, and says something will happen there.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep the watch</label>
+            <outcome>{GIVER} will go out to the {KIND} at night.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>Nobody will keep a watch at the {KIND}.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[seen] Did you see that light over the {KIND}?</li>
+          <li>[unwatched] I waited, but nobody kept the watch with me.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>dream</story>
+        <part>watch</part>
+        <terms>
+          <li>If the colony agrees, someone of the colony needs to be at the {KIND} for two hours of the night, between nine in the evening and four in the morning, within the next three nights. {GIVER} goes out to it each night, and anyone of the colony there counts.\n\nIf nobody keeps the watch, nothing more is asked of the colony now.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} will go out to the {KIND} at night to keep the watch.</li>
+        </accepted>
+        <endTitles>
+          <li>[seen] A light at the {KIND}</li>
+          <li>[unwatched] No watch at the {KIND}</li>
+        </endTitles>
+        <ends>
+          <li>[seen] {ITEM} was keeping the watch at the {KIND} in the night when a light came over it for a short while. {GIVER} says this is what the dream meant.</li>
+          <li>[unwatched] Nobody of the colony kept the watch at the {KIND} for long enough, and nothing was seen there.</li>
+        </ends>
+        <good><li>seen</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the offering ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_DreamOffering</defName>
+    <label>an offering asked in a dream</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DreamOffering</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{GIVER}'s dream again</li>
+        </titles>
+        <texts>
+          <li>[seen] A few days ago a light was seen over the new {KIND} during the watch. Last night {GIVER} had the same dream again, and says {NAME} asked for an offering to be left at the {KIND}.</li>
+          <li>[nowatch] A few days ago {GIVER} asked for a watch at the new {KIND}, and nothing was seen there. Last night {GIVER} had the same dream again, and says {NAME} asked for an offering to be left at the {KIND}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Give the offering</label>
+            <outcome>The colony will leave an offering at the {KIND}.</outcome>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>{GIVER} will be troubled for a while.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[given] I am glad we did what my dream asked.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>dream</story>
+        <part>offering</part>
+        <terms>
+          <li>{GIVER} says {NAME} asked for {ITEM}. If the colony agrees, it has {DAYS} to leave it at the {KIND}. {GIVER} will carry it there if the colony's stores have it.\n\nIf it is given, {GIVER} will be glad and will remember it. If it is refused or not brought in time, {GIVER} will be troubled for a while.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} will carry {ITEM} to the {KIND} if the colony's stores have it.</li>
+        </accepted>
+        <endTitles>
+          <li>[given] The offering at the {KIND}</li>
+          <li>[notgiven] No offering at the {KIND}</li>
+        </endTitles>
+        <ends>
+          <li>[given] The colony left {ITEM} at the {KIND}, as {GIVER}'s dream asked. {GIVER} is glad, and believes {NAME} wanted it.</li>
+          <li>[notgiven] Nobody left {ITEM} at the {KIND} in time, and {GIVER} is troubled by it.</li>
+        </ends>
+        <good><li>given</li></good>
+        <bad><li>notgiven</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

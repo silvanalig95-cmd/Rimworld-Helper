@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -213,7 +213,7 @@ Where it lives:
 - World events: an old vault opened, a comet.
 - Favoured camps: scholars, surveyors, the teacher, the monolith's watchers.
 
-18. **(gift) The fellowship examined.**
+18. **(gift) The fellowship examined.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When a colonist reaches Intellectual 12, a fellow comes, and that evening examines them in a disputation at the gathering spot.
     - If they pass (Intellectual and Social; the chance is on the card), they are named a corresponding fellow:
       - a lasting memory and the region's word (a deed);
@@ -235,7 +235,7 @@ Where it lives:
     - A cart fetches them later, with thanks (+8) and one book left behind. A book lost or sold is a lasting wrong.
     - Reuses: the trust shape of item 1, the ledger, deeds. **Medium.**
 
-21. **(camp) The summer school.**
+21. **(camp) The summer school.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - In summer, two or three fellows camp for a week and give a lesson each afternoon at their table.
     - The colony may send one or two colonists a day (Intellectual, Medicine or Social), lend the fellows books, and feed them. The best student goes home with a book, and is likelier to be examined (18).
     - It can turn: two fellows fall into a disputation that the colony's talker can end, or it ends in a sulk and unease.
@@ -256,14 +256,14 @@ Where it lives:
     - Mods: Alpha Implants.
     - Reuses: the lander, the operation, the debts by size, `Tell.Ask`. **Medium.**
 
-23. **A contract to the last digit.**
+23. **A contract to the last digit.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - A contract for something the colony makes (meals, cloth, beer, drugs, art, components), due in 15 to 30 days, at a fifth over its worth.
     - On the day, their lander comes down at the trade spot and the marshals carry the goods aboard.
     - Short or late is a default: a fee, and cooler terms. Delivered in full, a bigger contract follows.
     - Ages: a runner and porters on foot for a tribal or medieval colony.
     - Reuses: quests (deliveries), the lander. **Medium.**
 
-24. **Stranded with something to sell.**
+24. **Stranded with something to sell.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - A broker's pod comes down hard on the colony's land (the game's pod crash), with the broker hurt among the cargo.
     - If the colony rescues and tends them, the lander comes for them two or three days later, and they pay a fifth of the cargo (+10).
     - Robbing the pods is the colony's choice, and earns the enclave's lasting grudge.
@@ -290,20 +290,20 @@ Where it lives:
     - Ages: rope and plank, then timber on piles.
     - Reuses: `PeopleTowns.LayDocks`, play-out work with a bar. **Medium.**
 
-27. **Fouled water.**
+27. **Fouled water.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When the colony fouls water (Biotech pollution or wastepacks near a river or lake, or rotting corpses in it), a river warden walks to the spot and asks for it to be cleaned.
     - If the colony cleans it (its hands and the warden, a bar): +5, and their catches come again.
     - If not: a wrong in their memory, and the boat-trader and the nets stop coming.
     - Ages: corpses in any age; pollution from the industrial age.
     - Reuses: deeds, play-out work. **Medium.**
 
-28. **Lanterns on the water.**
+28. **Lanterns on the water.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - On their knot night, boatmen set floating lanterns at dusk on the colony's water for everyone it lost or took in, and the colony gathers on the bank.
     - Those who come keep a memory of it.
     - Mods: with Goji's Fantasy Race: Merren, its floating lanterns stay on the water; otherwise candles on the bank.
     - Reuses: the vigil play-out, the calendar. **Small.**
 
-29. **(camp) Flooded out.**
+29. **(camp) Flooded out.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When the river rises at a landing (the flood world event), boats of families camp on the colony's bank for 5 to 10 days, nets out under a tarp.
     - They ask for a dry place and food until their catch comes in, and offer fish and net-mending. Two may ask to stay for good.
     - Leaving, they tie a knot in the net for the colony (+12) and leave their drying racks.
@@ -311,7 +311,7 @@ Where it lives:
     - With Hospitality, they are its guests.
     - Reuses: the refugees' camp shape, the fishers' work, joining. **Small.**
 
-30. **(camp) The boat-builders.**
+30. **(camp) The boat-builders.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - Three or four camp by the colony's water for a week, fell wild trees, and a hull grows on the bank day by day.
     - The colony's crafter may work beside them (a lesson).
     - With Vehicle Framework and Vanilla Vehicles Expanded, they offer the finished dinghy for wood and silver. Otherwise they float it home and leave their boat shed standing.
@@ -325,20 +325,20 @@ Where it lives:
 - The old beast (world event).
 - Favoured camps: hunting party, road wardens, beast-catchers.
 
-31. **(gift) A page in the book.**
+31. **(gift) A page in the book.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When a colonist kills a legend, a beast nemesis or a pack's alpha, a Warden comes to write it in the book and ties a red cord on the hunter's sleeve at the gate.
     - The hunter gets a lasting memory and the region's word. With Vanilla Skills Expanded they get the Hunter expertise; otherwise a passion in the skill that made the kill.
     - The Wardens give +6, and ask for the pelt for their hall at twice its worth.
     - Mods: Megafauna, Dinosauria, ReGrowth (the beasts that make legends).
     - Reuses: the kill as the happenings see it, gifts, deeds, the pelt-buyer. **Small.**
 
-32. **Wardens at the manhunt.**
+32. **Wardens at the manhunt.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When a manhunting pack or a mad beast besets the colony, two to four Wardens come at a run and fight beside it under the hunt's lord.
     - Afterwards they skin what they felled and split it as on the hunt. The fight is the game's own; the help is free; the Wardens give +3.
     - Ages: their age's arms, guns from the industrial age.
     - Reuses: the hunt's lord and skinning, arrivals. **Medium.**
 
-33. **The hive burned.**
+33. **The hive burned.** *(Built, round 4: `Source/ColonyCouncil/Peoples/Events4/`.)*
     - When insects dig in near the colony (the game's infestation, or Vanilla Factions Expanded - Insectoids 2's hives), the Wardens come with fire and ask to go in beside the colony's fighters.
     - Together they burn it out (the game's fight). Alone, they go in while the colony watches. Refused, they wait at the edge in case.
     - Ages: torches, molotovs, incinerators.

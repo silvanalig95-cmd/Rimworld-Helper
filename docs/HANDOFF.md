@@ -33,16 +33,15 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers).
+   lists each round's numbers). Round 4 is built, not released (the entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
    numbered proposals and the lead's first batch); nothing is built until the player picks from it.
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
-7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
-   entries below).
+7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
+   the mood (0.266.7), choosing the material from the gear tab (built), a god's mark worth having (being built).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -134,19 +133,9 @@ repo.
   what was left.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
   The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
-- **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
-  player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
-  would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
-  basically create the task and then have to go to the task in the tailor's table or whatever and kind of go deselect all
-  materials and then only enable those that I actually want them to use ... when I select the open item slot, select the
-  item that I want to create, and then I have to select where it's created from, and then maybe I could also immediately
-  select which material it uses. So it would just list or show materials that I have enough of for the job, and then
-  create the job, but only select this one material as a allowed material and by default deselect everything else". The
-  mod is Nice Inventory Tab (its DLL decompiled in the session's scratchpad, `nit_out2/`: its slot's float menus, then
-  `BillFinished_Patch.Register` for the bill). **The lead's proposal**: after the bench is chosen, one more menu step
-  listing the stuff the colony holds enough of for one piece (by the recipe's stuff cost, counted on the map), each with
-  how much there is; the bill then made with only that stuff allowed in its ingredient filter; "any material" kept as the
-  first choice for the mod's own way.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
+  when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
+  now one entry above the newest release line ("Choose the material when ordering a piece").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -171,14 +160,14 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); rounds 4 to 10 are held until
-  they ask. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 is built, not released,
+  on the player's go of 19 November 2026 ("Events sounds great"), and rounds 5 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
-  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
+  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Built, not released (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
@@ -192,7 +181,9 @@ repo.
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 waits for the go (16 November 2026).** The player: "the next thing to include
+  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 built (not released) on the player's go of 19
+    November 2026 ("Quests round 3 sounds great"; the entry "Storylines, round 3, and the one away quest" above the newest
+    release line).** The player: "the next thing to include
     will be more quests, and quests that are storylines across multiple quests". The go, 16 November 2026: "go ahead
     with quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
@@ -202,8 +193,8 @@ repo.
     was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
     was released on the player's "great, do some more" (16 November 2026): the seven single quests (Q3, Q4, Q6, Q8,
     Q11, Q12 and Q13) as 0.263.0 ("Quests at home, round 2") and the storylines S2, S3, S5 and S7 as 0.264.0
-    ("Storylines, round 2"). Round 3 waits, and
-    the player can strike or change anything in it before it starts.
+    ("Storylines, round 2"). Round 3 (S6, S9, S10, S11, S12 and Q14) is built, not released: every storyline and quest of
+    the plan is now built.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -365,6 +356,232 @@ repo.
     the pitches; in a colony with turrets researched, look for "turrets on the approaches", and in a small one "two
     healers, two cooks". Watch a colonist choose a life goal (the message at the top) and reach one (the letter).
   - **Mods that would help.** None for this; it is text only.
+- 0.268.1, **Choose the material when
+  ordering a piece** (19 November 2026). The player: "when you know giving a order through the inventory to create like a
+  piece of clothing or armor or whatever, it would really be cool to also be able to select from which material that
+  piece of clothing should be made. I mean, now I basically create the task and then have to go to the task in the
+  tailor's table or whatever and kind of go deselect all materials and then only enable those that I actually want them
+  to use ... when I select the open item slot, select the item that I want to create, and then I have to select where
+  it's created from, and then maybe I could also immediately select which material it uses. So it would just list or
+  show materials that I have enough of for the job, and then create the job, but only select this one material as a
+  allowed material and by default deselect everything else, so that I'm sure it doesn't use anything else." The lead's
+  proposal: after the bench is chosen, one more menu step listing the stuff the colony holds enough of for one piece (by
+  the recipe's stuff cost, counted on the map), each with how much there is; the bill made with only that stuff allowed
+  in its ingredient filter; "any material" kept as the first choice for the mod's own way. The go: "yes, please", "all
+  the three". DESIGN.md "Choose the material when ordering a piece from the gear tab".
+  - **What the DLL shows** (Nice Inventory Tab, `andromeda.niceinventorytab`, and its FloatSubMenu helper, decompiled
+    with ilspycmd in the scratchpad, never loaded): the empty slot's menu (`ApparelSlotUtility.OpenFloatMenu`), "Make",
+    a piece (`MakeSubMenusToCraft`: a sub-menu of benches, and the piece's own line for its first bench) all end in
+    `CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`, which makes the bill
+    (`recipe.MakeNewBill()`), registers it for `ITab_Pawn_Gear_Patch.lastPawn` (`BillFinished_Patch.Register`), renames
+    it, adds it to the bench, gives its message and jumps the camera. Only apparel is offered there.
+  - **What was built.** A prefix on `CommandCreate` (by name, standing down without the mod) opens the material step for
+    a piece made from a material: "Any material" first, then each material the recipe's material ingredient takes for
+    the piece (`GenStuff.AllowedStuffsFor`, the ingredient's filter and the recipe's fixed filter; never a fixed
+    ingredient) with enough on the map for one piece (spawned, seen, not forbidden; one piece's need by
+    `IngredientCount.CountRequiredOfFor`), the most pieces first, then by name, each with how much is on hand, its own
+    icon and a tooltip of what one piece takes; a greyed line when none has enough. Either choice calls the mod's own
+    `CommandCreate` (the prefix lets Rimfolk's call through), for the colonist the menu was opened for; for a material,
+    the new bill's ingredient filter then allows only that one (the others the ingredient takes unticked; hit points,
+    quality and other ingredients left alone). A piece not made from a material goes straight on. Setting
+    `materialChoice` (on, deeper hooks; Your other mods, Nice Inventory Tab). Almanac (Quality of life mods, the Nice
+    Inventory Tab paragraph) and README.
+  - **Code map**: `Integrations/MaterialChoice.cs` (new: `MaterialChoice.StuffIngredient`, `Have`, `Offer`, `Make`,
+    `OnlyThis`; `Patch_MaterialChoiceOrder`), `Integrations/MaterialChoiceMath.cs` (new, pure, linked in the tests:
+    `Enough`, `Pieces`, `Offered`), `CouncilSettings.cs` and `UI/SettingsCatalog.cs` (`materialChoice`), Keyed
+    `Rimfolk_MaterialChoice.xml` (new). Tests: `MaterialChoiceTests` (new).
+  - **Can't be checked without the game**: the menu opening after the bench is clicked inside the mod's sub-menus (the
+    mod's menus close and Rimfolk's opens where the mouse is), the material icons and tooltips, the bill's ingredient
+    filter shown with only the chosen material ticked, the piece made from it and still put on by the one it was for.
+  - **Try in the game**: on a colonist's gear tab (Nice Inventory Tab) click an empty slot, "Make", a duster or a
+    parka, then a tailoring bench: a menu "Material for the duster" lists "Any material" and the fabrics and leathers
+    with enough on hand, most first ("Cloth (340 on hand)"); pick one, open the bench's bill: only that material is
+    ticked; once made, it is of that material and the colonist puts it on. A piece not made from a material (a flak
+    vest) goes straight to the bill as before; "Any material" leaves the bill as the mod makes it; with the setting
+    off, no material step.
+  - **Mods that would help**: none; the mod's own menus and the game's material icons are enough.
+- 0.268.0, **The peoples' own events, round 4**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 of `docs/peoples-events-proposals.md` (eleven: the brief said ten,
+  its list has eleven, all built): the learned society's fellowship examined and its summer school; the spacer enclave's
+  contract to the last digit and its broker stranded by a pod crash; the river folk's fouled water, lanterns on the water,
+  families flooded out and boat-builders; the Lantern Wardens' page in the book, their run to a manhunt and the hive
+  burned. DESIGN.md "The peoples' own events, round 4" has every rule; README "The peoples' own events, the fourth
+  round"; the Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesC.xml and
+  Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events4/` (new): `PeopleEvents4Math.cs` (pure, linked), `PeopleEvents4Book.cs` (a
+    game component: fellows, the examined, best students, contracts, pods, fouled water, lanterns, pages, the examination
+    waiting), `PeopleEvents4.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv4Work` and its `PEv4Work` marks),
+    `Fellowship.cs` (18), `SummerSchool.cs` (21, `CampWorker_SummerSchool`), `EnclaveContract.cs` (23, the due day's event),
+    `BrokerPod.cs` (24, the lander), `FouledWater.cs` (27), `KnotLanterns.cs` (28), `FloodedOut.cs` (29,
+    `CampWorker_FloodedOut`), `BoatBuilders.cs` (30, `CampWorker_BoatBuilders`), `WardensPage.cs` (31), `WardensManhunt.cs`
+    (32), `HiveBurned.cs` (33), `PeopleEvents4Debug.cs`. Small hooks: `PeopleEvents3.Hour` and `Hourly` (round 4's, one line
+    each), `HappeningTracker.DeathNote.great` (a great beast's kind taken before its death) and `Notify_Killed` (the page,
+    the manhunt's kills), `Interplay.Notify_GatheringOver` (`Fellowship.GatheringOver`), `HappeningWorker_RiverCatch` and
+    `HappeningWorker_RiverNets` (stopped while fouled water is left), `DilemmaEffect_KnotRest` (lanterns at a crossing),
+    `FactsMath` (the three camps' tags), round 1's `PeopleWorkOn` (a "quiet" mark), `Integrations/Expertise.cs` (`CanGive`,
+    `Give`: an expertise by the mod's own tracker). Defs: `Rimfolk_Events_PeopleEvents4.xml` (twelve events; four fired
+    from code: the contract's day, the knot night's lanterns, the page, the manhunt), `Rimfolk_CampKinds_PeopleEvents4.xml`
+    (three camps), `Rimfolk_PeopleEvents4_Misc.xml` (ten jobs, the red cord, the hull's three stages, four moods and the
+    sting's mood hint), Keyed `Rimfolk_PeopleEvents4.xml`, `Textures/ColonyCouncil/Things/BoatHull_1..3.png` (drawn by
+    `Tools/make_boat_hull.py`). Tools: the play-out audit's effects and three skips, the save model's lists.
+  - Decided here (open in the proposals): the examination's verdict comes at the evening's end (as the palmer's table),
+    the quiet one is heard by nobody and stings nobody; a declined examination waits sixty days like a failed one; the
+    school's sulk stops the day's lessons and raises the camp's tension (no mood); the contract's goods are found from the
+    colony's own benches and stores, and an unpaid fee goes into the colony's debts (round 2's terms' way); a crate missing
+    when the lander comes counts as taken, even one hauled and merged into the stores; fouled water needs a body half a
+    day in it, a wastepack or poisoned ground within three cells; without Merren the knot night's lanterns are torches on
+    the bank taken back in the morning, and an unanswered letter lets them set them; where a crossing of theirs stands the
+    crossing's rest sets them, so there is only one letter that night; the flooded families' racks are VFE Classical's or
+    Vanilla Furniture Expanded - Props and Decor's, and their old and young become Hospitality's guests only with it (the second answer greyed out
+    without it); the boat-builders' refused trees mean the camps' own felling is held at nought; the Wardens' manhunt
+    letter comes once they are already fighting, so no answer means the hunt's own terms (default the first answer); the
+    hive's torch-age Wardens hold torches to the hives when they stand by one and are not fighting.
+  - Harm: only the flooded families' flu (`HarmKinds.CampFever`, 0.06 once a stay, the illness budget); the broker's crash is
+    the game's own pod crash (`HealthUtility.DamageUntilDowned`, as the field sickhouse's patients); the fights at the
+    manhunt and the hive, the fire and the insects are the game's own. No new harm kind.
+  - Tests: `Tools/Tests/PeopleEvents4Tests.cs` (about 200 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the gathering's verdict at its end, the fellow at the
+    colonist's side, the book's courier, the school's table and the lessons following the fellow there, the books carried
+    out and dropped back, the argument and the talker's walk, the lander's pods and the marshals carrying goods, the
+    pod crash and the broker's pod opening, the rescue to a bed and the guest tended, the marshals carrying the broker off,
+    the crates lifted, the warden's and colonist's cleaning, Biotech's pollution cleared, the boatmen setting Merren's
+    floating lanterns on water (a building spawned on water) or torches, the vigil at their light, the flood camp's racks and
+    fishing, the hand-over to Hospitality's guests and their stay's end, the hull's stages and the builders at it, Vehicle
+    Framework's `GenerateVehicle` for the dinghy and the boat on the water, the red cord on the arm, VSE's expertise added by
+    reflection (the tracker's own Add method looked up by its first argument), the Wardens' assault on the manhunters and
+    the dressing, the hive's assault, the arms by age and the torches' fire).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 4: what the record keeps (log)" shows the state and what each
+    event would find here; fire each event with the game's own incident tool, each needs what it says): 1. The fellowship:
+    a colonist at Intellectual 12, the society at peace: `Rimfolk_Evt_FellowExamined`; the card shows the chance; the
+    evening's gathering and the verdict at its end, or the quiet examination with a bar; passed: the message, the mood,
+    the expertise with VSE, and a book at the gate fifteen days on. 2. The summer school: summer: `Rimfolk_Evt_SummerSchool`
+    (or "Peoples' events 4: one of their camps here now..."); in the afternoon send colonists from the camp's page (two a
+    day), lend books; "Peoples' events 4: the school's disputation now" and end it from the page; when they go, the books
+    and the best student's textbook by their camp. 3. The contract: a cooking bench, barrel, drug lab, sculptor's table,
+    fabrication bench or cotton, the enclave at peace: `Rimfolk_Evt_EnclaveContract`; sign; "Peoples' events 4: the
+    enclave's contract due now"; the pods at the trade spot, hand over all, what you have, or default (the fee carried or
+    owed). 4. The pod: `Rimfolk_Evt_BrokerPod`; the crash on the land; bring the broker in; "Peoples' events 4: the broker's
+    lander now"; the marshals carry the broker off and lift the crates, the fifth paid; or take the cargo. 5. Fouled water:
+    a corpse lying in a river or lake half a day (or a wastepack by it, or Biotech pollution on the bank), the river folk at
+    peace: `Rimfolk_Evt_FouledWater`; the warden at the spot; clean it together, or leave it (the boat-trader and nets stop).
+    6. Lanterns: water on the map, the river folk at peace: "Peoples' events 4: the knot night's lanterns now"; the boatmen
+    at the bank with their light, gather, the lanterns set (Merren's floating ones stay), the torches gone in the morning.
+    7. Flooded out: start `Council_WS_Flood` ("Start world event..."), fresh water: `Rimfolk_Evt_FloodedOut`; the second
+    answer with Hospitality; the camp's racks, fishing, the food letter, the guests; the knot as they go. 8. The
+    boat-builders: water and ten wild trees: `Rimfolk_Evt_BoatBuilders`; "Peoples' events 4: the hull a stage on now" to
+    see the stages; buy the dinghy from the page (Vehicle Framework and Vanilla Vehicles Expanded). 9. The page: a legend,
+    nemesis or alpha (the beasts' dev actions) killed by a colonist; "Peoples' events 4: the Wardens' page waits no longer";
+    the keeper at the gate; the cord tied (health tab), the expertise or passion. 10. The manhunt: a manhunter pack (the
+    game's incident), the Wardens at peace: "Peoples' events 4: the Wardens to the manhunt now"; they come in fighting;
+    afterwards they skin their kills. 11. The hive: the game's infestation: `Rimfolk_Evt_HiveBurned`; together (draft
+    colonists near the hive), alone, or watch.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Skills Expanded, Goji's
+    Fantasy Race: Merren, Hospitality, VFE Classical, Vanilla Furniture Expanded - Props and Decor, Vehicle Framework with Vanilla Vehicles Expanded,
+    Vanilla Factions Expanded - Insectoids 2, Vanilla Food Variety Expanded's recipe book). For a boat-building look beyond the
+    drawn hull, Vanilla Vehicles Expanded's own dinghy is already used when it is bought.
+- 0.267.0, **Storylines, round 3, and the one
+  away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
+  grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3
+  sounds great"; the first go's words still bind (16 November 2026): "go ahead with quests and storylines, make sure they
+  are written in the more clear style i mentioned earlier on", "and while quests that require you to go out of your base
+  are interesting, i hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these
+  quests to a minimum", "unless it's like within only very few tiles". Round 3 of `docs/quests-proposals.md` (S6, S9, S10,
+  S11, S12 and Q14, each marked built there), on the 0.262.0 frame and round 2's flows. DESIGN.md "Storylines, round 3,
+  and the one away quest" has all of it; README the missions and storylines paragraphs; the Almanac's Rimfolk events page,
+  Missions and Storylines (keywords unchanged). With this, every storyline and quest of the plan is built.
+  - **What was built.** **S6, a dream of the gods**: a devout colonist whose god the colony knows dreams of a place on the
+    colony's land (an area marked on the map) and of a place for the god there; the colony builds an altar, a shrine or a
+    work of art inside it, and the worship's own dedication gives it to the god; then a night's watch there (the dreamer
+    walks out to keep it), and partway through it a light comes over the place (the god's own sign, `Worship.Sign`, named
+    only as the colony may); then the dream comes back and asks for an offering of a kind the god likes, the worship's own
+    demand of a dream. Given: the colony's book keeps it as the dreamer believes it, and the dreamer is honoured (a mood);
+    refused or not brought: the dreamer is troubled for a while. The dream as told goes in their journal and the book.
+    **S9, raiders settling nearby**: a people near the colony warns of raiders setting up a camp (the region's kind of camp
+    by their age); defences (traps or turrets, or lengths of wall; ready, the watch sees the raid coming); a small raid
+    that tests the colony (the game's own, within the harm budget); a strike on the camp, joined by the colony's caravan
+    beside the neighbours' fighters when the camp is within three tiles, else food and medicine for their fighters; the
+    camp gone, or the raiders' price each season for a year (paid, carried out to the edge of the land; refused, they come
+    for it). **S10, the town's well ran dry**: water (Dubs Bad Hygiene's, where the colony keeps it) or meals collected by
+    their carts; a miner or builder lent, who walks off with their foreman for four to six days and walks home more
+    skilled, with wages; the well found by their skill's chance (the town grows), or not (two to four of its people ask to
+    join). **S11, the vault's sealed case**: components for the vault's power cells (keeping a declining people's age, as
+    the vault's own mission does); an engineer who works a few hours a day at one of the colony's benches on a component a
+    day; a sealed case left by the stores, and a card: keep it sealed and hand it back (the vault owes a favour) or open
+    it (a sleeper who joins or leaves, the game's own machine within the harm budget, or old goods). **S12, the lost
+    founder's grave**: a marked area searched spot by spot with a right-click (the keepsake's way), the grave marked;
+    mourners for a day at the colony's table; kept, they come each year for three years; built over, they hold it against
+    the colony. **Q14, a cache in old ruins**: a neighbour's old map (by their age) shows a cache within three tiles; the
+    game's own item stash site holds it; a caravan brings it home, their people collect it and pay, and what else lay with
+    it is the colony's.
+  - **Decided here** (not asked): S6's parts are the colony's own missions, with no people of the world behind them (a
+    small change to the shared missions, `HappeningWorker_Mission.OfTheColony`), and so is the raiders' price; the dreamer
+    must be devout and no scoffer, their god known to the colony by name and one that takes offerings (the priest three
+    times likelier); "something happens at what was built" is a night's watch with a light over the place (the god's sign,
+    as plainly as the god's nearness allows), and with no watch kept the dream comes back all the same; the offering is
+    "given" once it is set down at the place (what the god does with it stays the worship's own); S9 never starts while one
+    of the region's own raiders' camps stands near the home, and its camp is placed when the strike is asked (within two
+    to three tiles, else farther off); "keep watch" is the colony's watch seeing the raid coming when the defences are
+    ready; the test raid is half the threat now, at 85 in a hundred within the harm budget (held back: they did not come);
+    turning the raid down ends it with the colony keeping out of it (no fight comes unasked, as with the beast); the strike
+    declined, the neighbours alone clear it about a third of the time; the price is about half their raid's strength,
+    asked as a part of its own each season, four times, then they move on; S10's "a builder or driller lent" is the
+    colony's best at Mining or Construction (6 or more, never one of its last two hands), who walks off the map with their
+    foreman and is kept in the world while away, as the game keeps lent colonists, rather than a caravan of the colony's on
+    the world map (rule 2 kept: nobody of the colony goes anywhere the player must send them); its refugees join at the
+    gate (turned away, they go on to another town); S11's engineer pays half again for the components used, and the case's
+    card defaults to keeping it sealed; opened, the vault hears of it (-15); the machine is the game's own mechanoid at a
+    third of the threat now; S12's giver is the Quiet Bell first; not found in time, one of theirs comes and finds it, so
+    the story goes on; its marker is the colony's own (taking it down counts as building over it); Q14 is at half a quest
+    at home's chance (0.15), six to ten days by the distance, and holds no fight of its own. A new harm kind,
+    `HarmKinds.StoryFight` (system "quests"), for a fight a storyline brings. All first parts' base chance 0.4.
+  - **Code map**: `Source/ColonyCouncil/Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`,
+    `GraveFlow.cs`; pure, linked whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs` (a marked area and its
+    overlay, the search job and its right-click, goods collected, the dev actions), `StorylineDream.cs`, `StorylineRaiders.cs`,
+    `StorylineWell.cs` (with `JobDriver_StorylineLentOut`), `StorylineVault.cs` (with `JobDriver_StorylineBenchWork`),
+    `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked), `Missions/Workers_MissionHome5.cs`
+    (`HappeningWorker_MissionRuinsCache`, `Patch_HomeQuestRuinsCache`). Changed, small: `Missions/Workers_Missions.cs` and
+    `Missions/Missions.cs` (`OfTheColony`), `Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs` (the cache),
+    `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`), `Tools/make_quest_items.py` (three pictures), `Tools/playout_skips.txt`
+    (five answers played out by the parts' own code). Defs: `Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`,
+    `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`, `_Well.xml`, `_Vault.xml`, `_Grave.xml`,
+    `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`; Keyed `Rimfolk_Storylines3.xml`,
+    `Rimfolk_Missions_Home3.xml`; textures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png`. No new saved
+    collection. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (new), `StorylineTests` (the twelve kinds and
+    the new words), `HarmBudgetTests` (the new kind), `NeighboursFourTests` (the cache in the one draw).
+  - **Can't be checked without the game**: the marked areas drawn on the map and the right-click search; a shrine built in
+    the dream's area being dedicated by the worship's own walk; the dreamer walking out for the night's watch and the sign's
+    presence moment at the place; the offering carried to the place by the dreamer; the raid letters (Rimfolk's above the
+    game's), the watch's warning, the raiders' camp site and its map, the neighbours' fighters coming onto it and going
+    after the raiders, the silver carried out to the edge; the lent colonist walking out with the foreman, being kept in the
+    world (gone from the colonist bar) and walking home with their wages and skill; the refugees joining at the gate; the
+    engineer working at a bench (the smithing look and sound) and the component taken each day; the case set down, the
+    card, a sleeper, a machine or goods coming out of it; the grave marker set, the mourners' day, the yearly visits; the
+    ruins' map with the cache inside the item stash, the caravan bringing it home and their people collecting it; how often
+    each comes in a real game.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk; one mission at a time, so end any open one first): 1.
+    "Storylines: start a dream of the gods now" (needs Worship on, a devout colonist whose god the colony knows):
+    accept; build an altar or a sculpture inside the drawn area; someone walks over to give it to the god ("Storylines: what
+    the open part waits for comes now" gives it at once); "Storylines: the next part (or ending) due now": the watch; at
+    night the dreamer walks out (or "what the open part waits for comes now" for the sign); next part: the offering. 2.
+    "Storylines: start raiders settling nearby now" (battles on): accept, build traps; "what the open part waits for comes
+    now" judges the defences; next part due: the raid ("... comes now" sends it); then the strike (near: a camp on the
+    world map, send a caravan; far: meals and medicine in the stockpiles); "Storylines: end the current part with..." (raid:
+    overrun) for the price. 3. "Storylines: start the town's well ran dry now": accept, put meals in the stockpile; next
+    part: the foreman comes ("... comes now"), the colonist walks out with them; "... comes now" again brings them home. 4.
+    "Storylines: start the vault's sealed case now" (needs a spacer people at peace): components in the stockpile; next
+    part: the engineer works at a bench each morning; next part: the case; "... comes now" for the runner, then for the
+    card; open it or keep it. 5. "Storylines: start the lost founder's grave now": accept; right-click inside the drawn
+    area with a colonist ("Search here for ...'s grave"), or "... comes now" to find it; next part: the mourners come in the
+    morning. 6. "Quests at home: offer one now..." → a cache in old ruins (needs a place within three tiles): accept; the
+    ruins are on the world map; send a caravan, pick up the old cache, come home; "Quests at home: end the open one as..."
+    → home now, to skip the trip. "Storylines: what stands (log)" at any point; save and load mid-part.
+  - **Mods that would help**: none is needed. Dubs Bad Hygiene (https://steamcommunity.com/sharedfiles/filedetails/?id=836308268,
+    1.6 and 1.7, enabled) gives the well's water; the dream's place can be any altar, shrine or art of the game or the
+    enabled mods (Ideology's, the medieval mods'), and the engineer's bench any work bench. No gravestone mod is in the
+    player's list, so the founder's grave uses Rimfolk's own marker (a picture of its own).
 - 0.266.9, **Plain words: the letters**
   (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
   you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive

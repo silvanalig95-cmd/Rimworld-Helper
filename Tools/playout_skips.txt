@@ -581,6 +581,9 @@ Rimfolk_Evt_NewsForSale [option 2] a refusal: the operator is sent on to the nex
 Rimfolk_Evt_SickRoom [option 2] a refusal: the sister is sent back the way they came (SendAway)
 Rimfolk_Evt_OldShrine [option 2] a refusal: the pilgrims are sent on their way (SendAway)
 Rimfolk_Evt_TwoFaiths [option 2] a refusal: the palmer is sent on (SendAway)
+Rimfolk_Evt_FellowExamined [option 2] a refusal: the fellow notes it and is sent back to the road (DilemmaEffect_FellowDeclined, SendAway)
+Rimfolk_Evt_SummerSchool [option 2] a refusal: the fellow is sent on to teach somewhere else (SendAway)
+Rimfolk_Evt_FouledWater [option 2] a refusal: the water is left as it is and the warden sent away (DilemmaEffect_FouledLeft, SendAway)
 Rimfolk_Evt_GodRiddle [option 0] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 1] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 2] done by the event's own code: she lies at the door a while longer and walks back to the graves (MogsWays.Keep)
@@ -599,3 +602,10 @@ Council_WS_IceRoad [caravan/0] already real: WorldEffect_Sell with toVisitor, a 
 
 # Defs/MissionDefs/Rimfolk_Storyline_Sickness.xml
 Rimfolk_Storyline_SicknessDead [option 1] the part's own code lays out the graves as frames for the colony to dig, and the families wait by them (HappeningWorker_SicknessKin.Answered)
+
+# Storylines, round 3 (Source/ColonyCouncil/Storylines/): each part's own code plays it out on the map
+Rimfolk_Storyline_GraveSearch [option 0] done by the part's own code: the area is drawn on the map and searched spot by spot with a right-click (HappeningWorker_GraveSearch, JobDriver_StorylineSearch)
+Rimfolk_Storyline_GraveMourners [option 0] done by the part's own code: the mourners walk in to the grave, eat at the colony's table and leave in the evening (HappeningWorker_GraveMourners)
+Rimfolk_Storyline_RaidersTribute [option 0] done by the part's own code: a colonist carries the silver out to the edge of the colony's land (DilemmaEffect_RaidersCampPrice, HappeningWorker_RaidersTribute.Start)
+Rimfolk_Storyline_WellDigger [option 0] done by the part's own code: the foreman walks to the gate and the lent colonist walks out with them (HappeningWorker_WellDigger, JobDriver_StorylineLentOut)
+Rimfolk_Storyline_WellRefugees [option 0] done by the part's own code: the refugees walk in to the gate and join the colony (HappeningWorker_WellRefugees, Arrivals.Join)

@@ -33,8 +33,8 @@ public static class StorylineTests
 
         // ================= The storylines =================
 
-        C(StorylineMath.Kinds.SequenceEqual(new[] { "factor", "sickness", "herd", "beast", "relic", "quarrel", "children" }),
-            "round 1's three and round 2's four, in their order: S1, S2, S3, S4, S5, S7, S8 (" + string.Join(", ", StorylineMath.Kinds) + ")");
+        C(StorylineMath.Kinds.SequenceEqual(new[] { "factor", "sickness", "herd", "beast", "relic", "dream", "quarrel", "children", "raiders", "well", "vault", "grave" }),
+            "round 1's three, round 2's four and round 3's five, in their order: S1 to S12 (" + string.Join(", ", StorylineMath.Kinds) + ")");
         C(StorylineFlows.All.Select(f => f.Number).Distinct().Count() == StorylineFlows.All.Length && StorylineFlows.All.All(f => StorylineFlows.Of(f.Kind) == f),
             "each storyline's rules found once, by its own number");
         // The round-1 rules moved out of StorylineMath's switches: their endings with a letter are as before.
@@ -267,7 +267,7 @@ public static class StorylineTests
         // The plain-words rules (CLAUDE.md, "Plain, neutral text"): no em dashes or exclamation marks in anything the storylines say.
         var words = defs.Where(d => Path.GetFileName(d.file).StartsWith("Rimfolk_Storyline")).SelectMany(d => d.doc.Descendants()).Where(e => !e.HasElements)
             .Select(e => Regex.Replace(e.Value, @"\[[^\]]*\]", "")).ToList();
-        foreach (var keyed in new[] { "Rimfolk_Storylines.xml", "Rimfolk_Storylines2.xml" })
+        foreach (var keyed in new[] { "Rimfolk_Storylines.xml", "Rimfolk_Storylines2.xml", "Rimfolk_Storylines3.xml" })
             words.AddRange(XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", keyed)).Root!.Elements().Select(e => e.Value));
         C(words.Count > 100 && words.All(w => !w.Contains('\u2014') && !w.Contains('!')), "no em dashes or exclamation marks");
         C(words.All(w => !Regex.IsMatch(w, @"\bneedeth\b|\bmeaneth\b|\bhath\b|\bthee\b|\bthou\b")), "no archaic voice outside the letters' olde lines and the gods");

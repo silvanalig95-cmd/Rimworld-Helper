@@ -3072,6 +3072,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **Nice Inventory Tab:** a piece of clothing or armour ordered for a colonist from their gear tab stays out of the
   crafter's pocket, so the mod still has them put it on; and a colonist who is away keeps working and puts it on when back
   near the base (the setting "Clothes made for someone, put on when they are back", Your other mods).
+  When a piece made from a material is ordered there, after the bench a short menu lists each material the colony has
+  enough of on the map for one piece, with how much is on hand; the bill then uses only the one picked, every other
+  material unticked in its settings, and "Any material" makes the bill as the mod does (the setting "Choose the
+  material when ordering a piece", Your other mods).
 - **Vanilla Factions Expanded - Empire:** its ballroom only where the room is for music (the setting "Ballrooms only for
   music rooms", Your other mods). The mod calls any room with a musical instrument a ballroom, unless it has a bed,
   throne or workbench, so a drum turned a dining room or a temple into a ballroom. With the setting on, a room with an
@@ -3599,8 +3603,10 @@ collected on the day; a **sick animal** of theirs is handed over at the gate to 
 when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
 fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
 sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
-keeps a copy; and **musicians** stay a night and play at the colony's party. A tribe pays in goods of its own, everyone
-else in silver. When the region knows the
+keeps a copy; and **musicians** stay a night and play at the colony's party. One more (not released yet) is the only one
+that sends the colony's people out, and only when the place is within three tiles: a neighbour's old map shows a **cache in
+old ruins** close by; a caravan brings it home, their people collect it and pay, and what else lay with it is the colony's.
+A tribe pays in goods of its own, everyone else in silver. When the region knows the
 town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
 one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
@@ -3633,7 +3639,23 @@ thief (handed over, kept prisoner, or let go); got away, the colony may go to th
 tiles, else the pilgrims search themselves with the colony's food; with the relic back, it stays a year at the colony's
 shrine and pilgrims come to see it. **Two towns' quarrel**: two peoples at odds make a truce at the colony with one of its
 people as witness, one side leaves a pledge for some days, then fighters of the other cross the colony's land to strike,
-and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Running and recent
+and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Five more (not released
+yet): **A dream of the gods**: one of the colony's devout dreams of a place on its land, marked on the map, and of a place
+for their god there; the colony builds an altar, a shrine or a work of art inside it and gives it to the god; on a night's
+watch there a light comes over it; then the dream comes back and asks for an offering of a kind at the place. Given, the
+colony's book of the gods keeps it as the dreamer believes it; refused, the dreamer is troubled for a while. The god is
+named only as the colony knows it, and nothing says what it thinks. **Raiders settling nearby**: a people nearby warns of a
+raiders' camp in the region; the colony builds defences (ready, its watch sees them coming), meets a small raid, then helps
+the neighbours strike the camp (with its own fighters if the camp is within three tiles, else with food and medicine for
+theirs); the camp gone, or the raiders ask a price each season for a year (paid, or refused and they come for it). **The
+town's well ran dry**: a town asks for water (where the colony keeps Dubs Bad Hygiene's) or meals, then for one of the
+colony's miners or builders, who walks off with their foreman for a few days and comes back more skilled; the well found,
+the town grows; not, some of its people ask to join the colony. **The vault's sealed case**: components for a vault's
+failing power cells, then one of its engineers working a few days at the colony's bench on a component a day, then a sealed
+case left in the colony's care: keep it sealed and hand it back (the vault owes a favour), or open it (someone asleep
+inside who joins or leaves, a machine that attacks, or old goods). **The lost founder's grave**: a people's founder lies on
+the colony's land; the colony searches a marked area for the grave (right-click inside it), hosts their mourners for a day,
+and kept, they come each year for three years; built over, they hold it against the colony. Running and recent
 storylines show on the region window's Neighbours page under the missions, with their parts so far.
 
 The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and
@@ -4642,6 +4664,27 @@ the colony's rider as a caravan of one to the thieves' camp or alone, keeping on
 pilgrims stop at in spring and summer and the faithful pray at, mourned if it falls to ruin; and when two faiths quarrel or
 the colony's faith is near a split, a palmer brings them to **one table** for an evening, settled for a season or, by the
 speakers' Social, split anyway. The Almanac's peoples' pages say what each does.
+
+**The peoples' own events, the fourth round.** Eleven more, from the learned society, the spacer enclave, the river folk
+and the Lantern Wardens, each only while that people is at peace with the colony. When one of the colony's people becomes
+learned enough, the **society** sends a fellow to examine them, that evening before the colony or quietly at their side,
+the chance on the card; passed, they are named a **corresponding fellow**, with a lasting good memory, a book by the post
+each season and, with Vanilla Skills Expanded, the Researcher expertise. In summer its **summer school** camps for a week
+and teaches every afternoon at its table, the colony's books lent to it if it likes; the best student is examined sooner,
+and two fellows may fall into an argument that the colony's talker can end. The **enclave** offers a **contract to the last
+digit** for something the colony makes, due on a set day at a fifth over its worth, collected by its lander; short or late
+costs a fee and cooler terms. A broker's pod may come down hard on the colony's land, the broker hurt among the crates:
+**stranded** and tended, they pay a fifth of the cargo when their lander comes; robbed, the enclave does not forget. A
+**river warden** comes when the colony **fouls water** (a body in it, a wastepack or poisoned ground beside it) and asks
+for help cleaning it; left, the boat-trader and the nets stop coming. On their knot night the river folk's boatmen set
+**lanterns on the water** for everyone the colony lost or took in (Goji's Merren floating lanterns, which stay), and the
+colony may gather on the bank. When a flood takes their landing, families come **flooded out** to camp and fish on the
+colony's bank, their old and young the colony's guests with Hospitality, and tie a knot in the net for it as they go; and
+their **boat-builders** build a hull on the bank over a week from the colony's wild trees, sold as a dinghy with Vehicle
+Framework and Vanilla Vehicles Expanded. The **Wardens** write a great beast a colonist brought down into their book and tie
+a **red cord** on the hunter's sleeve (the Hunter expertise with Vanilla Skills Expanded, else a passion), come running to a
+**manhunt** and keep the hides of what they fell, and burn out insect **hives** near the colony with torches, molotovs or an
+incendiary launcher by their age, beside the colony's fighters or alone.
 
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league

@@ -4277,6 +4277,153 @@ the sickness in the next town now", "... the strayed herd now", "... the pilgrim
 now", "Storylines: the pilgrims' relic stolen tonight, now", and the frame's. Tests: `Tools/Tests/StorylineTests2.cs`
 (and every storyline's shape in `StorylineTests.cs`).
 
+### Storylines, round 3, and the one away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's grave and a cache in old ruins (the player's go, 19 November 2026: "Quests round 3 sounds great"; released 0.267.0)
+
+Round 3 of `docs/quests-proposals.md`: the storylines S6, S9, S10, S11 and S12 on the frame above, and Q14, the one single
+quest that sends the colony's people out. The go's words still bind ("make sure they are written in the more clear style",
+away only "within only very few tiles"). Everything plays out on the colony's own map but two optional parts: S9's strike
+on a raiders' camp and Q14's ruins, each only when the place is within three tiles. Each storyline adds its own flow
+(`Storylines/Flows/`), its own rules and parts (`Storylines/Storyline*.cs`) and its own defs; what the round's parts share
+is `Storylines/StorylineRound3.cs`: an area marked on the map (`IStorylineArea`, drawn as the keepsake's search area is,
+`StorylineAreaOverlay`), a search of it spot by spot (`IStorylineSearch`: right-click inside it with a colonist, an hour a
+look, `JobDriver_StorylineSearch`), goods collected by the people's carts, and the dev actions (a start for each, and "what
+the open part waits for comes now", `IStorylineDebugNow`). Two small shared changes: a mission may be **the colony's own**
+(`HappeningWorker_Mission.OfTheColony`: nobody of the world asked it, so no people must stay at peace with the colony for it
+to go on; `Missions.Accept` and `Missions.Tick` read it), for the dream and the raiders' price; and the harm budget has a
+new kind, `HarmKinds.StoryFight` (system "quests", off with the world's battles), for a fight a storyline brings.
+
+**S6, a dream of the gods** (`Storylines/StorylineDream.cs`). The colony's own faith, and the gods unseen (CLAUDE.md): the
+whole of it is the dreamer's own account, and the god is named only by the name the colony knows it by (`Worship.Called`).
+The dreamer is one of the colony's own, devout and no scoffer, whose god the colony knows by name and takes offerings (the
+priest three times likelier). Its parts are the colony's own missions.
+- **Part 1, the place in the dream**: the dreamer told it at breakfast (their journal, and the colony's book of the gods as
+  a dream told, `GodLore.Dreamt`): a place on the colony's land, well out from its middle (an area of radius 4 marked on the
+  map), and a place for the god there. Within six to nine days the colony builds an altar, a shrine or a work of art inside
+  it (`Shrines.Is`, any age's: a ritual focus, art, a nature shrine, anything called an altar or a shrine); once one stands
+  there, the worship's own dedication gives it to the god (`Shrines.Ask`: someone walks over and says the words). Given:
+  built. Nothing given there in time: not built, and the dreamer is troubled.
+- **Part 2, the watch** (a day to three later): someone of the colony at the new place for two hours of the night (nine to
+  four), within three nights; the dreamer walks out each night to keep it (the play-out's visit), and anyone of the colony
+  within five cells counts. Partway through it, a light comes over the place for a short while: the god's own sign
+  (`Worship.Sign`, the presence's moment, else a glow and a line in the news), named after it only as the colony may name
+  it ("some say"), and kept in the colony's book through those who saw it. No watch kept: nothing is seen, and the dream
+  comes back all the same.
+- **Part 3, the offering** (two to five days later): the dream comes back (told again, the book's dream) and asks for an
+  offering of a kind the god likes (`GodWorshipDef.Likes`) at the place within three days: the worship's own demand of a
+  dream (a `DemandRecord` and a planned offering, the dreamer carrying it first). Set down there: given, and the colony's
+  book keeps it as the dreamer believes it ("{GOD} asked me in my dreams for a shrine and an offering, and we gave both",
+  `GodLore.Believes`), the dreamer honoured (a mood, +5, eight days). Refused, or not brought: the dreamer troubled for a
+  while (-4, six days). What the god does with it is the worship's own, never told here; no favour, want or rule is shown.
+- The dreamer dead or gone from the colony: it ends plainly.
+
+**S9, raiders settling nearby** (`Storylines/StorylineRaiders.cs`). A people at peace with a town near the colony warns it;
+the raiders are a people at war with it that can raid and hold a camp, nearest the neighbours' age, and their camp is the
+region's kind by their age (`RaidersCamps.KindWord`: a war camp, a brigands' hold, a bandit camp, a raider base). Never
+while one of the region's own raiders' camps stands near the home; only with battles on.
+- **Part 1, defences**: within five to seven days, three to six traps or turrets, or 24 to 60 lengths of wall, fence or
+  barricade, by the colony's size (counted from the day it agreed). Ready (either goal), partly (half of either), unready.
+  Ready, the colony's watch sees the raiders coming: a letter a few hours before they come.
+- **Part 2, the raid that tests the colony** (two to five days later): taken on, a small raid comes within one to three days
+  (half the threat the storyteller would send now, the game's own raid with Rimfolk's letter above its own,
+  `Raids.Send`), within the shared harm budget (`HarmKinds.StoryFight`, 85 in a hundred; held back, they don't come:
+  quiet). Beaten off (half of them or more fell, or more of them than of the colony's people): repelled; else overrun.
+  Turned down, the colony keeps out of it and the raiders turn to the neighbours: no fight comes unasked.
+- **Part 3, the strike** (two to six days later): **within three tiles** (a place found for the camp, two to three tiles
+  off), the camp is the game's own bandit camp of the raiders' people (six tenths of the threat now) on the world map for
+  eight days, and the neighbours ask the colony to join them: when the colony's caravan is on the camp's map, two to four
+  of the neighbours' fighters come in beside it and go after the raiders (the game's assist duty). Every fighter of the camp
+  fallen: cleared. Not joined in time: the neighbours go alone (45 in a hundred). **Farther off**, the neighbours go and
+  ask for food and medicine for their fighters (meals and medicine by how many go), collected by their carts within three
+  days; word comes two to four days later, cleared 75 in a hundred with the colony's food and medicine, 45 without. Turned
+  down: the neighbours alone clear it about a third of the time.
+- **Endings**: the camp gone (the neighbours thank the colony, more when it joined in person); or **the raiders' price
+  each season for a year** (a part of its own each season, a quiet wait between): paid (a colonist carries the silver out to
+  the edge of the colony's land and leaves it, the region's camp's own errand; about half their raid's strength in silver),
+  or refused (or the silver not there when it agrees), and a band of them comes for it a day or two later (the game's raid,
+  within the harm budget). After the fourth season they move on.
+
+**S10, the town's well ran dry** (`Storylines/StorylineWell.cs`). The Deepwell Union's town first (the drillers), else any
+people with a town near the colony.
+- **Part 1, water or food**: water where the colony keeps it (Dubs Bad Hygiene's bottled water, enabled in the player's
+  list), else meals, by the colony's size, within four to six days; collected by their carts and paid a fifth over its
+  worth; half or more by the date, its plain worth; less, none, and it ends.
+- **Part 2, a hand lent** (two to five days later): the colony's best at Mining or Construction (6 or more; never one of the
+  colony's last two hands). Their foreman comes to the gate within a day, and the colonist walks out with them to the edge
+  of the map (`JobDriver_StorylineLentOut`) and is away four to six days: kept in the world as the game keeps lent
+  colonists, no caravan of the colony's going anywhere. Then they walk home from the edge with a day's wage for each day and
+  1,500 experience a day in the skill they were lent for (400 in the other). The new well found: the lent hand's chance (two
+  in five at 6, nine in ten from 16). Kept at home by the colony for most of a day when the foreman comes: the foreman goes
+  without them. A part that ends any other way, or their people gone, brings a colonist away home at once.
+- **Endings**: found, the town grows and remembers the help (+15, a letter a day or two later); nobody lent, they find it
+  themselves three times in ten; not found, **part 3, refugees**: two to four of the town's people on the road, taken in
+  (they come to the gate and join the colony) or turned away (-8).
+
+**S11, the vault's sealed case** (`Storylines/StorylineVault.cs`). The Sunken Vault first (the vaultfolk), else any spacer
+people at peace.
+- **Part 1, power cells** (the vault's own power cells mission's ask): six to twelve components by the colony's size within
+  six to nine days, collected by its runners and paid two fifths over their worth (half or more: their plain worth); the
+  parts keep a declining people's age, as the vault's own mission's do (`VaultSupply.Noted`).
+- **Part 2, the engineer** (two to six days later): one of their engineers stays four to six days as a hosting guest, and
+  each day from eight in the morning takes a component from the colony's stores and works about four hours at one of the
+  colony's work benches (a fabrication bench, a machining table, a smithy, a tailoring bench, a crafting spot: any age's),
+  the game's smithing look and sound (`JobDriver_StorylineBenchWork`); no component in the stores, that day's work is lost.
+  On leaving they pay for the components used (half again over their worth). Every day worked, or short; dead or taken
+  prisoner, harmed.
+- **Part 3, the sealed case** (two to six days later): their runner brings a sealed case (Rimfolk's own, a picture of its
+  own) and sets it down by the colony's stores for five to seven days. Half a day later a card asks: **keep it sealed**
+  (the default: their runner comes back for it at the end of the days, +16 in all, and the vault owes the colony a favour,
+  the missions' deed big enough to be one), or **open it**: a sleeper of their people (joins the colony half the time, else
+  leaves at once), a machine (the game's own mechanoid, by a third of the threat now, within the shared harm budget; held
+  back, old goods instead), or old goods (by the colony's wealth and age). Opened, the vault hears of it when its runner
+  comes (-15). The case lost: they hold it against the colony.
+
+**S12, the lost founder's grave** (`Storylines/StorylineGrave.cs`). The Quiet Bell first (the keepers of the dead), else any
+people at peace with a town near.
+- **Part 1, the search**: their elders say one of their founders (a name of their people) lies on the colony's land; an
+  area of radius 7 is marked well out from the colony's middle, and the colony searches it as the lost keepsake's (an hour
+  a look, about three cells around). Found within four to six days: a grave marker (Rimfolk's own, the colony's) is set on
+  it (+8). Not found: one of theirs comes, searches some hours and finds it. Something of the colony's built on the very spot
+  first: built over, and they hold it against the colony (-20).
+- **Part 2, the mourners** (three to six days later): three to five come to the grave early on the set morning, stay about
+  ten hours and eat at the colony's table (beds don't matter for a day); fed when hungry: hosted (+10), else poorly. One of
+  them dead or taken prisoner: harmed. The marker gone or built over: built over.
+- **Endings**: kept, and for three years (`StorylineAfter` "grave", once a game year) two or three of theirs come to the
+  grave for a few hours (+4 each time); the marker gone or built over when they come, they hold it against the colony and
+  come no more. Turned away: refused (-12).
+
+**Q14, a cache in old ruins** (`Missions/Workers_MissionHome5.cs`, `HomeQuests3Math.cs`). A neighbour's old map, by their
+age (painted on a hide, drawn on parchment, a survey map, a data slate), shows a cache in ruins close by. Offered only when
+a place is found within one to three tiles, and at half a quest at home's chance (0.15): with the thirteen at home, under one
+single quest in ten sends anyone out (rule 2). Taken on, the ruins are the game's own item stash site, the cache (Rimfolk's
+own old chest) and a few things worth half the reward among its things, set down inside the ruins by the game's map making
+(and by `Patch_HomeQuestRuinsCache` if not). Six to ten days by the distance (three more for a caravan on its way home with
+it). Brought home: their people come for it within half a day and pay (the quests at home's reward by their age and the
+colony's wealth, a tribe in goods); what else lay there is the colony's. Destroyed, or not home in time: -6. No fight of its
+own: the ruins hold the cache and the land's own animals.
+
+**The rules held.** At home, but S9's strike and Q14's ruins, each only within three tiles and each optional. Every age: the
+place for a god, the camp's kind, the water or meals, the bench, the old map, each its age's. The mod pool: Dubs Bad
+Hygiene's water where the colony keeps it; the shrines, benches and fighters any mod's. Harm only where the plan says: the
+raids and the machine through the shared budget, the strike the colony's own choice, each shown. The gods unseen: the dream
+is the dreamer's, the god named only as the colony knows it, nothing of its mind. The colony is the family: the founder is a
+people's founder, mourned by that people, with no line or house tied to it. Plain words, spoken lines one sentence each.
+
+Code map: `Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`, `GraveFlow.cs`; pure, linked
+whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs`, `StorylineDream.cs`, `StorylineRaiders.cs`,
+`StorylineWell.cs`, `StorylineVault.cs`, `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked),
+`Missions/Workers_MissionHome5.cs`. Changed, small: `Missions/Workers_Missions.cs` and `Missions.cs` (`OfTheColony`),
+`Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs`, `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`). Defs:
+`Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`, `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`,
+`_Well.xml`, `_Vault.xml`, `_Grave.xml`, `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`
+(the case, the cache, the grave marker, three jobs, the dreamer's two moods); Keyed `Rimfolk_Storylines3.xml`,
+`Rimfolk_Missions_Home3.xml`; pictures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png` (`Tools/make_quest_items.py`).
+Saved: nothing new collected (the dreamer, the lent hand, the engineer and the mourners in the storyline's people; the god,
+the place and the camp in its single values; the grave's yearly visits a `StorylineAfter`). Dev mode: "Storylines: start a
+dream of the gods now", "... raiders settling nearby now", "... the town's well ran dry now", "... the vault's sealed case
+now", "... the lost founder's grave now", "Storylines: what the open part waits for comes now", and "Quests at home: offer
+one now..." for the cache. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (and every storyline's shape in
+`StorylineTests.cs`).
+
 ### The right-click's things, done by themselves (the player's request, 7 November 2026)
 
 "I'm not really using the right click conversation options, so please integrate them to be done automatically by pawns
@@ -9747,6 +9894,100 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     raiders driving off beasts is a loss of stock, not a hurt, at a raid's small chance. Saved: `PeopleEvents3Book` (red ink,
     shrines, thefts, the table) and the camps' states, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 3:
     ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*.
+- **The peoples' own events, round 4** (the player's go, 19 November 2026: "Events sounds great"; released 0.268.0)
+  `docs/peoples-events-proposals.md`, items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 (the society, the enclave, the river
+  folk and the Wardens); `Source/ColonyCouncil/Peoples/Events4/`, the pure rules in `PeopleEvents4Math.cs`,
+  `Tools/Tests/PeopleEvents4Tests.cs` ("the peoples' events, round 4: "). As rounds 1 to 3: only from a people of its calling
+  at peace (`PeoplesD.Friendly`), in the Visitors group, base chance 0.4 to 0.6, 30 to 60 days apart and never in the first
+  fifteen days, every age in its own form, played out on the map. Four come from code at their moment (base chance 0,
+  `PeopleEvents2.Fire`): the contract's day, the knot night's lanterns, the Wardens' page and their run to a manhunt; the
+  last two at a small chance times the storytellers' lean on visitors.
+  - **The fellowship examined** (society; a gift, `Fellowship`): a colonist at Intellectual 12 (the summer school's best
+    student at 10), never named, not examined in the last sixty days. A fellow or a don at the gate. Before the colony: an
+    evening gathering (the night of the fire's disputation pool), the verdict kept and given at its end
+    (`Fellowship.GatheringOver`), the roll on the card by Intellectual and Social (`ExamFail`: 0.95 less 3.5% a level of
+    each). Quietly: the fellow at the colonist's side (round 1's `PeopleWorkOn`, `Rimfolk_PEv4_Examine`), Intellectual alone,
+    a fail heard by nobody. Passed: a corresponding fellow (`Rimfolk_Thought_FellowNamed` +6 for sixty days, the society's
+    word naming them, +4, the gift noted), a book carried to the gate each season by the post (`Couriers.Deliver`; the
+    game's textbook, schematic or novel, Vanilla Food Variety Expanded's recipe book; never Anomaly's tome), and with Vanilla
+    Skills Expanded the Researcher expertise (`Expertise.Give`, the mod's own tracker by reflection, when there is room).
+    Failed before the colony: "Strictly speaking, that is two questions," and stung (-4, six days, with its mood hint).
+    600 Intellectual either way.
+  - **The summer school** (society; a camp, `Rimfolk_Camp_SummerSchool`, `CampWorker_SummerSchool`): in summer, two or three
+    fellows for a week, their table, a lesson each afternoon (13h to 18h) at most two a day: learning, medicine or
+    speaking (`DilemmaEffect_SchoolLesson`, the play-outs' lesson, 150 an hour, 225 with the colony's books on the table).
+    Books lent (the event's second answer or the camp's page: up to three of the kind the colony has most of, carried out
+    by the camps' own carrying, set down for the colony as the school goes); six meals asked. Once a stay after the second
+    day at 0.35, two fellows argue at their table: the colony's talker walks over (`Rimfolk_PEv4_Settle`, `SettleOdds`
+    0.35 plus 4% a Social level), or after four hours a sulk: no more lessons that day, the camp's tension up. Going: the
+    best student (two lessons or more) left a textbook and examined sooner; +4 after lessons.
+  - **A contract to the last digit** (enclave; `EnclaveContract`): something the colony makes, found on its benches and
+    stores (meals, cloth from its cotton or stores, beer from a fermenting barrel, the dearest drug a recipe of its makes,
+    art from a sculptor's bench, components), `ContractWorth` by wealth and the last contracts' size, due on a set date
+    fifteen to thirty days on, a fifth over its worth (a tenth after a default, for sixty days). Half the contract may be
+    signed. On the day (`Rimfolk_Evt_ContractDue`): their marshals by pod at the trade spot (a runner and porters on foot to
+    a tribal or medieval colony), the goods carried out (`DilemmaEffect_ContractCarry`). In full: paid, +4, the next half
+    again bigger (three times at most). Short: what came at its worth less the fee. Not delivered (or no letter possible a
+    day after): the fee carried out if the stores hold it, else a debt tie in the world's ledger; -6, the first size again.
+  - **Stranded with something to sell** (enclave; `BrokerPod`): the broker hurt until downed in a pod with slag, two or three
+    pods of spacer goods (`CargoDefs`, worth `CargoWorth`) beside them, sealed. Brought in: the colony's doctor carries them
+    to a bed (the game's rescue; tended there by the game's own doctors), or tends them at the crash without a bed; the
+    lander two or three days on: two marshals by pod, the broker carried to the edge (round 3's litter job) or walking with
+    them, each crate lifted aboard (`Rimfolk_PEv4_Lift`), a fifth paid (`Share`), +10, the care remembered. A crate gone by
+    then is taken. Taken: unsealed, `robbed` weight 25 and -20, the lander for the broker alone the next morning. Left: the
+    lander the next morning, nothing owed.
+  - **Fouled water** (river folk; `FouledWater`): a flesh body half a day or more in water, Biotech's poisoned ground or a
+    wastepack within three cells of it. The river warden walks to the spot. With the colony's hands: the warden and a
+    colonist go spot to spot (`Rimfolk_PEv4_Clean`, a bar): a body or wastepack carried up onto dry ground away from the
+    water, the bank cleared of poison; +5. The warden alone: +2. Left: `polluted` weight 8, and the boat-trader and the nets
+    (`HappeningWorker_RiverCatch`, `HappeningWorker_RiverNets`) stop until a day's look finds it clean, sixty days at most.
+  - **Lanterns on the water** (river folk; `KnotLanterns`): on a river folk people's knot night (round 2's `KnotDay`) at dusk,
+    the colony's bank (`HappeningWorker_RiverNets.Bank`), once a year. Boatmen set their light on the bank and come with a
+    lantern for each of the colony's lost (its graves and dead) and taken in, three to twelve, at most six set. Gather: an
+    evening gathering at their light (17h to 23h, the boatmen its guests), `Rimfolk_Thought_KnotLanterns` +4 held for those
+    who came (the play-outs' held moods). With Goji's
+    Fantasy Race: Merren its floating lanterns set on the water, fuelled, the colony's; otherwise torches along the bank,
+    taken back with the light in the morning. Where a crossing of theirs stands, round 2's knot night rest sets them there
+    instead (`KnotLanterns.AtCrossing`). Unanswered, they set them.
+  - **Flooded out** (river folk; a camp, `Rimfolk_Camp_FloodedOut`, `CampWorker_FloodedOut`): while `Council_WS_Flood` runs,
+    five to eight of the families by the colony's fresh water five to ten days; they fish (the camps' own fishing), ask for
+    eight meals a day their first three days, offer their catch, mend what is worn, put up two drying racks (VFE Classical's,
+    else Vanilla Furniture Expanded - Props and Decor's) left standing, may join (0.2), and ask to stay longer (0.4, the camps' own). With
+    Hospitality (the invited guests' setting on): their old and young, three at most, handed to it as the colony's guests
+    (`InvitedGuests.HandOver`) until the camp goes. Once a stay at 0.06, flu through the harm and illness budgets
+    (`HarmKinds.CampFever`). Going on good terms: a knot in the net, +12, `sheltered`. Turned away -3.
+  - **The boat-builders** (river folk; a camp, `Rimfolk_Camp_BoatBuilders`, `CampWorker_BoatBuilders`): spring to autumn, fresh
+    water and ten grown wild trees. Three or four for a week, a shed (`sleep` Hut, left standing), the camps' own felling (none
+    if the colony refuses its trees: -2). The hull on the bank by days worked (`HullStage`: keel, frame, planked hull, three
+    drawn stages), the builders at it (`Rimfolk_PEv4_Hull`), the colony's crafter beside them (a lesson). Heavy rain (0.5)
+    costs a day once and a day more of stay. With Vehicle Framework and Vanilla Vehicles Expanded the finished hull sold as
+    `VVE_Dinghy` for silver (350 by wealth) and 60 wood, set on the water (`Vehicles.VehicleSpawner.GenerateVehicle` by
+    reflection); otherwise floated home. +3.
+  - **A page in the book** (Wardens; a gift, `WardensPage`): a legend of the region, a beast nemesis or a pack's alpha killed by
+    one of the colony (its kind read before its death: `HappeningTracker.DeathNote.great`). Six hours to ten days on, at
+    0.15 an hour: a keeper of the book at the gate. The cord tied there (`PeopleWorkOn` beside the gate, `Rimfolk_PEv4_Cord`):
+    `Rimfolk_RedCord` on the arm (shown in health, no effect), `Rimfolk_Thought_PageInBook` +6 for sixty days, the Wardens'
+    word naming them, +6, Vanilla Skills Expanded's Hunter expertise when there is room, else a passion in Shooting or Melee
+    by the weapon that made the kill. The pelt (the beast's leather, as much as its hide gave and the stores hold) bought at
+    twice its worth.
+  - **Wardens at the manhunt** (Wardens; `WardensManhunt`): a manhunting pack (three or more) or a mad beast of body size 1 or
+    more, once a manhunt at 0.4, an hour or two in, fifteen days apart. Two to four of their fighters come in at the edge
+    nearest the beasts straight into the game's assault on them; the letter asks the terms (no answer: the hunt's own):
+    hides theirs and meat the colony's (round 1's `PeoplesD.Divide`, `Rimfolk_PEv4_Dress`), all of it theirs (+2 more), or
+    sent home. Their kills counted from the death hook; the last beast down, they gather at the carcasses. +3.
+  - **The hive burned** (Wardens; `HiveBurned`): the game's hives and Vanilla Factions Expanded - Insectoids 2's wild hives
+    and burrows (`HiveDefs`, never a colony's artificial one), seen. Three to five come in at the edge nearest it, armed by
+    their age (`Fire`: their own arms and torches, molotovs, an incendiary launcher for one). Together: they wait at the edge
+    up to three hours for the colony's drafted fighters within 15 cells of the hive, then the game's assault on the hives and
+    the insects about them; alone: at once; refused: a day's watch at the edge. With torches, a Warden by a hive and not
+    fighting holds one to it (`Rimfolk_PEv4_Burn`, the game's fire). The hives gone: +4.
+  - Harm of Rimfolk's own: only the flooded families' flu, through the harm and illness budgets; the broker's crash is the
+    game's own pod crash; the fights, the fire and the insects are the game's own. Saved: `PeopleEvents4Book` (fellows,
+    examined, best students, contracts, pods, fouled water, lanterns, pages, the examination waiting) and the camps' states,
+    modelled in `Tools/save_estimate.py`. Small hooks: `PeopleEvents3.Hour`/`Hourly`, `HappeningTracker.Before`/`Notify_Killed`,
+    `Interplay.Notify_GatheringOver`, the river folk's catch and nets, round 2's knot night rest, `FactsMath`, round 1's
+    `PeopleWorkOn` ("quiet" mark), `Expertise` (giving one). Dev actions "Peoples' events 4: ...". The Almanac's peoples'
+    pages, *Of their own: gifts, trust and camps*.
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 
@@ -16089,6 +16330,42 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
   forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
   something off. Someone nearby goes at once, as before.
+
+### Choose the material when ordering a piece from the gear tab (the player's go, 19 November 2026; released 0.268.1)
+
+The player: "when you know giving a order through the inventory to create like a piece of clothing or armor or
+whatever, it would really be cool to also be able to select from which material that piece of clothing should be made
+... when I select the open item slot, select the item that I want to create, and then I have to select where it's
+created from, and then maybe I could also immediately select which material it uses. So it would just list or show
+materials that I have enough of for the job, and then create the job, but only select this one material as a allowed
+material and by default deselect everything else, so that I'm sure it doesn't use anything else." Their go on the
+lead's proposal: "yes, please", "all the three".
+
+- **The mod's own flow** (Nice Inventory Tab's DLL, decompiled outside the game, never loaded): an empty slot's menu,
+  "Make", a piece, then a bench (or the piece's own line for its first bench), calls
+  `NiceInventoryTab.CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`: it makes
+  the bill, registers it as made for the colonist whose tab it is (`BillFinished_Patch.Register`, with
+  `ITab_Pawn_Gear_Patch.lastPawn`), names it, adds it to the bench, says so and moves the camera there.
+- **The material step** (`Integrations/MaterialChoice.cs`, `Patch_MaterialChoiceOrder`, a prefix on that call by
+  name): for a piece made from a material (the product is made from stuff and the recipe takes its stuff from an
+  ingredient), one more menu opens, titled "Material for the (piece)": "Any material" first, then each material the
+  recipe takes (from its material ingredient, never a fixed one like components; allowed for the piece and by the
+  recipe) that the colony has enough of for one piece, with how much is on hand and the material's own icon. On hand
+  is what lies on the map, seen and not forbidden; one piece's need is the game's own count for that material
+  (`IngredientCount.CountRequiredOfFor`, so gold and silver count in their own units). The order
+  (`MaterialChoiceMath.Offered`, pure, in the tests): the material that makes the most pieces first, then by name. With
+  none enough, a greyed line says so under "Any material". Each line's tooltip says what one piece takes. Clicking
+  outside the menu orders nothing.
+- **The bill.** Either choice calls the mod's own `CommandCreate` as it would have been called (the prefix lets
+  Rimfolk's own call through), so the bill, the wear request, the name and the message are the mod's; it is made for
+  the colonist the menu was opened for. For a material, the new bill's ingredient filter then allows only that one:
+  every other material its material ingredient takes is unticked, the chosen one ticked, the rest of the filter (hit
+  points, quality, other ingredients) left as it was. "Any material" leaves the mod's bill as it is.
+- **Standing down.** A piece not made from a material goes straight on, as before. Without the mod the hook stands
+  down; with the mod but its order not found, one warning in the log and the mod's own way; a failure while opening
+  the menu, logged once, leaves the mod's own way for the session.
+- The setting "Choose the material when ordering a piece" (`materialChoice`, on, under the deeper hooks), on the "Your
+  other mods" page under Nice Inventory Tab.
 
 ### Rooms judged by what is in them (the player's go, 19 November 2026; released 0.266.6)
 

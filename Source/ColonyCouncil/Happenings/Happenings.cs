@@ -1068,6 +1068,8 @@ namespace ColonyCouncil
             public IntVec3 cell;
             /// <summary>Where they died (the home whose fight it counts in).</summary>
             public Map map;
+            /// <summary>A great beast while it lived ("legend", "nemesis", "alpha"; Peoples/Events4/WardensPage.cs), for the Wardens' page.</summary>
+            public string great;
         }
 
         public DeathNote Before(Pawn victim)
@@ -1078,6 +1080,7 @@ namespace ColonyCouncil
             note.wild = victim.Spawned && victim.Map.IsPlayerHome && victim.RaceProps.Animal && victim.Faction == null;
             note.cell = victim.Spawned ? victim.Position : IntVec3.Invalid;
             note.map = victim.MapHeld;
+            note.great = victim.RaceProps.Animal ? WardensPage.GreatKind(victim) : null;
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -1093,6 +1096,9 @@ namespace ColonyCouncil
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);
             // A beast the Lantern Wardens were after (Peoples/PeoplesD.cs): they gather at the carcass to skin it.
             if (victim.RaceProps?.Animal == true) HappeningWorker_WardensHunt.Killed(victim);
+            // A great beast brought down by one of the colony: the Wardens' page; a beast the Wardens felled at a manhunt (Peoples/Events4/).
+            if (note.great != null) PeopleEvents4.Safe("a page's kill", () => WardensPage.Killed(victim, dinfo, note.great, note.map));
+            if (victim.RaceProps?.Animal == true) PeopleEvents4.Safe("a manhunt's kill", () => WardensManhunt.Killed(victim, dinfo));
             // The gods (Gods/GodDeeds.cs): a great beast brought down by the colony, a sacred animal slaughtered or hunted.
             if (victim.RaceProps?.Animal == true) GodDeeds.Killed(victim, dinfo, note.beast, note.map);
             // The gods in the world (Gods/World/GodHealth.cs): a god that takes the sacred beast's death ill holds it against the killer.
