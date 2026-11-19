@@ -249,7 +249,7 @@
       <li>Beasts from the far country are crossing the region's hills in loose bands. The old hunters of {FACTION} knew them only from stories. They eat everything green and frighten the herds.\n\nAt {PLACE} the children are no longer allowed out past the fences.</li>
     </texts>
     <summaries>
-      <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may tame one, but a careless one may get hurt trying.</li>
+      <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may try to tame one, though it may bolt before they get close.</li>
     </summaries>
     <modifiers>
       <li><rimfolk>Council_Evt_RareCreature</rimfolk><factor>3</factor></li>

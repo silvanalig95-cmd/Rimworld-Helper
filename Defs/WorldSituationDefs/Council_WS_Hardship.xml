@@ -872,7 +872,7 @@
           <li>The smoke held, mostly</li>
         </titles>
         <texts>
-          <li>The swarm has gone east. The smoke turned most of it away from the colony's fields, and what it ate in the open will grow back.\n\n{FACTION} had no smoke to spare, and they lost nearly everything around {PLACE}.</li>
+          <li>The swarm has gone east. The smoke turned most of it away from the colony's fields, and the crops it damaged in the open will grow back.\n\n{FACTION} had no smoke to spare, and they lost nearly everything around {PLACE}.</li>
           <li>The swarm came down on the colony's fields and rose again into the smoke. The damage is light and will grow back. {FACTION} were not so lucky, and the fields around {PLACE} are bare.</li>
         </texts>
         <chronicle>The locusts passed; the colony's smoke saved most of its fields.</chronicle>
