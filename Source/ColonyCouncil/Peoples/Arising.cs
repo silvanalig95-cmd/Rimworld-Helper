@@ -43,6 +43,8 @@ namespace ColonyCouncil
         public int since = -1;
         /// <summary>Dev mode: a stand-in cause, not one that happened (the words name it as if it had).</summary>
         public bool standIn;
+        /// <summary>The Fleet's crew who came to live at the colony when the order to disembark was given (ArisingMath.Disembarked).</summary>
+        public int joined;
         /// <summary>
         /// The calling the cause leans to (ArisingMath.Lean), or null: survivors near a river to the river folk's ways, a
         /// band led by a learned one to the scholars'. A lean a town can't stand for (no river in reach) is let go.
@@ -604,6 +606,9 @@ namespace ColonyCouncil
                 case ArisingMath.Splinter:
                     faith = Reformed(f, c, detail);
                     break;
+                case ArisingMath.Disembarked:
+                    faith = c.parent?.ideos?.PrimaryIdeo;
+                    break;
             }
             if (faith == null || faith == made) return;
             f.ideos.SetPrimary(faith);
@@ -651,6 +656,10 @@ namespace ColonyCouncil
                     break;
                 case ArisingMath.Exiles:
                     g = ArisingMath.ExilesGoodwill(c.record?.grudge ?? false, c.stoodBy, c.glad);
+                    break;
+                case ArisingMath.Disembarked:
+                    g = ArisingMath.DisembarkedGoodwill(c.joined);
+                    if (c.parent != null && !c.parent.defeated) Set(f, c.parent, ArisingMath.WithKin);
                     break;
                 default:
                     g = ArisingMath.SplinterGoodwill(c.debate);

@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70; round 8 built: 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -625,23 +625,23 @@ Where it lives:
 - A republic's vote (world event).
 - Favoured camps: refugees, market folk, road wardens.
 
-71. **An observer at the vote.**
+71. **An observer at the vote.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - At the colony's election, a clerk walks the colony with the roll and stands by the count.
     - Hustings come to blows half as often, and the radio speaks of a fair vote.
     - Reuses: elections, the radio, the hustings' harm. **Medium.**
 
-72. **(gift) A medal.**
+72. **(gift) A medal.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - After a colonist's great deed (held the wall, a rescue under fire), a clerk and a guard read a citation at the gate.
     - The colonist gets a lasting memory, the region's word, and the colony's renown rises.
     - Mods: VE Books (a newspaper).
     - Reuses: deeds, renown, the radio. **Small.**
 
-73. **A fugitive of the Republic.**
+73. **A fugitive of the Republic.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - A Civic Guard deserter asks to join, and a Guard detail follows to the gate.
     - Hand them over (+8); shelter them (-10, and the papers are struck; a hostile detail fights by the game's own); or pay their fine.
     - Reuses: joining, the papers. **Medium.**
 
-74. **(camp) A ration post.**
+74. **(camp) A ration post.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - In a famine, a clerk and two guards keep a ration post by the road for a week. Hungry travellers walk in, take a ration and go.
     - The post buys food from the colony at a fixed price, offers ration cards to a citizen colony, and some of the hungry ask to join.
     - It can turn: the food runs short and the queue riots (the camp quarrel's rate), or the guards turn away someone the Republic denounced.
@@ -654,22 +654,22 @@ Where it lives:
 - Exiles (world event).
 - Favoured camps: stranded spacers, salvagers, surveyors.
 
-75. **The colony's gravship.**
+75. **The colony's gravship.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - With Odyssey, when the colony has a gravship, officers come by shuttle to walk its decks with the colony's pilot and log it.
     - They offer a part from the hull's stores (Odyssey's, Vanilla Gravship Expanded's) or a lesson. +10.
     - Reuses: the shuttle. **Medium.**
 
-76. **A sleeper of theirs.**
+76. **A sleeper of theirs.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - Now and then a sleeper in the game's ancient caskets wears the ship's grey, and a deck-runner comes for them.
     - Handed over: they pay (+12). Kept: the sleeper joins.
     - Reuses: the shuttle, deeds. **Medium.**
 
-77. **The order to disembark.**
+77. **The order to disembark.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - With Royalty: a colonist holding an Empire title of knight or higher is asked to give the order at the hull.
     - They go there by caravan. Three to five of the crew come home with them and join, and the rest found a new people (release B's arising).
     - Reuses: the conscript's caravan, arising. **Large.**
 
-78. **(camp) A landing party.**
+78. **(camp) A landing party.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - Four to six crew make a ship-shape camp by their shuttle: bunks in a row, a bell for every watch, everything logged. They survey for a landing site "for when the order comes".
     - They buy food and offer their medic. A deckhand may ask to disembark here and join, against the officer's wish.
     - It can turn: a sleeper they brought wakes sick, or their watch spots raiders first and warns the colony.
@@ -682,21 +682,21 @@ Where it lives:
 - A famous healer (world event).
 - Favoured camps: healers, stranded spacers, herb-gatherers.
 
-79. **(gift) A gene taken out.**
+79. **(gift) A gene taken out.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - They take a harmful gene out of a colonist, where they stand, in two hours, for silver.
     - The colonist loses the metabolism that gene gave, and gets the same mark as gene work.
     - Reuses: the gene work's job. **Small.**
 
-80. **(gift) A whole xenogerm.**
+80. **(gift) A whole xenogerm.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - A whole xenogerm of one of the Works' kinds, for silver and genepacks. The colonist lies in the game's xenogermination coma afterwards.
     - A faith that looks down on xenotypes says so on the card.
     - Reuses: gene work. **Medium.**
 
-81. **A hybrid beast.**
+81. **A hybrid beast.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - With Vanilla Genetics Expanded, a vat-keeper sells a young hybrid from their vats.
     - Reuses: the egg-trader. **Medium.**
 
-82. **(camp) A field lab.**
+82. **(camp) A field lab.** *(Built, round 8: `Source/ColonyCouncil/Peoples/Events8/`.)*
     - Two sequencers and a vat-keeper camp for a week, sampling the land's beasts and plants.
     - Gene work (and the sample) are open on the camp's page all week. They buy genepacks.
     - It can turn: a gene-crafted beast of theirs gets loose (the game's manhunter), or a vat-grown falls ill.

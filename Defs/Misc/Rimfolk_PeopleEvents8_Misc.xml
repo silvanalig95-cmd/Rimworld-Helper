@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 8 (Source/ColonyCouncil/Peoples/Events8/): the jobs they are seen doing on the map, and the moods the
+       round gives. -->
+
+  <!-- ===================== Their own work at a thing, a person or a place (JobDriver_PEv8Work) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Roll</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>checking TargetA against the Republic's roll.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_StandBy</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>standing by.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Citation</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>reading the citation for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Ration</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>waiting for a ration.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Deck</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>looking over TargetA for the Fleet's log.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_OpenCasket</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>opening TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Survey</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>surveying the ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_GeneOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>taking a gene out of TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>cross</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_Xenogerm</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>writing a xenogerm into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>cross</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_LabGene</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>writing a gene into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>cross</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_LabSample</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>drawing a sample from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>cross</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv8_FieldSample</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv8Work</driverClass>
+    <reportString>taking a sample from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv8Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The round's moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_FairVote</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the radio called our vote fair</label><description>A clerk of the Last Republic watched our vote and the count, and the Republic's evening broadcast said it was a fair one.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_InTheRegister</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>in the Republic's register</label><description>The Last Republic entered our election in its register, with my name and my seat on the council.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RepublicMedal</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the Republic's medal</label><description>A clerk of the Last Republic read a citation for what I did in the fight and pinned the Republic's medal on me.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_HeardCitation</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>heard a citation read</label><description>I stood at the gate while the Republic's clerk read a citation for one of us and pinned a medal on them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ShipLogged</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the Fleet logged our ship</label><description>Officers of the Hollow Fleet walked our gravship with me and wrote it into their log, as they do with every ship they know.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_GaveTheOrder</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>gave the order to disembark</label><description>I went to the Hollow Fleet's hull and gave the order their captain never gave. The crew came down from their posts after two hundred years.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

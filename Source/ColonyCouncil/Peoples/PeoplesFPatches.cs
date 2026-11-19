@@ -14,7 +14,8 @@ namespace ColonyCouncil
     /// <summary>
     /// A raid the storyteller sends to a home whose relay mast sings (not a quest's, not one coming back out of the game's
     /// queue) goes into the game's incident queue a couple of hours on, and the line's warning is told now
-    /// (RelayMast.Warn); the storyteller doesn't fire it now. The Conclave's watch on the sky (Patch_GlassHold) holds
+    /// (RelayMast.Warn); the storyteller doesn't fire it now. Where no mast sings, a landing party of the Hollow Fleet
+    /// camped at the home warns of it the same way, once a stay (Peoples/Events8/LandingParty.cs). The Conclave's watch on the sky (Patch_GlassHold) holds
     /// only the sky's conditions, so the two never hold the same incident.
     /// </summary>
     [HarmonyPatch(typeof(Storyteller), nameof(Storyteller.TryFire))]
@@ -25,7 +26,8 @@ namespace ColonyCouncil
             if (queued || !RimfolkPatches.On || fi?.def == null || !(fi.def.Worker is IncidentWorker_Raid)) return true;
             try
             {
-                if (!RelayMast.Warn(fi)) return true;
+                // The Fleet's landing party's watch spots it first, where no mast sings (Peoples/Events8/LandingParty.cs).
+                if (!RelayMast.Warn(fi) && !LandingParty.Warn(fi)) return true;
                 __result = false;
                 return false;
             }

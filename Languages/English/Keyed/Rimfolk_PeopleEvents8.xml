@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 8 (Source/ColonyCouncil/Peoples/Events8/). -->
+
+  <!-- ===================== 71. An observer at the vote ===================== -->
+
+  <CC_PEv8_VoteGone>The election is over or no longer under way.</CC_PEv8_VoteGone>
+  <CC_PEv8_FairRadioLabel>{0}: a fair vote</CC_PEv8_FairRadioLabel>
+  <CC_PEv8_FairRadio>The Republic's evening broadcast spoke of the colony tonight. {FACTION}'s clerk, {CLERK}, watched the vote at {COLONY} and the count this evening, and reports that every vote was read out and the count was fair.</CC_PEv8_FairRadio>
+  <CC_PEv8_FairNoRadio>{CLERK} watched the count and says the colony's vote was fair. {CLERK} will report it to {FACTION}.</CC_PEv8_FairNoRadio>
+  <CC_PEv8_Registered>{FACTION}'s clerk entered the result in the Republic's register, with the names of the council: {NAMES}.</CC_PEv8_Registered>
+  <CC_PEv8_Observer_nocount>{CLERK}, the Republic's clerk, saw no count to watch and has gone back to the road without a report.</CC_PEv8_Observer_nocount>
+  <CC_PEv8_Observer_late>{CLERK}, the Republic's clerk, could wait no longer for the count and has gone back to the road.</CC_PEv8_Observer_late>
+  <CC_PEv8_Impact_Roll>{0} walks round the {1} voters with the roll, then stands by the count this evening</CC_PEv8_Impact_Roll>
+  <CC_PEv8_Impact_RollBrief>the roll and the count</CC_PEv8_Impact_RollBrief>
+  <CC_PEv8_Impact_Calmer>With the clerk there, a heckle at the count comes to blows half as often</CC_PEv8_Impact_Calmer>
+  <CC_PEv8_Impact_CalmerBrief>fewer blows</CC_PEv8_Impact_CalmerBrief>
+  <CC_PEv8_Impact_FairRadio>The Republic's radio calls the vote fair this evening: +3 mood for 5 days for everyone at home who hears it</CC_PEv8_Impact_FairRadio>
+  <CC_PEv8_Impact_FairRadioBrief>a fair vote on the radio</CC_PEv8_Impact_FairRadioBrief>
+  <CC_PEv8_Impact_Register>The result goes in the Republic's register: +3 mood for 15 days for the council's members</CC_PEv8_Impact_Register>
+  <CC_PEv8_Impact_RegisterBrief>in the register</CC_PEv8_Impact_RegisterBrief>
+
+  <!-- ===================== 72. A medal ===================== -->
+
+  <CC_PEv8_Medal>{CLERK} of {FACTION} read the citation at the gate: {PAWN_nameDef} {DEED}. {CLERK} pinned the Republic's medal on {PAWN_objective}, and the Republic will remember {PAWN_objective} for it.</CC_PEv8_Medal>
+  <CC_PEv8_MedalPaper>{CLERK} of {FACTION} read the citation at the gate: {PAWN_nameDef} {DEED}. {CLERK} pinned the Republic's medal on {PAWN_objective} and left a copy of the Republic's newspaper with the citation printed in it.</CC_PEv8_MedalPaper>
+  <CC_PEv8_MedalBack>Thank you, I only did what anyone would.</CC_PEv8_MedalBack>
+  <CC_PEv8_MedalBack_2>I'll keep it, thank you.</CC_PEv8_MedalBack_2>
+  <CC_PEv8_MedalBack_3>The others were there too, it belongs to all of us.</CC_PEv8_MedalBack_3>
+  <CC_PEv8_MedalAway>{0} isn't at home now.</CC_PEv8_MedalAway>
+  <CC_PEv8_Impact_Citation>{0} goes out to {1} at the gate, who reads the citation and pins on the medal</CC_PEv8_Impact_Citation>
+  <CC_PEv8_Impact_CitationBrief>the citation at the gate</CC_PEv8_Impact_CitationBrief>
+  <CC_PEv8_Impact_Medal>{0}: +6 mood for 60 days</CC_PEv8_Impact_Medal>
+  <CC_PEv8_Impact_MedalBrief>the Republic's medal</CC_PEv8_Impact_MedalBrief>
+  <CC_PEv8_Impact_MedalName>{1} remember {0} by name for it, and the colony's name grows with it</CC_PEv8_Impact_MedalName>
+  <CC_PEv8_Impact_MedalNameBrief>the region's word</CC_PEv8_Impact_MedalNameBrief>
+  <CC_PEv8_Impact_Heard>Everyone who hears the citation: +2 mood for 3 days</CC_PEv8_Impact_Heard>
+  <CC_PEv8_Impact_HeardBrief>heard it read</CC_PEv8_Impact_HeardBrief>
+  <CC_Memory_Deed_medal>was given the Republic's medal</CC_Memory_Deed_medal>
+  <CC_Memory_Deed_medal_Name>{NAME}, and was given the Republic's medal for it</CC_Memory_Deed_medal_Name>
+  <CC_Memory_Deed_medal_Many>was given the Republic's medal, {COUNT} times</CC_Memory_Deed_medal_Many>
+
+  <!-- ===================== 73. A fugitive of the Republic ===================== -->
+
+  <CC_PEv8_DetailFightsLabel>The Guard detail fights</CC_PEv8_DetailFightsLabel>
+  <CC_PEv8_DetailFights>{FACTION} is at war with the colony now, and the Guard detail at the gate has turned on the colony to take the deserter back.</CC_PEv8_DetailFights>
+  <CC_PEv8_Impact_PapersStruck>{0} strike the colony's citizenship papers</CC_PEv8_Impact_PapersStruck>
+  <CC_PEv8_Impact_PapersStruckBrief>papers struck</CC_PEv8_Impact_PapersStruckBrief>
+  <CC_PEv8_Impact_DetailFights>This turns the Republic against the colony, and the detail at the gate ({0}) fights</CC_PEv8_Impact_DetailFights>
+  <CC_PEv8_Impact_DetailFightsBrief>the detail fights</CC_PEv8_Impact_DetailFightsBrief>
+  <CC_PEv8_Impact_LedAway>The detail leads {0} away down the road</CC_PEv8_Impact_LedAway>
+  <CC_PEv8_Impact_LedAwayBrief>led away</CC_PEv8_Impact_LedAwayBrief>
+
+  <!-- ===================== 74. A ration post ===================== -->
+
+  <CC_PEv8_RationHungry>{X_nameDef} of {THING} has come in from the road to the ration post {PLACE} for a ration.</CC_PEv8_RationHungry>
+  <CC_PEv8_RationHungryTwo>{X_nameDef} and another of {THING} have come in from the road to the ration post {PLACE} for a ration.</CC_PEv8_RationHungryTwo>
+  <CC_PEv8_RationShort>The ration post {PLACE} has run out of rations, and {THING} went away hungry.</CC_PEv8_RationShort>
+  <CC_PEv8_RationRiot>The rations at the post {PLACE} ran out with {THING} still waiting, and {THING} and {X_nameDef}, one of the guards, came to blows.</CC_PEv8_RationRiot>
+  <CC_PEv8_RationTurned>{X_nameDef}, a guard at the ration post {PLACE}, turned {THING} away from the fire: {PEOPLE} are at war with the Republic.</CC_PEv8_RationTurned>
+  <CC_PEv8_CardsDrawn>The clerk at the ration post checked the colony's papers and set {COUNT} rations down by the post's fire for the colony.</CC_PEv8_CardsDrawn>
+  <CC_PEv8_NoPapers>The colony doesn't hold {0}'s citizenship papers.</CC_PEv8_NoPapers>
+  <CC_PEv8_PostEmpty>The post has no rations left.</CC_PEv8_PostEmpty>
+  <CC_PEv8_Impact_Post>A clerk and two guards of {0} keep a ration post by the colony's road for a week, feeding the hungry who pass</CC_PEv8_Impact_Post>
+  <CC_PEv8_Impact_PostBrief>a ration post</CC_PEv8_Impact_PostBrief>
+  <CC_PEv8_Impact_PostTurns>If the rations run out, the queue may come to blows; the guards turn away anyone from a people at war with the Republic</CC_PEv8_Impact_PostTurns>
+  <CC_PEv8_Impact_PostTurnsBrief>it can turn</CC_PEv8_Impact_PostTurnsBrief>
+
+  <!-- ===================== 75. The colony's gravship ===================== -->
+
+  <CC_PEv8_GravShuttleDown>A shuttle of {0} has come down by the colony with two of the Fleet's officers.</CC_PEv8_GravShuttleDown>
+  <CC_PEv8_GravPodsDown>Drop pods of {0} have come down by the colony with two of the Fleet's officers.</CC_PEv8_GravPodsDown>
+  <CC_PEv8_GravLogged>{FACTION}'s officers walked the {SHIP} with {PILOT} and entered it in the Fleet's log.</CC_PEv8_GravLogged>
+  <CC_PEv8_GravLoggedPart>{FACTION}'s officers walked the {SHIP} with {PILOT}, entered it in the Fleet's log, and left {PART} from the hull's stores by its engine.</CC_PEv8_GravLoggedPart>
+  <CC_PEv8_GravLoggedLesson>{FACTION}'s officers walked the {SHIP} with {PILOT}, entered it in the Fleet's log, and taught {PILOT} what they know of flying it.</CC_PEv8_GravLoggedLesson>
+  <CC_PEv8_ShipGone>The colony's gravship isn't here now.</CC_PEv8_ShipGone>
+  <CC_PEv8_PilotAway>{0} isn't at home now.</CC_PEv8_PilotAway>
+  <CC_PEv8_Impact_Decks>Two officers come down near the {0} and walk its decks part by part, with {1} at the engine</CC_PEv8_Impact_Decks>
+  <CC_PEv8_Impact_DecksBrief>the decks walked</CC_PEv8_Impact_DecksBrief>
+  <CC_PEv8_Impact_PilotLesson>{0} learns {1} from the officers</CC_PEv8_Impact_PilotLesson>
+  <CC_PEv8_Impact_PilotLessonBrief>a lesson</CC_PEv8_Impact_PilotLessonBrief>
+  <CC_PEv8_Impact_Logged>{0}: +4 mood for 10 days</CC_PEv8_Impact_Logged>
+  <CC_PEv8_Impact_LoggedBrief>the ship logged</CC_PEv8_Impact_LoggedBrief>
+
+  <!-- ===================== 76. A sleeper of theirs ===================== -->
+
+  <CC_PEv8_SleeperStays>{PAWN_nameDef}, a sleeper of {FACTION} woken at the colony, has stayed and joined it.</CC_PEv8_SleeperStays>
+  <CC_PEv8_SleeperHome>{RUNNER} opened the casket and woke {PAWN_nameDef}, who is walking home to {FACTION} with {RUNNER}. The Fleet paid {COUNT} silver.</CC_PEv8_SleeperHome>
+  <CC_PEv8_SleeperWalksHome>{PAWN_nameDef}, a sleeper of {FACTION}, woke from the casket and has set off to find the Fleet.</CC_PEv8_SleeperWalksHome>
+  <CC_PEv8_CasketOpened>The casket has been opened, or is gone.</CC_PEv8_CasketOpened>
+  <CC_PEv8_Impact_OpenKeep>{0} opens the casket, and the sleeper wakes at the colony</CC_PEv8_Impact_OpenKeep>
+  <CC_PEv8_Impact_OpenHand>{0} opens the casket and takes {1} home</CC_PEv8_Impact_OpenHand>
+  <CC_PEv8_Impact_OpenBrief>the casket opened</CC_PEv8_Impact_OpenBrief>
+
+  <!-- ===================== 77. The order to disembark ===================== -->
+
+  <CC_PEv8_OrderCouldNotGo>{PAWN_nameDef} couldn't set out for the hull.</CC_PEv8_OrderCouldNotGo>
+  <CC_PEv8_OrderThere>{PAWN_nameDef} has reached {FACTION}'s hull at {PLACE} and gives the order to disembark there.</CC_PEv8_OrderThere>
+  <CC_PEv8_OrderHomeEarly>{PAWN_nameDef} came home from {PLACE} before giving the order.</CC_PEv8_OrderHomeEarly>
+  <CC_PEv8_OrderHomeLabel>{0} home from the hull</CC_PEv8_OrderHomeLabel>
+  <CC_PEv8_OrderHome>{PAWN_nameDef} is home from {FACTION}'s hull at {PLACE}, where {PAWN_pronoun} gave the order to disembark. The crew came down from their posts and stayed on at the hull.</CC_PEv8_OrderHome>
+  <CC_PEv8_OrderHomeCrew>{PAWN_nameDef} is home from {FACTION}'s hull at {PLACE}, where {PAWN_pronoun} gave the order to disembark. {COUNT} of the crew came back with {PAWN_objective} and have joined the colony: {NAMES}. The rest stay on at the hull.</CC_PEv8_OrderHomeCrew>
+  <CC_PEv8_OrderHomePeople>{PAWN_nameDef} is home from {FACTION}'s hull at {PLACE}, where {PAWN_pronoun} gave the order to disembark. The crew came down from their posts and have settled near the hull as a people of their own, {PEOPLE}.</CC_PEv8_OrderHomePeople>
+  <CC_PEv8_OrderHomeCrewPeople>{PAWN_nameDef} is home from {FACTION}'s hull at {PLACE}, where {PAWN_pronoun} gave the order to disembark. {COUNT} of the crew came back with {PAWN_objective} and have joined the colony: {NAMES}. The rest have settled near the hull as a people of their own, {PEOPLE}.</CC_PEv8_OrderHomeCrewPeople>
+  <CC_PEv8_RankedAway>{0} isn't at home to go now.</CC_PEv8_RankedAway>
+  <CC_PEv8_NoRank>{0} no longer holds a title of knight or higher.</CC_PEv8_NoRank>
+  <CC_PEv8_HullGone>The Fleet's hull is no longer within reach.</CC_PEv8_HullGone>
+  <CC_PEv8_Impact_Order>{0} goes to the hull at {1} as a caravan of one, about {2} days each way, and gives the order</CC_PEv8_Impact_Order>
+  <CC_PEv8_Impact_OrderBrief>the road to the hull</CC_PEv8_Impact_OrderBrief>
+  <CC_PEv8_Impact_OrderCrew>{0} of the crew come home with them and join the colony</CC_PEv8_Impact_OrderCrew>
+  <CC_PEv8_Impact_OrderCrewBrief>crew who join</CC_PEv8_Impact_OrderCrewBrief>
+  <CC_PEv8_Impact_OrderPeople>The rest of the crew found a people of their own near the hull, warm toward the colony</CC_PEv8_Impact_OrderPeople>
+  <CC_PEv8_Impact_OrderPeopleWarm>The crew all found a people of their own near the hull, and think very well of the colony</CC_PEv8_Impact_OrderPeopleWarm>
+  <CC_PEv8_Impact_OrderPeopleBrief>a new people</CC_PEv8_Impact_OrderPeopleBrief>
+  <CC_PEv8_Impact_GaveOrder>{0}: +8 mood for 60 days</CC_PEv8_Impact_GaveOrder>
+  <CC_PEv8_Impact_GaveOrderBrief>gave the order</CC_PEv8_Impact_GaveOrderBrief>
+  <CC_Arise_disembarked_Title>{NAME}: the crew of {TOWN} come down</CC_Arise_disembarked_Title>
+  <CC_Arise_disembarked>{MEANS}: one of the colony's people of rank gave {PEOPLE}'s crew at {TOWN} the order to disembark, and the crew came down from their posts after two hundred years. Those who did not go to the colony have settled together as {NAME}.</CC_Arise_disembarked>
+  <CC_Arise_disembarked_scholars>They brought the ship's records and its library down with them, and keep them open to anyone who can read.</CC_Arise_disembarked_scholars>
+  <CC_Arise_disembarked_salvagers>They know the old machines better than anyone, and they live by taking apart what the world left behind.</CC_Arise_disembarked_salvagers>
+  <CC_Arise_disembarked_traders>They carry what the ship's stores held along the roads, and trade it town to town.</CC_Arise_disembarked_traders>
+  <CC_Arise_disembarked_Warm>They know it was one of the colony who gave the order, and they think well of it.</CC_Arise_disembarked_Warm>
+  <CC_Arise_disembarked_Plain>They have no quarrel with the colony.</CC_Arise_disembarked_Plain>
+  <CC_Arise_disembarked_Cool>They keep their distance from the colony.</CC_Arise_disembarked_Cool>
+  <CC_Arise_H_disembarked>The crew of {FROM} disembarked and settled together as {NAME}.</CC_Arise_H_disembarked>
+  <CC_Arise_Card_disembarked>Arose {AGO}: the crew of {PEOPLE}'s hull at {FROM}, who came down when the order to disembark was given.</CC_Arise_Card_disembarked>
+
+  <!-- ===================== 78. A landing party ===================== -->
+
+  <CC_PEv8_PartySick>{THING} of the landing party has fallen ill at their camp {PLACE}.</CC_PEv8_PartySick>
+  <CC_PEv8_PartySickSleeper>{THING}, the sleeper the landing party brought, lately woken from the ship's caskets, has fallen ill at their camp {PLACE}.</CC_PEv8_PartySickSleeper>
+  <CC_PEv8_WatchWarnLabel>The landing party's watch</CC_PEv8_WatchWarnLabel>
+  <CC_PEv8_WatchWarn>The watch of {FACTION}'s landing party has spotted raiders of {WHO} on the way to the colony, armed. They will be here soon, and there is a little time to get ready.</CC_PEv8_WatchWarn>
+  <CC_PEv8_PartyFed>They have their week's food already.</CC_PEv8_PartyFed>
+  <CC_PEv8_NoMedic>None of them can see to the sick.</CC_PEv8_NoMedic>
+  <CC_PEv8_Impact_Party>A landing party of {0} camps by the colony for five to seven days and surveys the land</CC_PEv8_Impact_Party>
+  <CC_PEv8_Impact_PartyBrief>a landing party</CC_PEv8_Impact_PartyBrief>
+  <CC_PEv8_Impact_PartyWatch>Their watch spots raiders first and warns the colony before they arrive, once while they stay</CC_PEv8_Impact_PartyWatch>
+  <CC_PEv8_Impact_PartyWatchBrief>their watch</CC_PEv8_Impact_PartyWatchBrief>
+  <CC_PEv8_Impact_PartyTurns>A sleeper they brought may fall ill; a deckhand may ask to join against the officer's wish</CC_PEv8_Impact_PartyTurns>
+  <CC_PEv8_Impact_PartyTurnsBrief>it can turn</CC_PEv8_Impact_PartyTurnsBrief>
+
+  <!-- ===================== 79. A gene taken out ===================== -->
+
+  <CC_PEv8_GeneOut>{SEQ} took {GENE} out of {PAWN_nameDef}. {PAWN_nameDef} will need a little more food from now on.</CC_PEv8_GeneOut>
+  <CC_PEv8_GeneGone>That gene isn't there to take out any more.</CC_PEv8_GeneGone>
+  <CC_PEv8_Impact_GeneOutWork>{0} works on {1} where they stand for two hours</CC_PEv8_Impact_GeneOutWork>
+  <CC_PEv8_Impact_GeneOutWorkBrief>gene work</CC_PEv8_Impact_GeneOutWorkBrief>
+  <CC_PEv8_Impact_GeneOut>{1} is taken out of {0}, with the game's mark of a xenogerm replicating afterwards</CC_PEv8_Impact_GeneOut>
+  <CC_PEv8_Impact_GeneOutBrief>a gene taken out</CC_PEv8_Impact_GeneOutBrief>
+  <CC_PEv8_Impact_Hungrier>{0} gets a little hungrier, losing the metabolism that gene gave</CC_PEv8_Impact_Hungrier>
+  <CC_PEv8_Impact_HungrierBrief>a little hungrier</CC_PEv8_Impact_HungrierBrief>
+
+  <!-- ===================== 80. A whole xenogerm ===================== -->
+
+  <CC_PEv8_XenogermIn>{SEQ} wrote a whole {KIND} xenogerm into {PAWN_nameDef}. {PAWN_nameDef} will lie in a coma for some days while it takes.</CC_PEv8_XenogermIn>
+  <CC_PEv8_XenogermTaken>{0} can't take a xenogerm now.</CC_PEv8_XenogermTaken>
+  <CC_PEv8_Impact_XenogermWork>{0} works on {1} where they stand for three hours</CC_PEv8_Impact_XenogermWork>
+  <CC_PEv8_Impact_XenogermWorkBrief>gene work</CC_PEv8_Impact_XenogermWorkBrief>
+  <CC_PEv8_Impact_Xenogerm>{0} becomes a {1}, the whole xenogerm written in</CC_PEv8_Impact_Xenogerm>
+  <CC_PEv8_Impact_XenogermBrief>a whole xenogerm</CC_PEv8_Impact_XenogermBrief>
+  <CC_PEv8_Impact_Coma>{0} lies in the game's xenogermination coma for some days afterwards</CC_PEv8_Impact_Coma>
+  <CC_PEv8_Impact_ComaBrief>a coma</CC_PEv8_Impact_ComaBrief>
+  <CC_PEv8_Impact_Faith>{0}'s faith, {1}, holds to its own kinds of people: {0} will mind being another kind</CC_PEv8_Impact_Faith>
+  <CC_PEv8_Impact_FaithBrief>against the faith</CC_PEv8_Impact_FaithBrief>
+
+  <!-- ===================== 81. A hybrid beast ===================== -->
+
+  <CC_PEv8_HybridBought>The {BEAST} from {FACTION}'s vats is the colony's now, with {PAWN} as its master.</CC_PEv8_HybridBought>
+  <CC_PEv8_HybridGone>The {0} isn't at the gate any more.</CC_PEv8_HybridGone>
+  <CC_PEv8_Impact_Hybrid>A young {0} joins the colony, {1} its master</CC_PEv8_Impact_Hybrid>
+  <CC_PEv8_Impact_HybridBrief>a hybrid beast</CC_PEv8_Impact_HybridBrief>
+
+  <!-- ===================== 82. A field lab ===================== -->
+
+  <CC_PEv8_LabLooseLabel>A {0} loose</CC_PEv8_LabLooseLabel>
+  <CC_PEv8_LabLoose>The {THING} the Works brought to their field lab {PLACE} has got loose, and it is attacking anyone near it.</CC_PEv8_LabLoose>
+  <CC_PEv8_LabSick>{THING} of the field lab {PLACE} has fallen ill with a fault in the genes the vats gave them.</CC_PEv8_LabSick>
+  <CC_PEv8_LabGeneQueued>A sequencer of the field lab will come to {A_nameDef} and write {THING} into {A_objective}.</CC_PEv8_LabGeneQueued>
+  <CC_PEv8_LabSampleQueued>A sequencer of the field lab will come to {A_nameDef} and draw a sample of {A_possessive} blood.</CC_PEv8_LabSampleQueued>
+  <CC_PEv8_LabBusy>They have enough of the colony's work waiting.</CC_PEv8_LabBusy>
+  <CC_PEv8_NoBiotech>This needs Biotech.</CC_PEv8_NoBiotech>
+  <CC_PEv8_NoGeneTaker>Nobody at home could take one of their genes now.</CC_PEv8_NoGeneTaker>
+  <CC_PEv8_NoRareBlood>Nobody at home has genes rare enough for them, or a sample is already waiting.</CC_PEv8_NoRareBlood>
+  <CC_PEv8_Impact_Lab>Two sequencers and a vat-keeper of {0} camp by the colony for a week, sampling the land, with their gene work open on the camp's page</CC_PEv8_Impact_Lab>
+  <CC_PEv8_Impact_LabBrief>a field lab</CC_PEv8_Impact_LabBrief>
+  <CC_PEv8_Impact_LabTurns>A beast of theirs may get loose and attack; one of them may fall ill</CC_PEv8_Impact_LabTurns>
+  <CC_PEv8_Impact_LabTurnsBrief>it can turn</CC_PEv8_Impact_LabTurnsBrief>
+  <CC_PEv8_Impact_LabGene>One of the Works' genes is written into {0}</CC_PEv8_Impact_LabGene>
+
+</LanguageData>

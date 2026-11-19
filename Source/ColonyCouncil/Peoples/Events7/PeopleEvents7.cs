@@ -46,7 +46,8 @@ namespace ColonyCouncil
                 case VoiceForColony.Kind: return VoiceForColony.Hour(v, now);
                 case OilInGround.Kind: return OilInGround.Hour(v, now);
             }
-            return false;
+            // Round 8's (Peoples/Events8/): the clerk at the vote, the medal, the officers on the gravship, the sleeper's casket, the Works' gene work.
+            return PeopleEvents8.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -69,6 +70,8 @@ namespace ColonyCouncil
             Safe("the shifts at a pit", () => PitCaveIn.Shifts(now));
             Safe("the petitions", () => OrganizersEvening.Petitions(now));
             Safe("the pickets", () => Picket.Watch(now));
+            // Round 8's watch (Peoples/Events8/): elections, deeds, famines, the Fleet's sleepers woken.
+            Safe("round 8", () => PeopleEvents8.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

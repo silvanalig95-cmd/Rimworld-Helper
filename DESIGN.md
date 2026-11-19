@@ -10432,6 +10432,118 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `HappeningWorker_UnionStrike.CanHappen` (the picket's captain settles it), `FactionMemory` (the deed `markTrue`),
     `FactsMath`, the def check's placeholders. No game hooks of its own. Dev actions "Peoples' events 7: ...". The Almanac's
     peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml).
+- **The peoples' own events, round 8** (the player's go, 19 November 2026: "Events sounds great"; released 0.272.0)
+  `docs/peoples-events-proposals.md`, items 71 to 82 (the Last Republic, the Hollow Fleet and the Helix Works);
+  `Source/ColonyCouncil/Peoples/Events8/`, the pure rules in `PeopleEvents8Math.cs`, `Tools/Tests/PeopleEvents8Tests.cs` ("the
+  peoples' events, round 8: "). As rounds 1 to 7: only from a people of its calling at peace (`PeoplesD.Friendly`), in the Visitors
+  group, base chance 0.3 or 0.4, 45 to 60 days apart (the deserter 50) and never in the first fifteen days (the sleeper and the xenogerm twenty, the order thirty), every
+  age in its own form, played out on the map. Four come from code at their moment (base chance 0, `PeopleEvents2.Fire`), each at a
+  chance times the storytellers' lean on visitors: the Republic's clerk on polling day, its medal after a deed, its ration post in a
+  famine, and one of the hungry at the post asking to join. Round 7's hour hands on to round 8's (`PeopleEvents7.Hour` and `Hourly`,
+  one line each). The gifts (the medal, the gene taken out, the xenogerm) keep the peoples' gift rule (`PeopleEvents.MayGive`: once a
+  colonist, the gap since the last gift).
+  - **An observer at the vote** (Republic; `VoteObserver`): a contested election at a home (`OfficeTracker.election`, not a
+    ceremony), rolled once at 0.5, thirty days apart, on polling day morning (two hours before the polls open until four before the
+    count): a clerk (`Rimfolk_Republic_Clerk`) at the gate. Let in, the clerk walks the roll (`Rimfolk_PEv8_Roll`, a quarter hour with
+    each voter at home, eight at most), waits by the meeting place, and stands by the count (`_StandBy`) while it is read. While the
+    clerk is on the map a heckle at the count's speeches comes to blows half as often (`HustingsBrawls`,
+    `PeopleEvents8Math.BrawlFactor`). When the result is in (the count seen as a gathering, then the election settled) the clerk calls
+    it fair: with a radio at home (a powered comms console, or the relay mast while it sings, `RepublicRadio.HasRadio`) the Republic's
+    evening broadcast says so in a letter and everyone at home has `Rimfolk_Thought_FairVote` (+3 for 5 days); without one the clerk
+    says they will report it. With the second answer the result goes into the Republic's register: the council's members have
+    `Rimfolk_Thought_InTheRegister` (+3 for 15 days). +3 (+5 with the register). A count put off past a day and a half, or read at
+    the table without a gathering, sends the clerk home without a word on the radio.
+  - **A medal** (Republic; `RepublicMedal`): the colony's deeds (`Reputations`, Social/Gossip/Deeds.cs) of a rescue under fire
+    (`Rimfolk_Deed_Rescue`) or the line held in a hard fight (`Rimfolk_Deed_HeldLine`), half a day to four days old, the doer at home
+    and free for a gift, rolled once at 0.5, thirty days apart: a clerk and a guard at the gate, the card saying the deed in the deeds'
+    own words (`Deeds.TextOf`) and the fight's name. The colonist walks out to the clerk, the guard stands by, the clerk reads the
+    citation for an hour (`_Citation`); with the second answer up to eight free colonists come to stand by and hear it
+    (`Rimfolk_Thought_HeardCitation`, +2 for 3 days, for everyone within nine cells). The medal: `Rimfolk_Thought_RepublicMedal` (+6
+    for 60 days), the Republic's memory of them by name (the new deed `medal`, `KinMemory.Note`, which the colony's renown reads), and
+    from the industrial age on with Vanilla Books Expanded the Republic's newspaper (`VBE_Newspaper`) set down by them. +3. Without
+    the colony's talk of deeds (the reputations setting off) no medal comes.
+  - **A fugitive of the Republic** (Republic; `RepublicFugitive`): a deserter of the Civic Guard (`Rimfolk_Republic_Guard`) at the
+    gate asking to join, a detail of two or three of the Guard close behind (their own visit). Pay the fine (250 silver by the
+    colony's wealth, 150 to 500, carried to the detail): the deserter joins, +2. Shelter them: they join, -10
+    (`GoodwillWhy.Deserter`), the colony's citizenship papers struck if it holds them (`Papers.Strike`); if that turns the Republic
+    against the colony, the detail at the gate fights (the game's own assault), and the card says so beforehand. Hand them over (the
+    default): the detail leads them away together, +8.
+  - **A ration post** (Republic; `RationPost`, `CampWorker_RationPost`): a world event of hunger in the region (famine, blight,
+    locusts: `WorldSituations`, kind "hunger"), rolled once within its first five days at 0.5: a clerk at the gate. A clerk and two
+    guards keep a post a week by the colony's road (the picket's own site, `Picket.Site`) with 24 rations (and the colony's ten meals
+    with the second answer). By day, every three to six hours, a hungry traveller (or two) of a people at peace with the colony and
+    the Republic walks in from the road (`Arrivals.Visit` to their fire), waits half an hour at the fire for a ration (`_Ration`) and
+    walks on; with none left they go hungry. Once a stay one of those fed asks the colony to take them in
+    (`Rimfolk_Evt_RationJoin`: take them in, give two meals for the road, or not now). Asks: the post buys twenty meals at the
+    Republic's fixed price (8 a meal, paid by its clerk), a colony holding the papers draws rations on its ration cards (a survival
+    meal each, 4 to 12, from the post's stack, set down by its fire), and the hurt are tended. It can turn, once a stay each: the
+    rations run out with someone waiting and, at the camp brawl's rate (`HarmKinds.CampBrawl`), they and a guard come to blows (the
+    game's social fight), else words; or, at 0.3, one of a people the Republic is at war with comes and a guard turns them away at the
+    fire. Going: +3.
+  - **The colony's gravship** (Fleet; `GravshipLog`; Odyssey): the colony's grav engine at home and its pilot (who wears Odyssey's
+    pilot assistant, else the best at Intellectual): the Fleet calls the ship on its own channel (no visitor at the gate). Bidden, two
+    officers (`Rimfolk_HollowFleet_Officer`) come down near it by shuttle (Royalty's transport ship), by drop pod without Royalty, on
+    foot for a Fleet before the industrial age; they walk from part to part (`_Deck`, a quarter hour each: the engine, then Odyssey's
+    own list of the ship's parts, five at most) with the pilot standing by at the engine. Then the part from the hull's stores is set
+    down by the engine (a minifiable ship's upgrade by the trade tag `GravshipUpgrade`, Odyssey's and Vanilla Gravship Expanded's, one
+    the colony hasn't got, under 3000 silver; else 25 gravlite panels), or with the second answer the pilot learns 3000 Intellectual.
+    The pilot: `Rimfolk_Thought_ShipLogged` (+4 for 10 days). +10.
+  - **A sleeper of theirs** (Fleet; `SleeperOfTheirs`): one of the game's ancient cryptosleep caskets at home with a sleeper in it,
+    out of the fog and in reach from the gate: a deck-runner at the gate. The Fleet's sleeper (a deckhand, asleep
+    `PeoplesFMath.SleptYears`) is laid in the casket in place of whoever lay there (nobody had seen them), and the casket set apart
+    from its group so opening it wakes no other (`groupID`). Handed over: the runner opens it (`_OpenCasket`, an hour), the sleeper
+    wakes (the game's cryptosleep sickness) and walks home with them, the Fleet pays 200 silver by the colony's wealth (150 to 400),
+    +12. Kept: the colony's doctor opens it and the sleeper joins, -4 (`KeptTheirs`). Left shut: kept on record (`SleeperRecord`);
+    woken later at the colony, they walk off to find the Fleet, told.
+  - **The order to disembark** (Fleet; `OrderToDisembark`, `DisembarkAway`; Royalty): a colonist holding an Empire title of knight
+    or higher (`RoyalTitleDefOf.Knight`'s seniority) who may leave, a Fleet hull within 20 tiles, the Fleet's order not yet given: an
+    officer at the gate. Sent, the colonist goes as a caravan of one (round 2's season away, key "disembark") and stays a day and a
+    half; home, three to five of the crew (deckhands, an engineer, one of the ship's guard) come in with them and join, and the rest
+    found a people of their own near the hull (release B's arising, a cause of its own, `ArisingMath.Disembarked`, never looked for by
+    the region's day: a template of scholars, salvagers or traders by the Fleet's age, its faith the Fleet's, warm toward the colony,
+    30, or 45 when the second answer let them all find their own way and nobody came home with the colonist), its letter the
+    arising's own. Only while new peoples may arise (the setting); without it, the rest stay at the hull. The colonist:
+    `Rimfolk_Thought_GaveTheOrder` (+8 for 60 days). +10. Once a Fleet.
+  - **A landing party** (Fleet; `LandingParty`, `CampWorker_LandingParty`): four to six crew (an officer, a guard, an engineer,
+    deckhands, one of them their medic, one a sleeper lately woken) walk in from where their shuttle set them down and camp five to
+    seven days, bunks under one roof (`Hut`), the watch bell rung at 8, 12, 16 and 20h (a moment line), and by day they survey places
+    a walk from their camp (`_Survey`, half an hour each, counted in their farewell). Asks: they buy twelve meals at 12 silver each
+    (also at the gate, the second answer), their medic sees to the colony's sick (the camps' own tending at a colonist's side), and
+    the colony's doctor sees to theirs. Their watch, once a stay, spots a raid the storyteller sends first (`Patch_LineMastWarns`,
+    where no mast sings: the raid held a couple of hours in the game's own queue and their warning told now). It can turn: the
+    sleeper falls ill (the game's flu, the camps' fever kind, the illness budget; 0.2, once); a deckhand asks to disembark here and
+    join (the camp's own join, 0.3 a day), against the officer's wish: the officer has words and the Fleet -3. Going: +3.
+  - **A gene taken out** (Works; `GeneTakenOut`; Biotech): a grown colonist free for a gift, no xenogerm replicating, with a harmful
+    gene (metabolism above zero, not archite, no other gene of theirs needing it): a sequencer at the gate offers to take the worst
+    out, two hours where they stand (`_GeneOut`, the healing cross, the colonist held: round G's hold), for 160 silver and 70 a point
+    of metabolism (600 at most), or a genepack. The gene removed, the game's mark of a xenogerm replicating, told. +2.
+  - **A whole xenogerm** (Works; `WholeXenogerm`; Biotech): a grown baseliner with nothing put in, free for a gift: a sequencer
+    offers a whole xenogerm of one of the Works' own kinds (Biotech's nine, Odyssey's starjack, Alpha Genes' helixien, animusen,
+    fleetkind and nereid, Vanilla Races Expanded - Hussar's uhlan; only those in the Works' own set, none with archite genes), for 300
+    silver, 15 a gene and 20 a point of complexity (400 to 1500) and two genepacks, or all in silver (300 more). Three hours where they
+    stand (`_Xenogerm`): the kind's genes written in as xenogenes, the xenotype set, the game's xenogermination coma and its
+    replicating mark. A colonist whose faith holds to other kinds (Biotech's preferred xenotypes) is named on the card; the game's own
+    mood follows. +3.
+  - **A hybrid beast** (Works; `HybridBeast`; Vanilla Genetics Expanded): a vat-keeper (Animals 9 to 14) at the gate leading a young
+    hybrid (twelve of the mod's beasts of the farm and the road, never its odd ones, one that can stand the weather), sold for its
+    worth and a fifth (150 at least); bought, it is the colony's, the handler its master; the second answer adds a lesson in Animals
+    at the gate. Not bought, the vat-keeper leads it home. +2.
+  - **A field lab** (Works; `FieldLab`, `CampWorker_FieldLab`): two sequencers and a vat-keeper camp a week, sampling wild beasts and
+    plants a walk from their camp by day (`_FieldSample`, never the colony's fields), with a young hybrid of theirs (Vanilla Genetics
+    Expanded). Asks open all week: gene work (300 silver by the colony's wealth; one of round G's genes written into a colonist who
+    could take one, at their side, `_LabGene`), the sample (from the rarest blood at home, round G's draw and price, `_LabSample`), a
+    genepack sold (180 silver), and their sick tended. It can turn, once a stay each: their hybrid gets loose and turns manhunter at
+    0.12 (the camps' beasts' kind, `HarmKinds.DroversBull`, in the shared budget; told as a threat), or a vat-grown of theirs falls
+    ill with round G's gene fault at 0.15 (the camps' fever kind and the illness budget). Going: +3.
+  - Harm of Rimfolk's own: none of a new kind. The queue's blows at the post are the camp brawl's (`CampBrawl`), the sleeper's flu
+    and the vat-grown's fault the camps' fever (`CampFever`), the loose hybrid the camps' beasts' (`DroversBull`), each through the
+    shared budget and told; the detail's fight and the roads to the hull are the game's own, shown on the cards. Saved:
+    `PeopleEvents8Book` (the elections and famines rolled for, the deeds rolled for a medal, the sleepers left asleep, the Fleets
+    ordered to disembark) and the camps' states, modelled in `Tools/save_estimate.py`. Small hooks: round 7's `Hour` and `Hourly`,
+    round 2's `SeasonAway.Kinds` (the hull), `HustingsBrawls` (the clerk's calming factor), `Patch_LineMastWarns` (the watch's
+    warning), `FactionMemory` (the deed `medal`), `ArisingMath` and `Arising` (the disembarked), `FactsMath`, the def check's
+    placeholders. No game hooks of its own. Dev actions "Peoples' events 8: ...". The Almanac's peoples' pages, *Of their own: gifts,
+    trust and camps* (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

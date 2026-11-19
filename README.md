@@ -4753,6 +4753,23 @@ down, a **shift-captain speaks at its fire** and next morning a petition for res
 lasts, **a picket** may camp by the colony's road, singing at night, until the colony helps settle it or the union votes to
 go back.
 
+**The peoples' own events, the eighth round.** Twelve more, from the Last Republic, the Hollow Fleet and the Helix Works,
+each only while that people is at peace with the colony. On the morning of the colony's polling day a **clerk of the
+Republic** may ask to observe: the clerk walks the colony with the roll and stands by the count, a heckle comes to blows
+half as often while the clerk is there, and with a radio the colony hears the Republic's broadcast call the vote fair.
+When one of the colony carries someone out of a fight or holds the line in a hard one, the Republic may come to read a
+**citation at the gate and pin on its medal** (with Vanilla Books Expanded, the Republic's newspaper too). A **deserter of
+its Guard** may run to the gate with a detail behind: pay the fine, shelter them (the Republic is angry, and strikes the
+colony's papers), or hand them over. In a famine a **ration post** may stand a week by the colony's road, the hungry
+coming in for a ration and some asking to stay. With Odyssey the **Fleet's officers** may walk the colony's gravship and
+log it, leaving a part from the hull's stores or a lesson for its pilot; a **deck-runner** may come for a sleeper of theirs
+in one of the old caskets on the colony's land; with Royalty a colonist of the Empire's rank may be asked to give the
+**order to disembark** at the hull (some of the crew come home and join, the rest found a people of their own); and a
+**landing party** may camp a week, surveying the land, its watch bell rung at every change of the watch and its watch
+the first to see raiders coming. The **Helix Works** may take a harmful gene out of one of the colony, write a whole
+xenogerm of one of their kinds into another (a coma follows), sell a young hybrid from their vats (Vanilla Genetics
+Expanded), or set up a **field lab** for a week, their gene work open all the while; a beast of theirs can get loose.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

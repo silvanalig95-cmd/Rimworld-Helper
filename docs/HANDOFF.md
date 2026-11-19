@@ -32,7 +32,8 @@ most sense." So, in this order, three builds at a time:
 1. **Riding out to far work** (a bug): released 0.266.5.
 2. **Rooms judged by what is in them** (released 0.266.6) and **quests, round 3** (released 0.267.0).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0); round 8 is being built.
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0); round 9 is
+   being built.
 4. **The plain-words text pass**: every category done and released (0.266.9 to 0.271.1) but the peoples' own texts and
    Almanac pages, which wait for the player's answer (below; the entry "Rimfolk's text in plain words").
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -174,7 +175,7 @@ repo.
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
   round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0),
-  round 6 (0.270.0), round 7 (0.271.0), round 8 being built, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 9 and 10 follow one per release. Ten
+  round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 being built, on the player's go of 19 November 2026 ("Events sounds great"), and round 10 follows. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
@@ -183,8 +184,8 @@ repo.
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Released 0.270.0 (19 November 2026).
-  7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Built, not released (19 November 2026).
-  8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
+  7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Released 0.271.0 (19 November 2026).
+  8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82. Built, not released (19 November 2026).
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
 - **To do when the player asks (13 November 2026, gathered while the usage limit was reached; the player: "gather all
@@ -518,6 +519,99 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.272.0, **The peoples' own events, round 8**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 71 to 82 of `docs/peoples-events-proposals.md` (twelve, all built): the Last Republic's clerk who walks the colony with
+  the roll on polling day and stands by the count (a heckle comes to blows half as often while the clerk is there, and with a
+  radio the Republic's broadcast calls the vote fair; the result in its register with the second answer), its medal read at
+  the gate for a colonist who carried someone out of a fight or held the line (with Vanilla Books Expanded its newspaper), the
+  deserter of its Guard at the gate with a detail behind (the fine, shelter, or handed over), and its ration post a week by the
+  colony's road in a famine (the hungry coming in for a ration, one asking to stay, the post buying food at the Republic's price
+  and honouring a citizen colony's ration cards); the Hollow Fleet's officers who walk and log the colony's gravship (Odyssey)
+  and leave a part from the hull's stores or a lesson for its pilot, its deck-runner come for a sleeper of theirs in one of the
+  old caskets on the colony's land, the order to disembark a colonist of the Empire's rank gives at its hull (Royalty; three to
+  five of the crew come home and join, the rest found a people of their own), and its landing party camped a week, surveying,
+  its watch bell rung and its watch the first to see raiders; the Helix Works' harmful gene taken out of a colonist, its whole
+  xenogerm of one of its kinds (a coma after), its young hybrid from the vats (Vanilla Genetics Expanded) and its field lab a
+  week, its gene work, sample and genepack trade open all the while. DESIGN.md "The peoples' own events, round 8" has every
+  rule; README "The peoples' own events, the eighth round"; the Almanac's peoples' page, *Of their own: gifts, trust and camps*
+  (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events8/` (new): `PeopleEvents8Math.cs` (pure, linked), `PeopleEvents8Book.cs` (a game
+    component: the elections and famines rolled for, the deeds rolled for a medal, the sleepers left asleep, the Fleets ordered to
+    disembark), `PeopleEvents8.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv8Work` with a queue, its `PEv8Work` marks
+    and round G's hold under the healing cross), `VoteObserver.cs` (71), `RepublicMedal.cs` (72), `RepublicFugitive.cs` (73),
+    `RationPost.cs` (74, `CampWorker_RationPost`, and the hungry's `HappeningWorker_RationJoin`), `GravshipLog.cs` (75),
+    `SleeperOfTheirs.cs` (76), `OrderToDisembark.cs` (77, `DisembarkAway`), `LandingParty.cs` (78, `CampWorker_LandingParty`),
+    `GeneTakenOut.cs` (79), `WholeXenogerm.cs` (80), `HybridBeast.cs` (81), `FieldLab.cs` (82, `CampWorker_FieldLab`),
+    `PeopleEvents8Debug.cs`. Small hooks: `PeopleEvents7.Hour` and `Hourly` (round 8's, one line each), round 2's
+    `SeasonAway.Kinds` (the hull), `HustingsBrawls.HeckleTurns` (the clerk's factor), `Patch_LineMastWarns` (the landing party's
+    watch beside the mast), `FactionMemory` (the deed `medal`, its words), `ArisingMath` and `Arising` (the cause
+    `disembarked`: its callings, faith and goodwill; its letter, history and card words in the round's Keyed file),
+    `FactsMath` (the three camps' tags), the def check's placeholders (`{FED}`, `{PEOPLE}`, `{SURVEYED}`, `{SAMPLED}`). Defs:
+    `Rimfolk_Events_PeopleEvents8.xml` (thirteen events; four fired from code: the observer, the medal, the ration post, one of
+    the hungry asking to join), `Rimfolk_CampKinds_PeopleEvents8.xml` (three camps), `Rimfolk_PeopleEvents8_Misc.xml` (twelve
+    jobs, six moods), Keyed `Rimfolk_PeopleEvents8.xml`. Tools: the play-out audit's effects and eleven skips, the save model's lists.
+  - Decided here (open in the proposals): the observer comes on polling day morning (the count is that evening), once an election
+    at 0.5; "walks the colony with the roll" is a quarter hour with each voter at home, eight at most; "hustings come to blows
+    half as often" is the hustings' own brawl chance halved while the clerk is on the map (the hustings join the count now); "the
+    radio speaks of a fair vote" is a letter as the Republic's evening broadcast, heard only with a radio at home (else the clerk
+    says they will report it), and the second answer is the Republic's register (a good memory for the council's members). The
+    medal's "great deed" is the deeds the colony talks of, a rescue under fire or the line held in a hard fight, half a day to
+    four days old; "the region's word" is the new peoples' memory deed `medal` naming the colonist, which renown reads; the
+    newspaper from the industrial age on. The fugitive: the fine 250 silver by wealth; "a hostile detail fights by the game's own"
+    is read as: if sheltering turns the Republic against the colony, the detail at the gate fights (the game's assault), and the
+    card says so beforehand; the hand-over is the default. The ration post's "famine" is any world event of hunger in the region
+    (famine, blight, locusts), rolled once at 0.5; "the post buys food at a fixed price" is twenty meals at 8 silver; "ration cards"
+    are survival meals from the post's own stack, a citizen colony only; "some of the hungry ask to join" is one a stay, once fed;
+    the riot is the camp brawl's rate between the one turned away hungry and a guard. The gravship's part is any minifiable ship's
+    upgrade of Odyssey or Vanilla Gravship Expanded by the trade tag (gravlite panels when none will do), the lesson Intellectual;
+    the officers come by Royalty's shuttle, drop pods without it. The sleeper: the Fleet's sleeper is laid in the casket in place
+    of whoever lay there when the runner comes (nobody had seen inside), and the casket is set apart from its group so nothing else
+    wakes; kept costs the Fleet's goodwill a little (-4), left shut they walk home if woken later. The order: knight or higher by
+    the Empire's own seniority; a hull within 20 tiles; the rest found a people through the arising's own machinery as a cause of
+    its own, with the second answer (nobody comes home) as the warmer new people; once a Fleet; without the "New peoples arise"
+    setting the rest stay at the hull. The landing party: "by their shuttle" is that their shuttle set them down beyond the colony's
+    land (no shuttle stands at the camp; they walk in and out), "bunks in a row" their one shelter (`Hut`), the bell a moment line at
+    every change of the watch by day; the watch warns once a stay through the mast's own hook; the deckhand's join is the camp's own,
+    the officer's words and -3 after. The gene taken out: the gene with the most metabolism, 160 silver and 70 a point (or a
+    genepack). The whole xenogerm: fifteen of the Works' own kinds by name, a baseliner only, 400 to 1500 silver and two genepacks
+    or all in silver; the faith that "looks down on xenotypes" is Biotech's preferred xenotypes. The hybrid: twelve of Vanilla
+    Genetics Expanded's farm and road beasts, never the odd ones; without the mod the event doesn't come. The field lab: gene work
+    300 silver by wealth, the sample at round G's price, genepacks 180; the beast loose is the camps' beasts' kind, the illness round
+    G's gene fault.
+  - Harm: none of a new kind. The queue's blows (`CampBrawl`), the sleeper's flu and the vat-grown's fault (`CampFever`, with the
+    illness budget) and the loose hybrid (`DroversBull`) go through the shared harm budget and are told; the detail's fight, the
+    xenogerm's coma and the roads to the hull are the game's own, and the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents8Tests.cs` (about 230 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the clerk's walk of the roll, the stand at the count and the
+    broadcast's letter; the citation at the gate and the colony gathered; the deserter and the detail at the gate, led away or
+    turning to fight; the ration post by the road, the hungry walking in and out, the queue's blows, the one turned away, the cards'
+    rations by the fire; the officers' shuttle or pods by the gravship, the walk of its decks, the part set down; the runner at the
+    casket, the sleeper woken and walking home; the caravan of one to the hull and home with the crew, the new people's letter; the
+    landing party's camp, the bell, the survey, the raid warned and held; the gene work's hold and the gene gone, the xenogerm and
+    its coma; the hybrid handed over; the field lab's sampling, its gene work at a colonist's side, the beast loose).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 8: what the record keeps (log)" shows the state and what each event
+    would find here; the drawn events with the game's own incident tool): 1. The observer: call a contested election, wait for
+    polling day morning, then "a clerk to observe the vote now"; watch the roll walked, the stand at the count and the fair vote on
+    the radio (with a comms console). 2. The medal: after a rescue in a fight (or "a medal for a deed now", which records one),
+    either answer; the citation at the gate. 3. The fugitive: `Rimfolk_Evt_RepublicFugitive`, each answer (shelter with the
+    Republic near -75 to see the detail fight). 4. The ration post: start a famine with the world events' tools, then "the ration
+    post's clerk now"; the hungry, the food ask, the cards with the papers, "a camp of theirs turns now..." for the rations run out.
+    5. The gravship (Odyssey): a grav engine at home, then "the Fleet calls the colony's gravship now". 6. The sleeper: spawn an
+    ancient cryptosleep casket with a pawn, then "a deck-runner for a sleeper now"; each answer. 7. The order (Royalty): give a
+    colonist the knight's title, then `Rimfolk_Evt_OrderToDisembark`; "the days at the hull done now" to bring them home. 8. The
+    landing party: `Rimfolk_Evt_LandingParty`; the bell at 8, 12, 16, 20h, the survey by day, a raid sent while they camp; "a camp
+    of theirs turns now..." for the sleeper's illness. 9. The gene taken out (Biotech, a colonist with a gene of plus metabolism):
+    `Rimfolk_Evt_GeneTakenOut`. 10. The xenogerm: `Rimfolk_Evt_WholeXenogerm` with a baseliner at home. 11. The hybrid (Vanilla
+    Genetics Expanded): `Rimfolk_Evt_HybridBeast`. 12. The field lab: `Rimfolk_Evt_FieldLab`; the asks on the camp's page; "a camp
+    of theirs turns now..." for the beast loose and the illness.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Odyssey's gravships, Vanilla Gravship
+    Expanded's upgrades, Royalty's shuttle and titles, Biotech's genes and xenotypes, Alpha Genes' and Vanilla Races Expanded -
+    Hussar's kinds, Vanilla Genetics Expanded's hybrids, Vanilla Books Expanded's newspaper). Vanilla Furniture Expanded - Props
+    and Decor, already in the list, has decorative shuttles a landing party could later stand beside, should the player want one on
+    the map.
 - 0.271.1, **Plain words: What's new**
   (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
   you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive

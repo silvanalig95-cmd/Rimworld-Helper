@@ -48,7 +48,9 @@ namespace ColonyCouncil
             [OldSoldier.AwayKey] = new MusterAway(),
             [CompanyMarch.AwayKey] = new EnlistAway(),
             // Round 7's (Peoples/Events7/): the miner and the doctor dug in at a union pit's cave-in.
-            [PitCaveIn.AwayKey] = new CaveInAway()
+            [PitCaveIn.AwayKey] = new CaveInAway(),
+            // Round 8's (Peoples/Events8/): a colonist of the Empire's rank at the Hollow Fleet's hull, giving the order to disembark.
+            [OrderToDisembark.AwayKey] = new DisembarkAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;

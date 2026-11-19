@@ -227,6 +227,8 @@ namespace ColonyCouncil
             ["learnedHere"] = K(DeedSide.Favor, 10),
             // A masterwork of the colony's judged true by a master of the Kiln Guild (Peoples/Events7/MastersMark.cs), its maker named.
             ["markTrue"] = K(DeedSide.Favor, 6),
+            // A colonist's great deed in a fight honoured with the Last Republic's medal (Peoples/Events8/RepublicMedal.cs), its doer named.
+            ["medal"] = K(DeedSide.Favor, 8),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),

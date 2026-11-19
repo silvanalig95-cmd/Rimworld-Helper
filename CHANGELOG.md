@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 8
+
+*19 November 2026, version 0.272.0*
+
+- The Last Republic may send a clerk to watch the colony's vote and the count, and its radio says when a vote was fair; it also reads a citation and pins a medal on a colonist who carried someone out of a fight or held the line.
+- A deserter of the Republic's Guard may ask to join with a detail close behind, and in a famine the Republic may keep a ration post by the colony's road for a week.
+- With Odyssey, the Hollow Fleet's officers may walk and log the colony's gravship and leave a part from the hull's stores or teach its pilot; a deck-runner may come for a sleeper of theirs in one of the old caskets.
+- With Royalty, a colonist of the Empire's rank may give the Fleet the order to disembark its captain never gave: some of the crew come home and join, the rest found a people of their own.
+- A landing party of the Fleet may camp a week to survey the land, its watch bell rung at each change of the watch and its watch the first to see raiders coming.
+- The Helix Works may take a harmful gene out of a colonist, write in a whole xenogerm of one of their kinds, sell a young hybrid from their vats, or set up a field lab for a week.
+
 ## What's new in plain words
 
 *19 November 2026, version 0.271.1*
