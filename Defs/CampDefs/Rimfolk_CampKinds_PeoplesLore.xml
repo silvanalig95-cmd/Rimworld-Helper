@@ -157,7 +157,7 @@
           <li>Whoever isn't on watch is going to the caravan's fire tonight, and the drivers are already arguing about who gets to tell the story of Harrow Ford.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the league's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the league's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
         </effects>
       </li>

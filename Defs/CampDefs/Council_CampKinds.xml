@@ -353,7 +353,7 @@
           <li>The refugees are coming to supper, and the colony's cook has made extra without being told.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the family</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the family</label><hours>17~21</hours><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>

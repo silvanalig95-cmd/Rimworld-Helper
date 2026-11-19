@@ -162,7 +162,7 @@
           <li>{X_nameDef} has asked the colony over to the caravan's fire tonight, and the drivers are already arguing about who tells the first story.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the caravan's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the caravan's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
         </effects>
       </li>
@@ -345,7 +345,7 @@
           <li>Supper with the merchants tonight. {X_nameDef} has asked to help in the kitchen.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the merchants</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the merchants</label><hours>17~21</hours><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Cooking</skill><xp>120</xp></li>
         </effects>
       </li>
@@ -666,7 +666,7 @@
           <li>The penitents have asked the colony to their evening prayer, and {X_nameDef} has laid out mats by the fire.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>evening prayer with the penitents</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>evening prayer with the penitents</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2.5</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
         </effects>
       </li>
@@ -862,7 +862,7 @@
           <li>The fields will have singers today. The colony's growers are curious, a little embarrassed, and going anyway.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the singing in the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>7~18</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the singing in the fields</label><spots><li>Fields</li><li>Outdoors</li></spots><hours>7~18</hours><duration>1.5~2</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>150</xp></li>
         </effects>
       </li>
@@ -1129,7 +1129,7 @@
           <li>There'll be music at supper. {X_nameDef} has promised something fast for dancing and something slow for after.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the minstrels' feast</label><music>true</music><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the minstrels' feast</label><music>true</music><hours>17~21</hours><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
         </effects>
       </li>
@@ -1145,7 +1145,7 @@
           <li>The minstrels are making a song about the colony, and won't say yet whether it's a sad one.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the colony's song</label><organizer>A</organizer><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>18~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the colony's song</label><organizer>None</organizer><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>18~22</hours><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_OurSong</thought></li>
         </effects>
       </li>
@@ -1294,7 +1294,7 @@
           <li>The colony will see the mourners off at the road. {X_nameDef} said it was the kindest thing anyone had offered them.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for the mourners</label><spots><li>Outdoors</li></spots><target>Colony</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for the mourners</label><spots><li>Outdoors</li></spots><target>Colony</target><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>

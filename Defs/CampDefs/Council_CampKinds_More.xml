@@ -322,7 +322,7 @@
           <li>[ideology] The faithful of {IDEO} have asked the colony to their fire for the evening hymn, whatever faith anyone holds.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening hymn</label><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening hymn</label><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>1~1.5</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
         </effects>
       </li>
@@ -459,7 +459,7 @@
         </refused>
         <refuseTension>5</refuseTension>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the players' new play</label><organizer>None</organizer><spots><li>Camp</li><li>Stranger</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the players' new play</label><organizer>None</organizer><spots><li>Camp</li><li>Stranger</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>2~3</duration><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
         </effects>
       </li>
@@ -474,7 +474,7 @@
           <li>{X_nameDef} took the silver with a flourish. The players will bring the show to the colony after supper.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>an evening with the players</label><music>true</music><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>an evening with the players</label><music>true</music><hours>17~21</hours><guests>camp</guests></li>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
         </effects>
       </li>
