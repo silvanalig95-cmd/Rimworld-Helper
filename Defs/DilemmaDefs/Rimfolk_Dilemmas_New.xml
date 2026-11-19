@@ -72,9 +72,9 @@
     <answerDays>1</answerDays>
     <texts>
       <li>{COUNT} of the colony were up half the night, sick from their food, and {A_nameDef} cooked it. {A_nameDef} swears the food was fine. {B_nameDef} has offered to take the cooking for a while.</li>
-      <li>[cause:filth] {COUNT} of the colony are sick from their food, and the kitchen floor tells why. {A_nameDef} has been cooking in the dirt. {B_nameDef} could take the stove for a few days, or everyone could scrub.</li>
+      <li>[cause:filth] {COUNT} of the colony are sick from their food, and the dirty kitchen floor is the reason. {A_nameDef} has been cooking in the dirt. {B_nameDef} could take the stove for a few days, or everyone could scrub.</li>
       <li>[cause:cook] {COUNT} of them are sick from {A_nameDef}'s cooking, and {A_nameDef} knows it was a careless batch. {B_nameDef} says {B_pronoun} could cook for a few days.</li>
-      <li>[cause:rotten] {COUNT} sick from their food. {A_nameDef} says something had turned and nobody noticed. {B_nameDef} wonders aloud whether the cook should have.</li>
+      <li>[cause:rotten] {COUNT} of the colony are sick from their food. {A_nameDef} says something had gone off and nobody noticed. {B_nameDef} wonders aloud whether the cook should have.</li>
       <li>[cooksick] Even {A_nameDef}, who cooked it, is sick from it, and {A_nameDef} isn't the only one. {B_nameDef} has offered to take the stove while the kitchen is looked at.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -122,7 +122,7 @@
   <!-- ===================== The precept broken (Ideology) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmV_PreceptBroken</defName>
-    <label>the precept broken</label>
+    <label>a broken precept</label>
     <workerClass>ColonyCouncil.DilemmaWorker_PreceptBroken</workerClass>
     <weight>1.2</weight>
     <cooldownDays>30</cooldownDays>
@@ -222,7 +222,7 @@
   <!-- ===================== The heat wave's hours ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmV_HeatWave</defName>
-    <label>the heat wave's hours</label>
+    <label>hours in the heat wave</label>
     <workerClass>ColonyCouncil.DilemmaWorker_HeatWave</workerClass>
     <weight>1.5</weight>
     <cooldownDays>20</cooldownDays>
@@ -274,7 +274,7 @@
   <!-- ===================== So close ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmV_SoClose</defName>
-    <label>so close</label>
+    <label>research nearly done</label>
     <workerClass>ColonyCouncil.DilemmaWorker_SoClose</workerClass>
     <weight>1.2</weight>
     <cooldownDays>25</cooldownDays>
@@ -312,7 +312,7 @@
         </effects>
       </li>
       <li>
-        <label>A second pair of eyes</label>
+        <label>A helper at the bench</label>
         <outcome>{B_nameDef} sat beside {A_nameDef} at the bench and asked questions. The work went slower, and {B_nameDef} learned a great deal.</outcome>
         <ways><openness>1</openness></ways>
         <effects>
@@ -328,7 +328,7 @@
   <!-- ===================== Lessons through the bars ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmV_CellLessons</defName>
-    <label>lessons through the bars</label>
+    <label>lessons from a prisoner</label>
     <workerClass>ColonyCouncil.DilemmaWorker_PrisonerLessons</workerClass>
     <weight>1.1</weight>
     <cooldownDays>40</cooldownDays>

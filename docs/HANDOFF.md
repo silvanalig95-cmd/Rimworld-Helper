@@ -305,12 +305,19 @@ repo.
   descriptions in `Rimfolk_DilemmaImpact.xml`, the letter's, the dilemmas page's and the traditions' keys of
   `ColonyCouncil.xml`, `Rimfolk_Choices.xml`, the planting day's and the play-outs' keys, read again: plain since the
   interface batches but for four lines). Left as the player said: the lines said at the gatherings the answers set going
-  (the effects' `lines`: speech) and the moods the answers give (`ThoughtDefs`). Still to do: council questions, part
-  2, the 26 files `Defs/DilemmaDefs/Rimfolk_Dilemmas_*.xml` (`Animals`, `Animals2`, `Banish`, `Beast`, `Camps`,
-  `Camps_Variants`, `Choices`, `Customs_New`, `Customs_YearFour`, `Faith`, `Family`, `Fealty`, `Guests`, `Lives`,
-  `Lives_Customs`, `Lives_Variants`, `Match`, `MovingOn`, `New`, `Pokemon`, `SacredDay`, `TownKin`, `Truce`,
-  `Variety2`, `Variety3`, `YearFour`) with the Keyed words of their own workers (`Dilemmas/DilemmaWorkers_*.cs`: keys in
-  `Rimfolk_DilemmasVariety`, `Rimfolk_Variety2`, `Rimfolk_Variety3`, `Rimfolk_YearFour`, `Rimfolk_Faith_Council`).
+  (the effects' `lines`: speech) and the moods the answers give (`ThoughtDefs`).
+  Council questions, part 2, done (19 November 2026, the same go; built, not released): the entry "Plain words: council
+  questions, part 2" above the newest release line. Files taken: the 26 files `Defs/DilemmaDefs/Rimfolk_Dilemmas_*.xml`
+  (`Animals`, `Animals2`, `Banish`, `Beast`, `Camps`, `Camps_Variants`, `Choices`, `Customs_New`, `Customs_YearFour`,
+  `Faith`, `Family`, `Fealty`, `Guests`, `Lives`, `Lives_Customs`, `Lives_Variants`, `Match`, `MovingOn`, `New`,
+  `Pokemon`, `SacredDay`, `TownKin`, `Truce`, `Variety2`, `Variety3`, `YearFour`: each question's name, its texts and
+  the variants' texts, the answers' labels, the names of what plays out, the greyed answer's reason, the customs' names,
+  and the advice of the camp questions' four mood hints; the outcomes, done in 0.251.0, read again for agreement), and
+  the Keyed words of their own workers (`Rimfolk_DilemmasVariety`, `Rimfolk_Variety2`, `Rimfolk_Variety3`,
+  `Rimfolk_YearFour`, `Rimfolk_Faith_Council`, read again: plain since the interface batches but for five lines of
+  `Rimfolk_Variety3`). Left as the player said: the lines said at the gatherings the answers set going (the effects'
+  `lines`: speech) and the moods (the eight `ThoughtDefs` in `Rimfolk_Dilemmas_Camps.xml`). The council's questions
+  are all done.
   The camps, the first half of "camps and visitors", done (19 November 2026, the same go; built, not released): the
   entry "Plain words: the camps" above the newest release line. Files taken: the camp kinds in `Defs/CampDefs/`
   (`Council_CampKinds`, `Council_CampKinds_More`, `Rimfolk_CampKinds_Hired`, `_Land`, `_Peoples`, `_PeoplesE`,
@@ -327,9 +334,8 @@ repo.
   files, the job report strings (already plain), the gods' camps (`Rimfolk_GodsWorld_Camps`, the gods' round).
   Still to do, the second half: the encounters (`EncounterDefs`), the missions (`MissionDefs`) and the visitors (the
   visits, travellers and their Keyed words); their top-of-screen messages were done in 0.251.0.
-  Still to pick, when the player asks: the gods and faith, council questions part 2, the peoples, visitors (the
-  encounters, missions and visitors: the second half of camps and visitors), the region map, council and decrees, the
-  Almanac, What's new.
+  Still to pick, when the player asks: the gods and faith, the peoples, visitors (the encounters, missions and
+  visitors: the second half of camps and visitors), the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -342,6 +348,98 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.269.2, **Plain words: council questions,
+  part 2** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The fourteenth batch of the plain-words pass, the second half of the council's questions: the 26
+  `Rimfolk_Dilemmas_*` files (the herd and the pens, the beast that stays, the camp on the colony's land, the mess after a
+  fight, the customs of the year from spring cleaning to the winter tales, the children and the elders, moving on,
+  fealty, matches and truces, the colony's own troubles from a bad batch to the blight, the old walls and the empty
+  field): each question's name and texts with its variants, the answers' labels, the names of what plays out, and the
+  Keyed words of their workers. File list in the to-do entry "Rimfolk's text in plain words". With part 1, every
+  question the council is asked is now in plain words.
+  - **What changed.** About 1,370 lines read in the 26 files (some 970 in this batch's fields, the other 400 the
+    outcomes of 0.251.0, read for agreement) and the 291 Keyed lines of their workers; 207 rewritten (130 question texts
+    and variants, 27 names, 41 answers and names of what plays out, 3 lines of the mood hints' advice, 5 Keyed, and one
+    outcome's placeholder). Riddling or cut-short lines said plainly ("Something has found the colony's fields,
+    {X_indefinite}, and it likes them" is "{A_nameDef} came in this morning with a handful of chewed stalks, very angry:
+    {X_indefinite} has been eating the crops in the colony's fields"; "One new bedroom, one bed, nobody's yet"; "Married,
+    and still {LASTA} and {LASTB}:"; "The colony eats well; it would heal better" is "The colony has plenty of food but
+    not enough medicine"), sayings in place of the point ("A wild thing fed is half a tame one, and half a danger",
+    "a field nobody sows is a field the land takes back", "a wall in a wood is a wall nobody sees from the road", "a good
+    gun in the second hand makes two good shots, not one", "grief makes a poor handler", "{THING} is worth more as
+    {THING}"), images and made-up phrases ("the kind of cold that splits stones", "the rot walks down the row", "came
+    back with the winter on their backs", "the living stood with the dead", "what the year broke", "the camp's pot has
+    been thin", "owes nobody a knee", "under the sign of parley", "the evenings of faith are nobody's to call", "the town
+    the colony was" is the colony's old settlement), and twists at the end ("Something that patient will be back
+    tonight", "Nobody has been easy, either", "they'd rather lose a mule", "and so has the medicine shelf", "it isn't
+    really a question", "a match to match it"). Question names that were images or cut short say what the question is
+    about: "a raider in the crops" **an animal in the crops**, "something at the pens" **a predator at the pens**, "the
+    inspired hands" **an inspired artist**, "the shakes" **withdrawal**, "the hurt beast" **a hurt wild animal**, "so
+    close" **research nearly done**, "lessons through the bars" **lessons from a prisoner**, "cold in the bones" **an
+    elder who can't get warm**, "one last look at the hills" **a walk to the hills**, "lessons or walls" **lessons or
+    building work**, "their feast day" **the camp's feast day**, "the fee falls short" **the camp can't pay its fee**,
+    "an oath at the gate" **an objection to the oath**; 14 more. Answers that were sayings say what the council does
+    ("Our people don't steal" is **Tell them the colony stands by its own**, "The terms are the terms" **Insist on the
+    full fee**, "Our land, our guests: tell {ENEMY} so" **Tell {ENEMY} the camp stays as the colony's guest**, "Snow
+    means more work, not less" **No snow day: there are paths to clear**, "Time will do it" **Give it time**, "One now,
+    and see" **Slaughter just one for now**). DESIGN.md's list of the answers that play out uses the new names;
+    `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py`.
+  - **Sentences that began with a pronoun.** 34 sentences in the newest of these files (the year-four questions and
+    customs, the third round of variety) began with {A_pronoun} or {A_possessive}, which the game shows in lowercase
+    ("he wants the field turned over"; `Tools/textcheck.py` warns of it in new text); each now begins with the name.
+    One of them was in an outcome of 0.251.0 (the child kept from a friend at the camp): only the placeholder changed.
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("not in the least sorry", "The roof
+    is not.", "blisters on {A_possessive} blisters", "Both are written in charcoal", "The prize is to be decided").
+    Quoted speech keeps the speaker's voice ("Spring's the herd's year turning", "While my legs still go", the snow
+    day's petition, the worrier's list, the record keeper's page); the faiths' words keep theirs; the customs' names
+    stay (a tradition in a save is known by its name), and so does "the beast that stays" (the feature's name in the
+    Almanac, the README and the herd's own lines). The gatherings' `lines` (speech), the camp questions' eight moods
+    (`ThoughtDefs`) and the outcomes of 0.251.0 are left, but for the one placeholder above. `Faith`, `Guests` and
+    `Lives_Variants` were read and needed nothing. Every tag, placeholder and key kept (the rewrite tool refused any line
+    whose placeholder people, grammar symbols, tag block or numbers changed; `Tools/textcheck.py --base` on the lead
+    branch finds nothing broken and warns only of the two answers below that no longer name B). No line of
+    `Lean/ShippedLines.cs` is in these files.
+  - **Put right against the code.** "{B_nameDef} ends its pain" (a hurt wild animal): the answer marks it for the
+    colony's hunters (`DilemmaEffect_MarkBeast`), whoever goes, so it is **Have the hunters end its pain**, and the lead
+    made its outcome of 0.251.0 say the first hunter free goes out (it said B). "A long walk past the fields with
+    {B_nameDef}, first" (a youngster who wants to see the world): only A walked (one `DilemmaEffect_Visit`), while the
+    outcome says they came back together; the lead added B keeping A company, as in the walk to the hills (a second
+    `DilemmaEffect_Visit`, B to A, "walking with {A_nameDef}"), so the answer is **A long walk past the fields with
+    {B_nameDef} first** and the outcome is true. "Set a night watch for a while": the watch is one night, until dawn (`DilemmaEffect_Vigil`), so it is **Set a
+    night watch** (the outcome's "for the next few weeks" is narrative). "Take turns through the night": the turns run
+    from 20 h to 2 h, so it is **Take turns sitting up tonight**. "{A_nameDef} goes with the next journey out": nothing
+    sends A anywhere (the answer gives A a mood and leave), so it is **Let {A_nameDef} go with the next journey out**. "A
+    few hands to sow it this afternoon" and "A building party this afternoon": the work parties keep to their hours (8 to
+    17 h, 9 to 17 h), not always the afternoon, so the answers name no time. "All hands for a day" and "The morning
+    only" were both mornings (six people from 7 h with a toast in the evening, four from 7 h), so they are **Everyone
+    cleans, with a toast after** and **Four of them clean for the morning**. The cloth or medicine crop "by the next
+    moon": it is sown as the old crop comes out (`DilemmaEffect_SetCrop`), so no date. "Sell it to them at a fair price"
+    names the sum the effect pays, **for 40 silver** (`DilemmaEffect_Spawn`, for the 40 raw food); "Make them pay for the
+    damage" names none, since the camp's silver grows with the colony's wealth (`DilemmaEffect_CampGives`). The open
+    part of a stockpile given up was "drawn in under its roof"; the stockpile loses its open cells
+    (`DilemmaEffect_GiveUpOpen`), so the line under the answer says it is cut back to the part under its roof, and the
+    message that it now covers only that part. Checked and true as written: the silver each answer names ({COUNT} is the sum
+    the effect carries out or takes: the camp's lost hands and purse, the kin at the gate, a relative far away) and the
+    300 for a relative's road, the greyed answer's Animals 4, the forty logs for a fire in a cold room, a light by each grave until first
+    light (twelve at most, as the line under the answer says), the thirty logs of a day's work and the 20 raw food in a
+    sack.
+  - **Code map.** No code changed: def text in 23 of the 26 `Rimfolk_Dilemmas_*` files; five lines of
+    `Rimfolk_Variety3.xml` (the art bill's short line, the stockpile given up in three lines, the claimed ruin's short
+    line); DESIGN.md's play-out list; the Almanac's table of the animal questions (`Almanac_Council_Animals.xml`: three
+    names, keywords unchanged); `docs/dilemma-balance.md`.
+  - **Can't be checked without the game.** How the plainer questions read in the letter beside the outcomes and the
+    gathering lines, which keep their voice; whether the new names read well in the letter's title ("Dilemma: An
+    inspired artist") and on the dilemmas page; that the sentences which now start with a name read better than the
+    lowercase pronoun did.
+  - **Try in the game.** With dev mode on, open the council window's decrees page and press "Dev: dilemma now" a few
+    times; read each letter, the line under each answer and the title. With a camp on the colony's land, wait for its
+    questions (a theft from the camp, the camp's animals in the fields, the camp's feast day). Read a year-four question
+    (the empty field, what the field grows, snow on the paths): no sentence starts with a lowercase "he" or "she". For a
+    hurt wild animal, answer "Have the hunters end its pain" (it is marked for the hunters); for the stores in the rain,
+    "Give up the open part" (the stockpile keeps only its roofed part).
+  - **Mods that would help.** None for this; it is text only.
 - 0.269.1, **Plain words: the camps** (19
   November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
   write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and

@@ -92,7 +92,7 @@
     <defName>Rimfolk_Var_DlmC_CaughtInStores</defName>
     <dilemma>Rimfolk_DlmC_CaughtInStores</dilemma>
     <texts>
-      <li>[night] {A_nameDef} heard the storeroom door in the night and found {X_nameDef} of the {FACTION} camp inside, filling a sack by feel in the dark. {X_nameDef} stopped, and said the camp's pot has been thin all week and the elders know nothing about this.</li>
+      <li>[night] {A_nameDef} heard the storeroom door in the night and found {X_nameDef} of the {FACTION} camp inside, filling a sack in the dark. {X_nameDef} stopped, and said the camp has been short of food all week and the elders know nothing about this.</li>
       <li>{X_nameDef} of the {FACTION} camp tried to walk out of the colony's storeroom as if {X_pronoun} belonged there, a sack over one shoulder. {A_nameDef} stopped {X_objective} at the door. The camp has gone short since they came, {X_nameDef} says, and asks {A_nameDef} not to tell the elders.</li>
     </texts>
     <outcomes>
@@ -254,7 +254,7 @@
     <defName>Rimfolk_Var_DlmC_FeeShort</defName>
     <dilemma>Rimfolk_DlmC_FeeShort</dilemma>
     <texts>
-      <li>[winter] {X_nameDef} of the {FACTION} camp came up to say the fee, {COUNT} silver, isn't there. Winter has eaten into what they had. They'd make it good with a beast or a day's work, if the colony will take it.</li>
+      <li>[winter] {X_nameDef} of the {FACTION} camp came up to say the fee, {COUNT} silver, isn't there. They spent most of what they had getting through the winter. They'd make it good with a beast or a day's work, if the colony will take it.</li>
       <li>{X_nameDef} brought the {FACTION} camp's fee up in a cloth and opened it in front of {A_nameDef}: it's short of the {COUNT} silver they agreed. The trading has been poor, {X_nameDef} says, and asks whether the colony would take something else for the rest.</li>
     </texts>
     <outcomes>
