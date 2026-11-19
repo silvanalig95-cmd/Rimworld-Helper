@@ -16,7 +16,7 @@
     <order>1</order>
     <summary>Every kind of wish, who makes it, and when it can come up.</summary>
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
-    <description>There are 106 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+    <description>There are 129 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
 Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up. Nor does a wish the colonist's own beliefs forbid: no shared bed before the wedding under an ideoligion that keeps lovin for the married, no hunt for a vegetarian, no beer for a teetotaler (the page "wishes and promises" says more).</description>
     <sections>
@@ -297,8 +297,8 @@ Some run for a whole season: so many days in a row with something kept up, where
     <label>every life goal</label>
     <category>Council</category>
     <order>11</order>
-    <summary>All 84 life goals, who sets their heart on each, and what can spark it.</summary>
-    <tip>A child's wish to learn their letters becomes a scholar's goal when they grow up. Help the little ones with their wishes.</tip>
+    <summary>All 103 life goals, who sets their heart on each, and what can spark it.</summary>
+    <tip>A child's goal of learning their letters grows into a scholar's goal when they grow up. Help the little ones reach their goals.</tip>
     <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, ideoligion and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
     <sections>
       <li>
@@ -326,6 +326,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>mend forty worn or broken things around the colony | Builders.</li>
           <li>strike six deals with traders for the colony | The sociable, as the colony's negotiator; a friend's deals.</li>
           <li>learn to shoot straight enough to stand on the wall | Anyone who can fight, with Shooting under 8; a war among the neighbors, to one at a time.</li>
+          <li>go into three fights with a loyal animal alongside, tame one of the great beasts of this land, see the colony's herd grow, teach one animal everything it can learn | Those who love animals, handlers, fighters with an animal of their own and the herdmaster; the page "the colony's animals" says who and when.</li>
         </table>
       </li>
       <li>
@@ -419,6 +420,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>understand the theory as well as the practice | A RimWorld of Magic's mages (Intellectual to 12); being asked what magic feels like.</li>
           <li>tend sixty wounds and illnesses | A RimWorld of Magic's healers; a brush with death, a loss, a battle.</li>
           <li>become a true expert in a skill | Vanilla Skills Expanded.</li>
+          <li>add ten species to the colony's Pokédex, raise a Pokémon to a level | PokéWorld: trainers and anyone with a passion for handling; a trainer with a Pokémon of their own still below level 90.</li>
         </table>
       </li>
     </sections>

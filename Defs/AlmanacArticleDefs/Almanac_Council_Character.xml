@@ -27,7 +27,7 @@ The traits of other mods count too, where they say something about a person: Van
 Marks are kept rare enough to mean something:</text>
         <points>
           <li>at most one small mark per person in three days;</li>
-          <li>a turning point (a death, a betrayal, a seat won, a craft mastered) never comes twice within its keeping, and at most two come in one day;</li>
+          <li>the same turning point (a death, a betrayal, a seat won, a craft mastered) doesn't come again for as long as that mark lasts, and at most two turning points come in one day;</li>
           <li>one happening leaves one mark of its kind: a brother who was also a friend is mourned once;</li>
           <li>a small mark doesn't come again for 20 days or more.</li>
         </points>
@@ -41,9 +41,9 @@ How far someone already is on a side can make a mark weigh more or less, from 0.
       </li>
       <li>
         <heading>How it shows</heading>
-        <text>Character is heard as well as seen. Lines can be written for the warm, the cold, the bold, the timid, the hot-headed, the calm, the joker, the serious, the trusting, the wary, the proud, the humble, the curious, the traditional, the hopeful and the gloomy, and are picked for the colonist they fit; a colonist whose traits don't set their tone of voice speaks in the tone their character gives them.
+        <text>Character shows in what a colonist says as well as in what they do. Lines can be written for the warm, the cold, the bold, the timid, the hot-headed, the calm, the joker, the serious, the trusting, the wary, the proud, the humble, the curious, the traditional, the hopeful and the gloomy, and are picked for the colonist they fit; a colonist whose traits don't set their tone of voice speaks in the tone their character gives them.
 
-It also tips what they do, gently. The warm and the playful start up to a quarter more warm moments in conversation (more still to comfort someone grieving), and the hot-tempered up to a third more frictions; a hot-head stays sore after a spat half as long again. With the systems talking to each other (a setting), the trusting confide a secret in a friend up to 1.6 times as readily and the suspicious far less, and a warm master takes on a student sooner.</text>
+It also changes what they do a little. The warm and the playful start up to a quarter more warm moments in conversation (more still to comfort someone grieving), and the hot-tempered up to a third more frictions; a hot-head stays sore after a spat half as long again. With the systems talking to each other (a setting), the trusting confide a secret in a friend up to 1.6 times as readily and the suspicious far less, and a warm master takes on a student sooner.</text>
       </li>
       <li>
         <heading>The character page</heading>
@@ -69,7 +69,7 @@ Now and then, when two such relatives are together, one says a word about it to 
     <order>9</order>
     <summary>Every mark a colonist can carry: what brings it, who it changes how, and what it moves.</summary>
     <tip>A colonist who is carried out of a fight trusts more readily for years.</tip>
-    <description>These are the marks life can leave on a colonist's character (see "character"). Each comes from something that really happened, at the moment it happened or, for the slow ones (a long illness, hunger, an addiction, mastery, a new ideoligion, a long peace), on the day the colony notices. Where a row names two marks, the colonist's nature picks one. Numbers are the full move before nature scales it; turning points are marked "(turning point)" and kept three times as long as their keeping says.</description>
+    <description>These are the marks life can leave on a colonist's character (see "character"). Each comes from something that really happened, at the moment it happened or, for the slow ones (a long illness, hunger, an addiction, mastery, a new ideoligion, a long peace), on the day the colony notices. Where a row names two marks, the colonist's nature picks one. Numbers are the full move before nature scales it; turning points are marked "(turning point)" and each stays on the colonist's record three times as long as its mark's set number of days.</description>
     <sections>
       <li>
         <heading>Violence and danger</heading>
@@ -90,7 +90,7 @@ Now and then, when two such relatives are together, one says a word about it to 
         <table>
           <li>What happens | The mark</li>
           <li>A husband, wife, fiancé or lover died | Laughs less (turning point): outlook -12, humour -6, warmth -4.</li>
-          <li>A son or daughter died | A hardness (turning point): outlook -14, temper +6, openness -5.</li>
+          <li>A son or daughter died | Hardened (turning point): outlook -14, temper +6, openness -5.</li>
           <li>A parent, brother, sister or grandparent died | Adults hold the family closer (outlook -7, warmth +4, pride +3); children cling to the grown-ups (trust -8, nerve -6, outlook -6). Both turning points.</li>
           <li>A close friend died (opinion 40 or more), or a friend, comrade or teacher they were bonded to | Warmth -25 or less: lets fewer people close (warmth -6, nerve +3, trust -3). Anyone else: quieter (outlook -8, humour -4, warmth +2). Both turning points.</li>
           <li>A bonded animal died | Keeps animals at arm's length: warmth -3, outlook -5.</li>
@@ -121,7 +121,7 @@ Now and then, when two such relatives are together, one says a word about it to 
           <li>Reached level 20 in a skill they love | A master's certainty (turning point): pride +9, outlook +4, openness -3.</li>
           <li>Made a masterwork | Prouder of their work: pride +5, outlook +2.</li>
           <li>Made something legendary | Carries themselves like a master (turning point): pride +12, outlook +5.</li>
-          <li>Their child came of age | A settled pride (turning point): warmth +6, outlook +6, pride +4.</li>
+          <li>Their child came of age | Proud and settled (turning point): warmth +6, outlook +6, pride +4.</li>
           <li>Their first child was born | Softer and more careful (turning point): warmth +8, nerve -4, openness -3.</li>
           <li>Married | Someone to come home to (turning point): warmth +5, outlook +6, trust +4.</li>
           <li>Their student graduated | Glad to share what they know: pride +5, warmth +4, openness +2.</li>
@@ -134,8 +134,8 @@ Now and then, when two such relatives are together, one says a word about it to 
           <li>Malnourished past its first stage | Never wastes a crumb: outlook -5, openness -4, warmth -2.</li>
           <li>Sick with an illness for eight days or more | More patience with the sick: outlook -4, warmth +3, nerve -2.</li>
           <li>An addiction gone | Trusts their own will (turning point): pride +6, nerve +5, outlook +6.</li>
-          <li>Enslaved | Eyes down, thoughts their own (turning point): trust -12, pride -8, temper +4.</li>
-          <li>Freed | Head held up (turning point): outlook +10, pride +6, trust +5.</li>
+          <li>Enslaved | Keeps their head down and their thoughts to themselves (turning point): trust -12, pride -8, temper +4.</li>
+          <li>Freed | Holds their head up again (turning point): outlook +10, pride +6, trust +5.</li>
           <li>A year at home without a big threat | Lets their guard down: outlook +7, nerve -4, humour +3.</li>
         </table>
       </li>
@@ -143,7 +143,7 @@ Now and then, when two such relatives are together, one says a word about it to 
         <heading>Ideoligion and the world</heading>
         <table>
           <li>What happens | The mark</li>
-          <li>Changed ideoligion after their first days here (Ideology) | Sees things through new eyes (turning point): openness +6, outlook +4, trust +3.</li>
+          <li>Changed ideoligion after their first days here (Ideology) | Sees things differently (turning point): openness +6, outlook +4, trust +3.</li>
           <li>An unforgettable party, festival or sky lanterns, a heartwarming funeral, a spectacular ceremony, a grand bestowing | Holds the colony's ways closer: outlook +4, warmth +3, openness -3.</li>
           <li>Taken by an obelisk, a psychic ritual, an inhuman voice, a harbinger's scream, the dark, an anima tree's scream, a neuroquake | Openness 25 or more: wants to know more (openness +6, warmth -2, outlook -2). Anyone else: looks over their shoulder (nerve -6, outlook -5, trust -3).</li>
         </table>
