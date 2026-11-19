@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.268.1</version>
+        <date>19 November 2026</date>
+        <title>Pick the material</title>
+        <points>
+          <li>Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.</li>
+          <li>The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.</li>
+          <li>The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.268.0</version>
         <date>19 November 2026</date>
         <title>The peoples' events, round 4</title>

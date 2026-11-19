@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pick the material
+
+*19 November 2026, version 0.268.1*
+
+- Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.
+- The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.
+- The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.
+
 ## The peoples' events, round 4
 
 *19 November 2026, version 0.268.0*

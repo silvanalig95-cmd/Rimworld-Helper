@@ -40,9 +40,8 @@ most sense." So, in this order, three builds at a time:
    numbered proposals and the lead's first batch); nothing is built until the player picks from it.
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
-7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
-   entries below).
+7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
+   the mood (0.266.7), choosing the material from the gear tab (built), a god's mark worth having (being built).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -134,19 +133,9 @@ repo.
   what was left.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
   The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
-- **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
-  player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
-  would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
-  basically create the task and then have to go to the task in the tailor's table or whatever and kind of go deselect all
-  materials and then only enable those that I actually want them to use ... when I select the open item slot, select the
-  item that I want to create, and then I have to select where it's created from, and then maybe I could also immediately
-  select which material it uses. So it would just list or show materials that I have enough of for the job, and then
-  create the job, but only select this one material as a allowed material and by default deselect everything else". The
-  mod is Nice Inventory Tab (its DLL decompiled in the session's scratchpad, `nit_out2/`: its slot's float menus, then
-  `BillFinished_Patch.Register` for the bill). **The lead's proposal**: after the bench is chosen, one more menu step
-  listing the stuff the colony holds enough of for one piece (by the recipe's stuff cost, counted on the map), each with
-  how much there is; the bill then made with only that stuff allowed in its ingredient filter; "any material" kept as the
-  first choice for the mod's own way.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
+  when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
+  now one entry above the newest release line ("Choose the material when ordering a piece").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -301,6 +290,50 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.268.1, **Choose the material when
+  ordering a piece** (19 November 2026). The player: "when you know giving a order through the inventory to create like a
+  piece of clothing or armor or whatever, it would really be cool to also be able to select from which material that
+  piece of clothing should be made. I mean, now I basically create the task and then have to go to the task in the
+  tailor's table or whatever and kind of go deselect all materials and then only enable those that I actually want them
+  to use ... when I select the open item slot, select the item that I want to create, and then I have to select where
+  it's created from, and then maybe I could also immediately select which material it uses. So it would just list or
+  show materials that I have enough of for the job, and then create the job, but only select this one material as a
+  allowed material and by default deselect everything else, so that I'm sure it doesn't use anything else." The lead's
+  proposal: after the bench is chosen, one more menu step listing the stuff the colony holds enough of for one piece (by
+  the recipe's stuff cost, counted on the map), each with how much there is; the bill made with only that stuff allowed
+  in its ingredient filter; "any material" kept as the first choice for the mod's own way. The go: "yes, please", "all
+  the three". DESIGN.md "Choose the material when ordering a piece from the gear tab".
+  - **What the DLL shows** (Nice Inventory Tab, `andromeda.niceinventorytab`, and its FloatSubMenu helper, decompiled
+    with ilspycmd in the scratchpad, never loaded): the empty slot's menu (`ApparelSlotUtility.OpenFloatMenu`), "Make",
+    a piece (`MakeSubMenusToCraft`: a sub-menu of benches, and the piece's own line for its first bench) all end in
+    `CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`, which makes the bill
+    (`recipe.MakeNewBill()`), registers it for `ITab_Pawn_Gear_Patch.lastPawn` (`BillFinished_Patch.Register`), renames
+    it, adds it to the bench, gives its message and jumps the camera. Only apparel is offered there.
+  - **What was built.** A prefix on `CommandCreate` (by name, standing down without the mod) opens the material step for
+    a piece made from a material: "Any material" first, then each material the recipe's material ingredient takes for
+    the piece (`GenStuff.AllowedStuffsFor`, the ingredient's filter and the recipe's fixed filter; never a fixed
+    ingredient) with enough on the map for one piece (spawned, seen, not forbidden; one piece's need by
+    `IngredientCount.CountRequiredOfFor`), the most pieces first, then by name, each with how much is on hand, its own
+    icon and a tooltip of what one piece takes; a greyed line when none has enough. Either choice calls the mod's own
+    `CommandCreate` (the prefix lets Rimfolk's call through), for the colonist the menu was opened for; for a material,
+    the new bill's ingredient filter then allows only that one (the others the ingredient takes unticked; hit points,
+    quality and other ingredients left alone). A piece not made from a material goes straight on. Setting
+    `materialChoice` (on, deeper hooks; Your other mods, Nice Inventory Tab). Almanac (Quality of life mods, the Nice
+    Inventory Tab paragraph) and README.
+  - **Code map**: `Integrations/MaterialChoice.cs` (new: `MaterialChoice.StuffIngredient`, `Have`, `Offer`, `Make`,
+    `OnlyThis`; `Patch_MaterialChoiceOrder`), `Integrations/MaterialChoiceMath.cs` (new, pure, linked in the tests:
+    `Enough`, `Pieces`, `Offered`), `CouncilSettings.cs` and `UI/SettingsCatalog.cs` (`materialChoice`), Keyed
+    `Rimfolk_MaterialChoice.xml` (new). Tests: `MaterialChoiceTests` (new).
+  - **Can't be checked without the game**: the menu opening after the bench is clicked inside the mod's sub-menus (the
+    mod's menus close and Rimfolk's opens where the mouse is), the material icons and tooltips, the bill's ingredient
+    filter shown with only the chosen material ticked, the piece made from it and still put on by the one it was for.
+  - **Try in the game**: on a colonist's gear tab (Nice Inventory Tab) click an empty slot, "Make", a duster or a
+    parka, then a tailoring bench: a menu "Material for the duster" lists "Any material" and the fabrics and leathers
+    with enough on hand, most first ("Cloth (340 on hand)"); pick one, open the bench's bill: only that material is
+    ticked; once made, it is of that material and the colonist puts it on. A piece not made from a material (a flak
+    vest) goes straight to the bill as before; "Any material" leaves the bill as the mod makes it; with the setting
+    off, no material step.
+  - **Mods that would help**: none; the mod's own menus and the game's material icons are enough.
 - 0.268.0, **The peoples' own events, round 4**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new

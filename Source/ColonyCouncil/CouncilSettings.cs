@@ -156,6 +156,8 @@ namespace ColonyCouncil
         public bool breweryInKitchen = true;
         /// <summary>With Nice Inventory Tab: a piece made for someone away is put on when they are back near the base (Integrations/MadeForWear.cs).</summary>
         public bool madeForWearLater = true;
+        /// <summary>With Nice Inventory Tab: a piece ordered from the gear tab asks which material it is made from, and its bill allows only that one (Integrations/MaterialChoice.cs).</summary>
+        public bool materialChoice = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -949,6 +951,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref ballroomByUse, "ballroomByUse", true);
             Scribe_Values.Look(ref breweryInKitchen, "breweryInKitchen", true);
             Scribe_Values.Look(ref madeForWearLater, "madeForWearLater", true);
+            Scribe_Values.Look(ref materialChoice, "materialChoice", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

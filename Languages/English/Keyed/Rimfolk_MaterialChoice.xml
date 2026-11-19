@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Choosing the material when a piece is ordered from Nice Inventory Tab's gear tab (Integrations/MaterialChoice.cs). -->
+  <CC_MaterialChoice_Title>Material for the {THING}</CC_MaterialChoice_Title>
+  <CC_MaterialChoice_Any>Any material</CC_MaterialChoice_Any>
+  <CC_MaterialChoice_Any_Tip>The bill takes any material its settings allow, as Nice Inventory Tab makes it.</CC_MaterialChoice_Any_Tip>
+  <CC_MaterialChoice_Stuff>{STUFF} ({COUNT} on hand)</CC_MaterialChoice_Stuff>
+  <CC_MaterialChoice_Stuff_Tip>One {THING} takes {NEED} {STUFF}. The bill uses only {STUFF}: every other material is unticked in its settings.</CC_MaterialChoice_Stuff_Tip>
+  <CC_MaterialChoice_None>Not enough of any material on hand for one {THING}</CC_MaterialChoice_None>
+  <CC_Settings_MaterialChoice>Choose the material when ordering a piece</CC_Settings_MaterialChoice>
+  <CC_Settings_MaterialChoice_Tip>Nice Inventory Tab lets you order a piece of clothing or armour for a colonist from their gear tab: you pick the piece, then the bench. With this on, a third menu follows for a piece made from a material (cloth, leather, metal, wood and so on): it lists each material the colony has enough of on the map for one piece, with how much there is. The bill is made to use only the material you pick, and every other material is unticked in its settings. "Any material" makes the bill as the mod does. A piece not made from a material goes straight on. Off, the mod's own way.</CC_Settings_MaterialChoice_Tip>
+  <CC_SetNote_MaterialChoice>After the bench, pick the material the piece is made from.</CC_SetNote_MaterialChoice>
+</LanguageData>
