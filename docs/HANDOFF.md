@@ -40,7 +40,8 @@ most sense." So, in this order, three builds at a time:
 6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
    storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
 7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts (the entries below).
+   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
+   entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -116,6 +117,20 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
   walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
   above the newest release line ("Riding out to far work: the beast taken first").
+- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
+  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
+  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
+  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
+  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
+  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
+  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
+  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
+  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
+  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
+  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
+  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
+  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
+  what was left.
 - **To do when the player asks (19 November 2026): a day off lifts the mood while it lasts.** The player: "giving
   someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
   colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
