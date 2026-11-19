@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 7 (Source/ColonyCouncil/Peoples/Events7/WorkThatStays.cs, LineCrew.cs, Picket.cs; each a camp
+    kind with ways of its own, Camps/CampWorker.cs): three journeymen of the Kiln Guild who build a great work with the colony's stone
+    or wood (item 62), a line crew of the Signal Line on the colony's high ground (item 66), and a picket of the Deepwell Union's
+    strikers by the colony's road while a strike lasts (item 70). None comes on the camps' own draw (weight 0): each comes when the
+    colony answers its event (Rimfolk_Evt_WorkThatStays, Rimfolk_Evt_LineCrew, Rimfolk_Evt_Picket).
+  -->
+
+  <!-- ===================== 62. A work that stays (the Kiln Guild) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WorkThatStays</defName>
+    <label>journeymen's work</label>
+    <workerClass>ColonyCouncil.CampWorker_WorkThatStays</workerClass>
+    <arrives>8~14</arrives>
+    <calling>artisans</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>5~8</days>
+    <ages>20~40</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li><li>Mend</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the journeymen take their tools and tents with them; what stays is the work, and that is the colony's</leavesWhy>
+    <titles>
+      <li>A work that stays</li>
+      <li>Journeymen of the guild</li>
+    </titles>
+    <texts>
+      <li>Three journeymen of {FACTION} are walking in with their tools, {X_nameDef} at the front. They will camp by the colony and build {WORK}.</li>
+      <li>[lowtech] Three journeymen of {FACTION} are walking in with mallets and chisels on their backs. They will camp by the colony and build {WORK}.</li>
+    </texts>
+    <settled>
+      <li>The journeymen of {FACTION} have pitched their tents {PLACE} and laid out their tools. They are waiting for the colony's stone or wood before they start on {WORK}.</li>
+      <li>{FACTION}'s journeymen have made camp {PLACE}, and are marking out where {WORK} will stand.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the journeymen camped {PLACE}, says {X_pronoun} has found more good work here than anywhere on the road, and asks whether there is a place for {X_objective} at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[stood,madedo] The journeymen packed their tools and went. They had to make do with less stone than they asked for, and {WORK} stands a little plainer for it, but it stands, with the guild's mark on it.</li>
+      <li>[stood,torn] The journeymen packed their tools and went. One day's work was torn down and done again, and {WORK} stands with the guild's mark on it.</li>
+      <li>[stood] The journeymen packed their tools and went, and {WORK} stands with the guild's mark on it.</li>
+      <li>The journeymen packed their tools and went before the work was done. What they were given is left where they were working.</li>
+    </farewell>
+    <lines>
+      <li>Bad work is a lie told in stone.</li>
+      <li>Measure twice, cut once.</li>
+      <li>Every stone gets the mark.</li>
+      <li>Good work outlasts the people who made it.</li>
+      <li>Keep your chisel sharp and your line straight.</li>
+    </lines>
+    <momentLines>
+      <li>[short] We can't go on without more stone.</li>
+      <li>[crack] That block has cracked, we'll need more.</li>
+      <li>[bad] This isn't good enough, it comes down.</li>
+      <li>[carve] Steady, follow the line.</li>
+      <li>[carve] That's the shape of it now.</li>
+      <li>[done] It's finished, cut the mark.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the journeymen by their fire and heard how the bridge at Hardwater was washed away three times and built a fourth with a mark on every stone.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>beside</key>
+        <label>Send {A_nameDef} to work beside them</label>
+        <tip>{A_nameDef}, the colony's best at the art, works beside the journeymen through their working hours until the work is done, learning as they go.</tip>
+        <skill>Artistic</skill>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to work beside the journeymen.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><xpPerHour>160</xpPerHour><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkBeside" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 66. The line crew (the Signal Line) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_LineCrew</defName>
+    <label>line crew</label>
+    <workerClass>ColonyCouncil.CampWorker_LineCrew</workerClass>
+    <arrives>8~14</arrives>
+    <calling>linesmen</calling>
+    <weight>0</weight>
+    <people>3~4</people>
+    <days>7~7</days>
+    <ages>20~50</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Metal</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li><li>Mend</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the crew takes its mast or tower, its wire and its tents on to the next post, unless the colony has bought the mast</leavesWhy>
+    <titles>
+      <li>The line crew</li>
+      <li>Linesmen on the high ground</li>
+    </titles>
+    <texts>
+      <li>A crew of {FACTION} is walking up {PLACE} with a {MAST} in pieces and coils of wire, {X_nameDef} at the front. They will camp there for a week.</li>
+      <li>[lowtech] A crew of {FACTION} is walking up {PLACE} with poles, flags and a lamp on their backs. They will camp there for a week.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s line crew has pitched its tents {PLACE}, and is getting the {MAST} ready to raise beside the fire.</li>
+      <li>The linesmen have made camp {PLACE}, with their wire stacked by the fire and the {MAST} laid out on the ground.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the line crew camped {PLACE}, says {X_pronoun} has climbed enough masts for one life, and asks whether there is a place for {X_objective} at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[kept] The line crew packed its wire and tents and went down the road, leaving the mast on the high ground. It is the colony's now, and carries its letters and the Line's warnings.</li>
+      <li>[struck] The line crew took down the {MAST} they raised again after the lightning, packed its wire and went on down the line.</li>
+      <li>[fell] The line crew took down its {MAST}, packed its wire and went on down the line, the one who fell from it going with them.</li>
+      <li>[tower] The line crew took down its {MAST} and went on down the line with its flags and lamp.</li>
+      <li>The line crew took down its {MAST}, packed its wire and went on down the line.</li>
+    </farewell>
+    <lines>
+      <li>Silence is the only storm.</li>
+      <li>Every height gets a mast.</li>
+      <li>Say where you heard it.</li>
+      <li>Keep the wire taut and dry.</li>
+      <li>The next valley can hear us now.</li>
+    </lines>
+    <momentLines>
+      <li>[raise] Up it goes, hold the guy ropes.</li>
+      <li>[wire] Another span strung.</li>
+      <li>[climb] I'm going up to tie it down.</li>
+      <li>[struck] The lightning took the mast, we raise another tomorrow.</li>
+      <li>[radio] Quiet, the news is coming in.</li>
+      <li>[flags] The next tower is signalling, let me read it.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the line crew by their fire and heard how the first lineman walked the hills with a coil of wire until one valley could hear the next.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Send them food for the week (8 meals)</label>
+        <tip>One of the colony carries eight meals out to the line crew's camp.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <askTexts>
+          <li>{X_nameDef} has come down from the line crew's camp. Stringing wire is hungry work, {X_pronoun} says, and asks whether the colony could spare some food for the crew.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will manage on what they brought.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Eight meals are going out to the line crew's camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the line crew</label><what>meals</what><count>8</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>parts</key>
+        <label>Send them components for the mast (4)</label>
+        <tip>One of the colony carries four components out to the line crew's camp, for the mast's radio.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <askTexts>
+          <li>{X_nameDef} has come down from the line crew's camp. The mast's radio needs parts they don't carry, {X_pronoun} says, and asks whether the colony could spare four components.</li>
+        </askTexts>
+        <refuseLabel>We can't spare them</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will patch it as best they can.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Four components are going out to the line crew's camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>parts for the mast</label><what>ComponentIndustrial</what><count>4</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>keep</key>
+        <label>Keep their mast as the colony's relay mast</label>
+        <tip>When the line crew goes, they leave the mast standing, and it becomes the colony's own relay mast: its letters take half the days, and the Line warns it of raids, as long as the Line is at peace with the colony.</tip>
+        <silver>300</silver>
+        <warm>1</warm>
+        <outcomes>
+          <li>The line crew will leave the mast standing for the colony when they go.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_KeepMast" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to the hurt lineman</label>
+        <tip>The colony's doctor goes over to the line crew's camp and tends whoever of them is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the line crew's camp to see to the one who fell.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 70. The picket (the Deepwell Union) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Picket</defName>
+    <label>picket</label>
+    <workerClass>ColonyCouncil.CampWorker_Picket</workerClass>
+    <arrives>8~16</arrives>
+    <calling>drillers</calling>
+    <fights>true</fights>
+    <weight>0</weight>
+    <people>4~7</people>
+    <days>30~30</days>
+    <ages>18~58</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.5</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <tidy>Usual</tidy>
+    <works><li>Haul</li><li>Gather</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the strikers take everything with them when they go home</leavesWhy>
+    <titles>
+      <li>The picket</li>
+      <li>Strikers by the road</li>
+    </titles>
+    <texts>
+      <li>Strikers of {FACTION} are walking in along the road, {X_nameDef} at the front. They will keep a picket by the colony's road while the strike lasts.</li>
+      <li>[lowtech] Diggers of {FACTION} are walking in along the road with their picks over their shoulders. They will camp by the colony's road until the union settles its quarrel.</li>
+    </texts>
+    <settled>
+      <li>The strikers of {FACTION} have made camp {PLACE}, by the road, with a fire going and their bedrolls round it.</li>
+      <li>{FACTION}'s picket has set up {PLACE}, by the road, and the strikers are sitting round their fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the strikers camped {PLACE}, says the pit can manage without {X_objective}, and asks whether there is a place for {X_objective} at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[settled] The strike is settled, and the strikers packed up the picket and went home, singing as they went down the road.</li>
+      <li>[vote] The union voted to go back to work, and the strikers packed up the picket and marched home singing.</li>
+      <li>[breakers] The strikers packed up the picket and went home, after the fight with the strikebreakers at their camp.</li>
+      <li>The strikers packed up the picket and went home.</li>
+    </farewell>
+    <lines>
+      <li>Everyone up at the end of the shift.</li>
+      <li>Nobody decides alone.</li>
+      <li>One out, all out.</li>
+      <li>We'll stand here as long as it takes.</li>
+      <li>Put it to the vote.</li>
+    </lines>
+    <momentLines>
+      <li>[settled] It's settled, we're going home.</li>
+      <li>[vote] The vote is in, back to work.</li>
+      <li>[breakers] Strikebreakers on the road, stand together.</li>
+      <li>[song] Come on, all of you, the old song.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the strikers by their fire and heard how the miners of Deepwell voted to stay together when the seam ran dry.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Send food for the picket line (15 meals)</label>
+        <tip>One of the colony carries fifteen meals out to the picket. With the colony's help the union can come to terms, and the strike is settled.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <askTexts>
+          <li>{X_nameDef}, the picket's shift-captain, has come up from the camp by the road. The strikers are getting hungry, {X_pronoun} says, and asks whether the colony could send food for the picket line.</li>
+        </askTexts>
+        <refuseLabel>We can't feed a strike</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the picket will hold out on what it has.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Meals are going out to the picket by the road.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the picket line</label><what>meals</what><count>15</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_PicketFed" />
+        </effects>
+      </li>
+      <li>
+        <key>evening</key>
+        <label>Send {A_nameDef} to the strikers' fire this evening</label>
+        <tip>The strikers have asked the colony's miners to their fire of an evening. {A_nameDef}, the colony's best miner, goes and spends a couple of hours with them.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <needs>evening</needs>
+        <skill>Mining</skill>
+        <askTexts>
+          <li>{X_nameDef} has come up from the picket by the road. The strikers sit round the fire of an evening, {X_pronoun} says, and the colony's miners would be welcome, {A_nameDef} first of all.</li>
+        </askTexts>
+        <refuseLabel>Not tonight</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the invitation stands.</li>
+        </refused>
+        <refuseTension>1</refuseTension>
+        <tension>-3</tension>
+        <warm>3</warm>
+        <outcomes>
+          <li>{A_nameDef} is going down to the strikers' fire for the evening.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their hurt</label>
+        <tip>The colony's doctor goes down to the picket and tends whoever of them is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going down to the picket to see to their hurt.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

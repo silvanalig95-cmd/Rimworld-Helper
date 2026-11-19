@@ -947,6 +947,20 @@ MODEL = {
                                                      "the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone"),
     "Peoples/Events6/PeopleEvents6Book.cs:hires": ("cap", (4, 1 / 45), 140, "the raids the Banner was hired for, four kept"),
     "Peoples/Events6/StormTower.cs:rods": ("fixed", 2, 40, "the storm tower's two rods, while the camp stands"),
+    # The peoples' own events, round 7 (Peoples/Events7/PeopleEvents7Book.cs): the masterworks and legends a master may come to
+    # judge, six kept; the journeymen due back a year after a wander-year, PeopleEvents7Math.MaxComeBacks kept once done; the Line's
+    # masts at friends' towns, PeopleEvents7Math.MaxTownMasts kept once lost; the wells' year's shares and the organizers' evenings,
+    # four kept each; the strikes a picket was rolled for, eight keys. The camps' own states live while the camp does: the cells of
+    # the guild's work (a bridge's crossing two cells wide, twelve long at most).
+    "Peoples/Events7/PeopleEvents7Book.cs:marks": ("cap", (6, 1 / 30), 120, "the masterworks and legends a master of the guild may come to judge, six kept"),
+    "Peoples/Events7/PeopleEvents7Book.cs:comeBacks": ("cap", (const("Peoples/Events7/PeopleEvents7Math.cs", "MaxComeBacks", 6), 1 / 150), 140,
+                                                      "the journeymen due back a master a year after a wander-year, PeopleEvents7Math.MaxComeBacks kept once done"),
+    "Peoples/Events7/PeopleEvents7Book.cs:masts": ("cap", (const("Peoples/Events7/PeopleEvents7Math.cs", "MaxTownMasts", 6), 1 / 60), 140,
+                                                  "the Signal Line's masts at friends' towns, PeopleEvents7Math.MaxTownMasts kept once lost"),
+    "Peoples/Events7/PeopleEvents7Book.cs:shares": ("cap", (4, 1 / 120), 80, "the union's year's shares of a well it sank, four kept"),
+    "Peoples/Events7/PeopleEvents7Book.cs:evenings": ("cap", (4, 1 / 60), 140, "the organizers' evenings and their petitions, four kept"),
+    "Peoples/Events7/PeopleEvents7Book.cs:picketRolled": ("cap", (8, 1 / 120), 20, "the strikes a picket was rolled for, a people and a tick, eight kept"),
+    "Peoples/Events7/WorkThatStays.cs:cells": ("fixed", 24, 20, "the cells of the guild's work (a bridge's crossing two cells wide), while the camp stands"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the

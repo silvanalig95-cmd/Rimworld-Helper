@@ -47,7 +47,8 @@ namespace ColonyCouncil
                 case TideRead.RunnerKind: return TideRead.RunnerHour(v, now);
                 case CanopyFire.Kind: return CanopyFire.Hour(v, now);
             }
-            return false;
+            // Round 7's (Peoples/Events7/): the master at a fine piece, the Line's call, the union's well or seam.
+            return PeopleEvents7.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -69,6 +70,8 @@ namespace ColonyCouncil
             Safe("the contracts", () => BannerContract.Watch(now));
             Safe("the musters", () => OldSoldier.Watch(now));
             Safe("the other side's contracts", () => OtherSideContract.Watch(now));
+            // Round 7's watch (Peoples/Events7/): fine pieces, journeymen due back, masts at towns, wells' shares, the worn down, strikes.
+            Safe("round 7", () => PeopleEvents7.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

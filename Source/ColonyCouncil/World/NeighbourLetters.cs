@@ -1161,8 +1161,9 @@ namespace ColonyCouncil
             // Carried home by one of theirs, at their people's means; the answer comes back at the colony's (Means).
             float there = LetterMath.LegDays(tiles, LetterMath.MeansOf(Ages.Of(bearer?.Faction ?? n.faction)));
             l.backDays = LetterMath.LegDays(tiles, Means);
-            // The answer comes down the Signal Line's mast, where the colony has one singing (Peoples/PeoplesF.cs): half the days.
-            if (RelayMast.Working(l.map)) l.backDays = PeoplesFMath.Relayed(l.backDays);
+            // The answer comes down the Signal Line's mast, where the colony has one singing (Peoples/PeoplesF.cs), or a mast of the
+            // Line's stands at their town or a line crew's at the colony (Peoples/Events7/): half the days.
+            if (RelayMast.Working(l.map) || PeopleEvents7.Relays(l.map, n)) l.backDays = PeoplesFMath.Relayed(l.backDays);
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             // They set off for home when their stay ends: its days on the road count from when they leave the map (Step).
@@ -1227,8 +1228,9 @@ namespace ColonyCouncil
             float tiles = Tiles(n, l.map);
             float there = LetterMath.LegDays(tiles, Means);
             l.backDays = LetterMath.LegDays(tiles, Means);
-            // Down the Signal Line's mast and back, where the colony has one singing (Peoples/PeoplesF.cs): half the days each way.
-            if (RelayMast.Working(l.map))
+            // Down the Signal Line's mast and back, where the colony has one singing (Peoples/PeoplesF.cs), or a mast of the Line's stands
+            // at their town or a line crew's at the colony (Peoples/Events7/): half the days each way.
+            if (RelayMast.Working(l.map) || PeopleEvents7.Relays(l.map, n))
             {
                 there = PeoplesFMath.Relayed(there);
                 l.backDays = PeoplesFMath.Relayed(l.backDays);

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.271.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' own events, round 7</title>
+        <points>
+          <li>When someone makes a masterwork or a legend, a master of the Kiln Guild may come to judge it: true work gets the guild's mark, and a fault is said plainly.</li>
+          <li>A journeyman who spent a wander-year at the colony comes back a year later as a master, with a masterwork for the one who taught them.</li>
+          <li>Three journeymen may camp for a week and build a lasting work with the colony's stone or wood: a carved bridge, a grand statue in its hall, or a fountain where it gathers.</li>
+          <li>The Signal Line offers one call a season on its masts, raises a mast at a friend's town so letters there come faster, and sends line crews to camp on the high ground.</li>
+          <li>When a union pit caves in, the colony's miner and doctor can go and help dig the trapped miners out, for pay and the union's thanks.</li>
+          <li>The union's assayer may find oil under the colony and sink a Rimefeller well, or mark a deep seam for the union's drill.</li>
+          <li>When the colony is worn down, a shift-captain may speak at its fire and a petition for rest reaches the council; during a strike, a picket may camp by the road.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.270.6</version>
         <date>19 November 2026</date>
         <title>The mods' Almanac pages in plain words</title>
