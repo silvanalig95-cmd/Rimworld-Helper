@@ -176,7 +176,7 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
     <sections>
       <li>
         <heading>How raiders choose their way</heading>
-        <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; a door they would have to break costs as much as a good long walk; and a wall isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
+        <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; and a wall, or a closed door they can't open, isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
 
 The same habit works against you. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach on the outside, a cooler or a lamp in the wall among it. Length alone doesn't turn them away: an ordinary raider takes an open way however long it is, and never weighs it against breaking a door. A very long or winding way has a cost of its own, though. Raiders more than about 65 cells from anyone to fight drift off to smash what they pass, and the longer they spend outside, the more they break.</text>
       </li>
@@ -279,7 +279,7 @@ Against both: walls at least two thick, cover ready in more than one place, an i
     <sections>
       <li>
         <heading>Material</heading>
-        <text>Stone is the wall of choice: cheap, slow to build, strong, and it doesn't burn. Wood is quick but weak and burns, and raiders set fires. Steel walls burn too. Plasteel and uranium are the strongest and dearest, worth it only in a few key places.</text>
+        <text>Stone is the wall of choice: cheap, slow to build, strong, and it doesn't burn. Wood is quick but weak and burns, and raiders set fires. Steel walls burn too. Plasteel and uranium are the strongest and most expensive, worth it only in a few key places.</text>
       </li>
       <li>
         <heading>Thickness</heading>

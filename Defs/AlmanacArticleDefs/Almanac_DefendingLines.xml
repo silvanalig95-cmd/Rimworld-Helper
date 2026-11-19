@@ -103,7 +103,7 @@ The helper lays the lane on the way raiders actually walk up to the gate, its ne
       </li>
       <li>
         <heading>Doors in a line</heading>
-        <text>A line's gate, and every door in its wall, is its way through whether it's shut or not: the helper reads the line as you'll use it in a raid, with the gate held open. A door held open counts as open ground; a door elsewhere that raiders would have to break costs them a great deal. The line's card says what a shut gate means: with any other way open, however long, raiders take that; with none, they break the gate or the wall wherever they like. Hold it open during a raid to keep them coming through.</text>
+        <text>A line's gate, and every door in its wall, is its way through whether it's shut or not: the helper reads the line as you'll use it in a raid, with the gate held open. A door held open counts as open ground; a shut door elsewhere counts as costly in the helper's survey, and in the game raiders don't pass it at all while another way is open. The line's card says what a shut gate means: with any other way open, however long, raiders take that; with none, they break the gate or the wall wherever they like. Hold it open during a raid to keep them coming through.</text>
       </li>
       <li>
         <heading>Walls that send raiders elsewhere</heading>
@@ -250,7 +250,7 @@ It has two prices. Insects come up in warm, dark rock under the mountain, and an
       </li>
       <li>
         <heading>Open ground</heading>
-        <text>On open ground there's no gap until you make one. Wall the colony in first, with the killbox as the only open way through the wall and a few doors elsewhere for your own use. Until that wall is closed, raiders simply walk round the killbox. Keep those other doors no nearer the raiders than the killbox: a raider weighs breaking a door against the walk round, and a long walk loses. Put the killbox on the side most raids come from; the Defenses page shows which edges raiders reach you from.</text>
+        <text>On open ground there's no gap until you make one. Wall the colony in first, with the killbox as the only open way through the wall and a few doors elsewhere for your own use. Until that wall is closed, raiders simply walk round the killbox. Keep those other doors no nearer the raiders than the killbox: raiders can't open them, but one a colonist has just opened lets them through, and one shut in their face gets broken. Put the killbox on the side most raids come from; the Defenses page shows which edges raiders reach you from.</text>
       </li>
       <li>
         <heading>A bridge</heading>
@@ -430,7 +430,7 @@ With the plan in front of you, it says where the wall stops short of the rock (a
     <label>how raiders pick their way</label>
     <category>Defending</category>
     <order>38</order>
-    <summary>The cheapest way in, what makes a way dear, and why a killbox has to stay the easiest</summary>
+    <summary>The cheapest way in, what makes a way costly, and why a killbox has to stay the easiest</summary>
     <tip>Raiders don't see your traps, but they do go round walls they would have to break.</tip>
     <description>Raiders who walk in from the edge of the map make for your people by the way that costs them least. Most of a good defense is seeing that this way is the one you built for them, and not undoing it by accident.</description>
     <sections>
@@ -439,11 +439,11 @@ With the plan in front of you, it says where the wall stops short of the rock (a
         <text>Ordinary raiders walk the easiest way they can find to what they're after: your people, and turrets that are shooting at them. Every step costs them something. Open ground costs least; mud, shallow water and climbing over sandbags or a fence cost more. They take the way that costs least in all, however long and winding it is.</text>
       </li>
       <li>
-        <heading>What makes a way dear</heading>
+        <heading>What makes a way costly</heading>
         <points>
-          <li>A wall or a closed door they would have to break adds a great deal. In the helper's own reckoning a door to break costs about as much as thirty cells of walking. The game keeps its own sums, but the lesson holds: an open way, even a long one, beats one they have to break into.</li>
+          <li>A wall or a closed door isn't a way at all for an ordinary raider: in the game's own pathing they can't pass either, and they never weigh breaking one against a long walk. (The helper's own survey counts a shut door as about thirty cells of walking instead.) An open way, however long, is the one they take.</li>
           <li>They can't open your doors, so to them a closed door is an obstacle: a weak bit of wall. A door held open is open ground.</li>
-          <li>While any open way is left, a wall is no way at all. With none left, each raider breaks in wherever it's cheapest for him.</li>
+          <li>While any open way is left, a wall is no way at all. With none left, each raider picks a stretch of wall or a door at random and breaks in there.</li>
           <li>They don't see traps, so a trap costs them nothing and doesn't change their way. A few (sappers among them) know where some of your traps are and step round those.</li>
         </points>
       </li>
@@ -453,7 +453,7 @@ With the plan in front of you, it says where the wall stops short of the rock (a
       </li>
       <li>
         <heading>How the helper reads it</heading>
-        <text>The Defenses page works the ways in out the same way, roughly: from a sample of the map's edge it follows the cheapest way to the home area, counting a door to break as dear. A defense line's gate, and the doors in its wall, count as its way through even when shut, since raiders who find a gate shut break it rather than walk far round; a door held open counts as open. Before it proposes a step that adds walls, it walks the ways in again with those walls standing and tells you if most raiders would then go elsewhere.
+        <text>The Defenses page works the ways in out the same way, roughly: from a sample of the map's edge it follows the cheapest way to the home area, counting a shut door as costly (about thirty cells of walking). A defense line's gate, and the doors in its wall, count as its way through even when shut, since you will hold the gate open in a raid; a door held open counts as open. Before it proposes a step that adds walls, it walks the ways in again with those walls standing and tells you if most raiders would then go elsewhere.
 
 It is an estimate. Raids that drop in, dig or breach don't walk in at all, and a raid that arrives at one edge doesn't care how easy another edge is.</text>
       </li>
