@@ -454,16 +454,20 @@ repo.
   decrees, questions, story stages, storylines and encounters). Left: every label, keyword and link (the Almanac's
   search and its links go by them), the names of things in the game quoted on the pages (settings, marks' and quirks'
   names, a question's answer quoted, the seats' names by age), and the speech and journal lines quoted as examples.
-  The Almanac's other pages, still to do: the remaining 64 files of `Defs/AlmanacArticleDefs/` but What's new
-  (`Almanac_Advisor`, `_Ahead`, `_Ailments`, `_Apparel`, `_Basics`, `_Beasts`, `_Camps`, `_DLC`, `_Defending`,
-  `_DefendingLines`, `_Defense`, `_Diplomacy`, `_Faith`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`, `_Groups`,
-  `_Guide`, `_HandOver`, `_Hauling`, `_Health`, `_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`,
-  `_Mistakes`, the ten `_Mods_*` files, `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_Peoples`,
-  `_PeoplesC` to `_PeoplesG`, `_RaidersCamps`, `_Region`, `_RoomDesign`, `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`,
-  `_Schemes`, `_SocialLife`, `_Storytellers`, `_TownAfter`, `_TownLife`, `_TradeScreen`, `_VisitorsMore2`,
-  `_Weapons`, `_WorldMemory`, `_WorldSituations`), and `Almanac_Council_Faith.xml`, which waited for the gods' and
-  faith's batch and was not in it: the gods' and faith's pages (`_Council_Faith`, `_Gods`, `_Faith`) are best taken
-  together, keeping the gods unseen.
+  The Almanac, part 3: the pages J to W and the council's faith page, done (19 November 2026, the same go; built, not
+  released): the entry "Plain words: the Almanac's pages J to W" above the newest release line. Files taken: the 27
+  files `Almanac_Council_Faith`, `Almanac_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`,
+  `_Mistakes`, `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_RaidersCamps`, `_Region`, `_RoomDesign`,
+  `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`, `_Schemes`, `_SocialLife`, `_Storytellers`, `_TownAfter`, `_TownLife`,
+  `_TradeScreen`, `_VisitorsMore2`, `_Weapons`, `_WorldMemory`, `_WorldSituations` (170 pages: summaries, tips,
+  descriptions, sections, points and tables' prose cells; Rimfolk's read against the code and against the names the
+  earlier batches gave the decrees, questions, world events and missions, the base game's guides read for plain
+  words). Left: every label, keyword and link, the names of things in the game quoted on the pages, and the base
+  game's numbers on the guide pages (the repository has no Core defs to read them against). The council's faith page
+  is about the game's ideoligions and names no god. The pages A to H with the gods' and faith's pages (`_Gods`,
+  `_Faith`) are the Almanac's part 2, built alongside.
+  The Almanac's other pages, still to do: the mods' pages (the ten `Almanac_Mods_*` files), the peoples' pages
+  (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`) and What's new (`Almanac_WhatsNew`, which writes CHANGELOG.md).
   Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
@@ -477,6 +481,88 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: the Almanac's pages J
+  to W** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The Almanac's part 3 of the plain-words pass: its pages J to W (journeys, another landing site, low tech,
+  running the colony, many colonies, beginners' mistakes, neighbours and letters, new peoples, the numbers at a glance,
+  small letdowns and good things grown ordinary, raiders' camps, the region, room design, room plans, rooms and mood, a
+  scenario's start, schemes, social life, ways to play, the town afterwards and its life, the trade screen, visitors
+  for what the colony keeps, judging a weapon, what the world remembers, world events) and the council's faith page
+  (ideoligions and the council). File list, and the Almanac's pages still to do, in the to-do entry "Rimfolk's text in
+  plain words".
+  - **What changed.** About 2,600 pieces of prose read in the 170 pages of 27 files (summaries, tips, descriptions,
+    sections, points and tables' cells), Rimfolk's each against the code it describes; 64 lines rewritten, two table
+    rows and one paragraph added. The base game's guides (running the colony, mistakes, low tech, numbers, room design,
+    rooms and mood, room plans) were plain already, and so were most of Rimfolk's pages. Tips that were sayings are
+    advice now ("One cold supper is nothing. A week of them is something." is "A single letdown passes in half a day.
+    The ones that keep coming wear on the heart, and the heart's section of the Mood tab names them."; "The first fine
+    meal is a treat. The tenth is supper.", "A dog that sleeps warm is a dog that fights well.", "No power, no harvest.
+    Batteries before basins.", "No teacher awake, no lesson.", "A feast in a fine hall is remembered for days.", "Busy
+    children don't wander into the workshop.", "A letter of condolence in a careful hand means more to a tribe than any
+    call could." and "The prisoner you let go this spring may be why a cart of food comes up the road..." each say what
+    to do or what the rule is). Figures of speech said plainly: the ways to play's table ("The world calls the colony
+    out", "The peoples around are the story", "The world feels watched", "Scarcity is the enemy", "The colony as a
+    market" now say what each way does, as the storytellers' own descriptions have since 0.250.0), "the region's word
+    leans to" (the region's news turns to), "Nothing is told: the world simply answers.", "It leans the world toward the
+    uncanny and names nothing.", "as the cups go up", "The two at a time stay two.", "the seat's ways carry word",
+    "welcomes itself in full", "where its land is kindly", "the heart of a tribal kitchen", "the most walked road in the
+    colony", "This advice is gentle", "carry themselves taller", "a people never forgets the first who helped", "a marked
+    beast goes home over their shoulders", "at the turning of the year", "sour on the colony", "walks up in his
+    stockings", "a letter in a hand", "within earshot", and the landing page's knotted "whatever of it someone who comes
+    holds". The faith page's cut-short lines are full sentences ("Every faith its evening, a decree too, is the other
+    way, and never in force with it. Ten days, twenty to wait after."; "can be sat with for an hour ... through the
+    shared core"; "The advisor mentions a faith without a guide too, gently.").
+  - **Put right against the code.** The faith page: a doubter of the faith is under 35% certain
+    (`YearFourMath.Doubting`), not "under a third"; the three questions named as the council shows them (ideoligions at
+    odds, doubts in the faith, the faith without a guide). Journeys: medicine is half a dose each and one more each for
+    every 8 days (`JourneyMath.Medicine`), not one more for the party; a doctor also goes on an escort where there is
+    any danger (`JourneyAdviceMath.WantsDoctor`); the guard more is for some danger, two for high. The region: a town
+    may be given up after 30 days under 15 (`RiseFallMath.LowDays`), not "a month", and after two bad world events
+    within a year while under 25 (`BlowDays` 60), not "in a season"; the fortunes table lacked six world events that
+    move fortunes (a blight in the region -10, a war between neighbors -8 and -4 for the other people's towns, a year
+    without a summer -8, medicine gone scarce -5, a ban on drink -4, a great work +4: their `prosperity` and
+    `prosperityOther`), and the war between neighbors moves the second people's towns too. The town's life: the same
+    rule, and the town asks to come back at most once a season (`TownLifeMath.AskGapDays`), not "a season apart at
+    most". Judging a weapon: Dual Wield puts its penalties on the main hand too (10% cooldown, 10% aim) and adds 5% and
+    0.5% for each skill level under 20 (`WeaponForMath.DualWieldRules`); the page named the off hand's alone. World
+    events: the table's names as the game shows them (a long drought, the great fire, drove season, the old thrumbo,
+    where it said a long drought upriver, a great fire, the drove roads, an old thrumbo), and the world events told on
+    other pages are named (a new town's welcome, a town given up, the town that grew, a raid on a town the colony was,
+    a legend of the region, a lord's progress, the clans gathering). New peoples: the table gave only river folk and
+    scholars as other ways; survivors and bands take many more (`ArisingMath.Lean`: the Bell's, the Wheel's, the Signal
+    Line's, the crew's and the vault's ways for survivors; tamers, wardens, seers, a choir, a free company, a guild, a
+    grove, a union, a republic, a gene works and a lattice by a band's leader), now said, pointing to the peoples'
+    pages. Schemes: a word in the ear is overheard within 7 cells (`SchemeMath.EarRange`).
+    One bug in the code, found reading the faith page: every faith its evening's daily trust passed a colonist's
+    openness (-100 to 100) into a rule written for 0 to 1 (`YearFourMath.ToleranceTrust`), so anyone the least bit
+    open got the full half point. Now `/ 100f` at the call (`Decrees/DecreeWork.cs`, `EveryFaithDaily`): a quarter of a
+    point for the closed and the neutral, rising to half for the most open, as the decree's text, the page and the
+    rule's own comment say. The only code change; the rule and its test are as they were.
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the
+    names quoted from the game and other mods (settings, the groups' roles such as the anchor and the firebrand, the
+    world events' endings such as "bad blood", the decrees' and questions' names), the base game's numbers on the guide
+    pages (no Core defs in the repository to read them against; Rimfolk's numbers were read against the code and agree
+    but for the above), and the pages plain throughout (another landing site but one line, a scenario's start, the town
+    afterwards, the trade screen, visitors for what the colony keeps, raiders' camps, running the colony, mistakes,
+    numbers, room design, rooms and mood). `Tools/textcheck.py --base` the lead branch and `Tools/almanaccheck.py
+    --base` HEAD and the lead branch find nothing: no number lost, keywords, labels and links unchanged. The two rows
+    added to the fortunes table go at its end, since the check compares a table's rows by position.
+  - **Code map.** Text in 17 of the 27 files (`Almanac_Council_Faith`, `_Journeys`, `_Landing`, `_LowTech`,
+    `_ManyColonies`, `_Neighbours`, `_NewPeoples`, `_OneHeart`, `_Region`, `_RoomPlans`, `_Schemes`, `_SocialLife`,
+    `_Storytellers`, `_TownLife`, `_Weapons`, `_WorldMemory`, `_WorldSituations`), one line in
+    `Source/ColonyCouncil/Decrees/DecreeWork.cs`, and the to-do entry's file list.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line; the fortunes table
+    with its two rows at the end; the every-faith decree's trust with the scale put right (a colonist of openness 40
+    now gains 0.35 a morning, where they gained 0.5).
+  - **Try in the game.** Open the Almanac: "the region" lists a blight, a war between neighbors, a year without a
+    summer, medicine gone scarce, a ban on drink and a great work among the fortunes; "ideoligions and the council"
+    names doubts in the faith at 35%; "world events" uses drove season and the old thrumbo; "ways to play" says what
+    each way does in its table. With Ideology and two ideoligions, declare every faith its evening and hover a
+    colonist's trust: a closed-minded colonist of another ideoligion gains a quarter of a point each morning, the most
+    open half a point.
+  - **Mods that would help.** None for this; it is text and one fix.
 - 0.270.3, **Plain words: the Almanac's
   council pages** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for
   the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more
