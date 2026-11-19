@@ -513,8 +513,8 @@
             <label>Take {X_nameDef} in, and buy out the musters ({DEAD} silver)</label>
             <outcome>{X_nameDef} joins the colony, and the Banner will not call {X_objective} to the muster again.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the musters bought out</label><factor>3</factor><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.DilemmaEffect_OldSoldier"><buyOut>true</buyOut></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the musters bought out</label><factor>3</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>

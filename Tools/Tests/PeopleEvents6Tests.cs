@@ -295,6 +295,13 @@ public static class PeopleEvents6Tests
           && code.Contains("public const string AwayKey = \"enlist\";") && code.Contains("SeasonAway.Send(OldSoldier.AwayKey") && code.Contains("SeasonAway.Send(CompanyMarch.AwayKey"),
             "the muster and the season enlisted are round 2's season away");
         C(Read("Peoples", "PeoplesE.cs").Contains("AfterFire.Felled(plant, by)"), "a tree the colony fells is weighed against the Mossborn's planting");
+        string events5 = string.Join("\n", Directory.GetFiles(Path.Combine(src, "Peoples", "Events5"), "*.cs").Select(File.ReadAllText));
+        C(Regex.Matches(events5, @"PeoplesF\.PeopleOf\(v\)").Count == 1 && Regex.Matches(events5, @"var f = PeopleEvents5\.PeopleOf\(v\);").Count == 4 && !code.Contains("PeoplesF.PeopleOf(v)")
+          && Read("Peoples", "Events5", "PeopleEvents5.cs").Contains("v?.group.Prepend(v.x).FirstOrDefault(p => p?.Faction != null && !p.Faction.IsPlayer)?.Faction"),
+            "round 5's and 6's visits find their people by who came (their texts hold their own words)");
+        C(soldier.Element("options")!.Elements("li").ElementAt(1).Descendants("to").Single().Value == "Gate", "the musters bought out are paid at the gate, the veteran being the colony's by then");
+        C(Read("Peoples", "Events", "PeopleWorkOn.cs").Contains("PeoplesG.Home(v.group.Prepend(worker).Where(p => p != worker || !Busy(worker)));"),
+            "a worker with another order waiting (the reader's second sitting) is not sent home");
         C(Read("Text", "Facts", "FactsMath.cs").Contains("\"them:camp:StormTower\", \"them:camp:AfterFire\", \"them:camp:CompanyMarch\""), "the facts service knows the round's camps");
         C(Read("..", "..", "Tools", "DefValidator", "Program.cs").Contains("\"STORMS\", \"PLANTED\""), "the def check knows the camps' own counts");
         C(code.Contains("PeopleWorkOn.Begin(") && code.Contains("GlassWatch.Of(map)") && code.Contains("GlassWatch.Begin(") && code.Contains("RelayMast.Site(map)") && code.Contains("PeoplesE.Sapling(")

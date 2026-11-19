@@ -160,7 +160,7 @@ namespace ColonyCouncil
         private static void Finish(Visit v, List<Pawn> guards)
         {
             v.done = true;
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             bool out_ = PeopleEvents6Math.Out(PeopleEvents6.Fires(v.map, v.cell, PeopleEvents6Math.CanopyRadius).Count);
             if (out_ && guards.Count > 0 && v.text != "away")
             {

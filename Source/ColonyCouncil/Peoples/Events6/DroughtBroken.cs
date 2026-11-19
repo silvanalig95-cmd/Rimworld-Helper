@@ -93,7 +93,7 @@ namespace ColonyCouncil
         private static List<Thing> Rods(Visit v)
         {
             var def = PeoplesE.RodDef;
-            var f = PeoplesF.PeopleOf(v) ?? v.x?.Faction;
+            var f = PeopleEvents5.PeopleOf(v);
             if (v.map == null || def == null || !v.cell.IsValid) return new List<Thing>();
             return v.map.listerThings.ThingsOfDef(def).Where(t => t.Spawned && t.Faction == f && t.Position.InHorDistOf(v.cell, 8f)).ToList();
         }
@@ -255,7 +255,7 @@ namespace ColonyCouncil
                 var taught = HappeningWorker_GlassLesson.Taught;
                 if (taught != null && !HappeningWorker_GlassLesson.IsTaught(a)) a.health.AddHediff(taught);
             }
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             string text = (storm ? "CC_PEv6_RainStorm" : "CC_PEv6_RainCame").Translate((f?.Name ?? "?").Named("FACTION"), what.Named("CONDITION")).Resolve();
             if (a != null && !a.Dead) text += " " + "CC_PEv6_RainKept".Translate(a.Named("PAWN")).Resolve();
             Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_PEv6_RainLabel".Translate().Resolve(), text, storm ? LetterDefOf.NeutralEvent : LetterDefOf.PositiveEvent,
@@ -267,7 +267,7 @@ namespace ColonyCouncil
             v.done = true;
             if (v.a != null) PeopleWorkOn.Release(v.a);
             foreach (var r in Rods(v)) PeopleEvents6.Unrod(r);
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             if (v.stake == Rained)
             {
                 if (PeopleEvents6.Thanks(f)) WorldSituationWorker.Goodwill(f, PeopleEvents6Math.RainGoodwill, GoodwillWhy.Helped);

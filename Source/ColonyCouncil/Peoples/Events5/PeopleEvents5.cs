@@ -151,6 +151,13 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The people a visit of the round is for: the one its text names (rounds 2 to 4 put it there), else the people of
+        /// whoever came (round 5's and 6's visits keep their own words in the text).
+        /// </summary>
+        public static Faction PeopleOf(Visit v) =>
+            PeoplesF.PeopleOf(v) ?? v?.group.Prepend(v.x).FirstOrDefault(p => p?.Faction != null && !p.Faction.IsPlayer)?.Faction;
+
         public static void Safe(string what, Action a)
         {
             try
