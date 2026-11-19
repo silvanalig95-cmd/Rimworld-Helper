@@ -24,12 +24,12 @@
         <answerDays>3</answerDays>
         <notable>false</notable>
         <titles>
-          <li>[fire] {PLACE} burns</li>
+          <li>[fire] A fire at {PLACE}</li>
           <li>[storm] A storm at {PLACE}</li>
           <li>[flood] Floodwater at {PLACE}</li>
         </titles>
         <texts>
-          <li>[fire,lowtech] A fire started in a bakehouse at {PLACE} and went through the thatch faster than the bucket lines could follow. A quarter of the town is ash, and {FACTION} are sleeping under carts and in the temple.\n\n{DEAD}, who speaks for the town now, has sent a rider to the colony with a list: what they need to rebuild before the weather turns, and what they'll pay for it.</li>
+          <li>[fire,lowtech] A fire started in a bakehouse at {PLACE} and spread through the thatched roofs faster than the bucket lines could put it out. A quarter of the town has burned down, and {FACTION} are sleeping under carts and in the temple.\n\n{DEAD}, who speaks for the town now, has sent a rider to the colony with a list: what they need to rebuild before the weather turns, and what they'll pay for it.</li>
           <li>[fire,!lowtech] A letter from {DEAD} at {PLACE}, written fast:\n\n"The fuel store went up on the third night of the dry spell and took the whole of Mill Street with it. Every family {FACTION} could fit is sleeping in the school hall. We are rebuilding now, before the weather turns, and we can pay. The list is enclosed. I'd be grateful for a quick answer."</li>
           <li>[storm,lowtech] A storm came down the valley two nights ago and took the roofs off half of {PLACE}. {FACTION} saved what they could; the rest went down the river.\n\n{DEAD} has sent a rider to ask whether the colony can sell them what they need to put the roofs back on, by a set day.</li>
           <li>[storm,!lowtech] The windstorm that tore through {PLACE} two nights ago took roofs, walls and the power lines in the street. {FACTION} are patching what they can with tarps and rope.\n\n{DEAD}, who's in charge of the rebuilding, has sent a list to the colony, and a fair price for all of it.</li>
@@ -114,18 +114,18 @@
           <li>[partial] Part of what {PLACE} needed</li>
         </doneTitles>
         <done>
-          <li>[delivered,fire] Everything the colony had set aside went home on {FACTION}'s carts, and {DEAD} sent {ITEM} silver back with the drivers. The new houses at {PLACE} will have the colony's timber in their walls.</li>
-          <li>[delivered,storm] The materials went home piled high on {FACTION}'s carts. {DEAD} sent {ITEM} silver with them, and word that the roofs at {PLACE} will be on before the next storm.</li>
-          <li>[delivered,flood] {FACTION}'s carts took everything the colony had set aside, and {DEAD} sent {ITEM} silver back with them. The work crews at {PLACE} are eating the colony's food while they shovel the mud out of their neighbors' houses.</li>
-          <li>[partial] Only part of the list was ready when {FACTION}'s carts came. They took it, paid its plain worth, {ITEM} silver, and went on looking for the rest.</li>
+          <li>[delivered,fire] {FACTION}'s carts are coming for everything the colony set aside, and {DEAD} is sending {ITEM} silver with the drivers. The new houses at {PLACE} will be built with the colony's timber.</li>
+          <li>[delivered,storm] {FACTION}'s carts are coming for the materials. {DEAD} is sending {ITEM} silver with them, and word that the roofs at {PLACE} will be back on before the next storm.</li>
+          <li>[delivered,flood] {FACTION}'s carts are coming for everything the colony set aside, with {ITEM} silver from {DEAD}. The work crews at {PLACE} will eat the colony's food while they shovel the mud out of the houses.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for it and will pay its plain worth, {ITEM} silver, and they will look elsewhere for the rest.</li>
         </done>
         <failTitles>
           <li>[missed] Nothing for {PLACE}</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came for the materials and went back empty; there was far too little ready to be worth the trip. {PLACE} will rebuild slower than it hoped, and {FACTION} think less of the colony for it.</li>
-          <li>[missed,fire] {FACTION}'s carts came for the timber and left with almost nothing. The burned street at {PLACE} will stand empty a while longer, and {DEAD} has said so, in a letter the colony would rather not have received.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. {PLACE} will rebuild more slowly than it hoped, and {FACTION} think less of the colony for it.</li>
+          <li>[missed,fire] There was far too little timber ready for {FACTION}'s carts to make the trip. The burned street at {PLACE} will stay empty a while longer, and {DEAD} has written the colony an angry letter about it.</li>
         </fail>
         <cancelled>
           <li>{FACTION} want nothing more to do with the colony, and have cancelled the order for {PLACE}.</li>
@@ -156,7 +156,7 @@
           <li>[sickness] The sickhouse at {PLACE}</li>
         </titles>
         <texts>
-          <li>[winter,lowtech] {DEAD}, who keeps the stores at {PLACE}, has counted twice and come out short both times. The harvest came in thin, and {FACTION} won't have enough laid by to see the winter out.\n\nA rider has brought the colony {DEAD}'s list: food that keeps, firewood, and cloth or hides for winter coats, all by a set day.</li>
+          <li>[winter,lowtech] {DEAD}, who keeps the stores at {PLACE}, has counted them twice, and they are short. The harvest was poor, and {FACTION} won't have enough food put by to last the winter.\n\nA rider has brought the colony {DEAD}'s list: food that keeps, firewood, and cloth or hides for winter coats, all by a set day.</li>
           <li>[winter,!lowtech] {FACTION}'s granary at {PLACE} took water in the autumn rains, and half of it spoiled before anyone noticed the smell. {DEAD}, their quartermaster, has sent a courier with a list of what they'll need to get through the winter, and a good price for all of it.</li>
           <li>[drought] The rains failed at {PLACE} this year. The wells are low, the fields are dust, and {FACTION} are eating their seed grain.\n\n{DEAD} has sent a rider to the colony: they need food, and medicine for the fevers that come with bad water, and they'll pay what they can.</li>
           <li>[sickness,lowtech] A sickness is going round {PLACE}, the kind that keeps people in bed for a week and leaves them weak. {DEAD}, their healer, has turned the meeting hall into a sickhouse and sent to the colony for medicine, food and clean cloth.</li>
@@ -242,18 +242,18 @@
           <li>[partial] Part of what {PLACE} needed</li>
         </doneTitles>
         <done>
-          <li>[delivered,winter] The winter stores went off to {PLACE} on {FACTION}'s carts, and {DEAD} sent {ITEM} silver without haggling over a single sack. {PLACE} will see the winter out.</li>
-          <li>[delivered,drought] The food and medicine went home on {FACTION}'s carts, and {ITEM} silver stayed behind. When the rains come back, {DEAD} says, {PLACE} will still be there to see them.</li>
-          <li>[delivered,sickness] {FACTION}'s carts took the supplies straight to {DEAD}'s sickhouse at {PLACE}, and the drivers left {ITEM} silver and a note from {DEAD}: "We'll manage now. Thank you."</li>
-          <li>[partial] Half loaded, {FACTION}'s carts went home with what the colony had ready, and left {ITEM} silver for its plain worth. The rest will have to come from somewhere else.</li>
+          <li>[delivered,winter] {FACTION}'s carts are coming for the winter stores, and {DEAD} is paying {ITEM} silver for them without haggling. {PLACE} will get through the winter.</li>
+          <li>[delivered,drought] {FACTION}'s carts are coming for the food and medicine, with {ITEM} silver in payment. {DEAD} says that with this, {PLACE} can hold out until the rains come back.</li>
+          <li>[delivered,sickness] {FACTION}'s carts are coming for the supplies, to take them straight to {DEAD}'s sickhouse at {PLACE}. The drivers bring {ITEM} silver and a note from {DEAD}: "We'll manage now. Thank you."</li>
+          <li>[partial] Only part of the provisions is ready. {FACTION}'s carts are coming for what there is and will pay its plain worth, {ITEM} silver. The rest will have to come from somewhere else.</li>
         </done>
         <failTitles>
           <li>[missed] Nothing for {PLACE}</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came and found far too little ready, and went home empty. {PLACE} will have to find what it needs elsewhere, if it can.</li>
-          <li>[missed,sickness] There was almost nothing for {FACTION}'s carts to take. {DEAD} sent one line back with the drivers: the sickhouse would manage without the colony, as it always had.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. {PLACE} will have to find what it needs elsewhere, if it can.</li>
+          <li>[missed,sickness] There was almost nothing ready for {FACTION}'s carts to take. {DEAD} sent word that the sickhouse would manage without the colony, as it always had.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have turned their backs on the colony, and the order for {PLACE} is off.</li>

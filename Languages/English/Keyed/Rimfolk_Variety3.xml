@@ -7,7 +7,7 @@
   <CC_DlmE_BenchGone>The bench is gone, or can't be worked now.</CC_DlmE_BenchGone>
   <CC_DlmE_ArtShort>The stores no longer hold enough {0} for the piece.</CC_DlmE_ArtShort>
   <CC_Impact_ArtBill>{0} makes the {1} in {2} at the bench, alone, while the inspiration lasts</CC_Impact_ArtBill>
-  <CC_Impact_ArtBillBrief>{0} works the piece in {1}</CC_Impact_ArtBillBrief>
+  <CC_Impact_ArtBillBrief>{0} makes the piece in {1}</CC_Impact_ArtBillBrief>
   <CC_Impact_ArtSpent>The colony's {0} goes into it</CC_Impact_ArtSpent>
   <CC_Impact_ArtSpentBrief>the {0} spent</CC_Impact_ArtSpentBrief>
   <CC_DlmE_ArtBillSet>{PAWN_nameDef} has the {BENCH} to make the {PIECE} in {STUFF}.</CC_DlmE_ArtBillSet>
@@ -40,16 +40,16 @@
   <CC_Impact_RoofPart>The open part of {0} marked for a roof where the walls can carry one; the rest stays open</CC_Impact_RoofPart>
   <CC_Impact_RoofBrief>a roof over {0}</CC_Impact_RoofBrief>
   <CC_DlmE_RoofMarked>The open part of {ZONE} is marked for a roof.</CC_DlmE_RoofMarked>
-  <CC_Impact_GiveUpOpen>{0} drawn in under its roof: what lies in the open is carried to the colony's other stores where there's room</CC_Impact_GiveUpOpen>
-  <CC_Impact_GiveUpOpenBrief>{0} drawn in under the roof</CC_Impact_GiveUpOpenBrief>
-  <CC_DlmE_OpenGivenUp>{ZONE} is drawn in under its roof. What lay in the open will be carried to the other stores.</CC_DlmE_OpenGivenUp>
+  <CC_Impact_GiveUpOpen>{0} cut back to the part under its roof: what lies in the open is carried to the colony's other stores where there's room</CC_Impact_GiveUpOpen>
+  <CC_Impact_GiveUpOpenBrief>{0} cut back to its roofed part</CC_Impact_GiveUpOpenBrief>
+  <CC_DlmE_OpenGivenUp>{ZONE} now covers only the part under its roof. What lay in the open will be carried to the other stores.</CC_DlmE_OpenGivenUp>
 
   <!-- The old walls -->
   <CC_DlmE_RuinGone>The old walls are gone.</CC_DlmE_RuinGone>
   <CC_Impact_PullDown>The old walls marked to come down, for the builders to take apart for the {0}</CC_Impact_PullDown>
   <CC_Impact_PullDownBrief>the ruin taken down for its {0}</CC_Impact_PullDownBrief>
   <CC_Impact_ClaimWalls>The old walls of {0} claimed as the colony's own, to mend and to build on</CC_Impact_ClaimWalls>
-  <CC_Impact_ClaimWallsBrief>the ruin the colony's own</CC_Impact_ClaimWallsBrief>
+  <CC_Impact_ClaimWallsBrief>the ruin claimed as the colony's</CC_Impact_ClaimWallsBrief>
   <CC_DlmE_WallsMarked>The old walls of {STUFF} are marked to come down.</CC_DlmE_WallsMarked>
   <CC_DlmE_WallsClaimed>The old walls of {STUFF} are the colony's now.</CC_DlmE_WallsClaimed>
 

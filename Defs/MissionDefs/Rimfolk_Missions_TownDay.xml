@@ -72,12 +72,12 @@
           <li>[brief] A short visit to {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[attended,founding] The colony's guests kept {DEAD}'s day at {PLACE} with {FACTION}, at the tables the colony built, and came home with gifts: {ITEM}.</li>
-          <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} sent them home with gifts: {ITEM}.</li>
-          <li>[attended] The colony's guests were made welcome at {PLACE} and came home with gifts: {ITEM}.</li>
+          <li>[attended,founding] The colony's guests kept {DEAD}'s day at {PLACE} with {FACTION}, at the tables the colony built, and were given gifts to take home: {ITEM}.</li>
+          <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} gave them gifts to take home: {ITEM}.</li>
+          <li>[attended] The colony's guests were made welcome at {PLACE} and were given gifts to take home: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
-          <li>[attended,founding] {DEAD}'s day was kept at {PLACE} with the colony's guests among {FACTION}, and they came home with gifts: {ITEM}.</li>
-          <li>[attended,handover] The colony's guests and {FACTION} remembered together the day {DEAD} was handed over, and the guests came home with gifts: {ITEM}.</li>
+          <li>[attended,founding] {DEAD}'s day was kept at {PLACE} with the colony's guests among {FACTION}, and the guests were given gifts to take home: {ITEM}.</li>
+          <li>[attended,handover] The colony's guests and {FACTION} remembered together the day {DEAD} was handed over, and the guests were given gifts to take home: {ITEM}.</li>
         </done>
         <failTitles>
           <li>[absent] No guests at {PLACE}</li>

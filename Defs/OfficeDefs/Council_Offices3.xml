@@ -13,7 +13,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Chaplain</defName>
     <label>chaplain</label>
-    <description>Keeps the colony's ideoligion: leads its prayers and its remembrances, sits with the grieving, and has a word with anyone whose belief is wearing thin.</description>
+    <description>Looks after the colony's ideoligion: leads its days of remembrance, sits with the grieving, and talks with anyone whose belief is wearing thin.</description>
     <order>10</order>
     <minColonists>5</minColonists>
     <needsIdeology>true</needsIdeology>
@@ -29,9 +29,9 @@
       <li>Only with Ideology, for a colony with an ideoligion of its own. Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} means to spend an evening at prayer, and hopes to come back from it looking younger.</li>
+      <li>{PAWN_nameDef} means to spend an evening in prayer before taking up the seat.</li>
       <li>{PAWN_nameDef} intends to ask after everyone who lost someone this year, by name.</li>
-      <li>{PAWN_nameDef} says the faith is a lamp, not a whip, and means to keep it that way.</li>
+      <li>{PAWN_nameDef} says the faith should comfort people, not frighten them.</li>
     </elected>
     <planks>
       <li><key>comfort</key><when>LowMood</when><text>{PAWN_nameDef} says the faith is a comfort in hard days, and promises to be there for whoever needs it.</text></li>
@@ -42,7 +42,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Warden</defName>
     <label>warden of guests</label>
-    <description>Looks after whoever is not one of the colony but is on its land: visitors at the gate, travellers passing, the strangers camped by the woods. Sees them welcomed, settles their grievances and keeps the peace between them and the colony.</description>
+    <description>Looks after the people on the colony's land who are not its own: visitors, passing travellers and anyone camped nearby. The warden sees that they are welcomed and keeps the peace between them and the colony.</description>
     <order>11</order>
     <minColonists>5</minColonists>
     <skills><li>Social</li></skills>
@@ -51,14 +51,14 @@
     <hediff>Council_Office_Warden</hediff>
     <duties>
       <li>Spends an hour each day at the fire of any camp on the colony's land: tension there eases, and the campers come to know the warden.</li>
-      <li>Sees any visitors properly welcomed: their people's goodwill rises a little (once every few days for each people).</li>
-      <li>The warden negotiates better, and talks more easily with strangers.</li>
+      <li>Sees any visitors properly welcomed: their people's goodwill rises by 2 (at most once every four days for each people).</li>
+      <li>The warden negotiates better and talks more easily with strangers (negotiation up 10%, social impact up 5%).</li>
       <li>Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} says the first thing {PAWN_pronoun} will do is walk out to the gate to see who is there, and wait a while if nobody is.</li>
+      <li>{PAWN_nameDef} says the first job is to walk out to the gate and see who is there.</li>
       <li>{PAWN_nameDef} wants a corner swept out for guests to sit in, with a pot of water always on.</li>
-      <li>{PAWN_nameDef} says a stranger is only a stranger until supper.</li>
+      <li>{PAWN_nameDef} wants every visitor offered a meal.</li>
     </elected>
     <planks>
       <li><key>gate</key><when>RecentRaid</when><text>{PAWN_nameDef} says friends at the gate must be told apart from raiders, and welcomed when they are friends.</text></li>
@@ -69,7 +69,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Elder</defName>
     <label>elder</label>
-    <description>One of the council of elders that a large colony keeps: the old heads, who have seen enough to be listened to, sit with the young and pass on what they know.</description>
+    <description>One of the three elders a large colony keeps on its council: older colonists who sit with the younger ones and pass on what they know.</description>
     <order>12</order>
     <seats>3</seats>
     <minColonists>10</minColonists>
@@ -81,14 +81,14 @@
     <colonyHediff>Council_Office_EldersColony</colonyHediff>
     <duties>
       <li>Three seats. Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow closer.</li>
-      <li>While any elder sits, the whole colony keeps a slightly steadier head.</li>
+      <li>While any elder holds a seat, everyone is slightly less likely to have a mental break.</li>
       <li>The colony votes for its older members here: age counts for a candidate.</li>
       <li>Opens once the colony has ten people who can vote.</li>
     </duties>
     <elected>
       <li>{PAWN_nameDef} says only that it was about time somebody asked.</li>
-      <li>{PAWN_nameDef} has a story about the winter of the wolves for the young ones, and means to tell it twice.</li>
-      <li>{PAWN_nameDef} will take the seat by the fire, which everyone agrees was always {PAWN_possessive} seat anyway.</li>
+      <li>{PAWN_nameDef} has stories from the colony's early years to tell the young ones.</li>
+      <li>{PAWN_nameDef} takes the seat by the fire, where {PAWN_pronoun} usually sits anyway.</li>
     </elected>
     <planks>
       <li><key>wisdom</key><when>Always</when><text>{PAWN_nameDef} says the colony has made the same mistakes twice, and would like to spare it a third time.</text></li>

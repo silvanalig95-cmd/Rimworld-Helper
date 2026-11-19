@@ -14,7 +14,7 @@
     <defName>Council_Decree_QuietHours</defName>
     <kind>spirit</kind>
     <label>quiet hours</label>
-    <description>Lamps out and voices down after dark: no hammering, no music, no late talk at the table. Everyone sleeps deeper and quarrels less, and the evening's work and company are lost. The nervous and ascetics welcome it; night owls hate it, and the sociable mind it.</description>
+    <description>Five days of keeping quiet after dark, so that everyone sleeps better. Everyone rests 15% faster in bed and social fights happen half as often, but all work is 5% slower. The volatile love it and the nervous and ascetics like it; night owls hate it, and the sociable and the industrious dislike it.</description>
     <requestWhen><li>Strained</li><li>ColonyMiserable</li></requestWhen>
     <order>14</order>
     <durationDays>5</durationDays>
@@ -33,12 +33,12 @@
     </reactions>
     <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
     <heartEases><li>BadSleep</li><li>Exhaustion</li></heartEases>
-    <heartHelp>better nights: everyone rests 15% faster in bed</heartHelp>
+    <heartHelp>everyone rests 15% faster in bed</heartHelp>
     <heartCost>everyone works 5% slower for five days, and night owls hate it</heartCost>
     <effects>
-      <li>Everyone rests 15% faster in bed, and social fights are much rarer.</li>
-      <li>Everyone works 5% slower: nothing gets done after dark.</li>
-      <li>The nervous and ascetics welcome it; night owls hate it, and those with a passion for talk mind it.</li>
+      <li>Everyone rests 15% faster in bed, and social fights happen half as often.</li>
+      <li>Everyone works 5% slower.</li>
+      <li>The volatile love it and the nervous and ascetics like it; night owls hate it, and the sociable and the industrious dislike it.</li>
     </effects>
     <support>
       <plain><li>One evening without somebody's music through the wall. Just one.</li></plain>
@@ -58,7 +58,7 @@
     <defName>Council_Decree_SharedMeals</defName>
     <kind>spirit</kind>
     <label>shared meals</label>
-    <description>Everyone eats together, at set times, at the same table. Talk comes easier, newcomers get to know everyone and quarrels cool, but work stops for meals whether it's at a good point or not. The kind and the sociable like it; the abrasive hate it.</description>
+    <description>The council asks everyone to sit down to meals together and talk. For five days social impact is 10% higher, everyone gets a little practice at talking every hour, social fights are a quarter less likely and a brawl between groups at the table half as likely, and all work is 3% slower. The kind and the sociable like it; the abrasive hate it, and ascetics and the industrious dislike it.</description>
     <requestWhen><li>Newcomer</li><li>ColonyMiserable</li></requestWhen>
     <order>15</order>
     <durationDays>5</durationDays>
@@ -79,11 +79,11 @@
     </reactions>
     <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
     <heartEases><li>Unmet</li><li>Despair</li></heartEases>
-    <heartHelp>company at every meal, and fewer quarrels</heartHelp>
+    <heartHelp>easier talk and fewer quarrels</heartHelp>
     <heartCost>everyone works 3% slower for five days</heartCost>
     <effects>
-      <li>Social impact up 10%, social fights rarer, and everyone gets some practice at talking every hour.</li>
-      <li>Everyone works 3% slower: work stops for meals.</li>
+      <li>Social impact up 10%, social fights a quarter rarer, and everyone gets a little practice at talking every hour.</li>
+      <li>Everyone works 3% slower.</li>
       <li>The kind and the sociable like it; the abrasive hate it, and ascetics and the industrious mind it.</li>
     </effects>
     <support>
@@ -103,7 +103,7 @@
     <defName>Council_Decree_SickBay</defName>
     <kind>order</kind>
     <label>rest when ill</label>
-    <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors, the sickly and anyone still healing approve, and they ask for it when someone is ill or many are hurt; the industrious and the tough hate being told to lie down.</description>
+    <description>Anyone ill or hurt goes to bed until they are well, and the others cover their work. Wounds heal 20% faster and immunity builds 8% faster, and everyone works 5% slower while it lasts. Doctors, the sickly and anyone still healing like it, and they ask for it when someone is ill or many are hurt; the lazy like it too, the industrious hate it, and hard workers and the tough dislike it.</description>
     <requestWhen><li>Illness</li><li>Wounded</li></requestWhen>
     <neededWhen><li>RecentThreat</li></neededWhen>
     <order>16</order>
@@ -128,9 +128,9 @@
     <heartHelp>the hurt and the ill rest in bed and heal faster</heartHelp>
     <heartCost>everyone works 5% slower for five days, covering for the sick</heartCost>
     <effects>
-      <li>Wounds heal 20% faster and immunity builds faster.</li>
+      <li>Wounds heal 20% faster and immunity builds 8% faster.</li>
       <li>Everyone works 5% slower, covering for the sick.</li>
-      <li>Doctors, the sickly and the wounded approve, and the lazy don't mind; the industrious and the tough dislike it.</li>
+      <li>Doctors, the sickly, the wounded and the lazy like it; the industrious hate it, and hard workers and the tough dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -152,7 +152,7 @@
     <defName>Council_Decree_BankedFires</defName>
     <kind>stores</kind>
     <label>banked fires</label>
-    <description>Fires banked low, torches and lamps out early, every heater turned down: fires, torches and fueled heaters burn a quarter less fuel while it lasts. Rooms are chillier and evenings darker, and almost nobody likes it. Ascetics and the greedy approve; wimps hate it.</description>
+    <description>Fires are kept low and heaters are turned down for seven days. Fires, torches and fueled heaters use a quarter less fuel (not generators, and not stoves while they cook), and everyone works 4% slower. Ascetics and the greedy like it and the tough don't mind; most others dislike it and wimps hate it.</description>
     <requestWhen><li>Winter</li></requestWhen>
     <order>17</order>
     <strainPerDay>1</strainPerDay>
@@ -172,8 +172,8 @@
     </reactions>
     <effects>
       <li>Fires, torches and fueled heaters burn 25% less fuel (not generators, and not stoves while they cook).</li>
-      <li>Everyone works 4% slower in the dimmer, colder rooms.</li>
-      <li>Ascetics and the greedy approve; most people mind it, and wimps hate it.</li>
+      <li>Everyone works 4% slower.</li>
+      <li>Ascetics and the greedy like it and the tough don't mind; most others dislike it, and wimps hate it.</li>
     </effects>
     <support>
       <plain><li>The woodpile won't last the winter at this rate. Bank the fires.</li></plain>
@@ -192,7 +192,7 @@
     <defName>Council_Decree_Apprentices</defName>
     <kind>work</kind>
     <label>apprenticeships</label>
-    <description>The best at each trade take on the rest as apprentices. Everyone practices building, crafting, cooking and growing every hour, and the masters' own work slows while they teach. Good for a young or a new colony. The kind and the sociable like teaching; the abrasive hate it, and the lazy mind the extra lessons.</description>
+    <description>Seven days of teaching and learning the colony's trades. Everyone practices construction, crafting, cooking and growing a little every waking hour, and all work is 8% slower while people teach and learn. Useful for a young colony or one with new people. The kind and the sociable like it; the abrasive hate it, and the lazy dislike it.</description>
     <requestWhen><li>Newcomer</li><li>ColonyHappy</li></requestWhen>
     <order>18</order>
     <strainPerDay>1</strainPerDay>
@@ -213,8 +213,8 @@
     </reactions>
     <effects>
       <li>Everyone practices construction, crafting, cooking and growing every waking hour.</li>
-      <li>Everyone works 8% slower, teaching and being taught.</li>
-      <li>The kind and the sociable like it; the abrasive hate it, and the lazy mind it.</li>
+      <li>Everyone works 8% slower while teaching and learning.</li>
+      <li>The kind and the sociable like it; the abrasive hate it, and the lazy dislike it.</li>
     </effects>
     <support>
       <plain><li>If only one of us can cook, we're one fever away from eating raw roots.</li></plain>
@@ -233,7 +233,7 @@
     <defName>Council_Decree_FeastDay</defName>
     <kind>spirit</kind>
     <label>a feast day</label>
-    <description>One day of feasting: the best of the stores on the table, work stops at noon, and everyone eats more than they should. A day of good cheer, bought with food and half a day's work, and expectations rise afterward. Gourmands and the greedy love it; ascetics think it a waste.</description>
+    <description>One day of feasting. Everyone gets hungry 40% faster and eats more, all work is 15% slower, and standards rise a little. With "Answers play out on the map" on, the colony sits down that afternoon or evening to a meal of the best food in the stores. Most colonists like it and gourmands and the greedy love it; ascetics and the industrious dislike it.</description>
     <requestWhen><li>Autumn</li><li>ColonyMiserable</li></requestWhen>
     <order>19</order>
     <durationDays>1</durationDays>
@@ -252,12 +252,12 @@
     </reactions>
     <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
     <heartEases><li>Hunger</li><li>LowMood</li></heartEases>
-    <heartHelp>a day of feasting: full bellies and a lift</heartHelp>
+    <heartHelp>a day of feasting: full stomachs and better spirits</heartHelp>
     <heartCost>a day with everyone working 15% slower and eating more, and standards rise a little</heartCost>
     <effects>
       <li>A day: everyone gets hungry 40% faster and eats more.</li>
       <li>Everyone works 15% slower, and standards rise slightly.</li>
-      <li>Most enjoy it, gourmands and the greedy most of all; ascetics and the industrious think it a waste.</li>
+      <li>Most colonists like it and gourmands and the greedy love it; ascetics and the industrious dislike it.</li>
     </effects>
     <support>
       <plain><li>One day. A real meal, a full table and nobody counting the bowls.</li></plain>

@@ -16,7 +16,7 @@
     <answerDays>0.5</answerDays>
     <texts>
       <li>{X_nameDef} of {FACTION} waits at the gate to swear a truce, and {A_nameDef} has asked the council to send {X_objective} away. {A_nameDef} swore vengeance on {FACTION} for {VICTIM}, and says a truce with them would make that oath worth nothing.</li>
-      <li>Their envoy {X_nameDef} is at the gate under the sign of parley. {A_nameDef} has not forgotten {VICTIM}, and stood up before the council to say the colony owes {FACTION} nothing but a fight.</li>
+      <li>{X_nameDef} of {FACTION} is at the gate to offer a truce. {A_nameDef} has not forgotten {VICTIM}, and stood up before the council to say the colony owes {FACTION} nothing but a fight.</li>
       <li>[pet] {A_nameDef} swore to make {FACTION} pay for {VICTIM}, and now their envoy {X_nameDef} waits at the gate with a truce. {A_nameDef} wants the council to hear what that means to {A_objective} before anyone walks out there.</li>
     </texts>
     <defaultOption>0</defaultOption>

@@ -48,7 +48,7 @@
         </effects>
       </li>
       <li>
-        <label>Three clear what can't wait; the rest rest</label>
+        <label>Three clear up what can't wait; everyone else rests</label>
         <outcome>Three of them cleared what couldn't wait: the dead, the doors, the worst of the blood. Everyone else was left alone. Not everyone agrees on who the three should have been.</outcome>
         <ways><toil>1</toil></ways>
         <effects>
@@ -78,7 +78,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} is no better tonight. {B_nameDef} could sit up with {A_objective}, and be no use to anyone tomorrow. There is medicine on the shelf, but not much of it.</li>
-      <li>[winter] {A_nameDef} is shivering under two blankets, and {ILLNESS} isn't letting go. Somebody should be with {A_objective} tonight. {B_nameDef} has offered, and so has the medicine shelf.</li>
+      <li>[winter] {A_nameDef} is shivering under two blankets, and {ILLNESS} isn't letting go. Somebody should be with {A_objective} tonight. {B_nameDef} has offered, and there is also some medicine on the shelf.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -107,7 +107,7 @@
         </effects>
       </li>
       <li>
-        <label>Take turns through the night</label>
+        <label>Take turns sitting up tonight</label>
         <outcome>Three of them kept watch beside {A_nameDef} into the night, and {B_nameDef} got a whole night's sleep for once.</outcome>
         <ways><mercy>2</mercy><toil>1</toil></ways>
         <effects>
@@ -123,7 +123,7 @@
   <!-- ===================== Lessons or walls ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmC_TeachOrBuild</defName>
-    <label>lessons or walls</label>
+    <label>lessons or building work</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
     <busyTime>true</busyTime>
@@ -135,7 +135,7 @@
       <minOpinionOfA>-10</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{A_nameDef} has been asking {B_nameDef} for lessons in building for weeks. Now the work is piling up, and {B_nameDef} says it's lessons or walls, not both.</li>
+      <li>{A_nameDef} has been asking {B_nameDef} for lessons in building for weeks. Now the building work is piling up, and {B_nameDef} says there's time for lessons or for building, not both.</li>
       <li>[afterraid] Half the walls need mending, and {A_nameDef} picks this week to ask {B_nameDef} to teach {A_objective} properly. {B_nameDef} doesn't say no. {B_nameDef} asks the council which it should be.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -162,7 +162,7 @@
         </effects>
       </li>
       <li>
-        <label>After the rush</label>
+        <label>Lessons later, when the work slows down</label>
         <outcome>The lessons wait until the work slows. {B_nameDef} went back to the walls, and {A_nameDef} went back to asking.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
@@ -178,7 +178,7 @@
   <!-- ===================== Seed for the neighbours ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmC_NeighboursSeed</defName>
-    <label>seed for the neighbours</label>
+    <label>food for the neighbours</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Faction</workerClass>
     <weight>0.9</weight>
     <cooldownDays>60</cooldownDays>
@@ -203,7 +203,7 @@
         </effects>
       </li>
       <li>
-        <label>Sell it to them at a fair price</label>
+        <label>Sell it to them for 40 silver</label>
         <outcome>{FACTION}'s courier counted out the silver at the gate and took the sacks. A fair price, they said, and didn't smile saying it.</outcome>
         <ways><generosity>-1</generosity></ways>
         <effects>

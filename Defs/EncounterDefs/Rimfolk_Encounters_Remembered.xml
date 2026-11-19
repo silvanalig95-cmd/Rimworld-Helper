@@ -19,7 +19,7 @@
     <texts>
       <li>"Is this the place that took in {FACTION} folk when they had nowhere to go?" {X_nameDef} asked. When {A_nameDef} said it was, {X_nameDef} took {A_possessive} hand and held on to it for a long time.</li>
       <li>A cousin of {X_nameDef}'s owes this colony a life, {X_pronoun} told {A_nameDef}, and the whole family knows the colony's name because of it.</li>
-      <li>Over supper {X_nameDef} told the table, and {A_nameDef} in particular, what {FACTION} say about this place: that it took in their people when it didn't have to.</li>
+      <li>At the table, {X_nameDef} told everyone, and {A_nameDef} in particular, what {FACTION} say about this place: that it took in their people when it didn't have to.</li>
     </texts>
     <ways><openness>1</openness></ways>
     <effects>
@@ -30,7 +30,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncM_GratefulTrader</defName>
-    <label>a friend's price</label>
+    <label>silver from a grateful trader</label>
     <weight>1.2</weight>
     <cooldownDays>10</cooldownDays>
     <moment>their:grateful</moment>
@@ -48,7 +48,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncM_GrudgingTrader</defName>
-    <label>a long memory</label>
+    <label>a trader with a grudge</label>
     <weight>1.1</weight>
     <cooldownDays>10</cooldownDays>
     <moment>their:grudge</moment>
@@ -56,7 +56,7 @@
     <texts>
       <li>{X_nameDef} served {A_nameDef} last, after everyone else, and named a price twice what it should have been. "{FACTION} have long memories," was all {X_pronoun} said.</li>
       <li>{X_nameDef} wouldn't haggle with {A_nameDef} at all, and put the goods away the moment {A_nameDef} said where {A_pronoun} was from.</li>
-      <li>It took {A_nameDef} most of an afternoon to talk {X_nameDef} round to an ordinary price, and {X_nameDef} brought up what this colony did to {FACTION} twice along the way.</li>
+      <li>It took {A_nameDef} a long while to talk {X_nameDef} round to an ordinary price, and {X_nameDef} brought up what this colony did to {FACTION} twice along the way.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>250</xp></li>
@@ -71,7 +71,7 @@
     <moment>their:grudge</moment>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} wouldn't sit at the same table as {A_nameDef} and took {X_possessive} supper outside. It was over what this colony did to {FACTION}, one of the other visitors said.</li>
+      <li>{X_nameDef} wouldn't sit at the same table as {A_nameDef} and took {X_possessive} food outside. It was over what this colony did to {FACTION}, one of the other visitors said.</li>
       <li>{A_nameDef} offered {X_nameDef} a cup of water at the gate. {X_nameDef} looked at it, then at {A_nameDef}, and walked past.</li>
       <li>{X_nameDef} asked {A_nameDef}, quite politely, whether the colony still does the kind of thing it did to {FACTION}. {A_nameDef} didn't know what to answer.</li>
     </texts>

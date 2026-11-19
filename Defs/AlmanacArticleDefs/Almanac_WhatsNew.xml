@@ -31,6 +31,76 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.269.5</version>
+        <date>19 November 2026</date>
+        <title>The decrees in plain words</title>
+        <points>
+          <li>Every decree now says plainly what it does, with its real numbers and who likes or minds it.</li>
+          <li>The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.</li>
+          <li>A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.4</version>
+        <date>19 November 2026</date>
+        <title>The missions in plain words</title>
+        <points>
+          <li>Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.</li>
+          <li>When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.</li>
+          <li>The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.3</version>
+        <date>19 November 2026</date>
+        <title>The encounters in plain words</title>
+        <points>
+          <li>The encounters' names say plainly what happens, such as a predator watching or a wild animal at night.</li>
+          <li>Encounters no longer name a time still to come: no supper, evening or night in a moment told in the morning.</li>
+          <li>What an encounter says now matches the map: the guest who pitches in goes off to fell trees, silver is promised only where it always comes, children kept close needs a visiting child, and a herd passing needs a real herd.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.2</version>
+        <date>19 November 2026</date>
+        <title>The council's other questions in plain words</title>
+        <points>
+          <li>The council's other questions are in plain words too: the herd and the pens, the camp on the colony's land, the customs of the year, the children and the elders, moving on, and the colony's own troubles.</li>
+          <li>Question names say what each question is about, such as an animal in the crops, an inspired artist or research nearly done, and answers say what the council does.</li>
+          <li>A few answers now match what happens: the hurt animal is marked for the hunters, a night watch is one night, the food sold to the neighbours names its 40 silver, and the youngster's guardian really goes on the long walk past the fields.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.1</version>
+        <date>19 November 2026</date>
+        <title>The camps in plain words</title>
+        <points>
+          <li>The camps' letters and asks are in plain words: who came, why, what they ask and what happens.</li>
+          <li>The camp's own people now come to the suppers, feasts, evenings at their fire, prayers, plays and songs the colony agrees to, and the minstrels sing their song about the colony themselves.</li>
+          <li>The camps' letters now match the map: who prays at a sick colonist's side, who goes hunting, what the salt caravan pays and when things happen.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' own events, round 5</title>
+        <points>
+          <li>The Quiet Bell's gravewardens come running when the colony's unburied dead rise, bury them beyond the wall with the bell rung over each, and ask the colony to bury its dead from now on.</li>
+          <li>A season after the Bell buries raiders, mourners of the raiders' people come to stand at the graves, and a people at war may then offer a truce.</li>
+          <li>Sextons can make the colony's graves a grave-garden of flagstones, roses and a bell-post, and after a big fight the Bell camps at the field of the fallen to bury the dead.</li>
+          <li>A tamer of the Circuit can finish training one of the colony's animals and bond it to the best handler, or bring a rare egg to hatch that bonds with whoever looks after it most.</li>
+          <li>While a fair runs, the Circuit pitches a bout-ring by the colony, and the colony's best challenger wins a token and an egg.</li>
+          <li>The Wheel's crew mends what a raid damaged overnight, and a fixer can take a colonist's weapon or armour away for a day and bring it back a quality better.</li>
+          <li>With Vehicle Framework and Vanilla Vehicles Expanded, a fixer builds the colony a wagon or small truck at the gate, and a Wheel town that moves near sends its yard to camp three days with a scrap market and mending.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.268.5</version>
         <date>19 November 2026</date>
         <title>The council's questions in plain words</title>

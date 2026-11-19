@@ -5,6 +5,58 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The decrees in plain words
+
+*19 November 2026, version 0.269.5*
+
+- Every decree now says plainly what it does, with its real numbers and who likes or minds it.
+- The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.
+- A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.
+
+## The missions in plain words
+
+*19 November 2026, version 0.269.4*
+
+- Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.
+- When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.
+- The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.
+
+## The encounters in plain words
+
+*19 November 2026, version 0.269.3*
+
+- The encounters' names say plainly what happens, such as a predator watching or a wild animal at night.
+- Encounters no longer name a time still to come: no supper, evening or night in a moment told in the morning.
+- What an encounter says now matches the map: the guest who pitches in goes off to fell trees, silver is promised only where it always comes, children kept close needs a visiting child, and a herd passing needs a real herd.
+
+## The council's other questions in plain words
+
+*19 November 2026, version 0.269.2*
+
+- The council's other questions are in plain words too: the herd and the pens, the camp on the colony's land, the customs of the year, the children and the elders, moving on, and the colony's own troubles.
+- Question names say what each question is about, such as an animal in the crops, an inspired artist or research nearly done, and answers say what the council does.
+- A few answers now match what happens: the hurt animal is marked for the hunters, a night watch is one night, the food sold to the neighbours names its 40 silver, and the youngster's guardian really goes on the long walk past the fields.
+
+## The camps in plain words
+
+*19 November 2026, version 0.269.1*
+
+- The camps' letters and asks are in plain words: who came, why, what they ask and what happens.
+- The camp's own people now come to the suppers, feasts, evenings at their fire, prayers, plays and songs the colony agrees to, and the minstrels sing their song about the colony themselves.
+- The camps' letters now match the map: who prays at a sick colonist's side, who goes hunting, what the salt caravan pays and when things happen.
+
+## The peoples' own events, round 5
+
+*19 November 2026, version 0.269.0*
+
+- The Quiet Bell's gravewardens come running when the colony's unburied dead rise, bury them beyond the wall with the bell rung over each, and ask the colony to bury its dead from now on.
+- A season after the Bell buries raiders, mourners of the raiders' people come to stand at the graves, and a people at war may then offer a truce.
+- Sextons can make the colony's graves a grave-garden of flagstones, roses and a bell-post, and after a big fight the Bell camps at the field of the fallen to bury the dead.
+- A tamer of the Circuit can finish training one of the colony's animals and bond it to the best handler, or bring a rare egg to hatch that bonds with whoever looks after it most.
+- While a fair runs, the Circuit pitches a bout-ring by the colony, and the colony's best challenger wins a token and an egg.
+- The Wheel's crew mends what a raid damaged overnight, and a fixer can take a colonist's weapon or armour away for a day and bring it back a quality better.
+- With Vehicle Framework and Vanilla Vehicles Expanded, a fixer builds the colony a wagon or small truck at the gate, and a Wheel town that moves near sends its yard to camp three days with a scrap market and mending.
+
 ## The council's questions in plain words
 
 *19 November 2026, version 0.268.5*

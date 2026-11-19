@@ -25,8 +25,8 @@
     </reactions>
     <effects>
       <li>Everyone works 15% faster.</li>
-      <li>Everyone tires a little faster.</li>
-      <li>Most colonists resent it; the industrious and hard workers don't mind.</li>
+      <li>Everyone tires 15% faster.</li>
+      <li>Most colonists dislike it; the industrious like it, hard workers don't mind, and the lazy and slothful hate it.</li>
     </effects>
     <support>
       <plain><li>Finally, some urgency around here.</li></plain>
@@ -49,7 +49,7 @@
     <defName>Council_Decree_Rationing</defName>
     <kind>stores</kind>
     <label>rationing</label>
-    <description>Smaller portions for everyone. The food stores last a good deal longer, but most colonists resent going hungry. Ascetics approve; gourmands and the greedy hate it.</description>
+    <description>Smaller portions for everyone. Everyone gets hungry more slowly, so the food stores last about a third longer, but most colonists resent going hungry. Ascetics like it; gourmands and the greedy hate it.</description>
     <requestWhen><li>FoodLow</li></requestWhen>
     <order>2</order>
     <strainPerDay>2</strainPerDay>
@@ -66,7 +66,7 @@
     </reactions>
     <effects>
       <li>Everyone gets hungry 25% more slowly, so food lasts longer.</li>
-      <li>Ascetics approve; most others mind, and gourmands and the greedy hate it.</li>
+      <li>Ascetics like it; most others dislike it, and gourmands and the greedy hate it.</li>
     </effects>
     <support>
       <plain><li>Better hungry now than starving in winter.</li></plain>
@@ -89,7 +89,7 @@
     <defName>Council_Decree_Drills</defName>
     <kind>order</kind>
     <label>drills</label>
-    <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily while other work slows. Most colonists find it exhausting, but the bloodthirsty love it.</description>
+    <description>Weapons drills for everyone who can fight. Shooting and melee improve steadily while other work is 8% slower. This is how an industrial or spacer colony drills; a tribe or a village has militia drills instead. Most colonists dislike it, but the bloodthirsty love it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>3</order>
     <strainPerDay>2</strainPerDay>
@@ -114,7 +114,7 @@
     <effects>
       <li>Everyone who can fight practices shooting and melee every waking hour.</li>
       <li>Other work goes 8% slower.</li>
-      <li>The bloodthirsty, tough and brawlers enjoy it; the wimpy and the kind hate it.</li>
+      <li>The bloodthirsty love it and the tough and brawlers like it; wimps and the kind hate it.</li>
     </effects>
     <support>
       <plain><li>Next raid, they'll find us ready.</li></plain>
@@ -134,7 +134,7 @@
     <defName>Council_Decree_Study</defName>
     <kind>work</kind>
     <label>study hours</label>
-    <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, but other work slows. Most colonists find it tedious; thinkers love it and brawlers hate it.</description>
+    <description>Lessons and reading for everyone. Skills are learned 30% faster and research goes 20% faster, but other work is 5% slower. Most colonists dislike it; the too-smart love it, those with a passion for intellectual work like it, and brawlers hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>4</order>
     <strainPerDay>1</strainPerDay>
@@ -152,7 +152,7 @@
     <effects>
       <li>Everyone learns 30% faster and researches 20% faster.</li>
       <li>Other work goes 5% slower.</li>
-      <li>Those with a passion for intellectual work like it; brawlers hate it.</li>
+      <li>The too-smart love it and those with a passion for intellectual work like it; brawlers hate it.</li>
     </effects>
     <support>
       <plain><li>I've been waiting years for someone to make everyone read.</li></plain>
@@ -208,7 +208,7 @@
     <defName>Council_Decree_Festival</defName>
     <kind>spirit</kind>
     <label>festival days</label>
-    <description>A few days of rest, music and late nights. Moods lift and all work slows down. Useful when the colony is close to breaking, but standards rise while it lasts, so don't make it a habit.</description>
+    <description>Three days of festival. Everyone's mood lifts and all work is 20% slower. With "Answers play out on the map" on, the colony gathers for music and dancing on the first evening. Useful when the colony is close to breaking, but standards rise while it lasts, so don't make it a habit.</description>
     <requestWhen><li>ColonyMiserable</li></requestWhen>
     <order>6</order>
     <durationDays>3</durationDays>
@@ -229,7 +229,7 @@
     <heartHelp>spirits lift, and strain eases faster in a good mood</heartHelp>
     <heartCost>everyone works 20% slower for three days, and standards rise</heartCost>
     <effects>
-      <li>Everyone's mood lifts; the lazy are overjoyed.</li>
+      <li>Everyone's mood lifts: most colonists like it and the lazy love it, while the industrious would rather work.</li>
       <li>Everyone works 20% slower.</li>
       <li>Standards rise while it lasts.</li>
     </effects>

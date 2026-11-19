@@ -20,7 +20,7 @@
   <IncidentDef ParentName="Council_EventBase">
     <defName>Rimfolk_Mission_GlassApprentice</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>an apprentice of the glass</label>
+    <label>an apprentice weather-reader</label>
     <workerClass>ColonyCouncil.HappeningWorker_MissionGlassApprentice</workerClass>
     <baseChance>0.3</baseChance>
     <minRefireDays>75</minRefireDays>
@@ -31,12 +31,12 @@
         <answerDays>2</answerDays>
         <notable>false</notable>
         <titles>
-          <li>An apprentice of the glass</li>
+          <li>An apprentice weather-reader</li>
           <li>{DEAD} would study the colony's sky</li>
         </titles>
         <texts>
-          <li>A vial-runner of {FACTION} has come from the tower at {PLACE} with a letter from its keeper of the glass. {DEAD}, an apprentice reader, must study a sky that is not the tower's before taking the brass caps, and the Conclave asks whether the colony would host {DEAD} for some days: a place at its table, a bed nobody else is using, and the open ground near its gate on clear nights, where {DEAD} would lie out watching the sky.</li>
-          <li>[their:friend] The Stormglass Conclave has asked for {FRIEND_nameDef} by name. {DEAD}, an apprentice reader of the tower at {PLACE}, needs a sky of its own to study before taking the brass caps, and the Conclave would rather it were the colony's.</li>
+          <li>A runner of {FACTION} has come from the tower at {PLACE} with a letter from its keeper of the glass. {DEAD}, an apprentice weather-reader, has to study the sky somewhere other than the tower before earning the brass caps of a full reader, and the Conclave asks whether the colony would host {DEAD} for some days: a place at its table, a bed nobody else is using, and the open ground near its gate on clear nights, where {DEAD} would lie out watching the sky.</li>
+          <li>[their:friend] The Stormglass Conclave has asked for {FRIEND_nameDef} by name. {DEAD}, an apprentice weather-reader of the tower at {PLACE}, has to study the sky somewhere other than the tower before becoming a full reader, and the Conclave would like it to be at the colony.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -70,7 +70,7 @@
           <li>[watched] {DEAD} goes home with the colony's sky</li>
         </doneTitles>
         <done>
-          <li>[watched] {DEAD} has watched the colony's sky and is going home to {PLACE} with a notebook full of it. {DEAD} left {ITEM} silver as the Conclave's thanks, and {A_nameDef} has learned something of the sky from the nights they sat up.</li>
+          <li>[watched] {DEAD} has watched the colony's sky and is going home to {PLACE} with a notebook full of notes. {DEAD} left {ITEM} silver as the Conclave's thanks, and {A_nameDef} has learned something about the weather from the nights they sat up.</li>
         </done>
         <failTitles>
           <li>[cloudy] Not one clear night for {DEAD}</li>
@@ -109,8 +109,8 @@
           <li>The Mossborn ask for help</li>
         </titles>
         <texts>
-          <li>[burned] A leaf-runner of {FACTION} has come from {PLACE} smelling of smoke, with a letter from {DEAD}, its grove-warden. Fire got into the canopy and took the old grove and the stores in it, the thing the Mossborn fear most, and the grove's people are living among the stumps while they replant. They ask the colony for food and medicine by a set day, and will pay what it is worth and more.</li>
-          <li>[burned,their:friend] The Mossborn have asked for {FRIEND_nameDef} by name. The grove at {PLACE} burned, and {DEAD}, who keeps it, would rather owe the colony than anyone while the saplings take.</li>
+          <li>[burned] A runner of {FACTION} has come from {PLACE}, smelling of smoke, with a letter from {DEAD}, its grove-warden. Fire got into the treetops and burned the old grove and the stores kept in it, which is what the Mossborn fear most, and the grove's people are living among the stumps while they replant. They ask the colony for food and medicine by a set day, and will pay what it is worth and more.</li>
+          <li>[burned,their:friend] The Mossborn have asked for {FRIEND_nameDef} by name. The grove at {PLACE} burned, and {DEAD}, who keeps it, would rather owe the colony than anyone while the new trees take root.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -164,7 +164,7 @@
           <li>[partial] Part of the help for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. The saplings will take, {DEAD} writes, and the grove will remember who fed it.</li>
+          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. {DEAD} writes that the new trees will take root now, and the grove's people will remember who fed them.</li>
           <li>[partial] Only part of it is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
@@ -172,7 +172,7 @@
           <li>[cancelled] The Mossborn's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The grove at {PLACE} will go hungry through the replanting, and {DEAD} knows who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. The grove at {PLACE} will go hungry through the replanting, and {DEAD} knows who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their carts will not come.</li>
@@ -203,8 +203,8 @@
           <li>Two for the Banner's wall</li>
         </titles>
         <texts>
-          <li>[muster] A banner-runner of {FACTION} has come from the fort at {PLACE} with a letter from its keeper of the Roll: the company is mustering for a contract, and while it does the fort's wall is thin. They ask the colony for two of its best fighters to keep the watch there for a day and a half, and they pay to the day, as the Banner does.</li>
-          <li>[muster,their:lowtech] A runner in the Banner's ash-grey has walked from {PLACE} to ask the colony for two good fighters. The company marches at the end of the week, the runner says, and the wall is the work, even with nobody on it.</li>
+          <li>[muster] A runner of {FACTION} has come from the fort at {PLACE} with a letter from its keeper of the Roll: the company is gathering for a contract, and while it does, there are too few soldiers on the fort's wall. They ask the colony for two of its best fighters to keep watch there for a day and a half, and they will pay for every day served, as the Banner always does.</li>
+          <li>[muster,their:lowtech] A runner in the Banner's grey has walked from {PLACE} to ask the colony for two good fighters. The company marches at the end of the week, the runner says, and the fort's wall still has to be watched while it is away.</li>
           <li>[muster,their:friend] The Ashen Banner has asked for {FRIEND_nameDef} by name. The fort at {PLACE} needs two good fighters on its wall while the company musters, and the keeper of the Roll would rather they were the colony's.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -242,7 +242,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>At least two of the colony's good fighters (Melee 6 or more), at the Banner's fort at {PLACE} by caravan (about {TALE} away), staying about a day and a half on the wall while the company musters. The caravan only needs to reach the fort and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the fort's, paid to the day, and {FACTION} will write the colony in their book of contracts kept. Half the stay earns half the silver.</li>
+          <li>At least two of the colony's good fighters (Melee 6 or more), at the Banner's fort at {PLACE} by caravan (about {TALE} away), staying about a day and a half on the wall while the company musters. The caravan only needs to reach the fort and wait there.\n\nThey'll come home with about {COUNT} silver and a gift from the fort, and {FACTION} will add the colony to their record of contracts kept. Half the stay earns half the silver.</li>
         </terms>
         <accepted>
           <li>The colony will send fighters to {PLACE}. Form a caravan with at least two good fighters, and send it to the fort.</li>
@@ -258,14 +258,14 @@
           <li>[partial] Part of the watch at {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[worked] The company has marched, and the colony's fighters are coming home from the wall at {PLACE} with silver and a gift of the fort's, paid to the day. Their names are in the Banner's book of contracts kept.</li>
-          <li>[partial] The colony's fighters had to come home before the muster was done. {FACTION} paid them for the days they stood, to the day.</li>
+          <li>[worked] The company has marched, and the colony's fighters have finished their watch on the wall at {PLACE}. Their pay and a gift from the fort are in the caravan's packs, and their names are in the Banner's record of contracts kept.</li>
+          <li>[partial] The colony's fighters had to leave before the muster was done. {FACTION} paid them exactly for the time they served.</li>
         </done>
         <failTitles>
           <li>[missed] Nobody came to {PLACE}</li>
         </failTitles>
         <fail>
-          <li>[missed] No fighters came from the colony, and the Banner kept its wall thin. {FACTION} write down a contract broken as carefully as one kept.</li>
+          <li>[missed] No fighters came from the colony, and the Banner's wall stayed short of soldiers. {FACTION} record a broken contract as carefully as a kept one.</li>
         </fail>
         <cancelled>
           <li>The muster at {PLACE} no longer needs the colony: the fort, or the friendship, is gone.</li>
@@ -279,7 +279,7 @@
   <IncidentDef ParentName="Council_EventBase">
     <defName>Rimfolk_Mission_WanderYear</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a journeyman's wander-year</label>
+    <label>a journeyman's year of travel</label>
     <workerClass>ColonyCouncil.HappeningWorker_MissionWanderYear</workerClass>
     <baseChance>0.3</baseChance>
     <minRefireDays>75</minRefireDays>
@@ -290,12 +290,12 @@
         <answerDays>2</answerDays>
         <notable>false</notable>
         <titles>
-          <li>A journeyman's wander-year</li>
+          <li>A journeyman's year of travel</li>
           <li>{DEAD} would work at the colony's benches</li>
         </titles>
         <texts>
-          <li>A guild runner of {FACTION} has come from the guildhall at {PLACE} with a letter from its kiln-warden. {DEAD}, a journeyman, is on the wander-year every guild hand spends among another people, and the guild asks whether the colony would take {DEAD} for some days: a place at its table, a bed nobody else is using, and a couple of hours each working day at the bench beside {A_nameDef}, learning. A journeyman leaves a little guild work behind, the letter says.</li>
-          <li>[their:friend] The Kiln Guild has asked for {FRIEND_nameDef} by name. {DEAD}, a journeyman of the guildhall at {PLACE}, is on the wander-year, and the guild would rather {DEAD} spent some of it at the colony's benches than anywhere.</li>
+          <li>A guild runner of {FACTION} has come from the guildhall at {PLACE} with a letter from its kiln-warden. {DEAD}, a journeyman, is on the year of travel that every guild worker spends among other peoples, and the guild asks whether the colony would take {DEAD} for some days: a place at its table, a bed nobody else is using, and a couple of hours each working day at the bench beside {A_nameDef}, learning. A journeyman leaves a little guild work behind, the letter says.</li>
+          <li>[their:friend] The Kiln Guild has asked for {FRIEND_nameDef} by name. {DEAD}, a journeyman of the guildhall at {PLACE}, is on the guild's year of travel, and the guild would like {DEAD} to spend some of it at the colony's benches.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -314,7 +314,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each working day {DEAD} spends two hours at the bench nearest {A_nameDef}, learning, and {A_nameDef} learns a little from the questions.\n\nAt the end {DEAD} leaves a piece of guild work by the gate, carved at the colony and marked, and the guild's thanks, about {COUNT} silver. If {DEAD} never gets to a bench, the wander-year was wasted here.</li>
+          <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each working day {DEAD} spends two hours at the bench nearest {A_nameDef}, learning, and {A_nameDef} learns a little from the questions.\n\nAt the end {DEAD} leaves a piece of guild work by the gate, carved at the colony and marked, and the guild's thanks, about {COUNT} silver. If {DEAD} never gets to a bench, the time at the colony is wasted.</li>
         </terms>
         <accepted>
           <li>The colony will take {DEAD} of {FACTION}, a journeyman on the year of travel the guild asks of its young, to work at its benches.</li>
@@ -326,7 +326,7 @@
           <li>{DEAD} of {FACTION} is on the road from {PLACE}, and will want a bed and a bench.</li>
         </reminder>
         <doneTitles>
-          <li>[worked] {DEAD}'s wander-year at the colony</li>
+          <li>[worked] {DEAD}'s time at the colony</li>
         </doneTitles>
         <done>
           <li>[worked] {DEAD} is going home to {PLACE} the better for the colony's benches, and has left the guild's thanks in silver and a piece of guild work by the gate, marked with the guild's mark: {ITEM}.</li>
@@ -334,10 +334,10 @@
         <failTitles>
           <li>[idle] {DEAD} never got to a bench</li>
           <li>[harmed] {DEAD}</li>
-          <li>[ended] {DEAD}'s wander-year</li>
+          <li>[ended] {DEAD}'s year of travel</li>
         </failTitles>
         <fail>
-          <li>[idle] {DEAD} is going home to {PLACE} without a single day at the colony's benches. The guild will hear that the wander-year was wasted here.</li>
+          <li>[idle] {DEAD} is going home to {PLACE} without a single day at the colony's benches. The guild will hear that the time at the colony was wasted.</li>
           <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
           <li>[ended] {DEAD} won't be coming to the colony's benches after all.</li>
         </fail>

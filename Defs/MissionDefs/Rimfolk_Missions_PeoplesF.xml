@@ -29,7 +29,7 @@
           <li>Parts for the line</li>
         </titles>
         <texts>
-          <li>[span] A line-runner of {FACTION} has come from the relay at {PLACE} with a letter from {DEAD}, its relay-keeper: a storm brought a span of the line down, and the masts beyond it have gone quiet. They ask the colony for machine parts by a set day, and the Line pays well for anything that keeps a mast singing.</li>
+          <li>[span] A line-runner of {FACTION} has come from the relay at {PLACE} with a letter from {DEAD}, its relay-keeper: a storm brought a span of the line down, and the radio masts beyond it can no longer send. They ask the colony for machine parts by a set day, and the Line pays well for anything that keeps its masts working.</li>
           <li>[guy] {DEAD}, relay-keeper at {PLACE}, sends a line-runner of {FACTION}: the wind tore the guy wires off the big mast, and it will come down with the next storm unless it is braced. They ask the colony for steel by a set day, at a good price.</li>
           <li>[span,their:friend] The Signal Line has asked for {FRIEND_nameDef} by name. A span is down at {PLACE}, and {DEAD} would rather buy the colony's parts than anyone's.</li>
         </texts>
@@ -74,7 +74,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Line's runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the masts beyond {PLACE} stay quiet, and the Line says where it heard who promised.</li>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Line's runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the masts beyond {PLACE} stay silent, and the Line will tell others who made the promise.</li>
         </terms>
         <accepted>
           <li>The colony will have {ITEM} ready for the Line's relay at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
@@ -87,10 +87,10 @@
         </reminder>
         <doneTitles>
           <li>[delivered] Parts for {PLACE}</li>
-          <li>[partial] Part of the parts for {PLACE}</li>
+          <li>[partial] Some of the parts for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The masts beyond {PLACE} will be singing again before long.</li>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The masts beyond {PLACE} will be sending again before long.</li>
           <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
@@ -98,7 +98,7 @@
           <li>[cancelled] The Line's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. The masts beyond {PLACE} stay quiet, and {DEAD} knows who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to make the trip. The masts beyond {PLACE} stay silent, and {DEAD} knows who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their runners will not come.</li>
@@ -129,7 +129,7 @@
         </titles>
         <texts>
           <li>[shift] A pit-runner of {FACTION} has come from the pit at {PLACE} with a letter from its shift-captain: a seam opened faster than the union can work it, and half the shift is down with the cough. They ask the colony for two good miners for a day and a half underground, paid by the shift, as the union pays.</li>
-          <li>[shift,their:lowtech] A runner with the union's red armband has walked from {PLACE} to ask the colony for two who know a pick. The face is open and the union is short, the runner says, and everyone comes up at the end of the shift.</li>
+          <li>[shift,their:lowtech] A runner with the union's red armband has walked from {PLACE} to ask the colony for two good miners. A new seam is open and the union is short of hands, the runner says, and the union makes sure everyone comes back up at the end of every shift.</li>
           <li>[shift,their:friend] The Deepwell Union has asked for {FRIEND_nameDef} by name. The pit at {PLACE} is two hands short on a rich seam, and the shift-captain would rather they were the colony's.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -168,7 +168,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>At least two of the colony's good miners (Mining 6 or more), at the union's pit at {PLACE} by caravan (about {TALE} away), staying about a day and a half at the face. The caravan only needs to reach the pit and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the pit's, paid by the shift, and {FACTION} will write the colony's miners in the union's book. Half the stay earns half the silver.</li>
+          <li>At least two of the colony's good miners (Mining 6 or more), at the union's pit at {PLACE} by caravan (about {TALE} away), staying about a day and a half at the face. The caravan only needs to reach the pit and wait there.\n\nThey'll come home with about {COUNT} silver and a gift from the pit, paid by the shift, and {FACTION} will record the colony's miners in the union's book. Half the stay earns half the silver.</li>
         </terms>
         <accepted>
           <li>The colony will send miners to {PLACE}. Form a caravan with at least two good miners, and send it to the pit.</li>
@@ -184,14 +184,14 @@
           <li>[partial] Part of a shift at {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[worked] Everyone is up at the end of the shift, and the colony's miners are coming home from {PLACE} with silver and a gift of the pit's. Their names are in the union's book.</li>
+          <li>[worked] The shift is over and everyone is back up. The colony's miners have their pay and a gift from the pit at {PLACE} in the caravan's packs, and their names are in the union's book.</li>
           <li>[partial] The colony's miners had to come up before the seam was worked. {FACTION} paid them for the hours they put in, by the shift.</li>
         </done>
         <failTitles>
           <li>[missed] Nobody came to {PLACE}</li>
         </failTitles>
         <fail>
-          <li>[missed] No miners came from the colony, and the seam at {PLACE} went unworked. {FACTION} put it to the vote, and nobody voted for the colony.</li>
+          <li>[missed] No miners came from the colony, and the seam at {PLACE} went unworked. {FACTION} held a vote about it, and the union now thinks badly of the colony.</li>
         </fail>
         <cancelled>
           <li>The pit at {PLACE} no longer needs the colony: the pit, or the friendship, is gone.</li>
@@ -259,7 +259,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>One of the colony's good talkers (Social 6 or more), at the Republic's town hall at {PLACE} by caravan (about {TALE} away), staying a day to watch the count. The caravan only needs to reach the town and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the town's, and {FACTION} will write the colony's name in the record of the election as its witness. Half the stay earns half the silver.</li>
+          <li>One of the colony's good talkers (Social 6 or more), at the Republic's town hall at {PLACE} by caravan (about {TALE} away), staying a day to watch the count. The caravan only needs to reach the town and wait there.\n\nThey'll come home with about {COUNT} silver and a gift from the town, and {FACTION} will write the colony's name in the record of the election as its witness. Half the stay earns half the silver.</li>
         </terms>
         <accepted>
           <li>The colony will send a witness to {PLACE}. Form a caravan with a good talker, and send it to the town.</li>
@@ -275,14 +275,14 @@
           <li>[partial] Part of the count at {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[worked] Every vote is counted twice, as the law says, and the colony's witness is coming home from {PLACE} with silver and a gift of the town's. The colony's name is in the record of the election.</li>
+          <li>[worked] Every vote has been counted twice, as the law says. The colony's witness has silver and a gift from {PLACE} in the caravan's packs, and the colony's name is in the record of the election.</li>
           <li>[partial] The colony's witness had to leave before the count was done. {FACTION} paid for the hours they sat, and wrote down that they left.</li>
         </done>
         <failTitles>
           <li>[missed] Nobody came to {PLACE}</li>
         </failTitles>
         <fail>
-          <li>[missed] No witness came from the colony, and the count at {PLACE} went on without one. {FACTION} said so on the radio, by name.</li>
+          <li>[missed] No witness came from the colony, and the count at {PLACE} went on without one. {FACTION} announced on the radio that the colony had not come.</li>
         </fail>
         <cancelled>
           <li>The count at {PLACE} no longer needs the colony: the town, or the friendship, is gone.</li>
@@ -312,7 +312,7 @@
         </titles>
         <texts>
           <li>[plating] A deck-runner of {FACTION} has come from the hull at {PLACE} with a letter from {DEAD}, its first officer: the engineers have found a breach in the hull they can close, if they have the plasteel for it, and every breach closed is a step toward the day the ship lifts. They ask the colony for plasteel by a set day, and will pay well.</li>
-          <li>[parts] {DEAD}, first officer at {PLACE}, sends a deck-runner of {FACTION}: one of the ship's old systems has woken and wants parts the hull no longer makes. They ask the colony for machine parts by a set day, at a good price.</li>
+          <li>[parts] {DEAD}, first officer at {PLACE}, sends a deck-runner of {FACTION}: one of the ship's old systems has started working again and needs parts the ship can no longer make. They ask the colony for machine parts by a set day, at a good price.</li>
           <li>[plating,their:friend] The Hollow Fleet has asked for {FRIEND_nameDef} by name. The hull at {PLACE} needs plating, and {DEAD} would rather it came from the colony than anyone.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -369,10 +369,10 @@
         </reminder>
         <doneTitles>
           <li>[delivered] Parts for {PLACE}</li>
-          <li>[partial] Part of the parts for {PLACE}</li>
+          <li>[partial] Some of the parts for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The ship's log says one breach fewer.</li>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The ship's log will record one breach fewer in the hull.</li>
           <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
@@ -380,7 +380,7 @@
           <li>[cancelled] The Fleet's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. The hull at {PLACE} waits, and {DEAD} has logged who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to make the trip. The hull at {PLACE} waits, and {DEAD} has logged who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their runners will not come.</li>

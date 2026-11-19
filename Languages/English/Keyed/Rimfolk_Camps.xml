@@ -52,7 +52,7 @@
   <CC_Camp_Help_mend>{X_nameDef} from the camp came over, took one look at the state of {A_nameDef}'s {THING} and mended it on the spot, and wouldn't take anything for the work.</CC_Camp_Help_mend>
   <CC_Camp_Help_heal>{X_nameDef} from the camp saw to {A_nameDef}'s {THING}, and asked nothing for it. {A_nameDef} is already feeling better.</CC_Camp_Help_heal>
   <CC_Camp_Help_herbs>{X_nameDef} of the {NAME} gathered more herbs at dawn than they need. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</CC_Camp_Help_herbs>
-  <CC_Camp_Help_show>The {NAME} put on a show at their fire this evening, and the colony was invited. {X_nameDef} was the star of it.</CC_Camp_Help_show>
+  <CC_Camp_Help_show>The {NAME} are putting on a show at their fire this evening, and the colony is invited. {X_nameDef} is the star of it.</CC_Camp_Help_show>
   <CC_Camp_Help_blessing>{X_nameDef} from the camp came to the colony at dusk and blessed it, its people and its fields, in the old words.</CC_Camp_Help_blessing>
   <CC_Camp_Help_survey>{X_nameDef} from the camp has been taking sightings in the hills, and has shown {A_nameDef} a seam of {THING} in the colony's own rock.</CC_Camp_Help_survey>
 
@@ -94,7 +94,7 @@
 
   <!-- Joining -->
   <CC_Camp_JoinTitle>{X_nameDef} asks to stay</CC_Camp_JoinTitle>
-  <CC_Camp_JoinText>{X_nameDef}, from the camp {PLACE}, has been spending evenings with the colonists, and asks whether the colony would take {X_objective} in.</CC_Camp_JoinText>
+  <CC_Camp_JoinText>{X_nameDef}, from the camp {PLACE}, has got to know the colonists during the stay, and asks whether the colony would take {X_objective} in.</CC_Camp_JoinText>
   <CC_Camp_JoinDeclined>{X_nameDef} nods and goes back to the camp.</CC_Camp_JoinDeclined>
   <CC_Camp_JoinedTitle>{X_nameDef} joins</CC_Camp_JoinedTitle>
   <CC_Camp_Hired>{X_nameDef} from the camp took {COUNT} silver to work for the colony and moved in.</CC_Camp_Hired>

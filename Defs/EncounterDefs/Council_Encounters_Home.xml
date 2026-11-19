@@ -59,14 +59,14 @@
     <cooldownDays>4</cooldownDays>
     <thought>Council_Nuisance_SpoilingFood</thought>
     <texts>
-      <li>Flies found the {THING} before anyone else did, and {A_nameDef} spent the afternoon swatting them.</li>
+      <li>Flies found the {THING} before anyone else did, and {A_nameDef} kept swatting at them.</li>
       <li>{A_nameDef} followed a sour smell to the {THING}, which should have gone somewhere cold days ago.</li>
       <li>[summer|hot] The {THING} had started to turn in the heat, and {A_nameDef} could smell it from the doorway.</li>
       <li>{A_nameDef} lifted the cloth off the {THING} and put it straight back.</li>
       <li>The {THING} has gone soft and gray at the edges, and {A_nameDef} has been telling anyone who'll listen.</li>
       <li>{A_nameDef} propped the door open, which did nothing about the {THING}.</li>
       <li>There were grubs in the {THING}, and {A_nameDef} wanted it out of the room before supper.</li>
-      <li>[summer|hot] In this heat the {THING} won't last another day. {A_nameDef} said so at supper, twice.</li>
+      <li>[summer|hot] In this heat the {THING} won't last another day. {A_nameDef} said so at the table, twice.</li>
       <li>{A_nameDef} sniffed at the {THING}, then sniffed again to be sure, and wished {A_pronoun} hadn't.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
@@ -161,14 +161,14 @@
     <thought>Council_Nuisance_Insects</thought>
     <texts>
       <li>Mosquitoes found {A_nameDef} the moment {A_pronoun} stepped outside, and followed {A_objective} all the way back in.</li>
-      <li>Biting flies, all evening. {A_nameDef} has bites on top of bites.</li>
+      <li>Biting flies everywhere. {A_nameDef} has bites on top of bites.</li>
       <li>[night] The whine of mosquitoes kept {A_nameDef} swatting at the dark.</li>
       <li>{A_nameDef} woke covered in fresh bites and spent breakfast scratching.</li>
       <li>A cloud of gnats followed {A_nameDef} across the yard, getting in {A_possessive} eyes and mouth.</li>
       <li>There's a ring of bites around each of {A_nameDef}'s ankles from the fields.</li>
       <li>[night] {A_nameDef} lay awake while a mosquito found {A_objective} again and again in the dark.</li>
       <li>{A_nameDef} slapped {A_possessive} own neck so often today that it went red.</li>
-      <li>Flies circled {A_nameDef}'s head through the whole of lunch.</li>
+      <li>Flies circled {A_nameDef}'s head through the whole meal.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -222,13 +222,13 @@
     <cooldownDays>6</cooldownDays>
     <thought>Council_Nuisance_ShoddyClothes</thought>
     <texts>
-      <li>The seams of {A_nameDef}'s {THING} split again, and {A_pronoun} spent the evening sewing them shut.</li>
+      <li>The seams of {A_nameDef}'s {THING} split again, and {A_pronoun} had to sit down and sew them shut.</li>
       <li>{A_nameDef}'s badly made {THING} itched and pinched all day.</li>
       <li>{A_nameDef} caught {A_possessive} poorly stitched {THING} on a splinter and tore it again.</li>
       <li>{A_nameDef}'s {THING} split along a seam while {A_pronoun} was lifting a crate.</li>
       <li>{A_nameDef} picked at a loose thread on {A_possessive} {THING}, and a whole seam came away with it.</li>
       <li>{A_nameDef}'s {THING} let the wind straight through at the seams.</li>
-      <li>{A_nameDef} asked at supper who had made {A_possessive} {THING}, and the room went quiet.</li>
+      <li>{A_nameDef} asked at the table who had made {A_possessive} {THING}, and the room went quiet.</li>
       <li>A button came off {A_nameDef}'s {THING} and rolled away under the shelves.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>

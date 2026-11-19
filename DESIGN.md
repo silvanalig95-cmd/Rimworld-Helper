@@ -2612,10 +2612,10 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Rimfolk_Dilemmas_Animals**
 
-- **the herd or the stores** (`Council_DlmA_FamineCull`): "Cull n head": gathering to hear it, A speaks ("a word for the herd") · "Turn the weakest out to forage": a walk together to the gate and back ("turning the herd out").
-- **a raider in the crops** (`Council_DlmA_CropRaider`): "Send the hunters": a hunt party · "Watch the fields at night": a vigil at the fields ("the watch over the fields") · "Let it eat": A goes out to the fields ("A's look at the fields").
-- **medicine for an animal** (`Council_DlmA_SickAnimal`): "The good medicine for the pet": B keeps the pet company · "A nurses the pet through": a vigil at the pet's side ("a night with the pet").
-- **something at the pens** (`Council_DlmA_PenStalker`): "Keep watch at the pens": a vigil at the pet's side ("the watch at the pens") · "Bring the herd in close": a work party of A and B (herd) ("bringing the herd in close").
+- **the herd or the stores** (`Council_DlmA_FamineCull`): "Cull n head": gathering to hear it, A speaks ("a few words for the culled herd") · "Turn the weakest out to forage": a walk together to the gate and back ("turning the herd out").
+- **an animal in the crops** (`Council_DlmA_CropRaider`): "Send the hunters": a hunt party · "Watch the fields at night": a vigil at the fields ("the watch over the fields") · "Let it eat": A goes out to the fields ("A's look at the fields").
+- **medicine for an animal** (`Council_DlmA_SickAnimal`): "The good medicine for the pet": B keeps the pet company · "A nurses the pet without medicine": a vigil at the pet's side ("a night with the pet").
+- **a predator at the pens** (`Council_DlmA_PenStalker`): "Keep watch at the pens": a vigil at the pet's side ("the watch at the pens") · "Bring the herd in close": a work party of A and B (herd) ("bringing the herd in close").
 - **a bond against the ideoligion** (`Council_DlmA_BondFaith`): "Ask B to bless the pet": gathering to hear it, B speaks ("B's blessing over the pet").
 - **the lambing watch** (`Council_Dilemma_LambingWatch`): "Keep the lambing watch together": a vigil at the pet's side ("the lambing watch") · "A sits up alone": A keeps the pet company.
 - **shearing day** (`Council_Dilemma_ShearingDay`): "Make a day of it": gathering ("shearing day").
@@ -2631,19 +2631,19 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 - **a child's grief** (`Council_DlmLv_ChildGrief`): "B takes A under their wing": B keeps A company ("keeping A company") · "A goodbye at the grave, with A": gathering to hear it, A speaks ("goodbye at the grave") · "Keep A busy with lessons": A learns at B's side.
 - **lessons for the children** (`Council_DlmLv_Schooling`): "Morning lessons, with B": A learns at B's side (intellectual) · "Let them run free a while yet": time off for A.
 - **whose den is it** (`Council_DlmLv_ChildrenQuarrel`): "They share it, and that's that": A keeps B company ("playing in the den together").
-- **a youngster who wants to see the world** (`Council_DlmLv_TeenRoad`): "A long walk past the fields with B, first": A goes for a long walk.
-- **one last look at the hills** (`Council_DlmLv_ElderWalk`): "B goes with A for the day": A goes for a long walk; B keeps A company ("keeping A company") · "Let A go alone, as A asks": A goes for a long walk.
+- **a youngster who wants to see the world** (`Council_DlmLv_TeenRoad`): "A long walk past the fields first": A goes for a long walk.
+- **a walk to the hills** (`Council_DlmLv_ElderWalk`): "B goes with A for the day": A goes for a long walk; B keeps A company ("keeping A company") · "Let A go alone, as A asks": A goes for a long walk.
 - **won't see the doctor** (`Council_DlmLv_ElderDoctor`): "Insist: B sees to A today": B keeps A company ("seeing to A") · "Strike a bargain: a check-up for a favor": B keeps A company ("seeing to A").
-- **the old one's tale** (`Council_DlmLv_ElderTale`): "Everyone gathers to hear it": gathering to hear it, A speaks ("the colony's story") · "B writes it all down": B keeps A company ("writing down A's story").
-- **the old one and the little one** (`Council_DlmLv_ElderAndChild`): "Let A teach B": B learns at A's side.
-- **cold in the bones** (`Council_DlmLv_ElderCold`): "B sits with A by the fire in the evenings": B keeps A company ("an evening by the fire").
+- **an elder's story** (`Council_DlmLv_ElderTale`): "Everyone gathers to hear it": gathering to hear it, A speaks ("the colony's story") · "B writes it all down": B keeps A company ("writing down A's story").
+- **an elder and a child** (`Council_DlmLv_ElderAndChild`): "Let A teach B": B learns at A's side.
+- **an elder who can't get warm** (`Council_DlmLv_ElderCold`): "B sits with A by the fire in the evenings": B keeps A company ("an evening by the fire").
 - **the old way and the new** (`Council_DlmLv_OldWayNewWay`): "Work it out together": B learns at A's side.
-- **the worrier's watch** (`Council_DlmLv_WorrierWatch`): "B talks it through with A": B keeps A company ("going through the list with A").
+- **a worrier asks for a night watch** (`Council_DlmLv_WorrierWatch`): "B talks it through with A": B keeps A company ("going through the list with A").
 - **the colony's record** (`Council_DlmLv_RecordKeeper`): "Read out the good parts at supper": gathering to hear it, A speaks ("a reading from the colony's record").
 
 **Rimfolk_Dilemmas_Lives_Customs**
 
-- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "Snow means more work, not less": a work party up to 4 (snow, haul, clean) ("the shoveling").
+- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "No snow day: there are paths to clear": a work party up to 4 (snow, haul, clean) ("the shoveling").
 - **the children's race** (`Council_Dilemma_ChildrensRace`): "Everyone comes out to cheer": gathering in the fields ("the children's race") · "The children can race on their own": A goes out to the fields ("the children's race").
 - **the children's gleaning** (`Council_Dilemma_Gleaning`): "The gleanings are the children's": gathering to hear it, A speaks ("the gleaning") · "Glean, but it goes to the stores": A goes out to the fields ("the gleaning").
 - **a tree for every child** (`Council_Dilemma_ChildTrees`): "Every child plants a tree": gathering to hear it, A speaks ("the planting of the children's trees") · "Just A's tree, this year": A goes for a long walk.
@@ -2776,6 +2776,25 @@ Outcomes that describe something people do but can't sensibly become one afterno
 - **Other systems.** World events play out now (their answers' gifts and payments are carried to the gate, the
   locusts' harvest and watch are real). Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
+
+### The encounters' words against the map (the plain-words pass, 19 November 2026; released 0.269.3)
+
+An encounter is told as it happens (`EncounterTracker.Fire`), at any hour unless its def keeps it to the day (5 to 20 h)
+or the night (21 to 4 h) or its `moment` names one; a nuisance at any hour its `who` allows. Its words may tell what led
+up to it, but name no part of the day that can't have come yet: no supper, dinner, evening, afternoon, lunch, "until
+dark" or "late into the night" for one that may be told in the morning, and no night for one told by day ("over a
+meal", "for a long while", "for hours", "afterwards" in their place). The morning may be named: it has begun by the time
+nearly every encounter is told, as the colonist and the one met must both be awake; a line tagged for its hour
+(`[night]`, `[morning]`) keeps it. What its effects make is what its words say: the guest who pitches in tells the
+colonist they are going to cut wood and then fells the trees (`DilemmaEffect_Felled`, after the words), the logs lying
+by the stumps; silver is handed over only where an effect carries it, and where it comes only some of the time (the
+good hosts' 15, at six in ten) the words promise none, the visitor's own words at the hand-over saying it; no carving,
+herbs, cape or mittens are named as given where nothing is made, and no wound healed where none is. The harsh
+colony's "children kept close" told of a visiting child pulled back from a colonist, in its words and its moods, with
+only an adult asked for: its stranger is now the visiting child (`<child>true</child>`), so one is there whenever it
+is told, and a grown-up of the visitors does the pulling back. "A herd passing" counted forty and more where one wild
+animal would do: a stranger may now ask for its kin (`minKin`, wild animals of its kind on the map, itself included),
+the herd asks for six, and its words say a herd grazed past, with no count and no hours.
 
 ## Pace: how often the colony gathers
 
@@ -3836,6 +3855,23 @@ texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDef
   cook). Silence sends them on; nothing gathers the colony, nobody is hurt.
 - **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
   captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
+
+#### The missions' endings told as they happen (released 0.269.4)
+
+Found in the plain-words pass on the missions (19 November 2026). A mission's ending letter (`Missions.Finish`) comes the
+moment the mission is settled, before anything of it is seen on the map, so the older missions told as done what had
+only just been set going: carts that "took everything" and drivers who "counted out" the silver (`Couriers.CollectGoals`
+sends the carts some hours later), a runaway that "went home to where the herder was waiting down the road"
+(`Couriers.Fetch` brings the herder to the colony), a lost child's family that "came running" (they walk in from the
+edge then), guests and hands lent to a town who "came home" or "are coming home" with their gifts (the caravan is still
+at the town, the gifts in its packs, and it comes home when the player sends it), a runaway "off into the hills and
+gone" (it leaves within the hour). The words now say what is happening: the carts, the herder, the family are coming;
+the gifts and the pay are in the caravan's packs. The same pass put right the shrine's pilgrims (they come and spend the
+day beside the shrine, `Arrivals.Visit`; they don't sing or kneel, and nothing brings them back each year, so neither the
+singing nor "they'll stop here every year now" is told), the Wardens' gift (a gift of the colony's era, `Loot`, not "a
+hide"), the tamed runaway's herder (not on the road until the colony answers), and the old one lost on the colony's land,
+who was always "an old man" whoever was lost. Nothing in the code changed; the newer missions (the quests at home and the
+storylines) already told it this way.
 
 ### Quests at home, round 1: six single quests (the player's go, 16 November 2026; released 0.261.0)
 
@@ -5146,6 +5182,22 @@ and drills" in the annals); the review named more overlapping pairs. Each was lo
   the other ends quietly. Rationing's forms only lose a duplicate (famine bread declared for a famine since gone stays
   itself). A petition for a form not listed is let go quietly. The drills' bouts and the militia's muster keep their
   risk lines (`hurts` Drills and Muster, "Drills that bruise").
+
+### What the decrees and seats say they do (the plain-words pass, 19 November 2026; released 0.269.5)
+
+Every decree's description and card lines say what its code does, with its numbers (the hediff's stats, the decree's
+own fields, `DecreeWork`, `DecreeFaith`, `LeaningMath`), and who likes or minds it as its `reactions` have it (first
+match wins; the volatile are the game's Nerves -2, the nervous -1). The seats' duties carry their hediffs' numbers. Two
+places where the code did something the words didn't say were put right in the code:
+
+- **The hunting season marks its game with answers kept off the map.** Its morning hunt (`DecreeDef.daily`) went
+  through `DilemmaEffect_Hunt`, which marks nothing while "Answers play out on the map" is off, so the decree did
+  nothing then. With `always`, the hunt marks the game's own hunting work either way, as wood for the winter
+  (`DilemmaEffect_MarkTrees`) and foraging days (`DilemmaEffect_Forage`) always did. It still needs someone set to hunt
+  with a hunting weapon, and keeps to safe game (`HuntsBite.SafeOnly`).
+- **The marshal speeds the fighting drills only.** The marshal's half again (`OfficeTracker.DrillFactor`) applied to
+  every decree's hourly practice, apprenticeships' and shared meals' too; it now applies to those with
+  `practiceNeedsViolence` (the drills and the militia's drills), as the seat's duty says.
 
 ### Working through it (3.2.1, ailments and health stories)
 
@@ -9988,7 +10040,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `Interplay.Notify_GatheringOver`, the river folk's catch and nets, round 2's knot night rest, `FactsMath`, round 1's
     `PeopleWorkOn` ("quiet" mark), `Expertise` (giving one). Dev actions "Peoples' events 4: ...". The Almanac's peoples'
     pages, *Of their own: gifts, trust and camps*.
-- **The peoples' own events, round 5** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 5** (the player's go, 19 November 2026: "Events sounds great"; released 0.269.0)
   `docs/peoples-events-proposals.md`, items 35, 36, 37, 38, 39, 41, 42, 43, 44, 45 and 46 (the Quiet Bell, the Circuit of
   Tamers and the Wheel); `Source/ColonyCouncil/Peoples/Events5/`, the pure rules in `PeopleEvents5Math.cs`,
   `Tools/Tests/PeopleEvents5Tests.cs` ("the peoples' events, round 5: "). As rounds 1 to 4: only from a people of its calling
@@ -10748,6 +10800,25 @@ the one of its people nearest the gate to meet the colonist there (`Camps/CampMe
 wait of two hours), and the errand waits until they come ("one of the camp is coming to the gate for it"); a camper
 already at the gate, as the one who brings the colony's load of wood, takes it. The answers' words say "the gate, where
 one of the camp meets them" for such a camp. Going to the camp to learn a craft, to visit or to help stays a walk to it.
+
+#### The camp's people at the gatherings their asks set going (released 0.269.1)
+
+Found in the plain-words pass on the camps (19 November 2026): the suppers, feasts, evenings at their fire, prayers,
+plays and songs a camp's asks set going said the camp's people were there ("The family eats at the colony's table
+tonight, children and all", "with the minstrels playing", "sing with them"), but the gathering took only the colony's
+own people. Each of those fifteen gatherings (`DilemmaEffect_Gathering`, `_Feast`, `_Toast`, `_Words` in
+`Defs/CampDefs/`) now takes `<guests>camp</guests>`: the camp's people come up and take a place at it (`PlayGuests`, as
+the camp's feast and the run's supper already did), and at a feast are served like everyone else. The minstrels' song
+about the colony is sung by the minstrel the ask is about (`organizer` None, so the stranger says the words), and the
+mourners' "Stand with them for their dead" is the colony and the mourners standing together outside for a while, as
+it plays out (it was "Stand by the road when they go", which nothing tied to their going). The same pass put a few
+claims right in the words: a pilgrim's prayer at a sick colonist's side is said by the one who leads them, not their
+eldest; the camp's own hunters stay at their work while the colony's hunters go out on their advice; the traveling
+healer sees the one colonist the ask names; a show, a song or an evening's tales that the camp's good turn announces
+says it is about to happen, not that it already has; joins and requests claim no evening or night (a camp's day event
+comes between 9 and 18), and the kinds' farewells no leftover the map doesn't keep. The farewells that name an hour or
+a wave at the gate were already said only at that hour, or retired (`Lean/ShippedLines.cs`); they stay, four of the
+hour ones in plainer words with their keys in `ShippedLines.AlsoWhen` following.
 
 ### How fast Rimfolk's people go (0.171.1)
 
