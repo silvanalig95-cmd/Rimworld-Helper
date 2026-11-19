@@ -83,7 +83,7 @@
       <li>[engaged] {A_nameDef} and {B_nameDef} are engaged, and the talk at supper is whose name they will go by. {A_nameDef} has said {A_pronoun} would gladly be a {LASTB}, and asked the council to settle it.</li>
       <li>[engaged] There will be a wedding soon, and one question left over: will it be {LASTA} and {LASTB} still, or one name for the two of them? {A_nameDef} and {B_nameDef} would like the council to say.</li>
       <li>[!engaged] {A_nameDef} and {B_nameDef} have been married a while and still go by two names. {A_nameDef} has wondered aloud about taking the {LASTB} name, and asked the council to settle it.</li>
-      <li>[!engaged] Married, and still {LASTA} and {LASTB}: {A_nameDef} and {B_nameDef} have asked the council whether one of them should take the other's name.</li>
+      <li>[!engaged] {A_nameDef} and {B_nameDef} are married but still go by {LASTA} and {LASTB}, and have asked the council whether one of them should take the other's name.</li>
       <li>{A_nameDef} {LASTA} and {B_nameDef} {LASTB} have put a small question to the council: should they go by one family name?</li>
     </texts>
     <defaultOption>2</defaultOption>

@@ -23,10 +23,10 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>The leaves are turning and the nights have an edge on them. {A_nameDef} asks for a day when the whole colony goes out for the winter's wood together, the way it's done in a proper autumn: everyone at it from morning, the pile by the wall growing until dusk.</li>
-      <li>{A_nameDef} has sharpened every axe the colony owns and set them by the door. One day, {A_pronoun} says, all of us together, and the wood for the winter is in before the first snow.</li>
-      <li>[lowtech] In {A_nameDef}'s village the whole place went to the woods on one day in autumn and came back with the winter on their backs. {A_pronoun} would like a woodpile day here.</li>
-      <li>[!lowtech] {A_nameDef} knows the generators and the benches need timber as much as the hearths do. {A_pronoun} would make a day of it: everyone out with the saws, and the woodpile stacked by dusk.</li>
+      <li>The leaves are turning and the nights are getting cold. {A_nameDef} asks for a day when the whole colony goes out for the winter's wood together, the way it's usually done in autumn: everyone working at it from morning until dusk, and the pile by the wall growing all day.</li>
+      <li>{A_nameDef} has sharpened every axe the colony owns and set them by the door. If everyone works at it together for one day, {A_pronoun} says, the winter's wood will be in before the first snow.</li>
+      <li>[lowtech] In {A_nameDef}'s village everyone went to the woods on one day in autumn and came back carrying the winter's wood on their backs. {A_nameDef} would like a woodpile day here.</li>
+      <li>[!lowtech] {A_nameDef} knows the generators and the benches need timber as much as the hearths do. {A_nameDef} would make a day of it: everyone out with the saws, and the woodpile stacked by dusk.</li>
       <li>[again] It's autumn again, and {A_nameDef} has the axes out by the door. Last year's woodpile day kept the colony warm, {A_pronoun} says, and this year should be the same.</li>
       <li>[tradition] The woodpile day comes round with the falling leaves now. {A_nameDef} has the tools ready and wants only the council's word.</li>
     </texts>
@@ -92,11 +92,11 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>The nights are long now, and {A_nameDef} can't stop thinking of the colony's dead out there in the dark. {A_pronoun} asks for one night when a light is set by every grave at dusk and the colony stands among them a while.</li>
+      <li>The nights are long now, and {A_nameDef} can't stop thinking of the colony's dead out there in the dark. {A_nameDef} asks for one night when a light is set by every grave at dusk and the colony stands among them a while.</li>
       <li>{A_nameDef} has made a torch for every grave of the colony's own and lined them up by the door. One night, {A_pronoun} says, so that nobody we lost lies in the dark.</li>
-      <li>[lowtech] Where {A_nameDef} grew up, a fire was lit at every grave on the darkest night, and the living stood with the dead until it burned low. {A_pronoun} would keep that night here.</li>
+      <li>[lowtech] Where {A_nameDef} grew up, a fire was lit at every grave on the darkest night, and families stood by the graves until the fires burned low. {A_nameDef} would keep that night here.</li>
       <li>[!lowtech] {A_nameDef} asks the council for a night of lights: a lamp at every grave of the colony's own from dusk till dawn, and a few minutes standing there together before bed.</li>
-      <li>[again] The dark of the year has come round again, and {A_nameDef} has the torches ready, one for every grave, the same as last time.</li>
+      <li>[again] The longest nights of the year are here again, and {A_nameDef} has the torches ready, one for every grave, the same as last time.</li>
       <li>[tradition] It's the night of lights soon. {A_nameDef} has counted the graves and made a torch for each, and one more for the new one.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -132,7 +132,7 @@
         </effects>
       </li>
       <li>
-        <label>The dead are at peace</label>
+        <label>No lights; the dead are at peace</label>
         <outcome>The council says the dead are at peace as they are. {A_nameDef} put the torches away in the storeroom, and the wood stayed on the pile.</outcome>
         <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
         <effects>
@@ -165,10 +165,10 @@
       <maxAge>30</maxAge>
     </roleB>
     <texts>
-      <li>Winter is the time for putting right what the year broke, {A_nameDef} says: the doors that stick, the walls with holes in them, the things nobody has had time for. {A_pronoun} asks for a mending day, with the colony at it together, and {B_nameDef} at {A_possessive} bench to learn how it's done.</li>
-      <li>{A_nameDef} has made a list of everything in the colony that's cracked, scorched or worn through, and it's long. {A_pronoun} would like one winter day to mend it all, and to show {B_nameDef} the work while they're at it.</li>
-      <li>[lowtech] In the dark months, {A_nameDef}'s people mended: nets, roofs, tools, fences. A day of it together, {A_pronoun} says, and the young ones learn by watching. {A_pronoun} would start with {B_nameDef}.</li>
-      <li>[!lowtech] {A_nameDef} wants a day set aside for repairs before spring: the damaged walls, the worn machines, the floors nobody has swept since autumn. And {B_nameDef} at the workbench beside {A_objective}, learning.</li>
+      <li>Winter is the time to repair everything that broke during the year, {A_nameDef} says: the doors that stick, the walls with holes in them, the things nobody has had time for. {A_nameDef} asks for a mending day, with the colony at it together, and {B_nameDef} at {A_possessive} bench to learn how it's done.</li>
+      <li>{A_nameDef} has made a list of everything in the colony that's cracked, scorched or worn through, and it's long. {A_nameDef} would like one winter day to mend it all, and to show {B_nameDef} the work while they're at it.</li>
+      <li>[lowtech] In winter, {A_nameDef}'s people mended their nets, roofs, tools and fences together, and the young ones learned by watching. {A_nameDef} would start with {B_nameDef}.</li>
+      <li>[!lowtech] {A_nameDef} wants a day set aside for repairs before spring: the damaged walls, the worn machines, the floors nobody has swept since autumn. {A_nameDef} would also like {B_nameDef} at the workbench beside {A_objective}, learning.</li>
       <li>[again] The mending day comes round with the cold. {A_nameDef} has the list ready again, and {B_nameDef} at {A_possessive} elbow.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -199,7 +199,7 @@
         </effects>
       </li>
       <li>
-        <label>No day of its own for it</label>
+        <label>Not this year</label>
         <outcome>The council sees no need for a day of it. {A_nameDef} folded the list and put it away.</outcome>
         <ways><tradition>-3</tradition><toil>1</toil></ways>
         <effects>
@@ -224,12 +224,12 @@
       <bestAt>Social</bestAt>
     </roleA>
     <texts>
-      <li>{A_nameDef} has been listening all year: who came, who left, who did what on the worst night. {A_pronoun} asks for an evening by the fire in the dark of the winter to tell it all back to the colony, the year as a story, the bad parts and the good.</li>
-      <li>{A_nameDef} says every colony has a story and most never hear their own. {A_pronoun} would tell this one's, one winter evening, to everyone who'll sit and listen.</li>
-      <li>[lowtech] Among {A_nameDef}'s people the long nights were for tales: the year told by the fire by whoever told it best, so nobody forgot. {A_pronoun} would like to tell this year's.</li>
-      <li>[!lowtech] {A_nameDef} has kept notes all year and wants to read the colony its own year, one evening in the dark of the winter, with something warm to drink.</li>
+      <li>{A_nameDef} has paid attention all year: who came, who left, and who did what on the worst nights. {A_nameDef} asks for a winter evening by the fire to tell the colony the story of its year, the bad parts and the good.</li>
+      <li>{A_nameDef} says every colony has a story worth telling, though most never hear their own told. {A_nameDef} would tell this one's, one winter evening, to everyone who'll sit and listen.</li>
+      <li>[lowtech] Among {A_nameDef}'s people the long nights were for tales: the year told by the fire by whoever told it best, so nobody forgot. {A_nameDef} would like to tell this year's.</li>
+      <li>[!lowtech] {A_nameDef} has kept notes all year and wants to read the colony the story of its year one winter evening, with something warm to drink.</li>
       <li>[again] The long nights are here again, and {A_nameDef} has a new year's worth of tales to tell.</li>
-      <li>[tradition] Everyone knows {A_nameDef} tells the year in the dark of the winter, and half the colony has already asked whether they're in it.</li>
+      <li>[tradition] Everyone knows {A_nameDef} tells the story of the year in the middle of winter, and half the colony has already asked whether they're in it.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the winter tales</traditionLabel>
@@ -273,7 +273,7 @@
         </effects>
       </li>
       <li>
-        <label>The year is best forgotten</label>
+        <label>No tales this year</label>
         <outcome>The council would rather not hear it all again. {A_nameDef} kept {A_possessive} notes to {A_objective}self.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>

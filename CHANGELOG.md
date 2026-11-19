@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council's other questions in plain words
+
+*19 November 2026, version 0.269.2*
+
+- The council's other questions are in plain words too: the herd and the pens, the camp on the colony's land, the customs of the year, the children and the elders, moving on, and the colony's own troubles.
+- Question names say what each question is about, such as an animal in the crops, an inspired artist or research nearly done, and answers say what the council does.
+- A few answers now match what happens: the hurt animal is marked for the hunters, a night watch is one night, the food sold to the neighbours names its 40 silver, and the youngster's guardian really goes on the long walk past the fields.
+
 ## The camps in plain words
 
 *19 November 2026, version 0.269.1*
