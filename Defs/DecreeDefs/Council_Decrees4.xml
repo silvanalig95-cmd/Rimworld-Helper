@@ -20,7 +20,7 @@
     <defName>Council_Decree_Tithes</defName>
     <kind>faith</kind>
     <label>tithes</label>
-    <description>A tenth of the silver in the stores is set aside each morning and given away: to the shrine of a people who share the colony's ideoligion if there is one near, otherwise to the nearest friendly village. Goodwill grows with every day's tithe, and with Ideology the faithful grow more certain of their ideoligion. The greedy hate it; the devout and ascetics approve. A village's custom: not for a tribe.</description>
+    <description>For ten days, each morning a tenth of the silver in store (5 to 40) is given away: to the nearest friendly people who share the colony's ideoligion if there is one, otherwise to the people of the nearest friendly settlement. They gain 1 goodwill toward the colony for each day's gift, and with Ideology those of the colony's ideoligion grow 1% more certain of it each day. The devout love it and ascetics and the kind like it; the greedy hate it and the jealous dislike it. A custom of settled villages: not for a tribe.</description>
     <eras><li>medieval</li><li>industrial</li><li>spacer</li></eras>
     <requestWhen><li>Plenty</li></requestWhen>
     <order>20</order>
@@ -41,9 +41,9 @@
       <li><trait>Kind</trait><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning a tenth of the silver in store (5 to 40) is given away, and the people it goes to like the colony a little better for it (1 goodwill a day).</li>
-      <li>With Ideology, it goes to the nearest people of the colony's ideoligion, and those who hold it grow a little more certain of it each day.</li>
-      <li>The devout love it and ascetics and the kind approve; the greedy hate it, and the jealous mind it.</li>
+      <li>Each morning a tenth of the silver in store (5 to 40) is given away, and the people who receive it gain 1 goodwill toward the colony.</li>
+      <li>With Ideology, it goes to the nearest friendly people of the colony's ideoligion if there is one, and those of the colony's ideoligion grow 1% more certain of it each day (half again with a chaplain).</li>
+      <li>The devout love it and ascetics and the kind like it; the greedy hate it, and the jealous dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -70,7 +70,7 @@
     <defName>Council_Decree_Curfew</defName>
     <kind>order</kind>
     <label>a curfew</label>
-    <description>Everyone indoors and abed by ten, the gate barred until dawn, and only the watch about. The night hours of everyone's schedule are turned to sleep (put back as they were when the curfew ends), so nothing gets done after dark and there are no brawls by the fire at midnight. Night owls keep the watch instead and are left to their hours. The nervous feel safer; the industrious resent the lost hours, and most people mind being sent to bed.</description>
+    <description>For five days everyone is sent to bed at ten. Each colonist's schedule is set to sleep from ten at night until six in the morning, and goes back to what it was when the curfew ends. Night owls, babies and anyone who never needs sleep keep their own hours. Nothing gets done in the night hours, and social fights happen less than half as often. The volatile love it and the nervous like it; the industrious and the abrasive hate it, and most people dislike being sent to bed.</description>
     <requestWhen><li>RecentThreat</li><li>Prisoners</li></requestWhen>
     <order>21</order>
     <durationDays>5</durationDays>
@@ -89,9 +89,9 @@
       <li><trait>Abrasive</trait><reaction>Hate</reaction></li>
     </reactions>
     <effects>
-      <li>The hours from ten at night to five in the morning become sleep in everyone's schedule (night owls keep the watch and keep their hours); the schedule goes back when it ends.</li>
-      <li>Social fights are much rarer.</li>
-      <li>The nervous welcome it; the industrious and the abrasive hate it, and most people mind being sent to bed.</li>
+      <li>Everyone's schedule is set to sleep from ten at night until six in the morning (night owls and anyone who never needs sleep keep their hours); the schedule goes back when it ends.</li>
+      <li>Social fights happen 60% less often.</li>
+      <li>The nervous like it; the industrious and the abrasive hate it, and most people dislike being sent to bed.</li>
     </effects>
     <support>
       <plain>
@@ -117,7 +117,7 @@
     <defName>Council_Decree_Militia</defName>
     <kind>order</kind>
     <label>militia drills</label>
-    <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour of drill most evenings, with whatever weapons the colony keeps, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. This is how a tribe or a village drills; an industrial or spacer colony drills all day instead. Only the kind and wimps mind it much.</description>
+    <description>Twelve days of light drill for everyone who can fight. Everyone practices shooting and melee a little every waking hour, about a quarter as fast as with the drills, and other work is only 3% slower. With "Answers play out on the map" on, the colony holds its first muster in the evening. This is how a tribe or a village drills; an industrial or spacer colony has the drills instead. Most people don't mind it; fighters and the bloodthirsty like it, and wimps, the kind and those whose ideoligion abhors violence dislike it.</description>
     <requestWhen><li>RecentThreat</li><li>Newcomer</li></requestWhen>
     <order>22</order>
     <strainPerDay>0.5</strainPerDay>
@@ -144,7 +144,7 @@
     <effects>
       <li>Everyone who can fight practices shooting and melee a little every waking hour, for twelve days.</li>
       <li>Everyone works 3% slower.</li>
-      <li>Fighters and the bloodthirsty like it; wimps, the kind and those whose ideoligion abhors violence mind it; most people don't mind.</li>
+      <li>Fighters and the bloodthirsty like it; wimps, the kind and those whose ideoligion abhors violence dislike it; most people don't mind.</li>
     </effects>
     <support>
       <plain>
@@ -179,7 +179,7 @@
     <defName>Council_Decree_Alms</defName>
     <kind>world</kind>
     <label>alms for the poor</label>
-    <description>Bread for the poor: each morning a share of the raw food in store goes out to the poor of the nearest friendly village, and their people remember the colony for it. The kind love it and ascetics approve; the greedy hate seeing food leave the stores.</description>
+    <description>For seven days, each morning a little of the raw food in store (5 to 20) is given to the poor of the nearest friendly settlement, and their people gain 1 goodwill toward the colony for it. The kind love it, and ascetics and the devout like it; the greedy hate seeing food leave the stores.</description>
     <requestWhen><li>Plenty</li><li>Winter</li></requestWhen>
     <order>23</order>
     <durationDays>7</durationDays>
@@ -198,8 +198,8 @@
       <li><tags>devout</tags><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning a little of the raw food in store (5 to 20) goes out at the gate, and the nearest friendly people's goodwill rises by 1.</li>
-      <li>The kind love it, and ascetics and the devout approve; the greedy hate it.</li>
+      <li>Each morning a little of the raw food in store (5 to 20) is given away, and the people of the nearest friendly settlement gain 1 goodwill.</li>
+      <li>The kind love it, and ascetics and the devout like it; the greedy hate it.</li>
     </effects>
     <support>
       <plain>
@@ -222,7 +222,7 @@
     <defName>Council_Decree_HolyDays</defName>
     <kind>faith</kind>
     <label>holy days</label>
-    <description>Three days kept for the colony's ideoligion: prayers at dawn and dusk, work set down at the hours of the ideoligion, a gathering on the first evening. The faithful grow more certain of their ideoligion each day (half again as much with a chaplain), and work slows. The devout love it; those of another ideoligion mind it, and the industrious think it time wasted. Only with Ideology, for a colony with an ideoligion of its own.</description>
+    <description>Three days kept for the colony's ideoligion. Those of the colony's ideoligion grow 3% more certain of it each day (half again with a chaplain), everyone is a little less likely to have a mental break, and all work is 8% slower. With "Answers play out on the map" on, the colony gathers for prayers on the first evening. The devout love it and the faithful like it; those of another ideoligion, those who despise religion and the industrious dislike it. Only with Ideology, for a colony with an ideoligion of its own.</description>
     <needsIdeology>true</needsIdeology>
     <requestWhen><li>ColonyMiserable</li><li>Grief</li><li>Strained</li></requestWhen>
     <order>24</order>
@@ -242,12 +242,12 @@
     </reactions>
     <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
     <heartEases><li>Despair</li><li>Grief</li></heartEases>
-    <heartHelp>the faithful keep steadier</heartHelp>
+    <heartHelp>everyone keeps a little steadier, and the faithful grow more certain</heartHelp>
     <heartCost>everyone works 8% slower for three days</heartCost>
     <effects>
-      <li>Those of the colony's ideoligion grow 3% more certain of it each day (half again with a chaplain), and keep a little steadier.</li>
+      <li>Those of the colony's ideoligion grow 3% more certain of it each day (half again with a chaplain), and everyone keeps a little steadier.</li>
       <li>Everyone works 8% slower.</li>
-      <li>The devout love it and the faithful like it; those of another ideoligion, those who despise religion and the industrious mind it.</li>
+      <li>The devout love it and the faithful like it; those of another ideoligion, those who despise religion and the industrious dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -274,7 +274,7 @@
     <defName>Council_Decree_MarketDay</defName>
     <kind>world</kind>
     <label>a market day</label>
-    <description>Word goes out to the friendly peoples nearby: the colony holds a market. A trade caravan comes that day, and for two days everyone haggles a little harder and works a little less. Only when a friendly people who send caravans is near enough to come. The sociable and the greedy love it; the abrasive and the nervous would rather the strangers stayed away.</description>
+    <description>The council sends word to the friendly peoples that the colony is holding a market. A trade caravan from one of them comes that day if one can, and for two days trade prices are 4% better and all work is 5% slower. Only when there is a friendly people that sends trade caravans. The greedy love it and the sociable like it; the abrasive, the volatile and undergrounders would rather the strangers stayed away.</description>
     <callsTraders>true</callsTraders>
     <requestWhen><li>Plenty</li><li>ColonyHappy</li></requestWhen>
     <order>25</order>
@@ -292,9 +292,9 @@
       <li><trait>Undergrounder</trait><reaction>Dislike</reaction></li>
     </reactions>
     <effects>
-      <li>A trade caravan from a friendly people comes the day it's declared.</li>
+      <li>A trade caravan from a friendly people comes the day it's declared, if one can come.</li>
       <li>Trade prices 4% better for everyone, and everyone works 5% slower.</li>
-      <li>The greedy love it and the sociable like it; the abrasive, the nervous and undergrounders mind it.</li>
+      <li>The greedy love it and the sociable like it; the abrasive, the volatile and undergrounders dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -317,7 +317,7 @@
     <defName>Council_Decree_Fast</defName>
     <kind>faith</kind>
     <label>a fast</label>
-    <description>Two days of fasting: water, a little bread at sundown, and nothing else. Everyone gets hungry half as fast, the stores last, and heads feel strangely clear; the work goes slowly on an empty stomach. Ascetics love it and the devout welcome it; gourmands hate it and most people mind it.</description>
+    <description>Two days of fasting. Everyone gets hungry half as fast, so the stores last longer. Everyone also learns 10% faster and works 6% slower, and standards ease down a little. Ascetics love it and the devout like it; gourmands and the greedy hate it, and most people dislike it.</description>
     <requestWhen><li>FoodLow</li><li>Spoiled</li></requestWhen>
     <order>26</order>
     <strainPerDay>1</strainPerDay>
@@ -338,7 +338,7 @@
     <effects>
       <li>Two days: everyone gets hungry 50% more slowly, and learns 10% faster.</li>
       <li>Everyone works 6% slower, and standards ease down a little.</li>
-      <li>Ascetics love it and the devout like it; gourmands and the greedy hate it, and most people mind it.</li>
+      <li>Ascetics love it and the devout like it; gourmands and the greedy hate it, and most people dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -362,7 +362,7 @@
     <defName>Council_Decree_WorkSong</defName>
     <kind>work</kind>
     <label>a work song</label>
-    <description>The fields, the quarry and the workshop sing: the old songs with a beat to work to, the new verses somebody makes up about the cook. Hands keep time and the hours go faster, so work picks up and the singers get some recreation at it; but nobody can think over the noise, and research and study suffer. The sociable love it; the nervous and the abrasive can't stand it.</description>
+    <description>Five days of singing at work. Work is 3% faster, and those who don't mind the singing get a little recreation every hour they work, but research is 10% slower and learning 5% slower. The sociable and the artistic like it; the volatile, the abrasive, the too-smart and those whose ideoligion frowns on recreation dislike it.</description>
     <requestWhen><li>ColonyHappy</li><li>Autumn</li></requestWhen>
     <order>27</order>
     <durationDays>5</durationDays>
@@ -387,8 +387,8 @@
     <heartCost>research 10% slower and learning 5% slower for five days</heartCost>
     <effects>
       <li>Everyone works 3% faster, and those who don't mind the singing get a little recreation every hour they work.</li>
-      <li>Research 10% slower and learning 5% slower: nobody can think over the noise.</li>
-      <li>The sociable and the artistic like it; the nervous, the abrasive, the too-clever and those whose faith frowns on fun at work mind it.</li>
+      <li>Research 10% slower and learning 5% slower.</li>
+      <li>The sociable and the artistic like it; the volatile, the abrasive, the too-smart and those whose ideoligion frowns on recreation dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -411,7 +411,7 @@
     <defName>Council_Decree_Quarantine</defName>
     <kind>order</kind>
     <label>quarantine</label>
-    <description>The sick sleep apart, the gate is closed to strangers, and everyone keeps their distance. Illnesses hardly pass between people sharing a bedroom, visitors and travelers are turned away (Rimfolk's visitor events come far less often), bodies fight off illness a little better, and everyone is a little lonelier for it. Only while a sickness goes round the region, or someone at home is ill. The sickly and doctors approve; the sociable hate keeping their distance.</description>
+    <description>Everyone keeps their distance and fewer strangers come. Illnesses pass between people sharing a bedroom a fifth as often, immunity builds 6% faster, and Rimfolk's visitor events come about a third as often. Everyone is a little lonelier for it: social impact is 10% lower and work 4% slower. Only while a sickness goes round the region, or someone at home is ill. The sickly love it and doctors like it; the sociable and the kind dislike keeping their distance.</description>
     <situationKinds><li>sickness</li></situationKinds>
     <orWhen><li>Illness</li></orWhen>
     <requestWhen><li>Situation</li><li>Illness</li></requestWhen>
@@ -434,8 +434,8 @@
     </reactions>
     <effects>
       <li>Illnesses pass between people sharing a bedroom a fifth as often, and immunity builds 6% faster.</li>
-      <li>Visitors and travelers are turned away: Rimfolk's visitor events come about a third as often.</li>
-      <li>Social impact down 10% and work 4% slower. The sickly and doctors approve; the sociable and the kind mind it.</li>
+      <li>Fewer visitors and travelers come: Rimfolk's visitor events come about a third as often.</li>
+      <li>Social impact down 10% and work 4% slower. The sickly and doctors like it; the sociable and the kind dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -458,7 +458,7 @@
     <defName>Council_Decree_FamineBread</defName>
     <kind>stores</kind>
     <label>famine bread</label>
-    <description>The region is hungry, and the colony tightens its belt to share: smaller portions at home, and each morning a share of the raw food in store goes to the people the famine hits hardest. They will remember it (2 goodwill a day). Only while a famine, a drought or a plague of locusts lies over the region. The kind love it; the greedy and gourmands hate it, and most people mind going a little hungry for strangers.</description>
+    <description>The colony eats a little less to share food with the region in a famine. Everyone gets hungry 15% more slowly, and each morning a share of the raw food in store (6 to 24) goes to the people the famine hits hardest, who gain 2 goodwill toward the colony each day. Only while a famine, a drought, a locust swarm or a blight lies over the region and the colony's own food lasts eight days or more; otherwise the council has rationing instead. The kind love it; the greedy and gourmands hate it, and most people dislike going a little hungry for strangers.</description>
     <situationKinds><li>hunger</li><li>drought</li></situationKinds>
     <requestWhen><li>Situation</li></requestWhen>
     <order>29</order>
@@ -481,9 +481,9 @@
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
     <effects>
-      <li>Everyone gets hungry 15% more slowly: smaller portions at home.</li>
+      <li>Everyone gets hungry 15% more slowly.</li>
       <li>Each morning a share of the raw food in store (6 to 24) goes to the hungry people of the famine, whose goodwill rises by 2.</li>
-      <li>The kind love it, and ascetics and the devout approve; the greedy and gourmands hate it, and most people mind it.</li>
+      <li>The kind love it, and ascetics and the devout like it; the greedy and gourmands hate it, and most people dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -505,7 +505,7 @@
     <defName>Council_Decree_OpenGates</defName>
     <kind>world</kind>
     <label>open gates</label>
-    <description>The gate stands open and the road is welcome in: travelers, traders and anyone passing are invited to stop. Rimfolk's visitor events come about half again as often, and everyone talks to strangers a little more easily. The opposite of a quarantine. The sociable and the kind love it; the nervous hate it.</description>
+    <description>The colony lets travelers, traders and anyone passing know they are welcome to stop. For seven days Rimfolk's visitor events come about half again as often, and social impact and negotiation are 5% higher. The opposite of a quarantine. The sociable and the kind like it; the volatile hate it, and the nervous and the abrasive dislike it.</description>
     <requestWhen><li>ColonyHappy</li><li>Newcomer</li></requestWhen>
     <order>30</order>
     <durationDays>7</durationDays>
@@ -526,7 +526,7 @@
     <effects>
       <li>Rimfolk's visitor events come about half again as often while it holds.</li>
       <li>Social impact and negotiation up 5%.</li>
-      <li>The sociable and the kind like it; the nervous hate it, and the abrasive mind it.</li>
+      <li>The sociable and the kind like it; the volatile hate it, and the nervous and the abrasive dislike it.</li>
     </effects>
     <support>
       <plain>

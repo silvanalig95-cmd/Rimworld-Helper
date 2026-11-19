@@ -72,7 +72,7 @@
   <CC_FaithDecree_PickLargest>{FAITH} ({COUNT} believing, the largest)</CC_FaithDecree_PickLargest>
   <CC_FaithDecree_CardInForce>The colony's ideoligion by decree: {FAITH}.</CC_FaithDecree_CardInForce>
   <CC_FaithDecree_CardChoose>You choose the ideoligion as you declare it ({FAITH} has the most believers).</CC_FaithDecree_CardChoose>
-  <CC_FaithDecree_Named>The council has named {FAITH} the colony's ideoligion. Its believers may speak of it as often as they like, so everyone else will hear a lot about it.</CC_FaithDecree_Named>
+  <CC_FaithDecree_Named>The council has named {FAITH} the colony's ideoligion. Its believers will talk about it more often, and every council meeting will open with a word from one of them.</CC_FaithDecree_Named>
   <CC_FaithDecree_Lifted>{FAITH} is no longer the colony's ideoligion by the council's word. Every ideoligion is back on the same footing.</CC_FaithDecree_Lifted>
   <CC_FaithDecree_Cause>The council had named {FAITH} the colony's ideoligion.</CC_FaithDecree_Cause>
   <CC_Log_FaithDecree>{FAITH} is the colony's ideoligion by decree, and theirs isn't</CC_Log_FaithDecree>

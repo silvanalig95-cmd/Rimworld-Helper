@@ -21,7 +21,7 @@
     <defName>Rimfolk_Decree_HuntingSeason</defName>
     <kind>stores</kind>
     <label>a hunting season</label>
-    <description>Six days of hunting: each morning the hunters find two head of the land's game marked for them, the biggest that is safe to hunt, so meat is laid by before the cold. A tribe keeps the hunters' moon, a village opens the season, an industrial colony takes out its game licence and a spacer colony calls it a cull; it comes to the same thing. The hunters are out more and at other work less, and a hunted animal may turn on them as the game has it. Hunters and the bloodthirsty like it; the kind, and those whose ideoligion holds hunting or violence wrong, mind it.</description>
+    <description>Six days of hunting. Each morning two of the land's wild animals are marked for the colony's hunters: those with the most meat that are safe to hunt. A tribe calls it the hunters' moon, a village opens the hunting season, an industrial colony takes out a game licence and a spacer colony calls it a cull; the hunting is the same. The hunters spend more time hunting and less at other work, and a hunted animal may still fight back, as in any hunt. Nothing is marked while nobody is set to hunt and has a weapon fit for it. The bloodthirsty love it and hunters and gourmands like it; the kind dislike it, and those whose ideoligion holds hunting or violence wrong hate it.</description>
     <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
     <order>40</order>
     <durationDays>6</durationDays>
@@ -37,9 +37,9 @@
       <li><trait>Gourmand</trait><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning for six days, two head of the land's game are marked for the hunters: the biggest that's safe, never a predator or anything likely to turn.</li>
-      <li>The hunters go out for them as the game sends hunters, and a hunted animal may still fight back.</li>
-      <li>Hunters, gourmands and the bloodthirsty like it; the kind mind it, and those whose ideoligion holds hunting or violence wrong hate it.</li>
+      <li>Each morning for six days, two wild animals are marked for the hunters: those with the most meat that are safe to hunt, never a predator, an insect, anything very large or anything likely to fight back.</li>
+      <li>The colony's hunters go after them as they would any animal marked for hunting, and a hunted animal may still fight back.</li>
+      <li>The bloodthirsty love it and hunters and gourmands like it; the kind dislike it, and those whose ideoligion holds hunting or violence wrong hate it.</li>
     </effects>
     <support>
       <plain>
@@ -71,7 +71,7 @@
     <defName>Rimfolk_Decree_WoodForWinter</defName>
     <kind>stores</kind>
     <label>wood for the winter</label>
-    <description>Eight days of felling: each morning up to six of the nearest wild trees outside the home area are marked for the cutters, until the stores hold the wood the winter wants (150 a colonist for a tribe or a village that burns it in every hearth, 80 for an industrial or spacer colony that wants it for its benches and generators). The cutters are at the trees and at nothing else. The industrious and the tough like it; the lazy mind it, and those whose ideoligion holds trees sacred hate it.</description>
+    <description>Eight days of felling. Each morning up to six of the nearest wild trees outside the home area are marked for cutting, until the stores hold enough wood for the winter: 150 per colonist for a tribe or a village, which burns wood in every hearth, and 80 for an industrial or spacer colony, which needs it for its workbenches and generators. The cutters spend their time felling and the haulers bring the wood in. The industrious, hard workers and the tough like it; the lazy dislike it, and those whose ideoligion holds tree cutting wrong hate it.</description>
     <requestWhen><li>Autumn</li><li>Winter</li></requestWhen>
     <order>41</order>
     <durationDays>8</durationDays>
@@ -88,9 +88,9 @@
       <li><trait>Tough</trait><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning for eight days, up to six of the nearest wild trees outside the home area are marked for the cutters, until the stores hold the winter's wood: 150 a colonist for a tribe or a village, 80 for any other colony.</li>
-      <li>The cutters fell them as the game has cutters do, and the wood waits for the haulers.</li>
-      <li>The industrious and the tough like it; the lazy mind it, and those whose ideoligion holds trees sacred hate it.</li>
+      <li>Each morning for eight days, up to six of the nearest wild trees outside the home area are marked for cutting, until the stores hold the winter's wood: 150 per colonist for a tribe or a village, 80 for any other colony.</li>
+      <li>The colony's cutters fell them as they would any tree marked for cutting, and the haulers bring in the wood.</li>
+      <li>The industrious, hard workers and the tough like it; the lazy dislike it, and those whose ideoligion holds tree cutting wrong hate it.</li>
     </effects>
     <support>
       <plain>
@@ -117,7 +117,7 @@
     <defName>Rimfolk_Decree_Foraging</defName>
     <kind>stores</kind>
     <label>foraging days</label>
-    <description>Six days of taking in what the land grows by itself: each morning up to twelve wild plants ripe for picking within reach of the colony that give food (berries, agave, mushrooms) are marked for the growers' harvest. A tribe's berry days, a village's gleaning of the hedges, an industrial or spacer colony's survey of the land's harvest: the baskets come in the same. Growers spend their mornings in the brush rather than the fields. Those with a love of plants and ascetics like it; undergrounders mind it.</description>
+    <description>Six days of gathering wild food. Each morning up to twelve ripe wild plants near the colony that give food (berries, agave, mushrooms) are marked for harvesting, the nearest first. A tribe calls them berry days, a village gleans the hedges, and an industrial or spacer colony surveys what the land grows; the picking is the same. The growers spend more time on wild plants and less in the fields. Those with a passion for growing and ascetics like it; undergrounders and the industrious dislike it.</description>
     <requestWhen><li>FoodLow</li><li>Autumn</li></requestWhen>
     <order>42</order>
     <durationDays>6</durationDays>
@@ -132,9 +132,9 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
     </reactions>
     <effects>
-      <li>Each morning for six days, up to twelve wild plants ripe for picking within reach of the colony are marked for the growers' harvest, the nearest first: only plants that give food, never medicine, a drug or a tree with a beehive.</li>
-      <li>The growers spend their mornings picking them rather than in the fields.</li>
-      <li>Those with a love of plants and ascetics like it; undergrounders and the very industrious mind it.</li>
+      <li>Each morning for six days, up to twelve ripe wild plants within 45 cells of the middle of the colony and outside its growing zones are marked for harvesting, the nearest first: only plants that give food, never medicine, a drug or a tree.</li>
+      <li>The colony's growers pick them as they would any plant marked for harvesting, which takes time from the fields.</li>
+      <li>Those with a passion for growing and ascetics like it; undergrounders and the industrious dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -160,7 +160,7 @@
     <defName>Rimfolk_Decree_SavePower</defName>
     <kind>stores</kind>
     <label>saving the power</label>
-    <description>Five nights of saving the power: every lamp of the colony's is switched off at eleven at night and on again at five in the morning, except where a patient lies abed. The batteries carry the night with what the lamps would have burned. Anyone up in the night does it in the dark. Only for a colony on the grid; a tribe or a village banks its fires instead. Those who like the dark welcome it; night owls hate it, and the nervous mind it.</description>
+    <description>Five nights of saving the power. Every lamp of the colony's is switched off at eleven at night and on again at five in the morning, except in a room where a patient is in a medical bed. The power the lamps would have used stays in the batteries, and anyone up at night works in the dark. Only for a colony that has researched electricity; a tribe or a village banks its fires instead. Those whose ideoligion prefers darkness love it, and ascetics and undergrounders like it; night owls hate it, and the nervous and the volatile dislike it.</description>
     <research><li>Electricity</li></research>
     <requestWhen><li>PowerShort</li></requestWhen>
     <order>43</order>
@@ -179,9 +179,9 @@
       <li><trait>Undergrounder</trait><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Every lamp of the colony's is switched off from eleven at night to five in the morning (never one in a room with a patient abed), and on again as it was.</li>
-      <li>The batteries keep the power the lamps would have burned.</li>
-      <li>Those who like the dark, ascetics and undergrounders welcome it; night owls hate it, and the nervous mind it.</li>
+      <li>Every lamp of the colony's is switched off from eleven at night to five in the morning (never one in a room with a patient in a medical bed), and switched on again after.</li>
+      <li>The power the lamps would have used stays in the batteries.</li>
+      <li>Those whose ideoligion prefers darkness love it, and ascetics and undergrounders like it; night owls hate it, and the nervous and the volatile dislike it.</li>
     </effects>
     <support>
       <plain>
@@ -204,7 +204,7 @@
     <defName>Rimfolk_Decree_EveryFaith</defName>
     <kind>faith</kind>
     <label>every faith its evening</label>
-    <description>Ten days of the council treating every ideoligion in the colony alike: declared, the largest ideoligion that isn't the colony's own holds an evening of faith, and each morning those of other ideoligions trust the council a little more (the more open-minded the more) while the devout of the colony's own trust it a little less. It can't be declared while one ideoligion is named for the colony, nor that one while this holds. Only with Ideology and more than one ideoligion at home. Those of other ideoligions love it; the devout of the colony's own mind it.</description>
+    <description>For ten days the council treats every ideoligion in the colony alike. When it is declared, the largest ideoligion that isn't the colony's own holds an evening of faith, if one can be held. Each morning those of other ideoligions trust the council a little more (a quarter to half a point, more for the open-minded), and the devout of the colony's own ideoligion trust it a quarter point less. It can't be declared while one ideoligion is named the colony's, and that decree can't be declared while this one holds. Only with Ideology and more than one ideoligion at home. Those of other ideoligions love it, and the kind and those whose ideoligion frowns on being preached to like it; the devout of the colony's own dislike it.</description>
     <needsIdeology>true</needsIdeology>
     <everyFaith>true</everyFaith>
     <requestWhen><li>Newcomer</li><li>ColonyMiserable</li></requestWhen>
@@ -222,9 +222,9 @@
       <li><trait>Kind</trait><reaction>Like</reaction></li>
     </reactions>
     <effects>
-      <li>Declared, the largest ideoligion at home that isn't the colony's own holds an evening of faith, when one can be held.</li>
-      <li>Each morning those of other ideoligions trust the council a little more, the open-minded most; the devout of the colony's own ideoligion trust it a little less.</li>
-      <li>Those of other ideoligions love it and the kind like it; the devout of the colony's own mind it. Never together with one ideoligion for the colony.</li>
+      <li>When it is declared, the largest ideoligion at home that isn't the colony's own holds an evening of faith, if one can be held.</li>
+      <li>Each morning those of other ideoligions trust the council a little more (a quarter to half a point, the open-minded most); the devout of the colony's own ideoligion trust it a quarter point less.</li>
+      <li>Those of other ideoligions love it and the kind like it; the devout of the colony's own dislike it. Never together with one ideoligion for the colony.</li>
     </effects>
     <support>
       <plain>

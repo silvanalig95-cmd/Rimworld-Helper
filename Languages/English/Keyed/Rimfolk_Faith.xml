@@ -28,7 +28,7 @@
   <CC_FaithBtn_Evening>Call an ideoligion evening</CC_FaithBtn_Evening>
   <CC_FaithBtn_Evening_Tip>Ask {0}'s moral guide, or its most devout believer, to speak this evening. Its believers come to hear it; others decide for themselves, and a good evening can sway them.</CC_FaithBtn_Evening_Tip>
   <CC_FaithBtn_Decree>Name it the colony's ideoligion</CC_FaithBtn_Decree>
-  <CC_FaithBtn_Decree_Tip>Declare "one ideoligion for the colony" for {0}: each day the wavering of other ideoligions are drawn to it, its believers speak of it more often and council meetings open with a word from it, while everyone else trusts the council a little less until it's lifted.</CC_FaithBtn_Decree_Tip>
+  <CC_FaithBtn_Decree_Tip>Declare "one ideoligion for the colony" for {0}: each day those of other ideoligions are drawn a little toward it, its believers speak of it more often and council meetings open with a word from it, while everyone else trusts the council a little less until it's lifted.</CC_FaithBtn_Decree_Tip>
   <CC_FaithBtn_Decree_Confirm>Declare {0} the colony's ideoligion? Colonists of other ideoligions will trust the council a little less every day the decree holds. You can lift it on the decrees page.</CC_FaithBtn_Decree_Confirm>
   <CC_FaithBtn_DecreeHeld>The colony's ideoligion by decree</CC_FaithBtn_DecreeHeld>
   <CC_FaithBtn_DecreeHeld_Tip>{0} is the colony's ideoligion by decree. Lift it on the decrees page.</CC_FaithBtn_DecreeHeld_Tip>

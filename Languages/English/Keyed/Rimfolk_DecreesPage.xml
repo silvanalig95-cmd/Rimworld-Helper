@@ -34,13 +34,13 @@
   <CC_Decrees_Kind_work>Work</CC_Decrees_Kind_work>
   <CC_Decrees_Kind_work_Tip>How the colony works: longer days, a harvest or a building push, apprentices, lessons, a song at the bench.</CC_Decrees_Kind_work_Tip>
   <CC_Decrees_Kind_stores>Food and stores</CC_Decrees_Kind_stores>
-  <CC_Decrees_Kind_stores_Tip>What the colony eats and burns: rationing, austerity, banked fires, bread in a famine.</CC_Decrees_Kind_stores_Tip>
+  <CC_Decrees_Kind_stores_Tip>What the colony eats, burns and lays by: rationing, austerity, banked fires, famine bread, a hunting season, wood for the winter, foraging days and saving the power.</CC_Decrees_Kind_stores_Tip>
   <CC_Decrees_Kind_order>Order and health</CC_Decrees_Kind_order>
   <CC_Decrees_Kind_order_Tip>Safety, discipline and health: drills, guards, a curfew, a militia, quarantine, rest for the ill, a clean sweep, best behavior.</CC_Decrees_Kind_order_Tip>
   <CC_Decrees_Kind_spirit>Rest and spirit</CC_Decrees_Kind_spirit>
   <CC_Decrees_Kind_spirit_Tip>What lifts people: festivals, a feast, days of rest or mourning, quiet hours, meals together.</CC_Decrees_Kind_spirit_Tip>
   <CC_Decrees_Kind_faith>Faith</CC_Decrees_Kind_faith>
-  <CC_Decrees_Kind_faith_Tip>The colony's faith: holy days, a fast, tithes, one faith for all.</CC_Decrees_Kind_faith_Tip>
+  <CC_Decrees_Kind_faith_Tip>The colony's faith: holy days, a fast, tithes, one ideoligion for the colony, and every faith its evening.</CC_Decrees_Kind_faith_Tip>
   <CC_Decrees_Kind_world>The wider world</CC_Decrees_Kind_world>
   <CC_Decrees_Kind_world_Tip>The colony and its neighbours: a market day, open gates, alms for the poor.</CC_Decrees_Kind_world_Tip>
 </LanguageData>
