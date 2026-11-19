@@ -69,6 +69,8 @@ namespace ColonyCouncil
         public bool notOfA;
         /// <summary>Has a name.</summary>
         public bool named;
+        /// <summary>A herd: at least this many wild animals of its kind on the map, itself included (0 = alone will do).</summary>
+        public int minKin;
         /// <summary>Hurt or damaged (a mech that came back from a fight): below full health.</summary>
         public bool hurt;
         // ---- Anyone ----
@@ -242,7 +244,19 @@ namespace ColonyCouncil
             if (r.bondedToA && !(x.relations?.DirectRelationExists(PawnRelationDefOf.Bond, a) ?? false)) return false;
             if (r.notOfA && OfColonist(x, a)) return false;
             if (r.named && x.Name == null) return false;
+            if (r.minKin > 1 && KinOnMap(x) < r.minKin) return false;
             return true;
+        }
+
+        /// <summary>Wild animals of its kind on its map, itself included.</summary>
+        private static int KinOnMap(Pawn x)
+        {
+            var pawns = x.MapHeld?.mapPawns?.AllPawnsSpawned;
+            if (pawns == null) return 1;
+            int n = 0;
+            for (int i = 0; i < pawns.Count; i++)
+                if (pawns[i].def == x.def && pawns[i].Faction == null && !pawns[i].Dead) n++;
+            return n;
         }
 
         /// <summary>A stranger fitting the role, the nearer to A the likelier.</summary>

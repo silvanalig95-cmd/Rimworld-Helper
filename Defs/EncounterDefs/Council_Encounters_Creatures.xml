@@ -81,7 +81,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_DeadGift</defName>
-    <label>a gift from the hunt</label>
+    <label>prey left by a pet</label>
     <stranger>
       <kind>Pet</kind>
       <ofA>true</ofA>
@@ -294,7 +294,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_OldFriend</defName>
-    <label>an old friend slowing down</label>
+    <label>an old pet slowing down</label>
     <stranger>
       <kind>Pet</kind>
       <bondedToA>true</bondedToA>
@@ -397,7 +397,7 @@
     <weight>0.8</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>Work stopped all over the colony when {X_indefinite} crossed the far meadow, slow and enormous. {A_nameDef} had seen {X_objective} first and called the others out to look.</li>
+      <li>{A_nameDef} put down {A_possessive} work to watch {X_indefinite} cross the far meadow, slow and enormous.</li>
       <li>{A_nameDef} looked up from {A_possessive} work and saw {X_indefinite} among the trees, looking back. Neither of them moved until {X_pronoun} turned and walked off.</li>
       <li>{A_nameDef} lost most of the morning to watching {X_definite} drink from the stream.</li>
     </texts>
@@ -423,8 +423,8 @@
     <cooldownDays>15</cooldownDays>
     <texts>
       <li>{A_nameDef} crept close enough to {X_definite} to hear {X_objective} breathe, and came back shaking and grinning.</li>
-      <li>Flat in the grass all afternoon, {A_nameDef} studied the way {X_definite} set {X_possessive} feet down and what made {X_objective} lift {X_possessive} head.</li>
-      <li>{A_nameDef} spent the morning a few paces from {X_indefinite}, near enough to count the scars on {X_possessive} hide, and that evening started pacing out ground for a pen.</li>
+      <li>Flat in the grass for hours, {A_nameDef} studied the way {X_definite} set {X_possessive} feet down and what made {X_objective} lift {X_possessive} head.</li>
+      <li>{A_nameDef} spent the morning a few paces from {X_indefinite}, near enough to count the scars on {X_possessive} hide, and afterwards started pacing out ground for a pen.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GreatBeastClose</thought></li>
@@ -466,6 +466,7 @@
       <kind>Wild</kind>
       <notPredator>true</notPredator>
       <minBodySize>0.8</minBodySize>
+      <minKin>6</minKin>
     </stranger>
     <dayOnly>true</dayOnly>
     <weight>0.8</weight>
@@ -475,9 +476,9 @@
       <li>Fall</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} gave up counting at forty. The herd, {X_indefinite} and dozens more like {X_objective}, took most of the afternoon to pass the colony.</li>
+      <li>A herd grazed its way past the colony, {X_indefinite} and several more like {X_objective}, and {A_nameDef} stopped to count them.</li>
       <li>A herd went by to the south today, {X_definite} straggling at the back. {A_nameDef} stopped work to watch and was the last one back to it.</li>
-      <li>The herd took an hour to pass, and the fence shook the whole time under {A_nameDef}'s hands.</li>
+      <li>{A_nameDef} leaned on the fence for a while and watched the herd graze past.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_HerdPassed</thought></li>
@@ -503,8 +504,8 @@
     </seasons>
     <texts>
       <li>Birdsong from the hedges all morning, and {X_indefinite} dozing on a warm rock while {A_nameDef} worked.</li>
-      <li>{A_nameDef} ate lunch on an upturned bucket and took {A_possessive} time about it, with the hedges loud with birds and {X_indefinite} poking through the new grass.</li>
-      <li>{A_nameDef} whistled back at the birds for most of the afternoon. They ignored {A_objective}, but {X_indefinite} crept out of the grass to listen.</li>
+      <li>{A_nameDef} ate a meal on an upturned bucket and took {A_possessive} time about it, with the hedges loud with birds and {X_indefinite} poking through the new grass.</li>
+      <li>{A_nameDef} whistled back at the birds for a long while. They ignored {A_objective}, but {X_indefinite} crept out of the grass to listen.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Birdsong</thought></li>
@@ -541,7 +542,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_Stalker</defName>
-    <label>something watching</label>
+    <label>a predator watching</label>
     <stranger>
       <kind>Wild</kind>
       <predator>true</predator>
@@ -550,7 +551,7 @@
     <weight>0.9</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>For most of the afternoon {X_indefinite} paced the far side of the fence, keeping exactly level with {A_nameDef} as {A_pronoun} worked. {A_nameDef} stopped work early.</li>
+      <li>For hours {X_indefinite} paced the far side of the fence, keeping exactly level with {A_nameDef} as {A_pronoun} worked. {A_nameDef} stopped work early.</li>
       <li>{A_nameDef} went out for firewood and came face to face with {X_indefinite} nosing at the woodpile. They both backed away slowly, and {A_nameDef} came in without the wood.</li>
       <li>There are fresh prints right up to the fields, and {X_indefinite} lying in the shade just past them, watching {A_nameDef} work.</li>
       <li>{A_nameDef} looked up and found {X_indefinite} low in the long grass, eyes on {A_objective}. When {A_nameDef} stood up and shouted, the animal didn't run.</li>
@@ -583,7 +584,7 @@
     </seasons>
     <texts>
       <li>At first light {A_nameDef} found a row of seedlings bitten off at the root, and {X_indefinite} at the end of it, still chewing.</li>
-      <li>{A_nameDef} chased {X_indefinite} out of the crops three times before noon. The fourth time, {A_nameDef} sat down in the dirt and let {X_objective} have the corner.</li>
+      <li>{A_nameDef} chased {X_indefinite} out of the crops three times. The fourth time, {A_nameDef} sat down in the dirt and let {X_objective} have the corner.</li>
       <li>There's {X_indefinite} living under the hedge, and {X_pronoun} eats only from the rows {A_nameDef} tends.</li>
     </texts>
     <effects>
@@ -593,7 +594,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_FedWild</defName>
-    <label>a wild thing fed</label>
+    <label>feeding a wild animal</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -633,7 +634,7 @@
     <texts>
       <li>In the long grass, {X_indefinite} came right up to {A_nameDef} and sniffed {A_possessive} hair before wandering off.</li>
       <li>The adults froze when {X_indefinite} came toward {A_nameDef}. {A_nameDef} held out half an apple, and {X_definite} took it gently and went on {X_possessive} way.</li>
-      <li>"It touched noses with me," {A_nameDef} kept saying, all the way up from the water, and that night {A_pronoun} drew {X_definite} on the wall above the bed.</li>
+      <li>"It touched noses with me," {A_nameDef} kept saying, all the way up from the water, and later drew {X_definite} on the wall above {A_possessive} bed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WildTouchedNoses</thought></li>
@@ -694,7 +695,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_MyBeastReturns</defName>
-    <label>the beast at the tree line</label>
+    <label>the beast that attacked them, back again</label>
     <stranger>
       <kind>Wild</kind>
       <nemesis>true</nemesis>
@@ -728,7 +729,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} spotted {X_definite} drinking at the far water and came back at a run, leaving the buckets behind.</li>
-      <li>{A_nameDef} saw {X_definite} in the trees this morning. By noon the news had been round every table, and {A_nameDef} keeps looking over {A_possessive} shoulder.</li>
+      <li>{A_nameDef} saw {X_definite} in the trees, and the news soon went round every table. {A_nameDef} keeps looking over {A_possessive} shoulder.</li>
       <li>Since {X_definite} was seen circling the fields again in broad daylight, {A_nameDef} carries a blade even to the latrine.</li>
     </texts>
     <effects>
@@ -751,7 +752,7 @@
     <texts>
       <li>One moment {A_nameDef}'s hat was on the fence post. The next, {X_indefinite} was carrying it off into the brush.</li>
       <li>{A_nameDef} chased {X_indefinite} halfway to the hills for a stolen glove, lost {X_objective} in a thicket, and came back scratched and covered in burrs.</li>
-      <li>{A_nameDef}'s lunch went missing from the wall where {A_pronoun} had left it, and a trail of crumbs led to {X_indefinite} under a bush.</li>
+      <li>{A_nameDef}'s food went missing from the wall where {A_pronoun} had left it, and a trail of crumbs led to {X_indefinite} under a bush.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_RobbedByAnimal</thought></li>
@@ -760,7 +761,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_NightWalker</defName>
-    <label>a night-time visitor</label>
+    <label>a wild animal at night</label>
     <stranger>
       <kind>Wild</kind>
     </stranger>

@@ -31,6 +31,28 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.269.4</version>
+        <date>19 November 2026</date>
+        <title>The missions in plain words</title>
+        <points>
+          <li>Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.</li>
+          <li>When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.</li>
+          <li>The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.3</version>
+        <date>19 November 2026</date>
+        <title>The encounters in plain words</title>
+        <points>
+          <li>The encounters' names say plainly what happens, such as a predator watching or a wild animal at night.</li>
+          <li>Encounters no longer name a time still to come: no supper, evening or night in a moment told in the morning.</li>
+          <li>What an encounter says now matches the map: the guest who pitches in goes off to fell trees, silver is promised only where it always comes, children kept close needs a visiting child, and a herd passing needs a real herd.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.269.2</version>
         <date>19 November 2026</date>
         <title>The council's other questions in plain words</title>

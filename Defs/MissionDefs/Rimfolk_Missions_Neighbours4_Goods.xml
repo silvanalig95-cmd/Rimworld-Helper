@@ -103,7 +103,7 @@
         </doneTitles>
         <done>
           <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The wall going up round {PLACE} will have the colony's timber and stone in it.</li>
-          <li>[delivered,tower] {FACTION}'s carts are coming for the materials with {ITEM} silver, and {DEAD} sends word that the tower will be up before the raiders come back. From the top of it, they say, you will see the colony.</li>
+          <li>[delivered,tower] {FACTION}'s carts are coming for the materials with {ITEM} silver, and {DEAD} sends word that the tower will be up before the raiders come back.</li>
           <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver, and they'll look elsewhere for the rest.</li>
         </done>
         <failTitles>
@@ -111,7 +111,7 @@
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. {PLACE} will stand open a while longer, and {DEAD} has said so to anyone who will listen.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. {PLACE} will stay unprotected a while longer, and {DEAD} has said so to anyone who will listen.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s wall is off.</li>
@@ -142,7 +142,7 @@
         </titles>
         <texts>
           <li>[host] {HOST} of {PLACE} writes that the town's herds won't see the season out on what is left in the lofts, and asks the colony for fodder by a set day, at a good price.</li>
-          <li>[snow,their:lowtech] {DEAD}, who keeps {FACTION}'s herds at {PLACE}, has counted the hay in the lofts and the beasts in the byres, and the sums don't meet. Without more fodder they'll have to kill half the herd before the snow. A rider has brought the colony the list, and a good price.</li>
+          <li>[snow,their:lowtech] {DEAD}, who keeps {FACTION}'s herds at {PLACE}, has counted the hay in the lofts and the animals in the barns, and there isn't enough to go round. Without more fodder they'll have to kill half the herd before the snow. A rider has brought the colony the list, and a good price.</li>
           <li>[snow,their:hightech] {FACTION}'s feed store at {PLACE} took water in the autumn storms, and {DEAD}, their stock manager, says the animals won't see the winter out on what's left. The order came by courier, with a fair price and a set day.</li>
           <li>[parched] The grazing round {PLACE} has burned brown in the heat, and {FACTION}'s beasts are standing in the dust bawling for feed. {DEAD}, who keeps the herds, asks the colony for fodder by a set day, and will pay over its worth.</li>
           <li>[their:empire] The stables of the Empire at {PLACE} will be short of feed this season, the steward writes, and the knight's horses must not go thin. {DEAD} encloses the list and a price fitting the Empire's honour.</li>
@@ -211,7 +211,7 @@
           <li>[partial] Part of the fodder for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered,snow] The fodder is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The herds will see the spring, every head of them.</li>
+          <li>[delivered,snow] The fodder is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. Every one of the herd will make it to spring.</li>
           <li>[delivered,parched] {FACTION}'s carts are coming for the fodder, to take it straight out to the herds at {PLACE}, with {ITEM} silver and {DEAD}'s thanks.</li>
           <li>[delivered] {FACTION}'s carts are coming for the colony's fodder, with {ITEM} silver for it.</li>
           <li>[partial] Only part of the fodder is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
@@ -221,7 +221,7 @@
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little fodder ready for {FACTION}'s carts to be worth the road. {PLACE} will have to thin its herds, and {DEAD} knows who to thank for it.</li>
+          <li>[missed] There was far too little fodder ready for {FACTION}'s carts to make the trip. {PLACE} will have to thin its herds, and {DEAD} knows who didn't keep their promise.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s fodder is off.</li>
@@ -255,7 +255,7 @@
           <li>[pilgrimage] {FACTION} are sending a band of pilgrims from {PLACE} on the long walk to a holy place far to the south, and the road has nothing on it for weeks. {DEAD}, who leads them, asks the colony for food that keeps and cloth for the cold nights, by a set day, at a good price.</li>
           <li>[trek] Three households of {FACTION} are leaving {PLACE} to clear new land beyond the mountains. {DEAD}, who is taking them, has sent the colony a list of what they'll need to eat on the way and to roof themselves at the end, and a fair price.</li>
           <li>[expedition] {FACTION} are mounting an expedition from {PLACE} to the old ruins in the far north. {DEAD}, its leader, sent the colony an order for provisions that will keep and medicine for the road, by a set day, with a good price.</li>
-          <li>[their:empire] A herald of the Empire at {PLACE} announces that the knight will ride to the High Stellarch's court this season with a fitting train, and asks the colony to provision it. {DEAD}, the knight's steward, encloses the list and a price worthy of the Empire.</li>
+          <li>[their:empire] A herald of the Empire at {PLACE} announces that the knight will ride to the High Stellarch's court this season with a proper retinue, and asks the colony to provision it. {DEAD}, the knight's steward, encloses the list and a price worthy of the Empire.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -333,7 +333,7 @@
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The road from {PLACE} will start late and hungry, and {DEAD} knows why.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. The travellers from {PLACE} will set out late and short of food, and {DEAD} knows why.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for the road's stores is off.</li>
@@ -442,7 +442,7 @@
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little seed ready for {FACTION}'s carts to be worth the road. Half the fields at {PLACE} will lie bare this year, and {DEAD} has said so.</li>
+          <li>[missed] There was far too little seed ready for {FACTION}'s carts to make the trip. Half the fields at {PLACE} will lie bare this year, and {DEAD} has said so.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s seed is off.</li>

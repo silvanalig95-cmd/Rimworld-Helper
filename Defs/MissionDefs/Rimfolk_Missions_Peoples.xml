@@ -97,7 +97,7 @@
           <li>[cancelled] The order's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little medicine ready for {FACTION}'s carts to be worth the road. The sickhouse at {PLACE} will do what it can with what it has, and {DEAD} knows who said they would help.</li>
+          <li>[missed] There was far too little medicine ready for {FACTION}'s carts to make the trip. The sickhouse at {PLACE} will do what it can with what it has, and {DEAD} knows who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their carts will not come.</li>
@@ -187,7 +187,7 @@
           <li>[alone] No caravan went to {PLACE}, and {DEAD} set off alone with the chest in the end. The league writes down who said they would walk with {X_objective}.</li>
           <li>[turned] The colony's caravan turned back, and {DEAD} walked the rest of the road alone. The league has heard.</li>
           <li>[harmed] {DEAD} never reached {PLACE}. The league will want to know why, and will remember whose care {X_pronoun} was in.</li>
-          <li>[late] The colony's caravan took so long that the league sent its own riders for {DEAD}. They're glad of {X_objective}, and not of the colony.</li>
+          <li>[late] The colony's caravan took so long that the league sent its own riders for {DEAD}. They have {X_objective} safe now, and they are not pleased with the colony.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and {DEAD} has gone another way.</li>

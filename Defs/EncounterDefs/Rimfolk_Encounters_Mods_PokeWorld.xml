@@ -31,7 +31,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncPW_Shiny</defName>
-    <label>a glint in the grass</label>
+    <label>a shiny Pokémon</label>
     <stranger>
       <kind>Wild</kind>
       <tags>pokemon,shiny</tags>
@@ -51,7 +51,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncPW_Rare</defName>
-    <label>a rare one passing</label>
+    <label>a rare Pokémon passing</label>
     <stranger>
       <kind>Wild</kind>
       <tags>rarepokemon</tags>
@@ -71,7 +71,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncPW_ChildAndWild</defName>
-    <label>a small friend</label>
+    <label>a child and a small Pokémon</label>
     <stranger>
       <kind>Wild</kind>
       <tags>pokemon</tags>
@@ -84,7 +84,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} sat very still at the edge of the field holding out a berry, and after a long while {X_indefinite} came and took it from {A_possessive} hand. {A_nameDef} hasn't stopped talking about it.</li>
-      <li>{A_nameDef} and {X_indefinite} played chase along the fence for most of the afternoon, taking turns at being chased.</li>
+      <li>{A_nameDef} and {X_indefinite} played chase along the fence for a long while, taking turns at being chased.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncPW_SmallFriend</thought></li>
@@ -94,7 +94,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncPW_Partner</defName>
-    <label>out of its ball</label>
+    <label>a Pokémon partner's company</label>
     <stranger>
       <kind>Pet</kind>
       <ofA>true</ofA>
@@ -104,7 +104,7 @@
     <weight>1.2</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>{A_nameDef} was working alone when {A_possessive} Pokémon, {X_nameDef}, came and settled beside {A_objective}, just to be near. They stayed like that until the light went.</li>
+      <li>{A_nameDef} was working alone when {A_possessive} Pokémon, {X_nameDef}, came and settled beside {A_objective}, just to be near. They stayed like that for a long while.</li>
       <li>{X_nameDef} has learned the sound of {A_nameDef}'s footsteps, and comes running every time, whatever it was doing.</li>
       <li>{A_nameDef} sat down after a long day and {X_nameDef} climbed into {A_possessive} lap, which it has been too big to do for some time. {A_nameDef} didn't have the heart to say so.</li>
     </texts>

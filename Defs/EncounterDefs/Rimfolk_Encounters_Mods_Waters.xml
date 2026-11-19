@@ -27,7 +27,7 @@
       <li>At the water's edge {A_nameDef} found {X_indefinite} standing on one leg, and stood there with it a while, both of them waiting for something.</li>
       <li>[x:race:Heron] Motionless in the shallows, {X_definite} watched the water so hard that {A_nameDef} watched it too, until the beak flashed down and came up with a fish.</li>
       <li>[x:race:Swan] On the still water {X_definite} drifted past, and when {A_nameDef} came too near the reeds it rose up hissing, wings wide. {A_nameDef} backed off laughing.</li>
-      <li>[x:race:Flamingo] A flash of pink on the gray water, upside down and sifting the mud: {X_indefinite}. {A_nameDef} talked about nothing else at supper.</li>
+      <li>[x:race:Flamingo] A flash of pink on the gray water, upside down and sifting the mud: {X_indefinite}. {A_nameDef} talked about nothing else for the rest of the day.</li>
       <li>[x:race:AEXP_WildGoose] Out on the water {X_definite} honked at {A_nameDef} all the way along the bank, like a landlord after the rent.</li>
     </texts>
     <effects>
@@ -69,7 +69,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncD_RiverFolk</defName>
-    <label>busy at the river</label>
+    <label>creatures at the river</label>
     <mods><li>ludeon.rimworld.odyssey</li><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
     <stranger><kind>Wild</kind><races><li>AEXP_Beaver</li><li>AEXP_Platypus</li><li>Mink</li><li>Bullfrog</li></races></stranger>
     <lands><li>river</li><li>lake</li><li>swamp</li></lands>
@@ -81,7 +81,7 @@
       <li>[x:race:AEXP_Beaver] The saplings by the river had been gnawed to points, and {A_nameDef} followed the chips down to {X_indefinite}, dragging a branch twice its length toward its dam.</li>
       <li>[x:race:AEXP_Platypus] {A_nameDef} saw {X_indefinite} at the river and came back swearing it had a duck's bill and a beaver's tail, and that {A_pronoun} wasn't making it up.</li>
       <li>[x:race:Mink] Quick as a thrown rope, {X_indefinite} ran along the bank and into the water, and {A_nameDef} only saw the ripples where it had been.</li>
-      <li>[x:race:Bullfrog] All evening {X_indefinite} boomed from the reeds, and {A_nameDef} went down with a lamp to see what could make that noise. It was smaller than {A_possessive} hand.</li>
+      <li>[x:race:Bullfrog] For a long while {X_indefinite} boomed from the reeds, until {A_nameDef} went down to see what could make that noise. It was smaller than {A_possessive} hand.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_RiverFolk</thought></li>

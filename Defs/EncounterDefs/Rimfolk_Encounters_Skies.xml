@@ -32,7 +32,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncN_Eclipse</defName>
-    <label>dark at noon</label>
+    <label>an eclipse</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -43,8 +43,8 @@
     <weight>2.5</weight>
     <cooldownDays>15</cooldownDays>
     <texts>
-      <li>In the middle of the day the sun went dark, and {A_nameDef} watched {X_indefinite} lie down in the field as if it were night.</li>
-      <li>{A_nameDef} watched the sun go dark at noon, and saw {X_indefinite} at the tree line stop grazing and stand very still until the light came back.</li>
+      <li>The sun went dark in the daytime, and {A_nameDef} watched {X_indefinite} lie down in the field as if it were night.</li>
+      <li>{A_nameDef} watched the sun go dark, and saw {X_indefinite} at the tree line stop grazing and stand very still until the light came back.</li>
       <li>[lowtech] Under the dark sun, {A_nameDef} heard {X_indefinite} call out from the trees, once, and then nothing until the light returned.</li>
     </texts>
     <effects>
@@ -75,7 +75,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncN_MoonTale</defName>
-    <label>the face in the moon</label>
+    <label>stories about the moon</label>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <moment>clear</moment>
     <nightOnly>true</nightOnly>
@@ -114,7 +114,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncW_FogNight</defName>
-    <label>eyes in the night fog</label>
+    <label>an animal in the night fog</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -159,7 +159,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncW_Blizzard</defName>
-    <label>out of the blizzard</label>
+    <label>an animal sheltering from the blizzard</label>
     <mods><li>ludeon.rimworld.odyssey</li></mods>
     <stranger>
       <kind>Wild</kind>

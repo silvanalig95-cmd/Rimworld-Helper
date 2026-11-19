@@ -332,10 +332,43 @@ repo.
   (`Rimfolk_CampKinds_PeopleEvents*.xml`, with the peoples' batch), the camps' bubbles (`lines`, `momentLines`,
   `campLines`, an errand's `lines`, `Rimfolk_CampDay_Lines`), the moods and journals in `Council_Camp_Misc` and the kinds'
   files, the job report strings (already plain), the gods' camps (`Rimfolk_GodsWorld_Camps`, the gods' round).
-  Still to do, the second half: the encounters (`EncounterDefs`), the missions (`MissionDefs`) and the visitors (the
-  visits, travellers and their Keyed words); their top-of-screen messages were done in 0.251.0.
-  Still to pick, when the player asks: the gods and faith, the peoples, visitors (the encounters, missions and
-  visitors: the second half of camps and visitors), the region map, council and decrees, the Almanac, What's new.
+  The encounters, the first part of the second half of "camps and visitors", done (19 November 2026, the same go;
+  built, not released): the entry "Plain words: the encounters" above the newest release line. Files taken: the 28
+  files `Defs/EncounterDefs/` (`Council_Encounters_Creatures`, `_Home`, `_Home2`, `_Home3`, `_Home_Variants`, `_Lands`,
+  `_Lands_Variants`, `_Mods_Alpha`, `_Mods_Factions`, `_Mods_Hospitality`, `_Mods_Landforms`, `_Mods_Magic`,
+  `_Mods_MedievalOverhaul`, `_People`, `_Reputation`, `_Variants`, and `Rimfolk_Encounters_Grown`, `_Home_New`, `_Kin`,
+  `_Mods_Peoples`, `_Mods_PokeWorld`, `_Mods_Waters`, `_New`, `_Remembered`, `_Remembered_Lines`, `_Skies`,
+  `_Variants_More`, `_Waters`: the encounters' and nuisances' names, the names of what plays out, and their texts and
+  the variants' texts, which 0.251.0 made plain as messages, read again for agreement with the map and changed only
+  where they disagreed), and the encounters' Keyed words read again (the animals' scenes in `Rimfolk_AnimalDays.xml`,
+  the carving's and the felled wood's lines in `Rimfolk_DilemmaImpact.xml` and `Rimfolk_PlayOut.xml`, the marks of a
+  wild animal stepped too close to in `Rimfolk_HarmSix.xml`, the nuisances' "room" and the encounters' settings in
+  `ColonyCouncil.xml`: plain since the interface batches). Left as the player said: the journals the encounters write
+  (`journal` pools and the three `FlavorExtensionDef`s of journal lines in `_Skies` and `_Waters`), their moods
+  (`ThoughtDefs`; an encounter's name that is also its mood's stays in step with it) and the bubbles the scenes and
+  the too-close hurt say.
+  The missions and the visitors, the rest of the second half of "camps and visitors", done (19 November
+  2026, the same go; built, not released): the entry "Plain words: the missions and the visitors" above the newest
+  release line. Files taken: every mission in `Defs/MissionDefs/` (all 30 files: `Council_Missions`, `_Delivery`,
+  `_Hosting`, `_Remembered`, `Rimfolk_Missions_Festival`, `_Home`, `_Home2`, `_Home3`, `_Neighbours4`,
+  `_Neighbours4_Goods`, `_Peoples`, `_PeoplesC` to `_PeoplesG`, `_Road`, `_TownDay`, and the storylines
+  `Rimfolk_Storyline_Beast`, `_Children`, `_Dream`, `_Factor`, `_Grave`, `_Herd`, `_Quarrel`, `_Raiders`, `_Relic`,
+  `_Sickness`, `_Vault`, `_Well`: each mission's name, the offer's titles and texts, the answers' labels, the terms, the
+  storylines' notes, and the titles and letters when it ends; the fields done in 0.251.0, `accepted`, `ready`,
+  `reminder` and the answers' outcomes, read again for agreement), the missions' Keyed words (the `CC_Mission_` and
+  `CC_Missions_` keys of `ColonyCouncil.xml`, `Rimfolk_Missions_Home`, `_Home2`, `_Home3`, `Rimfolk_Storylines`,
+  `Rimfolk_Storylines2`, `Rimfolk_Storylines3`, `Rimfolk_Neighbours4`), and the visitors' Keyed words (`Rimfolk_Visitors`,
+  `Rimfolk_VisitorsMore2`, `Rimfolk_VisitorActs`, `Rimfolk_VisitorIdle`, `Rimfolk_VisitorServices`,
+  `Rimfolk_VisitorTrade`, `Rimfolk_Callers`, `Rimfolk_Guests`, `Rimfolk_GuestHelp`, `Rimfolk_KeepOut`,
+  `Rimfolk_TownLife`, `Rimfolk_Hostages_Standing`, `Rimfolk_Travellers`, `Rimfolk_RoadPost`; plain since the interface
+  batches but for one line). The visitors' happenings themselves are event cards (`Defs/IncidentDefs`, done in
+  0.243.0 to 0.245.0) and their job report strings already plain. Left: the storylines' spoken `lines` (speech), the
+  visitors' bubbles (`Rimfolk_Pool_VisitorIdle`, `Rimfolk_Pool_CallerSays`, `Rimfolk_VisitorLines`, the guests' help
+  pools), the moods (`ThoughtDefs`), the journals, and the talk with outsiders (`OutsiderTalkDefs`, `Rimfolk_Outsiders`).
+  "Camps and visitors" is all done: the camps (0.269.1), the encounters (0.269.3), the missions and the
+  visitors (built, not released).
+  Still to pick, when the player asks: the gods and faith, the peoples, the region map, council and decrees, the
+  Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -348,6 +381,146 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.269.4, **Plain words: the missions and the
+  visitors** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The seventeenth batch of the plain-words pass, the last of "camps and visitors" (the camps were
+  0.269.1, the encounters 0.269.3): the 30 files of `Defs/MissionDefs/` (the neighbours' funerals and weddings, the runaway, the shrine, the
+  rebuilding and provisions, the invitations, apprentices, guests of rank and refugees, the road's escorts, word carried,
+  lost children and harvests, the peoples' asks, the hands lent and goods sent, the quests at home and the twelve
+  storylines) and the Keyed words of the missions and the visitors. File list in the to-do entry "Rimfolk's text in
+  plain words".
+  - **What changed.** About 2,480 lines read in the 30 files (some 1,990 in this batch's fields, the other 495 the
+    fields of 0.251.0, read for agreement) and about 810 Keyed lines; 203 rewritten (65 offers' texts, 109 letters when
+    a mission ends, 10 terms, 13 titles, 4 mission names, 1 cancellation, 1 Keyed). Lofty or sung lines said plainly
+    ("Old {DEAD} is dead. Thirty winters {DEAD} led {PLACE} ... the way the old songs say a headman should be buried" is
+    "{DEAD}, headman of {PLACE} for thirty years, has died"), twists at the end ("They're glad. They're not glad about the
+    colony.", "{FACTION} say nothing about it, which is how they say it", "From the top of it, they say, you will see the
+    colony", "The goat came home.", "Their herder sent word asking the colony to keep {BEAST} out of the barley", "and the
+    other half needs fixing"), riddling lines ("the wall is the work, even with nobody on it", "the Line says where it
+    heard who promised", "what it is given keeps it from falling back", "the face is open"), things given a will ("an
+    old system has woken and wants parts", "masts singing", "the vats warm again"), invented idioms ("to be worth the
+    road", eleven times, is "to make the trip"; "paid to the day"; "a good tongue"; "came back with more blessings than
+    the packs could hold"), and in-world phrases explained where they stand (the Wardens light the lantern at the crossroads
+    when a beast has taken someone, the brass caps are a full weather-reader's, the Circuit never part an
+    animal from the one it bonded with). Names: "a neighbor's great day" is **a neighbor's funeral or wedding**, "an
+    apprentice of the glass" **an apprentice weather-reader**, "a listener who would be ordinary" **a Choir listener to
+    host**, "a journeyman's wander-year" **a journeyman's year of travel** (as 0.251.0 told it), the title "The herder's
+    rope" **Hand back the runaway?**, "Part of the parts" **Some of the parts**. The guests' tab: the Mossborn never
+    fell a tree because "the forest remembers every axe" is "they believe the forest remembers every tree that is cut
+    down".
+  - **Put right against the code** (DESIGN.md, "The missions' endings told as they happen"). About 60 of the letters
+    when a mission ends told as done what the ending only sets going: the neighbours' carts "took everything" and paid
+    (they come some hours later, `Couriers.CollectGoals`), the colony's guests and lent hands "came home" or "are coming
+    home" with their gifts (the caravan waits at the town with the gifts and pay in its packs), a runaway "went home to
+    where the herder was waiting down the road" (the herder comes to the colony, `Couriers.Fetch`), the tamed runaway's
+    herder "on the way up the road with a rope" before the colony answered, a lost child's family "came running", an
+    escaped runaway "off into the hills and gone" (it leaves within the hour), a pilgrim "has gone on alone" as they set
+    off; each now says what is happening. Missed deliveries no longer say the carts came and went home empty: nothing came.
+    The shrine's pilgrims came "singing" and knelt, and "say they'll stop here every year now": they spend the day
+    beside the shrine (`Arrivals.Visit`) and nothing brings them back, so the letters say they come and spend the day
+    there; the "no shrine" and "gone" letters no longer tell of pilgrims on the map. The Wardens' drive paid "a hide from
+    the lodge": the gift is of the colony's era (`Loot`), so "a gift from the lodge". The runaway's offer said it was
+    grazing on the colony's land, before it is: it is "near the colony's land" (it walks in when the colony agrees). An
+    old one lost on the colony's land was "an old man" (him, his) whoever was lost: no gender now. Words made true, not
+    the map: no code or def setting changed.
+  - **Checked and true as written.** Every time and number in the terms against the workers: the hands' hours (the
+    builders, the Wardens, the Banner, the union and the harvest 36, the healer 48, the teacher 36, the witness 12, the
+    smith, the Republic and the Lattice 24) and their skill levels, the feast's ten hours ("about half a day"), the
+    apprentice's 30 to 42 ("a day and a half or so"), the pilgrims a day or so after the shrine stands (0.8 to 1.5), the
+    guest of rank two or three days after the answer, the refugees about a day, the full price well over the worth (1.6
+    times) and half of each thing for the plain worth, the runaway's price four fifths of the reward.
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("a polite request not to mention it to
+    the bride", "read as far as the word "feast" and volunteered", "if {A_pronoun} doesn't mind being kicked now and
+    then", "the messengers came away with silver and headaches"); quoted speech keeps its voice ("We have the will, but
+    not the hands", the fire letter from Mill Street), and the faiths' words theirs (the dream of a god, the relic). The
+    quests at home and the storylines, written after the plain-words rule, were read and needed nothing; neither did the
+    missions' Keyed words, nor the visitors' but for the one line. The storylines' spoken `lines`, the visitors' bubbles,
+    moods, journals and the talk with outsiders are left as the player said. Every tag, placeholder and key kept (the
+    rewrite tool refused any line whose placeholder people, tag block or numbers changed; `Tools/textcheck.py --base` on
+    the lead branch finds nothing broken). No line of `Lean/ShippedLines.cs` is in these files.
+  - **Code map.** Def text in 14 of the 30 `Defs/MissionDefs/` files; one line of `Rimfolk_GuestHelp.xml`; DESIGN.md (the
+    new section under "Neighbours' requests and callers at the gate"). No code changed.
+  - **Can't be checked without the game.** How the plainer endings read in the letters beside the top-of-screen messages
+    of 0.251.0; that the carts, the herder and the family turn up after the letter that says they are coming.
+  - **Try in the game.** Dev mode, Debug actions, Incidents, "Execute incident" and pick "a neighbor's funeral or
+    wedding": accept it, fill the list, and the letter when it ends says their carts are coming; they come some hours
+    later. "a runaway": tame it and hand it back, and the herder walks in for it after the letter. "an invitation" or "a
+    lantern drive": once the caravan has stayed its time, the letter says the gifts are in the caravan's packs, and the
+    caravan is still at the town. "a shrine for the pilgrims": the pilgrims come and stay by the shrine for the day.
+  - **Mods that would help.** None for this; it is text only.
+- 0.269.3, **Plain words: the encounters** (19
+  November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
+  write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
+  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  sixteenth batch of the plain-words pass, the first part of the second half of "camps and visitors": the 28 files of
+  `Defs/EncounterDefs/` (225 small moments with visitors, traders, guests, prisoners, fallen enemies, pets, wild
+  animals, mechs, slaves and held entities, the home's 24 small irritations, and 86 sets of more lines for them): each
+  one's name, the names of what plays out, and their texts and variants read again against the map. The texts were
+  made plain as messages in 0.251.0, so their style was left as it is and only lines that disagreed with the map were
+  changed. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 1,390 lines read in the defs (1,134 texts, 249 names, 7 names of what plays out) and about
+    30 Keyed lines; 186 rewritten: 55 names, one name of what plays out, and 130 lines of text (about 110 for the hour
+    they name, about 20 for what the map shows). Names that were images or riddles say what happens: "something
+    watching" is **a predator watching**, "a night-time visitor" **a wild animal at night** (it never was a visitor),
+    "the beast at the tree line" **the beast that attacked them, back again**, "a crack in the rock" **a pet found a
+    cave**, "every grain counted" **known for hard bargains**, "not a weed" **the fields admired**, "a name they
+    remember" **thanked for helping their people** (it is the reason shown with the trust it gives), "out of its ball"
+    **a Pokémon partner's company**, "the river in spate" **the river in flood**; the meals carried out to the hungry
+    visitor are **food for {X_nameDef}** (two meals, not a bowl). A name that is also its mood's name ("warm feet", "a
+    name to carry", "a farewell, postponed", "a Motz at dusk") stays in step with the mood the player sees, which the
+    player said to leave.
+  - **Put right against the code: the hour.** An encounter is told as it happens, at any hour unless its def keeps it
+    to the day (5 to 20 h) or the night (21 to 4 h); a nuisance at any hour its `who` allows. About 110 lines named a
+    part of the day that could not have come yet: "Over supper, {X_nameDef} told {A_nameDef} about home" told at nine in
+    the morning, "spent the afternoon", "all evening", "until dark", "past midnight", "that night {A_pronoun} drew",
+    "By noon the news had been round every table". Each now names none ("over a meal", "for hours", "for a long while",
+    "afterwards", "at the table") or one that has passed; the morning may still be named (it has begun by the time
+    nearly every encounter is told, as both people must be awake), and a line tagged for its hour keeps it. Habits
+    ("each noon this week"), stories of other days ("the night the camels ran") and the nightly encounters' nights are
+    true as written.
+  - **Put right against the code: what the map shows.** The guest who pitches in "felled a dead tree out back before
+    {A_nameDef} noticed", "cut and hauled logs together all afternoon" with the colonist and "stacked them by size
+    against the wall": the guest and their own people fell the trees after the words are told and the logs lie by the
+    stumps (`DilemmaEffect_Felled`), so the guest now tells the colonist they are going to cut wood and goes off to
+    fell trees (three lines and two variants). The good hosts "pressed what {X_pronoun} could spare" into a hand and
+    "insisted on leaving something": the 15 silver comes six times in ten, so the words promise none and the visitor's
+    own words at the hand-over say it when it comes. A greedy colonist "won eleven coins" at dice that nothing pays: now
+    pebbles counted as if they were silver. A carved bird on the shelf, a bundle of healing herbs by the bed, mittens
+    copied and a rain cape of palm fronds, none of them made: the guest's thanks is a handshake, the wise-woman's a
+    message, the mittens and the cape are shown how to make. A mage healer "closed the old cut with a touch" and no
+    wound was healed: now says healers of their kind do. The refugee's carving is a small wooden carving, which is
+    what is handed over (a small sculpture or, with a mod, a statue or pottery). The visitor's gift of silver and
+    herbs was given "this morning", while the visitor hands it over now. The eclipse came "at noon" whenever it comes.
+    The harsh colony's "children kept close" told of a visiting child pulled back from a colonist, in its words and
+    both its moods, with only an adult visitor asked for: its stranger is now the visiting child (a def setting, a
+    commit of its own), a grown-up of the visitors pulling them back. The visitor who stares is no longer called a
+    guard (any visitor can be the one). The Almanac's desert animal shares the shade "in the heat of the day", not at
+    noon.
+  - **Left as they were.** The texts' style (the 0.251.0 pass made them plain as messages; the brief said not to redo
+    them), ordinary jokes and similes ("like a landlord after the rent", "like a stove"), quoted speech, the trades,
+    haggles and dice told as stories (a price talked down is the story's, not the trade window's), trinkets the game has
+    no thing for (a shell, a feather, a braided cord, seeds). The herd going by was counted at forty and more where only
+    one animal need be on the map: the lead added `StrangerRole.minKin` (at least that many wild animals of its kind on
+    the map, `Strangers.KinOnMap`), the herd asks for six, and its two lines and its mood's description say a herd grazed
+    past and the colonist stopped to watch, no count and no hours. The journals the
+    encounters write, their moods and the bubbles of the scenes and of the too-close hurt are left as the player said.
+    Every tag, placeholder and key kept (`Tools/textcheck.py --base` the def commit finds nothing; against the lead
+    branch it names only that commit's stranger setting, which is meant). No line of `Lean/ShippedLines.cs` is in these
+    files; the animals' scenes still open on the colonist (`AnimalDaysTests`).
+  - **Code map.** No code changed: def text in 26 of the 28 files (`Council_Encounters_Home3` and
+    `Rimfolk_Encounters_Home_New` were read and needed nothing), the stranger of `Council_EncR_ChildrenClose` a child
+    (`Council_Encounters_Reputation.xml`), DESIGN.md (the new section "The encounters' words against the map"), one line
+    of the Almanac's strangers page (`Almanac_Council.xml`, keywords unchanged).
+  - **Can't be checked without the game.** How the plainer names read where they show (the reason beside the trust the
+    kin's thanks give); how often a harsh colony now has the children kept close, which needs a visiting child; the
+    guest going off to fell trees after the words.
+  - **Try in the game.** Set "Moments with strangers and animals" high (How much happens) and let visitors and a trade
+    caravan stay a day: read the messages in the morning and in the evening; none names an hour still to come. With a
+    quest lodger by day, wait for "the guest pitched in": the guest goes off to fell trees and the wood lies by the
+    stumps. A colony known as harsh with visitors who bring a child: "children kept close" is about that child.
+  - **Mods that would help.** None for this; it is text and one def setting.
 - 0.269.2, **Plain words: council questions,
   part 2** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

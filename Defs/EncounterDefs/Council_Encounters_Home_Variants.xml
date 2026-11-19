@@ -16,8 +16,8 @@
       <li>{A_nameDef} spent the morning tugging at {A_possessive} badly made {THING}, which never sat right.</li>
       <li>The stitching on {A_nameDef}'s {THING} gave way again, in a new place this time.</li>
       <li>{A_nameDef} held {A_possessive} {THING} up to the light and counted the thin patches.</li>
-      <li>By midday {A_nameDef}'s badly made {THING} had rubbed a sore spot raw.</li>
-      <li>{A_nameDef} sat up after supper patching {A_possessive} {THING} again.</li>
+      <li>{A_nameDef}'s badly made {THING} had rubbed a sore spot raw.</li>
+      <li>{A_nameDef} sat down to patch {A_possessive} {THING} again.</li>
       <li>[winter|cold] The wind found every gap in {A_nameDef}'s badly sewn {THING}.</li>
       <li>[rain] The rain came through {A_nameDef}'s {THING} at every seam.</li>
       <li>[working] {A_nameDef} had to stop work twice to fix {A_possessive} {THING}.</li>
@@ -68,7 +68,7 @@
     <nuisance>Council_Nuisance_LongWalk</nuisance>
     <texts>
       <li>[rain] {A_nameDef} got to the table soaked through from the long walk over.</li>
-      <li>{A_nameDef} set off for supper early, to get there before it went cold.</li>
+      <li>{A_nameDef} set off for {A_possessive} meal early, to get there before it went cold.</li>
       <li>[morning] Half awake, {A_nameDef} made the long walk to breakfast and nearly fell asleep at the table.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

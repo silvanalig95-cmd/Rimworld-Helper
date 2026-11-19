@@ -5,6 +5,22 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The missions in plain words
+
+*19 November 2026, version 0.269.4*
+
+- Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.
+- When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.
+- The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.
+
+## The encounters in plain words
+
+*19 November 2026, version 0.269.3*
+
+- The encounters' names say plainly what happens, such as a predator watching or a wild animal at night.
+- Encounters no longer name a time still to come: no supper, evening or night in a moment told in the morning.
+- What an encounter says now matches the map: the guest who pitches in goes off to fell trees, silver is promised only where it always comes, children kept close needs a visiting child, and a herd passing needs a real herd.
+
 ## The council's other questions in plain words
 
 *19 November 2026, version 0.269.2*

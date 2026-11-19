@@ -180,7 +180,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdPassed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a herd go by</label><description>A herd took hours to pass the colony. I gave up counting at forty.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>watched a herd go by</label><description>A herd grazed its way past the colony, and I stopped to watch.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
