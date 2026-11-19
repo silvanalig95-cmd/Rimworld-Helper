@@ -9,14 +9,14 @@
     <label>alphas, legends and great herds</label>
     <category>Council</category>
     <order>13</order>
-    <summary>The wild has its leaders and its giants. A pack on the colony's land may run behind a named alpha, a beast that maimed or killed one of the colony flees hurt and comes back, a legend of the region roams the world map where a caravan can find it, and in spring and fall great herds cross the land and can be spooked into a stampede.</summary>
+    <summary>Some wild animals lead packs, come back for revenge or grow very large. A pack on the colony's land may follow a named alpha, a beast that maimed or killed one of the colony may flee hurt and come back, a legend of the region (one of the biggest animals) roams the world map where a caravan can find it, and in spring and fall great herds cross the land and can be spooked into a stampede.</summary>
     <tip>Each part has its own rate on How much happens (Pack alphas, Beast nemeses come back, Legends of the region, Great herds), from 0% to 200%. A downed or dying animal is never named, never flees and never comes back: only once it is up again.</tip>
     <description>The animals are picked by what they are (their size, whether they hunt, whether they live in herds), never from a list, so the base game's wolves and muffalo count as much as Megafauna's titans, Dinosauria's raptors and giants, Alpha Animals' behemoths and Vanilla Animals Expanded's herds. Harm comes only from what happens on the map and is shown where it happens: a stampede's blow, a returning beast's attack, the game's own fights.</description>
     <sections>
       <li>
         <heading>Pack alphas</heading>
         <points>
-          <li>Three or more of one hunting kind together on the land are a pack. A day in four, one may turn out to be led by an alpha: the biggest in its prime, named by someone of the colony, its name shown on the map.</li>
+          <li>Three or more of one hunting kind together on the land are a pack. Each day there is one chance in four that such a pack turns out to be led by an alpha: the biggest in its prime, named by someone of the colony, its name shown on the map.</li>
           <li>The alpha's mark makes it a little harder to hurt (85% of a blow) and harder-hitting (115%), with a quarter more meat and hide.</li>
           <li>One home has one alpha at a time, a month apart; three packs of the game's manhunters in ten run behind one, 15 days apart.</li>
           <li>The news tells of a plain pack; a letter comes only when an alpha-led pack threatens the colony, manhunting or hunting one of its people or animals.</li>
@@ -26,9 +26,9 @@
       <li>
         <heading>Beast nemeses</heading>
         <points>
-          <li>A wild animal that maims or kills one of the colony and gets away is a nemesis, as before; now it bears the scars of that day.</li>
+          <li>A wild animal that maims or kills one of the colony and gets away becomes a nemesis, and carries the scars of that fight.</li>
           <li>Any beast nemesis under 45% of its health and still on its feet turns and runs for the edge, and comes back 6 to 16 days later, twice at most: prowling the land, or one time in three for blood, with a letter.</li>
-          <li>Someone close to the one it hurt (a partner, kin, a bond of 30, an opinion of 60) swears to bring it down three times in five: a word said aloud, the life goal "settle the score" within reach, a sworn fury while it is on their map.</li>
+          <li>Someone close to the one it hurt (a partner, kin, a bond of 30, an opinion of 60) swears to bring it down three times in five: they say so aloud, the life goal "settle the score" opens to them, and while the beast is on their map they have "sworn fury" (steadier aim, less pain).</li>
           <li>How the oath ends is remembered: kept by their own hand, someone else's, tamed, or gone.</li>
         </points>
       </li>

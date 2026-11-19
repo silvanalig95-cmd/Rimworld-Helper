@@ -13,7 +13,7 @@
     <category>Defending</category>
     <order>15</order>
     <summary>Building up one way in, from a wall and a gate to a killbox and a line behind it</summary>
-    <tip>A gate you can hold this week beats a killbox you'll finish next year.</tip>
+    <tip>Build a gate you can hold now: a killbox that takes months to finish doesn't help against this week's raid.</tip>
     <description>A defense line is everything you build at one way into the colony: the wall across it, the gate, the cover behind, the traps in front, the guns, in time a killbox, and a second line behind it all. Nobody builds that in one go. The Defenses page (the "defense" button in the bottom bar, or the shield in the top right corner of Rimfolk's other windows) keeps your lines and suggests the next step for each, in the order most colonies find works, then looks over what stands and what the last raid did to it.</description>
     <sections>
       <li>
@@ -141,7 +141,7 @@ The helper lays the lane on the way raiders actually walk up to the gate, its ne
     <category>Defending</category>
     <order>35</order>
     <summary>What your shooters can see and reach, and what the raiders can hide behind</summary>
-    <tip>Every chunk left in front of the gate is cover you've built for them.</tip>
+    <tip>Every chunk left in front of the gate is cover for the raiders.</tip>
     <description>The field of fire is the ground your people shoot across, from the firing positions to the gate and beyond it. Three things decide how well it works: what stands in it to shelter the raiders, whether your people can see across it, and whether their weapons reach. Getting most of it right costs nothing but a few hours of cutting and hauling.</description>
     <sections>
       <li>
@@ -364,7 +364,7 @@ With the plan in front of you, it says where the wall stops short of the rock (a
     <category>Defending</category>
     <order>145</order>
     <summary>Traps, walls, turrets, the kill zone and the gate, before and after a raid</summary>
-    <tip>The hour after a raid decides how the next one goes.</tip>
+    <tip>Rearm the traps, repair the walls and clear the kill zone straight after a raid, before the next one comes.</tip>
     <description>A defense wears out. Traps go off, walls and gates are chipped, turrets run low on steel or lose their power, and the kill zone fills with corpses and new growth. None of it is hard to put right, but it has to be done before the next raid, and some of it only happens if you've set it up.</description>
     <sections>
       <li>
@@ -431,7 +431,7 @@ With the plan in front of you, it says where the wall stops short of the rock (a
     <category>Defending</category>
     <order>38</order>
     <summary>The cheapest way in, what makes a way dear, and why a killbox has to stay the easiest</summary>
-    <tip>Raiders don't see your traps, but they do count your walls.</tip>
+    <tip>Raiders don't see your traps, but they do go round walls they would have to break.</tip>
     <description>Raiders who walk in from the edge of the map make for your people by the way that costs them least. Most of a good defense is seeing that this way is the one you built for them, and not undoing it by accident.</description>
     <sections>
       <li>

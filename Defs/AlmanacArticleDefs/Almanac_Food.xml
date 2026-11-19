@@ -42,7 +42,7 @@
       </li>
       <li>
         <heading>Growing</heading>
-        <text>Plants grow normally at 6 to 42 °C, stop outside 0 to 58 °C, and start dying below -10 °C. They grow only 13 hours a day, so real growth takes about 1.846x the listed grow days. Before sowing late in the season, multiply the crop's listed grow days by 1.846 and check it ripens in time.</text>
+        <text>Plants grow normally at 6 to 42 °C, stop outside 0 to 58 °C, and start dying below -10 °C. They grow only about 13.2 hours a day (from 6:00 to about 19:12), so real growth takes about 1.82x the listed grow days. Before sowing late in the season, multiply the crop's listed grow days by 1.82 and check it ripens in time.</text>
         <table>
           <li>Ground | Fertility</li>
           <li>Rich soil | 140%</li>
@@ -537,13 +537,13 @@ Healroot is cold-resistant, as are nutrifungus and fibercorn with Ideology. Most
     <label>growing season</label>
     <category>Food</category>
     <order>90</order>
-    <summary>Plants rest 11 hours a night, so crops take about 1.85x their listed time</summary>
+    <summary>Plants rest about 11 hours a night, so crops take about 1.82x their listed time</summary>
     <tip>A plant's listed grow days count only the hours it is actually growing.</tip>
     <description>Plants only grow during the day, so the "grow days" on a plant's info card is not how long you'll actually wait. Your growers also only sow during the zone's growing period, and anything sown too close to its end never ripens. Do the arithmetic before you plant something slow late in the year.</description>
     <sections>
       <li>
         <heading>Listed days and real days</heading>
-        <text>Plants rest from about 19:12 to 6:00, leaving about 13 growing hours a day. Real growth time is therefore about 1.82x the listed grow days: a potato listed at 5.8 days takes about 10.5 days on soil. A crop must reach about 65% growth before it can be harvested.</text>
+        <text>Plants rest from about 19:12 to 6:00, leaving about 13.2 growing hours a day. Real growth time is therefore about 1.82x the listed grow days: a potato listed at 5.8 days takes about 10.5 days on soil. A crop must reach about 65% growth before it can be harvested.</text>
       </li>
       <li>
         <heading>Sowing in time</heading>
@@ -683,9 +683,9 @@ Late in the season, sow fast rice instead of slow corn, and switch off sowing on
         <text>Rice takes 3 listed grow days, about 5.5 real days, and yields 6 rice per plant. With a fertility sensitivity of 1.0, it gets the full benefit of good ground. Raw rice rots in 40 days.</text>
         <table>
           <li>Ground | Harvest per tile per day</li>
-          <li>Soil | 1.08</li>
-          <li>Rich soil | 1.52</li>
-          <li>Hydroponics | 3.03</li>
+          <li>Soil | 1.10</li>
+          <li>Rich soil | 1.54</li>
+          <li>Hydroponics | 3.08</li>
         </table>
       </li>
       <li>
@@ -719,9 +719,9 @@ Late in the season, sow fast rice instead of slow corn, and switch off sowing on
     <description>Potatoes care little about soil, so they lose only a bit of speed on stony soil or gravel where rice and corn struggle. That makes them the natural staple on rocky maps. In hydroponics, though, they waste most of the basin's bonus.</description>
     <sections>
       <li>
-        <text>Potatoes take 5.8 listed grow days, about 10.7 real days, and yield 11 potatoes per plant. Their fertility sensitivity is only 0.4, so they harvest 0.90 per tile per day on gravel, hardly less than the 1.03 they manage on soil. Rich soil lifts them only to 1.19, which is why it's better spent on rice or corn while potatoes go on gravel and stony soil.
+        <text>Potatoes take 5.8 listed grow days, about 10.5 real days, and yield 11 potatoes per plant. Their fertility sensitivity is only 0.4, so they harvest 0.92 per tile per day on gravel, hardly less than the 1.04 they manage on soil. Rich soil lifts them only to 1.21, which is why it's better spent on rice or corn while potatoes go on gravel and stony soil.
 
-In hydroponics they reach 1.77, only about 58% of what rice does, so keep potatoes for outdoor fields and use the basins for rice. Raw potatoes rot in 30 days; freeze or cook a big harvest before then.</text>
+In hydroponics they reach 1.79, only about 58% of what rice does, so keep potatoes for outdoor fields and use the basins for rice. Raw potatoes rot in 30 days; freeze or cook a big harvest before then.</text>
       </li>
     </sections>
     <keywords>
@@ -750,7 +750,7 @@ In hydroponics they reach 1.77, only about 58% of what rice does, so keep potato
     <sections>
       <li>
         <heading>How it grows</heading>
-        <text>Corn takes 11.3 listed grow days, about 20.9 real days, and yields 22 corn per plant. Its fertility sensitivity is 1.0, so it suffers on poor ground: it harvests 0.74 per tile per day on gravel, 1.05 on soil and 1.48 on rich soil. It can't be grown in hydroponics.</text>
+        <text>Corn takes 11.3 listed grow days, about 20.5 real days, and yields 22 corn per plant. Its fertility sensitivity is 1.0, so it suffers on poor ground: it harvests 0.75 per tile per day on gravel, 1.07 on soil and 1.50 on rich soil. It can't be grown in hydroponics.</text>
       </li>
       <li>
         <heading>Planting it</heading>
@@ -917,7 +917,7 @@ Put basins in a roofed room with a sun lamp and a heater for winter. Grow rice o
     <sections>
       <li>
         <heading>The arithmetic</heading>
-        <text>A basin of rice gives 24 rice about every 1.98 days: about 12.1 rice, or 0.61 nutrition, a day. Cooked into simple meals, one colonist's 1.6 nutrition a day needs about 1.5 basins of rice. A more cautious reference figure is 7.5 plant tiles per colonist, about 1.9 basins.
+        <text>A basin of rice gives 24 rice about every 1.95 days: about 12.3 rice, or 0.62 nutrition, a day. Cooked into simple meals, one colonist's 1.6 nutrition a day needs about 1.5 basins of rice. A more cautious reference figure is 7.5 plant tiles per colonist, about 1.9 basins.
 
 So plan 2 basins of rice per colonist if hydroponics is your main food source.</text>
       </li>
@@ -925,9 +925,9 @@ So plan 2 basins of rice per colonist if hydroponics is your main food source.</
         <heading>Other basin crops</heading>
         <table>
           <li>Crop | Food per basin per day</li>
-          <li>Rice | about 12.1</li>
-          <li>Strawberries | about 10.6</li>
-          <li>Potatoes | about 7.1</li>
+          <li>Rice | about 12.3</li>
+          <li>Strawberries | about 10.7</li>
+          <li>Potatoes | about 7.2</li>
         </table>
       </li>
       <li>
@@ -1043,7 +1043,7 @@ Harvesting haygrass beats letting animals graze it. A haygrass plant gives 18 ha
     <description>Haygrass produces more per tile than any other plant, but people can't eat hay: it's for your animals. Stockpiled hay keeps grazing animals fed through winter, when there's nothing left to graze.</description>
     <sections>
       <li>
-        <text>Haygrass takes 7 listed grow days, about 12.9 real days, and yields 18 hay per plant. Its fertility sensitivity is 0.6, and on soil it harvests 1.39 per tile per day, the best of any plant. It can't be grown in hydroponics. Hay gives 0.05 nutrition per unit, rots in 60 days, and can also be made into straw matting.
+        <text>Haygrass takes 7 listed grow days, about 12.7 real days, and yields 18 hay per plant. Its fertility sensitivity is 0.6, and on soil it harvests 1.41 per tile per day, the best of any plant. It can't be grown in hydroponics. Hay gives 0.05 nutrition per unit, rots in 60 days, and can also be made into straw matting.
 
 Harvest it rather than letting animals graze it: a full-grown plant eaten in place gives about 0.30 nutrition, while its 18 hay give 0.90 once harvested. Grow haygrass through the summer, keep animals out of the field with fences or allowed areas, and store the hay in or next to the barn so the animals eat there once grazing stops.</text>
       </li>
@@ -1119,7 +1119,7 @@ Harvest it rather than letting animals graze it: a full-grown plant eaten in pla
     <sections>
       <li>
         <heading>Growing it</heading>
-        <text>Healroot takes 7 listed grow days, about 12.9 real days, and yields 1 herbal medicine per plant: only 0.08 medicine per tile per day on soil. Sowing it needs Plants skill 8, so plant a patch as soon as someone reaches Plants 8, before a raid or a plague uses up the medicine you have.
+        <text>Healroot takes 7 listed grow days, about 12.7 real days, and yields 1 herbal medicine per plant: only 0.08 medicine per tile per day on soil. Sowing it needs Plants skill 8, so plant a patch as soon as someone reaches Plants 8, before a raid or a plague uses up the medicine you have.
 
 Its fertility sensitivity is 1.0, so put it on your best soil. Unlike most crops, it's cold-resistant.</text>
       </li>
@@ -1155,10 +1155,10 @@ Its fertility sensitivity is 1.0, so put it on your best soil. Unlike most crops
         <heading>Strawberries and wild bushes</heading>
         <table>
           <li>Plant | Grow days | Yield | How you get it</li>
-          <li>Strawberries | 4.6 listed (about 8.5 real) | 8 per plant | Sown in fields or hydroponics basins</li>
+          <li>Strawberries | 4.6 listed (about 8.4 real) | 8 per plant | Sown in fields or hydroponics basins</li>
           <li>Wild berry bush | 6 | 10 per harvest | Can't be planted; harvested again and again with a cut-only growing zone</li>
         </table>
-        <after>Strawberries have a fertility sensitivity of 1.0 and harvest 0.94 per tile per day on soil and 2.64 in hydroponics, so try them in basins if you want a crop besides rice. Berries rot in 14 days.</after>
+        <after>Strawberries have a fertility sensitivity of 1.0 and harvest 0.96 per tile per day on soil and 2.68 in hydroponics, so try them in basins if you want a crop besides rice. Berries rot in 14 days.</after>
       </li>
       <li>
         <heading>In a crisis start</heading>
@@ -1229,7 +1229,7 @@ Its fertility sensitivity is 1.0, so put it on your best soil. Unlike most crops
     <description>Cotton is your everyday textile: shirts, pants, beds and more. It grows at a steady pace and does well in hydroponics if you have basins to spare.</description>
     <sections>
       <li>
-        <text>Cotton takes 8 listed grow days, about 14.8 real days, and yields 10 cloth per plant. It harvests 0.68 per tile per day on soil and 1.9 in hydroponics. Its fertility sensitivity is 1.0, so grow it on good soil, and start the patch early so clothes can be replaced before they wear out. Grazing animals will eat the plants, which are worth 0.2 nutrition to them, so keep them out of the field.</text>
+        <text>Cotton takes 8 listed grow days, about 14.5 real days, and yields 10 cloth per plant. It harvests 0.69 per tile per day on soil and 1.9 in hydroponics. Its fertility sensitivity is 1.0, so grow it on good soil, and start the patch early so clothes can be replaced before they wear out. Grazing animals will eat the plants, which are worth 0.2 nutrition to them, so keep them out of the field.</text>
       </li>
     </sections>
     <keywords>
@@ -1257,9 +1257,9 @@ Its fertility sensitivity is 1.0, so put it on your best soil. Unlike most crops
     <sections>
       <li>
         <heading>A long season</heading>
-        <text>Devilstrand takes 22.5 listed grow days, about 41.5 real days, so sow it right at the start of the growing season. Where the season is shorter than the roughly 42 days it needs, it won't ripen outdoors at all, and it can't be grown in hydroponics.
+        <text>Devilstrand takes 22.5 listed grow days, about 40.9 real days, so sow it right at the start of the growing season. Where the season is shorter than the roughly 41 days it needs, it won't ripen outdoors at all, and it can't be grown in hydroponics.
 
-Sowing it needs Plants 10. Each plant yields 6, only 0.14 per tile per day on soil, and with a fertility sensitivity of 1.0 it wants rich soil. With Biotech, it grows on polluted soil.</text>
+Sowing it needs Plants 10. Each plant yields 6, only 0.15 per tile per day on soil, and with a fertility sensitivity of 1.0 it wants rich soil. With Biotech, it grows on polluted soil.</text>
       </li>
       <li>
         <heading>The cloth</heading>
@@ -1295,12 +1295,12 @@ Sowing it needs Plants 10. Each plant yields 6, only 0.14 per tile per day on so
         <table>
           <li> | Smokeleaf | Psychoid</li>
           <li>Listed grow days | 7.5 | 9</li>
-          <li>Real grow days | about 13.9 | about 16.6</li>
+          <li>Real grow days | about 13.6 | about 16.4</li>
           <li>Yield per plant | 9 leaves | 8 leaves</li>
           <li>Fertility sensitivity | 1.0 | 0.4</li>
-          <li>Harvest per tile per day on soil | 0.65 | 0.48</li>
+          <li>Harvest per tile per day on soil | 0.66 | 0.49</li>
         </table>
-        <after>In hydroponics, smokeleaf harvests 1.82 per tile per day. Put psychoid on poor ground and smokeleaf on good soil. With Biotech, psychoid is one of the few plants that grows on polluted ground.</after>
+        <after>In hydroponics, smokeleaf harvests 1.85 per tile per day. Put psychoid on poor ground and smokeleaf on good soil. With Biotech, psychoid is one of the few plants that grows on polluted ground.</after>
       </li>
       <li>
         <heading>Before the stockpile fills</heading>
@@ -1334,7 +1334,7 @@ Sowing it needs Plants 10. Each plant yields 6, only 0.14 per tile per day on so
       <li>
         <heading>From field to barrel</heading>
         <points>
-          <li>Grow the hops: 5 listed grow days (about 9.2 real) and 8 hops per plant. They harvest 0.87 per tile per day on soil and 1.96 in hydroponics.</li>
+          <li>Grow the hops: 5 listed grow days (about 9.1 real) and 8 hops per plant. They harvest 0.88 per tile per day on soil and 1.99 in hydroponics.</li>
           <li>Brew the hops into wort at a brewery.</li>
           <li>Ferment the wort into beer in barrels, kept in a heated or cooled room between 7 and 32 °C so batches aren't ruined.</li>
         </points>
