@@ -29,19 +29,17 @@ go sounds great. Some storytellers and fewer traders and fewer fights. That's al
 fitting for the scenario, it should also just be reflected in the description. The advisor warning for greenhouse
 plants dying is fine. I'm aware of that now. You don't need to do it. Yeah, you can go ahead in the order that makes
 most sense." So, in this order, three builds at a time:
-1. **Riding out to far work** (a bug, built, not released; the entry "Riding out to far work: the beast taken first"
-   above the newest release line).
-2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
+1. **Riding out to far work** (a bug): released 0.266.5.
+2. **Rooms judged by what is in them** (released 0.266.6) and **quests, round 3** (released 0.267.0).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
    lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0); round 8 is being built.
-4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
-   words" below).
+4. **The plain-words text pass**: every category done and released (0.266.9 to 0.271.1) but the peoples' own texts and
+   Almanac pages, which wait for the player's answer (below; the entry "Rimfolk's text in plain words").
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
    numbered proposals and the lead's first batch); nothing is built until the player picks from it.
-6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
-   and said" above the newest release line).
+6. **The storytellers' below-base levers**: released 0.266.8.
 7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
-   the mood (0.266.7), choosing the material from the gear tab (built), a god's mark worth having (being built).
+   the mood (0.266.7), choosing the material from the gear tab (0.268.1), a god's mark worth having (0.268.3).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
