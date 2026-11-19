@@ -16,13 +16,27 @@ namespace ColonyCouncil
     /// queue) goes into the game's incident queue a couple of hours on, and the line's warning is told now
     /// (RelayMast.Warn); the storyteller doesn't fire it now. Where no mast sings, a landing party of the Hollow Fleet
     /// camped at the home warns of it the same way, once a stay (Peoples/Events8/LandingParty.cs). The Conclave's watch on the sky (Patch_GlassHold) holds
-    /// only the sky's conditions, so the two never hold the same incident.
+    /// only the sky's conditions, so the two never hold the same incident. Before any of that, while a warden of the quiet's word on the
+    /// void's next threat holds for the home (Peoples/Events9/VoidListens.cs), one of the void's threats the storyteller sends there takes
+    /// the form the warden named, when that one can come (nothing is added).
     /// </summary>
     [HarmonyPatch(typeof(Storyteller), nameof(Storyteller.TryFire))]
     public static class Patch_LineMastWarns
     {
         public static bool Prefix(FiringIncident fi, bool queued, ref bool __result)
         {
+            // A warden of the quiet's word on the void's next threat (Peoples/Events9/VoidListens.cs): the storyteller's own takes that form.
+            if (!queued && RimfolkPatches.On && fi?.def != null)
+            {
+                try
+                {
+                    VoidListens.Steer(fi);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("peoples' events 9: the void's word", e);
+                }
+            }
             if (queued || !RimfolkPatches.On || fi?.def == null || !(fi.def.Worker is IncidentWorker_Raid)) return true;
             try
             {

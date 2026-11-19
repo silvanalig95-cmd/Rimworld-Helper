@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 9 (Source/ColonyCouncil/Peoples/Events9/): the jobs they are seen doing on the map, the work on a
+       colonist (round 1's PeopleWorkOn), the moods the round gives, and the Lattice's link on a mechanitor. -->
+
+  <!-- ===================== Their own work at a thing, a person or a place (JobDriver_PEv9Work) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Relink</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>relinking TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_SitWith</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>keeping beside TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>quiet</mark><follow>true</follow></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_ListenEdge</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>listening at the edge of the colony's land.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>hum</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_TendMech</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>seeing to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_CutRock</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>cutting TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Mend</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>mending TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_RingSit</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>sitting with the Choir's ring.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>hum</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Sing</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>singing at the fire.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>hum</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Console</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>answering the vault's overseer.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Lesson</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>teaching the vault's scouts.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Search</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>looking for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_TalkOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>talking with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_LookAt</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>looking at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Their work on a colonist (round 1's PeopleWorkOn) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Link</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>linking TargetA into the Lattice.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>sparks</mark><done>ColonyCouncil.LatticeLinkDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Hum</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>humming at TargetA's bed.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>bed</place><mark>hum</mark><done>ColonyCouncil.HumDeepenedDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv9_Bionic</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>fitting a bionic to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>bed</place><mark>cross</mark><done>ColonyCouncil.LastPartDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The Lattice's link (Hediff_LatticeLink; its bandwidth set at startup with Biotech) ===================== -->
+
+  <HediffDef>
+    <defName>Rimfolk_LatticeLink</defName>
+    <label>linked into the Lattice</label>
+    <description>This mechanitor's mind is linked into the Lattice's own, through the mech-tenders' array. The Lattice lends them bandwidth for as long as it stays at peace with the colony; if it doesn't, the link goes quiet for good. The whole link sometimes brings another linked mind's dream at night.</description>
+    <hediffClass>ColonyCouncil.Hediff_LatticeLink</hediffClass>
+    <defaultLabelColor>(0.45, 0.45, 0.85)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <label>for work</label>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>whole</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_LatticeDreamGood</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>another's good dream</label><description>Last night I dreamed someone else's dream through the Lattice's link: a yard full of mechs working quietly in the sun, and people I have never met calling me by name.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_LatticeDreamBad</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>another's bad dream</label><description>Last night I dreamed someone else's dream through the Lattice's link: a mech falling apart in the dark, and nobody answering when I called.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_QuietWarden</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a warden of the quiet stayed with me</label><description>A warden of the Choir stayed beside me all day after what the void did to me. They hardly said anything, but I feel steadier than I have in a while.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ChoirSatWith</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a listener sat with me</label><description>A listener of the Choir sat beside me while I was not myself, and then it was over. I feel calmer than I expected to.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RingCalm</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the Choir's evening song</label><description>The Choir is camped on our land, and their singing this evening reached me. Something in me went quiet.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RingUnease</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>uneasy at the Choir's song</label><description>The Choir is camped on our land, and their singing this evening got under my skin. I can't say why it bothered me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RingStrange</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the Choir's song went strange</label><description>The Choir's singing tonight went wrong partway through and sounded strange to me. They packed up and left.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

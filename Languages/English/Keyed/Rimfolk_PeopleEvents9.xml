@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 9 (Source/ColonyCouncil/Peoples/Events9/). -->
+
+  <!-- ===================== 84. Linked into the Lattice ===================== -->
+
+  <CC_PEv9_Linked>{TENDER} has linked {PAWN_nameDef} into {FACTION}. {PAWN_pronoun} can command {COUNT} more bandwidth of mechs while the Lattice and the colony are at peace, and may now and then dream another linked mind's dream.</CC_PEv9_Linked>
+  <CC_PEv9_LinkedWork>{TENDER} has linked {PAWN_nameDef} into {FACTION} for work only. {PAWN_pronoun} can command {COUNT} more bandwidth of mechs while the Lattice and the colony are at peace.</CC_PEv9_LinkedWork>
+  <CC_PEv9_LinkedChronicle>{PAWN_nameDef} was linked into {FACTION}.</CC_PEv9_LinkedChronicle>
+  <CC_PEv9_TheLattice>the Lattice</CC_PEv9_TheLattice>
+  <CC_PEv9_LinkQuiet>{PAWN_nameDef}'s link into {FACTION} has gone quiet: they are no longer at peace with the colony, and the bandwidth they lent is gone.</CC_PEv9_LinkQuiet>
+  <CC_PEv9_MechanitorGone>The mechanitor is not at home any more.</CC_PEv9_MechanitorGone>
+  <CC_PEv9_AlreadyLinked>The mechanitor is already linked in, or no longer has a mechlink.</CC_PEv9_AlreadyLinked>
+  <CC_PEv9_Impact_LinkWork>{0} works on {1} for two hours with the array, where {1} stands</CC_PEv9_Impact_LinkWork>
+  <CC_PEv9_Impact_LinkWorkBrief>linked in where they stand</CC_PEv9_Impact_LinkWorkBrief>
+  <CC_PEv9_Impact_Bandwidth>{0} can command {1} more bandwidth of mechs while {2} and the colony are at peace</CC_PEv9_Impact_Bandwidth>
+  <CC_PEv9_Impact_BandwidthBrief>more bandwidth</CC_PEv9_Impact_BandwidthBrief>
+  <CC_PEv9_Impact_Dreams>Now and then {0} dreams another linked mind's dream: a small mood for a day, good or bad</CC_PEv9_Impact_Dreams>
+  <CC_PEv9_Impact_DreamsBrief>another's dreams</CC_PEv9_Impact_DreamsBrief>
+
+  <!-- ===================== 85. A mech gone feral ===================== -->
+
+  <CC_PEv9_Relinked>{WARDEN} has relinked the {MECH} at the gate, and the Lattice has paid the colony {COUNT} silver for the trouble. The wardens are taking it home.</CC_PEv9_Relinked>
+  <CC_PEv9_FeralDown>The feral {MECH} is down. Its wreck is the colony's, to take apart for its parts.</CC_PEv9_FeralDown>
+  <CC_PEv9_FeralGone>The feral mech is already down or gone.</CC_PEv9_FeralGone>
+  <CC_PEv9_Impact_Relink>{0} calls the {1} over the link; it walks to the gate, where it is relinked and led home</CC_PEv9_Impact_Relink>
+  <CC_PEv9_Impact_RelinkBrief>relinked at the gate</CC_PEv9_Impact_RelinkBrief>
+  <CC_PEv9_Impact_Down>The link-wardens go after the {0}, and the colony's fighters can join them</CC_PEv9_Impact_Down>
+  <CC_PEv9_Impact_DownBrief>taken down</CC_PEv9_Impact_DownBrief>
+  <CC_PEv9_Impact_Wreck>The wreck of the {0} is the colony's, for its parts</CC_PEv9_Impact_Wreck>
+  <CC_PEv9_Impact_WreckBrief>the wreck</CC_PEv9_Impact_WreckBrief>
+  <CC_PEv9_Impact_Fight>It fights back: whoever goes near it may be hurt (the game's own fight)</CC_PEv9_Impact_Fight>
+  <CC_PEv9_Impact_FightBrief>a fight</CC_PEv9_Impact_FightBrief>
+  <CC_PEv9_Impact_Roams>The {0} roams the colony's land, attacking whatever comes near, until it wanders off</CC_PEv9_Impact_Roams>
+  <CC_PEv9_Impact_RoamsBrief>it roams</CC_PEv9_Impact_RoamsBrief>
+
+  <!-- ===================== 86. A mech yard ===================== -->
+
+  <CC_PEv9_YardHireStart>The Lattice's mechs are working for the colony today: the lifters carry its loose things into the stockpiles, and the rest mend its worn buildings.</CC_PEv9_YardHireStart>
+  <CC_PEv9_YardHireOver>The day's hire is over, and the Lattice's mechs have gone back to their own work.</CC_PEv9_YardHireOver>
+  <CC_PEv9_YardFeralLabel>A feral {0}</CC_PEv9_YardFeralLabel>
+  <CC_PEv9_YardFeral>A {THING} at the Lattice's mech yard has slipped its link and gone feral. It attacks whatever comes near it. {X_nameDef} and the link-hands are going after it.</CC_PEv9_YardFeral>
+  <CC_PEv9_YardHired>Their mechs are already working for the colony today.</CC_PEv9_YardHired>
+  <CC_PEv9_YardNoMechs>They have no mechs fit to work.</CC_PEv9_YardNoMechs>
+  <CC_PEv9_Impact_Yard>A mech-tender, two link-hands and their labour mechs of {0} camp by the colony for five to seven days</CC_PEv9_Impact_Yard>
+  <CC_PEv9_Impact_YardBrief>a mech yard</CC_PEv9_Impact_YardBrief>
+  <CC_PEv9_Impact_YardRock>The plain rock their mechs cut is left piled by their camp for the colony</CC_PEv9_Impact_YardRock>
+  <CC_PEv9_Impact_YardRockBrief>cut rock left</CC_PEv9_Impact_YardRockBrief>
+  <CC_PEv9_Impact_YardHire>For a day their lifters carry the colony's loose things into its stockpiles and the rest mend its worn buildings</CC_PEv9_Impact_YardHire>
+  <CC_PEv9_Impact_YardHireBrief>the mechs hired</CC_PEv9_Impact_YardHireBrief>
+  <CC_PEv9_Impact_YardTurns>It can turn: a mech may slip its link and go feral, or a band may come against the yard for its mechs</CC_PEv9_Impact_YardTurns>
+  <CC_PEv9_Impact_YardTurnsBrief>it can turn</CC_PEv9_Impact_YardTurnsBrief>
+
+  <!-- ===================== 87. The hum deepened ===================== -->
+
+  <CC_PEv9_HumFirst>a first psylink</CC_PEv9_HumFirst>
+  <CC_PEv9_HumLevel>a psylink of level {LEVEL}</CC_PEv9_HumLevel>
+  <CC_PEv9_HumDeeper>{CANTOR} sat at {PAWN_nameDef}'s bed through the night, and by morning {PAWN_possessive} psylink is at level {LEVEL}.</CC_PEv9_HumDeeper>
+  <CC_PEv9_HumWoke>{CANTOR} sat at {PAWN_nameDef}'s bed through the night, and by morning {PAWN_pronoun} has a first psylink.</CC_PEv9_HumWoke>
+  <CC_PEv9_HumChronicle>A cantor of {FACTION} sat with {PAWN_nameDef} through a night, and {PAWN_possessive} psylink went a level deeper.</CC_PEv9_HumChronicle>
+  <CC_PEv9_HumGone>The colonist is not at home any more.</CC_PEv9_HumGone>
+  <CC_PEv9_HumChanged>The colonist's psylink has changed since, or they have no bed.</CC_PEv9_HumChanged>
+  <CC_PEv9_NoArt>The colony has no piece of art worth enough to give.</CC_PEv9_NoArt>
+  <CC_PEv9_Impact_HumNight>{0} sits at {1}'s bed through the night, humming, while {1} lies listening</CC_PEv9_Impact_HumNight>
+  <CC_PEv9_Impact_HumNightBrief>a night at the bed</CC_PEv9_Impact_HumNightBrief>
+  <CC_PEv9_Impact_Hum>By morning {0} has {1}</CC_PEv9_Impact_Hum>
+  <CC_PEv9_Impact_HumBrief>the psylink deepened</CC_PEv9_Impact_HumBrief>
+  <CC_PEv9_Impact_Listened>Once the night is over, everyone at home feels the cantor's listening: a calm for most, an unease for about {CHANCE}% of ordinary people, more for the psychically sensitive</CC_PEv9_Impact_Listened>
+  <CC_PEv9_Impact_ListenedBrief>the colony listened to</CC_PEv9_Impact_ListenedBrief>
+
+  <!-- ===================== 88. The void listens back ===================== -->
+
+  <CC_PEv9_VoidSat>{WARDEN} stayed beside {PAWN_nameDef} all day, and {PAWN_pronoun} is steadier for it: some of what the void took from {PAWN_objective} has come back.</CC_PEv9_VoidSat>
+  <CC_PEv9_VoidQuiet>{WARDEN} listened at the edge of the colony's land and says the void is quiet around the colony for now.</CC_PEv9_VoidQuiet>
+  <CC_PEv9_VoidWarnLabel>What the void will send</CC_PEv9_VoidWarnLabel>
+  <CC_PEv9_VoidWarn>{WARDEN} of {FACTION} listened, and says the void around the colony is drawing toward {KIND}. The Choir's wardens say that what they hear like this comes within the month.</CC_PEv9_VoidWarn>
+  <CC_PEv9_VoidCame>{WARDEN} of the Choir said the void would send {KIND} next.</CC_PEv9_VoidCame>
+  <CC_PEv9_VoidGaveUp>{WARDEN} could not stay any longer, and has gone back to the road.</CC_PEv9_VoidGaveUp>
+  <CC_PEv9_ShakenGone>The colonist is not at home any more.</CC_PEv9_ShakenGone>
+  <CC_PEv9_Impact_VoidSit>{0} stays at {1}'s side through the day, following {1} about</CC_PEv9_Impact_VoidSit>
+  <CC_PEv9_Impact_VoidSitBrief>a day at their side</CC_PEv9_Impact_VoidSitBrief>
+  <CC_PEv9_Impact_Sanity>Some of {0}'s sanity returns, and the void's memories on {0} are lifted</CC_PEv9_Impact_Sanity>
+  <CC_PEv9_Impact_Memories>The void's memories on {0} are lifted</CC_PEv9_Impact_Memories>
+  <CC_PEv9_Impact_SanityBrief>steadier</CC_PEv9_Impact_SanityBrief>
+  <CC_PEv9_Impact_VoidEdge>{0} listens an hour at the edge of the colony's land</CC_PEv9_Impact_VoidEdge>
+  <CC_PEv9_Impact_VoidEdgeBrief>an hour at the edge</CC_PEv9_Impact_VoidEdgeBrief>
+  <CC_PEv9_Impact_Foretold>The warden says what kind of threat the void will send next; the next one of its kind within {0} days is that one</CC_PEv9_Impact_Foretold>
+  <CC_PEv9_Impact_ForetoldBrief>the void's next threat named</CC_PEv9_Impact_ForetoldBrief>
+
+  <!-- ===================== 89. A mind that shouts ===================== -->
+
+  <CC_PEv9_ShoutCalmed>{LISTENER} sat beside {PAWN_nameDef}, and the break is over: {PAWN_pronoun} is calm again.</CC_PEv9_ShoutCalmed>
+  <CC_PEv9_ShoutCalmedWith>{LISTENER} and {HELPER} sat beside {PAWN_nameDef}, and the break is over: {PAWN_pronoun} is calm again, and {HELPER} learned something of how the Choir does it.</CC_PEv9_ShoutCalmedWith>
+  <CC_PEv9_ShoutPassed>{LISTENER} has gone back to the road; {PAWN}'s break was over before they were done.</CC_PEv9_ShoutPassed>
+  <CC_PEv9_ShoutOver>The break is already over.</CC_PEv9_ShoutOver>
+  <CC_PEv9_NoHelper>Nobody of the colony is free to sit with them.</CC_PEv9_NoHelper>
+  <CC_PEv9_Impact_ShoutSit>{0} sits beside {1} for two hours, following if {1} wanders</CC_PEv9_Impact_ShoutSit>
+  <CC_PEv9_Impact_ShoutSitBrief>sat with</CC_PEv9_Impact_ShoutSitBrief>
+  <CC_PEv9_Impact_ShoutEnds>The break ends there, calmly, and {0} feels better for it</CC_PEv9_Impact_ShoutEnds>
+  <CC_PEv9_Impact_ShoutEndsBrief>the break ends</CC_PEv9_Impact_ShoutEndsBrief>
+  <CC_PEv9_Impact_ShoutLearn>{0} sits with them and learns how ({1})</CC_PEv9_Impact_ShoutLearn>
+  <CC_PEv9_Impact_ShoutLearnBrief>learns how</CC_PEv9_Impact_ShoutLearnBrief>
+
+  <!-- ===================== 90. A listening ring ===================== -->
+
+  <CC_PEv9_RingFelt>The Choir sang at their ring this evening, and the colony felt it: {THING}.</CC_PEv9_RingFelt>
+  <CC_PEv9_RingFeltWho>calm, {CALM}; uneasy, {UNEASY}</CC_PEv9_RingFeltWho>
+  <CC_PEv9_RingStrangeLabel>The Choir's song went strange</CC_PEv9_RingStrangeLabel>
+  <CC_PEv9_RingStrange>The Choir's singing at their ring went wrong tonight, and everyone at home who heard it is uneasy. {X_nameDef} says the void is too close to the colony for them to stay, and they are packing up.</CC_PEv9_RingStrange>
+  <CC_PEv9_RingLoud>The Choir's ring can hear {A_nameDef} working nearby tonight, after the colony promised them quiet.</CC_PEv9_RingLoud>
+  <CC_PEv9_RingSat>{A_nameDef} sat with the Choir at their ring and came back calm, {A_possessive} focus full.</CC_PEv9_RingSat>
+  <CC_PEv9_NoPsycaster>The colony has nobody with a psylink.</CC_PEv9_NoPsycaster>
+  <CC_PEv9_Promised>The colony has already promised them quiet.</CC_PEv9_Promised>
+  <CC_PEv9_Impact_Ring>A few of {0} camp for some days at the colony's quietest place and sing each evening</CC_PEv9_Impact_Ring>
+  <CC_PEv9_Impact_RingBrief>a listening ring</CC_PEv9_Impact_RingBrief>
+  <CC_PEv9_Impact_RingFelt>Each night the colony feels their song: a calm for most, an unease for about {CHANCE}% of ordinary people, more for the psychically sensitive</CC_PEv9_Impact_RingFelt>
+  <CC_PEv9_Impact_RingFeltBrief>felt each night</CC_PEv9_Impact_RingFeltBrief>
+  <CC_PEv9_Impact_RingPromise>The colony keeps mining, building and taking down away from them at night</CC_PEv9_Impact_RingPromise>
+  <CC_PEv9_Impact_RingPromiseBrief>quiet at night</CC_PEv9_Impact_RingPromiseBrief>
+  <CC_PEv9_Impact_RingVoid>With the void stirring, their song may go strange one night, and then they leave</CC_PEv9_Impact_RingVoid>
+  <CC_PEv9_Impact_RingVoidBrief>it can turn</CC_PEv9_Impact_RingVoidBrief>
+  <CC_PEv9_Impact_RingSit>{0} sits with them a couple of hours and comes back with a full focus</CC_PEv9_Impact_RingSit>
+  <CC_PEv9_Impact_RingSitBrief>focus refilled</CC_PEv9_Impact_RingSitBrief>
+
+  <!-- ===================== 91. The seal broken ===================== -->
+
+  <CC_PEv9_SealInsects>Insects</CC_PEv9_SealInsects>
+  <CC_PEv9_SealMechs>Mechs</CC_PEv9_SealMechs>
+  <CC_PEv9_SealTownGone>The vault's town is gone or no longer theirs.</CC_PEv9_SealTownGone>
+  <CC_PEv9_SealLapsed>Nobody of the colony came to {TOWN}, and {FACTION} held the vault's door as best they could without the colony's fighters.</CC_PEv9_SealLapsed>
+  <CC_PEv9_SealFightLabel>The fight at {TOWN}</CC_PEv9_SealFightLabel>
+  <CC_PEv9_SealFightInsects>The colony's caravan has reached {TOWN}. The insects that dug into the vault's lower level have come up onto the ground beside it, and the colony's people are there to meet them, with {COUNT} of {FACTION}'s security beside them.</CC_PEv9_SealFightInsects>
+  <CC_PEv9_SealFightMechs>The colony's caravan has reached {TOWN}. The mechs that broke into the vault's lower level have come up onto the ground beside it, and the colony's people are there to meet them, with {COUNT} of {FACTION}'s security beside them.</CC_PEv9_SealFightMechs>
+  <CC_PEv9_SealLeft>The colony's people left the fight at {TOWN} before it was won.</CC_PEv9_SealLeft>
+  <CC_PEv9_SealWonLabel>The vault's share</CC_PEv9_SealWonLabel>
+  <CC_PEv9_SealWon>Nothing that came up from the vault's lower level at {TOWN} is still standing. {FACTION} has set a share of its stores down by the colony's people: {GOODS}. The vault will remember the colony's help.</CC_PEv9_SealWon>
+  <CC_PEv9_Impact_SealGo>Two or more of the colony's grown people go to {0} by caravan within {1} days</CC_PEv9_Impact_SealGo>
+  <CC_PEv9_Impact_SealGoBrief>a caravan to the vault</CC_PEv9_Impact_SealGoBrief>
+  <CC_PEv9_Impact_SealFight>There, the fight against what came up ({0}) on open ground beside the vault, the game's own: the colony's people may be hurt or killed</CC_PEv9_Impact_SealFight>
+  <CC_PEv9_Impact_SealFightBrief>a fight</CC_PEv9_Impact_SealFightBrief>
+  <CC_PEv9_Impact_SealStores>Won, a share of the vault's last stores, set down by the colony's people there</CC_PEv9_Impact_SealStores>
+  <CC_PEv9_Impact_SealStoresBrief>the vault's share</CC_PEv9_Impact_SealStoresBrief>
+  <CC_PEv9_Impact_SealThanks>Won, {0} thinks better of the colony (+{1})</CC_PEv9_Impact_SealThanks>
+
+  <!-- ===================== 92. The last part ===================== -->
+
+  <CC_PEv9_PartFitted>{MEDIC} has fitted {PAWN_nameDef} with the vault's {PART}.</CC_PEv9_PartFitted>
+  <CC_PEv9_PartFailed>{MEDIC}'s surgery on {PAWN_nameDef} didn't take: the vault's last part is lost.</CC_PEv9_PartFailed>
+  <CC_PEv9_PartHanded>{MEDIC} has handed the vault's {PART} over at the gate for {PAWN_nameDef}. The surgery is set for the colony's doctor.</CC_PEv9_PartHanded>
+  <CC_PEv9_NoDoctor>The colony has no doctor of its own.</CC_PEv9_NoDoctor>
+  <CC_PEv9_Impact_Part>{0} is fitted with {1} where {0}'s {2} was</CC_PEv9_Impact_Part>
+  <CC_PEv9_Impact_PartBrief>the vault's last part</CC_PEv9_Impact_PartBrief>
+  <CC_PEv9_Impact_PartRisk>{SURGEON} fits it by the game's own surgery: {CHANCE}% to succeed, {FAIL}% that it fails and the part is lost</CC_PEv9_Impact_PartRisk>
+  <CC_PEv9_Impact_PartYear>The components and food hold {0}'s age for about a year</CC_PEv9_Impact_PartYear>
+
+  <!-- ===================== 93. The console that talks to nobody ===================== -->
+
+  <CC_PEv9_ConsoleRadio_1>{PAWN_nameDef} talked with the overseer of {FACTION} over the radio this evening, mostly about what the colony grows and what the weather does.</CC_PEv9_ConsoleRadio_1>
+  <CC_PEv9_ConsoleRadio_2>{PAWN_nameDef} talked with the overseer of {FACTION} again this evening. The overseer talked about the people who went back below the day the seal was broken.</CC_PEv9_ConsoleRadio_2>
+  <CC_PEv9_ConsoleRadio_3>{PAWN_nameDef} talked with the overseer of {FACTION} for the last evening, about how many of the vault's machines still work.</CC_PEv9_ConsoleRadio_3>
+  <CC_PEv9_ConsoleLetter_1>{PAWN_nameDef} wrote back to the overseer of {FACTION} this evening, mostly about what the colony grows and what the weather does, and the runner took the letter.</CC_PEv9_ConsoleLetter_1>
+  <CC_PEv9_ConsoleLetter_2>{PAWN_nameDef} wrote to the overseer of {FACTION} again this evening. The overseer's letter was about the people who went back below the day the seal was broken.</CC_PEv9_ConsoleLetter_2>
+  <CC_PEv9_ConsoleLetter_3>{PAWN_nameDef} wrote the last letter to the overseer of {FACTION} this evening, and the runner took it back.</CC_PEv9_ConsoleLetter_3>
+  <CC_PEv9_TalkerGone>The colonist is not at home any more.</CC_PEv9_TalkerGone>
+  <CC_PEv9_CacheLabel>an old supply cache of {FACTION}</CC_PEv9_CacheLabel>
+  <CC_PEv9_CacheHeard>An old supply cache of {FACTION}, from before the seal was broken.</CC_PEv9_CacheHeard>
+  <CC_PEv9_CacheLetterLabel>The vault's old cache</CC_PEv9_CacheLetterLabel>
+  <CC_PEv9_CacheRadio>On the last evening the overseer of {FACTION} told {PAWN} where the vault left an old supply cache, back when its people first came up: {COUNT} tiles {WAY} of the colony. The vault has no one to send for it, and the colony may take what is there.</CC_PEv9_CacheRadio>
+  <CC_PEv9_CacheLetter>In the last letter the overseer of {FACTION} told {PAWN} where the vault left an old supply cache, back when its people first came up: {COUNT} tiles {WAY} of the colony. The vault has no one to send for it, and the colony may take what is there.</CC_PEv9_CacheLetter>
+  <CC_PEv9_SupplyMedicine>medicine</CC_PEv9_SupplyMedicine>
+  <CC_PEv9_Impact_TalkRadio>{0} goes to the colony's radio for an hour at dusk, {1} evening(s), to talk with the overseer</CC_PEv9_Impact_TalkRadio>
+  <CC_PEv9_Impact_TalkLetters>A runner brings the overseer's letter each evening, and {0} writes back at the colony's table, {1} evening(s)</CC_PEv9_Impact_TalkLetters>
+  <CC_PEv9_Impact_TalkBrief>the evenings with the overseer</CC_PEv9_Impact_TalkBrief>
+  <CC_PEv9_Impact_TalkSocial>{0} gets better at talking ({1})</CC_PEv9_Impact_TalkSocial>
+  <CC_PEv9_Impact_TalkSocialBrief>talking</CC_PEv9_Impact_TalkSocialBrief>
+  <CC_PEv9_Impact_TalkEnd>At the end, the overseer of {0} asks the colony for something, or tells where an old supply cache lies</CC_PEv9_Impact_TalkEnd>
+  <CC_PEv9_Impact_TalkEndBrief>an ask or a cache</CC_PEv9_Impact_TalkEndBrief>
+
+  <!-- ===================== 94. Surface scouts ===================== -->
+
+  <CC_PEv9_ScoutTaught>{A_nameDef} taught the vault's scouts about {THING} at their fire for two hours, and {X_nameDef} says they will take it back down with them.</CC_PEv9_ScoutTaught>
+  <CC_PEv9_ScoutTalkedOut>{A_nameDef} talked with {X_nameDef} for an hour, and {X_nameDef} has come out of the tent.</CC_PEv9_ScoutTalkedOut>
+  <CC_PEv9_ScoutSkyPassed>{X_nameDef} has come out of the tent at last, and is looking up at the sky again.</CC_PEv9_ScoutSkyPassed>
+  <CC_PEv9_ScoutLost>{X_nameDef}, one of the vault's scouts, went out at dusk to look at the land and has not come back.</CC_PEv9_ScoutLost>
+  <CC_PEv9_ScoutFound>{A_nameDef} found {X_nameDef} out on the land and is walking {X_objective} back to the scouts' camp.</CC_PEv9_ScoutFound>
+  <CC_PEv9_ScoutBack>{X_nameDef} found {X_possessive} own way back to the scouts' camp at first light.</CC_PEv9_ScoutBack>
+  <CC_PEv9_ScoutMauledLabel>A {0} turns on a scout</CC_PEv9_ScoutMauledLabel>
+  <CC_PEv9_ScoutMauled>{X_nameDef}, one of the vault's scouts, walked up to a {THING} to look at it, not knowing it was dangerous, and it has turned on {X_objective}.</CC_PEv9_ScoutMauled>
+  <CC_PEv9_ScoutOdds>{X_nameDef} has set the scouts' last odds and ends out by their fire for the colony: {THING}.</CC_PEv9_ScoutOdds>
+  <CC_PEv9_ScoutBusy>Someone of the colony is teaching them already.</CC_PEv9_ScoutBusy>
+  <CC_PEv9_ScoutNotSick>None of them is keeping to the tent.</CC_PEv9_ScoutNotSick>
+  <CC_PEv9_ScoutNotLost>None of them is lost.</CC_PEv9_ScoutNotLost>
+  <CC_PEv9_SupplyFood>food</CC_PEv9_SupplyFood>
+  <CC_PEv9_Impact_Scouts>Three surface-scouts of {0} camp by the colony for a week to learn the surface</CC_PEv9_Impact_Scouts>
+  <CC_PEv9_Impact_ScoutsBrief>surface scouts</CC_PEv9_Impact_ScoutsBrief>
+  <CC_PEv9_Impact_ScoutsLearn>Each afternoon they ask to be taught; what they learn the vault keeps, and it holds its age</CC_PEv9_Impact_ScoutsLearn>
+  <CC_PEv9_Impact_ScoutsTurns>It can turn: one may be sky-sick, one may get lost at night, one may walk up to a beast that turns on them</CC_PEv9_Impact_ScoutsTurns>
+  <CC_PEv9_Impact_ScoutsTurnsBrief>it can turn</CC_PEv9_Impact_ScoutsTurnsBrief>
+  <CC_PEv9_Impact_Lesson>{0} goes to the scouts' fire and teaches them two hours about {1}</CC_PEv9_Impact_Lesson>
+  <CC_PEv9_Impact_LessonBrief>an afternoon's lesson</CC_PEv9_Impact_LessonBrief>
+  <CC_PEv9_Impact_TalkOut>{0} goes to the scouts' camp and talks an hour with the one in the tent</CC_PEv9_Impact_TalkOut>
+  <CC_PEv9_Impact_TalkOutBrief>talked out</CC_PEv9_Impact_TalkOutBrief>
+  <CC_PEv9_Impact_Search>{0} goes out on the land to where the lost scout is and walks them back</CC_PEv9_Impact_Search>
+  <CC_PEv9_Impact_SearchBrief>a search</CC_PEv9_Impact_SearchBrief>
+  <CC_PEv9_Impact_Odds>A few of {0}'s last goods, set down at their fire for the colony</CC_PEv9_Impact_Odds>
+  <CC_PEv9_Impact_OddsBrief>their odds and ends</CC_PEv9_Impact_OddsBrief>
+
+</LanguageData>

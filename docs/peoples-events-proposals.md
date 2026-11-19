@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70; round 8 built: 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70; round 8 built: 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82; round 9 built: 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -715,17 +715,17 @@ Where it lives:
     - Mods: Biotech, Alpha Mechs.
     - Reuses: the gene work's hold-and-work job, the lost mech's linking. **Medium.**
 
-84. **(gift) Linked into the Lattice.**
+84. **(gift) Linked into the Lattice.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A mechanitor of the colony's is linked in: +2 bandwidth for as long as the Lattice stays at peace with the colony.
     - Now and then they dream another's dream (a small mood, either way).
     - Reuses: gifts. **Small.**
 
-85. **A mech gone feral.**
+85. **A mech gone feral.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A mech of theirs runs wild near the colony, and link-wardens come to take it down or relink it.
     - Relinked, they pay; destroyed, the colony keeps the parts. The fight is the game's own.
     - Reuses: the lost mech. **Medium.**
 
-86. **(camp) A mech yard.**
+86. **(camp) A mech yard.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A mech-tender and two link-hands camp with four to six mechs that mine plain rock and haul round the camp.
     - The colony may hire the mechs for a day to mend or haul.
     - It can turn: a mech goes feral (85), or a hostile mechanitor's band comes after their mechs.
@@ -738,21 +738,21 @@ Where it lives:
 - A season of wild magic (world event).
 - Favoured camps: pilgrims, hermit, minstrels.
 
-87. **(gift) The hum deepened.**
+87. **(gift) The hum deepened.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A cantor sits through a night with a colonist who has a psylink, and by morning the psylink is a level higher (with Vanilla Psycasts Expanded, one more power). A sensitive colonist without one wakes a first level instead.
     - The price is art, or an evening of being listened to; unease is possible by the listening's rule.
     - Reuses: gifts, the listening job. **Medium.**
 
-88. **The void listens back** (Anomaly).
+88. **The void listens back** (Anomaly). *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A warden of the quiet sits a day with a colonist shaken by the void, and some of their sanity returns (Vanilla Anomaly Expanded - Insanity).
     - They also say what kind of threat the void sends next.
     - Reuses: sitting with, the Bell's warnings. **Medium.**
 
-89. **A mind that shouts.**
+89. **A mind that shouts.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - A listener sits beside a colonist in a long mental break, which ends sooner and calm.
     - **Small.**
 
-90. **(camp) A listening ring.**
+90. **(camp) A listening ring.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - Three to five of the Choir camp for three to five days at the colony's quietest place and sing each evening, and everyone at home feels it each night.
     - Psycasters who sit with them refill their focus. They ask that loud work be kept away at night.
     - It can turn: with Anomaly the void stirs, their song turns strange, and they leave early.
@@ -765,23 +765,23 @@ Where it lives:
 - A new town (world event); the supply that holds their age.
 - Favoured camps: refugees, prospectors, salvagers.
 
-91. **The seal broken.**
+91. **The seal broken.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - Insects (Insectoids 2's hives) or mechs got into the vault's lower level, and the overseer asks the colony's fighters to come.
     - A caravan goes to their site and fights beside their security (the game's fight). If it is won, the colony gets a share of the vault's spacer stores, +15.
     - Reuses: quests' sites, calls to arms. **Large.**
 
-92. **(gift) The last part.**
+92. **(gift) The last part.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - When a colonist loses an eye or a limb and the colony has no part, the vault's medic trades one of their last bionics for a large supply of components and food. That supply holds the vault's age for a year.
     - It is fitted by the game's surgery.
     - Reuses: the operation, the vault's supply. **Medium.**
 
-93. **The console that talks to nobody.**
+93. **The console that talks to nobody.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - The vault's console picks up the colony's radio, and for a few evenings the overseer only wants to talk with its best talker at the comms console.
     - At the end they ask for something, or tell where an old supply cache lies (a site).
     - Ages: a surface-runner with letters for a colony without a radio.
     - Reuses: quests, places heard of. **Medium.**
 
-94. **(camp) Surface scouts.**
+94. **(camp) Surface scouts.** *(Built, round 9: `Source/ColonyCouncil/Peoples/Events9/`.)*
     - Three vault scouts camp near the colony for a week to learn the surface. They ask to be taught each afternoon (plants, animals, shooting), which counts as the vault's supply and learning and holds its age.
     - They trade their last odds and ends, and one may ask to stay.
     - It can turn: one is sky-sick and won't come out, they get lost on the map at night, or a beast they don't know to fear mauls one (the game's own).

@@ -457,6 +457,9 @@ wishPh.UnionWith(new[] { "WORK", "MAST", "NEWS" });
 // And of round 8 (Peoples/Events8/RationPost.cs, LandingParty.cs, FieldLab.cs): how many the ration post fed and the people of the one its
 // guards turned away, the places the landing party surveyed, the samples the field lab took (CampWorker.Fill).
 wishPh.UnionWith(new[] { "FED", "PEOPLE", "SURVEYED", "SAMPLED" });
+// And of round 9 (Peoples/Events9/MechYard.cs, ListeningRing.cs, SurfaceScouts.cs): the loads of rock the mech yard cut, the evenings the
+// listening ring sang, the afternoons the vault's scouts were taught (CampWorker.Fill).
+wishPh.UnionWith(new[] { "CUT", "NIGHTS", "LESSONS" });
 // Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs, PeoplesMagic.LetterTags): a caster's class in a word, with its
 // article and many of them, and in a letter the classes among the writer's people ("druids and rangers").
 wishPh.UnionWith(new[] { "CRAFT", "ACRAFT", "CRAFTS", "AMONG" });

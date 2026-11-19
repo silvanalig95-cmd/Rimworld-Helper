@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 9 (Source/ColonyCouncil/Peoples/Events9/MechYard.cs, ListeningRing.cs, SurfaceScouts.cs; each a camp
+    kind with ways of its own, Camps/CampWorker.cs): the Lattice's mech yard (item 86), the Choir's listening ring at the colony's quietest
+    place (item 90), and the Sunken Vault's surface scouts learning the surface (item 94). None comes on the camps' own draw (weight 0):
+    each comes when the colony answers its event (Rimfolk_Evt_MechYard, Rimfolk_Evt_ListeningRing, Rimfolk_Evt_SurfaceScouts).
+  -->
+
+  <!-- ===================== 86. A mech yard (the Lattice) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_MechYard</defName>
+    <label>mech yard</label>
+    <workerClass>ColonyCouncil.CampWorker_MechYard</workerClass>
+    <arrives>8~14</arrives>
+    <calling>mechanitors</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>5~7</days>
+    <ages>18~60</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Metal</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li><li>Mend</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the Lattice takes its tents and its mechs, and leaves the rock its mechs cut</leavesWhy>
+    <titles>
+      <li>The mech yard</li>
+      <li>The Lattice's yard</li>
+    </titles>
+    <texts>
+      <li>A mech-tender and two link-hands of {FACTION} are walking in with their labour mechs behind them, {X_nameDef} at the front. They will keep a mech yard by the colony for some days.</li>
+      <li>[lowtech] Three of {FACTION} in indigo robes are walking in, {X_nameDef} at the front, with a few working mechs plodding behind them. They will camp by the colony for some days, their mechs cutting rock.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s mech yard is set up {PLACE}: tents in a row, a fire, and the mechs standing ready beside a cleared patch for the rock they cut.</li>
+      <li>The Lattice's yard is set up {PLACE}, the mechs lined up by the fire and the link-hands checking each of them over.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, a link-hand at the mech yard {PLACE}, asks whether the colony would take {X_objective} in. {X_pronoun} has kept other people's mechs running for years and would like to stay in one place.</li>
+    </joinTexts>
+    <farewell>
+      <li>[feral,cut] The mech yard packed up and walked off, one mech fewer than came. They left the {CUT} loads of rock their mechs cut piled by their old camp, for the colony to use.</li>
+      <li>[hired,cut] The mech yard packed up and walked off with its mechs. The colony had their mechs' work for a day, and they left the {CUT} loads of rock they cut piled by their old camp.</li>
+      <li>[cut] The mech yard packed up and walked off with its mechs, leaving the {CUT} loads of rock they cut piled by their old camp for the colony.</li>
+      <li>[feral] The mech yard packed up and walked off, one mech fewer than came.</li>
+      <li>The mech yard packed up its tents and walked off with its mechs.</li>
+    </farewell>
+    <lines>
+      <li>Every link holds two.</li>
+      <li>Quiet hands, exact work.</li>
+      <li>Check the joints before the next shift.</li>
+      <li>That one needs a new actuator soon.</li>
+      <li>Keep the mechs clear of the colony's fields.</li>
+    </lines>
+    <momentLines>
+      <li>[tend] This one's running well, next.</li>
+      <li>[feral] It's slipped its link, everyone keep back.</li>
+      <li>[band] They're here for the mechs, get them behind the fire.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the link-hands by their fire and heard how the first Lattice was linked on a battlefield where a hundred mechs stood still.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>hire</key>
+        <label>Hire their mechs for a day</label>
+        <tip>For a day the yard's lifters carry the colony's loose things into its stockpiles, and the rest mend its worn buildings.</tip>
+        <silver>120</silver>
+        <warm>1</warm>
+        <tension>-2</tension>
+        <outcomes>
+          <li>The silver is carried over, and the yard's mechs start on the colony's work.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_YardHire" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their hurt</label>
+        <tip>The colony's doctor goes over to the mech yard and tends whoever of them is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the mech yard to see to their hurt.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 90. A listening ring (the Choir of the Spire) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_ListeningRing</defName>
+    <label>listening ring</label>
+    <workerClass>ColonyCouncil.CampWorker_ListeningRing</workerClass>
+    <arrives>8~16</arrives>
+    <calling>listeners</calling>
+    <weight>0</weight>
+    <people>3~5</people>
+    <days>3~5</days>
+    <ages>16~70</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Art</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.2</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the Choir leaves nothing behind them where they sat</leavesWhy>
+    <titles>
+      <li>The listening ring</li>
+      <li>The Choir sings</li>
+    </titles>
+    <texts>
+      <li>A few of {FACTION} in pale robes are walking in, {X_nameDef} at the front. They will sit in a ring at the quietest place on the colony's land for some days and sing each evening.</li>
+      <li>[lowtech] A few of {FACTION}, barefoot and in pale robes, are walking in, {X_nameDef} at the front. They will camp some days at the quietest place on the colony's land and sing there each evening.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s listening ring is set up {PLACE}, away from the colony's workshops: bedrolls in a ring round one small fire.</li>
+      <li>The Choir has settled {PLACE}, in a ring round their fire, and they are quiet.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the Choir camped {PLACE}, asks whether {X_pronoun} might stay with the colony a while longer than the others, to learn what an ordinary life is like.</li>
+    </joinTexts>
+    <farewell>
+      <li>[strange] The listening ring packed up early and left in silence. Their last evening's song had gone strange, and they would not stay with the void so close.</li>
+      <li>[quiet,sang] The listening ring packed up and left after {NIGHTS} evenings of singing, glad of the quiet the colony kept for them.</li>
+      <li>[sang] The listening ring packed up and left after {NIGHTS} evenings of singing.</li>
+      <li>The listening ring packed up and left as quietly as it came.</li>
+    </farewell>
+    <lines>
+      <li>Listen first.</li>
+      <li>The hum is not silence.</li>
+      <li>It's very quiet here, which is good.</li>
+      <li>We sing again at dusk.</li>
+      <li>Be ordinary, if you can.</li>
+    </lines>
+    <momentLines>
+      <li>[song] We'll start, and they'll hear it in the colony tonight.</li>
+      <li>[loud] There's loud work near us tonight, it carries.</li>
+      <li>[strange] The song came out wrong tonight, we're leaving.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat a while at the Choir's fire and heard how Ilsabet Ruen lay down at the foot of the Spire and woke able to hear it think.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>sit</key>
+        <label>Send a psycaster of the colony's to sit with them</label>
+        <tip>The colony's psycaster with the least focus left goes to the ring and sits with them a couple of hours, and comes back with their focus full.</tip>
+        <once>false</once>
+        <warm>2</warm>
+        <tension>-2</tension>
+        <outcomes>
+          <li>A psycaster of the colony's is going over to sit with the ring.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RingSit" />
+        </effects>
+      </li>
+      <li>
+        <key>quiet</key>
+        <label>Keep loud work away from them at night</label>
+        <tip>The colony promises to keep mining, building and taking down away from the ring at night.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>0.3</minDays>
+        <askTexts>
+          <li>{X_nameDef} has come over from the Choir's ring. The colony's work carries at night, {X_pronoun} says, and asks whether the colony would keep loud work, mining, building or taking down, away from the ring after dark.</li>
+        </askTexts>
+        <refuseLabel>The work has to go on</refuseLabel>
+        <refused>
+          <li>{X_nameDef} nods and goes back to the ring.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>The colony will keep its loud work away from the ring at night.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RingQuiet" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 94. Surface scouts (the Sunken Vault) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_SurfaceScouts</defName>
+    <label>surface scouts</label>
+    <workerClass>ColonyCouncil.CampWorker_SurfaceScouts</workerClass>
+    <arrives>8~14</arrives>
+    <calling>vaultfolk</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>7~7</days>
+    <ages>16~40</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.15</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the scouts number off and take everything back down with them</leavesWhy>
+    <titles>
+      <li>The surface scouts</li>
+      <li>Scouts from the vault</li>
+    </titles>
+    <texts>
+      <li>Three surface-scouts of {FACTION} are walking in, {X_nameDef} at the front, looking up at the sky more than at the path. They will camp by the colony for a week to learn the surface.</li>
+      <li>[lowtech] Three of {FACTION}'s scouts are walking in with packs and capes over their vault suits, {X_nameDef} at the front. They will camp by the colony for a week to learn how people live up here.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s surface scouts have made camp {PLACE}: three tents in a neat row and a fire, with the vault's number painted on each tent.</li>
+      <li>The vault's scouts are set up {PLACE}, and they have numbered off twice already.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the vault's scouts camped {PLACE}, asks whether {X_pronoun} could stay with the colony instead of going back below. {X_pronoun} has got used to the sky, {X_pronoun} says, and would rather not lose it again.</li>
+    </joinTexts>
+    <farewell>
+      <li>[taught,mauled] The surface scouts numbered off and walked home after {LESSONS} afternoons of lessons, one of them still bandaged from the beast that turned on them.</li>
+      <li>[taught,found] The surface scouts numbered off and walked home after {LESSONS} afternoons of lessons, all three of them, thanks to the colony's search.</li>
+      <li>[taught] The surface scouts numbered off and walked home to the vault after {LESSONS} afternoons of lessons, taking what they learned with them.</li>
+      <li>[mauled] The surface scouts numbered off and walked home, one of them still bandaged from the beast that turned on them.</li>
+      <li>The surface scouts numbered off and walked home to the vault.</li>
+    </farewell>
+    <lines>
+      <li>Every cell counts.</li>
+      <li>Number off.</li>
+      <li>There's nothing over us out here.</li>
+      <li>Is that weather, or is something wrong?</li>
+      <li>The overseer will want to hear about this.</li>
+    </lines>
+    <momentLines>
+      <li>[skysick] I can't go out there today, the sky is too big.</li>
+      <li>[out] All right, I'll come out, but stay with me.</li>
+      <li>[learned] We'll take that back down and teach the others.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the scouts by their fire and heard how Overseer Hollis Crane broke the vault's seal and walked out first, and how half of them went back below for a week.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>lessonPlants</key>
+        <label>Send {A_nameDef} to teach them about plants this afternoon</label>
+        <tip>{A_nameDef}, the colony's best grower, goes to the scouts' fire and teaches them two hours about plants. They learn it, and the vault remembers it.</tip>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <skill>Plants</skill>
+        <askTexts>
+          <li>{X_nameDef} has come over from the scouts' camp. Down in the vault nothing grew that wasn't in a tray, {X_pronoun} says, and asks whether {A_nameDef} would teach them about plants this afternoon.</li>
+        </askTexts>
+        <refuseLabel>Not today</refuseLabel>
+        <refused>
+          <li>{X_nameDef} goes back to the camp to wait for tomorrow.</li>
+        </refused>
+        <refuseTension>1</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the scouts' fire to teach them about plants.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutLesson"><skill>Plants</skill></li>
+        </effects>
+      </li>
+      <li>
+        <key>lessonAnimals</key>
+        <label>Send {A_nameDef} to teach them about animals this afternoon</label>
+        <tip>{A_nameDef}, the colony's best with animals, goes to the scouts' fire and teaches them two hours about animals. They learn it, and the vault remembers it.</tip>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <skill>Animals</skill>
+        <askTexts>
+          <li>{X_nameDef} has come over from the scouts' camp. They don't know which animals up here are safe, {X_pronoun} says, and asks whether {A_nameDef} would teach them about animals this afternoon.</li>
+        </askTexts>
+        <refuseLabel>Not today</refuseLabel>
+        <refused>
+          <li>{X_nameDef} goes back to the camp to wait for tomorrow.</li>
+        </refused>
+        <refuseTension>1</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the scouts' fire to teach them about animals.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutLesson"><skill>Animals</skill></li>
+        </effects>
+      </li>
+      <li>
+        <key>lessonShooting</key>
+        <label>Send {A_nameDef} to teach them to shoot this afternoon</label>
+        <tip>{A_nameDef}, the colony's best shot, goes to the scouts' fire and teaches them two hours of shooting. They learn it, and the vault remembers it.</tip>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <skill>Shooting</skill>
+        <askTexts>
+          <li>{X_nameDef} has come over from the scouts' camp. The vault's security used to do all the shooting, {X_pronoun} says, and asks whether {A_nameDef} would teach them this afternoon.</li>
+        </askTexts>
+        <refuseLabel>Not today</refuseLabel>
+        <refused>
+          <li>{X_nameDef} goes back to the camp to wait for tomorrow.</li>
+        </refused>
+        <refuseTension>1</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the scouts' fire to teach them to shoot.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutLesson"><skill>Shooting</skill></li>
+        </effects>
+      </li>
+      <li>
+        <key>odds</key>
+        <label>Buy their last odds and ends</label>
+        <tip>The scouts set out the last things they brought up from the vault at their fire, for the colony's silver.</tip>
+        <silver>200</silver>
+        <warm>1</warm>
+        <tension>-2</tension>
+        <outcomes>
+          <li>The silver is carried over, and the scouts set their last odds and ends out by their fire.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutOdds" />
+        </effects>
+      </li>
+      <li>
+        <key>talkout</key>
+        <label>Send {A_nameDef} to talk the scout out of the tent</label>
+        <tip>{A_nameDef} goes to the scouts' camp and talks an hour with the one who won't come out, until they do.</tip>
+        <theyAsk>true</theyAsk>
+        <skill>Social</skill>
+        <askTexts>
+          <li>{X_nameDef} has come over from the scouts' camp. One of them woke up afraid of the sky and won't come out of the tent, {X_pronoun} says, and asks whether {A_nameDef} would come and talk to them.</li>
+        </askTexts>
+        <refuseLabel>They'll come out when they're ready</refuseLabel>
+        <refused>
+          <li>{X_nameDef} goes back to sit by the tent.</li>
+        </refused>
+        <refuseTension>1</refuseTension>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going over to the scouts' camp to talk to the one in the tent.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutTalkOut" />
+        </effects>
+      </li>
+      <li>
+        <key>search</key>
+        <label>Send {A_nameDef} out to look for the lost scout</label>
+        <tip>{A_nameDef} goes out on the land to where the scout is and walks them back to the camp.</tip>
+        <theyAsk>true</theyAsk>
+        <skill>Animals</skill>
+        <askTexts>
+          <li>{X_nameDef} has come over from the scouts' camp in the dark. One of them went out at dusk to look at the land and hasn't come back, {X_pronoun} says, and asks whether {A_nameDef} would go out and look.</li>
+        </askTexts>
+        <refuseLabel>They'll find their way at first light</refuseLabel>
+        <refused>
+          <li>{X_nameDef} goes back to the camp to keep the fire high.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going out on the land to look for the lost scout.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScoutSearch" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their hurt</label>
+        <tip>The colony's doctor goes over to the scouts' camp and tends whoever of them is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the scouts' camp to see to their hurt.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

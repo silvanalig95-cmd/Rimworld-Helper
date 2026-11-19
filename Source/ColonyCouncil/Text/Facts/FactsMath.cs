@@ -104,7 +104,9 @@ namespace ColonyCouncil
             // And of round 7 (Rimfolk_CampKinds_PeopleEvents7.xml).
             "them:camp:WorkThatStays", "them:camp:LineCrew", "them:camp:Picket",
             // And of round 8 (Rimfolk_CampKinds_PeopleEvents8.xml).
-            "them:camp:RationPost", "them:camp:LandingParty", "them:camp:FieldLab"
+            "them:camp:RationPost", "them:camp:LandingParty", "them:camp:FieldLab",
+            // And of round 9 (Rimfolk_CampKinds_PeopleEvents9.xml).
+            "them:camp:MechYard", "them:camp:ListeningRing", "them:camp:SurfaceScouts"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>
