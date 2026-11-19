@@ -16090,6 +16090,42 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
   something off. Someone nearby goes at once, as before.
 
+### Choose the material when ordering a piece from the gear tab (the player's go, 19 November 2026; not released yet)
+
+The player: "when you know giving a order through the inventory to create like a piece of clothing or armor or
+whatever, it would really be cool to also be able to select from which material that piece of clothing should be made
+... when I select the open item slot, select the item that I want to create, and then I have to select where it's
+created from, and then maybe I could also immediately select which material it uses. So it would just list or show
+materials that I have enough of for the job, and then create the job, but only select this one material as a allowed
+material and by default deselect everything else, so that I'm sure it doesn't use anything else." Their go on the
+lead's proposal: "yes, please", "all the three".
+
+- **The mod's own flow** (Nice Inventory Tab's DLL, decompiled outside the game, never loaded): an empty slot's menu,
+  "Make", a piece, then a bench (or the piece's own line for its first bench), calls
+  `NiceInventoryTab.CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`: it makes
+  the bill, registers it as made for the colonist whose tab it is (`BillFinished_Patch.Register`, with
+  `ITab_Pawn_Gear_Patch.lastPawn`), names it, adds it to the bench, says so and moves the camera there.
+- **The material step** (`Integrations/MaterialChoice.cs`, `Patch_MaterialChoiceOrder`, a prefix on that call by
+  name): for a piece made from a material (the product is made from stuff and the recipe takes its stuff from an
+  ingredient), one more menu opens, titled "Material for the (piece)": "Any material" first, then each material the
+  recipe takes (from its material ingredient, never a fixed one like components; allowed for the piece and by the
+  recipe) that the colony has enough of for one piece, with how much is on hand and the material's own icon. On hand
+  is what lies on the map, seen and not forbidden; one piece's need is the game's own count for that material
+  (`IngredientCount.CountRequiredOfFor`, so gold and silver count in their own units). The order
+  (`MaterialChoiceMath.Offered`, pure, in the tests): the material that makes the most pieces first, then by name. With
+  none enough, a greyed line says so under "Any material". Each line's tooltip says what one piece takes. Clicking
+  outside the menu orders nothing.
+- **The bill.** Either choice calls the mod's own `CommandCreate` as it would have been called (the prefix lets
+  Rimfolk's own call through), so the bill, the wear request, the name and the message are the mod's; it is made for
+  the colonist the menu was opened for. For a material, the new bill's ingredient filter then allows only that one:
+  every other material its material ingredient takes is unticked, the chosen one ticked, the rest of the filter (hit
+  points, quality, other ingredients) left as it was. "Any material" leaves the mod's bill as it is.
+- **Standing down.** A piece not made from a material goes straight on, as before. Without the mod the hook stands
+  down; with the mod but its order not found, one warning in the log and the mod's own way; a failure while opening
+  the menu, logged once, leaves the mod's own way for the session.
+- The setting "Choose the material when ordering a piece" (`materialChoice`, on, under the deeper hooks), on the "Your
+  other mods" page under Nice Inventory Tab.
+
 ### Rooms judged by what is in them (the player's go, 19 November 2026; released 0.266.6)
 
 The player (17 November 2026): "I want the gatherings where food is involved, of course, happening in my dining room,

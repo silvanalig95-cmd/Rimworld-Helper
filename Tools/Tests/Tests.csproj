@@ -292,6 +292,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/BallroomMath.cs" Link="BallroomMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BreweryKitchenMath.cs" Link="BreweryKitchenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MadeForWearMath.cs" Link="MadeForWearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/MaterialChoiceMath.cs" Link="MaterialChoiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/RoomUseMath.cs" Link="RoomUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
