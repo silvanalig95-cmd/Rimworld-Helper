@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 792; modelled: 792; growing without end: 0.
+Saved collections found: 794; modelled: 794; growing without end: 0.
 Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** after two, **4,241 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -411,6 +411,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `OldPowers/OldPowersBook.cs:lately` | the old powers' short memory of the forms they took ('seer|fold1|12'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
+| `Peoples/Events10/PeopleEvents10Book.cs:prices` | the season's prices a moot's ruling moved, each dropped when its season is over | cap | 1 | 2 | 4 | 0.5 |
 | `Peoples/Events6/PeopleEvents6Book.cs:tides` | the psychic tides a Conclave watch held back, four kept | cap | 1 | 2 | 4 | 0.5 |
 | `Peoples/Events7/WorkThatStays.cs:cells` | the cells of the guild's work (a bridge's crossing two cells wide), while the camp stands | fixed | 24 | 24 | 24 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
@@ -550,6 +551,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `World/WorldSituation.cs:deeds` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:held` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:sufferers` | per situation | fixed | 4 | 4 | 4 | 0.2 |
+| `Peoples/Events10/PeopleEvents10Book.cs:artGiven` | the peoples that handed on their art, once a game each | cap | 1 | 2 | 5 | 0.1 |
 | `Peoples/Events3/FieldSickhouse.cs:fed` | the peoples whose sick the colony fed, by id, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
 | `Peoples/Events4/PeopleEvents4Book.cs:lanternYears` | the knot nights whose lanterns came, a people and a year, twelve kept | cap | 1 | 2 | 5 | 0.1 |
 | `Peoples/Events6/PeopleEvents6Book.cs:blightRolled` | the blights a camp after the fire was rolled for, a home and a day, eight kept | cap | 1 | 2 | 5 | 0.1 |

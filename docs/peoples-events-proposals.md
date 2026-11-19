@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70; round 8 built: 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82; round 9 built: 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70; round 8 built: 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82; round 9 built: 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94; round 10 built: 96, 97, 98, 99, 100; all 100 built, the list is done)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -58,28 +58,28 @@ Where it lives:
 - Callers and world events that prefer them: a patrol after robbers, a great caravan, a trading season, market days, the road in use, a wardens' post, a new road.
 - Favoured camps: market folk, salt caravan, far merchants, road wardens.
 
-1. **Crates held in trust.**
+1. **Crates held in trust.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
    - A league caravan with a lame pack beast (a broken truck for an industrial league) asks to leave six to ten sealed crates in the colony's stores until a second caravan fetches them. Its porters carry them in, and the master writes the colony into the book.
    - If every crate is there at the fetch: good ink. They pay a tenth of the crates' worth as a fee, and every league gives the colony a few points better prices for a year.
    - If a crate was opened, sold or is missing: red ink, a grudge, and no league caravans for a season. A raid that burned the stores is told as it happened and forgiven.
    - Ages: beasts and carts, a truck's load, a lander's pods.
    - Reuses: arrivals, the errand lord, play-out carrying, deeds, the Republic's price patch. No mod needed. **Medium.**
 
-2. **Red ink.**
+2. **Red ink.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - After the colony robbed or killed traders of any people (that deed in the peoples' memory), the league's factor comes to the gate with the book open at the colony's page.
    - The colony can pay the wronged people back (silver by the deed's size; the deed is settled and part of their goodwill returns), or send its best talker to argue the entry (a Social roll on the card: struck out, or written twice).
    - Or it refuses, and every league trades with it at worse terms until it pays.
    - Ages: the same book in every age.
    - Reuses: deeds, the diplomacy debts, the price patch, the event card. **Small.**
 
-3. **One guard, one wagon.**
+3. **One guard, one wagon.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
    - While a great caravan or a trading season runs within reach, a waymaster asks for one fighter and one pack beast to walk under the colony's own flag, as every waymaster did for Edda Vane.
    - The colonist leaves as a caravan of one and comes home with a share of the profit and a trade lesson. The league gives +8, and its caravans come half again as often for a year.
    - The roads' ambushes and weather are the world's own.
    - Ages: a pack beast in every age; with Giddy-Up 2 the colonist rides.
    - Reuses: the Republic conscript's caravan of one, world events, the caravans' weighting, the ledger. **Medium.**
 
-4. **(camp) The road gang.**
+4. **(camp) The road gang.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - When a new road is laid through the region (the world event), a waymaster, labourers and two road wardens camp at the map's edge for 8 to 12 days. They lay the road across the colony's land a stretch a day, so the player watches it grow.
    - They ask leave where it crosses the colony's ground (they route round fields unless allowed through). They offer a spur to the colony's gate for silver or stone, hire the colony's builder by the day, and buy food.
    - The road stays when they go.
@@ -95,27 +95,27 @@ Where it lives:
 - Their sickhouse tends the colony's lodgers.
 - No camp of its own. Favoured camps: healers, lone healer, herb-gatherers, pilgrims, penitents.
 
-5. **(gift) A limb fitted.**
+5. **(gift) A limb fitted.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
    - For a colonist missing a hand, foot, arm or leg, a hospitaller surgeon (Medicine 10 to 16) comes with a limb of the order's age. They fit it at the colony's medical bed, with the colony's doctor assisting and learning.
    - It uses the game's own surgery and its chance, so a rare failure is the game's own mishap, shown on the card.
    - No silver ("we were spared, and so we owe"). The colonist's name goes into the Book of the Spared, and the colony owes the order a favour.
    - Ages: a peg leg or wooden hand from the colony's wood; a prosthetic once the order is industrial. Never bionics: those are the enclave's (22).
    - Reuses: arrivals, `DilemmaEffect_Operation` and the game's install recipes, favours owed. **Medium.**
 
-6. **Nobody on a sickbed is anyone's enemy.**
+6. **Nobody on a sickbed is anyone's enemy.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - After a raid, with raiders still lying downed (not of a permanent enemy), two or three hospitallers come with litters to carry them to the sickhouse.
    - If the colony lets them go: their people think better of the colony by how many were carried, as the Bell's goodwill for the dead works, and the order gives +5.
    - If the colony keeps them as prisoners, the order says nothing but writes it down.
    - Ages: litters, then a stretcher cart.
    - Reuses: the Bell's goodwill rule, play-out carrying, deeds. **Small.**
 
-7. **The sick room.**
+7. **The sick room.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - When a sickness is spreading in the colony (the illness budget's spreading kinds), a sister comes and asks for a sick room. The sick are carried there, and for three days she doses them on rounds while the well stay out.
    - The illness spreads at a third of its rate. She may catch it herself (the budget's own chance), and then the colony nurses her.
    - Ages: herbs and boiled linen, then the colony's medicine and masks.
    - Reuses: the illness budget, `VisitorServices.Dose`, the hospital, play-out carrying. **Medium.**
 
-8. **(camp) A field sickhouse.**
+8. **(camp) A field sickhouse.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - In a plague year, or after a war in the region, sisters pitch a long hut of beds by the colony, with a lamp lit at its door all night.
    - Over the days, two to six sick or wounded strangers of the region walk or are carried in, and the sisters dose them on rounds.
    - They ask the colony for medicine, food and clean cloth, and for its doctor to work the ward for a day. The doctor learns a lot and may bring the sickness home, through the illness budget. The colony's own sick may be taken in too.
@@ -131,7 +131,7 @@ Where it lives:
 - Favoured camps: drovers, shearers, beast-catchers.
 - Nothing of their own at the gate: the thinnest of all.
 
-9. **Grazing across the land.**
+9. **Grazing across the land.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
    - A drove of twenty to forty head asks to cross the colony's land and graze there for two or three days. The herd walks in from one edge, and the drovers' fire burns at the other.
    - If allowed: they leave a young beast, or hides and milk, and the colony's best hand at beasts may ride the drove for a day (a lesson).
    - Unfenced fields lose some crops, shown on the card. Rarely, a spooked beast kicks a colonist (the harm budget).
@@ -139,7 +139,7 @@ Where it lives:
    - Ages: on foot in every age; with Giddy-Up 2 the drovers ride.
    - Reuses: the great herds' walking lords, arrivals, the harm budget. **Medium.**
 
-10. **(gift) A beast for a colonist.**
+10. **(gift) A beast for a colonist.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - A rider leads in a young beast the elder chose for one named colonist ("the grass will tell"): a horse, yak, dromedary or muffalo by the land, and with Giddy-Up 2 one that can be ridden.
     - The colony takes it for a fair price, or trades one of its own young beasts.
     - Colonist and beast walk to the pen together. The beast learns its first tasks and is bonded to them (the game's bond). The rider eats at the colony's table that night.
@@ -147,20 +147,20 @@ Where it lives:
     - Mods: Giddy-Up 2, Alpha Animals, Vanilla Animals Expanded, Megafauna (by the land).
     - Reuses: arrivals, the gene work's shape, the visitors' supper. **Medium.**
 
-11. **The thief on the drove road.**
+11. **The thief on the drove road.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
     - When raiders drive off the colony's animals (Animal Husbandry Raids, which the player has), herders' riders come the next morning on the thieves' trail.
     - The colony can send a rider with them: a short caravan to the thieves' camp, and a fight by the game's own rules.
     - Or the herders go alone: they bring back what they can, and keep one beast as their due.
     - Ages: on foot or mounted.
     - Reuses: the stray's lead home, the calls to arms' fight at a site, arrivals. **Medium.**
 
-12. **(camp) Water in the dry year.**
+12. **(camp) Water in the dry year.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - In a drought (Odyssey's, Vanilla Events Expanded's, or the region's dry year), a herders' camp brings up to a dozen head and dogs to the colony's water for five to eight days.
     - They ask for hay carried out, or the colony's grazing. They offer milk, a hand with the colony's beasts, and young beasts at the gate after a good stay. Their people remember it (+10, and the region hears).
     - It can turn: the herd strays into the colony's fields, or a predator follows it in. If turned away, a later news line says how many head they lost on the road.
     - Reuses: the winter herd's animals, milk and young beast; `situationKinds`; deeds. **Medium.**
 
-13. **(camp) Spring calving.**
+13. **(camp) Spring calving.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
     - In spring, herders bring in-calf beasts to calve on the colony's sheltered ground for 8 to 12 days, and count every head aloud at dusk.
     - Calves are born at the camp (the game's own births). A hard birth brings a herder to the gate asking for the colony's best hand at beasts: a roll shown on the card decides whether both live (the colony gets the calf) or the mother is lost.
     - They ask for hay and offer milk.
@@ -176,7 +176,7 @@ Where it lives:
 - World events: a great pilgrimage, a holy year, a prophet.
 - Favoured camps: pilgrims, procession, penitents, mourners.
 
-14. **(gift) A pilgrimage.**
+14. **(gift) A pilgrimage.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - A file bound for a shrine (a fellowship town, a relic's town, an old shrine site) asks if anyone at the colony would walk with them.
     - The colonist sent is away 10 to 30 days as a caravan of one. The roads, the weather and the pilgrims' cough are the world's and the budget's own.
     - They come home with a shell, a lasting memory of the shrine, steadier faith (Ideology's certainty), and a grief or guilt eased. The fellowship gives +6.
@@ -184,20 +184,20 @@ Where it lives:
     - Mods: Ideology, VE Relics and Artifacts.
     - Reuses: the conscript's caravan, the ledger, the heart, faith. **Large**; it builds the "season away" shape that 3, 67 and 98 reuse.
 
-15. **An old shrine on the colony's ground.**
+15. **An old shrine on the colony's ground.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
     - They find something holy on the map (an ancient structure, a great old tree, a grave older than the colony). Two pilgrims work three days setting stones and a lamp, and bless it; it becomes a building of the colony's.
     - From then on, pilgrims stop there in spring and summer and leave a little silver or herbs, and the colony's faithful feel it when they pray there.
     - If the colony lets it fall to ruin, they mourn it.
     - Mods: Ideology, VE Relics (a relic laid there).
     - Reuses: visitors, faith, play-out work. **Medium.**
 
-16. **Two faiths at one table.**
+16. **Two faiths at one table.** *(Built, round 3: `Source/ColonyCouncil/Peoples/Events3/`.)*
     - When two faiths in the colony quarrel (the faith clash), or its own faith is near a split (Vanilla Ideology Expanded - Splits and Schisms), a palmer comes.
     - That evening the colony gathers and each side's best speaks.
     - The blessing settles it for a season (certainty steadied on both sides), or, by the speakers' Social shown on the card, the split comes anyway and is said plainly.
     - Reuses: the faith evening, the gathering play-out, the council. **Medium.**
 
-17. **(camp) A hostel on the road.**
+17. **(camp) A hostel on the road.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - In a holy year or a great pilgrimage, two or three of the fellowship raise a hostel by the road through the colony's land for 10 to 15 days: a long hut of bedrolls, the shrine's flame, a bread table.
     - Travellers of every people at peace walk in for a night or two and walk on, so the colony sees the region's faces and hears their news (places heard of).
     - The hostel asks for bread each morning (food carried out) and invites the colony's people to the evening blessing.
@@ -223,13 +223,13 @@ Where it lives:
     - Ages: told stories, slates, books, data.
     - Reuses: the night of the fire's gathering, gifts, deeds, the post. **Medium.**
 
-19. **What lies in the old place.**
+19. **What lies in the old place.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - With an ancient danger, or a landmark (Vanilla Landmarks Expanded, Geological Landforms), on the colony's map, two scholars camp beside it for four days, measuring.
     - Then they say exactly what is inside, the game's own contents: sleeping mechs, a hive, how many caskets, or nothing. They also leave research toward a project.
     - If the colony lets them open it themselves, the danger is the game's own, shown on the card.
     - Reuses: the monolith watchers' camp shape, research, the event card. **Medium.**
 
-20. **Books kept from the fire.**
+20. **Books kept from the fire.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - When a society town burns or falls (a ruin in the ledger, a great fire), a copyist brings a cart of the archive and asks the colony to keep it for a season.
     - The colony's readers may read the books (the game's books, and VE Books'); Anomaly's tomes stay sealed.
     - A cart fetches them later, with thanks (+8) and one book left behind. A book lost or sold is a lasting wrong.
@@ -249,7 +249,7 @@ Where it lives:
 - A tourist (caller); busy orbital lanes and a ship come down (world events).
 - Favoured camps: far merchants, stranded spacers, salvagers, market folk.
 
-22. **(gift) The body made better, on terms.**
+22. **(gift) The body made better, on terms.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - The factor offers a colonist a bionic part (eye, arm, leg, spine, or one of Alpha Implants'), paid now or on terms: a fifth down, then four seasonal instalments asked for by letter.
     - Their surgeon drops in by pod, or walks in to a tribal colony, and fits it at the colony's medical bed by the game's surgery, which rarely fails at their skill.
     - A missed instalment is a default: goodwill falls, the debt joins the colony's debts, and no lander comes until it is paid.
@@ -269,7 +269,7 @@ Where it lives:
     - Robbing the pods is the colony's choice, and earns the enclave's lasting grudge.
     - Reuses: arrivals, outsider tending and the hospital, the lander, deeds. **Medium.**
 
-25. **(camp) A pad by the colony.**
+25. **(camp) A pad by the colony.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - Two factors and two marshals rent ground at the colony's edge for 10 to 15 days, paying rent every five days at an exact figure, and lay a small pad and stalls.
     - A pod drops fresh stock each morning, so the colony can trade every day (the game's own trading).
     - They ask the colony to keep its people off the pad and to sell them its meals.
@@ -284,7 +284,7 @@ Where it lives:
 - A flood downriver and the ice road (world events).
 - Favoured camps: fishers, woodcutters, harvest hands.
 
-26. **A crossing on the colony's river.**
+26. **A crossing on the colony's river.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - Where a river or stream cuts the colony's map, two or three boatmen spend a day laying the game's bridges over water that takes them, and planks on the banks, with wood the colony gives. It reuses their own town's dock-laying.
     - The crossing is the colony's. Once a year, on their knot night, they ask to rest at it.
     - Ages: rope and plank, then timber on piles.
@@ -344,7 +344,7 @@ Where it lives:
     - Ages: torches, molotovs, incinerators.
     - Reuses: the hunt's lord. **Medium.**
 
-34. **(camp) The lantern post.**
+34. **(camp) The lantern post.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - While a legend, a nemesis or an alpha roams the land or nearby, three Wardens camp at the edge with two hounds, light the lantern every night, and go out on the trail by day. They stay until the beast falls, or ten days.
     - They ask for meat for the hounds. They offer to take the colony's best shot on the trail (a lesson, and a place in the hunt), and they warn when the beast is near.
     - It can turn: the beast comes to their fire at night (the game's fight; the colony may run to help), or a hound is lost.
@@ -395,7 +395,7 @@ Where it lives:
     - Mods: PokéWorld (a Pokémon trained the same way).
     - Reuses: the bout's visit, the game's training. **Medium.**
 
-40. **A leg for a lame beast.**
+40. **A leg for a lame beast.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - For an animal of the colony's that lost a leg, the Circuit's beast-doctor comes.
     - Industrial and spacer: she fits Alpha Implants' animal prosthetic, by the game's surgery and chance.
     - Tribal and medieval: she takes the beast to their stables to live out its days, and leaves a young one of its kind.
@@ -448,7 +448,7 @@ Where it lives:
 - The fortune teller (caller); a year without summer (world event).
 - Favoured camps: monolith watchers, surveyors, hermit.
 
-47. **(gift) Storm-sense.**
+47. **(gift) Storm-sense.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - In a thunderstorm, a reader asks the colony's most psychically sensitive colonist to stand out at the rod with her for an hour.
     - The colonist wakes with a first psylink level (Royalty) on Vanilla Psycasts Expanded's Staticlord or Frostshaper path. Without Royalty, with A RimWorld of Magic, they get the Lightning tome.
     - The price is silver, or a vial of the colony's own storm for their archive.
@@ -478,7 +478,7 @@ Where it lives:
 - A blight (world event).
 - Favoured camps: tree-singers, herb-gatherers, healers.
 
-51. **(gift) A Gauranlen seed.**
+51. **(gift) A Gauranlen seed.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - Once the ledger has warmed to the colony, a seed-carrier plants a Gauranlen seed where the colony chooses, with the colonist it names beside her. The tree connects to them, and its dryads come in time.
     - The price is a promise: a seedling for every tree felled, which the ledger watches.
     - Mods: Ideology, Vanilla Ideology Expanded - Dryads. Without Ideology, a healroot grove is sown instead.
@@ -538,7 +538,7 @@ Where it lives:
 - The art collector (caller); a great work (world event).
 - Favoured camps: travelling smith, stonecutters, market folk.
 
-59. **(gift) The guild's mark.**
+59. **(gift) The guild's mark.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - A master-smith reworks one colonist's bow or gun into a unique piece of its kind (Odyssey's and Vanilla Weapons Expanded's unique weapons; their traits are the game's), or a blade into a masterwork in better stuff. The colonist's name goes into its label.
     - The work takes a day at the colony's bench while the colonist watches, paid in silver and the stuff.
     - Ages: a unique greatbow, a medieval crossbow, rifles, charge guns.
@@ -567,7 +567,7 @@ Where it lives:
 - Two peoples who want to talk (world event).
 - Favoured camps: surveyors, monolith watchers, travelling smith.
 
-63. **News for sale.**
+63. **News for sale.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
     - An operator sells what the masts heard, for 60 to 200 silver: a site within reach (an item stash, a downed shuttle's cargo, a bandit outpost).
     - The game's own quest site appears, and the places-heard-of marks show it, with where they heard it.
     - Reuses: quests, places heard of. **Medium.**
@@ -709,7 +709,7 @@ Where it lives:
 - A town rebuilding (world event).
 - Favoured camps: salvagers, travelling smith, surveyors.
 
-83. **(gift) A mechlink.**
+83. **(gift) A mechlink.** *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - A mech-tender installs a mechlink in a colonist over two hours (sparks, a bar), and links a lifter or constructoid to them to start, for silver or subcores.
     - A tribal colony's people find it strange (a mood).
     - Mods: Biotech, Alpha Mechs.
@@ -791,7 +791,7 @@ Where it lives:
 
 ## 4. Between peoples
 
-95. **Kill it or win it over** (the Wardens and the Circuit).
+95. **Kill it or win it over** (the Wardens and the Circuit). *(Built, round 1: `Source/ColonyCouncil/Peoples/Events/`.)*
     - When a legend beast is on the colony's land, Wardens and a tamer arrive the same day.
     - The colony can side with the hunt (the lantern hunt and its split), or with the taming: the game's own taming tries, with the beast's revenge at the game's rate.
     - Or it can let them settle it in a bout at the gate.
@@ -799,7 +799,7 @@ Where it lives:
     - Mods: Megafauna, Dinosauria, ReGrowth, PokéWorld.
     - Reuses: the hunt, the bout, the beasts system. **Medium.**
 
-96. **The moot over the old wood** (the Union and the Mossborn).
+96. **The moot over the old wood** (the Union and the Mossborn). *(Built, round 10: `Source/ColonyCouncil/Peoples/Events10/`.)*
     - A pit wants to sink a shaft under an old wood near a grove, and both send envoys to the colony as neutral ground.
     - The colony's best talker hears them at its table, and rules:
       - for the shaft: the Union gains, the Mossborn lose, and steel is cheaper for a season;
@@ -807,18 +807,18 @@ Where it lives:
       - or a bargain, by the talker's Social.
     - Reuses: the moot and peace-talks world events, envoys. **Medium.**
 
-97. **A toll on the road** (the League and the Wheel).
+97. **A toll on the road** (the League and the Wheel). *(Built, round 10: `Source/ColonyCouncil/Peoples/Events10/`.)*
     - The League tolls the road past the colony, and the Wheel's carts won't pay.
     - The colony can let the carts cross its map (Wheel up, League down), turn them back (the reverse), or host both at the gate to set a fair toll.
     - Reuses: the toll world event, the Wheel's moving towns. **Medium.**
 
-98. **The lamp and the bell in a plague year** (the Order and the Bell).
+98. **The lamp and the bell in a plague year** (the Order and the Bell). *(Built, round 10: `Source/ColonyCouncil/Peoples/Events10/`.)*
     - A plague town within reach asks, through the Order, for the colony's doctor, and through the Bell for two diggers.
     - Each colonist sent goes as a caravan, and the sickness may come home with them (the illness budget).
     - Sending both earns a lasting deed in both peoples' memories.
     - **Large.**
 
-99. **Learning traded through the colony** (the Society and the Vault).
+99. **Learning traded through the colony** (the Society and the Vault). *(Built, round 10: `Source/ColonyCouncil/Peoples/Events10/`.)*
     - A society copyist and a vault technician meet at the colony's table, hosted for three days. The copyist copies the vault's records, and the colony's crafter teaches both.
     - The society gets its copy (with a book for the colony), and the vault gets its craft (supply that holds its age).
     - Both peoples' ages move by the teaching rule.
@@ -826,7 +826,7 @@ Where it lives:
 
 ## For every people
 
-100. **(gift) Their art handed on.**
+100. **(gift) Their art handed on.** *(Built, round 10: `Source/ColonyCouncil/Peoples/Events10/`.)*
      - Once a game, a people at good terms offers the colonist who did most for them (their deeds) its own art.
      - With A RimWorld of Magic, that is its class tome, read by the mod's own rules: the Order the Priest's, the Herders the Nature tome, the Wardens the Ranger's, the Bell the Earth tome, the Banner the Gladiator's, the Guild the Enchanter's, the Lattice Technomancy, the Choir the Bard's, and so on.
      - Without it, a passion in their calling's skill.

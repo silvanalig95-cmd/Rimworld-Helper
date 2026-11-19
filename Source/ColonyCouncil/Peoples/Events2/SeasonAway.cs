@@ -50,7 +50,9 @@ namespace ColonyCouncil
             // Round 7's (Peoples/Events7/): the miner and the doctor dug in at a union pit's cave-in.
             [PitCaveIn.AwayKey] = new CaveInAway(),
             // Round 8's (Peoples/Events8/): a colonist of the Empire's rank at the Hollow Fleet's hull, giving the order to disembark.
-            [OrderToDisembark.AwayKey] = new DisembarkAway()
+            [OrderToDisembark.AwayKey] = new DisembarkAway(),
+            // Round 10's (Peoples/Events10/): the colony's doctor and diggers at a plague town, for the order and the Bell.
+            [PlagueYear.AwayKey] = new PlagueAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;

@@ -10658,6 +10658,79 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     and the camps' states, modelled in `Tools/save_estimate.py`. Small hooks: round 8's `Hour` and `Hourly`, `Patch_LineMastWarns`
     (the void's word, before the mast's own), `FactsMath`, the def check's placeholders. No game hooks of its own. Dev actions
     "Peoples' events 9: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml).
+- **The peoples' own events, round 10, the last** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+  `docs/peoples-events-proposals.md`, items 96 to 99 (between peoples) and 100 (every people's art handed on), the whole list of 100
+  now built; `Source/ColonyCouncil/Peoples/Events10/`, the pure rules in `PeopleEvents10Math.cs`, `Tools/Tests/PeopleEvents10Tests.cs`
+  ("the peoples' events, round 10: "). The first four come from two of Rimfolk's peoples at once (`PeopleEvents10.Pair`: one of each
+  calling at peace with the colony, and the second not at war with the first), {FACTION} the first and {ENEMY} the second; each
+  arrives under its own lord, and the last answer sends both on. All in the Visitors group, base chance 0.3 to 0.5, 60 days apart, never
+  in the first twenty days (the art thirty), every age in its own form by the first people's age, played out on the map. Round 9's hour
+  hands on to round 10's (`PeopleEvents9.Hour`, `Hourly` and `WorkDone`, one line each), and round 10's jobs are round 9's work at a
+  place (`JobDriver_PEv9Work`, eight jobs of the round's own). Four answers each for the events between peoples (the rule's three and
+  a fourth for the second people), three for the art.
+  - **The moot over the old wood** (the Deepwell Union and the Mossborn; `WoodMoot`): a shift-captain of the union and a grove-tender
+    of the Mossborn at the gate together, the union's pit wanting to sink a shaft under an old wood by a Mossborn grove. The answer
+    is the ruling, given after the hearing: the colony's best talker (Social) and both envoys at the colony's table nearest the gate
+    (else at the gate, and the card says which) two hours (`_Hear`, the envoys `_Plead`, each saying their case). For the shaft: the
+    union +6, the Mossborn -6, remembered as a side taken (`sidedWith`, `tookSides`), and steel a fifth cheaper with every trader for a
+    season (15 days). For the wood: the reverse, and herbal medicine a fifth cheaper (the old wood's herbs, the Mossborn's trade). A
+    bargain by the talker's Social (25 in 100, 4 a level, at most 85, on the card): struck, the shaft at the wood's edge and a seedling
+    for every tree felled, both +3 and `mediated`, steel a tenth cheaper; failed, both -2. The talker learns 500 Social. A letter with
+    the ruling, a line of news on the roads, the envoys home. Not heard within eight hours (the talker away, a threat, the envoys
+    gone), the ruling goes to them by word, the same. `pev:moot`.
+  - **The season's prices** (`Patch_SeasonPrices`, the round's one game hook): a postfix on the game's `Tradeable.GetPriceFor`, idle
+    unless a ruling moved a price (`PeopleEvents10Book.AnyPrice`) and with the deeper hooks on; buying and selling move together, so
+    the spread stays the game's. At most four kept; one whose season is over is told and dropped.
+  - **A toll on the road** (the road league and the Wheel; `RoadToll`): the league's factor (and a guard) at the gate, and a cart train
+    of the Wheel stopped just inside the edge of the colony's land: its wheelwright, one or two hands and two or three pack beasts of
+    the Wheel's own caravans (its faction's carriers that suit the land and season, `Couriers.AnimalKind`), their packs loaded with
+    25 steel of salvage so they show. Let through: the carts walk across the colony's land to the farthest edge they can reach and off
+    (`LordJob_ExitMapNear`, a great herd's crossing), the Wheel +5, the league -5, a side taken. Turned back: out the way they came, the
+    reverse. A fair toll: a meal carried out to each, the talker with both at the gate two hours, the toll 35 silver a pack beast which
+    the wheelwright pays the factor, both +3 and `mediated`, the talker 400 Social; the carts then go on by the road. Stayed out of:
+    both go home, the carts the long way round. The region hears. `pev:toll` for the fair toll.
+  - **The lamp and the bell in a plague year** (the hospitaller order and the Quiet Bell; `PlagueYear`): a town of a people at peace
+    within 15 tiles under a plague (the region's world event as the illness budget reads a town, `SickHome.TownSickness`). A hospitaller
+    and a sexton at the gate together; the order asks for the colony's best doctor, the Bell for its two best at building (the game's
+    graves are dug as building), never the doctor. All three, the doctor only, or the diggers only; never so many that fewer than two
+    grown-ups stay at home. Each goes as a caravan of one (round 2's season away, kind "plague") for four to six days: each day there
+    the doctor 800 Medicine, a digger 500 Construction. As they get there each is lodged at the town for the illness budget's own
+    sickness brought home (`SickHome.Lodged`, a journey of its own: the homecoming's one roll, one in six for a stay of a night or more,
+    halved with the order's sickhouse for the doctor and again for a colony of the industrial age, half again under the quarantine
+    decree; its letter names the town). Home again: the order +8 for its doctor, the Bell +4 a digger, a good mood (`PlagueTown`), the
+    plague's world event counts the colony's help (so the town's own people remember it when it ends), and with all three sent each
+    people notes a deed of its own, `plagueYear` (+25, slow to fade, a debt of honour, naming the colonist).
+  - **Learning traded through the colony** (the learned society and the Sunken Vault; `LearningTraded`): a copyist of the society and a
+    technician of the vault ask to sit at the colony's table nearest the gate for three days. Hosted (each under a lord of their own at
+    the table): each morning (8 to 11h) the copyist copies four hours with the technician reading the records out (`_Copy`,
+    `_ReadOut`); each afternoon (13 to 16h) the colony's best crafter teaches them both two hours at the crafter's bench (`_Teach`,
+    `_Learn`; the crafter 250 Social and 150 Crafting, the visitors 800 Crafting). They eat the colony's meals and sleep in its beds,
+    else on the floor, as a feast's guests are seen to (`Missions/Hosting.cs`). Three mornings make the copy whole and the society
+    leaves a book of it at the table (a textbook for a colony before the industrial age, a schematic after, of good quality); with the
+    lessons the vault's craft is remembered as supply (300 silver, which holds its age) and both peoples remember one of theirs who
+    learned here (`learnedHere`), which moves both ages by the teaching rule. Thanks +4 each (the copying only, +2). They stay a day
+    longer at most if they came late or the work was interrupted. `pev:learning`.
+  - **Their art handed on** (every people; `ArtHandedOn`): once a game a people (any of Rimfolk's, or one that arose in their ways) at
+    goodwill 50 or more offers the colonist it remembers best for a good turn (`KinMemory.Friend`, at home, grown, under the peoples'
+    gift rule) its own art: one of theirs (each calling's own kind) at the gate, and the two of them there three hours (`_ShowArt`,
+    `_LearnArt`). With A RimWorld of Magic loaded, the people's class switched on in its settings, and the colonist carrying the latent
+    gift its book needs (`TM_Gifted` for a mage's tome, `PhysicalProdigy` for a fighter's), it is the people's class book, set down by
+    them and read by the game's own use of the item (`CompUsable.TryStartUseJob`, the mod's own learning effect giving the class). The
+    books: the order the Priest's, the herders, the river folk, the Circuit and the Mossborn the Nature tome, the Wardens the Ranger's,
+    the Bell and the union the Earth tome, the Banner the Gladiator's, the Guild the Enchanter's, the Lattice, the Wheel and the Signal
+    Line Technomancy, the Choir and the Republic the Bard's, the league and the Fleet the Commander's, the pilgrims the Paladin's, the
+    society the Arcanist's, the enclave the Psionic's, the Conclave the Lightning tome, the Works the Chronomancer's, the vault the Super
+    Soldier serum; each a class among the people's own kinds. Otherwise a passion in their calling's skill (none an interest, an
+    interest a burning passion; the order Medicine, the herders Animals, the Wardens Shooting, the Bell Construction, the Banner Melee,
+    the Guild Artistic, the union Mining and so on), or where it burns already (or is a mod's own) a long lesson (6000). A good mood,
+    +4 (+8 with the colony's gift in return, 250 silver by wealth), and the colony owes them a lesson (`taught`, which moves their age by
+    the teaching rule). Not now: they go home, and the offer may come again. `pev:art`.
+  - Harm of Rimfolk's own: none. The sickness from the plague town is the illness budget's own (`HarmKinds.SickHome`, its chance, its
+    cap and its letter); the roads are the game's own. Saved: `PeopleEvents10Book` (the season's prices, the peoples that handed on their
+    art), modelled in `Tools/save_estimate.py`. Small hooks: round 9's `Hour`, `Hourly` and `WorkDone`, round 2's `SeasonAway.Kinds`
+    (the plague town), `SickHome.Lodged`, `FactionMemory` (the deed `plagueYear`) and `FavourMath` (a debt of honour). One game hook,
+    the season's prices. Dev actions "Peoples' events 10: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*
+    (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

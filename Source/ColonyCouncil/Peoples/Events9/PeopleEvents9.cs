@@ -48,7 +48,8 @@ namespace ColonyCouncil
                 case MindShouts.Kind: return MindShouts.Hour(v, now);
                 case ConsoleTalk.Kind: return ConsoleTalk.Hour(v, now);
             }
-            return false;
+            // Round 10's (Peoples/Events10/): the hearings at the table and the gate, the days at the table, an art shown at the gate.
+            return PeopleEvents10.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -67,6 +68,8 @@ namespace ColonyCouncil
             Safe("the Lattice's links", () => LatticeLinked.Watch(now));
             Safe("the void's word", () => VoidListens.Watch(now));
             Safe("the vault's seal", () => SealBroken.Watch(now));
+            // Round 10's watch (Peoples/Events10/): the season's prices, the colony's people at a plague town.
+            Safe("round 10", () => PeopleEvents10.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>
@@ -96,6 +99,8 @@ namespace ColonyCouncil
                 else if (job == SearchJob) SurfaceScouts.Searched(pawn);
                 else if (job == TalkOutJob) SurfaceScouts.TalkedOut(pawn, target.Pawn);
                 else if (job == LookAtJob) SurfaceScouts.Looked(pawn, target.Pawn);
+                // Round 10's work at a place is done with this driver too (Peoples/Events10/).
+                else PeopleEvents10.WorkDone(pawn, job, target);
             }
             catch (Exception e)
             {
