@@ -2796,6 +2796,28 @@ is told, and a grown-up of the visitors does the pulling back. "A herd passing" 
 animal would do: a stranger may now ask for its kin (`minKin`, wild animals of its kind on the map, itself included),
 the herd asks for six, and its words say a herd grazed past, with no count and no hours.
 
+### The region's words against the map (the plain-words pass, 19 November 2026; not released yet)
+
+A world event's letters are told when they come (`WorldSituations.Run` for a beat, the ending when it times out or is
+called), at any hour, and no tag gives the hour, so its words name no part of the day that may not have come yet: no
+noon, evening, dusk, dawn, "this morning", "before dark" or "tonight" for what happens as the letter is read, and
+"last night" or "yesterday" for what is past. A visit's own effect may keep an hour, and the words then say it: the
+mourners pass in the afternoon (`VisitEffect_Come`, `hourFrom` 13 to 18), herders and the great caravan come toward
+evening, pilgrims sing at their camp after dark, a fire is laid for tonight's watch. What is told as done is what the
+effects do at once: the healer has come and treats the colonist (`SituationWorker_Healer.Treat`, as the healer walks
+in), silver owed is on its way with a courier (`WorldSituations` pays `owed` by `Couriers.PaySilver` as the ending
+comes), a gift is carried out to the gate. Someone the words put at the gate is brought there by a
+`VisitEffect_AtGate` in the beat; where no effect brings them, the words say a message or a rider came and went. No
+well, wall, stream, ridge or hill is named where the colony may have none: the comet's watch is at a fire outside, the
+stargazer on the far ground (`VisitSpot.Far`), the prospectors on the colony's land. Three world events now bring the
+people their letters are about: the gold fever's prospector comes to the gate with his mule, the war of words' two
+preachers stand there, one of each creed (the second only while its people is at peace with the colony), and the
+peace talks' two delegations come to the gate a day or two after the colony agrees and stay two nights
+(`VisitEffect_Come`, `holdBeat` "talks"), the talks settled by `SituationWorker_PeaceTalks` once they have gone. Answers
+that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
+and the colonist stays at the colony for now (a to-do in docs/HANDOFF.md; the town's well storyline sends its digger
+away, `Storylines/StorylineWell.cs`).
+
 ## Pace: how often the colony gathers
 
 The staging review (`docs/review-2026-11/staged-scenes.md`) counted about four gatherings a week and a group outing
