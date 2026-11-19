@@ -10512,6 +10512,23 @@ wait of two hours), and the errand waits until they come ("one of the camp is co
 already at the gate, as the one who brings the colony's load of wood, takes it. The answers' words say "the gate, where
 one of the camp meets them" for such a camp. Going to the camp to learn a craft, to visit or to help stays a walk to it.
 
+#### The camp's people at the gatherings their asks set going (not released yet)
+
+Found in the plain-words pass on the camps (19 November 2026): the suppers, feasts, evenings at their fire, prayers,
+plays and songs a camp's asks set going said the camp's people were there ("The family eats at the colony's table
+tonight, children and all", "with the minstrels playing", "sing with them"), but the gathering took only the colony's
+own people. Each of those fifteen gatherings (`DilemmaEffect_Gathering`, `_Feast`, `_Toast`, `_Words` in
+`Defs/CampDefs/`) now takes `<guests>camp</guests>`: the camp's people come up and take a place at it (`PlayGuests`, as
+the camp's feast and the run's supper already did), and at a feast are served like everyone else. The minstrels' song
+about the colony is sung by the minstrel the ask is about (`organizer` None, so the stranger says the words), and the
+mourners' "Stand with them for their dead" is the colony and the mourners standing together outside for a while, as
+it plays out (it was "Stand by the road when they go", which nothing tied to their going). The same pass put a few
+claims right in the words: a pilgrim's prayer at a sick colonist's side is said by the one who leads them, not their
+eldest; the camp's own hunters stay at their work while the colony's hunters go out on their advice; the traveling
+healer sees the one colonist the ask names; a show, a song or an evening's tales that the camp's good turn announces
+says it is about to happen, not that it already has; and no farewell, join or request letter claims an hour, a wave at
+the gate or a leftover that the map doesn't keep.
+
 ### How fast Rimfolk's people go (0.171.1)
 
 The game's "walk" urgency is half the ordinary pace and "amble" a third; the colony's own people go about their work at

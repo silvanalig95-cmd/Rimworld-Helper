@@ -82,7 +82,7 @@
         <minified>true</minified>
         <titles>
           <li>A waystone for a friendly gate</li>
-          <li>Good ink</li>
+          <li>A friend of the league</li>
           <li>The league's mark</li>
         </titles>
       </li>
@@ -98,11 +98,11 @@
       <li>[snow] A caravan out of the snow</li>
     </titles>
     <texts>
-      <li>The snow has closed the roads ahead of a caravan of {FACTION}, and {X_nameDef}, its caravan master, has turned it toward the colony's smoke. The league would sooner sit the weather out by a friendly wall than on the road, {X_pronoun} told {A_nameDef}, and asks for winter quarters {PLACE}, trading from the camp until the roads open.</li>
-      <li>[snow] A league caravan of {FACTION} came in out of the snow at a crawl, its beasts white to the knees. {X_nameDef}, the caravan master, asked {A_nameDef} whether they might winter {PLACE}: every crate home, the league says, and the crates will not get home through this.</li>
-      <li>[lowtech] A long string of laden beasts has come down the frozen road behind {X_nameDef}, a caravan master of {FACTION}, and stopped at the colony. The road won't wait, {X_nameDef} says, but the snow says it has to, and the league would winter {PLACE} and trade there until the thaw.</li>
+      <li>The snow has closed the roads ahead of a caravan of {FACTION}, and {X_nameDef}, its caravan master, has brought it to the colony. The league would rather wait out the weather near friendly people than on the road, {X_pronoun} told {A_nameDef}, and asks for winter quarters {PLACE}, trading from the camp until the roads open.</li>
+      <li>[snow] A league caravan of {FACTION} came in slowly out of the snow, its beasts white to the knees. {X_nameDef}, the caravan master, asked {A_nameDef} whether they might winter {PLACE}, since the caravan can't get its goods home through this weather.</li>
+      <li>[lowtech] A long string of laden beasts has come down the frozen road behind {X_nameDef}, a caravan master of {FACTION}, and stopped at the colony. The snow has stopped them, {X_nameDef} says, and the league would like to winter {PLACE} and trade there until the thaw.</li>
       <li>[!lowtech] A league convoy of {FACTION} has pulled off the snowbound road near the colony, chains on its wheels and frost on its canvas, and {X_nameDef}, who runs it, asks {A_nameDef} for winter quarters {PLACE} until the roads are clear. They will trade while they wait, and keep their wardens on watch.</li>
-      <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef}, a caravan master of {FACTION}, has brought the caravan straight to it rather than winter anywhere else. {X_nameDef} asks {A_nameDef} for quarters {PLACE} until the roads open, as between friends.</li>
+      <li>[their:grateful] The league has the colony on its list of fair dealers, and {X_nameDef}, a caravan master of {FACTION}, has brought the caravan straight to it rather than winter anywhere else. {X_nameDef} asks {A_nameDef} for quarters {PLACE} until the roads open, as between friends.</li>
       <li>[ws:road] With the roads as busy as they are this year and the snow on top of it, {FACTION}'s caravan has given up on the next waystation. {X_nameDef} asks {A_nameDef} for winter quarters {PLACE}.</li>
     </texts>
     <settled>
@@ -111,14 +111,14 @@
       <li>The league caravan has settled in {PLACE} to wait for the roads. Beer by the fire, cloth on the table, and every crate counted twice before dark.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the league's drivers, has seen every road in the region and says none of them leads anywhere better than the colony. {X_pronoun} asks whether the colony could use someone who keeps a fair ledger.</li>
-      <li>{X_nameDef} from the league's winter camp {PLACE} has spent more evenings at the colony's fire than at the caravan's. Tonight {X_pronoun} asked whether {X_pronoun} might stay when the roads open.</li>
+      <li>{X_nameDef}, one of the league's drivers, has seen every road in the region and likes the colony best of anywhere on them. {X_nameDef} asks whether the colony could use someone who keeps a fair ledger.</li>
+      <li>{X_nameDef} from the league's winter camp {PLACE} asked today whether {X_pronoun} might stay at the colony when the roads open.</li>
     </joinTexts>
     <farewell>
-      <li>[left:waystone] The league's caravan loaded up as the roads opened, and {X_nameDef} stopped at the colony's gate on the way out to leave a carved waystone in its crate, the mark the league puts on a friend's gate. The colony is in the Waystone Book now, in good ink.</li>
-      <li>[left:waystone] {FACTION}'s winter quarters {PLACE} are empty. On the way past, {X_nameDef} set a crated waystone down by the colony's gate: every league caravan that sees it standing will know the gate is a friend's.</li>
-      <li>The league's caravan went out at first light, chains rattling and bells on the lead beast, with every crate it came with and a few more. {X_nameDef} promised to stop again next winter.</li>
-      <li>{FACTION}'s caravan left its winter quarters {PLACE} as soon as the road would take it. The road won't wait, they say, and it didn't.</li>
+      <li>[left:waystone] The league's caravan has loaded up and left, and {X_nameDef} stopped at the colony's gate on the way out to leave a carved waystone in its crate. The league puts one at the gate of every place it counts as a friend, and the colony is now in its Waystone Book, the league's list of friends and fair dealers.</li>
+      <li>[left:waystone] {FACTION}'s caravan has left its winter quarters {PLACE}. On the way, {X_nameDef} set a crated waystone down by the colony's gate. Every league caravan that sees it set up will know the colony is a friend of the league.</li>
+      <li>The league's caravan has left with every crate it came with and a few more. {X_nameDef} promised to stop again next winter.</li>
+      <li>{FACTION}'s caravan has left its winter quarters {PLACE} and gone back on the road.</li>
     </farewell>
     <lines>
       <li>Every crate home, and every crate counted.</li>
@@ -140,10 +140,10 @@
       <li>[gift] Good ink, and now a good stone to go with it.</li>
     </momentLines>
     <helpTexts>
-      <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony and carried them to the edge of the winter camp, by way of thanks for the wall: {THING}.</li>
+      <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony and carried them to the edge of the winter camp, as thanks for the shelter: {THING}.</li>
       <li>[goods] The league's caravan had more than it would carry over the pass, and {X_nameDef} left some of it at the edge of the camp for the colony rather than sell it cheap: {THING}.</li>
-      <li>[tales] {A_nameDef} sat up at the league's winter fire while {X_nameDef} told the story of Harrow Ford and the nine flags, and of every robber the league has written in red since.</li>
-      <li>[tales] The drivers had a road for every story and a story for every road, and {A_nameDef} came back from their fire knowing which waystations water their beer.</li>
+      <li>[tales] {A_nameDef} sat up late at the league's winter fire while {X_nameDef} told the story of Harrow Ford and the nine flags, and of every robber the league has listed as an enemy since.</li>
+      <li>[tales] The drivers told stories about every road they knew, and {A_nameDef} came back from their fire knowing which waystations water their beer.</li>
     </helpTexts>
     <asks>
       <li>
@@ -164,7 +164,7 @@
       <li>
         <key>wardens</key>
         <label>Ask their road wardens to stand with the colony if raiders come</label>
-        <tip>The league remembers who robbed it and guards what it keeps. From now on their wardens take up arms against whatever threatens the colony while the winter camp stands.</tip>
+        <tip>The league's wardens guard the caravan. From now on they also take up arms against whatever threatens the colony while the winter camp stands.</tip>
         <minDays>1</minDays>
         <tension>-3</tension>
         <warm>2</warm>
@@ -180,7 +180,7 @@
       <li>
         <key>book</key>
         <label>Ask to be written in the Waystone Book</label>
-        <tip>{A_nameDef} sits with the caravan master over the league's book of fair dealers, and the colony is written in it in good ink. The league's people think better of the colony.</tip>
+        <tip>{A_nameDef} sits with the caravan master over the league's book of fair dealers, and the colony is entered in it as a fair dealer. The league's people think better of the colony.</tip>
         <minDays>2</minDays>
         <tension>-4</tension>
         <deed>traded</deed>

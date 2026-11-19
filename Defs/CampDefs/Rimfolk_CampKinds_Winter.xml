@@ -171,7 +171,7 @@
     <texts>
       <li>A fishing family of {FACTION} has come out to the frozen water near the colony, where the ice holds and the fish are slow under it. {X_nameDef}, who does the talking for them, asked {A_nameDef} for leave to camp {PLACE} and fish through the ice for a few days.</li>
       <li>[their:tribal] Ice fishers of {FACTION} came over the snow dragging their gear behind them, bone hooks and sinew lines and an axe for the ice. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, by the frozen water, while the ice is good.</li>
-      <li>[their:medieval] A family of {FACTION} has walked down to the frozen water with lines, creels and an iron bar for breaking the ice. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and fish through it until the thaw or the hunger sends them home.</li>
+      <li>[their:medieval] A family of {FACTION} has walked down to the frozen water with lines, creels and an iron bar for breaking the ice. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and fish through it until the thaw, or until they run short of food.</li>
       <li>[their:hightech] Ice fishers of {FACTION} have hauled a sled of gear to the frozen water near the colony: an ice auger, rods, a stove. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and fish through the ice for a few days.</li>
       <li>[ws:ice] With the ice road open and every lake frozen hard, a fishing family of {FACTION} has come to fish the colony's water through the ice. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}.</li>
       <li>[their:grateful] The ice fishers of {FACTION} remember the colony kindly, and {X_nameDef} came up off the ice to ask {A_nameDef}, as an old friend would, for a few days' camp {PLACE}.</li>
@@ -182,13 +182,13 @@
       <li>The ice fishers have settled {PLACE}, and one of them is already out on the ice cutting the first hole.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the ice fishers' youngest, says {X_pronoun} would sooner fish the colony's water every winter than walk to a new lake each one, and asks whether the colony could use someone who knows the ice.</li>
-      <li>{X_nameDef} from the ice fishers' camp has been bringing fish up to the colony's door of an evening, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay for good.</li>
+      <li>{X_nameDef}, one of the ice fishers, says {X_pronoun} would sooner fish the colony's water every winter than walk to a new lake each one, and asks whether the colony could use someone who knows the ice.</li>
+      <li>{X_nameDef} from the ice fishers' camp asked today whether {X_pronoun} might stay at the colony for good.</li>
     </joinTexts>
     <farewell>
-      <li>The ice fishers from {FACTION} pulled their lines, packed their gear and walked off over the snow at first light, the dog running ahead.</li>
-      <li>The ice fishers' camp {PLACE} is empty. Out on the ice the holes they cut are already freezing over.</li>
-      <li>[ice] The fishing family from {FACTION} has gone on to the next frozen water, and the only sign of them out on the ice is a ring of fish scales round each hole.</li>
+      <li>The ice fishers from {FACTION} pulled their lines, packed their gear and walked off over the snow.</li>
+      <li>The ice fishers have packed up their camp {PLACE} and gone on to other water.</li>
+      <li>[ice] The fishing family from {FACTION} has gone on to the next frozen water.</li>
     </farewell>
     <lines>
       <li>Keep the hole open, it skins over fast.</li>
@@ -211,7 +211,7 @@
     </momentLines>
     <helpTexts>
       <li>[fish] {X_nameDef} set out {COUNT} {THING} from the ice fishers' catch at the edge of their camp for the colony, frozen stiff in the snow.</li>
-      <li>[fish] The ice fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} waved at {A_nameDef} to come and take it before the foxes did.</li>
+      <li>[fish] The ice fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} told {A_nameDef} to come and take it before the foxes got to it.</li>
       <li>[tales] {A_nameDef} sat with the ice fishers at their fire and heard about every lake between here and the north, and which of them freeze thick enough to walk on.</li>
     </helpTexts>
     <asks>
@@ -341,12 +341,12 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the trappers, says {X_pronoun} has spent too many winters alone in the woods, and asks whether the colony could use someone who can feed a household through one.</li>
-      <li>{X_nameDef} from the trappers' camp has been sitting at the colony's fire more evenings than at their own. Tonight {X_pronoun} asked whether {X_pronoun} might stay when the others move on.</li>
+      <li>{X_nameDef} from the trappers' camp asked today whether {X_pronoun} might stay at the colony when the others move on.</li>
     </joinTexts>
     <farewell>
-      <li>The trappers from {FACTION} took up their traps and their furs and went on into the snow, the dog breaking the trail ahead of them.</li>
-      <li>The trappers' camp {PLACE} is empty, and there's a ring of trampled snow round the cold fire and the pegs where the furs were stretched.</li>
-      <li>The fur trappers of {FACTION} loaded the last of their pelts on the pack beast and left at first light, bound for a market that pays for good winter fur.</li>
+      <li>The trappers from {FACTION} took up their traps and their furs and went on into the snow.</li>
+      <li>The trappers have packed up their camp {PLACE} and gone on.</li>
+      <li>The fur trappers of {FACTION} loaded the last of their pelts on the pack beast and left for a market that pays well for winter fur.</li>
     </farewell>
     <lines>
       <li>A fox in its winter coat is worth three in summer.</li>
@@ -367,7 +367,7 @@
     </momentLines>
     <helpTexts>
       <li>[meat] The trappers had more meat than they could carry, and {X_nameDef} left {COUNT} of it at the edge of their camp for the colony.</li>
-      <li>[tales] {A_nameDef} sat up with the trappers at their fire and heard about a winter so long the wolves came down to the villages, and how {X_nameDef} still has the scar.</li>
+      <li>[tales] {A_nameDef} sat with the trappers at their fire and heard about a winter so long the wolves came down to the villages, and how {X_nameDef} fought one off.</li>
       <li>[tales] {X_nameDef} told {A_nameDef} which tracks in the snow mean food and which mean trouble, and drew them in the ash by the fire.</li>
     </helpTexts>
     <asks>
@@ -389,14 +389,14 @@
       <li>
         <key>trapline</key>
         <label>Send {A_nameDef} out on the trapline with them</label>
-        <tip>{A_nameDef} goes out after game with the trappers for a few hours, and learns the tracks in the snow. What {A_nameDef} brings down is the colony's.</tip>
+        <tip>{A_nameDef} and one more of the colony's hunters go out after game for a few hours on the trappers' advice, and learn the tracks in the snow. What they bring down is the colony's.</tip>
         <skill>Shooting</skill>
         <minDays>0.5</minDays>
         <warm>2</warm>
         <tension>-4</tension>
         <outcomes>
-          <li>{X_nameDef} looked {A_nameDef} over, said to walk where {X_pronoun} walks, and handed over a pair of snowshoes.</li>
-          <li>{A_nameDef} is going out on the trapline with {X_nameDef} this afternoon, and has been told to keep quiet in the trees.</li>
+          <li>{X_nameDef} told {A_nameDef} where the trapline runs and how to walk quietly in the snow.</li>
+          <li>{A_nameDef} is going out along the trapline today, and {X_nameDef} has told {A_objective} to keep quiet in the trees.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the trapline</label><who>A</who><count>2</count><animals>1</animals></li>
@@ -495,7 +495,7 @@
     </titles>
     <texts>
       <li>A caravan of {FACTION} has turned off the road in the snow and made for the colony's smoke. {X_nameDef}, who leads it, asked {A_nameDef} for leave to camp {PLACE} until the weather breaks, and will trade from the camp while they wait.</li>
-      <li>[blizzard] Out of the blizzard came a string of laden beasts, heads down, and a caravan of {FACTION} behind them. {X_nameDef} shouted over the wind to {A_nameDef}: they can't go on in this, and ask for a camp {PLACE} until it passes.</li>
+      <li>[blizzard] A caravan of {FACTION} has come in out of the blizzard with a string of laden beasts. {X_nameDef} told {A_nameDef} they can't go on in this, and asked for a camp {PLACE} until it passes.</li>
       <li>[their:lowtech] A caravan of {FACTION} has come in white with snow, its beasts blanketed and its people wrapped to the eyes. {X_nameDef} asked {A_nameDef} whether they might sit the snow out {PLACE}, and trade there while they do.</li>
       <li>[their:hightech] A convoy of {FACTION} has given up on the snowbound road and pulled in near the colony, its beasts steaming in the cold. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until the road clears.</li>
       <li>[ws:ice] The caravan of {FACTION} was making for the ice road when the snow came down, and {X_nameDef} has turned it toward the colony instead. They ask for a camp {PLACE} until it passes.</li>
@@ -507,12 +507,12 @@
       <li>The caravan of {FACTION} is camped {PLACE}, waiting out the weather. Their trader has the table out already, snow or no snow.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the caravan's drivers, says the road has had all of {X_objective} it's getting, and asks whether the colony could use someone who's good with beasts and better with a ledger.</li>
+      <li>{X_nameDef}, one of the caravan's drivers, is done with life on the road, and asks whether the colony could use someone who's good with beasts and better with a ledger.</li>
     </joinTexts>
     <farewell>
-      <li>The weather broke, and the caravan of {FACTION} loaded up and went on its way, the beasts glad to be moving.</li>
-      <li>The snowbound caravan is gone from {PLACE}. All that's left is trampled snow, the cold fire and the marks of the picket.</li>
-      <li>The caravan of {FACTION} went out at first light, bells on the lead beast, with {X_nameDef} calling thanks back over the snow.</li>
+      <li>The caravan of {FACTION} loaded up and went on its way, the beasts glad to be moving.</li>
+      <li>The snowbound caravan has packed up its camp {PLACE} and gone on.</li>
+      <li>The caravan of {FACTION} has gone on its way. {X_nameDef} thanked the colony for the shelter before they left.</li>
     </farewell>
     <lines>
       <li>Blanket the beasts before dark.</li>
@@ -531,7 +531,7 @@
     </momentLines>
     <helpTexts>
       <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony, by way of thanks for the shelter of its wall: {THING}.</li>
-      <li>[tales] {A_nameDef} sat by the caravan's fire while the snow came down and heard of every road in the region, and which of them the snow closes first.</li>
+      <li>[tales] {A_nameDef} sat by the caravan's fire and heard of every road in the region, and which of them the snow closes first.</li>
     </helpTexts>
     <asks>
       <li>
@@ -654,7 +654,7 @@
       <li>[their:medieval] Hunters of {FACTION} have been on the herd's trail for days, and it has led them to the colony. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a few beasts from it before it moves on.</li>
       <li>[their:hightech] Hunters of {FACTION} with rifles and field glasses have tracked a wild herd onto the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and hunt it for a few days.</li>
       <li>[ws:herds] With the great herds on the move, hunters of {FACTION} have followed one onto the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} while it grazes here.</li>
-      <li>[their:grateful] The herd's trail led the hunters of {FACTION} to the colony, and {X_nameDef} was glad of it. {X_pronoun} asked {A_nameDef}, as a friend, for a camp {PLACE} while the herd stays.</li>
+      <li>[their:grateful] The herd's trail led the hunters of {FACTION} to the colony, and {X_nameDef} was glad of it, and asked {A_nameDef}, as a friend, for a camp {PLACE} while the herd stays.</li>
     </texts>
     <settled>
       <li>[shelter:ring] The herd followers of {FACTION} have made a light camp {PLACE}: bedrolls drawn in round a big fire, out of the wind, and the dogs curled up in the snow beside them.</li>
@@ -666,8 +666,8 @@
     </joinTexts>
     <farewell>
       <li>The herd moved on, and the hunters of {FACTION} went with it, their packs heavier than when they came.</li>
-      <li>The herd followers' camp {PLACE} is empty, a ring of bedroll hollows in the snow round the cold fire.</li>
-      <li>The hunters of {FACTION} packed up before dawn and were off on the herd's trail by first light.</li>
+      <li>The herd followers have packed up their camp {PLACE} and gone after the herd.</li>
+      <li>The hunters of {FACTION} packed up and set off on the herd's trail.</li>
     </farewell>
     <lines>
       <li>Keep downwind of them, they spook in the cold.</li>
@@ -692,14 +692,14 @@
       <li>
         <key>hunt</key>
         <label>Send {A_nameDef} after the herd with them</label>
-        <tip>{A_nameDef} goes out with the herd followers for a few hours. Practice with a bow or a gun, and what {A_nameDef} brings down is the colony's.</tip>
+        <tip>{A_nameDef} and one more of the colony's hunters go out after the herd for a few hours, on the herd followers' advice. Practice with a bow or a gun, and what they bring down is the colony's.</tip>
         <skill>Shooting</skill>
         <minDays>0.5</minDays>
         <warm>2</warm>
         <tension>-4</tension>
         <outcomes>
-          <li>{X_nameDef} said to stay low and downwind, and handed {A_nameDef} a white cloak to go over everything.</li>
-          <li>{A_nameDef} is going out after the herd with {X_nameDef} this afternoon.</li>
+          <li>{X_nameDef} told {A_nameDef} to stay low and downwind, and to wear something white over everything in the snow.</li>
+          <li>{A_nameDef} is going out after the herd today, the way {X_nameDef} showed {A_objective}.</li>
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the hunt after the herd</label><who>A</who><count>2</count><animals>2</animals></li>
@@ -732,7 +732,7 @@
         <askTexts>
           <li>{X_nameDef} came up from the herd followers' camp and asked {A_nameDef} whether the colony would trade a few cooked meals for a share of the meat. Meat and nothing but meat, {X_pronoun} says, wears on a body.</li>
         </askTexts>
-        <tip>Four of the colony's meals go out to their camp; they set out a share of their meat at the edge of it for the colony to fetch.</tip>
+        <tip>Four of the colony's meals go out to their camp; they set out 35 of their meat at the edge of it for the colony to fetch.</tip>
         <outcomes>
           <li>The herd followers are getting a cooked supper tonight, and the colony a good share of their meat.</li>
         </outcomes>
@@ -841,13 +841,13 @@
       <li>The winter pilgrims have settled {PLACE}, and their eldest has taken the first watch by the fire.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the pilgrims, says the walk has shown {X_objective} what {X_pronoun} was walking toward, and asks whether {X_pronoun} might stay at the colony when the others go on.</li>
+      <li>{X_nameDef}, one of the pilgrims, feels {X_pronoun} has found what {X_pronoun} was looking for at the colony, and asks whether {X_pronoun} might stay when the others go on.</li>
     </joinTexts>
     <farewell>
-      <li>[left:sun] The pilgrims of {FACTION} went on their way at first light, and {X_nameDef} stopped at the colony's gate to leave a carved sun in its crate, their sign that the long night turns.</li>
-      <li>[left:sun] The winter pilgrims are gone, singing, into the snow. By the colony's gate they left a little carved sun, for the light coming back.</li>
-      <li>The pilgrims of {FACTION} put out their fire at dawn and walked on into the snow, still singing.</li>
-      <li>The pilgrims' camp {PLACE} is empty, and the ring round their fire is trodden flat where they kept the vigil.</li>
+      <li>[left:sun] The pilgrims of {FACTION} have gone on their way, and {X_nameDef} stopped at the colony's gate to leave a carved sun in its crate. For their people it is a sign that the long nights will end.</li>
+      <li>[left:sun] The winter pilgrims have gone on into the snow. By the colony's gate they left a small carved sun, a sign that the days will grow longer again.</li>
+      <li>The pilgrims of {FACTION} put out their fire and walked on into the snow.</li>
+      <li>The pilgrims have packed up their camp {PLACE} and walked on.</li>
     </farewell>
     <lines>
       <li>The night is longest now, and then it turns.</li>
@@ -864,8 +864,8 @@
       <li>[gift] A sun for the long night.</li>
     </momentLines>
     <helpTexts>
-      <li>[blessing,fields] At dusk the pilgrims walked to the colony's fields and blessed them, that they come back green when the sun does.</li>
-      <li>[blessing,gate] At dusk the pilgrims came to the colony's gate and blessed it, that its fires keep burning through the long night.</li>
+      <li>[blessing,fields] At dusk the pilgrims walked to the colony's fields and blessed them, so that they grow green again when the sun returns.</li>
+      <li>[blessing,gate] At dusk the pilgrims came to the colony's gate and blessed it, so that its fires keep burning through the long night.</li>
       <li>[tales] {A_nameDef} sat with the pilgrims at their fire and heard the story of the night the sun didn't come back, and how their people's first pilgrims walked to bring it home.</li>
     </helpTexts>
     <asks>

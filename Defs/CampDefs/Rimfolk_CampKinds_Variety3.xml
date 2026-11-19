@@ -114,14 +114,14 @@
       <li>At the stonecutters' camp {PLACE}, a bench stands ready by the fire with the mallets laid along it.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the stonecutters {PLACE}, says {X_pronoun} would rather build walls that stay where they are, and asks whether the colony could use someone who knows stone.</li>
+      <li>{X_nameDef}, one of the stonecutters {PLACE}, says {X_pronoun} would rather build walls that stay where they are, and asks whether the colony could use someone who knows stone.</li>
       <li>{X_nameDef} of the stonecutters asked {A_nameDef} whether there might be a place at the colony for a pair of hands that can square a block.</li>
     </joinTexts>
     <farewell>
       <li>The stonecutters from {FACTION} have loaded their stone onto the pack beast and gone on.</li>
       <li>The stonecutters' camp {PLACE} is packed, and the crew are on their way with the beast under its load of stone.</li>
-      <li>{X_nameDef} and the stonecutters have set off, the bench broken down and the chips of their work left where they fell.</li>
-      <li>[back] The stonecutters who came before have packed up again, and {X_nameDef} says they will be back when the rock lies thick.</li>
+      <li>{X_nameDef} and the stonecutters have broken down their bench and set off.</li>
+      <li>[back] The stonecutters who came before have packed up again, and {X_nameDef} says they will be back when there is more loose rock to work.</li>
     </farewell>
     <lines>
       <li>Find the grain first.</li>
@@ -169,7 +169,7 @@
       <li>
         <key>learn</key>
         <label>Have {A_nameDef} learn the stonecutter's craft</label>
-        <tip>{A_nameDef} works a few hours at the stonecutters' bench, learning where a block wants to split. Practice at crafting.</tip>
+        <tip>{A_nameDef} works a few hours at the stonecutters' bench, learning where a block will split. Practice at crafting.</tip>
         <skill>Crafting</skill>
         <warm>2</warm>
         <outcomes>
@@ -267,13 +267,13 @@
       <li>The shearers from {FACTION} have made camp {PLACE}, and their dog is lying by the fire.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the shearers {PLACE}, says {X_pronoun} is tired of a different flock every week, and asks whether the colony needs someone who knows beasts.</li>
+      <li>{X_nameDef}, one of the shearers {PLACE}, says {X_pronoun} is tired of a different flock every week, and asks whether the colony needs someone who knows beasts.</li>
       <li>{X_nameDef} of the shearers asked {A_nameDef} whether the colony could use a steady pair of hands with its animals.</li>
     </joinTexts>
     <farewell>
-      <li>The shearers from {FACTION} have packed their blades and gone on to the next farm, the dog trotting ahead.</li>
+      <li>The shearers from {FACTION} have packed their blades and gone on to the next farm.</li>
       <li>The shearers' camp {PLACE} is packed, and the crew are on their way with their share of the wool.</li>
-      <li>{X_nameDef} and the shearers have set off, and the colony's flock is a good deal lighter for their stay.</li>
+      <li>{X_nameDef} and the shearers have set off for the next farm.</li>
     </farewell>
     <lines>
       <li>Hold her still.</li>
@@ -309,7 +309,7 @@
         <deed>traded</deed>
         <askTexts>
           <li>{X_nameDef} came up to the colony's pens with a blade in hand and looked over the flock. The wool is ready on most of them, {X_pronoun} says, and the shearers would take it off for one fleece in ten, the rest left where it falls for the colony.</li>
-          <li>[their:tribal] {X_nameDef} of the wool-pullers looked at the colony's beasts the way a cook looks at a market. They would pull every coat that is ready, {X_pronoun} told {A_nameDef}, for one fleece in ten, as their people always have.</li>
+          <li>[their:tribal] {X_nameDef} of the wool-pullers looked the colony's beasts over carefully. They would pull every coat that is ready, {X_pronoun} told {A_nameDef}, for one fleece in ten, as their people always have.</li>
         </askTexts>
         <tip>The shearers go into the colony's pens by day and shear every beast whose wool is half grown or more, as the game shears. The wool is left there for the colony's haulers, but one fleece in ten goes in their packs. With nothing left to shear, they go.</tip>
         <outcomes>
@@ -405,7 +405,7 @@
       <li>Beast-catchers of {FACTION} have come with ropes and a pack beast, after the wild herd on the colony's land. {X_nameDef} told {A_nameDef} they catch and gentle wild beasts for the region's farms, and asked to camp {PLACE} a few days and rope a couple of the herd.</li>
       <li>[their:tribal] Beast-callers of {FACTION} have come down from the hills with plaited ropes, following the wild herd. {X_nameDef} told {A_nameDef} their people have always called a few out of the herd in this season, and asked to camp {PLACE} while they do.</li>
       <li>[their:medieval] Horse-catchers of {FACTION} have come with halters and long ropes, and a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of the wild herd grazing on the colony's land.</li>
-      <li>[their:industrial] Wranglers of {FACTION} have ridden in with ropes and halters for the wild herd on the colony's land. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and rope a couple of them for the farms down the road.</li>
+      <li>[their:industrial] Wranglers of {FACTION} have come in with ropes and halters for the wild herd on the colony's land. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and rope a couple of them for the farms down the road.</li>
       <li>[ws:herds] With the great herds moving, beast-catchers of {FACTION} have come for the wild beasts on the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of them.</li>
     </texts>
     <settled>
@@ -413,13 +413,13 @@
       <li>The beast-catchers from {FACTION} have made camp {PLACE}, and one of them is already watching the herd from the rise.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the beast-catchers {PLACE}, says {X_pronoun} would rather keep beasts than catch them, and asks whether the colony needs a handler.</li>
+      <li>{X_nameDef}, one of the beast-catchers {PLACE}, says {X_pronoun} would rather keep beasts than catch them, and asks whether the colony needs a handler.</li>
       <li>{X_nameDef} of the beast-catchers asked {A_nameDef} whether there might be a place at the colony for someone who can gentle anything with four legs.</li>
     </joinTexts>
     <farewell>
-      <li>The beast-catchers from {FACTION} have gone on, leading what they caught on long ropes behind the pack beast.</li>
-      <li>The beast-catchers' camp {PLACE} is packed, and the crew are on their way with the beasts they gentled.</li>
-      <li>{X_nameDef} and the beast-catchers have set off, the newest of their beasts still pulling at its rope.</li>
+      <li>The beast-catchers from {FACTION} have packed up and gone on.</li>
+      <li>The beast-catchers have packed up their camp {PLACE} and moved on.</li>
+      <li>{X_nameDef} and the beast-catchers have set off down the road.</li>
     </farewell>
     <lines>
       <li>Slow, let it see you.</li>
@@ -486,8 +486,8 @@
         <warm>1</warm>
         <deed>aid</deed>
         <askTexts>
-          <li>{X_nameDef} came up from the beast-catchers' camp to ask whether the colony could spare some feed. The beasts they roped won't graze on a rope yet, and a hungry beast never gentles.</li>
-          <li>[their:tribal] {X_nameDef} of the beast-callers asked {A_nameDef} for a little of the colony's grain or hay for the beasts they have called out of the herd. A fed beast trusts the hand, {X_pronoun} says.</li>
+          <li>{X_nameDef} came up from the beast-catchers' camp to ask whether the colony could spare some feed. The beasts they roped won't graze on a rope yet, and a hungry beast is hard to tame.</li>
+          <li>[their:tribal] {X_nameDef} of the beast-callers asked {A_nameDef} for a little of the colony's grain or hay for the beasts they have called out of the herd. A beast that is fed learns to trust people, {X_pronoun} says.</li>
         </askTexts>
         <tip>A colonist carries some of the colony's raw food over to the catchers' camp for their beasts.</tip>
         <outcomes>
