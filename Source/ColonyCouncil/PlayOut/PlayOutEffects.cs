@@ -591,6 +591,12 @@ namespace ColonyCouncil
         public string kinds;
 
         /// <summary>
+        /// Marked whether or not answers play out on the map: a decree's morning (the hunting season), where the mark is the
+        /// game's own hunting work, as the trees and wild plants of the land's other decrees are.
+        /// </summary>
+        public bool always;
+
+        /// <summary>
         /// The hunt's game now: the one animal the answer is about first, whatever it is; then safe game (PlayHunt.Safe: no
         /// predator, insect or dryad, nothing thrumbo-sized or likely to turn, nothing bonded or venerated), the kinds
         /// wanted first, then the best eating; and with hurts from everyday life on, at most one head that can turn.
@@ -631,7 +637,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            if (!PlayOuts.On || ctx?.map == null) return;
+            if (!(PlayOuts.On || always) || ctx?.map == null) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             try
             {

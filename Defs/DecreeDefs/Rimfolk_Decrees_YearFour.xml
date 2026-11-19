@@ -62,7 +62,7 @@
       <gloomy><li>Somebody will get gored, and then we'll stop.</li></gloomy>
     </oppose>
     <daily>
-      <li Class="ColonyCouncil.DilemmaEffect_Hunt"><count>2</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hunt"><count>2</count><always>true</always></li>
     </daily>
   </ColonyCouncil.DecreeDef>
 
