@@ -21,6 +21,10 @@ namespace ColonyCouncil
     /// back up aftr finishing work"). Pure: which trips count, and whether riding is worth it against walking, by the same
     /// sums Giddy-Up makes for its own auto-mount (a straight line with its 5% penalty for paths that aren't straight, the
     /// walk to the beast, the time to get on), with the way back counted for work out past the base.
+    /// <para>Since 19 November 2026 (the player: "WHY DOES bautista still walk halfway across the map to mine without
+    /// mounting up first? then the mount should wait for him until he's done"): out to work they ride whenever a beast is
+    /// free no further from them than the work (<see cref="NearEnough"/>), the quickest of them; the sums against walking
+    /// stay for the way back and the player's movement orders (<see cref="Rides"/>).</para>
     /// </summary>
     public static class RideOutMath
     {
@@ -51,7 +55,7 @@ namespace ColonyCouncil
         /// <summary>A movement order rides only when it gets them there sooner: the player wants them where they sent them.</summary>
         public const float OrderSlack = 1f;
 
-        /// <summary>The longest a beast is kept waiting for its rider out past the base, in ticks (a day).</summary>
+        /// <summary>The longest a beast is kept waiting for its rider out past the base after the rider's last job began, in ticks (a day).</summary>
         public const int WaitCap = 60000;
 
         /// <summary>A beast another rider just tried and failed to get on is passed over for this long, in ticks (an hour).</summary>
@@ -103,6 +107,29 @@ namespace ColonyCouncil
             kind != RideTrip.None && rideSeconds < float.MaxValue && rideSeconds <= walkSeconds * Slack(kind);
 
         /// <summary>
+        /// Out to work, a beast counts when the walk to it is no longer than the trip itself (straight lines, in cells): the
+        /// pen on the way, beside them or a little the other way, never a beast further off than the work.
+        /// </summary>
+        public static bool NearEnough(float toAnimal, float trip) => !float.IsNaN(toAnimal) && !float.IsNaN(trip) && toAnimal >= 0f && toAnimal <= trip;
+
+        /// <summary>Out to work, a beast counts only when it carries them at least as fast as they walk (Giddy-Up passes slower ones over too).</summary>
+        public static bool FastEnough(float rideSpeed, float walkSpeed) => rideSpeed > 0.01f && rideSpeed >= walkSpeed;
+
+        /// <summary>
+        /// They ride on the quickest beast found: out to work whenever there is one (the beast then waits by the work for the
+        /// way back and every trip after); back from out there and on a movement order only when it is worth it against
+        /// walking (<see cref="Worth"/>).
+        /// </summary>
+        public static bool Rides(RideTrip kind, float rideSeconds, float walkSeconds) =>
+            kind == RideTrip.Out ? rideSeconds < float.MaxValue : Worth(rideSeconds, walkSeconds, kind);
+
+        /// <summary>
+        /// Giddy-Up's mark keeping a beast for a rider holds only while the beast waits for that rider, carries them, or they
+        /// are getting on it (or have it next in their queue); otherwise the mark is old and left aside.
+        /// </summary>
+        public static bool KeptFor(bool waitsForThem, bool carriesThem, bool theyGetOn) => waitsForThem || carriesThem || theyGetOn;
+
+        /// <summary>
         /// Seconds to get on, by Giddy-Up's own curves for its "Mount" job (JobDriver_Mount): more for a big or wild beast,
         /// less for a rider good with animals.
         /// </summary>
@@ -115,14 +142,20 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The waiting beast's job lasts until this many ticks after it began: at least Giddy-Up's own timer from now (the
-        /// colonist still at work out there), never shorter than it was, and never past <see cref="WaitCap"/> unless it
-        /// already was.
+        /// The waiting beast's job lasts until this many ticks after it began: Giddy-Up's own timer from now (the colonist
+        /// still at work out there), but never past <see cref="WaitCap"/> after the colonist's last job began
+        /// (<paramref name="lastJob"/>), and never shorter than it was. A wait with no end of its own, or a clock that went
+        /// back, is left as it is.
         /// </summary>
-        public static int WaitExpiry(int startTick, int now, int expiry, int timer)
+        public static int WaitExpiry(int startTick, int now, int expiry, int timer, int lastJob)
         {
-            int wanted = Math.Min(Math.Max(0, now - startTick) + Math.Max(0, timer), WaitCap);
-            return Math.Max(expiry, wanted);
+            if (expiry <= 0 || now < startTick) return expiry;
+            if (lastJob > now) lastJob = now;
+            long end = Math.Min((long)now + Math.Max(0, timer), (long)lastJob + WaitCap);
+            long wanted = end - startTick;
+            // Never set at or below the time already waited: the game ends a job once that time reaches its length.
+            if (wanted <= now - startTick) return expiry;
+            return (int)Math.Max(expiry, Math.Min(wanted, int.MaxValue));
         }
 
         /// <summary>A straight piece of one of Giddy-Up's curves, held flat past its ends (as the game's SimpleCurve does).</summary>
@@ -131,6 +164,66 @@ namespace ColonyCouncil
             if (x <= x0) return y0;
             if (x >= x1) return y1;
             return y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+        }
+    }
+
+    /// <summary>What came of a decision to ride (for the dev action): asked of Giddy-Up, in the saddle or not.</summary>
+    public enum RideMount
+    {
+        /// <summary>No ride was decided.</summary>
+        None,
+        /// <summary>Giddy-Up didn't take the order to get on (its Inject gave nothing back).</summary>
+        NotTaken,
+        /// <summary>Sent to get on; not yet known whether they did.</summary>
+        Sent,
+        /// <summary>They were in the saddle when they next chose a job.</summary>
+        InSaddle,
+        /// <summary>They weren't in the saddle when they next chose a job (that beast is passed over by them for an hour).</summary>
+        DidNotGetOn
+    }
+
+    /// <summary>
+    /// A colonist's last decision about riding out on a trip of 40 cells or more, kept in memory for the dev action "Riding
+    /// out: why a colonist rides or not (log)" (not saved): when, the job, the kind of trip and its length, why not (null:
+    /// they ride), the quickest beast found with its seconds against walking, and what came of it.
+    /// </summary>
+    public sealed class RideOutNote
+    {
+        public int tick;
+        public string job;
+        public RideTrip kind;
+        public float cells;
+        public string why;
+        public string beast;
+        public float rideSeconds = float.MaxValue, walkSeconds;
+        public RideMount mount;
+
+        /// <summary>The note in plain words, with how long ago it was.</summary>
+        public string Describe(int now)
+        {
+            string when = now >= tick ? ((now - tick) / 2500f).ToString("0.0") + " hours ago" : "later than now (the clock went back)";
+            string trip = kind == RideTrip.Out ? "out to work" : kind == RideTrip.Back ? "back from out past the base"
+                : kind == RideTrip.Order ? "a movement order" : "not a trip Rimfolk rides";
+            string text = "Last decision, " + when + " (tick " + tick + "): " + (job ?? "a job") + ", " + trip + ", " + (int)cells + " cells: ";
+            string sums = beast == null ? ""
+                : " (" + beast + ": " + (rideSeconds < float.MaxValue ? rideSeconds.ToString("0") + " s riding" : "no sum")
+                  + (walkSeconds > 0f && walkSeconds < float.MaxValue ? " against " + walkSeconds.ToString("0") + " s on foot" : "") + ")";
+            // "Walking is quicker" already names the beast and both sums.
+            if (why != null) return text + "no ride, " + why + (beast != null && why.Contains(beast) ? "" : sums) + ".";
+            return text + "they ride" + sums + "; " + MountWords(mount) + ".";
+        }
+
+        /// <summary>What came of the order to get on, in plain words.</summary>
+        public static string MountWords(RideMount m)
+        {
+            switch (m)
+            {
+                case RideMount.NotTaken: return "Giddy-Up didn't take the order to get on";
+                case RideMount.Sent: return "sent to get on, not yet known whether they did";
+                case RideMount.InSaddle: return "they got in the saddle";
+                case RideMount.DidNotGetOn: return "they didn't get on, so that beast is passed over by them for an hour";
+                default: return "nothing was asked of Giddy-Up";
+            }
         }
     }
 }

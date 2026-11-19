@@ -391,10 +391,13 @@ namespace ColonyCouncil
         /// <summary>A land where it rains a lot: a wet biome, or plenty of rain in the year.</summary>
         public static bool WetLand(Map map) => map != null && (AilmentChecks.WetBiome(map) || (map.TileInfo?.rainfall ?? 0f) >= 1400f);
 
-        /// <summary>The table they'd eat at: the nearest eating table in a dining room, else the nearest anywhere.</summary>
+        /// <summary>
+        /// The table they'd eat at: the nearest eating table in a room the game calls a dining room, then in one that serves
+        /// as one (a temple with tables: RoomUtil.DiningRank), else the nearest anywhere.
+        /// </summary>
         private static Building Table(Map map, IntVec3 from) =>
             map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned && Avail.IsEatingTable(b.def))
-                .OrderByDescending(b => b.GetRoom()?.Role == RoomUtil.DiningRoom).ThenBy(b => b.Position.DistanceToSquared(from)).FirstOrDefault();
+                .OrderBy(b => RoomUtil.DiningRank(b.GetRoom()) is int r && r >= 0 ? r : 2).ThenBy(b => b.Position.DistanceToSquared(from)).FirstOrDefault();
 
         /// <summary>The open steps (unroofed) of the walk from their bed to the table, as text; empty when there's none to roof.</summary>
         public static string OpenWay(Pawn p)

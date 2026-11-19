@@ -318,7 +318,7 @@
         <options>
           <li>
             <label>Bring {X_objective} in and tend {X_objective}</label>
-            <outcome>{A_nameDef} is going to the crash to bring {X_nameDef} in. The cargo stays sealed for the enclave, whose lander will come in two or three days.</outcome>
+            <outcome>{A_nameDef} is going to the crash to bring {X_nameDef} in. The cargo stays sealed for the enclave, whose lander will come for {X_objective} once {X_pronoun} has been looked after.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_BrokerPod"><how>rescue</how></li>
             </effects>

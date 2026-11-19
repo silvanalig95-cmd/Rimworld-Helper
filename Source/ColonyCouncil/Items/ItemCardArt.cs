@@ -225,7 +225,7 @@ namespace ColonyCouncil
             {
                 a.Indoors = true;
                 a.Room = RoomWord(room);
-                a.Role = room.Role?.defName ?? "";
+                a.Role = MoodRole(room);
                 a.RoomMatters = ItemCardMath.RoleMatters(a.Role);
                 var with = Numbers(room);
                 var without = ItemCardMath.Without(with, a.Beauty, a.Worth, BeautyDivisor(with.Cells));
@@ -262,6 +262,18 @@ namespace ColonyCouncil
 
         private static bool Indoors(Room r) => r != null && !r.PsychologicallyOutdoors && r.ProperRoom && !r.IsDoorway;
 
+        /// <summary>
+        /// The role a room's impressiveness counts for: the game's own where a mood reads it, else a dining or rec room by
+        /// what is in it (the game's moods for eating and relaxing read the room where it happens, whatever its name: a
+        /// temple with tables is felt at every meal; RoomUseMath.ReadAs).
+        /// </summary>
+        private static string MoodRole(Room r)
+        {
+            string role = r.Role?.defName ?? "";
+            if (ItemCardMath.RoleMatters(role)) return role;
+            return RoomUseMath.ReadAs(role, false, RoomUtil.ServesAsDining(r), RoomUtil.ServesAsRec(r));
+        }
+
         private static string RoomWord(Room r)
         {
             try
@@ -292,7 +304,7 @@ namespace ColonyCouncil
                 if (looked >= 80) break;
                 try
                 {
-                    if (!Indoors(r) || r.CellCount > 2000 || !ItemCardMath.RoleMatters(r.Role?.defName)) continue;
+                    if (!Indoors(r) || r.CellCount > 2000 || !ItemCardMath.RoleMatters(MoodRole(r))) continue;
                     looked++;
                     var now = Numbers(r);
                     var with = ItemCardMath.With(now, a.Beauty, a.Worth, BeautyDivisor(now.Cells));

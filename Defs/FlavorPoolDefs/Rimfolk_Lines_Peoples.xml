@@ -22,7 +22,7 @@
         <li>[greetings,cordial,their:traders] The league keeps a book of those who deal fairly, {WRITER}. Your colony's name is in it.</li>
         <li>[greetings,cool,their:traders] The league has your letter. Trade with us, and we will know you better.</li>
         <li>[news,warm,their:traders] Our caravans have been everywhere this season, {WRITER}, and the factors talk. Here is what the road says.</li>
-        <li>[news,cordial,their:traders] The roads hear everything, and the league hears the roads. What we know, you shall have.</li>
+        <li>[news,cordial,their:traders] Our caravans hear everything on the roads, and the league hears it from them. What we know, you shall have.</li>
         <li>[help,warm,their:traders] The league does not give without a price, as a rule, but it does for friends. What you asked for is coming with our road riders.</li>
         <li>[help,cordial,their:traders] It is against the league's custom to give without a price, but the price can wait. It is coming.</li>
         <li>[help,refusal,their:traders] The league's stores are spoken for this season, every crate of them. We are sorry for it.</li>
@@ -39,8 +39,8 @@
         <!-- The herding folk: the grass, the herd, the fire -->
         <li>[greetings,warm,their:herders] A rider brought your words to our fire, {WRITER}, and the elders were glad of them. The herd is fat and the grass is good.</li>
         <li>[greetings,cordial,their:herders] We have your words. The herd moves on soon, but the camp will remember your colony.</li>
-        <li>[greetings,cool,their:herders] The elders heard your words. The grass will tell us whether they were true.</li>
-        <li>[news,cordial,their:herders] The herd goes everywhere, and so do we. This is what the grass and the roads have told us.</li>
+        <li>[greetings,cool,their:herders] The elders heard your words. The grass will tell, as we say: time will show whether they were true.</li>
+        <li>[news,cordial,their:herders] The herd goes everywhere, and so do we. This is what we have heard along the way.</li>
         <li>[help,warm,their:herders] A herder does not count what goes to a friend. It is coming with our riders.</li>
         <li>[help,warm,food,their:herders] There is meat and milk enough in a good herd. Some of it is coming to you with our riders.</li>
         <li>[help,refusal,their:herders] The winter was long and the herd is thin, {WRITER}. We have nothing to send this season.</li>

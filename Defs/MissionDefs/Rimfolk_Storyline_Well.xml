@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S10, the town's well ran dry (Source/ColonyCouncil/Storylines/StorylineWell.cs; the rules in
+       Storylines/Flows/WellFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml).
+       {FACTION} is the town's people, {PLACE} their town, {GIVER} the one who came first, {RIVAL} their foreman, {NAME} the
+       colonist lent, {COUNT} how much is asked for (then how many days the hand is away, then how many refugees), {SILVER}
+       the pay, {ITEM} the goods asked for (in terms) or the colonist lent (in letters), {DAYS} the time once taken on. Lines
+       tagged [water] are for a colony that keeps bottled water (Dubs Bad Hygiene), [food] for one that doesn't, [union] for
+       the Deepwell Union. -->
+
+  <!-- ===================== Part 1: water or food ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_WellWater</defName>
+    <label>a town's well ran dry</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WellWater</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The well at {PLACE} ran dry</li>
+        </titles>
+        <texts>
+          <li>[water,!union] {GIVER} of {FACTION} has come from {PLACE}: the town's well has run dry. Until a new one is dug, they are short of water, and they ask the colony to send what water it can spare.</li>
+          <li>[food,!union] {GIVER} of {FACTION} has come from {PLACE}: the town's well has run dry, and with no water for the fields and the kitchens they are short of food. They ask the colony to send meals.</li>
+          <li>[water,union] {GIVER} of {FACTION} has come from {PLACE}: the drill hit the old aquifer and the town's well has run dry. Until a new one is dug, they are short of water, and they ask the colony to send what water it can spare.</li>
+          <li>[food,union] {GIVER} of {FACTION} has come from {PLACE}: the drill hit the old aquifer and the town's well has run dry. With no water for the fields and the kitchens they are short of food, and they ask the colony to send meals.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send it</label>
+            <outcome>{GIVER} went back to {PLACE} to say the colony will help.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>well</story>
+        <part>water</part>
+        <start>true</start>
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles within {DAYS}. Their carts come for it and pay {SILVER} silver, a little more than it is worth. If only half of it is ready, they take that and pay its plain worth.\n\nIf less than half is ready, they will manage without the colony.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for {FACTION}'s carts.</li>
+        </accepted>
+        <reminder>
+          <li>{FACTION}'s carts come soon, and the stockpiles are still short of {ITEM}.</li>
+        </reminder>
+        <notes>
+          <li>[ready] Everything for {PLACE} is ready, and {FACTION}'s carts are coming for it within {DAYS}.</li>
+        </notes>
+        <endTitles>
+          <li>[sent] Help for {PLACE}</li>
+          <li>[partly] Some help for {PLACE}</li>
+          <li>[none] No help for {PLACE}</li>
+        </endTitles>
+        <ends>
+          <li>[sent] {FACTION}'s carts are coming for what the colony has ready, with {SILVER} silver for it.</li>
+          <li>[partly] Only part of it is ready. {FACTION}'s carts are coming for {ITEM}, with {SILVER} silver, its plain worth.</li>
+          <li>[none] There was too little ready for {FACTION}'s carts to come. {FACTION} will manage without the colony.</li>
+        </ends>
+        <good><li>sent</li></good>
+        <bad><li>none</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: a hand lent to dig ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_WellDigger</defName>
+    <label>a hand to dig a new well</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WellDigger</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Lend {NAME} to dig a new well</li>
+        </titles>
+        <texts>
+          <li>A few days ago the colony helped {FACTION} when their well at {PLACE} ran dry. Now they mean to dig a new one, and they ask the colony to lend {NAME}, who is good with a pick and a shovel, for a few days.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lend {NAME}</label>
+            <outcome>{FACTION}'s foreman will come to the gate for {NAME}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will dig on alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>well</story>
+        <part>digger</part>
+        <terms>
+          <li>If the colony agrees, {RIVAL}, their foreman, comes to the gate within a day, and {NAME} goes with {RIVAL} to {PLACE}, about a day's walk away. {NAME} digs there for {COUNT} days and then walks home, better at mining and building, with {SILVER} silver in wages. If {NAME} is busy or hurt when {RIVAL} comes, the colony's best other miner or builder goes instead.\n\nWhether the new well is found depends on how good the one lent is. If it is not found, some of the town's people will have to leave {PLACE}.</li>
+        </terms>
+        <accepted>
+          <li>{RIVAL} of {FACTION} will come to the gate within a day.</li>
+        </accepted>
+        <notes>
+          <li>[came] {RIVAL} of {FACTION} has come to the gate for {NAME}.</li>
+        </notes>
+        <endTitles>
+          <li>[found] Water at {PLACE}</li>
+          <li>[notfound] No water at {PLACE}</li>
+          <li>[lost] {NAME} has not come back</li>
+        </endTitles>
+        <ends>
+          <li>[found] {ITEM} has come home from {PLACE}, with {SILVER} silver in wages and better at mining and building. The new well has found water.</li>
+          <li>[notfound] {ITEM} has come home from {PLACE}, with {SILVER} silver in wages and better at mining and building. The new well came up dry.</li>
+          <li>[lost] {NAME} went to {PLACE} to help dig a new well, and has not come back.</li>
+        </ends>
+        <good><li>found</li></good>
+        <bad><li>lost</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: refugees from the town ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_WellRefugees</defName>
+    <label>refugees from a dry town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WellRefugees</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Refugees from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[notfound] A few days ago the new well at {PLACE} came up dry. {COUNT} of the town's people have given up on it and are on the road, and they ask to join the colony.</li>
+          <li>[nohand] A few days ago {FACTION} were digging a new well at {PLACE} alone, and it came up dry. {COUNT} of the town's people have given up on it and are on the road, and they ask to join the colony.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>They will come to the gate and join the colony.</outcome>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>They will go on to another town.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[joined] Thank you for taking us in.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>well</story>
+        <part>refugees</part>
+        <terms>
+          <li>If the colony takes them in, the {COUNT} of them come to the gate within half a day and join the colony.\n\nIf the colony turns them away, they go on to another town, and {FACTION} will think less of the colony.</li>
+        </terms>
+        <accepted>
+          <li>{COUNT} people of {PLACE} are on their way to the colony's gate.</li>
+        </accepted>
+        <endTitles>
+          <li>[takenin] New people from {PLACE}</li>
+        </endTitles>
+        <ends>
+          <li>[takenin] {ITEM} people from {PLACE} came to the gate and joined the colony.</li>
+        </ends>
+        <good><li>takenin</li></good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

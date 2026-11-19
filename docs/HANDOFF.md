@@ -29,16 +29,20 @@ go sounds great. Some storytellers and fewer traders and fewer fights. That's al
 fitting for the scenario, it should also just be reflected in the description. The advisor warning for greenhouse
 plants dying is fine. I'm aware of that now. You don't need to do it. Yeah, you can go ahead in the order that makes
 most sense." So, in this order, three builds at a time:
-1. **Riding out to far work** (a bug, being built; the to-do entry below).
+1. **Riding out to far work** (a bug, built, not released; the entry "Riding out to far work: the beast taken first"
+   above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
    lists each round's numbers). Round 4 is built, not released (the entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
-5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
-6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
-   storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
-7. **New wish, 18-19 November 2026, on the to-do list** (the entry "choose the material" below), waiting for its go.
+5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
+   numbered proposals and the lead's first batch); nothing is built until the player picks from it.
+6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
+   and said" above the newest release line).
+7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
+   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
+   entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -111,25 +115,25 @@ repo.
   and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
 - **Done (18 November 2026, the player sent the mod's DLL as the go): clothes made for someone, worn when they are
   back.** The report and what was built are now one entry above the newest release line ("Clothes made for someone").
-- **To do when the player asks (18 November 2026): riding out to far work, Bautista walked.** The player, with their save
-  `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to mine without mounting up first? then the
-  mount should wait for him until he's done". What the save shows (tick 7668315): Bautista mines steel at (136, 264),
-  44 cells past the home area's edge, about 95 cells from the dining hall where he chose the job after a meal (under
-  Giddy-Up's own 120, so Giddy-Up never looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts are
-  in or by the pen inside the base, about 34 cells the other way from the vein. Giddy-Up refuses the horses (Stallion 1,
-  Tatyana, Mare 1), the Thunderox and the yak: Tameness not learned; Tatyana, Mare 1 and Tara are with young; Zoe (titanis)
-  is "kept for Soot" by a Giddy-Up reservation that has stood since tick 7453676 while both are at home (stale); Calvin
-  (titanis) is the best left, about 6 cells/s under him against his 4.6 on foot. The cause (`GiddyUpRideOut.Decide`,
-  lines 198-201, `RideOutMath.Worth`): riding must beat walking by the trip's slack (1.25), counting the walk to the beast
-  first; to the pen and back out on a titanis is slower than walking straight there, so "walking is quicker". Rimfolk
-  keeps no record of the decision, so the save can't prove it; the dev action on Avila (walking to the next vein) would.
-  The wait (`KeepWaiting`) holds cell to cell for a day by default, renewed only at a job chosen with nothing under way.
-  **The lead's fix, waiting for the player's go**: (1) for far work (an Out trip), ride whenever a beast is free and the
-  walk to it isn't longer than the trip itself, the quickest beast picked; the strict time check kept for the ride back
-  and orders; (2) a Giddy-Up reservation counts only while that beast waits for, carries or is being mounted by that
-  rider (Zoe freed); (3) each colonist's last decision kept and shown by the dev action, and "check myself" says when
-  riding out switched itself off or a Giddy-Up member wasn't found; (4) the wait renewed on a rare tick while the rider
-  works out there, its cap counted from the last job. Told to the player: the horses need Tameness trained first.
+- **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
+  walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
+  above the newest release line ("Riding out to far work: the beast taken first").
+- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
+  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
+  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
+  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
+  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
+  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
+  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
+  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
+  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
+  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
+  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
+  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
+  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
+  what was left.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
+  The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
   player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
   would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
@@ -147,26 +151,15 @@ repo.
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
   along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
-- **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
-  player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
-  spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
-  you know, is not appropriate at all. It's not even counted as kind of an ideology room ... it's definitely not a
-  dining room ... I just want to have the drum somewhere, but not immediately have that become a ballroom, as it's just
-  weird ... I want the gatherings where food is involved, of course, happening in my dining room"; then "ballroom seems
-  to override temple, which is not correct in my opinion".
-  - **The cause.** Vanilla Factions Expanded - Empire's `VFEE_Ballroom` (`RoomRoleWorker_Ballroom`, 1.7 source): any
-    musical instrument (the Ideology drum among them) scores 10000, unless the room holds a bed, throne, work table or an
-    entity holder; the game's dining room scores 12 a table, the rec room 7 a recreation thing, the temple (Ideology's
-    worship room) 75 an altar, at least 2000. The highest wins and only one name shows. In the game's code (RW-Decompile,
-    `Toils_Ingest`, `JoyUtility`) the "ate in impressive dining room" and recreation moods read the room's
-    impressiveness, not its name. The name matters for VFE Empire's titles and balls, and for Rimfolk: council meetings,
-    play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
-    `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
-    a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
-    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
-    what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
-    advice, one with recreation things as a rec room, whatever the game shows.
+  The player, 19 November 2026, on the overview: "More trades come and go sounds great". The list is written:
+  `docs/traits-proposals.md` (19 November 2026), 38 proposals in six groups (a way out of each bad trait Rimfolk gives,
+  of the bad traits colonists arrive with, of the mods' bad traits, new good traits from good things, a few from the
+  mods' traits for flavour, and how often and how it shows), with the lead's first batch (37, 38, 1, 2, 4, 5, 6, 14,
+  10, 16, 26, 27). Nothing is built until the player picks.
+- **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
+  released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
+  for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
+  entry above the newest release line ("Rooms judged by what is in them").
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -199,7 +192,9 @@ repo.
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 waits for the go (16 November 2026).** The player: "the next thing to include
+  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 built (not released) on the player's go of 19
+    November 2026 ("Quests round 3 sounds great"; the entry "Storylines, round 3, and the one away quest" above the newest
+    release line).** The player: "the next thing to include
     will be more quests, and quests that are storylines across multiple quests". The go, 16 November 2026: "go ahead
     with quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
@@ -209,8 +204,8 @@ repo.
     was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
     was released on the player's "great, do some more" (16 November 2026): the seven single quests (Q3, Q4, Q6, Q8,
     Q11, Q12 and Q13) as 0.263.0 ("Quests at home, round 2") and the storylines S2, S3, S5 and S7 as 0.264.0
-    ("Storylines, round 2"). Round 3 waits, and
-    the player can strike or change anything in it before it starts.
+    ("Storylines, round 2"). Round 3 (S6, S9, S10, S11, S12 and Q14) is built, not released: every storyline and quest of
+    the plan is now built.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -279,8 +274,21 @@ repo.
   so the council questions, camps and visitors as categories are still to do). Numbers that disagreed with the code
   were put right on the way (the good life's line for the spoiled, 15; an answer that fell through gives no moods; a
   camp at the end of its patience leaves, it doesn't attack; a decree enacted again within a month is resented more).
-  Still to pick, when the player asks: the gods and faith, the letters, wishes and ambitions, personal stories,
-  council questions, the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
+  The letters, done (19 November 2026, the player's go on the overview: "Plain words text sounds great"; built, not
+  released): the entry "Plain words: the letters" above the newest release line. Files taken: the letter form's pools
+  `Defs/FlavorPoolDefs/Rimfolk_Letters_*.xml` (Salute, Open, Aside, Close, PS, Heart, Ours, Familiar, Thread, Set, Note,
+  Call, When, Spoken, Story, Raid, Chronicle, Part, Lead, Diary, Enclosure, Hands; Poem and Sermon read, kept: verse and
+  the faiths' words), the neighbours' written answers (`Rimfolk_Pool_NeighbourWrites` in `Rimfolk_Neighbours.xml` and
+  its extensions in `Rimfolk_Lines_Diplomacy`, `_DiplomacyMore`, `_Pacts`, `_PactEnds`, `_Fealty`, `_FealtyMore`,
+  `_Feasts`, `_FeastsMore`, `_Matches`, `_MatchesMore`, `_Ransom`, `_Wards`, `_WardsMore`, `_ColonyBonds`,
+  `_ColonyRenown`, `_NeighbourWrites_Ties`, `_Overtaken`, `_Peoples`, `_PeoplesC` to `_PeoplesG`, `_PeoplesLore`,
+  `Rimfolk_TownAfter.xml`, `Rimfolk_StageThree_Town.xml`), the handed-over town's letters (`Rimfolk_Pool_TownLetter`,
+  `Rimfolk_Lines_TownLetter_StageThree`), and the letters' Keyed words (`Rimfolk_LetterForm.xml`,
+  `Rimfolk_Letters_Bring.xml`, `Rimfolk_YearLetter.xml`, `Rimfolk_Notables.xml`' route lines, the letter keys of
+  `Rimfolk_Dealings`, `_Diplomacy`, `_Fealty`, `_Feasts`, `_Matches`, `_Pacts`, `_Ransom`, `_Wards`, `_Couriers`, read
+  again: already plain since the interface batches).
+  Still to pick, when the player asks: the gods and faith, wishes and ambitions, personal stories, council questions,
+  the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -375,6 +383,312 @@ repo.
     Fantasy Race: Merren, Hospitality, VFE Classical, Vanilla Furniture Expanded - Props and Decor, Vehicle Framework with Vanilla Vehicles Expanded,
     Vanilla Factions Expanded - Insectoids 2, Vanilla Food Variety Expanded's recipe book). For a boat-building look beyond the
     drawn hull, Vanilla Vehicles Expanded's own dinghy is already used when it is bought.
+- 0.267.0, **Storylines, round 3, and the one
+  away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
+  grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3
+  sounds great"; the first go's words still bind (16 November 2026): "go ahead with quests and storylines, make sure they
+  are written in the more clear style i mentioned earlier on", "and while quests that require you to go out of your base
+  are interesting, i hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these
+  quests to a minimum", "unless it's like within only very few tiles". Round 3 of `docs/quests-proposals.md` (S6, S9, S10,
+  S11, S12 and Q14, each marked built there), on the 0.262.0 frame and round 2's flows. DESIGN.md "Storylines, round 3,
+  and the one away quest" has all of it; README the missions and storylines paragraphs; the Almanac's Rimfolk events page,
+  Missions and Storylines (keywords unchanged). With this, every storyline and quest of the plan is built.
+  - **What was built.** **S6, a dream of the gods**: a devout colonist whose god the colony knows dreams of a place on the
+    colony's land (an area marked on the map) and of a place for the god there; the colony builds an altar, a shrine or a
+    work of art inside it, and the worship's own dedication gives it to the god; then a night's watch there (the dreamer
+    walks out to keep it), and partway through it a light comes over the place (the god's own sign, `Worship.Sign`, named
+    only as the colony may); then the dream comes back and asks for an offering of a kind the god likes, the worship's own
+    demand of a dream. Given: the colony's book keeps it as the dreamer believes it, and the dreamer is honoured (a mood);
+    refused or not brought: the dreamer is troubled for a while. The dream as told goes in their journal and the book.
+    **S9, raiders settling nearby**: a people near the colony warns of raiders setting up a camp (the region's kind of camp
+    by their age); defences (traps or turrets, or lengths of wall; ready, the watch sees the raid coming); a small raid
+    that tests the colony (the game's own, within the harm budget); a strike on the camp, joined by the colony's caravan
+    beside the neighbours' fighters when the camp is within three tiles, else food and medicine for their fighters; the
+    camp gone, or the raiders' price each season for a year (paid, carried out to the edge of the land; refused, they come
+    for it). **S10, the town's well ran dry**: water (Dubs Bad Hygiene's, where the colony keeps it) or meals collected by
+    their carts; a miner or builder lent, who walks off with their foreman for four to six days and walks home more
+    skilled, with wages; the well found by their skill's chance (the town grows), or not (two to four of its people ask to
+    join). **S11, the vault's sealed case**: components for the vault's power cells (keeping a declining people's age, as
+    the vault's own mission does); an engineer who works a few hours a day at one of the colony's benches on a component a
+    day; a sealed case left by the stores, and a card: keep it sealed and hand it back (the vault owes a favour) or open
+    it (a sleeper who joins or leaves, the game's own machine within the harm budget, or old goods). **S12, the lost
+    founder's grave**: a marked area searched spot by spot with a right-click (the keepsake's way), the grave marked;
+    mourners for a day at the colony's table; kept, they come each year for three years; built over, they hold it against
+    the colony. **Q14, a cache in old ruins**: a neighbour's old map (by their age) shows a cache within three tiles; the
+    game's own item stash site holds it; a caravan brings it home, their people collect it and pay, and what else lay with
+    it is the colony's.
+  - **Decided here** (not asked): S6's parts are the colony's own missions, with no people of the world behind them (a
+    small change to the shared missions, `HappeningWorker_Mission.OfTheColony`), and so is the raiders' price; the dreamer
+    must be devout and no scoffer, their god known to the colony by name and one that takes offerings (the priest three
+    times likelier); "something happens at what was built" is a night's watch with a light over the place (the god's sign,
+    as plainly as the god's nearness allows), and with no watch kept the dream comes back all the same; the offering is
+    "given" once it is set down at the place (what the god does with it stays the worship's own); S9 never starts while one
+    of the region's own raiders' camps stands near the home, and its camp is placed when the strike is asked (within two
+    to three tiles, else farther off); "keep watch" is the colony's watch seeing the raid coming when the defences are
+    ready; the test raid is half the threat now, at 85 in a hundred within the harm budget (held back: they did not come);
+    turning the raid down ends it with the colony keeping out of it (no fight comes unasked, as with the beast); the strike
+    declined, the neighbours alone clear it about a third of the time; the price is about half their raid's strength,
+    asked as a part of its own each season, four times, then they move on; S10's "a builder or driller lent" is the
+    colony's best at Mining or Construction (6 or more, never one of its last two hands), who walks off the map with their
+    foreman and is kept in the world while away, as the game keeps lent colonists, rather than a caravan of the colony's on
+    the world map (rule 2 kept: nobody of the colony goes anywhere the player must send them); its refugees join at the
+    gate (turned away, they go on to another town); S11's engineer pays half again for the components used, and the case's
+    card defaults to keeping it sealed; opened, the vault hears of it (-15); the machine is the game's own mechanoid at a
+    third of the threat now; S12's giver is the Quiet Bell first; not found in time, one of theirs comes and finds it, so
+    the story goes on; its marker is the colony's own (taking it down counts as building over it); Q14 is at half a quest
+    at home's chance (0.15), six to ten days by the distance, and holds no fight of its own. A new harm kind,
+    `HarmKinds.StoryFight` (system "quests"), for a fight a storyline brings. All first parts' base chance 0.4.
+  - **Code map**: `Source/ColonyCouncil/Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`,
+    `GraveFlow.cs`; pure, linked whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs` (a marked area and its
+    overlay, the search job and its right-click, goods collected, the dev actions), `StorylineDream.cs`, `StorylineRaiders.cs`,
+    `StorylineWell.cs` (with `JobDriver_StorylineLentOut`), `StorylineVault.cs` (with `JobDriver_StorylineBenchWork`),
+    `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked), `Missions/Workers_MissionHome5.cs`
+    (`HappeningWorker_MissionRuinsCache`, `Patch_HomeQuestRuinsCache`). Changed, small: `Missions/Workers_Missions.cs` and
+    `Missions/Missions.cs` (`OfTheColony`), `Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs` (the cache),
+    `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`), `Tools/make_quest_items.py` (three pictures), `Tools/playout_skips.txt`
+    (five answers played out by the parts' own code). Defs: `Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`,
+    `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`, `_Well.xml`, `_Vault.xml`, `_Grave.xml`,
+    `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`; Keyed `Rimfolk_Storylines3.xml`,
+    `Rimfolk_Missions_Home3.xml`; textures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png`. No new saved
+    collection. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (new), `StorylineTests` (the twelve kinds and
+    the new words), `HarmBudgetTests` (the new kind), `NeighboursFourTests` (the cache in the one draw).
+  - **Can't be checked without the game**: the marked areas drawn on the map and the right-click search; a shrine built in
+    the dream's area being dedicated by the worship's own walk; the dreamer walking out for the night's watch and the sign's
+    presence moment at the place; the offering carried to the place by the dreamer; the raid letters (Rimfolk's above the
+    game's), the watch's warning, the raiders' camp site and its map, the neighbours' fighters coming onto it and going
+    after the raiders, the silver carried out to the edge; the lent colonist walking out with the foreman, being kept in the
+    world (gone from the colonist bar) and walking home with their wages and skill; the refugees joining at the gate; the
+    engineer working at a bench (the smithing look and sound) and the component taken each day; the case set down, the
+    card, a sleeper, a machine or goods coming out of it; the grave marker set, the mourners' day, the yearly visits; the
+    ruins' map with the cache inside the item stash, the caravan bringing it home and their people collecting it; how often
+    each comes in a real game.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk; one mission at a time, so end any open one first): 1.
+    "Storylines: start a dream of the gods now" (needs Worship on, a devout colonist whose god the colony knows):
+    accept; build an altar or a sculpture inside the drawn area; someone walks over to give it to the god ("Storylines: what
+    the open part waits for comes now" gives it at once); "Storylines: the next part (or ending) due now": the watch; at
+    night the dreamer walks out (or "what the open part waits for comes now" for the sign); next part: the offering. 2.
+    "Storylines: start raiders settling nearby now" (battles on): accept, build traps; "what the open part waits for comes
+    now" judges the defences; next part due: the raid ("... comes now" sends it); then the strike (near: a camp on the
+    world map, send a caravan; far: meals and medicine in the stockpiles); "Storylines: end the current part with..." (raid:
+    overrun) for the price. 3. "Storylines: start the town's well ran dry now": accept, put meals in the stockpile; next
+    part: the foreman comes ("... comes now"), the colonist walks out with them; "... comes now" again brings them home. 4.
+    "Storylines: start the vault's sealed case now" (needs a spacer people at peace): components in the stockpile; next
+    part: the engineer works at a bench each morning; next part: the case; "... comes now" for the runner, then for the
+    card; open it or keep it. 5. "Storylines: start the lost founder's grave now": accept; right-click inside the drawn
+    area with a colonist ("Search here for ...'s grave"), or "... comes now" to find it; next part: the mourners come in the
+    morning. 6. "Quests at home: offer one now..." → a cache in old ruins (needs a place within three tiles): accept; the
+    ruins are on the world map; send a caravan, pick up the old cache, come home; "Quests at home: end the open one as..."
+    → home now, to skip the trip. "Storylines: what stands (log)" at any point; save and load mid-part.
+  - **Mods that would help**: none is needed. Dubs Bad Hygiene (https://steamcommunity.com/sharedfiles/filedetails/?id=836308268,
+    1.6 and 1.7, enabled) gives the well's water; the dream's place can be any altar, shrine or art of the game or the
+    enabled mods (Ideology's, the medieval mods'), and the engineer's bench any work bench. No gravestone mod is in the
+    player's list, so the founder's grave uses Rimfolk's own marker (a picture of its own).
+- 0.266.9, **Plain words: the letters**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative", "the only thing i don't mind and even enjoy, is old
+  medieval writing"). The tenth batch of the plain-words pass, the letters: every line of the letters to and from the
+  neighbours, notables and peoples (the letter form's parts, the neighbours' written answers for every purpose, pacts,
+  truces, favours, fealty, feasts, matches, ransom, envoys, wards, renown, a town taking back, the handed-over town's
+  letters), with the letters' Keyed words read again. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 5,870 lines read, 610 rewritten (the letter form's pools 573, the neighbours' answers and
+    the peoples' letters 37). Wry last lines and running jokes said plainly ("Repairs needed: the roof, the fence, the
+    well cover, and my temper" is "the roof, the fence and the well cover"; "the potholes now have potholes"; "I will
+    write again when one side wins"; "Two out of three is good for a town"; "The grass is richer than we are"), things
+    given a will or a voice ("it knows what it is doing", "It is shy", the mule "still making its case", "the river
+    says hello too", the fire that "calls", "the trees argue with the sky"), riddling or cut-short
+    lines ("more than last year, fewer than next", "Won. Lost the fence.", "That is how you know", "Some things are
+    better as questions"), invented idioms explained ("gone to the long fire" is "has died", "a friend of our fire",
+    "the moon of the first green" is the month the first shoots come up, the league's "good ink or red", the fey's
+    "dream sideways"), and the colon-and-semicolon chains of the recipes, the chronicle sheet and the stories as plain
+    sentences. The approved samples of `docs/text-style-samples.md` used where they stand: the short note's weak floor,
+    the ambush at the ford (plain, and in the medieval line made clear in its own voice), the cannibal people's winter
+    aside, the storm's marks the children dare each other to touch.
+  - **Left as they were.** The medieval (`olde`) lines keep their voice ("needeth", "meaneth", "Most dear", "Herewith",
+    "Item:"); only those that were unclear were made clear in it ("To {TO}, these," and "the light was false" now say
+    what they mean, "Winter hath its teeth in us" is "Winter is hard upon us"). The strange voices keep their forms
+    (the android's capitals, the hive's "we", the beasts' smells, the fey formula "By leaf and by string", the ancient's
+    long postscripts, the eldritch word order), with their riddles' twists and unclear endings made plain. Riddles
+    stay riddles; poems and songs (`Rimfolk_Letters_Poem.xml`) stay verse; sermons (`Rimfolk_Letters_Sermon.xml`) and
+    the stories of a god's sign, curse or myth are the faiths' words, for the gods' round. Spoken lines over heads
+    (`Rimfolk_Pool_NeighbourSays`, couriers' and visitors' lines, the challenger's words) and the neighbours' talk
+    (`OutsiderSays`) are not letters and were left. The retired lines `Lean/ShippedLines.cs` names (two ward answers
+    with "our house") stay word for word: they are never drawn, and RenownTests asks that they stay. Every tag,
+    placeholder and fact kept (the rewrite tool refused any line whose tags or placeholders changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken); the peoples' sayings still stand in their lines (each people keeps three
+    or more, PeoplesLoreTests asks two). Plain lines already in the letters' Keyed files since the interface batches.
+  - **Put right against the code.** The unschooled raiders' ransom answers asked for gold ("Gold. Real gold, not painted
+    rocks", "send gold"), while a ransom is paid in silver (`Ransoms.cs`: `ThingDefOf.Silver`); they now ask for
+    silver. Checked and true as written: a friend's warning of raiders says "hours, not days" (`DealingMath.WarnHours`,
+    3 to 5 hours); a request granted brings their porters to the gate (`Dealings.cs`, `WorldWrites.cs`).
+  - **Code map.** No code changed. The rewrite was done line by line in the pools' XML; LetterFormTests' rules hold
+    (no dash or exclamation mark, thee and thou only in `olde`, the unschooled in short sentences, every placeholder
+    known).
+  - **Can't be checked without the game.** How the plainer jokes read in a whole letter beside the medieval and the
+    strange voices; whether a letter now feels flat where the old wry line carried it.
+  - **Try in the game.** Write to a few neighbours of different ages and peoples (Diplomacy screen, People, Write) and
+    read the answers in full; let a pen friend's letters build up to "old friends by letter" and watch the running
+    jokes (the goat, the bridge, the well bucket) come back in plain words; read a tribe's letter (the dates "in the
+    month the leaves fell"), a medieval one (still "thee" and "Herewith"), and a long letter with a story or a raid's
+    account; with an unschooled raider people holding a colonist, ask them by letter about the captive.
+  - **Mods that would help.** None for this; it is text only.
+- 0.266.8, **The storytellers: fewer only
+  where it fits, and said** (19 November 2026; the player's answer to the question left open in 0.253.0, whether the
+  first eight's levers below the base rate go back to it: "Some storytellers and fewer traders and fewer fights. That's
+  also good. Depending, you know, if it's fitting for the scenario, it should also just be reflected in the
+  description"). DESIGN.md "The storytellers' levers below the base rate, kept only where they fit" (after "Six more
+  ways to play"); the Almanac's "ways to play" page (keywords unchanged); README "Ways to play".
+  - **What was decided, way by way** (the base rate: 1 for Rimfolk's levers, the classic storyteller's numbers for the
+    game's parts, a shaped way over its year or arc): The Long Road, Neighbours and Crossroads bring nothing less often
+    and now say so. **Neighbours' fights 0.8 back to 1**: revenge, debts called in, tribute and old enemies are its own
+    story. **What You Sow** keeps the cruel colony's fewer traders, visitors, camps, letters, favours, missions and
+    friends and the kind colony's fewer fights (0.6) and schemes (0.4), now all said; **a colony of no name back to the
+    base rate** (it had 0.55 of the peaks, 4.4 traders, 3.85 visitors and 13.2 friends a year; now 0.625: 5, 4.4 and
+    15). **Old Powers** keeps fights 0.7 (the danger is strange rather than other people) and its omens in place of some
+    everyday happenings, said. **Lean Years** keeps everything below (traders about half, visitors, travellers and camps
+    a little less, orbital traders two thirds, the everyday happenings every 7 days, fights 0.7), all said. **The
+    Turning Year** kept as the player asked on 15 November, its winter's few traders or camps and the season's own
+    happenings now said. **Rise and Fall** keeps the good years' fewer fights and schemes, the trouble's few traders and
+    less other news, said; **its friends in a fight in the good years back to the base rate** (0.6 of 18 a year was
+    10.8; now 0.85, 15.3). The descriptions also name what each brings more of that they didn't (The Long Road's traders
+    and news, Neighbours' trade, memory and news, Crossroads' letters and missions); Crossroads' orbital traders "about
+    twice as often" put right (one and a half times). Three direction notes say the fewer fights.
+  - **Code map**: `Story/StoryWaysMath.cs` (`DeedNoName`, `DeedVisitAccept`, `ArcVisitAccept`);
+    `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (Neighbours' levers, eight descriptions, comments);
+    `Languages/English/Keyed/Rimfolk_Story.xml` (the notes for What You Sow, Old Powers, Lean Years);
+    `Defs/AlmanacArticleDefs/Almanac_Storytellers.xml`; `Tools/Tests/StoryWaysTests.cs` (`KeptBelowBase`, `QuietTimes`:
+    every lever and the game's traders, visitors, travellers, friends, orbital traders and everyday happenings below the
+    base rate only where listed for that way, each listed one said in its description; a way with nothing below says
+    so). Saved: nothing.
+  - **Can't be checked without the game**: the longer descriptions in the storyteller screen's box (a long one scrolls);
+    the numbers of traders and friends in a real colony.
+  - **Try in the game**: 1. A new game, the storyteller screen: each of the first eight's descriptions says what it
+    brings less often, or "Nothing comes less often than in the base game" (The Long Road, Neighbours, Crossroads). 2. A
+    game on Neighbours, dev action "Rimfolk", "Ways to play: show the levers now (log)": "fights: 1.00 in the def, 1.00 now" (it was 0.80). 3. On
+    What You Sow with a new colony (nobody remembers anything yet): traders come about as often as under the classic
+    storyteller. 4. Rimfolk's settings, What's on, Story direction: the notes for What You Sow, Old Powers and Lean Years
+    say "fewer fights". 5. The Almanac, "ways to play": the opening says which ways bring something less often, and each
+    section says what.
+  - **Mods that would help**: none needed.
+- 0.266.7, **A day off lifts the mood**
+  (19 November 2026). The player: "giving
+  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
+  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
+  eased faster) has no mood of its own. The go: "yes, please", "all the three". **What was built**: `ThoughtWorker_HeartDayOff` (in
+  `Heart/HeartTimeOff.cs`) and `Defs/ThoughtDefs/Rimfolk_Thoughts_DayOff.xml` (`Rimfolk_Heart_DayOff`, "a day off", +6,
+  "A whole day to myself, with nothing I have to do."): situational, there while `h.Off(TimeOffKind.DayOff)`, with the
+  mood effects and the day off's setting on; not for a bad afternoon. Almanac (the council page's "A day off you give").
+  Tests: `HeartDayOffMoodTests` (new). Try in the game: give a strained colonist a day off from the Mood tab; their
+  moods list "a day off" +6 until it ends or "End it early". Mods that would help: none.
+- 0.266.6, **Rooms judged by what is in
+  them** (19 November 2026). The player (17 November 2026): "I have a dining room ... But what I also have in there is a
+  drum and also the ideology, lectern and ritual spot ... The altar and the lectern ... I want the gatherings where food
+  is involved, of course, happening in my dining room, even if maybe another room is kind of the one for the ideological
+  items"; then "ballroom seems to override temple, which is not correct in my opinion". Fix A (VFE Empire's ballroom
+  only for music rooms) was released in 0.265.2. The go for fix B, on the overview of the open list (19 November 2026):
+  "Rooms judged by what's in them. That sounds good." DESIGN.md "Rooms judged by what is in them".
+  - **The cause.** The game shows one role per room, the highest score (a dining table 12, a recreation building 7, an
+    altar of the colony's faith at least 2000, a stove 28, a bench 27). Rimfolk read only that role: council meetings,
+    play-outs and feasts, visitors and the advisor looked for the room named dining room, then rec room. The player's
+    dining room with the altar shows as a temple, so its meetings and meals went to another room or out into the open
+    air, and a rec room shown as something else brought the idea of building one. (The game's eating and recreation
+    moods read the room's impressiveness wherever it happens, not its name.)
+  - **What it does.** A room with a dining table of the colony's counts as a room where people eat, and one with a
+    recreation building as a rec room, whatever the game shows (a temple, a ballroom, a throne room, a kitchen with a
+    table); never a bedroom, barracks, hospital, prison, nursery, guest room, bathroom or sauna. Each place keeps its
+    order with the room the game calls a dining room (or rec room) first, then one that serves as one, larger first.
+    With the player's rooms, meetings, meals and feasts go to their real dining room, or to the temple with the tables,
+    and never out into the open for lack of a room named dining room; the advisor no longer suggests a rec room while a
+    room with games stands. A rec room the game calls something else is named as the map shows it ("in the temple").
+  - **Code map**: `RoomUseMath.cs` (new, linked in the tests: `PrivateRoles`, `Private`, `ServesAsDining`,
+    `ServesAsRec`, `Rank`, `Order`, `ReadAs`), `RoomUtil.cs` (`ServesAsDining`, `ServesAsRec`, `IsDiningRoom`,
+    `IsRecRoom`, `IsCommonRoom`, `DiningRank`, `DiningRooms`, `RecRooms`, `AnyDiningRoom`, `AnyRecRoom`, `RoomsFor`,
+    the reading kept 60 ticks). Read so in `Ambitions/CouncilMeeting.cs` (`FindVenue`), `Ambitions/Ambitions.cs`
+    (`MeetingVenue`), `PlayOut/PlaySpots.cs` (`TryFind`, new `RecVenue`), `Visitors/Visitors.cs` (`IndoorsCell`),
+    `Happenings/VisitorServices.cs` (`Corner`), `Happenings/Workers_Callers.cs` (the wedding), `Advisor/AdvisorSignals.cs`
+    (the rec room and dining ideas, the recreation advice's room plan), `AdvisorSignals_Rooms.cs` (dining outgrown, rec
+    room outgrown), `AdvisorSignals_Rooms2.cs` (dining cramped), `AdvisorSignals2.cs` (darkness), `AdvisorSignals5.cs`
+    (no seat), `Wishes/WishWorkers_Work.cs` (the art wish), `Wishes/WishWorkers_LifeNew.cs` (the roofed way's table),
+    `Ambitions/AmbitionGoals.cs`, `AmbitionGoals2.cs` (`Goal_Room`, `Goal_RoomStat`), `Building/TemplatePlanner.cs`
+    (`RoleCenters`), `Building/BaseReview.cs` (`RoleName`, the `also` readings, the little map's colours),
+    `Items/ItemCardArt.cs` (`MoodRole`), `Dilemmas/DilemmaWorkers_Faith.cs` (the faiths' corners),
+    `Integrations/GuestWill.cs`, `Harm/Quarrels.cs`, `Lives/LifeNew.cs`, `Social/Groups/GroupHabits.cs`,
+    `Pressures/Pressures.cs` (crowded rooms). Keyed: `CC_Venue_InRoom` (ColonyCouncil.xml), `CC_FaithClash_CornerIn`
+    (Rimfolk_Faith_Council.xml). Almanac "dining room" and "recreation room" pages (a paragraph each, keywords
+    unchanged), README (council meetings). Tests: `RoomUseTests` (new).
+  - **Kept on the game's one role**: the game's own roles and moods; words that name a room as the game shows it (a
+    guest lodged in a room, the crowded room's name, a god's doing, the base map's tooltip, a custom room's offered name);
+    `Social/Autonomy.cs` `OkRole` (where someone with no bed may lie down goes by what the room is for, so a kitchen or
+    temple with a table stays out); the rooms of every other role; the visitors' private rooms (`KeepOut`,
+    `GuestHelpMath.PrivateRoom`); the journal's moods (the game's own thoughts).
+  - **Can't be checked without the game**: the meetings and feasts going to the temple with tables, the venue's words,
+    the advisor's cards with and without a room that serves as a rec room, the base review's little map colouring a
+    temple with tables as a dining room, Ideology's drum counting as recreation (only if its def has a kind of
+    recreation).
+  - **Try in the game**: with the dining room holding the altar (the game shows "temple" over it) and no other room the
+    game calls a dining room, call a council meeting from the Ambition page: it is announced "around the dining table"
+    and held at a table there. A feast from a council answer gathers at that table too. The Priorities page has
+    no "Idea: a recreation room" while the rec room, or any room with a game in it, stands.
+  - **Mods that would help**: none.
+- 0.266.5, **Riding out to far work: the beast
+  taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
+  still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's
+  done"; the go on the lead's fix, 19 November 2026: "yes, sounds good"). A bug fix. DESIGN.md "Riding out to far work:
+  the beast taken first" (after "Riding out to far work and back with Giddy-Up 2"); README's Giddy-Up 2 line; the
+  Almanac's animals page ("Riding out to far work (with Giddy-Up 2)", keywords unchanged); the setting's tooltip.
+  - **What the save showed** (tick 7668315): Bautista mined steel at (136, 264), 44 cells past the home area's edge,
+    about 95 cells from the dining hall where he chose the job after a meal (under Giddy-Up's own 120, so Giddy-Up never
+    looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts were in or by the pen inside the base,
+    about 34 cells the other way from the vein. Giddy-Up refused the horses (Stallion 1, Tatyana, Mare 1), the Thunderox
+    and the yak (Tameness not learned); Tatyana, Mare 1 and Tara were with young; Giddy-Up's saved data still kept
+    Tatyana for Soot (Tatyana's `reservedBy`) and Zoe (titanis) for Wyninn (Wyninn's `reservedMount`; Zoe's own
+    `reservedBy` is saved empty, so the to-do's "Zoe kept for Soot" was these two read together), everyone at home;
+    Calvin (titanis), about 6 cells a second under him against his 4.6 on foot, was the best left. The cause
+    (`GiddyUpRideOut.Decide`, `RideOutMath.Worth`): riding out and back had to be within a quarter of walking, counting
+    the walk to the beast first; to the pen and then out on a titanis came to about 52 s against 41 on foot (over 51),
+    so "walking is quicker". The wait (`KeepWaiting`) was kept up only at a job chosen with nothing under way, and a day
+    from the start of the wait at most.
+  - **What was built**: (1) out to work (an `Out` trip) they ride whenever a beast is free whose walk is no longer than
+    the trip (`RideOutMath.NearEnough`) and that carries them at least as fast as they walk (`FastEnough`, the builder's
+    own addition: Giddy-Up passes slower beasts over too), the quickest of them by the same sums; `Worth` with its slack
+    stays for the way back and drafted movement orders (`RideOutMath.Rides`). In their save Bautista rides Calvin out.
+    (2) Giddy-Up's mark keeping a beast for someone (`ReservedBy`) counts only while it waits for, carries or is being
+    got on by that rider (their current job or queue, `GiddyUpMounts.MountingOnto`; `RideOutMath.KeptFor`); an old one
+    is left aside and named in the dev action (Tatyana's for Soot, Zoe's for Wyninn). (3) Each colonist's last decision
+    on a trip of 40 cells or more kept in memory (`RideOutNote`: tick, job, kind and cells, why, best beast and seconds
+    against walking, and what came of it: not taken by Giddy-Up, sent, in the saddle at the next job choice or not),
+    written first by the dev action "Riding out: why a colonist rides or not (log)..."; "Rimfolk: check myself" (under
+    "Mods Rimfolk works with") says riding out is on or off and why, warns when it switched itself off this session
+    (`Patch_RideOutNextJob.Broken`, Giddy-Up's `Inject` failed, `GiddyUpMounts.InjectFailed`) or when Giddy-Up's
+    `canRide` or `IsCapableOfRiding` wasn't found (nobody rides out then), and lists the other members not found. (4)
+    The wait set again every 250 ticks while the rider is at work out past the base (`GiddyUpRideOut.Rare`,
+    `GameComponent_RideOut`, new slot `Sched.RareRideOut` = 143, `Pass.RareRideOut` on the clock, only with riding out
+    on), and its cap counted from the rider's last job (`RideOutMath.WaitExpiry(..., lastJob)`: a day after their
+    current job began at most, never at or below the time already waited).
+  - **Code map**: `Integrations/GiddyUpRideOut.cs` (`NextJob`, `Note`, `Settle`, `Decide`, `KeepWaiting`, `Rare`,
+    `OutThere`, `AnimalWhyNot`, `KeptFor`, `StaleKeeper`, `Explain`, `CheckLine`, `Reset`, `LastOf`;
+    `GiddyUpRules.CanRideFound`, `CapableFound`, `Missing`; `Patch_RideOutNextJob.Broken`; `GameComponent_RideOut`),
+    `Integrations/RideOutMath.cs` (pure: `NearEnough`, `FastEnough`, `Rides`, `KeptFor`, `WaitExpiry` with `lastJob`,
+    `RideMount`, `RideOutNote.Describe`), `Integrations/GiddyUpMounts.cs` (`MountingOnto`, `InjectFailed`,
+    `InjectFound`), `UI/SelfCheck.cs` (the line), `Lean/Sched.cs` (`RareRideOut`), `Lean/PassClockMath.cs`
+    (`Pass.RareRideOut`), `Languages/English/Keyed/Rimfolk_RideOut.xml` (the tooltip, `CC_Clock_Pass_RareRideOut`),
+    DESIGN.md's ticking table. Tests: `RideOutTests` (out to work, the marks, the wait with two days of mining
+    simulated, the notes, the save redone with League_of_Toba_7's numbers, the seams). Saved: nothing.
+  - **Can't be checked without the game**: Bautista getting on Calvin in the base and riding out; whether Giddy-Up's own
+    `GoMount` takes a beast that still carries an old mark for someone else (the note then says "Giddy-Up didn't take
+    the order"); the wait's `expiryInterval` set every 250 ticks; the self-check's line; titanis's wildness (its time to
+    get on) is not in the catalogue, so the old sums are shown for any wildness from a half up.
+  - **Try in the game**: 1. Load `League_of_Toba_7` with "Ride out to far work and back" on. Let Bautista finish a meal
+    in the dining hall with the steel vein designated: he walks to the pen, gets on Calvin (or Zoe), rides out, leaves
+    the beast near the vein and mines. 2. Dev mode, "Riding out: why a colonist rides or not (log)..." on him: the first
+    line is his last decision (out to work, about 95 cells, they ride Calvin, they got in the saddle); Tatyana's line
+    (and Zoe's, where Giddy-Up links Wyninn's mark to her) names the old mark as left aside, with Giddy-Up's own reason
+    if it refuses her. 3. Let him mine past 4 hours, then past a day: the beast is still waiting (Giddy-Up's "Leave
+    rider" button shows on it). 4. When he comes home to eat, he gets back on and rides. 5. "Rimfolk: check myself":
+    under "Mods Rimfolk works with", "Riding out with Giddy-Up 2: on." 6. Train Tameness on the horses (the Animals tab)
+    and they become the choice when they are quicker.
+  - **Mods that would help**: none is needed. Giddy-Up 2 - Continued (Workshop 3674332861, 1.6 and 1.7, kept up) does
+    the riding and its art.
 - 0.266.4, **Clothes made for someone, put
   on when they are back** (18 November 2026). The player:
   "So I have this mod where I can directly from a pawn's inventory give the task to craft like a certain piece of
@@ -2012,7 +2326,8 @@ repo.
     (Rimfolk's events and the steward's feast): the colony's own evenings keep the player's "Gatherings a week" pace.
   - Still open, for the player to answer: whether the eight's below-base levers go back to the base rate (Lean Years'
     fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What You
-    Sow's thinner roads for a cruel colony). Left as they are until then.
+    Sow's thinner roads for a cruel colony). Left as they are until then. Answered 19 November 2026 (kept where they
+    fit the way and said in its description; the entry "The storytellers: fewer only where it fits, and said").
   - Not checkable without the game: the six on the storyteller screen with their plates; each part firing in a real
     colony (the picks' `CanFireNow` and the quests' `CanRun`: an escape pod only where Vanilla Gravship Expanded allows
     it, the orbital quests only with a way to orbit, the Banner's squad only with the Banner in the world); the

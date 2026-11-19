@@ -1806,7 +1806,9 @@ its settings in `ModSettings_GiddyUp`):
   the straight line at the beast's speed under them, its `StatPart_Riding`), when that is no slower than walking by
   `Slack`: for work, up to a quarter longer (the player wants them in the saddle out past the base, and the waiting beast
   makes every later trip back and forth quicker; a beast far off the other way isn't fetched), and a movement order only
-  when it gets them there sooner.
+  when it gets them there sooner. Since 19 November 2026 out to work rides whenever a beast near enough is free, and the
+  slack holds only for the way back and movement orders (the next section, "Riding out to far work: the beast taken
+  first").
 - **Getting on.** Giddy-Up's own `GoMount` with its `Inject` (`GiddyUpMounts.MountFirst`, by name): the chosen job becomes
   its "Mount" job and waits first in their queue, as its own auto-mount does. Nothing is taught the beast.
 - **After.** Giddy-Up's own driver does the rest as for its own riders: the ride, parking near the work (a mount spot, a
@@ -1816,13 +1818,14 @@ its settings in `ModSettings_GiddyUp`):
 - **The wait kept** (`KeepWaiting`). Each time a colonist starts a job while they or their work are out past the base,
   a beast waiting for them within 60 cells has its wait set to Giddy-Up's own timer from now, never shorter than it was
   and a day at most (`RideOutMath.WaitExpiry`). Giddy-Up still ends it for its own reasons (its rider in bed, the beast
-  hurt, hungry or tired).
+  hurt, hungry or tired). Since 19 November 2026 also every 250 ticks, and the day counted from the rider's last job (the
+  next section).
 - **A handler's rope job home** (`RopedHome`). The game's own job to lead one of the colony's beasts to its pen (with the
   pen named), the handler 10 cells or more past the base and the pen 40 or more away, becomes: get on that beast, ride
   it to the pen and get off there (Giddy-Up's own "Dismount" job), when Giddy-Up and Rimfolk let them ride it. Giddy-Up's
   own rope job for a beast that stopped waiting is left as it is.
-- **Saved:** nothing (who tried which beast is kept in memory for the session only). No new Sched slot; one Harmony
-  patch, on the same method as Rimfolk's hauling hook (which runs first).
+- **Saved:** nothing (who tried which beast is kept in memory for the session only). No new Sched slot (one since 19
+  November 2026, the next section); one Harmony patch, on the same method as Rimfolk's hauling hook (which runs first).
 - **Control:** the setting "Ride out to far work and back" (`rideOut`, Your other mods, under Giddy-Up 2, shown only with
   it, on by default, under the deeper hooks). Dev mode: "Riding out: why a colonist rides or not (log)..." writes, for a
   colonist's job now, Giddy-Up's settings, the trip and how far past the home area each end lies, whether Giddy-Up's own
@@ -1833,6 +1836,71 @@ its settings in `ModSettings_GiddyUp`):
   reflection; the parked beast's wait lengthened while the rider works; a drafted colonist getting on before a movement
   order and staying mounted at the spot; the handler riding a beast to its pen; how often the quarter's slack has them
   ride when the pen lies the other way.
+
+### Riding out to far work: the beast taken first (the player's report and go, 19 November 2026; released 0.266.5)
+
+The player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to
+mine without mounting up first? then the mount should wait for him until he's done". The go, 19 November 2026, on the
+lead's fix: "yes, sounds good". A bug fix to the section above; the code is the same files.
+
+- **What the save showed** (tick 7668315). Bautista mined steel at (136, 264), 44 cells past the home area's edge, and
+  had chosen the job in the dining hall about (62, 205) after a meal, about 95 cells off: under Giddy-Up's own 120, so
+  Giddy-Up never looked. He was not drafted, Animals 4, walking 4.6 cells a second, nothing stored against riding. The
+  colony's 18 beasts were in or by the pen in the base, about 34 cells the other way from the vein. Giddy-Up refused the
+  horses, the thunderox and the yak (tameness not learned), and Tatyana, Mare 1 and Tara were with young. Giddy-Up's
+  saved data still kept Tatyana for Soot (Tatyana's `reservedBy`) and Zoe, a titanis, for Wyninn (Wyninn's
+  `reservedMount`; Zoe's own `reservedBy` is saved empty), with everyone at home. Calvin, the other titanis, about 6
+  cells a second under him, was the best left.
+- **The cause.** `Decide` asked riding out and back (`RideOutMath.Worth`) to be no more than a quarter slower than
+  walking there and back, counting the walk to the beast first. To the pen, getting on a titanis (body size 3), then 119
+  cells from the pen to the vein and 95 back at 6 cells a second, came to about 52 seconds against 41 on foot (for any
+  wildness from a half up), over the quarter's 51: "walking is quicker". Rimfolk kept no record of the decision, so the
+  save alone couldn't prove it. Its wait was kept up only as a job was chosen with nothing under way, and ran out a day
+  after the beast was left, whatever the rider was doing.
+- **Out to work: the beast taken first.** For an `Out` trip they now ride whenever a beast is free whose walk to it is
+  no longer than the trip itself (`RideOutMath.NearEnough`: straight lines, the trip plus a haul's carry) and that
+  carries them at least as fast as they walk (`FastEnough`; Giddy-Up passes slower ones over too; decided by the
+  builder, not asked); of those, the one that gets them there soonest by the same sums as before (`RideSeconds`). The
+  pen on the way, beside them or the other way within the trip's length all count; a beast further off than the work is
+  never fetched. `RideOutMath.Rides`: out to work, any beast found; the way back (`Back`) and the player's movement
+  orders (`Order`) keep `Worth` with their slack (a quarter longer, and only when sooner). In their save Bautista now
+  rides Calvin out.
+- **Giddy-Up's old marks left aside** (`AnimalWhyNot`, `KeptFor`, `RideOutMath.KeptFor`). A beast marked by Giddy-Up as
+  kept for another rider (`ReservedBy`) is passed over only while it waits for that rider (`WaitingFor`), carries them
+  (`Riding`) or they are getting on it, now or next in their queue (`GiddyUpMounts.MountingOnto`); otherwise the mark is
+  old and left aside (Tatyana's for Soot; Zoe's for Wyninn, where Giddy-Up links it to her when the game loads). The dev
+  action names such a beast and the old mark. Giddy-Up's own `IsMountable` still has its say; where it refuses such a
+  beast, the dev action gives its reason.
+- **The wait kept while they work out there** (`GiddyUpRideOut.Rare`, `GameComponent_RideOut`, every 250 ticks at
+  `Sched.RareRideOut` = 143, timed as `Pass.RareRideOut`, only with riding out on): each of the colony's beasts on any
+  map doing Giddy-Up's "WaitForRider" for a rider of the colony who is up and out past the base (they, or where their
+  current job takes them, 10 cells or more past the home area) has its wait set again, as at each job chosen
+  (`KeepWaiting`). The cap now counts from the rider's last job (`RideOutMath.WaitExpiry(start, now, expiry, timer,
+  lastJob)`): Giddy-Up's timer from now, never past a day after their current job began, never shorter than it was,
+  never at or below the time already waited (the game ends a job when that reaches its length), and a wait with no end
+  of its own left alone. Two days of mining cell after cell keeps the beast there throughout; a single job lasting more
+  than a day lets it go a day after the job began; once the rider has gone back into the base, it ends within Giddy-Up's
+  timer.
+- **The last decision kept** (`RideOutNote`, `RideMount`, `GiddyUpRideOut.Note`, `LastOf`; memory only, cleared when a
+  game is loaded or begun, 64 colonists at most). Each colonist's last decision on a trip of 40 cells or more (or a
+  ride), except while they are in the saddle: the tick, the job, the trip's kind and cells, why not, the quickest beast
+  found with its seconds against walking, and what came of it (Giddy-Up didn't take the order, sent, in the saddle at
+  their next job choice, or not, so the beast is passed over by them for an hour). The dev action "Riding out: why a
+  colonist rides or not (log)..." writes it first, then the look at their job now (the rule for the trip's kind, each
+  beast with its reason).
+- **Check myself** (`UI/SelfCheck.cs`, under "Mods Rimfolk works with", only with Giddy-Up; `GiddyUpRideOut.CheckLine`):
+  riding out on or off and why (its setting, the deeper hooks, switched itself off for the session after an error,
+  `Patch_RideOutNextJob.Broken`; Giddy-Up's `GoMount` with `Inject` not found or failed, `GiddyUpMounts.InjectFailed`;
+  its rules not all found; its game hook not applied), that nobody rides out when Giddy-Up's `canRide` or
+  `IsCapableOfRiding` wasn't found (`GiddyUpRules.CanRideFound`, `CapableFound`), and the other members not found with
+  what is done instead (`GiddyUpRules.Missing`). A warning colour when riding out can't work.
+- **Saved:** nothing. One new 250-tick slot (`Sched.RareRideOut`, in `RareOffsets`, on its own tick of the cycle and off
+  every hourly pass), one game component with nothing saved; no new Harmony patch.
+- **Words:** nothing new is said or sent; the setting's tooltip, the Almanac's animals page and README say the new rule.
+- **Not run in the game**: Bautista riding Calvin out from the dining hall; Giddy-Up getting him on a beast marked for
+  someone else (if its own `GoMount` refuses such a beast, the note says "Giddy-Up didn't take the order"); the wait set
+  every 250 ticks on its job's `expiryInterval` (as before, the game is read to end a job when the time since it began
+  reaches it); the self-check's line.
 
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
@@ -4208,6 +4276,153 @@ out in its list of marks; the thief's camp's id and the relic at the shrine as s
 the sickness in the next town now", "... the strayed herd now", "... the pilgrims' relic now", "... two towns' quarrel
 now", "Storylines: the pilgrims' relic stolen tonight, now", and the frame's. Tests: `Tools/Tests/StorylineTests2.cs`
 (and every storyline's shape in `StorylineTests.cs`).
+
+### Storylines, round 3, and the one away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's grave and a cache in old ruins (the player's go, 19 November 2026: "Quests round 3 sounds great"; released 0.267.0)
+
+Round 3 of `docs/quests-proposals.md`: the storylines S6, S9, S10, S11 and S12 on the frame above, and Q14, the one single
+quest that sends the colony's people out. The go's words still bind ("make sure they are written in the more clear style",
+away only "within only very few tiles"). Everything plays out on the colony's own map but two optional parts: S9's strike
+on a raiders' camp and Q14's ruins, each only when the place is within three tiles. Each storyline adds its own flow
+(`Storylines/Flows/`), its own rules and parts (`Storylines/Storyline*.cs`) and its own defs; what the round's parts share
+is `Storylines/StorylineRound3.cs`: an area marked on the map (`IStorylineArea`, drawn as the keepsake's search area is,
+`StorylineAreaOverlay`), a search of it spot by spot (`IStorylineSearch`: right-click inside it with a colonist, an hour a
+look, `JobDriver_StorylineSearch`), goods collected by the people's carts, and the dev actions (a start for each, and "what
+the open part waits for comes now", `IStorylineDebugNow`). Two small shared changes: a mission may be **the colony's own**
+(`HappeningWorker_Mission.OfTheColony`: nobody of the world asked it, so no people must stay at peace with the colony for it
+to go on; `Missions.Accept` and `Missions.Tick` read it), for the dream and the raiders' price; and the harm budget has a
+new kind, `HarmKinds.StoryFight` (system "quests", off with the world's battles), for a fight a storyline brings.
+
+**S6, a dream of the gods** (`Storylines/StorylineDream.cs`). The colony's own faith, and the gods unseen (CLAUDE.md): the
+whole of it is the dreamer's own account, and the god is named only by the name the colony knows it by (`Worship.Called`).
+The dreamer is one of the colony's own, devout and no scoffer, whose god the colony knows by name and takes offerings (the
+priest three times likelier). Its parts are the colony's own missions.
+- **Part 1, the place in the dream**: the dreamer told it at breakfast (their journal, and the colony's book of the gods as
+  a dream told, `GodLore.Dreamt`): a place on the colony's land, well out from its middle (an area of radius 4 marked on the
+  map), and a place for the god there. Within six to nine days the colony builds an altar, a shrine or a work of art inside
+  it (`Shrines.Is`, any age's: a ritual focus, art, a nature shrine, anything called an altar or a shrine); once one stands
+  there, the worship's own dedication gives it to the god (`Shrines.Ask`: someone walks over and says the words). Given:
+  built. Nothing given there in time: not built, and the dreamer is troubled.
+- **Part 2, the watch** (a day to three later): someone of the colony at the new place for two hours of the night (nine to
+  four), within three nights; the dreamer walks out each night to keep it (the play-out's visit), and anyone of the colony
+  within five cells counts. Partway through it, a light comes over the place for a short while: the god's own sign
+  (`Worship.Sign`, the presence's moment, else a glow and a line in the news), named after it only as the colony may name
+  it ("some say"), and kept in the colony's book through those who saw it. No watch kept: nothing is seen, and the dream
+  comes back all the same.
+- **Part 3, the offering** (two to five days later): the dream comes back (told again, the book's dream) and asks for an
+  offering of a kind the god likes (`GodWorshipDef.Likes`) at the place within three days: the worship's own demand of a
+  dream (a `DemandRecord` and a planned offering, the dreamer carrying it first). Set down there: given, and the colony's
+  book keeps it as the dreamer believes it ("{GOD} asked me in my dreams for a shrine and an offering, and we gave both",
+  `GodLore.Believes`), the dreamer honoured (a mood, +5, eight days). Refused, or not brought: the dreamer troubled for a
+  while (-4, six days). What the god does with it is the worship's own, never told here; no favour, want or rule is shown.
+- The dreamer dead or gone from the colony: it ends plainly.
+
+**S9, raiders settling nearby** (`Storylines/StorylineRaiders.cs`). A people at peace with a town near the colony warns it;
+the raiders are a people at war with it that can raid and hold a camp, nearest the neighbours' age, and their camp is the
+region's kind by their age (`RaidersCamps.KindWord`: a war camp, a brigands' hold, a bandit camp, a raider base). Never
+while one of the region's own raiders' camps stands near the home; only with battles on.
+- **Part 1, defences**: within five to seven days, three to six traps or turrets, or 24 to 60 lengths of wall, fence or
+  barricade, by the colony's size (counted from the day it agreed). Ready (either goal), partly (half of either), unready.
+  Ready, the colony's watch sees the raiders coming: a letter a few hours before they come.
+- **Part 2, the raid that tests the colony** (two to five days later): taken on, a small raid comes within one to three days
+  (half the threat the storyteller would send now, the game's own raid with Rimfolk's letter above its own,
+  `Raids.Send`), within the shared harm budget (`HarmKinds.StoryFight`, 85 in a hundred; held back, they don't come:
+  quiet). Beaten off (half of them or more fell, or more of them than of the colony's people): repelled; else overrun.
+  Turned down, the colony keeps out of it and the raiders turn to the neighbours: no fight comes unasked.
+- **Part 3, the strike** (two to six days later): **within three tiles** (a place found for the camp, two to three tiles
+  off), the camp is the game's own bandit camp of the raiders' people (six tenths of the threat now) on the world map for
+  eight days, and the neighbours ask the colony to join them: when the colony's caravan is on the camp's map, two to four
+  of the neighbours' fighters come in beside it and go after the raiders (the game's assist duty). Every fighter of the camp
+  fallen: cleared. Not joined in time: the neighbours go alone (45 in a hundred). **Farther off**, the neighbours go and
+  ask for food and medicine for their fighters (meals and medicine by how many go), collected by their carts within three
+  days; word comes two to four days later, cleared 75 in a hundred with the colony's food and medicine, 45 without. Turned
+  down: the neighbours alone clear it about a third of the time.
+- **Endings**: the camp gone (the neighbours thank the colony, more when it joined in person); or **the raiders' price
+  each season for a year** (a part of its own each season, a quiet wait between): paid (a colonist carries the silver out to
+  the edge of the colony's land and leaves it, the region's camp's own errand; about half their raid's strength in silver),
+  or refused (or the silver not there when it agrees), and a band of them comes for it a day or two later (the game's raid,
+  within the harm budget). After the fourth season they move on.
+
+**S10, the town's well ran dry** (`Storylines/StorylineWell.cs`). The Deepwell Union's town first (the drillers), else any
+people with a town near the colony.
+- **Part 1, water or food**: water where the colony keeps it (Dubs Bad Hygiene's bottled water, enabled in the player's
+  list), else meals, by the colony's size, within four to six days; collected by their carts and paid a fifth over its
+  worth; half or more by the date, its plain worth; less, none, and it ends.
+- **Part 2, a hand lent** (two to five days later): the colony's best at Mining or Construction (6 or more; never one of the
+  colony's last two hands). Their foreman comes to the gate within a day, and the colonist walks out with them to the edge
+  of the map (`JobDriver_StorylineLentOut`) and is away four to six days: kept in the world as the game keeps lent
+  colonists, no caravan of the colony's going anywhere. Then they walk home from the edge with a day's wage for each day and
+  1,500 experience a day in the skill they were lent for (400 in the other). The new well found: the lent hand's chance (two
+  in five at 6, nine in ten from 16). Kept at home by the colony for most of a day when the foreman comes: the foreman goes
+  without them. A part that ends any other way, or their people gone, brings a colonist away home at once.
+- **Endings**: found, the town grows and remembers the help (+15, a letter a day or two later); nobody lent, they find it
+  themselves three times in ten; not found, **part 3, refugees**: two to four of the town's people on the road, taken in
+  (they come to the gate and join the colony) or turned away (-8).
+
+**S11, the vault's sealed case** (`Storylines/StorylineVault.cs`). The Sunken Vault first (the vaultfolk), else any spacer
+people at peace.
+- **Part 1, power cells** (the vault's own power cells mission's ask): six to twelve components by the colony's size within
+  six to nine days, collected by its runners and paid two fifths over their worth (half or more: their plain worth); the
+  parts keep a declining people's age, as the vault's own mission's do (`VaultSupply.Noted`).
+- **Part 2, the engineer** (two to six days later): one of their engineers stays four to six days as a hosting guest, and
+  each day from eight in the morning takes a component from the colony's stores and works about four hours at one of the
+  colony's work benches (a fabrication bench, a machining table, a smithy, a tailoring bench, a crafting spot: any age's),
+  the game's smithing look and sound (`JobDriver_StorylineBenchWork`); no component in the stores, that day's work is lost.
+  On leaving they pay for the components used (half again over their worth). Every day worked, or short; dead or taken
+  prisoner, harmed.
+- **Part 3, the sealed case** (two to six days later): their runner brings a sealed case (Rimfolk's own, a picture of its
+  own) and sets it down by the colony's stores for five to seven days. Half a day later a card asks: **keep it sealed**
+  (the default: their runner comes back for it at the end of the days, +16 in all, and the vault owes the colony a favour,
+  the missions' deed big enough to be one), or **open it**: a sleeper of their people (joins the colony half the time, else
+  leaves at once), a machine (the game's own mechanoid, by a third of the threat now, within the shared harm budget; held
+  back, old goods instead), or old goods (by the colony's wealth and age). Opened, the vault hears of it when its runner
+  comes (-15). The case lost: they hold it against the colony.
+
+**S12, the lost founder's grave** (`Storylines/StorylineGrave.cs`). The Quiet Bell first (the keepers of the dead), else any
+people at peace with a town near.
+- **Part 1, the search**: their elders say one of their founders (a name of their people) lies on the colony's land; an
+  area of radius 7 is marked well out from the colony's middle, and the colony searches it as the lost keepsake's (an hour
+  a look, about three cells around). Found within four to six days: a grave marker (Rimfolk's own, the colony's) is set on
+  it (+8). Not found: one of theirs comes, searches some hours and finds it. Something of the colony's built on the very spot
+  first: built over, and they hold it against the colony (-20).
+- **Part 2, the mourners** (three to six days later): three to five come to the grave early on the set morning, stay about
+  ten hours and eat at the colony's table (beds don't matter for a day); fed when hungry: hosted (+10), else poorly. One of
+  them dead or taken prisoner: harmed. The marker gone or built over: built over.
+- **Endings**: kept, and for three years (`StorylineAfter` "grave", once a game year) two or three of theirs come to the
+  grave for a few hours (+4 each time); the marker gone or built over when they come, they hold it against the colony and
+  come no more. Turned away: refused (-12).
+
+**Q14, a cache in old ruins** (`Missions/Workers_MissionHome5.cs`, `HomeQuests3Math.cs`). A neighbour's old map, by their
+age (painted on a hide, drawn on parchment, a survey map, a data slate), shows a cache in ruins close by. Offered only when
+a place is found within one to three tiles, and at half a quest at home's chance (0.15): with the thirteen at home, under one
+single quest in ten sends anyone out (rule 2). Taken on, the ruins are the game's own item stash site, the cache (Rimfolk's
+own old chest) and a few things worth half the reward among its things, set down inside the ruins by the game's map making
+(and by `Patch_HomeQuestRuinsCache` if not). Six to ten days by the distance (three more for a caravan on its way home with
+it). Brought home: their people come for it within half a day and pay (the quests at home's reward by their age and the
+colony's wealth, a tribe in goods); what else lay there is the colony's. Destroyed, or not home in time: -6. No fight of its
+own: the ruins hold the cache and the land's own animals.
+
+**The rules held.** At home, but S9's strike and Q14's ruins, each only within three tiles and each optional. Every age: the
+place for a god, the camp's kind, the water or meals, the bench, the old map, each its age's. The mod pool: Dubs Bad
+Hygiene's water where the colony keeps it; the shrines, benches and fighters any mod's. Harm only where the plan says: the
+raids and the machine through the shared budget, the strike the colony's own choice, each shown. The gods unseen: the dream
+is the dreamer's, the god named only as the colony knows it, nothing of its mind. The colony is the family: the founder is a
+people's founder, mourned by that people, with no line or house tied to it. Plain words, spoken lines one sentence each.
+
+Code map: `Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`, `GraveFlow.cs`; pure, linked
+whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs`, `StorylineDream.cs`, `StorylineRaiders.cs`,
+`StorylineWell.cs`, `StorylineVault.cs`, `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked),
+`Missions/Workers_MissionHome5.cs`. Changed, small: `Missions/Workers_Missions.cs` and `Missions.cs` (`OfTheColony`),
+`Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs`, `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`). Defs:
+`Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`, `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`,
+`_Well.xml`, `_Vault.xml`, `_Grave.xml`, `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`
+(the case, the cache, the grave marker, three jobs, the dreamer's two moods); Keyed `Rimfolk_Storylines3.xml`,
+`Rimfolk_Missions_Home3.xml`; pictures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png` (`Tools/make_quest_items.py`).
+Saved: nothing new collected (the dreamer, the lent hand, the engineer and the mourners in the storyline's people; the god,
+the place and the camp in its single values; the grave's yearly visits a `StorylineAfter`). Dev mode: "Storylines: start a
+dream of the gods now", "... raiders settling nearby now", "... the town's well ran dry now", "... the vault's sealed case
+now", "... the lost founder's grave now", "Storylines: what the open part waits for comes now", and "Quests at home: offer
+one now..." for the cache. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (and every storyline's shape in
+`StorylineTests.cs`).
 
 ### The right-click's things, done by themselves (the player's request, 7 November 2026)
 
@@ -15967,8 +16182,8 @@ ahead".
   `GetScoreDeltaIfBuildingPlaced` (the note while placing an instrument), found by name; they stand down quietly without
   the mod. The setting "Ballrooms only for music rooms" (`ballroomByUse`, on), on the "Your other mods" page under the
   deeper hooks.
-- Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
-  meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+- Left on the to-do list then, built since (19 November 2026): Rimfolk reading a room by what is in it rather than the
+  one name the game shows ("Rooms judged by what is in them").
 
 ### Everything from a god told at once (the player's report and go, 17 November 2026; released 0.265.3)
 
@@ -16115,6 +16330,60 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
   forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
   something off. Someone nearby goes at once, as before.
+
+### Rooms judged by what is in them (the player's go, 19 November 2026; released 0.266.6)
+
+The player (17 November 2026): "I want the gatherings where food is involved, of course, happening in my dining room,
+even if maybe another room is kind of the one for the ideological items"; then, on the overview of the open list (19
+November 2026): "Rooms judged by what's in them. That sounds good."
+
+- **The cause.** The game shows one role per room, the highest score: a dining table 12, a recreation building 7, an
+  altar of the colony's faith at least 2000 (Ideology's temple), a stove 28, a work bench 27 (and Vanilla Factions
+  Expanded - Empire's ballroom 10000 for an instrument, now standing down in a temple or a dining room: "Ballrooms only
+  for music rooms"). Rimfolk read only that one role: council meetings, play-outs and feasts, visitors and the advisor
+  looked for the room named dining room, then rec room. The player's dining room with an altar, lectern, ritual spot and
+  drum shows as a temple, so its meetings and meals went elsewhere, or out into the open air; a rec room shown as
+  something else brought the advisor's idea of building one.
+- **The reading** (`RoomUseMath`, pure, in the tests; `RoomUtil.ServesAsDining`, `ServesAsRec`): a room serves as a
+  dining room when it holds a dining table of the colony's (a building with an eating surface, as the game's dining room
+  counts them), and as a rec room when it holds a recreation building of the colony's (one with a kind of recreation,
+  `building.joyKind`, as the game's rec room counts them), whatever role the game shows: a temple, a ballroom, a throne
+  room, a kitchen with a table. Built ones only, in a proper room (not the open air or a whole cave). Never a private
+  room (`RoomUseMath.PrivateRoles`): a prison cell, or a room the game calls a bedroom, barracks, hospital, prison cell or
+  prison barracks, Biotech's nursery or deathrest chamber, Anomaly's containment cell, Hospitality's guest room, Dubs Bad
+  Hygiene's bathrooms and sauna, or the coma room of the framework some mods use. The reading is kept for a second of
+  game time.
+- **The order** (`RoomUtil.DiningRooms`, `RecRooms`, `RoomUseMath.Order`): the rooms the game calls a dining room (or
+  rec room) first, then those that serve as one, the largest first within each; so every place keeps its own order of
+  preference with the named room first. Also `IsDiningRoom`, `IsRecRoom`, `IsCommonRoom`, `AnyDiningRoom`,
+  `AnyRecRoom`, `DiningRank` (a table's room: 0 named, 1 serving) and `RoomsFor` (a role named by an ambition or a room
+  plan: the dining and rec rooms by use, any other by the game's role).
+- **Where it is read so**: council meetings (`CouncilMeeting.FindVenue`: around the dining table, then the rec room,
+  then a gathering spot, then the open air) and their announced venue (`Ambitions.MeetingVenue`); play-outs and feasts
+  (`PlaySpots.TryFind`, Dining and Rec); visitors kept in from the cold (`Visitors.IndoorsCell`) and a guest's corner for
+  the night (`VisitorServices.Corner`); a wedding needs a marriage spot or a room to eat in (`HappeningWorker_Wedding`);
+  the advisor's idea of a rec room (only with no room that serves as one) and of dressing up the dining room, the rec
+  room plan on the recreation advice (only with no rec room), the dining room's seats and cramped space, the rec rooms'
+  games, the seats for those who ate without a table, and rooms with no light; the art wish (art where people eat and
+  relax) and the roofed way's table; ambitions' rooms (`Goal_Room`, `Goal_RoomStat`) and a planned room's neighbours
+  (`TemplatePlanner.RoleCenters`: a kitchen planned near the dining room, a latrine kept from it); the base review (a
+  room of a kind it doesn't tell apart is read as a dining or rec room by what is in it, and its little map colours it
+  so; a kitchen or rec room with tables also counts as a dining room for the walks to meals); a work of art's card (the
+  game's moods for eating and relaxing read the room where it happens, so a temple with tables is "everyone who eats
+  here feels its impressiveness"); a corner for each faith; the rec room a Hospitality guest may want of a home before joining;
+  quarrels at a table; in from the rain to the table; a group's evenings in the rec room; crowded rooms.
+- **The words match the map.** A rec room the game calls something else is named as the game shows it: "in the
+  temple" (`CC_Venue_InRoom`, `PlaySpots.RecVenue`), "a corner of the temple" (`CC_FaithClash_CornerIn`). Around a
+  dining table it is "around the dining table" in any room.
+- **Kept on the game's one role, and why**: the game's own roles and moods (Rimfolk changes no role here; the game's
+  eating and recreation moods already read the room's impressiveness wherever it happens); words that name a room as the
+  game shows it (a guest lodged "in the temple", the crowded room's name, a god's doing, the room under the mouse on the
+  base review's map, the name offered for a room of your own); where someone with no bed may lie down
+  (`Autonomy.OkRole`: a kitchen or temple with a table stays out, by what the room is for); the rooms of every other
+  role (bedrooms, barracks, hospitals, prison cells, kitchens, workshops, laboratories, barns) and the visitors' private
+  rooms (`KeepOut`, `GuestHelpMath.PrivateRoom`); the journal's moods, which are the game's own thoughts.
+- Tests: `RoomUseTests` (the reading, the order, the player's rooms, and every place above reading the rooms through
+  `RoomUtil`; only the kept places compare the game's dining or rec role directly).
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
@@ -16488,7 +16757,7 @@ rates. You can always just use the base rate level, and the description should b
 impact is"; then "rise and fall, just do 1 year rise and 1 year fall ... And the turning year you can leave as it is.
 And I like all the new proposals, storytellers"; and the go, "alright, i'd like the storytellers and fixes/small
 improvements". The Turning Year and the other seven's levers are as they were (whether the eight's below-base levers go
-back to base is still the player's open question).
+back to base was answered on 19 November 2026: the section "The storytellers' levers below the base rate" below).
 
 **The six** (`StoryWay.OpenGate` to `FeastDays`, added at the end of the enum so saves and settings keep the first
 eight's numbers; `StoryWaysMath.AtBaseOrMore`; `listOrder` 69 to 74; their plates by `Tools/make_storyteller_plates.py`).
@@ -16565,6 +16834,48 @@ Gate 10.4 and 13.0, Windfalls 10.8 and 14.0, Sellswords 10.7 and 14.0 against th
 colony (the picks' and quests' `CanFireNow` and `CanRun`, which only the game knows: an escape pod only where Vanilla
 Gravship Expanded allows it, an orbital quest only with a way to orbit, the Banner's squad only with the Banner in the
 world); the population factors thinning Open Gate's joiners; the direction changing a running game.
+
+### The storytellers' levers below the base rate, kept only where they fit (the player's answer, 19 November 2026; released 0.266.8)
+
+The question left open in 0.253.0 was whether the first eight's levers below the base rate go back to it. The player:
+"Some storytellers and fewer traders and fewer fights. That's also good. Depending, you know, if it's fitting for the
+scenario, it should also just be reflected in the description." So a way brings something less often than the base
+game only where that is what the way is about, and its description on the storyteller screen says what; everything
+else is at the base rate. The base rate is 1 for Rimfolk's levers and the classic storyteller's numbers for the game's
+own parts (`Tools/Balance/StorytellerSim.cs`, from the game's def): 5 traders, 4 visitors and 6 travellers a year,
+friends in a fight 15, an orbital trader every 15 days, the home's everyday happenings about every 4.8 days. A way
+shaped by the seasons or the arc is taken over its year or its arc; What You Sow at a colony of no name and at both
+ends of the deeds. Within 2% counts as at the base rate. The threats and sickness are not part of this: they keep the
+classic pace or less, as before.
+
+| Way | Below the base rate before | Decided | Why |
+|---|---|---|---|
+| The Long Road | nothing | its description now says "Nothing comes less often than in the base game" and names what it brings more of that it didn't say: traders (6 a year and Rimfolk's 1.2), travellers (9) and the region's news sooner (situations 1.3) | |
+| Neighbours | fights 0.8 | **back to 1**; nothing below now, and said; the description now also names its trade (6 traders a year), the peoples' stronger memory (1.25) and the region's news (situations 1.2) | Rimfolk's events that may end in a fight (revenge, debts called in, tribute, an old enemy) are this way's own story: fewer of them goes against it |
+| The Turning Year | the seasons' dips (winter camps 0.3, traders 0.4; spring fights 0.5), each averaging 1 over a year; the everyday happenings every 6 days, with the season's own every 12 | **kept**, as the player said on 15 November 2026 ("the turning year you can leave as it is"); the description now says winter's few traders or camps, the season's happenings in place of some everyday ones, and traders and visitors about as often as the classic over a year (5.25 and 3.99) | the seasons are the way |
+| What You Sow | a cruel colony's traders, visitors, camps, letters, favours, missions and friends in a fight; a kind colony's fights 0.6 and schemes 0.4; a colony of no name's traders 4.4 a year, visitors 3.85 and friends 13.2 (0.55 of the peaks 8, 7 and 24) | cruel and kind **kept**, each said; **no name back to the base rate**: `StoryWaysMath.DeedNoName` 0.625 gives 5 traders, 4.4 visitors and 15 friends | the colony's deeds coming back to it is the way; a colony nobody knows anything about has done nothing to get fewer |
+| Old Powers | fights 0.7; the everyday happenings every 6 days, with omens every 8; raids a little slower, strange threats making up the rest | **kept**, all said | the danger is strange rather than other people; the omens are the strange things the way brings (everyday happenings and omens together come more often than the classic's everyday ones); raids with the strange threats keep the classic pace, as before |
+| Lean Years | Rimfolk's traders 0.5, camps 0.8, visitors 0.8 and fights 0.7; the game's traders 2.5 a year, visitors 3, travellers 5, an orbital trader every 21 days; the everyday happenings every 7 days | **kept**, each said in the description, the orbital traders' "half as often" on the Almanac page put right (two thirds) | lean years: fewer people come by, fewer good things turn up, and the danger is the land more than other people |
+| Rise and Fall | over the arc fights 0.82, schemes 0.87 and situations 0.95 (the good years lighter, the trouble heavier, fewer new world events while it runs); friends in a fight 0.6 of 18 a year in the growth and the omens (10.8 a year, 13.2 over the arc) | fights, schemes and situations **kept** and said, with the trouble's few traders, visitors and camps; **friends back to the base rate**: 0.85 of 18 in the good years (15.3), all 18 in the trouble and the rebuilding (16.2 over the arc) | the good years lighter and the trouble heavier are the arc, and the trouble is the region's news; the good years had no reason to send fewer friends |
+| Crossroads | nothing | says so, and names its letters and missions; the orbital traders "about twice as often" put right to "more often" (5 days on, 5 off: one and a half times) | |
+| The six after them | nothing (StoryWaysTests already holds them to it) | their descriptions already say what they bring more of | |
+
+**The direction** (the levers over any storyteller): Neighbours no longer lowers fights; the notes say "fewer fights"
+for Old Powers, Lean Years and What You Sow's kindness, and "fewer traders, visitors, camps and fights" for Lean Years.
+
+**Where**: `Story/StoryWaysMath.cs` (`DeedNoName` in `DeedVisitAccept`; `ArcVisitAccept`'s friends 0.85 in the growth
+and the omens); `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (Neighbours' fights lever gone, the eight
+descriptions, a comment at the head and at each kept lever); `Languages/English/Keyed/Rimfolk_Story.xml` (three
+direction notes); `Defs/AlmanacArticleDefs/Almanac_Storytellers.xml` (the opening, the floor's line, the table and the
+eight sections; keywords unchanged); README "Ways to play". Tests: `StoryWaysTests` holds every way to the rule: each
+lever, and the game's traders, visitors, travellers, friends, orbital traders and everyday happenings, below the base
+rate over the year, the arc or the deeds only where `KeptBelowBase` lists it for that way, each listed one below it and
+said in the description in the listed words; a way with nothing below says so; the Turning Year's and Rise and Fall's
+quiet times said (`QuietTimes`); a colony of no name at the base rate or more; friends in every part of the arc at the
+classic number or more. Nothing saved.
+
+**What only the game can show**: the longer descriptions on the storyteller screen (the game's description box scrolls
+a long text); traders and friends coming at these numbers in a real colony.
 
 ### The old powers' own strange happenings (the player's go, 14 November 2026; released 0.240.0)
 
@@ -16805,6 +17116,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 | 119 | Hospitality's guests helping out (Integrations/GuestHelp.cs; only while its guests are on a home map or a record waits to be let go): each guest's hours today against the cap, unhappy or overworked, the trouble's work types on and off, a trouble's job put down when it ends, side by side with a colonist, hurt at the work, a thanks day offered; a guest gone, their farewell. Then, while a feast's guests or an envoy are at a home and Hospitality is loaded, the invited guests in its care (Integrations/InvitedGuests.cs): the feast's look their own group would have given, each group steered where the visit wants it, an envoy's meal or night counted | per guest: their job, their troubles (each home map's fires, downed, wounded, frost harvest and food looked at once a pass), colonists within six cells |
 | 7 | Carrying and hauling (Hauling/HaulBook.cs; only while a pawn carries something for Rimfolk): never more owed than it has, the run's build area looked at (what it still needs of each material, for the other builders' cover) and a run over sent to storage, a load the job choice can't send queued for storage | per pawn carrying something: a radial look round its run's frame per material carried (15 cells at most) |
+| 143 | Riding out with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs; only with Giddy-Up and "Ride out to far work and back" on): a beast waiting for its rider keeps waiting while the rider is at work out past the base, until a day after their last job began | per map, the colony's animals (their current job read); per waiting beast, its rider's place and job (the home area's edge, worked out once an hour) |
 
 **Other rhythms**
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S12, the lost founder's grave (Source/ColonyCouncil/Storylines/StorylineGrave.cs; the rules in
+       Storylines/Flows/GraveFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml).
+       {FACTION} is the people whose founder it is, {PLACE} their town, {NAME} the founder, {WAY} which way the search area
+       lies from the colony, {COUNT} the mourners, {ITEM} who found the grave (in letters), {DAYS} the time once taken on.
+       Lines tagged [bell] are for the Quiet Bell, the keepers of the dead. -->
+
+  <!-- ===================== Part 1: the search for the grave ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_GraveSearch</defName>
+    <label>a founder's lost grave</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GraveSearch</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The grave of {NAME}</li>
+        </titles>
+        <texts>
+          <li>[!bell] The elders of {FACTION} have sent word from {PLACE}: {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
+          <li>[bell] The bell-keepers of {FACTION} have sent word from {PLACE}: {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Look for the grave</label>
+            <outcome>The colony will search the ground where {FACTION} say the grave is.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} are disappointed.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[found] There is an old grave here.</li>
+          <li>[theyfound] This is the grave we were looking for.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>grave</story>
+        <part>search</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, the area where {FACTION} say the grave lies is marked on the map. Right-click inside it with a colonist to search the ground, a spot at a time. The colony has {DAYS} to find it, and a marker is set on the grave when it is found.\n\nIf the colony does not find it in time, one of their own comes and finds it. If the colony builds over the grave before it is found, it is lost.</li>
+        </terms>
+        <accepted>
+          <li>The area where {NAME}'s grave lies is marked on the map, {WAY} of the colony. Right-click inside it with a colonist to search.</li>
+        </accepted>
+        <reminder>
+          <li>{NAME}'s grave has not been found yet.</li>
+        </reminder>
+        <notes>
+          <li>[theirsearch] One of {FACTION} has come to look for {NAME}'s grave.</li>
+        </notes>
+        <endTitles>
+          <li>[found] {NAME}'s grave found</li>
+          <li>[theyfound] {NAME}'s grave found</li>
+          <li>[builtover] {NAME}'s grave built over</li>
+        </endTitles>
+        <ends>
+          <li>[found] {ITEM} found the grave of {NAME}, and a marker has been set on it. {FACTION} are grateful.</li>
+          <li>[theyfound] One of {FACTION} came and found the grave of {NAME}, and a marker has been set on it.</li>
+          <li>[builtover] The colony built over the place where {NAME} is buried before the grave was found. {FACTION} hold it against the colony.</li>
+        </ends>
+        <good><li>found</li></good>
+        <bad><li>builtover</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the mourners ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_GraveMourners</defName>
+    <label>mourners at a founder's grave</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GraveMourners</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Mourners for {NAME}</li>
+        </titles>
+        <texts>
+          <li>A few days ago the grave of {NAME} was found on the colony's land and marked. Now {COUNT} of {FACTION} want to come and spend a day at the grave.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host the mourners</label>
+            <outcome>The mourners will come on the set day.</outcome>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>{FACTION} will hold it against the colony.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[mourn] We have come a long way to stand here.</li>
+          <li>[hosted] Thank you for looking after us today.</li>
+          <li>[poorly] Thank you, though it was a hungry day.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>grave</story>
+        <part>mourners</part>
+        <terms>
+          <li>If the colony agrees, the {COUNT} mourners come to the grave early on the set morning and stay until evening. They need meals from the colony's stores when they are hungry. If the stores have nothing, they eat what they brought.\n\nIf they are looked after, {FACTION} will come to the grave each year and think well of the colony. If the grave is built over or its marker taken down, or the colony turns them away, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>The mourners of {FACTION} will come to {NAME}'s grave early in the morning.</li>
+        </accepted>
+        <notes>
+          <li>[came] The mourners of {FACTION} have come to {NAME}'s grave.</li>
+        </notes>
+        <endTitles>
+          <li>[hosted] The mourners have gone home</li>
+          <li>[poorly] The mourners have gone home</li>
+          <li>[harmed] A mourner came to harm</li>
+          <li>[builtover] {NAME}'s grave built over</li>
+        </endTitles>
+        <ends>
+          <li>[hosted] The mourners of {FACTION} spent the day at {NAME}'s grave and went home. They will come back each year.</li>
+          <li>[poorly] The mourners of {FACTION} spent the day at {NAME}'s grave and went home. When they were hungry, the colony's stores had nothing for them. They will come back each year.</li>
+          <li>[harmed] One of the mourners of {FACTION} died or was taken prisoner at the colony. {FACTION} blame the colony.</li>
+          <li>[builtover] The marker on {NAME}'s grave is gone, or something has been built over it. {FACTION} hold it against the colony.</li>
+        </ends>
+        <good><li>hosted</li></good>
+        <bad><li>harmed</li><li>builtover</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

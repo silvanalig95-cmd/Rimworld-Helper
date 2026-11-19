@@ -76,7 +76,7 @@
         <!-- While a marriage holds, in a letter of any purpose -->
         <li>[tie:marriage] Give our love to {INLAW}, and tell {SPOUSEOF} we ask after them.</li>
         <li>[tie:marriage] We are family now, {WRITER}, and family writes back.</li>
-        <li>[tie:marriage,theirLowtech] The fire here still keeps a place for {INLAW}.</li>
+        <li>[tie:marriage,theirLowtech] There is still a place for {INLAW} at our fire.</li>
         <li>[tie:marriage,theirHightech] We trust {INLAW} is settling in well with you.</li>
         <li>[tie:marriage:ours] {SPOUSEOF} sends greetings, and says the work here is hard but the food is good.</li>
         <li>[tie:marriage:ours,theirLowtech] {SPOUSEOF} is learning our ways, and our people have taken to {SPOUSEOF}.</li>

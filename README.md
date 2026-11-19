@@ -1772,7 +1772,9 @@ most often have many in each.
 
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
-the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
+the dining table, in the rec room, by the campfire or in the open; a room with dining tables or games counts by what is
+in it, whatever name the game shows over it, so a dining room with an altar that the game calls a temple still hosts
+the meeting), when (six in the evening as a rule; an hour
 or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
 what's on the table. This week and the Ambition page count down to it, a reminder comes an
 hour before, and the Ambition page can hold it now or put it off a day. No meeting starts at night.
@@ -3053,13 +3055,16 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   mount only when a job is further away than its setting "Find a mount if trip is longer than" (120 cells by default,
   about half a large map) and never for a drafted colonist, so most work past the walls was walked to. Rimfolk adds the
   rest: a free colonist whose job is 40 cells or more away, with the work, where a haul goes or the colonist 10 cells or
-  more past the home area's edge, gets on the beast that gets them there soonest (out and back may take up to a quarter
-  longer than walking), leaves it near the work as Giddy-Up does, and rides back on it; the beast keeps waiting while they
-  work out there (Giddy-Up's own wait time again from each job, a day at most). A drafted colonist given a far movement
-  order rides when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by
-  body size, tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to
-  ride"); Rimfolk also leaves alone a beast at work, with a group, with young or kept for someone else. Inside the base
-  nothing changes. Rimfolk calls Giddy-Up's own mount, wait and rules by name.
+  more past the home area's edge, gets on the beast that gets them there soonest, leaves it near the work as Giddy-Up
+  does, and rides back on it. Going out they ride whenever a beast is free that is no further from them than the work and
+  no slower than they walk, even with the pen the other way; coming back they ride when it takes no more than a quarter
+  longer than walking. The beast keeps waiting while they work out there (Giddy-Up's own wait time from now, looked at
+  every few seconds, until a day after the last job they began). A drafted colonist given a far movement order rides
+  when it is quicker. Which beasts may be ridden stays Giddy-Up's to say (its list of animals to ride by body size,
+  tameness, weight, health, hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to ride");
+  Rimfolk also leaves alone a beast at work, with a group, with young, or kept for someone it is waiting for, carrying or
+  being got on by (an older mark of Giddy-Up's is left aside). Inside the base nothing changes. Rimfolk calls Giddy-Up's
+  own mount, wait and rules by name; "Rimfolk: check myself" says when riding out is off and why.
 - **The brewery at home in the kitchen** (the setting "Breweries work in the kitchen too", under the deeper hooks): the
   game names one room for each workbench and slows it to 80% anywhere else, and the brewery's is the workshop. Brewing is
   cooking work, so a brewery (and any workshop bench whose work is all cooking) works at full speed in a kitchen as well,
@@ -3177,25 +3182,35 @@ omens, and who a raid comes from):
 
 - **The Long Road**: the world calls the colony out. Raids at the gate at the classic pace, more
   ambushes and chance meetings on the road, quests a little more often; more letters from the region, favours called
-  in, camps and missions.
+  in, camps, missions, traders and travellers. Nothing comes less often than in the base game.
 - **Neighbours**: the peoples around are the story. Raids at the classic pace, most of them from a people
   with a reason (a wrong the colony did them, an old enmity), and the raid's letter names it; allies and friends come to
-  a fight more often; more letters, favours, calls to arms and visitors.
+  a fight more often; more letters, favours, calls to arms, traders and visitors. Nothing comes less often than in the
+  base game: Rimfolk's events that can end in a fight are its own story and come at the game's rate.
 - **The Turning Year**: the calendar decides. Quiet springs with sickness at the thaw, summers of heat waves and blight,
-  trade and camps in autumn, cold snaps and the hungry raids of late winter; about the classic pace over a year.
+  trade and camps in autumn, cold snaps, few traders and the hungry raids of late winter; about the classic pace over a
+  year, traders and visitors too.
 - **What You Sow**: the colony's deeds decide, as the peoples remember them. Raids at the classic pace whatever it
-  does; cruelty brings them from the wronged and thins the roads to a quarter; kindness brings traders, visitors and friends.
+  does; a colony nobody knows gets traders, visitors and friends as in the base game; cruelty brings raids from the
+  wronged and fewer traders, visitors, camps, letters and friends, down to a quarter; kindness brings more of them, and
+  fewer of Rimfolk's events that can end in a fight and fewer schemes.
 - **Old Powers**: the world feels watched. Raids nearly at the classic pace, stranger threats making up the rest, omens and strange nights
   (eclipses, auroras, a psychic calm), more pilgrims and seers, the old powers' own strange happenings about twice as
-  often (below), and word of strange skies. It names nothing.
+  often (below), and word of strange skies; the omens take the place of some everyday happenings, and Rimfolk's events
+  that can end in a fight come less often. It names nothing.
 - **Lean Years**: scarcity is the enemy. Raids at the classic pace, a hardship about every week (blight
-  most, cold snaps, heat waves, storms), few traders, and word of famine, drought and hard winters.
+  most, cold snaps, heat waves, storms), and word of famine, drought and hard winters. Fewer people come by: traders
+  about half as often, visitors, travellers and camps a little less, and Rimfolk's events that can end in a fight less
+  often; cargo pods, wanderers and the other everyday happenings come less often too.
 - **Rise and Fall**: arcs of two years, one year of rise and one year of fall: a year of growth with traders, visitors
-  and camps in plenty, then a year that begins with the region's word of a trouble (a war, a plague, a famine, a hard
-  winter, a strange sky), brings the trouble itself about a season later and ends with the rebuilding; about the classic
-  pace over the two years.
+  and camps in plenty and fewer fights, then a year that begins with the region's word of a trouble (a war, a plague, a
+  famine, a hard winter, a strange sky), brings the trouble itself about a season later, with few traders and more
+  fights, and ends with the rebuilding; about the classic pace over the two years.
 - **Crossroads**: the colony as a market. Traders twice as often, visitors and travellers more, favours and debts;
-  raids at the classic pace, larger as it grows rich.
+  raids at the classic pace, larger as it grows rich. Nothing comes less often than in the base game.
+
+Something comes less often than in the base game only where that is what the way is about, and its description on the
+storyteller screen says what (the player, 19 November 2026).
 
 Six more only bring more of their own kind of thing: nothing comes less often than in the base game, nothing in them runs
 longer than a season, and their threats come on the classic cycle.
@@ -3221,7 +3236,8 @@ clock comes round it draws one event of its kind from every event the game, the 
 kind, each by its own chance and only if it can happen now, so a mod's new event comes with its kind.
 
 **Every kind of event can still come.** A way shifts the odds toward something but shuts nothing out: nothing of Rimfolk's
-comes at less than a quarter of its own rate (under the six added last, at less than its own rate at all), every one of
+comes at less than a quarter of its own rate (and below its own rate only where that is the way's idea, said in its
+description; under the six added last, never below its own rate at all), every one of
 the game's kinds of event (the DLCs' and your mods' among them) keeps a route under every way, and no way rules any
 event out. Harm keeps the game's own rate: each way's threats come at the classic storyteller's pace or less over a
 year or an arc, its sickness about as often as the game's own, and Rimfolk's everyday hurts stay within the same budget
@@ -3583,8 +3599,10 @@ collected on the day; a **sick animal** of theirs is handed over at the gate to 
 when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
 fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
 sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
-keeps a copy; and **musicians** stay a night and play at the colony's party. A tribe pays in goods of its own, everyone
-else in silver. When the region knows the
+keeps a copy; and **musicians** stay a night and play at the colony's party. One more (not released yet) is the only one
+that sends the colony's people out, and only when the place is within three tiles: a neighbour's old map shows a **cache in
+old ruins** close by; a caravan brings it home, their people collect it and pay, and what else lay with it is the colony's.
+A tribe pays in goods of its own, everyone else in silver. When the region knows the
 town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
 one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
@@ -3617,7 +3635,23 @@ thief (handed over, kept prisoner, or let go); got away, the colony may go to th
 tiles, else the pilgrims search themselves with the colony's food; with the relic back, it stays a year at the colony's
 shrine and pilgrims come to see it. **Two towns' quarrel**: two peoples at odds make a truce at the colony with one of its
 people as witness, one side leaves a pledge for some days, then fighters of the other cross the colony's land to strike,
-and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Running and recent
+and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Five more (not released
+yet): **A dream of the gods**: one of the colony's devout dreams of a place on its land, marked on the map, and of a place
+for their god there; the colony builds an altar, a shrine or a work of art inside it and gives it to the god; on a night's
+watch there a light comes over it; then the dream comes back and asks for an offering of a kind at the place. Given, the
+colony's book of the gods keeps it as the dreamer believes it; refused, the dreamer is troubled for a while. The god is
+named only as the colony knows it, and nothing says what it thinks. **Raiders settling nearby**: a people nearby warns of a
+raiders' camp in the region; the colony builds defences (ready, its watch sees them coming), meets a small raid, then helps
+the neighbours strike the camp (with its own fighters if the camp is within three tiles, else with food and medicine for
+theirs); the camp gone, or the raiders ask a price each season for a year (paid, or refused and they come for it). **The
+town's well ran dry**: a town asks for water (where the colony keeps Dubs Bad Hygiene's) or meals, then for one of the
+colony's miners or builders, who walks off with their foreman for a few days and comes back more skilled; the well found,
+the town grows; not, some of its people ask to join the colony. **The vault's sealed case**: components for a vault's
+failing power cells, then one of its engineers working a few days at the colony's bench on a component a day, then a sealed
+case left in the colony's care: keep it sealed and hand it back (the vault owes a favour), or open it (someone asleep
+inside who joins or leaves, a machine that attacks, or old goods). **The lost founder's grave**: a people's founder lies on
+the colony's land; the colony searches a marked area for the grave (right-click inside it), hosts their mourners for a day,
+and kept, they come each year for three years; built over, they hold it against the colony. Running and recent
 storylines show on the region window's Neighbours page under the missions, with their parts so far.
 
 The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and

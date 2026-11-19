@@ -376,7 +376,9 @@ namespace ColonyCouncil
             var map = m.Map;
             var w = Worker(m);
             bool ok = false;
-            if (map != null && w != null && LivingEvents.Friendly(m.faction))
+            // A mission of the colony's own (a dream of its faith, a price demanded of it: Storylines/) needs no people at peace.
+            bool own = w?.OfTheColony ?? false;
+            if (map != null && w != null && (own || LivingEvents.Friendly(m.faction)))
             {
                 try
                 {
@@ -394,7 +396,7 @@ namespace ColonyCouncil
             {
                 // Taken on just as it fell through: their people are at war with the colony now (a letter says so), or
                 // there's no way to begin (the quest simply ends).
-                Finish(m, MissionState.Declined, LivingEvents.Friendly(m.faction) ? "declined" : "cancelled", null);
+                Finish(m, MissionState.Declined, own || LivingEvents.Friendly(m.faction) ? "declined" : "cancelled", null);
                 return;
             }
             m.state = MissionState.Active;
@@ -560,7 +562,7 @@ namespace ColonyCouncil
                         if (m.deadline > 0 && now > m.deadline + GenDate.TicksPerDay * 2) Finish(m, MissionState.Failed, "ended", null);
                         continue;
                     }
-                    if (!LivingEvents.Friendly(m.faction))
+                    if (!(Worker(m)?.OfTheColony ?? false) && !LivingEvents.Friendly(m.faction))
                     {
                         Finish(m, MissionState.Failed, "cancelled", null);
                         continue;

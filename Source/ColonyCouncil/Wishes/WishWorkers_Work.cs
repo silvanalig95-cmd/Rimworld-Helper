@@ -299,7 +299,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Art where people gather: dining and rec rooms.</summary>
+    /// <summary>Art where people gather: dining and rec rooms, read by what is in them (RoomUtil.IsCommonRoom: a temple with tables counts).</summary>
     public class WishWorker_Artwork : WishWorker
     {
         public static int SharedArtCount(Map map)
@@ -307,7 +307,7 @@ namespace ColonyCouncil
             int n = 0;
             foreach (var room in RoomUtil.ColonyRooms(map))
             {
-                if (room.Role != RoomUtil.DiningRoom && room.Role != RoomUtil.RecRoom) continue;
+                if (!RoomUtil.IsCommonRoom(room)) continue;
                 n += RoomUtil.RoomCount(room, d => d.IsArt);
             }
             return n;
@@ -321,7 +321,7 @@ namespace ColonyCouncil
             bool artist = art != null && !art.TotallyDisabled && People.Passionate(art);
             bool greedy = HasTrait(pawn, TraitDefOf.Greedy);
             if (!artist && !greedy && RoomUtil.ExpectationOrder(pawn) < 4) yield break;
-            if (!RoomUtil.ColonyRooms(map).Any(r => r.Role == RoomUtil.DiningRoom || r.Role == RoomUtil.RecRoom)) yield break;
+            if (!RoomUtil.AnyRoom(map, RoomUtil.IsCommonRoom)) yield break;
             bool canSculpt = Avail.ColonyHas(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic))
                              || Avail.AnyBuildable(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic));
             if (!canSculpt) yield break;
@@ -344,7 +344,7 @@ namespace ColonyCouncil
             if (map == null) yield break;
             foreach (var room in RoomUtil.ColonyRooms(map))
             {
-                if (room.Role != RoomUtil.DiningRoom && room.Role != RoomUtil.RecRoom) continue;
+                if (!RoomUtil.IsCommonRoom(room)) continue;
                 foreach (var t in room.ContainedAndAdjacentThings)
                     if (t.def.category == ThingCategory.Building && t.def.IsArt && room.ContainsCell(t.Position))
                         yield return t;

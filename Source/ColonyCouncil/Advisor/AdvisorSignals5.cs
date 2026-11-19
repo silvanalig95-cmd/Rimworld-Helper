@@ -604,7 +604,7 @@ namespace ColonyCouncil
             var colonists = Colonists(map);
             if (colonists.Count < 2) yield break;
             // Fewer seats than eat here (building ahead's dining row, guests and joiners counted) is the outgrown dining room's advice.
-            int seats = RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Sum(r => RoomUtil.RoomCount(r, Avail.IsChair));
+            int seats = RoomUtil.DiningRooms(map).Sum(r => RoomUtil.RoomCount(r, Avail.IsChair));
             var row = RoomGrowth.Wanting(map, GrowthMath.Dining, out _);
             if (row != null && row.built > 0) yield break;
             var ate = colonists.Where(p =>

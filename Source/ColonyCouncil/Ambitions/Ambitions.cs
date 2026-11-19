@@ -894,7 +894,7 @@ namespace ColonyCouncil
         private static string MeetingVenue(Map map)
         {
             if (map == null) return "CC_Venue_Outside".Translate();
-            if (RoomUtil.ColonyRooms(map).Any(r => r.Role == RoomUtil.DiningRoom)) return "CC_Venue_Dining".Translate();
+            if (RoomUtil.AnyDiningRoom(map)) return "CC_Venue_Dining".Translate();
             if (Avail.ColonyHas(map, d => d.defName == "Campfire")) return "CC_Venue_Campfire".Translate();
             return "CC_Venue_Outside".Translate();
         }

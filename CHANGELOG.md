@@ -5,6 +5,59 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Storylines, round 3
+
+*19 November 2026, version 0.267.0*
+
+- A dream of the gods: one of your devout dreams of a place for their god on your land. Build it, keep a night's watch there, and give the offering the dream asks for.
+- Raiders settling nearby: a neighbour warns of a raiders' camp. Build defences, meet their test raid, and help break the camp, or pay their price each season.
+- The town's well ran dry: send water or meals and lend a miner or builder for a few days. The well is found, or some of the town's people ask to join you.
+- The vault's sealed case: components for a failing vault and an engineer at your bench, then a sealed case left in your care to keep or to open.
+- The lost founder's grave: search a marked area for a people's founder and host their mourners. They come back each year while the grave is kept.
+- A cache in old ruins: the one quest that sends your people out, offered only when the ruins are within three tiles.
+
+## Letters in plain words
+
+*19 November 2026, version 0.266.9*
+
+- The neighbours' letters, notes, stories and accounts now say what happened in ordinary words, without the wry twists and riddles.
+- Medieval letters keep their old voice, and the strange writers (androids, hives, fairies, the long-lived) keep their own ways of writing, with their meaning made clear.
+- Raider bands holding a colonist ask for silver in their letters, which is what a ransom is paid in.
+
+## Storytellers say what they bring
+
+*19 November 2026, version 0.266.8*
+
+- The storytellers now say what they bring less often: Lean Years fewer traders, visitors, camps and fights, Old Powers fewer fights, and What You Sow fewer of everyone for a cruel colony and fewer fights for a kind one. The others say nothing comes less often.
+- Neighbours no longer sends fewer of Rimfolk's events that can end in a fight, since revenge, debts and old enemies are its own story.
+- Under What You Sow a colony nobody knows anything about gets traders, visitors and friends as under the classic storyteller, and under Rise and Fall friends in a fight come at least that often in the good years too.
+- The storyteller descriptions and the Almanac name what each brings more of, with Lean Years' and Crossroads' orbital traders put right.
+
+## A day off, felt
+
+*19 November 2026, version 0.266.7*
+
+- A colonist you give a day off now has the mood "a day off" (+6) for as long as it lasts, gone when it ends or you end it early.
+- The day off still eases strain faster while it runs and more when it runs its course, as before.
+
+## Rooms by what is in them
+
+*19 November 2026, version 0.266.6*
+
+- Rimfolk now reads a room by what is in it: a room with dining tables counts as a dining room, and one with games as a rec room, whatever name the game shows over it.
+- Council meetings, feasts and other gatherings go to the room the game calls a dining room first, then to any room with tables, such as a dining room the game calls a temple because of its altar.
+- Guests kept in from the cold, the art wish, the dining hall ambitions and the base review count those rooms too.
+- The advisor no longer suggests building a rec room while a room with games in it stands. Bedrooms, barracks, hospitals and prison cells never count as dining or rec rooms.
+
+## Mount up for far work
+
+*19 November 2026, version 0.266.5*
+
+- Colonists going out to far work now get on a free beast first whenever it is no further from them than the work, even with the pen the other way, instead of walking because walking was a little quicker.
+- A beast Giddy-Up still marks as kept for someone is passed over only while it waits for them, carries them or is being got on; an old mark no longer keeps it in the pen.
+- The beast left by the work keeps waiting while its rider works out there, until a day after the last job they began.
+- In development mode the riding out log starts with each colonist's last decision and whether they got on, and Rimfolk: check myself says when riding out is off and why.
+
 ## Made for you
 
 *18 November 2026, version 0.266.4*

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A day off lifts the mood while it lasts (Source/ColonyCouncil/Heart/HeartTimeOff.cs, ThoughtWorker_HeartDayOff; the
+    player, 19 November 2026: "giving someone a day off should also have a mood impact for while it lasts"). Situational:
+    there while the day off the player gave runs, gone when it ends or danger cuts it short. About a party's size.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Heart_DayOff</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeartDayOff</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>a day off</label>
+        <description>A whole day to myself, with nothing I have to do.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

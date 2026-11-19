@@ -227,6 +227,15 @@ namespace ColonyCouncil
             part.Add(found.Count > 0 ? "Found: " + string.Join("; ", found) + "." : "None of them is active.", found.Count > 0 ? UiKit.Good : Color.white);
             if (missing.Count > 0) part.Add("Not active: " + string.Join(", ", missing) + ".", UiKit.Faint);
 
+            // Riding out with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs): off for the session after an error, or a part of
+            // Giddy-Up it can't ride without not found.
+            var (ride, rideWarn) = GiddyUpRideOut.CheckLine();
+            if (ride != null)
+            {
+                part.Add(ride, rideWarn ? UiKit.Warn : UiKit.Faint);
+                if (rideWarn && part.color != UiKit.Bad) part.color = UiKit.Warn;
+            }
+
             // Everything in Rimfolk's defs written for a particular mod (a "mods" list on the def or one of its
             // extensions): Almanac pages, events, world events, moments, people.
             var counts = new Dictionary<string, int>();

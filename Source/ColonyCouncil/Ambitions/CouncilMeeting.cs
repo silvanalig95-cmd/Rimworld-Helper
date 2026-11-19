@@ -175,7 +175,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Where a colony would hold a meeting: around the dining table, else the rec room, else a gather spot
-        /// (campfire, party spot), else under the sky near the beds. Returns the venue's name for the letter.
+        /// (campfire, party spot), else under the sky near the beds. Returns the venue's name for the letter. A room is
+        /// read by what is in it (RoomUtil.DiningRooms, RecRooms): the room the game calls a dining room first, then one
+        /// with a dining table whatever the game calls it (a temple with tables), and the same for the rec room.
         /// </summary>
         public static bool FindVenue(Map map, Pawn chair, out IntVec3 spot, out string venue)
         {
@@ -194,7 +196,7 @@ namespace ColonyCouncil
                                   && (chair == null || PlaySafety.Safe(chair, c, map))
                                   && (!strict || gd == null || GatheringsUtility.ValidateGatheringSpot(c, gd, chair, true, true));
 
-            foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).OrderByDescending(r => r.CellCount))
+            foreach (var room in RoomUtil.DiningRooms(map))
             {
                 var table = room.ContainedAndAdjacentThings.FirstOrDefault(t => t.def.surfaceType == SurfaceType.Eat && t.Faction == Faction.OfPlayer);
                 var c = table != null ? FreeCellNear(table.Position, map) : room.Cells.FirstOrDefault(x => x.Standable(map));
@@ -205,13 +207,13 @@ namespace ColonyCouncil
                     return true;
                 }
             }
-            foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom).OrderByDescending(r => r.CellCount))
+            foreach (var room in RoomUtil.RecRooms(map))
             {
                 var c = room.Cells.Where(x => x.Standable(map)).OrderBy(x => x.DistanceToSquared(room.Cells.First())).Skip(room.CellCount / 2).FirstOrDefault();
                 if (Ok(c))
                 {
                     spot = c;
-                    venue = "CC_Venue_RecRoom".Translate();
+                    venue = PlaySpots.RecVenue(room);
                     return true;
                 }
             }

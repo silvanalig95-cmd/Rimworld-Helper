@@ -247,7 +247,7 @@ namespace ColonyCouncil
         public override string Describe(Map map, float baseline) => "CC_Goal_Whole".Translate(Missing(map));
     }
 
-    /// <summary>A room with this role whose stat (cleanliness, say) is at least this.</summary>
+    /// <summary>A room with this role whose stat (cleanliness, say) is at least this; a dining or rec room by what is in it (RoomUtil.RoomsFor).</summary>
     public class Goal_RoomStat : AmbitionGoal
     {
         public string role = "Hospital";
@@ -271,7 +271,7 @@ namespace ColonyCouncil
             var st = Stat;
             if (roleDef == null || st == null) return float.MinValue;
             float best = float.MinValue;
-            foreach (var room in RoomUtil.RoomsWithRole(map, roleDef)) best = Mathf.Max(best, room.GetStat(st));
+            foreach (var room in RoomUtil.RoomsFor(map, roleDef)) best = Mathf.Max(best, room.GetStat(st));
             return best;
         }
 

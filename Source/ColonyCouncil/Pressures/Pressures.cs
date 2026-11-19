@@ -712,23 +712,30 @@ namespace ColonyCouncil
         }
 
         private readonly Dictionary<Room, Crowd> crowds = new Dictionary<Room, Crowd>();
+        private readonly HashSet<Room> skipped = new HashSet<Room>();
 
+        /// <summary>The dining and rec rooms are read by what is in them (RoomUtil): a temple where people eat can be crowded too.</summary>
         private void Crowding(Map map, int now)
         {
-            var diningRole = RoomUtil.DiningRoom;
-            var recRole = RoomUtil.RecRoom;
-            if (diningRole == null && recRole == null) return;
             crowds.Clear();
+            skipped.Clear();
             var all = map.mapPawns.AllHumanlikeSpawned;
             for (int i = 0; i < all.Count; i++)
             {
                 var x = all[i];
                 if (x == null || x.Dead || x.Downed) continue;
                 var room = x.GetRoom();
-                if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors) continue;
-                var role = room.Role;
-                if (role == null || (role != diningRole && role != recRole)) continue;
-                if (!crowds.TryGetValue(room, out var c)) crowds[room] = c = new Crowd { room = room, dining = role == diningRole };
+                if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors || skipped.Contains(room)) continue;
+                if (!crowds.TryGetValue(room, out var c))
+                {
+                    bool dining = RoomUtil.IsDiningRoom(room);
+                    if (!dining && !RoomUtil.IsRecRoom(room))
+                    {
+                        skipped.Add(room);
+                        continue;
+                    }
+                    crowds[room] = c = new Crowd { room = room, dining = dining };
+                }
                 c.people++;
                 if (x.CurJobDef == JobDefOf.Ingest) c.diners++;
                 if (x.GetLord()?.LordJob is LordJob_Joinable_Gathering) c.gathering = true;
@@ -755,6 +762,7 @@ namespace ColonyCouncil
                 }
             }
             crowds.Clear();
+            skipped.Clear();
         }
 
         /// <summary>Places to sit in the room: chairs, stools, benches (a bench of three seats three).</summary>

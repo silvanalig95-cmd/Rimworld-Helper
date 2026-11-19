@@ -137,16 +137,15 @@ namespace ColonyCouncil
             if (row == null || row.built <= 0) yield break;
             int best = -1;
             Room main = null;
-            if (RoomUtil.DiningRoom != null)
-                foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom))
+            foreach (var room in RoomUtil.DiningRooms(map))
+            {
+                int n = RoomUtil.RoomCount(room, Avail.IsChair);
+                if (n > best)
                 {
-                    int n = RoomUtil.RoomCount(room, Avail.IsChair);
-                    if (n > best)
-                    {
-                        best = n;
-                        main = room;
-                    }
+                    best = n;
+                    main = room;
                 }
+            }
             int eaters = RoomGrowth.Eaters(needs);
             var plan = RoomGrowth.SizeFor("Council_RT_DiningRoom", "chair", Mathf.Max(row.need, row.soon), Mathf.Max(0, best), map);
             string how = plan != null ? "CC_Same_Adv_SeatsPlan".Translate(RoomGrowth.WithArticle(plan, true).CapitalizeFirst()).Resolve() : "CC_Same_Adv_SeatsNoPlan".Translate().Resolve();
@@ -274,18 +273,19 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Too little to do in the rec rooms for the colony's size: a bigger recreation room, or more games.</summary>
+    /// <summary>
+    /// Too little to do in the rec rooms for the colony's size: a bigger recreation room, or more games. The rec rooms are
+    /// read by what is in them (RoomUtil.RecRooms), so games in a temple or a dining room count.
+    /// </summary>
     public class AdvisorWorker_RecRoomOutgrown : AdvisorSignalWorker
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var role = RoomUtil.RecRoom;
-            if (role == null) yield break;
             int people = RoomGrowth.People(map).Count;
             if (people < 6) yield break;
             int games = 0, best = -1;
             Room main = null;
-            foreach (var room in RoomUtil.RoomsWithRole(map, role))
+            foreach (var room in RoomUtil.RecRooms(map))
             {
                 int n = RoomUtil.RoomCount(room, Avail.IsJoyGiver);
                 games += n;
