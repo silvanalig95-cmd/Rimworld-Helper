@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The camps in plain words
+
+*19 November 2026, version 0.269.1*
+
+- The camps' letters and asks are in plain words: who came, why, what they ask and what happens.
+- The camp's own people now come to the suppers, feasts, evenings at their fire, prayers, plays and songs the colony agrees to, and the minstrels sing their song about the colony themselves.
+- The camps' letters now match the map: who prays at a sick colonist's side, who goes hunting, what the salt caravan pays and when things happen.
+
 ## The peoples' own events, round 5
 
 *19 November 2026, version 0.269.0*

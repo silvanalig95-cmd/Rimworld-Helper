@@ -90,12 +90,12 @@
       <li>[shelter:hut] At the woodcutters' camp {PLACE}, a hut of fresh logs stands by the fire.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the woodcutters {PLACE}, says {X_pronoun} has cut enough of other people's trees, and asks whether the colony could use a strong back and a good eye for timber.</li>
-      <li>{X_nameDef} from the woodcutters' camp has asked whether there might be a place for {X_objective} at the colony, where the trees stay standing and the fire is somebody else's to keep.</li>
+      <li>{X_nameDef}, one of the woodcutters {PLACE}, says {X_pronoun} has cut enough of other people's trees, and asks whether the colony could use a strong back and a good eye for timber.</li>
+      <li>{X_nameDef} from the woodcutters' camp is tired of felling trees for a living, and has asked whether there might be a place for {X_objective} at the colony.</li>
     </joinTexts>
     <farewell>
       <li>The woodcutters from {FACTION} have gone on, their pack beast loaded to the ears.</li>
-      <li>The woodcutters' camp {PLACE} is gone, the fire raked out and the stumps left behind.</li>
+      <li>The woodcutters have packed up their camp {PLACE} and gone, leaving the stumps behind.</li>
       <li>{X_nameDef} and the crew have gone off down the road, and the woods {PLACE} are quiet again.</li>
     </farewell>
     <lines>
@@ -154,7 +154,7 @@
         <deed>aid</deed>
         <askTexts>
           <li>{X_nameDef} came up from the woodcutters' camp {PLACE} at the end of the day, stiff and smelling of resin. The crew have been living on hard bread since they came, and would give a lot for a hot supper from the colony's kitchen.</li>
-          <li>[their:tribal] {X_nameDef} of the wood-gatherers came to the colony's gate at dusk and asked, without much hope, whether the colony had cooked food to spare for the people who have been cutting all day.</li>
+          <li>[their:tribal] {X_nameDef} of the wood-gatherers came to the colony's gate today and asked, without much hope, whether the colony had cooked food to spare for the people who have been cutting all day.</li>
         </askTexts>
         <tip>Four of the colony's meals are carried out to the woodcutters' camp.</tip>
         <outcomes>
@@ -224,7 +224,7 @@
     <texts>
       <li>Herb-gatherers of {FACTION} have come along the road with baskets and a pack beast, looking for the plants that heal. {X_nameDef} told {A_nameDef} they go where the wild herbs grow thick, and asked to camp {PLACE} a few days and gather.</li>
       <li>[their:tribal] Root-diggers of {FACTION} have come down with digging sticks and baskets on their backs. {X_nameDef} told {A_nameDef} the land here grows roots their healers need, and asked to camp {PLACE} and dig for a few days.</li>
-      <li>[their:medieval] Herbalists of {FACTION} have come up the track with a pack beast and a dozen baskets. {X_nameDef}, the eldest, asked {A_nameDef} for leave to camp {PLACE} and gather on the colony's wild ground for a few days. They will leave the colony a share, {X_pronoun} says, as is right.</li>
+      <li>[their:medieval] Herbalists of {FACTION} have come up the track with a pack beast and a dozen baskets. {X_nameDef}, who leads them, asked {A_nameDef} for leave to camp {PLACE} and gather on the colony's wild ground for a few days. They will leave the colony a share, {X_pronoun} says, as is right.</li>
       <li>[their:industrial] A botanist of {FACTION} and students have arrived with a pack beast and their notebooks. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days to collect the land's medicinal plants.</li>
       <li>[their:spacer] A small survey party of {FACTION} has come to catalogue the land's plants, with a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and gather for a few days.</li>
     </texts>
@@ -234,13 +234,13 @@
       <li>At the herb-gatherers' camp {PLACE}, bundles of something green are drying on their table in the sun.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the herb-gatherers {PLACE}, says the colony's wild ground is the best {X_pronoun} has seen in years, and asks whether {X_pronoun} might stay and tend it.</li>
+      <li>{X_nameDef}, one of the herb-gatherers {PLACE}, says the colony's wild ground is the best {X_pronoun} has seen in years, and asks whether {X_pronoun} might stay and tend it.</li>
       <li>{X_nameDef} of the herb-gatherers asked {A_nameDef} whether the colony's healer could use a pair of hands that knows which leaf is which.</li>
     </joinTexts>
     <farewell>
-      <li>The herb-gatherers from {FACTION} have gone on with their baskets full and the pack beast complaining under them.</li>
-      <li>The herb-gatherers' camp {PLACE} is empty this morning. They left at dawn, gathering as they went.</li>
-      <li>{X_nameDef} thanked the colony for the use of its wild ground and led the herb-gatherers off down the road, stopping twice before the edge to dig.</li>
+      <li>The herb-gatherers from {FACTION} have gone on with their baskets full.</li>
+      <li>The herb-gatherers have packed up their camp {PLACE} and gone on, gathering as they went.</li>
+      <li>{X_nameDef} led the herb-gatherers off down the road, grateful for the use of the colony's wild ground.</li>
     </farewell>
     <lines>
       <li>Not that one, it's bitter.</li>
@@ -298,7 +298,7 @@
         <warm>1</warm>
         <askTexts>
           <li>{X_nameDef} asks whether the herb-gatherers might walk the colony's fields. The herbs they want often grow at the edges of a crop, {X_pronoun} says, and they would touch nothing that's the colony's, and leave a share of what they find.</li>
-          <li>[their:medieval] The eldest of the herbalists asked {A_nameDef}, very politely, whether they might walk the colony's field edges, where the useful weeds grow. A share of the gathering would be the colony's, as is right.</li>
+          <li>[their:medieval] The leader of the herbalists asked {A_nameDef}, very politely, whether they might walk the colony's field edges, where the useful weeds grow. A share of the gathering would be the colony's, as is right.</li>
         </askTexts>
         <tip>Two of the herb-gatherers walk the colony's fields for a couple of hours, and their healer gathers herbs at the next dawn and leaves a share for the colony.</tip>
         <outcomes>

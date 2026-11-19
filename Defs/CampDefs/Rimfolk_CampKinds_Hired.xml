@@ -48,7 +48,7 @@
         <tension>-2</tension>
         <deed>traded</deed>
         <askTexts>
-          <li>{X_nameDef} has come up from the guards' camp. Five days are kept, and the wage their council agreed is due: {COUNT} silver. Paid, the detail holds the next five days; unpaid, they go home.</li>
+          <li>{X_nameDef} has come up from the guards' camp. Five days have passed, and the wage agreed with their council is due: {COUNT} silver. If it is paid, the detail stays another five days; if not, they go home.</li>
           <li>[lowtech] {X_nameDef} is at the gate for the guards' wage, as their elders and the colony agreed: {COUNT} silver for five more days on the wall.</li>
           <li>[hightech] {X_nameDef} brings the detail's timesheet up to the gate: five days covered, {COUNT} silver owed, as the contract with their council says.</li>
         </askTexts>
@@ -81,12 +81,12 @@
       <li>The guards {PLACE} have their camp squared away, and one of them is already looking at the colony's wall.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the guards camped {PLACE}, came to the gate with {X_possessive} pack on. The season is nearly done, {X_nameDef} says, and the wall here is one worth staying for; is there a place?</li>
+      <li>{X_nameDef}, one of the guards camped {PLACE}, came to the gate with {X_possessive} pack on. The season is nearly over, {X_nameDef} says, and {X_pronoun} would like to stay on at the colony if there is a place.</li>
     </joinTexts>
     <farewell>
       <li>The guard detail packed its bedding {PLACE} at the season's end and went home, leaving its post to the colony that hired it. The contract was kept to its last day.</li>
       <li>[carried] The guards of {FACTION} kept the season to its last day and went home, carrying their dead with them.</li>
-      <li>The guards' camp {PLACE} is empty, the fire raked out. {X_nameDef} raised a hand at the gate: paid to the day, held to the day.</li>
+      <li>The guards have packed up their camp {PLACE} and gone home, paid in full for every day they served. {X_nameDef} led them out.</li>
     </farewell>
     <lines>
       <li>Who's on watch?</li>
