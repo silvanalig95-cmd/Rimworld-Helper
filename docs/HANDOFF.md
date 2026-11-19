@@ -499,9 +499,16 @@ repo.
   pages of mods the player hasn't enabled (Medieval Overhaul and its circle, Outland, Tasty Armory, Tavern and others:
   they show only when their mod is loaded), whose facts about their own mod stay, with only their claims about "your
   list" put right.
-  The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`) and What's
-  new (`Almanac_WhatsNew`, which writes CHANGELOG.md).
-  Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
+  What's new, done (19 November 2026, the same go; built, not released): the entry "Plain words: What's new" above the
+  newest release line. File taken: `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`, every round from 0.265.4 back to
+  the first (471 rounds, 2,128 points: each round's title and points), with `CHANGELOG.md` written again from it by
+  `Tools/changelog.py`. Left as the lead wrote them: the rounds from 0.266.0 on (written under the plain rule), the
+  page's own frame (label, summary, description, keywords, see-also), every version and date, the number of points in
+  each round, and the names things had in their round (a later round's new name for a decree, a question, a story stage
+  or a button is not carried back).
+  The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`), with the
+  peoples' texts, waiting for the player's answer.
+  Still to pick, when the player asks: the peoples (their pages in the Almanac and their texts).
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -514,6 +521,51 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: What's new**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  plain-words pass for What's new: the rounds of the Almanac's first page, which also write `CHANGELOG.md` and the
+  letter after an update. No new round and no version: `CHANGELOG.md` is written again from the rewritten rounds
+  (`python3 Tools/changelog.py`, `--check` passes), About.xml is untouched. File list in the to-do entry "Rimfolk's
+  text in plain words".
+  - **What changed.** Every round from 0.265.4 back to the first read, title and points (471 rounds, 2,128 points);
+    69 titles and 111 points rewritten, in 120 rounds. The points are a record of what was built, so most of them were
+    plain already: what was done stays, only how it is said changed. Titles that were riddles or wordplay now name what
+    changed ("The gods, one way" is "The gods' pace, the same in every game"; "One teller, one pace" is "Fewer
+    gatherings, news told once"; "One voice" is "Fewer messages on busy days"; "A wedding still lands" is "A wedding
+    still counts in full"; "Seen, not told" is "Shown on the map, not only told"; "Faith that settles" is "Conversions
+    that hold"; "The Open Cup" is "A new god: Revel, the Open Cup"). Figures of speech said plainly: Revel "gives a good
+    night first and takes his price in the morning" (his gifts bring a good night and a bad morning after); a bargain
+    kept "to the letter" or bent, "steel under a skin of gold" (steel with only a thin layer of gold); a seer who "says
+    true things darkly" (in unclear words); food that comes "never four yoghurts" (a proper load of a staple food rather
+    than a few odd items); the league's crates kept "for good ink" or "written in red" (recorded as honest or as a
+    cheat); "takes a hard knock in stride", "lands nearly in full", "how the room walks", "while it sings" (the mast
+    while it works), "the moon gives back a deed" (repays someone for a deed in the night), "warn at dusk when the ground
+    is listening" (when something stirs underground, as the event is called), "a storyteller leans toward something,
+    never away from anything" (makes some events more likely and never rules any out). Endings with a twist end plainly
+    ("Or it was a story after all." is "If it never shows, the rumour was only a story."). The longest points that ran a
+    list together with semicolons are short sentences now (the seven automations, the check-myself page's slower stories,
+    the herd's leader, the beast that stays, the other settlers' year, the road over a year, the people a world event
+    leaves behind, the Making page's chains, the year's letter).
+  - **Put right against the code and the docs.** The herd's leader is "the eldest adult of the kind there is most of"
+    (README, `Animals/HerdStoryMath.cs`), where the point said "the eldest of the many"; the moon's night is Selene's
+    repaying of a day's deed (`GodReturn`); the knot night is the river folk's yearly night for everyone pulled from the
+    water (`CC_PEv2_Impact_CrossingOurs`); the Quiet Bell's warning is the event "something stirring underground"
+    (`Rimfolk_Evt_BellVoidSigns`).
+  - **Left as they were.** The rounds from 0.266.0 on (written under the plain rule), every version and date, the number
+    of points in each round, the page's frame and keywords, and the names things had in their round (a decree, a
+    question, a story stage, a setting or a button renamed later keeps its old name there, such as the stall's price button
+    "dear", now "Expensive"; the quoted old phrases in the plain-words rounds, such as "stung to the quick", are the record of
+    what those rounds changed). Every title stays unique, no point has an em dash or an exclamation mark.
+  - **Code map.** Text only: `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` (the rounds' titles and points) and
+    `CHANGELOG.md` (written from it). No code or def setting changed.
+  - **Can't be checked without the game.** How the longer rewritten points wrap in the What's new page's sections and
+    in the Almanac's search results.
+  - **Try in the game.** Open the Almanac's first page, What's new, and read back through the rounds: the titles say what
+    changed (0.224.0 "The gods' pace, the same in every game", 0.111.0 "Fewer gatherings, news told once", 0.66.0 "Fewer
+    messages on busy days"), and the points of 0.33.0 to 0.41.0 read as short sentences.
+  - **Mods that would help.** None for this; it is text only.
 - 0.270.6, **Plain words: the Almanac's pages
   about your other mods** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their
   words for the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be
