@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Almanac from journeys to world events in plain words
+
+*19 November 2026, version 0.270.5*
+
+- The Almanac's pages J to W and its page on ideoligions and the council are in plain words: tips that were sayings now give advice, and figures of speech say plainly what happens.
+- Facts on those pages checked against the game: the region's fortunes table lists the six world events it lacked, a town is given up after 30 days under 15 or two bad world events within a year, and journeys pack one more medicine each for every 8 days.
+- Every faith its evening gives colonists of other ideoligions a quarter of a point of trust each morning, rising to half for the most open-minded, as its description says; before, anyone even slightly open got the full half.
+
 ## The Almanac from advisor to health in plain words
 
 *19 November 2026, version 0.270.4*

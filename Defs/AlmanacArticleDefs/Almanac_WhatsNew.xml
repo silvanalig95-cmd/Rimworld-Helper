@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.270.5</version>
+        <date>19 November 2026</date>
+        <title>The Almanac from journeys to world events in plain words</title>
+        <points>
+          <li>The Almanac's pages J to W and its page on ideoligions and the council are in plain words: tips that were sayings now give advice, and figures of speech say plainly what happens.</li>
+          <li>Facts on those pages checked against the game: the region's fortunes table lists the six world events it lacked, a town is given up after 30 days under 15 or two bad world events within a year, and journeys pack one more medicine each for every 8 days.</li>
+          <li>Every faith its evening gives colonists of other ideoligions a quarter of a point of trust each morning, rising to half for the most open-minded, as its description says; before, anyone even slightly open got the full half.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.270.4</version>
         <date>19 November 2026</date>
         <title>The Almanac from advisor to health in plain words</title>

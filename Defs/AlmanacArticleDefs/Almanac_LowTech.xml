@@ -232,7 +232,7 @@ Veterans suggest researching Complex Furniture first, for dressers and end table
     <order>30</order>
     <summary>Cook on wood: a fueled stove makes a proper kitchen without power</summary>
     <tip>A fueled stove needs no power, only wood and someone to haul it.</tip>
-    <description>You can cook at an electric stove, a fueled stove or a campfire. The fueled stove is the heart of a tribal kitchen: it burns wood, needs no power and makes its room a proper kitchen. A campfire works from day one, but it's a fire risk inside wooden buildings.</description>
+    <description>You can cook at an electric stove, a fueled stove or a campfire. The fueled stove is the main cooking station of a tribal kitchen: it burns wood, needs no power and makes its room a proper kitchen. A campfire works from day one, but it's a fire risk inside wooden buildings.</description>
     <sections>
       <li>
         <heading>From campfire to stove</heading>

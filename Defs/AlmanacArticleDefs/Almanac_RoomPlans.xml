@@ -15,7 +15,7 @@
     <sections>
       <li>
         <heading>Rooms that belong together</heading>
-        <text>Meals are the most walked road in the colony: from the freezer to the stove to the table, three times a day for everyone. Build the kitchen, the freezer and the dining room as one block, with the freezer's door into the kitchen and the kitchen's into the dining room, and a rec room off the dining room where people drift after they eat. The workshop and its store belong together too: shelves of materials in the workshop itself, or a store room through one door. The hospital goes near the gate, so the wounded are carried the shortest way, and away from the benches. The barn goes by the fields and away from the bedrooms; so do the prison cells. Bedrooms gather in a quiet wing, around or behind the dining room. "Find a good spot" in the room planner weighs all of this for each room, and the Base page says when a built room has ended up far from what it belongs with.</text>
+        <text>The walk for meals is the one the colony makes most often: from the freezer to the stove to the table, once or twice a day for everyone. Build the kitchen, the freezer and the dining room as one block, with the freezer's door into the kitchen and the kitchen's into the dining room, and a rec room off the dining room where people drift after they eat. The workshop and its store belong together too: shelves of materials in the workshop itself, or a store room through one door. The hospital goes near the gate, so the wounded are carried the shortest way, and away from the benches. The barn goes by the fields and away from the bedrooms; so do the prison cells. Bedrooms gather in a quiet wing, around or behind the dining room. "Find a good spot" in the room planner weighs all of this for each room, and the Base page says when a built room has ended up far from what it belongs with.</text>
       </li>
       <li>
         <heading>Growing in rings</heading>
@@ -101,7 +101,7 @@
       </li>
       <li>
         <heading>When the colony outgrows a room</heading>
-        <text>The council's priorities notice when a room no longer fits the colony: a dining room with fewer seats than people, a barracks that could become bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile tile the colony has researched, and a rec room with less than one game for every three people. Each comes with the fitting larger size to plan, or for the hospital "Upgrade the room", which plans only what's missing in the room you have. This advice is gentle: it never shows among the alerts.
+        <text>The council's priorities notice when a room no longer fits the colony: a dining room with fewer seats than people, a barracks that could become bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile tile the colony has researched, and a rec room with less than one game for every three people. Each comes with the fitting larger size to plan, or for the hospital "Upgrade the room", which plans only what's missing in the room you have. This advice is low priority: it never shows among the alerts.
 
 It also notices rooms the colony could make better:</text>
         <table>
@@ -231,7 +231,7 @@ The new places show on the map as green outlines, what stays in grey, and the wi
     <category>RoomDesign</category>
     <order>320</order>
     <summary>Beds for pets close to the people they're bonded with</summary>
-    <tip>A dog that sleeps warm is a dog that fights well.</tip>
+    <tip>Pets rest better in an animal bed or sleeping box under a roof than on the ground.</tip>
     <description>Pets and working animals rest better in an animal bed or sleeping box than on the ground, and a roof keeps them out of the cold. A kennel is a small room of animal beds with a shelf for kibble, close to the bedrooms and the people the pets follow around.</description>
     <sections>
       <li>
@@ -257,7 +257,7 @@ The new places show on the map as green outlines, what stays in grey, and the wi
     <category>RoomDesign</category>
     <order>330</order>
     <summary>Basins in pairs with walkways between them, under one sun lamp</summary>
-    <tip>No power, no harvest. Batteries before basins.</tip>
+    <tip>Basin plants die within hours without power, so build the batteries before the basins.</tip>
     <description>Hydroponics basins grow food fast on any ground, in any season, as long as they have power and light. A bay puts six of them under one sun lamp, in pairs that share a walkway, so every plant can be sown and harvested.</description>
     <sections>
       <li>
@@ -405,7 +405,7 @@ The new places show on the map as green outlines, what stays in grey, and the wi
     <category>RoomDesign</category>
     <order>390</order>
     <summary>Long tables, braziers and a stone floor for a medieval colony</summary>
-    <tip>A feast in a fine hall is remembered for days.</tip>
+    <tip>Council meetings gather in the biggest dining room and feasts in a dining room, so a great hall draws both.</tip>
     <description>The great hall is a medieval dining room on a grand scale: two long tables for sixteen, a brazier or torch in each corner, and a flagstone floor. Every meal there counts toward the dining room's mood, and it's where feasts, weddings and council meetings feel right.</description>
     <keywords>
       <li>great hall</li>
@@ -454,7 +454,7 @@ The new places show on the map as green outlines, what stays in grey, and the wi
     <category>RoomDesign</category>
     <order>285</order>
     <summary>Four desks, two blackboards and room to walk between them</summary>
-    <tip>No teacher awake, no lesson.</tip>
+    <tip>Lessons only happen while an adult who can teach is awake and nearby.</tip>
     <description>The schoolroom is the larger size of the classroom plan: four school desks in two rows with an aisle down the middle, two blackboards and a toy box. Each blackboard in the room speeds up learning at the desks, and the aisles leave space for a teacher to walk to every child.</description>
     <keywords>
       <li>schoolroom</li>
@@ -475,7 +475,7 @@ The new places show on the map as green outlines, what stays in grey, and the wi
     <category>RoomDesign</category>
     <order>295</order>
     <summary>Toy boxes and a game table where children can play</summary>
-    <tip>Busy children don't wander into the workshop.</tip>
+    <tip>Put the playroom between the bedrooms and the schoolroom, away from the gate.</tip>
     <description>Children need play as much as lessons. A playroom gives them toy boxes along a wall, a game table with two stools and a soft floor, between the bedrooms and the schoolroom and well away from the gate.</description>
     <keywords>
       <li>playroom</li>

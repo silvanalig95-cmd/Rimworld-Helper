@@ -83,7 +83,7 @@
         <heading>With the weapon mods</heading>
         <points>
           <li>Simple Sidearms: each weapon a colonist carries is rated for them, and the card names their sensible pair, the best gun and the best melee weapon they hold or carry, a sidearm only within its default weights (2.7 kg for a gun, 1.9 kg for a blade).</li>
-          <li>Dual Wield: the off-hand weapon is rated with Dual Wield's penalties, its cooldown 20% longer and its aim 10% worse, more the lower the skill (at skill 8, 80% and 16%), and both hands together when both are guns or both blades.</li>
+          <li>Dual Wield: both weapons are rated with Dual Wield's penalties, the off hand's cooldown 20% longer and its aim 10% worse, the main hand's 10% and 10%, each 5% longer and 0.5% worse for every skill level under 20 (the off hand at skill 8: 80% longer and 16% worse), and both hands together when both are guns or both blades.</li>
           <li>RunAndGun: whether the weapon can be fired on the move, 10% less accurate, and what it rates then.</li>
           <li>Melee Animation: whether it animates the weapon's blows, how many execution moves are open to it at the colonist's Melee, and whether it is long enough for friendly duels.</li>
           <li>Nice Inventory Tab and the game's gear tab: a small badge with the rating beside each weapon, its tooltip the tags and the colonist's own rating. On Nice Inventory Tab a click on the badge opens Rimfolk's card to compare, and the suggestions sit in its equipment box as rows of their own.</li>
