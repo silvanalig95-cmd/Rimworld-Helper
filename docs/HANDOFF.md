@@ -36,7 +36,8 @@ most sense." So, in this order, three builds at a time:
    lists each round's numbers).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
-5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
+5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
+   numbered proposals and the lead's first batch); nothing is built until the player picks from it.
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
 7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
@@ -139,6 +140,11 @@ repo.
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
   along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
+  The player, 19 November 2026, on the overview: "More trades come and go sounds great". The list is written:
+  `docs/traits-proposals.md` (19 November 2026), 38 proposals in six groups (a way out of each bad trait Rimfolk gives,
+  of the bad traits colonists arrive with, of the mods' bad traits, new good traits from good things, a few from the
+  mods' traits for flavour, and how often and how it shows), with the lead's first batch (37, 38, 1, 2, 4, 5, 6, 14,
+  10, 16, 26, 27). Nothing is built until the player picks.
 - **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
   player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
   spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
