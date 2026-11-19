@@ -379,14 +379,25 @@ namespace ColonyCouncil
         /// </summary>
         public static float DeedThreatAccept(float balance) => 1f;
 
-        /// <summary>What You Sow's traders, visitors and friends in a fight: the share of their peak that comes by the deeds.</summary>
+        /// <summary>
+        /// What You Sow's traders, visitors and friends in a fight: the share of their peak that comes by the deeds. A colony
+        /// nobody remembers anything of gets <see cref="DeedNoName"/> of the peak, which the def's peaks make the classic
+        /// storyteller's own numbers (the player, 19 November 2026: fewer only where it fits the way; a colony of no name has
+        /// earned neither more nor fewer).
+        /// </summary>
         public static float DeedVisitAccept(string key, float balance)
         {
             float b = Math.Max(-1f, Math.Min(1f, Nan0(balance)));
-            // Even a cruel colony keeps a quarter of them: the roads empty, they never close.
-            const float cruel = Floor, none = 0.55f;
+            // Even a cruel colony keeps a quarter of them: fewer come, but they never stop.
+            const float cruel = Floor, none = DeedNoName;
             return b >= 0f ? none + (1f - none) * b : none + (cruel - none) * -b;
         }
+
+        /// <summary>
+        /// What You Sow's share of its peaks for a colony of no name: with its peaks of 8 traders, 7 visitors and 24 friends a
+        /// year, that is the classic storyteller's 5, a little over its 4, and its 15.
+        /// </summary>
+        public const float DeedNoName = 0.625f;
 
         // ================= Rise and Fall: the long arc =================
 
@@ -526,10 +537,15 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Rise and Fall's traders and visitors: plenty in the year of growth, few while the trouble lasts.</summary>
+        /// <summary>
+        /// Rise and Fall's traders and visitors: plenty in the year of growth, few while the trouble lasts, coming back in the
+        /// rebuilding. Friends in a fight: the classic storyteller's number at least in the good years (0.85 of the def's 18 a
+        /// year), all 18 in the trouble and the rebuilding (the player, 19 November 2026: fewer only where it fits the way; the
+        /// good years have no reason to send fewer friends).
+        /// </summary>
         public static float ArcVisitAccept(string key, ArcPhase p)
         {
-            if (key == Allies) return p == ArcPhase.Trouble || p == ArcPhase.Rebuild ? 1f : 0.6f;
+            if (key == Allies) return p == ArcPhase.Trouble || p == ArcPhase.Rebuild ? 1f : 0.85f;
             return new[] { 1.0f, 0.6f, 0.25f, 0.5f }[(int)p];
         }
 

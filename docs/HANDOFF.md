@@ -37,8 +37,8 @@ most sense." So, in this order, three builds at a time:
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
-6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
-   storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
+6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
+   and said" above the newest release line).
 7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
    piece from the gear tab; a day off lifts the mood while it lasts (the entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
@@ -285,6 +285,44 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The storytellers: fewer only
+  where it fits, and said** (19 November 2026; the player's answer to the question left open in 0.253.0, whether the
+  first eight's levers below the base rate go back to it: "Some storytellers and fewer traders and fewer fights. That's
+  also good. Depending, you know, if it's fitting for the scenario, it should also just be reflected in the
+  description"). DESIGN.md "The storytellers' levers below the base rate, kept only where they fit" (after "Six more
+  ways to play"); the Almanac's "ways to play" page (keywords unchanged); README "Ways to play".
+  - **What was decided, way by way** (the base rate: 1 for Rimfolk's levers, the classic storyteller's numbers for the
+    game's parts, a shaped way over its year or arc): The Long Road, Neighbours and Crossroads bring nothing less often
+    and now say so. **Neighbours' fights 0.8 back to 1**: revenge, debts called in, tribute and old enemies are its own
+    story. **What You Sow** keeps the cruel colony's fewer traders, visitors, camps, letters, favours, missions and
+    friends and the kind colony's fewer fights (0.6) and schemes (0.4), now all said; **a colony of no name back to the
+    base rate** (it had 0.55 of the peaks, 4.4 traders, 3.85 visitors and 13.2 friends a year; now 0.625: 5, 4.4 and
+    15). **Old Powers** keeps fights 0.7 (the danger is strange rather than other people) and its omens in place of some
+    everyday happenings, said. **Lean Years** keeps everything below (traders about half, visitors, travellers and camps
+    a little less, orbital traders two thirds, the everyday happenings every 7 days, fights 0.7), all said. **The
+    Turning Year** kept as the player asked on 15 November, its winter's few traders or camps and the season's own
+    happenings now said. **Rise and Fall** keeps the good years' fewer fights and schemes, the trouble's few traders and
+    less other news, said; **its friends in a fight in the good years back to the base rate** (0.6 of 18 a year was
+    10.8; now 0.85, 15.3). The descriptions also name what each brings more of that they didn't (The Long Road's traders
+    and news, Neighbours' trade, memory and news, Crossroads' letters and missions); Crossroads' orbital traders "about
+    twice as often" put right (one and a half times). Three direction notes say the fewer fights.
+  - **Code map**: `Story/StoryWaysMath.cs` (`DeedNoName`, `DeedVisitAccept`, `ArcVisitAccept`);
+    `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (Neighbours' levers, eight descriptions, comments);
+    `Languages/English/Keyed/Rimfolk_Story.xml` (the notes for What You Sow, Old Powers, Lean Years);
+    `Defs/AlmanacArticleDefs/Almanac_Storytellers.xml`; `Tools/Tests/StoryWaysTests.cs` (`KeptBelowBase`, `QuietTimes`:
+    every lever and the game's traders, visitors, travellers, friends, orbital traders and everyday happenings below the
+    base rate only where listed for that way, each listed one said in its description; a way with nothing below says
+    so). Saved: nothing.
+  - **Can't be checked without the game**: the longer descriptions in the storyteller screen's box (a long one scrolls);
+    the numbers of traders and friends in a real colony.
+  - **Try in the game**: 1. A new game, the storyteller screen: each of the first eight's descriptions says what it
+    brings less often, or "Nothing comes less often than in the base game" (The Long Road, Neighbours, Crossroads). 2. A
+    game on Neighbours, dev action "Rimfolk", "Ways to play: show the levers now (log)": "fights: 1.00 in the def, 1.00 now" (it was 0.80). 3. On
+    What You Sow with a new colony (nobody remembers anything yet): traders come about as often as under the classic
+    storyteller. 4. Rimfolk's settings, What's on, Story direction: the notes for What You Sow, Old Powers and Lean Years
+    say "fewer fights". 5. The Almanac, "ways to play": the opening says which ways bring something less often, and each
+    section says what.
+  - **Mods that would help**: none needed.
 - 0.266.5, **Riding out to far work: the beast
   taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
   still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's
@@ -1981,7 +2019,8 @@ repo.
     (Rimfolk's events and the steward's feast): the colony's own evenings keep the player's "Gatherings a week" pace.
   - Still open, for the player to answer: whether the eight's below-base levers go back to the base rate (Lean Years'
     fewer traders, camps and visitors; the fights levers under 1 in Neighbours, Old Powers and Lean Years; What You
-    Sow's thinner roads for a cruel colony). Left as they are until then.
+    Sow's thinner roads for a cruel colony). Left as they are until then. Answered 19 November 2026 (kept where they
+    fit the way and said in its description; the entry "The storytellers: fewer only where it fits, and said").
   - Not checkable without the game: the six on the storyteller screen with their plates; each part firing in a real
     colony (the picks' `CanFireNow` and the quests' `CanRun`: an escape pod only where Vanilla Gravship Expanded allows
     it, the orbital quests only with a way to orbit, the Banner's squad only with the Banner in the world); the

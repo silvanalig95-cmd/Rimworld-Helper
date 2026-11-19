@@ -14,13 +14,19 @@
     (StoryWayExtension, Source/ColonyCouncil/Story/StoryDirection.cs). The same levers lean any storyteller through the
     story direction setting. Harm keeps the game's own rate: each way's threats come at the classic storyteller's pace or
     less over a year or an arc, and its levers on what hurts are never above 1.
+    Something comes less often than in the base game only where that is the way's idea, and its description says so (the
+    player, 19 November 2026: "Some storytellers and fewer traders and fewer fights. That's also good. Depending, you know,
+    if it's fitting for the scenario, it should also just be reflected in the description"): Lean Years' fewer traders,
+    visitors, camps, everyday happenings and fights, Old Powers' fewer fights and omens in place of some everyday
+    happenings, What You Sow's fewer traders and friends for a cruel colony and fewer fights for a kind one, the Turning
+    Year's winter and Rise and Fall's trouble. The Long Road, Neighbours and Crossroads take nothing below it.
   -->
 
   <!-- 1. The Long Road: the world calls the colony out. Threats at home at the classic pace; more on the road. -->
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LongRoad</defName>
     <label>The Long Road</label>
-    <description>More of the story happens out in the region. Raids come to the gate at the classic pace, and the region brings more: letters asking for help, favours called in, camps on the land, missions and quests, travellers on the road. Ambushes and chance meetings happen more to the colony's caravans than at its walls.\n\nFor a game of journeys and the region map.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>More of the story happens out in the region. Raids come to the gate at the classic pace, and the region brings more: letters asking for help, favours called in, camps on the land, missions and quests, traders and travellers on the road, and news from the region sooner. Ambushes and chance meetings happen more to the colony's caravans than at its walls. Nothing comes less often than in the base game.\n\nFor a game of journeys and the region map.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LongRoad</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LongRoadTiny</portraitTiny>
     <listOrder>61</listOrder>
@@ -265,7 +271,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Neighbours</defName>
     <label>Neighbours</label>
-    <description>Most of the story comes from the peoples around the colony. Raids come at the classic pace, and most come from a people with a reason: one the colony wronged, or an old enemy. Peoples call in their favours, ask the colony to join their quarrels, and write and visit more often, and a people the colony has helped is more likely to send fighters when the colony is attacked.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>Most of the story comes from the peoples around the colony. Raids come at the classic pace, and most come from a people with a reason: one the colony wronged, or an old enemy. Peoples call in their favours, ask the colony to join their quarrels, and write, trade and visit more often, and they remember the colony's good turns and wrongs more strongly. A people the colony has helped is more likely to send fighters when the colony is attacked. News from the region is of feuds, wars, courts and peace talks. Nothing comes less often than in the base game.\n\nFor a game of diplomacy, debts and old grudges.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Neighbours</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/NeighboursTiny</portraitTiny>
     <listOrder>62</listOrder>
@@ -479,9 +485,10 @@
           <memory>1.25</memory>
           <allies>1.8</allies>
           <situations>1.2</situations>
-          <fights>0.8</fights>
           <raidReasons>0.85</raidReasons>
         </levers>
+        <!-- No fights lever (19 November 2026): Rimfolk's events that may end in a fight (revenge, debts called in, tribute,
+             an old enemy) are this way's own story, so they come at the game's own rate. -->
         <situationKinds><li>feud</li><li>war</li><li>peace</li><li>court</li><li>creed</li><li>levy</li><li>exile</li><li>sellswords</li></situationKinds>
         <harmLean><li>hatedTrader</li><li>rankEnemy</li><li>letterChallenge</li><li>heirGrudge</li><li>gateZeal</li><li>storesVisitor</li><li>guestNight</li></harmLean>
       </li>
@@ -492,7 +499,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_TurningYear</defName>
     <label>The Turning Year</label>
-    <description>The seasons shape the year. Spring is quiet, though sickness comes with the thaw. Summer is the growing season, with heat waves and blight. Autumn, once the harvest is in, brings trade and camps. Winter is hard, with cold snaps and the hardest raids late in the season. Every year follows the same pattern with different events in it, so the colony can plan for its seasons. Over a year, threats and sickness come about as often as at the classic pace.\n\nFor a game of fields, stores and the colony's calendar.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>The seasons shape the year. Spring is quiet, though sickness comes with the thaw. Summer is the growing season, with heat waves and blight. Autumn, once the harvest is in, brings trade and camps. Winter is hard, with cold snaps, few traders or camps, and the hardest raids late in the season. Every year follows the same pattern, with each season's own happenings in place of some of the everyday ones, so the colony can plan for its seasons. Over a year, threats, sickness, traders and visitors come about as often as at the classic pace.\n\nFor a game of fields, stores and the colony's calendar.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/TurningYear</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/TurningYearTiny</portraitTiny>
     <listOrder>63</listOrder>
@@ -790,7 +797,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_WhatYouSow</defName>
     <label>What You Sow</label>
-    <description>What happens depends on the colony's deeds, as the peoples remember them. Raids come at the classic pace whatever the colony does, but its deeds decide who comes. Cruelty brings raiders with a grievance, and fewer traders, visitors and friends in a fight (a quarter of them still come); kindness brings traders and visitors, and friends to the gate in a fight. None of this is announced: the world simply responds, and its peoples remember for longer.\n\nFor a game where how the colony treats others matters.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>What happens depends on the colony's deeds, as the peoples remember them. Raids come at the classic pace whatever the colony does, but its deeds decide who comes. A colony nobody knows anything about gets traders, visitors and friends in a fight as in the base game. Cruelty brings raiders with a grievance, and fewer traders, visitors and camps, fewer letters, favours and missions, and fewer friends in a fight, though at least a quarter of them still come. Kindness brings more traders and visitors and more friends in a fight, and Rimfolk's events that can end in a fight and schemes against the colony come less often. None of this is announced: the world simply responds, and its peoples remember for longer.\n\nFor a game where how the colony treats others matters.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/WhatYouSow</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/WhatYouSowTiny</portraitTiny>
     <listOrder>64</listOrder>
@@ -1018,7 +1025,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_OldPowers</defName>
     <label>Old Powers</label>
-    <description>More of the story is strange and unexplained. Raids come nearly at the classic pace, and stranger threats make up the rest: psychic drones, maddened herds, things in the earth, and the void's own threats where Anomaly's content is on. Omens and strange nights come often, with eclipses and auroras. Pilgrims and seers travel more, Rimfolk's events about the land and the sky come more often, and the old powers' own strange happenings come about twice as often (a seer at the end of a season, a stone that hums, a night sky in other colours, an animal that speaks, pale wolves under the full moon). News from the region turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>More of the story is strange and unexplained. Raids come nearly at the classic pace, and stranger threats make up the rest: psychic drones, maddened herds, things in the earth, and the void's own threats where Anomaly's content is on. Omens and strange nights come often, with eclipses and auroras, in place of some of the everyday happenings. Rimfolk's events that can end in a fight, such as debt collectors or a war band, come less often. Pilgrims and seers travel more, Rimfolk's events about the land and the sky come more often, and the old powers' own strange happenings come about twice as often (a seer at the end of a season, a stone that hums, a night sky in other colours, an animal that speaks, pale wolves under the full moon). News from the region turns to strange skies.\n\nFor a game of omens and the unknown.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/OldPowers</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/OldPowersTiny</portraitTiny>
     <listOrder>65</listOrder>
@@ -1344,6 +1351,7 @@
           <fights>0.7</fights>
           <uncanny>3</uncanny>
         </levers>
+        <!-- Fights 0.7, kept and said in the description (19 November 2026): the danger here is strange, not other people. -->
         <situationKinds><li>sky</li><li>comet</li><li>faith</li><li>wreck</li></situationKinds>
         <harmLean><li>sleepwalk</li><li>soldierNight</li><li>restlessWalk</li><li>worstNight</li><li>dawnWalk</li></harmLean>
       </li>
@@ -1354,7 +1362,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_LeanYears</defName>
     <label>Lean Years</label>
-    <description>Scarcity is the main danger, more than raiders. Raids come at the classic pace, while blights, cold snaps, heat waves and storms come often, traders are few and camps are rarer. News from the region is of famine, drought and hard winters. The colony has to keep everyone fed and warm through hard years.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>Scarcity is the main danger, more than raiders. Raids come at the classic pace, while blights, cold snaps, heat waves and storms come often. Fewer people come by: traders about half as often, visitors, travellers and camps a little less often, and orbital traders less often. Rimfolk's events that can end in a fight, such as debt collectors or a war band, come less often too. Cargo pods, wanderers and the other everyday happenings also come less often. News from the region is of famine, drought and hard winters. The colony has to keep everyone fed and warm through hard years.\n\nFor a game of fields, stores and keeping everyone fed.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/LeanYears</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/LeanYearsTiny</portraitTiny>
     <listOrder>66</listOrder>
@@ -1637,6 +1645,8 @@
           <situations>1.2</situations>
           <fights>0.7</fights>
         </levers>
+        <!-- Below 1 and kept, each said in the description (19 November 2026): fewer people come by in lean years, and the
+             danger is the land more than other people. -->
         <situationKinds><li>hunger</li><li>drought</li><li>scarcity</li><li>sickness</li><li>weather</li></situationKinds>
         <harmLean><li>hungryHands</li><li>coldNight</li><li>gateCold</li><li>nightWatch</li><li>sickWorkOn</li><li>dirtyWater</li><li>landAilments</li><li>hurriedHarvest</li></harmLean>
       </li>
@@ -1648,7 +1658,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_RiseAndFall</defName>
     <label>Rise and Fall</label>
-    <description>The story runs in arcs of two years: one year of growth, then one year of trouble. In the first year raids come a little less often than at the classic pace, and traders, visitors and camps come in plenty. Early in the second year news comes from the region of a great trouble (a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky), and about a season later the trouble itself arrives: the war's raids, the plague's sickness, the famine's blights, the winter's cold. The second year ends with a quiet time of rebuilding, with friends at hand, and then the next arc begins. Over the two years, threats and sickness come about as often as at the classic pace.\n\nFor a game of long stories with an ending to each.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>The story runs in arcs of two years: one year of growth, then one year of trouble. In the first year raids come a little less often than at the classic pace, Rimfolk's events that can end in a fight and schemes against the colony less often, and traders, visitors and camps come in plenty. Early in the second year news comes from the region of a great trouble (a war among the peoples, a plague, a famine, a hard winter or a darkness in the sky). About a season later the trouble arrives: the war's raids, the plague's sickness, the famine's blights or the winter's cold, with few traders, visitors or camps, less other news from the region, and more of Rimfolk's events that can end in a fight. The second year ends with a quiet time of rebuilding, with friends at hand, and then the next arc begins. Over the two years, threats and sickness come about as often as at the classic pace, and traders and visitors more often.\n\nFor a game of long stories with an ending to each.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/RiseAndFall</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/RiseAndFallTiny</portraitTiny>
     <listOrder>67</listOrder>
@@ -1982,7 +1992,7 @@
   <StorytellerDef ParentName="BaseStoryteller">
     <defName>Rimfolk_Story_Crossroads</defName>
     <label>Crossroads</label>
-    <description>The colony is a market on a road through the land. Traders come about twice as often, orbital traders too, along with visitors, travellers and merchants' camps, and there are more debts and favours between the colony and its neighbours. Raids come at the classic pace, larger as the colony's wealth grows, and some come from rivals with a grudge. News from the region is of fairs, trade, roads and tolls.\n\nFor a game of trade and wealth.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
+    <description>The colony is a market on a road through the land. Traders come about twice as often and orbital traders more often, along with visitors, travellers and merchants' camps, and there are more letters, missions, debts and favours between the colony and its neighbours. Raids come at the classic pace, larger as the colony's wealth grows, and some come from rivals with a grudge. News from the region is of fairs, trade, roads and tolls. Nothing comes less often than in the base game.\n\nFor a game of trade and wealth.\n\nIt shifts the odds this way but shuts nothing out: every kind of event can still come.</description>
     <portraitLarge>ColonyCouncil/Storytellers/Crossroads</portraitLarge>
     <portraitTiny>ColonyCouncil/Storytellers/CrossroadsTiny</portraitTiny>
     <listOrder>68</listOrder>
