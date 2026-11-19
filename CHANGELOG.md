@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The encounters in plain words
+
+*19 November 2026, version 0.269.3*
+
+- The encounters' names say plainly what happens, such as a predator watching or a wild animal at night.
+- Encounters no longer name a time still to come: no supper, evening or night in a moment told in the morning.
+- What an encounter says now matches the map: the guest who pitches in goes off to fell trees, silver is promised only where it always comes, children kept close needs a visiting child, and a herd passing needs a real herd.
+
 ## The council's other questions in plain words
 
 *19 November 2026, version 0.269.2*

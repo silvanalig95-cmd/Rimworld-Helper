@@ -2777,6 +2777,25 @@ Outcomes that describe something people do but can't sensibly become one afterno
   locusts' harvest and watch are real). Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
 
+### The encounters' words against the map (the plain-words pass, 19 November 2026; released 0.269.3)
+
+An encounter is told as it happens (`EncounterTracker.Fire`), at any hour unless its def keeps it to the day (5 to 20 h)
+or the night (21 to 4 h) or its `moment` names one; a nuisance at any hour its `who` allows. Its words may tell what led
+up to it, but name no part of the day that can't have come yet: no supper, dinner, evening, afternoon, lunch, "until
+dark" or "late into the night" for one that may be told in the morning, and no night for one told by day ("over a
+meal", "for a long while", "for hours", "afterwards" in their place). The morning may be named: it has begun by the time
+nearly every encounter is told, as the colonist and the one met must both be awake; a line tagged for its hour
+(`[night]`, `[morning]`) keeps it. What its effects make is what its words say: the guest who pitches in tells the
+colonist they are going to cut wood and then fells the trees (`DilemmaEffect_Felled`, after the words), the logs lying
+by the stumps; silver is handed over only where an effect carries it, and where it comes only some of the time (the
+good hosts' 15, at six in ten) the words promise none, the visitor's own words at the hand-over saying it; no carving,
+herbs, cape or mittens are named as given where nothing is made, and no wound healed where none is. The harsh
+colony's "children kept close" told of a visiting child pulled back from a colonist, in its words and its moods, with
+only an adult asked for: its stranger is now the visiting child (`<child>true</child>`), so one is there whenever it
+is told, and a grown-up of the visitors does the pulling back. "A herd passing" counted forty and more where one wild
+animal would do: a stranger may now ask for its kin (`minKin`, wild animals of its kind on the map, itself included),
+the herd asks for six, and its words say a herd grazed past, with no count and no hours.
+
 ## Pace: how often the colony gathers
 
 The staging review (`docs/review-2026-11/staged-scenes.md`) counted about four gatherings a week and a group outing

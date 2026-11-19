@@ -27,7 +27,7 @@
     <texts>
       <li>All morning {A_nameDef} followed {X_definite} about, trying names on it one after another until one seemed to fit.</li>
       <li>{A_nameDef} has decided that {X_definite} is a friend, and friends need names. The grown-ups have been told the new one twice.</li>
-      <li>It took {A_nameDef} most of the afternoon, sitting on a crate and watching {X_definite} work, to settle on a name for it.</li>
+      <li>It took {A_nameDef} a long while, sitting on a crate and watching {X_definite} work, to settle on a name for it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_NamedMech</thought></li>
@@ -36,7 +36,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncM_RowTalk</defName>
-    <label>talk down the rows</label>
+    <label>working beside an agrihand</label>
     <stranger>
       <kind>Mech</kind>
       <races><li>Mech_Agrihand</li></races>
@@ -204,7 +204,7 @@
     <cooldownDays>6</cooldownDays>
     <texts>
       <li>{A_nameDef} stood at the holding platform watching {X_definite} for most of an hour, filling a page with notes on how it moves.</li>
-      <li>{A_nameDef} came out of the holding room with a new question about {X_definite} and spent the evening trying to answer it.</li>
+      <li>{A_nameDef} came out of the holding room with a new question about {X_definite} and spent hours trying to answer it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncE_Fascinated</thought></li>
@@ -225,7 +225,7 @@
     <cooldownDays>6</cooldownDays>
     <texts>
       <li>{A_nameDef} walked past the holding room and felt {X_definite} turn to watch {A_objective} go, and after that {A_pronoun} took the long way round.</li>
-      <li>Something about the way {X_definite} lay still on the platform kept {A_nameDef} looking over {A_possessive} shoulder all afternoon.</li>
+      <li>Something about the way {X_definite} lay still on the platform kept {A_nameDef} looking over {A_possessive} shoulder for hours afterwards.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncE_Uneasy</thought></li>

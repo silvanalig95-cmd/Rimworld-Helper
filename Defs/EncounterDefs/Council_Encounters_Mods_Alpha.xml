@@ -13,7 +13,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncA_Wings</defName>
-    <label>bright wings</label>
+    <label>a winged creature up close</label>
     <mods><li>sarg.alphaanimals</li></mods>
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
@@ -22,7 +22,7 @@
     <texts>
       <li>{A_nameDef} stood very still while {X_indefinite} settled on the fence beside {A_objective}, its wings opening and closing like slow breathing.</li>
       <li>On the way back from the fields, {A_nameDef} walked straight into {X_indefinite} drifting from flower to flower, and had dust from its wings on {A_possessive} sleeve for the rest of the day.</li>
-      <li>[x:race:AA_AuroraSylph] After dark, {A_nameDef} watched {X_indefinite} hang above the field like a curtain of green light, and stayed out until it drifted away.</li>
+      <li>[x:race:AA_AuroraSylph] {A_nameDef} watched {X_indefinite} hang above the field like a curtain of green light, and stayed out until it drifted away.</li>
       <li>[x:race:AA_EmpressButterfly] {A_nameDef} followed {X_definite} along the garden beds, and could have sworn the soil was darker wherever it had landed.</li>
       <li>[child] {A_nameDef} chased {X_definite} across the yard with both hands cupped, and came back with empty hands and no breath left.</li>
     </texts>
@@ -46,7 +46,7 @@
       <li>{A_nameDef} came over the rise and nearly walked into {X_indefinite}. They looked at each other for a long moment; then the bird snapped its beak once and strolled off.</li>
       <li>[x:race:AA_RoyalAve] Caught on a bush was a plume from {X_definite}, so bright it looked dyed. {A_nameDef} has pinned it over {A_possessive} bed.</li>
       <li>[x:race:AA_FrostAve] Against the wind, {X_definite} fluffed itself up until it was twice its size, and {A_nameDef} laughed out loud.</li>
-      <li>[skill:Animals] {A_nameDef} spent the afternoon watching how {X_definite} moves and eats, and came back sketching a pen big enough to keep one.</li>
+      <li>[skill:Animals] {A_nameDef} watched closely how {X_definite} moves and eats, and came back sketching a pen big enough to keep one.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Feather</thought></li>
@@ -64,7 +64,7 @@
     <texts>
       <li>{A_nameDef} watched {X_indefinite} graze its way along the edge of the fields, unhurried, as if the colony were a strange kind of rock.</li>
       <li>[x:race:AA_Thunderox] Out in the pasture, {X_definite} lifted its head and bellowed. {A_nameDef} knows what a thunderox's call is said to mean, and went to bring the washing in before the sky could turn.</li>
-      <li>[x:race:AA_ChameleonYak] Three times in one afternoon {A_nameDef} lost sight of {X_definite} against the hillside. Its coat had gone the color of the grass.</li>
+      <li>[x:race:AA_ChameleonYak] Three times in a row {A_nameDef} lost sight of {X_definite} against the hillside. Its coat had gone the color of the grass.</li>
       <li>[x:race:AA_Radyak] The crystals growing through the hide of {X_definite} glittered every time it lowered its head to graze. {A_nameDef} stood watching until it moved on.</li>
       <li>[x:race:AA_GreyCoatedMouflon] Standing near {X_definite}, {A_nameDef} felt {A_possessive} jaw unclench and {A_possessive} shoulders drop. The feeling went when the animal wandered off.</li>
       <li>[x:race:AA_Gigantelope] Past the wall walked {X_indefinite}, its head higher than the roof. {A_nameDef} worked out how much it could carry, and sighed.</li>
@@ -98,7 +98,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncA_Drifters</defName>
-    <label>something drifting overhead</label>
+    <label>a creature drifting overhead</label>
     <mods><li>sarg.alphaanimals</li></mods>
     <weight>0.9</weight>
     <cooldownDays>10</cooldownDays>
@@ -157,7 +157,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncA_Graveyard</defName>
-    <label>among the old bones</label>
+    <label>among the giant bones</label>
     <mods><li>sarg.alphabiomes</li></mods>
     <biomes><li>AB_GallatrossGraveyard</li></biomes>
     <weight>1.0</weight>

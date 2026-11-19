@@ -64,7 +64,7 @@
       <li>{A_nameDef} fanned {A_possessive} face with whatever was to hand. The air didn't move.</li>
       <li>A whole jug of water, and {A_nameDef} was thirsty again within the hour.</li>
       <li>The air in the room was thick and still, and {A_nameDef} kept stepping outside for a breath.</li>
-      <li>{A_nameDef}'s shirt stuck to {A_possessive} back the whole afternoon.</li>
+      <li>{A_nameDef}'s shirt stuck to {A_possessive} back the whole time {A_pronoun} was in there.</li>
       <li>[night] {A_nameDef} lay on top of the blankets in the heat, waiting for the night to cool down.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
@@ -96,7 +96,7 @@
     <cooldownDays>4</cooldownDays>
     <thought>Council_Nuisance_BuildingNoise</thought>
     <texts>
-      <li>The hammering on the new {THING} went on next to {A_nameDef}'s room from dawn to dusk.</li>
+      <li>The hammering on the new {THING} next to {A_nameDef}'s room went on for hours.</li>
       <li>{A_nameDef} found grit and shavings in {A_possessive} bed from the work on the {THING}.</li>
       <li>{A_nameDef} tripped over a pile of materials left for the {THING} right outside {A_possessive} door.</li>
       <li>"How much longer?" {A_nameDef} asked about the {THING}, and got a shrug.</li>
