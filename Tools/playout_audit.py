@@ -243,6 +243,29 @@ PLAY = {
     "DilemmaEffect_WardensPage": "a cord tied at the gate",
     "DilemmaEffect_WardensManhunt": "the fight and the skinning",
     "DilemmaEffect_HiveBurned": "the Wardens at the hive",
+    # The peoples' own events, round 5 (Peoples/Events5/): the gravewardens' fight and their graves, the mourners walked to
+    # the graves or turning back at the gate, the grave-garden laid stone by stone, the field of the fallen's camp, the dead
+    # carried home or the band against the camp, the beast trained at its side, the egg handed over and the grown beast
+    # looked over, the bout-ring's camp and a challenger at the ring, the night's mending, the piece taken to the cart, the
+    # goods carried out and the vehicle built at the gate, the yard at the edge, its mending and its scrap market.
+    "DilemmaEffect_FieldStirs": "the gravewardens' fight and graves",
+    "DilemmaEffect_MournersThrough": "walked to the graves",
+    "DilemmaEffect_MournersTurned": "turned back at the gate",
+    "DilemmaEffect_GraveGarden": "stones, roses and a bell-post",
+    "DilemmaEffect_FallenCamp": "a camp and a row of graves",
+    "DilemmaEffect_FallenClaim": "the dead carried home",
+    "DilemmaEffect_BondGiven": "a beast trained at its side",
+    "DilemmaEffect_CraterEgg": "an egg handed over",
+    "DilemmaEffect_CraterEggGrown": "the grown beast looked over",
+    "DilemmaEffect_CircuitRing": "a bout-ring pitched",
+    "DilemmaEffect_RingChallenge": "a bout at the ring",
+    "DilemmaEffect_MendTonight": "mended by lamplight",
+    "DilemmaEffect_MadeBetter": "taken to the cart",
+    "DilemmaEffect_WagonGoods": "the goods carried out",
+    "DilemmaEffect_WagonBuild": "a vehicle built at the gate",
+    "DilemmaEffect_WheelYard": "a yard at the edge",
+    "DilemmaEffect_YardMend": "mended where they are",
+    "DilemmaEffect_YardScrap": "the scrap carried out",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

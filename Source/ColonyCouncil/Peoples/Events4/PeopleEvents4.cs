@@ -39,7 +39,8 @@ namespace ColonyCouncil
                 case WardensManhunt.Kind: return WardensManhunt.Hour(v, now);
                 case HiveBurned.Kind: return HiveBurned.Hour(v, now);
             }
-            return false;
+            // Round 5's (Peoples/Events5/): the gravewardens, the mourners, the grave-garden, the night's mending, the wagon.
+            return PeopleEvents5.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -61,6 +62,8 @@ namespace ColonyCouncil
             Safe("the contracts", () => EnclaveContract.Watch(now));
             Safe("the pods", () => BrokerPod.Watch(now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("the fouled water", FouledWater.Tidy);
+            // Round 5's watch (Peoples/Events5/): the dead and the risen, the mourners, the gardens, the eggs, a raid's night, the cart, the yards.
+            Safe("round 5", () => PeopleEvents5.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

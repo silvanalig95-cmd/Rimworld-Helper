@@ -524,6 +524,8 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (option <= 1 && !byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, "ring");
+            // Buried beyond the wall: the raiders' peoples' mourners due a season on (Peoples/Events5/OtherSideMourners.cs).
+            if (option == 0) PeopleEvents5.Safe("the mourners' day", () => OtherSideMourners.Note(ctx));
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

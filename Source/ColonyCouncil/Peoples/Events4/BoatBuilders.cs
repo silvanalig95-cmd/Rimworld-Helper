@@ -64,9 +64,11 @@ namespace ColonyCouncil
         private static MethodInfo generate;
 
         /// <summary>Vanilla Vehicles Expanded's dinghy, when it and Vehicle Framework's way of making a vehicle are there.</summary>
-        public static ThingDef Dinghy
+        public static ThingDef Dinghy => Vehicle("VVE_Dinghy");
+
+        /// <summary>A vehicle of Vehicle Framework's by name (the dinghy here, round 5's wagon), when it and the way of making one are there.</summary>
+        public static ThingDef Vehicle(string defName)
         {
-            get
             {
                 if (!looked)
                 {
@@ -83,8 +85,23 @@ namespace ColonyCouncil
                         generate = null;
                     }
                 }
-                var def = DefDatabase<ThingDef>.GetNamedSilentFail("VVE_Dinghy");
+                var def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
                 return generate != null && def != null && generate.GetParameters()[0].ParameterType.IsInstanceOfType(def) ? def : null;
+            }
+        }
+
+        /// <summary>A vehicle of that def made for the people (Vehicle Framework's own way), unspawned; null when it can't be.</summary>
+        public static Thing MakeVehicle(ThingDef def, Faction f)
+        {
+            if (def == null || Vehicle(def.defName) == null) return null;
+            try
+            {
+                return generate.Invoke(null, new object[] { def, f }) as Thing;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("peoples' events 4: a vehicle made", e);
+                return null;
             }
         }
 

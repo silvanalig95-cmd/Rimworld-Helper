@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 5 (docs/peoples-events-proposals.md, items 35, 36, 37, 38, 39, 41, 42, 43, 44, 45 and
+    46; Source/ColonyCouncil/Peoples/Events5/). Each only from a people of its calling at peace with the colony, each played
+    out on the map. Six come only from code when their moment comes (base chance 0): the gravewardens when the colony's dead
+    rise, the mourners a season after the Bell's burial, the dead's people at the field of the fallen, the tamer back to see
+    the hatchling grown, the Wheel's crew the night after a raid, and the Wheel's yard when its town moves near. {BEAST},
+    {DEAD}, {TALE} and {RELATION} carry what the event's own code says they do (a beast, a number, a list, a quality);
+    every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 35. The field that stirs (the Quiet Bell) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FieldStirs</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the field that stirs</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FieldStirs</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods><li>Ludeon.RimWorld.Anomaly</li></mods>
+        <ages>24~55</ages>
+        <stayHours>12~18</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The field that stirs</li>
+          <li>Gravewardens at a run</li>
+        </titles>
+        <texts>
+          <li>Bodies that were left lying on the colony's land have got up again as shamblers, {DEAD} of them, and {COUNT} gravewardens of {FACTION} have come running from the edge of the land to put them down, {X_nameDef} in front. When it is over they would dig a grave for each of them beyond the wall and ring the bell over it.</li>
+          <li>[one] One of the bodies left lying on the colony's land has got up again as a shambler, and {COUNT} gravewardens of {FACTION} have come running from the edge of the land to put it down. Afterwards they would bury it beyond the wall and ring the bell over the grave.</li>
+          <li>[age0] {COUNT} gravewardens of {FACTION} came running from the treeline with clubs and spades when the colony's unburied dead got up again, {DEAD} of them. They are already fighting, and afterwards they would bury the dead properly and ring the bell over each grave.</li>
+          <li>[age1] {COUNT} gravewardens of {FACTION} came running in grey capes with maces and spades when the colony's unburied dead got up again, {DEAD} of them. They are already fighting, and afterwards they would bury them beyond the wall with the bell rung over each.</li>
+          <li>[age2] {COUNT} gravewardens of {FACTION} came running with firebombs and flamers when the colony's unburied dead got up again, {DEAD} of them. They are already fighting, and when it is over they would bury the bodies beyond the wall with the bell rung over each.</li>
+          <li>[again] The colony's dead have got up again, {DEAD} of them, and {COUNT} gravewardens of {FACTION} have come running to put them down once more. {X_nameDef} says nothing about the promise the colony made, but would bury them beyond the wall again afterwards.</li>
+          <li>[their:grateful] The Bell counts the colony among its friends, and {COUNT} of its gravewardens came running as soon as the colony's unburied dead got up again. They would bury them beyond the wall when it is over, with the bell rung over each.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Fight beside them, and let them bury the dead</label>
+            <outcome>The gravewardens fight on. When the shamblers are down they will dig a grave for each beyond the wall, lay them in it and ring the bell over every grave.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldStirs"><how>bury</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Fight beside them, and promise to bury our dead from now on</label>
+            <outcome>The gravewardens fight on and will bury the dead afterwards. {X_nameDef} takes the colony's promise to bury its dead, and says the Bell will remember it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldStirs"><how>promise</how></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank them; we'll see to it ourselves</label>
+            <outcome>The gravewardens break off and walk back to the edge of the land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldStirs"><how>away</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[bury] Leave the graves to us when it is done.</li>
+          <li>[promise] We will hold you to that.</li>
+          <li>[away] As you wish, we will be at the edge if you need us.</li>
+          <li>[dig] A grave each, deep enough that nothing gets up again.</li>
+          <li>[noroom] There is no ground out here to dig them a grave.</li>
+          <li>[ring] Quiet now, you are home.</li>
+          <li>[ask] Bury your dead from now on, and the ground will stay quiet.</li>
+          <li>[kept] Keep your promise and the ground will stay quiet.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 36. Mourners from the other side (the Quiet Bell) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OtherSideMourners</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>mourners from the other side</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OtherSideMourners</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Mourners from the other side</li>
+          <li>Mourners of {ENEMY}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a bell-keeper of {FACTION}, has come to the gate with two mourners of {ENEMY}. A season ago the Bell buried raiders of theirs beyond the colony's wall, {COUNT} graves in all, and the mourners would like to stand at the graves for an hour.</li>
+          <li>[war] {X_nameDef}, a bell-keeper of {FACTION}, has brought two mourners of {ENEMY} to the gate under the Bell's protection. Their people are at war with the colony, but the raiders the Bell buried here a season ago were theirs, and they would like an hour at the {COUNT} graves. The Bell vouches that they will cause no trouble.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with two mourners of {ENEMY}, who carry small offerings wrapped in leaves. The Bell buried raiders of theirs beyond the colony's wall a season ago, and the mourners ask for an hour at the graves.</li>
+          <li>[age1] {X_nameDef}, a bell-keeper of {FACTION} in a grey habit, has come to the gate with two mourners of {ENEMY}. The Bell buried their dead beyond the colony's wall a season ago, and the mourners ask to stand an hour at the {COUNT} graves while the bell is rung.</li>
+          <li>[age2] {X_nameDef} of {FACTION} has come up the road with two mourners of {ENEMY}, who have travelled a long way. The Bell buried raiders of theirs beyond the colony's wall a season ago, and the mourners would like an hour at the {COUNT} graves.</li>
+          <li>[their:grateful] The Bell thinks well of the colony, and {X_nameDef} has brought two mourners of {ENEMY} to the gate. The raiders the Bell buried here a season ago were their people, and they ask for an hour at the graves.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them stand at the graves</label>
+            <outcome>{X_nameDef} walks the mourners out to the graves beyond the wall, where they will stand for an hour while the bell is rung.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MournersThrough"><with>false</with></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them through, and send {A_nameDef} to stand with them</label>
+            <outcome>{X_nameDef} walks the mourners out to the graves, and {A_nameDef} goes out to stand with them for the hour.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MournersThrough"><with>true</with></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The mourners turn back at the gate. {X_nameDef} goes with them, and the Bell is saddened by it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MournersTurned" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[through] Thank you, they have come a long way for this.</li>
+          <li>[turned] Then we will go, and ring for them from the road.</li>
+          <li>[ring] Everyone is owed a bell, even the ones who came over your wall.</li>
+          <li>[done] We have seen where they lie, and that is enough.</li>
+          <li>[thanks] We did not expect one of you to stand with us.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 37. A grave-garden for the colony (the Quiet Bell) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GraveGarden</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a grave-garden for the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GraveGarden</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A grave-garden for the colony</li>
+          <li>Sextons at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and another sexton of {FACTION} have come to the gate with spades and a sack of rose cuttings. They have seen the colony's {COUNT} graves and would like to make them a grave-garden: three days of work laying flagstones between the graves, planting roses beside them and setting up a bell-post. They ask only for their meals while they work.</li>
+          <li>[lost] {X_nameDef} and another sexton of {FACTION} have come to the gate. They heard that {DEAD} was buried here, and they would like to make the colony's {COUNT} graves a grave-garden: flagstones between the graves, roses beside them and a bell-post among them, three days' work for their meals.</li>
+          <li>[age0] Two sextons of {FACTION} have walked to the gate with digging sticks and a basket of rose cuttings. They would lay flat stones between the colony's {COUNT} graves, plant the roses and set up a post with a small bell, three days' work for their meals.</li>
+          <li>[age1] Two sextons of {FACTION} in grey hoods have come to the gate with spades and rose cuttings wrapped in sacking. {X_nameDef} would make the colony's {COUNT} graves a grave-garden with a bell-post, three days' work for their meals.</li>
+          <li>[age2] {X_nameDef} and another sexton of {FACTION} have come up the road with tools and rose cuttings in a sack. They would make the colony's {COUNT} graves a grave-garden, with flagstones, roses and a bell-post, over three days, for their meals.</li>
+          <li>[anomaly] {X_nameDef} and another sexton of {FACTION} have come to the gate. They would make the colony's {COUNT} graves a grave-garden with flagstones, roses and a bell-post, and they say that where a bell-post stands, the dead lie quiet. It is three days' work for their meals.</li>
+          <li>[their:grateful] The Bell thinks well of the colony, and {X_nameDef} has come with another sexton to make its {COUNT} graves a grave-garden: flagstones, roses and a bell-post, three days' work for their meals.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Make our graves a grave-garden (6 meals)</label>
+            <outcome>The sextons set to work among the graves. Over three days they will lay the flagstones, plant the roses and set up the bell-post.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the sextons</label><what>meals</what><count>6</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GraveGarden"><whole>true</whole></li>
+            </effects>
+          </li>
+          <li>
+            <label>Only the bell-post among the graves</label>
+            <outcome>The sextons will set up the bell-post among the graves this afternoon and leave the rest as it is.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GraveGarden"><whole>false</whole></li>
+            </effects>
+          </li>
+          <li>
+            <label>Our graves are fine as they are</label>
+            <outcome>The sextons nod and go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[begin] We will start with the stones nearest the oldest grave.</li>
+          <li>[later] Then we will be on our way.</li>
+          <li>[stone] One more stone, and the path reaches the next grave.</li>
+          <li>[post] The bell-post is up, and the ground is quiet here now.</li>
+          <li>[done] It is a grave-garden now, so look after the roses.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 38. The field of the fallen (the Quiet Bell) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FieldOfFallen</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the field of the fallen</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FieldOfFallen</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The field of the fallen</li>
+          <li>Bell-keepers for the dead</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a bell-keeper of {FACTION}, has come to the gate. {COUNT} dead are lying on the colony's land after the fight, and the Bell would camp nearby for a few days, dig a row of graves beyond the wall and bury them, ringing the bell at each dusk. They would be glad of wood and cloth for the graves.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with sextons carrying digging sticks. {COUNT} dead lie on the colony's land after the fight, and the Bell would camp a few days, dig a row of graves beyond the wall and ring the bell over them at dusk.</li>
+          <li>[age1] {X_nameDef}, a bell-keeper of {FACTION} in a grey habit, has come to the gate with sextons and spades. {COUNT} dead lie on the colony's land after the fight. The Bell would camp a few days to dig a row of graves beyond the wall and bury them, ringing the bell at each dusk.</li>
+          <li>[age2] {X_nameDef} of {FACTION} has come up the road with sextons carrying spades and bundles of shrouds. {COUNT} dead lie on the colony's land after the fight, and the Bell would camp a few days, dig a row of graves beyond the wall and bury them all, the bell rung at each dusk.</li>
+          <li>[anomaly] {X_nameDef}, a bell-keeper of {FACTION}, has come to the gate. {COUNT} dead lie on the colony's land after the fight, and the Bell would rather they did not lie there long. They would camp a few days, dig a row of graves beyond the wall and ring the bell over them at each dusk.</li>
+          <li>[their:grateful] The Bell thinks well of the colony, and {X_nameDef} has come to the gate with sextons. They would camp a few days to bury the {COUNT} dead lying on the colony's land in a row of graves beyond the wall, the bell rung at each dusk.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp and bury the dead</label>
+            <outcome>The bell-keepers will camp near the colony and start on the graves beyond the wall. They may ask for wood and cloth while they work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenCamp"><gifts>false</gifts></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and send wood and cloth for the graves now</label>
+            <outcome>The bell-keepers will camp near the colony and start on the graves, and the wood and cloth are going out to them now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for the graves</label><what>wood</what><count>40</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>cloth for the shrouds</label><what>Cloth</what><count>20</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenCamp"><gifts>true</gifts></li>
+            </effects>
+          </li>
+          <li>
+            <label>We will see to the dead ourselves</label>
+            <outcome>{X_nameDef} says the Bell will ring for them from the road, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We will start digging at first light.</li>
+          <li>[ourselves] Then ring once for each of them, if you can.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FallenClaimed</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the dead claimed</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FallenClaimed</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The dead claimed</li>
+          <li>{FACTION} come for their dead</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and two others of {FACTION} have come to the gate. {COUNT} of their people lie in the field of the fallen, not yet buried, and they would like to take them home to bury them themselves. {TALE}, who keep the field, would rather bury everyone where they lie.</li>
+          <li>[feud] {X_nameDef} and two others of {FACTION} have come to the gate for their dead, {COUNT} of whom still lie in the field of the fallen. They are no friends of {TALE}, who keep the field, and if the colony will not let them take their dead they may go and take them from the camp.</li>
+          <li>[age0] Three of {FACTION} have walked to the gate with poles and hides to carry their dead. {COUNT} of their people still lie unburied in the field, and they would take them home. {TALE}, who keep the field, would rather bury them here.</li>
+          <li>[age1] {X_nameDef} and two others of {FACTION} have come to the gate with a hand-bier. {COUNT} of their people still lie unburied in the field of the fallen, and they would carry them home to be buried among their own. {TALE}, who keep the field, would rather bury them here.</li>
+          <li>[age2] {X_nameDef} and two others of {FACTION} have come up the road to the gate. {COUNT} of their people still lie unburied in the field of the fallen, and they would take them home. {TALE}, who keep the field, would rather bury them where they lie.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them take their dead home</label>
+            <outcome>{X_nameDef} and the others walk out to the field and carry their dead away, one each.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenClaim"><how>give</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to talk them into leaving the dead with the Bell</label>
+            <outcome>{A_nameDef} talks with {X_nameDef} at the gate, and they agree that the Bell should bury their dead where they lie. They go home.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} talks with {X_nameDef} at the gate, but they will not leave their dead with the Bell.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenClaim"><how>talked</how></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenClaim"><how>refused</how></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Tell them the Bell keeps the dead here</label>
+            <outcome>{X_nameDef} does not take it well.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FallenClaim"><how>refused</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[home] Thank you, they will be buried among their own.</li>
+          <li>[talked] Very well, let the Bell bury them where they fell.</li>
+          <li>[refused] They are ours, and we will have them back.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 39. The bond freely given (the Circuit of Tamers) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BondGiven</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the bond freely given</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BondGiven</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The bond freely given</li>
+          <li>A tamer at the pen</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a roaming tamer of {FACTION}, has come to the gate. {X_pronoun} has been watching {BEAST} and says it could learn {COUNT} more tasks than it knows. {X_nameDef} would spend this afternoon putting it through all of them with {A_nameDef}, the colony's best hand with animals, at its side, and leave the two of them bonded.</li>
+          <li>[bonded] {X_nameDef}, a roaming tamer of {FACTION}, has come to the gate. {BEAST} is already bonded to {A_nameDef}, but it still has {COUNT} tasks left to learn, and {X_nameDef} would finish its training this afternoon with {A_nameDef} beside it.</li>
+          <li>[pokemon] {X_nameDef}, a roaming tamer of {FACTION}, has come to the gate and stopped to watch {BEAST}. {X_pronoun} says it could learn {COUNT} more things, and offers to train it this afternoon with {A_nameDef} beside it, so that the two of them end the day bonded.</li>
+          <li>[age0] {X_nameDef}, a tamer of {FACTION}, has walked to the gate. {X_pronoun} would spend the afternoon working with {BEAST} and {A_nameDef} together until it knows every task it can learn, {COUNT} in all, and leave them bonded.</li>
+          <li>[age2] {X_nameDef}, a roaming tamer of {FACTION}, has come up the road with a pouch of treats and a whistle. {X_pronoun} would spend the afternoon training {BEAST} with {A_nameDef} beside it, {COUNT} tasks in all, and leave the two of them bonded.</li>
+          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef}, one of its roaming tamers, would like to finish {BEAST}'s training this afternoon with {A_nameDef} at its side, {COUNT} tasks still to learn.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Train {BEAST} this afternoon with {A_nameDef} beside it</label>
+            <outcome>{X_nameDef} goes over to {BEAST}, and {A_nameDef} goes with {X_objective}. They will work through every task it can learn this afternoon.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BondGiven" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Just give {A_nameDef} a few pointers</label>
+            <outcome>{X_nameDef} watches {BEAST} for a while from the gate and tells {A_nameDef} what {X_pronoun} would do with it, then goes on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BondWords" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} shrugs and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[train] Let's see what this one can do.</li>
+          <li>[words] Patience and food, that's most of it.</li>
+          <li>[later] Another time, then.</li>
+          <li>[bonded] A bond is not a leash, so look after each other.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 41. An egg from the crater (the Circuit of Tamers) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CraterEgg</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an egg from the crater</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CraterEgg</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>4~8</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An egg from the crater</li>
+          <li>A tamer with an egg</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a tamer of {FACTION}, has come to the gate carrying a {THING} wrapped in a blanket. It will hatch a {BEAST}, a kind that does not live anywhere near here, and the Circuit would like the colony to hatch it. It has to be kept warm until it hatches, and the young will bond with whoever looks after it most.</li>
+          <li>[far] {X_nameDef}, a tamer of {FACTION}, has come to the gate with a {THING} packed in straw in a wooden box. The beast inside, a {BEAST}, comes from far away, and the Circuit gives eggs like this one to people it trusts to hatch them. It must be kept warm until it hatches.</li>
+          <li>[pokemon] {X_nameDef}, a tamer of {FACTION}, has come to the gate holding a {THING} carefully in both arms. It will hatch a {BEAST}, and the Circuit would like the colony to hatch it and raise it. It needs to be kept warm until then.</li>
+          <li>[age0] {X_nameDef}, a tamer of {FACTION}, has walked to the gate with a {THING} in a sling of hide. As Nessa Pell once found an egg in a crater, the Circuit gives such eggs away, and this one will hatch a {BEAST}. It must be kept warm until it hatches.</li>
+          <li>[age2] {X_nameDef}, a tamer of {FACTION}, has come up the road with a {THING} in a padded case. It will hatch a {BEAST}, and the Circuit would like the colony to hatch it, as Nessa Pell hatched the first egg from the crater. It needs to be kept warm until then.</li>
+          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has brought it a {THING}, which will hatch a {BEAST}. The colony is asked to keep it warm until it hatches and raise what comes out.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take the egg; {A_nameDef} will look after it</label>
+            <outcome>{X_nameDef} hands over the egg. It needs to be kept somewhere warm until it hatches, and the young will bond with whoever spends the most time with it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CraterEgg" />
+            </effects>
+          </li>
+          <li>
+            <label>Take the egg, and give them food for the road</label>
+            <outcome>{X_nameDef} hands over the egg, and some food is going out to the gate for {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the road</label><what>meals</what><count>4</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CraterEgg" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Thank them; we can't take it</label>
+            <outcome>{X_nameDef} wraps the egg up again and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[egg] Keep it warm, and talk to it now and then.</li>
+          <li>[later] Then I will find it another home.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CraterEggGrown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the hatchling grown</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CraterEggGrown</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>4~8</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The hatchling grown</li>
+          <li>The tamer comes back</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a tamer of {FACTION}, has come to the gate. The Circuit gave the colony an egg a while ago, and {X_pronoun} has come to see how {BEAST} has grown. {X_pronoun} would like to spend an hour with it, and {A_nameDef} can come too.</li>
+          <li>[pokemon] {X_nameDef} of {FACTION} has come to the gate to see {BEAST}, which hatched from the egg the Circuit gave the colony. {X_pronoun} would like to spend an hour with it and see what it has learned.</li>
+          <li>[age0] {X_nameDef}, a tamer of {FACTION}, has walked to the gate to see the beast that hatched from the Circuit's egg. {X_pronoun} would like an hour with {BEAST} to see how it has grown.</li>
+          <li>[age1] {X_nameDef}, a tamer of {FACTION}, has come to the gate to see {BEAST}, the beast that hatched from the egg the Circuit gave the colony, and asks for an hour with it.</li>
+          <li>[age2] {X_nameDef}, a tamer of {FACTION}, has come up the road to see {BEAST}, which hatched from the Circuit's egg. {X_pronoun} would like an hour with it to see how it is coming along.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} spend the hour with {BEAST}</label>
+            <outcome>{X_nameDef} goes over to {BEAST} and works with it for an hour.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CraterEggGrown"><look>true</look></li>
+            </effects>
+          </li>
+          <li>
+            <label>Tell {X_objective} how it is doing</label>
+            <outcome>{A_nameDef} tells {X_nameDef} how {BEAST} is getting on, and {X_pronoun} goes on, pleased.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CraterEggGrown"><look>false</look></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[show] Let me have a look at you.</li>
+          <li>[told] I am glad it is doing well.</li>
+          <li>[later] Another time, then.</li>
+          <li>[grown] It has grown well, so you looked after it properly.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 42. The Circuit's ring (the Circuit of Tamers) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CircuitRing</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Circuit's ring</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CircuitRing</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~55</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <leans><li>performers</li></leans>
+        <titles>
+          <li>The Circuit's ring</li>
+          <li>A bout-ring for the fair</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a tamer of {FACTION}, has come to the gate. With {TALE} on, the Circuit is holding bouts on the way, and it would pitch a ring by the colony for a few days, with a bout every afternoon. Anyone of the colony who is good with animals may step up and challenge.</li>
+          <li>[pokemon] {X_nameDef}, a tamer of {FACTION}, has come to the gate. While {TALE} is on, the Circuit would pitch a bout-ring by the colony for a few days, with a bout every afternoon, and the colony's trainers are welcome to challenge.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. While {TALE} is on, the Circuit's tamers are on the move, and they would mark out a ring with torches by the colony and hold a bout every afternoon for a few days. Anyone of the colony may challenge.</li>
+          <li>[age2] {X_nameDef}, a tamer of {FACTION}, has come up the road ahead of the others. While {TALE} is on, the Circuit would set up a bout-ring by the colony for a few days with a bout every afternoon, and the colony's best hands with animals are welcome to challenge.</li>
+          <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has come to ask whether the tamers may pitch their ring nearby for a few days while {TALE} is on, with a bout every afternoon for anyone who wants to challenge.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them pitch the ring</label>
+            <outcome>The tamers will set up their ring by the colony. The colony can send its hands to challenge from the camp's page.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CircuitRing" />
+            </effects>
+          </li>
+          <li>
+            <label>Let them pitch the ring, and send them food (8 meals)</label>
+            <outcome>The tamers will set up their ring by the colony, and some meals are going out to them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the tamers</label><what>meals</what><count>8</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CircuitRing" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} says the Circuit will hold its bouts further down the road, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[ring] We will have the ring marked out by tomorrow.</li>
+          <li>[later] Then we will see you at the fair.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 43. Mend it tonight (the Wheel) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MendTonight</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>mend it tonight</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MendTonight</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.15</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Mend it tonight</li>
+          <li>A night crew of the Wheel</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew and their lamps. They heard about the raid and would mend what it damaged tonight ({TALE} and more), and be gone by morning. They would take the raiders' broken gear lying about and {COUNT} silver for it, or {DEAD} silver if the colony keeps the gear.</li>
+          <li>[nogear] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew and their lamps. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for {COUNT} silver.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a crew carrying torches, hammers and baskets. They would mend what the raid broke tonight ({TALE}) and be gone by morning, for the raiders' broken weapons and {COUNT} silver, or {DEAD} silver alone.</li>
+          <li>[age1] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew carrying lanterns and tools. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew, work lamps and a welding kit. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} has brought a crew to mend what the raid damaged tonight ({TALE} and more), for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay them in the raiders' broken gear and {COUNT} silver</label>
+            <outcome>The crew lights their lamps and gets to work on the damage, and one of them goes round picking up the raiders' broken gear. The silver is going out to {X_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the crew</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MendTonight"><gear>true</gear></li>
+            </effects>
+          </li>
+          <li>
+            <label>Pay them {DEAD} silver and keep the gear</label>
+            <outcome>The crew lights their lamps and gets to work on the damage. The silver is going out to {X_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the crew</label><what>silver</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MendTonight"><gear>false</gear></li>
+            </effects>
+          </li>
+          <li>
+            <label>Thank them; we'll mend it ourselves</label>
+            <outcome>The crew goes back to the road with their lamps.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tonight] Mend it tonight, we leave tomorrow.</li>
+          <li>[refused] Suit yourselves, we'll be on our way.</li>
+          <li>[mend] That one will hold now.</li>
+          <li>[done] That's the last of it, and we're off before breakfast.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 44. Made better (the Wheel) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MadeBetter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>made better</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MadeBetter</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>4~8</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Made better</li>
+          <li>A fixer's offer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate and has been looking at {A_nameDef}'s {BEAST}. {X_pronoun} would take it out to the Wheel's cart for a day and bring it back at {RELATION} quality and fully mended, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+          <li>[weapon] {X_nameDef}, a fixer of {FACTION}, has come to the gate. {X_pronoun} says {A_nameDef}'s {BEAST} could be a good deal better, and would take it to the Wheel's cart for a day and bring it back at {RELATION} quality, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+          <li>[armour] {X_nameDef}, a fixer of {FACTION}, has come to the gate and noticed {A_nameDef}'s {BEAST}. {X_pronoun} would take it to the Wheel's cart for a day, work on the fit and the stitching, and bring it back at {RELATION} quality and whole, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a bag of tools. {X_pronoun} would take {A_nameDef}'s {BEAST} to the Wheel's cart for a day and bring it back at {RELATION} quality, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come up the road with a toolbox. {X_pronoun} would take {A_nameDef}'s {BEAST} back to the Wheel's workshop truck for a day and bring it back at {RELATION} quality and whole, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} offers to take {A_nameDef}'s {BEAST} to their cart for a day and bring it back at {RELATION} quality, for {COUNT} silver and {DEAD} steel, or {TALE} silver alone.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take it to the cart ({COUNT} silver and {DEAD} steel)</label>
+            <outcome>{A_nameDef} hands the {BEAST} over to {X_nameDef}, who takes it to the cart. {X_pronoun} will bring it back tomorrow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the fixer</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>steel for the fixer</label><what>Steel</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MadeBetter" />
+            </effects>
+          </li>
+          <li>
+            <label>Take it to the cart ({TALE} silver)</label>
+            <outcome>{A_nameDef} hands the {BEAST} over to {X_nameDef}, who takes it to the cart. {X_pronoun} will bring it back tomorrow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the fixer</label><what>silver</what><factor>1.5</factor><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MadeBetter" />
+            </effects>
+          </li>
+          <li>
+            <label>No, thank you</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[cart] You won't recognise it tomorrow.</li>
+          <li>[later] Suit yourself, it'll do as it is.</li>
+          <li>[taken] I'll have it back to you by this time tomorrow.</li>
+          <li>[back] Here it is, better than it was.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 45. A wagon of our own (the Wheel) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WagonOfOurOwn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a wagon of our own</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WagonOfOurOwn</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods><li>OskarPotocki.VanillaVehiclesExpanded</li></mods>
+        <ages>25~60</ages>
+        <stayHours>4~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A wagon of our own</li>
+          <li>A fixer who builds</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate. If the colony gives {X_objective} {TALE} from its stores and {COUNT} silver for the work, {X_pronoun} and a hand will build it a {THING} at the gate in a day.</li>
+          <li>[wagon] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a bag of tools and axle irons. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
+          <li>[truck] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a heavy toolbox and a hand. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a bag of tools. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver, as the Wheel builds its own.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come up the road with a toolbox and a spare wheel. "If it rolls, it comes with us," {X_pronoun} says, and offers to build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} offers to build it a {THING} at the gate in a day, from {TALE} out of its stores, for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Build it ({COUNT} silver and the goods)</label>
+            <outcome>The goods and the silver are going out to {X_nameDef}, who will set up by the gate and build the {THING} over a day.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the fixer</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WagonGoods" />
+              <li Class="ColonyCouncil.DilemmaEffect_WagonBuild"><lesson>false</lesson></li>
+            </effects>
+          </li>
+          <li>
+            <label>Build it, and let {A_nameDef} work beside them</label>
+            <outcome>The goods and the silver are going out to {X_nameDef}, who will build the {THING} by the gate over a day, with {A_nameDef} helping and learning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the fixer</label><what>silver</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WagonGoods" />
+              <li Class="ColonyCouncil.DilemmaEffect_WagonBuild"><lesson>true</lesson></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[build] Get the goods out to me and I'll start straight away.</li>
+          <li>[later] Suit yourselves, the offer stands next time.</li>
+          <li>[begin] Right, let's see what we've got.</li>
+          <li>[work] Hand me that, and hold this end steady.</li>
+          <li>[done] There, it's yours, and it rolls.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 46. The Wheel stops by (the Wheel) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WheelStopsBy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Wheel stops by</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WheelStopsBy</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Wheel stops by</li>
+          <li>The yard from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate. Their town, {PLACE}, has moved on and now stands only a few days away, and its yard would like to camp at the edge of the colony's land for three days, with its pack animals, a mending tent and a scrap market.</li>
+          <li>[scrap] {X_nameDef}, a fixer of {FACTION}, has come to the gate. {PLACE} has moved close by, and its yard would camp at the edge of the colony's land for three days, with a scrap market and a mending tent. {X_pronoun} has noticed the colony's scrap and would buy it for {COUNT} silver.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate ahead of the rest of the yard. {PLACE} has moved close by, and the yard would camp at the edge of the colony's land for three days to trade, buy scrap and mend things.</li>
+          <li>[age1] {X_nameDef}, a fixer of {FACTION}, has come to the gate ahead of a line of pack animals. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come to the gate ahead of the rest of the yard. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
+          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} has come to ask whether the yard of {PLACE}, now camped nearby, may stop at the edge of the colony's land for three days to trade and mend.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let the yard camp at the edge</label>
+            <outcome>The yard will roll in and set up at the edge of the colony's land. The colony can trade with them and have things mended from the camp's page.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WheelYard" />
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and sell them our scrap ({COUNT} silver)</label>
+            <outcome>The yard will roll in and set up at the edge of the colony's land, and the colony's scrap is going out to {X_nameDef}, who pays for it at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>scrap for the yard</label><what>scrap</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WheelYard" />
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} says the yard will roll on, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[yard] We'll be set up by this evening.</li>
+          <li>[later] Fair enough, we've got plenty of road ahead.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

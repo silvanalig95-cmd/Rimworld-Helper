@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 5 (Source/ColonyCouncil/Peoples/Events5/). -->
+
+  <!-- ===================== 35. The field that stirs (FieldStirs.cs) ===================== -->
+
+  <CC_PEv5_StirDone>The gravewardens of {FACTION} put down the colony's risen dead and buried {COUNT} of them beyond the wall, ringing the bell over each grave. They asked the colony to bury its dead from now on.</CC_PEv5_StirDone>
+  <CC_PEv5_StirDonePromise>The gravewardens of {FACTION} put down the colony's risen dead and buried {COUNT} of them beyond the wall, ringing the bell over each grave. The Bell will remember the colony's promise to bury its dead.</CC_PEv5_StirDonePromise>
+  <CC_PEv5_StirDoneFought>The gravewardens of {FACTION} put down the colony's risen dead and went home. They asked the colony to bury its dead from now on.</CC_PEv5_StirDoneFought>
+  <CC_PEv5_PromiseBroken>The colony's dead have risen again, after it promised the Bell to bury them. {FACTION} have heard of it, and think less of the colony.</CC_PEv5_PromiseBroken>
+  <CC_PEv5_Impact_StirBury>When the shamblers are down, the gravewardens dig a grave for each beyond the wall, lay them in it and ring the bell over every grave.</CC_PEv5_Impact_StirBury>
+  <CC_PEv5_Impact_StirBuryBrief>The risen buried beyond the wall</CC_PEv5_Impact_StirBuryBrief>
+  <CC_PEv5_Impact_Promise>The colony promises {0} to bury its dead from now on. If its dead rise again within the year, the Bell will hear of it.</CC_PEv5_Impact_Promise>
+  <CC_PEv5_Impact_PromiseBrief>A promise to the Bell</CC_PEv5_Impact_PromiseBrief>
+  <CC_PEv5_Impact_StirAway>The gravewardens of {0} stop fighting and leave.</CC_PEv5_Impact_StirAway>
+  <CC_PEv5_Impact_StirAwayBrief>The gravewardens leave</CC_PEv5_Impact_StirAwayBrief>
+
+  <!-- ===================== 36. Mourners from the other side (OtherSideMourners.cs) ===================== -->
+
+  <CC_PEv5_Mourned>The mourners of {FACTION} stood an hour at their people's graves beyond the wall while the bell was rung, and went home. Their people think a little better of the colony for it.</CC_PEv5_Mourned>
+  <CC_PEv5_GravesGone>The graves they came to see are gone.</CC_PEv5_GravesGone>
+  <CC_PEv5_Impact_Mourn>The bell-keeper walks the mourners out to the graves beyond the wall, where they stand for an hour while the bell is rung.</CC_PEv5_Impact_Mourn>
+  <CC_PEv5_Impact_MournWith>The bell-keeper walks the mourners out to the graves beyond the wall, and {0} goes out to stand with them for the hour while the bell is rung.</CC_PEv5_Impact_MournWith>
+  <CC_PEv5_Impact_MournBrief>An hour at the graves</CC_PEv5_Impact_MournBrief>
+  <CC_PEv5_Impact_Truce>{0} are at war with the colony. After the mourners have been, they may offer a truce by letter.</CC_PEv5_Impact_Truce>
+  <CC_PEv5_Impact_TruceBrief>A truce may be offered</CC_PEv5_Impact_TruceBrief>
+
+  <!-- ===================== 37. A grave-garden for the colony (GraveGarden.cs) ===================== -->
+
+  <CC_PEv5_PostRaised>{PAWN_nameDef} has set up the bell-post among the colony's graves and rung it once. The graves round it are a grave-garden now.</CC_PEv5_PostRaised>
+  <CC_PEv5_GardenDone>The sextons of {FACTION} have finished the grave-garden: {COUNT} flagstones laid between the graves, {ROSES} roses planted beside them, and the bell-post among them. Anyone who spends a while there finds the ground quiet.</CC_PEv5_GardenDone>
+  <CC_PEv5_PostDone>The sextons of {FACTION} have set up the bell-post among the colony's graves. Anyone who spends a while there finds the ground quiet.</CC_PEv5_PostDone>
+  <CC_PEv5_GardenUnfinished>The sextons of {FACTION} had to leave before the bell-post was up. What they laid stays, but the graves are not a grave-garden.</CC_PEv5_GardenUnfinished>
+  <CC_PEv5_FullerRite>The funeral in the grave-garden is over, and the bell-post was rung at the end.</CC_PEv5_FullerRite>
+  <CC_PEv5_Cause_Garden>the colony's grave-garden</CC_PEv5_Cause_Garden>
+  <CC_PEv5_NoGardenRoom>There is no room among the colony's graves for the work.</CC_PEv5_NoGardenRoom>
+  <CC_PEv5_Impact_Garden>Over three days, two sextons lay flagstones between the colony's graves, plant roses beside them and set up a bell-post, which becomes the colony's.</CC_PEv5_Impact_Garden>
+  <CC_PEv5_Impact_Post>This afternoon, the sextons set up a bell-post among the colony's graves, which becomes the colony's.</CC_PEv5_Impact_Post>
+  <CC_PEv5_Impact_GardenBrief>A grave-garden made</CC_PEv5_Impact_GardenBrief>
+  <CC_PEv5_Impact_Quiet>While the bell-post stands, anyone resting in the grave-garden gets a good mood, and a funeral there is remembered as a fuller rite. With Anomaly, a body lying in its ground does not rise.</CC_PEv5_Impact_Quiet>
+  <CC_PEv5_Impact_QuietBrief>Quiet ground</CC_PEv5_Impact_QuietBrief>
+
+  <!-- ===================== 38. The field of the fallen (FieldOfFallen.cs) ===================== -->
+
+  <CC_PEv5_FallenMourners>Mourners of {THING} have come to stand at the row of graves beyond the wall, and their people think better of the colony for letting the Bell bury their dead.</CC_PEv5_FallenMourners>
+  <CC_PEv5_FallenSent>The colony already sent this.</CC_PEv5_FallenSent>
+  <CC_PEv5_FieldStirsLabel>The field stirs</CC_PEv5_FieldStirsLabel>
+  <CC_PEv5_FieldStirs>{COUNT} of the dead still lying in the field of the fallen have got up again as shamblers. The Bell's people at the camp are calling to each other, and {X_nameDef} is shouting for everyone to get up.</CC_PEv5_FieldStirs>
+  <CC_PEv5_Impact_Fallen>The bell-keepers of {0} camp for a few days, dig a row of graves beyond the wall and bury up to {1} of the dead lying on the colony's land, ringing the bell at each dusk.</CC_PEv5_Impact_Fallen>
+  <CC_PEv5_Impact_FallenBrief>The dead buried beyond the wall</CC_PEv5_Impact_FallenBrief>
+  <CC_PEv5_Impact_ClaimGive>{0} walk out to the field and carry their dead away, one each.</CC_PEv5_Impact_ClaimGive>
+  <CC_PEv5_Impact_ClaimGiveBrief>Their dead carried home</CC_PEv5_Impact_ClaimGiveBrief>
+  <CC_PEv5_Impact_ClaimRefused>{0} take it badly. If they are at war with the Bell they may come against its camp, otherwise they take their dead anyway.</CC_PEv5_Impact_ClaimRefused>
+  <CC_PEv5_Impact_ClaimRefusedBrief>They take it badly</CC_PEv5_Impact_ClaimRefusedBrief>
+
+  <!-- ===================== 39. The bond freely given (BondGiven.cs) ===================== -->
+
+  <CC_PEv5_Bonded>{BEAST_nameDef} has learned {WHAT}, and is now bonded to {PAWN_nameDef}.</CC_PEv5_Bonded>
+  <CC_PEv5_BondTrained>{BEAST_nameDef} has learned {WHAT} with {PAWN_nameDef} beside it, but did not bond with {PAWN_objective}.</CC_PEv5_BondTrained>
+  <CC_PEv5_BondNothingNew>nothing new</CC_PEv5_BondNothingNew>
+  <CC_PEv5_BondExpert>{PAWN_nameDef} now has the Trainer expertise.</CC_PEv5_BondExpert>
+  <CC_PEv5_HandGone>The one meant to work with the animal is not here.</CC_PEv5_HandGone>
+  <CC_PEv5_BeastGone>{0} is not here.</CC_PEv5_BeastGone>
+  <CC_PEv5_Impact_Bond>{0} spends the afternoon putting {1} through every task it can learn, with {2} kept at its side, and leaves them bonded.</CC_PEv5_Impact_Bond>
+  <CC_PEv5_Impact_BondBrief>A beast trained and bonded</CC_PEv5_Impact_BondBrief>
+  <CC_PEv5_Impact_BondLesson>{0} gets a lesson in handling animals.</CC_PEv5_Impact_BondLesson>
+  <CC_PEv5_Impact_BondExpert>{0} gets a lesson in handling animals and the Trainer expertise.</CC_PEv5_Impact_BondExpert>
+  <CC_PEv5_Impact_BondLessonBrief>A lesson with animals</CC_PEv5_Impact_BondLessonBrief>
+  <CC_PEv5_Impact_BondWords>{0} gets a few pointers about handling animals.</CC_PEv5_Impact_BondWords>
+  <CC_PEv5_Impact_BondWordsBrief>A few pointers</CC_PEv5_Impact_BondWordsBrief>
+
+  <!-- ===================== 41. An egg from the crater (CraterEgg.cs) ===================== -->
+
+  <CC_PEv5_EggHatched>The Circuit's egg has hatched: {BEAST_nameDef} is here, and has bonded with {PAWN}, who looked after the egg the most.</CC_PEv5_EggHatched>
+  <CC_PEv5_EggHatchedAlone>The Circuit's egg has hatched: {BEAST_nameDef} is here. {PAWN} looked after the egg the most, but it did not bond with anyone.</CC_PEv5_EggHatchedAlone>
+  <CC_PEv5_EggCold>The Circuit's {THING} got too cold and will not hatch now.</CC_PEv5_EggCold>
+  <CC_PEv5_EggLost>The Circuit's {THING} is gone, and nothing hatched from it.</CC_PEv5_EggLost>
+  <CC_PEv5_EggLookedOver>{TAMER} spent an hour with {BEAST_nameDef} and went away pleased with how it has grown. It learned a little more while {TAMER} was here.</CC_PEv5_EggLookedOver>
+  <CC_PEv5_Impact_Egg>The egg is the colony's to keep warm until it hatches. The young will bond with whoever spends the most time near it, else with {0}, and the tamer will come back to see it grown.</CC_PEv5_Impact_Egg>
+  <CC_PEv5_Impact_EggBrief>An egg to hatch</CC_PEv5_Impact_EggBrief>
+  <CC_PEv5_Impact_EggLook>{0} goes over to {1} and works with it for an hour, and it learns a little more.</CC_PEv5_Impact_EggLook>
+  <CC_PEv5_Impact_EggLookBrief>An hour with the tamer</CC_PEv5_Impact_EggLookBrief>
+
+  <!-- ===================== 42. The Circuit's ring (CircuitRing.cs) ===================== -->
+
+  <CC_PEv5_RingWon>{PAWN_nameDef} won this afternoon's bout at the Circuit's ring against {PET}.</CC_PEv5_RingWon>
+  <CC_PEv5_RingLost>{PAWN_nameDef} lost this afternoon's bout at the Circuit's ring against {PET}.</CC_PEv5_RingLost>
+  <CC_PEv5_RingName>the Circuit's ring</CC_PEv5_RingName>
+  <CC_PEv5_RingChampionLabel>The Circuit's token</CC_PEv5_RingChampionLabel>
+  <CC_PEv5_RingChampion>Before the tamers left, {X_nameDef} tied the Circuit's token on {A_nameDef}'s arm for winning {COUNT} bouts at their ring, more than anyone else of the colony. {X_pronoun} also gave {A_objective} a {THING} from the Circuit's hatchery, and the tamers will tell the region about it.</CC_PEv5_RingChampion>
+  <CC_PEv5_RingNoCompanion>None of the tamers' animals is up for a bout right now.</CC_PEv5_RingNoCompanion>
+  <CC_PEv5_RingEnoughToday>Two of the colony have already challenged today.</CC_PEv5_RingEnoughToday>
+  <CC_PEv5_Impact_Ring>The tamers of {0} camp by the colony for a few days with a bout every afternoon. The colony can send its hands to challenge from the camp's page.</CC_PEv5_Impact_Ring>
+  <CC_PEv5_Impact_RingBrief>A bout-ring by the colony</CC_PEv5_Impact_RingBrief>
+  <CC_PEv5_Impact_RingRisk>One bout in twenty-five, the animal's blow lands and leaves the challenger with a bruise.</CC_PEv5_Impact_RingRisk>
+  <CC_PEv5_Impact_Challenge>{0} goes to the ring and takes on one of the tamers' animals in a friendly bout this afternoon.</CC_PEv5_Impact_Challenge>
+  <CC_PEv5_Impact_ChallengeBrief>A bout at the ring</CC_PEv5_Impact_ChallengeBrief>
+
+  <!-- ===================== 43. Mend it tonight (MendTonight.cs) ===================== -->
+
+  <CC_PEv5_MendDone>The night crew of {FACTION} mended {COUNT} of the colony's damaged buildings by lamplight and left before morning.</CC_PEv5_MendDone>
+  <CC_PEv5_MendDoneGear>The night crew of {FACTION} mended {COUNT} of the colony's damaged buildings by lamplight and left before morning, taking {GEAR} pieces of the raiders' broken gear with them.</CC_PEv5_MendDoneGear>
+  <CC_PEv5_RaidersGear>the raiders' broken gear</CC_PEv5_RaidersGear>
+  <CC_PEv5_Impact_Mend>The crew works through the night by lamplight, mending the damage ({0} and more), and leaves before morning.</CC_PEv5_Impact_Mend>
+  <CC_PEv5_Impact_MendBrief>Mended overnight</CC_PEv5_Impact_MendBrief>
+
+  <!-- ===================== 44. Made better (MadeBetter.cs) ===================== -->
+
+  <CC_PEv5_BetterTaken>{PAWN_nameDef} handed {PAWN_possessive} {THING} over to {FIXER_nameDef}, who is taking it to the Wheel's cart for a day.</CC_PEv5_BetterTaken>
+  <CC_PEv5_BetterBack>{FIXER} brought {PAWN}'s {THING} back from the Wheel's cart, a grade better and fully mended.</CC_PEv5_BetterBack>
+  <CC_PEv5_BetterByRunner>A runner of the Wheel brought {PAWN}'s {THING} back from the cart, a grade better and fully mended. It is by the gate.</CC_PEv5_BetterByRunner>
+  <CC_PEv5_OwnerGone>The owner of the piece is not here.</CC_PEv5_OwnerGone>
+  <CC_PEv5_PieceGone>The {0} is no longer being worn or carried.</CC_PEv5_PieceGone>
+  <CC_PEv5_Impact_Better>{0} hands over the {1}, the fixer takes it to the Wheel's cart, and brings it back a day later at {2} quality and fully mended.</CC_PEv5_Impact_Better>
+  <CC_PEv5_Impact_BetterBrief>A piece made better</CC_PEv5_Impact_BetterBrief>
+
+  <!-- ===================== 45. A wagon of our own (WagonOfOurOwn.cs) ===================== -->
+
+  <CC_PEv5_WagonBuilt>The fixers of {FACTION} have finished the colony's {THING} by the gate. It is the colony's now.</CC_PEv5_WagonBuilt>
+  <CC_PEv5_WagonUnfinished>The fixers of {FACTION} had to leave before the vehicle was finished. What was set down for it is left by the gate for the colony.</CC_PEv5_WagonUnfinished>
+  <CC_PEv5_NoWagonRoom>There is no open ground by the gate big enough to build on.</CC_PEv5_NoWagonRoom>
+  <CC_PEv5_Impact_Wagon>The fixer sets the goods down by the gate and builds the {0} there over a day. Then it is the colony's.</CC_PEv5_Impact_Wagon>
+  <CC_PEv5_Impact_WagonBrief>A vehicle built at the gate</CC_PEv5_Impact_WagonBrief>
+  <CC_PEv5_Impact_WagonLesson>{0} works beside the fixers through the day and learns from them.</CC_PEv5_Impact_WagonLesson>
+  <CC_PEv5_Impact_WagonLessonBrief>A day's lesson in crafting</CC_PEv5_Impact_WagonLessonBrief>
+
+  <!-- ===================== 46. The Wheel stops by (WheelStopsBy.cs) ===================== -->
+
+  <CC_PEv5_YardQuarrel>{X_nameDef} of the Wheel's yard and {A_nameDef} argued over a price at the stall. The yard is a little less friendly now, and its mending will cost a bit more for the rest of the stay.</CC_PEv5_YardQuarrel>
+  <CC_PEv5_YardHaggleBack>That is twice what it is worth.</CC_PEv5_YardHaggleBack>
+  <CC_PEv5_YardHaggleBack_2>I could buy a new one for that.</CC_PEv5_YardHaggleBack_2>
+  <CC_PEv5_YardHaggleBack_3>You said half that yesterday.</CC_PEv5_YardHaggleBack_3>
+  <CC_PEv5_YardStays>{X_nameDef} says the trade here is good, and the Wheel's yard will stay {COUNT} days longer than it meant to.</CC_PEv5_YardStays>
+  <CC_PEv5_YardMended>{X_nameDef} of the Wheel's yard has finished mending the colony's worn things, {COUNT} pieces in all.</CC_PEv5_YardMended>
+  <CC_PEv5_YardNoFixer>None of the yard's fixers is free right now.</CC_PEv5_YardNoFixer>
+  <CC_PEv5_YardNothingWorn>Nothing of the colony's is worn enough to need mending.</CC_PEv5_YardNothingWorn>
+  <CC_PEv5_YardNoScrap>The colony has no scrap to sell.</CC_PEv5_YardNoScrap>
+  <CC_PEv5_Impact_Yard>The yard of {0} camps three days at the edge of the colony's land, with a scrap market (their trader), a mending tent and their pack animals.</CC_PEv5_Impact_Yard>
+  <CC_PEv5_Impact_YardBrief>A Wheel yard at the edge</CC_PEv5_Impact_YardBrief>
+  <CC_PEv5_Impact_YardMend>A fixer from the yard goes round the colony's {0} worn things and mends each back to whole.</CC_PEv5_Impact_YardMend>
+  <CC_PEv5_Impact_YardMendBrief>Worn things mended</CC_PEv5_Impact_YardMendBrief>
+
+</LanguageData>
