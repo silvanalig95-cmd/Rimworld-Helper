@@ -385,7 +385,33 @@ repo.
   for seven lines). Left as the player said: the decrees' `support` and `oppose` lines and `Rimfolk_DecreeLines_Year`
   (talk, said in bubbles and quoted in the letters), the militia's first muster's `lines` (speech), the co-sign lines
   and the meeting's pools (talk), the decrees' and seats' moods (`ThoughtDefs`) and their hediffs (ailments).
-  Still to pick, when the player asks: the gods and faith, the peoples, the region map, the Almanac, What's new.
+  The gods and faith, done (19 November 2026, the same go; built, not released): the entry "Plain words: the gods and
+  faith" above the newest release line. Files taken: the gods' and worship's Keyed words (`Rimfolk_Gods`,
+  `Rimfolk_GodBook`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`, `Rimfolk_GodsWorld`, `Rimfolk_GodPresence`,
+  `Rimfolk_GodPresenceOwn`, `Rimfolk_GodOwnHappenings`, `Rimfolk_GodHappenings_Ducat`, `_Helios`, `_Hush`, `_Murmur`,
+  `_Revel`, `_Selene`, `_Tamiu`, `_Undertow`, `Rimfolk_GodTouch`, `Rimfolk_GodImpact`, `Rimfolk_Worship`,
+  `Rimfolk_Offerings`, `Rimfolk_Saints`, `Rimfolk_Belief`; the ideoligions' `Rimfolk_Faith`, `Rimfolk_Faith_Council`,
+  `Rimfolk_Faith_People`, `Rimfolk_RoleClothes` and `Rimfolk_TurretFaith` read again: plain since interface-4), and the
+  texts in `Defs/GodDefs/` that tell what happened on the map or that a player reads as a thing, a place or a button:
+  each god's own presence on the land (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, Tamiu's in
+  `Rimfolk_GodsOnMap_Mog`: the name and description), the stranger at the gate, its answers and the deeds it leaves
+  (`Rimfolk_GodsOnMap`), Tamiu's riddle at the door (`Rimfolk_GodsOnMap_Mog`), the bargain in a dream and the wounded
+  thrumbo (`Rimfolk_GodOwnHappenings`), the council's questions about the gods and the saints (`Rimfolk_Worship_Dilemmas`,
+  `Rimfolk_Saints`), the gods' two camps (`Rimfolk_GodsWorld_Camps`, the camps' round left it for this one), the
+  priest's seat (`Rimfolk_Worship_Office`), the mood hints' advice (`Rimfolk_Worship_Thoughts`), the job reports, the
+  saint's relic, the god's light and the warm afternoon (`Rimfolk_GodImpact`). Kept in the old voice, as the player
+  asked ("the only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"): the gods'
+  own lore in `Rimfolk_Gods.xml` (names, epithets, the chapters' plain lines, sayings, what people tell of each god and
+  how it is seen, tales and their pieces, the ties between gods, the neighbours' letter lines), the book's verses and the
+  keeper's notes (`Rimfolk_GodBook`, the book's entries in `Rimfolk_Gods` and its "Saw" lines), the festivals' names and
+  customs and the keeper's reading of each god's temper (`Rimfolk_Worship_Gods`, `Rimfolk_GodsWorld_Ways`,
+  `Rimfolk_Pantheon_Domains`), the seer's sayings (but for the unclear ones), Tamiu's riddles and the Choir's letter.
+  Left as the player said: the bubbles and talk (every `FlavorPoolDef` in `Defs/GodDefs/`, the gods' hands and scoffs,
+  the `TalkLinesDef`s and `InteractionDefs`), journals, dreams (the `GodWaysDef` dreams and the dream pools), prayers
+  and sermons (pools), moods (`ThoughtDefs`), what the gods leave on the body (`HediffDefs`, the gifts of
+  `Rimfolk_GodsWorld_Gifts` and the touch's blessings among them: ailments), the dev tools' words for the gods' hidden
+  state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer).
+  Still to pick, when the player asks: the peoples, the region map, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -398,6 +424,70 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: the gods and faith**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward", and "the
+  only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"). The nineteenth batch of
+  the plain-words pass: everything about the gods and faith said in plain modern words (the gods' and worship's
+  interface and messages, the god cards' framing words, the worship, offering and rite buttons and tips, the god events'
+  cards that tell what happened on the map, each god's presence on the land, the council's questions about the gods and
+  the saints, the gods' camps, the priest's seat), while the gods' and faiths' own texts keep their old voice. File list
+  and what was kept in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 2,090 Keyed entries read (the gods' Keyed files, which the interface batches left for this
+    round, and the ideoligions' again) and about 700 lines of `Defs/GodDefs/` in this batch's fields, beside the gods'
+    own lore (some 600 lines of sayings, tales and what people tell of each god) read for riddles; 217 rewritten (156
+    Keyed, 61 in the defs). Images and similes said plainly ("the light went wrong", "a sound like a door opening",
+    "eyes like wet stones", "a light about it that the dusk doesn't dim", "a color nobody has a word for", "as cold and
+    quiet as a frozen pond", "a bruise that goes all the way down", "in letters no hand had made"), riddling lines said
+    as meant ("quieter than quiet, and now and then something on the other side of the quiet says {PAWN_possessive}
+    name" is "that ear has gone completely silent, and now and then {PAWN_pronoun} hears {PAWN_possessive} own name said
+    from somewhere far away"; "Give it back to nobody" is "Dedicate it to no god"; "smoke or dreams" is "something to
+    smoke or take"), twists at the end gone ("It names no price. It never does." is "It does not say what it wants in
+    return."; "it seems to have decided that it does"; "as if it isn't sure it may"; "The ground there has not
+    forgotten"), things given a will ("the kind fields love", "one door has taken against one person", "coins have
+    wandered off", "The moonlight is keeping {PAWN} company"), and "Nobody can say why." taken off every presence, as the
+    approved samples in `docs/text-style-samples.md` did (Hollin's, Cirrus's and Smoulder's presences are those samples).
+    The seer keeps speaking darkly, but the unclear sayings say what they warn of ("The sky here has two minds" is "Two
+    powers are pulling at the sky here, and the weather will turn back and forth more than once before it settles";
+    "Something below was promised something, and it keeps count" is the approved sample's "Something under the ground
+    was promised a payment, and it remembers what it is owed").
+  - **Put right against the code** (DESIGN.md, "The gods' words told as they happen"). Hours: the gods' kindnesses and
+    angers in the world, a god's touch, the dream of a gift and a gift taken back, the voice in the dark's bargain and
+    price, an answered prayer and its rain, the stranger at the gate, and the gods' camps' farewells no longer name an
+    hour the code doesn't keep ("overnight", "this morning", "at breakfast", "tonight", "in the night", "as the light
+    goes", "at dawn"); the moon's return, at three at night, finds the wounded still asleep. The map: the beast the voice
+    takes vanishes in a puff of smoke, the food it gives lies in the middle of the colony, the god's beast leaves because
+    someone tried to tame it (and says so), Pip's batteries lose less charge, a god's clear days are dry, not long; the
+    temple vow has two seasons, not "a month". The unseen gods: "{GOD} displeased" (a god's mind, in a card's title) is
+    "A burn from {GOD}"; the deeds "was kind to a stranger who was more" and "followed a god's beast" say what the colony
+    saw ("a strange visitor at the gate", "a strange beast"). Fourteen lines that opened a sentence with a pronoun
+    placeholder (shown in lower case) now open with the name. Words only: no code or def setting changed.
+  - **Kept in the old voice.** The gods' own lore (`Rimfolk_Gods.xml`: "Whoever finds the first tree hears Hollin's whole
+    name, and never sleeps again", "Never promise {GOD} anything you haven't read twice"), the book's verses and the
+    keeper's notes ("It was given to {WHO} to see it", "{PAWN} doubts, and I pray it passes"), the keeper's reading of
+    each god's temper ("{NAME} is quiet, which is not the same as fed"), the festivals and their customs ("the Shuttered
+    Night: the shutters closed and every lamp lit, so that it passes by"), Tamiu's riddles, the Choir's letter, and every
+    line already plain (most of the newer happenings' cards, the offerings' words and the saints' were). Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block, placeholder people or numbers changed;
+    `Tools/textcheck.py --base` the lead branch finds nothing broken). No line of `Lean/ShippedLines.cs` is in these
+    files. Left as the player said: bubbles and talk, journals, dreams, prayers and sermons, moods, and what the gods
+    leave on the body (ailments).
+  - **Code map.** Keyed text in 16 files (`Rimfolk_GodsWorld`, `Rimfolk_GodsOnMap`, `Rimfolk_Worship`,
+    `Rimfolk_GodPresence`, `Rimfolk_GodPresenceOwn`, `Rimfolk_GodTouch`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_GodOwnHappenings`, `Rimfolk_Belief`, `Rimfolk_GodHappenings_Selene`, `_Helios`, `_Ducat`, `_Hush`,
+    `_Undertow`, `Rimfolk_Offerings`, `Rimfolk_Saints`); def text in 7 files of `Defs/GodDefs/`
+    (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_Worship_Dilemmas`, `Rimfolk_Saints`, `Rimfolk_GodsWorld_Camps`); two comments in `Gods/Saints/`; DESIGN.md
+    (the new section under "Everything from a god told at once", and two quoted phrases elsewhere).
+  - **Can't be checked without the game.** How the plainer cards read beside the gods' own presences, music and marks
+    on the map; the presences' longer descriptions in the top-right list's tooltip.
+  - **Try in the game.** Dev mode, Debug actions, Rimfolk: "Gods: a god's own presence here now..." for Cirrus, Pip or
+    Hush, and hover the presence in the top-right list: it says plainly what it does. "Gods in the world: a god's
+    kindness in its own shape now...", the mended machine or the barrels: the message names no hour. "Gods: a stranger
+    at the gate now...", turn the stranger away, and read the card when it goes. "Gods in the world: the Hunger takes
+    now" with a colony animal bonded to nobody: the animal it takes vanishes in a puff of smoke, as the card says.
+  - **Mods that would help.** None for this; it is text only.
 - 0.269.5, **Plain words: the council and its
   decrees** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

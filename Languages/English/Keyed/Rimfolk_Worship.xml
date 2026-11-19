@@ -163,7 +163,7 @@
   <CC_Wsh_Why_Wrath>{PAWN} broke a vow to it, and it took it hard</CC_Wsh_Why_Wrath>
   <CC_Wsh_Wrath_Title>A shadow over {PAWN}</CC_Wsh_Wrath_Title>
   <CC_Wsh_Wrath_Felt>A shadow passed over {PAWN}, and nobody could say what cast it.</CC_Wsh_Wrath_Felt>
-  <CC_Wsh_Wrath_Plain>A shadow fell on {PAWN} in broad daylight, with nothing there to cast it.</CC_Wsh_Wrath_Plain>
+  <CC_Wsh_Wrath_Plain>A shadow fell on {PAWN}, though there was nothing there to cast it.</CC_Wsh_Wrath_Plain>
   <CC_Wsh_PilgrimOut>{PAWN} has set out on foot, on a pilgrimage to {GOD}'s holy place.</CC_Wsh_PilgrimOut>
   <CC_Wsh_Why_Pilgrimage>{PAWN} walked a pilgrimage to its holy place</CC_Wsh_Why_Pilgrimage>
   <CC_Wsh_Goal_PilgrimDone>walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimDone>

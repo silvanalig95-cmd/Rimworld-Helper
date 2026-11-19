@@ -48,7 +48,7 @@
           <li>[way] {X_nameDef}, a {TALE} who seems to have walked every road there is, asks {A_nameDef} for a corner for the night and the news from these parts.</li>
           <li>[hearth] {X_nameDef}, an old {TALE} with bright eyes and a shawl that smells of smoke, asks {A_nameDef} for a bowl and a corner by the fire.</li>
           <li>[dead] {X_nameDef}, a {TALE} in gray who knows the names on the colony's graves without being told, asks {A_nameDef} for shelter for the night.</li>
-          <li>[night] {X_nameDef}, a {TALE} who keeps out of the sunlight, asks {A_nameDef} for a bed and says {X_pronoun} sleeps lightly.</li>
+          <li>[night] {X_nameDef}, a {TALE} who says {X_pronoun} travels mostly by night, asks {A_nameDef} for a bed and says {X_pronoun} sleeps lightly.</li>
           <li>[wild] {X_nameDef}, a {TALE} with leaves in {X_possessive} hair and mud to the knee, asks {A_nameDef} for shelter for the night, and the birds come down to the wall to look.</li>
           <li>[waters] {X_nameDef}, a {TALE} whose clothes are wet though it hasn't rained for days, asks {A_nameDef} for a dry corner for the night.</li>
           <li>[war] {X_nameDef}, a {TALE} with an old soldier's way of standing, asks {A_nameDef} for a bed for the night and doesn't take {X_possessive} eyes off the colony's walls.</li>
