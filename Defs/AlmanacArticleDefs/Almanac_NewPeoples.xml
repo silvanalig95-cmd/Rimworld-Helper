@@ -10,7 +10,7 @@
     <category>Council</category>
     <order>16</order>
     <summary>Now and then a new people comes into being from what happened in the region: the survivors of a town that fell, a league of prospering towns, a band gathered by one the council sent away, or faithful who broke away from their faith. Each takes the ways of one of Rimfolk's peoples by its age and its place, with a name, an emblem colour and a town of its own a few days from what made it.</summary>
-    <tip>It works in any save, even one made before Rimfolk's peoples were in the world: that is how such a save first meets them. The setting is New peoples arise, on How much happens; 0% switches it off.</tip>
+    <tip>It works in any save, even one made before Rimfolk's peoples were in the world: there, a people that arises is the first of them the colony meets. The setting is New peoples arise, on How much happens; 0% switches it off.</tip>
     <description>A letter tells of each new people by the colony's means (word from a traveler, a rider's news, the radio, a comms relay), names what they came from and how they live, and looks at their town on the world map, with the ruin, the league's towns or their old people's town beside it. Their card and their towns' cards say where they came from, and the history keeps it. From then on they are a people like any other of Rimfolk's: their caravans, camps, asks and letters come as those of the people whose ways they took.</description>
     <sections>
       <li>
@@ -22,7 +22,9 @@
           <li>One the council sent away, 15 days or more after | A band gathered round them, with them at its head: herders in a tribal or medieval colony, carriers and guards after that; scholars with an archive when the one sent away is learned (and not a tribe); half of them, where a river runs near, river folk | Cool if they went with a grudge; warmer for each of the colony who stood by them, cooler for each who was glad to see them go</li>
           <li>A war of words over a faith has ended (Ideology) | Faithful who broke away, with a creed of their own (their old faith with one teaching dropped or added): a sickhouse, among tribes their herds, and in an industrial or spacer world pilgrims who walk between the faith's shrines | Warm if the colony kept a fair table in the debate; cool toward the people they left</li>
         </table>
-        <after>None is an enemy or an ally on its first day. A people that starts cool says why in its letter, and the game's own goodwill moves it from there.</after>
+        <after>None is an enemy or an ally on its first day. A people that starts cool says why in its letter, and the game's own goodwill moves it from there.
+
+Survivors and bands can also take the ways of other peoples: survivors by chance and by the age (some stay to bury the town's dead; in the industrial and spacer ages others take to wheels, keep the town's radio going, keep a spacer town's watches as a crew, or come up from its shelter), and a band by what its leader is best at (beasts, shooting, a psylink, fighting, crafting, the fields, mining, talking, and in the later ages surgery or a mechlink). The peoples' pages say which ways each brings.</after>
       </li>
       <li>
         <heading>How often</heading>

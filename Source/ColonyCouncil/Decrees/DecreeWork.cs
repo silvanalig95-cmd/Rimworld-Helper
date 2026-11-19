@@ -596,7 +596,8 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && (t == null || t.Ours(p))).ToList())
             {
                 if (!Faiths.Holds(p)) continue;
-                if (Faiths.Of(p) != own) comp.standings.Change(p, YearFourMath.ToleranceTrust(Persona.Get(p, PersonaAxis.Openness)), why);
+                // Openness runs -100 to 100; ToleranceTrust reads 0 to 1 (a quarter of a point for the closed, half for the most open).
+                if (Faiths.Of(p) != own) comp.standings.Change(p, YearFourMath.ToleranceTrust(Persona.Get(p, PersonaAxis.Openness) / 100f), why);
                 else if (Faiths.Devout(p)) comp.standings.Change(p, YearFourMath.DevoutMinds, why);
             }
         }

@@ -31,7 +31,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
       </li>
       <li>
         <heading>What the world's events do to a town</heading>
-        <text>A world event about a people moves the town it happens at in full and that people's other towns in detail by half, a fifth of it on each of its first five days, so the change shows while it runs. A war of words between two creeds, a blood feud and markets closed against a people move the second people's towns too, each by half its number.</text>
+        <text>A world event about a people moves the town it happens at in full and that people's other towns in detail by half, a fifth of it on each of its first five days, so the change shows while it runs. A war of words between two creeds, a war between neighbors, a blood feud and markets closed against a people move the second people's towns too, each by half its number.</text>
         <table>
           <li>World event | Its town | Its people's other towns | The second people's towns</li>
           <li>The great fire | -30 | -15 | none</li>
@@ -40,18 +40,20 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
           <li>A locust swarm, a flood downriver, a long drought | -15 | -7.5 | none</li>
           <li>A war of words | -15 | -7.5 | -7.5</li>
           <li>A sickness in the herds | -12 | -6 | none</li>
-          <li>A hard winter, a merchant house fails | -10 | -5 | none</li>
-          <li>Bandit road | -8 | -4 | none</li>
+          <li>A hard winter, a merchant house fails, a blight in the region | -10 | -5 | none</li>
+          <li>Bandit road, a year without a summer | -8 | -4 | none</li>
           <li>A contested seat | -6 | -3 | none</li>
           <li>Blood feud | -6 | -3 | -3</li>
-          <li>Iron gone scarce | -5 | -2.5 | none</li>
+          <li>Iron gone scarce, medicine gone scarce | -5 | -2.5 | none</li>
           <li>Markets closed | none | none | -5</li>
           <li>A silver rush, gold fever | 12 | 6 | none</li>
           <li>A bumper harvest, a trading season, a new road, rebuilding | 10 | 5 | none</li>
           <li>A great fair, the road reopens, busy orbital lanes | 8 | 4 | none</li>
           <li>Market days, the road in use, a bandit lord falls | 6 | 3 | none</li>
           <li>A great pilgrimage, a ship comes down, an old vault opened, the ice road | 5 | 2.5 | none</li>
-          <li>A holy year | 4 | 2 | none</li>
+          <li>A holy year, a great work | 4 | 2 | none</li>
+          <li>A war between neighbors | -8 | -4 | -4</li>
+          <li>A ban on drink | -4 | -2 | none</li>
         </table>
       </li>
       <li>
@@ -70,7 +72,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
       <li>
         <heading>How the colony hears of it</heading>
         <text>The colony news has one line when a town is begun and one when it stands, by the colony's own means (word from a traveler, a rider's news, news on the radio, a comms relay's report) and in their people's way of founding (a new hearth lit before the elders, a charter read and a market cross raised, streets staked out, a charter filed and the first habitats sealed). Within reach, this line takes the place of Faction Territories' own message about the same town, so it comes once; when Rimfolk doesn't take the town, the mod's message comes as it always did. A town Rimfolk's own world events found is told by the event's letter.</text>
-        <after>A new town within 15 tiles of a home welcomes itself in full, at most once a year for each home and when a world event's slot is free: its letter tells of the town, and within a few days a runner comes to the gate to ask whether the settlers may count the colony among their friends, a neighbor's gift hoped for and remembered (silver carried out to the runner), timber wanted at a fair price; its traders and visitors follow. Otherwise the town is told in the news, and its founder writes, at most one letter a season to each home: who they are and where, why they came, what their people remember of the colony (the good turn they remember best, or a wrong they want no part of), the families who came first, in their people's own voice. The region map shows a town's fortune and founding in its panel, a town being built and its settlers, and for a home how remote it is.</after>
+        <after>A new town within 15 tiles of a home is announced in full, at most once a year for each home and when a world event's slot is free: its letter tells of the town, and within a few days a runner comes to the gate. The settlers ask whether they may count the colony among their friends, hope for a neighbor's gift (silver carried out to the runner, which they remember) and want timber at a fair price; its traders and visitors follow. Otherwise the town is told in the news, and its founder writes, at most one letter a season to each home: who they are and where, why they came, what their people remember of the colony (the good turn they remember best, or a wrong they want no part of), the families who came first, in their people's own voice. The region map shows a town's fortune and founding in its panel, a town being built and its settlers, and for a home how remote it is.</after>
       </li>
       <li>
         <heading>How remote a home is</heading>
@@ -91,7 +93,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
       </li>
       <li>
         <heading>Towns that rise and fall</heading>
-        <text>A town within reach that has struggled for a month (under 15), or was struck twice in a season by bad news of its people while under 25, or met a hard first season (under 10 in its first 15 days), may be given up: on a roll of 7 in 100 every five days, while its people keep two other towns, never their seat or the Empire's, and never a town the colony has business with (its map open, a quest about it, a caravan or pods on the way, a caravan request open). When a world event's slot is free it comes as a world event on that town, told by what struck it: a family of theirs may stop at the gate, what the town leaves behind is anyone's to take, and if the colony still has business there at the end a few families hold on. Otherwise the colony news says its families are on the road, a family of theirs may make camp at the gate (only while their people are at peace with the colony), and five days later the town is a ruin. Notables of the town the colony dealt with move to their people's nearest town.</text>
+        <text>A town within reach that has been under 15 for 30 days, or was struck by two bad world events of its people within a year (60 days) while under 25, or met a hard first season (under 10 in its first 15 days), may be given up: on a roll of 7 in 100 every five days, while its people keep two other towns, never their seat or the Empire's, and never a town the colony has business with (its map open, a quest about it, a caravan or pods on the way, a caravan request open). When a world event's slot is free it comes as a world event on that town, told by what struck it: a family of theirs may stop at the gate, what the town leaves behind is anyone's to take, and if the colony still has business there at the end a few families hold on. Otherwise the colony news says its families are on the road, a family of theirs may make camp at the gate (only while their people are at peace with the colony), and five days later the town is a ruin. Notables of the town the colony dealt with move to their people's nearest town.</text>
         <table>
           <li>Change | At most, in a home's reach | Its roll</li>
           <li>A town given up | One in 60 days | 7 in 100, every 5 days</li>
@@ -99,7 +101,7 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
           <li>A town founded by Rimfolk | One in 90 days, while fewer than 10 towns stand in reach | 15 in 100, every 15 days</li>
           <li>A ruin Rimfolk made | Twelve, the oldest going first | Gone after 300 days</li>
         </table>
-        <after>A ruin is the game's own abandoned settlement, in its people's colour; its card on the region map and its inspect pane say what town it was and how it came to this, in its people's age: empty longhouses and cold hearths, an empty town, a ghost town, a derelict colony. Where a fight destroys a town within reach, the game leaves nothing: Rimfolk puts a ruin on the tile once the destroyed settlement's map is gone, unless something else stands there by then. A ruin 120 days old may be settled again by a people at peace with the colony with a town within 25 tiles standing at 60 or more, or by its own people at 50: they come back under its old name, newcomers half the time under their own. A town flourishing (80 or more) for 60 days may send settlers out to found a town 6 to 15 tiles from it, on land where the game would put a town (more often where its land is kindly), never in another people's territory or beside a town being built. Nothing Rimfolk places stands within 6 tiles of any of the colony's settlements, where the game would hold the town's nearness against the colony. Each new town gets its founder and families, the colony news says how it came about, and the history keeps every change. Rimfolk's world events that give a town up or found one count on the same clocks.</after>
+        <after>A ruin is the game's own abandoned settlement, in its people's colour; its card on the region map and its inspect pane say what town it was and how it came to this, in its people's age: empty longhouses and cold hearths, an empty town, a ghost town, a derelict colony. Where a fight destroys a town within reach, the game leaves nothing: Rimfolk puts a ruin on the tile once the destroyed settlement's map is gone, unless something else stands there by then. A ruin 120 days old may be settled again by a people at peace with the colony with a town within 25 tiles standing at 60 or more, or by its own people at 50: they come back under its old name, newcomers half the time under their own. A town flourishing (80 or more) for 60 days may send settlers out to found a town 6 to 15 tiles from it, on land where the game would put a town (more often on good land), never in another people's territory or beside a town being built. Nothing Rimfolk places stands within 6 tiles of any of the colony's settlements, where the game would hold the town's nearness against the colony. Each new town gets its founder and families, the colony news says how it came about, and the history keeps every change. Rimfolk's world events that give a town up or found one count on the same clocks.</after>
         <after>A town's fortune reaches the colony too, with Systems talk to each other on: a people on good terms whose town in reach struggles asks for provisions and for help rebuilding twice as often, in that town's name; a call to shelter refugees comes twice as often when the people they flee from have a town struggling in reach; and a refugee family's camp is twice as likely, most likely of that people. Their trader caravans come a quarter more often while their town nearest the colony thrives or flourishes, and 0.6 as often while it struggles (with the deeper game hooks).</after>
       </li>
       <li>
