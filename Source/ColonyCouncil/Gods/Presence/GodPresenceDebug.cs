@@ -12,8 +12,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Dev mode: the gods' presence (Debug actions, "Rimfolk", "Gods: ..."). Make any person or animal on the map a god's
     /// of any look, shown or in disguise; reveal one, hide one again or unmake it; bring an animal of a look's kinds; play
-    /// each kind of moment of each look at a cell (with the god standing there, if one does); see what each look finds
-    /// in this game (its robes, motes, sounds, tracks and animals) in the log.
+    /// each kind of moment of each look at a cell (with the god standing there, if one does); lay any god's mark at a cell
+    /// in any age, with its words and worth; see what each look finds in this game (its robes, motes, sounds, tracks,
+    /// animals and marks) in the log.
     /// </summary>
     public static class GodPresenceDebug
     {
@@ -112,11 +113,45 @@ namespace ColonyCouncil
                     var god = PawnAtMouse();
                     var c = GodAvatar.Of(god);
                     string name = c?.Name ?? l.sampleName;
-                    GodPresence.Manifest(l, name, k == PresenceKind.Omen ? null : "CC_GodP_DevEpithet".Translate().Resolve(), map, cell, k, c != null ? god : null, null,
-                        k == PresenceKind.Omen ? "CC_GodP_DevOmen".Translate(name.Named("NAME")).Resolve() : null, veiled);
+                    // A mark of goods leaves them whenever it is tried here, the wait between two set aside.
+                    GodMarkGoods.AnyTime = true;
+                    try
+                    {
+                        GodPresence.Manifest(l, name, k == PresenceKind.Omen ? null : "CC_GodP_DevEpithet".Translate().Resolve(), map, cell, k, c != null ? god : null, null,
+                            k == PresenceKind.Omen ? "CC_GodP_DevOmen".Translate(name.Named("NAME")).Resolve() : null, veiled);
+                    }
+                    finally
+                    {
+                        GodMarkGoods.AnyTime = false;
+                    }
                     DebugTools.curTool = null;
                 });
             })))));
+
+        private static readonly (string label, int age)[] MarkAges = { ("the colony's own age", -1), ("tribal", 0), ("medieval", 1), ("industrial", 2), ("spacer", 3) };
+
+        /// <summary>
+        /// A god's mark laid at a cell with no moment round it, in the colony's age or another, the wait between two marks of
+        /// goods set aside; its words and worth said, and in the log.
+        /// </summary>
+        [DebugAction("Rimfolk", "Gods: a god's mark here...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugMark() =>
+            Menu(((GodMark[])Enum.GetValues(typeof(GodMark))).Where(m => m != GodMark.None).Select(m => new FloatMenuOption(m.ToString(), () =>
+                Menu(MarkAges.Select(a => new FloatMenuOption(a.label, () =>
+                {
+                    DebugTools.curTool = new DebugTool(m + " (" + a.label + ")", () =>
+                    {
+                        var map = Find.CurrentMap;
+                        var cell = UI.MouseCell();
+                        if (map == null || !cell.InBounds(map)) return;
+                        var plan = GodMarkGoods.Plan(m, map, cell, a.age < 0 ? GodMarkGoods.Age : a.age, true);
+                        GodTrails.Mark(plan, map, cell, Color.white);
+                        string said = plan.mark + ": " + (plan.words ?? "nothing (the ground there can't take it)") + (plan.worth > 0f ? " Worth " + plan.worth.ToString("0") + " silver." : "");
+                        Log.Message("[Rimfolk] A god's mark: " + said);
+                        Say(said);
+                        DebugTools.curTool = null;
+                    });
+                }))))));
 
         [DebugAction("Rimfolk", "Gods: end the moments going on", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugStop()
@@ -148,6 +183,7 @@ namespace ColonyCouncil
                 sb.AppendLine("  hum: " + (l.hum.FirstOrDefault(GodSounds.SoundExists) ?? "none") + "; tracks: " + string.Join(", ", l.tracks.Where(GodSounds.SongExists))
                               + "; own tracks: " + GodSounds.OwnTracks(l.Domain).Count + "; dark: " + string.Join(", ", l.darkTracks.Where(GodSounds.SongExists)));
                 sb.AppendLine("  animals: " + string.Join(", ", l.AnimalKinds.Select(d => d.defName)));
+                sb.AppendLine("  mark: " + l.mark + "; a wrath's: " + l.wrathMark);
             }
             Log.Message(sb.ToString());
             Say("the looks are in the log.");

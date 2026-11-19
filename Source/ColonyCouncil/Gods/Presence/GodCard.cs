@@ -24,8 +24,12 @@ namespace ColonyCouncil
         /// <summary>The card's words for a moment, which the next GodLetter the stack receives takes (the teller makes the letter).</summary>
         internal static GodLetter pending;
 
+        /// <summary>
+        /// The card of a moment: its title and words (the kind's own when the caller gives none), and after them what the moment
+        /// left where it happened (<paramref name="left"/>, GodMarkGoods), so the card says what is there to be found.
+        /// </summary>
         internal static void Send(GodLookDef look, string name, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text, bool veiled,
-            Color a, Color b, string sign = null)
+            Color a, Color b, string sign = null, string left = null)
         {
             var def = DefDatabase<LetterDef>.GetNamedSilentFail(LetterDefName);
             if (def == null) return;
@@ -34,6 +38,7 @@ namespace ColonyCouncil
                 : ("CC_GodP_Card_Title_" + kind).Translate(name.Named("NAME")).Resolve();
             label = label.CapitalizeFirst();
             string body = !text.NullOrEmpty() ? text : ("CC_GodP_Card_Text_" + kind + (veiled ? "_Veiled" : "")).Translate(name.Named("NAME")).Resolve().CapitalizeFirst();
+            body = GodMarkMath.WithLeft(body, left);
             var look2 = avatar != null && avatar.Spawned ? new LookTargets(avatar) : new LookTargets(at, map);
             pending = new GodLetter { look = look, godName = name, epithet = epithet, kind = kind, veiled = veiled, colorA = a, colorB = b, sign = veiled ? null : sign };
             try

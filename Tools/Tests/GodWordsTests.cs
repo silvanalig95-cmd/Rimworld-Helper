@@ -58,7 +58,8 @@ public static class GodWordsTests
         C(touch.Contains("CouncilGameComponent.GiveThought(x, def, stage: stage, cause: WhyFelt(x, p));"), "the mood's Why");
         C(touch.Contains("string name = p.taken != null ? GodLore.NameOf(p.taken, x) : null;") && !touch.Contains("Gods.Name(p.taken)") && !touch.Contains("Gods.Name(p.god)"),
             "the god they took it for, by their own name for it; never the true god's name");
-        C(touch.Contains("act.text);") && touch.Contains("spec.text);"), "the words of the act or the moment carried to the mood");
+        C(touch.Contains("act.text);") && touch.Contains("GodMarkMath.WithLeft(spec.text, spec.left));"),
+            "the words of the act or the moment carried to the mood (a moment's with what it left after them)");
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_GodTouch.xml"));
         C(keyed.Contains("<CC_GodTouch_Why_Guess>{PAWN_nameDef} holds it was {GOD}'s doing.</CC_GodTouch_Why_Guess>")
           && keyed.Contains("<CC_GodTouch_Why_Unknown>{PAWN_nameDef} doesn't know which god it was.</CC_GodTouch_Why_Unknown>"), "a guess, or that they don't know");
