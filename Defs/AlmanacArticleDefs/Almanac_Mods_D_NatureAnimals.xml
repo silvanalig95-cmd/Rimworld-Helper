@@ -780,7 +780,7 @@ On the world map, a tile's Terrain tab has a "Search for landform nearby" button
         <heading>With Rimfolk</heading>
         <text>In cave and canyon colonies, colonists spend long stretches indoors and will ask for time outside, and the advisor warns about insects under overhead mountain.
 
-Its landforms tell Rimfolk what shape the land is: a valley, a canyon or gorge, an island or atoll, caves, cliffs, an oasis or a crater. Each has encounters of its own (an echo across the canyon, mist filling the valley at dawn, the sea on every side of the island, the cave breathing out cold air at dusk, the gold light on the cliffs, animals drinking at the oasis, a traveler's tale of how the crater came), and lines can ask for the land by name. A dry lake no longer counts as a lake.</text>
+Its landforms tell Rimfolk what shape the land is: a valley, a canyon or gorge, an island or atoll, caves, cliffs, an oasis or a crater. Each has encounters of its own (an echo across the canyon, mist filling the valley at dawn, the sea on every side of the island, cold air coming out of the cave at dusk, the evening light on the cliffs, animals drinking at the oasis, a traveler's story of how the crater was made), and some lines are written for one kind of land. A dry lake no longer counts as a lake.</text>
       </li>
     </sections>
     <keywords>
@@ -827,11 +827,11 @@ The seasonal changes cover the eleven vanilla biomes. Biomes added by other mods
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and lines can ask for them.
+        <text>Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and some lines are written for them.
 
 Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes. While an earthquake or a wildfire lasts, the advisor says how long is left and what to do (in an earthquake keep people clear of the fault line and firefighters ready; in a wildfire fight it, cut firebreaks by clearing plants and keep people, stores and animals away), but fighting the fire is yours to order.
 
-Rimfolk's weather that changes like weather keeps its seasons: it only weighs each season's own weathers (spells, what follows what, events), leaves the double rainbow's chance as it is, and adds no seasons of its own to the biomes this mod covers. Its windy and cloudy weathers and its dust are read as wind, cloud and dust, and the dry duststorm as a storm without rain (see "the weather, as the colony knows it").</text>
+Rimfolk's setting "Weather that changes like weather" keeps this mod's seasons: it only weighs each season's own weathers (spells, what follows what, events), leaves the double rainbow's chance as it is, and adds no seasons of its own to the biomes this mod covers. Its windy and cloudy weathers and its dust are read as wind, cloud and dust, and the dry duststorm as a storm without rain (see "the weather, as the colony knows it").</text>
       </li>
     </sections>
     <keywords>

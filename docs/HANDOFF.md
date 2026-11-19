@@ -488,8 +488,19 @@ repo.
   game's numbers on the guide pages (the repository has no Core defs to read them against). The council's faith page
   is about the game's ideoligions and names no god. The pages A to H with the gods' and faith's pages (`_Gods`,
   `_Faith`) are the Almanac's part 2, above (0.270.4).
-  The Almanac's other pages, still to do: the mods' pages (the ten `Almanac_Mods_*` files), the peoples' pages
-  (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`) and What's new (`Almanac_WhatsNew`, which writes CHANGELOG.md).
+  The Almanac, part 4: the pages about the player's other mods, done (19 November 2026, the same go; built, not
+  released): the entry "Plain words: the Almanac's pages about your other mods" above the newest release line. Files
+  taken: the ten files `Almanac_Mods_A_MedievalOverhaul`, `_B_FactionsWorld`, `_C_PeopleMagic`, `_Compatibility`,
+  `_D_NatureAnimals`, `_E_MakingThings`, `_F_QualityOfLife`, `_G_Peoples`, `_H_Living`, `_PokeWorld` (117 pages:
+  summaries, tips, descriptions, headings, sections, points and tables' prose cells; each page's claims about the mods
+  read against the player's mod catalogue `docs/player-mods/`, its active rows, and each "With Rimfolk" against the
+  integration code in `Source/ColonyCouncil/Integrations/` and the defs it describes). Left: every label, keyword and
+  link, the names of other mods' things and of Rimfolk's settings, answers and events quoted on the pages, and the
+  pages of mods the player hasn't enabled (Medieval Overhaul and its circle, Outland, Tasty Armory, Tavern and others:
+  they show only when their mod is loaded), whose facts about their own mod stay, with only their claims about "your
+  list" put right.
+  The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`) and What's
+  new (`Almanac_WhatsNew`, which writes CHANGELOG.md).
   Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
@@ -503,6 +514,87 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: the Almanac's pages
+  about your other mods** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their
+  words for the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be
+  more neutral, descriptive and "reasonable", over trying to make the text be creative, as this just most of the time
+  sounds awkward"; and the rule "always consider the actual mods i have enabled in my save and mod list"). The Almanac's
+  part 4 of the plain-words pass: its Mods part, the pages about the player's other mods and what Rimfolk does with
+  them (Medieval Overhaul and its circle; factions and the wider world, Hospitality and RimMarket among them; people,
+  magic, ideoligions, traits and skills; animals, biomes, plants and weather; cooking, brewing, furniture, clothes,
+  books, hygiene and storage; the quality of life mods and the frameworks; Vanilla Factions Expanded's Empire,
+  Republic and Settlers; parks, mods that change people and Move the Patient; PokéWorld). File list, and the Almanac's
+  pages still to do, in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 1,730 pieces of prose read in the 117 pages of the ten files (summaries, tips, descriptions,
+    headings, sections, points and tables' cells), the mods' claims against the player's catalogue and Rimfolk's
+    against its integration code; about 150 changed in 8 files, one table row and one paragraph added. The pages explain
+    mods, so most of them were plain already. Tips that were little scenes in a colonist's voice are advice now ("One
+    drag over the battlefield and every dropped helmet is ours again." is "After a fight, drag Allow over the
+    battlefield to unforbid everything dropped there at once."; "Our new cook learned more from the old cook's book than
+    from the old cook." is "Have an expert write a skill book while their skill is at its peak, so the colony keeps what
+    they know."; "Our fighters spar at the duel spot after supper. The bruises are the cheap kind." is "A duel spot is
+    cheap recreation that also gives melee practice."; 65 tips in all, the guests' swords, the baron's cranes, the
+    quaggas, the mood bars every morning, the Charmeleon that sulked, each say what to do or what the rule is). Figures
+    of speech said plainly: "what nobody can see stirs nothing", "a wretch seen past the face", "the cave breathing out
+    cold air", "hits a wall ... and makes the art their own" (the long discipline as its stages run: stops making
+    progress, talks it over, practices, gains a level, is at ease in the art), "Moods Rimfolk tells in its own words
+    keep the gene's say" (the genes that spare someone the game's mood spare them Rimfolk's version of it too), "a walk
+    and a little learned", "lines can ask for the land by name", "small wonders", "the story closes", "a guest room worth
+    the name", "the colony's say", "without leaving Hospitality's hands", "a longing like that of anyone kept from
+    moving on", and "dear" as high or expensive.
+  - **Put right against the catalogue and the code.** Vanilla Events Expanded's page said the advisor doesn't warn
+    about its drought, whiteout, scorch and long night "yet": it does (`AdvisorWorker_Conditions`, with the page
+    linked), and Seasonal Weather's earthquake and wildfire have the advisor's advice too (the page said they come by
+    letter only). The frameworks' page: Rimfolk sits about halfway down the player's list (166 of about 300), not "near
+    the bottom, where it is now"; it has about 450 Harmony patches, not "a few small hooks"; its About.xml loads it after
+    Harmony, Core and the DLCs only, not "after the others on its own"; the libraries sit above the mods that use them,
+    not all "near the top" (Tabula Rasa is 194th); Vehicle Framework runs Vanilla Vehicles Expanded in the player's
+    list, not Medieval Overhaul's air vehicles; the Processor Framework's "upgrades RimBees" is gone (Alpha Bees' mead
+    barrel isn't built on it in the version enabled). Mods called "in your list" or "in this modlist" that the player
+    hasn't enabled, now named as separate or as needing their base mod: Stoneborn's Dwarven Style Pack and Delights,
+    RimTraits' Vanilla Trait Colors and Medieval Talents, Outland - Genetics, the Tasty Armory packs, DBH for Medieval,
+    Misc. Training Medieval Retexture, Take Cover ("three small mods" on the archers' page, the player has two),
+    Rimedieval (Vanilla Genetics Expanded and Alpha Genes said it holds the player's research), and Medieval Overhaul
+    (More Vanilla Biomes' patches "in this list", Harvest and Haul's hay and wood, the second cheese press, "the core of
+    this modlist", Deep Vein Mining leading the mining page, now last and marked as needing it). Endangered has ten
+    species with Odyssey (it leaves out its giant panda, as Odyssey has a panda; the catalogue's active rows have ten);
+    Royal Animals' table lacked the royal tiger (nine animals, eight rows). The peoples of the race mods by
+    `Council_People_Mods_Xenotypes.xml`: only coastal merren favour the fountain (both the bath), high elves favour
+    flowers too, wood elves like the harvest push and high elves study hours, and the Stoneborn the long hours and
+    building season decrees (the page said "a building push"). Council votes weigh liking and the campaign besides skill,
+    and the chaplain's seat counts the colony's faith (`faithWeight`), where the schisms' page said votes ignore creed.
+    Manned siege engines count in the defense check, a third as much as a turret that fires by itself
+    (`AdvisorCore`: 40 against 120); Medieval Overhaul's page said they don't. The stall's price buttons are "a bargain,
+    the usual, expensive" (`CC_Stall_Dear` is "Expensive"), not "dear". The predator's den question is named as the
+    game shows it ("a predator's den near the colony", not "den in the brush"), and its predator no bigger or stronger
+    than a large bear (body size 2.6, combat power 260). PokéWorld: "see "animals"" is the page "the colony's animals",
+    and Rimfolk changes nothing in the mod but its Pokémon's calls (`PokeWorldSounds`), where the pages said it changes
+    nothing. Medieval Talents' "the council does not read talents yet" contradicted the next line: talents set character
+    only. An insulting spree on Demanding stakes is for the abrasive (`MaybeSulk`). The Empire's page left out the
+    ballroom only for music rooms (`Integrations/BallroomByUse.cs`, the setting "Ballrooms only for music rooms"), now
+    said. Words only: no code or def setting changed.
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the
+    names quoted from the game, other mods and Rimfolk's settings, wishes, questions and events (a shiny rumour is the
+    event's own name and stays), the mods' own facts on the pages of mods the player hasn't enabled, the "With Rimfolk"
+    numbers that agree with the code (familiars, Hospitality's guests who would stay and who help, the stall, the
+    outposts' five days, the mount wish, the ride out at 40 cells, the drink before work every eight hours, Move the
+    Patient, the Pokémon types at home), and the pages plain throughout (what Rimfolk does with your mods, parks and
+    gardens, mods that change people, Move the Patient). `Tools/textcheck.py --base` the lead branch and
+    `Tools/almanaccheck.py --base` the lead branch find one meant number change: the "level 30" of the old PokéWorld tip
+    about a Pokémon that had fought all year; keywords, labels and links unchanged. The royal tiger's row goes at the
+    end of its table, since the check compares a table's rows by position.
+  - **Code map.** Text only: 8 of the ten files (`Almanac_Mods_A_MedievalOverhaul`, `_B_FactionsWorld`,
+    `_C_PeopleMagic`, `_D_NatureAnimals`, `_E_MakingThings`, `_F_QualityOfLife`, `_G_Peoples`, `_PokeWorld`); the to-do
+    entry's file list.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line; the royal tiger's row
+    and the Empire's ballroom paragraph on a narrow window; whether Endangered's giant panda really stays out with
+    Odyssey (the catalogue reads the mod's files without its patches).
+  - **Try in the game.** Open the Almanac, Mods: "Vanilla Events Expanded" says the advisor warns about the whiteout
+    and the long night; "the frameworks under your mods" says Rimfolk is about halfway down the list and Vehicle
+    Framework runs Vanilla Vehicles Expanded; "Vanilla Animals Expanded: Endangered" says ten with Odyssey; "RimMarket"
+    names the price buttons as the stall shows them. With Vanilla Events Expanded, start a whiteout from the dev tools:
+    the advisor's list shows it and links to the page.
+  - **Mods that would help.** None for this; it is text only.
 - 0.270.5, **Plain words: the Almanac's pages J
   to W** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
