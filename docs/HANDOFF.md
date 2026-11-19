@@ -140,6 +140,18 @@ repo.
   builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
   storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
   {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
+- **To do when the player asks (found 19 November 2026 in the plain-words pass on the Almanac, part 2; no words of the
+  player's yet): the defense survey counts a shut door as a way raiders might break through.** The survey of the ways
+  in (`Defense/DefenseMath.cs`, a Dijkstra from home with `DoorCost` 400, about thirty cells of walking) lets a shut
+  door stand on the raiders' way when the open way round is some thirty cells longer. In the game's 1.6 pathing a
+  closed colony door is no way at all for an ordinary assault raider: their goto, attack and trash jobs have
+  `canBashDoors` false, so they take the open way however long it is (`docs/defense-research/mechanics.md`, 1.2 and
+  1.3). A back door near the edge can so be shown as the raiders' way in, with its choke points and raid counts, while
+  the game sends them the long way to the killbox. The Almanac now says what the game does and names the survey's own
+  count ("how raiders pick their way"); the defense lines' help on a shut gate (`CC_DefLine_How_Gate` in
+  `Rimfolk_DefenseLines.xml`, "if breaking it is no cheaper than somewhere else, they pick their own stretch of wall")
+  still follows the survey's count. When asked: count a shut door as closed while any open way reaches home, and at
+  400 only when none does (a colony walled in all round, where they break in at random).
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -454,16 +466,23 @@ repo.
   decrees, questions, story stages, storylines and encounters). Left: every label, keyword and link (the Almanac's
   search and its links go by them), the names of things in the game quoted on the pages (settings, marks' and quirks'
   names, a question's answer quoted, the seats' names by age), and the speech and journal lines quoted as examples.
-  The Almanac's other pages, still to do: the remaining 64 files of `Defs/AlmanacArticleDefs/` but What's new
-  (`Almanac_Advisor`, `_Ahead`, `_Ailments`, `_Apparel`, `_Basics`, `_Beasts`, `_Camps`, `_DLC`, `_Defending`,
-  `_DefendingLines`, `_Defense`, `_Diplomacy`, `_Faith`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`, `_Groups`,
-  `_Guide`, `_HandOver`, `_Hauling`, `_Health`, `_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`,
-  `_Mistakes`, the ten `_Mods_*` files, `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_Peoples`,
-  `_PeoplesC` to `_PeoplesG`, `_RaidersCamps`, `_Region`, `_RoomDesign`, `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`,
-  `_Schemes`, `_SocialLife`, `_Storytellers`, `_TownAfter`, `_TownLife`, `_TradeScreen`, `_VisitorsMore2`,
-  `_Weapons`, `_WorldMemory`, `_WorldSituations`), and `Almanac_Council_Faith.xml`, which waited for the gods' and
-  faith's batch and was not in it: the gods' and faith's pages (`_Council_Faith`, `_Gods`, `_Faith`) are best taken
-  together, keeping the gods unseen.
+  The Almanac, part 2: the pages A to H, done (19 November 2026, the same go; built, not released): the entry "Plain
+  words: the Almanac, part 2" above the newest release line. Files taken: the 22 files `Almanac_Advisor`, `_Ahead`,
+  `_Ailments`, `_Apparel`, `_Basics`, `_Beasts`, `_Camps`, `_DLC`, `_Defending`, `_DefendingLines`, `_Defense`,
+  `_Diplomacy`, `_Faith`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`, `_Groups`, `_Guide`, `_HandOver`, `_Hauling`,
+  `_Health` (153 pages: summaries, tips, descriptions, sections, points and tables' prose cells, read against the code
+  they describe, the game's own constants in the 1.6 reference assemblies and the defense research's reading of the
+  game's code in `docs/defense-research/mechanics.md`; the gods' and faith's pages with the gods kept unseen). Left:
+  every label, keyword and link, the names of things in the game quoted on the pages, and the pages already plain
+  throughout (planning ahead, the almanac's first page, ideoligions in the colony, a town of our own, the medical
+  pages).
+  The Almanac's other pages, still to do: the remaining 42 files of `Defs/AlmanacArticleDefs/` but What's new
+  (`Almanac_Journeys`, `_Landing`, `_LowTech`, `_Management`, `_ManyColonies`, `_Mistakes`, the ten `_Mods_*` files,
+  `_Neighbours`, `_NewPeoples`, `_Numbers`, `_OneHeart`, `_Peoples`, `_PeoplesC` to `_PeoplesG`, `_RaidersCamps`,
+  `_Region`, `_RoomDesign`, `_RoomPlans`, `_RoomsMood`, `_ScenarioStart`, `_Schemes`, `_SocialLife`, `_Storytellers`,
+  `_TownAfter`, `_TownLife`, `_TradeScreen`, `_VisitorsMore2`, `_Weapons`, `_WorldMemory`, `_WorldSituations`), and
+  `Almanac_Council_Faith.xml`, which waited for the gods' and faith's batch and was not in it: read it beside
+  `_Gods` and `_Faith` (done in part 2), keeping the gods unseen.
   Still to pick, when the player asks: the peoples, the rest of the Almanac (above), What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
@@ -477,6 +496,81 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: the Almanac, part
+  2** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass:
+  "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The twenty-second batch of the plain-words pass and the second of the Almanac: its pages A to H (the
+  advisor's priorities and planning ahead, ailments and illnesses, judging armour and clothes, the almanac's first
+  page, alphas, legends and great herds, camps on the map, the DLCs' pages, planning the colony's defense and the
+  defense lines, raids and disasters, diplomacy, ideoligions in the colony, food and farming, a fresh start, the gods,
+  the heart's good side, groups and their roles, start here and the checklist, a town of our own, carrying and
+  hauling, health and medicine). File list, and the Almanac's pages still to do, in the to-do entry "Rimfolk's text in
+  plain words".
+  - **What changed.** About 2,570 pieces of prose read in the 153 pages of 22 files (summaries, tips, descriptions,
+    headings, sections, points and tables' cells), each against what it describes; 75 changed in 17 files, 23 of them
+    the plants' numbers below. The Almanac explains, so most of it was plain already, the base game's pages above all.
+    Tips that were jokes, twists or sayings are advice now ("Put the new one on the same shift as the hunters and give
+    it a week. They'll be telling each other the same bad jokes by then." is "Put a newcomer on the same shift as the
+    hunters and give it a week: working side by side is the quickest way into a group."; "A line people only find in
+    the middle of a raid is no line." is "Decide where the fallback line is and show it to everyone before a raid, not
+    during one."; "The hour after a raid decides how the next one goes.", "A gate you can hold this week beats a
+    killbox you'll finish next year.", "Every crowd has one who talks, one who laughs and one who just turns up. Ours
+    has two who talk.", "A camp is a neighbor for a week.", "Raiders don't see your traps, but they do count your
+    walls.", "...and the world's attention follows you there" each say what to do or what happens). Figures of speech
+    said plainly: "The wild has its leaders and its giants" ("Some wild animals lead packs, some come back after
+    hurting one of the colony, and some are very large"), "the heart fills on the other side" ("a colonist builds up
+    the good side of the heart"), "How real they are is the same in every game: felt but never certain ... and what
+    happens decides which" ("No setting changes how plainly they show themselves: most of the time nobody can be sure
+    what a god did"), "the council's walk round the base", "a calm dark ground", "a sworn fury" (the condition's name
+    and what it does), "handed down no line", "the road there and back is the world's own", "when the world shows a
+    need", "a stay with a shape", "the dirt flying", "That cuts both ways", "dear" for costly or expensive, and the
+    quiet one's "a cup kept full, a nod across the fire". The ailments' long list of hurts from everyday life lost its
+    history ("Since harm's fourth part", "Since its seventh part, which builds the last of the harm review's
+    proposals") and is split into short paragraphs by kind (doctors, guests, the weather, animals and tempers;
+    sickness and the cold; work, animals and contests; tempers, visitors and the colonists' own stories; those outside
+    the budget; the budget and its setting), every hurt and number kept, the decree named as "one ideoligion for the
+    colony" and the banked fires as the decree.
+  - **Put right against the code.** The plants' rest hours: the game's `Plant.Resting` (before 0.25 and after 0.8 of
+    the day, so 6:00 to 19:12; `FieldWeatherMath.RestBefore`/`RestAfter`, `AheadMath.GrowingShareOfDay` 0.55) gives
+    13.2 growing hours and 1.82 times the listed grow days, as "growing season" and the management page already said;
+    "food numbers at a glance" said 13 hours and 1.846, the season's summary 1.85, and every crop page's real days and
+    harvest per tile per day were worked out at 1.846. Each is worked out again: rice 1.10, 1.54 and 3.08 a tile a day,
+    potatoes 10.5 days and 0.92, 1.04, 1.21 and 1.79, corn 20.5 days and 0.75, 1.07, 1.50, a rice basin 24 every 1.95
+    days (12.3 a day, 0.62 nutrition), strawberries 10.7 and potatoes 7.2 a basin, haygrass and healroot 12.7 days
+    (haygrass 1.41), strawberries 8.4 days (0.96, 2.68), cotton 14.5 days (0.69), devilstrand 40.9 days and about 41
+    days of season (0.15), smokeleaf 13.6 days (0.66, 1.85 in a basin), psychoid 16.4 days (0.49), hops 9.1 days
+    (0.88, 1.99), and the Gauranlen tree about 18.2 days (was 18.46). The camps' daily try: "each such morning at ten"
+    was the rule until 0.56.2; a camp's try comes once a day at any hour (`CampTimer.NextTry`), as the camps' own tooltip
+    says. Closed doors and raiders (from the game's 1.6 code as `docs/defense-research/mechanics.md` reads it: an
+    ordinary assault raider's jobs have `canBashDoors` false): "how a killbox works" said a door to break "costs as much
+    as a good long walk", "where a killbox fits" that "a raider weighs breaking a door against the walk round, and a
+    long walk loses", "how raiders pick their way" that a door "adds a great deal" and that a raider shut out "breaks in
+    wherever it's cheapest", and the helper's line that raiders "break a gate rather than walk far round": a closed
+    door they can't open is no way at all while any way is open, they take the open way however long, and with none
+    left they pick a stretch of wall or a door at random (the choke points page already said so); the survey's own
+    count of a shut door (about thirty cells) is named as the survey's. The camp fee's answers name "insist on the full
+    fee" (the answer's label), not "the terms are the terms". The survey's count itself is a to-do above ("the defense
+    survey counts a shut door as a way raiders might break through").
+  - **Left as they were.** Every label, keyword and see-also link (the Almanac's search and links go by them), the names
+    quoted from the game (settings, "the beast that stays", "sworn fury", "in good heart", "in high spirits", a
+    question's answers), the base game's figures where nothing in the code or the reference assemblies says otherwise
+    (the pages marked approximate keep their sources), the gods' page's account of what the colony sees and keeps in its
+    book (no favour, wants or rules shown), and the pages already plain throughout (planning ahead, the almanac's first
+    page, ideoligions in the colony, a town of our own, the medical pages). `Tools/textcheck.py --base` the lead branch
+    and `Tools/almanaccheck.py --base` the lead branch find only the meant number changes (the plants' rest hours on 14
+    pages of food and farming and the Gauranlen page); keywords, labels and links unchanged.
+  - **Code map.** Text only: 17 of the 22 files (`Almanac_Advisor`, `_Ailments`, `_Apparel`, `_Beasts`, `_Camps`,
+    `_DLC`, `_Defending`, `_DefendingLines`, `_Defense`, `_Diplomacy`, `_Food`, `_FreshStart`, `_Gods`, `_GoodHeart`,
+    `_Groups`, `_Guide`, `_Hauling`); the to-do entry's file list and the new to-do about the defense survey.
+  - **Can't be checked without the game.** How the reworded tips read in the Almanac's tip line, and the ailments' list
+    of hurts in its new paragraphs on a narrow window.
+  - **Try in the game.** Open the Almanac: "growing season" and "food numbers at a glance" both say 1.82 times the
+    listed days, and "rice" gives 1.10 a tile a day on soil; sow rice on soil in early summer and it should be ready to
+    harvest in about five and a half days. "Camps on the map" says a camp's try comes once a day at any hour. "How
+    raiders pick their way" says a closed door is no way at all while another is open. "Ailments and illnesses",
+    "Working through it, and hurts from everyday life", reads as short paragraphs by kind.
+  - **Mods that would help.** None for this; it is text only.
 - 0.270.3, **Plain words: the Almanac's
   council pages** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for
   the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more
