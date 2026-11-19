@@ -216,9 +216,7 @@ namespace ColonyCouncil
                     return;
                 }
                 st.hungry.AddRange(list);
-                c.Note(c.Text("CC_PEv8_RationHungry", list[0], null, list.Count, f.Name), MessageTypeDefOf.NeutralEvent, Importance.Flavor, list[0]);
-                // Once a stay, one of the hungry asks the colony to take them in.
-                if (!st.joinAsked && Rand.Chance(PeopleEvents8Math.HungryJoinChance) && Tell.CanAsk && Ask(list[0], map)) st.joinAsked = true;
+                c.Note(c.Text(list.Count > 1 ? "CC_PEv8_RationHungryTwo" : "CC_PEv8_RationHungry", list[0], null, list.Count, f.Name), MessageTypeDefOf.NeutralEvent, Importance.Flavor, list[0]);
             }
             catch (Exception e)
             {
@@ -257,6 +255,12 @@ namespace ColonyCouncil
             {
                 c.SayMoment(c.leader, "short");
                 if (!st.riotRolled) Riot(c, st, p);
+            }
+            // Once a stay, one of the hungry fed at the post asks the colony to take them in, and waits at the post for the answer.
+            if (st.served > 0 && !st.joinAsked && p.Spawned && !p.InMentalState && Rand.Chance(PeopleEvents8Math.HungryJoinChance) && Tell.CanAsk && Ask(p, p.Map))
+            {
+                st.joinAsked = true;
+                return;
             }
             Arrivals.SendAway(new List<Pawn> { p });
         }

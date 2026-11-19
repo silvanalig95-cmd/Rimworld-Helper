@@ -145,7 +145,8 @@ namespace ColonyCouncil
             if (!IllnessBudget.Allows(map, ill, who) || Harm.Ail(who, ill, 0.1f, HarmKinds.CampFever) == null) return;
             IllnessBudget.Owe(map, ill, who);
             st.sick = true;
-            Tell.Message(NewsKind.Health, Importance.Notable, map, c.Text("CC_PEv8_PartySick", c.leader, null, 0, who.LabelShort), new LookTargets(who), MessageTypeDefOf.NegativeHealthEvent);
+            Tell.Message(NewsKind.Health, Importance.Notable, map, c.Text(who == st.sleeper ? "CC_PEv8_PartySickSleeper" : "CC_PEv8_PartySick", c.leader, null, 0, who.LabelShort), new LookTargets(who),
+                MessageTypeDefOf.NegativeHealthEvent);
         }
 
         /// <summary>A place surveyed and logged: now and then a word of it.</summary>

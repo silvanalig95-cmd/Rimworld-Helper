@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 8 (docs/peoples-events-proposals.md, items 71 to 82; Source/ColonyCouncil/Peoples/Events8/). Each only
+    from a people of its calling at peace with the colony, each played out on the map. Four come only from code when their moment comes
+    (base chance 0): the Republic's clerk on the morning of the colony's polling day, its clerk with a medal after a colonist's deed in a
+    fight, its ration post in a famine in the region, and one of the hungry at that post asking to join. {TALE}, {RELATION} and {THING}
+    carry what the event's own code says they do (a deed, a gene, a kind, the fight's name, a faith, a price, a part); every other
+    placeholder is the events' own. The Fleet's call about the colony's gravship has no visitor at the gate: it comes on the ship's own
+    channel.
+  -->
+
+  <!-- ===================== 71. An observer at the vote (the Last Republic) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VoteObserver</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an observer at the vote</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VoteObserver</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An observer at the vote</li>
+          <li>The Republic's clerk on polling day</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with the Republic's roll book. The Republic has heard the colony votes today, and {X_pronoun} asks to walk the colony with the roll, a word with each of the {COUNT} voters, and to stand by the count this evening, so that the Republic can say the vote was fair.</li>
+          <li>[papers] {X_nameDef}, a clerk of {FACTION}, has come to the gate with the roll book. The colony holds the Republic's papers, {X_pronoun} says, and the Republic would like to see its citizens vote: {X_pronoun} asks to walk the colony with the roll and stand by the count this evening.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a bundle of tally sticks. {X_pronoun} has heard the colony chooses its council today, and asks to go round the {COUNT} who have a say and to watch the count this evening, so that the Republic can say it was done fairly.</li>
+          <li>[age1] {X_nameDef}, a clerk of {FACTION} with a bound roll under {X_possessive} arm, has come to the gate. The Republic would witness the colony's vote: {X_pronoun} asks to go round the {COUNT} voters with the roll, and to stand by the count this evening.</li>
+          <li>[age2] {X_nameDef}, a clerk of {FACTION} in a navy coat, has come to the gate with the Republic's roll book and a pencil. {X_pronoun} asks to walk the colony with the roll, the {COUNT} voters each in turn, and to stand by the count this evening, so the Republic's radio can say the vote was fair.</li>
+          <li>[age3] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a roll on a datapad. {X_pronoun} asks to check the {COUNT} voters against it and to stand by the count this evening, so that the Republic can report a fair vote.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} keep the roll and stand by the count</label>
+            <outcome>{X_nameDef} will walk the colony with the roll, and stand by the count this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VoteObserver"><register>false</register></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} observe, and enter the result in the Republic's register</label>
+            <outcome>{X_nameDef} will walk the colony with the roll, stand by the count, and write the result into the Republic's register with the names of the council.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VoteObserver"><register>true</register></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>This vote is the colony's own business</label>
+            <outcome>{X_nameDef} closes the roll book and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[observe] I'll go round with the roll and keep out of the way.</li>
+          <li>[later] Then the Republic will have to take your word for it.</li>
+          <li>[roll] You're on the roll, thank you.</li>
+          <li>[roll] Your name is down, and you'll vote at the meeting place.</li>
+          <li>[fair] I watched the whole count, and it was a fair vote.</li>
+          <li>[fair] Every vote was read out, and the Republic will say so.</li>
+          <li>[nocount] There was no count I could watch, so I can't report on it.</li>
+          <li>[late] I can't wait any longer for the count.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 72. A medal (the Last Republic) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RepublicMedal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a medal</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RepublicMedal</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A medal</li>
+          <li>The Republic's citation</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with a guard of the Civic Guard. The Republic has heard that {A_nameDef} {TALE} in {RELATION}, and {X_pronoun} would like to read a citation for {A_objective} at the gate and pin the Republic's medal on {A_objective}.</li>
+          <li>[rescue] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a guard. Word has reached the Republic that {A_nameDef} {TALE} in {RELATION}. The Republic gives a medal for that, and {X_pronoun} has brought it, with a citation to read aloud at the gate.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with one of their warriors. Their people have heard that {A_nameDef} {TALE} in {RELATION}, and {X_pronoun} has brought a token of the Republic to hang round {A_possessive} neck, with words to say over it at the gate.</li>
+          <li>[age1] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a guard in navy. The Republic has heard that {A_nameDef} {TALE} in {RELATION}, and {X_pronoun} carries a medal on a ribbon and a written citation to read at the gate.</li>
+          <li>[age2] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a guard of the Civic Guard. The Republic's radio has heard that {A_nameDef} {TALE} in {RELATION}, and {X_pronoun} has a citation to read at the gate and the Republic's medal to pin on {A_objective}.</li>
+          <li>[age3] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a guard. The Republic has a record that {A_nameDef} {TALE} in {RELATION}, and {X_pronoun} would read the citation at the gate and pin on the Republic's medal.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} go out to the gate for it</label>
+            <outcome>{A_nameDef} will go out to the gate, where {X_nameDef} reads the citation and pins on the medal.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicMedal"><gather>false</gather></li>
+            </effects>
+          </li>
+          <li>
+            <label>Gather everyone who is free at the gate to hear it</label>
+            <outcome>Whoever is free will go out to the gate with {A_nameDef} to hear {X_nameDef} read the citation.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicMedal"><gather>true</gather></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} doesn't want a medal</label>
+            <outcome>{X_nameDef} notes it down and goes back to the road with the guard.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[come] We'll wait at the gate for {A_nameDef}.</li>
+          <li>[later] Then the citation goes into the record unread.</li>
+          <li>[citation] For courage under fire, the Republic gives its medal.</li>
+          <li>[citation] The Republic thanks you for what you did in that fight.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 73. A fugitive of the Republic ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RepublicFugitive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a fugitive of the Republic</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RepublicFugitive</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>19~35</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A fugitive of the Republic</li>
+          <li>A deserter at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a deserter from {FACTION}'s Civic Guard, has run to the gate and asks to join the colony. A detail of the Guard is close behind {X_objective}. The detail wants {X_objective} handed over; the Republic would take a fine of {COUNT} silver instead.</li>
+          <li>[papers] {X_nameDef}, a deserter from {FACTION}'s Civic Guard, has run to the gate and asks to join the colony. A detail of the Guard follows close behind. The colony holds the Republic's papers, and the detail expects it to hand {X_objective} over; the Republic would take a fine of {COUNT} silver instead.</li>
+          <li>[age0] {X_nameDef}, who ran from {FACTION}'s warriors, has come to the gate asking for a place at the colony, and some of those warriors are coming up the path after {X_objective}. They want {X_objective} back, or {COUNT} silver for the oath {X_pronoun} broke.</li>
+          <li>[age1] {X_nameDef}, a deserter from {FACTION}'s Guard, has run to the gate still in navy and asks to join the colony. A detail with halberds is close behind. They want {X_objective} handed over, or {COUNT} silver paid as {X_possessive} fine.</li>
+          <li>[age2] {X_nameDef}, a deserter from {FACTION}'s Civic Guard, has come to the gate with {X_possessive} rifle and asks to join the colony. A detail of the Guard is close behind with a warrant. The Republic wants {X_objective} handed over, or a fine of {COUNT} silver paid.</li>
+          <li>[age3] {X_nameDef}, a deserter from {FACTION}'s Guard, has come to the gate and asks to join the colony. A detail in recon armour is close behind with {X_possessive} name on a warrant. They want {X_objective} handed over, or a fine of {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay the fine ({COUNT} silver), and take {X_objective} in</label>
+            <outcome>The fine is carried out to the detail, and {X_nameDef} joins the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the deserter's fine</label><toGroup>true</toGroup><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FugitiveFine" />
+            </effects>
+          </li>
+          <li>
+            <label>Shelter {X_objective} from the detail</label>
+            <outcome>{X_nameDef} joins the colony, and the detail is told to leave without {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FugitiveShelter" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Hand {X_objective} over to the detail</label>
+            <outcome>The detail takes {X_nameDef} and leads {X_objective} away down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FugitiveHandOver" />
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[fine] I'll pay it back, every coin.</li>
+          <li>[shelter] Thank you, I won't forget this.</li>
+          <li>[handover] I thought you'd say that.</li>
+          <li>[paid] The fine is paid, so the Republic has no more claim on {X_objective}.</li>
+          <li>[angry] The Republic will hear that you sheltered a deserter.</li>
+          <li>[taken] The Republic thanks you, come along now.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 74. A ration post (the Last Republic) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RationPost</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a ration post</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RationPost</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A ration post</li>
+          <li>The Republic's rations</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate. With the {TALE} in the region, the Republic is keeping ration posts along the roads, and {X_pronoun} asks to keep one by the colony's road for a week, with two guards: the hungry who pass get a ration and go on their way. The post would buy food from the colony at the Republic's price, {COUNT} silver a meal.</li>
+          <li>[papers] {X_nameDef}, a clerk of {FACTION}, has come to the gate. With the {TALE} in the region, the Republic keeps ration posts on the roads, and {X_pronoun} asks to keep one by the colony's road for a week. As citizens the colony could draw rations there on its ration cards, and the post would buy food at {COUNT} silver a meal.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with two warriors and baskets of dried food. With the {TALE}, their people are feeding the hungry on the trails, and {X_pronoun} asks to keep a food store by the colony's trail for seven days. They would trade for more food at {COUNT} silver a meal.</li>
+          <li>[age1] {X_nameDef}, a clerk of {FACTION}, has come to the gate with two guards and a cart of sacks. With the {TALE} in the region, the Republic hands out rations on the roads, and {X_pronoun} asks to keep a post by the colony's road for a week. They would buy food at {COUNT} silver a meal.</li>
+          <li>[age2] {X_nameDef}, a clerk of {FACTION}, has come to the gate with two guards and crates of ration tins. With the {TALE} in the region, the Republic keeps ration posts on the roads, and {X_pronoun} asks to keep one by the colony's road for a week. The post would buy food at {COUNT} silver a meal.</li>
+          <li>[age3] {X_nameDef}, a clerk of {FACTION}, has come to the gate with two guards and a load of ration packs. With the {TALE} in the region, the Republic keeps ration posts on the roads, and {X_pronoun} asks to keep one by the colony's road for a week. It would buy food at {COUNT} silver a meal.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them keep the post by the road</label>
+            <outcome>The clerk and the guards will come in along the road and set up the post.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RationPost"><sack>0</sack></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them keep it, and give the post ten meals to start</label>
+            <outcome>Ten meals are carried out to {X_nameDef}, and the post will be set up by the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>10</count><label>meals for the ration post</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RationPost"><sack>10</sack></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not by our road</label>
+            <outcome>{X_nameDef} nods and goes back to the road to find another place.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll set up by the road before dark.</li>
+          <li>[later] There is a form for that, but I'll find another road.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- One of the hungry at the ration post asks to join (code-fired from the post's hour). -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RationJoin</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>one of the hungry asks</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RationJoin</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~65</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>One of the hungry asks</li>
+          <li>At the ration post</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION}, one of the hungry who came to the Republic's ration post {PLACE}, asks whether the colony could take {X_objective} in. There is nothing left where {X_pronoun} came from, {X_pronoun} says, and {X_pronoun} would work for {X_possessive} keep.</li>
+          <li>[age0] {X_nameDef} of {FACTION} came to the food store {PLACE} hungry, and asks whether the colony has room for one more. {X_pronoun} can carry and dig, {X_pronoun} says.</li>
+          <li>[age1] {X_nameDef} of {FACTION}, who came to the ration post {PLACE} for bread, asks whether the colony could take {X_objective} in. {X_pronoun} has walked a long way and has nowhere left to go.</li>
+          <li>[age2] {X_nameDef} of {FACTION} took a ration at the post {PLACE} and has come up to ask whether the colony needs another pair of hands. {X_pronoun} would rather work than queue for tins.</li>
+          <li>[age3] {X_nameDef} of {FACTION}, one of the hungry at the ration post {PLACE}, asks whether the colony would take {X_objective} in. {X_pronoun} has a trade, {X_pronoun} says, and nothing left to go back to.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} in</label>
+            <outcome>{X_nameDef} joins the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} two meals for the road</label>
+            <outcome>Two meals are carried out to {X_nameDef}, who eats one and goes on {X_possessive} way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>2</count><eat>true</eat><label>meals for the road</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[taken] Thank you, I'll work hard.</li>
+          <li>[meal] That's kind of you, thank you.</li>
+          <li>[later] I understand, times are hard everywhere.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 75. The colony's gravship (the Hollow Fleet) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GravshipLog</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the colony's gravship</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GravshipLog</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Odyssey</li>
+        </mods>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The colony's gravship</li>
+          <li>The Fleet's log</li>
+        </titles>
+        <texts>
+          <li>{FACTION} has called the {TALE} on the ship's own channel. Its officers would like to come down, walk the ship's decks with {A_nameDef}, its pilot, and enter it in the Fleet's log, as they do every ship they know. They offer {THING} from the hull's stores, or to teach {A_nameDef} what they know of flying it.</li>
+          <li>[panels] {FACTION} has called the {TALE} on the ship's own channel. Its officers would like to come down, walk its decks with {A_nameDef}, its pilot, and log it, and they offer {COUNT} {THING} from the hull's stores, or to teach {A_nameDef} what they know of the ship.</li>
+          <li>[age0] Runners of {FACTION} have brought word to the {TALE}: the crew's elders would like to walk the colony's ship with {A_nameDef}, its pilot, and write it into the crew's log. They offer {THING} kept from the old ship, or to teach {A_nameDef} what the crew remembers of flying.</li>
+          <li>[age1] A runner of {FACTION} has brought a sealed letter to the {TALE}: the Fleet's officers would walk the colony's ship with {A_nameDef}, its pilot, and enter it in their log. They offer {THING} from the hull's stores, or to teach {A_nameDef} what the ship's old books say of flying.</li>
+          <li>[age2] {FACTION} has called the {TALE} on the ship's channel. Two officers would come down near it, walk its decks with {A_nameDef}, its pilot, and enter it in the Fleet's log. They offer {THING} from the hull's stores, or a lesson in flying it.</li>
+          <li>[age3] {FACTION} has called the {TALE} on the ship's channel. Two officers would come down, walk its decks with {A_nameDef}, its pilot, and enter it in the Fleet's log. They offer {THING} from the hull's stores, or to teach {A_nameDef} the ship's systems.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them come down, and take {THING} from the hull's stores</label>
+            <outcome>The Fleet's officers will come down near the {TALE} and walk its decks with {A_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GravshipLog"><lesson>false</lesson></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them come down, and teach {A_nameDef} the ship</label>
+            <outcome>The Fleet's officers will come down near the {TALE}, walk its decks with {A_nameDef}, and teach {A_objective} what they know of flying it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GravshipLog"><lesson>true</lesson></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The Fleet's officers sign off on the channel.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[aboard] Permission to come aboard, and we'll start at the engine.</li>
+          <li>[deck] This is in good order, log it.</li>
+          <li>[deck] Holding up well, write that down.</li>
+          <li>[logged] Your ship is in the Fleet's log now.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 76. A sleeper of theirs (the Hollow Fleet) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FleetSleeperCasket</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a sleeper of theirs</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FleetSleeperCasket</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>19~40</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A sleeper of theirs</li>
+          <li>The Fleet's lost sleeper</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a deck-runner of {FACTION}, has come to the gate. The Fleet's records list a sleeper lost from the ship long ago, {B_nameDef}, and the old casket on the colony's land holds {B_objective}, still in the ship's deck grey after {COUNT} years asleep. The Fleet would take {B_objective} home and pay {RELATION} silver for the trouble.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate. The crew's elders say one of their own, {B_nameDef}, lies asleep in the old casket on the colony's land, {COUNT} years now, and {X_pronoun} has come to take {B_objective} home. The crew would give {RELATION} silver for it.</li>
+          <li>[age1] {X_nameDef}, a deck-runner of {FACTION}, has come to the gate with the ship's old roll. One of its sleepers, {B_nameDef}, lies in the casket on the colony's land after {COUNT} years. The Fleet would take {B_objective} home and pay {RELATION} silver.</li>
+          <li>[age2] {X_nameDef}, a deck-runner of {FACTION}, has come to the gate with a page from the ship's manifest. {B_nameDef}, one of the ship's sleepers, lies in the old casket on the colony's land after {COUNT} years. The Fleet would take {B_objective} home and pay {RELATION} silver.</li>
+          <li>[age3] {X_nameDef}, a deck-runner of {FACTION}, has come to the gate. The casket's signal matches one of the ship's sleepers, {B_nameDef}, asleep for {COUNT} years. The Fleet would take {B_objective} home and pay {RELATION} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hand {B_nameDef} over to {X_nameDef}</label>
+            <outcome>{X_nameDef} will open the casket and take {B_nameDef} home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetSleeper"><keep>false</keep></li>
+            </effects>
+          </li>
+          <li>
+            <label>Wake {B_nameDef} here and ask {B_objective} to stay</label>
+            <outcome>The colony will open the casket, and {B_nameDef} will stay at the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetSleeper"><keep>true</keep></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Leave the casket shut for now</label>
+            <outcome>{X_nameDef} goes back to the road, and {B_nameDef} sleeps on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetSleeperShut" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[handover] I'll open it carefully, the sleeper will be weak.</li>
+          <li>[kept] Then it's {B_nameDef}'s choice once {B_pronoun} wakes.</li>
+          <li>[later] The Fleet will wait, as it always does.</li>
+          <li>[home] Come on, the hull is still there and so is your bunk.</li>
+          <li>[stay] Everyone I knew is gone, so I'll stay here.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 77. The order to disembark (the Hollow Fleet) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OrderToDisembark</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the order to disembark</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OrderToDisembark</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </mods>
+        <ages>35~65</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The order to disembark</li>
+          <li>An officer of the Fleet</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an officer of {FACTION}, has come to the gate. Captain Sallow died before giving the order to disembark, and nobody since has had the rank to give it. {A_nameDef} holds the Empire's title of {TALE}, and the Fleet's rule accepts that rank. {X_pronoun} asks {A_objective} to come to the hull at {PLACE}, about {RELATION} days away, and give the order. Some of the crew would come back to the colony with {A_objective}, and the rest would settle near the hull.</li>
+          <li>[noarise] {X_nameDef}, an officer of {FACTION}, has come to the gate. Captain Sallow died before giving the order to disembark, and nobody since has had the rank to give it. {A_nameDef} holds the Empire's title of {TALE}, which the Fleet's rule accepts. {X_pronoun} asks {A_objective} to come to the hull at {PLACE} and give the order. Some of the crew would come back to the colony with {A_objective}.</li>
+          <li>[age0] {X_nameDef}, an elder of {FACTION}'s crew, has come to the gate. Their first captain never told them to leave the old ship, and nobody since has had the right. {A_nameDef} holds the Empire's title of {TALE}, and the crew would accept the order from {A_objective} at {PLACE}.</li>
+          <li>[age1] {X_nameDef}, an officer of {FACTION}, has come to the gate with the ship's rule book. The order to disembark was never given, and the book says only an officer of rank may give it. {A_nameDef} holds the Empire's title of {TALE}. Would {A_pronoun} come to the hull at {PLACE} and give it?</li>
+          <li>[age2] {X_nameDef}, an officer of {FACTION} in deck grey, has come to the gate. The order to disembark was never given, and the Fleet's rule needs an officer of rank to give it. {A_nameDef} holds the Empire's title of {TALE}, and {X_pronoun} asks {A_objective} to come to the hull at {PLACE} and give the order.</li>
+          <li>[age3] {X_nameDef}, an officer of {FACTION}, has come to the gate. The ship's records still wait for the order to disembark, which only an officer of rank may give. {A_nameDef} holds the Empire's title of {TALE}, and {X_pronoun} asks {A_objective} to come to the hull at {PLACE} and give it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to give the order, and welcome the crew who come back</label>
+            <outcome>{A_nameDef} will set out for the hull at {PLACE} to give the order to disembark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OrderToDisembark"><withCrew>true</withCrew></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to give the order, and let the crew find their own way</label>
+            <outcome>{A_nameDef} will set out for the hull at {PLACE} to give the order, and come home alone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OrderToDisembark"><withCrew>false</withCrew></li>
+            </effects>
+          </li>
+          <li>
+            <label>It isn't {A_nameDef}'s place</label>
+            <outcome>{X_nameDef} salutes and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[order] The crew will be waiting at their posts.</li>
+          <li>[later] Then we hold position, as we always have.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 78. A landing party (the Hollow Fleet) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LandingParty</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a landing party</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LandingParty</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~40</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A landing party</li>
+          <li>The Fleet's survey</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an ensign of {FACTION}, has come to the gate. A landing party of the Fleet would camp by the colony for five to seven days and survey the land for a place to land, for when the order to disembark comes. They would buy a week's food from the colony, and their medic could see to the colony's sick.</li>
+          <li>[age2,shuttle] {X_nameDef}, an ensign of {FACTION} in deck grey, has come to the gate. The Fleet's shuttle has set a landing party down beyond the colony's land, and they would camp by the colony for five to seven days to survey it, for when the order to disembark comes. They would buy food, and their medic could see to the colony's sick.</li>
+          <li>[age2,pods] {X_nameDef}, an ensign of {FACTION} in deck grey, has come to the gate. A landing party came down by drop pod beyond the colony's land, and would camp by the colony for five to seven days to survey it, for when the order to disembark comes. They would buy food, and their medic could see to the colony's sick.</li>
+          <li>[age3,shuttle] {X_nameDef}, an ensign of {FACTION}, has come to the gate with a survey scanner. The Fleet's shuttle has set a landing party down beyond the colony's land, and they would camp by the colony for five to seven days and map it for a landing site, for when the order comes. They would buy food, and their medic could see to the colony's sick.</li>
+          <li>[age3,pods] {X_nameDef}, an ensign of {FACTION}, has come to the gate with a survey scanner. A landing party came down by drop pod beyond the colony's land, and would camp by the colony for five to seven days and map it for a landing site, for when the order comes. They would buy food, and their medic could see to the colony's sick.</li>
+          <li>[age0] {X_nameDef} of {FACTION}'s crew has walked to the gate. A party of the crew would camp by the colony for some days and walk the land, looking for a place for the crew to settle one day. They would trade for food, and their healer could see to the colony's sick.</li>
+          <li>[age1] {X_nameDef}, an ensign of {FACTION}, has come to the gate with a surveyor's chain over {X_possessive} shoulder. A party of the crew would camp by the colony for some days and map the land for a place to land, for when the order comes. They would buy food, and their surgeon could see to the colony's sick.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp and survey</label>
+            <outcome>The landing party will come in and make camp.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LandingParty"><fed>false</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and sell them the week's food now (12 meals)</label>
+            <outcome>Twelve meals are carried out to {X_nameDef}, who pays for them, and the landing party will come in and make camp.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>12</count><label>meals for the landing party</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_PartyBuys"><meals>12</meals></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LandingParty"><fed>true</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} salutes and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll be set up by the first watch.</li>
+          <li>[later] Understood, we'll survey somewhere else.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 79. A gene taken out (the Helix Works) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GeneTakenOut</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a gene taken out</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GeneTakenOut</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>28~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A gene taken out</li>
+          <li>The Works' sequencer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate. {X_pronoun} has heard that {B_nameDef} carries {TALE}, a gene that does {B_objective} harm, and offers to take it out where {B_pronoun} stands, two hours' work, for {COUNT} silver. {B_nameDef} would need a little more food afterwards.</li>
+          <li>[genepack] {X_nameDef}, a sequencer of {FACTION}, has come to the gate. {X_pronoun} offers to take {TALE} out of {B_nameDef}, a gene that does {B_objective} harm, two hours' work where {B_pronoun} stands, for {COUNT} silver or one of the colony's genepacks. {B_nameDef} would need a little more food afterwards.</li>
+          <li>[age2] {X_nameDef}, a sequencer of {FACTION} in a mint lab coat, has come to the gate with a case of instruments. {X_pronoun} offers to take {TALE} out of {B_nameDef}, two hours' work where {B_pronoun} stands, for {COUNT} silver. Without it {B_nameDef} would need a little more food.</li>
+          <li>[age3] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with a gene sequencer in a case. The Works can take {TALE} out of {B_nameDef} in two hours where {B_pronoun} stands, for {COUNT} silver. {B_nameDef} would need a little more food afterwards.</li>
+          <li>[age0|age1] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with a case the colony's people don't recognise. {X_pronoun} says {B_nameDef} carries something in {B_possessive} blood that does {B_objective} harm, {TALE}, and that {X_pronoun} can take it out in two hours, for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Have it taken out ({COUNT} silver)</label>
+            <outcome>The silver is carried out to {X_nameDef}, who goes to {B_nameDef} and starts the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the gene taken out</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GeneOut" />
+            </effects>
+          </li>
+          <li>
+            <label>Pay with one of the colony's genepacks</label>
+            <outcome>A genepack is carried out to {X_nameDef}, who goes to {B_nameDef} and starts the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>Genepack</what><count>1</count><label>a genepack for the Works</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GeneOut" />
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} closes the case and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[work] Stand still for me, this takes about two hours.</li>
+          <li>[later] Every body is a draft, but it's your choice.</li>
+          <li>[done] It's out, and you'll want a bigger supper for a while.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 80. A whole xenogerm (the Helix Works) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WholeXenogerm</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a whole xenogerm</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WholeXenogerm</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>28~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A whole xenogerm</li>
+          <li>The Works' offer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate with a xenogerm grown in the Works' vats: the whole {TALE} kind. {X_pronoun} offers to write it into {B_nameDef} where {B_pronoun} stands, three hours' work, for {COUNT} silver and two of the colony's genepacks, or all in silver. {B_nameDef} would lie in a coma for some days afterwards while it takes.</li>
+          <li>[faith] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with a whole xenogerm of the {TALE} kind, and offers to write it into {B_nameDef}, for {COUNT} silver and two genepacks, or all in silver. {B_nameDef}'s faith, {RELATION}, holds to its own kinds of people, and would not look kindly on it. {B_nameDef} would lie in a coma for some days afterwards.</li>
+          <li>[age2] {X_nameDef}, a sequencer of {FACTION} in a mint lab coat, has come to the gate with a cold case. Inside is a whole xenogerm of the {TALE} kind, and {X_pronoun} would write it into {B_nameDef}, three hours' work, for {COUNT} silver and two genepacks, or all in silver. A coma of some days follows.</li>
+          <li>[age3] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with a xenogerm of the {TALE} kind in a sealed vial. {X_pronoun} offers to write it into {B_nameDef}, three hours' work, for {COUNT} silver and two genepacks, or all in silver. {B_nameDef} would lie in a coma for some days while it takes.</li>
+          <li>[age0|age1] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with a sealed case. {X_pronoun} says the Works could make {B_nameDef} one of the {TALE} kind, three hours' work, for {COUNT} silver and two genepacks, or all in silver, though {B_pronoun} would sleep for some days afterwards.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay {COUNT} silver and two genepacks</label>
+            <outcome>The silver and the genepacks are carried out to {X_nameDef}, who goes to {B_nameDef} and starts the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the xenogerm</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>Genepack</what><count>2</count><label>genepacks for the Works</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WholeXenogerm" />
+            </effects>
+          </li>
+          <li>
+            <label>Pay all in silver</label>
+            <outcome>The silver is carried out to {X_nameDef}, who goes to {B_nameDef} and starts the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><variant>true</variant><label>the xenogerm</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WholeXenogerm" />
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} closes the case and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[work] Stand still, this will take about three hours.</li>
+          <li>[later] Every body is a draft, but we ask before we change it.</li>
+          <li>[done] It's written in, and you'll sleep for a while now.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 81. A hybrid beast (the Helix Works) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HybridBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a hybrid beast</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HybridBeast</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>vanillaexpanded.vgeneticse</li>
+        </mods>
+        <ages>24~55</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A hybrid beast</li>
+          <li>From the Works' vats</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate leading a young {TALE} from the Works' vats. {X_pronoun} would sell it to the colony for {COUNT} silver, and {A_nameDef}, who handles the colony's animals, would be its master.</li>
+          <li>[age2] {X_nameDef}, a vat-keeper of {FACTION} in a mint coat, has come to the gate with a young {TALE} on a lead. The Works grew it in their vats, and {X_pronoun} would sell it for {COUNT} silver, with {A_nameDef} as its master.</li>
+          <li>[age3] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a young {TALE} from the Works' vats, its records on a datapad. {X_pronoun} would sell it for {COUNT} silver, with {A_nameDef} as its master.</li>
+          <li>[age0|age1] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate leading a young beast nobody at the colony has seen before, a {TALE}. The Works raised it, {X_pronoun} says, and would sell it for {COUNT} silver, with {A_nameDef} to look after it.</li>
+          <li>{X_nameDef} of {FACTION} has brought a young {TALE} to the gate, one of the Works' own hybrids. It would cost {COUNT} silver, and {A_nameDef} could take it on.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the {TALE} ({COUNT} silver)</label>
+            <outcome>The silver is carried out to {X_nameDef}, who hands the {TALE} over to {A_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the young {TALE}</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HybridBeast" />
+            </effects>
+          </li>
+          <li>
+            <label>Buy it, and have {X_objective} show {A_nameDef} how it's kept</label>
+            <outcome>The silver is carried out to {X_nameDef}, who hands the {TALE} over and spends a few hours showing {A_nameDef} how to feed and handle it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the young {TALE}</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HybridBeast" />
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><xpPerHour>500</xpPerHour><duration>2~3</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} leads the {TALE} back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sold] It's healthy and it's yours now.</li>
+          <li>[later] Someone else will want it, they always do.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 82. A field lab (the Helix Works) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FieldLab</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a field lab</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FieldLab</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~55</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A field lab</li>
+          <li>The Works in the field</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate. Two sequencers and {X_objective} would camp by the colony for a week and take samples from the land's beasts and plants. While they are here the colony could ask for their gene work, and they would buy genepacks.</li>
+          <li>[hybrid] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a young hybrid of the Works on a lead. Two sequencers and {X_objective} would camp by the colony for a week to sample the land's beasts and plants, and the colony could ask for their gene work while they are here.</li>
+          <li>[age2] {X_nameDef}, a vat-keeper of {FACTION} in a mint coat, has come to the gate. The Works would set up a field lab by the colony for a week, two sequencers and {X_objective}, with sample cases and a cold box, and the colony could ask for their gene work while they stay.</li>
+          <li>[age3] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate. The Works would set up a field lab by the colony for a week, two sequencers and {X_objective}, to sequence the land's beasts and plants, and the colony could ask for their gene work while they stay.</li>
+          <li>[age0|age1] {X_nameDef} of {FACTION} has come to the gate. Three of the Works would camp by the colony for some days, taking samples from the beasts and plants, and offer their skills to the colony while they stay.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them set up the lab</label>
+            <outcome>The Works' people will come in and set up their lab.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldLab" />
+            </effects>
+          </li>
+          <li>
+            <label>Let them set up, and send ten meals along</label>
+            <outcome>Ten meals are carried out to {X_nameDef}, and the Works' people will come in and set up their lab.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>10</count><label>meals for the field lab</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldLab" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll be set up by tonight.</li>
+          <li>[later] We'll find another place to sample.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

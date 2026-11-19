@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 779; modelled: 779; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** after two, **4,239 KB** after five.
+Saved collections found: 787; modelled: 787; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** after two, **4,240 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -478,6 +478,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Camps/CampTracker.cs:homes` | one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows below), a lost home's kept 30 days, then let go | fixed | 1 | 1 | 1 | 0.3 |
 | `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 6 | 6 | 6 | 0.3 |
 | `Health/HealthTracker.cs:partsSeen` | missing parts colonists still have | colonists | 10 | 10 | 10 | 0.2 |
+| `Peoples/Events8/PeopleEvents8Book.cs:sleepers` | the Fleet's sleepers left asleep in the colony's old caskets, four kept | cap | 0 | 1 | 2 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantTicks` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantVoiced` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Annals.cs:joined` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
@@ -492,6 +493,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Peoples/Events3/FieldSickhouse.cs:patients` | the field sickhouse's patients, two to six, while its camp stands | fixed | 6 | 6 | 6 | 0.2 |
 | `Peoples/Events5/PeopleEvents5Book.cs:mendRaids` | the raids whose night the Wheel's crew was rolled for, a home and a tick, eight kept | cap | 4 | 8 | 8 | 0.2 |
 | `Peoples/Events6/PeopleEvents6Book.cs:rainRolled` | the dry spells the storm-walkers were rolled for, a home and a condition, eight kept | cap | 2 | 4 | 8 | 0.2 |
+| `Peoples/Events8/FieldLab.cs:tasks` | the colony's gene work and samples waiting at the field lab, while the camp stands | fixed | 3 | 3 | 3 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Visitors/VisitorTrip.cs:people` | a visit's people, while it lasts | while | 6 | 6 | 6 | 0.2 |
@@ -575,6 +577,8 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |
 | `Peoples/Events3/FieldSickhouse.cs:ours` | the colony's own sick in the ward, while the camp stands | fixed | 3 | 3 | 3 | 0.1 |
 | `Peoples/Events4/FloodedOut.cs:guests` | the flooded families' old and young taken in as guests, three at most, while the camp stands | fixed | 3 | 3 | 3 | 0.1 |
+| `Peoples/Events8/LandingParty.cs:crew` | the landing party's crew as they came, six at most, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
+| `Peoples/Events8/PeopleEvents8Book.cs:medalDeeds` | the deeds rolled for the Republic's medal, their ids, PeopleEvents8Math.MaxMedalDeeds kept | cap | 3 | 6 | 12 | 0.1 |
 | `PlayOut/OnMapTimed.cs:things` | per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/PlayOuts.cs:risks` | per play-out: an answer's fight or walk-out held for the scene, one or two at most | fixed | 1 | 1 | 1 | 0.1 |
 | `PlayOut/PlayOuts.cs:spots` | per play-out | fixed | 2 | 2 | 2 | 0.1 |
@@ -590,6 +594,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Heart/HeartData.cs:needLack` | per heart: the four needs | fixed | 4 | 4 | 4 | 0.1 |
 | `Peoples/Events3/FieldSickhouse.cs:asked` | the sickhouse's asks made, four at most, while the camp stands | fixed | 4 | 4 | 4 | 0.1 |
 | `Peoples/Events4/SummerSchool.cs:ownBooks` | the books the fellows brought themselves, by id, while the camp stands | fixed | 4 | 4 | 4 | 0.1 |
+| `Peoples/Events8/PeopleEvents8Book.cs:elections` | the colony's elections the Republic was rolled for, a home and a tick, six kept | cap | 1 | 2 | 5 | 0.1 |
 | `Peoples/Magic/PeoplesMagicWatch.cs:cast` | the visitors who cast for the colony this visit (once a visit each), dropped when they leave | while | 4 | 4 | 4 | 0.1 |
 | `Building/Automations.cs:cells` | per action: cells added to a zone that was there | fixed | 8 | 8 | 8 | 0.1 |
 | `Gods/Saints/SaintsBook.cs:waiting` | remarkable deaths waiting for the council's card, SaintsMath.CandidateDays each, SaintsMath.MaxWaiting at once | window | 0 | 0 | 0 | 0.1 |
@@ -618,8 +623,10 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Health/MedicineChoice.cs:bestByAnswer` | ids of patients the council gave the best medicine, let go once their care changes | cap | 1 | 1 | 3 | 0.1 |
 | `Peoples/Events4/PeopleEvents4Book.cs:schoolBest` | the summer school's best students, by id, PeopleEvents4Math.MaxFellows kept | cap | 0 | 1 | 2 | 0.1 |
+| `Peoples/Events8/PeopleEvents8Book.cs:famines` | the famines in the region a ration post was rolled for, a world event and a tick, six kept | cap | 0 | 1 | 2 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
+| `Peoples/Events8/RationPost.cs:hungry` | the hungry at the ration post's fire, three at most, while the camp stands | fixed | 3 | 3 | 3 | 0.1 |
 | `Colonies/LandingRecord.cs:conditions` | the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open | while | 2 | 2 | 2 | 0.0 |
 | `Diplomacy/DiplomacyBook.cs:chosenCarts` | trade pacts whose valuable cart was picked on purpose, one id a live pact, dropped when it ends | fixed | 2 | 2 | 2 | 0.0 |
 | `Peoples/Events7/PeopleEvents7Book.cs:picketRolled` | the strikes a picket was rolled for, a people and a tick, eight kept | cap | 0 | 1 | 2 | 0.0 |
@@ -633,6 +640,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** aft
 | `Gods/OnMap/GodsOnMapBook.cs:weatherTicks` | beside it, the tick | fixed | 1 | 1 | 1 | 0.0 |
 | `Harm/Harm.cs:calm` | of the hunts' game that can turn, the ones whose turn within the shared budget didn't come up, pruned with them | while | 1 | 1 | 1 | 0.0 |
 | `Lean/Homes.cs:known` | the homes at the last hourly look (their settlements' ids), one per home | fixed | 1 | 1 | 1 | 0.0 |
+| `Peoples/Events8/PeopleEvents8Book.cs:disembarked` | the Fleets whose order to disembark was given, their ids, eight kept | cap | 0 | 0 | 1 | 0.0 |
 | `Lives/Legacy.cs:cameOfAgeTick` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Lives/Legacy.cs:cameOfAge` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Building/ShelfReserves.cs:kinds` | read from saves of 0.23.0 and 0.23.1 only, then kept as entries | while | 0 | 0 | 0 | 0.0 |

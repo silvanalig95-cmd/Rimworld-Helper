@@ -142,7 +142,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// An officer of {FACTION} ({X}) at the gate: {A} holds the Empire's title of {TALE}, the rank the Fleet's rule asks for, and the Fleet
-    /// asks {A_objective} to come to the hull at {PLACE} and give the order to disembark; {COUNT} of the crew would come home with them.
+    /// asks {A_objective} to come to the hull at {PLACE}, {RELATION} days away, and give the order to disembark; {COUNT} of the crew would come home with them.
     /// </summary>
     public class HappeningWorker_OrderToDisembark : HappeningWorker_Visitors
     {
@@ -165,6 +165,7 @@ namespace ColonyCouncil
             ctx.placeName = hull.Label;
             ctx.count = PeopleEvents8Math.Joiners(Rand.Value);
             ctx.variant = Mathf.Max(1, Mathf.RoundToInt(SeasonAway.RoadDays(ctx.map, hull.Tile)));
+            ctx.relation = ctx.variant.ToString();
             ctx.stranger = Arrivals.Make(PeoplesD.KindNamed(ctx.faction, "Rimfolk_HollowFleet_Officer"), ctx.faction, ext.ages);
             return ctx.stranger != null;
         }

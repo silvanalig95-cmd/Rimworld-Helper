@@ -103,6 +103,8 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             if (!byDefault) PeoplesG.Say(ctx.stranger, Ext, ctx, option <= 1 ? "sold" : "later");
+            // Not bought: the vat-keeper leads the beast home with them.
+            if (option > 1 || byDefault) PeoplesG.Home(PeoplesG.Party(ctx).Where(p => p.Faction != null && !p.Faction.IsPlayer));
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

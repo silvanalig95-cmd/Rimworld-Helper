@@ -302,6 +302,31 @@ PLAY = {
     "DilemmaEffect_OilInGround": "the well drilled or the seam marked",
     "DilemmaEffect_Picket": "a picket by the road",
     "DilemmaEffect_PicketFed": "the strike settled at the picket",
+    # The peoples' own events, round 8 (Peoples/Events8/): the clerk walking the roll and standing by the count, the citation read at
+    # the gate, the deserter's fine carried out, sheltered or led away, the ration post by the road and what it buys and hands out, the
+    # officers walking the gravship's decks, the casket opened, the colonist on the road to the hull, the landing party's camp and the
+    # meals it buys, the gene taken out and the xenogerm written in at the colonist's side, the hybrid handed over, the field lab and
+    # the work done at its people's side.
+    "DilemmaEffect_VoteObserver": "the roll walked, the count stood by",
+    "DilemmaEffect_RepublicMedal": "the citation read at the gate",
+    "DilemmaEffect_FugitiveFine": "the fine paid at the gate",
+    "DilemmaEffect_FugitiveShelter": "the deserter taken in",
+    "DilemmaEffect_FugitiveHandOver": "the deserter led away",
+    "DilemmaEffect_RationPost": "a ration post by the road",
+    "DilemmaEffect_RationSold": "meals sold to the post",
+    "DilemmaEffect_RationCards": "rations set down at the post",
+    "DilemmaEffect_GravshipLog": "the decks walked",
+    "DilemmaEffect_FleetSleeper": "the casket opened",
+    "DilemmaEffect_OrderToDisembark": "the road to the hull",
+    "DilemmaEffect_LandingParty": "a camp by the colony",
+    "DilemmaEffect_PartyBuys": "meals sold to the camp",
+    "DilemmaEffect_GeneOut": "the gene taken out where they stand",
+    "DilemmaEffect_WholeXenogerm": "the xenogerm written in where they stand",
+    "DilemmaEffect_HybridBeast": "the beast handed over",
+    "DilemmaEffect_FieldLab": "a field lab by the colony",
+    "DilemmaEffect_LabGene": "gene work at the colonist's side",
+    "DilemmaEffect_LabSample": "a sample drawn at the colonist's side",
+    "DilemmaEffect_LabBuys": "a genepack sold to the camp",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

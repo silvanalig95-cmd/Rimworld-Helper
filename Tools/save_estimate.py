@@ -961,6 +961,21 @@ MODEL = {
     "Peoples/Events7/PeopleEvents7Book.cs:evenings": ("cap", (4, 1 / 60), 140, "the organizers' evenings and their petitions, four kept"),
     "Peoples/Events7/PeopleEvents7Book.cs:picketRolled": ("cap", (8, 1 / 120), 20, "the strikes a picket was rolled for, a people and a tick, eight kept"),
     "Peoples/Events7/WorkThatStays.cs:cells": ("fixed", 24, 20, "the cells of the guild's work (a bridge's crossing two cells wide), while the camp stands"),
+    # The peoples' own events, round 8 (Peoples/Events8/PeopleEvents8Book.cs): the elections the Republic was rolled for and the famines
+    # its ration post was, six keys each; the deeds rolled for its medal, PeopleEvents8Math.MaxMedalDeeds ids; the Fleet's sleepers left
+    # asleep in the colony's caskets, four kept; the Fleets whose order to disembark was given, eight ids. The camps' own states live
+    # while the camp does: the hungry at the ration post (three at most), the landing party's crew (six), the field lab's waiting work
+    # (PeopleEvents8Math.MaxLabTasks).
+    "Peoples/Events8/PeopleEvents8Book.cs:elections": ("cap", (6, 1 / 60), 20, "the colony's elections the Republic was rolled for, a home and a tick, six kept"),
+    "Peoples/Events8/PeopleEvents8Book.cs:medalDeeds": ("cap", (const("Peoples/Events8/PeopleEvents8Math.cs", "MaxMedalDeeds", 12), 1 / 20), 10,
+                                                       "the deeds rolled for the Republic's medal, their ids, PeopleEvents8Math.MaxMedalDeeds kept"),
+    "Peoples/Events8/PeopleEvents8Book.cs:famines": ("cap", (6, 1 / 120), 30, "the famines in the region a ration post was rolled for, a world event and a tick, six kept"),
+    "Peoples/Events8/PeopleEvents8Book.cs:sleepers": ("cap", (4, 1 / 120), 100, "the Fleet's sleepers left asleep in the colony's old caskets, four kept"),
+    "Peoples/Events8/PeopleEvents8Book.cs:disembarked": ("cap", (8, 1 / 240), 10, "the Fleets whose order to disembark was given, their ids, eight kept"),
+    "Peoples/Events8/RationPost.cs:hungry": ("fixed", 3, 20, "the hungry at the ration post's fire, three at most, while the camp stands"),
+    "Peoples/Events8/LandingParty.cs:crew": ("fixed", 6, 20, "the landing party's crew as they came, six at most, while the camp stands"),
+    "Peoples/Events8/FieldLab.cs:tasks": ("fixed", const("Peoples/Events8/PeopleEvents8Math.cs", "MaxLabTasks", 3), 80,
+                                         "the colony's gene work and samples waiting at the field lab, while the camp stands"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the

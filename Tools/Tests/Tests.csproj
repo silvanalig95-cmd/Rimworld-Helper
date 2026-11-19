@@ -327,6 +327,7 @@
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events5/PeopleEvents5Math.cs" Link="PeopleEvents5Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events6/PeopleEvents6Math.cs" Link="PeopleEvents6Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events7/PeopleEvents7Math.cs" Link="PeopleEvents7Math.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/Events8/PeopleEvents8Math.cs" Link="PeopleEvents8Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeopleAgesMath.cs" Link="PeopleAgesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ThingRolesMath.cs" Link="ThingRolesMath.cs" />

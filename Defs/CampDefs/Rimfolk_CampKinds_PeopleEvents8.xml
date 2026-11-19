@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 8 (Source/ColonyCouncil/Peoples/Events8/RationPost.cs, LandingParty.cs, FieldLab.cs; each a camp kind
+    with ways of its own, Camps/CampWorker.cs): the Last Republic's ration post by the colony's road in a famine (item 74), a landing
+    party of the Hollow Fleet surveying the land (item 78), and the Helix Works' field lab (item 82). None comes on the camps' own draw
+    (weight 0): each comes when the colony answers its event (Rimfolk_Evt_RationPost, Rimfolk_Evt_LandingParty, Rimfolk_Evt_FieldLab).
+  -->
+
+  <!-- ===================== 74. A ration post (the Last Republic) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_RationPost</defName>
+    <label>ration post</label>
+    <workerClass>ColonyCouncil.CampWorker_RationPost</workerClass>
+    <arrives>8~14</arrives>
+    <calling>citizens</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>7~7</days>
+    <ages>20~60</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.05</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>table</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the Republic's clerk takes the post, its table and its tents on to the next road</leavesWhy>
+    <titles>
+      <li>The ration post</li>
+      <li>Rations by the road</li>
+    </titles>
+    <texts>
+      <li>A clerk and two guards of {FACTION} are coming in along the road with crates of rations, {X_nameDef} at the front. They will keep a ration post by the colony's road for a week.</li>
+      <li>[lowtech] A clerk of {FACTION} and two of its guard are walking in along the road with sacks of grain and dried meat. They will hand out food to the hungry by the colony's road for seven days.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s ration post is set up {PLACE}, by the road: a fire, a table with the rations stacked on it, and a guard on either side.</li>
+      <li>The Republic's clerk has opened the ration post {PLACE}, by the road, with the roll book on the table and the rations behind it.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the guards at the ration post {PLACE}, says {X_pronoun} has handed out enough rations, and asks whether there is a place for {X_objective} at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[fed,riot] The Republic's ration post packed up and went on to the next road. It fed {FED} of the hungry while it stood, though the queue came to blows once when the rations ran out.</li>
+      <li>[fed,turned] The Republic's ration post packed up and went on to the next road, having fed {FED} of the hungry; its guards turned one away who came from a people at war with the Republic.</li>
+      <li>[fed] The Republic's ration post packed up and went on to the next road. It fed {FED} of the hungry while it stood by the colony.</li>
+      <li>The Republic's ration post packed up its table and tents and went on to the next road.</li>
+    </farewell>
+    <lines>
+      <li>One ration each, and keep the line straight.</li>
+      <li>Everyone counted, everyone fed.</li>
+      <li>Your name for the roll, please.</li>
+      <li>There is a form for that.</li>
+      <li>The Republic never fell.</li>
+    </lines>
+    <momentLines>
+      <li>[ration] Here's your ration, next please.</li>
+      <li>[short] The rations are gone until the next delivery.</li>
+      <li>[turned] Your people are at war with the Republic, so there's nothing here for you.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat by the ration post's fire and heard how the old postmaster read the laws aloud on the radio every evening until other towns answered.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Sell the post food at the Republic's price (20 meals)</label>
+        <tip>One of the colony carries twenty meals out to the ration post, and the clerk pays the Republic's fixed price for them. The post can feed the hungry for longer.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <askTexts>
+          <li>{X_nameDef} has come up from the ration post by the road. There are more hungry on the road than the post has rations for, {X_pronoun} says, and asks whether the colony would sell it twenty meals at the Republic's price.</li>
+        </askTexts>
+        <refuseLabel>We can't spare the food</refuseLabel>
+        <refused>
+          <li>{X_nameDef} notes it in the roll book and goes back to the post.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Twenty meals are going out to the ration post, and the clerk will pay for them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the ration post</label><what>meals</what><count>20</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RationSold"><meals>20</meals></li>
+        </effects>
+      </li>
+      <li>
+        <key>cards</key>
+        <label>Draw rations on the colony's ration cards</label>
+        <tip>As citizens of the Republic (the colony holds its papers), the colony may draw rations at the post: a ration for each of its people, set down by the post's fire for the colony to fetch.</tip>
+        <warm>1</warm>
+        <outcomes>
+          <li>The clerk checks the colony's papers and sets its rations down by the post's fire.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RationCards" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to the hurt at the post</label>
+        <tip>The colony's doctor goes over to the ration post and tends whoever is hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the ration post to see to the hurt.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 78. A landing party (the Hollow Fleet) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_LandingParty</defName>
+    <label>landing party</label>
+    <workerClass>ColonyCouncil.CampWorker_LandingParty</workerClass>
+    <arrives>8~14</arrives>
+    <calling>crew</calling>
+    <weight>0</weight>
+    <people>4~6</people>
+    <days>5~7</days>
+    <ages>19~55</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.3</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li><li>Mend</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the landing party leaves the ground as they found it, as the Fleet's rule says</leavesWhy>
+    <titles>
+      <li>The landing party</li>
+      <li>The Fleet's survey</li>
+    </titles>
+    <texts>
+      <li>A landing party of {FACTION} is walking in from where their shuttle set them down, {X_nameDef} at the front, in step. They will camp by the colony for some days and survey the land.</li>
+      <li>[lowtech] A party of {FACTION}'s crew is walking in, {X_nameDef} at the front, with a chain and stakes for measuring. They will camp by the colony for some days and survey the land.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s landing party has made camp {PLACE}: one shelter with the bunks in a row, the fire laid square, and a watch posted.</li>
+      <li>The landing party is set up {PLACE}, everything stowed and logged, and the first watch has been rung.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, a deckhand of the landing party camped {PLACE}, asks to disembark here and join the colony. The officer has told {X_objective} it isn't allowed, but {X_pronoun} has been holding position all {X_possessive} life and would rather live on the ground.</li>
+      <li>{X_nameDef} of the landing party {PLACE} has come over on {X_possessive} own and asks whether the colony would take {X_objective} in. The officer would not give leave, {X_pronoun} says, but {X_pronoun} is tired of waiting for an order that never comes.</li>
+    </joinTexts>
+    <farewell>
+      <li>[deserter] The landing party struck camp and walked off toward their shuttle, one fewer than came, the officer logging it without a word.</li>
+      <li>[warned] The landing party struck camp and walked off toward their shuttle. Their watch was the first to see the raiders come.</li>
+      <li>[surveyed] The landing party struck camp and walked off toward their shuttle, with {SURVEYED} places on the colony's land surveyed and logged.</li>
+      <li>The landing party struck camp and walked off toward their shuttle.</li>
+    </farewell>
+    <lines>
+      <li>Holding position.</li>
+      <li>Log it, all of it.</li>
+      <li>For when the order comes.</li>
+      <li>Bunks squared away by the first bell.</li>
+      <li>Every watch is kept.</li>
+    </lines>
+    <momentLines>
+      <li>[bell] Change of the watch, ring the bell.</li>
+      <li>[deserter] Nobody gave you leave to disembark.</li>
+      <li>[survey] Good ground here, log it.</li>
+      <li>[raiders] Raiders on the horizon, warn the colony.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the landing party by their fire and heard how Captain Sallow kept the crew at their posts after the ship came down.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Sell them a week's meals (12 meals)</label>
+        <tip>One of the colony carries twelve meals out to the landing party, and they pay for them at their price.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <askTexts>
+          <li>{X_nameDef} has come over from the landing party's camp. Their rations are running low, {X_pronoun} says, and asks whether the colony would sell them twelve meals.</li>
+        </askTexts>
+        <refuseLabel>We need it ourselves</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will go on half rations.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>Twelve meals are going out to the landing party, who will pay for them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the landing party</label><what>meals</what><count>12</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_PartyBuys"><meals>12</meals></li>
+        </effects>
+      </li>
+      <li>
+        <key>medic</key>
+        <label>Ask their medic to see to {A_nameDef}</label>
+        <tip>The landing party's medic comes over to {A_nameDef}'s side and tends {A_objective}, as they would one of the crew.</tip>
+        <needs>sick</needs>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <outcomes>
+          <li>The landing party's medic is coming over to see to {A_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes"><to>A</to><who>healer</who><count>1</count><doing>tend</doing><hours>1~2</hours><when>8~19</when></li>
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their sick</label>
+        <tip>The colony's doctor goes over to the landing party's camp and tends whoever of them is sick or hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the landing party's camp to see to their sick.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 82. A field lab (the Helix Works) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_FieldLab</defName>
+    <label>field lab</label>
+    <workerClass>ColonyCouncil.CampWorker_FieldLab</workerClass>
+    <arrives>8~14</arrives>
+    <calling>editors</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>7~7</days>
+    <ages>24~60</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>table</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the Works pack their samples and their table and take them back to the vats</leavesWhy>
+    <titles>
+      <li>The field lab</li>
+      <li>The Works in the field</li>
+    </titles>
+    <texts>
+      <li>Two sequencers and a vat-keeper of {FACTION} are walking in with sample cases, {X_nameDef} at the front. They will camp by the colony for a week and sample the land's beasts and plants.</li>
+      <li>[lowtech] Three of {FACTION} are walking in with boxes and jars, {X_nameDef} at the front. They will camp by the colony for some days and take samples of the land's beasts and plants.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s field lab is set up {PLACE}: tents, a fire, and a table covered with sample jars.</li>
+      <li>The Works' people have made camp {PLACE} and laid out their sample cases on a table by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the field lab camped {PLACE} says {X_pronoun} has spent enough of {X_possessive} life in the vat halls, and asks whether there is a place for {X_objective} at the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[loose] The field lab packed up and went back to the vats, without the beast that got loose.</li>
+      <li>[sampled] The field lab packed up its sample cases and went back to the vats, with {SAMPLED} samples of the colony's land.</li>
+      <li>The field lab packed up and went back to the vats.</li>
+    </farewell>
+    <lines>
+      <li>Every body is a draft.</li>
+      <li>Ask before you change it.</li>
+      <li>Label that jar before it goes in the case.</li>
+      <li>The vats are warm, and the work goes on.</li>
+      <li>Hold still, it's only a sample.</li>
+    </lines>
+    <momentLines>
+      <li>[loose] The beast is loose, keep away from it.</li>
+      <li>[gene] It's written in, and the work went well.</li>
+      <li>[drawn] That's the sample, thank you.</li>
+      <li>[sample] Another one for the case.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the Works' people by their fire and heard how Orla Venn kept the vats warm after the founders left.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>gene</key>
+        <label>Ask for one of their genes for one of the colony ({COUNT} silver)</label>
+        <tip>One of the sequencers writes one of the Works' genes into a colonist who could take one, at the colonist's side, two hours' work. The colonist's body gets the game's mark of a xenogerm replicating afterwards.</tip>
+        <silver>300</silver>
+        <once>false</once>
+        <warm>1</warm>
+        <outcomes>
+          <li>A sequencer of the field lab will come and do the gene work.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LabGene" />
+        </effects>
+      </li>
+      <li>
+        <key>sample</key>
+        <label>Let them draw a sample from the colony's rarest blood</label>
+        <tip>One of the sequencers draws a little blood from the colonist whose genes are rarest to the Works, at their side, and the Works pay for it.</tip>
+        <once>false</once>
+        <warm>1</warm>
+        <outcomes>
+          <li>A sequencer of the field lab will come and draw the sample.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LabSample" />
+        </effects>
+      </li>
+      <li>
+        <key>genepack</key>
+        <label>Sell them a genepack</label>
+        <tip>One of the colony carries a genepack out to the field lab, and the Works pay for it.</tip>
+        <once>false</once>
+        <warm>1</warm>
+        <outcomes>
+          <li>A genepack is going out to the field lab, and the Works will pay for it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a genepack for the Works</label><what>Genepack</what><count>1</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LabBuys" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to their sick</label>
+        <tip>The colony's doctor goes over to the field lab and tends whoever of them is sick or hurt, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the field lab to see to their sick.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>
