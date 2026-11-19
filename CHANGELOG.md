@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What's new in plain words
+
+*19 November 2026, version 0.271.1*
+
+- The What's new rounds from before 0.266.0 are in plain words: titles that were riddles or wordplay now name what changed, and figures of speech say plainly what happened.
+- The longest points that ran lists together with semicolons, such as the seven automations and the herd's leader, now read as short sentences, and CHANGELOG.md says the same.
+
 ## The peoples' own events, round 7
 
 *19 November 2026, version 0.271.0*
@@ -290,13 +297,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - It also goes after 45 days without a breakdown and one good thing since, such as a wedding, a moving ceremony, a kindness or being carried out of a fight, even while the vow still stands.
 - The character page shows a vengeful colonist's way out under "Where life is taking them", and names the marks that count for each change.
 
-## A god's words at once
+## A god's doings shown at once
 
 *17 November 2026, version 0.265.3*
 
 - Everything a god does now shows as a message on the right as it happens, never held for the evening's colony news: the gods' own happenings, a god's sign, rain kept away, an offering taken or left, a god's demand ignored.
 - Where a god's happening moves the camera, the camera now always moves first and the message follows, as with Revel's stash and visions.
-- The moods after a god's doing now say in their tooltip what was seen and whose doing the colonist holds it was, by the name they know that god by, or that they don't know which god it was.
+- The moods after a god's doing now say in their tooltip what was seen and which god the colonist thinks did it, by the name they know that god by, or that they don't know which god it was.
 - The Gods' book's lines no longer end with two full stops, and a few of its words read better.
 
 ## Ballrooms for music rooms
@@ -327,12 +334,12 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - When the wind dies the wind turbines stop and fire doesn't spread, and when the sun stands still the solar panels run full until sundown.
 - How often the gods do things is unchanged; only what follows has changed.
 
-## A god's sign with its words
+## A god's sign and its message
 
 *17 November 2026, version 0.264.1*
 
 - When a god's sign moves the camera, its message now follows after the same short pause, even on a busy day, instead of waiting for the evening news.
-- Only a colonist a short walk away is sent to look at what a god left; otherwise the first one to pass near it stops and says what they see.
+- Only a colonist a short walk away is sent to look at what a god left; otherwise the first colonist to pass near it stops and says what they see.
 - The Gods' book writes down who found a sign once they have actually seen it, and the moods and small effects that follow go to them.
 
 ## Storylines from the towns nearby
@@ -364,7 +371,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Storylines: runs of quests told over weeks. Each part is its own quest that opens with what happened before, and how it ends decides what comes next.
 - The factor's goods: keep a factor's sealed crates dry and unopened for a season, then decide what to do when a rival trader offers to buy them.
-- The beast coming down the valley: get ready with traps or a wall, look at its kill at the edge of the land, then face one of the region's legend beasts, with the hunters beside you if they think well of the colony.
+- The beast coming down the valley: prepare with traps or a wall, look at its kill at the edge of the land, then fight one of the region's legend beasts, with the hunters beside you if they think well of the colony.
 - The children from the burned village: shelter them for a few days, then take them in, find them a home with neighbours, or send them on with food. Seasons later one of them comes back grown.
 - Running storylines show on the Neighbours page under the missions, with their parts so far, and their endings go in the chronicle.
 
@@ -379,15 +386,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A lost keepsake lies in an area marked on the map: right-click inside it with a colonist to search, before six hours of rain or snow ruin it.
 - Missions as a whole come no more often than before.
 
-## The Open Cup
+## A new god: Revel, the Open Cup
 
 *16 November 2026, version 0.260.0*
 
-- A fifteenth god, Revel, the Open Cup: the spirit in drink, smoke and the long night, who gives a good night first and takes his price in the morning.
-- Now and then one drink or dose in the stores is his, though it looks like any other: whoever takes it may get the best high of their life, a sharp mind, a vision or no fear, or a crash, a craving or, rarely, an addiction.
+- A fifteenth god, Revel, the Open Cup: the god of drink, drugs and late nights, whose gifts bring a good night and a bad morning after.
+- Now and then one drink or dose in the stores is his, though it looks like any other: whoever takes it may get the best high of their life, a sharp mind, a vision or no fear, or else a crash, a craving or, rarely, an addiction.
 - A man with goat's horns may walk in to a party or a late fire with a cup to share, and is gone before dawn.
-- Nights that run past midnight, a craving that gets someone up in the dark, a stash found far out, and a friend who sits up all night with someone through a craving.
-- His signs, his merry air that makes recreation go further, his feast of the Long Night, and his own way of taking what is left for him: drunk off in the night.
+- His happenings: parties that run past midnight, a craving that gets someone up at night, a stash found far from the base, and a friend who sits up all night with someone through a craving.
+- He has his own signs, a cheerful mood that makes recreation go further, a feast called the Long Night, and his own way with offerings: what is left for him is drunk during the night.
 
 ## Gifts worth what they cost
 
@@ -437,7 +444,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - In their free hours camp people clean the blood, ash and trash on their own ground, and orderly kinds tidy their site before they go.
 - Refuse is left behind only after a sour stay or when a careless kind leaves in a hurry.
 - A longer stay grows by the kind of camp a day or so at a time: fire seats, a lean-to, a pen, a drying rack, a bench, an altar, a banner, a latrine.
-- A short stay stays small, and a long one reaches a settled look within ten cells of the fire, never on your ground.
+- A short stay stays small, and a long one grows into a settled camp within ten cells of the fire, never on your ground.
 - A camp's fire that couldn't be placed on arrival is set down again once its ground is clear.
 
 ## A better meal in a lesser one's place
@@ -458,12 +465,12 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A prayer answered moves the camera to the one who prayed, as other moments do.
 - Only the small touches, dreams and what is only told leave the camera where you have it.
 
-## The gods felt, and what follows them
+## How the gods' doings are felt
 
 *15 November 2026, version 0.256.0*
 
 - Whoever sees something of the gods now feels it, by what they believe: a believer is glad and comforted, someone in dread is afraid, a scoffer shrugs.
-- Most of the gods' doings are now followed by something of that god's own, usually small, sometimes more, and rarely something the colony remembers.
+- Most of the gods' doings are now followed by an effect that fits that god: usually small, sometimes larger, and rarely one the colony remembers.
 - Each god has its own look on the map: leaves, embers, sparks, frost, water, sand, gold.
 - An offering is taken before everyone's eyes a month apart at most, and a god that came often lately gives the others their turn.
 - The camera now moves only for the big moments of the gods.
@@ -583,11 +590,11 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *15 November 2026, version 0.242.0*
 
-- The great caravan's rider now comes to the gate in hard frost, and telling him the hill road plays out on the map.
+- The great caravan's rider now comes to the gate in hard frost, and when you tell him about the hill road, it plays out on the map.
 - If the rider has already gone, the road is written down and taken out to the edge of the colony's land, and answers whose visitor has left can't be given.
 - The caravan's card shows what the answer does later, and every world event's ending letter says what it changed.
-- Visitors, traders and raiders come in varied winter clothes by their people's taste, and in their warmest when nothing is warm enough.
-- Rimfolk's own visitors and couriers are no longer kept away by cold or heat, and leave only when it really gets to them.
+- Visitors, traders and raiders come in a variety of winter clothes by their people's taste, and in their warmest when nothing is warm enough.
+- Rimfolk's own visitors and couriers are no longer kept away by cold or heat, and leave only when it really becomes too much for them.
 
 ## A day off spent at leisure
 
@@ -615,19 +622,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fifteen of the animals' encounters now happen on the map first, and only when what they speak of is there.
 - What is said about an animal comes as it is seen, and two animals of different kinds can become friends.
 
-## The old powers stir
+## Old Powers' strange happenings
 
 *15 November 2026, version 0.240.0*
 
 - Old Powers has fourteen strange happenings of its own, each played out on the map: a seer at the end of a season, a night when everyone turns to face one way, a stone that hums in a storm, a sealed scroll in old ruins, and more.
-- Pale wolves run once round the colony under the full moon, and in the morning someone finds no tracks where they ran.
-- On foggy or moonless nights, eyes watch the colony from the edge of the dark until someone walks out to them.
+- Under the full moon, pale wolves run once around the colony, and in the morning someone finds they left no tracks.
+- On foggy or moonless nights, eyes are seen watching the colony from the edge of the dark until someone walks out to them.
 - A god drawn near may go by in the night: its own signs one after another, then its own presence for a while after dawn, named only when the colony knows it.
 - A wandering enchanter offers to work a piece of the colony's gear up a grade for silver, and the bearer stands with them while it is done.
 - They come under every storyteller about once in three weeks, and about once in ten days under Old Powers or its story direction.
 - A RimWorld of Magic's effects, sounds, scrolls, spirit wolves and classes are used where it is in your list; harm is rare, shared with the rest of Rimfolk's, and always shown.
 
-## Visitors' own day
+## Visitors' idle hours
 
 *15 November 2026, version 0.239.0*
 
@@ -644,14 +651,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Allies can now be called in against any enemy on your land, including mechs that are asleep or still hidden in the unexplored fog.
 - A band called in this way hunts every enemy on the map, so it wakes and fights a sleeping mech group instead of turning back.
 
-## Every chapter its sign
+## A sign for every chapter
 
 *15 November 2026, version 0.238.2*
 
 - Every chapter of the Gods' book now shows its god's coloured sign, the god it was told of or the god its name belongs to.
 - The plain seal stays only on a second name of a god whose sign already shows elsewhere, so the book never gives away that two names are one god.
 
-## The Gods' book mended
+## Fixes to the Gods' book
 
 *14 November 2026, version 0.238.1*
 
@@ -667,7 +674,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - In a cold snap someone may sit up all night by the bed of the old, a baby or the sick, and if they last till dawn the cold breaks.
 - At night a darkness may drift toward whoever is nearest to breaking; a lamp beside them or a friend sitting with them stops it.
 - The day after an eclipse the noon burns white and hot, and after the longest night the colony walks out to watch the sun come up.
-- When the moon gives back a deed, a morning card says what was found and by whose bed, and at the full moon her light lies on still water.
+- When the moon repays someone for a deed in the night, a card the next morning says what was found and by whose bed, and at the full moon her light shows on still water.
 - In a dry spell the colony may sing at the well at dusk and bring the rain, and when a long dry spell breaks, frogs come up all over the colony.
 - Silver gone from a hoard leaves a trail of coins out to the edge of the land, and at Ducat's feast someone presses coins into a visitor's hand.
 - A cat comes to stay beside anyone near death and walks off once they pull through, and a cat finds a colonist's body left lying far out.
@@ -678,12 +685,12 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Seven gods now have happenings of their own on the map: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus.
 - Hollin's dryads may turn to a colonist and give one word that points at something real, and her roots break up through the floors of a colony that fells too much.
-- A miner may dream of a warm voice offering gold for silver dropped down the deepest shaft; keep the bargain to the letter and gold comes up in the rock, bend it and the vein is steel under a skin of gold.
-- The white thrumbo bows to the colony's youngest at dusk and walks his road through the colony at dawn, waiting at your fences until someone opens a gate.
+- A miner may dream of a warm voice offering gold for silver dropped down the deepest shaft; if the bargain is kept exactly, gold appears in the rock, and if it is bent, the vein is steel with only a thin layer of gold.
+- The white thrumbo bows to the colony's youngest at dusk and walks his own path through the colony at dawn, waiting at your fences until someone opens a gate.
 - A figure of pale threads may stand at the graves on the night after a death, and Morel's rings of mushrooms come up round what was left to rot.
 - The Guest at the gate asks one small thing each visit and tells other gods' stories by the fire; on the Open Door night a bowl set out is empty by morning.
 - Pip keeps a switched-off machine running an hour and writes half a message to the stars on the comms console, and a turret may hold its fire as a colonist crosses its line.
-- Cirrus's falling star now comes only to a colony that watches the sky, and whoever sees the wrong-way star dreams where pods will fall.
+- Cirrus's falling star now comes only to a colony that watches the sky, and whoever sees a star moving the wrong way dreams where drop pods will fall.
 
 ## The saints
 
@@ -696,24 +703,24 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Each year on the day a saint died, the devoted keep their day with an hour of words at the grave.
 - The Gods' book lists each god's saints, and a neighbour's sermon may now name its faith's saint.
 
-## Each one's gods
+## Each colonist's own gods
 
 *14 November 2026, version 0.235.0*
 
 - Each colonist now holds the gods in their own way: who they are draws them toward one or another, never their family, and praying, gifts, vows, feast days and what they see make it stronger while neglect and unanswered prayers wear it down.
 - A colonist's Culture tab shows their gods in words, such as devoted to one or in dread of another, with the reason when you hover, and each chapter of the Gods' book lists who holds to that god and who dreads it.
-- Colonists pray to and swear by the god they hold most, and the devoted keep a small rite of their own now and then: a hand on a tree, a coin dropped into the rock, an extra bowl at the table, a sit by a grave at dusk.
+- Colonists pray to and swear by the god they hold most, and the devoted keep a small rite of their own now and then: a hand on a tree, a coin dropped into the rock, an extra bowl at the table, sitting by a grave at dusk.
 - A strong moment can win someone over to another god, said aloud and in their journal, while a god's anger can leave someone afraid of it, keeping away from its place and flinching at its signs.
 - Two colonists who hold rival gods bicker about it now and then, and a colonist feels it when their god shows itself, its place is torn down or its feast day passes unkept.
 
-## The gods, each their own
+## Each god's own presence
 
 *14 November 2026, version 0.234.0*
 
 - Each god now leaves its own presence on the map, with its own name, words and effect, from faster plants under Hollin to a white silence under Hush.
 - A god's presence is named only once the colony is sure whose it is, and its numbers show under its label.
 - Each god takes its offerings in its own way, from a sapling where Hollin's gift lay to Ducat's gift handed to a visitor.
-- Helios never takes what is left for him: the noon light lies on it, and at dusk it is still there.
+- Helios never takes what is left for him: the noon light falls on the gift, and at dusk it is still there.
 - Bellwether and Ennu send omens of their own, such as a great hoofprint at dawn or a knock at the door with nobody there.
 - Tamiu's watch over the graves is now one of the gods' own presences, and a cat eats her offerings at dawn.
 
@@ -737,7 +744,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Only cold or heat past what their clothes can keep out sends a group away, and the message says it was the extreme cold or heat.
 - Visitors no longer turn up in a straitjacket or anything else that slows them down: they come in a plain coat of their own kind that keeps them as warm.
 
-## The gods understood
+## Signs and chapters for the gods
 
 *14 November 2026, version 0.232.0*
 
@@ -764,7 +771,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Saves that already hold such empty groups of Rimfolk's are cleared when you load them, and the log names each group that was ended.
 - The game's own groups and other mods' groups are only ended when Rimfolk itself emptied them, the way the game ends a group that lost its last member.
 
-## The days of food as the kitchen would make them
+## Days of food counted as meals
 
 *14 November 2026, version 0.231.0*
 
@@ -773,7 +780,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Rimfolk's own days of food (the advisor, the panels, the trade screen, a guest who wants to stay) count the same way, and planning ahead counts flour as food for cooking, not animal feed.
 - Meals in store are counted in servings by their nutrition, so a stack of pemmican is the few meals it makes.
 
-## Doors kept for the colony
+## Rooms closed to guests
 
 *14 November 2026, version 0.230.1*
 
@@ -794,7 +801,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - In spring the herders bring beasts in calf to your sheltered ground, and a hard birth may bring one of them to your gate.
 - Pilgrims raise an old shrine by something holy on your map, and a palmer brings two quarrelling faiths to one table for an evening.
 
-## Plain words and a dinner forgiven
+## Plain spelling, and no bad mood for a lost dinner
 
 *14 November 2026, version 0.229.1*
 
@@ -809,9 +816,9 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A pilgrim fellowship may ask if anyone would walk with them to a shrine; whoever goes is away ten to thirty days and comes home with a shell, steadier faith and a grief or guilt eased.
 - The road league asks for one guard and one pack beast to walk with a great caravan or a trading season, home with a share of the profit, and its caravans come more often for a while.
 - The spacer enclave fits a bionic part at your medical bed, paid now or in four instalments; miss one and their landers stay away until the debt is paid. They may also rent ground for a pad and trade every day.
-- River folk lay a crossing over your river in a day with your wood, and rest at it on their knot night each year.
+- River folk build a crossing over your river in a day with your wood, and rest at it each year on their knot night, when they remember everyone pulled from the water.
 - A Kiln Guild master reworks a colonist's bow or gun into a unique piece, or a blade into a masterwork, with their name in it.
-- In a drought the herders bring their herd to your water and camp by it; the learned society asks you to keep books saved from the fire; the Circuit fits a lame beast with a leg or takes it to their stables; the Signal Line sells news of sites nearby.
+- In a drought the herders bring their herd to your water and camp by it. The learned society asks you to keep books saved from a fire, the Circuit fits a lame beast with a leg or takes it to their stables, and the Signal Line sells news of sites nearby.
 
 ## Every visitor shops
 
@@ -837,10 +844,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *12 November 2026, version 0.227.0*
 
-- Eight new storytellers, each a way to play named for what it does, with no character and a plain plate: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.
-- The Long Road calls the colony out into the region, Neighbours sends raids from peoples with a reason, The Turning Year gives every year the same shape, and What You Sow lets the world answer the colony's deeds.
-- Old Powers makes the world feel watched, Lean Years makes scarcity the enemy, Rise and Fall tells long arcs with a trouble foretold, and Crossroads makes the colony a market that draws traders and raiders by its wealth.
-- Every kind of event can still come under each of them: a storyteller leans toward something, never away from anything.
+- Eight new storytellers, each a way to play named for what it does, with no character portrait and a plain picture: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.
+- The Long Road sends more of the story out into the region, Neighbours sends raids from peoples who have a reason, The Turning Year gives every year the same shape, and under What You Sow the world responds to the colony's deeds.
+- Old Powers brings more strange and unexplained events, Lean Years makes scarcity the main danger, Rise and Fall runs long stretches of good and bad times with warning of the trouble ahead, and Crossroads makes the colony a market that draws traders and raiders by its wealth.
+- Every kind of event can still come under each of them: a storyteller makes some events more likely and never rules any out.
 - Threats stay at the classic storyteller's pace or less over a year, and sickness about as often as the game's own.
 - A new setting, Story direction, leans any storyteller you play toward one of the eight, in a new game or one already running.
 - The ways draw on your mods' events where they fit, such as Vanilla Events Expanded, Seasonal Weather and A RimWorld of Magic.
@@ -860,7 +867,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The Gods' book is now a holy book: each name the colony has heard a god by is a chapter that grows as your people learn.
 - A chapter's parts fill only from what your people saw, were told or came to believe: its names among each people, what it is, how it is known, what it loves and hates, its sayings, tales, kin, feasts and rites.
 - Every line is said as someone's ("so Mirel of the League told it at our gate", "so Avila holds"), and when two disagree both stand side by side.
-- Tales are set down piece by piece as they are told, with the missing pieces left as gaps, and what nobody has heard of is silence or a torn page.
+- Tales are written down piece by piece as they are told, with the missing pieces left as gaps, and what nobody has heard of is left blank or shown as a torn page.
 - Colonists and visitors now also tell what a god is and how it is seen, and new sayings come before old ones.
 - A believer who sees a god's hand comes to hold what that god loves or hates, under the god they took it for, so they can be wrong.
 - The book reads like scripture: chapter and verse, a drop capital, the keeper's notes and dates in the margin, and a change of hand marked.
@@ -876,16 +883,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - In a fight the peoples' casters cast by the mod's own AI, but its most broken spells (meteors, firestorms, resurrection, polymorph and the like) are kept out of their hands.
 - Casters are rarer among most peoples and more common among the four built on magic: the Stormglass Conclave, the Mossborn, the Choir of the Spire and the Quiet Bell.
 
-## The gods, one way
+## The gods' pace, the same in every game
 
 *12 November 2026, version 0.224.0*
 
-- Selene's night no longer comes twice in a few days: what was done by day comes back only around a full moon, a moon apart at least, and only after a day that stood out. Tending the wounded every day is no reason.
-- When the moon comes back to the same person for the same deed, it goes a step further and people say it happened again; otherwise it takes a different form from last time.
+- Selene's night no longer comes twice in a few days: the moon repays the day's deeds only around a full moon, at least a month apart, and only after a day that stood out. Tending the wounded every day is no reason.
+- When the moon repays the same person for the same kind of deed again, it goes a step further and people say it happened again; otherwise it takes a different form from last time.
 - Every happening of the gods keeps its own pace: once it could come again its chance starts small and grows, so you can't tell when it will come.
 - A myth at supper, a prayer answered, the rock rumbling over a deep mine, a god answering in the weather, mocking and bickering over faith, a god's dream and a visit to a god's mark all come much further apart.
-- The gods are felt, one way in every game: the setting "How real are the gods" is gone.
-- Each god draws nearer by what happens: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush, quarrels between gods, offerings and harm. A god drawn near may show itself plainly, answer more strongly, take an offering in a breath of light or rise in its true form, while the others stay hidden.
+- The setting "How real are the gods" is gone: the gods now work the same way in every game, as its choice Felt did.
+- Each god draws nearer by what happens: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush, quarrels between gods, offerings and harm. A god drawn near may show itself plainly, answer more strongly, take an offering in a flash of light or appear in its true form, while the others stay hidden.
 - A god is still named only when the colony is sure it was that god.
 
 ## Letters and favours made clear
@@ -897,7 +904,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A letter is on the road only once whoever carries it has left the map, so a guest who stays on no longer has it answered while still at your gate.
 - Answers, refusals and silence come only when they could: an answer nobody can carry waits for its road back, and mail sent on by a messenger never comes before it reached the region.
 - Calling in a debt is a short list by kind, what can be asked now first and the rest under "Not now" with why, each saying what it does and how much.
-- The goods follow who owes and what they have: a trader sends from their stock, a healer medicine, a farmer food, a smith steel, and food comes as a staple load, never four yoghurts.
+- The goods depend on who owes and what they have: a trader sends from their stock, a healer medicine, a farmer food, a smith steel, and food comes as a proper load of a staple food rather than a few odd items.
 - A word with another people is offered only where it would help, and by letter a word, a captive let go and help toward peace come with the answer.
 
 ## Four small asks
@@ -914,8 +921,8 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *11 November 2026, version 0.221.0*
 
 - The one Mog chooses has a lucky season while she stays: sicknesses pick someone else, and everyday mishaps pass them by.
-- Mog sees Ennu for what it is: in her season the stranger may come to the gate, and she leaves her favourite to follow it about, staring.
-- People notice, and say so, and the colony's book of the gods has it.
+- Mog recognises Ennu: in her season the stranger may come to the gate, and she leaves her favourite to follow it around and stare at it.
+- People notice it and talk about it, and the colony's book of the gods records it.
 
 ## Shrines, prayers and vows
 
@@ -934,13 +941,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *11 November 2026, version 0.219.0*
 
-- The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows the hand.
+- The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows whose doing it was.
 - Each god has its own ways, from Hollin's wild growth and blight to Smoulder's silver and heat, Pip's mended machines and short circuits, and Murmur's rain and drought.
 - Someone may tell a dream at breakfast and ask to spend a night under the open sky, then come back changed, sometimes marked or older.
-- At night the moon returns what the colony did by day, kindness as kindness and cruelty as cruelty.
-- Gods quarrel where you can see it: snow and warm wind over the valleys, wild growth and rings of mushrooms.
+- At night the moon repays what the colony did by day: kindness with kindness and cruelty with cruelty.
+- Quarrels between gods show on the map: snow and warm wind over the valleys, wild growth and rings of mushrooms.
 - Harm one of Bellwether's thrumbos and every people hears of it; harm a cat and the cats leave and the rats come back.
-- People talk of the gods in bubbles, at supper and in their letters, and a hermit seer says true things darkly.
+- People talk about the gods in bubbles, at supper and in their letters, and a hermit seer says true things in unclear words.
 
 ## The gods on the map
 
@@ -949,9 +956,9 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Each god now shows itself in its own way: drifting leaves, a winged shadow at noon, fairy rings, lights flickering in a pattern, frost like writing, a croak before rain, a coin where nobody dropped one.
 - A stranger may come to the gate under a name of its own, remember how it was welcomed, and show what it was when it goes.
 - A great white thrumbo may pass through with others following at a distance, and someone can sit near him while he grazes.
-- A gray cat may come and stay a while with one colonist, and she will not be kept.
-- Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake what sleeps there.
-- The moon waxes and wanes through each season, and what was done by day can come back by morning.
+- A gray cat may come and stay a while with one colonist, but she can't be tamed or kept.
+- Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake something that sleeps there.
+- The moon waxes and wanes through each season, and deeds done by day can be repaid by morning.
 
 ## Fourteen gods, unseen
 
@@ -965,7 +972,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A god is named plainly only once the colony knows it was its doing.
 - The old Gods page, the patrons and the gods' symbols are gone, and an older save's gods give way to the new ones.
 
-## A god walks among you
+## How a god looks on the map
 
 *11 November 2026, version 0.216.0*
 
@@ -982,7 +989,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - The gods: one pantheon for the whole world. Every faith's deities are real gods with a domain of their own, a people without Ideology has two or three gods of its age and land, and Rimfolk's peoples each have a patron.
 - Gods have ties and natures: rivals, lovers, kin, allies and old wrongs, proud ones, jealous ones and cold ones. Some don't fit at all: archotechs, the Hunger, a trickster, a dead god, a fading god and the Sleeper in the vault.
-- The colony stands with each god in words, from wrathful to beloved, by what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god a little galls its rivals.
+- The colony's standing with each god is shown in words, from wrathful to beloved, and changes with what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god annoys its rivals a little.
 - A Gods page in the region window, under Peoples: the colony's gods, the others it knows and the rumours of the rest, with the whole pantheon drawn as a web.
 - Colonists swear by their gods now and then, and the neighbours' letters name theirs.
 - Two new settings: Gods, and How real are the gods (Believed, Felt, Walking).
@@ -1009,7 +1016,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Some of the peoples now bring gifts of their own: the herding folk a young beast chosen for one of your people, the hospitallers a limb fitted at your bed, the Conclave a first psylink out in a thunderstorm, the Lattice a mechlink and a mech, the Mossborn a Gauranlen seed for a promise.
 - Each gift comes once to a colonist, and never two close together.
-- The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one for good ink and better prices, or break a seal and be written in red.
+- The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one and the league records the colony as honest and gives better prices, or break a seal and be recorded as a cheat.
 - Scholars camp beside an old place on your map for four days and tell you exactly what sleeps inside, or open it themselves if you let them.
 - In a holy year or a great pilgrimage, the pilgrims may raise a hostel by your road where the region's travellers stop a night with their news.
 - While a great beast roams your land, the Lantern Wardens may keep a lantern post at its edge, and the Wardens and the Circuit may come the same day to argue over hunting it or taming it.
@@ -1029,7 +1036,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *11 November 2026, version 0.211.0*
 
 - Letters with the same person grow familiar over time: first letters are formal, later ones use first names and short names, and old friends sign with the first name.
-- A wrong, a broken word or a war cools a correspondence: the letters turn formal and short again, with no jokes.
+- A wrong, a broken promise or a war makes the letters cooler: they turn formal and short again, with no jokes.
 - Letters take up earlier ones, asking after someone ill or a harvest and saying how it turned out.
 - Help, gifts, poems and recipes are remembered and thanked for, and a running joke about a goat or a pumpkin carries on.
 - The reading window says how many letters have passed and how things stand.
@@ -1072,7 +1079,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A caravan out of the snow and winter pilgrims ask to sleep under your roof on a stormy night.
 - The herders' winter grazing and the league's winter quarters now come in deep cold too, while every other camp still stays away below -30 °C.
 
-## A beast is no reason to go
+## Camps stay when beasts attack
 
 *11 November 2026, version 0.206.2*
 
@@ -1081,7 +1088,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A beast that comes at a camp is fought off: the armed stand by their fire, children and the unarmed keep clear, and then they go back to their day.
 - A stray shot from your people at a manhunter that hits a camper no longer scatters the camp.
 
-## Straight to the mailbag, back in the saddle
+## Couriers go straight to the mailbag
 
 *10 November 2026, version 0.206.1*
 
@@ -1174,7 +1181,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *10 November 2026, version 0.202.1*
 
-- The mailbag by the gate is drawn half again as large, so the post and its bag are easy to spot.
+- The mailbag by the gate is drawn one and a half times as large, so the post and its bag are easy to spot.
 - It still takes a single cell, and pawns walk past and over it as before.
 
 ## Letters that read like letters
@@ -1193,7 +1200,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *9 November 2026, version 0.201.1*
 
 - In the health panel each illness or injury now shows in the panel's main font, with a wider, thicker bar and a larger icon, so it reads before anything else.
-- The overall health bar under each name is now a thin, quiet line, with how they stand still named at the right.
+- The overall health bar under each name is now a thin, faint line, with how they stand still named at the right.
 
 ## An item card for everything else
 
@@ -1303,7 +1310,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *9 November 2026, version 0.192.0*
 
-- When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need a dear research off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.
+- When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need an expensive research project off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.
 - The mood for a role's clothes names each missing piece and how to get it: whether the colony has one, where it can be made, or which research it needs and how far along it is.
 - A new button, Choose other clothes for the role, shows the clothes the game allows for that role, those you can make first, and replaces the one you pick once you confirm, just as the game's own editor would.
 - Factions' ideoligions are left as the game makes them; a setting, Role clothes the colony can reach, turns the first part off.
@@ -1365,7 +1372,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The trade window no longer lists wood under weapons; only what can be held as a weapon counts as one.
 - Books Rimfolk gave the colony without a title, shown as only "(normal)", are named the game's own way as soon as they are on the map, including those already in your stores.
 
-## The heart said once on the Mood tab
+## No repeats in the Mood tab's Heart section
 
 *9 November 2026, version 0.188.1*
 
@@ -1390,7 +1397,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Pieces made for one kind of fighter are rated for them: a shield belt for a melee fighter, a gunlink for a shooter, with both ratings kept side by side.
 - Each comes with the weapons' colour-coded tags and a plain line, and its rating in the common materials; the review is in the docs/apparel folder beside the mod's files, and the card in the game and suggestions for each colonist come next.
 
-## Planning starts at a glance, as it should have
+## Planning opens on Rooms at a glance again
 
 *9 November 2026, version 0.186.1*
 
@@ -1402,20 +1409,20 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *9 November 2026, version 0.186.0*
 
 - Rimfolk's weapon card shows the weapon itself, large and framed in its quality's colour, in its own material and style, and small pictures wherever it lists other weapons.
-- A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a quiet line says so.
+- A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a short line says so.
 - Clicking a weapon's rating badge opens Rimfolk's card for it.
 - Two colonists can be asked to trade even when one gives up some, if the colony gains: the best weapons go to those who fight most, judged by their skill, how often they are drafted, their kills and their work, and the line names both sides.
 - Colonists sometimes propose such a trade themselves, the one who would gain asking or the one who rarely fights offering, when both are near and both weapons in hand.
 - Giving up a lucky weapon or a family heirloom is shown as a warning with its mood, never a reason to hold back the suggestion, and nobody offers up their own.
 
-## The heart counts: stronger moods, a day off, and what would help
+## Stronger effects of strain, a day off, and advice
 
 *9 November 2026, version 0.185.0*
 
 - Strain now weighs -4, -8 and -14 on mood by its band and the good side lifts +3, +6 and +10; a setting chooses mild, felt or strong.
 - Beyond mood, a worn colonist works and learns more slowly, needs a little more sleep and heals a little slower, while one in good heart learns and recovers a little faster; illness is fought off at most a twentieth slower.
 - From worn down, a colonist may have a bad afternoon: a few hours off work to cry beside their bed, look out over the land, have a drink or visit a grave, easing a good share of their strain.
-- Hearts spread a little: someone worn down wears on those close to them, someone in high spirits lifts them, never enough on its own to wear anyone down.
+- Moods spread a little: someone worn down drags down those close to them and someone in high spirits lifts them, but never enough on its own to wear anyone down.
 - Each strained colonist gets advice on what would help most, from a proper meal or a better bed to a party, a friend sent over or a decree that eases strain, with a button wherever Rimfolk can do it.
 - Give a strained colonist a day off from a button: their work hours become free time with a lie-in, it eases far more than an ordinary day, once in five days each, and danger ends it.
 - The Mood tab shows mood, the heart, the three things weighing on them and lifting them most, what their state does to them and the best advice at the top, with every detail below in sections that fold; RimHUD's lines match it.
@@ -1450,11 +1457,11 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Each comes with colour-coded tags for its strengths, weaknesses, risks, specials, role and needs, and a plain line on what it is good and bad at; the review is in the docs/weapons folder beside the mod's files.
 - Weapons that only load with a mod you don't have are left out, and so are the Kiln Guild's arms that named such a weapon kind; the weapon card in the game and recommendations for each colonist come next.
 
-## The heart is felt: strain that stays, joy beside it, and both shown on the map
+## Strain that lasts, good heart beside it, both shown on the map
 
 *9 November 2026, version 0.181.0*
 
-- Heavy things weigh for days: losing a partner, kin or a friend, being downed, a deadly sickness of their own or of someone close, a fight at home with colonists down; rest no longer washes it away overnight, and strain eases less while it runs high.
+- Heavy things weigh for days: losing a partner, kin or a friend, being downed, a deadly sickness of their own or of someone close, a fight at home with colonists down; a night's rest no longer clears it, and strain eases less while it runs high.
 - The good side grows beside strain, more slowly the harder things are, so someone worn down by the plague can still be in good heart thanks to their friends; both moods count at once.
 - Colonists show how they are: sitting a while or looking out when strained, pacing at night or a sharp word when worn, humming at work or lingering at the table in good heart, singing and dancing in high spirits, each with a word of their own.
 - Strong feelings act: grief at the grave or by the empty bed, fear seeking company indoors after dark, anger slamming a door, love sitting with a partner, homesickness talking of home by the fire, joy shared with a friend.
@@ -1485,7 +1492,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The planning window now opens on Rooms, at a glance, every room plan in columns, whenever you open it with its button; a link to another of its pages still opens that page.
 - A new setting, Planning window opens on, beside the council window's, can keep it on the page you last looked at instead.
 
-## All of Rimfolk's windows move, size and wear its own look
+## All of Rimfolk's windows move, resize and use its own look
 
 *8 November 2026, version 0.179.0*
 
@@ -1501,7 +1508,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - The region window now floats: drag it by its title bar, size it from any edge or corner, make it large with the button or a double-click on its title and back, and it stays open while you click on the map or pick a colonist; it opens where you last left it.
 - The trade window moves and sizes the same way, and both remember their place between games, fitted onto your screen if it changes.
-- Both wear Rimfolk's own look: a calm dark ground, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.
+- Both use Rimfolk's own look: a calm dark background, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.
 - A wider window shows more: two columns in Here and away and Faces, a wider list of peoples, more of each people's acts side by side.
 - Settings: Rimfolk's own look and Rimfolk's windows move and resize, both on, and Put Rimfolk's windows back; off, the windows look and sit as before. The council's windows, the Almanac and Rimfolk's dialogs follow next.
 
@@ -1533,11 +1540,11 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The Sunken Vault came up from a shelter with spacer gear it cannot make: its people slip back an age every few years unless someone keeps them supplied, trade their last spacer goods for components and food, ask you to teach a lost craft, and a vault-born child who has never seen the sky may ask to stay.
 - Each has its story, look, gear and gifts from your mods, a faith, town, letters and its own voice; with them every age has peoples of its own, and peoples arising in play can take their ways too.
 
-## Answers say how they would land, not what they change
+## Answers say how people would take them
 
 *8 November 2026, version 0.174.0*
 
-- Under each answer of a council question, an event or a world event there is now one short line in the story's own voice about how it would land, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.
+- Under each answer of a council question, an event or a world event there is now one short line about how people would take it, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.
 - The line never says the opposite of what happens, names who it touches, and keeps to the weightiest one or two things, a risk to someone always among them; the wording varies from letter to letter but stays the same each time a letter opens.
 - Hovering an answer still shows the plain hint of what it does, and the setting What each answer does keeps hints in words, exact numbers or nothing for anyone who prefers them.
 
@@ -1569,7 +1576,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *8 November 2026, version 0.172.0*
 
-- The Signal Line keeps radio masts across the region: a lineman may raise one on your high ground, and while it sings your letters travel twice as fast and a raid's warning comes a few hours before it; storms wear it down, and the linemen climb it to mend it.
+- The Signal Line keeps radio masts across the region: a lineman may raise one on your high ground, and while it works your letters travel twice as fast and a raid's warning comes a few hours before it; storms wear it down, and the linemen climb it to mend it.
 - The Deepwell Union drills the deep seam under your land for a share, its assayer leaves a crate at your gate, and now and then it strikes, stopping its trade until a shift-captain is given food or a good talker; the drill can hurt your miner, on the shared budget.
 - The Last Republic counts your people bed to bed, offers citizen's papers with better trade and a duty owed, may call a colonist up for a season's service who comes home with pay, and praises or denounces you on its radio.
 - The Hollow Fleet, a grounded colony ship's crew in ship's grey, lands a shuttle by your gate to trade, buys salvage and ship chunks, and a sleeper woken after two hundred years may ask you for shelter.
@@ -1636,14 +1643,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The game's flu, plague, malaria and wound infection and your mods' killers still send a colonist to bed until immune; your own order to rest until healed, the council's rest when ill decree and Smart Medicine's own bed rest boxes are kept.
 - Each condition's tooltip on the health tab says whether the colonist keeps working, sleeps a little more or rests in bed and why. A new setting, Bed rest only when it makes sense, sits after Medicine by what is treated.
 
-## Camps that build properly, keep a day and leave things behind
+## Camps that build properly, keep a daily routine and leave things behind
 
 *8 November 2026, version 0.167.0*
 
 - A camp now builds for all its people: a bed for every sleeper, round the fire, in one hut or in tents that are real rooms with walls all round, a door and a roof, with tables and seats, lights, butcher and crafting spots, a hitching spot for their animals, all sized to how many came and how long they stay.
-- Each kind builds in its people's age from your enabled mods: leather bedrolls, Classical tents, log huts with a tribal curtain for a tribe; cloth tents from Medieval 2 and stools; chemlamps from Settlers in the industrial age; steel and synthread for spacers.
+- Each kind builds in its people's age from your enabled mods: a tribe with leather bedrolls, Classical tents and log huts with a tribal curtain, a medieval people with cloth tents and stools from Medieval 2, an industrial one with chemlamps from Settlers, and spacers with steel and synthread.
 - A wooded spot is a fine site: they fell the trees in the way, cut bushes, carry chunks aside and mine plain rock as your own builders would, and only give up a piece for what they may never touch.
-- Campers keep a day: sleep in their own beds, eat at their table from what they hunted, gathered and cooked, and work by their calling: wood, hunting, fishing with Odyssey or Vanilla Fishing Expanded, plain rock, wild plants, simple crafts and mending; evenings by the fire talking, and they defend their camp when enemies come close.
+- Campers follow a daily routine: they sleep in their own beds, eat at their table from what they hunted, gathered and cooked, and work by their calling: wood, hunting, fishing with Odyssey or Vanilla Fishing Expanded, plain rock, wild plants, simple crafts and mending; evenings by the fire talking, and they defend their camp when enemies come close.
 - They take from the land freely but never anything of yours: no buildings, machinery, stores, crops, animals, home area or zones, no ore or anything worth more than plain stone, and never an animal you marked to take its body.
 - When they leave they pack their bedrolls, tents, tables and stools on the map over a few hours and leave walls, huts and the fire pit standing for anyone to use; a few kinds take theirs down for reasons of their own.
 - What they leave behind follows how the stay went: a woodpile, hides, a cairn or a gift after a good one; refuse, offal that draws a predator, embers in dry grass or a lame beast after a bad one, the hurts on the shared budget.
@@ -1684,8 +1691,8 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Four new peoples join the region, each with its founding story, sayings, faith, town, emblem, titles, letters and talk in its own voice, and each in the form of its age.
 - The Stormglass Conclave reads the weather: for a fee a seer foresees the season's next cold snap or heat wave a day early, a runner brings the warning to your gate and your fields plan for it, and a storm-walker can set a lightning rod under your highest roof that takes the strikes nearby without fire.
-- The Mossborn keep a ledger of the trees you fell and the ones you plant and grow warmer or cooler by it; a seed-carrier plants saplings round a colony that cleared a dozen trees, a sapling by a fresh grave, and with Ideology a tree-connector prunes your Gauranlen tree.
-- The Ashen Banner wear one issued kit in every age; you can hire a squad that camps by your walls for fifteen days and fights what comes, a sentry at your gate by day, paid by letter at their fire, and they walk if the wage never comes.
+- The Mossborn keep a ledger of the trees you fell and the ones you plant and grow friendlier or cooler toward you by it; a seed-carrier plants saplings around a colony that cleared a dozen trees, a sapling by a fresh grave, and with Ideology a tree-connector prunes your Gauranlen tree.
+- The Ashen Banner wear one issued kit in every age; you can hire a squad that camps by your walls for fifteen days and fights what comes, or a sentry at your gate by day, paid by letter at their fire, and they leave if they are never paid.
 - The Kiln Guild commissions work from your crafters and pays by its quality, bids on your masterworks, and sends a journeyman for a wander-year at your benches who leaves a piece of their own behind.
 - Their gear and gifts draw from your enabled mods: Vanilla Psycasts Expanded's Staticlords and Frostshapers, A RimWorld of Magic's druids, rangers, enchanters and geomancers, Medieval 2's arbalests and tabards, Vanilla Expanded - Classical's wreaths, with vanilla in their place when a mod is missing.
 
@@ -1693,7 +1700,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *7 November 2026, version 0.162.0*
 
-- Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for the dry, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.
+- Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for those who don't drink alcohol, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.
 - Each people gives what fits its age and ways: a tribe's jade or pemmican, a medieval town's gold or wine, an industrial people's packaged food, a spacer's glitterworld medicine, and your brewing, cooking and art mods' own among them.
 - Wedding and match gifts, the town's seasonal gift, the prospectors' finds, a tribe's ransom, a favour's goods, a help letter's food and medicine, an envoy's parting gift, a guest's provisions and what an outsider brings next time all draw from this.
 - Carvings and keepsakes, and the blade a fallen star becomes, are ones your colony knows how to make; a wedding or funeral mission can ask for drinks, and your own wine or mead counts.
@@ -1741,7 +1748,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *7 November 2026, version 0.157.0*
 
 - The Lantern Wardens, beast-hunters of the crossroads, in furs and lantern-red hoods: when a legend, a beast nemesis or a pack alpha is on your land they come to hunt it, and your best shot can hunt beside them. Their pelt-buyer pays well for hides, and when a beast has killed one of yours a Warden keeps a lantern burning at your gate through the night.
-- The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when the ground is listening.
+- The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when something stirs underground.
 - The Circuit of Tamers, travelling with their companions (Pokémon with PokéWorld): a tamer may challenge your best handler to a friendly bout and give an egg when beaten fairly, egg-traders swap and sell, and a ranger brings back an animal of yours that strayed.
 - The Wheel, a rolling salvage town whose towns really move: their fixer mends your gear, scrap-runners buy slag and broken things, and a mechanoid wreck near you brings them to strip it with you.
 - Each has its own look and signature, gear, kinds of people and gifts from your enabled mods, a faith, a town, missions and their own voice, in every age; peoples that arise during play can become one of them.
@@ -1750,7 +1757,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *7 November 2026, version 0.156.0*
 
-- Your animals now hunt when their kind would in reality: dogs including huskies, cats, foxes, wolves, bears, big cats, birds of prey, snakes and crocodiles, and the hunters among your mods' animals and the Pokémon, judged species by species. Lapdogs, grazers, fowl and the gentle ones don't.
+- Your animals now hunt when their kind would in real life: dogs including huskies, cats, foxes, wolves, bears, big cats, birds of prey, snakes and crocodiles, and the hunters among your mods' animals and the Pokémon, judged species by species. Lapdogs, grazers, fowl and the gentle ones don't.
 - They take only what sits below them in the food chain and what they could really take: a husky takes hares, squirrels and foxes, two huskies an ibex, a cat rats and squirrels, a bear a deer, never anything that would fight back hard, a manhunter, anyone's tame animal, or a creature from the colony's own stories.
 - A hungry hunter with nothing to eat in its area goes hunting and eats its kill; a fed one now and then catches small game, and sometimes carries it home to its person. They stay inside their allowed area and never hunt in danger, while drafted, penned, young or hurt.
 - A new alert names any animal that is hungry with nothing it may eat in reach and can't hunt, and says why: the food is outside its area, forbidden, or there is nothing it eats, with how to fix it. The person bonded to it says so once.
@@ -1762,7 +1769,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Fourteen more kinds of everyday mishap, sharing the same budget, so the total stays where it was and each kind comes less often.
 - Sickness can spread: a sick colonist who keeps working after a petition to rest was ignored, a visitor or courier from a plague-struck people, a camp's fever at their fire, an outside patient who brings something worse, or a hedge healer's bad batch. The quarantine decree, shutting the gate in a plague, sending your doctor and a room of their own guard against them, and the answers say so.
-- Small things can grow: untended worms or insect bites in a malaria country can turn into the real illness. Sleeves and sleeping indoors help.
+- Small ailments can grow worse: untended worms or insect bites in a malaria country can turn into the real illness. Sleeves and sleeping indoors help.
 - The cold: waiting long at the gate in a frost, a lone night watch in the cold, a weather lover out in the rain or snow, a sleepwalker after a nightmare, a restless walk alone at dusk, and a slip into icy water while fishing. Warm clothes, company, a bolted door and walls keep them safe.
 - With Dubs Bad Hygiene, drinking untreated water can bring the stomach bug when the mod's own water illnesses are off.
 - A field sown by the weather that a frost beyond the forecast still killed now says so on the field.
@@ -1836,7 +1843,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fill suggested puts the marked goods into the trade within the silver both sides have, what the colony is short of first; Clear suggested takes them out again. Nothing changes until you press Accept, and rows you set yourself are left alone.
 - The silver row shows each side's silver after the trade, and a trade at home shows the days of food now and after it.
 - With Vanilla Trading Expanded, its market's rising and falling prices feed the marks and the best-deal sort and are named in the tooltip, the goods its contracts ask for are kept or marked worth buying when cheap, and your bank silver shows at the foot.
-- With Trade Helper, which already lists what is bought and sold, the silver-after line stands down. Each part has its own setting in a new Trade screen section of What's on.
+- With Trade Helper, which already lists what is bought and sold, Rimfolk leaves out its silver-after line. Each part has its own setting in a new Trade screen section of What's on.
 
 ## An animal's temperament in RimHUD
 
@@ -2216,7 +2223,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The party travels by caravan with a planned kit for the road and first shelter, or by the colony's own pods, shuttle or gravship. When they arrive a letter asks to settle, and the founders gather on their first night, round a fire when there is wood for one.
 - Newcomers are made in a window like the one the game offers after a game over. They are free when the old colony is abandoned; with it kept they come at most once a year, and the old colony pays their passage.
 - When a founding needs it, Rimfolk raises the game's colony limit by one, never past five, and says so in the window. It lowers it again when the old colony is abandoned or the founding is called off.
-- Make this the seat moves where your colony as a whole is run from, at most once a season. Letters to the world, the world's days and the neighbours with faces follow it, and the old seat's people trust the council a little less.
+- The button Make this the seat moves where your colony as a whole is run from, at most once a season. Letters to the world, the world's days and the neighbours with faces follow it, and the old seat's people trust the council a little less.
 - The region map's Ours view lists every home with its people, speaker, mood and strain, and with more than one colony every window names the colony in view.
 
 ## Names that pass, fights that spark goals
@@ -2236,7 +2243,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fixed: with Petitions switched off, shared wants still joined into one petition; now each colonist asks on their own.
 - Fixed: the developers' log of what was told today counted every chronicle line as news from beyond the homes.
 
-## One way in
+## Settings on five pages
 
 *6 November 2026, version 0.116.0*
 
@@ -2246,7 +2253,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fealty and vassals are kinds of pact now: a pact of fealty, the colony sworn to them, or a pact of protection, the colony's vassal, shown among the colony's truces and pacts.
 - Fixed: a promise taken back past its days for amends still showed as waiting in This week, and a promised wish could show both as a wish and as a promise.
 
-## One festive year
+## Customs on the calendar
 
 *6 November 2026, version 0.115.0*
 
@@ -2266,7 +2273,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - When several colonists want the same thing it comes to the council as one petition with all their names: one card, one deadline, one answer for all, granted to each as it is met on the map and told once.
 - Fixed: a feast declined by letter said only that they won't be coming, instead of their own words.
 
-## Three good bands
+## Three bands of good heart
 
 *6 November 2026, version 0.113.1*
 
@@ -2279,7 +2286,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *6 November 2026, version 0.113.0*
 
 - The heart has a good side now: while a colonist's strain is at nothing and good things keep coming, they grow in good heart, mostly from what can't be bought: friends close by, a purpose, a life goal moving, a deed the colony speaks well of, gatherings, good talks and a run of small joys. Fine rooms and meals add only a little.
-- Hardship spends the good side before strain builds, so a colonist in good heart takes a hard knock in stride.
+- Hardship uses up the good side before strain builds, so a colonist in good heart is less shaken by a hard knock.
 - In good heart gives a small good mood and sweeter dreams and drains strain faster; in high spirits more so. It grows ordinary like any good mood.
 - In high spirits and safe, now and then they find one of the game's own inspirations, or walk over to someone close who is struggling and say a kind word that lifts them.
 - It shows as a second meter beside strain on the Mood tab, on the colonist's card and in the inspector. A new setting, The heart's good side, beside the heart's own, switches it off.
@@ -2295,18 +2302,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Decrees mean distinct things: drills and militia drills are one decree, as are rationing and famine bread, shown in the form that fits the moment, and pairs that can't run together say why.
 - Groups form around what really binds some colonists more than others, no group holds more than about half the colony, and anyone outside every group shows as outside, with why.
 
-## One teller, one pace
+## Fewer gatherings, news told once
 
 *6 November 2026, version 0.111.0*
 
-- The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are let go quietly.
+- The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are dropped without a message.
 - Calendar days that come round within three days of each other are kept together, and one within two days of another gathering is kept at supper instead. One seasonal custom a season, a life goal's toast raised at the next gathering, and never more than about a week without one.
 - In the simulator a colony now gathers about 2.7 times a week instead of 4.7, the busiest week has 9 instead of 14, and fewer gatherings come within a day of the last. A new setting, Gatherings a week before the colony's own wait, on the People page, sets the room.
 - One teller decides how news reaches you: what is hard to miss always shows, other news shows until the colony's day is full and then waits for the evening's news, which keeps the lines that weigh most. Nothing is told twice.
-- Fixed: a plan that fell through still gave its moods and said people took heart from it; now it never came about. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.
+- Fixed: a plan that fell through still gave its moods and said people took heart from it; now it gives none, since it never happened. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.
 - The election's hustings are a gathering on the day of the vote: the candidates speak and are cheered or heckled before the votes are read.
 
-## One name
+## One name for each colonist
 
 *6 November 2026, version 0.110.0*
 
@@ -2316,7 +2323,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fixed: a way falling from renowned to merely known said people had stopped calling the colony by it.
 - Names already held stay with their holders; nothing moves or is told when an old save loads.
 
-## The world's voices
+## More words from visitors and camps
 
 *6 November 2026, version 0.109.2*
 
@@ -2335,7 +2342,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Birds, insects, reptiles and other mods' creatures get words of their own, and the herd's leader, its last season and spring's first young have more.
 - Fixed: the long discipline's ending read as practice let slide when the art was taken away, spring's first young was told as visited before the visit, and eulogies said a newcomer or a child had hauled the stone for the walls.
 
-## One heart
+## Small moods feed the heart
 
 *6 November 2026, version 0.109.0*
 
@@ -2352,7 +2359,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - Four new council questions, each only while its situation is on the map: the cold snap's hours (shorter days or a fire kept in the coldest bedroom), blight in the fields (cut the sick plants, harvest early or let it spread), the good weapon in the stores (who carries it), and the animal left behind when its person dies (who becomes its master).
 - A new event while a herd crosses the map: mark a few of them, or the biggest, for the hunters, or let them pass, with the game's own risk of a beast turning on its hunter named before the choice.
-- Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying dear and hedge healers coming by more often.
+- Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying high prices and hedge healers coming by more often.
 - Two new camps of travellers: woodcutters, who come only where the woods stand thick and fell real trees round their camp, and herb-gatherers, who gather at dawn and come more often while medicine is scarce.
 - Each comes in the forms of every age, and they join the existing pools, so the colony sees no more questions, events or camps a year than before, only more kinds of them.
 
@@ -2366,7 +2373,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Less noise: the roster of comrades after every raid is gone (new comrades and rescues are still told), an election is one line with every seat, and colonists marking their years on the same day share a line.
 - Old saves bring their chronicle into the history once, without losing or doubling a line; the save gets a little smaller.
 
-## What the save showed
+## Fixes found in a save
 
 *6 November 2026, version 0.106.1*
 
@@ -2374,7 +2381,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Fixed: raids sent by a raiders' camp never counted as fights won, so they left no victory, marks, deeds or calendar day.
 - Fixed: shearing day was asked just after the sheep were shorn, a planting day found "nothing that needed doing" beside fields still waiting for seed, and a gathering called off for a fight or the weather now says so instead of a vaguer reason.
 - People no longer repeat their own words: each keeps out their own recent lines, a journal never takes the same words twice, and a mood with only one or two lines draws from the wider pool.
-- Words true to the map: a chick is not a calf, an elected officer's lines say what they mean to do instead of what never happened, a life goal's spark is said in words, and the chronicle reads as sentences without "(s)" or "ended in over", telling a conversion once.
+- Text that matches the map: a chick is not a calf, an elected officer's lines say what they mean to do instead of what never happened, a life goal's spark is said in words, and the chronicle reads as sentences without "(s)" or "ended in over", telling a conversion once.
 
 ## Hurts from everyday life
 
@@ -2543,10 +2550,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *5 November 2026, version 0.97.0*
 
 - The colony can swear fealty to a stronger neighbour at peace: someone of theirs comes to the gate, anyone who objects has their say before the council, and the speaker swears by their rite, in each age's form.
-- A liege takes tribute at the gate each season, 150 to 600 silver's worth by the colony's wealth; short, it is owed, and still owed a season on, the oath breaks.
+- A liege takes tribute at the gate each season, 150 to 600 silver's worth by the colony's wealth; if it falls short, the rest is owed, and if it is still owed a season later, the oath breaks.
 - A liege's band comes when a home is raided, nine times in ten, and its letter calls the colony's levies when its town is attacked; renouncing costs their grudge unless they failed the colony that season.
 - The hamlet once sworn and up to two struggling towns that ask for protection are the colony's vassals: produce at harvest as the council sets it, levies when called, and asks for help, a judgment or a camp broken.
-- The quartermaster's collect the dues task is open: a vassal's season of dues by letter and carter, or the colony's tribute to its liege seen paid in full.
+- The quartermaster's task Collect the dues is open: a vassal's season of dues by letter and carter, or the colony's tribute to its liege seen paid in full.
 - Faction Territories' vassals get a head of their first people who writes, thinks of the colony and asks for help, including against the mod's invasions; their tribute, purchases and points stay that mod's.
 - 31 conversation pieces, 27 letter lines and 16 spoken lines speak of fealty and vassals.
 
@@ -2614,7 +2621,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Feasts with guests: once a season, invite up to three notables of peoples at peace by letter or call, from a people's card, the calendar or the steward's suggestion; each answers by their regard and whether their people's hopes are offered.
 - On the day the guests walk in with one or two of their people and wait by the gate, and up to four contests are held on the map: wrestling, a race, a hunt, a game at the colony's tables, and a shooting match where a mod gives targets.
 - The feast is the colony's gathering with the guests at its table; the champion of the day is named and the prize is carried to them, and the guests stay the night and go home at first light.
-- Their welcome moves their regard and their people's memory: a meal, a fine one for the Empire, what they hoped for, the prize, a bed; an empty plate is a slight.
+- Their welcome moves their regard and their people's memory: a meal, a fine one for the Empire, what they hoped for, the prize, a bed; a guest left without a meal takes it as an insult.
 - The risks are named before the choice: a wrestling blow goes in hard about one time in 25, a hunted beast may turn, and about one guest night in 15 ends in a fistfight.
 - Each feast has its Event card, a row on the calendar, a feast day in This week and its guests in Here and away; 27 conversation pieces, 24 letter lines and 47 spoken lines speak of it.
 - The colony's own at a neighbour's feast tell what they won when they come home.
@@ -2629,7 +2636,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Bars at the planner's foot for the load against the room, the caravan's own speed, and the food's days against the road's.
 - With RimMarket, what lies on the colony's stalls is listed in the planner beside the stores, the stores' taken first, and a traveller takes the rest out of the stall's stock before setting off.
 
-## What lies between peoples
+## Talk of debts, pacts and captives
 
 *5 November 2026, version 0.90.0*
 
@@ -2766,7 +2773,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The peoples call in what the colony owes them when the world shows a need: medicine in a sickness, food in a famine, hands at their harvest, a roof for their homeless, the colony's word in a feud. Refused or left unanswered, they remember it.
 - 14 conversation pieces and new letter lines speak of debts of honor, and the Almanac has a new page, diplomacy. The full view of what is owed each way comes with the region window's redesign, so it adds no tabs.
 
-## What stands near
+## What stands near the colony
 
 *4 November 2026, version 0.80.0*
 
@@ -2776,14 +2783,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Visitors talk about what stands near the colony: a raiders' camp, a ruin within reach, a town given up lately by name, a town raised on old walls, and what is happening at their own town (60 new conversation pieces).
 - Travelers say in conversation what brought them: a relic, a landmark, ruins, books, ore, a rush, grazing, the road or the distance.
 
-## Quiet by the bed
+## Building noise by the bed
 
 *4 November 2026, version 0.79.1*
 
 - Fixed: "building work by my bed" no longer comes to colonists far from their beds, or for an unfinished building behind a wall that nobody is working on.
 - It now comes only to someone in their own bedroom while a colonist is building in that room or on its walls, as its words say.
 
-## The region's voices
+## More talk about the region
 
 *4 November 2026, version 0.79.0*
 
@@ -2849,7 +2856,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The region window has a trading posts page, This week shows a post that may close, and visitors speak of the posts in 14 new conversations.
 - A new setting, Trading posts, under The region. The Almanac's region page explains how posts work.
 
-## What lies between you
+## Talk of favours and grudges
 
 *4 November 2026, version 0.74.0*
 
@@ -2914,7 +2921,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Visitors, callers and traders now mention in their letters what their people remember of you.
 - The region map shows how remote your colony is, and the Almanac has a new page on the region. Three settings under "The region" turn fortunes, the trade stock and new towns' faces off.
 
-## Every colony its own
+## Each colony keeps its own days and people
 
 *4 November 2026, version 0.68.0*
 
@@ -2968,7 +2975,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Groundwork: one history of the world, which the chronicle, world events, the peoples' memories and the ledger's ties now write to; the chronicle, the year letter and the annals read as before.
 - World events now know the town they happen at. Older everyday entries fold into a summary for their season, and the weighty ones stay as written.
 
-## One voice
+## Fewer messages on busy days
 
 *4 November 2026, version 0.66.0*
 
@@ -3148,7 +3155,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Click a settlement for its people, how they stand with the colony, how many days it is by caravan, any world event about them and what they remember, and a button to see it in the game's world view.
 - A setting chooses how far the map reaches, 20 to 60 tiles each way (35 at first), and the window has the same control at its top.
 
-## A frozen golem thaws
+## A frozen golem moves again
 
 *3 November 2026, version 0.57.1*
 
@@ -3163,7 +3170,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - How two get on now sets limits, from the game's compatibility, their faiths, views, shared passions and temper. Two who don't click stay friendly colleagues however much they talk, two who click warm quickly, and hovering someone in the Social tab says why.
 - Comrades come from fighting near each other, more when one carried the other out, tended them under fire or stood over them while they were down. Every fight together counts in full, and in long quiet spells the bond fades to what their fights together leave.
 - Rivalries come of things that happened and say what they're about: cross words that add up, a social fight, a blow in a rage or in a fight, an operation gone wrong, an affair, envy of a much better room or title. A grudge holds a few days, then fades slowly unless renewed.
-- A council seat lost is felt toward the winner, as much as it was wanted. Losing to the same person again, or an abrasive winner who rubs it in, can start a rivalry, while a move to another seat stays a mood.
+- Losing a council seat lowers the loser's opinion of the winner, by how much they wanted the seat. Losing to the same person again, or an abrasive winner who rubs it in, can start a rivalry, while a move to another seat stays a mood.
 - Love and gratitude: a partner may be jealous of a new close friend, things are awkward for a while after a rejection or a breakup, and someone carried out of a fight or nursed through an illness is grateful and says so.
 - Existing saves settle gently: pairs know each other from their days together, and old comradeships fade unless they are earned again in a fight.
 
@@ -3182,7 +3189,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A camp can now arrive at any hour of the day or night: most often toward evening, when travellers look for a place to stop, often at night, less in the early morning.
 - Each day's try comes at an hour of its own. A question that just came, one still waiting for an answer, danger on the map or extreme weather put it off by the hour, for up to a day, and the camps' diary notes the hour of each day's outcome.
 
-## Camps that can come
+## More chances for a camp to come
 
 *3 November 2026, version 0.56.2*
 
@@ -3216,7 +3223,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The health panel now really shows carcinomas: the game's carcinoma has no deadly severity of its own, it grows until it destroys the body part it sits in, so the last round's rule missed it.
 - It reads "stable", "shrinking" or "getting worse", with how far it is towards losing that part, and shows whatever the option for those only healing says.
 
-## A wedding still lands
+## A wedding still counts in full
 
 *3 November 2026, version 0.55.3*
 
@@ -3230,10 +3237,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *3 November 2026, version 0.55.2*
 
 - Being used to the good life now comes mostly off everyday comforts: lasting moods such as a fine room, beliefs or trust in the council, and memories of a kind a colonist has had often lately, like the third fine meal this week.
-- Something new loses the least, so a wedding, a gift or a first success still lands nearly in full, and a life goal reached always counts in full.
+- Something new loses the least, so a wedding, a gift or a first success still counts nearly in full, and a life goal reached always counts in full.
 - Each good mood's tooltip says which it is: part of everyday life, had often lately, or still new. The overall effect on mood stays the same.
 
-## Spoiled, not punished
+## Smaller good moods instead of one bad mood
 
 *3 November 2026, version 0.55.1*
 
@@ -3397,7 +3404,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Stranded spacers camp by their wrecked hull, trade spacer parts and medicine for components, plasteel or steel, and leave the hull behind as salvage.
 - With Anomaly, quiet scholars keep a night watch on the woken monolith, share their notes with the colony's study and ask for beds in a storm.
 - A travelling beast show brings beasts from far places. Buy one, sell them one of the colony's, or let the children help feed them.
-- With Odyssey, the run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.
+- With Odyssey, the fish run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.
 
 ## Colony news as a letter every day again
 
@@ -3510,7 +3517,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Two new everyday ailments come from work the colony already does: a sore elbow after long days of felling trees, and chapped hands after hours of outdoor work in the cold. Both are tended like the others and listed in the Almanac.
 - Patients who come for the colony's hospital, and the council's health questions, have new openings and outcomes.
 
-## Customs that remember their years
+## Customs remembered year after year
 
 *1 November 2026, version 0.45.1*
 
@@ -3540,7 +3547,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *1 November 2026, version 0.44.2*
 
-- With RimMarket, visitors camped on the colony's land and people from nearby camps walk over to the colony's own stalls by day and buy what suits them: drovers feed, a smith metal, a family a meal. They pay at the stall as RimMarket's shoppers do, and a dear price may put them off (setting "Campers buy at RimMarket's stalls").
+- With RimMarket, visitors camped on the colony's land and people from nearby camps walk over to the colony's own stalls by day and buy what suits them: drovers feed, a smith metal, a family a meal. They pay at the stall as RimMarket's shoppers do, and a high price may put them off (setting "Campers buy at RimMarket's stalls").
 - The drovers' milk can be bought from their camp's page once a day: a drover milks every beast with milk to give and sets the milk down by the colony's gate, and a colonist then takes over the silver it came to.
 - A visiting singer walks over and plays the colony's harp or piano after dark, while the other pilgrims sing at their camp.
 - Visiting hunters take a real wild beast that is fair game: never the colony's or one it marked, nothing big or rare, and the beast never turns on them. They dress it at their camp and take the meat and hide home. Hunters warned off the land really go.
@@ -3570,7 +3577,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Gate lines laid out before plans were drawn for the colony have their sandbags within a grenade's throw of the gate. Against raiders who throw grenades, the line's review says so and offers to plan the gate again.
 - Against raids of 3000 points and more, killboxes, gate sandbag lines and firing lines drawn for more shooters than one line holds get a second rank three rows behind the first, behind sandbags of its own.
 - Colonies facing mechanoid raids get an EMP step on each defense line: two EMP IEDs on the way in, and the EMP grenades, launcher and shells the colony can make.
-- A bait yard step places an orbital trade beacon in a clear yard in front of the gate. A raid of people dropping its pods into the colony's middle comes down at a powered beacon four times in ten (mechanoids don't), and there that is outside the wall.
+- A bait yard step places an orbital trade beacon in a clear yard in front of the gate. A raid of people dropping its pods into the colony's middle comes down at a powered beacon four times in ten (mechanoids don't), which is outside the wall.
 - Where enemies lay sieges or mechanoid clusters land, a mortar step places the mortar pit deep inside once mortars are researched.
 
 ## Rimfolk's sales table works with the new RimMarket
@@ -3606,10 +3613,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 - A camp's healer goes out at dawn and gathers the herbs they bring: wild healroot near the camp harvested for real, else a walk with stops among the grass. Drovers milk or shear a beast of their own herd for the milk or wool they give, and goods come out of their trader's own stock.
 - Whatever a camp brings is carried to the colony's edge by one of them and set down there, and the letter comes when it's there. A caravan's stores are carried to the gate by one of its drivers.
-- The blessing is walked to the colony's fields at dusk, with prayers said there; a mender comes over to the colonist's side to mend their gear; a test hole is dug by the gate with the find left beside it; a stall's wares are really set out by the gate and packed up again after.
+- The blessing is given at the colony's fields at dusk, with prayers said there. A mender comes over to the colonist to mend their gear, a test hole is dug by the gate with the find left beside it, and a stall's wares are really set out by the gate and packed up again afterwards.
 - Silver from a trader is only what their purse held. Mourners carry their dead's ashes and keep their vigil at the lamp, and a camp leaving in peace carries its dead home.
 
-## What's handed over is carried
+## What's handed over is carried there
 
 *30 October 2026, version 0.43.1*
 
@@ -3653,11 +3660,11 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The checklist under "Recruiting" on Hospitality's Guest tab was cut off after its heading once it ran past the bottom of the tab: the rest went to a second column out of sight, and the tab never grew. It now stays in one column, and the tab grows to show all of it.
 - Every guest has one: whether they would join of their own will now, and each condition met or not, from friends here and a reason to stay to room for one more and what they want of a home. The recruit button's tooltip says much the same.
 
-## An animal's help in a fight is a short glow
+## An animal's help in a fight is a short good mood
 
 *30 October 2026, version 0.41.2*
 
-- "My animal fought for me" lasts about four hours now, the glow after the fight, where it lasted twelve days.
+- "My animal fought for me" lasts about four hours now, a short good mood after the fight, where it lasted twelve days.
 - One a colonist already has goes once it is that old. No memory of Rimfolk's in a save keeps a longer time than its kind has now.
 
 ## A finished step of a defense line can be planned again
@@ -3671,14 +3678,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *30 October 2026, version 0.41.0*
 
-- At each anniversary of the landing a letter comes, with the annals' setting, about the year on the land and from beyond it, which the annals leave out: the herd (its head, who leads it and of which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The annalist writes it.
+- At each anniversary of the landing a letter comes about the year on the land and beyond it, the parts the annals leave out, and it follows the annals' setting. It covers the herd (how many head, who leads it and from which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads sent down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines from the year's chronicle about strangers and the world. The annalist writes it.
 - The founding day's own event still marks the day; the annals still write the calendar year. The letter adds the land and the neighbours, and nothing the other two say.
 
 ## Chains followed to the end, and automations you can see and undo
 
 *30 October 2026, version 0.40.0*
 
-- The Making page follows each chain to the end: from a thing the blueprints are short of or a bill waits on, down through the recipes of the benches you have, each part a link of its own, four links at most and never round in a circle. Each link says what there is and what is wanted, how much is used and made in a day (meals eaten, medicine spent, what the active bills take and give, what the growing zones yield) and how long the stock lasts, which bench and recipe would make it best (the best able hand's skill, the distance from the materials' store, the product an hour of work gives), how long a batch takes, and the whole chain's lead time. "Set the chain's bills" sets them all, the parts' first.
+- The Making page follows each chain to the end. It starts from something the blueprints are short of or a bill waits on and goes down through the recipes of the benches you have, each part a link of its own, four links at most and never in a circle. Each link says what there is and what is wanted, how much is used and made in a day (meals eaten, medicine spent, what the active bills take and give, what the growing zones yield) and how long the stock lasts. It also says which bench and recipe would make it best (by the best able worker's skill, the distance from the materials' store and the product an hour of work gives), how long a batch takes, and how long the whole chain takes. "Set the chain's bills" sets them all, the parts' bills first.
 - A link no bench makes but a plant yields (cotton for cloth, healroot for herbal medicine) says how many cells to sow, and "Sow it" adds them beside the zone that grows it or lays out a new zone near the fields on fertile, open ground.
 - The bills automation has its own switches for meals, medicine, components and the chains. A materials budget a day bounds the blueprints the automations place, and daily caps bound the take-down orders and the chopping marks; a new switch sows for what a chain wants.
 - The Making page shows, for every automation, on or off, what the council would do now, and the last things it did, each undone at a click: the bill off the bench (and not set again for a fortnight), the step back to proposed, the research pick, the zone, the orders, the blueprints, the marks.
@@ -3687,19 +3694,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *30 October 2026, version 0.39.0*
 
-- The Making page follows the chains. "Wanted for the building and the bills" names each material the blueprints and frames are short of beyond the stock, or that a bill on some bench waits on with none in stock, and the bench here that makes it, with a bill sized to the want (the stock, the want and a fifth more, never under the usual count). Bills waiting on an ingredient the colony has none of are listed with the bill that would feed them, or told what to grow, mine or trade for. A batch something waits on comes first and is marked in gold, whatever the colony's stock of it. Bill counts for meals and medicine grow with the colony: three days of two meals a head, two medicine a head, within bounds.
-- Automations, each its own switch under Building in the settings, all off unless you turn them on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a quiet message, and keeps a log on the check-myself page; it never acts while there is fighting on the map, and never over your own orders.
-- The seven: bills for what the colony lacks (the staples it can make, and whatever the blueprints and the other bills wait on, two an hour at most; a bill you remove isn't set again for a fortnight); urgent steps go straight into the plan; an idle research bench takes up the cheapest project of the colony's own era; goods nobody stores get their stockpile; wall stubs, dead conduit and pipe ends and pointless doors get their take-down orders; dark bedrooms and benches get their lamps and chairs planned; trees near the base are marked for chopping when the woodpile won't see the cold through.
+- The Making page follows the chains. "Wanted for the building and the bills" names each material that the blueprints and frames need beyond the stock, or that a bill waits on with none in stock, and the bench here that makes it, with a bill sized to the need (the stock, the need and a fifth more, never under the usual count). Bills waiting on an ingredient the colony has none of are listed with the bill that would supply it, or with what to grow, mine or trade for. A batch that something waits on comes first and is marked in gold, whatever the colony's stock of it. Bill counts for meals and medicine grow with the colony: three days of two meals for each person and two medicine for each person, within limits.
+- Automations, each its own switch under Building in the settings, all off unless you turn them on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a short message, and keeps a log on the check-myself page; it never acts while there is fighting on the map, and never over your own orders.
+- The seven automations: bills for what the colony lacks, covering the staples it can make and whatever the blueprints and other bills wait on, at most two an hour (a bill you remove isn't set again for a fortnight). Urgent steps go straight into the plan. An idle research bench takes up the cheapest project of the colony's own era. Goods nobody stores get a stockpile. Wall stubs, dead conduit and pipe ends and pointless doors get take-down orders. Dark bedrooms and benches get lamps and chairs planned. Trees near the base are marked for chopping when the woodpile won't last the cold season.
 - Everything the council does is undone the ordinary way: on the bench, in the plan, in the research tab, or on the map.
 
 ## Rearrange a room, thought through
 
 *30 October 2026, version 0.38.0*
 
-- "Rearrange a room" now walks the room before it decides. Once every piece has a place, the council traces the ways people take from the doors to everything they use, by the game's own costs (a chair or a bedroll is crossed slowly, a work spot is someone's standing place half the time), and tries each piece at its few best places for the arrangement that walks best as a whole: no work spot on someone else's way, no chair in the aisle, the main ways two cells wide where the room is busy (many pieces, or more than one door), no floor cut off and no dead-end slivers that serve nothing, and the biggest open stretch kept for gatherings and for what comes next.
+- "Rearrange a room" now works out how people walk through the room before it decides. Once every piece has a place, the council traces the ways people take from the doors to everything they use, by the game's own costs (a chair or a bedroll is crossed slowly, a work spot is someone's standing place half the time), and tries each piece at its few best places for the arrangement that is easiest to walk through as a whole: no work spot on someone else's way, no chair in the aisle, the main ways two cells wide where the room is busy (many pieces, or more than one door), no floor cut off and no dead-end slivers that serve nothing, and the biggest open stretch kept for gatherings and for what comes next.
 - What each piece is for counts in full. A lamp goes where it lights the work (the benches' spots, a sickbed) that no other lamp lights yet, instead of a corner by the door; a sun lamp still goes to the middle. A screen keeps its watch area open and gets its back to a wall, and the chairs on the watch area face it; a billiards table keeps the ring round it free. Chairs and other pieces people cross are known by their path cost.
 - Whether a piece already stands well is weighed against the work of moving it: a stool moves for a small gain, a bench or a stocked shelf only for a clear one (its build work and the goods to carry out and back count against the move, up to a point).
-- The window says how the room walks, now and after: the main ways' width at the narrowest and the squeeze points, work spots standing in someone else's way and chairs slowing the ways, dead-end cells and floor nobody can reach, the biggest open stretch, the everyday walking in steps a day, and the work spots out of the lamps' light.
+- The window says how easy the room is to walk through, now and after: the main ways' width at the narrowest and the squeeze points, work spots standing in someone else's way and chairs slowing the ways, dead-end cells and floor nobody can reach, the biggest open stretch, the everyday walking in steps a day, and the work spots out of the lamps' light.
 
 ## The post as a trading stop, and allies who answer
 
@@ -3714,7 +3721,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *30 October 2026, version 0.36.0*
 
-- "Rimfolk: check myself" (development mode) has a new part for the slower stories: the regulars the colony keeps up with, each with their visits, the bond and when they are due back, and whether one could come back now; the herd's leader, its line and whether its last season has been told, or what the herd still needs for a leader; the beast that stays, or the animal being watched toward a name, or the rest before the next one, and how many wild animals of size are on the land; the shiny rumour and its days left; and whether traveling trainers can come at all.
+- "Rimfolk: check myself" (development mode) has a new part for the slower stories. It shows the regulars the colony keeps up with, with their visits, the bond, when they are due back and whether one could come back now. It shows the herd's leader, its line and whether its last season has been told, or what the herd still needs to have a leader. It shows the beast that stays, or the animal being watched before it gets a name, or the rest before the next one, and how many large wild animals are on the land. It also shows the shiny rumour and its days left, and whether traveling trainers can come at all.
 - The Overview page has a card, "The herd and the land": who leads the herd and of which line and generation, whether it is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the wind, and the neighbours settled for good.
 
 ## Two fixes from a read-through of the new rounds
@@ -3728,33 +3735,33 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *30 October 2026, version 0.35.0*
 
-- With PokéWorld, the beast that stays can be a wild Pokémon: one seen on the land three days running is named by a colonist, whoever sees it says so, and until it is fed or caught it gets into the stores now and then and makes off with a few of what it would eat. The council's question about it has its own answers: leave food out (carried out and left), keep the stores shut with a watch at the gate, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is the player's, with PokéWorld's own balls, and the catch is told), let it be, or drive it off.
-- A shiny rumour: a trainer at the gate has heard of a shiny Pokémon of some species seen in the region. Keep an eye out and the rumour holds for twenty days; while it does, the shiny may show itself on the colony's land, where it is named like any beast that stays, and the one who named it knows the rumour was true. Or it was a story after all.
-- Traveling trainers, a new kind of camp (only with PokéWorld's Pokémon in play): two or three trainers of a friendly people with their Pokémon at their heels, who trade, teach training to whoever asks, and put on a friendly contest with the colony's best Pokémon as a show at their fire (a gathering there; the higher level is likelier to win, never surely; nobody is hurt). They come back like any remembered camp, and the score comes back with them: a rematch, with words for who won last time.
+- With PokéWorld, the beast that stays can be a wild Pokémon: one seen on the land three days running is named by a colonist, and whoever sees it says so. Until it is fed or caught it gets into the stores now and then and makes off with a little of what it eats. The council's question about it has its own answers: leave food out (carried out and left), keep the stores shut with a watch at the gate, let the namer try to catch it, let it be, or drive it off. The namer walks out to it with a ball at the belt; the player makes the throw with PokéWorld's own balls, and the catch is told.
+- A shiny rumour: a trainer at the gate has heard of a shiny Pokémon of some species seen in the region. Keep an eye out and the rumour holds for twenty days; while it does, the shiny may show itself on the colony's land, where it is named like any beast that stays, and the one who named it knows the rumour was true. If it never shows, the rumour was only a story.
+- Traveling trainers, a new kind of camp (only with PokéWorld's Pokémon in play): two or three trainers of a friendly people with their Pokémon, who trade, teach training to anyone who asks, and hold a friendly contest at their fire against the colony's best Pokémon. It is a gathering there; the higher level is likelier to win but never certain to, and nobody is hurt. They come back like any remembered camp, and so does the score: a rematch mentions who won last time.
 - Under the hood: a camp kind can be about Pokémon (possible only with PokéWorld's Pokémon in play), a camp's animals can be Pokémon of the roaming kinds, and a camp's lines know whether its people are back and how the shows have gone.
 
 ## The herd's year, and a beast that stays
 
 *30 October 2026, version 0.34.0*
 
-- The herd has a leader. With four head or more, the eldest of the many (and later the old leader's own blood) leads the colony's herd and is named by its keeper or the herdmaster, who speaks to it at the pens; a letter and the chronicle tell it. Its line is counted from then on: a calf born of the leader's blood is the second generation, the third, and so on, each new generation told the first time it is reached. When the leader grows old its last season is told and the keeper sits with it at the pens of an evening; when it dies the herd has lost its leader, and in a day or two follows one of its own line if there is one, else a new line begins.
+- The herd has a leader. With four or more animals, the eldest adult of the kind there is most of (and later the old leader's own offspring) leads the colony's herd. Its keeper or the herdmaster names it and speaks to it at the pens, and a letter and the chronicle say so. Its line is counted from then on: a calf of the leader is the second generation, its calf the third, and so on, each new generation told the first time it is reached. When the leader grows old its last season is told, and the keeper sits with it at the pens in the evenings. When it dies the herd is without a leader, and a day or two later it follows one of the leader's line if there is one; otherwise a new line begins.
 - The first calf of each spring is a moment: a letter, a glad thought for the colony, and the keeper goes down to the pens to see it stand. The first foal ever is still kept on the calendar as before.
-- A beast that stays: a wild wolf, bear, stag or the like seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. A few days later the council is asked what to make of it, and again every so often while it stays: leave food out for it (carried out and left where it is, meat or fodder by its diet), keep everyone close with a watch at the gate, send the hunters, let the namer try to tame it, let it be, or drive it off with torches. After a season it is part of the land, and the story closes; hunted, tamed, driven off or moved on, it closes sooner, and the chronicle keeps how.
+- A beast that stays: a wild wolf, bear, stag or the like seen on the colony's land three days running is given a name by a colonist (a child first, else someone who loves animals), and from then on whoever sees it says so. A few days later the council is asked what to do about it, and again every so often while it stays. The answers: leave food out for it (carried out and left where it is, meat or fodder by its diet), keep everyone close with a watch at the gate, send the hunters, let the namer try to tame it, let it be, or drive it off with torches. After a season it counts as part of the land and the story ends. If it is hunted, tamed, driven off or moves on, the story ends sooner, and the chronicle records how.
 
 ## Other settlers, the road over a year, and people left behind
 
 *30 October 2026, version 0.33.0*
 
-- Other settlers: a party of a friendly people founds a steading a few days from the colony, a new town on the world map, and their leader comes to the gate. Over nearly a year (the longest world event yet) the steading grows household by household, their hunters work the colony's woods, they ask for food in a hungry month or, slighted, set their traps on the colony's side of the stream. At the turning of the year the leader comes back in person: bind the two settlements as allies, invite the settlers to join the colony (they walk over and the steading is left empty), agree a boundary, or tell them to keep to their side. Warm answers and slights are weighed against each other all year, and the year ends in an alliance, in new colonists, in bad blood, in the settlers giving up, or in plain neighbours.
-- The road, over a year: when "a new road" was brought past the colony's gate, it is used (merchants, travelers, a carter robbed on it, the people's road wardens at the gate); the wardens made welcome come back to ask for ground for a post, and their camp arrives to build it and then settles as the colony's neighbour, fighting whatever comes up the road; and at the post a crossroads town grows, which the colony may name after itself. Each follows the one before, so the road's story takes a year or two.
-- People a world event leaves behind: in a plague, an old woman brings two children orphaned by it to the gate (take the children in, send them on with food, or not); deserters of a war, a holy war, a levy or a mercenary company camp out of sight at the edge of the colony's land, ask for steel to mend their gear, and can be asked to stand guard, taking up arms against whatever threatens the colony while their camp stands. Any camp asked to stand guard fights as a war party does.
+- Other settlers: a party of a friendly people founds a steading a few days from the colony, a new town on the world map, and their leader comes to the gate. Over nearly a year (the longest world event yet) the steading grows household by household and their hunters work the colony's woods. They ask for food in a hungry month, or, if slighted, set their traps on the colony's side of the stream. At the turn of the year the leader comes back in person, and the colony can make the two settlements allies, invite the settlers to join the colony (they walk over and the steading is left empty), agree a boundary, or tell them to keep to their side. Warm answers and slights are weighed against each other all year, and the year ends in an alliance, new colonists, bad blood, the settlers giving up, or ordinary neighbours.
+- The road, over a year: once "a new road" has been brought past the colony's gate, it is used by merchants and travelers, a carter is robbed on it, and the people's road wardens come to the gate. Wardens who were made welcome come back to ask for ground for a post; their camp arrives to build it, then settles as the colony's neighbour and fights whatever comes up the road. At the post a crossroads town grows, which the colony may name after itself. Each step follows the one before, so the road's story takes a year or two.
+- People a world event leaves behind: in a plague, an old woman brings two children orphaned by it to the gate, and the colony can take the children in, send them on with food, or refuse. Deserters from a war, a holy war, a levy or a mercenary company camp out of sight at the edge of the colony's land and ask for steel to mend their gear. They can be asked to stand guard, and then fight whatever threatens the colony while their camp stands. Any camp asked to stand guard fights as a war party does.
 - Under the hood: a world event can follow an earlier one by a flag it ended with, a beat can bring a camp of one kind or settle the camp that is here as the colony's neighbour, a letter's visitors can include children and bring the event's own person back to the gate, and taking in the children alone leaves whoever brought them free to go home.
 
 ## Faces that come back, visitors who notice, guests in the colony's stories
 
 *30 October 2026, version 0.32.0*
 
-- The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering cook, the scribe, the players' storyteller and the kindred spirit are remembered when they go (up to five of them). From twenty days on, one of them comes back as "a familiar face at the gate", asks after the colonist they dealt with, and teaches a lesson in their trade for a welcome. Each warm answer deepens the thread, a cold one frays it, and someone not seen for half a year is forgotten. On their third visit or later, if the thread holds, it turns: they ask to stay for good, or ask their friend to come along on the road. The World page lists them under "Out there".
+- The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering cook, the scribe, the players' storyteller and the kindred spirit are remembered when they go (up to five of them). From twenty days on, one of them comes back as "a familiar face at the gate", asks after the colonist they dealt with, and teaches a lesson in their trade for a welcome. Each warm answer makes the bond stronger and a cold one weakens it, and someone not seen for half a year is forgotten. On their third visit or later, if the bond holds, they ask to stay for good, or ask their friend to come along on the road. The World page lists them under "Out there".
 - Visitors notice the colony. A guest or a visitor at the gate says a line about a great hall, the art on the walls, the graves, a shrine, the walls and the guns, the many animals or the wide fields, once per thing seen. Word spreads: a colony whose halls, art, graves or walls travellers keep remarking on becomes famed for them (four new colony traits), and the tourists, the celebrity, the players, the notable guest, pilgrims, scholars and scribes come to it more often. "Travellers speak of..." on the World page says what the colony is known for.
 - With Hospitality: a guest already staying can be the stranger of a story, about half the time when one of the guests fits. The old flame, the one asking to learn a trade, and the tinker or the teller who becomes a regular can be someone sleeping in the guest beds rather than a new face at the edge of the map; an answer that has them join hands them over through Hospitality, so their people are told the same way. The setting "Guests in the colony's stories" (Guests page) turns it off.
 
@@ -3762,15 +3769,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *30 October 2026, version 0.31.0*
 
-- A refugee family or a hermit whose stay went well asks, at their parting, to stay on the colony's land for good. Let settle, their camp becomes their home at the edge of the colony's land: they live off the land around it, trade (their stock is new every so often), come over to the gate every few days, ask and are asked (the same questions the council gets about any camp), and the council can still ask them to move on. Or take them all into the colony, camp and goods and children. One such neighbour at a time; camps still come and go beside them.
+- A refugee family or a hermit whose stay went well asks, when leaving, to stay on the colony's land for good. If allowed, their camp becomes their home at the edge of the colony's land: they live off the land around it, trade (their stock changes every so often), come over to the gate every few days, ask and are asked the same questions the council gets about any camp, and the council can still ask them to move on. Or the colony can take them all in, with their camp, goods and children. Only one such neighbour at a time; camps still come and go beside them.
 - Neighbours have their troubles: one of them falls ill now and then and asks for the colony's doctor; raiders on the land may kill one of them, and the rest may bury their dead and move on. Their unease eases with time rather than growing. The World page has their card under "Our neighbours".
 
-## Camps that come back, a stay with a shape, and help in a fight
+## Camps that come back, stays that follow a pattern, and help in a fight
 
 *30 October 2026, version 0.30.0*
 
 - A camp that stayed and left in peace is remembered, with up to four of its people. A month or more later, when a camp could come again, it may be the same faces coming back (likelier after a warm stay or when the colony asked them back, less each time), with news of what became of them since. They settle in quicker, and the colonist who made a friend of them is glad to see them. The World page lists the camps the colony knows that may pass this way again.
-- Every stay has a shape. A day and a half in, they ask something of the colony or do it a good turn. Midway through a longer stay trouble comes: one of the council's questions about them, or one of theirs falls ill and they ask for the colony's doctor, or their cart breaks and they ask for the makings. In the last day whoever speaks for them comes to say goodbye, and the colony can ask them back or send them off with meals for the road.
+- Every stay follows a pattern. A day and a half in, they ask something of the colony or do it a good turn. Midway through a longer stay trouble comes: one of the council's questions about them, or one of theirs falls ill and they ask for the colony's doctor, or their cart breaks and they ask for the makings. In the last day whoever speaks for them comes to say goodbye, and the colony can ask them back or send them off with meals for the road.
 - Help in a fight. When enemies have been on the colony's land for an hour, a people at peace with the colony and at war with the attacker may send a war party to fight them: a letter asks whether to welcome them, hold them at the edge or send them away. They hunt the enemy alongside the colony's own; when the fight is over they make camp to rest a day or two, have their wounded seen to and sell what the fight left them, and their people remember that the colony owes them. A new threat while they rest sends them after it.
 
 ## The Decrees page organized, and why no camp has come
@@ -3844,7 +3851,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *29 October 2026, version 0.25.1*
 
-- A Ground plan button on the Plan page draws the next rooms on the map together: the rooms in the plan in your order, then the proposals, each at the spot that fits best with the ones before it kept clear. How the base grows if the plan is followed.
+- A Ground plan button on the Plan page draws the next rooms on the map together: the rooms in the plan in your order, then the proposals, each at the spot that fits best with the ones before it kept clear. It shows how the base grows if the plan is followed.
 - Each room is outlined in its own colour with its name, and listed in the window with its reasons: the walls it shares, the rooms it goes with, the gate, the fields, the quiet. "Plan it here" opens the planner at that spot.
 - A room whose size can't be built yet is drawn at the size that can; one with no spot near the colony is listed as such.
 
@@ -3852,7 +3859,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *29 October 2026, version 0.25.0*
 
-- A Base page under Colony: once an hour, or when you ask, the council walks the base and lists what stands where it shouldn't, what leads nowhere, and what a click can put right, most pressing first.
+- A Base page under Colony: once an hour, or when you ask, the council looks over the base and lists what stands where it shouldn't, what leads nowhere, and what a click can put right, most pressing first.
 - Rooms: a kitchen far from the freezer or the dining room, a workshop far from its store, a hospital far from the gate, a barn far from the fields; bedrooms or the hospital right by a workshop or a barn, a prison cell by the bedrooms; and long walks from the bedrooms to meals.
 - Doors: one with the same room on both sides or no wall beside it, and a freezer door that opens into a warm room or the open air with no airlock between.
 - Walls: short stubs left over from rebuilding, never a pillar on its own or a wall holding up a roof.
@@ -3888,7 +3895,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - It also explains Hospitality's own rules. A death acidifier keeps a guest from joining of their own will unless they're related to someone of the colony, and the titled can't be recruited by force, so a titled guest with an acidifier can't be recruited at all.
 - It warns that recruiting someone with a death acidifier sets it off: their weapons and clothes dissolve and they're left with chemical burns.
 
-## Slots kept just so
+## Limits for reserved slots
 
 *29 October 2026, version 0.23.2*
 
@@ -3932,7 +3939,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The wedding is the game's own ceremony, started on the next fine evening when both are ready, and the feast or the toast follows once they're married.
 - A plan not kept within five days lapses with a note, and the game marries them in its own time as before.
 
-## What the words say, done
+## Work parties do what their words say
 
 *28 October 2026, version 0.20.2*
 
@@ -3945,7 +3952,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The story seeds are sown in a small patch of a crop the colony grows, with a fence marked out round it. The hill's pilgrims hand over their silver, eat and bed down by the wall, and the robbed merchant eats and sleeps by the gate.
 - Fixes: a friendly talk now and then runs to a fourth line, so its parting words can be said, and a confession or a secret to be confided that is waiting for the right moment is kept over a save and load.
 
-## Ties weigh, they don't bar
+## Ties at home no longer bar a guest
 
 *28 October 2026, version 0.20.1*
 
@@ -3975,7 +3982,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A younger colonist with a passion for that skill spends some hours learning at their side.
 - The Story tab remembers them as the one who did it, and the colony tells it round in gossip.
 
-## Kept at a price, and faith that holds
+## Keeping someone has a price, and the one-faith decree has limits
 
 *28 October 2026, version 0.18.4*
 
@@ -3984,7 +3991,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A promised room has to be theirs within a fortnight, or the broken promise costs trust again.
 - Someone kept and still unhappy asks once more, and keeping them then costs more: someone's room given up, or the council's word and a bitter memory.
 - The one-ideoligion decree alone carries anyone only part of the way. The rest takes friends, family or a partner among its believers.
-- The set in their ways, the proud and those whose ideoligion frowns on preaching dig in while the decree holds, and it wears off slowly.
+- The set in their ways, the proud and those whose ideoligion frowns on preaching resist while the decree holds, and its pull wears off slowly.
 - Whoever comes over under the decree stays drawn back to the ideoligion they left.
 
 ## Camps dressed for the weather
@@ -4065,13 +4072,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A ship buys from what's in the beacon's range first, and what it buys from a stall comes off that stall's sale line, as a sale at the stall does.
 - A stall never stands in for a beacon: with none powered, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" turns it off.
 
-## Who raises them, and the one left
+## Who raises an orphan, and the one left behind
 
 *27 October 2026, version 0.17.6*
 
 - A child with nobody of their own here brings the council a question a day after their parents die: who raises them. Name an adoptive parent, let the child choose, or let the whole colony raise them. An adoptive mother or father and their adopted son or daughter show on the Social tab, and are parent and child for the family's toasts, pride and grief.
 - A dead colonist's own room goes a day later to the closest of their family here without a room of their own, and the bed is theirs. Heirlooms go to family first, blood closest.
-- When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time carrying it.
+- When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time learning to live with it.
 - The wedding day of a couple parted by death comes round as the survivor's own, kept with an hour at the grave or a long walk.
 - When a widowed parent finds someone new, their children are glad for them, or hurt for the parent they lost, and say so.
 - Parents were never proud when their child came of age, because of a mistake in who counted as a parent; they are now, adoptive parents too.
@@ -4088,7 +4095,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The journal shows its two newest entries as quotes under their dates.
 - The Almanac said a lonely or strongly feeling colonist shows it on the Story tab; it is the heart section of the Mood tab, and the Almanac says so now.
 
-## Sat down, seen off, asked in
+## Visits, send-offs and guests at the table
 
 *27 October 2026, version 0.17.4*
 
@@ -4118,7 +4125,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A new room is staked out when the walk out to the ground gets there, not when the answer is given.
 - A fallen star is forged into a blade at the colony's smithy, or broken up where it fell by someone sent out to it. A crashed drone is stripped or its memory pulled at the wreck. The wild bees' comb is cut from a real tree near the fields, and the lightning-struck tree is felled by hand.
 
-## As the answer said, in its own time
+## Answers play out when they say
 
 *27 October 2026, version 0.17.1*
 
@@ -4189,11 +4196,11 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 *25 October 2026, version 0.16.1*
 
 - A decree the colony needs now and wants can come again sooner: after fight on fight, with the home filthy and many hurt, a clean sweep someone asks for is possible again in about four days instead of eight.
-- A needed repeat is minded less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.
+- People mind a needed repeat less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.
 - It never becomes a decree for every day: at least a day and a third of its rest always stays, and once it has been declared twice in a month the need counts for half.
 - The decree's card says when it's needed and why, and how much the colony wants it. A clean sweep and a sick bay also count the fighting as a need.
 
-## Weather that changes like weather
+## More natural weather
 
 *25 October 2026, version 0.16.0*
 
@@ -4205,7 +4212,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The colonist who reads the weather best says what's coming a few hours ahead, and the Overview's Weather card shows it. The weather that comes is held to, and the forecast is as good as the one who makes it; a weather station from Stormproof or Weather Control makes it nearly certain.
 - Each year leans a little wetter or drier, warmer or colder, and the annals say so when it was. Each part has its own setting under "The weather" on the Events page.
 
-## The weather remembered
+## Weather records
 
 *25 October 2026, version 0.15.0*
 
@@ -4236,7 +4243,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Rimfolk's warm moments come up less often between two who don't click, and frictions more; the other way round for two who get on easily.
 - Fighting side by side is respect rather than friendship: comrades add 3, 5 or 8 points instead of 4, 8 or 14. Before, a colony that drafted everyone for each raid had every pair 14 points closer to friends.
 
-## Shaped for the colony
+## Defense plans shaped for the colony
 
 *25 October 2026, version 0.14.0*
 
@@ -4244,10 +4251,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Killboxes laid out by what the 1.6 game code shows: the way in turns twice, then runs straight for four or five cells, so a raider at the last corner can't see your shooters; every shooter stands within about 24° of the doorway's line, where its walls give the raider in it no cover, and against grenades more than a throw back. Decoy mini-turrets in the box, or an autocannon behind the gap in the line; traps and things that slow them in the way in, never in the box.
 - Firing positions in pockets: a piece of wall in front and sandbags at its corners and beside it, for three-quarters cover while leaning out to shoot. The killbox, the firing line and the sniper's post use them, and a line's review counts them.
 - A baffled gate: a passage that turns into a walled yard, a small killbox that is also the colony's way in. Against raiders who throw grenades, a line's first step offers it where it fits.
-- Side lines behind a gate stand where nobody outside sees them and the gate gives a raider little cover. The perimeter wall has an airlock, a gate, a cell and a gate; the trap corridor puts a fence beside each trap; turrets in a nest stand beyond each other's blast; the mortar pit keeps its mortars and shells apart.
+- Side lines behind a gate stand where nobody outside can see them and where the gate gives a raider little cover. The perimeter wall has an airlock: a gate, a cell and a gate. The trap corridor puts a fence beside each trap, turrets in a nest stand out of each other's blast, and the mortar pit keeps its mortars and shells apart.
 - The palisade and castle gates have a killing yard: archers behind embrasures across its far side, and the way on through a gate in its corner, where the melee fighters wait.
 - A line's review offers to plan a killbox again when the colony outgrows it, or when it was laid out before plans were drawn and its last corner sees the shooters.
-- The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too and lean round corners; how a pocket works; where shooters stand in a killbox; and how far a turret's blast reaches.
+- The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too, and lean round corners. They also explain how a pocket works, where shooters stand in a killbox and how far a turret's blast reaches.
 
 ## Fungus kept for its meal
 
@@ -4256,7 +4263,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - With Ideology, every meal bill but the fungus meal's starts with fungus unticked, so the cooks keep the fungus for fungus meals. Tick it back on any bill that should use it; a dish from another mod that can't be made without fungus keeps it.
 - In a save from before this, the meal bills already in a queue get fungus unticked once, when the save is loaded.
 
-## More to live through
+## Build priorities, and more camps, talk and events
 
 *24 October 2026, version 0.13.0*
 
@@ -4266,10 +4273,10 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Colonists talk about the day coming up on the calendar, the latest world news and the camp on the map, and children get a talk of their own, about growing up here. Talk repeats far less, about 6,900 lines where there were 2,600, every voice with its own lines for each turn, memory and in-joke, and none of it at the wrong moment: no teasing on a day of mourning.
 - Fourteen new everyday events (a killing frost, something at the pens, fire on the far ridge, a war band in the valley, a gambler, a traveling teacher and more), new turns for nine of the most frequent, and two season-long stories: an apprentice from the town and a traveler with a fever.
 - Seven new world events (a prophet on the roads, an old vault opened, markets closed between two peoples, a merchant house failing, the ice road in a hard freeze, a moot of the peoples, an old thrumbo and its horn hunters), and eleven older ones play differently a second time, following from what the colony did.
-- 45 new dreams, so nearly every habit, quirk, life goal and story has one, and eight quirks the colony lives into: a lamp lit for travelers, a horror of smoke, coins counted twice, the fields walked at dawn, a dream book, a healer's salve, juggling at supper, a trick against the cold.
-- Calendar days from what the colony lived through (a camp's gift, a world event it took part in, the faith's holy days, one brought home from captivity), kept with a walk out to what the day remembers; memories and deeds from camps, missions and world events, and jokes passed on to a friend who missed them; ten bad days that follow from what happened, like rain on a feast day; and 22 encounters by the water and under rare skies.
+- 45 new dreams, so nearly every habit, quirk, life goal and story has one, and eight quirks colonists can pick up: a lamp lit for travelers, a horror of smoke, coins counted twice, the fields walked at dawn, a dream book, a healer's salve, juggling at supper, a trick against the cold.
+- Calendar days from what the colony lived through (a camp's gift, a world event it took part in, the faith's holy days, the day someone was brought home from captivity), kept with a walk out to the place the day remembers. Also memories and deeds from camps, missions and world events, jokes passed on to a friend who missed them, ten bad days that follow from what happened (like rain on a feast day), and 22 encounters by the water and under rare skies.
 
-## Walls at their sides
+## Walls beside the sandbag lines, and fixes
 
 *24 October 2026, version 0.12.1*
 
@@ -4281,7 +4288,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - A mission stays on the home it was taken on at; Rimfolk's events, visitors and couriers keep to homes on the ground, never an orbital base; an escort starts only with a caravan setting out from the colony itself.
 - A sleepwalker's door is bolted only while it's still their own room's, and only for the nights asked; a talent scout's offer can't be taken once the colonist is gone; and what a story waits for two people to share now survives a save and load.
 
-## Seen, not told
+## Shown on the map, not only told
 
 *24 October 2026, version 0.12.0*
 
@@ -4314,7 +4321,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - When you arrest one of a group of visitors, the rest leave at once instead of standing at the gate for a day; visitors walled in on their way out leave after a day.
 - A camp no longer stops hunting or felling trees for a day or more after you load an earlier save or another colony.
 
-## Couriers home, panels fresh
+## Courier and panel fixes
 
 *23 October 2026, version 0.11.3*
 
@@ -4324,7 +4331,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Loading another save no longer shows the last game's alerts, wounds or idle times in the on-screen panels, and the inventory's yesterday column now works with up to eight home maps.
 - The hover card lets go of a colonist who died or left the map while the mouse rested on it, and a panel's options window redraws the panel when you reset it.
 
-## Faith that settles
+## Conversions that hold
 
 *23 October 2026, version 0.11.2*
 
@@ -4332,25 +4339,25 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - An ideoligion the game has let go of, its last believers gone, is forgotten: nobody leans toward it, shows it on the Culture tab or takes it up.
 - A visiting scholar who speaks at a gathering is no longer woken, called away from a meal or a sickbed, or walked out of a cell to the table. Choosing what to work on costs a little less while a clean sweep isn't on.
 
-## Habits, mended
+## Habit fixes
 
 *23 October 2026, version 0.11.1*
 
-- Remembering every birthday could never take root or grow into kindness: it's lived only on someone's birthday, and asked for sixty. Four birthdays remembered now do it.
-- Knocking on wood gladdened colonists wounded early in a long fight: now only those with no wound since the fight began. That mood and the best bite's follow the setting for moods, like every other, and with quirks switched off, nobody's hidden habits live on, take root or make news.
-- A deep-rooted habit now lasts four months after they stop, as its line says, and one habit leads to one trait change: humming that steadies the lazy is spent on it.
+- The habit of remembering every birthday could never take root or grow into kindness: it only happens on someone's birthday, and it needed sixty. Four birthdays remembered now do it.
+- Knocking on wood cheered up colonists who had been wounded early in a long fight: now only those with no wound since the fight began. That mood and the best bite's follow the setting for moods, like every other, and with quirks switched off, nobody's hidden habits carry on, take root or make news.
+- A deep-rooted habit now lasts four months after they stop, as its line says, and one habit leads to one trait change: humming that makes the lazy steadier is used up once it does.
 - Wishes talk about what they are: a fountain, a sculpture or flowers about making the colony beautiful, a guest bed or a comms console about guests and neighbours, recruiting or freeing a prisoner about the prisoner, a council meeting about the council. A promised wish that lapses says its own words for the broken promise first, and a first anniversary's "it still feels new here" can come at last.
 
-## Habits that grow from a life
+## Habits from what colonists do
 
 *23 October 2026, version 0.11.0*
 
 - Each quirk on a colonist's Story tab, under Heart, now says how it came, what it does and how long it lasts: "can't stand a mess (from all the cleaning). Cleaning speed +10%, mood -2 in a messy room, tidies up in their free time. Stays while they keep at cleaning." One that does nothing to play says so.
 - Habits come each in their own way. Most grow out of what someone does: Rimfolk notes once an hour what each colonist is doing (their kind of work, early mornings, late nights, time outdoors) and remembers about three weeks of it. A habit of work never comes without its work, and the more of it, the likelier. A few are simply who someone is and come to anyone they fit.
 - Seven new habits: steady hands (doctoring), measures twice (building), sharpens every blade (smithing), knows every trail (hunting), carries more than they should (hauling), keeps late hours (being up after eleven), and can't sit still (by nature).
-- A habit lived doesn't fade while it is. Lived on sixty days, it takes root and its knack and good mood grow a little (cleaning 15% faster instead of 10%, say).
+- A habit doesn't fade while it is kept up. Kept up for sixty days, it takes root and its knack and good mood grow a little (cleaning 15% faster instead of 10%, say).
 - Every habit shows on the map: a moment of its own in their free time (tidying a dirty room, watching the sun come up, looking for pretty stones, looking in on the sick, wishing someone a happy birthday) or a word now and then at the work.
-- The superstitions that were only flavour do something small: knocking on wood gladdens after a fight come through unhurt, talking to the dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing).
+- The superstitions that were only flavour do something small: knocking on wood cheers someone after a fight they came through unhurt, talking to the dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing).
 - A habit lived for months grows into a trait: harder work, kindness, night owl, or one of six traits of Rimfolk's own that are only ever earned (tidy, green thumb, born cook, animal friend, healer's hands, trail-wise). With Vanilla Traits Expanded, its neat and animal lover are given instead. Tough and fast walker can now be earned too, never lost.
 - The character page shows "where life is taking them": the trait changes a colonist is heading toward, with how many of the things that lead there have happened. Hover one for the list.
 
@@ -4452,7 +4459,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The panels' options show all of their settings again. The inventory's were cut off after its first look, so its rows, order, pins and the rest couldn't be set.
 - The inspect tabs over the colonist's pane (Story, Mood, Gear and the rest) take your clicks again where a panel lies behind them, also when another mod such as RimHUD draws them wider or from the left edge.
 
-## Turn the line
+## Turning a defense line
 
 *22 October 2026, version 0.10.4*
 
@@ -4611,7 +4618,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Good moods add up a little faster: the third, fourth and fifth on a colonist's mind count for 60%, 45% and 35%, and every one after that a quarter.
 - "The favorite" now only comes to someone who really has a request of their own still waiting. Before, it could come to anyone when a wish was granted.
 
-## Eating well is no rut, and lean saves
+## Fine meals don't get old, and smaller saves
 
 *20 October 2026, version 0.7.1*
 
@@ -4631,7 +4638,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - Traits can change, rarely, after a long stretch of the same kind of life. Raid after raid held can make someone steadfast, a year of graves a pessimist, many kindnesses kind, and a beaten addiction a teetotaler. A psychopath or a cannibal comes only from an extreme history, once in a colony's life each. A letter tells what led to the change, with dates.
 - All of it gives opinion and company, not mood. "Personalities and social life" and "Traits can change" in the settings turn it off, and a new Almanac page, "Social life: how it fits together", follows two colonists through a year.
 
-## No more freeze when the region stirs
+## No more freeze when a world event is chosen
 
 *20 October 2026, version 0.6.2*
 
@@ -4659,7 +4666,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - The planting day: when the fields open after a cold season, the council asks whether to sow together. Held, it's a sowing party and a word at the field's edge in the evening, and a crop sown in full is remembered as a good start. You can also put a planting day on the calendar yourself.
 - The animals: a favourite kind of animal (or Pokémon) to wish for, a pack animal of one's own, and bringing the herd home before winter or after a raid, each animal walked into the barn or pen on a rope.
 
-## Fungus meals and digging into the dark
+## Fungus meals and room plans in unexplored rock
 
 *17 October 2026, evening, version 0.5.1*
 
