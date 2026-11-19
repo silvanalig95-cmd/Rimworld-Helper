@@ -46,7 +46,9 @@ namespace ColonyCouncil
             [LeagueGuard.AwayKey] = new GuardAway(),
             // Round 6's (Peoples/Events6/): the old soldier's muster, a season with the Banner's company.
             [OldSoldier.AwayKey] = new MusterAway(),
-            [CompanyMarch.AwayKey] = new EnlistAway()
+            [CompanyMarch.AwayKey] = new EnlistAway(),
+            // Round 7's (Peoples/Events7/): the miner and the doctor dug in at a union pit's cave-in.
+            [PitCaveIn.AwayKey] = new CaveInAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;

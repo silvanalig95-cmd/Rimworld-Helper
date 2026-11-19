@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 7
+
+*19 November 2026, version 0.271.0*
+
+- When someone makes a masterwork or a legend, a master of the Kiln Guild may come to judge it: true work gets the guild's mark, and a fault is said plainly.
+- A journeyman who spent a wander-year at the colony comes back a year later as a master, with a masterwork for the one who taught them.
+- Three journeymen may camp for a week and build a lasting work with the colony's stone or wood: a carved bridge, a grand statue in its hall, or a fountain where it gathers.
+- The Signal Line offers one call a season on its masts, raises a mast at a friend's town so letters there come faster, and sends line crews to camp on the high ground.
+- When a union pit caves in, the colony's miner and doctor can go and help dig the trapped miners out, for pay and the union's thanks.
+- The union's assayer may find oil under the colony and sink a Rimefeller well, or mark a deep seam for the union's drill.
+- When the colony is worn down, a shift-captain may speak at its fire and a petition for rest reaches the council; during a strike, a picket may camp by the road.
+
 ## The mods' Almanac pages in plain words
 
 *19 November 2026, version 0.270.6*

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 7 (Source/ColonyCouncil/Peoples/Events7/): the jobs they are seen doing on the map, the Signal
+       Line's flag-and-lamp tower for a Line before the industrial age (drawn by Tools/make_signal_tower.py), and the moods the round
+       gives. -->
+
+  <!-- ===================== Their own work at a thing or a place (JobDriver_PEv7Work) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Judge</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>judging TargetA for the guild's mark.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_StandBy</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>standing by while TargetA is judged.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Carve</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>working on the guild's work.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>chisel</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_TearDown</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>tearing down a day's bad work.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>chisel</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Call</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>making the colony's call on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_String</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>working on the line.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>wire</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Climb</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>climbing TargetA in the storm.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>wire</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Listen</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>listening for the region's news.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Sink</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>working the ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>drill</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv7_Sing</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv7Work</driverClass>
+    <reportString>singing at the picket's fire.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv7Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The Signal Line's flag-and-lamp tower (LineCrew.cs) ===================== -->
+
+  <!-- A Line of the tribal or medieval age raises this instead of a radio mast: a wooden tower with a platform, a lamp and two
+       signal flags. The crew takes it with them when they go; the colony can't keep it (it needs the Line's watchers). -->
+  <ThingDef>
+    <defName>Rimfolk_SignalTower</defName>
+    <label>signal tower</label>
+    <description>A wooden tower of the Signal Line, with a platform at the top, a lamp for the night and two signal flags on arms. A watcher on it reads the next tower's flags by day and its lamp by night, and passes messages on the same way.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/SignalTower</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.6,3.2)</drawSize>
+      <drawOffset>(0,0,1.0)</drawOffset>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>160</MaxHitPoints>
+      <Flammability>1</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(240,190,90,0)</glowColor>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===================== The round's moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MarkTrue</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the guild's mark on my work</label><description>A master of the Kiln Guild looked over a piece I made and called it true work. It has the guild's mark now.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MarkFault</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a fault found in my work</label><description>A master of the Kiln Guild found a fault in the best piece I ever made, and said so in front of everyone.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ApprenticeMaster</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>my journeyman came back a master</label><description>The journeyman who spent a wander-year at my bench came back a master of the guild, and brought the colony a gift of their own making.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_DugThemOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>dug them out at the pit</label><description>I spent days at the union's pit after the cave-in, digging out the miners who were trapped. We brought them up.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_PetitionHeard</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the council heard the petition</label><description>We asked the council for some rest after the shift-captain spoke at our fire, and it listened.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_PetitionTurnedAway</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the council ignored the petition</label><description>We asked the council for some rest after the shift-captain spoke at our fire, and nothing came of it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

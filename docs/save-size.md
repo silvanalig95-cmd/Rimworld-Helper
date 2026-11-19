@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 772; modelled: 772; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** after two, **4,236 KB** after five.
+Saved collections found: 779; modelled: 779; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,779 KB** after two, **4,239 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -350,10 +350,12 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `Colonies/HomesFounding.cs:asks` | those sent or kept against their wish who may ask once to move, for the season after a founding (FoundingMath.AskMoveToDays, 15 days) | while | 6 | 6 | 6 | 0.7 |
+| `Peoples/Events7/PeopleEvents7Book.cs:marks` | the masterworks and legends a master of the guild may come to judge, six kept | cap | 2 | 4 | 6 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Camps/CampTracker.cs:raids` | per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one) | while | 1 | 1 | 1 | 0.7 |
 | `OldPowers/OldPowersBook.cs:searched` | rooms of the old ruins searched for a scroll, OldPowersMath.RuinsKept at most, the oldest let go | fixed | 20 | 20 | 20 | 0.7 |
+| `Peoples/Events7/PeopleEvents7Book.cs:masts` | the Signal Line's masts at friends' towns, PeopleEvents7Math.MaxTownMasts kept once lost | cap | 1 | 2 | 5 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Peoples/Events3/PeopleEvents3Book.cs:shrines` | the old shrines the pilgrims raised, one a map, PeopleEvents3Math.MaxShrines kept | cap | 0 | 1 | 2 | 0.6 |
@@ -376,6 +378,7 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
 | `Peoples/Events6/PeopleEvents6Book.cs:hires` | the raids the Banner was hired for, four kept | cap | 1 | 3 | 4 | 0.5 |
+| `Peoples/Events7/PeopleEvents7Book.cs:evenings` | the organizers' evenings and their petitions, four kept | cap | 1 | 2 | 4 | 0.5 |
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
@@ -409,6 +412,7 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `OldPowers/OldPowersBook.cs:lately` | the old powers' short memory of the forms they took ('seer|fold1|12'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `Peoples/Events6/PeopleEvents6Book.cs:tides` | the psychic tides a Conclave watch held back, four kept | cap | 1 | 2 | 4 | 0.5 |
+| `Peoples/Events7/WorkThatStays.cs:cells` | the cells of the guild's work (a bridge's crossing two cells wide), while the camp stands | fixed | 24 | 24 | 24 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
@@ -469,6 +473,7 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
 | `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Peoples/Events3/SpringCalving.cs:inCalf` | the calving camp's beasts in calf, four to seven, while its camp stands | fixed | 7 | 7 | 7 | 0.3 |
+| `Peoples/Events7/PeopleEvents7Book.cs:comeBacks` | the journeymen due back a master a year after a wander-year, PeopleEvents7Math.MaxComeBacks kept once done | cap | 0 | 1 | 2 | 0.3 |
 | `Character/ColonyTraits.cs:today` | today's tallies, emptied each day | fixed | 3 | 3 | 3 | 0.3 |
 | `Camps/CampTracker.cs:homes` | one per colony (CampHome: its camp, holding, war party and clock; one home in the model, a second doubles the rows below), a lost home's kept 30 days, then let go | fixed | 1 | 1 | 1 | 0.3 |
 | `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 6 | 6 | 6 | 0.3 |
@@ -508,6 +513,7 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Peoples/Events4/PeopleEvents4Book.cs:examined` | the colonists examined lately (an id and a day), twice the fellows kept | cap | 1 | 2 | 5 | 0.2 |
 | `Peoples/Events4/SummerSchool.cs:lessons` | their lessons counted, one a student, while the camp stands | fixed | 8 | 8 | 8 | 0.2 |
 | `Peoples/Events5/CircuitRing.cs:wins` | their wins, one a challenger, while the ring stands | fixed | 8 | 8 | 8 | 0.2 |
+| `Peoples/Events7/PeopleEvents7Book.cs:shares` | the union's year's shares of a well it sank, four kept | cap | 0 | 1 | 2 | 0.2 |
 | `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Peoples/Events/PeopleEventsBook.cs:read` | the old places the scholars read, PeopleEventsMath.MaxRead kept | cap | 2 | 3 | 8 | 0.2 |
@@ -616,6 +622,7 @@ Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** aft
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `Colonies/LandingRecord.cs:conditions` | the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open | while | 2 | 2 | 2 | 0.0 |
 | `Diplomacy/DiplomacyBook.cs:chosenCarts` | trade pacts whose valuable cart was picked on purpose, one id a live pact, dropped when it ends | fixed | 2 | 2 | 2 | 0.0 |
+| `Peoples/Events7/PeopleEvents7Book.cs:picketRolled` | the strikes a picket was rolled for, a people and a tick, eight kept | cap | 0 | 1 | 2 | 0.0 |
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |
 | `UI/WeekMemory.cs:pinnedWishes` | pins of open wishes | fixed | 2 | 2 | 2 | 0.0 |
 | `World/Region/Hamlet.cs:refused` | per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year | cap | 3 | 4 | 4 | 0.0 |

@@ -932,7 +932,8 @@ namespace ColonyCouncil
             Arrivals.Friendly(f => PeoplesD.Theirs(f, PeoplesMath.Drillers) && UnionStrike.Of(f) is Visit v
                                    && PeoplesF.Now - v.due >= PeoplesFMath.StrikeAskAfterDays * GenDate.TicksPerDay);
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Striker() != null && Colonists(map).Count > 0;
+        // While a picket of theirs camps by the colony's road, its own shift-captain settles it there (Peoples/Events7/Picket.cs).
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Striker() != null && !Picket.Here(Striker()) && Colonists(map).Count > 0;
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
