@@ -293,6 +293,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/BallroomMath.cs" Link="BallroomMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BreweryKitchenMath.cs" Link="BreweryKitchenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MadeForWearMath.cs" Link="MadeForWearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/MaterialChoiceMath.cs" Link="MaterialChoiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/RoomUseMath.cs" Link="RoomUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
@@ -322,6 +323,7 @@
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events/PeopleEventsMath.cs" Link="PeopleEventsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events2/PeopleEvents2Math.cs" Link="PeopleEvents2Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events3/PeopleEvents3Math.cs" Link="PeopleEvents3Math.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/Events4/PeopleEvents4Math.cs" Link="PeopleEvents4Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeopleAgesMath.cs" Link="PeopleAgesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ThingRolesMath.cs" Link="ThingRolesMath.cs" />

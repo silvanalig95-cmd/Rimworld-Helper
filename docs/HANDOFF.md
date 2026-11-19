@@ -33,16 +33,15 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers).
+   lists each round's numbers). Round 4 is built, not released (the entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
    numbered proposals and the lead's first batch); nothing is built until the player picks from it.
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
-7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
-   entries below).
+7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
+   the mood (0.266.7), choosing the material from the gear tab (built), a god's mark worth having (being built).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -123,19 +122,9 @@ repo.
   the newest release line ("A god's mark worth having").
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
   The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
-- **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
-  player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
-  would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
-  basically create the task and then have to go to the task in the tailor's table or whatever and kind of go deselect all
-  materials and then only enable those that I actually want them to use ... when I select the open item slot, select the
-  item that I want to create, and then I have to select where it's created from, and then maybe I could also immediately
-  select which material it uses. So it would just list or show materials that I have enough of for the job, and then
-  create the job, but only select this one material as a allowed material and by default deselect everything else". The
-  mod is Nice Inventory Tab (its DLL decompiled in the session's scratchpad, `nit_out2/`: its slot's float menus, then
-  `BillFinished_Patch.Register` for the bill). **The lead's proposal**: after the bench is chosen, one more menu step
-  listing the stuff the colony holds enough of for one piece (by the recipe's stuff cost, counted on the map), each with
-  how much there is; the bill then made with only that stuff allowed in its ingredient filter; "any material" kept as the
-  first choice for the mod's own way.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
+  when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
+  now one entry above the newest release line ("Choose the material when ordering a piece").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -160,14 +149,14 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); rounds 4 to 10 are held until
-  they ask. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 is built, not released,
+  on the player's go of 19 November 2026 ("Events sounds great"), and rounds 5 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
-  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33.
+  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Built, not released (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46.
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
@@ -342,6 +331,132 @@ repo.
   - **Mods that would help**: none needed; everything is the game's own or already in the player's list (Vanilla
     Furniture Expanded - Art for the obelisk, Vanilla Cooking Expanded and its Stews for the meals, both on 1.6 and kept
     up).
+- 0.268.1, **Choose the material when
+  ordering a piece** (19 November 2026). The player: "when you know giving a order through the inventory to create like a
+  piece of clothing or armor or whatever, it would really be cool to also be able to select from which material that
+  piece of clothing should be made. I mean, now I basically create the task and then have to go to the task in the
+  tailor's table or whatever and kind of go deselect all materials and then only enable those that I actually want them
+  to use ... when I select the open item slot, select the item that I want to create, and then I have to select where
+  it's created from, and then maybe I could also immediately select which material it uses. So it would just list or
+  show materials that I have enough of for the job, and then create the job, but only select this one material as a
+  allowed material and by default deselect everything else, so that I'm sure it doesn't use anything else." The lead's
+  proposal: after the bench is chosen, one more menu step listing the stuff the colony holds enough of for one piece (by
+  the recipe's stuff cost, counted on the map), each with how much there is; the bill made with only that stuff allowed
+  in its ingredient filter; "any material" kept as the first choice for the mod's own way. The go: "yes, please", "all
+  the three". DESIGN.md "Choose the material when ordering a piece from the gear tab".
+  - **What the DLL shows** (Nice Inventory Tab, `andromeda.niceinventorytab`, and its FloatSubMenu helper, decompiled
+    with ilspycmd in the scratchpad, never loaded): the empty slot's menu (`ApparelSlotUtility.OpenFloatMenu`), "Make",
+    a piece (`MakeSubMenusToCraft`: a sub-menu of benches, and the piece's own line for its first bench) all end in
+    `CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`, which makes the bill
+    (`recipe.MakeNewBill()`), registers it for `ITab_Pawn_Gear_Patch.lastPawn` (`BillFinished_Patch.Register`), renames
+    it, adds it to the bench, gives its message and jumps the camera. Only apparel is offered there.
+  - **What was built.** A prefix on `CommandCreate` (by name, standing down without the mod) opens the material step for
+    a piece made from a material: "Any material" first, then each material the recipe's material ingredient takes for
+    the piece (`GenStuff.AllowedStuffsFor`, the ingredient's filter and the recipe's fixed filter; never a fixed
+    ingredient) with enough on the map for one piece (spawned, seen, not forbidden; one piece's need by
+    `IngredientCount.CountRequiredOfFor`), the most pieces first, then by name, each with how much is on hand, its own
+    icon and a tooltip of what one piece takes; a greyed line when none has enough. Either choice calls the mod's own
+    `CommandCreate` (the prefix lets Rimfolk's call through), for the colonist the menu was opened for; for a material,
+    the new bill's ingredient filter then allows only that one (the others the ingredient takes unticked; hit points,
+    quality and other ingredients left alone). A piece not made from a material goes straight on. Setting
+    `materialChoice` (on, deeper hooks; Your other mods, Nice Inventory Tab). Almanac (Quality of life mods, the Nice
+    Inventory Tab paragraph) and README.
+  - **Code map**: `Integrations/MaterialChoice.cs` (new: `MaterialChoice.StuffIngredient`, `Have`, `Offer`, `Make`,
+    `OnlyThis`; `Patch_MaterialChoiceOrder`), `Integrations/MaterialChoiceMath.cs` (new, pure, linked in the tests:
+    `Enough`, `Pieces`, `Offered`), `CouncilSettings.cs` and `UI/SettingsCatalog.cs` (`materialChoice`), Keyed
+    `Rimfolk_MaterialChoice.xml` (new). Tests: `MaterialChoiceTests` (new).
+  - **Can't be checked without the game**: the menu opening after the bench is clicked inside the mod's sub-menus (the
+    mod's menus close and Rimfolk's opens where the mouse is), the material icons and tooltips, the bill's ingredient
+    filter shown with only the chosen material ticked, the piece made from it and still put on by the one it was for.
+  - **Try in the game**: on a colonist's gear tab (Nice Inventory Tab) click an empty slot, "Make", a duster or a
+    parka, then a tailoring bench: a menu "Material for the duster" lists "Any material" and the fabrics and leathers
+    with enough on hand, most first ("Cloth (340 on hand)"); pick one, open the bench's bill: only that material is
+    ticked; once made, it is of that material and the colonist puts it on. A piece not made from a material (a flak
+    vest) goes straight to the bill as before; "Any material" leaves the bill as the mod makes it; with the setting
+    off, no material step.
+  - **Mods that would help**: none; the mod's own menus and the game's material icons are enough.
+- 0.268.0, **The peoples' own events, round 4**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 of `docs/peoples-events-proposals.md` (eleven: the brief said ten,
+  its list has eleven, all built): the learned society's fellowship examined and its summer school; the spacer enclave's
+  contract to the last digit and its broker stranded by a pod crash; the river folk's fouled water, lanterns on the water,
+  families flooded out and boat-builders; the Lantern Wardens' page in the book, their run to a manhunt and the hive
+  burned. DESIGN.md "The peoples' own events, round 4" has every rule; README "The peoples' own events, the fourth
+  round"; the Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesC.xml and
+  Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events4/` (new): `PeopleEvents4Math.cs` (pure, linked), `PeopleEvents4Book.cs` (a
+    game component: fellows, the examined, best students, contracts, pods, fouled water, lanterns, pages, the examination
+    waiting), `PeopleEvents4.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv4Work` and its `PEv4Work` marks),
+    `Fellowship.cs` (18), `SummerSchool.cs` (21, `CampWorker_SummerSchool`), `EnclaveContract.cs` (23, the due day's event),
+    `BrokerPod.cs` (24, the lander), `FouledWater.cs` (27), `KnotLanterns.cs` (28), `FloodedOut.cs` (29,
+    `CampWorker_FloodedOut`), `BoatBuilders.cs` (30, `CampWorker_BoatBuilders`), `WardensPage.cs` (31), `WardensManhunt.cs`
+    (32), `HiveBurned.cs` (33), `PeopleEvents4Debug.cs`. Small hooks: `PeopleEvents3.Hour` and `Hourly` (round 4's, one line
+    each), `HappeningTracker.DeathNote.great` (a great beast's kind taken before its death) and `Notify_Killed` (the page,
+    the manhunt's kills), `Interplay.Notify_GatheringOver` (`Fellowship.GatheringOver`), `HappeningWorker_RiverCatch` and
+    `HappeningWorker_RiverNets` (stopped while fouled water is left), `DilemmaEffect_KnotRest` (lanterns at a crossing),
+    `FactsMath` (the three camps' tags), round 1's `PeopleWorkOn` (a "quiet" mark), `Integrations/Expertise.cs` (`CanGive`,
+    `Give`: an expertise by the mod's own tracker). Defs: `Rimfolk_Events_PeopleEvents4.xml` (twelve events; four fired
+    from code: the contract's day, the knot night's lanterns, the page, the manhunt), `Rimfolk_CampKinds_PeopleEvents4.xml`
+    (three camps), `Rimfolk_PeopleEvents4_Misc.xml` (ten jobs, the red cord, the hull's three stages, four moods and the
+    sting's mood hint), Keyed `Rimfolk_PeopleEvents4.xml`, `Textures/ColonyCouncil/Things/BoatHull_1..3.png` (drawn by
+    `Tools/make_boat_hull.py`). Tools: the play-out audit's effects and three skips, the save model's lists.
+  - Decided here (open in the proposals): the examination's verdict comes at the evening's end (as the palmer's table),
+    the quiet one is heard by nobody and stings nobody; a declined examination waits sixty days like a failed one; the
+    school's sulk stops the day's lessons and raises the camp's tension (no mood); the contract's goods are found from the
+    colony's own benches and stores, and an unpaid fee goes into the colony's debts (round 2's terms' way); a crate missing
+    when the lander comes counts as taken, even one hauled and merged into the stores; fouled water needs a body half a
+    day in it, a wastepack or poisoned ground within three cells; without Merren the knot night's lanterns are torches on
+    the bank taken back in the morning, and an unanswered letter lets them set them; where a crossing of theirs stands the
+    crossing's rest sets them, so there is only one letter that night; the flooded families' racks are VFE Classical's or
+    Vanilla Furniture Expanded - Props and Decor's, and their old and young become Hospitality's guests only with it (the second answer greyed out
+    without it); the boat-builders' refused trees mean the camps' own felling is held at nought; the Wardens' manhunt
+    letter comes once they are already fighting, so no answer means the hunt's own terms (default the first answer); the
+    hive's torch-age Wardens hold torches to the hives when they stand by one and are not fighting.
+  - Harm: only the flooded families' flu (`HarmKinds.CampFever`, 0.06 once a stay, the illness budget); the broker's crash is
+    the game's own pod crash (`HealthUtility.DamageUntilDowned`, as the field sickhouse's patients); the fights at the
+    manhunt and the hive, the fire and the insects are the game's own. No new harm kind.
+  - Tests: `Tools/Tests/PeopleEvents4Tests.cs` (about 200 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the gathering's verdict at its end, the fellow at the
+    colonist's side, the book's courier, the school's table and the lessons following the fellow there, the books carried
+    out and dropped back, the argument and the talker's walk, the lander's pods and the marshals carrying goods, the
+    pod crash and the broker's pod opening, the rescue to a bed and the guest tended, the marshals carrying the broker off,
+    the crates lifted, the warden's and colonist's cleaning, Biotech's pollution cleared, the boatmen setting Merren's
+    floating lanterns on water (a building spawned on water) or torches, the vigil at their light, the flood camp's racks and
+    fishing, the hand-over to Hospitality's guests and their stay's end, the hull's stages and the builders at it, Vehicle
+    Framework's `GenerateVehicle` for the dinghy and the boat on the water, the red cord on the arm, VSE's expertise added by
+    reflection (the tracker's own Add method looked up by its first argument), the Wardens' assault on the manhunters and
+    the dressing, the hive's assault, the arms by age and the torches' fire).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 4: what the record keeps (log)" shows the state and what each
+    event would find here; fire each event with the game's own incident tool, each needs what it says): 1. The fellowship:
+    a colonist at Intellectual 12, the society at peace: `Rimfolk_Evt_FellowExamined`; the card shows the chance; the
+    evening's gathering and the verdict at its end, or the quiet examination with a bar; passed: the message, the mood,
+    the expertise with VSE, and a book at the gate fifteen days on. 2. The summer school: summer: `Rimfolk_Evt_SummerSchool`
+    (or "Peoples' events 4: one of their camps here now..."); in the afternoon send colonists from the camp's page (two a
+    day), lend books; "Peoples' events 4: the school's disputation now" and end it from the page; when they go, the books
+    and the best student's textbook by their camp. 3. The contract: a cooking bench, barrel, drug lab, sculptor's table,
+    fabrication bench or cotton, the enclave at peace: `Rimfolk_Evt_EnclaveContract`; sign; "Peoples' events 4: the
+    enclave's contract due now"; the pods at the trade spot, hand over all, what you have, or default (the fee carried or
+    owed). 4. The pod: `Rimfolk_Evt_BrokerPod`; the crash on the land; bring the broker in; "Peoples' events 4: the broker's
+    lander now"; the marshals carry the broker off and lift the crates, the fifth paid; or take the cargo. 5. Fouled water:
+    a corpse lying in a river or lake half a day (or a wastepack by it, or Biotech pollution on the bank), the river folk at
+    peace: `Rimfolk_Evt_FouledWater`; the warden at the spot; clean it together, or leave it (the boat-trader and nets stop).
+    6. Lanterns: water on the map, the river folk at peace: "Peoples' events 4: the knot night's lanterns now"; the boatmen
+    at the bank with their light, gather, the lanterns set (Merren's floating ones stay), the torches gone in the morning.
+    7. Flooded out: start `Council_WS_Flood` ("Start world event..."), fresh water: `Rimfolk_Evt_FloodedOut`; the second
+    answer with Hospitality; the camp's racks, fishing, the food letter, the guests; the knot as they go. 8. The
+    boat-builders: water and ten wild trees: `Rimfolk_Evt_BoatBuilders`; "Peoples' events 4: the hull a stage on now" to
+    see the stages; buy the dinghy from the page (Vehicle Framework and Vanilla Vehicles Expanded). 9. The page: a legend,
+    nemesis or alpha (the beasts' dev actions) killed by a colonist; "Peoples' events 4: the Wardens' page waits no longer";
+    the keeper at the gate; the cord tied (health tab), the expertise or passion. 10. The manhunt: a manhunter pack (the
+    game's incident), the Wardens at peace: "Peoples' events 4: the Wardens to the manhunt now"; they come in fighting;
+    afterwards they skin their kills. 11. The hive: the game's infestation: `Rimfolk_Evt_HiveBurned`; together (draft
+    colonists near the hive), alone, or watch.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Skills Expanded, Goji's
+    Fantasy Race: Merren, Hospitality, VFE Classical, Vanilla Furniture Expanded - Props and Decor, Vehicle Framework with Vanilla Vehicles Expanded,
+    Vanilla Factions Expanded - Insectoids 2, Vanilla Food Variety Expanded's recipe book). For a boat-building look beyond the
+    drawn hull, Vanilla Vehicles Expanded's own dinghy is already used when it is bought.
 - 0.267.0, **Storylines, round 3, and the one
   away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
   grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3

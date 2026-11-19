@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 4 (Source/ColonyCouncil/Peoples/Events4/): the jobs they are seen doing on the map, the
+       Wardens' red cord, the boat-builders' hull in its three stages, and the moods the round gives. -->
+
+  <!-- ===================== The visitor who works on a colonist (round 1's PeopleWorkOn) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Examine</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>examining TargetA, question by question.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>quiet</mark><done>ColonyCouncil.FellowExamDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Cord</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>writing a page and tying a red cord on TargetA's sleeve.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>beside</place><mark>quiet</mark><done>ColonyCouncil.WardensCordDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Their own work at a thing or a place (JobDriver_PEv4Work) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Clean</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>cleaning the fouled water.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>water</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Lift</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>lifting TargetA aboard the lander.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_SetLantern</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>setting a lantern on the water.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>water</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Burn</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>holding a torch to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>fire</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Hull</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>working on TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Teach</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>teaching at the school's table.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Settle</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>trying to end the fellows' argument.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv4_Dress</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv4Work</driverClass>
+    <reportString>skinning TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv4Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The Wardens' red cord (WardensPage.cs) ===================== -->
+
+  <HediffDef>
+    <defName>Rimfolk_RedCord</defName>
+    <label>red cord</label>
+    <description>A red cord tied round the sleeve by a keeper of the Lantern Wardens' book, for a great beast brought down. Every Warden knows what it means.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.27, 0.2)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+  </HediffDef>
+
+  <!-- ===================== The boat-builders' hull (BoatBuilders.cs) ===================== -->
+
+  <ThingDef Name="Rimfolk_BoatHullBase" Abstract="True">
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.4</fillPercent>
+    <pathCost>42</pathCost>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <useHitPoints>true</useHitPoints>
+    <tradeability>None</tradeability>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+      <deconstructible>false</deconstructible>
+      <claimable>false</claimable>
+    </building>
+    <statBases>
+      <MaxHitPoints>160</MaxHitPoints>
+      <Flammability>1</Flammability>
+      <Beauty>0</Beauty>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_BoatHullBase">
+    <defName>Rimfolk_BoatHull_1</defName>
+    <label>boat's keel</label>
+    <description>The keel of a boat laid on blocks on the bank by river folk boatwrights, the stem and stern posts pegged to it. The rest of the hull goes up on it over the next days.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/BoatHull_1</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2.6,1.3)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_BoatHullBase">
+    <defName>Rimfolk_BoatHull_2</defName>
+    <label>boat's frame</label>
+    <description>The frame of a boat on the bank: the keel, the posts, and the ribs bent and pegged along it. The boatwrights are fitting the first planks along the bottom.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/BoatHull_2</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2.6,1.3)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_BoatHullBase">
+    <defName>Rimfolk_BoatHull_3</defName>
+    <label>boat's hull</label>
+    <description>A finished hull of the river folk's boatwrights, planked, pitched and ready to be launched from the bank.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/BoatHull_3</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2.6,1.3)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===================== The round's moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_FellowNamed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>named a corresponding fellow</label><description>The learned society examined me and named me one of its corresponding fellows. They will send me a book each season.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_FellowStung</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>failed the society's examination</label><description>The society's fellow examined me in front of everyone, and I did not answer well enough. Everyone heard it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_KnotLanterns</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lanterns on the water</label><description>I stood on the bank with the river folk on their knot night while they set lanterns on the water for the people we lost and the ones who came to us.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_PageInBook</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>60</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a page in the Wardens' book</label><description>The Lantern Wardens wrote the beast I brought down into their book and tied a red cord on my sleeve.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_PEv4_FellowStung</defName>
+    <thoughts>
+      <li>Rimfolk_Thought_FellowStung</li>
+    </thoughts>
+    <fix>A fellow of the learned society examined this colonist in front of the colony, and the answers were not good enough. It fades in six days. The society examines them again after two months if their learning is still at its level, and a quiet examination is never heard by anyone else.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_PeoplesC</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
