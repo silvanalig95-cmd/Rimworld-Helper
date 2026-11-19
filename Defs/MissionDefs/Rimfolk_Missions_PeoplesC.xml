@@ -30,7 +30,7 @@
           <li>The hostel is full</li>
         </titles>
         <texts>
-          <li>[holy] A palmer of {FACTION} has walked from the hostel at {PLACE} with a letter from {DEAD}, its hosteller. The faith's holy year has filled the road with pilgrims, every bed is taken twice over, and the hostel's stores are nearly bare. The fellowship asks the colony for food by a set day, and will pay what it can, which is more than it can spare.</li>
+          <li>[holy] A palmer of {FACTION} has walked from the hostel at {PLACE} with a letter from {DEAD}, its hosteller. The faith's holy year has filled the road with pilgrims, every bed is taken twice over, and the hostel's stores are nearly bare. The fellowship asks the colony for food by a set day, and will pay what it can, though it has little to spare.</li>
           <li>[holy,host] {HOST} of {PLACE} writes for {FACTION}: pilgrims are sleeping in the shrine's court for want of beds, and {DEAD}, the hosteller, is feeding them from the seed corn. The fellowship asks the colony for food by a set day, at a fair price.</li>
           <li>[holy,their:friend] The pilgrims of {FACTION} have asked for {FRIEND_nameDef} by name. Their hostel at {PLACE} is overflowing with the year's pilgrims, and {DEAD}, who keeps it, would rather owe the colony than anyone.</li>
         </texts>
@@ -96,7 +96,7 @@
           <li>[cancelled] The fellowship's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little food ready for {FACTION}'s carts to be worth the road. The hostel at {PLACE} will turn pilgrims away, and {DEAD} knows who said they would help.</li>
+          <li>[missed] There was far too little food ready for {FACTION}'s carts to make the trip. The hostel at {PLACE} will turn pilgrims away, and {DEAD} knows who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their carts will not come.</li>
@@ -204,7 +204,7 @@
           <li>[cancelled] The river folk's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The landing at {PLACE} will make do, and {DEAD} knows who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. The landing at {PLACE} will make do, and {DEAD} knows who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their carts will not come.</li>

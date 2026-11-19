@@ -30,9 +30,9 @@
           <li>Material for the vats at {PLACE}</li>
         </titles>
         <texts>
-          <li>[genes] A lab-runner of {FACTION} has come from the lab at {PLACE} with a letter from {DEAD}, its sequencer: the Works are short of genepacks to write from, and the next batch waits on them. They ask the colony for genepacks by a set day, and the Works pay well for anything they can read.</li>
+          <li>[genes] A lab-runner of {FACTION} has come from the lab at {PLACE} with a letter from {DEAD}, its sequencer: the Works are short of genepacks to copy genes from, and the next batch can't start without them. They ask the colony for genepacks by a set day, and the Works pay well for any genepack they can use.</li>
           <li>[medicine] {DEAD}, sequencer at {PLACE}, sends a lab-runner of {FACTION}: a fever is going through the lab's young and the vat hall is short of medicine. They ask the colony for medicine by a set day, at a good price.</li>
-          <li>[genes,their:friend] The Helix Works have asked for {FRIEND_nameDef} by name. The lab at {PLACE} is short of genepacks, and {DEAD} would rather read the colony's than anyone's.</li>
+          <li>[genes,their:friend] The Helix Works have asked for {FRIEND_nameDef} by name. The lab at {PLACE} is short of genepacks, and {DEAD} would rather buy the colony's than anyone's.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -75,7 +75,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Works' runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the lab at {PLACE} waits, and the Works mark who promised.</li>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Works' runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the lab at {PLACE} waits, and the Works will remember who promised.</li>
         </terms>
         <accepted>
           <li>The colony will have {ITEM} ready for the Works' lab at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
@@ -91,7 +91,7 @@
           <li>[partial] Part of the order for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The vats at {PLACE} will be warm again before long.</li>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The vats at {PLACE} will be working again before long.</li>
           <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
@@ -99,7 +99,7 @@
           <li>[cancelled] The Works' ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. The lab at {PLACE} waits, and {DEAD} has marked who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to make the trip. The lab at {PLACE} waits, and {DEAD} has noted who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their runners will not come.</li>
@@ -130,7 +130,7 @@
         </titles>
         <texts>
           <li>[yards] A link-runner of {FACTION} has come from the charging yards at {PLACE} with a letter from its link-warden: a whole line of mechs came in broken from a field, more than the yards can mend in time. They ask the colony for two good crafters for a day at the benches, paid by the day, as the Lattice pays.</li>
-          <li>[yards,their:lowtech] A runner in an indigo robe has walked from {PLACE} to ask the colony for two who are good with their hands. The Lattice has more broken machines than menders, the runner says, and only for a day.</li>
+          <li>[yards,their:lowtech] A runner in an indigo robe has walked from {PLACE} to ask the colony for two good crafters. The Lattice has more broken machines than people to mend them, the runner says, and needs the help for only a day.</li>
           <li>[yards,their:friend] The Lattice has asked for {FRIEND_nameDef} by name. The yards at {PLACE} are two crafters short, and the link-warden would rather they were the colony's.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -169,7 +169,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>At least two of the colony's good crafters (Crafting 6 or more), at the Lattice's yards at {PLACE} by caravan (about {TALE} away), staying about a day at the benches. The caravan only needs to reach the yards and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the yards', paid by the day, and {FACTION} will remember the colony's hands. Half the stay earns half the silver.</li>
+          <li>At least two of the colony's good crafters (Crafting 6 or more), at the Lattice's yards at {PLACE} by caravan (about {TALE} away), staying about a day at the benches. The caravan only needs to reach the yards and wait there.\n\nThey'll come home with about {COUNT} silver and a gift from the yards, paid by the day, and {FACTION} will remember the colony's help. Half the stay earns half the silver.</li>
         </terms>
         <accepted>
           <li>The colony will send crafters to {PLACE}. Form a caravan with at least two good crafters, and send it to the yards.</li>
@@ -185,14 +185,14 @@
           <li>[partial] Part of a day at {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[worked] The line is mended, and the colony's crafters are coming home from {PLACE} with silver and a gift of the yards'. The Lattice will remember their hands.</li>
+          <li>[worked] The line of mechs at {PLACE} is mended. The colony's crafters have silver and a gift from the yards in the caravan's packs, and the Lattice will remember their help.</li>
           <li>[partial] The colony's crafters had to leave before the line was mended. {FACTION} paid them for the hours they put in.</li>
         </done>
         <failTitles>
           <li>[missed] Nobody came to {PLACE}</li>
         </failTitles>
         <fail>
-          <li>[missed] No crafters came from the colony, and the broken line at {PLACE} waited. {FACTION} say nothing about it, which is how they say it.</li>
+          <li>[missed] No crafters came from the colony, and the broken mechs at {PLACE} had to wait. {FACTION} have said nothing about it, which is how the Lattice shows it is displeased.</li>
         </fail>
         <cancelled>
           <li>The yards at {PLACE} no longer need the colony: the yards, or the friendship, are gone.</li>
@@ -206,7 +206,7 @@
   <IncidentDef ParentName="Council_EventBase">
     <defName>Rimfolk_Mission_ChoirStay</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a listener who would be ordinary</label>
+    <label>a Choir listener to host</label>
     <workerClass>ColonyCouncil.HappeningWorker_MissionChoirStay</workerClass>
     <baseChance>0.3</baseChance>
     <minRefireDays>75</minRefireDays>
@@ -217,12 +217,12 @@
         <answerDays>2</answerDays>
         <notable>false</notable>
         <titles>
-          <li>A listener who would be ordinary</li>
+          <li>A Choir listener to host</li>
           <li>{DEAD} would stay a while</li>
         </titles>
         <texts>
-          <li>A hum-walker of {FACTION} has come from the ring at {PLACE} with a letter from its cantor. {DEAD}, one of their listeners, would stay some days at the colony to learn what it is to be ordinary: a place at its table, a bed nobody else is using, and an hour each afternoon beside someone of the colony at their work, watching. The Choir would send its thanks.</li>
-          <li>[their:friend] The Choir of the Spire has asked for {FRIEND_nameDef} by name. {DEAD}, a listener of the ring at {PLACE}, would learn what it is to be ordinary, and would rather learn it among the colony than anywhere.</li>
+          <li>A hum-walker of {FACTION} has come from the ring at {PLACE} with a letter from its cantor. {DEAD}, one of their listeners, would like to stay some days at the colony to learn how ordinary people live and work: a place at its table, a bed nobody else is using, and an hour each afternoon beside someone of the colony at their work, watching. The Choir would send its thanks.</li>
+          <li>[their:friend] The Choir of the Spire has asked for {FRIEND_nameDef} by name. {DEAD}, a listener of the ring at {PLACE}, wants to learn how ordinary people live and work, and would like to learn it at the colony.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -295,8 +295,8 @@
           <li>The lights at {PLACE}</li>
         </titles>
         <texts>
-          <li>[cells] A surface-runner of {FACTION} has come from the vault at {PLACE} with a letter from {DEAD}, its warden: the vault's power cells are failing one by one, and the lights below go out a corridor at a time. They ask the colony for machine parts by a set day to keep the last of them going, and the vault pays what it can and remembers the rest.</li>
-          <li>[seal] {DEAD}, warden at {PLACE}, sends a surface-runner of {FACTION}: the vault door won't close any more, and the seal wants steel and parts before the winter. They ask the colony for them by a set day.</li>
+          <li>[cells] A surface-runner of {FACTION} has come from the vault at {PLACE} with a letter from {DEAD}, its warden: the vault's power cells are failing one by one, and the corridors below are going dark one at a time. They ask the colony for machine parts by a set day to keep the last of them going, and the vault pays what it can and remembers its debts.</li>
+          <li>[seal] {DEAD}, warden at {PLACE}, sends a surface-runner of {FACTION}: the vault door won't close any more, and the seal needs steel and parts before the winter. They ask the colony for them by a set day.</li>
           <li>[cells,their:friend] The Sunken Vault has asked for {FRIEND_nameDef} by name. The cells at {PLACE} are failing, and {DEAD} would rather the colony kept the lights on than anyone.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -341,7 +341,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the vault's runners come for it.\n\nAll of it fetches {COUNT} silver, more than its worth, and the vault remembers its suppliers: what it is given keeps it from falling back. At least half, and they'll take what there is at its plain worth. Less, and the lights at {PLACE} go out another corridor.</li>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the vault's runners come for it.\n\nAll of it fetches {COUNT} silver, more than its worth, and the vault remembers who helps it. At least half, and they'll take what there is at its plain worth. Less, and another corridor at {PLACE} goes dark.</li>
         </terms>
         <accepted>
           <li>The colony will have {ITEM} ready for the vault at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
@@ -354,10 +354,10 @@
         </reminder>
         <doneTitles>
           <li>[delivered] Parts for {PLACE}</li>
-          <li>[partial] Part of the parts for {PLACE}</li>
+          <li>[partial] Some of the parts for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The lights at {PLACE} will stay on below a while longer.</li>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The lights in the vault at {PLACE} will stay on a while longer.</li>
           <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
@@ -365,7 +365,7 @@
           <li>[cancelled] The vault's ask is off</li>
         </failTitles>
         <fail>
-          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. Another corridor at {PLACE} has gone dark, and {DEAD} has written down who said they would help.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to make the trip. Another corridor at {PLACE} has gone dark, and {DEAD} has written down who said they would help.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and their runners will not come.</li>
