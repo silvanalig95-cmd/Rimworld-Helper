@@ -27,6 +27,11 @@ namespace ColonyCouncil
         public int lingerTicks;
         /// <summary>What it was, for the gods' touch (as GodAct.what): its caller's word for it, or null.</summary>
         public string what;
+        /// <summary>
+        /// What the moment left where it happened, in a sentence of its own (the presence part fills it in as the moment begins:
+        /// GodMarkGoods), or null: the colony's book and the moods of those who saw it say it after its words.
+        /// </summary>
+        public string left;
 
         /// <summary>A moment of a god at a place: veiled as the gods are felt, plain when the god is drawn near enough this time (GodNear.Plain).</summary>
         public static PresenceSpec For(God god, Map map, PresenceKind kind, IntVec3 cell = default, Pawn avatar = null) => new PresenceSpec

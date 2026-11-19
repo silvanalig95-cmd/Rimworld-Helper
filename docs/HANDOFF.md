@@ -118,20 +118,9 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
   walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
   above the newest release line ("Riding out to far work: the beast taken first").
-- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
-  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
-  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
-  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
-  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
-  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
-  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
-  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
-  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
-  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
-  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
-  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
-  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
-  what was left.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): a god's mark worth
+  having, not a stone chunk.** The report with the player's words, the cause and what was built are now one entry above
+  the newest release line ("A god's mark worth having").
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
   The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
@@ -301,6 +290,58 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **A god's mark worth having** (19
+  November 2026; the player: "so the god events and occurences are super cool! but many of them just generate a single
+  stone [chunk]?? it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a
+  really not interesting or valuable item"; the go on the lead's proposal: "yes, please", "all the three"). DESIGN.md "A
+  god's mark worth having".
+  - **The cause.** A god's moment (a blessing, a coming, a reveal, a departure; `GodPresenceMath.MarkFor`) leaves its
+    look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `GodTrails.Mark`), and 10 of the 17 looks left one stone
+    chunk (the Storm, the Hunt, War, the Way, the Hearth) or one steel slag chunk (War among spacers, the Craft and the
+    fabricator, the Machine and the iron spirit). Nothing said what was left.
+  - **What was built.** Each of the ten its own mark, shown where it happened: the Storm lightning (the sky's flash, a
+    glow, thunder, no fire) and a ring of scorched ground; the Hunt a fresh kill of the land's game (`BiomeAnimals`, fox
+    to deer size, never a Pokémon or a sacred animal, killed on the spot, the corpse fresh and not forbidden); War a ring
+    of scorch and a weapon of the colony's age from every mod's weapons (poor or normal, no grenade or persona weapon);
+    the Way a standing stone of the land's rock (Vanilla Furniture Expanded - Art's obelisk, else the game's small
+    sculpture; normal quality, author unknown, no story of the colony's on it), set up as the colony's; the Hearth 25
+    wood and 3 to 8 warm meals of the age (Vanilla Cooking Expanded's stews, soups, grills and bakes, or the game's own);
+    the Craft a stack of steel (plasteel for a spacer colony); the Machine a few components (an advanced one and two in
+    the spacer age). Worth about 120, 160, 210 or 260 silver by the colony's age (`Ages.Ours`), never under 100 or over
+    300. A mark of goods comes at most once in ten days, any god (`GodMarkMath.WorthGapDays`, saved as
+    `GodPresenceComponent.lastWorth`); within the wait a moment leaves the plain form (war, hearth, forge, machine a ring
+    of scorch; hunt and way nothing). The mark is chosen as the moment begins, so its card, the colony's book and the
+    moods of those who saw it end with what was left ("When it was over, a stack of 65 steel lay where it happened."),
+    every mark's words, the ground's ones too; a mark the ground can't take (flowers under a roof) says nothing.
+  - **How often** (from the code's own waits): the moments that leave a look's mark come five to ten times a year in a
+    colony that prays (a god coming onto the land about once a year, a great effect of the touch one in 40 days at the
+    most, answered prayers a god once in ten days at the most, the gods' kindnesses in the world, rare risings). Of the
+    colony's fifteen gods only Smoulder (metal), Pip (components), Ennu and Ducat (the standing stone) leave goods; the
+    Hunt, War and Hearth looks are the peoples' gods' and a newborn god's. So one to four marks of goods a year, 150 to
+    800 silver, and six a year at the most (1,800 silver at the very most).
+  - **Code map**: `Gods/Presence/GodMarkMath.cs` (new, pure, linked in the tests: the worth by age, the counts, the
+    names, the weapon's tier, the kill's size, the wait, the words' keys, `WithLeft`), `GodMarkGoods.cs` (new:
+    `GodMarkPlan`, `Plan`, the goods of each mark, `LayKill`, `Raise`, `Lay`, `Forget`, `AnyTime`), `GodTrails.cs`
+    (`Mark` by plan, `CanMark`, `Strike`, `TreeAt`, `SpringAt`; the stone chunk gone), `GodPresence.cs` (the plan in
+    `Manifest`, `LastLeft`, `GodPresenceComponent.lastWorth`), `GodCard.cs` (`left`), `GodPresenceDebug.cs` (the new dev
+    action, the moment's dev action without the wait, the looks' log), `GodPresenceMath.cs` (`GodMark`: `Lightning`,
+    `Kill`, `Weapon`, `StandingStone`, `Hearth`, `Metal`, `Components`; `Stone` and `Slag` gone; `MarkRadius`);
+    `Gods/GodPresenceSeam.cs` (`PresenceSpec.left`), `GodsWiring.cs`, `Gods.cs` (`Moment`), `Touch/GodTouch.cs`
+    (`NoteMoment`); `Defs/GodDefs/Rimfolk_GodLooks.xml` (the ten marks, comments and two descriptions);
+    `Languages/English/Keyed/Rimfolk_GodPresence.xml` (`CC_GodP_Left_*`); README (the gods' coming). Tests:
+    `GodMarkTests` (new).
+  - **Can't be checked without the game**: each mark laid on a real map (the kill's corpse and blood, the lightning's
+    flash and glow, the obelisk's picture standing and its art tab saying the author is unknown, the meals' and the
+    weapon's labels in the words, VCE's meals made from nothing), the worth the game puts on the kill and the obelisk,
+    a save made between a moment's start and its sting, and the wait kept across a save.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, "Gods: a god's mark here...", pick Weapon, Kill,
+    StandingStone, Hearth, Metal or Components and an age, click open ground: the goods appear and the message says the
+    words and the worth. "Gods: a moment of a look here...", the Craft (or the Way), Blessing, click open ground: after
+    the sting a stack of steel (or a standing stone) is there, and the card ends with "When it was over, ..."; the Gods'
+    book's line for it says the same. The Storm's blessing: a flash, thunder and a ring of scorch marks.
+  - **Mods that would help**: none needed; everything is the game's own or already in the player's list (Vanilla
+    Furniture Expanded - Art for the obelisk, Vanilla Cooking Expanded and its Stews for the meals, both on 1.6 and kept
+    up).
 - 0.267.0, **Storylines, round 3, and the one
   away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
   grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3

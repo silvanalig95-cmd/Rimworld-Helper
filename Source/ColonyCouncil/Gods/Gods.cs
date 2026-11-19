@@ -305,7 +305,7 @@ namespace ColonyCouncil
         /// <summary>
         /// A god's moment was played (GodPresenceSeam.Call): the colony's book has it as those who saw it saw it, with the god
         /// they took it for (plainly named when it showed itself plainly; else whoever they believe it was, or nothing they can
-        /// name), and in the card's words or, with none, what was seen (CC_GodLore_Moment_*).
+        /// name), and in the card's words or, with none, what was seen (CC_GodLore_Moment_*), with what it left after them.
         /// </summary>
         public static void Moment(PresenceSpec spec)
         {
@@ -321,7 +321,8 @@ namespace ColonyCouncil
                     return;
                 }
                 var taken = ByKey(GodLoreMath.Attribute(spec.god.Key, lore.KnownOf(), Rand.Value));
-                string words = !spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve();
+                // Its words, and after them what it left where it happened (GodMarkGoods), so the book says what is there.
+                string words = GodMarkMath.WithLeft(!spec.text.NullOrEmpty() ? spec.text : ("CC_GodLore_Moment_" + spec.kind).Translate().Resolve(), spec.left);
                 // Seen plainly (not veiled), or a disguised god revealing itself: the colony knows it was this god, and names it.
                 bool plain = !spec.veiled || spec.kind == PresenceKind.Reveal;
                 if (plain) taken = spec.god;
