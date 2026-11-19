@@ -10,7 +10,7 @@
     <label>many colonies</label>
     <category>Council</category>
     <order>16</order>
-    <summary>With more than one home, each colony has a character of its own, neighbours with faces near it and world events of its own region; two councils become one when a colony's people come to live at another home; and the pages show the colony in view, everyone a click away.</summary>
+    <summary>With more than one home, each colony has a character of its own, neighbours known by name near it and world events of its own region; two councils become one when a colony's people come to live at another home; and the pages show the colony in view, everyone a click away.</summary>
     <tip>The chip that says "This colony" on the People pages, the Chronicle and the region's faces and here and away turns to "Every colony" with a click, for the session.</tip>
     <description>Once the colony has a second home (see "a fresh start"), every system keeps to each colony's own. With one colony nothing on this page changes anything.</description>
     <sections>
@@ -22,7 +22,7 @@
           <li>When they are a third or more of the grown-ups, the council is chosen again within the season, so they have a say. Their decrees ended with their council; an officer of theirs had already stepped down.</li>
           <li>The names they were known by are looked at again in the next naming: one the colony had nobody for stays theirs; where both had someone known by it, the better at it keeps it. No rival comes of a name taken over in the first season.</li>
           <li>Their old colony's founding day is kept as a day to remember while some of its people live there, inside the twelve days the calendar writes down.</li>
-          <li>On the first evening the colony sits down to a meal together to welcome them, and its speaker greets them as the cups go up. A milestone in the chronicle, and one letter that says what merged. The setting "Two councils become one" in Many colonies.</li>
+          <li>On the first evening the colony sits down to a meal together to welcome them, and its speaker says a few words of welcome. A milestone in the chronicle, and one letter that says what merged. The setting "Two councils become one" in Many colonies.</li>
         </points>
       </li>
       <li>
@@ -31,7 +31,7 @@
           <li>The five ways and what a colony's work made it (green-fingered, builders, famed for its hall, walled, artful, keepers of the dead...) are each colony's own, from its own council's choices and its own people's work. A colonist's pride or chafing is with their own colony's ways.</li>
           <li>A colony founded by people of another starts with half its mother's: half of each way, and of what its work made it only what half still holds. Newcomers alone start fresh. A colony that moves (the old one abandoned) takes all of its character with it.</li>
           <li>"Walled" is never said of a colony with no walls: it needs 80 sections of wall, as the calendar counts the walls going up, and is let go once they are gone.</li>
-          <li>The colony as a whole has one name among the peoples: the seat's ways carry word (a generous or open colony's neighbours warm to it), and what it is known for beyond its walls (renown) is one for every home.</li>
+          <li>The colony as a whole has one standing among the peoples: they judge it by the ways of its seat, the home it is run from (a generous or open colony's neighbours warm to it), and its renown, what it is known for beyond its walls, is shared by every home.</li>
         </points>
       </li>
       <li>
@@ -39,7 +39,7 @@
         <points>
           <li>Beside the seat's four nearest towns, two it dealt with and two new, each further home on the ground gets its nearest two towns staffed with notables: their head, heir, envoy and trader, eight more people a home at most.</li>
           <li>A face the colony met lives in their people's town nearest the colony of whoever met them.</li>
-          <li>World events are placed near any home, the home picked by its people: a home of twelve hears of the world near it three times as often as one of four. The two at a time stay two.</li>
+          <li>World events are placed near any home, the home picked by its people: a home of twelve hears of the world near it three times as often as one of four. At most two world events run at a time, however many homes there are.</li>
         </points>
       </li>
       <li>

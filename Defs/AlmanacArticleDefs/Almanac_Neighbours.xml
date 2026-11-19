@@ -10,7 +10,7 @@
     <category>Council</category>
     <order>16</order>
     <summary>The towns near the colony have people with names: a head, an heir, an envoy and a trader. Write to them, or call them, and they remember.</summary>
-    <tip>A letter of condolence in a careful hand means more to a tribe than any call could.</tip>
+    <tip>Condolences, greetings and invitations count for more by letter than by a call, most of all to tribes, medieval folk and a feudal empire.</tip>
     <description>Each town within reach of the colony has a few people the colony knows by name, real people of their own kind kept in the world while they matter: the town's head, a likely heir, an envoy and a known trader. The faces the colony met who went home live among them too: a prisoner it set free, a wounded guest it tended, a camp's leader, a guest of rank, an envoy, a trader who called. Each of them regards the colony, and some of its people, in their own way, remembers what passed between them, grows old, and is followed by someone new when they're gone.
 
 A colonist can write to any of them, or call them on a comms console: personal letters to anyone, the town's matters to whoever speaks for it, its head. The writer sits down at a table to write, the letter waits in the mailbag at the gate until someone going that way takes it, and the answer comes back the same way, with whoever is coming. What the answer says follows who they are and how they see the colony and the one who wrote, and it changes both a little.</description>
@@ -130,7 +130,7 @@ Every answer says how far it moved them, in words: "civil before, friendly now",
       <li>
         <heading>A call on the comms console</heading>
         <text>With a powered comms console under a clear sky (no solar flare), a colony can call peoples with the means to answer: industrial and later, or a town within 30 tiles of a town of the Signal Line, whose masts carry the call. Tribes and medieval folk are otherwise reached by letter only. The caller stands at the console and talks for a while. At their end, it may be the small hours (from ten at night to six in the morning, by their own clock: asleep, 85% of the time), their people may be in trouble (busy, half the time), or they may be away (15%, a people's leader 30%): an aide takes a message and they call back, in the morning, some hours later, or when the trouble allows. The console rings and the caller, or whoever is free nearest it, answers; nobody in three hours (a raid on, everyone busy) and they leave word instead.</text>
-        <after>The answer works the same way as a letter's, with what was said shown over the caller's head and in a letter. Words go down the line, things don't: anything an answer sends still comes by courier. A call is quick, but for condolences or a kind word a letter in a hand counts for more, most of all to a traditional people.</after>
+        <after>The answer works the same way as a letter's, with what was said shown over the caller's head and in a letter. Words go down the line, things don't: anything an answer sends still comes by courier. A call is quick, but for condolences or a kind word a handwritten letter counts for more, most of all to a traditional people.</after>
       </li>
       <li>
         <heading>Talking with outsiders</heading>

@@ -171,14 +171,14 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
     <category>Defending</category>
     <order>40</order>
     <summary>Why raiders walk in, the entrance, the kill zone and the firing line; and the raiders who go round it</summary>
-    <tip>Hold fire until they're in the box: every gun on the first one through is wasted.</tip>
+    <tip>Hold fire until they're in the box: raiders shot at in the entrance stop in its bends and shoot back.</tip>
     <description>A killbox is a choke point built to kill: the one easy way in leads round a turn into open ground, with your people and turrets behind cover at the far end. Raiders trickle in a few at a time, without cover, at close range. It beats most raids, and does nothing at all against the ones that don't come through the gate. Every part of it rests on one habit of theirs: they take the easiest way to your people.</description>
     <sections>
       <li>
         <heading>How raiders choose their way</heading>
-        <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; a door they would have to break costs as much as a good long walk; and a wall isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
+        <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; and a wall, or a closed door they can't open, isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
 
-That cuts both ways. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach on the outside, a cooler or a lamp in the wall among it. Length alone doesn't turn them away: an ordinary raider takes an open way however long it is, and never weighs it against breaking a door. A very long or winding way has a cost of its own, though. Raiders more than about 65 cells from anyone to fight drift off to smash what they pass, and the longer they spend outside, the more they break.</text>
+The same habit works against you. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach on the outside, a cooler or a lamp in the wall among it. Length alone doesn't turn them away: an ordinary raider takes an open way however long it is, and never weighs it against breaking a door. A very long or winding way has a cost of its own, though. Raiders more than about 65 cells from anyone to fight drift off to smash what they pass, and the longer they spend outside, the more they break.</text>
       </li>
       <li>
         <heading>Why the way in stays open</heading>
@@ -279,7 +279,7 @@ Against both: walls at least two thick, cover ready in more than one place, an i
     <sections>
       <li>
         <heading>Material</heading>
-        <text>Stone is the wall of choice: cheap, slow to build, strong, and it doesn't burn. Wood is quick but weak and burns, and raiders set fires. Steel walls burn too. Plasteel and uranium are the strongest and dearest, worth it only in a few key places.</text>
+        <text>Stone is the wall of choice: cheap, slow to build, strong, and it doesn't burn. Wood is quick but weak and burns, and raiders set fires. Steel walls burn too. Plasteel and uranium are the strongest and most expensive, worth it only in a few key places.</text>
       </li>
       <li>
         <heading>Thickness</heading>
@@ -647,7 +647,7 @@ Use the stun: while they stand still, close in with melee or concentrate fire. E
     <category>Defending</category>
     <order>140</order>
     <summary>A second line, a keep, and a hospital close behind</summary>
-    <tip>A line people only find in the middle of a raid is no line.</tip>
+    <tip>Decide where the fallback line is and show it to everyone before a raid, not during one.</tip>
     <description>Every defense breaks somewhere sometime: a breach in the wall, pods among the beds, a fire in the killbox. A colony that knows where to fall back to loses a room; one that doesn't loses people. And after every fight there are wounded, who need beds and medicine close by.</description>
     <sections>
       <li>

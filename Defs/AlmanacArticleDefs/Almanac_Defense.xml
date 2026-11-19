@@ -729,7 +729,7 @@ When hives do appear, fight them from a doorway at range. Insect bites carry a h
     <label>toxic fallout</label>
     <category>Defense</category>
     <order>190</order>
-    <summary>Days of poison from the sky: stay under a roof</summary>
+    <summary>Days of toxic fallout: stay under a roof</summary>
     <tip>Every hour outdoors during fallout adds to toxic buildup.</tip>
     <description>Toxic fallout poisons everything outdoors for days. Pawns build up toxins, outdoor crops wither, and long exposure can leave permanent brain damage or cancer. The fix is to roof the walkways, the workplaces and the barn.</description>
     <sections>

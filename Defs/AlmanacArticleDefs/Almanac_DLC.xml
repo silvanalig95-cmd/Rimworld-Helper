@@ -573,7 +573,7 @@ Give a leader speech only when quality is high, since a terrible one costs -8; a
       </li>
       <li>
         <heading>Planting a pod</heading>
-        <text>Pods turn up about every 60 days, or every 30 with the Tree Connection meme. The tree grows in 10 days (18.46 counting rest time), is immune to blight and can't be moved. The spot for a pod needs:</text>
+        <text>Pods turn up about every 60 days, or every 30 with the Tree Connection meme. The tree grows in 10 days (about 18.2 counting the hours plants rest), is immune to blight and can't be moved. The spot for a pod needs:</text>
         <points>
           <li>Ground with at least 5% fertility.</li>
           <li>4 or more tiles to the nearest other Gauranlen tree.</li>
