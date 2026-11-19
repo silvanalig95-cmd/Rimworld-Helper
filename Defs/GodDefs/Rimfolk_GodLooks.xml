@@ -90,7 +90,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Storm: storm-grey and silver; a dead calm, then thunder and a pulse; rain where it walks, a lightning-struck stone where it stood. -->
+  <!-- The Storm: storm-grey and silver; a dead calm, then thunder and a pulse; rain where it walks, lightning and a ring of scorched ground where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Storm</defName>
     <label>the storm</label>
@@ -131,7 +131,7 @@
     </circle>
     <sky>(0.62, 0.68, 0.85)</sky>
     <still>0.95</still>
-    <mark>Stone</mark>
+    <mark>Lightning</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>Thunder_OnMap</li>
@@ -169,7 +169,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Hunt (and beasts): forest green and bone; a deer skull, a wanderer's cloak; spirit wolves run out at its coming. -->
+  <!-- The Hunt (and beasts): forest green and bone; a deer skull, a wanderer's cloak; spirit wolves run out at its coming, a fresh kill of the land's game where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Hunt</defName>
     <label>the hunt</label>
@@ -213,7 +213,7 @@
     </circle>
     <sky>(0.72, 0.86, 0.7)</sky>
     <still>0.8</still>
-    <mark>Stone</mark>
+    <mark>Kill</mark>
     <wrathMark>Ash</wrathMark>
     <sting>
       <li>TM_WolfHowl</li>
@@ -332,7 +332,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- War: blood red and iron; the cloak of supremacy and the helm of the valiant; blood wolves run out, scorch where it walks. -->
+  <!-- War: blood red and iron; the cloak of supremacy and the helm of the valiant; blood wolves run out, scorch where it walks, a ring of scorch and a weapon of the colony's age where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_War</defName>
     <label>war</label>
@@ -378,7 +378,7 @@
     </circle>
     <sky>(0.85, 0.5, 0.45)</sky>
     <still>0.7</still>
-    <mark>Stone</mark>
+    <mark>Weapon</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>Bestowing_Start</li>
@@ -419,7 +419,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- War among spacers: the war-mind, red light on dark plasteel; a forsaken cloak and a psycaster's helm. -->
+  <!-- War among spacers: the war-mind, red light on dark plasteel; a forsaken cloak and a psycaster's helm; a ring of scorch and a weapon of the colony's age where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_War_Spacer</defName>
     <label>war, among the stars</label>
@@ -465,7 +465,7 @@
     </circle>
     <sky>(0.8, 0.45, 0.45)</sky>
     <still>0.7</still>
-    <mark>Slag</mark>
+    <mark>Weapon</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>Archotech_Invoked</li>
@@ -501,7 +501,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- Craft (the forge): ember orange and bronze; an apron and a mantle; sparks where it walks, runes on the ground, a lump of slag where it stood. -->
+  <!-- Craft (the forge): ember orange and bronze; an apron and a mantle; sparks where it walks, runes on the ground, a stack of the colony's working metal where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Craft</defName>
     <label>the forge</label>
@@ -544,7 +544,7 @@
     </circle>
     <sky>(0.95, 0.72, 0.5)</sky>
     <still>0.85</still>
-    <mark>Slag</mark>
+    <mark>Metal</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>ItemEnchanted</li>
@@ -581,7 +581,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Craft among spacers: cyan light and pale steel; a techfriar's crown. -->
+  <!-- The Craft among spacers: cyan light and pale steel; a techfriar's crown; a stack of the colony's working metal where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Craft_Spacer</defName>
     <label>the fabricator</label>
@@ -622,7 +622,7 @@
     </circle>
     <sky>(0.7, 0.88, 0.95)</sky>
     <still>0.85</still>
-    <mark>Slag</mark>
+    <mark>Metal</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>ItemEnchanted</li>
@@ -656,11 +656,11 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Way (roads, trade and travellers): road dust and sky blue; the wanderer's cloak; a waystone where it stood. -->
+  <!-- The Way (roads, trade and travellers): road dust and sky blue; the wanderer's cloak; a standing stone of the land's rock where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Way</defName>
     <label>the way</label>
-    <description>A god of roads, trade and travelers: road dust and open sky, in a wanderer's cloak, a waystone where it stood.</description>
+    <description>A god of roads, trade and travelers: road dust and open sky, in a wanderer's cloak, a standing stone where it stood.</description>
     <domain>Way</domain>
     <sampleName>a traveler in light</sampleName>
     <colorA>(0.86, 0.76, 0.5)</colorA>
@@ -695,7 +695,7 @@
     </circle>
     <sky>(0.95, 0.9, 0.76)</sky>
     <still>0.85</still>
-    <mark>Stone</mark>
+    <mark>StandingStone</mark>
     <wrathMark>Ash</wrathMark>
     <sting>
       <li>Psycast_Skip_Entry</li>
@@ -894,11 +894,11 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Hearth (fire and home): ember amber and warm red; a mantle and a coronet; flames rise off it, a hearthstone where it stood. -->
+  <!-- The Hearth (fire and home): ember amber and warm red; a mantle and a coronet; flames rise off it, firewood and warm meals where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Hearth</defName>
     <label>the hearth</label>
-    <description>A god of fire and of home: ember amber and warm red, flame-haired, with small flames rising off it and a hearthstone where it stood.</description>
+    <description>A god of fire and of home: ember amber and warm red, flame-haired, with small flames rising off it and firewood and warm meals where it stood.</description>
     <domain>Hearth</domain>
     <sampleName>a figure of hearth-fire</sampleName>
     <colorA>(1, 0.6, 0.25)</colorA>
@@ -932,7 +932,7 @@
     </circle>
     <sky>(1, 0.8, 0.6)</sky>
     <still>0.9</still>
-    <mark>Stone</mark>
+    <mark>Hearth</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>TM_FireWooshSD</li>
@@ -1130,7 +1130,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Machine: steel and cyan light; the eltex robe and a techfriar's crown; Ideology's archotech sounds and the archonexus song. -->
+  <!-- The Machine: steel and cyan light; the eltex robe and a techfriar's crown; Ideology's archotech sounds and the archonexus song; a few components where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Machine</defName>
     <label>the machine</label>
@@ -1172,7 +1172,7 @@
     </circle>
     <sky>(0.6, 0.8, 0.9)</sky>
     <still>0.9</still>
-    <mark>Slag</mark>
+    <mark>Components</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>Archotech_Invoked</li>
@@ -1214,7 +1214,7 @@
     </animals>
   </ColonyCouncil.GodLookDef>
 
-  <!-- The Machine before the machine age: rust and bronze; a visage mask; Alpha Memes' Kemetic chant. -->
+  <!-- The Machine before the machine age: rust and bronze; a visage mask; Alpha Memes' Kemetic chant; a few components where it stood. -->
   <ColonyCouncil.GodLookDef>
     <defName>Rimfolk_GodLook_Machine_Old</defName>
     <label>the iron spirit</label>
@@ -1254,7 +1254,7 @@
     </circle>
     <sky>(0.9, 0.72, 0.55)</sky>
     <still>0.9</still>
-    <mark>Slag</mark>
+    <mark>Components</mark>
     <wrathMark>Scorch</wrathMark>
     <sting>
       <li>Archotech_Invoked</li>

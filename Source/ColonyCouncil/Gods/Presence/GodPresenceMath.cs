@@ -41,7 +41,11 @@ namespace ColonyCouncil
         Light
     }
 
-    /// <summary>The mark a god's moment leaves on the land, made of the game's own things.</summary>
+    /// <summary>
+    /// The mark a god's moment leaves on the land, made of the game's own things and the player's mods' (GodMarkMath,
+    /// GodMarkGoods). Never saved: a look names its marks in its def, and a moment lays its mark a few seconds after it
+    /// begins.
+    /// </summary>
     public enum GodMark
     {
         None,
@@ -51,8 +55,20 @@ namespace ColonyCouncil
         Scorch,
         Frost,
         Ash,
-        Slag,
-        Stone
+        /// <summary>Lightning strikes the place and leaves a ring of scorched ground (the Storm).</summary>
+        Lightning,
+        /// <summary>A fresh kill of the land's game, not a large one (the Hunt).</summary>
+        Kill,
+        /// <summary>A ring of scorched ground and a weapon of the colony's age in the middle of it (War).</summary>
+        Weapon,
+        /// <summary>A standing stone of the land's own rock: a small sculpture, no colonist's work (the Way).</summary>
+        StandingStone,
+        /// <summary>A bundle of firewood and a few warm meals of the colony's age (the Hearth).</summary>
+        Hearth,
+        /// <summary>A stack of the colony's working metal: steel, plasteel for a spacer colony (the Craft).</summary>
+        Metal,
+        /// <summary>A few components, an advanced one among them for a spacer colony (the Machine).</summary>
+        Components
     }
 
     /// <summary>What the trail does at one cell.</summary>
@@ -570,8 +586,9 @@ namespace ColonyCouncil
             return cells;
         }
 
-        /// <summary>The ring a mark is laid in: a scorch or a frost wider, flowers a little closer.</summary>
-        public static int MarkRadius(GodMark m) => m == GodMark.Scorch || m == GodMark.Frost || m == GodMark.Ash ? 3 : m == GodMark.Flowers ? 2 : 0;
+        /// <summary>The ring a mark is laid in: a scorch, a frost or a weapon's ring wider, flowers and a lightning strike a little closer.</summary>
+        public static int MarkRadius(GodMark m) =>
+            m == GodMark.Scorch || m == GodMark.Frost || m == GodMark.Ash || m == GodMark.Weapon ? 3 : m == GodMark.Flowers || m == GodMark.Lightning ? 2 : 0;
 
         /// <summary>The way a spirit mote runs, by the way its picture faces (its name's end: East, West, North, South).</summary>
         public static float SpiritAngle(string name)

@@ -318,7 +318,7 @@ namespace ColonyCouncil
             if (spec?.god == null || resolving || !Gods.On || spec.map == null || !Homes.IsHome(spec.map)) return;
             var kind = PawnGods.KindOf(spec.kind);
             bool coming = spec.kind == PresenceKind.Appear || spec.kind == PresenceKind.Reveal;
-            Add(spec.god, spec.map, spec.cell, ToneOf(kind, spec.god), plain, coming, spec.what, witnesses, taken, spec.text);
+            Add(spec.god, spec.map, spec.cell, ToneOf(kind, spec.god), plain, coming, spec.what, witnesses, taken, GodMarkMath.WithLeft(spec.text, spec.left));
         }
 
         /// <summary>

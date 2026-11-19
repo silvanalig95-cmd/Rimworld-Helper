@@ -25,8 +25,11 @@ namespace ColonyCouncil
                 // The colony's sign of it on the card, only when the card names it and the colony has been told what it is.
                 string sign = !veiled && GodSigns.Known(s.god) ? GodSigns.KeyOf(s.god) : null;
                 // Its own presence after the moment, where its def names one (GodDef.presence); the shared one otherwise.
-                return GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null, s.map, s.cell, s.kind, s.avatar, s.title, s.text, veiled,
+                bool played = GodPresence.Manifest(LookOf(s.god), known ?? GodLore.LabelFor(Gods.Name(s.god)), null, s.map, s.cell, s.kind, s.avatar, s.title, s.text, veiled,
                     s.god.colour, s.god.colour2, sign, GodPresenceOwn.DefOf(s.god), s.god.Key, s.lingerTicks);
+                // What it left where it happened, for the colony's book after its words (Gods.Moment).
+                s.left = played ? GodPresence.LastLeft : null;
+                return played;
             };
             GodLookSeam.MakeAvatar = (p, god, disguised) => GodAvatar.Make(p, LookOf(god), Gods.Name(god), disguised, god.colour, god.colour2);
             HediffComp_GodAvatar.Label = GodLore.LabelFor;

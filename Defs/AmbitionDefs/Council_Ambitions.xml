@@ -253,7 +253,7 @@
         <li>Banners on the walls, and a seat at the head of the table for whoever cooked!</li>
       </cheerful>
       <gloomy>
-        <li>We'll eat thousands of meals in that room before we're done.</li>
+        <li>We'll eat thousands of meals in that room, so it might as well be a good one.</li>
       </gloomy>
       <cold>
         <li>Every one of us sits in that room at least once a day. No other room we could improve reaches as many people.</li>
@@ -390,7 +390,7 @@
 
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_IronRing</defName>
-    <label>a ring of iron</label>
+    <label>turrets on the approaches</label>
     <description>Build three turrets to cover the colony's approaches.</description>
     <days>20</days>
     <relevantCategories>
@@ -433,7 +433,7 @@
 
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_TeethInTheMud</defName>
-    <label>teeth in the mud</label>
+    <label>traps on the approaches</label>
     <description>Build six traps along the approaches, so attackers are hurt before they reach your walls.</description>
     <days>15</days>
     <relevantCategories>
@@ -478,7 +478,7 @@
         <li>Mind where you step past the fields now.</li>
       </plain>
       <cold>
-        <li>The approaches are now hostile. Good.</li>
+        <li>The raiders will get hurt before they reach us now. Good.</li>
       </cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -837,7 +837,7 @@
         <li>We need more people, and I'm not fussy about where they come from.</li>
       </blunt>
       <cheerful>
-        <li>A new friend. I'll even give them my second-best spoon.</li>
+        <li>A new friend. I'll show them around myself.</li>
       </cheerful>
       <gloomy>
         <li>There aren't enough of us to survive what's coming.</li>
@@ -986,7 +986,7 @@
         <li>Fine dining out here on the Rim, garnish and all!</li>
       </cheerful>
       <gloomy>
-        <li>We eat the same mush day after day, and I've started to taste the despair in it.</li>
+        <li>We eat the same mush day after day, and it's wearing everyone down.</li>
       </gloomy>
       <cold>
         <li>A fine meal costs a cook an hour and buys a day of good temper from whoever eats it.</li>

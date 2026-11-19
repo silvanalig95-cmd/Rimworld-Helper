@@ -7299,8 +7299,8 @@ can't build. Every suggestion goes through one gate (`Avail`):
   made or is in stock, no winter advice on space maps.
 - **Era of the colony**: the research advisor suggests projects from the colony's own tech
   level first.
-- **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
-  (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
+- **Ambitions** are offered only if every goal is possible right now. "Turrets on the approaches"
+  never comes up for a medieval colony, but "traps on the approaches" does.
 
 ### Things by what they are for (the player's request, 7 November 2026)
 
@@ -14743,7 +14743,8 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   through `Patch_GodStillsWind`, an hour to five by the kind, named plainly or "a strange stillness"), everyone on the
   map turning (animals within forty cells; the devout pray, calm animals lie down, shy wild ones within 22 cells run;
   three speak, `_GodMoment`), and the mark (`GodPresenceMath.MarkFor`: a ring of flowers or scorch marks, frost, ash, a
-  spring of shallow water, a tree of the biome, a lump of slag or a chunk of the land's stone); 1.2 seconds later the
+  spring of shallow water, a tree of the biome, lightning, or the goods of a mark worth having, chosen as the moment
+  begins and said on its card: "A god's mark worth having" below); 1.2 seconds later the
   track (`MusicManagerPlay.ForcePlaySong`: the player's own from `Sounds/Rimfolk/Gods/<Domain>/` first, else the look's,
   a wrath's darker ones first, varied by the god and the hour); four seconds after the sting the card. With the music
   off, no fade, silence or track: the sting at once.
@@ -16420,6 +16421,83 @@ November 2026): "Rooms judged by what's in them. That sounds good."
   rooms (`KeepOut`, `GuestHelpMath.PrivateRoom`); the journal's moods, which are the game's own thoughts.
 - Tests: `RoomUseTests` (the reading, the order, the player's rooms, and every place above reading the rooms through
   `RoomUtil`; only the kept places compare the game's dining or rec role directly).
+
+### A god's mark worth having (the player's go, 19 November 2026; released 0.268.3)
+
+The player: "so the god events and occurences are super cool! but many of them just generate a single stone [chunk]??
+it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting
+or valuable item". The go, on the lead's proposal: "yes, please", "all the three".
+
+- **The cause.** A god's moment (a blessing, a coming, a reveal, a departure; `GodPresenceMath.MarkFor`) leaves its
+  look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`), and 10 of the 17 looks left one stone chunk of the land's
+  rock (the Storm, the Hunt, War, the Way, the Hearth) or one steel slag chunk (War among spacers, the Craft and the
+  fabricator, the Machine and the iron spirit). Nothing said what was left.
+- **Each look its own mark** (`GodMark`, new values; the enum is never saved, and `Stone` and `Slag` are gone):
+  - the Storm: `Lightning`, a flash in the sky, a glow and thunder at the place (the game's lightning flash and glow,
+    no strike: no fire, nobody hurt) and a ring of scorched ground; no goods;
+  - the Hunt: `Kill`, a fresh kill of the land's game: an animal of the land (`BiomeAnimals.Of`, the commoner
+    likelier), flesh, not a person, an insect, a Pokémon or an animal the colony's faith holds sacred, from a fox's size
+    to a deer's (0.5 to 1.5; 0.3 to 2 on a land with none such), grown, its meat and leather at their prices, as much
+    of them as a butcher of middling skill gets (three quarters, `GodMarkMath.KillWorth`), worth no more than 360
+    silver (a deer is about that), else the least worth of the few tried; laid on open ground near the place, killed
+    there (the game's own death, the corpse fresh and not forbidden), a little of its blood beside it outside the home
+    area;
+  - War, and War among spacers: `Weapon`, a ring of scorched ground and a weapon in the middle of it: any weapon of the
+    player's game carried in the hands (every mod's; no grenade, nothing that can't be dropped or traded, no persona
+    weapon, nothing past the spacer age), of the colony's own age first (`PeopleAgesMath.AgeOfTech`), an earlier age's
+    only when none of its own fits, the commoner likelier, of a material the age has (`GenStuff`, by the age's tech
+    level), worth 100 silver up to the age's worth and a half (180 tribal, 240 medieval, 300 after), else the nearest to
+    the age's worth; of poor or normal make, never poor where that takes it under 100; with no open ground for the ring
+    (under a roof), the weapon alone;
+  - the Way: `StandingStone`, a standing stone of the land's own rock: Vanilla Furniture Expanded - Art's obelisk, else
+    the game's small sculpture, of the blocks the land's first rock is dressed into (granite blocks where none is), of
+    normal quality, a work of art nobody of the colony made (the game's way with an outsider's work: no story of the
+    colony's on it, its author unknown); set up on free open ground near the place as the colony's, packed up beside it
+    where none is free;
+  - the Hearth: `Hearth`, a bundle of firewood (25 wood) and three to eight warm meals of the colony's age: simple ones
+    tribal, fine ones medieval and industrial, lavish ones spacer, Vanilla Cooking Expanded's stews, soups, grills and
+    bakes or the game's own;
+  - the Craft and the fabricator: `Metal`, a stack of the colony's working metal: steel, plasteel in a spacer colony;
+  - the Machine and the iron spirit: `Components`, a few components, in a spacer colony an advanced one and two more.
+  The other looks keep theirs (flowers, a tree, a spring, frost, ash, scorch; Revel's and Tamiu's none).
+- **What it is worth** (`GodMarkMath`, by the colony's age, `Ages.Ours`: 120 silver tribal, 160 medieval, 210
+  industrial, 260 spacer, never under 100 or over 300): 65, 85 or 110 steel, 30 plasteel; 4, 5 or 7 components, an
+  advanced one and 2 in the spacer age; the firewood and 6 to 8 meals (6 lavish ones in the spacer age); the weapon
+  within its worth; the kill by its size; the standing stone at normal quality (the obelisk only while it is within 300
+  silver, else the small sculpture).
+- **How often.** The moments that leave a look's mark are a god coming onto the land (a stranger at the gate or a
+  sacred animal: one in 40 days at the most, about one a year), a great effect of the gods' touch (one in 40 days at a
+  home at the most), an answered prayer of the sick, of a raid or of a drought (a god once in ten days at the most), a
+  god's kindness in the world (a fever eased, a kindness returned, a gift) and the rare risings and wakings: in a colony
+  that prays, five to ten a year. Only the looks above leave goods: of the colony's fifteen gods Smoulder (metal), Pip
+  (components), Ennu and Ducat (the standing stone); the Hunt, War and the Hearth are the looks of the peoples' gods and
+  of a god born to the colony in those domains. So one to four marks of goods a year, 150 to 800 silver. And a mark of
+  goods comes at most once in ten days, any god, any home (`GodMarkMath.WorthGapDays`, kept with the game in
+  `GodPresenceComponent.lastWorth`): six a year at the most, 1,800 silver at the very most; within the wait a moment
+  leaves the mark's plain form (`GodMarkMath.Lesser`: war, the hearth, the forge and the machine a ring of scorched
+  ground, the hunt and the way nothing).
+- **Chosen first, laid at the sting.** `GodPresence.Manifest` asks `GodMarkGoods.Plan` as the moment begins: the
+  goods are made (the animal not yet on the map), the ground is checked (`GodTrails.CanMark`: flowers and a tree only
+  on fertile open soil, a spring on natural ground off the home area, scorch, ash, frost and lightning under the sky),
+  and the words written; `GodTrails.Mark` lays it all at the sting, a glint in the god's colour on each thing. A mark the
+  ground can't take, or goods that can't be had (no game on the land), leaves the plain form or nothing, and says so.
+- **The words match the map** (`CC_GodP_Left_*`, one sentence each, the god never named): "When it was over, a stack of
+  65 steel lay where it happened.", "...a freshly killed deer lay on the ground where it happened.", "...the ground
+  where it happened was scorched in a ring, and a steel longsword lay in the middle of it.", "...an obelisk of the
+  land's own granite stood where it happened.", "...a bundle of firewood and 7 fine stews, still warm, lay where it
+  happened.", "Lightning struck the ground where it happened and left a ring of scorched earth.", and the ground's marks
+  too ("...a ring of flowers had come up where it happened."). The sentence follows the card's words (`GodCard.Send`'s
+  `left`), the line in the colony's book (`Gods.Moment`, through `PresenceSpec.left`, which the wiring fills in from
+  `GodPresence.LastLeft`) and the "Why" of the moods of those who saw it (`GodTouch.NoteMoment`), joined by
+  `GodMarkMath.WithLeft`.
+- **Dev mode**: "Gods: a god's mark here..." lays any mark at a cell in the colony's age or any other, the wait set aside,
+  and says its words and worth (also in the log); "Gods: a moment of a look here..." leaves a mark's goods whenever it is
+  tried; "Gods: what each look finds in this game (log)" names each look's marks.
+- Code: `Gods/Presence/GodMarkMath.cs` (new, pure, linked in the tests), `GodMarkGoods.cs` (new: `GodMarkPlan`,
+  `GodMarkGoods`), `GodTrails.cs` (`Mark` by plan, `CanMark`, the lightning), `GodPresence.cs` (the plan, `LastLeft`,
+  `GodPresenceComponent.lastWorth`), `GodCard.cs`, `GodPresenceDebug.cs`, `GodPresenceMath.cs` (`GodMark`, `MarkRadius`);
+  `Gods/GodPresenceSeam.cs` (`PresenceSpec.left`), `GodsWiring.cs`, `Gods.cs`, `Touch/GodTouch.cs`; the looks' marks;
+  `Languages/English/Keyed/Rimfolk_GodPresence.xml`. Tests: `GodMarkTests` (new).
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 

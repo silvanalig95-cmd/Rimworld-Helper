@@ -53,11 +53,19 @@ namespace ColonyCouncil
             public bool stung, played, carded;
             /// <summary>Its presence lasts this many ticks instead of its usual hours (PresenceSpec.lingerTicks); 0: as usual.</summary>
             public int linger;
+            /// <summary>What it leaves where it happened (GodMarkGoods.Plan, chosen as it begins so its words can say it), laid down at the sting.</summary>
+            public GodMarkPlan mark;
             public readonly List<(Sustainer s, float until)> held = new List<(Sustainer, float)>();
         }
 
         private static readonly List<Moment> moments = new List<Moment>();
         private static Game game;
+
+        /// <summary>
+        /// What the moment begun last leaves where it happened, in a sentence (GodMarkGoods), or null: the core's seam adds it to
+        /// the words the colony's book keeps of it. Set by each call of <see cref="Manifest"/>.
+        /// </summary>
+        public static string LastLeft { get; private set; }
 
         /// <summary>
         /// A god's moment of <paramref name="kind"/> at <paramref name="at"/> (or where <paramref name="avatar"/> stands):
@@ -87,6 +95,7 @@ namespace ColonyCouncil
         public static bool Manifest(GodLookDef look, string godName, string epithet, Map map, IntVec3 at, PresenceKind kind, Pawn avatar, string title, string text,
             bool veiled, Color? colorA, Color? colorB, string sign, GameConditionDef presence, string godKey, int linger)
         {
+            LastLeft = null;
             if (look == null || map == null) return false;
             if (avatar != null && avatar.Spawned && avatar.Map == map) at = avatar.Position;
             if (!at.IsValid || !at.InBounds(map)) return false;
@@ -120,13 +129,18 @@ namespace ColonyCouncil
                     Omen(m);
                     return true;
                 }
+                // What it will leave, chosen now so the card and the colony's book say what is there.
+                m.mark = GodMarkGoods.Plan(GodPresenceMath.MarkFor(kind, look.mark, look.wrathMark), map, at);
                 Begin(m);
                 moments.Add(m);
+                LastLeft = m.mark?.words;
                 return true;
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods: a god's moment", e);
+                GodMarkGoods.Forget(m.mark);
+                LastLeft = null;
                 return false;
             }
         }
@@ -240,7 +254,7 @@ namespace ColonyCouncil
                     if (!m.carded && m.stung && t >= GodPresenceMath.CardAt(m.kind, m.music))
                     {
                         m.carded = true;
-                        GodCard.Send(m.look, m.name, m.epithet, m.map, m.at, m.kind, m.avatar, m.title, m.text, m.veiled, m.a, m.b, m.sign);
+                        GodCard.Send(m.look, m.name, m.epithet, m.map, m.at, m.kind, m.avatar, m.title, m.text, m.veiled, m.a, m.b, m.sign, m.mark?.words);
                     }
                     for (int k = m.held.Count - 1; k >= 0; k--)
                         if (now >= m.held[k].until)
@@ -289,7 +303,7 @@ namespace ColonyCouncil
             GodFx.Flash(m.look, map, m.at, m.a, m.b, true, m.godKey);
             GameCondition_GodPresence.Begin(map, m.kind, m.a, m.look.still, m.name, m.veiled, m.presence, m.godKey, m.linger);
             GodReactions.Moment(map, m.at, m.avatar, m.veiled ? null : m.name, m.look.Domain, m.kind);
-            GodTrails.Mark(GodPresenceMath.MarkFor(m.kind, m.look.mark, m.look.wrathMark), map, m.at, m.a);
+            GodTrails.Mark(m.mark, map, m.at, m.a);
         }
 
         /// <summary>Every moment ends now (a dev action, a game left).</summary>
@@ -313,16 +327,38 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Runs the gods' moments on real seconds, a frame at a time (nothing saved: a moment lasts a few seconds).</summary>
+    /// <summary>
+    /// Runs the gods' moments on real seconds, a frame at a time (a moment lasts a few seconds and isn't saved), and keeps
+    /// one thing with the game: when a god's mark last left goods (GodMarkMath.WorthGapDays apart).
+    /// </summary>
     public class GodPresenceComponent : GameComponent
     {
+        /// <summary>The tick a god's mark last left goods (a kill, a weapon, a standing stone, meals, metal, components).</summary>
+        public int lastWorth = -999999;
+
         public GodPresenceComponent(Game game)
         {
+        }
+
+        public static GodPresenceComponent Instance => Current.Game?.GetComponent<GodPresenceComponent>();
+
+        /// <summary>Days since a god's mark last left goods (a long time for never).</summary>
+        public float DaysSinceWorth => lastWorth < -900000 || Find.TickManager == null ? 9999f : (Find.TickManager.TicksGame - lastWorth) / (float)GenDate.TicksPerDay;
+
+        public void NoteWorth()
+        {
+            if (Find.TickManager != null) lastWorth = Find.TickManager.TicksGame;
         }
 
         public override void GameComponentUpdate()
         {
             GodPresence.Update();
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref lastWorth, "lastWorth", -999999);
         }
     }
 }
