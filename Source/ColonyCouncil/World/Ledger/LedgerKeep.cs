@@ -155,6 +155,8 @@ namespace ColonyCouncil
                 case KeepFor.Spouse: return Matches.Holds(p);
                 // One of the colony's former people, while the town they stayed in stands (Colonies/HandOvers.cs).
                 case KeepFor.Former: return HandOvers.Holds(p);
+                // A journeyman of the Kiln Guild due back a master a year after their wander-year (Peoples/Events7/ComeBackBetter.cs).
+                case ComeBackBetter.KeepReason: return ComeBackBetter.Holds(p);
             }
             if (KeepFor.IsSituation(reason) && int.TryParse(reason.Substring("situation:".Length), out int id))
                 return WorldSituations.Instance?.Running.Any(s => s != null && s.id == id && !s.ended && s.held.Contains(p)) ?? false;

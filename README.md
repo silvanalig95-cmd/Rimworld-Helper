@@ -4732,6 +4732,26 @@ under a white flag, and the colony can buy the contract, pay them to stand aside
 march** camps a night or two at the edge, drills at dawn, buys food and may take one of the colony's fighters along for a
 season.
 
+**The peoples' own events, the seventh round.** Ten more, from the Kiln Guild, the Signal Line and the Deepwell Union,
+each only while that people is at peace with the colony. When one of the colony makes a masterwork or a legend, a
+**master of the guild** may come to judge it where it is: true work gets the guild's mark (a good memory, the guild's good
+word, and with Vanilla Skills Expanded the quality expertise), and a fault, when the master finds one, is said plainly. A
+year after a wander-year at the colony ended well, the journeyman **comes back a master** with a masterwork as a gift for
+the one who taught them. Three journeymen may camp for a week and **build a work that stays** with the colony's own stone
+or wood: a carved stone bridge over the water nearest the colony (Vanilla Furniture Expanded - Architect's), a grand
+statue or monument in its hall (Vanilla Furniture Expanded - Art's), or a fountain where it gathers (Alpha Props - Parks); a cracked block can leave them waiting for
+more stone, and bad work is torn down. Once a season the **Signal Line** offers the colony **one call on its masts**: a
+trader of goods or of arms, someone to join, or a good word with a people it stands poorly with, made on the colony's radio
+or carried by a runner. For a fee it raises **a mast at the town of a notable the colony writes to**, and letters there take
+half the days; and **a line crew** may camp a week on the high ground with a working mast (a flag-and-lamp tower in an
+older age), carrying the colony's letters and telling the region's news at night, its mast the colony's to keep for a fee.
+When one of the **union's** pits caves in, the colony's miner and doctor can go and **dig the trapped out** for a few days,
+a crush one shift in twenty as at the union's drill; an **assayer** finds the colony's oil and sinks a Rimefeller well for
+silver or a year's share (without Rimefeller, marks a deep seam for the union's drill); when the colony's people are worn
+down, a **shift-captain speaks at its fire** and next morning a petition for rest comes to the council; and while a strike
+lasts, **a picket** may camp by the colony's road, singing at night, until the colony helps settle it or the union votes to
+go back.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

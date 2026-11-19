@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 7 (docs/peoples-events-proposals.md, items 60, 61, 62, 64, 65, 66, 67, 68, 69 and 70;
+    Source/ColonyCouncil/Peoples/Events7/). Each only from a people of its calling at peace with the colony, each played out on the
+    map. Four come only from code when their moment comes (base chance 0): the guild's master when the colony makes a masterwork,
+    the journeyman a year after a wander-year, the union's shift-captain when the colony's people are worn down, and the strikers
+    when a strike is called. Item 68 is two events, one a form: the oil well with Rimefeller (its wells open to the colony), the
+    deep seam marked without it. The Line's call a season has five answers, one for each kind of call and the last that sends the
+    operator on. {DEAD}, {TALE} and {RELATION} carry what the event's own code says they do (a fee, a piece's name, a count, a
+    notable's name); every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 60. The master's mark (the Kiln Guild) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MastersMark</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the master's mark</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MastersMark</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>40~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The master's mark</li>
+          <li>A master at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a master of {FACTION}, has come to the gate. Word has reached the guild of the {TALE} {A_nameDef} made, and {X_pronoun} asks to judge it where it is. If it is true work it gets the guild's mark. If {X_pronoun} finds a fault in it, {X_pronoun} will say so.</li>
+          <li>[legend] {X_nameDef}, a master of {FACTION}, has come to the gate. The guild has heard that {A_nameDef} made a legendary piece, the {TALE}, and {X_pronoun} would like to judge it where it is. A true piece gets the guild's mark. A fault in it would be said plainly.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a carver's bag. Word of the {TALE} {A_nameDef} made has reached the guild's people, and {X_pronoun} asks to look it over. If it is good work the guild will mark it as such. If it hides a flaw, {X_pronoun} will say so.</li>
+          <li>[age1] {X_nameDef}, a master of {FACTION} in the guild's ochre apron, has come to the gate. The guild has heard of the {TALE} {A_nameDef} made, and {X_pronoun} would judge it as the guild judges its own work. True work gets the guild's mark. Bad work is called bad.</li>
+          <li>[age2] {X_nameDef}, a master of {FACTION}, has come up the road with a case of gauges and a lens. Word of the {TALE} {A_nameDef} made has reached the guild, and {X_pronoun} asks to test it where it is. If it holds up it gets the guild's mark, and if it doesn't, {X_pronoun} will say what is wrong with it.</li>
+          <li>[age3] {X_nameDef}, a master of {FACTION}, has come to the gate with a scanner and a set of gauges. The guild has heard of the {TALE} {A_nameDef} made, and {X_pronoun} would like to check it over. A true piece gets the guild's mark. A hidden fault would be named.</li>
+          <li>[held] {X_nameDef}, a master of {FACTION}, has come to the gate. Word has reached the guild of the {TALE} {A_nameDef} made, and {X_pronoun} asks to look at it on {A_nameDef} where {A_pronoun} is. If it is true work it gets the guild's mark. If {X_pronoun} finds a fault, {X_pronoun} will say so.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} judge the {TALE}</label>
+            <outcome>{X_nameDef} will go to the {TALE} and look it over for an hour, with {A_nameDef} beside {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MastersMark"><lesson>false</lesson></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {X_objective} judge it, and go over it with {A_nameDef}</label>
+            <outcome>{X_nameDef} will look the {TALE} over with {A_nameDef}, and tell {A_objective} what {X_pronoun} sees in the work as {X_pronoun} goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MastersMark"><lesson>true</lesson></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>We'll keep it to ourselves</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[judge] Show me the work, and I'll tell you what it is.</li>
+          <li>[later] Then the guild will hear of it from others.</li>
+          <li>[true] This is true work, and the guild's mark goes on it.</li>
+          <li>[true] There's no lie in this one, it gets the mark.</li>
+          <li>[fault] There is a fault in this, and I won't put the mark on it.</li>
+          <li>[fault] Look here, the work goes wrong at this point.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 61. Come back better (the Kiln Guild) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ComeBackBetter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>come back better</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ComeBackBetter</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>17~30</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Come back better</li>
+          <li>A master of the guild</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has come back to the gate. A year ago {X_pronoun} spent {X_possessive} wander-year at {A_nameDef}'s bench. {X_pronoun} is a master of {FACTION} now, and has brought a {TALE} {X_pronoun} made as a gift for the colony.</li>
+          <li>[better] {X_nameDef}, who spent {X_possessive} wander-year at {A_nameDef}'s bench a year ago, has come back to the gate a master of {FACTION}. {X_pronoun} says the year at the colony taught {X_objective} more than any other, and has brought a {TALE} {X_pronoun} made as a gift.</li>
+          <li>[age0] {X_nameDef} has walked back to the gate a year after {X_possessive} wander-year at {A_nameDef}'s side. {FACTION} have made {X_objective} a master, and {X_pronoun} has carried a {TALE} {X_pronoun} made all the way here as a gift.</li>
+          <li>[age1] {X_nameDef} has come back to the gate wearing a master's apron of {FACTION}. A year ago {X_pronoun} worked at {A_nameDef}'s bench on {X_possessive} wander-year. {X_pronoun} has brought a {TALE} of {X_possessive} own making as a gift for the colony.</li>
+          <li>[age2] {X_nameDef} has come back up the road a year after {X_possessive} wander-year at {A_nameDef}'s bench, a master of {FACTION} now. {X_pronoun} has a {TALE} {X_pronoun} made in a crate on {X_possessive} back, as a gift for the colony.</li>
+          <li>[age3] {X_nameDef}, who did {X_possessive} wander-year at {A_nameDef}'s bench a year ago, has come back to the gate as a master of {FACTION}. {X_pronoun} has brought a {TALE} {X_pronoun} made as a gift for the colony.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take the gift, and let {A_nameDef} sit with {X_objective} a while</label>
+            <outcome>{X_nameDef} sets the {TALE} down at the gate, and {A_nameDef} sits with {X_objective} for an hour or so.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ComeBackBetter" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><sit>true</sit><duration>1~1.5</duration></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Take the gift, and have {X_objective} work a morning at the bench with {A_nameDef}</label>
+            <outcome>{X_nameDef} sets the {TALE} down at the gate, and works beside {A_nameDef} for a few hours, showing {A_objective} what {X_pronoun} learned since.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ComeBackBetter" />
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><xpPerHour>350</xpPerHour><duration>3~4</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective} at the gate</label>
+            <outcome>{X_nameDef} sets the {TALE} down at the gate and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ComeBackBetter" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sit] I've a lot to tell you about the year.</li>
+          <li>[bench] Let me show you what I do differently now.</li>
+          <li>[gate] Keep it somewhere it will be looked at.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 62. A work that stays (the Kiln Guild) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WorkThatStays</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a work that stays</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WorkThatStays</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~40</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A work that stays</li>
+          <li>Journeymen of the guild</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a journeyman of {FACTION}, has come to the gate. {X_pronoun} and two others would camp by the colony for a week or so and build {TALE}, with {COUNT} of the colony's {THING} from its stores. The work would be the colony's, with the guild's mark on it.</li>
+          <li>[bridge] {X_nameDef}, a journeyman of {FACTION}, has come to the gate. The guild's first master rebuilt a bridge three times and marked every stone, and the guild still builds bridges where it can. {X_pronoun} and two others would camp by the colony for a week or so and build {TALE}, with {COUNT} of the colony's {THING}.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with mallets and chisels in a bag. {X_pronoun} and two others would camp by the colony for some days and make {TALE}, from {COUNT} of the colony's {THING}. It would stay the colony's after they go.</li>
+          <li>[age1] {X_nameDef}, a journeyman of {FACTION} in the guild's ochre apron, has come to the gate. Three of the guild's journeymen would camp by the colony for a week or so and build {TALE}, with {COUNT} of the colony's {THING}, and cut the guild's mark into it.</li>
+          <li>[age2] {X_nameDef}, a journeyman of {FACTION}, has come up the road with a cart of tools. {X_pronoun} and two others would camp by the colony for a week or so and build {TALE}, from {COUNT} of the colony's {THING}. It would carry the guild's mark.</li>
+          <li>[age3] {X_nameDef}, a journeyman of {FACTION}, has come to the gate with cutting tools and a set of plans. Three journeymen would camp by the colony for a week or so and build {TALE}, from {COUNT} of the colony's {THING}, with the guild's mark on it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them build it ({COUNT} {THING})</label>
+            <outcome>The three journeymen will camp by the colony. Once they have settled, the {THING} is carried out to them, and they start on the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkThatStays"><beside>false</beside></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them build it, and send {A_nameDef} to work beside them</label>
+            <outcome>The three journeymen will camp by the colony, and {A_nameDef} will work beside them during their working hours and learn.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkThatStays"><beside>true</beside></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[build] We'll make something here that lasts.</li>
+          <li>[later] Then another town will get the work.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 64. A voice for the colony (the Signal Line) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VoiceForColony</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a voice for the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VoiceForColony</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A voice for the colony</li>
+          <li>One call this season</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an operator of {FACTION}, has come to the gate. The Line gives each place one call a season on its masts, and this season's is the colony's if it wants it, at the Line's price. It could call for a trader of goods or of arms, for hands, or put in a good word for the colony with {ENEMY}.</li>
+          <li>[radio] {X_nameDef}, an operator of {FACTION}, has come to the gate. The Line gives each place one call a season on its masts, and {X_pronoun} would make the colony's on its {TALE}, at the Line's price: for a trader of goods or of arms, for hands, or a good word with {ENEMY}. A call on the radio is answered within hours.</li>
+          <li>[runner] {X_nameDef}, a lineman of {FACTION}, has come to the gate. The colony has no radio, so the Line sends its calls by runner, one a season. {X_pronoun} would carry this season's for the colony, at the Line's price: for a trader of goods or of arms, for hands, or a good word with {ENEMY}. It would be answered in a day or two.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has run to the gate. The Line passes one call a season along its hilltops for each place, and the colony's is free to give, at the Line's price: a trader of goods or of arms, hands, or a good word with {ENEMY}.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has come to the gate with a satchel of signal flags. One call a season goes down the Line's towers for each place, and {X_pronoun} would send the colony's, at the Line's price: a trader of goods or of arms, hands, or a good word with {ENEMY}.</li>
+          <li>[age2] {X_nameDef}, an operator of {FACTION} in a signal-orange coat, has come up the road. The Line gives each place one call a season on its masts, and {X_pronoun} would make the colony's, at the Line's price: a trader of goods or of arms, hands, or a good word with {ENEMY}.</li>
+          <li>[age3] {X_nameDef}, an operator of {FACTION}, has come to the gate with a handset on a strap. One call a season goes out on the Line's relays for each place, and {X_pronoun} would make the colony's, at the Line's price: a trader of goods or of arms, hands, or a good word with {ENEMY}.</li>
+        </texts>
+        <defaultOption>4</defaultOption>
+        <options>
+          <li>
+            <label>Call for a trader of goods ({COUNT} silver)</label>
+            <outcome>{X_nameDef} will make the call, and a caravan with goods to sell will come.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the Line's price</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VoiceCall"><call>goods</call></li>
+            </effects>
+          </li>
+          <li>
+            <label>Call for a trader of arms ({COUNT} silver)</label>
+            <outcome>{X_nameDef} will make the call, and a caravan with weapons and armour to sell will come.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the Line's price</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VoiceCall"><call>arms</call></li>
+            </effects>
+          </li>
+          <li>
+            <label>Call for hands ({DEAD} silver)</label>
+            <outcome>{X_nameDef} will put out word that the colony takes in people, and someone looking for a place will come to join.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><factor>3</factor><label>the Line's price for hands</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VoiceCall"><call>hands</call></li>
+            </effects>
+          </li>
+          <li>
+            <label>Have them speak well of us to {ENEMY} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} will see that the Line speaks well of the colony to {ENEMY}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the Line's price</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VoiceCall"><call>word</call></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this season</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[call] I'll put it out on the line.</li>
+          <li>[later] Then the call is saved for someone else.</li>
+          <li>[called] It's on the line, they'll answer.</li>
+          <li>[off] I'll have it at the next mast by nightfall.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 65. A mast at a friend's town (the Signal Line) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_TownMast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a mast at a friend's town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TownMast</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A mast at a friend's town</li>
+          <li>The line to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate. The Line knows the colony writes to {RELATION} at {PLACE}. For {COUNT} silver, or {TALE} components, it would raise a mast at {PLACE}, and the colony's letters there and the answers would take half the days.</li>
+          <li>[mast] {X_nameDef}, a lineman of {FACTION}, has come to the gate. The colony's own mast already carries its letters, and {X_pronoun} offers a second at {PLACE}, where {RELATION} lives, for {COUNT} silver or {TALE} components. With a mast at each end, the letters would still take half the days, but they would go the Line's way the whole road.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate. The Line would put up a signal post on the hill above {PLACE}, where {RELATION} lives, for {COUNT} silver or {TALE} components, and the colony's messages there and back would be passed along by signal in half the days.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has come to the gate with a coil of rope and a bundle of flags. For {COUNT} silver, or {TALE} components, the Line would raise a flag-and-lamp tower at {PLACE}, where {RELATION} lives, and the colony's letters there and back would take half the days.</li>
+          <li>[age2] {X_nameDef}, a lineman of {FACTION} in a signal-orange oilskin, has come to the gate. For {COUNT} silver, or {TALE} components, the Line would raise a mast at {PLACE}, where {RELATION} lives, and the colony's letters there and back would go by wire, in half the days.</li>
+          <li>[age3] {X_nameDef}, a lineman of {FACTION}, has come to the gate with a relay kit. For {COUNT} silver, or {TALE} components, the Line would set up a relay at {PLACE}, where {RELATION} lives, and the colony's letters there and back would take half the days.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay {COUNT} silver for the mast</label>
+            <outcome>{X_nameDef} takes the silver and sets off for {PLACE} to raise the mast.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the mast at {PLACE}</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_TownMast" />
+            </effects>
+          </li>
+          <li>
+            <label>Pay in components ({TALE})</label>
+            <outcome>{X_nameDef} takes the components and sets off for {PLACE} to raise the mast.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>ComponentIndustrial</what><variant>true</variant><label>the mast at {PLACE}</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_TownMast" />
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[raise] I'll go on to {PLACE} and raise it there.</li>
+          <li>[later] The offer stands if you change your mind.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 66. The line crew (the Signal Line) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LineCrew</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the line crew</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LineCrew</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The line crew</li>
+          <li>Linesmen on the high ground</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew of the Line would camp a week on {PLACE} and raise a {TALE} there while they string wire through the district. While it stands the colony's letters could go out by their wire, and at night their radio carries the region's news.</li>
+          <li>[nomast] {X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew would camp a week on {PLACE} and raise a {TALE} there while they work the wire. The colony has no mast of its own, and {X_pronoun} says the crew might sell it theirs when they go, for a fee.</li>
+          <li>[tower] {X_nameDef} of {FACTION} has come to the gate. A crew of the Line would camp a week on {PLACE} and put up a {TALE}, and from it read the next tower's flags and lamps. While it stands the colony's letters could be passed along by signal.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. Three or four of the Line's people would camp a week on {PLACE} and put up a {TALE} there, to pass signals along the hills. The colony's messages could go with theirs while they stay.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has come to the gate with a bundle of signal flags. A crew would camp a week on {PLACE} and raise a {TALE}, and the colony's letters could go along the line of towers with theirs while it stands.</li>
+          <li>[age2] {X_nameDef}, a lineman of {FACTION} in a signal-orange oilskin, has come to the gate. A crew would camp a week on {PLACE} and raise a {TALE} while they string wire. The colony's letters could go out by their wire, and their radio plays the region's news at night.</li>
+          <li>[age3] {X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew would camp a week on {PLACE} and set up a {TALE} while they lay new line, and the colony's letters could go out on it while it stands.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp and raise it</label>
+            <outcome>The line crew will come up to {PLACE} and make camp.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LineCrew" />
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and send food with them for the week (10 meals)</label>
+            <outcome>Ten meals are carried out to {X_nameDef}, and the line crew will come up to {PLACE} and make camp.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>10</count><label>food for the line crew</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LineCrew"><fed>true</fed></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll be up there by nightfall.</li>
+          <li>[later] Then we'll camp further down the line.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 67. The pit's cave-in (the Deepwell Union) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_PitCaveIn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the pit's cave-in</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PitCaveIn</workerClass>
+    <baseChance>0.35</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~45</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The pit's cave-in</li>
+          <li>Miners below</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a miner of {FACTION}, has run to the gate. The pit at {PLACE} has caved in with miners below, and the union is digging for them. {X_pronoun} asks for {A_nameDef}, the colony's best miner, for {COUNT} days of shifts at the face, for the union's pay of {DEAD} silver.</li>
+          <li>[doctor] {X_nameDef}, a miner of {FACTION}, has run to the gate. The pit at {PLACE} has caved in with miners below. The union asks for {A_nameDef}, the colony's best miner, and {B_nameDef}, its doctor, for {COUNT} days: {A_nameDef} to dig at the face and {B_nameDef} to see to the ones they bring up. The union pays {DEAD} silver each.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come running to the gate. The diggings at {PLACE} have fallen in on the people working them. {X_pronoun} asks for {A_nameDef}, who digs best of the colony, for {COUNT} days of digging, for {DEAD} silver.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has come to the gate covered in dust. The shaft at {PLACE} has caved in with miners below, and the union needs every pick it can get. {X_pronoun} asks for {A_nameDef} for {COUNT} days, for {DEAD} silver.</li>
+          <li>[age2] {X_nameDef}, a miner of {FACTION} in a red armband, has run up the road. The pit at {PLACE} has caved in and men are trapped below the second level. The union asks for {A_nameDef} for {COUNT} days of shifts, for {DEAD} silver.</li>
+          <li>[age3] {X_nameDef}, a miner of {FACTION}, has come to the gate. A shaft at {PLACE} has collapsed and the union's diggers can't reach the crew below fast enough. {X_pronoun} asks for {A_nameDef} for {COUNT} days, for {DEAD} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} and {B_nameDef}</label>
+            <outcome>{A_nameDef} and {B_nameDef} pack for the road and set out for {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PitCaveIn"><both>true</both></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} alone</label>
+            <outcome>{A_nameDef} packs for the road and sets out for {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PitCaveIn"><both>false</both></li>
+            </effects>
+          </li>
+          <li>
+            <label>We can't spare anyone</label>
+            <outcome>{X_nameDef} turns and runs back the way {X_pronoun} came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sent] Thank you, the union won't forget it.</li>
+          <li>[later] Then we dig with what we have.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 68. Oil in the ground (the Deepwell Union): with Rimefeller ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OilInGround</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>oil in the ground</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OilInGround</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Oil in the ground</li>
+          <li>The assayer's find</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an assayer of {FACTION}, has come to the gate with a driller. The union has found oil under the colony's ground, {PLACE}. They would sink a {THING} there for the colony, for {COUNT} silver, or for a year's share: {TALE} chemfuel a season for four seasons.</li>
+          <li>[age1] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a driller and a cart of pipe. There is oil under the colony's ground {PLACE}, {X_pronoun} says, and the union would sink a {THING} there, for {COUNT} silver or a year's share of {TALE} chemfuel a season.</li>
+          <li>[age2] {X_nameDef}, an assayer of {FACTION} in a red armband, has come up the road with a driller and a rig on a cart. The union has found oil {PLACE}, and would sink a {THING} for the colony, for {COUNT} silver or a year's share of {TALE} chemfuel a season.</li>
+          <li>[age3] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a driller and a survey drone. The scans show oil {PLACE}, and the union would sink a {THING} for the colony, for {COUNT} silver or a year's share of {TALE} chemfuel a season.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a driller. They have found where the black oil lies under the colony's ground, {PLACE}, and would sink a {THING} there for {COUNT} silver, or for a share of {TALE} chemfuel a season for a year.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Have them sink the well ({COUNT} silver)</label>
+            <outcome>{X_nameDef} and the driller go out {PLACE} and start drilling.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the union's price for the well</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OilInGround"><share>false</share></li>
+            </effects>
+          </li>
+          <li>
+            <label>Have them sink the well for a year's share</label>
+            <outcome>{X_nameDef} and the driller go out {PLACE} and start drilling. The union will collect {TALE} chemfuel a season for a year.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OilInGround"><share>true</share></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave the oil where it is</label>
+            <outcome>{X_nameDef} shrugs and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sink] We'll have it flowing by tonight.</li>
+          <li>[later] It'll still be there if you change your mind.</li>
+          <li>[done] There, the well is yours.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 68. Oil in the ground (the Deepwell Union): without Rimefeller, a deep seam marked ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_DeepSeam</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a seam marked for the drill</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DeepSeam</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The assayer's find</li>
+          <li>A seam for the drill</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an assayer of {FACTION}, has come to the gate. Deep under the colony's ground {PLACE} there is a seam of {THING}, about {TALE} of it. For {COUNT} silver {X_pronoun} would mark it, and the union's drill crew would come for it the day after.</li>
+          <li>[scanned] {X_nameDef}, an assayer of {FACTION}, has come to the gate. The colony's own scanner has shown the deep ground, and {X_pronoun} has worked out where the best of it lies: {TALE} of {THING}, {PLACE}. For {COUNT} silver {X_pronoun} would mark it for the union's drill.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a bag of rock samples. There is {THING} deep under the colony's ground {PLACE}, about {TALE} of it, and for {COUNT} silver {X_pronoun} would mark the spot for the union's diggers.</li>
+          <li>[age1] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a pick and a sample bag. Deep under the ground {PLACE} lies a seam of {THING}, some {TALE}, and for {COUNT} silver {X_pronoun} would stake it for the union's drill.</li>
+          <li>[age2] {X_nameDef}, an assayer of {FACTION} in a red armband, has come up the road. {X_pronoun} has tested the ground {PLACE} and found a deep seam of {THING}, about {TALE}. For {COUNT} silver {X_pronoun} would mark it, and the union's drill crew would come for it.</li>
+          <li>[age3] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a ground scanner. There is a deep seam of {THING} {PLACE}, about {TALE}, and for {COUNT} silver {X_pronoun} would mark it for the union's drill.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Have {X_objective} mark it ({COUNT} silver)</label>
+            <outcome>{X_nameDef} goes out {PLACE} to mark the seam.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the assayer's fee</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OilInGround"><walk>false</walk></li>
+            </effects>
+          </li>
+          <li>
+            <label>Have {X_objective} mark it, and send {A_nameDef} to walk the ground with {X_objective} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} goes out {PLACE} to mark the seam, and {A_nameDef} goes with {X_objective} to learn how the ground is read.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the assayer's fee</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OilInGround"><walk>true</walk></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} shrugs and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[mark] I'll show you where it lies.</li>
+          <li>[later] It'll keep, seams don't go anywhere.</li>
+          <li>[marked] It's under here, the crew will come for it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 69. The organizer's evening (the Deepwell Union) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OrganizersEvening</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the organizer's evening</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OrganizersEvening</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>8~10</stayHours>
+        <answerDays>0.2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The organizer's evening</li>
+          <li>A shift-captain at dusk</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a shift-captain of {FACTION}, has come to the gate at dusk. {X_pronoun} has heard the colony's people are worn down by {TALE}, and asks to speak at the colony's fire tonight about how the union keeps its shifts.</li>
+          <li>[longhours] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate at dusk. The colony is working long hours, {X_pronoun} says, and it shows on its people's faces. {X_pronoun} asks to speak at the fire tonight about how the union keeps its shifts.</li>
+          <li>[striking] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate at dusk, on the road while the union is on strike. {X_pronoun} has heard the colony's people are worn down by {TALE}, and asks to speak at its fire tonight about the union's shifts.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate as the light goes. The colony's people look tired, {X_pronoun} says, and {X_pronoun} would like to sit at their fire tonight and tell them how the union shares out its work.</li>
+          <li>[age1] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate at dusk with a lantern. {X_pronoun} has heard the colony's people are worn down by {TALE}, and asks to speak at their fire about the union's rule that everyone comes up at the end of the shift.</li>
+          <li>[age2] {X_nameDef}, a shift-captain of {FACTION} in a red armband, has come up the road at dusk. {X_pronoun} has heard the colony's people are worn down by {TALE}, and asks to speak at the fire tonight about how the union keeps its shifts and its days off.</li>
+          <li>[age3] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate at dusk. The colony's people are worn down by {TALE}, {X_pronoun} has heard, and {X_pronoun} asks to speak at the fire tonight about how the union keeps its rota.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} speak at the fire tonight</label>
+            <outcome>{X_nameDef} will speak at the colony's fire this evening, to whoever comes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering">
+                <guests>stranger</guests>
+                <guestCount>1</guestCount>
+                <label>{X_nameDef}'s talk at the fire</label>
+                <organizer>None</organizer>
+                <spots><li>Fire</li><li>Rec</li><li>Dining</li><li>Outdoors</li></spots>
+                <hours>18~22</hours>
+                <duration>1~1.5</duration>
+                <lines>
+                  <li>Everyone comes up at the end of the shift.</li>
+                  <li>A tired hand is how people get hurt.</li>
+                  <li>The union puts it to a vote, and so could you.</li>
+                  <li>One day in seven, nobody goes down the pit.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_OrganizerSpoke"><supper>false</supper></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {X_objective} speak, and give {X_objective} supper</label>
+            <outcome>{X_nameDef} is given supper, and speaks at the colony's fire this evening, to whoever comes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><eat>true</eat><label>supper for the shift-captain</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering">
+                <guests>stranger</guests>
+                <guestCount>1</guestCount>
+                <label>{X_nameDef}'s talk at the fire</label>
+                <organizer>None</organizer>
+                <spots><li>Fire</li><li>Rec</li><li>Dining</li><li>Outdoors</li></spots>
+                <hours>18~22</hours>
+                <duration>1~1.5</duration>
+                <lines>
+                  <li>Everyone comes up at the end of the shift.</li>
+                  <li>A tired hand is how people get hurt.</li>
+                  <li>The union puts it to a vote, and so could you.</li>
+                  <li>One day in seven, nobody goes down the pit.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_OrganizerSpoke"><supper>true</supper></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not tonight</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[speak] I'll keep it short, they need their sleep.</li>
+          <li>[later] Then look after them yourselves.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 70. The picket (the Deepwell Union) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Picket</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the picket</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Picket</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The picket</li>
+          <li>Strikers on the road</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a shift-captain of {FACTION}, has come to the gate. The union at {PLACE} has voted to strike, and some of the strikers would keep a picket by the colony's road while it lasts: a camp with a fire, on the road the union's trade uses.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate. The union's diggers at {PLACE} have put down their picks together, and a few of them would camp by the colony's road until it is settled, with a fire and their songs.</li>
+          <li>[age1] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate. The union at {PLACE} has voted to walk out, and some of the strikers would keep a picket by the colony's road until it is over, a fire going day and night.</li>
+          <li>[age2] {X_nameDef}, a shift-captain of {FACTION} in a red armband, has come up the road. The union at {PLACE} has voted to strike, and some of the strikers would keep a picket by the colony's road while it lasts, with a fire and their songs in the evening.</li>
+          <li>[age3] {X_nameDef}, a shift-captain of {FACTION}, has come to the gate. The union at {PLACE} has voted to stop work, and some of the strikers would keep a picket by the colony's road until it is settled.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them keep the picket</label>
+            <outcome>The strikers will come and make camp by the colony's road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Picket" />
+            </effects>
+          </li>
+          <li>
+            <label>Let them keep it, and send wood for their fire ({TALE} wood)</label>
+            <outcome>Wood is carried out to {X_nameDef}, and the strikers will come and make camp by the colony's road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>wood</what><variant>true</variant><label>wood for the picket's fire</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Picket" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>No picket here</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll keep it peaceful, you have the union's word.</li>
+          <li>[later] Then we picket somewhere else.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -64,6 +64,8 @@ namespace ColonyCouncil
                 Deeds.Made(worker, thing);
                 // A fine piece, kept a while to be shown round (Social/SocialEvents.cs: a teacher's word, a friend's, a rival's look).
                 SocialEvents.Notify_Made(worker, thing);
+                // A masterwork or a legend: word reaches the Kiln Guild, whose master may come to judge it (Peoples/Events7/MastersMark.cs).
+                PeopleEvents7.Safe("a fine piece made", () => MastersMark.Made(worker, thing));
             }
             catch (Exception e)
             {

@@ -211,6 +211,8 @@ namespace ColonyCouncil
             if (state == MissionState.Done && Array.IndexOf(PeopleAgesMath.LearnerMissions, m.kind) >= 0)
             {
                 FactionMemory.Note(m.faction, "learnedHere", m.name);
+                // A wander-year that ended well: the journeyman comes back a master a year on (Peoples/Events7/ComeBackBetter.cs).
+                if (m.kind == "wanderYear") PeopleEvents7.Safe("a wander-year ended", () => ComeBackBetter.Ended(m));
                 return;
             }
             // Parts delivered to a people that declines unless supplied (the Sunken Vault) keep its age (Peoples/PeoplesG2.cs).

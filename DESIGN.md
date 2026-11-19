@@ -10277,6 +10277,139 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `Patch_TideHold`, `Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`, `Patch_BannerHired`, each off with the deeper game
     hooks. Dev actions "Peoples' events 6: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*
     (Almanac_PeoplesD.xml).
+- **The peoples' own events, round 7** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+  `docs/peoples-events-proposals.md`, items 60, 61, 62, 64, 65, 66, 67, 68, 69 and 70 (the Kiln Guild, the Signal Line and the
+  Deepwell Union); `Source/ColonyCouncil/Peoples/Events7/`, the pure rules in `PeopleEvents7Math.cs`,
+  `Tools/Tests/PeopleEvents7Tests.cs` ("the peoples' events, round 7: "). As rounds 1 to 6: only from a people of its calling
+  at peace (`PeoplesD.Friendly`, `PeoplesD.Theirs`), in the Visitors group, base chance 0.3 to 0.5, 40 to 60 days apart (the
+  Line's call once a season, 15) and never in the first ten days, every age in its own form, played out on the map. Four come
+  from code at their moment (base chance 0, `PeopleEvents2.Fire`), each at a chance times the storytellers' lean on visitors:
+  the guild's master after a fine piece, the journeyman a year after a wander-year, the union's shift-captain when the
+  colony's people are worn down, and the strikers when a strike is called. Round 6's hour hands on to round 7's
+  (`PeopleEvents6.Hour` and `Hourly`, one line each).
+  - **The master's mark** (Guild; `MastersMark`): the fine-piece hook (`Patch_ArcMade`) notes a masterwork or a legend made by
+    one of the colony at a home (six kept). A day or more after, while it is ten days fresh, the piece still the colony's at
+    that home (lying there, or held, carried or worn by someone there) and its maker home, it is rolled once at 0.6, twenty
+    days apart: a master of the guild (`Rimfolk_KilnGuild_MasterTrader`, 14 to 18 in the piece's skill) comes to the gate.
+    Let in, they walk to the piece (or to whoever holds or wears it) and go over it for an hour (`Rimfolk_PEv7_Judge`), the
+    maker standing by (`_StandBy`); with the second answer the maker learns from it (800 in the piece's skill: Artistic for a
+    work of art, else Crafting). The verdict: a fault found at one masterwork in five and one legend in twelve, a sting
+    (`Rimfolk_Thought_MarkFault`, -5 for 8 days); else the guild's mark (`Rimfolk_Thought_MarkTrue`, +6 for 20 days), the guild
+    remembers the maker by name for it (the new deed `markTrue`, through `KinMemory.Note`, which the colony's renown reads),
+    and with Vanilla Skills Expanded the quality expertise (`QualityExpert`) for a piece made at a bench, where the maker has
+    room for it. Either way +2, and the master says the verdict and the maker answers where they stand.
+  - **Come back better** (Guild; `ComeBackBetter`): a wander-year that ended well (the mission's end, `Patch_FactionMemory`) notes
+    its journeyman, kept in the world by the ledger (`KeepReason` "comeBack", in `LedgerKeep`) for a year (sixty days). Then, the
+    guild at peace, the maker home, the journeyman free in the world and still the guild's, they come back to the gate, their
+    Crafting and Artistic at a master's 14 or more, with a masterwork of their own making (the guild's small art of its age, of
+    marble, granite or wood, `ThingRoles.SmallArt`) as a gift, set down at the gate whatever the answer; the maker gets a
+    lasting memory (`Rimfolk_Thought_ApprenticeMaster`, +5 for 60 days), +4. The first answer has the maker sit with them a
+    while, the second has them work a morning at the bench together (a Crafting lesson, the teacher taught), the third thanks
+    them at the gate. The guild at war when it is due puts it off a season; two years on it is let go.
+  - **A work that stays** (Guild; `WorkThatStays`, `CampWorker_WorkThatStays`): what they build is the guild's choice by what
+    the colony has, within forty-five cells of its middle: a carved bridge first (Kell's), across the water nearest the colony
+    from bank to bank, two cells wide and two to twelve long, every cell one the bridge can stand on, no bridge within four
+    cells; of Vanilla Furniture Expanded - Architect's stone bridge of the stone the colony holds most of, else the game's
+    wooden bridge, at its own cost a cell (laid as the game lays a bridge, a foundation over the water). Else a great work
+    of art in its hall, its largest dining, recreation or throne room, clear of doors: Vanilla Furniture Expanded - Art's
+    grand statue or monument, or the game's grand sculpture, which comes first changing with the season; else a fountain where
+    the colony gathers (by its gathering spot, else its middle): Alpha Props - Parks' fountains, then Dubs Bad Hygiene's.
+    Only of stone or wood the colony holds enough of, and only what the colony itself could build (its research done). The
+    card names the work, the stone and how much (the work's own cost, fifty at least). Three journeymen camp five to eight
+    days nearby; once settled, the stone is carried out to them from the stores (round 1's carry-out to a camp, taken at once
+    and set down there if nobody can carry it) and stacked at the work, theirs; they carve at it by day (8h to 17h,
+    `_Carve`, chips of stone), a day counted once, and it stands once two thirds of their stay are worked: the building
+    spawned, the colony's, excellent, its art a journeyman's (`CompArt.JustCreatedBy`), or the bridge laid cell by cell; the
+    stone used, any over left for the colony; told, the guild remembers it (`campHosted`), +4 as they go. The second answer
+    (or the camp's ask) has the colony's best at the art work beside them through the working hours (round 1's work beside,
+    120 Artistic an hour). It can turn, once a stay each: after a day's work at 0.3 a block cracks and the work needs a
+    quarter more (carried out the same way); when the stores don't hold what the work still needs, they wait a day, then a
+    second (their stay the longer), then make do with what they were given (it stands good, a grade plainer), or go if they
+    were given none; after two days' work at 0.2 the oldest judges a journeyman's day bad and has it torn down (`_TearDown`,
+    rubble; the day lost, a day longer).
+  - **A voice for the colony** (Line; `VoiceForColony`): once a season (15 days) an operator comes with one call on the Line's
+    masts at the Line's price (50 silver, its price for news; 150 for hands): a trader of goods or of arms (the game's own
+    caravan of that kind, `TraderCaravanArrival` with its trader kind, from the nearest and friendliest people at peace that
+    sends one, never slavers, pirates or tribute collectors: `PeopleEvents7Math.TradeKind`), hands (the game's own wanderer
+    who joins), or a good word to the people the colony stands worst with (+6). With a radio (a powered comms console, else
+    the colony's own relay mast while it sings) the operator walks to it and calls an hour (`_Call`, sparks), answered three
+    to six hours on; without one (as a colony before the radio has none) a runner of the Line carries it off,
+    answered in a day or two. Unanswered (nobody could come), the Line sends the silver back.
+  - **A mast at a friend's town** (Line; `TownMast`): the friend is a notable alive and not at war with the colony whom it has
+    written to, at a town of theirs that stands, not one of the Line's; the one written to most, the nearest next. For 150
+    silver and ten a tile (200 to 450), or as many components as that is worth, a lineman walks there (a walking caravan's
+    days) and raises a mast in a day, told when it stands; from then the colony's letters to that town and the answers take
+    half the days (`NeighbourLetters` through `PeopleEvents7.Relays`, the colony's own mast's rule beside it; the two together
+    still half), while the Line is at peace. It stands at the town on the world, not on the colony's map, and the words say so;
+    lost with the town, told.
+  - **The line crew** (Line; `LineCrew`, `CampWorker_LineCrew`): three or four linesmen (a relay-keeper, an operator,
+    linesmen) camp a week on the colony's high ground (round 6's `HighGround`, the relay mast's choice) and the keeper raises a
+    mast by their fire in two hours (the Line's own `Rimfolk_RelayMast`, theirs; before the industrial age a flag-and-lamp
+    tower, `Rimfolk_SignalTower`, drawn by `Tools/make_signal_tower.py`). By day they string wire out toward the colony
+    (`_String`, sparks); while it stands the colony's letters go by their wire (half the days); once a night one of them sits at
+    the radio by the fire (`_Listen`; the tower's watcher reads the next tower's lamps) and the region's news comes in: a line
+    of the facts service's news for the Line's nearest town, told, the place it names heard of (`HeardPlaces.Heard`, from the
+    Line, through the listener). They ask for food (eight meals; not when it went with them from the gate, the second answer)
+    and four components; the colony may keep the mast as its own relay mast for 300 silver (by its wealth), only while it has
+    none and only a mast (the tower goes with them). It can turn, once a stay each, by day in a thunderstorm: a lineman climbs
+    the mast to make it fast (`_Climb`) and at 0.15 through the shared harm budget (the dangers on the map, `HarmKinds.Dangers`)
+    falls when the climb is done (a cracked or bruised leg, 4 to 10; told; the colony's doctor may tend them); with nobody
+    within four cells of it, at 0.25 (the camps' embers' kind, `CampLeft`, for the fire it may start) the game's own bolt
+    comes down on the mast and breaks it, and they raise another half a day on, beating out any fire. Going: the mast taken
+    down (or left, the colony's), +3.
+  - **The pit's cave-in** (Union; `PitCaveIn`, `CaveInAway`): a union pit within twelve tiles (its nearest town). The runner
+    asks for the colony's best miner and its best doctor besides, for four to six days, for 40 silver a day each. Sent (both,
+    never two of the colony's last three grown-ups; or the miner alone), each sets out as a caravan of one (round 2's season
+    away, key "cavein") on the game's own roads. At the pit each day is a shift: the miner learns Mining, the doctor
+    Medicine (450 a shift); one shift in twenty (the drill rig's own chance and kind, `HarmKinds.UnionDrill`, through the
+    shared budget and the hurt cap; at most once each, kept in the visit's touched) a fall of rock crushes a foot or a hand
+    (3 to 9), told as word from the pit at once and bound there (by the colony's doctor if they are at the pit, their skill
+    the tending's quality). The crush happens away, at a real place on the world; the colonist comes home with the bound wound.
+    Home: the union's pay at their feet, a good memory (`Rimfolk_Thought_DugThemOut`, +5 for 15 days), and +6 each (twelve for
+    the two sent, six alone).
+  - **Oil in the ground** (Union; `OilInGround`): two events, one a form. With Rimefeller and its wells open to the colony
+    (`OilWell`, else `DeepOilWell`, their research done), `Rimfolk_Evt_OilInGround`: the oil is the cell nearest the colony's
+    middle (within fifty) where Rimefeller's own well may be placed (`GenConstruct.CanPlaceBlueprintAt`, its placing reading
+    its deposits), looked for once an hour. An assayer and a driller drill there six hours (`_Sink`), and Rimefeller's well
+    stands there, the colony's, told; for 450 silver by the colony's wealth (300 to 900), or for a year's share: four
+    seasons, each the union's courier collecting thirty chemfuel from the stores (`Couriers.TakeFromStores`), else its worth
+    in silver, else it is let go, told each time. Without it, `Rimfolk_Evt_DeepSeam`: the assayer marks the deep seam nearest
+    the colony (round F's `Seam`, the game's deep resources) for 60 silver, an hour's survey there, told with its ore and
+    amount, and the union's drill for a share (`Rimfolk_Evt_UnionDrill`) comes for it a day later; with the second answer
+    the colony's best miner walks the ground with them (900 Mining). +3.
+  - **The organizer's evening** (Union; `OrganizersEvening`): at a home at 16h, once a day, the colony's people worn down
+    (the heart's strain of the colony at forty or more, or the long hours in force) and a petition the council could grant
+    (to lift the long hours when they are in force; else the days of rest, `Council_Decree_Rest`, not in force and enactable
+    through its cooldown), at 0.4, thirty days apart: a shift-captain at the gate. The first answer: they speak at the
+    colony's fire that evening (a gathering, the captain its guest, their lines about the union's shifts); the second gives
+    them supper too (+1). The next morning (7h to 10h) the colonist under the most strain brings the petition through the
+    council's own (`DecreeTracker.Petition`, or a request to lift the long hours with their own line), told and said where they
+    stand. Granted while it stands (the decree declared, or the long hours lifted): those under strain (30 or more, and the
+    one who asked) get `Rimfolk_Thought_PetitionHeard` (+4 for 6 days) and the union +4; refused or lapsed (the council's
+    five days, watched for six): `Rimfolk_Thought_PetitionTurnedAway` (-4 for 6 days). "A day of rest a week" in the proposal
+    is the council's days of rest: a council keeps no weekly calendar, and the words say "days of rest".
+  - **The picket** (Union; `Picket`, `CampWorker_Picket`): a strike called by a union at peace (round F's `UnionStrike`) is
+    rolled once within its first three days at 0.5: the strikers ask at the gate for a picket by the colony's road (the second
+    answer sends thirty wood for their fire). Four to seven strikers (a shift-captain, miners, a shot-firer) camp beside the
+    road where it comes in nearest the colony (else the edge toward it), a fire and songs in the evening (`_Sing`), and they
+    take up arms against any threat on the map. They stay while the strike lasts: when it ends they go with their own
+    farewell (settled, or by the union's vote when its days run out, marching home singing). Their asks: food for the picket
+    line (fifteen meals carried out to them; the strike is settled three hours later, as at round F's gate, and the one who
+    went remembers it), and the colony's best miner at their fire of an evening (a visit to the camp); round F's strike visit
+    at the gate waits while a picket of that union camps by the road (`!Picket.Here`). It can turn, once a stay, by day after
+    their first, only while Rimfolk's world events may bring a fight: at 0.15 strikebreakers of a people at war with the union
+    (one at war with the colony too first) come against the camp (a band against a camp, `CampRaids.Send`; the colony asked
+    what to do). Going: +3.
+  - Harm of Rimfolk's own: none of a new kind. The crush at the pit is the drill rig's kind (`UnionDrill`), the fall from the
+    mast the dangers on the map (`Dangers`), the lightning's fire the camps' embers (`CampLeft`), each through the shared budget
+    and told; the strikebreakers' fight, the storm's lightning and the roads to the pit are the game's own, shown on the cards.
+    Saved: `PeopleEvents7Book` (the fine pieces, the journeymen due back, the masts at towns, the wells' shares, the evenings,
+    the strikes rolled for a picket) and the camps' states, modelled in `Tools/save_estimate.py`. Small hooks: round 6's `Hour`
+    and `Hourly`, round 2's `SeasonAway.Kinds` (the pit), `Patch_ArcMade` (a fine piece), `Patch_FactionMemory.MissionEnded`
+    (a wander-year ended well), `LedgerKeep.StillHolds` (the journeyman kept), `NeighbourLetters` (the letters' road both ways),
+    `HappeningWorker_UnionStrike.CanHappen` (the picket's captain settles it), `FactionMemory` (the deed `markTrue`),
+    `FactsMath`, the def check's placeholders. No game hooks of its own. Dev actions "Peoples' events 7: ...". The Almanac's
+    peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

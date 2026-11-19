@@ -285,6 +285,23 @@ PLAY = {
     "DilemmaEffect_OtherSideContract": "the Banner when the raid comes",
     "DilemmaEffect_CompanyMarch": "a company at the edge",
     "DilemmaEffect_CompanyEnlist": "the road to the company",
+    # The peoples' own events, round 7 (Peoples/Events7/): the master's hour at the piece with its maker beside, the master's gift set
+    # down at the gate, the journeymen's camp and the stone carried out to their work, the colony's best beside them, the call made at
+    # the radio or carried off by a runner, the lineman on the road to the friend's town, the line crew's camp and its mast kept, the
+    # miner and the doctor on the road to the pit, the well drilled or the seam marked where it lies, the picket by the road and the
+    # food carried out to it.
+    "DilemmaEffect_MastersMark": "the piece judged where it is",
+    "DilemmaEffect_ComeBackBetter": "the master's gift set down at the gate",
+    "DilemmaEffect_WorkThatStays": "a camp and the stone carried out",
+    "DilemmaEffect_WorkBeside": "working beside them",
+    "DilemmaEffect_VoiceCall": "the call made at the radio, or carried off",
+    "DilemmaEffect_TownMast": "the lineman on the road",
+    "DilemmaEffect_LineCrew": "a camp on the high ground",
+    "DilemmaEffect_KeepMast": "the mast left standing",
+    "DilemmaEffect_PitCaveIn": "the road to the pit",
+    "DilemmaEffect_OilInGround": "the well drilled or the seam marked",
+    "DilemmaEffect_Picket": "a picket by the road",
+    "DilemmaEffect_PicketFed": "the strike settled at the picket",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.
