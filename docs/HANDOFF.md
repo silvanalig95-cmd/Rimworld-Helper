@@ -349,7 +349,7 @@ repo.
   letter titles, arrivals, why they came, who asks to join, farewells and good turns, and their asks: labels, tips,
   the requests they send and what is said on either answer), the farewells joined to them from
   `Rimfolk_CampWords_Voices`, and the camps' Keyed words. File list in the to-do entry "Rimfolk's text in plain words".
-  - **What changed.** About 2,600 lines read (1,740 in the camp defs, about 870 Keyed), 334 rewritten (310 lines of the
+  - **What changed.** About 2,600 lines read (1,740 in the camp defs, about 870 Keyed), 307 rewritten (283 lines of the
     camp kinds, 16 answers put right against the map, 8 Keyed). Wry last lines said plainly ("a little richer or a
     little poorer, depending on which of them you ask", "which is how {X_nameDef} arrived", "which is apparently a
     compliment", "in a cloud of exhaust and goodwill", "The colony's farmers are prepared to believe it"), riddling or
@@ -376,13 +376,17 @@ repo.
     ill"; the salt caravan gives forty pemmican for 25 raw food (was "half again as much"); the far merchants' charts move
     the current research on by a share of what is left (was "help whoever is studying"); the refugees' wood lies by the
     stumps (`DilemmaEffect_Felled`), not stacked; lessons are with the one who speaks for the camp, not "their best"
-    prospector or player; the wardens' watch at the gate is told as coming, not done. Hours: farewells come whenever the
-    stay ends, so an untagged "at first light", "before dawn" or "in the night" went, as did "this morning" in arrivals
-    (they come at any hour) and "tonight" or "this evening" in joins and requests (a camp's day event comes between 9
-    and 18); the shows, songs and tales a good turn announces (told as the evening starts, or in the day) now say what
-    is about to happen. No farewell claims a wave or a bow at the gate, a word called back, or a leftover (a ring of ash,
-    fish bones, a trampled pasture, a stack of hay) the map doesn't keep; the leftovers' own line (`CC_CampLeft_*`)
-    tells what stands. The settling ask (`CC_Holding_Ask`, `_Family`, `NotHere`, `Settled`) is sent at dusk as word,
+    prospector or player; the wardens' watch at the gate is told as coming, not done. Hours: "this morning" went from
+    arrivals (they come at any hour), and "tonight" or "this evening" from joins and requests (a camp's day event comes
+    between 9 and 18); the shows, songs and tales a good turn announces (told as the evening starts, or in the day) now
+    say what is about to happen. A farewell comes whenever the stay ends: the kinds' own farewells no longer claim a
+    leftover the map doesn't keep (a trampled pasture, a stack of hay, a camp "gone" that may still stand; the
+    leftovers' own line, `CC_CampLeft_*`, tells what stands). The farewells `Lean/ShippedLines.cs` names (the 6 November
+    pass) stay as they are: seventeen retired, never said (a wave or a bow at the gate, a sound after they were out of
+    sight, ash and bones round a fire), word for word as `RenownTests` asks, and thirteen said only at the hour they name,
+    of which nine are plain and stay and four are rewritten with their key in `ShippedLines.AlsoWhen` following ("which
+    is how {X_nameDef} arrived", "carrying the colony's hills away with them on paper", "in a cloud of exhaust and
+    goodwill", the tree-singers' bow to the trees). The settling ask (`CC_Holding_Ask`, `_Family`, `NotHere`, `Settled`) is sent at dusk as word,
     like the goodbye, with no walk to the gate and no "in the morning". "The eldest", "the youngest" and "a lean old
     drover" went where nothing picks them. Six lines that opened a sentence with a pronoun placeholder (shown lowercase)
     were rewritten.
@@ -390,9 +394,11 @@ repo.
     says OPEN on both sides, the mule so laden it walks sideways, "the camp's people are all disgracefully well", "a play
     without an audience is just people arguing in costumes"); quoted speech in the letters stays. The camps' bubbles,
     moods, journals and the peoples' own camps are left as the brief said. Every tag, placeholder and key kept
-    (`Tools/textcheck.py --base` the guests commit finds nothing broken).
-  - **Code map.** No code changed: def text and the fifteen `<guests>camp</guests>` (and the minstrels' song's
-    `organizer` None) in `Defs/CampDefs/`, eight Keyed lines, DESIGN.md (the new section) and README (the camps' asks).
+    (`Tools/textcheck.py --base` the guests commit finds nothing broken; against the lead branch it names only that
+    commit's sixteen def settings, the fifteen `guests` and the song's `organizer`, which are meant).
+  - **Code map.** Def text and the fifteen `<guests>camp</guests>` (and the minstrels' song's `organizer` None) in
+    `Defs/CampDefs/`, eight Keyed lines, four keys of `ShippedLines.AlsoWhen` (`Lean/ShippedLines.cs`, the rewritten hour
+    farewells, their conditions unchanged), DESIGN.md (the new section) and README (the camps' asks).
   - **Can't be checked without the game.** The camp's people walking up to a supper at the colony's table and being
     served, and taking a place round an evening at their own fire; the minstrel singing the colony's song; how the
     plainer arrivals and farewells read beside the bubbles, which keep their voice.

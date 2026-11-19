@@ -128,8 +128,8 @@
       <li>{X_nameDef} of the fishing family says the others will manage without {X_objective}, and asks whether there's room in the colony for one more pair of hands.</li>
     </joinTexts>
     <farewell>
-      <li>The fishers from {FACTION} rolled up their lines and walked on along the water, baskets on their backs.</li>
-      <li>The fishers have packed up their camp {PLACE} and moved on along the water.</li>
+      <li>The fishers from {FACTION} rolled up their lines at first light and walked on along the water, baskets on their backs.</li>
+      <li>The fishers' camp {PLACE} is empty, and there's a ring of fish bones round the cold fire.</li>
       <li>The fishing family from {FACTION} packed up and moved on to the next good water.</li>
     </farewell>
     <lines>
@@ -827,7 +827,7 @@
       <li>{X_nameDef}, one of the show's keepers, asks whether the colony could use someone who has fed and doctored every kind of beast there is.</li>
     </joinTexts>
     <farewell>
-      <li>The beast show from {FACTION} led its beasts away down the road, the keepers walking beside them.</li>
+      <li>The beast show from {FACTION} led its beasts out at first light, the keepers walking beside them.</li>
       <li>The beast show has packed up its camp {PLACE} and moved on.</li>
     </farewell>
     <lines>

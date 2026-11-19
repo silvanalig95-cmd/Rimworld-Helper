@@ -10526,8 +10526,10 @@ it plays out (it was "Stand by the road when they go", which nothing tied to the
 claims right in the words: a pilgrim's prayer at a sick colonist's side is said by the one who leads them, not their
 eldest; the camp's own hunters stay at their work while the colony's hunters go out on their advice; the traveling
 healer sees the one colonist the ask names; a show, a song or an evening's tales that the camp's good turn announces
-says it is about to happen, not that it already has; and no farewell, join or request letter claims an hour, a wave at
-the gate or a leftover that the map doesn't keep.
+says it is about to happen, not that it already has; joins and requests claim no evening or night (a camp's day event
+comes between 9 and 18), and the kinds' farewells no leftover the map doesn't keep. The farewells that name an hour or
+a wave at the gate were already said only at that hour, or retired (`Lean/ShippedLines.cs`); they stay, four of the
+hour ones in plainer words with their keys in `ShippedLines.AlsoWhen` following.
 
 ### How fast Rimfolk's people go (0.171.1)
 

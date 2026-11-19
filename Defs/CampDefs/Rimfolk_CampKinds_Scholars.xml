@@ -102,7 +102,7 @@
     <farewell>
       <li>The scholars from {FACTION} packed their notes in oilcloth and went on, arguing cheerfully about a date.</li>
       <li>The scholars have packed up their camp {PLACE} and gone. They mean to write about the colony in their books.</li>
-      <li>{X_nameDef} led the scholars off down the road, their notebooks full.</li>
+      <li>{X_nameDef} shook every hand at the gate, thanked the colony twice, and led the scholars off with the pack beast complaining behind them.</li>
     </farewell>
     <lines>
       <li>Write that down.</li>

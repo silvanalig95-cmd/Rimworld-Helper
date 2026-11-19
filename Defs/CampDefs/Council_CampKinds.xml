@@ -77,9 +77,9 @@
     <farewell>
       <li>The herd moved on, and the hunters of {FACTION} went with it.</li>
       <li>The hunters from {FACTION} packed their bedding, put out the fire {PLACE} and went off after fresh tracks.</li>
-      <li>The hunters from {FACTION} have packed up their camp {PLACE} and gone after the herd.</li>
+      <li>The hunters from {FACTION} were gone before dawn. All that's left {PLACE} is a ring of ash and a few cracked bones.</li>
       <li>The hunters from {FACTION} have broken camp {PLACE} and moved on to new hunting ground.</li>
-      <li>The hunters of {FACTION} broke camp and set off, and were soon out of sight.</li>
+      <li>The hunters of {FACTION} broke camp at first light. One of them lifted a hand toward the colony from a long way off, and then they were over the rise and out of sight.</li>
     </farewell>
     <lines>
       <li>Downwind, always downwind.</li>
@@ -259,7 +259,7 @@
       <li>{X_nameDef}, from the family camped {PLACE}, has offered to carry water and help in the kitchen, and asked today whether there might be a place for {X_objective} at the colony for good.</li>
     </joinTexts>
     <farewell>
-      <li>{X_nameDef} and the family from {FACTION} packed up their camp {PLACE} and went on down the road.</li>
+      <li>The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.</li>
       <li>The family from {FACTION} has packed up their camp {PLACE} and gone to look for somewhere to settle.</li>
       <li>[ws:hunger|ws:sickness|ws:war|ws:water|ws:drought|ws:weather] The family from {FACTION} packed up their camp {PLACE} to go and see what {SITUATION} has left of their home.</li>
       <li>The family from {FACTION} has packed up their camp {PLACE} and gone on, better rested than when they came.</li>
@@ -604,8 +604,8 @@
     </joinTexts>
     <farewell>
       <li>The pilgrims from {FACTION} rested, prayed, and went on their way. {X_nameDef} said they'd remember the colony in their prayers.</li>
-      <li>The pilgrims from {FACTION} broke camp {PLACE} and walked on toward their holy place.</li>
-      <li>The pilgrims from {FACTION} packed up their few things and set off again on their pilgrimage.</li>
+      <li>The pilgrims from {FACTION} broke camp {PLACE} at dawn and walked on toward their holy place.</li>
+      <li>The pilgrims from {FACTION} left at first light, singing under their breath so as not to wake the colony.</li>
     </farewell>
     <lines>
       <li>Rest is a blessing too.</li>
@@ -1113,7 +1113,7 @@
     </joinTexts>
     <farewell>
       <li>{X_nameDef} shut the door of the hut {PLACE} and walked off. The hut is left standing for the colony to use if it wants it.</li>
-      <li>The hermit's hut {PLACE} is empty. {X_nameDef} has left without saying goodbye.</li>
+      <li>The hermit's hut {PLACE} is empty. {X_nameDef} left in the night without saying goodbye.</li>
       <li>[left:bird] {X_nameDef} has left the hut {PLACE}. On the way, {X_pronoun} left a small carved bird by the colony's door as a goodbye.</li>
     </farewell>
     <lines>

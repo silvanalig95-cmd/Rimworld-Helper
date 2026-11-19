@@ -239,9 +239,9 @@
       <li>{X_nameDef} has helped carry the procession's shrine for a long way, and says {X_pronoun} is ready to stop. {X_nameDef} asks to stay with the colony.</li>
     </joinTexts>
     <farewell>
-      <li>The procession from {FACTION} lifted its shrine and went on up the road, singing.</li>
+      <li>The procession from {FACTION} lifted its shrine at dawn and went on singing up the road. The colony could hear them long after they'd gone out of sight.</li>
       <li>The faithful from {FACTION} broke camp {PLACE} and went on toward their holy place. {X_nameDef} said they'd pray for the colony there.</li>
-      <li>The procession from {FACTION} lifted its shrine and set off again toward its holy place.</li>
+      <li>The procession from {FACTION} lifted its shrine and went, bells first. At the edge of the colony's land its leader turned and blessed the place once more, over one shoulder.</li>
     </farewell>
     <lines>
       <li>Walk in peace.</li>
@@ -392,7 +392,7 @@
     <farewell>
       <li>The players from {FACTION} packed their costumes into the trunk and went on to the next town.</li>
       <li>[left:backdrop] The players have left their camp {PLACE}. They left behind a painted backdrop of a castle that they no longer needed.</li>
-      <li>The players from {FACTION} packed up and went on to the next town, still arguing about the second act.</li>
+      <li>The players from {FACTION} took a last bow at the gate and went on to the next town, still arguing about the second act.</li>
     </farewell>
     <lines>
       <li>Again, from the top!</li>
@@ -565,7 +565,7 @@
     <farewell>
       <li>The surveyors from {FACTION} pulled up their stakes, counted them twice and went on to map the next valley.</li>
       <li>The surveyors have packed up their camp {PLACE} and gone. The colony will be on {FACTION}'s charts from now on, with its name beside it.</li>
-      <li>The surveyors from {FACTION} packed up and left, with the colony's hills drawn on their maps.</li>
+      <li>The surveyors from {FACTION} left before breakfast, with the colony's hills drawn on their maps.</li>
     </farewell>
     <lines>
       <li>Hold the rod straight.</li>

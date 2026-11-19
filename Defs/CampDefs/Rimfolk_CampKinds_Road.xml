@@ -118,9 +118,9 @@
       <li>{X_nameDef}, who keeps the caravan's accounts, says life on the road doesn't pay enough to be worth it. {X_nameDef} would rather stay at the colony, and asks whether {X_pronoun} may.</li>
     </joinTexts>
     <farewell>
-      <li>The caravan from {FACTION} loaded up and went on toward the hills. {X_nameDef} promised to stop again next year.</li>
+      <li>The caravan from {FACTION} loaded up before dawn and went on toward the hills, bells ringing on the lead animal. {X_nameDef} promised to stop again next year.</li>
       <li>The salt caravan has packed up its camp {PLACE} and gone on toward the hills.</li>
-      <li>[!lowtech] The convoy from {FACTION} got its part, started its engines and drove off.</li>
+      <li>[!lowtech] The convoy from {FACTION} got its part and its engines running, and was gone by mid-morning.</li>
       <li>{X_nameDef} counted the bales one last time, the beasts were loaded, and the caravan from {FACTION} went on its way.</li>
     </farewell>
     <lines>
@@ -299,8 +299,8 @@
     </joinTexts>
     <farewell>
       <li>The merchants from {FACTION} packed their strange goods and went on toward the far markets.</li>
-      <li>The merchants have packed up their camp {PLACE} and moved on. {X_nameDef} said they would tell the far markets about the colony.</li>
-      <li>The merchants from {FACTION} packed up their stall and went on toward the far markets, {X_nameDef} leading the way.</li>
+      <li>The merchants' camp {PLACE} is gone. {X_nameDef} bowed to the colony's gate before leaving, in some custom of their own.</li>
+      <li>The merchants from {FACTION} packed up their stall and went on toward the far markets. {X_nameDef} called something from the road in their own tongue, and it sounded like a blessing.</li>
     </farewell>
     <lines>
       <li>Very rare. Very old.</li>
@@ -424,9 +424,9 @@
       <li>{X_nameDef} from the drovers' camp says the herd will get to market without {X_objective}, and that {X_pronoun} has walked behind one long enough. {X_nameDef} asks whether the colony has room for one more pair of hands.</li>
     </joinTexts>
     <farewell>
-      <li>The drovers from {FACTION} moved the herd on, over the ridge and down the road.</li>
+      <li>The drovers from {FACTION} moved the herd on at first light. The colony could hear the bells and the dogs long after they'd gone over the ridge.</li>
       <li>The drovers have packed up their camp {PLACE} and moved the herd on toward the market.</li>
-      <li>The drovers from {FACTION} whistled the herd together and drove it on down the road at an easy pace.</li>
+      <li>The drovers from {FACTION} whistled the herd together before sunrise and drove it on down the road at an easy pace, the dog working the stragglers.</li>
     </farewell>
     <lines>
       <li>Easy, easy.</li>
@@ -624,8 +624,8 @@
       <li>[sameFaith] {X_nameDef} from the penitents' camp says the colony keeps the faith better than the shrine at the end of the road, and asks to stay.</li>
     </joinTexts>
     <farewell>
-      <li>The penitents from {FACTION} went on without a word. They swept their camp {PLACE} so clean it's hard to tell anyone was there.</li>
-      <li>The penitents have packed up and gone on up the road, {X_nameDef} at the front.</li>
+      <li>The penitents from {FACTION} went on at dawn, barefoot, without a word. Their camp {PLACE} is swept so clean it's hard to tell anyone was there.</li>
+      <li>The penitents left before sunrise. {X_nameDef} stopped at the gate to bow, and then they were gone up the road.</li>
       <li>The penitents from {FACTION} took up the road again in single file, as they came.</li>
     </farewell>
     <lines>
@@ -798,7 +798,7 @@
       <li>{X_nameDef} of the tree-singers {PLACE} has grown fond of an old tree at the edge of the colony's land, and asked today whether {X_pronoun} might stay near it for good.</li>
     </joinTexts>
     <farewell>
-      <li>[left:seeds] The tree-singers have left. Before they went, they planted a ring of saplings where their fire had been.</li>
+      <li>[left:seeds] The tree-singers left at dawn. Before they went, they planted a ring of saplings where their fire had been.</li>
       <li>The tree-singers from {FACTION} have gone on to the next grove. {X_nameDef} told the colony its trees are well kept.</li>
       <li>The tree-singers from {FACTION} packed up and went on to the next grove.</li>
     </farewell>
@@ -1094,9 +1094,9 @@
       <li>{X_nameDef}, who plays the drum for the minstrels, asked today whether the colony might want a drummer for good.</li>
     </joinTexts>
     <farewell>
-      <li>The minstrels from {FACTION} packed up and went on toward the next town.</li>
+      <li>The minstrels from {FACTION} went on toward the next town at noon, still playing, with the drum keeping time for the walkers.</li>
       <li>The minstrels have packed up their camp {PLACE} and moved on.</li>
-      <li>The minstrels from {FACTION} packed up and left the way they came.</li>
+      <li>The minstrels from {FACTION} left the way they came, singing. The colony heard the last verse from the road.</li>
     </farewell>
     <lines>
       <li>From the top, again.</li>
@@ -1233,7 +1233,7 @@
     <farewell>
       <li>The mourners from {FACTION} went on, walking slowly, with the lamp packed and their dead carried in their arms.</li>
       <li>[left:sprig] The mourners have left their camp {PLACE}. On the way out, {X_nameDef} planted a sprig of green by the colony's gate. {FACTION} do that to thank those who let their dead rest a while.</li>
-      <li>The mourners from {FACTION} went on, one of them carrying their dead and the others walking close around.</li>
+      <li>The mourners from {FACTION} went on at first light, one of them carrying their dead and the others walking close around.</li>
     </farewell>
     <lines>
       <li>Rest a while.</li>

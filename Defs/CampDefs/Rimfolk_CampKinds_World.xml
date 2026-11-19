@@ -138,7 +138,7 @@
     </joinTexts>
     <farewell>
       <li>The wardens of {FACTION} have packed up {PLACE} and gone back to their people. Their post stands empty.</li>
-      <li>{FACTION}'s wardens have left {PLACE}, called back down the road. Before they went, {X_nameDef} asked the colony to keep an eye on the road for them.</li>
+      <li>{FACTION}'s wardens are gone from {PLACE}, called back down the road. {X_nameDef} said, at the gate: "Keep the road for us a while."</li>
     </farewell>
     <lines>
       <li>Nothing on the road.</li>
@@ -272,8 +272,8 @@
       <li>{X_nameDef} from the deserters' camp asked today whether there might be a place at the colony for good, for someone done with soldiering.</li>
     </joinTexts>
     <farewell>
-      <li>The deserters have taken down their camp {PLACE} and gone without a word, as people do who don't want to be followed.</li>
-      <li>{X_nameDef} and the others have gone on from {PLACE}, looking for somewhere nobody knows their faces.</li>
+      <li>The deserters' camp {PLACE} is empty this morning, the fire cold. They went in the night, as people do who don't want to be followed.</li>
+      <li>{X_nameDef} and the others have gone on from {PLACE}, looking for somewhere nobody knows their faces. {X_nameDef} left a word of thanks at the gate.</li>
       <li>[ws:war|ws:creed|ws:sellswords|ws:levy] The deserters have gone from {PLACE}, away from {SITUATION} and from everyone who was in it.</li>
     </farewell>
     <lines>

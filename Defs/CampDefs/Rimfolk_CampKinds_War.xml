@@ -83,7 +83,7 @@
     <!-- [carried]: they took up their dead lying on the land and carried them off with them (Camp.CarryDeadHome). -->
     <farewell>
       <li>[carried] The war party of {FACTION} packed up their camp {PLACE} and went home, carrying their dead with them. {FACTION} will remember who stood with them.</li>
-      <li>The fighters of {FACTION} have left {PLACE} and gone home. Before they went, {X_nameDef} said that next time the colony needs help, it should come to them.</li>
+      <li>The fighters of {FACTION} are gone from {PLACE}, leaving a ring of trampled grass and a cold fire. {X_nameDef} said, at the gate: "Next time, you come to us."</li>
       <li>The war camp {PLACE} has packed up, and {FACTION}'s fighters have marched off home.</li>
     </farewell>
     <lines>
