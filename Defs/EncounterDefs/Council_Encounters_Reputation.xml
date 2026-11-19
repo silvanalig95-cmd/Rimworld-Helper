@@ -61,7 +61,7 @@
     <weight>1.1</weight>
     <cooldownDays>12</cooldownDays>
     <colonyIs><li>Harsh</li></colonyIs>
-    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <stranger><kind>Visitor</kind><child>true</child></stranger>
     <texts>
       <li>The {FACTION} visitors keep their children on a short rope here. When one wandered toward {A_nameDef}, {X_nameDef} snatched the child back by the collar without a word. {A_nameDef} had only been going to wave.</li>
       <li>{FACTION} parents use the colony's name to get their children in before dark, {X_nameDef} said, half joking. {A_nameDef} didn't laugh, and {X_nameDef} stopped smiling.</li>
