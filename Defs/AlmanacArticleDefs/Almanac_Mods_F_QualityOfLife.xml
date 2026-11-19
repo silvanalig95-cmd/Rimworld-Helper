@@ -13,7 +13,7 @@
     <order>605</order>
     <mods><li>unlimitedhugs.allowtool</li></mods>
     <summary>Allow or forbid by area, select similar, haul urgently, finish off and harvest only what's ripe</summary>
-    <tip>One drag over the battlefield and every dropped helmet is ours again.</tip>
+    <tip>After a fight, drag Allow over the battlefield to unforbid everything dropped there at once.</tip>
     <description>Allow Tool adds a handful of order tools to the Architect's Orders menu and to the buttons you see when things are selected. They save clicks on jobs a big colony does every day: unforbidding the loot after a battle, getting important things hauled first, and harvesting only what is ready. It needs HugsLib, loaded above it.</description>
     <sections>
       <li>
@@ -71,7 +71,7 @@ If you capture a downed raider who hurt one of your colonists, the raider stays 
       <li>jkluch.haultostack</li>
     </mods>
     <summary>Haulers fill their pockets before the trip, and why Haul to Stack does nothing beside it</summary>
-    <tip>Our haulers fill their pockets before they walk back now. The fields are a long way from the stores.</tip>
+    <tip>Haulers carry several items in one trip, which saves the most walking when the fields are far from the stores.</tip>
     <description>Pick Up And Haul lets colonists who haul load several items into their inventory, pick up one more in their hands, carry it all to storage and unload. On a big map with fields, woodlots and battlefields far from the stores, that saves a lot of walking. Haul to Stack, also in your list, was meant to make haulers top up existing stacks, but its author notes that it stops doing anything once Pick Up And Haul is installed.</description>
     <sections>
       <li>
@@ -119,14 +119,14 @@ Rimfolk's carrying and hauling works with it (Harvest and Haul, built in): growe
     <order>615</order>
     <mods><li>silvanalig95.harvestandhaul</li></mods>
     <summary>Growers, miners, cutters and herders carry what their own work drops straight to storage</summary>
-    <tip>The woodcutter carries her own logs to the stockpile now.</tip>
+    <tip>Woodcutters, growers and miners carry what their own work drops to storage.</tip>
     <description>Harvest and Haul makes colonists pocket what their own work drops: crops and berries, chopped wood, mined ore, wool and milk, the materials from a torn-down wall, the day's catch. They keep working while there is room, then take everything to storage themselves, instead of leaving a trail of small stacks for the haulers. It was built to work alongside Pick Up And Haul.</description>
     <sections>
       <li>
         <heading>What it collects</heading>
         <text>It collects from harvesting, chopping and cutting plants (also when a plant is cut to clear a cell for sowing or building), mining, deep drilling, shearing and milking, deconstructing and removing floors, and fishing. Each source has its own switch. Stone and slag chunks are off by default, since a single chunk fills most of an inventory.
 
-In this modlist, cut grass and bushes drop hay and wood (a Medieval Overhaul change), so clearing a building site also brings in fodder and firewood.</text>
+With Medieval Overhaul, cut grass and bushes drop hay and wood, so clearing a building site also brings in fodder and firewood.</text>
       </li>
       <li>
         <heading>When they deliver</heading>
@@ -183,8 +183,8 @@ Rimfolk's copy goes further than this mod: what a bill makes at a bench, what a 
     <order>620</order>
     <mods><li>avilmask.commonsense</li></mods>
     <summary>Colonists sweep before they cook, fetch whole stacks for bills and stop wasting their fun</summary>
-    <tip>Our cook sweeps the kitchen before every meal now. The sickness stopped going round.</tip>
-    <description>Common Sense is a bundle of small fixes to how colonists behave. Most are on by default, and each has its own switch in the mod settings. In a medieval colony the cleaning habits matter most, because a dirty kitchen is where food poisoning starts.</description>
+    <tip>Colonists clean the kitchen before they cook, which keeps food poisoning down.</tip>
+    <description>Common Sense is a bundle of small fixes to how colonists behave. Most are on by default, and each has its own switch in the mod settings. The cleaning habits matter most, because a dirty kitchen is where food poisoning starts.</description>
     <sections>
       <li>
         <heading>Cleaning habits</heading>
@@ -287,7 +287,7 @@ Rimfolk's copy goes further than this mod: what a bill makes at a bench, what a 
     <order>630</order>
     <mods><li>memegoddess.replacestuff</li></mods>
     <summary>Rebuild walls, doors and furniture in a new material without tearing them down first</summary>
-    <tip>We rebuilt the freezer in stone without letting it warm up once.</tip>
+    <tip>Replace a freezer's walls in place, and the room stays closed and cold while they are rebuilt.</tip>
     <description>Replace Stuff lets you place a building over an existing one and the game swaps it in place: wooden walls become stone without breaking the room, a workbench keeps its bills and a bed keeps its owner. It also lets you build over rock, which gets mined away first, and over water, where a bridge goes in first. RimWorld 1.6 on its own only lets you place blueprints over walls; this mod goes much further.</description>
     <sections>
       <li>
@@ -331,8 +331,8 @@ Buildings rebuilt after being destroyed remember their settings too: workbench b
     <order>640</order>
     <mods><li>petetimessix.simplesidearms</li></mods>
     <summary>Colonists carry spare weapons in their pockets and switch to the right one by themselves</summary>
-    <tip>Every archer here carries a knife for when the raiders get close.</tip>
-    <description>Simple Sidearms lets colonists carry more than one weapon: one in hand, the rest in their inventory as sidearms. Depending on the settings, they switch on their own: to a blade when someone closes in, to a better bow for the distance, or to a tool that helps with the job. Medieval archers are nearly helpless once a raider reaches them, and a melee sidearm lets them fight back.</description>
+    <tip>Give every archer a knife or short sword as a sidearm for when raiders get close.</tip>
+    <description>Simple Sidearms lets colonists carry more than one weapon: one in hand, the rest in their inventory as sidearms. Depending on the settings, they switch on their own: to a blade when someone closes in, to a better bow for the distance, or to a tool that helps with the job. Archers are nearly helpless once a raider reaches them, and a melee sidearm lets them fight back.</description>
     <sections>
       <li>
         <heading>Choosing the rules</heading>
@@ -373,7 +373,7 @@ Other factions' pawns can spawn with sidearms too, controlled by a chance and a 
     <order>645</order>
     <mods><li>co.uk.epicguru.meleeanimation</li></mods>
     <summary>Animated sword fights, duels, executions, lassos and friendly sparring at a duel spot</summary>
-    <tip>Our fighters spar at the duel spot after supper. The bruises are the cheap kind.</tip>
+    <tip>A duel spot is cheap recreation that also gives melee practice.</tip>
     <description>Melee Animation gives melee weapons hand-made attack animations and adds optional new mechanics: one-on-one duels, executions that can kill, down or wound, lassos that drag enemies into reach, and rare unique skills. Ordinary melee damage works as before. In a medieval run, where most fights are fought hand to hand, it changes how battles look and adds new choices in them.</description>
     <sections>
       <li>
@@ -425,8 +425,8 @@ Other factions' pawns can spawn with sidearms too, controlled by a chance and a 
       <li>rabiosus.takecover</li>
     </mods>
     <summary>Run and Gun, Avoid Friendly Fire and Take Cover: shooting on the move, past friends, from cover</summary>
-    <tip>Our archers wait for a clear shot now. We lose fewer spearmen that way.</tip>
-    <description>Three small mods change how your ranged fighters behave. Run and Gun lets them shoot while moving, Avoid Friendly Fire makes them hold their shot when a friend is in the way, and Take Cover gives you a quick way to spread a squad into covered firing spots. In a colony that fights with bows and crossbows, the three work well together.</description>
+    <tip>Set archers off to one side of the melee line, so friends aren't in the way of their shots.</tip>
+    <description>Three small mods change how your ranged fighters behave. Run and Gun lets them shoot while moving, Avoid Friendly Fire makes them hold their shot when a friend is in the way, and Take Cover gives you a quick way to spread a squad into covered firing spots. Your list has the first two; Take Cover is a separate mod. In a colony that fights with bows and crossbows, they work well together.</description>
     <sections>
       <li>
         <heading>Run and Gun</heading>
@@ -442,7 +442,7 @@ Because of it, don't line archers up straight behind your melee line, or they wi
       </li>
       <li>
         <heading>Take Cover</heading>
-        <text>Select drafted pawns, hold Ctrl and right-drag toward the threat, and they spread into firing positions that favor nearby cover and clear lines of fire. Use it when a raid comes from an unexpected side, then fine-tune the positions by hand. For any raider who still reaches your shooters, give them a melee sidearm as well (see Simple Sidearms).</text>
+        <text>If you load Take Cover: select drafted pawns, hold Ctrl and right-drag toward the threat, and they spread into firing positions that favor nearby cover and clear lines of fire. Use it when a raid comes from an unexpected side, then fine-tune the positions by hand. For any raider who still reaches your shooters, give them a melee sidearm as well (see Simple Sidearms).</text>
       </li>
     </sections>
     <keywords>
@@ -502,7 +502,7 @@ With Snap Out!, a colonist on warden work walks up to someone in a mental break 
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>On Demanding stakes a bitter colonist may storm off on a sad wander or go on an insulting spree. Snap Out! can talk them down like any other break.
+        <text>On Demanding stakes a bitter colonist may storm off on a sad wander, or, if abrasive, go on an insulting spree. Snap Out! can talk them down like any other break.
 
 The room planner compares its cost only with what is in storage, so it can show you short of materials that I Clearly Have Enough finds elsewhere on the map.
 
@@ -543,7 +543,7 @@ With Snap Out!, talking someone down from a breakdown is tenderness in the feeli
       <li>dawnsglow.qualcolor</li>
     </mods>
     <summary>RimHUD, the Nice tabs, a color-coded mood bar, speech bubbles, clearer wounds, quality colors</summary>
-    <tip>I check the mood bars every morning before I do anything else.</tip>
+    <tip>Check the mood bars each morning: a yellow or orange bar means a break may be close.</tip>
     <description>Seven interface mods put more of what you need to know in plain sight: how a colonist is doing, what hurts, what they're wearing, how close they are to snapping, what they just said to each other, and how good an item really is. None of them changes how the game plays; they make problems quicker to spot.</description>
     <sections>
       <li>
@@ -678,9 +678,9 @@ Quality Colors colors items by quality in the trade window, and quality text in 
       <li>syrchalis.processor.framework</li>
       <li>smashphil.vehicleframework</li>
     </mods>
-    <summary>What library mods are, why they load first, and which of your mods lean on which</summary>
+    <summary>What library mods are, why they load first, and which of your mods need which</summary>
     <tip>Sort the mod list before you start a colony, not in the middle of one.</tip>
-    <description>A library, or framework, is a mod that adds little or nothing you can see. It holds shared code that other mods need, so each of them doesn't have to carry its own copy. Because the mods built on a library use its code and definitions while they load, the library has to be loaded before them, which is why these sit near the top of your list.</description>
+    <description>A library, or framework, is a mod that adds little or nothing you can see. It holds shared code that other mods need, so each of them doesn't have to carry its own copy. Because the mods built on a library use its code and definitions while they load, the library has to be loaded before them, which is why each of these sits above the mods that use it.</description>
     <sections>
       <li>
         <heading>Your libraries</heading>
@@ -689,11 +689,11 @@ Quality Colors colors items by quality in the trade window, and quality text in 
           <li>Harmony | Lets mods change the game's code while it runs. Most code mods need it, and it belongs at the very top of the list.</li>
           <li>HugsLib | Shared code for mods such as Allow Tool; its author asks for it right after Core. It also uploads your log: press Ctrl+F12 to get a link you can share.</li>
           <li>XML Extensions | Gives other mods extra patching tools and lets them build settings menus in XML. Its author says to load it after Core and the DLCs, before the mods that use it.</li>
-          <li>Vanilla Expanded Framework | The shared code behind the Vanilla Expanded mods. Medieval Overhaul and Outland need it too.</li>
-          <li>Processor Framework | The code behind Medieval Overhaul's barrels and other processors, so Medieval Overhaul also needs it. It upgrades RimBees to its system as well.</li>
-          <li>Tabula Rasa (its id says Neronix17's Toolbox) | The base of the Outland mods.</li>
+          <li>Vanilla Expanded Framework | The shared code behind the Vanilla Expanded mods, and many other mods in your list need it too.</li>
+          <li>Processor Framework | The code behind processing buildings such as barrels in some mods, Medieval Overhaul's among them. It also adds a fermenting barrel of its own.</li>
+          <li>Tabula Rasa (its id says Neronix17's Toolbox) | The shared code of Neronix17's mods, the Outland series among them.</li>
           <li>EBSG Framework | Shared code first written for gene mods.</li>
-          <li>Vehicle Framework | What the balloon and airship of Medieval Overhaul: Air Vehicles run on.</li>
+          <li>Vehicle Framework | What the vehicles of Vanilla Vehicles Expanded, in your list, run on.</li>
           <li>Map Mode Framework | A switch on the world map for map modes: biome, temperature, elevation, rainfall, growing period, animal or plant commonality, and landforms.</li>
         </table>
         <after>Two ids here only look like libraries: vanillaexpanded.vfecore is Vanilla Furniture Expanded and vanillaexpanded.vcef is Vanilla Fishing Expanded, both ordinary content mods.</after>
@@ -711,11 +711,11 @@ Quality Colors colors items by quality in the trade window, and quality text in 
       </li>
       <li>
         <heading>Map modes</heading>
-        <text>Use the growing period and temperature map modes when choosing a site for a new settlement or outpost. For a medieval colony, a long growing season matters more than almost anything.</text>
+        <text>Use the growing period and temperature map modes when choosing a site for a new settlement or outpost. For a colony without hydroponics, a long growing season matters more than almost anything.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Of these, Rimfolk needs only Harmony, which it uses for a few small hooks into the game. It loads after the others on its own, so it can sit near the bottom of the list, where it is now.</text>
+        <text>Of these, Rimfolk needs only Harmony, which it uses for its hooks into the game's code. Its file asks only to load after Harmony, Core and the DLCs, and it reads your other mods while the game runs, so it can sit anywhere below them. In your list it is about halfway down.</text>
       </li>
     </sections>
     <keywords>

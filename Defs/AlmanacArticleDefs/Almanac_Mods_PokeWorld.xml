@@ -22,11 +22,11 @@
     </mods>
     <approximate>true</approximate>
     <summary>Pokémon as animals: caught with Poké Balls, raised through levels and evolutions</summary>
-    <tip>We gave up trying to tame the Eevee by hand once we had an Apricorn belt.</tip>
+    <tip>Pokémon can't be tamed by hand: make an Apricorn Ball belt, the one a colony without industrial research can make.</tip>
     <description>PokéWorld adds the Pokémon as animals: the 493 of the first four generations in the original, and 898 of eight generations in PokéWorld Updated for 1.6. They live in the wild beside RimWorld's animals or in their place, as the mod's settings decide, and they can't be tamed the usual way: a colonist wearing a Poké Ball belt throws balls at one until a ball holds. A caught Pokémon follows the colonist it's assigned to and fights for them, gains levels, learns moves and evolves. The Pokédex tab records every species you have seen and caught, and miners sometimes dig up evolution stones and fossils that can be brought back to life.</description>
     <sections>
       <li>
-        <heading>The version in your list</heading>
+        <heading>The versions, and yours</heading>
         <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5 and added the Pokémon of generations five to eight, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, checked against the 1.6 port's, so a number, a button or a research project may still be different in the port. The port's own description says most features work again but that it wasn't tested thoroughly; it also lets Pokémon live in Odyssey's new lands.
 
 Rimfolk finds the mod by its Pokémon rather than by its name, so it works with any of the three.</text>
@@ -39,7 +39,7 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Rimfolk reads PokéWorld while the game runs and changes nothing in it. Pokémon count as animals everywhere Rimfolk looks at animals, so a named one can be a pet that fights beside its person, and a wild one that mauls a colonist can become a nemesis. A few things are made to fit:</text>
+        <text>Rimfolk reads PokéWorld while the game runs and changes nothing in it but the sounds its Pokémon make, and those only as you set them (below). Pokémon count as animals everywhere Rimfolk looks at animals, so a named one can be a pet that fights beside its person, and a wild one that mauls a colonist can become a nemesis. A few things are made to fit:</text>
         <points>
           <li>Rimfolk's own animal events follow the slider the way wild spawns do. At its maximum the great beast, the stray that follows someone home, the sign at dawn and the catch a pet brings back are always Pokémon, at its minimum never, and in between it's a chance each time. Generations you switched off, legendaries and fossils are never picked, and only Pokémon that live wild somewhere are: never a baby, nor Porygon, Unown, Spiritomb or the few others PokéWorld keeps out of the wild.</li>
           <li>The runaway mission and the strange creature from Alpha Animals need an ordinary animal, so with the slider at its maximum they don't come up.</li>
@@ -83,7 +83,7 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
     </mods>
     <approximate>true</approximate>
     <summary>How much of the wild is Pokémon, and which generations</summary>
-    <tip>No more deer at the tree line. Everything out there is a Pokémon now.</tip>
+    <tip>At the slider's maximum nearly every wild animal is a Pokémon; at its minimum no new ones arrive.</tip>
     <description>PokéWorld's mod settings decide how much of the world's wildlife is Pokémon. The main control is the wild Pokémon frequency slider. It moves in eight steps from "No Pokémon" to "Only Pokémon", each step adding one eighth, and a new install starts at "Only Pokémon". You can move it at any time: it applies to everything that arrives from then on, and animals already on the map stay where they are.</description>
     <sections>
       <li>
@@ -203,7 +203,7 @@ The PC keeps the ones you don't need. Research the Pokémon storage system (1,00
     </mods>
     <approximate>true</approximate>
     <summary>Levels, moves, evolution, the Pokédex, shinies and healing</summary>
-    <tip>Ours has fought in every raid this year. It's level 30 now, and it doesn't look like the same animal.</tip>
+    <tip>A Pokémon gains levels from the fights it takes part in, and many evolve when they reach a certain level.</tip>
     <description>Every Pokémon has a level from 1 to 100. Wild ones come at a level that suits their species. Yours gain experience in fights: when an enemy they hit is killed, the Pokémon that fought it share its experience, and the same happens when a wild Pokémon they wore down is caught. Each level raises its stats and its friendship with you, and every tenth level is announced. A Rare Candy raises it one level at once.</description>
     <sections>
       <li>
@@ -276,8 +276,8 @@ As the Pokédex fills, quests open up that lead to legendary Pokémon. The one f
     </mods>
     <approximate>true</approximate>
     <summary>Evolutions, levels and friendship as the colony sees them, the Pokédex as a goal, and a rare one on the land</summary>
-    <tip>The whole colony came out to see the Charmeleon. It sulked for a day about the fuss.</tip>
-    <description>Rimfolk treats the colony's Pokémon as its animals everywhere, and with PokéWorld it also follows what only Pokémon do: they evolve, gain levels and grow fond of their trainer. Each is someone's: its trainer is the colonist it's bonded to, or else its master in the Animals tab. Rimfolk only reads PokéWorld and changes nothing in it.</description>
+    <tip>An evolution is news in the colony, and its trainer writes about it in their journal.</tip>
+    <description>Rimfolk treats the colony's Pokémon as its animals everywhere, and with PokéWorld it also follows what only Pokémon do: they evolve, gain levels and grow fond of their trainer. Each is someone's: its trainer is the colonist it's bonded to, or else its master in the Animals tab. Rimfolk only reads PokéWorld, and changes nothing in it but its Pokémon's calls (on the first PokéWorld page).</description>
     <sections>
       <li>
         <heading>What the colony notices</heading>
@@ -289,11 +289,11 @@ As the Pokédex fills, quests open up that lead to legendary Pokémon. The one f
           <li>It faints in a fight | The trainer worries (-2 mood for a day), and writes about it once the fight is over, if it lived.</li>
           <li>It dies | It's mourned like any pet, with farewell lines of its own.</li>
         </table>
-        <after>Rimfolk looks once an hour, so news of an evolution comes within the hour. Nothing of this is saved: after loading a game, the first hour only looks.</after>
+        <after>Rimfolk looks once an hour, so news of an evolution comes within the hour. Nothing of this is saved, so after a game is loaded the first look only notes how things stand, and the news starts from the next.</after>
       </li>
       <li>
         <heading>Trainers</heading>
-        <text>A colonist with a Pokémon of their own counts as a trainer. Two trainers may spar with their Pokémon (a contest of handling, nobody hurt: the winner enjoys it, both learn something) or sit up talking moves; a child may ask a trainer about Pokémon. A trainer and a Pokémon that isn't their friend yet may have a story of their own: time together, learning its moves, a fight side by side, until its friendship grows and they're partners, and may bond. Trainers dream of evolutions, of legends and, now and then, of an empty ball.</text>
+        <text>A colonist with a Pokémon of their own counts as a trainer. Two trainers may spar with their Pokémon (a contest of handling, nobody hurt: the winner enjoys it, both learn something) or sit up talking moves; a child may ask a trainer about Pokémon. A trainer and a Pokémon that isn't their friend yet may have a story of their own: time together, learning its moves, a fight side by side, until its friendship grows and they're partners, and may bond. Trainers dream of an evolution or of a legendary Pokémon, and now and then have a nightmare about an empty ball and a lost Pokémon.</text>
       </li>
       <li>
         <heading>Wishes, life goals and the council's project</heading>
@@ -319,15 +319,15 @@ A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (ra
       </li>
       <li>
         <heading>A Pokémon that keeps coming</heading>
-        <text>The beast that stays (see "animals") can be a wild Pokémon when PokéWorld's Pokémon are in play: one seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. Until it is fed or caught it gets into the stores now and then, from its second day, and makes off with a few of what it would eat (meat for a meat-eater, else fodder or raw food), told in the morning. Four days after the naming the council is asked what to make of it, and again every eight days while it stays, three times at most: leave food out (the namer carries it out and leaves it), keep the stores shut with the best shot at the gate that night, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is yours, with PokéWorld's own balls, and the catch is told), let it be, or drive it off with torches. After fifteen days it is part of the land and the story closes. The rare one a sighting brings is its own story and is never the beast that stays.</text>
+        <text>The beast that stays (see "the colony's animals") can be a wild Pokémon when PokéWorld's Pokémon are in play: one seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. Until it is fed or caught it gets into the stores now and then, from its second day, and makes off with a few of what it would eat (meat for a meat-eater, else fodder or raw food), told in the morning. Four days after the naming the council is asked what to make of it, and again every eight days while it stays, three times at most: leave food out (the namer carries it out and leaves it), keep the stores shut with the best shot at the gate that night, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is yours, with PokéWorld's own balls, and the catch is told), let it be, or drive it off with torches. After fifteen days it counts as part of the land and the story ends. The rare one a sighting brings is its own story and is never the beast that stays.</text>
       </li>
       <li>
-        <heading>A shiny rumour</heading>
-        <text>A trainer of a friendly people stops at the gate with a story: a shiny Pokémon of some species, seen twice in the region and caught by nobody. Keep an eye out (or send someone to look along the way, a walk and a little learned) and the rumour holds for twenty days; while it does, one chance in eight a day, the shiny shows itself at the edge of the colony's land and is named the next day like any beast that stays, with the rumour in its lines, and the one who named it is glad the rumour was true. If the twenty days pass without it, it was a story after all. One rumour at a time.</text>
+        <heading>A rumour of a shiny Pokémon</heading>
+        <text>A trainer of a friendly people stops at the gate with a story: a shiny Pokémon of some species, seen twice in the region and caught by nobody. Keep an eye out (or send someone to look along the way, a walk and a little learned) and the rumour holds for twenty days; while it does, one chance in eight a day, the shiny shows itself at the edge of the colony's land and is named the next day like any beast that stays, with the rumour in its lines, and the one who named it is glad the rumour was true. If the twenty days pass without it, the rumour was wrong. Only one rumour runs at a time.</text>
       </li>
       <li>
         <heading>Traveling trainers</heading>
-        <text>A camp of traveling trainers comes only with PokéWorld's Pokémon in play: two or three trainers of a friendly people, each with a Pokémon of the roaming kinds at their heels (the ones the colony hasn't caught likelier), who trade like any camp with a trader. The colony can ask them about training (a while at their fire, practice with animals) or for a friendly contest: the colony's highest-level Pokémon with a trainer against their best, as a show at their fire in the afternoon or evening, the camp's people as guests and whoever wants to watch. The higher level is likelier to win and never surely, nobody is hurt, the trainer whose Pokémon took part remembers it and so does the colony. The trainers come back like any remembered camp, and the score of the shows comes back with them: the next contest is a rematch, and their words know who won last time.</text>
+        <text>A camp of traveling trainers comes only with PokéWorld's Pokémon in play: two or three trainers of a friendly people, each with a Pokémon of the roaming kinds at their heels (the ones the colony hasn't caught likelier), who trade like any camp with a trader. The colony can ask them about training (a while at their fire, practice with animals) or for a friendly contest: the colony's highest-level Pokémon with a trainer against their best, as a show at their fire in the afternoon or evening, the camp's people as guests and whoever wants to watch. The higher level is likelier to win and never surely, nobody is hurt, the trainer whose Pokémon took part remembers it and so does the colony. The trainers come back like any remembered camp, and the score of the shows comes back with them: the next contest is a rematch, and what they say mentions who won last time.</text>
       </li>
       <li>
         <heading>Pokémon types at home</heading>

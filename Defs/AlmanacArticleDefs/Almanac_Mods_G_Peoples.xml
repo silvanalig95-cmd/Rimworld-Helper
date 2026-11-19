@@ -23,7 +23,9 @@ It also adds the deserters: a hidden faction of former imperial troops who strik
         <heading>With Rimfolk</heading>
         <text>Deserters on the roads is a world event: the Empire hunts a unit that walked away from its garrison, and one of the deserters comes to the colony asking for shelter. The council can take them in (the Empire won't thank it), hand them over for the reward, or feed them and send them on. The Empire's own levy and its visitors come with Royalty itself.
 
-Its balls are fellowship in Rimfolk's feelings, its art exhibits awe and its honors pride; a title without the ballroom, gallery or court it asks for is frustration.</text>
+Its balls are fellowship in Rimfolk's feelings, its art exhibits awe and its honors pride; a title without the ballroom, gallery or court it asks for is frustration.
+
+The mod calls any room with a musical instrument a ballroom, unless it has a bed, throne or workbench, so a drum turned a temple or a dining room into one. With Rimfolk a room with an altar stays a temple and one with dining tables a dining room, and drums alone make no ballroom; a room with a harp or a piano and recreation is still the mod's ballroom, for its titles and balls (the setting "Ballrooms only for music rooms", on the other mods' page, with the deeper game hooks).</text>
       </li>
     </sections>
     <keywords>
@@ -82,7 +84,7 @@ Its one-person tents are what visiting camps sleep in, where the mod is loaded: 
     <order>702</order>
     <mods><li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li></mods>
     <summary>Frontier settlers and bandits: one-street towns, chemshine, bounties and a storyteller who scales backwards</summary>
-    <description>Settlers brings the frontier: civil and rough settlers in towns built along one main street, and bandit gangs hostile to everyone. They wear new outfits and hats, carry new guns, and brew chemshine, a volatile drink distilled from chemfuel that muffalo are very fond of. Chemfuel-themed structures, a bandit start, world quests for bounty hunters and caravan raiders, and a storyteller, Diego Dire, who starts hard and grows gentler until he starts over, round it out.</description>
+    <description>Settlers brings the frontier: civil and rough settlers in towns built along one main street, and bandit gangs hostile to everyone. They wear new outfits and hats, carry new guns, and brew chemshine, a volatile drink distilled from chemfuel that muffalo are very fond of. It also adds chemfuel-themed structures, a bandit start, world quests for bounty hunters and caravan raiders, and a storyteller, Diego Dire, who starts hard and grows gentler, then starts hard again.</description>
     <sections>
       <li>
         <heading>With Rimfolk</heading>

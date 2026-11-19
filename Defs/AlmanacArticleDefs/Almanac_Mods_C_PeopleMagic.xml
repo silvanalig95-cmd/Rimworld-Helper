@@ -41,12 +41,12 @@ Only a mage can enchant. Enchantments are permanent, one of each type per item, 
         <points>
           <li>Raised undead and spirits are not counted as people, so they make no wishes, keep no journals and form no friendships, and an enemy undead can't become a nemesis.</li>
           <li>Healers such as priests and druids are favored for physician, and fighters for marshal. Mages like study hours, fighters like drills, and a mage may ask for a magic circle once you can build one.</li>
-          <li>The classes talk to each other: a mage and a fighter go over the last fight together, two mages compare their schools, two fighters walk through their forms, and a healer eases someone's aches. These moments, and the small wonders mages show their friends, become days in the journals.</li>
+          <li>The classes talk to each other: a mage and a fighter go over the last fight together, two mages compare their schools, two fighters walk through their forms, and a healer eases someone's aches. These moments, and the small spells mages show their friends, are written up in the journals.</li>
           <li>Life goals for the classes: grow ten levels, learn or deepen six workings (or techniques, for a fighter), understand the theory as a scholar of the art, or tend sixty wounds as a healer.</li>
           <li>Traveling mages and fighters visit: a mage may show a colonist a small working, compare schools with one of your mages, or correct a fighter's footwork.</li>
           <li>Its moods reach the feelings: a ranger's lost companion is grief, a polymorph against one's will shame, a spirit of light's bright day joy, pleasant dreams contentment, minion meat disgust, a commander's orders frustration.</li>
           <li>Arcane weakness and mana sickness wear on a mage the way exhaustion does: the deeper they go, the faster strain builds, a few points a day at most. Regeneration, mending or inner healing on someone convalescing takes a day off the recovery, once a day.</li>
-          <li>A personal story for the classes, the long discipline: a mage or a fighter with someone further along in the same art hits a wall, talks it through, practices until a class level comes, and makes the art their own.</li>
+          <li>A personal story for the classes, the long discipline: a mage or a fighter stops making progress, talks it over with someone further along in the same art or a close friend, practices day after day until they gain a class level, and is at ease in the art from then on.</li>
           <li>A golem that has lost its energy (it stands frozen, only turning to face where it is ordered, and set dormant it fades over and over) gets it back: Rimfolk keeps the needs its golem lists and returns the missing energy, which the golem then fills from its workstation. A message says so once (the setting "Golems keep their energy").</li>
           <li>With Harmony 3 (RimWorld 1.7), the mod's own setup stops at its healing-rain patch, which Harmony 3 refuses, and most of its patches after that one are never applied: the log shows "Failed to apply Harmony patches" for it. Rimfolk applies the ones left out one at a time and runs the healing rain itself, and says so in the log. When the mod is fixed or Harmony lets it through, this does nothing.</li>
           <li>Rimfolk's peoples: a share of their people have a class by their lore (sparingly, and more among the peoples built on magic: the Stormglass Conclave, the Mossborn, the Choir of the Spire and the Quiet Bell). A caster looks like one, in their class's hood, helm, cloak or wand from this mod by their people's age; a visitor names their craft, and their card and letters say what crafts are among them; a content or allied visitor now and then casts a helpful spell for the colony (a healing, a cure, an old scar eased, rain in a dry spell), once a visit at most; in a fight they cast by this mod's own AI and settings, and its most broken spells (the masters' storms, meteors and wraths, resurrection, polymorph, the sniper's headshot and the like) are kept out of their hands. With "AI can cast" off in this mod's settings no visitor casts in peace.</li>
@@ -147,7 +147,7 @@ Added to a running save, the mod turns existing psycasts into levels you can spe
       </li>
       <li>
         <heading>Elven gear</heading>
-        <text>Three medieval research projects, one per house, unlock that house's weapons and armor: bows and greatbows, crossbows, swords, halberds, shields and named armor sets. Research your own house's equipment early; the gear is medieval and fits the rest of this modlist.</text>
+        <text>Three medieval research projects, one per house, unlock that house's weapons and armor: bows and greatbows, crossbows, swords, halberds, shields and named armor sets. Research your own house's equipment early; the gear is medieval tech, so even an early colony can make it.</text>
       </li>
       <li>
         <heading>Two new beasts</heading>
@@ -157,7 +157,7 @@ Added to a running save, the mod turns existing psycasts into levels you can spe
         <heading>With Rimfolk</heading>
         <text>The council reads biological age, which the ageless gene holds at about 30, so elves never count as old and stay able to set their heart on having a child.
 
-Wood elves wish for flowers, a garden seat and healroot more often than most, high elves for books and a telescope, dark elves for a weapon rack. Wood and high elves pull the colony's ways toward the old traditions; dark elves keep strangers at a distance.</text>
+Wood elves wish for flowers, a garden seat and healroot more often than most, high elves for flowers, books and a telescope, and dark elves for a weapon rack. Wood elves like the harvest push decree and high elves study hours. Wood and high elves pull the colony's ways toward the old traditions; dark elves keep strangers at a distance.</text>
       </li>
     </sections>
     <keywords>
@@ -207,13 +207,13 @@ Wood elves wish for flowers, a garden seat and healroot more often than most, hi
         <heading>Putting them to work</heading>
         <text>Put stoneborn on mining, building and crafting, and keep them out of social jobs like warden and trader. Save the stonecall for a big push, such as finishing the walls before winter. Keep rivals apart, since an irascible stoneborn starts fights easily; the council's Bonds page shows who can't stand whom.
 
-The Stoneborn Dwarven Style Pack and Stoneborn Delights in your list add dwarven furniture and food to go with them.</text>
+The same author's Stoneborn Dwarven Style Pack and Stoneborn - Delights add dwarven furniture, drink and food to go with them, if you load them.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
         <text>As undergrounders they never ask the council for time outside, and they hate the harvest push decree. One with a passion for mining may set their heart on carving a home out of the mountain.
 
-They want stone: stone blocks and a deep drill even without a passion for them, and a hearth more often than most. They like long hours and a building push, and pull the colony's ways toward hard work and tradition.</text>
+They want stone: stone blocks and a deep drill even without a passion for them, and a hearth more often than most. They like the long hours and building season decrees, and pull the colony's ways toward hard work and tradition.</text>
       </li>
     </sections>
     <keywords>
@@ -269,7 +269,7 @@ With Dubs Bad Hygiene, baths can refill hydration too. That option is switched o
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Coastal and abyssal merren wish for a bath and a fountain more often than most. Coastal merren are open to strangers and like a festival; abyssal ones hold to the old ways and keep outsiders at a distance, and the colony's ways feel both pulls. A merren visitor may pass a moment with a colonist by the water: at the trough, in the surf, or after a long dive before any talk of business.</text>
+        <text>Coastal and abyssal merren wish for a bath more often than most, and coastal merren for a fountain too. Coastal merren are open to strangers and like a festival; abyssal ones hold to the old ways and keep outsiders at a distance, and the colony's ways feel both pulls. A merren visitor may pass a moment with a colonist by the water: at the trough, in the surf, or after a long dive before any talk of business.</text>
       </li>
     </sections>
     <keywords>
@@ -296,7 +296,7 @@ With Dubs Bad Hygiene, baths can refill hydration too. That option is switched o
     <order>325</order>
     <mods><li>onlymonkey.awakenedapes</li></mods>
     <summary>Five sapient ape xenotypes, from gentle gorillas to jittery monkeys</summary>
-    <tip>The bonobo settled the quarrel in the kitchen before it came to blows.</tip>
+    <tip>Bonobos settle quarrels through social bonding, which helps a colony with rivals in it.</tip>
     <description>Awakened Apes adds five playable ape xenotypes, each with its own strengths and temper. They speak broken English, so their social impact is halved, and they can only have children with their own species. It is a community update of an older monkey xenotype mod, and it needs Biotech.</description>
     <sections>
       <li>
@@ -350,19 +350,19 @@ Some xenotypes come with heavy drawbacks, so read a stranger's genes before you 
       </li>
       <li>
         <heading>Looks that others feel</heading>
-        <text>Someone with the repulsive gene gives everyone within six cells the "disgusting colonist" mood, and someone with angelic beauty gives them awe. With Rimfolk, neither reaches anyone while the carrier wears something over the whole head, like a burka or a full helmet, and clothes over the body and legs: what nobody can see stirs nothing. Kind colonists, carriers of the Teratophilia gene and the Inhumanized aren't bothered by the disgust in any case. The setting "A covered face hides looks (Alpha Genes)" turns Rimfolk's part off.</text>
+        <text>Someone with the repulsive gene gives everyone within six cells the "disgusting colonist" mood, and someone with angelic beauty gives them awe. With Rimfolk, neither reaches anyone while the carrier wears something over the whole head, like a burka or a full helmet, and clothes over the body and legs, because nobody can see their looks. Kind colonists, carriers of the Teratophilia gene and the Inhumanized aren't bothered by the disgust in any case. The setting "A covered face hides looks (Alpha Genes)" turns Rimfolk's part off.</text>
       </li>
       <li>
         <heading>Labs and gene tools</heading>
-        <text>Abandoned biotech lab quests give access to the new genes. Gene tools come from lab quests and ordinary quest rewards: the gene remover takes out a random gene and the germline mutator adds a random one. Either puts the target in a coma for 3 days, so use them in a quiet season. If Rimedieval keeps your research medieval, treat found tools and recruits as your only way into genetics.</text>
+        <text>Abandoned biotech lab quests give access to the new genes. Gene tools come from lab quests and ordinary quest rewards: the gene remover takes out a random gene and the germline mutator adds a random one. Either puts the target in a coma for 3 days, so use them in a quiet season. Until the colony can research genetics, found tools and recruits are its only way into it.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Nereids wish for a bath and a fountain more often than most, efreet and drakonori for a hearth and a sauna. Xenotypes that never sleep or never eat aren't asked about beds or meals, and the sunfed don't ask for finer food. Those who barely eat (foodless, light sustenance, mineral absorbers, read from how fast they really grow hungry) aren't asked about meals or seats, aren't counted at the table, shrug at rationing and never go short of fresh food. Armour grown in the skin counts as armour, the deaf aren't asked for music and don't have moods from what they'd have heard, and the cold and heat they can stand move the lines of Rimfolk's cold and heat ailments and nuisances. Moods Rimfolk tells in its own words keep the gene's say: inner peace shrugs off Rimfolk's slights too, a nereid's scales its rain without a coat, table resistance its long walk to the table.
+        <text>Nereids wish for a bath and a fountain more often than most, efreet and drakonori for a hearth and a sauna. Xenotypes that never sleep or never eat aren't asked about beds or meals, and the sunfed don't ask for finer food. Those who barely eat (foodless, light sustenance, mineral absorbers, read from how fast they really grow hungry) aren't asked about meals or seats, aren't counted at the table, shrug at rationing and never go short of fresh food. Armour grown in the skin counts as armour, the deaf aren't asked for music and don't have moods from what they'd have heard, and the cold and heat they can stand move the lines of Rimfolk's cold and heat ailments and nuisances. Where Rimfolk has its own version of one of the game's moods (being slighted, getting soaked in the rain without a coat, a long walk to the table), the genes that spare someone the game's mood spare them Rimfolk's too: a drakonori's inner peace, a nereid's scales, table resistance.
 
 Answers never take anyone where the place would hurt them: someone with UV sensitivity stays out of the open sun, a thalassophobe away from the water and the open rain, someone who breathes out gas out of the rooms where people gather, and a deadlife producer away from a body lying in the open. While a rainmaker or another weather maker is on the map, nobody foretells the weather.
 
-Its people have moments of their own between colonists: a nereid talks of the deep, an efreet or anyone who radiates heat warms someone's frozen hands in winter, a lapis reads the stone with a miner. Its stranger bodies make for social events too: a helixan's smell, a wretch seen past the face, a mind devourer's stare. The moments give practice, comfort or a feeling rather than mood, and come back in the journal.
+Its people have moments of their own between colonists: a nereid talks of the deep, an efreet or anyone who radiates heat warms someone's frozen hands in winter, a lapis reads the stone with a miner. Its stranger bodies make for social events too: a helixan's smell, a colonist treating a wretch like anyone else, a mind devourer's stare that unsettles people. The moments give practice, comfort or a feeling rather than mood, and come back in the journal.
 
 A colonist whose xenotype changes in the middle of the game (a xenogerm, a gene mod) is read afresh: wishes the new body can't use are set aside without blame.</text>
       </li>
@@ -390,9 +390,9 @@ A colonist whose xenotype changes in the middle of the game (a xenogerm, a gene 
     <category>Mods</category>
     <order>335</order>
     <mods><li>vanillaexpanded.vgeneticse</li></mods>
-    <summary>Hybrid animals from mixed genomes; in a medieval game, mostly a source of monsters</summary>
-    <tip>We can't build the genetics labs, but the hybrid monstrosities still find their way to us.</tip>
-    <description>Vanilla Genetics Expanded lets a colony extract animal genomes and grow hybrid creatures in a genetics lab. All of its research is industrial or spacer tier, and Rimedieval limits your research to medieval, so you won't build the labs. What still reaches you are abandoned lab quests and the occasional pack of roaming monstrosities.</description>
+    <summary>Hybrid animals from mixed genomes; before industrial research, mostly a source of monsters</summary>
+    <tip>The genetics labs need industrial research, but roaming monstrosities can come at any time.</tip>
+    <description>Vanilla Genetics Expanded lets a colony extract animal genomes and grow hybrid creatures in a genetics lab. All of its research is industrial or spacer tier, so a colony before the industrial age can't build the labs. What still reaches it are abandoned lab quests and the occasional pack of roaming monstrosities.</description>
     <sections>
       <li>
         <heading>Roaming monstrosities</heading>
@@ -433,7 +433,7 @@ The mod's quests and raids run on their own timer outside the storyteller, and t
     <order>340</order>
     <mods><li>sarg.alphamemes</li></mods>
     <summary>New memes, structures, styles and rituals, including a whole set of funerals</summary>
-    <tip>We buried him in a pyramid, as our creed asks.</tip>
+    <tip>Funerals such as cremation, sky burial or a pyramid burial are chosen when you found the ideoligion.</tip>
     <description>Alpha Memes adds new memes, ideoligion structures and a huge number of building and apparel styles, plus rituals such as sparring matches, rodeos, baptisms and many kinds of funeral.</description>
     <sections>
       <li>
@@ -458,7 +458,7 @@ The mod's quests and raids run on their own timer outside the storyteller, and t
 
 On a calendar feast or games day, the letter suggests the colony's own tea ceremony, coffee roasting or banquet if its ideoligion holds one.
 
-Its believers have moments of their own: an artist sketches a neighbor, one of the water's faithful blesses someone with clean water, a cowboy talks ranching at the fence, and a monastic sits in silence with someone troubled until their breathing slows. Harder beliefs make social events: an iconoclast and a little carved figure, a gladiator's scorn for a bow, a bulwark walking the walls with a friend.</text>
+Its believers have moments of their own: an artist sketches a neighbor, one of the water's faithful blesses someone with clean water, a cowboy talks ranching at the fence, and a monastic sits in silence with someone troubled until their breathing slows. Harder beliefs make social events: an iconoclast calling the colony's carvings obscene, a gladiator's scorn for a bow, a bulwark walking the walls with a friend.</text>
       </li>
     </sections>
     <keywords>
@@ -486,7 +486,7 @@ Its believers have moments of their own: an artist sketches a neighbor, one of t
     <order>345</order>
     <mods><li>vanillaexpanded.vmemese</li></mods>
     <summary>Dozens of memes and structures, from aristocratic and republic to craft culture, with rituals to match</summary>
-    <tip>We built a wicker man from our own lumber and burned it for the ritual.</tip>
+    <tip>A trading fair suits a colony that sees many caravans.</tip>
     <description>Memes and Structures adds a long list of memes and religious structures to pick when you found your ideoligion, many with their own rituals, buildings, roles and needs. Plenty suit a medieval realm: aristocratic, royal, republic, craft culture, city builders, bushido, fire worship, nomad and elders.</description>
     <sections>
       <li>
@@ -538,7 +538,7 @@ On a calendar feast or games day, the letter suggests the colony's own bonfire, 
     <order>350</order>
     <mods><li>vanillaexpanded.viesas</li></mods>
     <summary>A big colony can split into two rival ideoligions</summary>
-    <tip>After the schism, some of our people followed the new creed and the rest kept the old one.</tip>
+    <tip>A schism takes only part of the colony; the rest keep the old creed.</tip>
     <description>Splits and Schisms adds the ideological schism: once your colony is big enough, part of it can break away into a new ideoligion that differs from yours by a meme or two. The two creeds then compete inside the colony until one of them is gone, and only then can another schism happen.</description>
     <sections>
       <li>
@@ -548,7 +548,7 @@ Extensive mod options make schisms rarer, gentler or harsher, so if they come to
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Council votes follow skill, suitability and friendship, not creed, so a schism doesn't split the council on its own.</text>
+        <text>Council votes go by skill and fitness for the seat, liking and friendship, and the election campaign, not by creed, so a schism doesn't split the council by itself. Only the chaplain's seat counts the colony's own faith.</text>
       </li>
     </sections>
     <keywords>
@@ -576,7 +576,7 @@ Extensive mod options make schisms rarer, gentler or harsher, so if they come to
       <li>vanillaexpanded.ideo.relicsandartifacts</li>
     </mods>
     <summary>More ideoligion symbols, and dozens of new relics including helmets and armor</summary>
-    <tip>Our relic is an old knight's helmet, chosen when the creed was founded.</tip>
+    <tip>A helmet, a crown or a blade shard can be chosen as a relic when you found the creed.</tip>
     <description>Two small Vanilla Ideology Expanded modules that widen your choices when you design an ideoligion. Both take effect when an ideoligion is created, so they matter most at the start of a game. Both can be added mid-game, but they only affect ideoligions created afterward.</description>
     <sections>
       <li>
@@ -621,7 +621,7 @@ A few of the new ones, like kleptomaniac, are real burdens, so read each newcome
         <heading>Switching traits off</heading>
         <text>Switching a trait off sets its commonality to zero; pawns who already have it keep it. In a wooden medieval town, consider switching off pyromaniac.
 
-Load the mod above any other trait mods, as its authors recommend. Trait and Backstory Icons and RimTraits Vanilla Trait Colors, both in your list, support all of its traits.</text>
+Load the mod above any other trait mods, as its authors recommend. Trait and Backstory Icons, in your list, supports all of its traits, and RimTraits - Vanilla Trait Colors colors them by rarity if you load it.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
@@ -664,11 +664,11 @@ They also set a colonist's character (see the page "character"): a brave colonis
 
 Vanilla Trait Colors recolors the base game's traits and those of General Traits, Vanilla Traits Expanded, Vanilla Fishing Expanded and Medieval Overhaul. Read the color as rarity, not as good or bad. Keep it next to Trait and Backstory Icons: for traits without their own icon, the icon mod picks one from these colors.
 
-The same author makes RimTraits - Medieval Talents, also in your list.</text>
+The same author makes RimTraits - Medieval Talents.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>These don't change council reactions yet; the council reads the base game's traits and those of Vanilla Traits Expanded. The traits about a person's mind and manner do set their character (see the page "character"): valiant and craven their nerve, rowdy and composed their temper, easily amused and constantly bemused their humour and outlook, inquisitive and ignorant their openness. A craven colonist who holds their ground twice stops being craven (see "traits that change").</text>
+        <text>These traits don't change wishes, decrees or votes; for those the council reads the base game's traits and those of Vanilla Traits Expanded. The traits about a person's mind and manner do set their character (see the page "character"): valiant and craven their nerve, rowdy and composed their temper, easily amused and constantly bemused their humour and outlook, inquisitive and ignorant their openness. A craven colonist who holds their ground twice stops being craven (see "traits that change").</text>
       </li>
     </sections>
     <keywords>
@@ -691,7 +691,7 @@ The same author makes RimTraits - Medieval Talents, also in your list.</text>
     <order>365</order>
     <mods><li>battlemage64.peoplecanchange</li></mods>
     <summary>Colonists slowly gain, lose or shift traits as the years go by</summary>
-    <tip>After a long stretch of good moods, she turned optimist.</tip>
+    <tip>A long stretch of good moods can turn a colonist into an optimist.</tip>
     <description>People Can Change lets colonists change over time: they can gain a trait, lose one, or move up or down a trait's scale. Some changes follow from what they live through, such as long happiness or misery, eating human meat or getting used to a new body.</description>
     <sections>
       <li>
@@ -794,7 +794,7 @@ Vanilla Social Interactions Expanded can also give out traits. If traits change 
     <order>375</order>
     <mods><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></mods>
     <summary>Richer free time: best friends, venting, teaching, dates, gatherings and aspirations</summary>
-    <tip>After supper, a few of them went out together to look at the stars.</tip>
+    <tip>Group activities need somewhere to happen: a proper dining room and a rec area.</tip>
     <description>Vanilla Social Interactions Expanded changes what colonists do in their spare time. They make best friends, vent to friends, teach each other, go on dates, and gather for meals, walks, drinks and parties. Aspirations give colonists short goals to chase, and inspirations are reworked. Every mechanic can be switched off in the mod options.</description>
     <sections>
       <li>
@@ -842,7 +842,7 @@ Since it can also hand out traits, like People Can Change, switch one of the two
     <order>380</order>
     <mods><li>rince.gaulishgojuice</li></mods>
     <summary>A druid's Gaulish potion: go-juice for colonies with no drug lab</summary>
-    <tip>Our druid brews the potion over the fire, and only she knows the rest of the recipe.</tip>
+    <tip>Only a colonist with Cooking and Intellectual both at 10 or more can brew the potion.</tip>
     <description>Medieval Go-juice adds a Gaulish potion brewed by druids, so medieval and tribal colonies, and their go-juice-hungry Hussars, aren't left without it. It needs no research, but it needs a rare brewer: a good cook who is also a scholar. The mod also adds a weak psychite joint that needs no research.</description>
     <sections>
       <li>
