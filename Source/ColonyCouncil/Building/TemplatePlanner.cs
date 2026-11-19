@@ -1347,14 +1347,17 @@ namespace ColonyCouncil
             to.floorStuff = from.floorStuff;
         }
 
-        /// <summary>The middles of the colony's rooms with this role (by name, as the templates give it).</summary>
+        /// <summary>
+        /// The middles of the colony's rooms with this role (by name, as the templates give it); the dining and rec rooms
+        /// by what is in them (RoomUtil.RoomsFor: a temple with tables is a dining room to be near, or to keep a latrine from).
+        /// </summary>
         private static List<IntVec3> RoleCenters(Map map, string roleName)
         {
             var list = new List<IntVec3>();
             var role = RoomUtil.RoleNamed(roleName);
             if (role == null) return list;
-            foreach (var room in RoomUtil.ColonyRooms(map))
-                if (room.Role == role) list.Add(room.ExtentsClose.CenterCell);
+            foreach (var room in RoomUtil.RoomsFor(map, role))
+                list.Add(room.ExtentsClose.CenterCell);
             return list;
         }
 

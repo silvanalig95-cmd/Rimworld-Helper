@@ -443,6 +443,7 @@
   <CC_World_Meeting>Council meeting</CC_World_Meeting>
   <CC_Venue_Dining>around the dining table</CC_Venue_Dining>
   <CC_Venue_RecRoom>in the rec room</CC_Venue_RecRoom>
+  <CC_Venue_InRoom>in the {ROOM}</CC_Venue_InRoom>
   <CC_Venue_Campfire>around the campfire</CC_Venue_Campfire>
   <CC_Venue_GatherSpot>by the {0}</CC_Venue_GatherSpot>
   <CC_Venue_Outside>out in the open air</CC_Venue_Outside>

@@ -256,8 +256,9 @@ namespace ColonyCouncil
             {
                 if (room.PsychologicallyOutdoors || room.CellCount < 4) continue;
                 var role = room.Role;
+                // Dining and rec rooms by what is in them (RoomUtil): a temple where people eat is a room that matters.
                 bool matters = role == RoomUtil.Workshop || role == RoomUtil.Kitchen || role == RoomUtil.Laboratory || role == RoomUtil.Hospital
-                               || role == RoomUtil.DiningRoom || role == RoomUtil.RecRoom || role == RoomRoleDefOf.Bedroom || role == RoomRoleDefOf.Barracks;
+                               || role == RoomRoleDefOf.Bedroom || role == RoomRoleDefOf.Barracks || RoomUtil.IsCommonRoom(room);
                 if (!matters || RoomUtil.RoomContains(room, Avail.IsLight)) continue;
                 // Bedrooms that aren't large and workshops with benches have advice of their own, which plans the lamps.
                 if (AdvisorWorker_BedsDark.Covers(room) || AdvisorWorker_WorkshopUpgrade.Covers(room)) continue;

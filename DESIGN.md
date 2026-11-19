@@ -15941,8 +15941,8 @@ ahead".
   `GetScoreDeltaIfBuildingPlaced` (the note while placing an instrument), found by name; they stand down quietly without
   the mod. The setting "Ballrooms only for music rooms" (`ballroomByUse`, on), on the "Your other mods" page under the
   deeper hooks.
-- Left on the to-do list: Rimfolk reading a room by what is in it rather than the one name the game shows (its council
-  meetings, play-outs, visitors and advice look for the room named dining room, then rec room).
+- Left on the to-do list then, built since (19 November 2026): Rimfolk reading a room by what is in it rather than the
+  one name the game shows ("Rooms judged by what is in them").
 
 ### Everything from a god told at once (the player's report and go, 17 November 2026; released 0.265.3)
 
@@ -16089,6 +16089,60 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
   forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
   something off. Someone nearby goes at once, as before.
+
+### Rooms judged by what is in them (the player's go, 19 November 2026; released 0.266.6)
+
+The player (17 November 2026): "I want the gatherings where food is involved, of course, happening in my dining room,
+even if maybe another room is kind of the one for the ideological items"; then, on the overview of the open list (19
+November 2026): "Rooms judged by what's in them. That sounds good."
+
+- **The cause.** The game shows one role per room, the highest score: a dining table 12, a recreation building 7, an
+  altar of the colony's faith at least 2000 (Ideology's temple), a stove 28, a work bench 27 (and Vanilla Factions
+  Expanded - Empire's ballroom 10000 for an instrument, now standing down in a temple or a dining room: "Ballrooms only
+  for music rooms"). Rimfolk read only that one role: council meetings, play-outs and feasts, visitors and the advisor
+  looked for the room named dining room, then rec room. The player's dining room with an altar, lectern, ritual spot and
+  drum shows as a temple, so its meetings and meals went elsewhere, or out into the open air; a rec room shown as
+  something else brought the advisor's idea of building one.
+- **The reading** (`RoomUseMath`, pure, in the tests; `RoomUtil.ServesAsDining`, `ServesAsRec`): a room serves as a
+  dining room when it holds a dining table of the colony's (a building with an eating surface, as the game's dining room
+  counts them), and as a rec room when it holds a recreation building of the colony's (one with a kind of recreation,
+  `building.joyKind`, as the game's rec room counts them), whatever role the game shows: a temple, a ballroom, a throne
+  room, a kitchen with a table. Built ones only, in a proper room (not the open air or a whole cave). Never a private
+  room (`RoomUseMath.PrivateRoles`): a prison cell, or a room the game calls a bedroom, barracks, hospital, prison cell or
+  prison barracks, Biotech's nursery or deathrest chamber, Anomaly's containment cell, Hospitality's guest room, Dubs Bad
+  Hygiene's bathrooms and sauna, or the coma room of the framework some mods use. The reading is kept for a second of
+  game time.
+- **The order** (`RoomUtil.DiningRooms`, `RecRooms`, `RoomUseMath.Order`): the rooms the game calls a dining room (or
+  rec room) first, then those that serve as one, the largest first within each; so every place keeps its own order of
+  preference with the named room first. Also `IsDiningRoom`, `IsRecRoom`, `IsCommonRoom`, `AnyDiningRoom`,
+  `AnyRecRoom`, `DiningRank` (a table's room: 0 named, 1 serving) and `RoomsFor` (a role named by an ambition or a room
+  plan: the dining and rec rooms by use, any other by the game's role).
+- **Where it is read so**: council meetings (`CouncilMeeting.FindVenue`: around the dining table, then the rec room,
+  then a gathering spot, then the open air) and their announced venue (`Ambitions.MeetingVenue`); play-outs and feasts
+  (`PlaySpots.TryFind`, Dining and Rec); visitors kept in from the cold (`Visitors.IndoorsCell`) and a guest's corner for
+  the night (`VisitorServices.Corner`); a wedding needs a marriage spot or a room to eat in (`HappeningWorker_Wedding`);
+  the advisor's idea of a rec room (only with no room that serves as one) and of dressing up the dining room, the rec
+  room plan on the recreation advice (only with no rec room), the dining room's seats and cramped space, the rec rooms'
+  games, the seats for those who ate without a table, and rooms with no light; the art wish (art where people eat and
+  relax) and the roofed way's table; ambitions' rooms (`Goal_Room`, `Goal_RoomStat`) and a planned room's neighbours
+  (`TemplatePlanner.RoleCenters`: a kitchen planned near the dining room, a latrine kept from it); the base review (a
+  room of a kind it doesn't tell apart is read as a dining or rec room by what is in it, and its little map colours it
+  so; a kitchen or rec room with tables also counts as a dining room for the walks to meals); a work of art's card (the
+  game's moods for eating and relaxing read the room where it happens, so a temple with tables is "everyone who eats
+  here feels its impressiveness"); a corner for each faith; the rec room a Hospitality guest may want of a home before joining;
+  quarrels at a table; in from the rain to the table; a group's evenings in the rec room; crowded rooms.
+- **The words match the map.** A rec room the game calls something else is named as the game shows it: "in the
+  temple" (`CC_Venue_InRoom`, `PlaySpots.RecVenue`), "a corner of the temple" (`CC_FaithClash_CornerIn`). Around a
+  dining table it is "around the dining table" in any room.
+- **Kept on the game's one role, and why**: the game's own roles and moods (Rimfolk changes no role here; the game's
+  eating and recreation moods already read the room's impressiveness wherever it happens); words that name a room as the
+  game shows it (a guest lodged "in the temple", the crowded room's name, a god's doing, the room under the mouse on the
+  base review's map, the name offered for a room of your own); where someone with no bed may lie down
+  (`Autonomy.OkRole`: a kitchen or temple with a table stays out, by what the room is for); the rooms of every other
+  role (bedrooms, barracks, hospitals, prison cells, kitchens, workshops, laboratories, barns) and the visitors' private
+  rooms (`KeepOut`, `GuestHelpMath.PrivateRoom`); the journal's moods, which are the game's own thoughts.
+- Tests: `RoomUseTests` (the reading, the order, the player's rooms, and every place above reading the rooms through
+  `RoomUtil`; only the kept places compare the game's dining or rec role directly).
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
