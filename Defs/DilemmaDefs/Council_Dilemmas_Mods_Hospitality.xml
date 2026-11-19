@@ -47,7 +47,7 @@
         </effects>
       </li>
       <li>
-        <label>Take {X_objective} in, with a gift to {FACTION}</label>
+        <label>Take {X_objective} in, with 150 silver for {FACTION}</label>
         <outcome>A hundred and fifty silver went out to the {FACTION} party at the gate with the council's thanks, and {X_nameDef} stayed behind. The parting was warmer than anyone expected.</outcome>
         <ways><openness>4</openness><generosity>3</generosity></ways>
         <effects>
@@ -98,7 +98,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>The food, the bed, the hammering from the workshop at dawn: {X_nameDef} of {FACTION} has been through all of it with {A_nameDef}, at length. {X_nameDef} wants to know what the colony means to do about it before {X_pronoun} tells everyone on the road.</li>
+      <li>{X_nameDef} of {FACTION} has complained to {A_nameDef} at length about the food, the bed and the hammering from the workshop at dawn. {X_nameDef} wants to know what the colony means to do about it before {X_pronoun} tells everyone on the road.</li>
       <li>[x:roompoor|x:nobed] {X_nameDef} paid for a bed and got a cold corner, by {X_possessive} account, and this morning caught {A_nameDef} by the sleeve to ask for the silver back.\n\n{FACTION} are neighbors the colony would like to keep.</li>
       <li>{X_nameDef} has been miserable since {X_pronoun} arrived, and has decided it's the colony's fault. This morning {X_pronoun} told {A_nameDef} that {FACTION} will hear what kind of welcome this place gives.</li>
     </texts>
