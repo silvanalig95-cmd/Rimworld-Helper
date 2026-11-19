@@ -18,7 +18,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Rimfolk_Arc_GettingClean</defName>
     <label>getting clean</label>
-    <summary>Someone in withdrawal from a drug, and a friend who sits with them of an evening, stays with them through the worst night and raises a cup at supper once the addiction is gone. A slip back to the drug ends it without blame, and it can begin again another time.</summary>
+    <summary>Someone in withdrawal from a drug has a friend who sits with them in the evenings, stays with them through the worst night, and raises a cup to them at supper once the addiction is gone. A slip back to the drug ends it without blame, and it can begin again another time.</summary>
     <workerClass>ColonyCouncil.ArcWorker_GettingClean</workerClass>
     <weight>1.5</weight>
     <maxDays>70</maxDays>
@@ -44,7 +44,7 @@
           <warm><li>{OTHER_nameDef} is trying to get clean. I'm going to be there every evening I can.</li></warm>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is trying to get clean, and {OTHER_nameDef} is to sit with {PAWN_objective} of an evening.</li>
+          <li>{PAWN_nameDef} is trying to get clean, and {OTHER_nameDef} will sit with {PAWN_objective} in the evenings.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an evening with {A_nameDef}</label><who>B</who><whom>A</whom><hours>18~21</hours><duration>1.5~2</duration></li>
@@ -125,7 +125,7 @@
       <warm><li>[relapse] {OTHER_nameDef} still sat with me after I slipped. That's what I'll remember.</li></warm>
     </fizzle>
     <fizzleChronicle>
-      <li>[relapse] {PAWN_nameDef} took the drug again. Nobody blames {PAWN_objective}, and the next try is {PAWN_possessive} own to make.</li>
+      <li>[relapse] {PAWN_nameDef} took the drug again. Nobody blames {PAWN_objective}, and {PAWN_pronoun} can try again when {PAWN_pronoun} is ready.</li>
       <li>{PAWN_nameDef} isn't clean yet.</li>
     </fizzleChronicle>
     <eulogy>
@@ -143,7 +143,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Rimfolk_Arc_NewLeg</defName>
     <label>the new leg</label>
-    <summary>A replacement leg fitted by the game's own operation: first steps with a friend at their side, a frustrating day, the first full day's work at what they do best, and pride.</summary>
+    <summary>After a replacement leg is fitted by the game's own operation, a colonist takes the first steps with a friend at their side, has a frustrating day, manages a full day's work at what they do best, and is proud of it.</summary>
     <workerClass>ColonyCouncil.ArcWorker_NewLimb</workerClass>
     <weight>1.5</weight>
     <maxDays>30</maxDays>

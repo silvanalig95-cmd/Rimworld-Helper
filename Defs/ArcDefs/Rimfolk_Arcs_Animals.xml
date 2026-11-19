@@ -15,7 +15,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_OldCompanion</defName>
     <label>an old companion</label>
-    <summary>A bonded animal has grown old. Its person notices the gray at its muzzle, gives it slow afternoons and one more good day, and keeps every morning it gets up. Its death, when it comes, is the story's end.</summary>
+    <summary>A bonded animal has grown old. Its person notices the gray around its muzzle, spends quiet afternoons with it, takes a day off to give it one more good day, and is glad of every day after. If the animal dies first, its death ends the story.</summary>
     <workerClass>ColonyCouncil.ArcWorker_OldCompanion</workerClass>
     <children>true</children>
     <weight>1.2</weight>
@@ -71,7 +71,7 @@
       </li>
       <li>
         <label>one more good day</label>
-        <waiting>Next: time.</waiting>
+        <waiting>Next: more days together.</waiting>
         <journal>
           <plain>
             <li>I took the day off and took {PET_nameDef} everywhere {PET_pronoun} used to like going. We were slow. We got there.</li>
@@ -94,7 +94,7 @@
         <gate><kind>Time</kind><days>8</days><minDays>5</minDays></gate>
       </li>
       <li>
-        <label>every morning a gift</label>
+        <label>still together</label>
         <journal>
           <plain>
             <li>{PET_nameDef} is still here. Slower every week, and still here. I've stopped counting the days and started keeping them.</li>
@@ -108,7 +108,7 @@
           <cold><li>{PET_nameDef} remains in reasonable health for {PET_possessive} age. I'm gladder of it than I'd admit to anyone.</li></cold>
         </journal>
         <chronicle>
-          <li>{PET_nameDef} is still with {PAWN_nameDef}, slower every week, and {PAWN_nameDef} keeps every day of it.</li>
+          <li>{PET_nameDef} is still with {PAWN_nameDef}, slower every week, and {PAWN_nameDef} makes the most of every day.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_EveryDayAGift</thought></li>
@@ -130,7 +130,7 @@
       <cold><li>[otherdead] {PET_nameDef} died of old age this morning. A good span. I'm finding it harder than I expected.</li></cold>
     </fizzle>
     <fizzleChronicle>
-      <li>[otherdead] Old {PET_nameDef} died, with {PAWN_nameDef} beside {PET_objective} to the end.</li>
+      <li>[otherdead] Old {PET_nameDef} died, and {PAWN_nameDef} had looked after {PET_objective} to the end.</li>
       <li>{PAWN_nameDef} and old {PET_nameDef} took their days one at a time.</li>
     </fizzleChronicle>
     <eulogy>
@@ -147,7 +147,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Orphan</defName>
     <label>raised by hand</label>
-    <summary>A young animal of the colony's has lost its mother, and someone takes it on: fed by hand, kept warm at night, taught to follow. When it's grown, the two may bond.</summary>
+    <summary>A young animal of the colony's has lost its mother, and a colonist takes it on, feeding it by hand, keeping it warm at night and teaching it to follow. When it's grown, the two may bond.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Orphan</workerClass>
     <children>true</children>
     <weight>1.2</weight>
@@ -155,7 +155,7 @@
     <stages>
       <li>
         <label>small enough to hold</label>
-        <waiting>Next: hours at its side, {PAWN_nameDef} and {PET_nameDef}.</waiting>
+        <waiting>Next: {PAWN_nameDef} spends some hours near {PET_nameDef}.</waiting>
         <journal>
           <plain>
             <li>{PET_nameDef}'s mother is gone. I've made {PET_objective} a nest of sacking by my bed, and I'm up every few hours with the milk.</li>
@@ -211,7 +211,7 @@
       </li>
       <li>
         <label>growing</label>
-        <waiting>Next: {PET_nameDef} grown.</waiting>
+        <waiting>Next: {PET_nameDef} grows up.</waiting>
         <journal>
           <plain>
             <li>{PET_nameDef} doesn't fit in my lap any more and hasn't noticed. I haven't told {PET_objective}.</li>
@@ -284,7 +284,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Stray</defName>
     <label>the stray</label>
-    <summary>A wild animal keeps coming to the edge of the colony, and someone starts leaving scraps out. If it stays, they ask the handlers to try it, and the stray comes home. If it leaves the land, it's over.</summary>
+    <summary>A wild animal keeps coming to the edge of the colony, and a colonist starts leaving scraps out. If it stays, they ask the handlers to tame it, and it joins the colony. If it leaves the area, the story ends.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Stray</workerClass>
     <children>true</children>
     <weight>0.9</weight>
@@ -292,7 +292,7 @@
     <stages>
       <li>
         <label>a visitor at dusk</label>
-        <waiting>Next: a few days. Will it stay?</waiting>
+        <waiting>Next: a few days, to see if it stays.</waiting>
         <journal>
           <plain>
             <li>There's {PET_indefinite} that keeps turning up at dusk, always the same distance from the door. It watches us. I watch it back.</li>
@@ -338,7 +338,7 @@
       </li>
       <li>
         <label>closer every day</label>
-        <waiting>Next: the stray, tamed.</waiting>
+        <waiting>Next: the handlers tame the stray.</waiting>
         <journal>
           <plain>
             <li>I asked the handlers to try the stray. It knows me now. It might let them close.</li>
@@ -351,7 +351,7 @@
           <cold><li>The stray is habituated. I've had it marked for taming.</li></cold>
         </journal>
         <chronicle>
-          <li>The stray lets {PAWN_nameDef} close now, and {PAWN_nameDef} has asked the handlers to bring it in.</li>
+          <li>The stray lets {PAWN_nameDef} come close now, and {PAWN_nameDef} has asked the handlers to tame it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~21</hours><duration>0.5~0.75</duration></li>
@@ -395,7 +395,7 @@
     </fizzle>
     <fizzleChronicle>
       <li>[gone] The stray {PAWN_nameDef} fed has gone back to the wild.</li>
-      <li>The stray never quite came in.</li>
+      <li>The stray kept its distance and was never tamed.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -411,7 +411,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_AnimalRivalry</defName>
     <label>a feud with an animal</label>
-    <summary>One of the colony's animals and one colonist have taken against each other: an ambush in the doorway, a stolen lunch, open war. In time, a grudging truce, and a friendship neither will admit to.</summary>
+    <summary>One of the colony's animals and a colonist have taken a dislike to each other. The animal keeps running at them and off again, and it gets worse before the two settle into an uneasy truce and, in the end, a friendship.</summary>
     <workerClass>ColonyCouncil.ArcWorker_AnimalRivalry</workerClass>
     <children>true</children>
     <weight>0.9</weight>
@@ -480,7 +480,7 @@
           <cold><li>{PET_nameDef} and I have reached an understanding. I'll observe whether it holds.</li></cold>
         </journal>
         <chronicle>
-          <li>{PET_nameDef} accepted the crust off {PAWN_nameDef}'s bread today. A truce, of sorts.</li>
+          <li>{PET_nameDef} took a crust of bread from {PAWN_nameDef} today, which looks like the start of a truce.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>17~20</hours><duration>0.5~1</duration></li>
@@ -523,7 +523,7 @@
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PET_nameDef} died before {PAWN_nameDef} and {PET_objective} made their peace.</li>
-      <li>{PAWN_nameDef} and {PET_nameDef} settled into a wary distance.</li>
+      <li>{PAWN_nameDef} and {PET_nameDef} never made friends, and keep out of each other's way.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>

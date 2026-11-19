@@ -278,8 +278,22 @@ repo.
   since the interface batches but for one reason). Left as the brief said: the wish lines in `Defs/FlavorPoolDefs/`
   (`Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, `Council_Wish_Voices`,
   the wish parts of `Council_Mods_People_Lines`), and the wishes' talk in `InteractionDefs`.
-  Still to pick, when the player asks: the gods and faith, personal stories, council questions, the peoples, camps and
-  visitors, the region map, council and decrees, the Almanac, What's new.
+  Personal stories, done (19 November 2026, the same go; built, not released): the entry "Plain words: personal stories"
+  above the newest release line. Files taken: every personal story in `Defs/ArcDefs/` (`Council_Arcs_Bonds`, `_Crafts`,
+  `_Heart`, `_Home`, `_Mods_Magic`, `Rimfolk_Arc_FearLaid`, `Rimfolk_Arcs_Ages`, `_Animals`, `_LifeNew`,
+  `_Mods_PokeWorld`, `_Three`, `_Together`, `_World`, and the extra chronicle lines of `Rimfolk_Arcs_MoreWords`: each
+  story's summary, its stages' names, what the Story tab says comes next, the chronicle lines that also make the letter
+  at the end, the chronicle lines when a story comes to nothing, and the names of what is staged on the map), and the
+  stories' Keyed words (`Rimfolk_Arcs.xml`, the stray's message and the farewell in `Rimfolk_Animals.xml`, the
+  stories' marks over heads in `Rimfolk_HarmSeven.xml`, read again: plain since the interface batches but for the
+  settings' count of stages, the stray's message and one mark). Left as the player said: the journal lines in every
+  story (the colonist's, the other's and the third's, the fizzle lines and the eulogies are journals), the stories'
+  talk (`Council_Arc_Talks`, `Rimfolk_Arc_Lives_Talks`, the talks in the story files: `InteractionDefs`), their moods
+  (`Council_Arc_Thoughts`, `Rimfolk_Arc_Lives_Thoughts`, the ThoughtDefs in the story files) and the quirks and names
+  they leave (`Council_Arc_Keepsakes`: character). The region's follow-ups and the memory of single colonists
+  (`World/Region/FollowUps.cs`, `World/ColonistMemory.cs`) are the region's, not personal stories: for the region map.
+  Still to pick, when the player asks: the gods and faith, council questions, the peoples, camps and visitors, the
+  region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -292,6 +306,72 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.268.4, **Plain words: personal stories**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  twelfth batch of the plain-words pass: the colonists' personal stories, all 39 of them (the long way home to back to
+  it, the animals' four, PokéWorld's partner, A RimWorld of Magic's long discipline): what each story is (its summary,
+  the Story tab's tooltip), its stages' names, what the Story tab says comes next, the chronicle lines (read one after
+  another, they are also the letter that tells the story when it ends well), the chronicle lines when it comes to
+  nothing, and the names of what is staged on the map. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 770 lines read, 162 rewritten (159 in the story files, 3 Keyed). Riddling or cut-short lines
+    said plainly ("The first days are behind {PAWN_nameDef}. {LOST} is not." is "The first days of grief are over for
+    {PAWN_nameDef}, but {PAWN_pronoun} still thinks of {LOST} all the time"; "{PAWN_nameDef} trusts the council again.
+    Not blindly." "again, though not blindly"; "Someone has been crying at night ... It's {PAWN_nameDef}" names them
+    first), things given a will ("Fear has a hold on", "The camp's fire draws", "The craving won this time", "the dream
+    let {PAWN_objective} be"), images and invented idioms ("cooling, slowly, the way a hearthstone does", "left
+    {PAWN_objective} in the dirt", "a careful word at a time", "the wall gave way", "the homecoming has worn thin",
+    "{OTHER_nameDef} carries {PAWN_nameDef}'s craft"), twists at the end ("and it was unremarkable", "chose back", "and
+    in no hurry"), and the summaries' colon lists as plain sentences ("Days out on the road, a traveler misses someone
+    at home. Back again, the two of them sit up late while the whole journey is told" is "A colonist away on a journey
+    misses someone at home. Once back, the two of them sit up late while the traveler tells them about the whole
+    journey"). Stage names that were images say what the stage is ("the empty place" **the first days**, "small things
+    again" **better days**, "the weight of it" **keeping quiet**, "the body tells" **slowing down**, "every morning a
+    gift" **still together**, "news on the wind" **bad news**, "over, mostly" **still afraid**, "under one roof"
+    **talking it out**, "no faith left" and "faith restored" **no trust left** and **trust restored**, as it is the
+    council they mean); what comes next says what the story waits for ("Next: time. Grief doesn't hurry." is "Next: a
+    few days to grieve."). The stray's message says the handlers will tame it, and a mage's slip in the storm "the spark
+    jumped" is "shocked by the spark".
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("two old goats", "open war" with the
+    colony's dog, "the cooks have noticed", "if {PAWN_nameDef} can stay awake for them"). The stories' names stay as
+    they are in the Almanac, README and the colonists' records ("the road calls", "one more spring", "a grudge laid
+    down"), and so do the one-word stage names `Tools/textcheck.py` holds as identifiers ("square", "maybe",
+    "cooling", "there"). The retired lines `Lean/ShippedLines.cs` names (the long discipline's two fizzle lines about
+    "the wall", never drawn) stay word for word; their drawn fellows in `Rimfolk_Arcs_MoreWords.xml` are rewritten.
+    Journals (every journal, fizzle and eulogy line in the story files), the stories' talk (`InteractionDefs`), moods
+    (`ThoughtDefs`) and the quirks and names they leave (character) are on the player's leave list. Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block or placeholder people changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken).
+  - **Put right against the code.** An old companion's summary said its death "is the story's end", but the story ends
+    well at its last stage while the animal lives, and only its death before then ends it with a farewell
+    (`ArcTracker`: the last stage completes it); the summary, the Almanac's animals table and README now say "if it
+    dies first". The feud with an animal promised "an ambush in the doorway, a stolen lunch", but what is staged is the
+    animal running at its colonist's heels and off again (`AnimalScene.Pester`); the summary says that. Passing it on
+    said the student is taught "until they're nearly as good" and "has nearly caught up", but the student starts at
+    least four levels below the elder and the lessons wait for two levels gained (`ArcWorker_Elder`, the gate's `gain`
+    2); they now say the student has gained two levels and come a long way. The road calls had the colonist walk the
+    travelers "to the boundary stone", but they see them off at the colony's gate (`PlaySpot.Gate`); it says the gate,
+    and so does the walk's name. A grudge laid down said the anger dated "since {LOST}" died, but a vendetta can be for
+    someone taken (`Vendetta.kidnapped`); it says "what happened to {LOST}". Word from far away called the news "the
+    traders' news", but it is a world event the colony hears of in any way; it says the news. One more spring's last
+    line had the elder answering "the children's questions" in a colony that may have none; it says the days in the
+    sun, as staged. The settings' tip said three or four stages; a story has three to five (`ArcDef.ConfigErrors`).
+    Checked and true as written: three quiet days before the old wounds' talk (`NoFriction` 72 hours), the Wanderer
+    after 15 days away, the dreads of the dark, storms and the eclipse (the quirks the fear faced starts from).
+  - **Code map.** No code changed: def text in `Defs/ArcDefs/`, three Keyed lines (`Rimfolk_Arcs.xml`,
+    `Rimfolk_Animals.xml`, `Rimfolk_HarmSeven.xml`), one Almanac table row (`Almanac_Council_Animals.xml`, keywords
+    unchanged) and one README line.
+  - **Can't be checked without the game.** How the letter that ends a story reads now its chronicle lines are plainer,
+    beside the journal lines quoted under it, which keep their voice; whether the new stage names fit the message at the
+    top ("{PAWN_nameDef}'s story (a long grief) moves on: better days").
+  - **Try in the game.** Dev actions "Rimfolk": "Personal story: list what could begin", then "Personal story: begin
+    one for..." on a colonist (a long grief, the one left, a grudge laid down, a fear faced, the road calls, a rival in
+    love) and "Personal story: next stage" to move it on; read each message at the top, the Story tab's "Next:" line
+    and, at the end, the letter. Begin an old companion and let it finish with the animal alive (the letter), then
+    another where the animal dies (the farewell). Begin the stray and read the message when the handlers are asked to
+    tame it.
+  - **Mods that would help.** None for this; it is text only.
 - 0.268.3, **A god's mark worth having** (19
   November 2026; the player: "so the god events and occurences are super cool! but many of them just generate a single
   stone [chunk]?? it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a

@@ -1407,9 +1407,9 @@ The herd and the pets are part of the colony's life, not only its larder and its
 - **Visitors for the animals:** a drovers' animal doctor tends the colony's hurt and sick animals where they stand
   and, paid, works one through a step of its training; a travelling beast show camps with beasts from far places to
   buy, takes one of the colony's grown beasts for seven tenths of its worth, and lets the children help feed them.
-- **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
-  by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
-  a grudging truce.
+- **Personal stories:** an old companion's last good days (if it dies first, its death ends the story with a
+  farewell), an orphan raised by hand until the two may bond, a stray that comes in from the edge of the colony, a feud
+  with an animal that ends in a grudging truce.
 - **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
   crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
   the ideoligion frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.

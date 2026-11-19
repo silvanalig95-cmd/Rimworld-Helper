@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Personal stories in plain words
+
+*19 November 2026, version 0.268.4*
+
+- Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.
+- Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.
+- An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.
+
 ## A god's mark worth having
 
 *19 November 2026, version 0.268.3*

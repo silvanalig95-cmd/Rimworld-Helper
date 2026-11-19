@@ -12,7 +12,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_PM_Discipline</defName>
     <label>the long discipline</label>
-    <summary>A mage or a fighter of the old arts hits a wall in their training, talks it through with someone who has been there, works at it day after day, and comes out the other side a level stronger.</summary>
+    <summary>A mage or a fighter stops making progress in their training, talks it over with someone further along or a close friend, practices day after day, and gains a level in their art.</summary>
     <workerClass>ColonyCouncil.ArcWorker_MagicDiscipline</workerClass>
     <weight>1.1</weight>
     <maxDays>70</maxDays>
@@ -39,7 +39,7 @@
           <plain><li>{OTHER_nameDef} has had a face like thunder all week, practicing the same thing over and over. I know that look. I wore it for a year.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has come up against a wall in {PAWN_possessive} art, and has spent a week walking into it.</li>
+          <li>{PAWN_nameDef} has stopped making progress in {PAWN_possessive} art, and keeps trying to get past the point where {PAWN_pronoun} is stuck.</li>
           <li>{PAWN_nameDef} has stopped getting better at {PAWN_possessive} art, and knows it.</li>
         </chronicle>
         <gate>
@@ -53,7 +53,7 @@
       </li>
       <li>
         <label>the long practice</label>
-        <waiting>Next: {PAWN_nameDef} grows a level stronger in {PAWN_possessive} art.</waiting>
+        <waiting>Next: {PAWN_nameDef} gains a level in {PAWN_possessive} art.</waiting>
         <journal>
           <plain>
             <li>{OTHER_nameDef} watched me try it once and told me to mind my breathing. Practiced with that in mind until supper, and something shifted.</li>
@@ -72,14 +72,14 @@
           <plain><li>{OTHER_nameDef} has been out practicing before dawn every day since we talked. I didn't tell {OTHER_objective} to do that. I'm glad of it.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>Early and late, {PAWN_nameDef} goes through the same forms of {PAWN_possessive} art, over and over.</li>
+          <li>Every morning and evening, {PAWN_nameDef} goes through the same exercises of {PAWN_possessive} art, over and over.</li>
           <li>Since talking with {OTHER_nameDef}, {PAWN_nameDef} has thrown {PAWN_objective}self into training.</li>
         </chronicle>
         <gate><kind>Custom</kind><gain>1</gain><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
       </li>
       <li>
         <label>the breakthrough</label>
-        <waiting>Next: a few quiet days for {PAWN_nameDef} to make the new strength {PAWN_possessive} own.</waiting>
+        <waiting>Next: a few quiet days for {PAWN_nameDef} to get used to the new level.</waiting>
         <journal>
           <plain>
             <li>It happened in the middle of an ordinary morning. The working I've failed a hundred times simply went right, as if it had never been hard.</li>
@@ -97,7 +97,7 @@
           <plain><li>{OTHER_nameDef} came to find me grinning like a child. Didn't need to say a word. I remember the day it happened to me.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>The wall gave way. {PAWN_nameDef} is through it, and a level stronger in {PAWN_possessive} art.</li>
+          <li>{PAWN_nameDef} has made a breakthrough and gained a level in {PAWN_possessive} art.</li>
           <li>After weeks of the same practice, {PAWN_nameDef} is a level stronger in {PAWN_possessive} art.</li>
         </chronicle>
         <effects>
@@ -107,7 +107,7 @@
         <gate><kind>Time</kind><days>3</days><minDays>1</minDays><timeoutDays>10</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>
       <li>
-        <label>an art of one's own</label>
+        <label>at ease in the art</label>
         <journal>
           <plain>
             <li>The forms aren't something I'm trying to remember any more. They're simply how I move now.</li>
@@ -128,7 +128,7 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has made {PAWN_possessive} art {PAWN_possessive} own.</li>
+          <li>{PAWN_nameDef} is at ease in {PAWN_possessive} art now, and has found {PAWN_possessive} own way of doing it.</li>
           <li>{PAWN_nameDef} came out of the long training stronger, and {OTHER_nameDef} was there for all of it.</li>
         </chronicle>
         <effects>
