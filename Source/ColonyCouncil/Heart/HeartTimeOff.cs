@@ -551,3 +551,21 @@ namespace ColonyCouncil
         }
     }
 }
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// A day off lifts the mood while it lasts (the player, 19 November 2026: "giving someone a day off should also have a
+    /// mood impact for while it lasts"): a situational mood that reads the heart's day off each time the game asks, so it
+    /// goes the moment the day off ends or danger cuts it short. Only the day off the player gives, not a bad afternoon.
+    /// </summary>
+    public class ThoughtWorker_HeartDayOff : RimWorld.ThoughtWorker
+    {
+        protected override RimWorld.ThoughtState CurrentStateInternal(Verse.Pawn p)
+        {
+            if (!ColonyCouncilMod.Settings.MoodEffects || !HeartTimeOff.DayOffOn) return RimWorld.ThoughtState.Inactive;
+            var h = Heart.Of(p);
+            return h != null && Heart.Eligible(p) && h.Off(TimeOffKind.DayOff) ? RimWorld.ThoughtState.ActiveAtStage(0) : RimWorld.ThoughtState.Inactive;
+        }
+    }
+}

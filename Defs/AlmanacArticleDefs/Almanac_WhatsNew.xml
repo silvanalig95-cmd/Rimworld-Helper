@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.266.7</version>
+        <date>19 November 2026</date>
+        <title>A day off, felt</title>
+        <points>
+          <li>A colonist you give a day off now has the mood "a day off" (+6) for as long as it lasts, gone when it ends or you end it early.</li>
+          <li>The day off still eases strain faster while it runs and more when it runs its course, as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.6</version>
         <date>19 November 2026</date>
         <title>Rooms by what is in them</title>

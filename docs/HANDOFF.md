@@ -131,12 +131,8 @@ repo.
   firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
   Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
   what was left.
-- **To do when the player asks (19 November 2026): a day off lifts the mood while it lasts.** The player: "giving
-  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
-  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
-  eased faster) has no mood of its own. **The lead's proposal, waiting for the player's go**: a situational mood "a day
-  off" (+6, about a party's) while the heart's day off runs (a `ThoughtWorker` reading `h.Off(TimeOffKind.DayOff)`),
-  gone when it ends or is cut short by danger; plain words ("A whole day to myself, with nothing I have to do.").
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
+  The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
   player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
   would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
@@ -284,6 +280,16 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.266.7, **A day off lifts the mood**
+  (19 November 2026). The player: "giving
+  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
+  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
+  eased faster) has no mood of its own. The go: "yes, please", "all the three". **What was built**: `ThoughtWorker_HeartDayOff` (in
+  `Heart/HeartTimeOff.cs`) and `Defs/ThoughtDefs/Rimfolk_Thoughts_DayOff.xml` (`Rimfolk_Heart_DayOff`, "a day off", +6,
+  "A whole day to myself, with nothing I have to do."): situational, there while `h.Off(TimeOffKind.DayOff)`, with the
+  mood effects and the day off's setting on; not for a bad afternoon. Almanac (the council page's "A day off you give").
+  Tests: `HeartDayOffMoodTests` (new). Try in the game: give a strained colonist a day off from the Mood tab; their
+  moods list "a day off" +6 until it ends or "End it early". Mods that would help: none.
 - 0.266.6, **Rooms judged by what is in
   them** (19 November 2026). The player (17 November 2026): "I have a dining room ... But what I also have in there is a
   drum and also the ideology, lectern and ritual spot ... The altar and the lectern ... I want the gatherings where food
