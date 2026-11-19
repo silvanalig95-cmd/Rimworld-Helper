@@ -5183,6 +5183,22 @@ and drills" in the annals); the review named more overlapping pairs. Each was lo
   itself). A petition for a form not listed is let go quietly. The drills' bouts and the militia's muster keep their
   risk lines (`hurts` Drills and Muster, "Drills that bruise").
 
+### What the decrees and seats say they do (the plain-words pass, 19 November 2026; released 0.269.5)
+
+Every decree's description and card lines say what its code does, with its numbers (the hediff's stats, the decree's
+own fields, `DecreeWork`, `DecreeFaith`, `LeaningMath`), and who likes or minds it as its `reactions` have it (first
+match wins; the volatile are the game's Nerves -2, the nervous -1). The seats' duties carry their hediffs' numbers. Two
+places where the code did something the words didn't say were put right in the code:
+
+- **The hunting season marks its game with answers kept off the map.** Its morning hunt (`DecreeDef.daily`) went
+  through `DilemmaEffect_Hunt`, which marks nothing while "Answers play out on the map" is off, so the decree did
+  nothing then. With `always`, the hunt marks the game's own hunting work either way, as wood for the winter
+  (`DilemmaEffect_MarkTrees`) and foraging days (`DilemmaEffect_Forage`) always did. It still needs someone set to hunt
+  with a hunting weapon, and keeps to safe game (`HuntsBite.SafeOnly`).
+- **The marshal speeds the fighting drills only.** The marshal's half again (`OfficeTracker.DrillFactor`) applied to
+  every decree's hourly practice, apprenticeships' and shared meals' too; it now applies to those with
+  `practiceNeedsViolence` (the drills and the militia's drills), as the seat's duty says.
+
 ### Working through it (3.2.1, ailments and health stories)
 
 With the everyday ailments on, a strained back or a sprained ankle that is untended and out of bed counts its hours of

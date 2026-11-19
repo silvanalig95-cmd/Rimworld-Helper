@@ -340,7 +340,7 @@
   <CC_Heart_ThoughtWhy>built up by {0}</CC_Heart_ThoughtWhy>
   <CC_Heart_StatLine>Strain, {0}: x{1}</CC_Heart_StatLine>
   <CC_Heart_StatDecree>Decree, {0}: x{1}</CC_Heart_StatDecree>
-  <CC_Heart_DecreeStrain>Builds about {0} strain a day in those who resent it.</CC_Heart_DecreeStrain>
+  <CC_Heart_DecreeStrain>Builds {0} strain a day in those who dislike it, and half again in those who hate it.</CC_Heart_DecreeStrain>
   <CC_Heart_TrustGrateful>grateful to the council</CC_Heart_TrustGrateful>
   <CC_Heart_AweInspired>A feeling of awe inspired {PAWN_nameDef}.</CC_Heart_AweInspired>
   <CC_Decree_NeedsHeart>Needs feelings and strain switched on (Mod settings, Heart &amp; health page).</CC_Decree_NeedsHeart>

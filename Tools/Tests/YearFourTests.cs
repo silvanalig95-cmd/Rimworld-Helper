@@ -216,6 +216,11 @@ public static class YearFourTests
         string daily(string name) => string.Join(",", decrees.First(d => (string)d.Element("defName") == name).Element("daily")!.Elements("li").Select(Cls));
         C(daily("Rimfolk_Decree_HuntingSeason") == "DilemmaEffect_Hunt" && daily("Rimfolk_Decree_WoodForWinter") == "DilemmaEffect_MarkTrees" && daily("Rimfolk_Decree_Foraging") == "DilemmaEffect_Forage",
             "the land's year: game, trees and wild plants marked each morning, one each");
+        C((string)decrees.First(d => (string)d.Element("defName") == "Rimfolk_Decree_HuntingSeason").Element("daily")!.Element("li")!.Element("always") == "true"
+          && Code("PlayOut/PlayOutEffects.cs").Contains("if (!(PlayOuts.On || always) || ctx?.map == null) return;"),
+            "the hunting season marks its game whether or not answers play out on the map, as the trees and wild plants are");
+        C(Code("Decrees/Decrees.cs").Contains("a.def.practiceXpPerHour * (a.def.practiceNeedsViolence ?"),
+            "the marshal speeds the fighting drills only, not apprenticeships or shared meals");
         string desc(string name) => (string)decrees.First(d => (string)d.Element("defName") == name).Element("description");
         C(new[] { "Rimfolk_Decree_HuntingSeason", "Rimfolk_Decree_WoodForWinter", "Rimfolk_Decree_Foraging" }.All(x => Regex.IsMatch(desc(x), @"\btribe\b") && Regex.IsMatch(desc(x), @"\b(industrial|spacer)\b")),
             "each decree of the land's year says how a tribe and a later colony keep it");

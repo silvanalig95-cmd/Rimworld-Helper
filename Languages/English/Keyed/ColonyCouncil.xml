@@ -1004,7 +1004,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Decrees -->
   <CC_Tab_Decrees>Decrees</CC_Tab_Decrees>
   <CC_Decrees_Header>Decrees</CC_Decrees_Header>
-  <CC_Decrees_Sub>Trade some of the colony's good mood for what it needs, or some of what it has for a better mood. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
+  <CC_Decrees_Sub>Trade some of the colony's good mood for what it needs, or some of what it has for a better mood. Up to {0} decrees at a time. Everyone reacts according to their nature: living under a decree they dislike wears down their trust in the council each day, and one they like builds it.</CC_Decrees_Sub>
   <CC_Decrees_State>Average mood: {0}. Standards: {1}.</CC_Decrees_State>
   <CC_Decree_InForce>(in force, {0} left)</CC_Decree_InForce>
   <CC_Decree_Enact>Enact for {0}</CC_Decree_Enact>

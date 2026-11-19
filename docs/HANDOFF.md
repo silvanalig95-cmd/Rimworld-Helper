@@ -367,8 +367,25 @@ repo.
   pools), the moods (`ThoughtDefs`), the journals, and the talk with outsiders (`OutsiderTalkDefs`, `Rimfolk_Outsiders`).
   "Camps and visitors" is all done: the camps (0.269.1), the encounters (0.269.3), the missions and the
   visitors (built, not released).
-  Still to pick, when the player asks: the gods and faith, the peoples, the region map, council and decrees, the
-  Almanac, What's new.
+  The council and its decrees, done (19 November 2026, the same go; built, not released): the entry "Plain words: the
+  council and its decrees" above the newest release line. Files taken: every decree in `Defs/DecreeDefs/`
+  (`Council_Decrees`, `Council_Decrees2`, `Council_Decrees3`, `Council_Decrees4`, `Rimfolk_Decrees_Faith`,
+  `Rimfolk_Decrees_YearFour`: names, descriptions, the card's lines of what each does, the heart's advice on what it
+  helps and costs, and the names of the gatherings declaring one sets going; `Rimfolk_DecreeLines_Year` read and left:
+  it is all for-and-against talk), the seats in `Defs/OfficeDefs/` (`Council_Offices`, `Council_Offices2`,
+  `Council_Offices3`: names, descriptions, duties, the election letter's lines on each winner, the promises candidates
+  run on; `Rimfolk_OfficeWords`: the seats' names by age, the extra promises and records), the talk topics in
+  `Defs/TopicDefs/` (`Rimfolk_Topics`, `_Life`, `_Together`: labels and the views on the character page), and the
+  council window's, meetings', elections' and decrees' Keyed words read again (the `CC_Decree`, `CC_Decrees`,
+  `CC_Office`, `CC_Offices`, `CC_Meeting`, `CC_MeetWhy`, `CC_MeetDo`, `CC_MeetWait`, `CC_Venue`, `CC_Heckle`,
+  `CC_Election`, `CC_Trust` and decree cause and log keys of `ColonyCouncil.xml`, `Rimfolk_DecreesPage`,
+  `Rimfolk_Decrees_Distinct`, `Rimfolk_Governance`, `Rimfolk_Election`, `Rimfolk_Election_Record`,
+  `Rimfolk_Election_Seats`, the decree keys of `Rimfolk_Faith`, `Rimfolk_Faith_Council`, `Rimfolk_Heart`,
+  `Rimfolk_HeartCounts`, `Rimfolk_YearFour`, `Rimfolk_Kept`, `Rimfolk_Harm`; plain since the interface batches but
+  for seven lines). Left as the player said: the decrees' `support` and `oppose` lines and `Rimfolk_DecreeLines_Year`
+  (talk, said in bubbles and quoted in the letters), the militia's first muster's `lines` (speech), the co-sign lines
+  and the meeting's pools (talk), the decrees' and seats' moods (`ThoughtDefs`) and their hediffs (ailments).
+  Still to pick, when the player asks: the gods and faith, the peoples, the region map, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -381,6 +398,79 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.269.5, **Plain words: the council and its
+  decrees** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The eighteenth batch of the plain-words pass: the 36 decrees (names, descriptions, the card's lines of
+  what each does, the heart's advice, the names of the gatherings declaring one sets going), the twelve council seats
+  (descriptions, duties, the election letter's line on each winner, the promises candidates run on, the seats' names by
+  age), the talk topics' views on the character page, and the council window's, meetings', elections' and decrees'
+  Keyed words. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 570 lines read in the defs (and the 390 for-and-against lines beside them, talk, left) and
+    about 480 Keyed lines; 180 rewritten (112 in the decrees, 55 in the seats, 1 topic view, 7 Keyed, 5 lines of the
+    Almanac's decree table). Every decree's description now says what its code does, with its numbers and who likes
+    or minds it as its `reactions` have it: images in place of the effect ("Weapons within reach, eyes on the horizon,
+    sleep in shifts" is "Everyone stays alert and keeps a weapon close for four days. Shooting and melee are a little
+    more accurate, and everyone tires 15% faster"; "Lamps out and voices down after dark: no hammering, no music, no late
+    talk at the table" for quiet hours, which turn nothing off, is "Five days of keeping quiet after dark, so that
+    everyone sleeps better. Everyone rests 15% faster in bed and social fights happen half as often, but all work is 5%
+    slower"; "The fields, the quarry and the workshop sing" is "Five days of singing at work"; "water, a little bread at
+    sundown, and nothing else ... heads feel strangely clear" is "learns 10% faster"; "the best at each trade take on
+    the rest as apprentices ... the masters' own work slows" is "all work is 8% slower while people teach and learn"),
+    claims the map never shows (shared meals "at set times, at the same table", work stopping for meals, rooms "chillier
+    and evenings darker" under banked fires, the curfew's barred gate and the night owls' watch, the market's word to
+    peoples "nearby"), and vague amounts given their numbers ("trade prices improve a little" is 3%, "a little more milk,
+    wool and eggs" is 3% more milk and wool, the seats' "more persuasive" and "steadier" their stats). The seats'
+    descriptions say what each does on the map (the marshal's word after a fight, the physician's rounds, the steward at
+    gatherings, the reeve's deliveries, the herdmaster minding pets) instead of "first to the wall", "sets bones and
+    decides who's fit to work" or "until they can stand to look at each other". The election letter's lines on a winner
+    lose their twists ("which would surprise {PAWN_nameDef} most of all", "Nobody believes it", "move two of the
+    sandbags a hand's width to the left", "the herd voted too, and it was unanimous", "a stranger is only a stranger
+    until supper", "the faith is a lamp, not a whip"); the doctor's "the second rule is also clean hands" and "to general
+    groaning" stay as ordinary jokes, the latter as "and people groan".
+  - **Put right against the code** (the text, and the Almanac's decree table where it said the same). The curfew sets
+    the schedule's hours 22 to 5 to sleep, which is until six in the morning, not five (`DecreeWork.NightHours`); night
+    owls, babies and the sleepless simply keep their hours, nobody "keeps the watch". A market day needs a friendly
+    people that sends caravans, not one "near" (`MarketFactions` has no distance; `CC_Decree_NoTraders` too). Best
+    behavior helps trading, recruiting and diplomacy, not taming (social impact and negotiation). The herdmaster's yield
+    is milking and shearing (`AnimalGatherYield`), not eggs. The quartermaster's quarter less also covers what decrees
+    take from the stores (`DilemmaEffect_Consume` reads `CostFactor`). The one-faith decree draws about 4% a day by
+    openness (0.4 to 1.6 times, half for a faith that frowns on preaching; `LeaningMath.Feed`), not "up to 4%", and its
+    believers talk of it half again as often (`DecreeTalkFactor`). Days of rest drain strain 75% faster (1.75), not
+    "about twice". Holy days steady everyone (the hediff is everyone's), not only the faithful. The strain line on a
+    decree's card names those who dislike it and half again for those who hate it. Foraging days never mark wild
+    healroot (the Almanac said they did; only food plants are marked). Reactions as the rules have them: the volatile
+    (Nerves -2) told apart from the nervous (the market day, the work song, open gates), the industrious liking long
+    hours, the lazy liking rest when ill, love and like as written. Famine bread names all the hard times it answers (a
+    famine, a drought, a locust swarm or a blight) and that it is listed only while the colony's own food lasts eight
+    days. Two things the code did were put right in the code instead, a commit of their own before the text (DESIGN.md
+    "What the decrees and seats say they do"): the hunting season marked nothing with "Answers play out on the map" off
+    (its hunt went through the play-out hunt), and now marks the game's own hunting work either way (`always`), as wood
+    for the winter and foraging days do; and the marshal's half again in practice applied to apprenticeships and shared
+    meals too, and now only to the drills and the militia's drills, as the seat says.
+  - **Left as they were.** The decrees' for-and-against lines (`support`, `oppose`, `Rimfolk_DecreeLines_Year`: talk,
+    said in bubbles and quoted in the letters), the militia's first muster's `lines`, the meeting's pools and the
+    co-sign lines (talk), the decrees' and seats' moods and hediffs, every name (a decree or seat in a save is known by
+    its defName, and the Almanac uses the names as keywords) and the seats' names by age, the long-hours and austerity
+    descriptions (the long hours' is an approved sample), the seats' promises and the topic views but
+    for three promises and one view, and the Keyed words but for seven lines. Every tag, placeholder and key kept;
+    `Tools/textcheck.py --base` the lead branch finds two things, both meant: the code fix's `always` on the hunting
+    season, and the Almanac's curfew line losing its "5".
+  - **Code map.** `Decrees/Decrees.cs` (the marshal's factor on fighting drills only), `PlayOut/PlayOutEffects.cs`
+    (`DilemmaEffect_Hunt.always`), `Rimfolk_Decrees_YearFour.xml` (`always` on the hunting season), YearFourTests (both);
+    def text in `Defs/DecreeDefs/` and `Defs/OfficeDefs/`, one view in `Rimfolk_Topics.xml`, seven Keyed lines
+    (`ColonyCouncil.xml`, `Rimfolk_DecreesPage`, `Rimfolk_Governance`, `Rimfolk_Faith`, `Rimfolk_Faith_Council`,
+    `Rimfolk_Heart`), five lines of `Almanac_Council.xml` (keywords unchanged), DESIGN.md (the new section).
+  - **Can't be checked without the game.** How the longer descriptions read in the decree card's tooltip, and the new
+    card lines in the decree's letter; the hunting season marking two animals each morning with "Answers play out on
+    the map" off; apprenticeships with a marshal in office training at their own pace.
+  - **Try in the game.** Council, Offices and decrees: hover each decree's name for its description and read its lines
+    against what happens while it holds (a curfew's schedule runs to six; a market day with no friendly caravan people
+    is greyed "No friendly people who send trade caravans"). Turn "Answers play out on the map" off, declare a hunting
+    season with a hunter armed: two animals are marked for hunting that morning and each morning after. Read the next
+    election letter's lines on each winner.
+  - **Mods that would help.** None for this; it is text and two small fixes.
 - 0.269.4, **Plain words: the missions and the
   visitors** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

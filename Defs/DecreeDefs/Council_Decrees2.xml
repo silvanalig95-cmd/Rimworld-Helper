@@ -6,7 +6,7 @@
     <defName>Council_Decree_Harvest</defName>
     <kind>work</kind>
     <label>harvest push</label>
-    <description>Everyone to the fields to sow, tend and harvest from first light to last. Crops come in faster and fuller, and backs ache. Growers enjoy it; the lazy and undergrounders hate it.</description>
+    <description>Four days of harder work in the fields. Sowing and harvesting are 30% faster and harvests yield 5% more. Those with a passion for growing like it; most others dislike it, and the lazy and undergrounders hate it.</description>
     <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
     <order>7</order>
     <strainPerDay>2</strainPerDay>
@@ -25,8 +25,8 @@
       <li><trait>Undergrounder</trait><reaction>Hate</reaction></li>
     </reactions>
     <effects>
-      <li>Plant work is 30% faster and harvests yield 5% more.</li>
-      <li>Growers like it; the lazy and undergrounders hate it.</li>
+      <li>Sowing and harvesting are 30% faster, and harvests yield 5% more.</li>
+      <li>Those with a passion for growing like it; most others dislike it, and the lazy and undergrounders hate it.</li>
     </effects>
     <support>
       <plain><li>If we don't get the harvest in this week, we'll be eating bark by midwinter.</li></plain>
@@ -45,7 +45,7 @@
     <defName>Council_Decree_Building</defName>
     <kind>work</kind>
     <label>building season</label>
-    <description>Every spare hand goes to walls, floors and tunnels. Construction and mining go much faster, and most colonists go to bed sore and covered in dust.</description>
+    <description>Five days of harder work on building and mining. Construction is 30% faster and mining 20% faster. Those with a passion for building or mining and the industrious like it; most others dislike it, and the lazy hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>8</order>
     <strainPerDay>2</strainPerDay>
@@ -66,7 +66,7 @@
     </reactions>
     <effects>
       <li>Construction is 30% faster and mining 20% faster.</li>
-      <li>Builders, miners and the industrious like it; the lazy hate it.</li>
+      <li>Builders, miners and the industrious like it; most others dislike it, and the lazy hate it.</li>
     </effects>
     <support>
       <plain><li>Give me a week and you won't recognize the place.</li></plain>
@@ -85,7 +85,7 @@
     <defName>Council_Decree_Manners</defName>
     <kind>order</kind>
     <label>best behavior</label>
-    <description>Everyone is on their best behavior: polite to traders, patient with prisoners, friendly to visitors. Trading, recruiting and talking people around all go better. The abrasive find it exhausting.</description>
+    <description>Everyone is on their best behavior with traders, prisoners and visitors. Negotiation and social impact are 25% higher, so trading, recruiting and dealing with other peoples go better, and trade prices are 3% better. The kind and the sociable like it; the abrasive hate it.</description>
     <requestWhen><li>Prisoners</li></requestWhen>
     <order>9</order>
     <durationDays>5</durationDays>
@@ -101,8 +101,8 @@
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
     <effects>
-      <li>Negotiation ability and social impact up 25%: better recruiting, taming and diplomacy.</li>
-      <li>Trade prices improve a little.</li>
+      <li>Negotiation ability and social impact up 25%: better trading, recruiting and diplomacy.</li>
+      <li>Trade prices 3% better.</li>
       <li>The kind and the sociable like it; the abrasive hate it.</li>
     </effects>
     <support>
@@ -122,7 +122,7 @@
     <defName>Council_Decree_Mourning</defName>
     <kind>spirit</kind>
     <label>days of mourning</label>
-    <description>All work slows by 30% so the colony can grieve together. Grief fades faster for those who lost someone, and they are less likely to break. Only possible while someone is grieving.</description>
+    <description>Two days in which all work is 30% slower so the colony can grieve together. Grief wears off much faster, and everyone is less likely to have a mental break. Only possible while someone is grieving.</description>
     <requestWhen><li>Grief</li></requestWhen>
     <order>10</order>
     <durationDays>2</durationDays>
@@ -144,8 +144,8 @@
     <heartCost>everyone works 30% slower for two days</heartCost>
     <effects>
       <li>Everyone works 30% slower.</li>
-      <li>Grief fades much faster, and mental breaks are less likely.</li>
-      <li>The grieving are grateful; psychopaths and the industrious find it a waste.</li>
+      <li>Memories of grief wear off much faster (each day ages them by an extra quarter of their length), and mental breaks are less likely.</li>
+      <li>Most colonists like it and the grieving love it; psychopaths and the industrious dislike it.</li>
     </effects>
     <support>
       <plain><li>We owe them this much. A few days of quiet.</li></plain>
@@ -163,7 +163,7 @@
     <defName>Council_Decree_OnGuard</defName>
     <kind>order</kind>
     <label>on guard</label>
-    <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires faster. The bloodthirsty like it; the nervous, the volatile and wimps hate it.</description>
+    <description>Everyone stays alert and keeps a weapon close for four days. Shooting and melee are a little more accurate, and everyone tires 15% faster. The bloodthirsty like it; the nervous, the volatile and wimps hate it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>11</order>
     <strainPerDay>3</strainPerDay>
@@ -182,9 +182,9 @@
       <li><trait>Wimp</trait><reaction>Hate</reaction></li>
     </reactions>
     <effects>
-      <li>Better aim and melee: shooting accuracy and hit chance go up.</li>
+      <li>Shooting accuracy up 2% and melee hit chance up 6%.</li>
       <li>Everyone tires 15% faster.</li>
-      <li>The bloodthirsty like it; the nervous and wimps hate it.</li>
+      <li>The bloodthirsty like it and the tough don't mind; the nervous, the volatile and wimps hate it.</li>
     </effects>
     <support>
       <plain><li>Let them come. We'll see them first.</li></plain>
@@ -203,7 +203,7 @@
     <defName>Council_Decree_CleanSweep</defName>
     <kind>order</kind>
     <label>clean sweep</label>
-    <description>Scrub everything: floors, tables, bedding, the hospital twice. Everyone who can clean puts it before their other work, even those not set to clean; fires, the sick and wounded, children, prisoners and meals still come first, and so do sleep, food and washing. With a cleaning area mod, the sweep keeps to its area. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
+    <description>Three days of cleaning the whole home. Everyone who can clean puts it before their other work, even those not set to clean. Fires, the sick and wounded, children, prisoners and cooking still come first, and so do sleep, meals and washing (this needs "Deeper game hooks" on). With a cleaning area mod, the sweep keeps to its area. Cleaning is 50% faster, wounds are tended a little better and immunity builds faster. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
     <requestWhen><li>Dirty</li><li>Wounded</li></requestWhen>
     <neededWhen><li>RecentThreat</li></neededWhen>
     <order>12</order>
@@ -224,8 +224,8 @@
     <effects>
       <li>Everyone who can clean does it before other work, after fires, the sick, children, prisoners and cooking.</li>
       <li>Cleaning is 50% faster.</li>
-      <li>Wounds are tended better and immunity builds faster.</li>
-      <li>Doctors and the wounded or ill like it; the lazy hate it.</li>
+      <li>Tending quality up 5% and immunity builds 10% faster.</li>
+      <li>Doctors and the wounded or ill like it and ascetics don't mind; most others dislike it, and the lazy hate it.</li>
     </effects>
     <support>
       <plain>
@@ -246,7 +246,7 @@
     <defName>Council_Decree_Rest</defName>
     <kind>spirit</kind>
     <label>days of rest</label>
-    <description>Shorter days, longer evenings, and no early mornings. Everyone works 10% slower, and strain drains about twice as fast. The worn out and the lazy are glad of it; the industrious would rather work. Only with feelings and strain switched on.</description>
+    <description>Three easier days. Everyone works 10% slower, and strain drains 75% faster. With "Answers play out on the map" on, the rest of the first day's working hours become free time for everyone but the industrious. Most colonists like it and the lazy love it; the industrious hate it and hard workers dislike it. Only with feelings and strain switched on.</description>
     <requestWhen><li>Strained</li></requestWhen>
     <order>13</order>
     <durationDays>3</durationDays>
@@ -265,12 +265,12 @@
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
     <!-- The heart's advice (Heart/HeartAdvice.cs): what it eases for a strained colonist, and what it costs. -->
-    <heartHelp>strain drains about twice as fast</heartHelp>
+    <heartHelp>strain drains 75% faster</heartHelp>
     <heartCost>everyone works 10% slower for three days</heartCost>
     <effects>
       <li>Everyone works 10% slower.</li>
-      <li>Strain drains about twice as fast while it holds.</li>
-      <li>Most colonists are glad of it, the lazy most of all; the industrious would rather work.</li>
+      <li>Strain drains 75% faster while it lasts.</li>
+      <li>Most colonists like it and the lazy love it; the industrious hate it and hard workers dislike it.</li>
     </effects>
     <support>
       <plain>

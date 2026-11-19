@@ -188,7 +188,7 @@
     <workerClass>ColonyCouncil.TopicWorker_Weather</workerClass>
     <interaction>Rimfolk_Talk_Weather</interaction>
     <viewFor>takes the weather as it comes</viewFor>
-    <viewAgainst>takes every cold snap and storm personally</viewAgainst>
+    <viewAgainst>complains about every cold snap and storm</viewAgainst>
     <relevance>0.7</relevance>
     <hotDays>2</hotDays>
     <seed><outlook>55</outlook><nerve>10</nerve><humour>15</humour></seed>
