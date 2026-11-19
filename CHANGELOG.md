@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Storylines, round 3
+
+*19 November 2026, version 0.267.0*
+
+- A dream of the gods: one of your devout dreams of a place for their god on your land. Build it, keep a night's watch there, and give the offering the dream asks for.
+- Raiders settling nearby: a neighbour warns of a raiders' camp. Build defences, meet their test raid, and help break the camp, or pay their price each season.
+- The town's well ran dry: send water or meals and lend a miner or builder for a few days. The well is found, or some of the town's people ask to join you.
+- The vault's sealed case: components for a failing vault and an engineer at your bench, then a sealed case left in your care to keep or to open.
+- The lost founder's grave: search a marked area for a people's founder and host their mourners. They come back each year while the grave is kept.
+- A cache in old ruins: the one quest that sends your people out, offered only when the ruins are within three tiles.
+
 ## Letters in plain words
 
 *19 November 2026, version 0.266.9*

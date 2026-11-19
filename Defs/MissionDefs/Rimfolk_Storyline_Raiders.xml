@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S9, raiders settling nearby (Source/ColonyCouncil/Storylines/StorylineRaiders.cs; the rules in
+       Storylines/Flows/RaidersFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml).
+       {FACTION} is the people who warn the colony, {PLACE} their town, {OTHERPEOPLE} the raiders, {KIND} the raiders' kind of
+       camp by their age (a war camp, a brigands' hold, a bandit camp, a raider base), {TRAPS} the traps or turrets asked for,
+       {WALLS} the lengths of wall, {SILVER} the raiders' price this season, {COUNT} the neighbours' fighters who join the
+       colony's at the camp, {ITEM} the food and medicine asked for (in terms), {DAYS} the time once taken on. Lines tagged
+       [near] are for a camp within three tiles of the colony. -->
+
+  <!-- ===================== Part 1: defences ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RaidersDefences</defName>
+    <label>raiders settling nearby</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RaidersDefences</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Raiders of {OTHERPEOPLE} settling nearby</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have sent word from {PLACE}: raiders of {OTHERPEOPLE} are setting up a {KIND} in the region. {FACTION} ask the colony to build defences and keep watch, in case the raiders come its way.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Build defences</label>
+            <outcome>The colony will build its defences.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will deal with the raiders themselves.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>raiders</story>
+        <part>defences</part>
+        <start>true</start>
+        <terms>
+          <li>If the colony agrees, it has {DAYS} to build {TRAPS} traps or turrets, or {WALLS} lengths of wall, fence or barricade. Only what is built from now on counts.\n\nIf the colony is ready by then, its watch will see the raiders coming before they reach it. If not, they may come with no warning.</li>
+        </terms>
+        <accepted>
+          <li>The colony will build {TRAPS} traps or turrets, or {WALLS} lengths of wall, fence or barricade, within {DAYS}.</li>
+        </accepted>
+        <reminder>
+          <li>The defences {FACTION} asked for are not finished yet.</li>
+        </reminder>
+        <endTitles>
+          <li>[ready] The colony is ready</li>
+          <li>[partly] The colony is partly ready</li>
+          <li>[unready] The colony is not ready</li>
+        </endTitles>
+        <ends>
+          <li>[ready] The colony built the defences {FACTION} asked for. Its watch will see the raiders of {OTHERPEOPLE} coming.</li>
+          <li>[partly] The colony built part of the defences {FACTION} asked for.</li>
+          <li>[unready] The colony built few of the defences {FACTION} asked for.</li>
+        </ends>
+        <good><li>ready</li></good>
+        <bad><li>unready</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the raid that tests the colony ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RaidersRaid</defName>
+    <label>raiders testing the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RaidersRaid</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{OTHERPEOPLE} mean to test the colony</li>
+        </titles>
+        <texts>
+          <li>A few days ago {FACTION} warned the colony that raiders of {OTHERPEOPLE} were setting up a {KIND} in the region. Now their scouts say the raiders mean to test the colony with a small raid before they move against {FACTION}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Meet them</label>
+            <outcome>The colony will be ready for the raiders.</outcome>
+          </li>
+          <li>
+            <label>Keep out of it</label>
+            <outcome>The raiders will turn to {FACTION} instead.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>raiders</story>
+        <part>raid</part>
+        <terms>
+          <li>If the colony agrees to meet them, a small band of {OTHERPEOPLE} attacks the colony within a few days. If the colony beats them off, {FACTION} will think well of it and will ask it to help break the {KIND}. If the raiders have the better of the colony, they will ask it for silver.\n\nIf the colony keeps out of it, the raiders turn to {FACTION} instead, and the colony has no more part in it.</li>
+        </terms>
+        <accepted>
+          <li>The raiders of {OTHERPEOPLE} will come within a few days.</li>
+        </accepted>
+        <notes>
+          <li>[watch] The colony's watch has seen raiders of {OTHERPEOPLE} on their way. They will be here in a few hours.</li>
+        </notes>
+        <endTitles>
+          <li>[watch] Raiders seen</li>
+          <li>[repelled] The raiders beaten off</li>
+          <li>[overrun] The raiders had the better of the colony</li>
+          <li>[quiet] The raiders did not come</li>
+        </endTitles>
+        <ends>
+          <li>[repelled] The colony beat off the raiders of {OTHERPEOPLE}. {FACTION} have heard of it.</li>
+          <li>[overrun] The raiders of {OTHERPEOPLE} had the better of the colony's people, and have gone back to their {KIND}.</li>
+          <li>[quiet] The raiders of {OTHERPEOPLE} did not come after all. {FACTION} still mean to deal with their {KIND}.</li>
+        </ends>
+        <good><li>repelled</li></good>
+        <bad><li>overrun</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the strike on the camp ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RaidersStrike</defName>
+    <label>a strike on the raiders' camp</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RaidersStrike</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[near] Join the strike on the {KIND}</li>
+          <li>[!near] Supplies for the strike on the {KIND}</li>
+        </titles>
+        <texts>
+          <li>[repelled,near] A few days ago the colony beat off the raiders of {OTHERPEOPLE}. Now {FACTION} mean to strike their {KIND}, which is close to the colony, and they ask the colony's fighters to join them.</li>
+          <li>[repelled,!near] A few days ago the colony beat off the raiders of {OTHERPEOPLE}. Now {FACTION} mean to strike their {KIND}. It is too far off for the colony's people to go, so {FACTION} ask for food and medicine for their fighters.</li>
+          <li>[quiet,near] A few days ago the raiders of {OTHERPEOPLE} were expected at the colony, and did not come. Now {FACTION} mean to strike their {KIND}, which is close to the colony, and they ask the colony's fighters to join them.</li>
+          <li>[quiet,!near] A few days ago the raiders of {OTHERPEOPLE} were expected at the colony, and did not come. Now {FACTION} mean to strike their {KIND}. It is too far off for the colony's people to go, so {FACTION} ask for food and medicine for their fighters.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Help with the strike</label>
+            <outcome>The colony will help {FACTION} against the {KIND}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will go against the {KIND} alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>raiders</story>
+        <part>strike</part>
+        <terms>
+          <li>[near] If the colony agrees, the {KIND} is marked on the world map for {DAYS}. It is within three tiles of the colony, about a day on foot. Send a caravan of the colony's fighters there, and {COUNT} fighters of {FACTION} will join them on the camp's land. If every fighter of the camp falls, the {KIND} is gone.\n\nIf the colony's people do not go in time, {FACTION} go alone, and they may fail. If the strike fails, {OTHERPEOPLE} will ask the colony for silver each season.</li>
+          <li>[!near] If the colony agrees, {FACTION}'s carts come for {ITEM} within three days. Their fighters set out once they have it, and word of how the strike went comes a few days later. With the colony's food and medicine, the strike is more likely to succeed.\n\nIf the strike fails, {OTHERPEOPLE} will ask the colony for silver each season.</li>
+        </terms>
+        <accepted>
+          <li>[near] The {KIND} of {OTHERPEOPLE} is marked on the world map. Form a caravan of the colony's fighters and send it there.</li>
+          <li>[!near] The colony will have {ITEM} ready for {FACTION}'s carts.</li>
+        </accepted>
+        <notes>
+          <li>[allies] {COUNT} fighters of {FACTION} have joined the colony's people at the {KIND} of {OTHERPEOPLE}.</li>
+          <li>[setout] {FACTION}'s fighters have set out for the {KIND} with the colony's food and medicine.</li>
+          <li>[setoutshort] {FACTION}'s fighters have set out for the {KIND} without the colony's food and medicine.</li>
+        </notes>
+        <endTitles>
+          <li>[allies] Fighters of {FACTION}</li>
+          <li>[cleared] The {KIND} is broken</li>
+          <li>[failed] The strike failed</li>
+        </endTitles>
+        <ends>
+          <li>[cleared,joined] The colony's people and the fighters of {FACTION} broke the {KIND} of {OTHERPEOPLE}. {FACTION} thank the colony.</li>
+          <li>[cleared,!joined,near] The colony's people did not come, and {FACTION} went against the {KIND} of {OTHERPEOPLE} alone. They broke it all the same.</li>
+          <li>[cleared,!joined,!near] {FACTION} sent word: their fighters broke the {KIND} of {OTHERPEOPLE}, and thank the colony for its help.</li>
+          <li>[failed,joined] The colony's people left the {KIND} of {OTHERPEOPLE} with its fighters still standing. The strike failed.</li>
+          <li>[failed,!joined,near] The colony's people did not come, and {FACTION} went against the {KIND} of {OTHERPEOPLE} alone. The strike failed.</li>
+          <li>[failed,!joined,!near] {FACTION} sent word: their strike on the {KIND} of {OTHERPEOPLE} failed, and their fighters have come home.</li>
+        </ends>
+        <good><li>cleared</li></good>
+        <bad><li>failed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The raiders' price, each season ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_RaidersTribute</defName>
+    <label>the raiders' price</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RaidersTribute</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{OTHERPEOPLE} want {SILVER} silver</li>
+        </titles>
+        <texts>
+          <li>[overrun,!tribute:paid,!tribute:declined] A few days ago the raiders of {OTHERPEOPLE} had the better of the colony's people. Now they have sent word from their {KIND}: they want silver from the colony, or they will come for it.</li>
+          <li>[failed,!tribute:paid,!tribute:declined] A few days ago the strike on the {KIND} of {OTHERPEOPLE} failed. Now the raiders have sent word: they want silver from the colony, or they will come for it.</li>
+          <li>[alone,!tribute:paid,!tribute:declined] A few days ago {FACTION} went against the {KIND} of {OTHERPEOPLE} without the colony's help, and failed. Now the raiders have sent word: they want silver from the colony, or they will come for it.</li>
+          <li>[tribute:paid|tribute:declined] Last season {OTHERPEOPLE} asked the colony for silver. Their {KIND} is still there, and they have sent word again: they want silver from the colony, or they will come for it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay them</label>
+            <outcome>Someone of the colony will carry the silver out to them.</outcome>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>{OTHERPEOPLE} will come for it.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>raiders</story>
+        <part>tribute</part>
+        <terms>
+          <li>{OTHERPEOPLE} want {SILVER} silver this season. If the colony pays, someone of the colony carries the silver out to the edge of its land and leaves it there for them. If the colony refuses, or does not have the silver when it agrees, a band of them comes for it within a day or two.\n\nThey will ask again each season for a year, and then move on.</li>
+        </terms>
+        <endTitles>
+          <li>[paid] The raiders paid</li>
+        </endTitles>
+        <ends>
+          <li>[paid] Someone of the colony is carrying {SILVER} silver out to the edge of its land for {OTHERPEOPLE}.</li>
+        </ends>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

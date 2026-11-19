@@ -8,7 +8,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Dev mode: the quests at home, round 1's six and round 2's seven ("Rimfolk", "Quests at home: ..."). Offer one now (into the Quests tab, as the
+    /// Dev mode: the quests at home, round 1's six, round 2's seven and round 3's cache in old ruins ("Rimfolk", "Quests at home: ..."). Offer one now (into the Quests tab, as the
     /// storyteller would), accept the open one, bring on what it waits for now (their people coming, the days held over,
     /// their handler or collector), end it with any of its outcomes, and what it keeps (log).
     /// </summary>
@@ -22,7 +22,9 @@ namespace ColonyCouncil
             "Rimfolk_Mission_TameFor",
             // Round 2 (Workers_MissionHome3.cs, Workers_MissionHome4.cs).
             "Rimfolk_Mission_Trainee", "Rimfolk_Mission_WeddingPiece", "Rimfolk_Mission_SickAnimal", "Rimfolk_Mission_CampGuard", "Rimfolk_Mission_SeedKept",
-            "Rimfolk_Mission_BookCopy", "Rimfolk_Mission_Musicians"
+            "Rimfolk_Mission_BookCopy", "Rimfolk_Mission_Musicians",
+            // Round 3, the one away quest (Workers_MissionHome5.cs).
+            "Rimfolk_Mission_RuinsCache"
         };
 
         private static Mission Open() => Missions.All.FirstOrDefault(m => m.Open && HomeQuests.IsOurs(m));
@@ -151,6 +153,10 @@ namespace ColonyCouncil
                 case HappeningWorker_MissionMusicians q13:
                     outcomes = HappeningWorker_MissionMusicians.DebugOutcomes;
                     end = o => q13.DebugEnd(m, map, o);
+                    break;
+                case HappeningWorker_MissionRuinsCache q14:
+                    outcomes = HappeningWorker_MissionRuinsCache.DebugOutcomes;
+                    end = o => q14.DebugEnd(m, map, o);
                     break;
                 default:
                     Say("not a quest at home.");

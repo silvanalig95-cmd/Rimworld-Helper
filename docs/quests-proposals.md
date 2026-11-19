@@ -80,7 +80,7 @@ pilgrims blame the colony. If the thief's camp is within 3 tiles, the colony may
 pilgrims go themselves. Ending: with the relic back, they ask to leave it at the colony's shrine for a year, and
 pilgrims come to visit it.
 
-**S6. A dream of the gods** (the colony's own faith; the gods stay unseen). 1. A devout colonist dreams of a place
+**S6. A dream of the gods** (the colony's own faith; the gods stay unseen). Built in round 3, not released yet (DESIGN.md, "Storylines, round 3, and the one away quest"); the place is an altar, a shrine or a work of art given to the god, and what happens there is a light over it during a night's watch). 1. A devout colonist dreams of a place
 on the colony's ground and of something to build there for a god. The quest is the dreamer's, named as they would tell
 it ("Ines's dream"), and the god is named only as the colony knows it. 2. Something happens at what was built, one of
 that god's own happenings, seen. 3. The dream comes back and asks for an offering of a kind. Given, it goes into the
@@ -98,23 +98,23 @@ with one adult; host them for some days. 2. A card gives three choices: take the
 them a place with a neighbour (their new people come to fetch them), or send them on with food. 3. Seasons later, one
 of them comes back grown, as a visitor, a trader or someone who asks to join.
 
-**S9. Raiders settling nearby** (the region; uses the raiders' camp). 1. The neighbours ask the colony to build
+**S9. Raiders settling nearby** (the region; uses the raiders' camp). Built in round 3, not released yet (DESIGN.md, "Storylines, round 3, and the one away quest"); the camp is the region's kind of camp, the strike's only within three tiles, and the price each season is a part of its own for a year). 1. The neighbours ask the colony to build
 defences by a date and keep watch. 2. The raiders test the colony with a small raid. 3. If their camp is within
 3 tiles, the neighbours ask the colony to join a strike on it. Otherwise the neighbours go, and the colony sends food
 and medicine for the fighters. Endings: the camp is gone, or the raiders demand payment each season (a card: pay or
 fight).
 
-**S10. The town's well ran dry** (the Deepwell Union; any town). 1. The town asks for water or food for some days.
+**S10. The town's well ran dry** (the Deepwell Union; any town). Built in round 3, not released yet (DESIGN.md, "Storylines, round 3, and the one away quest"); the lent hand walks off with the town's foreman and walks home, no caravan of the colony's). 1. The town asks for water or food for some days.
 2. They ask for a builder or driller to be lent; the colonist goes for some days and comes back with more skill.
 3. Endings: with the new well, the town grows and remembers the help. If the well isn't found, its people come to the
 colony as refugees, and the colony takes them in or turns them away.
 
-**S11. The vault's sealed case** (the Sunken Vault; any spacer people). 1. Power cells for the vault (built on today's
+**S11. The vault's sealed case** (the Sunken Vault; any spacer people). Built in round 3, not released yet (DESIGN.md, "Storylines, round 3, and the one away quest"). 1. Power cells for the vault (built on today's
 mission). 2. One of their engineers stays and works at the colony's bench and needs components. 3. They leave a
 sealed case in the colony's care. A card asks whether to open it or hand it back. Opened, it holds a sleeper who
 joins or flees, a machine that has to be fought, or old goods. Handed back, the vault owes the colony a favour.
 
-**S12. The lost founder's grave** (the region; any old people). 1. A people's elders say one of their founders is
+**S12. The lost founder's grave** (the region; any old people). Built in round 3, not released yet (DESIGN.md, "Storylines, round 3, and the one away quest"); the search is the lost keepsake's, and kept, they come for three years). 1. A people's elders say one of their founders is
 buried on the colony's land. They ask the colony to find the grave on the map and mark it (a search area on the map).
 2. On a set day, mourners come to the grave; host them for the day. 3. Endings: kept, and they come each year and
 remember the colony well. Built over, or the colony refused, and they hold it against the colony.
@@ -146,6 +146,8 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
 - **Q13. Musicians for a night.** Host their musicians for a night of music; it works as a party for the colony. *Built
   in round 2 (released 0.263.0).*
 - **Q14. A cache in old ruins** (away, only within 3 tiles). Their old map shows a cache close by. Go and bring it back.
+  *Built in round 3, not released yet: DESIGN.md "Storylines, round 3, and the one away quest" (the game's own item stash
+  site; at half a quest at home's chance, so under one single quest in ten sends anyone out).*
 
 ## Rounds
 
@@ -158,6 +160,7 @@ remember the colony well. Built over, or the colony refused, and they hold it ag
    some more" (16 November 2026). The seven single quests released, 0.263.0 (DESIGN.md "Quests at home, round 2"); S2, S3,
    S5 and S7 released, 0.264.0 (DESIGN.md "Storylines, round 2"; each storyline's rules a class of its own now,
    `Source/ColonyCouncil/Storylines/Flows/`, so round 3's add files and touch nothing shared).
-3. S6, S9, S10, S11, S12 and Q14 (the one away quest).
+3. S6, S9, S10, S11, S12 and Q14 (the one away quest), on the player's go of 19 November 2026 ("Quests round 3 sounds
+   great"): built, not released yet (DESIGN.md "Storylines, round 3, and the one away quest").
 
-The player can strike or change anything in round 3 before it starts.
+Every storyline and quest of the plan is now built.

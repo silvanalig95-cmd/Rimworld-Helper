@@ -3599,8 +3599,10 @@ collected on the day; a **sick animal** of theirs is handed over at the gate to 
 when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
 fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
 sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
-keeps a copy; and **musicians** stay a night and play at the colony's party. A tribe pays in goods of its own, everyone
-else in silver. When the region knows the
+keeps a copy; and **musicians** stay a night and play at the colony's party. One more (not released yet) is the only one
+that sends the colony's people out, and only when the place is within three tiles: a neighbour's old map shows a **cache in
+old ruins** close by; a caravan brings it home, their people collect it and pay, and what else lay with it is the colony's.
+A tribe pays in goods of its own, everyone else in silver. When the region knows the
 town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
 one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
@@ -3633,7 +3635,23 @@ thief (handed over, kept prisoner, or let go); got away, the colony may go to th
 tiles, else the pilgrims search themselves with the colony's food; with the relic back, it stays a year at the colony's
 shrine and pilgrims come to see it. **Two towns' quarrel**: two peoples at odds make a truce at the colony with one of its
 people as witness, one side leaves a pledge for some days, then fighters of the other cross the colony's land to strike,
-and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Running and recent
+and the colony lets them pass (the two go to war), warns the first, or stops them at the gate. Five more (not released
+yet): **A dream of the gods**: one of the colony's devout dreams of a place on its land, marked on the map, and of a place
+for their god there; the colony builds an altar, a shrine or a work of art inside it and gives it to the god; on a night's
+watch there a light comes over it; then the dream comes back and asks for an offering of a kind at the place. Given, the
+colony's book of the gods keeps it as the dreamer believes it; refused, the dreamer is troubled for a while. The god is
+named only as the colony knows it, and nothing says what it thinks. **Raiders settling nearby**: a people nearby warns of a
+raiders' camp in the region; the colony builds defences (ready, its watch sees them coming), meets a small raid, then helps
+the neighbours strike the camp (with its own fighters if the camp is within three tiles, else with food and medicine for
+theirs); the camp gone, or the raiders ask a price each season for a year (paid, or refused and they come for it). **The
+town's well ran dry**: a town asks for water (where the colony keeps Dubs Bad Hygiene's) or meals, then for one of the
+colony's miners or builders, who walks off with their foreman for a few days and comes back more skilled; the well found,
+the town grows; not, some of its people ask to join the colony. **The vault's sealed case**: components for a vault's
+failing power cells, then one of its engineers working a few days at the colony's bench on a component a day, then a sealed
+case left in the colony's care: keep it sealed and hand it back (the vault owes a favour), or open it (someone asleep
+inside who joins or leaves, a machine that attacks, or old goods). **The lost founder's grave**: a people's founder lies on
+the colony's land; the colony searches a marked area for the grave (right-click inside it), hosts their mourners for a day,
+and kept, they come each year for three years; built over, they hold it against the colony. Running and recent
 storylines show on the region window's Neighbours page under the missions, with their parts so far.
 
 The region window's **Here and away** shows what's coming (questions waiting for an answer, caravans, carts and
