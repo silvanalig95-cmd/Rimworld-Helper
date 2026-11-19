@@ -285,7 +285,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Riding out to far work: the beast
+- 0.266.5, **Riding out to far work: the beast
   taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
   still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's
   done"; the go on the lead's fix, 19 November 2026: "yes, sounds good"). A bug fix. DESIGN.md "Riding out to far work:

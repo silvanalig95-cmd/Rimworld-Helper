@@ -1837,7 +1837,7 @@ its settings in `ModSettings_GiddyUp`):
   order and staying mounted at the spot; the handler riding a beast to its pen; how often the quarter's slack has them
   ride when the pen lies the other way.
 
-### Riding out to far work: the beast taken first (the player's report and go, 19 November 2026; not released yet)
+### Riding out to far work: the beast taken first (the player's report and go, 19 November 2026; released 0.266.5)
 
 The player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to
 mine without mounting up first? then the mount should wait for him until he's done". The go, 19 November 2026, on the

@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.266.5</version>
+        <date>19 November 2026</date>
+        <title>Mount up for far work</title>
+        <points>
+          <li>Colonists going out to far work now get on a free beast first whenever it is no further from them than the work, even with the pen the other way, instead of walking because walking was a little quicker.</li>
+          <li>A beast Giddy-Up still marks as kept for someone is passed over only while it waits for them, carries them or is being got on; an old mark no longer keeps it in the pen.</li>
+          <li>The beast left by the work keeps waiting while its rider works out there, until a day after the last job they began.</li>
+          <li>In development mode the riding out log starts with each colonist's last decision and whether they got on, and Rimfolk: check myself says when riding out is off and why.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.4</version>
         <date>18 November 2026</date>
         <title>Made for you</title>

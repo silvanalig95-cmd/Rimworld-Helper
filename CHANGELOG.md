@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Mount up for far work
+
+*19 November 2026, version 0.266.5*
+
+- Colonists going out to far work now get on a free beast first whenever it is no further from them than the work, even with the pen the other way, instead of walking because walking was a little quicker.
+- A beast Giddy-Up still marks as kept for someone is passed over only while it waits for them, carries them or is being got on; an old mark no longer keeps it in the pen.
+- The beast left by the work keeps waiting while its rider works out there, until a day after the last job they began.
+- In development mode the riding out log starts with each colonist's last decision and whether they got on, and Rimfolk: check myself says when riding out is off and why.
+
 ## Made for you
 
 *18 November 2026, version 0.266.4*
