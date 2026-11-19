@@ -365,6 +365,10 @@
     <beats>
       <li>
         <key>preachers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>preacher</what><ages>30~65</ages><stranger>false</stranger></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>preacher</what><ages>30~65</ages><enemy>true</enemy><stranger>false</stranger></li>
+        </effects>
         <day>1~3</day>
         <skill>Social</skill>
         <answerDays>2</answerDays>
@@ -507,6 +511,8 @@
             <outcome>Both peoples are sent the same answer. The food is set aside, and both delegations will come within days, though neither wants to eat with the other.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>delegation</what><count>2~3</count><spot>Gate</spot><nights>2</nights><hourFrom>9</hourFrom><hourTo>16</hourTo><delay>24~48</delay><holdBeat>talks</holdBeat></li>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>delegation</what><count>2~3</count><enemy>true</enemy><spot>Gate</spot><nights>2</nights><hourFrom>9</hourFrom><hourTo>16</hourTo><delay>24~48</delay><holdBeat>talks</holdBeat></li>
             </effects>
             <flags><li>hosting</li></flags>
             <help>1</help>

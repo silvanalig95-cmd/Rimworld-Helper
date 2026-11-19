@@ -452,6 +452,9 @@
     <beats>
       <li>
         <key>claim</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>prospector</what><gender>Male</gender><ages>25~60</ages><pack>true</pack><onward>true</onward></li>
+        </effects>
         <day>2~6</day>
         <answerDays>1.5</answerDays>
         <titles>
