@@ -195,7 +195,8 @@ namespace ColonyCouncil
         /// <summary>What they leave in thanks: fish of the colony's waters (Odyssey), else net cloth.</summary>
         public static ThingDef Thanks(Map map) => HappeningWorker_RiverCatch.Fish(map) ?? ThingDefOf.Cloth;
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Bank(map).IsValid && base.CanHappen(map, ext);
+        // Fouled water the colony left stops their nets until it is clean (Peoples/Events4/FouledWater.cs).
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Bank(map).IsValid && !FouledWater.CatchesStopped(map) && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

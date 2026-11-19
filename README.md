@@ -4661,6 +4661,27 @@ pilgrims stop at in spring and summer and the faithful pray at, mourned if it fa
 the colony's faith is near a split, a palmer brings them to **one table** for an evening, settled for a season or, by the
 speakers' Social, split anyway. The Almanac's peoples' pages say what each does.
 
+**The peoples' own events, the fourth round.** Eleven more, from the learned society, the spacer enclave, the river folk
+and the Lantern Wardens, each only while that people is at peace with the colony. When one of the colony's people becomes
+learned enough, the **society** sends a fellow to examine them, that evening before the colony or quietly at their side,
+the chance on the card; passed, they are named a **corresponding fellow**, with a lasting good memory, a book by the post
+each season and, with Vanilla Skills Expanded, the Researcher expertise. In summer its **summer school** camps for a week
+and teaches every afternoon at its table, the colony's books lent to it if it likes; the best student is examined sooner,
+and two fellows may fall into an argument that the colony's talker can end. The **enclave** offers a **contract to the last
+digit** for something the colony makes, due on a set day at a fifth over its worth, collected by its lander; short or late
+costs a fee and cooler terms. A broker's pod may come down hard on the colony's land, the broker hurt among the crates:
+**stranded** and tended, they pay a fifth of the cargo when their lander comes; robbed, the enclave does not forget. A
+**river warden** comes when the colony **fouls water** (a body in it, a wastepack or poisoned ground beside it) and asks
+for help cleaning it; left, the boat-trader and the nets stop coming. On their knot night the river folk's boatmen set
+**lanterns on the water** for everyone the colony lost or took in (Goji's Merren floating lanterns, which stay), and the
+colony may gather on the bank. When a flood takes their landing, families come **flooded out** to camp and fish on the
+colony's bank, their old and young the colony's guests with Hospitality, and tie a knot in the net for it as they go; and
+their **boat-builders** build a hull on the bank over a week from the colony's wild trees, sold as a dinghy with Vehicle
+Framework and Vanilla Vehicles Expanded. The **Wardens** write a great beast a colonist brought down into their book and tie
+a **red cord** on the hunter's sleeve (the Hunter expertise with Vanilla Skills Expanded, else a passion), come running to a
+**manhunt** and keep the hides of what they fell, and burn out insect **hives** near the colony with torches, molotovs or an
+incendiary launcher by their age, beside the colony's fighters or alone.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

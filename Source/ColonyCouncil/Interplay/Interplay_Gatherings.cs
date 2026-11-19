@@ -63,6 +63,8 @@ namespace ColonyCouncil
             FaithEvenings.Notify_GatheringOver(play, attended, early);
             // The pilgrims' palmer at a table of two faiths (Peoples/Events3/TwoFaiths.cs).
             TwoFaiths.GatheringOver(play, attended, early);
+            // The society's examination before the colony (Peoples/Events4/Fellowship.cs): its verdict at the evening's end.
+            Fellowship.GatheringOver(play, attended, early);
             if (!On || attended.NullOrEmpty() || early) return;
             Safe("interplay: convalescents at a gathering", () => Convalescents(attended));
             if (kind == PlayKind.Feast && !fed.NullOrEmpty()) Safe("interplay: the feast's table", () => FeastFresh(fed, map));

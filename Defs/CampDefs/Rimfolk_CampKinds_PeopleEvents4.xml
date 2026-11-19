@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 4 (Source/ColonyCouncil/Peoples/Events4/SummerSchool.cs, FloodedOut.cs, BoatBuilders.cs;
+    each a camp kind with ways of its own, Camps/CampWorker.cs): the learned society's summer school (item 21), the river
+    folk's families flooded out of their landing (item 29), and their boat-builders (item 30). None comes on the camps'
+    own draw (weight 0): each comes when the colony answers its event (Rimfolk_Evt_SummerSchool, Rimfolk_Evt_FloodedOut,
+    Rimfolk_Evt_BoatBuilders).
+  -->
+
+  <!-- ===================== 21. The summer school (the learned society) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_SummerSchool</defName>
+    <label>summer school</label>
+    <workerClass>ColonyCouncil.CampWorker_SummerSchool</workerClass>
+    <arrives>6~10</arrives>
+    <calling>scholars</calling>
+    <weight>0</weight>
+    <people>2~3</people>
+    <days>7~7</days>
+    <ages>28~70</ages>
+    <hireChance>0.02</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0.05</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>table</role></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li></works>
+    <titles>
+      <li>The summer school</li>
+      <li>A school for the summer</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s summer school is walking in to the colony's land {PLACE}: {X_nameDef} and the other fellows, with their books and slates. They will teach every afternoon at their table.</li>
+      <li>[tribal] The fellows of {FACTION} are walking in {PLACE} with counting sticks and bundles of told lessons. They will teach every afternoon at their fire.</li>
+      <li>[spacer] {FACTION}'s fellows are walking in {PLACE} with their data slates in a case. They will give a lesson every afternoon at their table.</li>
+    </texts>
+    <settled>
+      <li>The summer school has made camp {PLACE}: two tents, a fire and a table under a lamp, with the afternoon's lesson already laid out on it.</li>
+      <li>{FACTION}'s fellows have set up their table {PLACE}, and {X_nameDef} has written the first afternoon's subject at the top of the first page.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the summer school says {X_pronoun} has learned as much from the colony's questions as the colony learned from the lessons, and asks whether there is room for a teacher here.</li>
+    </joinTexts>
+    <farewell>
+      <li>[books,lessons] The summer school packed its tents and went on, after setting the colony's books down by its camp and thanking everyone who came to the lessons.</li>
+      <li>[sulk] The fellows packed up early in the morning without much talk, still not on good terms after their argument.</li>
+      <li>[lessons] The summer school packed its tents and went on to the next place. {X_nameDef} thanked everyone who came to the lessons.</li>
+      <li>The summer school has gone, and the table where they taught is empty.</li>
+    </farewell>
+    <lines>
+      <li>Read it again, slowly this time.</li>
+      <li>A good question is worth more than a quick answer.</li>
+      <li>Write it down, or you will forget it by supper.</li>
+      <li>Who can tell me why?</li>
+      <li>We'll go over it again tomorrow.</li>
+    </lines>
+    <momentLines>
+      <li>[dispute] That is not what the text says, and you know it.</li>
+      <li>[dispute] Then show me where it is written.</li>
+      <li>[dispute] You are confusing the copy with the original.</li>
+      <li>[settled] All right, we'll agree to disagree.</li>
+      <li>[sulk] I have nothing more to say about it today.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the fellows of the summer school by their fire and heard about the archive and what it has lost over the years.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>lessonInt</key>
+        <label>Send {A_nameDef} to this afternoon's lesson in learning</label>
+        <tip>{A_nameDef} sits at the school's table this afternoon with one of the fellows. Practice in intellectual work, more with the colony's books on the table. Two lessons a day at most.</tip>
+        <once>false</once>
+        <skill>Intellectual</skill>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the school's table for this afternoon's lesson with {X_nameDef}.</li>
+          <li>[tribal] {A_nameDef} is going over to the fellows for an afternoon of counting and told lessons.</li>
+          <li>[medieval] {A_nameDef} is going over to the school's table, where {X_nameDef} has a slate ready.</li>
+          <li>[spacer] {A_nameDef} is going over to the school's table, where {X_nameDef} has the afternoon's lesson on a data slate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SchoolLesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>lessonMed</key>
+        <label>Send {A_nameDef} to this afternoon's lesson in medicine</label>
+        <tip>{A_nameDef} sits at the school's table this afternoon with one of the fellows. Practice in medicine, more with the colony's books on the table. Two lessons a day at most.</tip>
+        <once>false</once>
+        <skill>Medicine</skill>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the school's table for this afternoon's lesson in medicine.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SchoolLesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>lessonSoc</key>
+        <label>Send {A_nameDef} to this afternoon's lesson in speaking</label>
+        <tip>{A_nameDef} sits at the school's table this afternoon with one of the fellows. Practice in talking with people, more with the colony's books on the table. Two lessons a day at most.</tip>
+        <once>false</once>
+        <skill>Social</skill>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the school's table for this afternoon's lesson in speaking and arguing.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SchoolLesson"><teacher>X</teacher><student>A</student><skill>Social</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>lend</key>
+        <label>Lend them our books</label>
+        <tip>Up to three of the colony's books are carried out to the school's table. The lessons teach more with them there, and the fellows set them down for the colony when they leave.</tip>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>gaveLearning</deed>
+        <outcomes>
+          <li>Some of the colony's books are going out to the school's table, and {X_nameDef} has cleared a space for them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SchoolLend" />
+        </effects>
+      </li>
+      <li>
+        <key>food</key>
+        <label>Feed the fellows (6 meals)</label>
+        <tip>One of the colony carries six meals out to the school's camp, so the fellows can teach without cooking.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the summer school has come to the gate. Teaching every afternoon leaves the fellows little time to cook, {X_pronoun} says, and asks whether the colony could send them some meals.</li>
+        </askTexts>
+        <refuseLabel>We need them</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says the fellows will cook in the mornings, then, and teach a little less.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Six meals are going out to the school's camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the school</label><what>meals</what><count>6</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>settle</key>
+        <label>Send {A_nameDef} to end the fellows' argument</label>
+        <tip>{A_nameDef} goes over to the school's table and tries to talk the two fellows out of their argument before it turns into a sulk. How well it goes depends on {A_nameDef}'s skill with people.</tip>
+        <once>false</once>
+        <skill>Social</skill>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} is going over to the school's table to try to end the argument.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SchoolSettle" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 29. Flooded out (the river folk) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_FloodedOut</defName>
+    <label>flooded families</label>
+    <workerClass>ColonyCouncil.CampWorker_FloodedOut</workerClass>
+    <arrives>6~10</arrives>
+    <calling>fishers</calling>
+    <weight>0</weight>
+    <people>5~8</people>
+    <days>5~10</days>
+    <ages>14~70</ages>
+    <family>true</family>
+    <work>fish</work>
+    <chopsPerDay>0.2</chopsPerDay>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.2</joinChance>
+    <helpChance>0.35</helpChance>
+    <help>
+      <li>fish</li>
+      <li>mend</li>
+    </help>
+    <buys>
+      <li>Medicine</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <situationKinds>
+      <li>water</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Fish</li><li>Gather</li></works>
+    <campGoods>
+      <li><defs><li>Cloth</li></defs><count>20~35</count><at>wall</at></li>
+    </campGoods>
+    <titles>
+      <li>Flooded out</li>
+      <li>Boats on the colony's bank</li>
+    </titles>
+    <texts>
+      <li>The families of {FACTION} are bringing their boats in to the colony's bank {PLACE}, with whatever they could save from the flood. {X_nameDef} is at the front, pointing out where to tie up.</li>
+      <li>[ws:water] With {SITUATION} downstream, the families of {FACTION} are bringing their boats in to the colony's bank {PLACE}, wet and tired.</li>
+    </texts>
+    <settled>
+      <li>The flooded families have made camp on the bank {PLACE}: tents, a fire, nets spread out to dry over a line, and children asleep in the boats.</li>
+      <li>{FACTION}'s families have pulled their boats up on the bank {PLACE} and made camp, and two of them are already fishing.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the flooded families says there is nothing left at their landing to go back to, and asks whether the colony could use someone who knows boats and nets.</li>
+      <li>{X_nameDef} from the families on the bank has been helping the colony's people all week, and asks whether {X_pronoun} might stay for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>[knot,racks] The families pushed their boats back into the river now that the water has gone down. Before they left, {X_nameDef} tied a knot in the net for the colony, and they left their drying racks on the bank.</li>
+      <li>[knot,guests] The families pushed off down the river, their old people and children collected from the colony's beds. {X_nameDef} tied a knot in the net for the colony before they went.</li>
+      <li>[knot] The families pushed their boats back into the river now that the water has gone down, and {X_nameDef} tied a knot in the net for the colony before they left.</li>
+      <li>The families packed their boats and went back down the river.</li>
+    </farewell>
+    <lines>
+      <li>Mind the nets, they're still wet.</li>
+      <li>The river's going down a little every day.</li>
+      <li>Keep the children away from the edge.</li>
+      <li>We'll mend that one tonight.</li>
+      <li>Bring the boat round, the current's easier there.</li>
+    </lines>
+    <momentLines>
+      <li>[fish] A good one, and it'll feed two.</li>
+      <li>[fish] The fish are back near the bank.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[fish] {X_nameDef} brought {COUNT} {THING} up from the families' catch and left it at the edge of their camp for the colony.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Send them food until their catch comes in (8 meals)</label>
+        <tip>One of the colony carries eight meals out to the families' camp. They only need help for their first few days, until they are catching enough to eat.</tip>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <askTexts>
+          <li>{X_nameDef} of the flooded families has come to the gate. Their catch is not enough yet to feed everyone, {X_pronoun} says, and asks whether the colony could spare some meals for the children and the old.</li>
+        </askTexts>
+        <refuseLabel>We need them</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will manage on what they catch.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>sheltered</deed>
+        <outcomes>
+          <li>Eight meals are going out to the families on the bank.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the families</label><what>meals</what><count>8</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>catch</key>
+        <label>Buy their catch: {THING}</label>
+        <tip>One of the families takes up the fish lying at their camp and carries it to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>catch</price>
+        <needs>theirCatch</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} sent one of the families to the baskets: the catch will be set down by the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampCatchSale" />
+        </effects>
+      </li>
+      <li>
+        <key>guests</key>
+        <label>Take their old and young in as our guests</label>
+        <tip>With Hospitality: their old people and children stay under the colony's roof as its guests, in its guest beds, until the families leave.</tip>
+        <tension>-6</tension>
+        <warm>3</warm>
+        <deed>sheltered</deed>
+        <outcomes>
+          <li>The families' old people and children are being brought up to the colony as its guests.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FloodGuests" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 30. The boat-builders (the river folk) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_BoatBuilders</defName>
+    <label>boat-builders</label>
+    <workerClass>ColonyCouncil.CampWorker_BoatBuilders</workerClass>
+    <arrives>6~10</arrives>
+    <calling>fishers</calling>
+    <weight>0</weight>
+    <people>3~4</people>
+    <days>7~7</days>
+    <ages>22~65</ages>
+    <chopsPerDay>2</chopsPerDay>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>wood</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.05</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Haul</li></works>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>40~60</count><at>wall</at></li>
+    </campGoods>
+    <titles>
+      <li>The boat-builders</li>
+      <li>A hull on the bank</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s boatwrights are walking in to the colony's water {PLACE} with their tools: {X_nameDef} and the others, adzes, saws and a pot of pitch.</li>
+      <li>[age0] The boatwrights of {FACTION} are walking in {PLACE} with stone adzes and bundles of rope, to build a boat by the colony's water.</li>
+    </texts>
+    <settled>
+      <li>The boat-builders have put up a shed by the water {PLACE}, and {X_nameDef} has marked out where the hull will be laid on the bank.</li>
+      <li>{FACTION}'s boatwrights have made camp {PLACE}: a shed for the tools, a fire for the pitch, and a cleared stretch of bank for the hull.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the boat-builders says the colony's water would suit a boatwright, and asks whether there is room for one here.</li>
+    </joinTexts>
+    <farewell>
+      <li>[sold] The boat-builders packed their tools and walked home along the river, leaving the colony its dinghy and the shed standing on the bank.</li>
+      <li>[floated,storm] The boat-builders launched the hull a day late because of the high water, and floated it home down the river. The shed stays on the bank.</li>
+      <li>[floated] The boat-builders launched the new hull and floated it home down the river, and left their shed standing on the bank.</li>
+      <li>[notrees] The boat-builders loaded the hull with what was left of their own timber and floated it home. {X_nameDef} did not say much at the gate.</li>
+      <li>The boat-builders have gone home along the river, and their shed stays on the bank.</li>
+    </farewell>
+    <lines>
+      <li>Keep the grain running with the hull.</li>
+      <li>Pitch is hot, mind your hands.</li>
+      <li>One more plank and we stop for the day.</li>
+      <li>Measure it twice before you cut.</li>
+      <li>It'll float, but not yet.</li>
+    </lines>
+    <momentLines>
+      <li>[hull] Another strake on, and it's starting to look like a boat.</li>
+      <li>[hull] Hold it steady while I drive the peg.</li>
+      <li>[storm] The water's up over the slip, there's no working today.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[wood] {X_nameDef} brought over {COUNT} logs the boat-builders could not use and left them at the edge of their camp for the colony.</li>
+      <li>[tales] {A_nameDef} sat with the boat-builders by their fire and heard about every boat their people have built since the flood that started them.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>crafter</key>
+        <label>Send {A_nameDef} to work beside them</label>
+        <tip>{A_nameDef} works on the hull beside one of the boatwrights for some hours. Practice in crafting.</tip>
+        <once>false</once>
+        <skill>Crafting</skill>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going down to the bank to work on the hull with {X_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><xpPerHour>200</xpPerHour><duration>3~4</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>dinghy</key>
+        <label>Buy the finished dinghy (60 wood and silver)</label>
+        <tip>With Vehicle Framework and Vanilla Vehicles Expanded: the boatwrights fit out the finished hull as a dinghy for the colony and set it on the water. The colony pays in silver now, and sends 60 wood out to their camp.</tip>
+        <silver>350</silver>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has the hull fitted out as a dinghy and sets it on the water for the colony. The wood is going out to their camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for the boat-builders</label><what>wood</what><count>60</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BoatDinghy" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

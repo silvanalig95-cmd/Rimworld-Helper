@@ -26,7 +26,7 @@ namespace ColonyCouncil
         /// there), "sky" (walked out under the open sky by the place, or by themselves without one, and kept there).
         /// </summary>
         public string place = "here";
-        /// <summary>"cross" (the healing cross), "sparks", "hum" (the psychic hum), "storm" (the hum and the rain), "sow" (earth turned).</summary>
+        /// <summary>"cross" (the healing cross), "sparks", "hum" (the psychic hum), "storm" (the hum and the rain), "sow" (earth turned), "quiet" (none: talk, a cord tied).</summary>
         public string mark = "cross";
         /// <summary>
         /// The worker works at the place itself (a bench), its mark there, while the one it is for stands by and watches
@@ -403,6 +403,8 @@ namespace ColonyCouncil
                         FleckMaker.ThrowMetaIcon(pawn.Position, map, FleckDefOf.Meditating);
                         break;
                     case "sow": FleckMaker.ThrowDustPuff(Place.IsValid ? Place.Cell : on.Position, map, 0.5f); break;
+                    // Talk or a cord tied (round 4's examination and page): nothing over their heads but the bar.
+                    case "quiet": break;
                     default: FleckMaker.ThrowMetaIcon(on.Position, map, FleckDefOf.HealingCross); break;
                 }
             };

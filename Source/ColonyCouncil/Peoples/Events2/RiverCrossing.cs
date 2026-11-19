@@ -512,6 +512,8 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("peoples' events 2: the knot night's rest", e);
             }
             if (hc.faction != null && hc.faction.HasGoodwill && !hc.faction.IsPlayer) WorldSituationWorker.Goodwill(hc.faction, PeopleEvents2Math.KnotGoodwill, GoodwillWhy.Helped);
+            // Resting at the crossing, they set the knot night's lanterns on its water (Peoples/Events4/KnotLanterns.cs).
+            PeopleEvents4.Safe("the lanterns at the crossing", () => KnotLanterns.AtCrossing(hc));
         }
     }
 }

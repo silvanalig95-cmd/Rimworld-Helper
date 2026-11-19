@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' events, round 4
+
+*19 November 2026, version 0.268.0*
+
+- The learned society examines a colonist who becomes learned enough, in the evening before the colony or quietly. If they pass, they are named a fellow and get a book each season, and with Vanilla Skills Expanded the Researcher expertise.
+- In summer the society's school camps for a week and gives a lesson every afternoon at its table. Lend it your books, and the best student goes home with one.
+- The spacer enclave offers contracts for goods your colony makes, collected by its lander on the day. A broker's pod may also crash on your land with cargo to look after.
+- The river folk ask you to clean water you have fouled and set lanterns on your water on their knot night. When a flood takes their landing they camp on your bank, and their boat-builders build a hull by your water that you can buy as a dinghy.
+- The Lantern Wardens write a great beast your colonist brings down into their book and tie a red cord on the hunter's sleeve. They also come to help against a manhunt, and burn out insect hives near the colony.
+
 ## Storylines, round 3
 
 *19 November 2026, version 0.267.0*

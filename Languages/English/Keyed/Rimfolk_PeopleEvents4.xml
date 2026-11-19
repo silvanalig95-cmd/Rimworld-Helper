@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 4 (Source/ColonyCouncil/Peoples/Events4/). -->
+
+  <!-- ===================== 18. The fellowship examined (Fellowship.cs) ===================== -->
+
+  <CC_PEv4_Cause_Exam>{0}'s examination by the learned society</CC_PEv4_Cause_Exam>
+  <CC_PEv4_ExamFailed>{FELLOW} examined {PAWN_nameDef} in front of the colony, and {PAWN_pronoun} did not pass. The society will not examine {PAWN_objective} again for a while.</CC_PEv4_ExamFailed>
+  <CC_PEv4_ExamFailedQuiet>{FELLOW} examined {PAWN_nameDef} in private, and {PAWN_pronoun} did not pass. Nobody else heard it, and the society will not examine {PAWN_objective} again for a while.</CC_PEv4_ExamFailedQuiet>
+  <CC_PEv4_ExamPassed>{PAWN_nameDef} passed the examination, and {FACTION} have named {PAWN_objective} a corresponding fellow. The society will send {PAWN_objective} a book each season.</CC_PEv4_ExamPassed>
+  <CC_PEv4_ExamPassedExpert>{PAWN_nameDef} passed the examination, and {FACTION} have named {PAWN_objective} a corresponding fellow. The society will send {PAWN_objective} a book each season, and {PAWN_pronoun} now has the Researcher expertise.</CC_PEv4_ExamPassedExpert>
+  <CC_PEv4_FellowName>a corresponding fellowship</CC_PEv4_FellowName>
+  <CC_PEv4_FellowChronicle>{FACTION} examined {PAWN_nameDef} and named {PAWN_objective} one of their corresponding fellows.</CC_PEv4_FellowChronicle>
+  <CC_PEv4_FellowBook>{FACTION} sent {PAWN_nameDef} a book for the season, as they do for their corresponding fellows: {BOOK}. It is by the gate.</CC_PEv4_FellowBook>
+  <CC_PEv4_FellowBookComing>One of {FACTION} is on the way with this season's book for {PAWN_nameDef}, their corresponding fellow.</CC_PEv4_FellowBookComing>
+  <CC_PEv4_ExamineeGone>The one the society wants to examine is not here.</CC_PEv4_ExamineeGone>
+  <CC_PEv4_NoGathering>Gatherings are not played out on the map with the current settings.</CC_PEv4_NoGathering>
+  <CC_PEv4_Impact_ExamQuiet>{1} sits with {0} and examines {0} in private, with a bar while they talk.</CC_PEv4_Impact_ExamQuiet>
+  <CC_PEv4_Impact_ExamQuietBrief>Examined in private</CC_PEv4_Impact_ExamQuietBrief>
+  <CC_PEv4_Impact_Fellow>{0} is named a corresponding fellow: a lasting good memory, the society's word on {0}, and a book each season.</CC_PEv4_Impact_Fellow>
+  <CC_PEv4_Impact_FellowExpert>{0} is named a corresponding fellow: a lasting good memory, the society's word on {0}, a book each season and the Researcher expertise.</CC_PEv4_Impact_FellowExpert>
+  <CC_PEv4_Impact_FellowBrief>Named a corresponding fellow</CC_PEv4_Impact_FellowBrief>
+  <CC_PEv4_Impact_Fail>{0} fails the examination in front of the colony, and is stung by it.</CC_PEv4_Impact_Fail>
+  <CC_PEv4_Impact_FailQuiet>{0} fails the examination, but nobody else hears it.</CC_PEv4_Impact_FailQuiet>
+  <CC_PEv4_Impact_FailBrief>Not passed</CC_PEv4_Impact_FailBrief>
+
+  <!-- ===================== 21. The summer school (SummerSchool.cs) ===================== -->
+
+  <CC_PEv4_SchoolName>the summer school</CC_PEv4_SchoolName>
+  <CC_PEv4_LendLabel>books for the school's table</CC_PEv4_LendLabel>
+  <CC_PEv4_SchoolDispute>{X_nameDef} and {THING} of the summer school have started arguing at their table about what an old text really says, and the afternoon's lessons have stopped. The colony could send someone to end it.</CC_PEv4_SchoolDispute>
+  <CC_PEv4_SchoolSettled>{A_nameDef} talked {X_nameDef} and the other fellow out of their argument, and the school's lessons can go on.</CC_PEv4_SchoolSettled>
+  <CC_PEv4_SchoolSulk>The fellows' argument ended with nobody speaking to anyone. There will be no more lessons today, and the camp is uneasy.</CC_PEv4_SchoolSulk>
+  <CC_PEv4_SchoolSulkTried>{A_nameDef} tried to end the fellows' argument, but it only made them more stubborn. There will be no more lessons today, and the camp is uneasy.</CC_PEv4_SchoolSulkTried>
+  <CC_PEv4_SchoolBooksBack>The summer school set down the colony's books by its camp as it left: {COUNT} of them.</CC_PEv4_SchoolBooksBack>
+  <CC_PEv4_SchoolBest>{X_nameDef} left a book by the camp for {A_nameDef}, the summer school's best student with {COUNT} lessons: {THING}. The society will remember {A_objective}.</CC_PEv4_SchoolBest>
+  <CC_PEv4_NoLessonToday>The fellows are not teaching this afternoon.</CC_PEv4_NoLessonToday>
+  <CC_PEv4_LessonAfternoon>Lessons are held in the afternoon, from {0}h to {1}h.</CC_PEv4_LessonAfternoon>
+  <CC_PEv4_LessonsDone>The school has given its {0} lessons for today.</CC_PEv4_LessonsDone>
+  <CC_PEv4_BooksLent>The colony's books are already on the school's table.</CC_PEv4_BooksLent>
+  <CC_PEv4_NoBooks>The colony has no books in its stores to lend.</CC_PEv4_NoBooks>
+  <CC_PEv4_NoDispute>The fellows are not arguing.</CC_PEv4_NoDispute>
+  <CC_PEv4_Impact_School>{0}'s summer school camps on the colony's land for a week and teaches every afternoon: {1} lessons a day at most, asked for from its page.</CC_PEv4_Impact_School>
+  <CC_PEv4_Impact_SchoolBrief>A school for a week</CC_PEv4_Impact_SchoolBrief>
+  <CC_PEv4_Impact_Lend>Up to {0} of the colony's books go to the school's table, and every lesson teaches {1}% more. They are set down for the colony when the school leaves.</CC_PEv4_Impact_Lend>
+  <CC_PEv4_Impact_LendBrief>Books lent</CC_PEv4_Impact_LendBrief>
+  <CC_PEv4_Impact_Settle>{0} walks over to the fellows' table and tries to end their argument: about {1}% likely to work, by {0}'s skill with people. Otherwise it ends in a sulk.</CC_PEv4_Impact_Settle>
+  <CC_PEv4_Impact_SettleBrief>The argument ended</CC_PEv4_Impact_SettleBrief>
+
+  <!-- ===================== 23. A contract to the last digit (EnclaveContract.cs) ===================== -->
+
+  <CC_PEv4_ContractName>a supply contract</CC_PEv4_ContractName>
+  <CC_PEv4_ContractKept>The contract with {FACTION} was delivered in full, and they paid {COUNT} silver. Their next contract will be bigger.</CC_PEv4_ContractKept>
+  <CC_PEv4_ContractShort>The contract with {FACTION} was delivered short. They paid {COUNT} silver for what came, less the fee of {FEE}, and their terms will be less favourable for a while.</CC_PEv4_ContractShort>
+  <CC_PEv4_ContractDefault>The contract with {FACTION} was not delivered. The fee of {FEE} silver went to them, and their terms will be less favourable for a while.</CC_PEv4_ContractDefault>
+  <CC_PEv4_ContractDebt>The contract with {FACTION} was not delivered, and the fee of {FEE} silver is now among the colony's debts to them. Their terms will be less favourable for a while.</CC_PEv4_ContractDebt>
+  <CC_PEv4_ContractNone>The stores hold none of the goods.</CC_PEv4_ContractNone>
+  <CC_PEv4_ContractAllThere>All the goods are in the stores.</CC_PEv4_ContractAllThere>
+  <CC_PEv4_Impact_Contract>A contract for {0}, due by {1}, for {2} silver when it is delivered.</CC_PEv4_Impact_Contract>
+  <CC_PEv4_Impact_ContractBrief>A contract</CC_PEv4_Impact_ContractBrief>
+  <CC_PEv4_Impact_ContractDefault>Short or not delivered on the day: a fee of {0} silver and less favourable terms for a while.</CC_PEv4_Impact_ContractDefault>
+  <CC_PEv4_Impact_ContractDefaultBrief>The risk of a default</CC_PEv4_Impact_ContractDefaultBrief>
+  <CC_PEv4_Impact_Bigger>The enclave's next contract will be bigger.</CC_PEv4_Impact_Bigger>
+  <CC_PEv4_Impact_BiggerBrief>A bigger contract next</CC_PEv4_Impact_BiggerBrief>
+  <CC_PEv4_Impact_Default>A default: a fee of {0} silver, and less favourable terms for {1} days. The next contract goes back to its first size.</CC_PEv4_Impact_Default>
+  <CC_PEv4_Impact_DefaultBrief>A default</CC_PEv4_Impact_DefaultBrief>
+
+  <!-- ===================== 24. Stranded with something to sell (BrokerPod.cs) ===================== -->
+
+  <CC_PEv4_PodName>a broker's cargo</CC_PEv4_PodName>
+  <CC_PEv4_BrokerDead>The broker has died.</CC_PEv4_BrokerDead>
+  <CC_PEv4_LanderDown>{FACTION}'s lander came down by the crash. Its marshals are taking their broker and the cargo aboard.</CC_PEv4_LanderDown>
+  <CC_PEv4_PodTaken>{FACTION}'s marshals found {COUNT} of their crates gone from the crash. They will remember who took them.</CC_PEv4_PodTaken>
+  <CC_PEv4_PodPaid>{FACTION} paid {COUNT} silver, a fifth of the cargo, for the care of {BROKER}, as they promised.</CC_PEv4_PodPaid>
+  <CC_PEv4_Impact_Rescue>{0} goes to the crash and carries {1} to a bed, where the colony's doctors see to the broker. Without a free bed, {0} tends the broker at the crash.</CC_PEv4_Impact_Rescue>
+  <CC_PEv4_Impact_RescueBrief>The broker brought in</CC_PEv4_Impact_RescueBrief>
+  <CC_PEv4_Impact_Share>When their lander comes, the enclave pays {0} silver, a fifth of the cargo.</CC_PEv4_Impact_Share>
+  <CC_PEv4_Impact_ShareBrief>A fifth of the cargo</CC_PEv4_Impact_ShareBrief>
+  <CC_PEv4_Impact_Rob>The colony takes the cargo: {0}, about {1} silver's worth.</CC_PEv4_Impact_Rob>
+  <CC_PEv4_Impact_RobBrief>The cargo taken</CC_PEv4_Impact_RobBrief>
+  <CC_PEv4_Impact_Grudge>{0} will hold it against the colony for a long time.</CC_PEv4_Impact_Grudge>
+  <CC_PEv4_Impact_GrudgeBrief>A lasting grudge</CC_PEv4_Impact_GrudgeBrief>
+  <CC_PEv4_Impact_Left>{0}'s lander comes in the morning for the broker and the cargo. Nothing is owed either way.</CC_PEv4_Impact_Left>
+  <CC_PEv4_Impact_LeftBrief>Left to their own lander</CC_PEv4_Impact_LeftBrief>
+
+  <!-- ===================== 27. Fouled water (FouledWater.cs) ===================== -->
+
+  <CC_PEv4_Foul_corpse>a body rotting in the water</CC_PEv4_Foul_corpse>
+  <CC_PEv4_Foul_pollution>poisoned ground running into the water</CC_PEv4_Foul_pollution>
+  <CC_PEv4_Foul_wastepack>wastepacks lying beside the water</CC_PEv4_Foul_wastepack>
+  <CC_PEv4_WaterName>the fouled water</CC_PEv4_WaterName>
+  <CC_PEv4_WaterClean>The colony's water is clean again, and {FACTION}'s boats will come again.</CC_PEv4_WaterClean>
+  <CC_PEv4_WaterCleaned>{PAWN} and the river warden of {FACTION} cleaned the fouled water. The river folk are grateful, and their boats will keep coming.</CC_PEv4_WaterCleaned>
+  <CC_PEv4_WaterCleanedAlone>The river warden of {FACTION} cleaned the fouled water alone and went home.</CC_PEv4_WaterCleanedAlone>
+  <CC_PEv4_WaterAlreadyClean>Nothing fouls the water there now.</CC_PEv4_WaterAlreadyClean>
+  <CC_PEv4_HelperGone>The colonist who would help is not here.</CC_PEv4_HelperGone>
+  <CC_PEv4_Impact_Clean>{1} and {0} go from spot to spot along the water until all {2} are clean: bodies pulled out onto dry ground for the colony to bury, wastepacks carried away from the water, poisoned bank cleared.</CC_PEv4_Impact_Clean>
+  <CC_PEv4_Impact_CleanAlone>{0} goes from spot to spot along the water alone until all {2} are clean, which takes longer.</CC_PEv4_Impact_CleanAlone>
+  <CC_PEv4_Impact_CleanBrief>The water cleaned</CC_PEv4_Impact_CleanBrief>
+  <CC_PEv4_Impact_Fouled>{0} will remember that the colony fouled the water and left it.</CC_PEv4_Impact_Fouled>
+  <CC_PEv4_Impact_FouledBrief>A wrong remembered</CC_PEv4_Impact_FouledBrief>
+  <CC_PEv4_Impact_CatchStop>The river folk's boat-trader and their nets stop coming until the water is clean again.</CC_PEv4_Impact_CatchStop>
+  <CC_PEv4_Impact_CatchStopBrief>Their boats stop coming</CC_PEv4_Impact_CatchStopBrief>
+
+  <!-- ===================== 28. Lanterns on the water (KnotLanterns.cs) ===================== -->
+
+  <CC_PEv4_LanternsAtCrossing>{FACTION}'s boatmen resting at the crossing are setting lanterns on the water for their knot night.</CC_PEv4_LanternsAtCrossing>
+  <CC_PEv4_Impact_Floating>The boatmen set {0} floating lanterns on the colony's water, and they stay there afterwards as the colony's.</CC_PEv4_Impact_Floating>
+  <CC_PEv4_Impact_Torches>The boatmen set {0} torches along the colony's bank for the night and take them home in the morning.</CC_PEv4_Impact_Torches>
+  <CC_PEv4_Impact_LanternsBrief>Lanterns set</CC_PEv4_Impact_LanternsBrief>
+
+  <!-- ===================== 29. Flooded out (FloodedOut.cs) ===================== -->
+
+  <CC_PEv4_FloodName>a camp on the bank after the flood</CC_PEv4_FloodName>
+  <CC_PEv4_FloodGuests>{COUNT} of the flooded families' old people and children are now staying with the colony as its guests.</CC_PEv4_FloodGuests>
+  <CC_PEv4_FloodSick>{A_nameDef} has caught {THING} from the families camped on the bank.</CC_PEv4_FloodSick>
+  <CC_PEv4_CatchIn>Their catch is enough to feed them now.</CC_PEv4_CatchIn>
+  <CC_PEv4_NeedsHospitality>Needs Hospitality, with invited visitors as its guests.</CC_PEv4_NeedsHospitality>
+  <CC_PEv4_GuestsTaken>Their old and young are already the colony's guests.</CC_PEv4_GuestsTaken>
+  <CC_PEv4_Impact_Flood>The families of {0} camp on the colony's bank until the river goes down, five to ten days. They fish, ask for food for their first days, and may mend what is worn.</CC_PEv4_Impact_Flood>
+  <CC_PEv4_Impact_FloodBrief>Families on the bank</CC_PEv4_Impact_FloodBrief>
+  <CC_PEv4_Impact_FloodGuests>Up to {0} of their old people and children stay with the colony as Hospitality's guests, in its guest beds.</CC_PEv4_Impact_FloodGuests>
+  <CC_PEv4_Impact_FloodGuestsBrief>Guests under the colony's roof</CC_PEv4_Impact_FloodGuestsBrief>
+  <CC_PEv4_Impact_FloodSick>The families may bring a sickness from the flood water to the colony, rarely.</CC_PEv4_Impact_FloodSick>
+  <CC_PEv4_Impact_FloodSickBrief>A sickness, rarely</CC_PEv4_Impact_FloodSickBrief>
+  <CC_PEv4_Impact_Knot>When they leave on good terms, {0} tie a knot in the net for the colony: +{1} goodwill.</CC_PEv4_Impact_Knot>
+  <CC_PEv4_Impact_KnotBrief>A knot in the net</CC_PEv4_Impact_KnotBrief>
+
+  <!-- ===================== 30. The boat-builders (BoatBuilders.cs) ===================== -->
+
+  <CC_PEv4_Hull_1>{X_nameDef} and the other boatwrights have laid the keel on blocks on the bank, with its posts pegged on.</CC_PEv4_Hull_1>
+  <CC_PEv4_Hull_2>The boatwrights have bent the ribs onto the keel, and the first planks are going on along the bottom.</CC_PEv4_Hull_2>
+  <CC_PEv4_Hull_3>The boatwrights have planked and pitched the hull. It is ready to be launched.</CC_PEv4_Hull_3>
+  <CC_PEv4_HullStorm>The rain has raised the water over the boat-builders' slip, and they have lost a day's work on the hull. They will stay a day longer.</CC_PEv4_HullStorm>
+  <CC_PEv4_HullFloated>The boat-builders launched the finished hull and floated it home down the river.</CC_PEv4_HullFloated>
+  <CC_PEv4_DinghySold>{X_nameDef} and the boatwrights fitted the finished hull out as a dinghy and set it on the water for the colony.</CC_PEv4_DinghySold>
+  <CC_PEv4_NoVehicles>Needs Vehicle Framework and Vanilla Vehicles Expanded.</CC_PEv4_NoVehicles>
+  <CC_PEv4_DinghyBought>The colony has bought the dinghy already.</CC_PEv4_DinghyBought>
+  <CC_PEv4_HullUnfinished>The hull is not finished yet.</CC_PEv4_HullUnfinished>
+  <CC_PEv4_NoHullYet>The hull has not been started yet.</CC_PEv4_NoHullYet>
+  <CC_PEv4_Impact_Boat>{0}'s boatwrights camp by the colony's water for a week and build a hull on the bank, a stage every couple of days.</CC_PEv4_Impact_Boat>
+  <CC_PEv4_Impact_BoatBrief>A boat built on the bank</CC_PEv4_Impact_BoatBrief>
+  <CC_PEv4_Impact_Trees>They fell some of the colony's wild trees for it.</CC_PEv4_Impact_Trees>
+  <CC_PEv4_Impact_TreesBrief>Wild trees felled</CC_PEv4_Impact_TreesBrief>
+  <CC_PEv4_Impact_DinghyOffer>When it is finished, the colony can buy it as a dinghy for wood and silver.</CC_PEv4_Impact_DinghyOffer>
+  <CC_PEv4_Impact_DinghyOfferBrief>A dinghy for sale</CC_PEv4_Impact_DinghyOfferBrief>
+
+  <!-- ===================== 31. A page in the book (WardensPage.cs) ===================== -->
+
+  <CC_PEv4_Cause_Page>the Wardens' page for {0}</CC_PEv4_Cause_Page>
+  <CC_PEv4_Page_legend>a beast of legend in the region</CC_PEv4_Page_legend>
+  <CC_PEv4_Page_nemesis>a beast that had killed people</CC_PEv4_Page_nemesis>
+  <CC_PEv4_Page_alpha>the leader of a pack</CC_PEv4_Page_alpha>
+  <CC_PEv4_PageExpert>{PAWN_pronoun} now has the Hunter expertise.</CC_PEv4_PageExpert>
+  <CC_PEv4_PagePassion>The kill gave {PAWN_objective} a passion for {SKILL}.</CC_PEv4_PagePassion>
+  <CC_PEv4_PageTied>A keeper of {FACTION}'s book wrote {PAWN_nameDef}'s kill of {BEAST} into the Wardens' book and tied a red cord on {PAWN_possessive} sleeve at the gate.</CC_PEv4_PageTied>
+  <CC_PEv4_PageChronicle>{FACTION} wrote {PAWN_nameDef}'s kill of {BEAST} into their book and tied a red cord on {PAWN_possessive} sleeve.</CC_PEv4_PageChronicle>
+  <CC_PEv4_HunterGone>The hunter is not here.</CC_PEv4_HunterGone>
+  <CC_PEv4_NoPelt>The colony has none of the pelt in its stores.</CC_PEv4_NoPelt>
+  <CC_PEv4_Impact_Cord>{0} meets {1} at the gate, who writes the page and ties a red cord on {0}'s sleeve, with a bar while it is done.</CC_PEv4_Impact_Cord>
+  <CC_PEv4_Impact_CordBrief>The red cord</CC_PEv4_Impact_CordBrief>
+  <CC_PEv4_Impact_PageExpert>{0} gets a lasting good memory, the Wardens' word on {0}, and the Hunter expertise.</CC_PEv4_Impact_PageExpert>
+  <CC_PEv4_Impact_PagePassion>{0} gets a lasting good memory, the Wardens' word on {0}, and a passion in the skill that made the kill.</CC_PEv4_Impact_PagePassion>
+  <CC_PEv4_Impact_PageBrief>A page in the book</CC_PEv4_Impact_PageBrief>
+
+  <!-- ===================== 32. Wardens at the manhunt (WardensManhunt.cs) ===================== -->
+
+  <CC_PEv4_ManhuntName>the help against a manhunt</CC_PEv4_ManhuntName>
+  <CC_PEv4_ManhuntDone>{FACTION}'s Wardens have finished with the beasts and are walking home.</CC_PEv4_ManhuntDone>
+  <CC_PEv4_Impact_Split>As on their hunts: the Wardens skin what they brought down and keep the hides, and the meat is left for the colony.</CC_PEv4_Impact_Split>
+  <CC_PEv4_Impact_SplitBrief>Hides for them, meat for the colony</CC_PEv4_Impact_SplitBrief>
+  <CC_PEv4_Impact_Keep>The Wardens take everything they bring down.</CC_PEv4_Impact_Keep>
+  <CC_PEv4_Impact_KeepBrief>All of it theirs</CC_PEv4_Impact_KeepBrief>
+  <CC_PEv4_Impact_Away>{0}'s Wardens break off and walk home.</CC_PEv4_Impact_Away>
+  <CC_PEv4_Impact_AwayBrief>Sent home</CC_PEv4_Impact_AwayBrief>
+
+  <!-- ===================== 33. The hive burned (HiveBurned.cs) ===================== -->
+
+  <CC_PEv4_Fire_torch>torches</CC_PEv4_Fire_torch>
+  <CC_PEv4_Fire_molotov>firebombs</CC_PEv4_Fire_molotov>
+  <CC_PEv4_Fire_incendiary>an incendiary launcher</CC_PEv4_Fire_incendiary>
+  <CC_PEv4_HiveName>a hive burned out</CC_PEv4_HiveName>
+  <CC_PEv4_HiveIn>{FACTION}'s Wardens are going into the hive with fire.</CC_PEv4_HiveIn>
+  <CC_PEv4_HiveDone>The hive near the colony is burned out, and {FACTION}'s Wardens are walking home.</CC_PEv4_HiveDone>
+  <CC_PEv4_HivesGone>There is no hive left to burn.</CC_PEv4_HivesGone>
+  <CC_PEv4_Impact_HiveTogether>{0} Wardens wait at the edge for the colony's drafted fighters to come within reach of the {1}, for {2} hours at most, and then go in with fire.</CC_PEv4_Impact_HiveTogether>
+  <CC_PEv4_Impact_HiveAlone>{0} Wardens go into the {1} with fire now.</CC_PEv4_Impact_HiveAlone>
+  <CC_PEv4_Impact_HiveWatch>{0} Wardens keep watch at the edge for {3} hours in case the insects come out, and then go home.</CC_PEv4_Impact_HiveWatch>
+  <CC_PEv4_Impact_HiveBrief>The Wardens at the hive</CC_PEv4_Impact_HiveBrief>
+  <CC_PEv4_Impact_HiveFight>The insects will fight to defend the hive, and fire can spread.</CC_PEv4_Impact_HiveFight>
+  <CC_PEv4_Impact_HiveFightBrief>A fight at the hive</CC_PEv4_Impact_HiveFightBrief>
+
+</LanguageData>
