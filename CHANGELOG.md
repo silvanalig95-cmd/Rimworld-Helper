@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Almanac from advisor to health in plain words
+
+*19 November 2026, version 0.270.4*
+
+- The Almanac's pages from the advisor to health are in plain words: tips that were jokes or sayings now give advice, and the long list of everyday hurts is split into short paragraphs by kind.
+- The food pages now use the game's own growing hours: crops grow 13.2 hours a day, so they take about 1.82 times their listed days, and every crop's numbers are worked out again.
+- The defense pages say what the game does with closed doors, and the camps page says a camp can come at any hour of the day.
+
 ## The council's Almanac pages in plain words
 
 *19 November 2026, version 0.270.3*

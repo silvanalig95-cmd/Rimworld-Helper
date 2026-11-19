@@ -9,7 +9,7 @@
     <category>Council</category>
     <order>9</order>
     <summary>The colony's groups: how they form and get their names, what they do together, their ways, newcomers, quarrels between them, and how they split, merge and end.</summary>
-    <tip>Put the new one on the same shift as the hunters and give it a week. They'll be telling each other the same bad jokes by then.</tip>
+    <tip>Put a newcomer on the same shift as the hunters and give it a week: working side by side is the quickest way into a group.</tip>
     <description>With "Personalities and social life" and the social web on, colonists drift into groups: the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the fireside circle. A group grows out of something real, keeps the name it was given when it formed, and has a life of its own: its people settle into parts (see "Roles in a group"), it grows closer or looser, it takes up ways of its own, it keeps habits together, it takes newcomers in or shuts them out, it falls out with other groups, and it can split, merge or come to an end. Every group has a card on the council's Bonds page with its people, its ways, its quarrels and its history, and each colonist's character page says which groups they're in and what part they play.</description>
     <sections>
       <li>
@@ -71,7 +71,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
     <category>Council</category>
     <order>9</order>
     <summary>The parts people play in their groups (anchor, joker, peacemaker, firebrand, worrier, quiet one, newcomer), where they come from and what they do.</summary>
-    <tip>Every crowd has one who talks, one who laughs and one who just turns up. Ours has two who talk.</tip>
+    <tip>Most groups have one who does the talking, one who makes the jokes and one who mostly just comes along.</tip>
     <description>In each group its people settle into parts that come from their character (warm, proud, quick-tempered, a joker...) and how they behave (their friends in the group, the quarrels they have mended). A part changes slowly: only after a better one has fitted for three days running, so a role doesn't flip from day to day, and someone who already has a part keeps it against a rival who fits it only a little better. A group has one anchor, one joker and one peacemaker at most. A part never goes against what shows of someone's character, so they come across the same in their group as in conversation: a cold colonist is never the anchor, nobody whose humour doesn't show is the joker, a joker or a hothead is never the quiet one, and a hothead never keeps the peace. Someone who fits no part is simply one of them. The group's card shows each person's part; their character page says it in words, and lines they say are picked for it.</description>
     <sections>
       <li>
@@ -83,7 +83,7 @@ A group is named for what binds most of it, picked once and kept, in the colony'
           <li>The peacemaker | Warm and slow to anger; quarrels mended count | When two of the group quarrel and the peacemaker is there, they step in now and then: the quarrel is over in half the time, and it counts as one mended.</li>
           <li>The firebrand | Quick-tempered and proud | Stirs the group up against a group it's at odds with, which makes it worse.</li>
           <li>The worrier | Gloomy and big-hearted | Frets to the others about the stores, the next raid, each of them; the others talk them down, and they feel better for it.</li>
-          <li>The quiet one | Says little, not much for company | There anyway: a cup kept full, a nod across the fire. They seldom speak at the habit.</li>
+          <li>The quiet one | Says little, not much for company | Comes to the habit anyway and keeps the others company, but seldom speaks there.</li>
           <li>The newcomer | Joined a group that's been going a while, ten days ago or less | Asks about the old days and how the group came together, then settles into a part of their own.</li>
         </table>
       </li>
