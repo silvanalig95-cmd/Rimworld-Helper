@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58; round 7 built: 60, 61, 62, 64, 65, 66, 67, 68, 69, 70)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -544,17 +544,17 @@ Where it lives:
     - Ages: a unique greatbow, a medieval crossbow, rifles, charge guns.
     - Reuses: the wander-year's bench. **Medium.**
 
-60. **(gift) The master's mark.**
+60. **(gift) The master's mark.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - When the colony's crafter makes a masterwork or a legend, a guild master judges it at the gate.
     - A true mark gives a memory and the region's word (and with Vanilla Skills Expanded a quality expertise). A lie found in it stings.
     - Reuses: the fine-piece hook (`Patch_ArcMade`), deeds. **Small.**
 
-61. **Come back better.**
+61. **Come back better.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - A year after a wander-year at the colony ended well, that journeyman returns as a master with a masterwork as a gift.
     - The maker who taught them gets a lasting memory.
     - Reuses: the wander-year's `learnedHere` deed. **Small.**
 
-62. **(camp) A work that stays.**
+62. **(camp) A work that stays.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - Three journeymen camp five to eight days and build a great work with the colony's stone or wood: a grand sculpture in its hall, a carved bridge over its river (Kell's), or a fountain where it gathers.
     - It carries the guild's mark: beauty, and the colony's renown.
     - It can turn: the colony's stone runs short and they wait, or a journeyman's work is judged bad and torn down.
@@ -572,16 +572,16 @@ Where it lives:
     - The game's own quest site appears, and the places-heard-of marks show it, with where they heard it.
     - Reuses: quests, places heard of. **Medium.**
 
-64. **A voice for the colony.**
+64. **A voice for the colony.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - One call a season on their masts: ask for a trader of a kind (the game's caravan of that kind comes), ask for hands (a wanderer comes to join), or speak well of a people (a little goodwill).
     - Ages: their runners carry the call where the colony has no radio.
     - Reuses: the outrider's bidden caravan, joining. **Medium.**
 
-65. **A mast at a friend's town.**
+65. **A mast at a friend's town.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - For a fee they raise a mast at the town of a notable the colony writes to, and letters there take half the days.
     - Reuses: the mast's relaying, the post. **Small.**
 
-66. **(camp) The line crew.**
+66. **(camp) The line crew.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - Linesmen camp on the colony's high ground for a week, stringing wire and raising a working mast. The radio plays the region's news at their fire (places heard of), and the colony's letters go out by their wire.
     - They ask for components and food. The colony may keep the mast as its own relay mast, for a fee.
     - It can turn: a lineman falls in a storm (the harm budget), or a storm takes the mast.
@@ -595,24 +595,24 @@ Where it lives:
 - A silver rush (world event).
 - Favoured camps: prospectors, stonecutters, salvagers.
 
-67. **The pit's cave-in.**
+67. **The pit's cave-in.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - When a union pit within reach caves in, they ask for the colony's miners and doctor.
     - Two colonists go as a caravan for four to six days and dig out the trapped. One shift in twenty brings a crush, through the harm budget, as at the drill rig.
     - They come home with pay, +12 and skill gained.
     - Reuses: the conscript's caravan, the harm budget. **Large.**
 
-68. **Oil in the ground.**
+68. **Oil in the ground.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - With Rimefeller, the assayer finds the colony's oil by Rimefeller's own deposits and sinks a well for silver and a year's share.
     - Without it, the assayer marks a deep seam for the union's drill.
     - Reuses: the drill's play-out. **Medium.**
 
-69. **The organizer's evening.**
+69. **The organizer's evening.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - When the colony's people are worn down (the heart's strain, long hours by decree), a shift-captain speaks at the colony's fire.
     - Next morning the council meets on a petition for a day of rest a week.
     - Granted: spirits lift, and the union thinks better of the colony. Refused: those under strain are stung.
     - Reuses: the council's petitions and decrees, the heart. **Medium.**
 
-70. **(camp) The picket.**
+70. **(camp) The picket.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
     - When a union strike is called, strikers camp by the road for its length: a fire in a barrel, signs, songs.
     - The shift-captain who settles it comes from here. They ask for food for the picket, and invite the colony's miners to their evenings.
     - It can turn: strikebreakers of another people come against the camp, or the strike ends by vote and they march home singing.

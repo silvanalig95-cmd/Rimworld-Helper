@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 7 (Source/ColonyCouncil/Peoples/Events7/). -->
+
+  <!-- ===================== 60. The master's mark ===================== -->
+
+  <CC_PEv7_MarkTrue>The master of {FACTION} judged {PAWN_nameDef}'s {THING} true work and put the guild's mark on it. The guild will speak well of {PAWN_objective} for it.</CC_PEv7_MarkTrue>
+  <CC_PEv7_MarkTrueExpert>The master of {FACTION} judged {PAWN_nameDef}'s {THING} true work and put the guild's mark on it. The guild will speak well of {PAWN_objective} for it, and {PAWN_nameDef} came away with the quality expertise.</CC_PEv7_MarkTrueExpert>
+  <CC_PEv7_MarkFault>The master of {FACTION} found a fault in {PAWN_nameDef}'s {THING} and would not put the guild's mark on it.</CC_PEv7_MarkFault>
+  <CC_PEv7_MarkTrueBack>I knew it was good, but it's something to hear it.</CC_PEv7_MarkTrueBack>
+  <CC_PEv7_MarkTrueBack_2>Thank you, that means a great deal.</CC_PEv7_MarkTrueBack_2>
+  <CC_PEv7_MarkTrueBack_3>I'll make the next one better still.</CC_PEv7_MarkTrueBack_3>
+  <CC_PEv7_MarkFaultBack>I didn't see it until you showed me.</CC_PEv7_MarkFaultBack>
+  <CC_PEv7_MarkFaultBack_2>You're right, and I hate that you're right.</CC_PEv7_MarkFaultBack_2>
+  <CC_PEv7_MarkFaultBack_3>Then I'll do it again, properly.</CC_PEv7_MarkFaultBack_3>
+  <CC_PEv7_PieceGone>The {0} isn't at the colony now.</CC_PEv7_PieceGone>
+  <CC_PEv7_Impact_Judge>The master goes to the {1} where it is and looks it over for an hour, with {0} beside them</CC_PEv7_Impact_Judge>
+  <CC_PEv7_Impact_JudgeBrief>judged where it is</CC_PEv7_Impact_JudgeBrief>
+  <CC_PEv7_Impact_MarkTrue>If it is true work: the guild's mark, {0} +6 mood for 20 days, and the guild speaks well of {0}</CC_PEv7_Impact_MarkTrue>
+  <CC_PEv7_Impact_MarkTrueExpert>If it is true work: the guild's mark, {0} +6 mood for 20 days, the guild speaks well of {0}, and {0} gets the quality expertise (Vanilla Skills Expanded)</CC_PEv7_Impact_MarkTrueExpert>
+  <CC_PEv7_Impact_MarkTrueBrief>true work: a good memory</CC_PEv7_Impact_MarkTrueBrief>
+  <CC_PEv7_Impact_MarkFault>About one masterwork in five has a fault the master finds: then {0} -5 mood for 8 days</CC_PEv7_Impact_MarkFault>
+  <CC_PEv7_Impact_MarkFaultLegend>About one legendary piece in twelve has a fault the master finds: then {0} -5 mood for 8 days</CC_PEv7_Impact_MarkFaultLegend>
+  <CC_PEv7_Impact_MarkFaultBrief>a fault found: a bad memory</CC_PEv7_Impact_MarkFaultBrief>
+  <CC_PEv7_Impact_JudgeLesson>{0} learns {1} from the master as they go over it together</CC_PEv7_Impact_JudgeLesson>
+  <CC_PEv7_Impact_JudgeLessonBrief>a lesson</CC_PEv7_Impact_JudgeLessonBrief>
+  <CC_Memory_Deed_markTrue>had a piece judged true work by the guild</CC_Memory_Deed_markTrue>
+  <CC_Memory_Deed_markTrue_Name>made {NAME}, judged true work by the guild</CC_Memory_Deed_markTrue_Name>
+  <CC_Memory_Deed_markTrue_Many>had pieces judged true work by the guild, {COUNT} times</CC_Memory_Deed_markTrue_Many>
+
+  <!-- ===================== 61. Come back better ===================== -->
+
+  <CC_PEv7_GiftOf>{0} {1}</CC_PEv7_GiftOf>
+  <CC_PEv7_MakerAway>{0} isn't at home to see them.</CC_PEv7_MakerAway>
+  <CC_PEv7_Impact_Gift>{0} leaves the colony a masterwork {1} of their own making</CC_PEv7_Impact_Gift>
+  <CC_PEv7_Impact_GiftBrief>a masterwork</CC_PEv7_Impact_GiftBrief>
+
+  <!-- ===================== 62. A work that stays ===================== -->
+
+  <CC_PEv7_Work_bridge>a carved {0} bridge {1}</CC_PEv7_Work_bridge>
+  <CC_PEv7_Work_sculpture>a {0} {2} {1}</CC_PEv7_Work_sculpture>
+  <CC_PEv7_Work_fountain>a {0} {2} {1}</CC_PEv7_Work_fountain>
+  <CC_PEv7_WhereWater>over the water nearest the colony</CC_PEv7_WhereWater>
+  <CC_PEv7_WhereHall>in the {0}</CC_PEv7_WhereHall>
+  <CC_PEv7_WhereGather>where the colony gathers</CC_PEv7_WhereGather>
+  <CC_PEv7_WhereMiddle>in the open by the colony</CC_PEv7_WhereMiddle>
+  <CC_PEv7_StoneFor>{0} for the guild's work</CC_PEv7_StoneFor>
+  <CC_PEv7_WorkStoneCame>The colony's {THING} has been carried out to the journeymen, and they are back at {WORK}.</CC_PEv7_WorkStoneCame>
+  <CC_PEv7_WorkShort>{X_nameDef} of the journeymen says the work is waiting: the colony's stores don't hold the {COUNT} {THING} it still needs. They will wait a day or two for it.</CC_PEv7_WorkShort>
+  <CC_PEv7_WorkMakeDo>The journeymen have waited long enough for the stone, and will finish {WORK} with what they were given. It will be a grade plainer.</CC_PEv7_WorkMakeDo>
+  <CC_PEv7_WorkCracked>A block cracked at the journeymen's work, and {X_nameDef} says it needs {COUNT} more {THING} from the colony's stores.</CC_PEv7_WorkCracked>
+  <CC_PEv7_WorkTorn>{X_nameDef} looked over {THING}'s day of work on {WORK}, judged it bad and had it torn down. It costs them a day.</CC_PEv7_WorkTorn>
+  <CC_PEv7_WorkStands>The journeymen of {FACTION} have finished {WORK}. {PAWN}'s name is cut into it as the guild's mark, and it is the colony's.</CC_PEv7_WorkStands>
+  <CC_PEv7_WorkUnfinished>The journeymen of {FACTION} have gone with their work unfinished. The stone they were given is left where they were working, for the colony.</CC_PEv7_WorkUnfinished>
+  <CC_PEv7_WorkNoStone>The colony's stores don't hold enough {0}.</CC_PEv7_WorkNoStone>
+  <CC_PEv7_WorkDone>The work is finished.</CC_PEv7_WorkDone>
+  <CC_PEv7_WorkBeside>{0} already works beside them.</CC_PEv7_WorkBeside>
+  <CC_Camp_End_nostone>The {NAME} from {FACTION} waited for the colony's stone and none came, so they packed up their camp {PLACE} and left without starting the work.</CC_Camp_End_nostone>
+  <CC_PEv7_Impact_Work>Three journeymen of {0} camp by the colony for five to eight days and build {1}; once they have camped, the stone is carried out to them from the stores</CC_PEv7_Impact_Work>
+  <CC_PEv7_Impact_WorkBrief>a camp and a great work</CC_PEv7_Impact_WorkBrief>
+  <CC_PEv7_Impact_WorkTurns>It can turn: a cracked block needs up to {0} more {1} (without it they wait a day or two, then make do), or a day's bad work is torn down</CC_PEv7_Impact_WorkTurns>
+  <CC_PEv7_Impact_WorkTurnsBrief>it can turn</CC_PEv7_Impact_WorkTurnsBrief>
+  <CC_PEv7_Impact_WorkBeside>{0} works beside them through their working hours and learns</CC_PEv7_Impact_WorkBeside>
+  <CC_PEv7_Impact_WorkBesideBrief>a lesson</CC_PEv7_Impact_WorkBesideBrief>
+
+  <!-- ===================== 64. A voice for the colony ===================== -->
+
+  <CC_PEv7_RadioMast>the colony's relay mast</CC_PEv7_RadioMast>
+  <CC_PEv7_RadioConsole>the colony's comms console</CC_PEv7_RadioConsole>
+  <CC_PEv7_Call_Radio_goods>{PAWN_nameDef} has called for a trader of goods on the colony's radio. A caravan is on its way.</CC_PEv7_Call_Radio_goods>
+  <CC_PEv7_Call_Radio_arms>{PAWN_nameDef} has called for a trader of arms on the colony's radio. A caravan is on its way.</CC_PEv7_Call_Radio_arms>
+  <CC_PEv7_Call_Radio_hands>{PAWN_nameDef} has put out word on the colony's radio that the colony takes in people.</CC_PEv7_Call_Radio_hands>
+  <CC_PEv7_Call_Radio_word>{PAWN_nameDef} has made the colony's call on its radio, asking the Line to speak well of it.</CC_PEv7_Call_Radio_word>
+  <CC_PEv7_Call_Runner_goods>{PAWN_nameDef} has set off with the colony's call for a trader of goods, to pass it on from the Line's next post.</CC_PEv7_Call_Runner_goods>
+  <CC_PEv7_Call_Runner_arms>{PAWN_nameDef} has set off with the colony's call for a trader of arms, to pass it on from the Line's next post.</CC_PEv7_Call_Runner_arms>
+  <CC_PEv7_Call_Runner_hands>{PAWN_nameDef} has set off with word that the colony takes in people, to pass it on from the Line's next post.</CC_PEv7_Call_Runner_hands>
+  <CC_PEv7_Call_Runner_word>{PAWN_nameDef} has set off with the colony's call, to have the Line speak well of it from the next post.</CC_PEv7_Call_Runner_word>
+  <CC_PEv7_Call_WordSaid>The Line has spoken well of the colony to {FACTION}.</CC_PEv7_Call_WordSaid>
+  <CC_PEv7_Call_Unanswered>The Line's call for the colony went unanswered: nobody could come now. The Line is sending the {COUNT} silver back.</CC_PEv7_Call_Unanswered>
+  <CC_PEv7_Call_NoTrader>No people at peace with the colony sends that kind of trader.</CC_PEv7_Call_NoTrader>
+  <CC_PEv7_Call_NoWord>There is nobody the colony needs a good word with.</CC_PEv7_Call_NoWord>
+  <CC_PEv7_Impact_CallTraderRadio>The operator makes the call on the colony's radio, and a {0} of {1} comes within hours</CC_PEv7_Impact_CallTraderRadio>
+  <CC_PEv7_Impact_CallTraderRunner>The runner carries the call to the Line's next post, and a {0} of {1} comes in a day or two</CC_PEv7_Impact_CallTraderRunner>
+  <CC_PEv7_Impact_CallTraderBrief>a caravan comes</CC_PEv7_Impact_CallTraderBrief>
+  <CC_PEv7_Impact_CallHandsRadio>The operator makes the call on the colony's radio, and someone looking for a place comes to join within hours</CC_PEv7_Impact_CallHandsRadio>
+  <CC_PEv7_Impact_CallHandsRunner>The runner carries the call to the Line's next post, and someone looking for a place comes to join in a day or two</CC_PEv7_Impact_CallHandsRunner>
+  <CC_PEv7_Impact_CallHandsBrief>someone comes to join</CC_PEv7_Impact_CallHandsBrief>
+  <CC_PEv7_Impact_CallWordRadio>The operator makes the call on the colony's radio, and the Line speaks well of the colony to {0}</CC_PEv7_Impact_CallWordRadio>
+  <CC_PEv7_Impact_CallWordRunner>The runner carries the call to the Line's next post, and the Line speaks well of the colony to {0} in a day or two</CC_PEv7_Impact_CallWordRunner>
+  <CC_PEv7_Impact_CallWordBrief>a good word</CC_PEv7_Impact_CallWordBrief>
+
+  <!-- ===================== 65. A mast at a friend's town ===================== -->
+
+  <CC_PEv7_TownMastUp>The lineman of {FACTION} has raised the Line's mast at {TOWN}. From now the colony's letters to {NAME} there, and the answers, take half the days on the road.</CC_PEv7_TownMastUp>
+  <CC_PEv7_TownMastLost>{TOWN} is gone, and the Line's mast there with it.</CC_PEv7_TownMastLost>
+  <CC_PEv7_TownGone>That town is gone.</CC_PEv7_TownGone>
+  <CC_PEv7_Impact_TownMast>The lineman walks to {0} and raises a mast there; a message says when it stands</CC_PEv7_Impact_TownMast>
+  <CC_PEv7_Impact_TownMastBrief>a mast at their town</CC_PEv7_Impact_TownMastBrief>
+  <CC_PEv7_Impact_TownMastLetters>The colony's letters to {0} at {1}, and the answers, take half the days on the road while the Line is at peace with the colony</CC_PEv7_Impact_TownMastLetters>
+  <CC_PEv7_Impact_TownMastLettersBrief>letters in half the days</CC_PEv7_Impact_TownMastLettersBrief>
+
+  <!-- ===================== 66. The line crew ===================== -->
+
+  <CC_PEv7_Mast>radio mast</CC_PEv7_Mast>
+  <CC_PEv7_Tower>signal tower</CC_PEv7_Tower>
+  <CC_PEv7_CrewMastUp>{X_nameDef} and the line crew have raised their radio mast by their fire. While it stands, the colony's letters go out by their wire.</CC_PEv7_CrewMastUp>
+  <CC_PEv7_CrewTowerUp>{X_nameDef} and the line crew have put up their signal tower by their fire. While it stands, the colony's letters are passed along by signal.</CC_PEv7_CrewTowerUp>
+  <CC_PEv7_CrewFell>{X_nameDef} of the line crew fell from the mast in the storm and hurt {X_possessive} {THING}.</CC_PEv7_CrewFell>
+  <CC_PEv7_CrewMastStruck>Lightning struck the line crew's mast and broke it. They will raise another once the storm has passed.</CC_PEv7_CrewMastStruck>
+  <CC_PEv7_CrewTowerStruck>Lightning struck the line crew's signal tower and broke it. They will put up another once the storm has passed.</CC_PEv7_CrewTowerStruck>
+  <CC_PEv7_CrewRadioNews>On the line crew's radio at their fire tonight, {X_nameDef} heard this news: {THING}</CC_PEv7_CrewRadioNews>
+  <CC_PEv7_CrewFlagsNews>{X_nameDef} read this news from the next tower's lamps tonight: {THING}</CC_PEv7_CrewFlagsNews>
+  <CC_PEv7_CrewMastKept>The line crew has left its radio mast standing on the high ground. It is the colony's relay mast now.</CC_PEv7_CrewMastKept>
+  <CC_PEv7_CrewFed>Their food for the week went with them from the gate.</CC_PEv7_CrewFed>
+  <CC_PEv7_KeepTower>A signal tower needs the Line's watchers, so it goes with them.</CC_PEv7_KeepTower>
+  <CC_PEv7_KeepAlready>The colony is keeping the mast already.</CC_PEv7_KeepAlready>
+  <CC_PEv7_KeepHave>The colony has a relay mast of its own.</CC_PEv7_KeepHave>
+  <CC_PEv7_KeepNoMast>Their mast isn't standing now.</CC_PEv7_KeepNoMast>
+  <CC_PEv7_Impact_Crew>A crew of {0} camps a week on {1} and raises a {2} there</CC_PEv7_Impact_Crew>
+  <CC_PEv7_Impact_CrewBrief>a camp on the high ground</CC_PEv7_Impact_CrewBrief>
+  <CC_PEv7_Impact_CrewLetters>While it stands the colony's letters take half the days on the road, and once a night they pass on the region's news, and the places it names are marked as heard of</CC_PEv7_Impact_CrewLetters>
+  <CC_PEv7_Impact_CrewLettersBrief>letters and news</CC_PEv7_Impact_CrewLettersBrief>
+  <CC_PEv7_Impact_CrewTurns>It can turn in a thunderstorm: a lineman may fall from the mast, or the lightning may break it</CC_PEv7_Impact_CrewTurns>
+  <CC_PEv7_Impact_CrewTurnsBrief>it can turn</CC_PEv7_Impact_CrewTurnsBrief>
+  <CC_PEv7_Impact_KeepMast>When they go the mast stays, as the colony's own relay mast</CC_PEv7_Impact_KeepMast>
+  <CC_PEv7_Impact_KeepMastBrief>a relay mast</CC_PEv7_Impact_KeepMastBrief>
+
+  <!-- ===================== 67. The pit's cave-in ===================== -->
+
+  <CC_PEv7_AAndB>{0} and {1}</CC_PEv7_AAndB>
+  <CC_PEv7_PitBothCantGo>The colony can't spare both of them now.</CC_PEv7_PitBothCantGo>
+  <CC_PEv7_PitCantGo>{0} can't go now.</CC_PEv7_PitCantGo>
+  <CC_PEv7_PitThere>{PAWN_nameDef} has reached the pit at {PLACE} and gone down to dig with the miners of {FACTION}.</CC_PEv7_PitThere>
+  <CC_PEv7_PitCrush>Word from the pit at {PLACE}: a fall of rock caught {PAWN_nameDef}'s {PART} on the {SHIFT} shift. The union's medic bound it.</CC_PEv7_PitCrush>
+  <CC_PEv7_PitCrushDoctor>Word from the pit at {PLACE}: a fall of rock caught {PAWN_nameDef}'s {PART} on the {SHIFT} shift. {DOCTOR} bound it there.</CC_PEv7_PitCrushDoctor>
+  <CC_PEv7_PitHome>{PAWN_nameDef} is home from the pit at {PLACE} with the union's pay of {PAY} silver. The trapped miners of {FACTION} were dug out.</CC_PEv7_PitHome>
+  <CC_PEv7_PitHomeEarly>{PAWN_nameDef} is home from the pit at {PLACE} before the digging was done.</CC_PEv7_PitHomeEarly>
+  <CC_PEv7_Impact_Pit>{0} set out for {1} on the roads, and dig there for {2} days, a shift a day</CC_PEv7_Impact_Pit>
+  <CC_PEv7_Impact_PitBrief>away at the pit</CC_PEv7_Impact_PitBrief>
+  <CC_PEv7_Impact_PitPay>The union's pay: {0} silver each, brought home</CC_PEv7_Impact_PitPay>
+  <CC_PEv7_Impact_PitPayBrief>pay</CC_PEv7_Impact_PitPayBrief>
+  <CC_PEv7_Impact_PitRisk>One shift in twenty a fall of rock may crush a foot or a hand of {0} (once each at most), as at the union's drill</CC_PEv7_Impact_PitRisk>
+  <CC_PEv7_Impact_PitRiskBrief>a crush, at the drill's rate</CC_PEv7_Impact_PitRiskBrief>
+
+  <!-- ===================== 68. Oil in the ground ===================== -->
+
+  <CC_PEv7_Here>near the colony</CC_PEv7_Here>
+  <CC_PEv7_Dir_North>to the north of the colony</CC_PEv7_Dir_North>
+  <CC_PEv7_Dir_South>to the south of the colony</CC_PEv7_Dir_South>
+  <CC_PEv7_Dir_East>to the east of the colony</CC_PEv7_Dir_East>
+  <CC_PEv7_Dir_West>to the west of the colony</CC_PEv7_Dir_West>
+  <CC_PEv7_OilGone>The ground where they found the oil can't take a well now.</CC_PEv7_OilGone>
+  <CC_PEv7_WellSunk>The assayer of {FACTION} has sunk a {THING} for the colony. It is the colony's now.</CC_PEv7_WellSunk>
+  <CC_PEv7_WellSunkShare>The assayer of {FACTION} has sunk a {THING} for the colony. It is the colony's now, and the union will collect {COUNT} chemfuel a season for a year.</CC_PEv7_WellSunkShare>
+  <CC_PEv7_SeamMarked>The assayer of {FACTION} has marked a seam of {ORE} here, about {COUNT} of it. The union's drill crew will come for it.</CC_PEv7_SeamMarked>
+  <CC_PEv7_ShareFuel>{FACTION} takes its share of the well this season: {COUNT} chemfuel from the colony's stores. Shares left: {LEFT}.</CC_PEv7_ShareFuel>
+  <CC_PEv7_ShareSilver>The stores were short of chemfuel, so {FACTION} takes its share of the well in silver this season: {SILVER} silver. Shares left: {LEFT}.</CC_PEv7_ShareSilver>
+  <CC_PEv7_ShareLetGo>The stores held neither the chemfuel nor the silver for {FACTION}'s share of the well this season, and the union let it go. Shares left: {LEFT}.</CC_PEv7_ShareLetGo>
+  <CC_PEv7_Impact_Well>The assayer and the driller drill for six hours {1}, and a {0} stands there, the colony's</CC_PEv7_Impact_Well>
+  <CC_PEv7_Impact_WellBrief>an oil well</CC_PEv7_Impact_WellBrief>
+  <CC_PEv7_Impact_WellShare>The union collects {0} chemfuel a season for {1} seasons, or its worth in silver when the stores are short</CC_PEv7_Impact_WellShare>
+  <CC_PEv7_Impact_WellShareBrief>a year's share</CC_PEv7_Impact_WellShareBrief>
+  <CC_PEv7_Impact_Seam>The assayer marks the seam of {0} {1}, and the union's drill crew comes for it a day later</CC_PEv7_Impact_Seam>
+  <CC_PEv7_Impact_SeamBrief>a seam marked</CC_PEv7_Impact_SeamBrief>
+  <CC_PEv7_Impact_SeamWalk>{0} walks the ground with the assayer and learns mining</CC_PEv7_Impact_SeamWalk>
+  <CC_PEv7_Impact_SeamWalkBrief>a lesson</CC_PEv7_Impact_SeamWalkBrief>
+
+  <!-- ===================== 69. The organizer's evening ===================== -->
+
+  <CC_PEv7_WornLong>the long hours</CC_PEv7_WornLong>
+  <CC_PEv7_WornStrain>too much work and worry</CC_PEv7_WornStrain>
+  <CC_PEv7_PetitionLift>After the shift-captain's talk at the fire, {PAWN_nameDef} asks the council to lift {DECREE}.</CC_PEv7_PetitionLift>
+  <CC_PEv7_PetitionRest>After the shift-captain's talk at the fire, {PAWN_nameDef} asks the council for {DECREE}.</CC_PEv7_PetitionRest>
+  <CC_PEv7_PetitionGranted>The council granted the petition {PAWN_nameDef} brought after the shift-captain's talk. Those worn down are glad of it, and {FACTION} thinks better of the colony.</CC_PEv7_PetitionGranted>
+  <CC_PEv7_PetitionRefused>The council let the petition {PAWN_nameDef} brought after the shift-captain's talk go unanswered. Those worn down are stung by it.</CC_PEv7_PetitionRefused>
+  <CC_PEv7_Impact_PetitionLift>The next morning, the one most worn down asks the council to lift {0}</CC_PEv7_Impact_PetitionLift>
+  <CC_PEv7_Impact_PetitionRest>The next morning, the one most worn down asks the council for {0}</CC_PEv7_Impact_PetitionRest>
+  <CC_PEv7_Impact_PetitionBrief>a petition</CC_PEv7_Impact_PetitionBrief>
+  <CC_PEv7_Impact_PetitionEither>Granted: those worn down +4 mood for 6 days, and the union thinks better of the colony. Refused or left to lapse: those worn down -4 mood for 6 days</CC_PEv7_Impact_PetitionEither>
+  <CC_PEv7_Impact_PetitionEitherBrief>granted or refused</CC_PEv7_Impact_PetitionEitherBrief>
+
+  <!-- ===================== 70. The picket ===================== -->
+
+  <CC_PEv7_PicketSettled>The strike is settled.</CC_PEv7_PicketSettled>
+  <CC_PEv7_PicketNoMiner>The colony has no miner to send.</CC_PEv7_PicketNoMiner>
+  <CC_PEv7_Impact_Picket>Strikers of {0} camp by the colony's road while the strike lasts, and their shift-captain settles it with the colony there</CC_PEv7_Impact_Picket>
+  <CC_PEv7_Impact_PicketBrief>a picket by the road</CC_PEv7_Impact_PicketBrief>
+  <CC_PEv7_Impact_PicketTurns>It can turn: strikebreakers may come against their camp</CC_PEv7_Impact_PicketTurns>
+  <CC_PEv7_Impact_PicketTurnsBrief>it can turn</CC_PEv7_Impact_PicketTurnsBrief>
+
+</LanguageData>

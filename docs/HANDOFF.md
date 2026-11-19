@@ -33,8 +33,8 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0); round 6 is built, not released (the
-   entry above the newest release line).
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0); round 7 is built,
+   not released (the entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -176,8 +176,8 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0)
-  and round 6 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 7 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0),
+  round 6 (0.270.0), and round 7 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 8 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
@@ -185,8 +185,8 @@ repo.
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
-  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Built, not released (19 November 2026).
-  7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
+  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Released 0.270.0 (19 November 2026).
+  7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Built, not released (19 November 2026).
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
   10. Between peoples 96 to 99; every people's art handed on, 100.
@@ -514,6 +514,99 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 7**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 60, 61, 62, 64, 65, 66, 67, 68, 69 and 70 of `docs/peoples-events-proposals.md` (ten, all built): the Kiln Guild's
+  master who comes to judge a masterwork or a legend the colony made (the guild's mark, or a fault said plainly), the
+  journeyman of a wander-year who comes back a master a year on with a masterwork as a gift, and three journeymen camped while
+  they build a great work with the colony's stone or wood (a carved bridge, a grand statue or sculpture in its hall, a
+  fountain where it gathers); the Signal Line's one call a season on its masts (a trader of goods or of arms, someone to join,
+  a good word), its mast raised at the town of a notable the colony writes to (letters there in half the days) and a line crew
+  camped a week on the high ground with a working mast (letters by their wire, the region's news at night, the mast the
+  colony's to keep); the Deepwell Union's call for the colony's miner and doctor when one of its pits caves in, the oil its
+  assayer finds under the colony (a Rimefeller well for silver or a year's share; without Rimefeller a deep seam marked for the
+  union's drill), the shift-captain who speaks at the colony's fire when its people are worn down (and the petition to the
+  council next morning), and the picket kept by the colony's road while a strike lasts. DESIGN.md "The peoples' own events,
+  round 7" has every rule; README "The peoples' own events, the seventh round"; the Almanac's peoples' page, *Of their own:
+  gifts, trust and camps* (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events7/` (new): `PeopleEvents7Math.cs` (pure, linked), `PeopleEvents7Book.cs` (a game
+    component: the fine pieces, the journeymen due back, the masts at towns, the wells' shares, the evenings and their
+    petitions, the strikes a picket was rolled for), `PeopleEvents7.cs` (the visits' dispatch, the homes' hour, the letters'
+    wire, `JobDriver_PEv7Work` with a queue and its `PEv7Work` marks), `MastersMark.cs` (60), `ComeBackBetter.cs` (61, its
+    ledger keep reason "comeBack"), `WorkThatStays.cs` (62, `CampWorker_WorkThatStays`), `VoiceForColony.cs` (64), `TownMast.cs`
+    (65), `LineCrew.cs` (66, `CampWorker_LineCrew`), `PitCaveIn.cs` (67, `CaveInAway`), `OilInGround.cs` (68: the well and the
+    seam), `OrganizersEvening.cs` (69), `Picket.cs` (70, `CampWorker_Picket`), `PeopleEvents7Debug.cs`. Small hooks:
+    `PeopleEvents6.Hour` and `Hourly` (round 7's, one line each), round 2's `SeasonAway.Kinds` (the pit), `Patch_ArcMade` (a
+    fine piece made), `Patch_FactionMemory.MissionEnded` (a wander-year ended well), `LedgerKeep.StillHolds` (the journeyman
+    kept), `NeighbourLetters.HandedToBearer` and `Handed` (the letters' road reads the Line's masts at towns and its crews),
+    `HappeningWorker_UnionStrike.CanHappen` (round F's strike visit waits on a picket), `FactionMemory` (the deed `markTrue`, its
+    words), `FactsMath` (the three camps' tags), the def check's placeholders (`{WORK}`, `{MAST}`, `{NEWS}`). Defs:
+    `Rimfolk_Events_PeopleEvents7.xml` (eleven events, the oil in two forms; four fired from code: the master, the journeyman,
+    the shift-captain, the strikers), `Rimfolk_CampKinds_PeopleEvents7.xml` (three camps), `Rimfolk_PeopleEvents7_Misc.xml` (ten
+    jobs, the flag-and-lamp tower, six moods), Keyed `Rimfolk_PeopleEvents7.xml`, `Textures/ColonyCouncil/Things/SignalTower.png`
+    (drawn by `Tools/make_signal_tower.py`). Tools: the play-out audit's effects and nine skips, the save model's lists.
+  - Decided here (open in the proposals): the master comes a day or more after the piece is made, while it is ten days fresh
+    and still at the colony, at 0.6, twenty days apart, and judges it where it lies or on whoever holds it; a fault is found in
+    one masterwork in five and one legend in twelve; "the region's word" is the guild's deed naming the maker (`markTrue`, which
+    renown reads); the quality expertise only for a piece made at a bench (Vanilla Skills Expanded has none for art). The
+    journeyman who comes back is the same person (kept in the world by the ledger), their craft raised to a master's; the gift
+    is the guild's small art of its age, a masterwork, set down at the gate whatever the answer. The work that stays is the
+    guild's choice by what the colony has: the bridge first (Kell's), then the hall's work, then the fountain; Vanilla Furniture
+    Expanded - Art's grand statue and monument join the game's grand sculpture for the hall (the full mod pool), the first
+    changing with the season; the stone is carried out to the camp once they have camped (no stone in the stores is the "runs
+    short" turn: they wait a day or two, then make do a grade plainer, or go if they had none), and a cracked block (0.3) asks a
+    quarter more. "A trader of a kind" is two answers, goods and arms, the kinds read by name (no slavers, pirates, tribute
+    collectors); the Line's price is its price for news (50), three times for hands; an unanswered call is paid back; "their
+    runners carry the call where the colony has no radio" is by the colony's radio (a powered comms console or its own singing
+    mast). The friend's town is the notable written to most; the mast stands after the lineman's walk there and a day's work;
+    with the colony's own mast too, letters are still half the days. The line crew's mast is the Line's own relay mast (a
+    flag-and-lamp tower before the industrial age, drawn here), the colony may keep only a mast and only while it has none; the
+    fall is the dangers on the map in the harm budget, the lightning's fire the camps' embers. The cave-in's crush happens at
+    the pit, away, told as word from the pit at once and bound there, the colonist home with the bound wound (the harm budget's
+    UnionDrill kind, "as at the drill rig"); "+12" is the union's goodwill for both sent, six each as they come home. The oil is
+    Rimefeller's own deposit as its own well's placing reads it, the well spawned for the colony (only when its research is
+    done); the year's share is four seasons of thirty chemfuel by the union's courier, else its worth in silver. The organizer's
+    "petition for a day of rest a week" is the council's own days of rest (no weekly calendar exists), or, with the long hours in
+    force, lifting them; only when the council could grant it. The picket's "shift-captain who settles it comes from here" is
+    their food ask (it settles the strike) with round F's gate visit held while they camp; "fire in a barrel, signs" is their
+    campfire and songs (no barrel fire or sign exists in the pool, and the words say "a fire").
+  - Harm: none of a new kind. The crush at the pit (`UnionDrill`), the fall from the mast (`Dangers`) and the lightning's fire
+    (`CampLeft`) go through the shared harm budget and are told; the strikebreakers' fight, the storm's bolt and the roads to
+    the pit are the game's own, and the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents7Tests.cs` (about 230 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the master's hour at the piece, held or lying, and the maker
+    beside; the gift laid at the gate, the sit and the morning at the bench; the journeymen's camp, the stone carried out and
+    stacked at the work, the carving by day, the bridge laid as a foundation over the water, the statue, monument, sculpture or
+    fountain spawned with its quality and its art's author, the wait for stone and the day torn down; the operator at the
+    console or the mast and the runner off, the caravan of that kind and the wanderer coming; the lineman's walk and the mast
+    standing, the letters' days halved; the crew's mast and tower raised, the wire by day, the news at night and the places
+    marked, the climb, the fall and the bolt in a storm, the mast kept; the caravans of one to the pit and home, the shifts, the
+    crush bound; Rimefeller's well placed and spawned (whether it then wants Rimefeller's own drilling is Rimefeller's), the
+    courier collecting the share, the seam marked and the drill crew's coming; the talk at the fire, the morning's petition and
+    its answer; the picket by the road, its songs, the food carried out and the strike settled, the strikebreakers, the march
+    home).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 7: what the record keeps (log)" shows the state and what each event
+    would find here; the drawn events with the game's own incident tool): 1. The master's mark: make a masterwork (or "a master
+    to judge a fine piece now", which marks the best piece a masterwork if none); either answer; watch the hour at the piece
+    and the verdict. 2. Come back better: "a journeyman back as a master now" (one made if no wander-year is on record);
+    answer and see the gift at the gate. 3. The work: `Rimfolk_Evt_WorkThatStays` with water near the colony, a dining or
+    recreation room, or a gathering spot, and stone in the stores (or "one of their camps here now..."); the stone carried out,
+    the carving, the work standing; "a camp of theirs turns now..." for the cracked block and the bad day. 4. The call:
+    `Rimfolk_Evt_VoiceForColony` with and without a comms console; each answer. 5. The town mast: write a letter to a notable
+    first, then `Rimfolk_Evt_TownMast`, then "the masts at friends' towns up now", and send a letter there. 6. The line crew:
+    `Rimfolk_Evt_LineCrew`; the mast, the wire, the news at 19h; in a thunderstorm, "a camp of theirs turns now..." for the climb
+    and the bolt; the keep ask. 7. The cave-in: `Rimfolk_Evt_PitCaveIn` with a Deepwell town within twelve tiles; send both; "a
+    shift at the pit ends now" for a crush. 8. The oil: with Rimefeller's wells researched `Rimfolk_Evt_OilInGround`, else
+    `Rimfolk_Evt_DeepSeam`; the drilling or the mark, the well or the drill crew next day; "what the record keeps" for the
+    share. 9. The evening: work under long hours by decree (or with the colony's strain high), then "the organizer at dusk now";
+    the talk at the fire; run it again for the morning's petition, then grant or let it lapse. 10. The picket: "the strikers at
+    the gate now" (a strike called if none runs); the camp by the road, the songs, the food ask settling it; "a camp of theirs
+    turns now..." for the strikebreakers.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Furniture Expanded - Architect's
+    stone bridges, Vanilla Furniture Expanded - Art's grand statue and monument, Alpha Props - Parks' fountains, Dubs Bad
+    Hygiene's fountain, Rimefeller's wells, Vanilla Skills Expanded's quality expertise). The flag-and-lamp tower is drawn here.
 - 0.270.6, **Plain words: the Almanac's pages
   about your other mods** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their
   words for the pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be
