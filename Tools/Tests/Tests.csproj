@@ -282,6 +282,7 @@
     <Compile Include="../../Source/ColonyCouncil/Missions/NeighboursFourMath.cs" Link="NeighboursFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/HomeQuestsMath.cs" Link="HomeQuestsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/HomeQuests2Math.cs" Link="HomeQuests2Math.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Missions/HomeQuests3Math.cs" Link="HomeQuests3Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherFourMath.cs" Link="TogetherFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/PokeWorldSoundsMath.cs" Link="PokeWorldSoundsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/RideOutMath.cs" Link="RideOutMath.cs" />

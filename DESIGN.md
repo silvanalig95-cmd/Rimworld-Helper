@@ -4277,6 +4277,153 @@ the sickness in the next town now", "... the strayed herd now", "... the pilgrim
 now", "Storylines: the pilgrims' relic stolen tonight, now", and the frame's. Tests: `Tools/Tests/StorylineTests2.cs`
 (and every storyline's shape in `StorylineTests.cs`).
 
+### Storylines, round 3, and the one away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's grave and a cache in old ruins (the player's go, 19 November 2026: "Quests round 3 sounds great"; released 0.267.0)
+
+Round 3 of `docs/quests-proposals.md`: the storylines S6, S9, S10, S11 and S12 on the frame above, and Q14, the one single
+quest that sends the colony's people out. The go's words still bind ("make sure they are written in the more clear style",
+away only "within only very few tiles"). Everything plays out on the colony's own map but two optional parts: S9's strike
+on a raiders' camp and Q14's ruins, each only when the place is within three tiles. Each storyline adds its own flow
+(`Storylines/Flows/`), its own rules and parts (`Storylines/Storyline*.cs`) and its own defs; what the round's parts share
+is `Storylines/StorylineRound3.cs`: an area marked on the map (`IStorylineArea`, drawn as the keepsake's search area is,
+`StorylineAreaOverlay`), a search of it spot by spot (`IStorylineSearch`: right-click inside it with a colonist, an hour a
+look, `JobDriver_StorylineSearch`), goods collected by the people's carts, and the dev actions (a start for each, and "what
+the open part waits for comes now", `IStorylineDebugNow`). Two small shared changes: a mission may be **the colony's own**
+(`HappeningWorker_Mission.OfTheColony`: nobody of the world asked it, so no people must stay at peace with the colony for it
+to go on; `Missions.Accept` and `Missions.Tick` read it), for the dream and the raiders' price; and the harm budget has a
+new kind, `HarmKinds.StoryFight` (system "quests", off with the world's battles), for a fight a storyline brings.
+
+**S6, a dream of the gods** (`Storylines/StorylineDream.cs`). The colony's own faith, and the gods unseen (CLAUDE.md): the
+whole of it is the dreamer's own account, and the god is named only by the name the colony knows it by (`Worship.Called`).
+The dreamer is one of the colony's own, devout and no scoffer, whose god the colony knows by name and takes offerings (the
+priest three times likelier). Its parts are the colony's own missions.
+- **Part 1, the place in the dream**: the dreamer told it at breakfast (their journal, and the colony's book of the gods as
+  a dream told, `GodLore.Dreamt`): a place on the colony's land, well out from its middle (an area of radius 4 marked on the
+  map), and a place for the god there. Within six to nine days the colony builds an altar, a shrine or a work of art inside
+  it (`Shrines.Is`, any age's: a ritual focus, art, a nature shrine, anything called an altar or a shrine); once one stands
+  there, the worship's own dedication gives it to the god (`Shrines.Ask`: someone walks over and says the words). Given:
+  built. Nothing given there in time: not built, and the dreamer is troubled.
+- **Part 2, the watch** (a day to three later): someone of the colony at the new place for two hours of the night (nine to
+  four), within three nights; the dreamer walks out each night to keep it (the play-out's visit), and anyone of the colony
+  within five cells counts. Partway through it, a light comes over the place for a short while: the god's own sign
+  (`Worship.Sign`, the presence's moment, else a glow and a line in the news), named after it only as the colony may name
+  it ("some say"), and kept in the colony's book through those who saw it. No watch kept: nothing is seen, and the dream
+  comes back all the same.
+- **Part 3, the offering** (two to five days later): the dream comes back (told again, the book's dream) and asks for an
+  offering of a kind the god likes (`GodWorshipDef.Likes`) at the place within three days: the worship's own demand of a
+  dream (a `DemandRecord` and a planned offering, the dreamer carrying it first). Set down there: given, and the colony's
+  book keeps it as the dreamer believes it ("{GOD} asked me in my dreams for a shrine and an offering, and we gave both",
+  `GodLore.Believes`), the dreamer honoured (a mood, +5, eight days). Refused, or not brought: the dreamer troubled for a
+  while (-4, six days). What the god does with it is the worship's own, never told here; no favour, want or rule is shown.
+- The dreamer dead or gone from the colony: it ends plainly.
+
+**S9, raiders settling nearby** (`Storylines/StorylineRaiders.cs`). A people at peace with a town near the colony warns it;
+the raiders are a people at war with it that can raid and hold a camp, nearest the neighbours' age, and their camp is the
+region's kind by their age (`RaidersCamps.KindWord`: a war camp, a brigands' hold, a bandit camp, a raider base). Never
+while one of the region's own raiders' camps stands near the home; only with battles on.
+- **Part 1, defences**: within five to seven days, three to six traps or turrets, or 24 to 60 lengths of wall, fence or
+  barricade, by the colony's size (counted from the day it agreed). Ready (either goal), partly (half of either), unready.
+  Ready, the colony's watch sees the raiders coming: a letter a few hours before they come.
+- **Part 2, the raid that tests the colony** (two to five days later): taken on, a small raid comes within one to three days
+  (half the threat the storyteller would send now, the game's own raid with Rimfolk's letter above its own,
+  `Raids.Send`), within the shared harm budget (`HarmKinds.StoryFight`, 85 in a hundred; held back, they don't come:
+  quiet). Beaten off (half of them or more fell, or more of them than of the colony's people): repelled; else overrun.
+  Turned down, the colony keeps out of it and the raiders turn to the neighbours: no fight comes unasked.
+- **Part 3, the strike** (two to six days later): **within three tiles** (a place found for the camp, two to three tiles
+  off), the camp is the game's own bandit camp of the raiders' people (six tenths of the threat now) on the world map for
+  eight days, and the neighbours ask the colony to join them: when the colony's caravan is on the camp's map, two to four
+  of the neighbours' fighters come in beside it and go after the raiders (the game's assist duty). Every fighter of the camp
+  fallen: cleared. Not joined in time: the neighbours go alone (45 in a hundred). **Farther off**, the neighbours go and
+  ask for food and medicine for their fighters (meals and medicine by how many go), collected by their carts within three
+  days; word comes two to four days later, cleared 75 in a hundred with the colony's food and medicine, 45 without. Turned
+  down: the neighbours alone clear it about a third of the time.
+- **Endings**: the camp gone (the neighbours thank the colony, more when it joined in person); or **the raiders' price
+  each season for a year** (a part of its own each season, a quiet wait between): paid (a colonist carries the silver out to
+  the edge of the colony's land and leaves it, the region's camp's own errand; about half their raid's strength in silver),
+  or refused (or the silver not there when it agrees), and a band of them comes for it a day or two later (the game's raid,
+  within the harm budget). After the fourth season they move on.
+
+**S10, the town's well ran dry** (`Storylines/StorylineWell.cs`). The Deepwell Union's town first (the drillers), else any
+people with a town near the colony.
+- **Part 1, water or food**: water where the colony keeps it (Dubs Bad Hygiene's bottled water, enabled in the player's
+  list), else meals, by the colony's size, within four to six days; collected by their carts and paid a fifth over its
+  worth; half or more by the date, its plain worth; less, none, and it ends.
+- **Part 2, a hand lent** (two to five days later): the colony's best at Mining or Construction (6 or more; never one of the
+  colony's last two hands). Their foreman comes to the gate within a day, and the colonist walks out with them to the edge
+  of the map (`JobDriver_StorylineLentOut`) and is away four to six days: kept in the world as the game keeps lent
+  colonists, no caravan of the colony's going anywhere. Then they walk home from the edge with a day's wage for each day and
+  1,500 experience a day in the skill they were lent for (400 in the other). The new well found: the lent hand's chance (two
+  in five at 6, nine in ten from 16). Kept at home by the colony for most of a day when the foreman comes: the foreman goes
+  without them. A part that ends any other way, or their people gone, brings a colonist away home at once.
+- **Endings**: found, the town grows and remembers the help (+15, a letter a day or two later); nobody lent, they find it
+  themselves three times in ten; not found, **part 3, refugees**: two to four of the town's people on the road, taken in
+  (they come to the gate and join the colony) or turned away (-8).
+
+**S11, the vault's sealed case** (`Storylines/StorylineVault.cs`). The Sunken Vault first (the vaultfolk), else any spacer
+people at peace.
+- **Part 1, power cells** (the vault's own power cells mission's ask): six to twelve components by the colony's size within
+  six to nine days, collected by its runners and paid two fifths over their worth (half or more: their plain worth); the
+  parts keep a declining people's age, as the vault's own mission's do (`VaultSupply.Noted`).
+- **Part 2, the engineer** (two to six days later): one of their engineers stays four to six days as a hosting guest, and
+  each day from eight in the morning takes a component from the colony's stores and works about four hours at one of the
+  colony's work benches (a fabrication bench, a machining table, a smithy, a tailoring bench, a crafting spot: any age's),
+  the game's smithing look and sound (`JobDriver_StorylineBenchWork`); no component in the stores, that day's work is lost.
+  On leaving they pay for the components used (half again over their worth). Every day worked, or short; dead or taken
+  prisoner, harmed.
+- **Part 3, the sealed case** (two to six days later): their runner brings a sealed case (Rimfolk's own, a picture of its
+  own) and sets it down by the colony's stores for five to seven days. Half a day later a card asks: **keep it sealed**
+  (the default: their runner comes back for it at the end of the days, +16 in all, and the vault owes the colony a favour,
+  the missions' deed big enough to be one), or **open it**: a sleeper of their people (joins the colony half the time, else
+  leaves at once), a machine (the game's own mechanoid, by a third of the threat now, within the shared harm budget; held
+  back, old goods instead), or old goods (by the colony's wealth and age). Opened, the vault hears of it when its runner
+  comes (-15). The case lost: they hold it against the colony.
+
+**S12, the lost founder's grave** (`Storylines/StorylineGrave.cs`). The Quiet Bell first (the keepers of the dead), else any
+people at peace with a town near.
+- **Part 1, the search**: their elders say one of their founders (a name of their people) lies on the colony's land; an
+  area of radius 7 is marked well out from the colony's middle, and the colony searches it as the lost keepsake's (an hour
+  a look, about three cells around). Found within four to six days: a grave marker (Rimfolk's own, the colony's) is set on
+  it (+8). Not found: one of theirs comes, searches some hours and finds it. Something of the colony's built on the very spot
+  first: built over, and they hold it against the colony (-20).
+- **Part 2, the mourners** (three to six days later): three to five come to the grave early on the set morning, stay about
+  ten hours and eat at the colony's table (beds don't matter for a day); fed when hungry: hosted (+10), else poorly. One of
+  them dead or taken prisoner: harmed. The marker gone or built over: built over.
+- **Endings**: kept, and for three years (`StorylineAfter` "grave", once a game year) two or three of theirs come to the
+  grave for a few hours (+4 each time); the marker gone or built over when they come, they hold it against the colony and
+  come no more. Turned away: refused (-12).
+
+**Q14, a cache in old ruins** (`Missions/Workers_MissionHome5.cs`, `HomeQuests3Math.cs`). A neighbour's old map, by their
+age (painted on a hide, drawn on parchment, a survey map, a data slate), shows a cache in ruins close by. Offered only when
+a place is found within one to three tiles, and at half a quest at home's chance (0.15): with the thirteen at home, under one
+single quest in ten sends anyone out (rule 2). Taken on, the ruins are the game's own item stash site, the cache (Rimfolk's
+own old chest) and a few things worth half the reward among its things, set down inside the ruins by the game's map making
+(and by `Patch_HomeQuestRuinsCache` if not). Six to ten days by the distance (three more for a caravan on its way home with
+it). Brought home: their people come for it within half a day and pay (the quests at home's reward by their age and the
+colony's wealth, a tribe in goods); what else lay there is the colony's. Destroyed, or not home in time: -6. No fight of its
+own: the ruins hold the cache and the land's own animals.
+
+**The rules held.** At home, but S9's strike and Q14's ruins, each only within three tiles and each optional. Every age: the
+place for a god, the camp's kind, the water or meals, the bench, the old map, each its age's. The mod pool: Dubs Bad
+Hygiene's water where the colony keeps it; the shrines, benches and fighters any mod's. Harm only where the plan says: the
+raids and the machine through the shared budget, the strike the colony's own choice, each shown. The gods unseen: the dream
+is the dreamer's, the god named only as the colony knows it, nothing of its mind. The colony is the family: the founder is a
+people's founder, mourned by that people, with no line or house tied to it. Plain words, spoken lines one sentence each.
+
+Code map: `Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`, `GraveFlow.cs`; pure, linked
+whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs`, `StorylineDream.cs`, `StorylineRaiders.cs`,
+`StorylineWell.cs`, `StorylineVault.cs`, `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked),
+`Missions/Workers_MissionHome5.cs`. Changed, small: `Missions/Workers_Missions.cs` and `Missions.cs` (`OfTheColony`),
+`Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs`, `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`). Defs:
+`Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`, `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`,
+`_Well.xml`, `_Vault.xml`, `_Grave.xml`, `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`
+(the case, the cache, the grave marker, three jobs, the dreamer's two moods); Keyed `Rimfolk_Storylines3.xml`,
+`Rimfolk_Missions_Home3.xml`; pictures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png` (`Tools/make_quest_items.py`).
+Saved: nothing new collected (the dreamer, the lent hand, the engineer and the mourners in the storyline's people; the god,
+the place and the camp in its single values; the grave's yearly visits a `StorylineAfter`). Dev mode: "Storylines: start a
+dream of the gods now", "... raiders settling nearby now", "... the town's well ran dry now", "... the vault's sealed case
+now", "... the lost founder's grave now", "Storylines: what the open part waits for comes now", and "Quests at home: offer
+one now..." for the cache. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (and every storyline's shape in
+`StorylineTests.cs`).
+
 ### The right-click's things, done by themselves (the player's request, 7 November 2026)
 
 "I'm not really using the right click conversation options, so please integrate them to be done automatically by pawns

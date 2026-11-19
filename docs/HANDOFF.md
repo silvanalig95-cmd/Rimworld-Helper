@@ -182,7 +182,9 @@ repo.
     movement or a baby's cry within a few cells, the sound carrying through open doors and doorless openings but not
     through walls or closed doors, at most once in 300 ticks, and never from a lover, a pet or a bonded animal; so a
     guest walking past an open door or into the room wakes them, one outside a closed door does not.
-  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 waits for the go (16 November 2026).** The player: "the next thing to include
+  - **Quests, and storylines across quests: rounds 1 and 2 released, round 3 built (not released) on the player's go of 19
+    November 2026 ("Quests round 3 sounds great"; the entry "Storylines, round 3, and the one away quest" above the newest
+    release line).** The player: "the next thing to include
     will be more quests, and quests that are storylines across multiple quests". The go, 16 November 2026: "go ahead
     with quests and storylines, make sure they are written in the more clear style i mentioned earlier on", then "and
     while quests that require you to go out of your base are interesting, i hardly ever reach the stage where I can
@@ -192,8 +194,8 @@ repo.
     was released as 0.261.0 (Q1, Q2, Q5, Q7, Q9 and Q10) and 0.262.0 (the storyline frame with S1, S4 and S8). Round 2
     was released on the player's "great, do some more" (16 November 2026): the seven single quests (Q3, Q4, Q6, Q8,
     Q11, Q12 and Q13) as 0.263.0 ("Quests at home, round 2") and the storylines S2, S3, S5 and S7 as 0.264.0
-    ("Storylines, round 2"). Round 3 waits, and
-    the player can strike or change anything in it before it starts.
+    ("Storylines, round 2"). Round 3 (S6, S9, S10, S11, S12 and Q14) is built, not released: every storyline and quest of
+    the plan is now built.
 - **Done (14 November 2026, the player's go; released 0.232.0 to 0.238.0): the gods, each their own.** Proposed in `docs/gods-next-proposals.md`
   with the draft sheet `docs/gods-symbols-draft.png` (the player's first words on it are in the handoff's history: "So
   for the gods, I still kind of want you to create an image or a symbol or use one for each god ..."). The player's
@@ -333,6 +335,106 @@ repo.
     vest) goes straight to the bill as before; "Any material" leaves the bill as the mod makes it; with the setting
     off, no material step.
   - **Mods that would help**: none; the mod's own menus and the game's material icons are enough.
+- 0.267.0, **Storylines, round 3, and the one
+  away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
+  grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3
+  sounds great"; the first go's words still bind (16 November 2026): "go ahead with quests and storylines, make sure they
+  are written in the more clear style i mentioned earlier on", "and while quests that require you to go out of your base
+  are interesting, i hardly ever reach the stage where I can consistently go out of base and it's worth it, so keep these
+  quests to a minimum", "unless it's like within only very few tiles". Round 3 of `docs/quests-proposals.md` (S6, S9, S10,
+  S11, S12 and Q14, each marked built there), on the 0.262.0 frame and round 2's flows. DESIGN.md "Storylines, round 3,
+  and the one away quest" has all of it; README the missions and storylines paragraphs; the Almanac's Rimfolk events page,
+  Missions and Storylines (keywords unchanged). With this, every storyline and quest of the plan is built.
+  - **What was built.** **S6, a dream of the gods**: a devout colonist whose god the colony knows dreams of a place on the
+    colony's land (an area marked on the map) and of a place for the god there; the colony builds an altar, a shrine or a
+    work of art inside it, and the worship's own dedication gives it to the god; then a night's watch there (the dreamer
+    walks out to keep it), and partway through it a light comes over the place (the god's own sign, `Worship.Sign`, named
+    only as the colony may); then the dream comes back and asks for an offering of a kind the god likes, the worship's own
+    demand of a dream. Given: the colony's book keeps it as the dreamer believes it, and the dreamer is honoured (a mood);
+    refused or not brought: the dreamer is troubled for a while. The dream as told goes in their journal and the book.
+    **S9, raiders settling nearby**: a people near the colony warns of raiders setting up a camp (the region's kind of camp
+    by their age); defences (traps or turrets, or lengths of wall; ready, the watch sees the raid coming); a small raid
+    that tests the colony (the game's own, within the harm budget); a strike on the camp, joined by the colony's caravan
+    beside the neighbours' fighters when the camp is within three tiles, else food and medicine for their fighters; the
+    camp gone, or the raiders' price each season for a year (paid, carried out to the edge of the land; refused, they come
+    for it). **S10, the town's well ran dry**: water (Dubs Bad Hygiene's, where the colony keeps it) or meals collected by
+    their carts; a miner or builder lent, who walks off with their foreman for four to six days and walks home more
+    skilled, with wages; the well found by their skill's chance (the town grows), or not (two to four of its people ask to
+    join). **S11, the vault's sealed case**: components for the vault's power cells (keeping a declining people's age, as
+    the vault's own mission does); an engineer who works a few hours a day at one of the colony's benches on a component a
+    day; a sealed case left by the stores, and a card: keep it sealed and hand it back (the vault owes a favour) or open
+    it (a sleeper who joins or leaves, the game's own machine within the harm budget, or old goods). **S12, the lost
+    founder's grave**: a marked area searched spot by spot with a right-click (the keepsake's way), the grave marked;
+    mourners for a day at the colony's table; kept, they come each year for three years; built over, they hold it against
+    the colony. **Q14, a cache in old ruins**: a neighbour's old map (by their age) shows a cache within three tiles; the
+    game's own item stash site holds it; a caravan brings it home, their people collect it and pay, and what else lay with
+    it is the colony's.
+  - **Decided here** (not asked): S6's parts are the colony's own missions, with no people of the world behind them (a
+    small change to the shared missions, `HappeningWorker_Mission.OfTheColony`), and so is the raiders' price; the dreamer
+    must be devout and no scoffer, their god known to the colony by name and one that takes offerings (the priest three
+    times likelier); "something happens at what was built" is a night's watch with a light over the place (the god's sign,
+    as plainly as the god's nearness allows), and with no watch kept the dream comes back all the same; the offering is
+    "given" once it is set down at the place (what the god does with it stays the worship's own); S9 never starts while one
+    of the region's own raiders' camps stands near the home, and its camp is placed when the strike is asked (within two
+    to three tiles, else farther off); "keep watch" is the colony's watch seeing the raid coming when the defences are
+    ready; the test raid is half the threat now, at 85 in a hundred within the harm budget (held back: they did not come);
+    turning the raid down ends it with the colony keeping out of it (no fight comes unasked, as with the beast); the strike
+    declined, the neighbours alone clear it about a third of the time; the price is about half their raid's strength,
+    asked as a part of its own each season, four times, then they move on; S10's "a builder or driller lent" is the
+    colony's best at Mining or Construction (6 or more, never one of its last two hands), who walks off the map with their
+    foreman and is kept in the world while away, as the game keeps lent colonists, rather than a caravan of the colony's on
+    the world map (rule 2 kept: nobody of the colony goes anywhere the player must send them); its refugees join at the
+    gate (turned away, they go on to another town); S11's engineer pays half again for the components used, and the case's
+    card defaults to keeping it sealed; opened, the vault hears of it (-15); the machine is the game's own mechanoid at a
+    third of the threat now; S12's giver is the Quiet Bell first; not found in time, one of theirs comes and finds it, so
+    the story goes on; its marker is the colony's own (taking it down counts as building over it); Q14 is at half a quest
+    at home's chance (0.15), six to ten days by the distance, and holds no fight of its own. A new harm kind,
+    `HarmKinds.StoryFight` (system "quests"), for a fight a storyline brings. All first parts' base chance 0.4.
+  - **Code map**: `Source/ColonyCouncil/Storylines/Flows/` (`DreamFlow.cs`, `RaidersFlow.cs`, `WellFlow.cs`, `VaultFlow.cs`,
+    `GraveFlow.cs`; pure, linked whole in `Tools/Tests/Tests.csproj`), `Storylines/StorylineRound3.cs` (a marked area and its
+    overlay, the search job and its right-click, goods collected, the dev actions), `StorylineDream.cs`, `StorylineRaiders.cs`,
+    `StorylineWell.cs` (with `JobDriver_StorylineLentOut`), `StorylineVault.cs` (with `JobDriver_StorylineBenchWork`),
+    `StorylineGrave.cs`; `Missions/HomeQuests3Math.cs` (pure, linked), `Missions/Workers_MissionHome5.cs`
+    (`HappeningWorker_MissionRuinsCache`, `Patch_HomeQuestRuinsCache`). Changed, small: `Missions/Workers_Missions.cs` and
+    `Missions/Missions.cs` (`OfTheColony`), `Missions/HomeQuests.cs` (`IsOurs`), `Missions/HomeQuestsDebug.cs` (the cache),
+    `Harm/HarmBudgetMath.cs` (`HarmKinds.StoryFight`), `Tools/make_quest_items.py` (three pictures), `Tools/playout_skips.txt`
+    (five answers played out by the parts' own code). Defs: `Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml`,
+    `Defs/MissionDefs/Rimfolk_Storyline_Dream.xml`, `_Raiders.xml`, `_Well.xml`, `_Vault.xml`, `_Grave.xml`,
+    `Defs/MissionDefs/Rimfolk_Missions_Home3.xml`, `Defs/Misc/Rimfolk_Storylines3_Misc.xml`; Keyed `Rimfolk_Storylines3.xml`,
+    `Rimfolk_Missions_Home3.xml`; textures `Things/VaultCase.png`, `QuestCache.png`, `FounderGrave.png`. No new saved
+    collection. Tests: `Tools/Tests/StorylineTests3.cs`, `HomeQuests3Tests.cs` (new), `StorylineTests` (the twelve kinds and
+    the new words), `HarmBudgetTests` (the new kind), `NeighboursFourTests` (the cache in the one draw).
+  - **Can't be checked without the game**: the marked areas drawn on the map and the right-click search; a shrine built in
+    the dream's area being dedicated by the worship's own walk; the dreamer walking out for the night's watch and the sign's
+    presence moment at the place; the offering carried to the place by the dreamer; the raid letters (Rimfolk's above the
+    game's), the watch's warning, the raiders' camp site and its map, the neighbours' fighters coming onto it and going
+    after the raiders, the silver carried out to the edge; the lent colonist walking out with the foreman, being kept in the
+    world (gone from the colonist bar) and walking home with their wages and skill; the refugees joining at the gate; the
+    engineer working at a bench (the smithing look and sound) and the component taken each day; the case set down, the
+    card, a sleeper, a machine or goods coming out of it; the grave marker set, the mourners' day, the yearly visits; the
+    ruins' map with the cache inside the item stash, the caravan bringing it home and their people collecting it; how often
+    each comes in a real game.
+  - **Try in the game** (dev mode, Debug actions, Rimfolk; one mission at a time, so end any open one first): 1.
+    "Storylines: start a dream of the gods now" (needs Worship on, a devout colonist whose god the colony knows):
+    accept; build an altar or a sculpture inside the drawn area; someone walks over to give it to the god ("Storylines: what
+    the open part waits for comes now" gives it at once); "Storylines: the next part (or ending) due now": the watch; at
+    night the dreamer walks out (or "what the open part waits for comes now" for the sign); next part: the offering. 2.
+    "Storylines: start raiders settling nearby now" (battles on): accept, build traps; "what the open part waits for comes
+    now" judges the defences; next part due: the raid ("... comes now" sends it); then the strike (near: a camp on the
+    world map, send a caravan; far: meals and medicine in the stockpiles); "Storylines: end the current part with..." (raid:
+    overrun) for the price. 3. "Storylines: start the town's well ran dry now": accept, put meals in the stockpile; next
+    part: the foreman comes ("... comes now"), the colonist walks out with them; "... comes now" again brings them home. 4.
+    "Storylines: start the vault's sealed case now" (needs a spacer people at peace): components in the stockpile; next
+    part: the engineer works at a bench each morning; next part: the case; "... comes now" for the runner, then for the
+    card; open it or keep it. 5. "Storylines: start the lost founder's grave now": accept; right-click inside the drawn
+    area with a colonist ("Search here for ...'s grave"), or "... comes now" to find it; next part: the mourners come in the
+    morning. 6. "Quests at home: offer one now..." → a cache in old ruins (needs a place within three tiles): accept; the
+    ruins are on the world map; send a caravan, pick up the old cache, come home; "Quests at home: end the open one as..."
+    → home now, to skip the trip. "Storylines: what stands (log)" at any point; save and load mid-part.
+  - **Mods that would help**: none is needed. Dubs Bad Hygiene (https://steamcommunity.com/sharedfiles/filedetails/?id=836308268,
+    1.6 and 1.7, enabled) gives the well's water; the dream's place can be any altar, shrine or art of the game or the
+    enabled mods (Ideology's, the medieval mods'), and the engineer's bench any work bench. No gravestone mod is in the
+    player's list, so the founder's grave uses Rimfolk's own marker (a picture of its own).
 - 0.266.9, **Plain words: the letters**
   (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
   you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive

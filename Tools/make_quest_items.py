@@ -3,7 +3,8 @@
 with a little shading under a dark outline, seen from a little above. The messenger's letter by their people's age (a
 carved message stick, a letter sealed in red wax, a small locked dispatch case) and the lost keepsake by its owner's (a
 painted hide, a small family book with a cord tie, a photo album), and the pilgrims' relic of the storylines (a small
-carved reliquary box with a peaked lid and brass corners). Drawn at four times the size and scaled down for smooth edges.
+carved reliquary box with a peaked lid and brass corners), and round 3's vault case, old cache and founder's grave marker.
+Drawn at four times the size and scaled down for smooth edges.
 Run: python3 Tools/make_quest_items.py (every sprite), or name the ones to draw: python3 Tools/make_quest_items.py relic"""
 import sys
 import os
@@ -169,8 +170,67 @@ def relic():
     save(img, "PilgrimRelic")
 
 
+STONE = (150, 146, 136, 255)
+STONE_DARK = (104, 100, 92, 255)
+STONE_LIGHT = (184, 180, 168, 255)
+MOSS = (96, 120, 64, 255)
+IRON = (70, 72, 76, 255)
+
+
+def vault_case():
+    img, d = canvas()
+    # The vault's sealed case (storylines, round 3): a low steel case with ribbed sides, a seam round its lid, two latches
+    # and a small red seal light at the front.
+    rrect(d, (104, 190, 408, 372), 18, STEEL)
+    d.rectangle((122, 206, 390, 236), fill=STEEL_LIGHT)
+    d.line((112, 250, 400, 250), fill=STEEL_DARK, width=8)
+    for x in (150, 206, 306, 362):
+        d.line((x, 262, x, 356), fill=STEEL_DARK, width=6)
+    for x in (176, 304):
+        rrect(d, (x, 232, x + 34, 272), 6, STEEL_DARK, width=5)
+    d.ellipse((240, 286, 272, 318), fill=WAX, outline=LINE, width=5)
+    d.ellipse((250, 294, 262, 306), fill=(232, 96, 80, 255))
+    save(img, "VaultCase")
+
+
+def cache():
+    img, d = canvas()
+    # The old cache in the ruins (quests, round 3): a small wooden chest with a rounded lid, iron bands and a heavy lock,
+    # the wood greyed with age.
+    old = (128, 104, 80, 255)
+    old_dark = (92, 74, 56, 255)
+    rrect(d, (128, 236, 384, 368), 8, old)
+    d.pieslice((128, 168, 384, 304), 180, 360, fill=old_dark, outline=LINE, width=OL)
+    d.line((128, 236, 384, 236), fill=LINE, width=OL)
+    for x in (164, 324):
+        d.rectangle((x, 176, x + 24, 366), fill=IRON, outline=LINE, width=4)
+    rrect(d, (234, 240, 278, 296), 6, IRON, width=5)
+    d.ellipse((248, 258, 264, 274), fill=LINE)
+    save(img, "QuestCache")
+
+
+def grave():
+    img, d = canvas()
+    # The founder's grave marker (storylines, round 3): an old upright stone with a rounded top, worn, moss at its foot,
+    # two plain cut lines across its face.
+    d.ellipse((130, 330, 382, 400), fill=(110, 92, 70, 255), outline=LINE, width=OL)
+    poly(d, [(170, 360), (170, 170), (342, 170), (342, 360)], STONE, width=0)
+    d.pieslice((170, 90, 342, 250), 180, 360, fill=STONE)
+    d.arc((170, 90, 342, 250), 180, 360, fill=LINE, width=OL)
+    d.line((170, 170, 170, 360), fill=LINE, width=OL)
+    d.line((342, 170, 342, 360), fill=LINE, width=OL)
+    d.line((170, 360, 342, 360), fill=LINE, width=OL)
+    d.rectangle((186, 150, 222, 340), fill=STONE_LIGHT)
+    d.line((206, 220, 306, 220), fill=STONE_DARK, width=7)
+    d.line((206, 256, 306, 256), fill=STONE_DARK, width=7)
+    d.ellipse((150, 330, 230, 372), fill=MOSS)
+    d.ellipse((290, 338, 356, 374), fill=MOSS)
+    save(img, "FounderGrave")
+
+
 DRAW = {
     "stick": message_stick, "letter": letter, "dispatch": dispatch, "hide": hide, "book": book, "photos": photos, "relic": relic,
+    "vaultcase": vault_case, "cache": cache, "grave": grave,
 }
 
 

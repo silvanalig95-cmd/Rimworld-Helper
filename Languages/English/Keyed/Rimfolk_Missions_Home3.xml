@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Quests, round 3: Q14, a cache in old ruins (Source/ColonyCouncil/Missions/Workers_MissionHome5.cs). -->
+  <CC_HomeQ3_Ruins>old ruins ({FACTION}'s cache)</CC_HomeQ3_Ruins>
+  <CC_HomeQ3_Where>{COUNT} tiles to the {WAY} of the colony</CC_HomeQ3_Where>
+  <CC_HomeQ3_WhereOne>one tile to the {WAY} of the colony</CC_HomeQ3_WhereOne>
+  <CC_HomeQ3_Status_Ruins>The {THING} is in the ruins, {WHERE}.</CC_HomeQ3_Status_Ruins>
+  <CC_HomeQ3_Status_Road>The {THING} is with the colony's caravan, on the way home.</CC_HomeQ3_Status_Road>
+  <CC_HomeQ3_Status_Home>The {THING} is at the colony, and {FACTION}'s people are coming for it.</CC_HomeQ3_Status_Home>
+
+</LanguageData>

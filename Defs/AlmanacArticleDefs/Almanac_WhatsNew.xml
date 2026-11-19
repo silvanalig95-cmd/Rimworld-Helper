@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.267.0</version>
+        <date>19 November 2026</date>
+        <title>Storylines, round 3</title>
+        <points>
+          <li>A dream of the gods: one of your devout dreams of a place for their god on your land. Build it, keep a night's watch there, and give the offering the dream asks for.</li>
+          <li>Raiders settling nearby: a neighbour warns of a raiders' camp. Build defences, meet their test raid, and help break the camp, or pay their price each season.</li>
+          <li>The town's well ran dry: send water or meals and lend a miner or builder for a few days. The well is found, or some of the town's people ask to join you.</li>
+          <li>The vault's sealed case: components for a failing vault and an engineer at your bench, then a sealed case left in your care to keep or to open.</li>
+          <li>The lost founder's grave: search a marked area for a people's founder and host their mourners. They come back each year while the grave is kept.</li>
+          <li>A cache in old ruins: the one quest that sends your people out, offered only when the ruins are within three tiles.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.266.9</version>
         <date>19 November 2026</date>
         <title>Letters in plain words</title>

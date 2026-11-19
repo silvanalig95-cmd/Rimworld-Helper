@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Storylines, round 3 (Source/ColonyCouncil/Storylines/): the few words the code puts together. Each storyline's own
+       words are in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml, each part's in Defs/MissionDefs/Rimfolk_Storyline_*.xml. -->
+
+  <!-- ===================== A search of a marked area ===================== -->
+  <CC_Story3_Searched>{PAWN} has searched everywhere in the marked area that can be reached from here.</CC_Story3_Searched>
+
+  <!-- ===================== A dream of the gods ===================== -->
+  <!-- The dreamer's own words, for their journal and the colony's book of the gods: {GOD} as the colony knows it. -->
+  <CC_Story3_Dream_Told>{GOD} showed me a place {WAY} of the colony and asked for a {KIND} to be built there.</CC_Story3_Dream_Told>
+  <CC_Story3_Dream_ToldAgain>{GOD} came to me in a dream again and asked for an offering at the new {KIND}.</CC_Story3_Dream_ToldAgain>
+  <CC_Story3_Dream_Believes>{GOD} asked me in my dreams for a {KIND} and an offering, and we gave both.</CC_Story3_Dream_Believes>
+  <CC_Story3_Dream_Nothing>Nothing has been built yet for {GOD} at the marked place, {WAY} of the colony.</CC_Story3_Dream_Nothing>
+  <CC_Story3_Dream_Standing>The {PLACE} stands at the marked place. Someone of the colony will go and give it to {GOD}.</CC_Story3_Dream_Standing>
+  <CC_Story3_Dream_Watch>Watch kept at the {KIND} tonight: {HOURS} of {NEED} hours.</CC_Story3_Dream_Watch>
+  <CC_Story3_Dream_Offering>The dream asked for {WHAT} at the {KIND}.</CC_Story3_Dream_Offering>
+  <CC_Story3_Dream_SignTitle>A light at the {KIND}</CC_Story3_Dream_SignTitle>
+  <CC_Story3_Dream_Sign>{PAWN} was keeping the watch at the new {KIND} in the night when a light came over it for a short while.</CC_Story3_Dream_Sign>
+
+  <!-- ===================== Raiders settling nearby ===================== -->
+  <CC_Story3_Raiders_Defences>Traps or turrets built: {GUARDS} of {TRAPS}. Lengths of wall, fence or barricade built: {BUILT} of {WALLS}.</CC_Story3_Raiders_Defences>
+  <CC_Story3_Raiders_Coming>The raiders of {OTHERPEOPLE} are coming within a few days.</CC_Story3_Raiders_Coming>
+  <CC_Story3_Raiders_Fight>The raiders are on the colony's land.</CC_Story3_Raiders_Fight>
+  <CC_Story3_Raiders_RaidLabel>Raiders of {OTHERPEOPLE}</CC_Story3_Raiders_RaidLabel>
+  <CC_Story3_Raiders_RaidText>Raiders from the {KIND} of {OTHERPEOPLE} have come to test the colony, as {FACTION} warned they would.</CC_Story3_Raiders_RaidText>
+  <CC_Story3_Raiders_RefusedLabel>{OTHERPEOPLE} come for their price</CC_Story3_Raiders_RefusedLabel>
+  <CC_Story3_Raiders_RefusedText>The colony refused to pay {OTHERPEOPLE} this season, and raiders from their {KIND} have come for it.</CC_Story3_Raiders_RefusedText>
+  <CC_Story3_Raiders_RefusedQuiet>{OTHERPEOPLE} did not come for the price the colony refused them this season.</CC_Story3_Raiders_RefusedQuiet>
+  <CC_Story3_Raiders_Camp>{KIND} of {OTHERPEOPLE}</CC_Story3_Raiders_Camp>
+  <CC_Story3_Raiders_StrikeNear>The {KIND} is marked on the world map. {COUNT} fighters of the colony's neighbours will join the colony's people there.</CC_Story3_Raiders_StrikeNear>
+  <CC_Story3_Raiders_StrikeFar>The fighters of {FACTION} have set out for the camp.</CC_Story3_Raiders_StrikeFar>
+  <CC_Story3_Raiders_PayLabel>silver for the {KIND}</CC_Story3_Raiders_PayLabel>
+
+  <!-- ===================== The town's well ran dry ===================== -->
+  <CC_Story3_Well_Coming>{RIVAL} arrives within {DAYS}.</CC_Story3_Well_Coming>
+  <CC_Story3_Well_Leaving>{PAWN} is going out to {RIVAL} at the gate. They will set out for the town together.</CC_Story3_Well_Leaving>
+  <CC_Story3_Well_Left>{PAWN} has set out for {PLACE} to help dig a new well, and will be back in about {DAYS}.</CC_Story3_Well_Left>
+  <CC_Story3_Well_Away>{PAWN} is at {PLACE}, digging. Back in about {DAYS}.</CC_Story3_Well_Away>
+  <CC_Story3_Well_Refugees>{COUNT} people of the town arrive within {DAYS}.</CC_Story3_Well_Refugees>
+
+  <!-- ===================== The vault's sealed case ===================== -->
+  <CC_Story3_Vault_Coming>{RIVAL} arrives within {DAYS}.</CC_Story3_Vault_Coming>
+  <CC_Story3_Vault_Working>Days of work at the {BENCH}: {WORKED}. Days lost for want of a component: {SHORT}.</CC_Story3_Vault_Working>
+  <CC_Story3_Vault_WorkReport>working at the {BENCH}.</CC_Story3_Vault_WorkReport>
+  <CC_Story3_Vault_CaseComing>{GIVER} is bringing the sealed case.</CC_Story3_Vault_CaseComing>
+  <CC_Story3_Vault_CaseAsking>The colony is deciding whether to open the case.</CC_Story3_Vault_CaseAsking>
+  <CC_Story3_Vault_CaseKept>The sealed case is in the colony's care. Their runner comes back for it in about {DAYS}.</CC_Story3_Vault_CaseKept>
+  <CC_Story3_Vault_ImpactKeep>The case stays sealed, and the runner of {FACTION} takes it back in a few days.</CC_Story3_Vault_ImpactKeep>
+  <CC_Story3_Vault_ImpactKeepBrief>kept sealed</CC_Story3_Vault_ImpactKeepBrief>
+  <CC_Story3_Vault_ImpactOpen>The case is opened by the stores. It may hold someone asleep, a machine that attacks, or old goods.</CC_Story3_Vault_ImpactOpen>
+  <CC_Story3_Vault_ImpactOpenBrief>opened</CC_Story3_Vault_ImpactOpenBrief>
+
+  <!-- ===================== The lost founder's grave ===================== -->
+  <CC_Story3_Grave_Menu>Search here for {NAME}'s grave</CC_Story3_Grave_Menu>
+  <CC_Story3_Grave_Job>searching for {NAME}'s grave.</CC_Story3_Grave_Job>
+  <CC_Story3_Grave_Searching>Right-click inside the marked area with a colonist to search for {NAME}'s grave.</CC_Story3_Grave_Searching>
+  <CC_Story3_Grave_TheirSearch>One of {FACTION} is searching for the grave.</CC_Story3_Grave_TheirSearch>
+  <CC_Story3_Grave_Coming>{COUNT} mourners arrive within {DAYS}.</CC_Story3_Grave_Coming>
+  <CC_Story3_Grave_Mourning>The mourners are at {NAME}'s grave.</CC_Story3_Grave_Mourning>
+  <CC_Story3_Grave_Year>Mourners of {FACTION} have come to spend a few hours at the grave of {NAME}, as they do each year.</CC_Story3_Grave_Year>
+  <CC_Story3_Grave_YearLost>Mourners of {FACTION} came to the grave of {NAME} and found it gone or built over. They hold it against the colony, and will not come again.</CC_Story3_Grave_YearLost>
+
+</LanguageData>
