@@ -130,7 +130,7 @@
       <warm><li>One season where the cook never has to say there's less tonight. That's all I'm asking.</li></warm>
       <blunt><li>Every time the weather turns, we start rationing. Keep the stores full.</li></blunt>
       <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
-      <gloomy><li>Food always runs short again sooner or later, and it never gives any warning.</li></gloomy>
+      <gloomy><li>Food always runs short again sooner or later, and there's never any warning.</li></gloomy>
       <cold><li>With twenty days held in reserve, the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
@@ -390,7 +390,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and travelers on the roads will come to know our name.</li>
+        <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and people on the roads will come to know our name.</li>
         <li>I'd like guests to leave here telling everyone about us. Let's give them something to tell.</li>
         <li>[medieval] Every road needs a good inn. Let's be it.</li>
         <li>[large] With this many of us, there's always someone free to look after guests.</li>

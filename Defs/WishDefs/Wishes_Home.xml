@@ -613,7 +613,7 @@
         <li>[trigger:floor] Somebody stepped in my soup on the way past. I was eating on the floor.</li>
         <li>[rain] Eating in the mud when it rains is a special kind of misery.</li>
         <li>[old] I'm too old to eat squatting. Get us a table.</li>
-        <li>[trait:Gourmand] Food should be eaten at a table, not off the floor. Even ours.</li>
+        <li>[trait:Gourmand] Food should be eaten sitting at a table, not off the floor.</li>
       </plain>
       <warm>
         <li>I'd cook the first supper at a real table myself, the good stew with dumplings.</li>

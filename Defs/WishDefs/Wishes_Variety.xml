@@ -212,7 +212,7 @@
         <li>New books, please! A cookbook, a manual, someone's old diary, I'm not picky.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Reading is the only time I forget where I am. More books would mean less time in between.</li>
+        <li>[lowmood] Reading is the only time I forget where I am, and I've run out of new books.</li>
         <li>Without a new book, the evenings here are very long.</li>
       </gloomy>
       <cold>
@@ -1711,7 +1711,7 @@
         <li>[rich,day] We're not scraping by anymore. Let's put a statue on display to show it.</li>
         <li>[afterraid] We've cleaned up the blood. Now let's put up something worth looking at.</li>
         <li>[evening] The common room looks so bare in the evening. One more sculpture would make it look nicer.</li>
-        <li>[trait:TooSmart] Art is one of the things that makes a place civilized. We could use more of it.</li>
+        <li>[trait:TooSmart] Art is one of the things that make a place civilized. We could use more of it.</li>
       </plain>
       <warm>
         <li>One more piece for the common room and I'll stop asking for a while.</li>
