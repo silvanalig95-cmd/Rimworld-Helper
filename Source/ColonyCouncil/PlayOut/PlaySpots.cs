@@ -16,6 +16,15 @@ namespace ColonyCouncil
         // ---------------- A gathering's spot ----------------
 
         /// <summary>
+        /// The words for a rec room as the place of a gathering: "in the rec room" where the game calls it so, else by the
+        /// name the game shows over it ("in the temple"), so the words match the map.
+        /// </summary>
+        public static string RecVenue(Room room) =>
+            room == null || room.Role == RoomUtil.RecRoom || room.Role == null || room.Role == RoomRoleDefOf.None
+                ? "CC_Venue_RecRoom".Translate().ToString()
+                : "CC_Venue_InRoom".Translate(room.GetRoomRoleLabel().Named("ROOM")).Resolve();
+
+        /// <summary>
         /// The first of the plan's spots that works now, with the words for it ("around the dining table"). A bonfire
         /// with no fire to gather at has one laid for it first, by hand (PlayFire.cs).
         /// </summary>
@@ -31,7 +40,8 @@ namespace ColonyCouncil
                 switch (s)
                 {
                     case PlaySpot.Dining:
-                        foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).OrderByDescending(r => r.CellCount))
+                        // A room the game calls a dining room first, then one with a dining table whatever it shows (RoomUtil).
+                        foreach (var room in RoomUtil.DiningRooms(map))
                         {
                             var table = room.ContainedAndAdjacentThings.FirstOrDefault(t => t.def.surfaceType == SurfaceType.Eat && t.Faction == Faction.OfPlayer);
                             if (table == null) continue;
@@ -43,13 +53,13 @@ namespace ColonyCouncil
                         }
                         break;
                     case PlaySpot.Rec:
-                        foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom).OrderByDescending(r => r.CellCount))
+                        foreach (var room in RoomUtil.RecRooms(map))
                         {
                             var middle = room.ExtentsClose.CenterCell;
                             var c = First(room.Cells.Where(x => x.GetEdifice(map) == null).OrderBy(x => x.DistanceToSquared(middle)).Take(40), x => Ok(x, map, organizer));
                             if (!c.IsValid) continue;
                             spot = c;
-                            where = "CC_Venue_RecRoom".Translate();
+                            where = RecVenue(room);
                             return true;
                         }
                         break;

@@ -196,6 +196,19 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Giddy-Up's "Inject" failed once with an error and is left alone for the rest of the session (riding out with it).</summary>
+        public static bool InjectFailed { get; private set; }
+
+        /// <summary>Giddy-Up's GoMount with its "Inject" was found (it may have failed since: <see cref="InjectFailed"/>).</summary>
+        public static bool InjectFound
+        {
+            get
+            {
+                Look();
+                return goMount != null && (inject != null || InjectFailed);
+            }
+        }
+
         /// <summary>
         /// The colonist gets on this beast before doing <paramref name="then"/>, the way Giddy-Up's own auto-mount does it
         /// (<c>GoMount(rider, animal, GiveJobMethod.Inject, result, then)</c>): the job just chosen becomes Giddy-Up's "Mount"
@@ -218,6 +231,7 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 inject = null;
+                InjectFailed = true;
                 CouncilLog.ErrorOnce("Giddy-Up: getting on before a job", e);
                 return null;
             }
@@ -245,6 +259,20 @@ namespace ColonyCouncil
         {
             Look();
             return rider?.CurJob != null && mountJob != null && rider.CurJob.def == mountJob;
+        }
+
+        /// <summary>The rider is getting on this beast (Giddy-Up's "Mount" job on it now), or has that job waiting in their queue.</summary>
+        public static bool MountingOnto(Pawn rider, Pawn animal)
+        {
+            Look();
+            if (rider?.jobs == null || animal == null || mountJob == null) return false;
+            var job = rider.CurJob;
+            if (job != null && job.def == mountJob && job.targetA.Thing == animal) return true;
+            var queue = rider.jobs.jobQueue;
+            if (queue == null) return false;
+            foreach (var q in queue)
+                if (q?.job != null && q.job.def == mountJob && q.job.targetA.Thing == animal) return true;
+            return false;
         }
 
         /// <summary>

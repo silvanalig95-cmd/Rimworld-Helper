@@ -5,6 +5,31 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A day off, felt
+
+*19 November 2026, version 0.266.7*
+
+- A colonist you give a day off now has the mood "a day off" (+6) for as long as it lasts, gone when it ends or you end it early.
+- The day off still eases strain faster while it runs and more when it runs its course, as before.
+
+## Rooms by what is in them
+
+*19 November 2026, version 0.266.6*
+
+- Rimfolk now reads a room by what is in it: a room with dining tables counts as a dining room, and one with games as a rec room, whatever name the game shows over it.
+- Council meetings, feasts and other gatherings go to the room the game calls a dining room first, then to any room with tables, such as a dining room the game calls a temple because of its altar.
+- Guests kept in from the cold, the art wish, the dining hall ambitions and the base review count those rooms too.
+- The advisor no longer suggests building a rec room while a room with games in it stands. Bedrooms, barracks, hospitals and prison cells never count as dining or rec rooms.
+
+## Mount up for far work
+
+*19 November 2026, version 0.266.5*
+
+- Colonists going out to far work now get on a free beast first whenever it is no further from them than the work, even with the pen the other way, instead of walking because walking was a little quicker.
+- A beast Giddy-Up still marks as kept for someone is passed over only while it waits for them, carries them or is being got on; an old mark no longer keeps it in the pen.
+- The beast left by the work keeps waiting while its rider works out there, until a day after the last job they began.
+- In development mode the riding out log starts with each colonist's last decision and whether they got on, and Rimfolk: check myself says when riding out is off and why.
+
 ## Made for you
 
 *18 November 2026, version 0.266.4*

@@ -352,9 +352,11 @@ namespace ColonyCouncil
                 var own = RoomUtil.PrivateRoom(devout);
                 if (own != null && !own.PsychologicallyOutdoors && used.Add(own))
                     return "CC_FaithClash_CornerRoom".Translate(devout.Named("PAWN")).Resolve();
-                foreach (var r in RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom))
-                    if (used.Add(r)) return "CC_FaithClash_CornerRec".Translate();
-                foreach (var r in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom))
+                // The rec and dining rooms by what is in them (RoomUtil), named by what the game shows over them.
+                foreach (var r in RoomUtil.RecRooms(map))
+                    if (used.Add(r))
+                        return r.Role == RoomUtil.RecRoom ? "CC_FaithClash_CornerRec".Translate().Resolve() : "CC_FaithClash_CornerIn".Translate(r.GetRoomRoleLabel().Named("ROOM")).Resolve();
+                foreach (var r in RoomUtil.DiningRooms(map))
                     if (used.Add(r)) return "CC_FaithClash_CornerDining".Translate();
             }
             catch (Exception e)

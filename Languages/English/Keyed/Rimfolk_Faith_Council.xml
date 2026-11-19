@@ -62,6 +62,7 @@
   <CC_FaithClash_CornerAltar>by the {ALTAR}</CC_FaithClash_CornerAltar>
   <CC_FaithClash_CornerRoom>in {PAWN_nameDef}'s room</CC_FaithClash_CornerRoom>
   <CC_FaithClash_CornerRec>a corner of the rec room</CC_FaithClash_CornerRec>
+  <CC_FaithClash_CornerIn>a corner of the {ROOM}</CC_FaithClash_CornerIn>
   <CC_FaithClash_CornerDining>the end of the dining table, after supper</CC_FaithClash_CornerDining>
   <CC_FaithClash_CornerOutside>a quiet spot out of doors</CC_FaithClash_CornerOutside>
 

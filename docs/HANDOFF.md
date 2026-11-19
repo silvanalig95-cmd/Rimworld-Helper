@@ -29,7 +29,8 @@ go sounds great. Some storytellers and fewer traders and fewer fights. That's al
 fitting for the scenario, it should also just be reflected in the description. The advisor warning for greenhouse
 plants dying is fine. I'm aware of that now. You don't need to do it. Yeah, you can go ahead in the order that makes
 most sense." So, in this order, three builds at a time:
-1. **Riding out to far work** (a bug, being built; the to-do entry below).
+1. **Riding out to far work** (a bug, built, not released; the entry "Riding out to far work: the beast taken first"
+   above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
    lists each round's numbers).
@@ -38,7 +39,9 @@ most sense." So, in this order, three builds at a time:
 5. **More traits that come and go**: a proposal list first (`docs/traits-proposals.md`, to write), then the player picks.
 6. **The storytellers' below-base levers**: the player's answer: keep a lever below the base rate only where it fits the
    storyteller's idea, and then say it in its description; the others go back to the base rate (the 0.253.0 entry).
-7. **New wish, 18-19 November 2026, on the to-do list** (the entry "choose the material" below), waiting for its go.
+7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
+   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
+   entries below).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -111,25 +114,25 @@ repo.
   and what was built are now one entry above the newest release line ("The brewery at home in the kitchen").
 - **Done (18 November 2026, the player sent the mod's DLL as the go): clothes made for someone, worn when they are
   back.** The report and what was built are now one entry above the newest release line ("Clothes made for someone").
-- **To do when the player asks (18 November 2026): riding out to far work, Bautista walked.** The player, with their save
-  `League_of_Toba_7`: "WHY DOES bautista still walk halfway across the map to mine without mounting up first? then the
-  mount should wait for him until he's done". What the save shows (tick 7668315): Bautista mines steel at (136, 264),
-  44 cells past the home area's edge, about 95 cells from the dining hall where he chose the job after a meal (under
-  Giddy-Up's own 120, so Giddy-Up never looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts are
-  in or by the pen inside the base, about 34 cells the other way from the vein. Giddy-Up refuses the horses (Stallion 1,
-  Tatyana, Mare 1), the Thunderox and the yak: Tameness not learned; Tatyana, Mare 1 and Tara are with young; Zoe (titanis)
-  is "kept for Soot" by a Giddy-Up reservation that has stood since tick 7453676 while both are at home (stale); Calvin
-  (titanis) is the best left, about 6 cells/s under him against his 4.6 on foot. The cause (`GiddyUpRideOut.Decide`,
-  lines 198-201, `RideOutMath.Worth`): riding must beat walking by the trip's slack (1.25), counting the walk to the beast
-  first; to the pen and back out on a titanis is slower than walking straight there, so "walking is quicker". Rimfolk
-  keeps no record of the decision, so the save can't prove it; the dev action on Avila (walking to the next vein) would.
-  The wait (`KeepWaiting`) holds cell to cell for a day by default, renewed only at a job chosen with nothing under way.
-  **The lead's fix, waiting for the player's go**: (1) for far work (an Out trip), ride whenever a beast is free and the
-  walk to it isn't longer than the trip itself, the quickest beast picked; the strict time check kept for the ride back
-  and orders; (2) a Giddy-Up reservation counts only while that beast waits for, carries or is being mounted by that
-  rider (Zoe freed); (3) each colonist's last decision kept and shown by the dev action, and "check myself" says when
-  riding out switched itself off or a Giddy-Up member wasn't found; (4) the wait renewed on a rare tick while the rider
-  works out there, its cap counted from the last job. Told to the player: the horses need Tameness trained first.
+- **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
+  walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
+  above the newest release line ("Riding out to far work: the beast taken first").
+- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
+  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
+  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
+  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
+  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
+  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
+  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
+  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
+  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
+  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
+  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
+  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
+  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
+  what was left.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
+  The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
 - **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
   player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
   would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
@@ -147,26 +150,10 @@ repo.
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
   along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
-- **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
-  player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
-  spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
-  you know, is not appropriate at all. It's not even counted as kind of an ideology room ... it's definitely not a
-  dining room ... I just want to have the drum somewhere, but not immediately have that become a ballroom, as it's just
-  weird ... I want the gatherings where food is involved, of course, happening in my dining room"; then "ballroom seems
-  to override temple, which is not correct in my opinion".
-  - **The cause.** Vanilla Factions Expanded - Empire's `VFEE_Ballroom` (`RoomRoleWorker_Ballroom`, 1.7 source): any
-    musical instrument (the Ideology drum among them) scores 10000, unless the room holds a bed, throne, work table or an
-    entity holder; the game's dining room scores 12 a table, the rec room 7 a recreation thing, the temple (Ideology's
-    worship room) 75 an altar, at least 2000. The highest wins and only one name shows. In the game's code (RW-Decompile,
-    `Toils_Ingest`, `JoyUtility`) the "ate in impressive dining room" and recreation moods read the room's
-    impressiveness, not its name. The name matters for VFE Empire's titles and balls, and for Rimfolk: council meetings,
-    play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
-    `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
-    a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
-    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
-    what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
-    advice, one with recreation things as a rec room, whatever the game shows.
+- **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
+  released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
+  for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
+  entry above the newest release line ("Rooms judged by what is in them").
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -395,6 +382,125 @@ repo.
     1.6 and 1.7, enabled) gives the well's water; the dream's place can be any altar, shrine or art of the game or the
     enabled mods (Ideology's, the medieval mods'), and the engineer's bench any work bench. No gravestone mod is in the
     player's list, so the founder's grave uses Rimfolk's own marker (a picture of its own).
+- 0.266.7, **A day off lifts the mood**
+  (19 November 2026). The player: "giving
+  someone a day off should also have a mood impact for while it lasts". Today the day off the player gives a strained
+  colonist (`Heart/HeartTimeOff.cs`, `TimeOffKind.DayOff`: their work hours are recreation for a day, a lie-in, strain
+  eased faster) has no mood of its own. The go: "yes, please", "all the three". **What was built**: `ThoughtWorker_HeartDayOff` (in
+  `Heart/HeartTimeOff.cs`) and `Defs/ThoughtDefs/Rimfolk_Thoughts_DayOff.xml` (`Rimfolk_Heart_DayOff`, "a day off", +6,
+  "A whole day to myself, with nothing I have to do."): situational, there while `h.Off(TimeOffKind.DayOff)`, with the
+  mood effects and the day off's setting on; not for a bad afternoon. Almanac (the council page's "A day off you give").
+  Tests: `HeartDayOffMoodTests` (new). Try in the game: give a strained colonist a day off from the Mood tab; their
+  moods list "a day off" +6 until it ends or "End it early". Mods that would help: none.
+- 0.266.6, **Rooms judged by what is in
+  them** (19 November 2026). The player (17 November 2026): "I have a dining room ... But what I also have in there is a
+  drum and also the ideology, lectern and ritual spot ... The altar and the lectern ... I want the gatherings where food
+  is involved, of course, happening in my dining room, even if maybe another room is kind of the one for the ideological
+  items"; then "ballroom seems to override temple, which is not correct in my opinion". Fix A (VFE Empire's ballroom
+  only for music rooms) was released in 0.265.2. The go for fix B, on the overview of the open list (19 November 2026):
+  "Rooms judged by what's in them. That sounds good." DESIGN.md "Rooms judged by what is in them".
+  - **The cause.** The game shows one role per room, the highest score (a dining table 12, a recreation building 7, an
+    altar of the colony's faith at least 2000, a stove 28, a bench 27). Rimfolk read only that role: council meetings,
+    play-outs and feasts, visitors and the advisor looked for the room named dining room, then rec room. The player's
+    dining room with the altar shows as a temple, so its meetings and meals went to another room or out into the open
+    air, and a rec room shown as something else brought the idea of building one. (The game's eating and recreation
+    moods read the room's impressiveness wherever it happens, not its name.)
+  - **What it does.** A room with a dining table of the colony's counts as a room where people eat, and one with a
+    recreation building as a rec room, whatever the game shows (a temple, a ballroom, a throne room, a kitchen with a
+    table); never a bedroom, barracks, hospital, prison, nursery, guest room, bathroom or sauna. Each place keeps its
+    order with the room the game calls a dining room (or rec room) first, then one that serves as one, larger first.
+    With the player's rooms, meetings, meals and feasts go to their real dining room, or to the temple with the tables,
+    and never out into the open for lack of a room named dining room; the advisor no longer suggests a rec room while a
+    room with games stands. A rec room the game calls something else is named as the map shows it ("in the temple").
+  - **Code map**: `RoomUseMath.cs` (new, linked in the tests: `PrivateRoles`, `Private`, `ServesAsDining`,
+    `ServesAsRec`, `Rank`, `Order`, `ReadAs`), `RoomUtil.cs` (`ServesAsDining`, `ServesAsRec`, `IsDiningRoom`,
+    `IsRecRoom`, `IsCommonRoom`, `DiningRank`, `DiningRooms`, `RecRooms`, `AnyDiningRoom`, `AnyRecRoom`, `RoomsFor`,
+    the reading kept 60 ticks). Read so in `Ambitions/CouncilMeeting.cs` (`FindVenue`), `Ambitions/Ambitions.cs`
+    (`MeetingVenue`), `PlayOut/PlaySpots.cs` (`TryFind`, new `RecVenue`), `Visitors/Visitors.cs` (`IndoorsCell`),
+    `Happenings/VisitorServices.cs` (`Corner`), `Happenings/Workers_Callers.cs` (the wedding), `Advisor/AdvisorSignals.cs`
+    (the rec room and dining ideas, the recreation advice's room plan), `AdvisorSignals_Rooms.cs` (dining outgrown, rec
+    room outgrown), `AdvisorSignals_Rooms2.cs` (dining cramped), `AdvisorSignals2.cs` (darkness), `AdvisorSignals5.cs`
+    (no seat), `Wishes/WishWorkers_Work.cs` (the art wish), `Wishes/WishWorkers_LifeNew.cs` (the roofed way's table),
+    `Ambitions/AmbitionGoals.cs`, `AmbitionGoals2.cs` (`Goal_Room`, `Goal_RoomStat`), `Building/TemplatePlanner.cs`
+    (`RoleCenters`), `Building/BaseReview.cs` (`RoleName`, the `also` readings, the little map's colours),
+    `Items/ItemCardArt.cs` (`MoodRole`), `Dilemmas/DilemmaWorkers_Faith.cs` (the faiths' corners),
+    `Integrations/GuestWill.cs`, `Harm/Quarrels.cs`, `Lives/LifeNew.cs`, `Social/Groups/GroupHabits.cs`,
+    `Pressures/Pressures.cs` (crowded rooms). Keyed: `CC_Venue_InRoom` (ColonyCouncil.xml), `CC_FaithClash_CornerIn`
+    (Rimfolk_Faith_Council.xml). Almanac "dining room" and "recreation room" pages (a paragraph each, keywords
+    unchanged), README (council meetings). Tests: `RoomUseTests` (new).
+  - **Kept on the game's one role**: the game's own roles and moods; words that name a room as the game shows it (a
+    guest lodged in a room, the crowded room's name, a god's doing, the base map's tooltip, a custom room's offered name);
+    `Social/Autonomy.cs` `OkRole` (where someone with no bed may lie down goes by what the room is for, so a kitchen or
+    temple with a table stays out); the rooms of every other role; the visitors' private rooms (`KeepOut`,
+    `GuestHelpMath.PrivateRoom`); the journal's moods (the game's own thoughts).
+  - **Can't be checked without the game**: the meetings and feasts going to the temple with tables, the venue's words,
+    the advisor's cards with and without a room that serves as a rec room, the base review's little map colouring a
+    temple with tables as a dining room, Ideology's drum counting as recreation (only if its def has a kind of
+    recreation).
+  - **Try in the game**: with the dining room holding the altar (the game shows "temple" over it) and no other room the
+    game calls a dining room, call a council meeting from the Ambition page: it is announced "around the dining table"
+    and held at a table there. A feast from a council answer gathers at that table too. The Priorities page has
+    no "Idea: a recreation room" while the rec room, or any room with a game in it, stands.
+  - **Mods that would help**: none.
+- 0.266.5, **Riding out to far work: the beast
+  taken first** (19 November 2026; the player, 18 November 2026, with their save `League_of_Toba_7`: "WHY DOES bautista
+  still walk halfway across the map to mine without mounting up first? then the mount should wait for him until he's
+  done"; the go on the lead's fix, 19 November 2026: "yes, sounds good"). A bug fix. DESIGN.md "Riding out to far work:
+  the beast taken first" (after "Riding out to far work and back with Giddy-Up 2"); README's Giddy-Up 2 line; the
+  Almanac's animals page ("Riding out to far work (with Giddy-Up 2)", keywords unchanged); the setting's tooltip.
+  - **What the save showed** (tick 7668315): Bautista mined steel at (136, 264), 44 cells past the home area's edge,
+    about 95 cells from the dining hall where he chose the job after a meal (under Giddy-Up's own 120, so Giddy-Up never
+    looked); not drafted, Animals 4, nothing stored against riding. The 18 beasts were in or by the pen inside the base,
+    about 34 cells the other way from the vein. Giddy-Up refused the horses (Stallion 1, Tatyana, Mare 1), the Thunderox
+    and the yak (Tameness not learned); Tatyana, Mare 1 and Tara were with young; Giddy-Up's saved data still kept
+    Tatyana for Soot (Tatyana's `reservedBy`) and Zoe (titanis) for Wyninn (Wyninn's `reservedMount`; Zoe's own
+    `reservedBy` is saved empty, so the to-do's "Zoe kept for Soot" was these two read together), everyone at home;
+    Calvin (titanis), about 6 cells a second under him against his 4.6 on foot, was the best left. The cause
+    (`GiddyUpRideOut.Decide`, `RideOutMath.Worth`): riding out and back had to be within a quarter of walking, counting
+    the walk to the beast first; to the pen and then out on a titanis came to about 52 s against 41 on foot (over 51),
+    so "walking is quicker". The wait (`KeepWaiting`) was kept up only at a job chosen with nothing under way, and a day
+    from the start of the wait at most.
+  - **What was built**: (1) out to work (an `Out` trip) they ride whenever a beast is free whose walk is no longer than
+    the trip (`RideOutMath.NearEnough`) and that carries them at least as fast as they walk (`FastEnough`, the builder's
+    own addition: Giddy-Up passes slower beasts over too), the quickest of them by the same sums; `Worth` with its slack
+    stays for the way back and drafted movement orders (`RideOutMath.Rides`). In their save Bautista rides Calvin out.
+    (2) Giddy-Up's mark keeping a beast for someone (`ReservedBy`) counts only while it waits for, carries or is being
+    got on by that rider (their current job or queue, `GiddyUpMounts.MountingOnto`; `RideOutMath.KeptFor`); an old one
+    is left aside and named in the dev action (Tatyana's for Soot, Zoe's for Wyninn). (3) Each colonist's last decision
+    on a trip of 40 cells or more kept in memory (`RideOutNote`: tick, job, kind and cells, why, best beast and seconds
+    against walking, and what came of it: not taken by Giddy-Up, sent, in the saddle at the next job choice or not),
+    written first by the dev action "Riding out: why a colonist rides or not (log)..."; "Rimfolk: check myself" (under
+    "Mods Rimfolk works with") says riding out is on or off and why, warns when it switched itself off this session
+    (`Patch_RideOutNextJob.Broken`, Giddy-Up's `Inject` failed, `GiddyUpMounts.InjectFailed`) or when Giddy-Up's
+    `canRide` or `IsCapableOfRiding` wasn't found (nobody rides out then), and lists the other members not found. (4)
+    The wait set again every 250 ticks while the rider is at work out past the base (`GiddyUpRideOut.Rare`,
+    `GameComponent_RideOut`, new slot `Sched.RareRideOut` = 143, `Pass.RareRideOut` on the clock, only with riding out
+    on), and its cap counted from the rider's last job (`RideOutMath.WaitExpiry(..., lastJob)`: a day after their
+    current job began at most, never at or below the time already waited).
+  - **Code map**: `Integrations/GiddyUpRideOut.cs` (`NextJob`, `Note`, `Settle`, `Decide`, `KeepWaiting`, `Rare`,
+    `OutThere`, `AnimalWhyNot`, `KeptFor`, `StaleKeeper`, `Explain`, `CheckLine`, `Reset`, `LastOf`;
+    `GiddyUpRules.CanRideFound`, `CapableFound`, `Missing`; `Patch_RideOutNextJob.Broken`; `GameComponent_RideOut`),
+    `Integrations/RideOutMath.cs` (pure: `NearEnough`, `FastEnough`, `Rides`, `KeptFor`, `WaitExpiry` with `lastJob`,
+    `RideMount`, `RideOutNote.Describe`), `Integrations/GiddyUpMounts.cs` (`MountingOnto`, `InjectFailed`,
+    `InjectFound`), `UI/SelfCheck.cs` (the line), `Lean/Sched.cs` (`RareRideOut`), `Lean/PassClockMath.cs`
+    (`Pass.RareRideOut`), `Languages/English/Keyed/Rimfolk_RideOut.xml` (the tooltip, `CC_Clock_Pass_RareRideOut`),
+    DESIGN.md's ticking table. Tests: `RideOutTests` (out to work, the marks, the wait with two days of mining
+    simulated, the notes, the save redone with League_of_Toba_7's numbers, the seams). Saved: nothing.
+  - **Can't be checked without the game**: Bautista getting on Calvin in the base and riding out; whether Giddy-Up's own
+    `GoMount` takes a beast that still carries an old mark for someone else (the note then says "Giddy-Up didn't take
+    the order"); the wait's `expiryInterval` set every 250 ticks; the self-check's line; titanis's wildness (its time to
+    get on) is not in the catalogue, so the old sums are shown for any wildness from a half up.
+  - **Try in the game**: 1. Load `League_of_Toba_7` with "Ride out to far work and back" on. Let Bautista finish a meal
+    in the dining hall with the steel vein designated: he walks to the pen, gets on Calvin (or Zoe), rides out, leaves
+    the beast near the vein and mines. 2. Dev mode, "Riding out: why a colonist rides or not (log)..." on him: the first
+    line is his last decision (out to work, about 95 cells, they ride Calvin, they got in the saddle); Tatyana's line
+    (and Zoe's, where Giddy-Up links Wyninn's mark to her) names the old mark as left aside, with Giddy-Up's own reason
+    if it refuses her. 3. Let him mine past 4 hours, then past a day: the beast is still waiting (Giddy-Up's "Leave
+    rider" button shows on it). 4. When he comes home to eat, he gets back on and rides. 5. "Rimfolk: check myself":
+    under "Mods Rimfolk works with", "Riding out with Giddy-Up 2: on." 6. Train Tameness on the horses (the Animals tab)
+    and they become the choice when they are quicker.
+  - **Mods that would help**: none is needed. Giddy-Up 2 - Continued (Workshop 3674332861, 1.6 and 1.7, kept up) does
+    the riding and its art.
 - 0.266.4, **Clothes made for someone, put
   on when they are back** (18 November 2026). The player:
   "So I have this mod where I can directly from a pawn's inventory give the task to craft like a certain piece of

@@ -25,14 +25,18 @@ namespace ColonyCouncil
     /// someone nothing changes): a free colonist whose job lies 40 cells or more away (<see cref="RideOutMath.TripMin"/>)
     /// with the work, where a haul goes, or the colonist themselves 10 cells or more past the home area's edge
     /// (<see cref="RideOutMath.OutMin"/>), and the player's own movement orders to a drafted colonist the same, gets on the
-    /// beast that gets them there soonest, Giddy-Up's own way (<see cref="GiddyUpMounts.MountFirst"/>), when riding (out and
-    /// back, for work out there) is no slower than walking by <see cref="RideOutMath.Slack"/>. Which beasts may be ridden
-    /// stays Giddy-Up's to say (<see cref="GiddyUpRules"/>: its list of animals to ride, tameness, size and weight, health,
-    /// hunger and rest, the Animals tab's automount column, the Assign tab's "allowed to ride"); Rimfolk also passes over a
-    /// beast that is working, with a group, with young, kept for another rider or for the colony's own post rider. Giddy-Up
-    /// then does the rest as it always does: the rider parks the beast near the work (its mount spots, a pen, or hitched
-    /// nearby), the beast waits, and Rimfolk keeps it waiting while its rider is still at work out there (Giddy-Up's own
-    /// timer, again from each job they start, a day at most), so it is there for the ride back. A handler out past the base
+    /// beast that gets them there soonest, Giddy-Up's own way (<see cref="GiddyUpMounts.MountFirst"/>): out to work whenever
+    /// a beast is free no further from them than the work and no slower than they walk (since 19 November 2026; the player:
+    /// "WHY DOES bautista still walk halfway across the map to mine without mounting up first? then the mount should wait
+    /// for him until he's done"); back from out there and on a movement order when riding is no slower than walking by
+    /// <see cref="RideOutMath.Slack"/>. Which beasts may be ridden stays Giddy-Up's to say (<see cref="GiddyUpRules"/>: its
+    /// list of animals to ride, tameness, size and weight, health, hunger and rest, the Animals tab's automount column, the
+    /// Assign tab's "allowed to ride"); Rimfolk also passes over a beast that is working, with a group, with young, kept for
+    /// another rider (while it waits for them, carries them or they are getting on; an older mark of Giddy-Up's is left
+    /// aside) or for the colony's own post rider. Giddy-Up then does the rest as it always does: the rider parks the beast
+    /// near the work (its mount spots, a pen, or hitched nearby), the beast waits, and Rimfolk keeps it waiting while its
+    /// rider is still at work out there (Giddy-Up's own timer from now, looked at every 250 ticks and at each job they
+    /// choose, until a day after the last job they began), so it is there for the ride back. A handler out past the base
     /// sent to lead one of the colony's beasts home to its pen rides it there instead. Inside the base nothing changes.</para>
     /// </summary>
     public static class GiddyUpRideOut
@@ -42,11 +46,27 @@ namespace ColonyCouncil
         /// <summary>On: the setting (Your other mods, Giddy-Up 2), the deeper game hooks, and Giddy-Up's own calls found.</summary>
         public static bool On => (ColonyCouncilMod.Settings?.rideOut ?? true) && RimfolkPatches.On && GiddyUpMounts.CanMountFirst && GiddyUpRules.Found;
 
-        // Not saved: a colonist's last try to get on (the beast and the tick), and beasts passed over after a failed try.
+        // Not saved: a colonist's last try to get on (the beast and the tick), beasts passed over after a failed try, and each
+        // colonist's last decision on a trip of 40 cells or more (for the dev action).
         private static readonly Dictionary<int, (int animal, int tick)> tries = new Dictionary<int, (int, int)>();
         private static readonly Dictionary<long, int> refused = new Dictionary<long, int>();
+        private static readonly Dictionary<int, RideOutNote> notes = new Dictionary<int, RideOutNote>();
+
+        /// <summary>Colonists' last decisions kept at most (the oldest go first).</summary>
+        private const int MaxNotes = 64;
 
         private static long Key(Pawn rider, Pawn animal) => ((long)rider.thingIDNumber << 32) | (uint)animal.thingIDNumber;
+
+        /// <summary>A game loaded or begun: nothing of the last one's tries and decisions is kept.</summary>
+        public static void Reset()
+        {
+            tries.Clear();
+            refused.Clear();
+            notes.Clear();
+        }
+
+        /// <summary>This colonist's last decision on a trip of 40 cells or more since the game was loaded, or null.</summary>
+        internal static RideOutNote LastOf(Pawn p) => p != null && notes.TryGetValue(p.thingIDNumber, out var n) ? n : null;
 
         /// <summary>What Rimfolk would do about a colonist's chosen job: ride (on which beast), and the sums.</summary>
         internal sealed class Plan
@@ -59,6 +79,8 @@ namespace ColonyCouncil
             /// <summary>The beast is ridden to its pen in place of being led there on a rope.</summary>
             public IntVec3 penCell = IntVec3.Invalid;
             public string why;
+            /// <summary>The quickest beast found that may be ridden (ridden or not), for the dev action.</summary>
+            public Pawn best;
             public readonly List<string> beasts = new List<string>();
             public bool Ride => animal != null && why == null;
         }
@@ -78,6 +100,7 @@ namespace ColonyCouncil
             Settle(pawn, now);
             if (GiddyUpMounts.OwnJob(job.def)) return;
             var plan = Decide(pawn, job, now, false);
+            var note = Note(pawn, job, plan, now);
             if (!plan.Ride) return;
             Job then = job;
             if (plan.penCell.IsValid)
@@ -87,9 +110,34 @@ namespace ColonyCouncil
                 then.count = 1;
             }
             var mounted = GiddyUpMounts.MountFirst(pawn, plan.animal, result, then);
+            if (note != null) note.mount = mounted == null ? RideMount.NotTaken : RideMount.Sent;
             if (mounted == null) return;
             result = mounted.Value;
             tries[pawn.thingIDNumber] = (plan.animal.thingIDNumber, now);
+        }
+
+        /// <summary>
+        /// Keeps a colonist's decision for the dev action when it was about a trip of 40 cells or more (or a ride), except
+        /// while they are in the saddle already; the note, or null when it isn't kept.
+        /// </summary>
+        private static RideOutNote Note(Pawn pawn, Job job, Plan plan, int now)
+        {
+            if (!plan.Ride && (!plan.first.IsValid || plan.trip + plan.carry < RideOutMath.TripMin || GiddyUpRules.Mounted(pawn))) return null;
+            if (notes.Count >= MaxNotes && !notes.ContainsKey(pawn.thingIDNumber))
+                notes.Remove(notes.OrderBy(kv => kv.Value.tick).First().Key);
+            var note = new RideOutNote
+            {
+                tick = now,
+                job = job.def?.defName,
+                kind = plan.kind,
+                cells = plan.trip + plan.carry,
+                why = plan.why,
+                beast = (plan.animal ?? plan.best)?.LabelShort,
+                rideSeconds = plan.rideSeconds,
+                walkSeconds = plan.walkSeconds
+            };
+            notes[pawn.thingIDNumber] = note;
+            return note;
         }
 
         /// <summary>
@@ -101,8 +149,11 @@ namespace ColonyCouncil
             if (tries.TryGetValue(pawn.thingIDNumber, out var t))
             {
                 tries.Remove(pawn.thingIDNumber);
-                if (!GiddyUpRules.Mounted(pawn) && now >= t.tick && now - t.tick < RideOutMath.RefusedTicks)
+                bool on = GiddyUpRules.Mounted(pawn);
+                if (!on && now >= t.tick && now - t.tick < RideOutMath.RefusedTicks)
                     refused[((long)pawn.thingIDNumber << 32) | (uint)t.animal] = now + RideOutMath.RefusedTicks;
+                if (notes.TryGetValue(pawn.thingIDNumber, out var note) && note.tick == t.tick && note.mount == RideMount.Sent)
+                    note.mount = on ? RideMount.InSaddle : RideMount.DidNotGetOn;
             }
             if (refused.Count > 64)
                 foreach (var k in refused.Where(kv => kv.Value <= now || kv.Value - now > RideOutMath.RefusedTicks).Select(kv => kv.Key).ToList())
@@ -138,8 +189,8 @@ namespace ColonyCouncil
             plan.targetOut = BaseEdge.CellsOut(map, first);
             plan.finalOut = haul ? BaseEdge.CellsOut(map, second) : plan.targetOut;
 
-            // Their beast waiting by the work out there keeps waiting while they are still at it.
-            if (!order && (RideOutMath.FarOut(plan.riderOut) || RideOutMath.FarOut(plan.targetOut))) KeepWaiting(pawn, now);
+            // Their beast waiting by the work out there keeps waiting while they are still at it (the job chosen now is their last).
+            if (!order && (RideOutMath.FarOut(plan.riderOut) || RideOutMath.FarOut(plan.targetOut))) KeepWaiting(pawn, GiddyUpRules.ReservedMount(pawn), now, now);
 
             // A handler out past the base sent to lead a beast home to its pen on a rope: they ride it there instead.
             if (job.def == JobDefOf.RopeToPen && job.targetA.Thing is Pawn led && RopedHome(pawn, job, led, plan, now)) return plan;
@@ -168,34 +219,52 @@ namespace ColonyCouncil
             plan.walkSeconds = RideOutMath.WalkSeconds(plan.trip, plan.carry, plan.back, walk, plan.kind);
             int skill = pawn.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0;
             var reservations = GiddyUpRules.Reservations(map);
+            // Out to work: any beast no further from them than the work (and no slower than they walk), the quickest taken.
+            bool outTrip = plan.kind == RideTrip.Out;
+            float reach = plan.trip + plan.carry;
             Pawn best = null;
             float bestSeconds = float.MaxValue;
             foreach (var a in map.mapPawns.SpawnedColonyAnimals)
             {
-                string no = AnimalWhyNot(pawn, a, reservations, now);
+                float toAnimal = pawn.Position.DistanceTo(a.Position);
+                string no = outTrip && !RideOutMath.NearEnough(toAnimal, reach)
+                    ? "further from them than the work (" + (int)toAnimal + " cells against " + (int)reach + ")"
+                    : AnimalWhyNot(pawn, a, reservations, now);
                 float seconds = float.MaxValue;
                 if (no == null)
                 {
-                    float wild = a.kindDef?.race != null ? a.kindDef.race.GetStatValueAbstract(StatDefOf.Wildness) : 0f;
-                    seconds = RideOutMath.RideSeconds(pawn.Position.DistanceTo(a.Position), a.Position.DistanceTo(first), plan.carry, plan.back, walk,
-                        GiddyUpRules.RidingSpeed(a, pawn), RideOutMath.MountSeconds(a.BodySize, wild, skill), plan.kind);
-                    if (seconds < bestSeconds)
+                    float speed = GiddyUpRules.RidingSpeed(a, pawn);
+                    if (outTrip && !RideOutMath.FastEnough(speed, walk))
+                        no = "slower under them than they walk (" + speed.ToString("0.0") + " cells a second against " + walk.ToString("0.0") + ")";
+                    else
                     {
-                        bestSeconds = seconds;
-                        best = a;
+                        float wild = a.kindDef?.race != null ? a.kindDef.race.GetStatValueAbstract(StatDefOf.Wildness) : 0f;
+                        seconds = RideOutMath.RideSeconds(toAnimal, a.Position.DistanceTo(first), plan.carry, plan.back, walk, speed,
+                            RideOutMath.MountSeconds(a.BodySize, wild, skill), plan.kind);
+                        if (seconds < bestSeconds)
+                        {
+                            bestSeconds = seconds;
+                            best = a;
+                        }
                     }
                 }
                 if (explain && a.RaceProps.Animal)
-                    plan.beasts.Add("  " + a.LabelShort + " (" + a.KindLabel + ", " + (int)pawn.Position.DistanceTo(a.Position) + " cells away): "
-                                    + (no ?? "may be ridden, " + seconds.ToString("0") + " s riding"));
+                {
+                    var stale = StaleKeeper(a, pawn);
+                    plan.beasts.Add("  " + a.LabelShort + " (" + a.KindLabel + ", " + (int)toAnimal + " cells away): "
+                                    + (no ?? "may be ridden, " + seconds.ToString("0") + " s riding")
+                                    + (stale != null ? "; Giddy-Up's mark keeping it for " + stale.LabelShort + " is old (it neither waits for, carries nor is being got on by them), so it is left aside" : ""));
+                }
             }
+            plan.best = best;
             plan.rideSeconds = bestSeconds;
             if (best == null)
             {
-                plan.why = "no beast Giddy-Up lets them ride is free";
+                plan.why = outTrip ? "no beast Giddy-Up lets them ride is free, no further from them than the work and no slower than they walk"
+                    : "no beast Giddy-Up lets them ride is free";
                 return plan;
             }
-            if (!RideOutMath.Worth(bestSeconds, plan.walkSeconds, plan.kind))
+            if (!RideOutMath.Rides(plan.kind, bestSeconds, plan.walkSeconds))
             {
                 plan.why = "walking is quicker (" + plan.walkSeconds.ToString("0") + " s on foot against " + bestSeconds.ToString("0") + " s on " + best.LabelShort + ")";
                 return plan;
@@ -225,22 +294,52 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Giddy-Up's waiting beast stays for the ride back while its rider is still at work out past the base: its wait runs
-        /// Giddy-Up's own timer again from each job they start there, a day at most (<see cref="RideOutMath.WaitExpiry"/>).
+        /// Giddy-Up's own timer from now, until a day after the rider's last job began at most (<paramref name="lastJob"/>,
+        /// <see cref="RideOutMath.WaitExpiry"/>). Called as they choose a job and every 250 ticks (<see cref="Rare"/>).
         /// </summary>
-        private static void KeepWaiting(Pawn rider, int now)
+        private static void KeepWaiting(Pawn rider, Pawn beast, int lastJob, int now)
         {
             try
             {
-                var beast = GiddyUpRules.ReservedMount(rider);
-                if (beast == null || !beast.Spawned || beast.Map != rider.Map || !GiddyUpMounts.WaitingFor(beast, rider)) return;
+                if (rider == null || beast == null || !beast.Spawned || beast.Map != rider.Map || !GiddyUpMounts.WaitingFor(beast, rider)) return;
                 if (beast.Position.DistanceTo(rider.Position) > 60f) return;
                 var wait = beast.CurJob;
-                wait.expiryInterval = RideOutMath.WaitExpiry(wait.startTick, now, wait.expiryInterval, GiddyUpRules.WaitTimer);
+                wait.expiryInterval = RideOutMath.WaitExpiry(wait.startTick, now, wait.expiryInterval, GiddyUpRules.WaitTimer, lastJob);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("riding out: keeping a beast waiting", e);
             }
+        }
+
+        /// <summary>
+        /// Every 250 ticks (<see cref="Sched.RareRideOut"/>, with riding out on): each of the colony's beasts waiting for its
+        /// rider (Giddy-Up's "WaitForRider") keeps waiting while that rider is at work out past the base, so a long stretch of
+        /// work out there between two job choices doesn't send it home.
+        /// </summary>
+        internal static void Rare(int now)
+        {
+            if (GiddyUpMounts.WaitJob == null) return;
+            var maps = Find.Maps;
+            for (int m = 0; m < maps.Count; m++)
+            {
+                var map = maps[m];
+                foreach (var beast in map.mapPawns.SpawnedColonyAnimals)
+                {
+                    var job = beast.CurJob;
+                    if (job == null || job.def != GiddyUpMounts.WaitJob || !(job.targetA.Thing is Pawn rider)) continue;
+                    if (!OutThere(rider, map)) continue;
+                    KeepWaiting(rider, beast, rider.CurJob.startTick, now);
+                }
+            }
+        }
+
+        /// <summary>The rider is up, one of the colony's, and at work out past the base (they, or where their job takes them).</summary>
+        private static bool OutThere(Pawn rider, Map map)
+        {
+            if (rider.Dead || rider.Downed || !rider.Spawned || rider.Map != map || rider.Faction != Faction.OfPlayer || rider.CurJob == null) return false;
+            if (RideOutMath.FarOut(BaseEdge.CellsOut(map, rider.Position))) return true;
+            return Targets(rider.CurJob, out var first, out _) && RideOutMath.FarOut(BaseEdge.CellsOut(map, first));
         }
 
         // ---------------- Who, what and which beast ----------------
@@ -300,7 +399,8 @@ namespace ColonyCouncil
             if (a.roping != null && a.roping.IsRopedByPawn) return "led on a rope";
             if (GiddyUpMounts.CarryingRider(a)) return "carrying a rider";
             var keeper = GiddyUpRules.ReservedBy(a);
-            if (keeper != null && keeper != rider && !keeper.Dead && keeper.Spawned) return "kept for " + keeper.LabelShort + " (waiting for them, or they are getting on)";
+            if (keeper != null && keeper != rider && !keeper.Dead && keeper.Spawned && KeptFor(a, keeper))
+                return "kept for " + keeper.LabelShort + " (waiting for them, carrying them, or they are getting on)";
             if (Working(a)) return "at work (" + (a.CurJobDef?.label ?? "busy") + ")";
             if (WithYoung(a)) return "with young";
             if (PostBook.Instance?.rides?.Any(r => r?.mount == a) ?? false) return "kept for the colony's own rider";
@@ -310,6 +410,21 @@ namespace ColonyCouncil
             if (!GiddyUpRules.Allowed(rider, a)) return "Giddy-Up: its automount column on the Animals tab doesn't allow " + rider.LabelShort;
             if (!rider.CanReach(a, PathEndMode.Touch, Danger.Some)) return "out of reach";
             return null;
+        }
+
+        /// <summary>
+        /// Giddy-Up's mark keeping this beast for that rider still holds: it waits for them, carries them, or they are getting
+        /// on it (or have that next in their queue). Otherwise the mark is old (in the player's save of 18 November 2026 a
+        /// horse still kept for Soot and a titanis for Wyninn, all of them at home) and left aside.
+        /// </summary>
+        private static bool KeptFor(Pawn a, Pawn keeper) =>
+            RideOutMath.KeptFor(GiddyUpMounts.WaitingFor(a, keeper), GiddyUpMounts.Riding(keeper, a), GiddyUpMounts.MountingOnto(keeper, a));
+
+        /// <summary>The rider an old mark of Giddy-Up's keeps this beast for (left aside), or null.</summary>
+        private static Pawn StaleKeeper(Pawn a, Pawn rider)
+        {
+            var keeper = GiddyUpRules.ReservedBy(a);
+            return keeper != null && keeper != rider && !keeper.Dead && keeper.Spawned && !KeptFor(a, keeper) ? keeper : null;
         }
 
         /// <summary>
@@ -380,8 +495,11 @@ namespace ColonyCouncil
                           + (GiddyUpRules.Found ? "read" : "not found") + ".");
             sb.AppendLine("  Giddy-Up's own: Ride and Roll " + (GiddyUpRules.RideAndRoll ? "on" : "off") + ", battle mounts " + (GiddyUpRules.BattleMounts ? "on" : "off")
                           + ", \"Find a mount if trip is longer than\" " + GiddyUpRules.MinDistance + " cells, \"Wait for rider\" " + GiddyUpRules.WaitTimer + " ticks.");
+            var last = LastOf(pawn);
+            sb.AppendLine("  " + (last != null ? last.Describe(Now) : "No decision on a trip of " + (int)RideOutMath.TripMin + " cells or more since the game was loaded."));
             var job = pawn.CurJob;
-            sb.AppendLine("  Their job now: " + (job?.def?.defName ?? "none") + (job != null && job.playerForced ? " (ordered)" : ""));
+            sb.AppendLine("  Their job now: " + (job?.def?.defName ?? "none") + (job != null && job.playerForced ? " (ordered)" : "")
+                          + (GiddyUpRules.Mounted(pawn) ? ", in the saddle" : ""));
             if (job == null) return sb.ToString();
             var plan = Decide(pawn, job, Now, true);
             if (plan.first.IsValid)
@@ -391,12 +509,63 @@ namespace ColonyCouncil
                 sb.AppendLine("  Giddy-Up's own look: " + (pawn.Drafted ? "never for a drafted colonist"
                     : plan.trip + plan.carry > GiddyUpRules.MinDistance ? "over its distance, so it looks for a mount itself" : "under its distance, so it doesn't look") + ".");
             }
-            if (plan.kind != RideTrip.None) sb.AppendLine("  Rimfolk's trip: " + plan.kind + "; " + plan.walkSeconds.ToString("0") + " s on foot.");
+            if (plan.kind != RideTrip.None)
+                sb.AppendLine("  Rimfolk's trip: " + plan.kind + "; " + plan.walkSeconds.ToString("0") + " s on foot. "
+                              + (plan.kind == RideTrip.Out
+                                  ? "Out to work they ride the quickest free beast no further from them than the work (" + (int)(plan.trip + plan.carry) + " cells) and no slower than they walk."
+                                  : "They ride only when it takes no longer than " + RideOutMath.Slack(plan.kind).ToString("0.##") + " times walking."));
             foreach (var line in plan.beasts) sb.AppendLine(line);
             sb.AppendLine(plan.Ride
                 ? "  Rimfolk: they ride " + plan.animal.LabelShort + (plan.penCell.IsValid ? " home to its pen" : "") + "."
                 : "  Rimfolk: no ride, " + plan.why + ".");
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// For "Rimfolk: check myself": riding out's state this session, with Giddy-Up loaded (null without it), and whether
+        /// it needs a look (it switched itself off, or a part of Giddy-Up it can't ride without wasn't found).
+        /// </summary>
+        internal static (string text, bool warn) CheckLine()
+        {
+            if (!GiddyUpMounts.On) return (null, false);
+            var off = new List<string>();
+            bool warn = false;
+            if (!(ColonyCouncilMod.Settings?.rideOut ?? true)) off.Add("its setting is off");
+            if (!RimfolkPatches.On) off.Add("the deeper game hooks are off");
+            if (Patch_RideOutNextJob.Broken)
+            {
+                off.Add("it switched itself off for this session after an error (the log has it)");
+                warn = true;
+            }
+            if (GiddyUpMounts.InjectFailed)
+            {
+                off.Add("Giddy-Up's way to put getting on before a job (GoMount with Inject) failed with an error and is left alone for this session (the log has it)");
+                warn = true;
+            }
+            else if (!GiddyUpMounts.InjectFound || GiddyUpMounts.MountJob == null)
+            {
+                off.Add("Giddy-Up's way to put getting on before a job (GoMount with Inject, and its Mount job) wasn't found");
+                warn = true;
+            }
+            if (!GiddyUpRules.Found)
+            {
+                off.Add("Giddy-Up's rules for riding weren't all found");
+                warn = true;
+            }
+            if (!RimfolkPatches.Applied.Contains(nameof(Patch_RideOutNextJob)))
+            {
+                off.Add("its game hook on choosing a job didn't apply");
+                warn = true;
+            }
+            var nobody = new List<string>();
+            if (!GiddyUpRules.CanRideFound) nobody.Add("\"allowed to ride\" (canRide)");
+            if (!GiddyUpRules.CapableFound) nobody.Add("IsCapableOfRiding");
+            if (nobody.Count > 0) warn = true;
+            var missing = GiddyUpRules.Missing();
+            string text = "Riding out with Giddy-Up 2: " + (off.Count == 0 ? "on" : "off, as " + string.Join("; ", off)) + "."
+                          + (nobody.Count > 0 ? " Giddy-Up's " + string.Join(" and ", nobody) + (nobody.Count > 1 ? " weren't" : " wasn't") + " found, so Rimfolk lets nobody ride out." : "")
+                          + (missing.Count > 0 ? " Not found, done without: " + string.Join(", ", missing) + "." : "");
+            return (text, warn);
         }
     }
 
@@ -523,6 +692,37 @@ namespace ColonyCouncil
 
         /// <summary>Giddy-Up's rules that decide riding were all found.</summary>
         public static bool Found => Look() && isAllowed != null && dataOf != null && mountProp != null && reservedByProp != null && rideAndRollField != null;
+
+        /// <summary>Its "allowed to ride" (canRide) was found; without it Rimfolk reads everyone as not allowed.</summary>
+        public static bool CanRideFound => Look() && canRideField != null;
+
+        /// <summary>Its IsCapableOfRiding was found; without it Rimfolk reads everyone as not able to ride.</summary>
+        public static bool CapableFound => Look() && capable != null;
+
+        /// <summary>The parts of Giddy-Up looked for by name and not found, in a few words each with what is done instead (for the self-check).</summary>
+        public static List<string> Missing()
+        {
+            var list = new List<string>();
+            Look();
+            void Need(object member, string what)
+            {
+                if (member == null) list.Add(what);
+            }
+            Need(isMountable, "IsMountable (no beast may be ridden)");
+            Need(isAllowed, "IsAllowed (no beast may be ridden)");
+            Need(dataOf, "GetExtendedPawnData (no rider's data)");
+            Need(mountProp, "Mount");
+            Need(reservedByProp, "ReservedBy");
+            Need(rideAndRollField, "rideAndRollEnabled (read as off)");
+            Need(battleMountsField, "battleMountsEnabled (read as off)");
+            Need(reservedMountProp, "ReservedMount (the wait isn't kept up as a job is chosen)");
+            Need(reservedAnimals, "FetchReservedAnimals (Giddy-Up looks the map's reservations up itself)");
+            Need(ridingSpeed, "GetRidingSpeed (each beast's own speed is used)");
+            Need(waitTimerField, "waitForRiderTimer (10000 ticks is used)");
+            Need(minDistanceField, "minAutoMountDistance (120 cells is shown)");
+            if (singletonProp == null || badSpotsProp == null) list.Add("BadSpots (places with no room to leave a beast aren't known)");
+            return list;
+        }
 
         private static T Setting<T>(FieldInfo f, T fallback)
         {
@@ -730,6 +930,9 @@ namespace ColonyCouncil
     {
         private static bool broken;
 
+        /// <summary>Riding out switched itself off for this session after an error (the self-check says so).</summary>
+        internal static bool Broken => broken;
+
         public static bool Prepare() => GiddyUpMounts.On;
 
         public static string StandsDownWhy() => GiddyUpMounts.On ? "" : "Giddy-Up isn't loaded";
@@ -752,7 +955,40 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Dev mode: why a colonist rides out for the job they are doing, or not (Debug actions, "Rimfolk").</summary>
+    /// <summary>
+    /// Riding out's pass every 250 ticks at <see cref="Sched.RareRideOut"/> (Integrations/GiddyUpRideOut.cs, with riding
+    /// out on): beasts waiting for a rider at work out past the base keep waiting. Nothing saved; a game loaded or begun
+    /// starts with no tries or decisions remembered.
+    /// </summary>
+    public class GameComponent_RideOut : GameComponent
+    {
+        public GameComponent_RideOut(Game game)
+        {
+        }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            GiddyUpRideOut.Reset();
+        }
+
+        public override void GameComponentTick()
+        {
+            int now = Find.TickManager.TicksGame;
+            if (!Sched.Every(now, Sched.RareTicks, Sched.RareRideOut) || !GiddyUpRideOut.On) return;
+            using var clock = PassClock.Time(Pass.RareRideOut);
+            try
+            {
+                GiddyUpRideOut.Rare(now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("riding out: keeping beasts waiting", e);
+            }
+        }
+    }
+
+    /// <summary>Dev mode: why a colonist rides out for the job they are doing, or not, and their last decision (Debug actions, "Rimfolk").</summary>
     public static class GiddyUpRideOutDebug
     {
         [LudeonTK.DebugAction("Rimfolk", "Riding out: why a colonist rides or not (log)...", allowedGameStates = LudeonTK.AllowedGameStates.PlayingOnMap)]
