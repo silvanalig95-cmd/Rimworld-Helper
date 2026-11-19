@@ -46,7 +46,8 @@ namespace ColonyCouncil
                 var manners = DefDatabase<DecreeDef>.GetNamedSilentFail("Council_Decree_Manners");
                 bool polite = manners != null && DecreeTracker.InForceFor(heckler, manners);
                 bool calm = race.Candidates.All(c => !Hot(c));
-                float chance = HarmTwoMath.HustingsBrawl(peacemaker, polite, calm, FrayedTempers.Factor(rival, heckler));
+                // With a clerk of the Last Republic observing the vote, half as often (Peoples/Events8/VoteObserver.cs).
+                float chance = HarmTwoMath.HustingsBrawl(peacemaker, polite, calm, FrayedTempers.Factor(rival, heckler)) * PeopleEvents8Math.BrawlFactor(VoteObserver.Watching(e.map));
                 if (!forced && !Harm.Roll(HarmKinds.Hustings, chance)) return;
                 // together: the supporter answers the heckle face to face at the hustings (Together.Can above).
                 Line(rival, "Rimfolk_Pool_HustingsShove", heckler);

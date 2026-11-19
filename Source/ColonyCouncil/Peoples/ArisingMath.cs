@@ -26,7 +26,14 @@ namespace ColonyCouncil
 
         public static readonly string[] Kinds = { Refugees, League, Exiles, Splinter };
 
-        public static bool IsKind(string kind) => kind != null && Array.IndexOf(Kinds, kind) >= 0;
+        /// <summary>
+        /// A people made by what the colony did rather than found by the region's day: the Hollow Fleet's crew who came down from their
+        /// hull when one of the colony's people of rank gave the order to disembark (Peoples/Events8/OrderToDisembark.cs). Never looked
+        /// for by the day (not in <see cref="Kinds"/>), told and carded like the others.
+        /// </summary>
+        public const string Disembarked = "disembarked";
+
+        public static bool IsKind(string kind) => kind != null && (Array.IndexOf(Kinds, kind) >= 0 || kind == Disembarked);
 
         /// <summary>The key a cause is kept under, so it gives one people at most ("refugees:4211").</summary>
         public static string Key(string kind, long id) => kind + ":" + id;
@@ -176,6 +183,8 @@ namespace ColonyCouncil
                 case League: return new[] { PeoplesMath.Traders, PeoplesMath.Herders, PeoplesMath.Brokers };
                 case Exiles: return new[] { PeoplesMath.Herders, PeoplesMath.Traders };
                 case Splinter: return new[] { PeoplesMath.Healers, PeoplesMath.Herders, PeoplesMath.Pilgrims };
+                // A ship's crew come down to the land keep the ship's learning, take apart what the world left, or trade the roads.
+                case Disembarked: return new[] { PeoplesMath.Scholars, PeoplesMath.Salvagers, PeoplesMath.Traders };
                 default: return new string[0];
             }
         }
@@ -420,6 +429,12 @@ namespace ColonyCouncil
 
         /// <summary>Faithful who broke away toward the colony: warm (25) when the colony kept a fair table in the war of words, else 10.</summary>
         public static int SplinterGoodwill(bool debate) => debate ? 25 : 10;
+
+        /// <summary>
+        /// The Fleet's crew who disembarked toward the colony whose people gave the order: warm, 30 when some of them went to live at the
+        /// colony, 45 when the colony let them all find their own way.
+        /// </summary>
+        public static int DisembarkedGoodwill(int joined) => joined > 0 ? 30 : 45;
 
         /// <summary>How a goodwill is told: -1 cool, 0 plain, 1 warm.</summary>
         public static int Feeling(int goodwill) => goodwill <= Cool ? -1 : goodwill >= Warm ? 1 : 0;
