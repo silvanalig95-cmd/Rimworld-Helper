@@ -2612,10 +2612,10 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Rimfolk_Dilemmas_Animals**
 
-- **the herd or the stores** (`Council_DlmA_FamineCull`): "Cull n head": gathering to hear it, A speaks ("a word for the herd") · "Turn the weakest out to forage": a walk together to the gate and back ("turning the herd out").
-- **a raider in the crops** (`Council_DlmA_CropRaider`): "Send the hunters": a hunt party · "Watch the fields at night": a vigil at the fields ("the watch over the fields") · "Let it eat": A goes out to the fields ("A's look at the fields").
-- **medicine for an animal** (`Council_DlmA_SickAnimal`): "The good medicine for the pet": B keeps the pet company · "A nurses the pet through": a vigil at the pet's side ("a night with the pet").
-- **something at the pens** (`Council_DlmA_PenStalker`): "Keep watch at the pens": a vigil at the pet's side ("the watch at the pens") · "Bring the herd in close": a work party of A and B (herd) ("bringing the herd in close").
+- **the herd or the stores** (`Council_DlmA_FamineCull`): "Cull n head": gathering to hear it, A speaks ("a few words for the culled herd") · "Turn the weakest out to forage": a walk together to the gate and back ("turning the herd out").
+- **an animal in the crops** (`Council_DlmA_CropRaider`): "Send the hunters": a hunt party · "Watch the fields at night": a vigil at the fields ("the watch over the fields") · "Let it eat": A goes out to the fields ("A's look at the fields").
+- **medicine for an animal** (`Council_DlmA_SickAnimal`): "The good medicine for the pet": B keeps the pet company · "A nurses the pet without medicine": a vigil at the pet's side ("a night with the pet").
+- **a predator at the pens** (`Council_DlmA_PenStalker`): "Keep watch at the pens": a vigil at the pet's side ("the watch at the pens") · "Bring the herd in close": a work party of A and B (herd) ("bringing the herd in close").
 - **a bond against the ideoligion** (`Council_DlmA_BondFaith`): "Ask B to bless the pet": gathering to hear it, B speaks ("B's blessing over the pet").
 - **the lambing watch** (`Council_Dilemma_LambingWatch`): "Keep the lambing watch together": a vigil at the pet's side ("the lambing watch") · "A sits up alone": A keeps the pet company.
 - **shearing day** (`Council_Dilemma_ShearingDay`): "Make a day of it": gathering ("shearing day").
@@ -2631,19 +2631,19 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 - **a child's grief** (`Council_DlmLv_ChildGrief`): "B takes A under their wing": B keeps A company ("keeping A company") · "A goodbye at the grave, with A": gathering to hear it, A speaks ("goodbye at the grave") · "Keep A busy with lessons": A learns at B's side.
 - **lessons for the children** (`Council_DlmLv_Schooling`): "Morning lessons, with B": A learns at B's side (intellectual) · "Let them run free a while yet": time off for A.
 - **whose den is it** (`Council_DlmLv_ChildrenQuarrel`): "They share it, and that's that": A keeps B company ("playing in the den together").
-- **a youngster who wants to see the world** (`Council_DlmLv_TeenRoad`): "A long walk past the fields with B, first": A goes for a long walk.
-- **one last look at the hills** (`Council_DlmLv_ElderWalk`): "B goes with A for the day": A goes for a long walk; B keeps A company ("keeping A company") · "Let A go alone, as A asks": A goes for a long walk.
+- **a youngster who wants to see the world** (`Council_DlmLv_TeenRoad`): "A long walk past the fields first": A goes for a long walk.
+- **a walk to the hills** (`Council_DlmLv_ElderWalk`): "B goes with A for the day": A goes for a long walk; B keeps A company ("keeping A company") · "Let A go alone, as A asks": A goes for a long walk.
 - **won't see the doctor** (`Council_DlmLv_ElderDoctor`): "Insist: B sees to A today": B keeps A company ("seeing to A") · "Strike a bargain: a check-up for a favor": B keeps A company ("seeing to A").
-- **the old one's tale** (`Council_DlmLv_ElderTale`): "Everyone gathers to hear it": gathering to hear it, A speaks ("the colony's story") · "B writes it all down": B keeps A company ("writing down A's story").
-- **the old one and the little one** (`Council_DlmLv_ElderAndChild`): "Let A teach B": B learns at A's side.
-- **cold in the bones** (`Council_DlmLv_ElderCold`): "B sits with A by the fire in the evenings": B keeps A company ("an evening by the fire").
+- **an elder's story** (`Council_DlmLv_ElderTale`): "Everyone gathers to hear it": gathering to hear it, A speaks ("the colony's story") · "B writes it all down": B keeps A company ("writing down A's story").
+- **an elder and a child** (`Council_DlmLv_ElderAndChild`): "Let A teach B": B learns at A's side.
+- **an elder who can't get warm** (`Council_DlmLv_ElderCold`): "B sits with A by the fire in the evenings": B keeps A company ("an evening by the fire").
 - **the old way and the new** (`Council_DlmLv_OldWayNewWay`): "Work it out together": B learns at A's side.
-- **the worrier's watch** (`Council_DlmLv_WorrierWatch`): "B talks it through with A": B keeps A company ("going through the list with A").
+- **a worrier asks for a night watch** (`Council_DlmLv_WorrierWatch`): "B talks it through with A": B keeps A company ("going through the list with A").
 - **the colony's record** (`Council_DlmLv_RecordKeeper`): "Read out the good parts at supper": gathering to hear it, A speaks ("a reading from the colony's record").
 
 **Rimfolk_Dilemmas_Lives_Customs**
 
-- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "Snow means more work, not less": a work party up to 4 (snow, haul, clean) ("the shoveling").
+- **the snow day** (`Council_Dilemma_SnowDay`): "A snow day for everyone": time off for the colony; gathering ("the snow day") · "The children can play; the rest of us work": time off for A · "No snow day: there are paths to clear": a work party up to 4 (snow, haul, clean) ("the shoveling").
 - **the children's race** (`Council_Dilemma_ChildrensRace`): "Everyone comes out to cheer": gathering in the fields ("the children's race") · "The children can race on their own": A goes out to the fields ("the children's race").
 - **the children's gleaning** (`Council_Dilemma_Gleaning`): "The gleanings are the children's": gathering to hear it, A speaks ("the gleaning") · "Glean, but it goes to the stores": A goes out to the fields ("the gleaning").
 - **a tree for every child** (`Council_Dilemma_ChildTrees`): "Every child plants a tree": gathering to hear it, A speaks ("the planting of the children's trees") · "Just A's tree, this year": A goes for a long walk.

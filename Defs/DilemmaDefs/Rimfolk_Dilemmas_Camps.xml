@@ -132,7 +132,7 @@
         </effects>
       </li>
       <li>
-        <label>Stand by {A_nameDef}: our people don't steal</label>
+        <label>Tell them the colony stands by its own</label>
         <outcome>The council told {X_nameDef} the colony stands by {A_nameDef}, and that's the end of it. {X_nameDef} went back to the camp, and the camp has kept its distance since.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
@@ -403,7 +403,7 @@
       </li>
       <li>
         <label>Keep the children apart</label>
-        <outcome>{A_nameDef} was told to stay on the colony's side. {A_pronoun} did, mostly, and spent a lot of time looking toward the camp.</outcome>
+        <outcome>{A_nameDef} was told to stay on the colony's side. {A_nameDef} did, mostly, and spent a lot of time looking toward the camp.</outcome>
         <ways><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_KeptFromFriend</thought></li>

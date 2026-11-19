@@ -312,7 +312,7 @@
         </effects>
       </li>
       <li>
-        <label>A second pair of eyes</label>
+        <label>A helper at the bench</label>
         <outcome>{B_nameDef} sat beside {A_nameDef} at the bench and asked questions. The work went slower, and {B_nameDef} learned a great deal.</outcome>
         <ways><openness>1</openness></ways>
         <effects>

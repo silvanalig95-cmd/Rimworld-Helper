@@ -383,7 +383,7 @@
       <li>[news:death] Someone of the colony has died, and {A_nameDef} says the bees must be told, hive by hive, or they'll grieve without knowing why.</li>
       <li>[news:birth] There's a new child in the colony, and {A_nameDef} wants to go round the hives and tell the bees before anyone else outside the family hears.</li>
       <li>[news:wedding] Two of the colony are married, and {A_nameDef} says the bees must hear it from the family, hive by hive.</li>
-      <li>[tradition] There's news, and the colony tells the bees its news: {A_nameDef} is waiting at the first hive.</li>
+      <li>[tradition] There's news, and it's the colony's custom to tell the bees: {A_nameDef} is waiting at the first hive.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>telling the bees</traditionLabel>
