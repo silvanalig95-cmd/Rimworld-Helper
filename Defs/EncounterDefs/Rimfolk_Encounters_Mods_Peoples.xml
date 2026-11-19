@@ -83,13 +83,13 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncO_VathunCaste</defName>
-    <label>a Vathun's place</label>
+    <label>a Vathun's questions about rank</label>
     <mods><li>neronix17.outland.vathunnobles</li></mods>
     <weight>0.9</weight>
     <cooldownDays>9</cooldownDays>
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Outland_VathunNobles</li></factions></stranger>
     <texts>
-      <li>{X_nameDef} of {FACTION} asked {A_nameDef} which caste {A_pronoun} belonged to, and was puzzled for the rest of the afternoon by the answer.</li>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} which caste {A_pronoun} belonged to, and was puzzled by the answer for the rest of the visit.</li>
       <li>Among the Vathun, {X_nameDef} told {A_nameDef}, a noble's horns are polished by a servant, a servant's by nobody, and a lord's by a poet.</li>
       <li>{A_nameDef} explained the council to {X_nameDef}: everyone speaks, and the votes are counted. {X_nameDef} asked who counts them, and whether they are of good family.</li>
       <li>[colony:Open] {X_nameDef} said the colony would be thought shockingly loose in the forest courts, then admitted, lowering {X_possessive} voice, that {X_pronoun} rather liked it.</li>
@@ -182,7 +182,7 @@
     <texts>
       <li>{X_nameDef} of {FACTION} drew the stars for {A_nameDef} on a flat stone and showed {A_objective} how to tell the hour of the night by them.</li>
       <li>{X_nameDef} taught {A_nameDef} a way of doing sums with nine signs and a nought that made the colony's tally of the stores twice as quick.</li>
-      <li>{A_nameDef} and {X_nameDef} talked medicine late into the evening: humors, herbs, and the one book {X_nameDef} had carried halfway across the world.</li>
+      <li>{A_nameDef} and {X_nameDef} talked medicine at length: humors, herbs, and the one book {X_nameDef} had carried halfway across the world.</li>
       <li>[x:factionmod:athelas.medievaltotalrim.turks] At home, {X_nameDef} told {A_nameDef}, there is a great library where anyone who can find a quiet corner may copy any book they like.</li>
     </texts>
     <effects>

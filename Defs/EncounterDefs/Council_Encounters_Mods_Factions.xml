@@ -19,7 +19,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Empire</li></factions></stranger>
     <texts>
       <li>{X_nameDef} of the Empire gently corrected the way {A_nameDef} bowed, then showed {A_objective} the right one, and the one for a knight, and the one you never use.</li>
-      <li>"What does a yeoman actually do?" {A_nameDef} asked. {X_nameDef} began there, and had worked up to baron by the end of supper.</li>
+      <li>"What does a yeoman actually do?" {A_nameDef} asked. {X_nameDef} began there, and had worked up to baron an hour later.</li>
       <li>At court, {X_nameDef} told {A_nameDef}, a guest who clears the plate is telling the host the portions were mean. {A_nameDef} cleared {A_possessive} plate anyway.</li>
       <li>[x:royal] {X_nameDef} let {A_nameDef} address {X_objective} without the title, just this once, and seemed to enjoy it more than {X_pronoun} let on.</li>
       <li>[lowtech] {X_nameDef} looked around the colony's hall and said, kindly, that the Empire's halls were much the same once, a very long time ago.</li>
@@ -74,7 +74,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncF_RepublicMasonry</defName>
-    <label>a mason's eye</label>
+    <label>a mason's advice</label>
     <mods><li>oskarpotocki.vfe.classical</li></mods>
     <weight>0.8</weight>
     <cooldownDays>10</cooldownDays>
@@ -84,7 +84,7 @@
     <texts>
       <li>{X_nameDef} of {FACTION} looked at the colony's walls for a long time, then showed {A_nameDef} how the republic's builders set an arch so it holds itself up.</li>
       <li>In the dust, {X_nameDef} drew {A_nameDef} a column: base, shaft and capital, and the slight swell in the middle that makes it look straight.</li>
-      <li>{A_nameDef} and {X_nameDef} argued about mortar until dark. {X_nameDef}'s people put volcanic ash in theirs, and {A_nameDef} wants to try it.</li>
+      <li>{A_nameDef} and {X_nameDef} argued about mortar at length. {X_nameDef}'s people put volcanic ash in theirs, and {A_nameDef} wants to try it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>400</xp></li>
@@ -125,7 +125,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult><factions><li>SettlerCivil</li><li>SettlerRough</li></factions></stranger>
     <colonist><passion>Animals</passion></colonist>
     <texts>
-      <li>{X_nameDef} showed {A_nameDef} how {FACTION}'s ranchers throw a loop over a running steer. {A_nameDef} caught a fence post, then a chicken, then, late in the afternoon, a goat.</li>
+      <li>{X_nameDef} showed {A_nameDef} how {FACTION}'s ranchers throw a loop over a running steer. {A_nameDef} caught a fence post, then a chicken, then, at last, a goat.</li>
       <li>{X_nameDef} taught {A_nameDef} the knot ranchers use for a halter that won't tighten on the animal. {A_nameDef} has retied every halter in the colony since.</li>
       <li>{A_nameDef} watched {X_nameDef} talk a nervous horse into standing still with nothing but a low voice and a lot of patience, and asked how. {X_nameDef} said it was mostly the patience.</li>
     </texts>

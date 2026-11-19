@@ -23,7 +23,7 @@
     <defName>Council_Var_EncLand_HerdPassing</defName>
     <encounter>Council_EncC_HerdPassing</encounter>
     <texts>
-      <li>[land:desert] A herd went by on the far side of the dry wash, {X_definite} at the back, and the dust hung in the air long after. {A_nameDef} could still taste it at supper.</li>
+      <li>[land:desert] A herd went by on the far side of the dry wash, {X_definite} at the back, and the dust hung in the air long after. {A_nameDef} could still taste it hours later.</li>
       <li>[land:tundra|land:boreal] The herd came across the white plain in a long dark line, {X_indefinite} among them, heading for wherever the snow is thinner. {A_nameDef} watched them until they were specks.</li>
       <li>[land:grassland] The grass was taller than {A_nameDef}'s waist, and the herd moved through it like a boat through water, {X_definite} trailing the rest. The track they left was still there days later.</li>
     </texts>
@@ -34,7 +34,7 @@
     <encounter>Council_EncC_Birdsong</encounter>
     <texts>
       <li>[land:jungle] A hundred kinds of bird, shouting over each other in the canopy. {A_nameDef} worked under it all morning, with {X_indefinite} rooting in the leaf litter nearby.</li>
-      <li>[land:swamp] The reeds were full of birds singing over the water. {A_nameDef} ate lunch on the dike and watched {X_indefinite} paddle through the shallows below.</li>
+      <li>[land:swamp] The reeds were full of birds singing over the water. {A_nameDef} ate on the dike and watched {X_indefinite} paddle through the shallows below.</li>
       <li>[land:coast] Gulls wheeled and screamed over the shore. {A_nameDef} ate on a rock above the beach, keeping an eye on {X_indefinite} nosing through the drift.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>

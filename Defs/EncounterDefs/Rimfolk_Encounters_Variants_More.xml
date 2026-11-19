@@ -43,7 +43,7 @@
     <encounter>Council_EncR_SongsAndNews</encounter>
     <texts>
       <li>[theirLowtech] {X_nameDef} knew a song for every valley on the road, and taught {A_nameDef} one about these very hills that {A_nameDef} had never heard.</li>
-      <li>[winter] With the cold outside and the evening long, {X_nameDef} and {A_nameDef} traded news and old songs until the others drifted over to listen.</li>
+      <li>[winter] With the cold outside, {X_nameDef} and {A_nameDef} traded news and old songs, and the others drifted over to listen.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
