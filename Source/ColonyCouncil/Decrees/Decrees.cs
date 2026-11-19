@@ -766,6 +766,8 @@ namespace ColonyCouncil
             {
                 if (a.def.fuelSaving > 0f) SaveFuel(a.def.fuelSaving);
                 if (a.def.practiceSkills == null || a.def.practiceXpPerHour <= 0f) continue;
+                // The marshal speeds the fighting drills (the drills and the militia's), not the lessons of apprenticeships or shared meals.
+                float xp = a.def.practiceXpPerHour * (a.def.practiceNeedsViolence ? (colony?.offices ?? CouncilGameComponent.Instance?.offices)?.DrillFactor ?? 1f : 1f);
                 foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                 {
                     if (p.skills == null || p.Downed || p.InBed() || p.InMentalState || !Ours(p)) continue;
@@ -773,7 +775,7 @@ namespace ColonyCouncil
                     foreach (var sk in a.def.practiceSkills)
                     {
                         var rec = p.skills.GetSkill(sk);
-                        if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour * ((colony?.offices ?? CouncilGameComponent.Instance?.offices)?.DrillFactor ?? 1f));
+                        if (rec != null && !rec.TotallyDisabled) rec.Learn(xp);
                     }
                 }
             }

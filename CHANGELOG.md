@@ -5,6 +5,22 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The decrees in plain words
+
+*19 November 2026, version 0.269.5*
+
+- Every decree now says plainly what it does, with its real numbers and who likes or minds it.
+- The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.
+- A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.
+
+## The missions in plain words
+
+*19 November 2026, version 0.269.4*
+
+- Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.
+- When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.
+- The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.
+
 ## The encounters in plain words
 
 *19 November 2026, version 0.269.3*

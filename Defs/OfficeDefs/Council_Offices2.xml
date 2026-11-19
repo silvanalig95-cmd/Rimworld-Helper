@@ -10,15 +10,15 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Reeve</defName>
     <label>reeve</label>
-    <description>Walks the fields every morning, decides what goes in the ground and when, and is the first to see blight or a frost coming.</description>
+    <description>Looks after the colony's fields and harvests. When another people asks the colony for goods, the reeve sees to it, and they think a little better of the colony when it is delivered in full.</description>
     <order>6</order>
     <minColonists>4</minColonists>
     <skills><li>Plants</li></skills>
     <hediff>Council_Office_Reeve</hediff>
     <colonyHediff>Council_Office_ReeveColony</colonyHediff>
     <duties>
-      <li>Everyone brings in a little more from every harvest.</li>
-      <li>The reeve sows and harvests faster, and gets more from each plant.</li>
+      <li>Everyone brings in 2% more from every harvest.</li>
+      <li>The reeve sows and harvests 10% faster, and gets 5% more from each plant.</li>
       <li>Opens once the colony has four people who can vote.</li>
     </duties>
     <elected>
@@ -36,7 +36,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Peacemaker</defName>
     <label>peacemaker</label>
-    <description>Hears out quarrels before they turn into feuds, and sits people down together until they can stand to look at each other.</description>
+    <description>Settles quarrels between colonists before they turn into feuds: now and then steps in when two argue nearby, and sits two rivals down together to talk it out.</description>
     <order>7</order>
     <minColonists>5</minColonists>
     <skills><li>Social</li></skills>
@@ -46,12 +46,12 @@
     <duties>
       <li>Every rivalry between colonists cools a little each day.</li>
       <li>Now and then the peacemaker sits the worst-feuding pair down together, and the rivalry eases a good deal.</li>
-      <li>The peacemaker is more persuasive, and keeps a cooler head.</li>
+      <li>The peacemaker is more persuasive (social impact up 10%) and a little less likely to have a mental break.</li>
       <li>Opens once the colony has five people who can vote.</li>
     </duties>
     <elected>
       <li>{PAWN_nameDef} wants a quiet word with two different people before the week is out, and won't say who.</li>
-      <li>{PAWN_nameDef} says the door is always open, and threatens to prop it open with a stone to prove it.</li>
+      <li>{PAWN_nameDef} says anyone with a grievance can come and talk at any time.</li>
       <li>The first thing {PAWN_nameDef} wants to know is who isn't speaking to whom.</li>
     </elected>
     <planks>
@@ -63,20 +63,20 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Keeper</defName>
     <label>keeper of days</label>
-    <description>Keeps the calendar and the customs: remembers what day it is and what it means, and sees that the colony's days are kept properly.</description>
+    <description>Keeps the colony's calendar and customs, and leads the feasts and games of the colony's calendar days.</description>
     <order>8</order>
     <minColonists>6</minColonists>
     <skills><li>Social</li><li>Intellectual</li></skills>
     <hediff>Council_Office_Keeper</hediff>
     <duties>
       <li>Every council custom and calendar day the colony keeps leaves everyone a small good memory of a day done properly.</li>
-      <li>The keeper of days carries more weight in conversation.</li>
+      <li>The keeper of days carries more weight in conversation (social impact up 8%).</li>
       <li>Opens once the colony has six people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} plans a new page in the calendar, with the date written at the top in very careful letters.</li>
+      <li>{PAWN_nameDef} plans to start a new page in the calendar.</li>
       <li>{PAWN_nameDef} already knows how many days it is until the next one worth keeping.</li>
-      <li>{PAWN_nameDef} wants everyone's birthday, and says so to anyone who will listen.</li>
+      <li>{PAWN_nameDef} wants to write down everyone's birthday.</li>
     </elected>
     <planks>
       <li><key>traditions</key><when>Traditions</when><text>{PAWN_nameDef} wants the colony's traditions kept properly, the way they were the first time.</text></li>
@@ -87,7 +87,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Herdmaster</defName>
     <label>herdmaster</label>
-    <description>Looks after the colony's animals: the herd, the pens, the milking and the shearing, and the half-wild ones nobody else can get near.</description>
+    <description>Looks after the colony's animals: the herd, the pens, the milking and the shearing. The herdmaster also minds pets while their people are away, and sits with anyone whose animal has died.</description>
     <order>9</order>
     <minColonists>6</minColonists>
     <skills><li>Animals</li></skills>
@@ -96,17 +96,17 @@
     <hediff>Council_Office_Herdmaster</hediff>
     <colonyHediff>Council_Office_HerdmasterColony</colonyHediff>
     <duties>
-      <li>Everyone gets a little more milk, wool and eggs from the animals.</li>
-      <li>The herdmaster tames and trains animals more easily, and gets more from them.</li>
+      <li>Everyone gets 3% more milk and wool from the animals.</li>
+      <li>The herdmaster tames and trains animals more easily (5% likelier to succeed), and gets 8% more from milking and shearing.</li>
       <li>Opens once the colony has six people who can vote.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} says the animals will be the first to hear of it.</li>
-      <li>{PAWN_nameDef} means to name every animal in the colony, including the ones that already have names.</li>
-      <li>{PAWN_nameDef} says the herd voted too, and it was unanimous.</li>
+      <li>{PAWN_nameDef} goes straight out to the pens.</li>
+      <li>{PAWN_nameDef} means to learn the name of every animal in the colony.</li>
+      <li>{PAWN_nameDef} says the herd will be better looked after from now on.</li>
     </elected>
     <planks>
-      <li><key>herd</key><when>Herd</when><text>{PAWN_nameDef} says the herd needs someone who knows every animal by name, and does.</text></li>
+      <li><key>herd</key><when>Herd</when><text>{PAWN_nameDef} says the herd needs someone who knows every animal by name, as {PAWN_pronoun} does.</text></li>
       <li><key>animals</key><when>Always</when><text>{PAWN_nameDef} wants the colony to keep animals worth keeping, and to keep them well.</text></li>
     </planks>
   </ColonyCouncil.OfficeDef>

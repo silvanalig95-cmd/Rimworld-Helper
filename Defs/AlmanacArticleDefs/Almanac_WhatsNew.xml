@@ -31,6 +31,28 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.269.5</version>
+        <date>19 November 2026</date>
+        <title>The decrees in plain words</title>
+        <points>
+          <li>Every decree now says plainly what it does, with its real numbers and who likes or minds it.</li>
+          <li>The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.</li>
+          <li>A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.269.4</version>
+        <date>19 November 2026</date>
+        <title>The missions in plain words</title>
+        <points>
+          <li>Missions in plain words: the requests, terms and closing letters of the neighbours' missions say plainly who asks, what for and what happens.</li>
+          <li>When a mission ends, its letter says what is happening right then: the carts or the herder are coming, and the gifts and pay are in the caravan's packs while it waits at the town.</li>
+          <li>The shrine's pilgrims spend the day beside the shrine and no longer promise to come back every year, and a lost elder is no longer always called an old man.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.269.3</version>
         <date>19 November 2026</date>
         <title>The encounters in plain words</title>

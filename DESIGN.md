@@ -3856,6 +3856,23 @@ texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDef
 - **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
   captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
 
+#### The missions' endings told as they happen (released 0.269.4)
+
+Found in the plain-words pass on the missions (19 November 2026). A mission's ending letter (`Missions.Finish`) comes the
+moment the mission is settled, before anything of it is seen on the map, so the older missions told as done what had
+only just been set going: carts that "took everything" and drivers who "counted out" the silver (`Couriers.CollectGoals`
+sends the carts some hours later), a runaway that "went home to where the herder was waiting down the road"
+(`Couriers.Fetch` brings the herder to the colony), a lost child's family that "came running" (they walk in from the
+edge then), guests and hands lent to a town who "came home" or "are coming home" with their gifts (the caravan is still
+at the town, the gifts in its packs, and it comes home when the player sends it), a runaway "off into the hills and
+gone" (it leaves within the hour). The words now say what is happening: the carts, the herder, the family are coming;
+the gifts and the pay are in the caravan's packs. The same pass put right the shrine's pilgrims (they come and spend the
+day beside the shrine, `Arrivals.Visit`; they don't sing or kneel, and nothing brings them back each year, so neither the
+singing nor "they'll stop here every year now" is told), the Wardens' gift (a gift of the colony's era, `Loot`, not "a
+hide"), the tamed runaway's herder (not on the road until the colony answers), and the old one lost on the colony's land,
+who was always "an old man" whoever was lost. Nothing in the code changed; the newer missions (the quests at home and the
+storylines) already told it this way.
+
 ### Quests at home, round 1: six single quests (the player's go, 16 November 2026; released 0.261.0)
 
 The player, 16 November 2026: "go ahead with quests and storylines, make sure they are written in the more clear style i
@@ -5165,6 +5182,22 @@ and drills" in the annals); the review named more overlapping pairs. Each was lo
   the other ends quietly. Rationing's forms only lose a duplicate (famine bread declared for a famine since gone stays
   itself). A petition for a form not listed is let go quietly. The drills' bouts and the militia's muster keep their
   risk lines (`hurts` Drills and Muster, "Drills that bruise").
+
+### What the decrees and seats say they do (the plain-words pass, 19 November 2026; released 0.269.5)
+
+Every decree's description and card lines say what its code does, with its numbers (the hediff's stats, the decree's
+own fields, `DecreeWork`, `DecreeFaith`, `LeaningMath`), and who likes or minds it as its `reactions` have it (first
+match wins; the volatile are the game's Nerves -2, the nervous -1). The seats' duties carry their hediffs' numbers. Two
+places where the code did something the words didn't say were put right in the code:
+
+- **The hunting season marks its game with answers kept off the map.** Its morning hunt (`DecreeDef.daily`) went
+  through `DilemmaEffect_Hunt`, which marks nothing while "Answers play out on the map" is off, so the decree did
+  nothing then. With `always`, the hunt marks the game's own hunting work either way, as wood for the winter
+  (`DilemmaEffect_MarkTrees`) and foraging days (`DilemmaEffect_Forage`) always did. It still needs someone set to hunt
+  with a hunting weapon, and keeps to safe game (`HuntsBite.SafeOnly`).
+- **The marshal speeds the fighting drills only.** The marshal's half again (`OfficeTracker.DrillFactor`) applied to
+  every decree's hourly practice, apprenticeships' and shared meals' too; it now applies to those with
+  `practiceNeedsViolence` (the drills and the militia's drills), as the seat's duty says.
 
 ### Working through it (3.2.1, ailments and health stories)
 
