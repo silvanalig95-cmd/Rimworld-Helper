@@ -86,7 +86,7 @@
       <li>[seek:ruinRegion] They are on their way to {SEEK}, to see what is left of it before the weather takes the rest.</li>
       <li>[seek:library] Word of {SEEK} had reached them on the road, and {X_nameDef} would dearly like an afternoon with them.</li>
       <li>[seek:library,their:tribal] Word had reached {X_objective} that the colony keeps its stories in {SEEK}, and {X_pronoun} would like to see how that is done.</li>
-      <li>[seek:history] They came to hear {SEEK}, told by the people who lived it, before the tellings change.</li>
+      <li>[seek:history] They came to hear {SEEK}, told by the people who lived it, before the stories change in the retelling.</li>
       <li>[seek:history,their:tribal] {X_nameDef} has heard pieces of {SEEK} at other fires, and wants it whole.</li>
       <li>[seek:wonder] They came to see {SEEK} and set it down properly, for the people at home who will never stand here.</li>
     </seekTexts>
@@ -96,12 +96,12 @@
       <li>At the scholars' camp {PLACE}, a line of drying pages hangs between two stakes like washing.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the scholars' youngest, has decided the colony is more interesting than anything in the notebooks, and asks to stay and write it down from the inside.</li>
+      <li>{X_nameDef}, one of the scholars, finds the colony more interesting than anything in their notebooks, and asks to stay and write about it as one of its people.</li>
       <li>{X_nameDef} from the scholars' camp says {X_pronoun} has seen enough of the road and would rather teach than travel. {X_nameDef} asks whether the colony could use someone who reads.</li>
     </joinTexts>
     <farewell>
       <li>The scholars from {FACTION} packed their notes in oilcloth and went on, arguing cheerfully about a date.</li>
-      <li>The scholars' camp {PLACE} is gone. Somewhere out on the road, the colony is becoming a chapter.</li>
+      <li>The scholars have packed up their camp {PLACE} and gone. They mean to write about the colony in their books.</li>
       <li>{X_nameDef} shook every hand at the gate, thanked the colony twice, and led the scholars off with the pack beast complaining behind them.</li>
     </farewell>
     <lines>
@@ -122,7 +122,7 @@
       <li>[seek:ruins] Draw it before the light goes.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat up late at the scholars' fire while {X_nameDef} told of the old ruins and the people who built them, and came back with more questions than answers.</li>
+      <li>[tales] {A_nameDef} sat at the scholars' fire while {X_nameDef} told of the old ruins and the people who built them, and came back with more questions than answers.</li>
       <li>[tales,their:tribal] {X_nameDef} told {A_nameDef} three of the stories on {X_possessive} staff, one notch at a time, and asked for one of the colony's in return.</li>
       <li>[book] {X_nameDef} carried a book of the scholars' to the colony's gate and left it there for the colony: {THING}, with a note inside the cover thanking its hosts.</li>
     </helpTexts>
@@ -138,7 +138,7 @@
         <tension>-6</tension>
         <askTexts>
           <li>{X_nameDef} asks, very politely, whether the scholars might spend an afternoon with the colony's books. They will touch nothing they're not shown, and put everything back.</li>
-          <li>The scholars have heard the colony keeps books, and {X_nameDef} would like to read in its library for an afternoon. {X_pronoun} has offered to leave notes for whoever reads after.</li>
+          <li>The scholars have heard the colony keeps books, and {X_nameDef} would like to read in its library for an afternoon, and has offered to leave notes for whoever reads after.</li>
         </askTexts>
         <tip>Two of the scholars read in the colony's library for an afternoon. Their notes in the margins help with whatever the colony is studying now.</tip>
         <outcomes>
