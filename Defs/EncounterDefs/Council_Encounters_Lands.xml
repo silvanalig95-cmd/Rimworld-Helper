@@ -26,9 +26,9 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>At midday {X_indefinite} crept into the strip of shade along the storehouse wall and lay there panting. {A_nameDef} set a dish of water down at arm's length and backed away.</li>
+      <li>To get out of the sun, {X_indefinite} crept into the strip of shade along the storehouse wall and lay there panting. {A_nameDef} set a dish of water down at arm's length and backed away.</li>
       <li>{A_nameDef} and {X_indefinite} shared the only shade for a mile, one at each end of the well, until the sun moved.</li>
-      <li>[hot] Under the lean-to, {A_nameDef} and {X_definite} were both too hot to be afraid of each other. They lay a few paces apart and waited out the afternoon.</li>
+      <li>[hot] Under the lean-to, {A_nameDef} and {X_definite} were both too hot to be afraid of each other. They lay a few paces apart and waited out the heat.</li>
       <li>[child] {A_nameDef} found {X_indefinite} asleep in the shadow of the water trough and sat down beside it to watch it breathe, until a grown-up called {A_objective} in.</li>
     </texts>
     <effects>
@@ -39,7 +39,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_DesertTraveler</defName>
-    <label>a trick for the sand</label>
+    <label>advice for the desert</label>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <lands><li>desert</li></lands>
     <weight>1.2</weight>
@@ -138,7 +138,7 @@
     <texts>
       <li>"Dry grass in the boots, changed every evening. And sleep with tomorrow's socks inside your shirt." {X_nameDef} of {FACTION} had been watching {A_nameDef} stamp {A_possessive} feet all morning.</li>
       <li>{X_nameDef} rubbed a smear of fat into {A_nameDef}'s cheeks and nose against the wind, the way {FACTION} mothers do for their children, and laughed at the face {A_nameDef} made.</li>
-      <li>[theirLowtech] {A_nameDef} copied {X_nameDef}'s mittens before supper, rabbit fur turned inward and the pair tied on a cord the {FACTION} way, so neither gets lost in the snow.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} make mittens, with rabbit fur turned inward and the pair tied on a cord, so neither gets lost in the snow.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ColdTrick</thought></li>
@@ -152,7 +152,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_Undergrowth</defName>
-    <label>eyes in the undergrowth</label>
+    <label>an animal in the undergrowth</label>
     <stranger>
       <kind>Wild</kind>
       <maxBodySize>0.8</maxBodySize>
@@ -185,7 +185,7 @@
     <texts>
       <li>{X_nameDef} of {FACTION} pinned four broad leaves together with thorns and hung them over {A_nameDef}'s shoulders. It kept the rain off better than {A_nameDef}'s coat.</li>
       <li>Caught out in the downpour with {A_nameDef}, {X_nameDef} folded two huge leaves into hoods, and they walked back to the colony dry from the neck up.</li>
-      <li>[theirLowtech] By supper {A_nameDef} had a rain cape of palm fronds, overlapping like roof thatch, woven the {FACTION} way under {X_nameDef}'s eye. It was a bit lopsided.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} weave a rain cape from palm fronds, overlapping like roof thatch. {A_nameDef}'s first try came out a bit lopsided.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_LeafCape</thought></li>
@@ -197,7 +197,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_Reeds</defName>
-    <label>through the reeds</label>
+    <label>an animal in the reeds</label>
     <stranger><kind>Wild</kind></stranger>
     <lands><li>swamp</li></lands>
     <dayOnly>true</dayOnly>
@@ -241,7 +241,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_Ridge</defName>
-    <label>on the ridge</label>
+    <label>an animal on the ridge</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -264,7 +264,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_HighPass</defName>
-    <label>the high roads</label>
+    <label>news of the mountain roads</label>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <lands><li>mountains</li></lands>
     <weight>1.1</weight>
@@ -283,7 +283,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_CaveMouth</defName>
-    <label>a crack in the rock</label>
+    <label>a pet found a cave</label>
     <stranger>
       <kind>Pet</kind>
       <ofA>true</ofA>
@@ -395,7 +395,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncS_ReadyForWinter</defName>
-    <label>ready for winter</label>
+    <label>an animal getting ready for winter</label>
     <stranger>
       <kind>Wild</kind>
       <maxBodySize>0.8</maxBodySize>
@@ -416,7 +416,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncS_SummerWade</defName>
-    <label>cooling off</label>
+    <label>cooling off in the water</label>
     <stranger>
       <kind>Pet</kind>
       <ofA>true</ofA>

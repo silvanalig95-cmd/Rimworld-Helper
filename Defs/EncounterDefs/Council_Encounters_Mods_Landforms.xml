@@ -62,7 +62,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_ValleyTraveler</defName>
-    <label>the way out of the valley</label>
+    <label>the ways in and out of the valley</label>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <lands><li>valley</li><li>canyon</li></lands>
     <weight>1</weight>
@@ -152,7 +152,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_OasisDrink</defName>
-    <label>water in the dry country</label>
+    <label>animals at the oasis</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -175,7 +175,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_CraterTale</defName>
-    <label>how the crater came</label>
+    <label>a story about the crater</label>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <lands><li>crater</li></lands>
     <weight>1.2</weight>

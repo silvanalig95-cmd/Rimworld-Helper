@@ -139,7 +139,7 @@
     <colonist><passion>Intellectual</passion></colonist>
     <texts>
       <li>{X_nameDef} asked to see the colony's books, and {A_nameDef} showed {X_objective} every one, including the one with the candle burn on the cover.</li>
-      <li>{X_nameDef} can read, which is rarer than it should be, and spent the afternoon at the scribe's table with {A_nameDef}, comparing letters.</li>
+      <li>{X_nameDef} can read, which is rarer than it should be, and sat at the scribe's table with {A_nameDef}, comparing letters.</li>
       <li>{A_nameDef} copied out a page of {X_nameDef}'s little book of remedies and drew {X_objective} the colony's map of the roads in return, and they argued over the spelling of every village on it.</li>
     </texts>
     <effects>

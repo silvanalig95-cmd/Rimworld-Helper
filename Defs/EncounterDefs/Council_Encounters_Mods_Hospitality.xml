@@ -23,7 +23,7 @@
     <texts>
       <li>{X_nameDef} stopped {A_nameDef} on the way to breakfast to say {X_pronoun} hadn't slept that well since leaving home. {A_nameDef} said it was only a bed, and looked pleased all morning.</li>
       <li>{X_nameDef} wanted to know who had built the guest room, and ran a hand along the bedframe while {A_nameDef} told {X_objective}.</li>
-      <li>Most places {X_nameDef} stays put their guests in a barn, {X_pronoun} told {A_nameDef} over supper. {A_nameDef} passed that on to everyone who'd helped build the room.</li>
+      <li>Most places {X_nameDef} stays put their guests in a barn, {X_pronoun} told {A_nameDef} over a meal. {A_nameDef} passed that on to everyone who'd helped build the room.</li>
       <li>[winter] {X_nameDef} said the guest room was the first warm night {X_pronoun} had had since the snow came, and thanked {A_nameDef} twice.</li>
       <li>[x:royal] {X_nameDef} inspected the guest room with the air of someone used to better, then admitted to {A_nameDef} that it would do very nicely.</li>
     </texts>
@@ -70,8 +70,8 @@
     <texts>
       <li>{A_nameDef} walked {X_nameDef} around the colony and ended at the spot by the wall where the first shelter stood. {X_nameDef} asked good questions all the way round.</li>
       <li>{A_nameDef} showed {X_nameDef} the workshops and the pens, and {X_nameDef} told {A_objective} how {FACTION} does the same work back home.</li>
-      <li>{X_nameDef} wanted to see everything, the latrine included. {A_nameDef} answered questions until the light went.</li>
-      <li>[skill:Plants] {A_nameDef} showed {X_nameDef} the fields, and they argued happily about seed until the supper bell.</li>
+      <li>{X_nameDef} wanted to see everything, the latrine included. {A_nameDef} answered questions the whole way round.</li>
+      <li>[skill:Plants] {A_nameDef} showed {X_nameDef} the fields, and they argued happily about seed the whole time.</li>
       <li>[skill:Animals] {A_nameDef} introduced {X_nameDef} to every animal in the pens by name. {X_nameDef} kept up for a while.</li>
       <li>[rain] {A_nameDef} took {X_nameDef} round the colony under a shared cloak, ducking from one doorway to the next.</li>
     </texts>
@@ -94,12 +94,12 @@
     <cooldownDays>5</cooldownDays>
     <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
     <texts>
-      <li>Over supper, {X_nameDef} told {A_nameDef} about home, and mostly about a brother who has owed {X_objective} money for six years.</li>
+      <li>Over a meal, {X_nameDef} told {A_nameDef} about home, and mostly about a brother who has owed {X_objective} money for six years.</li>
       <li>{X_nameDef} described the place {FACTION} calls home so well that {A_nameDef} could almost see the smoke over the roofs.</li>
       <li>{A_nameDef} asked {X_nameDef} what {FACTION} eats at a wedding, and got the whole wedding, from the first quarrel to the last song.</li>
       <li>[theirLowtech] Among {FACTION}, {X_nameDef} told {A_nameDef}, the elders choose the planting day by the moon and the first frog.</li>
       <li>[theirHightech] {X_nameDef} told {A_nameDef} about the town {X_pronoun} grew up in, with streets lit all night and a market that never closed.</li>
-      <li>[x:faction:Empire] {X_nameDef} explained to {A_nameDef} how the Empire's titles pass from one holder to the next, and which of them are worth having. It took most of the evening.</li>
+      <li>[x:faction:Empire] {X_nameDef} explained to {A_nameDef} how the Empire's titles pass from one holder to the next, and which of them are worth having. It took a long time.</li>
       <li>[x:old] When {X_nameDef} was a child, {X_pronoun} told {A_nameDef}, there was a winter the lake froze so hard they drove carts across it.</li>
     </texts>
     <effects>
@@ -145,7 +145,7 @@
     <dayOnly>true</dayOnly>
     <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult><minOpinionOfA>0</minOpinionOfA></stranger>
     <texts>
-      <li>{X_nameDef} wouldn't hear of being waited on, and spent the afternoon fetching and carrying for {A_nameDef} like one of the colony's own.</li>
+      <li>{X_nameDef} wouldn't hear of being waited on, and spent a good while fetching and carrying for {A_nameDef} like one of the colony's own.</li>
       <li>[work:Cooking] {X_nameDef} wandered into the kitchen and started peeling. {A_nameDef} let {X_objective}; there were a lot of potatoes.</li>
       <li>[work:Growing] {X_nameDef} took off {X_possessive} coat and worked a row beside {A_nameDef}, then refused to take any of the harvest for it.</li>
       <li>[work:Hauling] {X_nameDef} saw {A_nameDef} struggling with a load and took the other end without being asked.</li>
@@ -191,7 +191,7 @@
     <moment>x:happyguest</moment>
     <notable>true</notable>
     <texts>
-      <li>{X_nameDef} pressed a small carved bird into {A_nameDef}'s hand, a thank-you for the stay. {A_nameDef} put it on the shelf above {A_possessive} bed.</li>
+      <li>{X_nameDef} came looking for {A_nameDef} to say thank you for the stay, and shook {A_possessive} hand twice.</li>
       <li>"Best stop on the whole road," {X_nameDef} told {A_nameDef}. {FACTION} would hear about it, {X_pronoun} promised.</li>
       <li>{X_nameDef} left {A_nameDef} a pouch of seeds from home and the advice to plant them somewhere sunny.</li>
       <li>[x:royal] {X_nameDef} thanked {A_nameDef} formally for the colony's hospitality, then less formally, with a bottle {X_pronoun} had been saving.</li>

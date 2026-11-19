@@ -37,7 +37,7 @@
     <defName>Council_Var_EncM_CaravanGossip</defName>
     <encounter>Council_EncP_CaravanGossip</encounter>
     <texts>
-      <li>[their:grateful] According to {X_nameDef}, they still talk in {FACTION} towns about what this colony did for them. {A_nameDef} passed it on at supper, word for word.</li>
+      <li>[their:grateful] According to {X_nameDef}, they still talk in {FACTION} towns about what this colony did for them. {A_nameDef} passed it on to the others, word for word.</li>
       <li>[their:grudge] {X_nameDef} let it slip to {A_nameDef} that this colony's name isn't a good one among {FACTION}, and that {X_pronoun} only came because the road runs past it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -55,7 +55,7 @@
     <defName>Council_Var_EncM_StaringGuard</defName>
     <encounter>Council_EncP_StaringGuard</encounter>
     <texts>
-      <li>[their:grudge] {X_nameDef}, one of the {FACTION} guards, watched {A_nameDef} the whole visit and didn't trouble to hide it. Once, passing close, {X_pronoun} spat in the dust at {A_possessive} feet.</li>
+      <li>[their:grudge] {X_nameDef} of {FACTION} watched {A_nameDef} the whole visit and didn't trouble to hide it. Once, passing close, {X_pronoun} spat in the dust at {A_possessive} feet.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

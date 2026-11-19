@@ -39,7 +39,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_LakeIce</defName>
-    <label>across the lake ice</label>
+    <label>an animal on the lake ice</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -131,7 +131,7 @@
 
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncL_RiverHigh</defName>
-    <label>the river in spate</label>
+    <label>the river in flood</label>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>
@@ -211,7 +211,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} crouched over a rock pool at low tide and found {X_indefinite} doing much the same on the far side of it.</li>
-      <li>[child] {A_nameDef} spent the afternoon at the rock pools with {X_indefinite} for company, poking at everything that moved and some things that didn't.</li>
+      <li>[child] {A_nameDef} spent hours at the rock pools with {X_indefinite} for company, poking at everything that moved and some things that didn't.</li>
       <li>[child] {A_nameDef} came back from the rocks soaked to the knees, with a pocketful of shells and a long story about {X_indefinite}.</li>
     </texts>
     <effects>
