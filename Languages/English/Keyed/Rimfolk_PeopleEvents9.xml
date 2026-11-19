@@ -37,7 +37,7 @@
 
   <!-- ===================== 86. A mech yard ===================== -->
 
-  <CC_PEv9_YardHireStart>The Lattice's mechs are working for the colony today: the lifters carry its loose things into the stockpiles, and the rest mend its worn buildings.</CC_PEv9_YardHireStart>
+  <CC_PEv9_YardHireStart>The Lattice's mechs are working for the colony today: the hauling mechs carry its loose things into the stockpiles, and the rest mend its worn buildings.</CC_PEv9_YardHireStart>
   <CC_PEv9_YardHireOver>The day's hire is over, and the Lattice's mechs have gone back to their own work.</CC_PEv9_YardHireOver>
   <CC_PEv9_YardFeralLabel>A feral {0}</CC_PEv9_YardFeralLabel>
   <CC_PEv9_YardFeral>A {THING} at the Lattice's mech yard has slipped its link and gone feral. It attacks whatever comes near it. {X_nameDef} and the link-hands are going after it.</CC_PEv9_YardFeral>
@@ -47,7 +47,7 @@
   <CC_PEv9_Impact_YardBrief>a mech yard</CC_PEv9_Impact_YardBrief>
   <CC_PEv9_Impact_YardRock>The plain rock their mechs cut is left piled by their camp for the colony</CC_PEv9_Impact_YardRock>
   <CC_PEv9_Impact_YardRockBrief>cut rock left</CC_PEv9_Impact_YardRockBrief>
-  <CC_PEv9_Impact_YardHire>For a day their lifters carry the colony's loose things into its stockpiles and the rest mend its worn buildings</CC_PEv9_Impact_YardHire>
+  <CC_PEv9_Impact_YardHire>For a day their hauling mechs carry the colony's loose things into its stockpiles and the rest mend its worn buildings</CC_PEv9_Impact_YardHire>
   <CC_PEv9_Impact_YardHireBrief>the mechs hired</CC_PEv9_Impact_YardHireBrief>
   <CC_PEv9_Impact_YardTurns>It can turn: a mech may slip its link and go feral, or a band may come against the yard for its mechs</CC_PEv9_Impact_YardTurns>
   <CC_PEv9_Impact_YardTurnsBrief>it can turn</CC_PEv9_Impact_YardTurnsBrief>

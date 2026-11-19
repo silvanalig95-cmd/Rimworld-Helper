@@ -48,9 +48,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A mech yard (item 86): a mech-tender and two link-hands of the Lattice camp five to seven days by the colony with four to six of
-    /// their labour mechs (Biotech's constructoids and lifters). By day the constructoids cut plain rock near the camp (the camps' own rule
-    /// for what may be taken) and the lifters carry the chunks to a pile by the camp, which they leave to the colony; the tender and the
-    /// link-hands see to the mechs. The colony may hire the mechs for a day: the lifters carry the colony's loose things into its
+    /// their labour mechs (PeopleEvents9Math.YardMiners and YardHaulers). By day the rock-cutters cut plain rock near the camp (the camps' own rule
+    /// for what may be taken) and the haulers carry the chunks to a pile by the camp, which they leave to the colony; the tender and the
+    /// link-hands see to the mechs. The colony may hire the mechs for a day: the haulers carry the colony's loose things into its
     /// stockpiles and the rest mend its worn buildings. It can turn, once a stay each: a mech slips its link and goes feral (the game's own
     /// hostile mech, the drovers' bull's kind in the shared harm budget; the camp's people go after it), or a band of a people at war with
     /// the Lattice comes against the camp for its mechs (the camps' own bands). Biotech only.
@@ -131,7 +131,7 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Their mechs walk in with them, in their group: half constructoids, the rest lifters.</summary>
+        /// <summary>Their mechs walk in with them, in their group: half rock-cutters, the rest haulers.</summary>
         private static void Mechs(Camp c, MechYardState st)
         {
             var map = c.map;
@@ -199,7 +199,7 @@ namespace ColonyCouncil
             else if (!st.bandRolled) Band(c, st);
         }
 
-        /// <summary>Their own work: a constructoid cuts plain rock near the camp; a lifter carries a chunk of it to the pile.</summary>
+        /// <summary>Their own work: a rock-cutter cuts plain rock near the camp; a hauler carries a chunk of it to the pile.</summary>
         private static Job OwnJob(Camp c, MechYardState st, Pawn mech)
         {
             if (Miner(mech))

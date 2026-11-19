@@ -85,7 +85,7 @@
       <li>
         <key>hire</key>
         <label>Hire their mechs for a day</label>
-        <tip>For a day the yard's lifters carry the colony's loose things into its stockpiles, and the rest mend its worn buildings.</tip>
+        <tip>For a day the yard's hauling mechs carry the colony's loose things into its stockpiles, and the rest mend its worn buildings.</tip>
         <silver>120</silver>
         <warm>1</warm>
         <tension>-2</tension>

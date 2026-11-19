@@ -236,11 +236,14 @@ public static class PeopleEvents9Tests
         // The player's mods, drawn on softly and from their own catalogue.
         var cat = Catalogue(root);
         bool From(string type, string def, string mod) => cat.Any(r => r.active && r.type == type && r.def == def && r.mod.Equals(mod, StringComparison.OrdinalIgnoreCase));
-        C(PeopleEvents9Math.FeralKinds.All(k => From("PawnKindDef", k, k.StartsWith("AM_") ? "sarg.alphamechs" : "ludeon.rimworld.biotech")),
-            "the feral mechs are Biotech's and Alpha Mechs' own, in the player's list");
+        var feralMods = new[] { "ludeon.rimworld", "ludeon.rimworld.biotech", "sarg.alphamechs", "rimsenal.spacer", "turkler.advanced.armaments" };
+        C(PeopleEvents9Math.FeralKinds.All(k => feralMods.Any(mod => From("PawnKindDef", k, mod))) && PeopleEvents9Math.FeralKinds.Any(k => From("PawnKindDef", k, "sarg.alphamechs"))
+          && PeopleEvents9Math.FeralKinds.Any(k => From("PawnKindDef", k, "rimsenal.spacer")), "the feral mechs are the game's and the player's mods' own light war mechs, in the player's list");
         C(SealKinds(code).Count >= 8 && SealKinds(code).All(k => From("PawnKindDef", k, k.StartsWith("VFEI2_") ? "oskarpotocki.vfe.insectoid2" : "ludeon.rimworld"))
           && SealKinds(code).Any(k => k.StartsWith("VFEI2_")), "the vault's insects: the game's hive and Vanilla Factions Expanded - Insectoids 2's, in the player's list");
-        C(PeopleEvents9Math.YardMiners.Concat(PeopleEvents9Math.YardHaulers).All(k => From("PawnKindDef", k, "ludeon.rimworld.biotech")), "the yard's labour mechs are Biotech's");
+        C(PeopleEvents9Math.YardMiners.Concat(PeopleEvents9Math.YardHaulers).All(k => From("PawnKindDef", k, "ludeon.rimworld.biotech") || From("PawnKindDef", k, "rimsenal.spacer"))
+          && PeopleEvents9Math.YardMiners.Concat(PeopleEvents9Math.YardHaulers).Any(k => From("PawnKindDef", k, "rimsenal.spacer")),
+            "the yard's labour mechs are Biotech's and Rimsenal Spacer's, in the player's list");
         C(From("NeedDef", "VAEI_Sanity", "vanillaexpanded.vanomalyeinsanity") && code.Contains("\"VAEI_Sanity\""), "the sanity is Vanilla Anomaly Expanded - Insanity's own");
         var voidMemories = Regex.Match(code, @"VoidMemories =\s*\{([^}]*)\}").Groups[1].Value;
         var memNames = Regex.Matches(voidMemories, "\"(\\w+)\"").Select(mm => mm.Groups[1].Value).ToList();

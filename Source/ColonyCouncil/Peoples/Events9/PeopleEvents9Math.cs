@@ -45,8 +45,15 @@ namespace ColonyCouncil
         /// <summary>The feral mech is no stronger than this much of the home's threat points (the weakest kind when none is).</summary>
         public const float FeralPoints = 0.35f;
 
-        /// <summary>The Lattice's light war mechs that may slip their link: Biotech's, and Alpha Mechs' of the same weight.</summary>
-        public static readonly string[] FeralKinds = { "Mech_Militor", "Mech_Scorcher", "Mech_Legionary", "AM_Mech_Bellicor", "AM_Daggersnout", "AM_Blitzkrieg" };
+        /// <summary>
+        /// The Lattice's light war mechs that may slip their link: Biotech's and the game's, and those of the same weight of Alpha Mechs,
+        /// Rimsenal Spacer and Advanced Armaments (each only when loaded).
+        /// </summary>
+        public static readonly string[] FeralKinds =
+        {
+            "Mech_Militor", "Mech_Scorcher", "Mech_Legionary", "Mech_Pikeman", "AM_Mech_Bellicor", "AM_Mech_Artilleron", "AM_Daggersnout", "AM_Blitzkrieg", "Mech_Psiloid",
+            "SEX_Mech_LegionaryGrenadier"
+        };
 
         /// <summary>The kind fit for these points: the strongest of those within them, else the weakest (-1 for none).</summary>
         public static int FeralPick(float[] powers, float points)
@@ -82,8 +89,11 @@ namespace ColonyCouncil
         /// <summary>A mech-tender and two link-hands, four to six mechs, five to seven days.</summary>
         public const int YardPeople = 3, YardMechsMin = 4, YardMechsMax = 6, YardMinDays = 5, YardMaxDays = 7;
 
-        /// <summary>Their labour mechs: the constructoids cut plain rock, the lifters haul it.</summary>
-        public static readonly string[] YardMiners = { "Mech_Constructoid" }, YardHaulers = { "Mech_Lifter" };
+        /// <summary>
+        /// Their labour mechs: Biotech's constructoids and tunnelers and Rimsenal Spacer's borers cut plain rock; Biotech's lifters and
+        /// Rimsenal Spacer's omniservants haul it (each only when loaded).
+        /// </summary>
+        public static readonly string[] YardMiners = { "Mech_Constructoid", "Mech_Tunneler", "Mech_Borer" }, YardHaulers = { "Mech_Lifter", "Mech_Omniservant" };
 
         /// <summary>How many of the mechs cut rock: half, at least one.</summary>
         public static int Miners(int mechs) => mechs <= 0 ? 0 : Math.Max(1, mechs / 2);

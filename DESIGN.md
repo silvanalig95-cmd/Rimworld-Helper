@@ -10432,7 +10432,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `HappeningWorker_UnionStrike.CanHappen` (the picket's captain settles it), `FactionMemory` (the deed `markTrue`),
     `FactsMath`, the def check's placeholders. No game hooks of its own. Dev actions "Peoples' events 7: ...". The Almanac's
     peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml).
-- **The peoples' own events, round 8** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 8** (the player's go, 19 November 2026: "Events sounds great"; released 0.272.0)
   `docs/peoples-events-proposals.md`, items 71 to 82 (the Last Republic, the Hollow Fleet and the Helix Works);
   `Source/ColonyCouncil/Peoples/Events8/`, the pure rules in `PeopleEvents8Math.cs`, `Tools/Tests/PeopleEvents8Tests.cs` ("the
   peoples' events, round 8: "). As rounds 1 to 7: only from a people of its calling at peace (`PeoplesD.Friendly`), in the Visitors
@@ -10564,8 +10564,8 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     mind's dream, half good (`Rimfolk_Thought_LatticeDreamGood`, +3 a day) and half bad (`_LatticeDreamBad`, -3). The second answer
     links them for work only: +1 bandwidth, no dreams. +3 (+2).
   - **A mech gone feral** (Lattice; `FeralMech`; Biotech): one of the Lattice's light war mechs (Biotech's militor, scorcher and
-    legionary, Alpha Mechs' bellicor, daggersnout and blitzkrieg: the strongest within 0.35 of the home's threat points, else the
-    weakest) comes in at the edge and roams open ground a fair walk out from the colony, attacking whatever comes near (it answers to
+    legionary, the game's pikeman, Alpha Mechs' bellicor, artilleron, daggersnout and blitzkrieg, Rimsenal Spacer's psiloid, Advanced
+    Armaments' legionary fusilier: the strongest within 0.35 of the home's threat points, else the weakest) comes in at the edge and roams open ground a fair walk out from the colony, attacking whatever comes near (it answers to
     nobody: the game's own hostile mechs, a defend-point group), and two link-wardens come to the gate. The drovers' bull's kind in
     the shared harm budget (`HarmKinds.DroversBull`, at 0.8), only where fights are allowed. Relink: a warden calls it over the link (it
     is the Lattice's again and walks to the gate), relinks it there (`_Relink`, sparks) and they walk home together; the Lattice pays a
@@ -10573,11 +10573,12 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     colony's fighters free to join (the game's fight); downed, it is finished; its wreck is the colony's, unforbidden. Or the wardens
     go home and it wanders off after a day and a half. `pev:feral`.
   - **A mech yard** (Lattice; `MechYard`, `CampWorker_MechYard`; Biotech): a mech-tender and two link-hands camp five to seven days
-    with four to six labour mechs (half Biotech's constructoids, half lifters) in their group. By day the constructoids cut plain rock
+    with four to six labour mechs in their group: half rock-cutters (Biotech's constructoids and tunnelers, Rimsenal Spacer's borers),
+    half haulers (Biotech's lifters, Rimsenal Spacer's omniservants). By day the rock-cutters cut plain rock
     near the camp by the camps' own rule for what may be taken (`CampTake.PlainRock`, `CampTake.May`, the site's fate), six loads a
-    day at most (`_CutRock`, an hour, dust; the game's own `DestroyMined`), and the lifters carry the chunks to a pile beside the camp
+    day at most (`_CutRock`, an hour, dust; the game's own `DestroyMined`), and the haulers carry the chunks to a pile beside the camp
     (the game's haul); the rock is left to the colony when they go. The tender and the link-hands see to the mechs (`_TendMech`).
-    Ask: hire the mechs for a day (120 silver by wealth; also from the gate, the second answer): the lifters carry the colony's loose
+    Ask: hire the mechs for a day (120 silver by wealth; also from the gate, the second answer): the haulers carry the colony's loose
     things into its stockpiles (the game's own storage haul), the rest mend its worn buildings to full (`_Mend`). It can turn, once a
     stay each, by day after their first: a mech slips its link and goes feral (0.25, the drovers' bull's kind; told as a threat, the
     camp's people go after it), or a band of a people at war with the Lattice (an industrial or spacer one first) comes against the

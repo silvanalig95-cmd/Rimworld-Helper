@@ -169,10 +169,10 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate. The Lattice would set up a mech yard by the colony for five to seven days: {X_nameDef}, two link-hands and a few of their labour mechs. By day the mechs would cut plain rock near the camp and stack it there, and the colony could hire them for a day to haul or mend for it.</li>
-          <li>{X_nameDef} of {FACTION} is at the gate, asking whether the Lattice may keep a mech yard near the colony for most of a week. They have constructoids that cut rock and lifters that carry it, and they would leave the cut stone behind. The colony could hire the mechs for a day of its own work.</li>
+          <li>{X_nameDef} of {FACTION} is at the gate, asking whether the Lattice may keep a mech yard near the colony for most of a week. They have mechs that cut rock and mechs that carry it, and they would leave the cut stone behind. The colony could hire the mechs for a day of its own work.</li>
           <li>[age0|age1] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate with two link-hands and the last of the Lattice's working mechs walking behind them. They would camp by the colony for five to seven days, the mechs cutting plain rock near the camp, and the colony could hire the mechs for a day of hauling or mending.</li>
           <li>[age2] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate. The Lattice would set up a yard by the colony for most of a week, its mechs cutting plain rock nearby and stacking it, with {X_nameDef} and two link-hands keeping them running. The colony could hire the mechs for a day to haul or mend.</li>
-          <li>[age3] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate, an array headset over the indigo robe. The Lattice would camp a mech yard by the colony for five to seven days: constructoids cutting plain rock, lifters stacking it, and the colony free to hire them for a day of hauling or mending.</li>
+          <li>[age3] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate, an array headset over the indigo robe. The Lattice would camp a mech yard by the colony for five to seven days: some of the mechs cutting plain rock, the rest stacking it, and the colony free to hire them for a day of hauling or mending.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
