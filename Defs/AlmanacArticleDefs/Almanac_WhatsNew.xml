@@ -31,6 +31,28 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.268.5</version>
+        <date>19 November 2026</date>
+        <title>The council's questions in plain words</title>
+        <points>
+          <li>The council's questions in plain words, part 1: the thief, the feud, the customs through the year, secrets, friends and rivals and strangers at the gate now say plainly what happened and who wants what.</li>
+          <li>Questions are named for what they are about, such as an apprentice crafter, a plan to eat a pet or a missed meeting, and answers say what the council does and how much silver it costs.</li>
+          <li>Some answers now match what happens on the map: an old pet walked out past the walls is let go, the repairs come with no celebration after, and the midsummer bonfire no longer promises the night shift off.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.4</version>
+        <date>19 November 2026</date>
+        <title>Personal stories in plain words</title>
+        <points>
+          <li>Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.</li>
+          <li>Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.</li>
+          <li>An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.268.3</version>
         <date>19 November 2026</date>
         <title>A god's mark worth having</title>

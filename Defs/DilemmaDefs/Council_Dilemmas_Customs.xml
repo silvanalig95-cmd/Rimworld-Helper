@@ -30,12 +30,12 @@
       <bestAt>Plants</bestAt>
     </roleA>
     <texts>
-      <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing: everyone who can be spared out in the fields with the seed, all of it in by evening, and a few words at the field's edge when it's done.\n\n"Where I'm from, you never sowed alone on the first day," {A_nameDef} says.</li>
-      <li>{A_nameDef} has been sorting seed by the window all week and wants one day for the sowing: every hand at the furrows, the first rows in before noon, and a word over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
-      <li>[lowtech] "A handful for the birds, so they leave the rest." That's how the first sowing began in {A_nameDef}'s village, with every soul out in the fields together, and {A_nameDef} would like a planting day here, the old way.</li>
-      <li>[rain] Soft rain on the open fields, the best weather for seed there is. {A_nameDef} wants everyone out in it tomorrow for a planting day: the whole crop in at once, and a word together when it's done.</li>
-      <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day: all hands out to sow, and a few words at the field's edge.</li>
-      <li>[small] There aren't many of them, and the fields are wide. {A_nameDef} says that's the reason to do it together: one day, everyone, every row.</li>
+      <li>The ground has thawed, and the fields are bare and waiting. {A_nameDef} wants to make a day of the sowing. Everyone who can be spared would go out to the fields with the seed, get it all in by evening, and say a few words at the field's edge when it's done.\n\n"Where I'm from, you never sowed alone on the first day," {A_nameDef} says.</li>
+      <li>{A_nameDef} has been sorting seed by the window all week and wants one day set aside for the sowing, with everyone out in the fields, the first rows in before noon and a few words over the fields at dusk.\n\nIt would cost the colony a day's other work.</li>
+      <li>[lowtech] In {A_nameDef}'s village, the first sowing began with a handful of seed thrown to the birds so they would leave the rest, and everyone went out to the fields together. {A_nameDef} would like a planting day here, done the old way.</li>
+      <li>[rain] A soft rain is falling on the open fields, the best weather there is for sowing. {A_nameDef} wants everyone out in it for a planting day, to get the whole crop in at once and say a few words together when it's done.</li>
+      <li>[colony:Traditional] The fields are open again, and {A_nameDef} has the seed ready. The colony keeps its customs, and {A_nameDef} asks for the planting day, with everyone out to sow and a few words at the field's edge afterwards.</li>
+      <li>[small] There aren't many of them, and the fields are wide. {A_nameDef} says that's the reason to do it together, everyone on the same day, until every row is sown.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the planting day</traditionLabel>
@@ -58,7 +58,7 @@
         </effects>
       </li>
       <li>
-        <label>{A_nameDef} sows the first row, the rest in its turn</label>
+        <label>{A_nameDef} sows the first row, and the rest is done as usual</label>
         <outcome>{A_nameDef} went out alone at first light and sowed the first row by hand, carefully, before the rest of the work began as it usually does.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
@@ -125,7 +125,7 @@
         </effects>
       </li>
       <li>
-        <label>The living have work to do</label>
+        <label>Keep everyone at work today</label>
         <outcome>The rest of the colony kept at its work. {A_nameDef} went out to the graves alone after dark and came back with mud on {A_possessive} knees.</outcome>
         <ways><tradition>-4</tradition><toil>2</toil></ways>
         <effects>
@@ -156,9 +156,9 @@
       <notTrait><li>Wimp</li></notTrait>
     </roleA>
     <texts>
-      <li>It's the hottest day yet, and {A_nameDef} wants the whole colony down at the water for the afternoon: tools down, boots off, and nobody back until they've been in up to the neck.</li>
+      <li>It's the hottest day yet, and {A_nameDef} wants the whole colony down at the water for the afternoon, with the work put aside and everyone in the water at least up to the neck.</li>
       <li>{A_nameDef} came back from the water this morning dripping and grinning, and wants the rest of them to have an afternoon of it. "One day a year," {A_nameDef} says. "That's all."</li>
-      <li>[trait:Ascetic] Even {A_nameDef}, who usually wants nothing, has asked for this: an afternoon in the water for everyone, on the hottest day of the year.</li>
+      <li>[trait:Ascetic] Even {A_nameDef}, who usually wants nothing, has asked for an afternoon in the water for everyone, on the hottest day of the year.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the midsummer swim</traditionLabel>
@@ -232,8 +232,8 @@
       <notTrait><li>Ascetic</li></notTrait>
     </roleA>
     <texts>
-      <li>The fields are bare and the stores are full, and {A_nameDef} wants a dance: the floor swept, the tables pushed back, someone on a drum, and everyone up on their feet until they can't stand.\n\nIt would cost nothing but a late night and a slow morning.</li>
-      <li>For a week now there's been stamping in the barn after supper. {A_nameDef} has been teaching a couple of the others an old harvest dance, and would like the council to make a night of it for everyone.</li>
+      <li>The fields are bare and the stores are full, and {A_nameDef} wants a dance around a big fire, with someone on a drum and everyone on their feet until they're worn out.\n\nIt would cost nothing but a late night and a slow morning.</li>
+      <li>For a week now {A_nameDef} has been teaching a couple of the others an old harvest dance in the barn after supper, and would like the council to make a night of it for everyone.</li>
       <li>[lowtech] The last sheaf is still standing in the far field. {A_nameDef} has asked that it stay there until tonight, so it can be carried in on someone's shoulders and danced around, the way it was done at home.</li>
       <li>[trait:Kind] {A_nameDef} noticed how tired the harvesters looked by the end, and asked the council for one night of music and dancing to make up for it.</li>
     </texts>
@@ -309,9 +309,9 @@
     </roleA>
     <thingCount>15</thingCount>
     <texts>
-      <li>There was frost on the ground this morning, the first of the year. {A_nameDef} wants to mark it the old way: one big pot of soup, the last of the garden thrown in, and everyone eating it together out of the same pot. It would take about {COUNT} raw food.</li>
-      <li>The water trough had ice on it at dawn. {A_nameDef} says a first frost deserves a first soup, and has already put the big pot on the fire, waiting for the council to say yes. It would need about {COUNT} raw food.</li>
-      <li>[trait:Gourmand] {A_nameDef} has been waiting all autumn for the first frost, because that's when the soup is made, and the soup is very important. About {COUNT} raw food, {A_nameDef} says, and worth every bite.</li>
+      <li>There was frost on the ground this morning, the first of the year. {A_nameDef} wants to mark it the old way, with one big pot of soup made from the last of the garden and everyone eating from it together. It would take about {COUNT} raw food.</li>
+      <li>The water trough had ice on it at dawn. {A_nameDef} says the first frost should be marked with a pot of soup, and has already put the big pot on the fire, waiting for the council to say yes. It would need about {COUNT} raw food.</li>
+      <li>[trait:Gourmand] {A_nameDef} has been waiting all autumn for the first frost, because that's when the soup is made, and {A_nameDef} takes the soup very seriously. About {COUNT} raw food, {A_nameDef} says, and worth every bite.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>first-frost soup</traditionLabel>
@@ -374,7 +374,7 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
     <texts>
-      <li>The nights are long and black, and {A_nameDef} wants one of them to be different: lanterns all along the outside of the walls, lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
+      <li>The nights are long and dark, and {A_nameDef} wants to set lanterns all along the outside of the walls one evening and light them all at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
       <li>{A_nameDef} has put wood aside all winter for one night of lanterns along the walls, and would like the council to choose the night.</li>
       <li>[lowtech] On the darkest night of the year, {A_nameDef} says, lights burn along the walls so the dead can find their way home. {A_nameDef} has been saving wood for them since the fall.</li>
       <li>[!lowtech] {A_nameDef} wants lanterns lit along the walls for one winter night, real flames, the way {A_pronoun} remembers it from childhood.</li>

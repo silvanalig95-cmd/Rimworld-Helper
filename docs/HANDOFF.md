@@ -278,6 +278,38 @@ repo.
   since the interface batches but for one reason). Left as the brief said: the wish lines in `Defs/FlavorPoolDefs/`
   (`Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, `Council_Wish_Voices`,
   the wish parts of `Council_Mods_People_Lines`), and the wishes' talk in `InteractionDefs`.
+  Personal stories, done (19 November 2026, the same go; built, not released): the entry "Plain words: personal stories"
+  above the newest release line. Files taken: every personal story in `Defs/ArcDefs/` (`Council_Arcs_Bonds`, `_Crafts`,
+  `_Heart`, `_Home`, `_Mods_Magic`, `Rimfolk_Arc_FearLaid`, `Rimfolk_Arcs_Ages`, `_Animals`, `_LifeNew`,
+  `_Mods_PokeWorld`, `_Three`, `_Together`, `_World`, and the extra chronicle lines of `Rimfolk_Arcs_MoreWords`: each
+  story's summary, its stages' names, what the Story tab says comes next, the chronicle lines that also make the letter
+  at the end, the chronicle lines when a story comes to nothing, and the names of what is staged on the map), and the
+  stories' Keyed words (`Rimfolk_Arcs.xml`, the stray's message and the farewell in `Rimfolk_Animals.xml`, the
+  stories' marks over heads in `Rimfolk_HarmSeven.xml`, read again: plain since the interface batches but for the
+  settings' count of stages, the stray's message and one mark). Left as the player said: the journal lines in every
+  story (the colonist's, the other's and the third's, the fizzle lines and the eulogies are journals), the stories'
+  talk (`Council_Arc_Talks`, `Rimfolk_Arc_Lives_Talks`, the talks in the story files: `InteractionDefs`), their moods
+  (`Council_Arc_Thoughts`, `Rimfolk_Arc_Lives_Thoughts`, the ThoughtDefs in the story files) and the quirks and names
+  they leave (`Council_Arc_Keepsakes`: character). The region's follow-ups and the memory of single colonists
+  (`World/Region/FollowUps.cs`, `World/ColonistMemory.cs`) are the region's, not personal stories: for the region map.
+  Council questions, part 1, done (19 November 2026, the same go; built, not released): the entry "Plain words: council
+  questions, part 1" above the newest release line. Files taken: the 29 files `Defs/DilemmaDefs/Council_*.xml`
+  (`Council_Dilemmas`, `2`, `3`, `_ComingOfAge`, `_Customs`, `_Customs2`, `_Goals`, `_Health`, `_Life`,
+  `_Mods_Hospitality`, `_Pets`, `_Reputation`, `_Seasons`, `_Secrets`, `_Social`, `_Strangers`, and their variants
+  files `Council_Dilemmas_Variants`, `2_Variants`, `3_Variants`, `_AfterBattle_Variants`, `_Customs_Variants`,
+  `_Goals_Variants`, `_Life_Variants`, `_Reputation_Variants`, `_Seasons_Variants`, `_Secrets_Variants`,
+  `_Social_Variants`, `_Strangers_Variants`, `_Strangers_Variants2`: each question's name, its texts and the variants'
+  texts, the answers' labels, the names of what plays out, the customs' names and the greyed answers' reasons; the
+  outcomes, done in 0.251.0, read again for agreement), and the Keyed words those questions use (the answers'
+  descriptions in `Rimfolk_DilemmaImpact.xml`, the letter's, the dilemmas page's and the traditions' keys of
+  `ColonyCouncil.xml`, `Rimfolk_Choices.xml`, the planting day's and the play-outs' keys, read again: plain since the
+  interface batches but for four lines). Left as the player said: the lines said at the gatherings the answers set going
+  (the effects' `lines`: speech) and the moods the answers give (`ThoughtDefs`). Still to do: council questions, part
+  2, the 26 files `Defs/DilemmaDefs/Rimfolk_Dilemmas_*.xml` (`Animals`, `Animals2`, `Banish`, `Beast`, `Camps`,
+  `Camps_Variants`, `Choices`, `Customs_New`, `Customs_YearFour`, `Faith`, `Family`, `Fealty`, `Guests`, `Lives`,
+  `Lives_Customs`, `Lives_Variants`, `Match`, `MovingOn`, `New`, `Pokemon`, `SacredDay`, `TownKin`, `Truce`,
+  `Variety2`, `Variety3`, `YearFour`) with the Keyed words of their own workers (`Dilemmas/DilemmaWorkers_*.cs`: keys in
+  `Rimfolk_DilemmasVariety`, `Rimfolk_Variety2`, `Rimfolk_Variety3`, `Rimfolk_YearFour`, `Rimfolk_Faith_Council`).
   The camps, the first half of "camps and visitors", done (19 November 2026, the same go; built, not released): the
   entry "Plain words: the camps" above the newest release line. Files taken: the camp kinds in `Defs/CampDefs/`
   (`Council_CampKinds`, `Council_CampKinds_More`, `Rimfolk_CampKinds_Hired`, `_Land`, `_Peoples`, `_PeoplesE`,
@@ -294,8 +326,8 @@ repo.
   files, the job report strings (already plain), the gods' camps (`Rimfolk_GodsWorld_Camps`, the gods' round).
   Still to do, the second half: the encounters (`EncounterDefs`), the missions (`MissionDefs`) and the visitors (the
   visits, travellers and their Keyed words); their top-of-screen messages were done in 0.251.0.
-  Still to pick, when the player asks: the gods and faith, personal stories, council questions, the peoples, visitors
-  (encounters, missions and visitors, the second half of camps and visitors), the region map, council and decrees, the
+  Still to pick, when the player asks: the gods and faith, council questions part 2, the peoples, visitors (the
+  encounters, missions and visitors: the second half of camps and visitors), the region map, council and decrees, the
   Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
@@ -312,11 +344,11 @@ repo.
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Plain words: the camps** (19
   November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
   write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
-  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The twelfth
-  batch of the plain-words pass, the first half of "camps and visitors": the 47 kinds of camp (their names, letter
-  titles, arrivals, why they came, who asks to join, farewells and good turns, and their asks: labels, tips, the
-  requests they send and what is said on either answer), the farewells joined to them from `Rimfolk_CampWords_Voices`,
-  and the camps' Keyed words. File list in the to-do entry "Rimfolk's text in plain words".
+  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  fourteenth batch of the plain-words pass, the first half of "camps and visitors": the 47 kinds of camp (their names,
+  letter titles, arrivals, why they came, who asks to join, farewells and good turns, and their asks: labels, tips,
+  the requests they send and what is said on either answer), the farewells joined to them from
+  `Rimfolk_CampWords_Voices`, and the camps' Keyed words. File list in the to-do entry "Rimfolk's text in plain words".
   - **What changed.** About 2,600 lines read (1,740 in the camp defs, about 870 Keyed), 334 rewritten (310 lines of the
     camp kinds, 16 answers put right against the map, 8 Keyed). Wry last lines said plainly ("a little richer or a
     little poorer, depending on which of them you ask", "which is how {X_nameDef} arrived", "which is apparently a
@@ -366,11 +398,146 @@ repo.
     plainer arrivals and farewells read beside the bubbles, which keep their voice.
   - **Try in the game.** Dev mode, Debug actions, Rimfolk, "Camps: another camp here now, beside those here" until a
     refugee family comes; once their camp stands, on its page "Have the family to supper": at supper the family comes up
-    to the table and eats. A band of minstrels:
-    "Ask for a song about the colony", and one of them sings it at their fire with the colony and the band round it.
+    to the table and eats. A band of minstrels: "Ask for a song about the colony", and one of them sings it at their
+    fire with the colony and the band round it.
     Mourners: "Stand with them for their dead". Let a camp's stay run out at different hours: the farewell letter names
     no hour it doesn't keep.
   - **Mods that would help.** None for this; it is text and a def setting.
+- 0.268.5, **Plain words: council questions,
+  part 1** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The thirteenth batch of the plain-words pass, the first half of the council's questions: the 29 `Council_*`
+  dilemma files (the thief in the stores, the feud, the cook's feast, the customs through the year, life goals,
+  illness and the camps' troubles, the colony's name on the roads, secrets come out, friends and rivals, strangers at
+  the gate): each question's name and texts with its variants, the answers' labels, the names of what plays out, and
+  the Keyed words of what each answer does. File list in the to-do entry "Rimfolk's text in plain words"; part 2 (the
+  26 `Rimfolk_Dilemmas_*` files) is still to do.
+  - **What changed.** About 2,630 lines read in the 29 files (some 1,550 in this batch's fields, the other 1,080 the
+    outcomes of 0.251.0, read for agreement) and the 800 Keyed lines of what each answer does; 327 rewritten (220
+    question texts and variants, 103 names and answer labels, 4 Keyed). Riddling or cut-short openings said plainly
+    ("Still chewing, pockets stuffed full. That was how {B_nameDef} found {A_nameDef} in the storeroom" is
+    "{B_nameDef} found {A_nameDef} in the storeroom in the middle of the night, still chewing"; "Four pieces.", "One
+    minute on the table, that was all.", "Missing from the stores this week:"), twists and punchlines at the end ("Most
+    of them begin with "High."", "Items two through eleven assume item one", "{A_nameDef} can recite every course, and
+    did", "{B_nameDef} has offered to sign the copies", "and both are probably right"), images and made-up phrases
+    ("the biting things" are insects, "worn each other down to the nerve", "the winter dark has got into
+    {A_objective}", "as calmly as if asking for the salt", "a voice the council had to lean in to hear"), and colon
+    lists as plain sentences (the planting day, the midsummer swim, the funeral plan, the hoarder's haul, the tally of
+    the hungry at the gate). Question names that were images say what the question is about: "a path: the workshop",
+    "the healer", "the scholar" and "the wall" are **an apprentice crafter**, **healer**, **scholar**, **fighter**; "a
+    hungry look" **a plan to eat a pet**; "blood on old hands" **a violent past**; "the one still breathing" **a wounded
+    enemy**; "a voice through the door" **a prisoner's plea**; "elbow to elbow" **too crowded**; "the empty chair" **a
+    missed meeting**; 36 more (46 names and 55 answers in all). Answers that were sayings say what the council does
+    ("Hands before books" is **Put them on the building crew instead**, "Play is a child's work" **Tell them to go and
+    play**, "Fill their pot" **Give them food**), and answers that pay out silver name the sum the effect takes ("Send
+    silver instead" **Send 80 silver instead**, "Pay for the bite" **Pay 50 silver for the bite**, "Send {X_nameDef} off
+    with a gift" **with 50 silver**). DESIGN.md's list of the answers that play out uses the new names;
+    `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py` (it also picks up seven newer questions of
+    other rounds).
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("{A_nameDef} says it was a small
+    jar", "{A_nameDef} says it was a compliment", "{B_nameDef} would blame {A_objective} for the rain"). Quoted speech
+    keeps the speaker's voice; the faiths' words in the customs keep theirs (the tree song, the vigil, the water's
+    blessing, the ancestors' supper); the customs' names stay as they are (a tradition in a save is known by its name);
+    the one-word name "inseparable" stays (`Tools/textcheck.py` holds a single word as an identifier). The lines said at
+    the gatherings the answers set going (the `lines` of the feast, bonfire, gathering, toast and words effects: speech)
+    and the moods the answers give (`ThoughtDefs`) are on the player's leave list; the outcomes are 0.251.0's. Every
+    tag, placeholder and key kept (the rewrite tool refused any line whose placeholder people, grammar symbols or tag
+    block changed, and `Tools/textcheck.py --base` on the rewritten files finds nothing broken). No line of
+    `Lean/ShippedLines.cs` is in these files.
+  - **Put right against the code.** "Take {PET_nameDef} on one last walk" read as putting the animal down, but the
+    answer walks it out and lets it go (`DilemmaEffect_ReleasePet`: it leaves the land alive); it is "Walk
+    {PET_nameDef} out past the walls and let {PET_objective} go". "Let {A_nameDef} off the chores for a season" and
+    "Keep {A_nameDef} under watch for a season": nothing lasts a season (the first gives the rest of today's work hours
+    off, `DilemmaEffect_Rest`; the second gives moods only), so the answers no longer name one. "Repairs first,
+    celebrations later": no celebration follows (a work party and the mood of none), so it is "Get straight to the
+    repairs". The midsummer bonfire's question promised "the night shift let off until dawn", but the answer lights a
+    fire with music for five or six hours and changes no one's hours; it says singing and drinking late into the night
+    (also the variant's "until the sky goes pale"). The remembrance night was to cost "a day of everyone's work", but it
+    is an evening gathering (from 17 h, four to five hours); it says a late night. Checked and true as written: every
+    silver sum in an answer and in the questions' texts against the effect that pays or takes it (25 to 400: the
+    hunters' 300 and the false trail's 150, the pirates' 400 and half of it, the tonic's 100 and 60, the guest's 150),
+    the greyed answers' skill levels (Animals 4, Social 6, Medicine 2), the lanterns along the walls, the torch at each
+    door and the fire of the harvest dance. Still narrative and left (no outcome text was redone): "One free afternoon
+    in three" and the storeroom corner for the crowded colonist play out only once or not at all, as the outcomes of
+    0.251.0 tell it.
+  - **Code map.** No code changed: def text in the 29 `Council_*` files; four lines of `Rimfolk_DilemmaImpact.xml`
+    ("A gamble, this one" and "A long shot, this one" said plainly, "The old way would hold" is the old custom carrying
+    on, a vendetta "laid down" is given up); DESIGN.md's play-out list; `docs/dilemma-balance.md`.
+  - **Can't be checked without the game.** How the plainer questions read in the letter beside the outcomes and the
+    gathering lines, which keep their voice; whether the new names read well in the letter's title ("Dilemma: A plan to
+    eat a pet") and on the dilemmas page.
+  - **Try in the game.** With dev mode on, open the council window's decrees page and press "Dev: dilemma now" a few
+    times; read each letter, the line under each answer and the title. Wait for a coming of age (an apprentice crafter,
+    healer, scholar or fighter), a pet growing old ("Walk ... out past the walls and let ... go": the pet leaves the
+    land), the midsummer bonfire and a life goal (time off for a dream: the rest of the day off).
+  - **Mods that would help.** None for this; it is text only.
+- 0.268.4, **Plain words: personal stories**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  twelfth batch of the plain-words pass: the colonists' personal stories, all 39 of them (the long way home to back to
+  it, the animals' four, PokéWorld's partner, A RimWorld of Magic's long discipline): what each story is (its summary,
+  the Story tab's tooltip), its stages' names, what the Story tab says comes next, the chronicle lines (read one after
+  another, they are also the letter that tells the story when it ends well), the chronicle lines when it comes to
+  nothing, and the names of what is staged on the map. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 770 lines read, 162 rewritten (159 in the story files, 3 Keyed). Riddling or cut-short lines
+    said plainly ("The first days are behind {PAWN_nameDef}. {LOST} is not." is "The first days of grief are over for
+    {PAWN_nameDef}, but {PAWN_pronoun} still thinks of {LOST} all the time"; "{PAWN_nameDef} trusts the council again.
+    Not blindly." "again, though not blindly"; "Someone has been crying at night ... It's {PAWN_nameDef}" names them
+    first), things given a will ("Fear has a hold on", "The camp's fire draws", "The craving won this time", "the dream
+    let {PAWN_objective} be"), images and invented idioms ("cooling, slowly, the way a hearthstone does", "left
+    {PAWN_objective} in the dirt", "a careful word at a time", "the wall gave way", "the homecoming has worn thin",
+    "{OTHER_nameDef} carries {PAWN_nameDef}'s craft"), twists at the end ("and it was unremarkable", "chose back", "and
+    in no hurry"), and the summaries' colon lists as plain sentences ("Days out on the road, a traveler misses someone
+    at home. Back again, the two of them sit up late while the whole journey is told" is "A colonist away on a journey
+    misses someone at home. Once back, the two of them sit up late while the traveler tells them about the whole
+    journey"). Stage names that were images say what the stage is ("the empty place" **the first days**, "small things
+    again" **better days**, "the weight of it" **keeping quiet**, "the body tells" **slowing down**, "every morning a
+    gift" **still together**, "news on the wind" **bad news**, "over, mostly" **still afraid**, "under one roof"
+    **talking it out**, "no faith left" and "faith restored" **no trust left** and **trust restored**, as it is the
+    council they mean); what comes next says what the story waits for ("Next: time. Grief doesn't hurry." is "Next: a
+    few days to grieve."). The stray's message says the handlers will tame it, and a mage's slip in the storm "the spark
+    jumped" is "shocked by the spark".
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("two old goats", "open war" with the
+    colony's dog, "the cooks have noticed", "if {PAWN_nameDef} can stay awake for them"). The stories' names stay as
+    they are in the Almanac, README and the colonists' records ("the road calls", "one more spring", "a grudge laid
+    down"), and so do the one-word stage names `Tools/textcheck.py` holds as identifiers ("square", "maybe",
+    "cooling", "there"). The retired lines `Lean/ShippedLines.cs` names (the long discipline's two fizzle lines about
+    "the wall", never drawn) stay word for word; their drawn fellows in `Rimfolk_Arcs_MoreWords.xml` are rewritten.
+    Journals (every journal, fizzle and eulogy line in the story files), the stories' talk (`InteractionDefs`), moods
+    (`ThoughtDefs`) and the quirks and names they leave (character) are on the player's leave list. Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block or placeholder people changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken).
+  - **Put right against the code.** An old companion's summary said its death "is the story's end", but the story ends
+    well at its last stage while the animal lives, and only its death before then ends it with a farewell
+    (`ArcTracker`: the last stage completes it); the summary, the Almanac's animals table and README now say "if it
+    dies first". The feud with an animal promised "an ambush in the doorway, a stolen lunch", but what is staged is the
+    animal running at its colonist's heels and off again (`AnimalScene.Pester`); the summary says that. Passing it on
+    said the student is taught "until they're nearly as good" and "has nearly caught up", but the student starts at
+    least four levels below the elder and the lessons wait for two levels gained (`ArcWorker_Elder`, the gate's `gain`
+    2); they now say the student has gained two levels and come a long way. The road calls had the colonist walk the
+    travelers "to the boundary stone", but they see them off at the colony's gate (`PlaySpot.Gate`); it says the gate,
+    and so does the walk's name. A grudge laid down said the anger dated "since {LOST}" died, but a vendetta can be for
+    someone taken (`Vendetta.kidnapped`); it says "what happened to {LOST}". Word from far away called the news "the
+    traders' news", but it is a world event the colony hears of in any way; it says the news. One more spring's last
+    line had the elder answering "the children's questions" in a colony that may have none; it says the days in the
+    sun, as staged. The settings' tip said three or four stages; a story has three to five (`ArcDef.ConfigErrors`).
+    Checked and true as written: three quiet days before the old wounds' talk (`NoFriction` 72 hours), the Wanderer
+    after 15 days away, the dreads of the dark, storms and the eclipse (the quirks the fear faced starts from).
+  - **Code map.** No code changed: def text in `Defs/ArcDefs/`, three Keyed lines (`Rimfolk_Arcs.xml`,
+    `Rimfolk_Animals.xml`, `Rimfolk_HarmSeven.xml`), one Almanac table row (`Almanac_Council_Animals.xml`, keywords
+    unchanged) and one README line.
+  - **Can't be checked without the game.** How the letter that ends a story reads now its chronicle lines are plainer,
+    beside the journal lines quoted under it, which keep their voice; whether the new stage names fit the message at the
+    top ("{PAWN_nameDef}'s story (a long grief) moves on: better days").
+  - **Try in the game.** Dev actions "Rimfolk": "Personal story: list what could begin", then "Personal story: begin
+    one for..." on a colonist (a long grief, the one left, a grudge laid down, a fear faced, the road calls, a rival in
+    love) and "Personal story: next stage" to move it on; read each message at the top, the Story tab's "Next:" line
+    and, at the end, the letter. Begin an old companion and let it finish with the animal alive (the letter), then
+    another where the animal dies (the farewell). Begin the stray and read the message when the handlers are asked to
+    tame it.
+  - **Mods that would help.** None for this; it is text only.
 - 0.268.3, **A god's mark worth having** (19
   November 2026; the player: "so the god events and occurences are super cool! but many of them just generate a single
   stone [chunk]?? it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a

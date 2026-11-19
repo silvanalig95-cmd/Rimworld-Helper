@@ -31,7 +31,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Rimfolk_Arc_BackToIt</defName>
     <label>back to it</label>
-    <summary>One of the dangers on the map hurt someone, and they are shaken: a day of it, a word about it with the one closest to them, the first real work back at what it happened at, and then it's just work again.</summary>
+    <summary>One of the dangers on the map hurt someone, and they are shaken. After a day, they talk it over with the person closest to them, get back to the work they were doing when it happened, and soon it is just work again.</summary>
     <workerClass>ColonyCouncil.ArcWorker_BackToIt</workerClass>
     <weight>1.4</weight>
     <maxDays>30</maxDays>

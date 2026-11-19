@@ -5,6 +5,22 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council's questions in plain words
+
+*19 November 2026, version 0.268.5*
+
+- The council's questions in plain words, part 1: the thief, the feud, the customs through the year, secrets, friends and rivals and strangers at the gate now say plainly what happened and who wants what.
+- Questions are named for what they are about, such as an apprentice crafter, a plan to eat a pet or a missed meeting, and answers say what the council does and how much silver it costs.
+- Some answers now match what happens on the map: an old pet walked out past the walls is let go, the repairs come with no celebration after, and the midsummer bonfire no longer promises the night shift off.
+
+## Personal stories in plain words
+
+*19 November 2026, version 0.268.4*
+
+- Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.
+- Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.
+- An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.
+
 ## A god's mark worth having
 
 *19 November 2026, version 0.268.3*

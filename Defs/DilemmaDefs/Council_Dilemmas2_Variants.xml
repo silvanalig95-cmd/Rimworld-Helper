@@ -33,7 +33,7 @@
     <dilemma>Council_Dilemma_Hoarder</dilemma>
     <texts>
       <li>[winter] When the cold came, {B_nameDef} went looking for the spare blankets and found them in {A_nameDef}'s room, all six, along with the good lamp, a sack of candles and {COUNT} {THING} from the stores.\n\n{A_nameDef} says {A_pronoun} was getting ready for the winter. {B_nameDef} says the rest of the colony would like to as well.</li>
-      <li>[lowtech] There was straw on the lid of {A_nameDef}'s chest and honey on the latch. {B_nameDef} lifted the lid and found two good cloaks, the colony's best knives, the honey jar and {COUNT} {THING} tied up in a rag, all of it from the stores.\n\n"My share," {A_nameDef} said. "Set aside early."</li>
+      <li>[lowtech] {B_nameDef} noticed honey on the latch of {A_nameDef}'s chest, lifted the lid and found two good cloaks, the colony's best knives, the honey jar and {COUNT} {THING} tied up in a rag, all of it from the stores.\n\n"My share," {A_nameDef} said. "Set aside early."</li>
       <li>[colony:Generous] This colony gives to anyone who knocks at the gate, and all the while {A_nameDef} has been keeping a hoard under {A_possessive} floorboards. {B_nameDef} found it this morning, {COUNT} {THING} and the best plates wrapped in a shirt, and brought one of the plates to the council as proof.</li>
     </texts>
     <outcomes>
@@ -52,9 +52,9 @@
     <dilemma>Council_Dilemma_Omen</dilemma>
     <texts>
       <li>[winter] {A_nameDef} dreams of a long line of figures walking out of the snow toward the colony, and wakes up shouting. It has happened every night this week, and each night the line is closer.\n\nSome of the others have started looking at the treeline.</li>
-      <li>[lowtech] {A_nameDef} saw a crow land on the roof three times in one morning, and then dreamed of the well running red. In {A_possessive} old village that meant something, and {A_nameDef} has told everyone what.\n\nThe night watch has started jumping at shadows.</li>
+      <li>[lowtech] {A_nameDef} saw a crow land on the roof three times in one morning, and then dreamed of the well running red. In {A_possessive} old village those were taken as signs that something bad was coming, and {A_nameDef} has told everyone so.\n\nThe night watch has started jumping at shadows.</li>
       <li>[!lowtech] {A_nameDef} has been waking at the same minute every night, certain something is coming, and has started writing the dreams down. The notebook is passed around at breakfast.\n\nA few of the others have started sleeping in their boots.</li>
-      <li>[trait:Nervous] {A_nameDef} has stopped sleeping. Each time {A_pronoun} closes {A_possessive} eyes, the gate is standing open with no one near it and a red moon over the wall.\n\nThe others have started checking the gate before bed.</li>
+      <li>[trait:Nervous] {A_nameDef} has stopped sleeping. Each time {A_pronoun} closes {A_possessive} eyes, {A_pronoun} sees the gate standing open with no one near it and a red moon over the wall.\n\nThe others have started checking the gate before bed.</li>
     </texts>
     <outcomes>
       <li>
@@ -91,8 +91,8 @@
     <dilemma>Council_Dilemma_Keepsake</dilemma>
     <texts>
       <li>[lowtech] {B_nameDef} used {A_nameDef}'s old bone comb to scrape a pot, not knowing what it was, and snapped it in half. It was carved by {A_nameDef}'s grandmother.\n\n{B_nameDef} is sorry. {A_nameDef} wants more than sorry, and has come to the council.</li>
-      <li>[!lowtech] {B_nameDef} sat on {A_nameDef}'s glasses, the old pair with the cracked lens that {A_nameDef} wore when {A_pronoun} arrived. They didn't survive. {A_nameDef} says they were the last thing from before.\n\n{B_nameDef} points out they were broken already.</li>
-      <li>[trait:Abrasive] {A_nameDef}'s painted box, the little one from home, lies in pieces on the workshop floor where {B_nameDef}'s elbow put it. {A_nameDef} has since said things to {B_nameDef} that won't easily be unsaid, and both of them have come to the council.</li>
+      <li>[!lowtech] {B_nameDef} sat on {A_nameDef}'s glasses, the old pair with the cracked lens that {A_nameDef} wore when {A_pronoun} arrived. They broke. {A_nameDef} says they were the last thing {A_pronoun} had from before the colony.\n\n{B_nameDef} points out they were broken already.</li>
+      <li>[trait:Abrasive] {B_nameDef} knocked {A_nameDef}'s little painted box from home off the workbench with an elbow, and it broke. {A_nameDef} has since said some hurtful things to {B_nameDef}, and both of them have come to the council.</li>
     </texts>
     <outcomes>
       <li>
@@ -130,9 +130,9 @@
     <defName>Council_Var_Dlm_Sculpture</defName>
     <dilemma>Council_Dilemma_Sculpture</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has carved a new figure, and it's {B_nameDef}, unmistakably, mid-sneeze. Everyone who passes it stops to laugh.\n\n{B_nameDef} has asked the council to have it thrown on the woodpile.</li>
+      <li>[lowtech] {A_nameDef} has carved a new figure, and it is clearly {B_nameDef} in the middle of a sneeze. Everyone who passes it stops to laugh.\n\n{B_nameDef} has asked the council to have it thrown on the woodpile.</li>
       <li>[trait:TooSmart] {A_nameDef} calls the new sculpture a study in proportion. It's {B_nameDef}, with a forehead twice the size of anyone's, and a little plaque that says "Thinking."\n\n{B_nameDef} wants it gone. {A_nameDef} says it's art.</li>
-      <li>[b:trait:Ugly] {A_nameDef}'s latest sculpture is a very faithful likeness of {B_nameDef}, which is the problem. {B_nameDef} has asked the council to have it taken down before anyone else sees it.</li>
+      <li>[b:trait:Ugly] {A_nameDef}'s latest sculpture is a very faithful likeness of {B_nameDef}, and {B_nameDef} doesn't like how {B_pronoun} looks in it. {B_nameDef} has asked the council to have it taken down before anyone else sees it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -141,7 +141,7 @@
     <defName>Council_Var_Dlm_Music</defName>
     <dilemma>Council_Dilemma_Music</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has taken up the pipes, and practices after dark in the room next to {B_nameDef}'s. {B_nameDef} has learned every wrong note by heart.\n\n{B_nameDef} came to the council this morning and asked, in a very level voice, for it to stop.</li>
+      <li>[lowtech] {A_nameDef} has taken up the pipes, and practices after dark in the room next to {B_nameDef}'s. {B_nameDef} can hear every wrong note through the wall.\n\n{B_nameDef} came to the council this morning and asked, in a very level voice, for it to stop.</li>
       <li>[!lowtech] {A_nameDef} found an old guitar in a trader's crate and plays it every night until the small hours. {B_nameDef}, who used to sleep on the other side of the wall, has moved {B_possessive} bedroll into the storeroom.</li>
       <li>[trait:NightOwl] {A_nameDef} does {A_possessive} best playing at three in the morning, and says so. {B_nameDef}, who gets up at five, would like a word with the council about it.</li>
       <li>[winter] The winter nights are long, and {A_nameDef} has been filling them with a drum. {B_nameDef}, next door, hasn't slept a full night since the snow came, and has asked the council to step in.</li>
@@ -188,7 +188,7 @@
     <defName>Council_Var_Dlm_OldFace</defName>
     <dilemma>Council_Dilemma_OldFace</dilemma>
     <texts>
-      <li>[past:outlaw] {A_nameDef} has never hidden that {A_pronoun} was an outlaw once. What {A_nameDef} never said was where. Tonight {B_nameDef} worked it out, and says {A_nameDef}'s band burned {B_possessive} village.\n\n{A_nameDef} doesn't deny it. The council has to decide what that means now.</li>
+      <li>[past:outlaw] {A_nameDef} has never hidden that {A_pronoun} was an outlaw once. {A_nameDef} never said where. Tonight {B_nameDef} worked it out, and says {A_nameDef}'s band burned {B_possessive} village.\n\n{A_nameDef} doesn't deny it. The council has to decide what that means now.</li>
       <li>[lowtech] {B_nameDef} recognized the tattoo on {A_nameDef}'s arm while they were washing at the stream, and went white. The band that wore that mark burned {B_nameDef}'s village when {B_pronoun} was small.\n\n{A_nameDef} says {A_pronoun} left them long ago.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
