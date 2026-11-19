@@ -349,6 +349,14 @@ PLAY = {
     "DilemmaEffect_ScoutTalkOut": "talked out of the tent",
     "DilemmaEffect_ScoutSearch": "the lost scout looked for",
     "DilemmaEffect_ScoutOdds": "odds and ends set down at the fire",
+    # The peoples' own events, round 10 (Peoples/Events10/): the hearing at the colony's table and the ruling, the Wheel's carts across
+    # the colony's land, turned back, or the fair toll set at the gate, the colony's people setting out for a plague town, the three
+    # days at the colony's table, and the afternoon at the gate with one of a people who hands on their art.
+    "DilemmaEffect_WoodMoot": "the hearing at the table, then the ruling",
+    "DilemmaEffect_RoadToll": "the carts across the land or turned back, or the fair toll set at the gate",
+    "DilemmaEffect_PlagueYear": "a caravan of one each to the plague town",
+    "DilemmaEffect_LearningTraded": "three days at the colony's table",
+    "DilemmaEffect_ArtHandedOn": "an afternoon at the gate, then the art",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

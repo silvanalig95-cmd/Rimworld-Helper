@@ -4787,6 +4787,21 @@ its stores), trade **one of its last bionics** for a year's supply when a coloni
 the colony's best talker over the radio** for three evenings (by letters without one) and then ask for something or tell
 of an old supply cache, and send **surface scouts** to camp a week and be taught plants, animals and shooting.
 
+**The peoples' own events, the tenth and last round.** Five more, four of them between two of Rimfolk's peoples at once,
+both at peace with the colony. The **Deepwell Union and the Mossborn** may bring their quarrel over an old wood to the
+colony as neutral ground: its best talker hears both envoys at its table and rules for the union's shaft (steel cheaper
+with every trader for a season), for the wood (herbal medicine cheaper), or for terms both can accept, and the side ruled
+against thinks less of the colony. The **road league** may toll the road past the colony while a **Wheel** cart train
+refuses to pay: the colony can let the carts cross its land, turn them back, or sit with both at the gate and set a fair
+toll. When a town within reach has the plague, the **hospitaller order** may ask for the colony's doctor and the **Quiet
+Bell** for two diggers; each goes on their own for some days and may bring the sickness home, and sending all three is
+remembered by both peoples. A copyist of the **learned society** and a technician of the **Sunken Vault** may sit three
+days at the colony's table, copying the vault's records each morning while the colony's crafter teaches them each
+afternoon; the society leaves a book of the copy, and both peoples move along toward their next age. And once a game, a
+people at good terms may **hand on its own art** to the colonist it remembers best: with A RimWorld of Magic its class
+book (when the colonist is gifted for it), otherwise a passion in the skill of its calling. With this round, all hundred
+of the peoples' events are in the game.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

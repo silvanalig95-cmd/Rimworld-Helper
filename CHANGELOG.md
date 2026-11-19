@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 10
+
+*19 November 2026, version 0.274.0*
+
+- The peoples' events, round 10, the last: four events between two of Rimfolk's peoples at once, and every people's art handed on. With them all hundred of the peoples' events are in the game.
+- The Deepwell Union and the Mossborn may bring their quarrel over an old wood to the colony's table; the colony's best talker rules for the shaft, for the wood, or for terms both accept, and steel or herbal medicine is cheaper with every trader for a while.
+- The road league may toll the road past the colony while a Wheel cart train refuses to pay: let the carts cross, turn them back, or set a fair toll at the gate over a meal.
+- In a plague year the hospitaller order may ask for the colony's doctor and the Quiet Bell for two diggers; each goes on their own for some days and may bring the sickness home.
+- A copyist of the learned society and a technician of the Sunken Vault may sit three days at the colony's table, copying the vault's records each morning while the colony's crafter teaches them, and leave a book of the copy.
+- Once a game, a people on good terms may hand its own art to the colonist it remembers best: with A RimWorld of Magic its class book, otherwise a passion in the skill of its calling.
+
 ## The peoples' own events, round 9
 
 *19 November 2026, version 0.273.0*

@@ -986,6 +986,12 @@ MODEL = {
     "Peoples/Events9/PeopleEvents9Book.cs:enemies": ("fixed", 30, 10, "what came up from the vault's lower level, while its fight is on (made at most thirty)"),
     "Peoples/Events9/MechYard.cs:mechs": ("fixed", const("Peoples/Events9/PeopleEvents9Math.cs", "YardMechsMax", 6), 10, "the mech yard's mechs, while the camp stands"),
     "Peoples/Events9/MechYard.cs:chunks": ("fixed", 42, 10, "the rock the mech yard's mechs cut, six loads a day for a week at most, while the camp stands"),
+    # The peoples' own events, round 10 (Peoples/Events10/PeopleEvents10Book.cs): the prices a moot's ruling moved for a season,
+    # PeopleEvents10Math.MaxPrices kept and each dropped when its season is over; the peoples that handed on their art, once a game
+    # each (one a people, at most three times as many as the callings).
+    "Peoples/Events10/PeopleEvents10Book.cs:prices": ("cap", (const("Peoples/Events10/PeopleEvents10Math.cs", "MaxPrices", 4), 1 / 60), 120,
+                                                      "the season's prices a moot's ruling moved, each dropped when its season is over"),
+    "Peoples/Events10/PeopleEvents10Book.cs:artGiven": ("cap", (23, 1 / 60), 30, "the peoples that handed on their art, once a game each"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the

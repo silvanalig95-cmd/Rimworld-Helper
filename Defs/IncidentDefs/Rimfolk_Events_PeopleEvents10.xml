@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 10, the last (docs/peoples-events-proposals.md, items 96 to 100; Source/ColonyCouncil/Peoples/Events10/).
+    The first four come from two of Rimfolk's peoples at once, both at peace with the colony and not at war with each other: {FACTION} is
+    the first named in each, {ENEMY} the other. The fifth comes from any of Rimfolk's peoples at good terms with the colony. {TALE} carries
+    what the event's own code says it does (what a people remembers a colonist for), {PET} the second digger asked for
+    a plague town, {BEAST} the Wheel's pack beasts; every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 96. The moot over the old wood ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WoodMoot</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the moot over the old wood</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WoodMoot</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>The moot over the old wood</li>
+          <li>Two envoys at the gate</li>
+        </titles>
+        <texts>
+          <li>[table,age2|age3] {X_nameDef}, a shift-captain of {FACTION}, and an envoy of {ENEMY} have come to the gate together. {FACTION} want to sink a drill shaft under an old wood near {PLACE}, where {ENEMY} keep a grove, and {ENEMY} want the wood left standing. Neither side will meet at the other's town, so they ask to put it before the colony: {A_nameDef} would hear them both at the colony's table and give a ruling.</li>
+          <li>[table,age0|age1] {X_nameDef} of {FACTION} and an envoy of {ENEMY} are at the gate, standing well apart. {FACTION} want to dig a pit with a windlass under an old wood near {PLACE}, where {ENEMY} keep a grove, and {ENEMY} say the wood must not be touched. They ask the colony to judge it on neutral ground: {A_nameDef} would hear them both at the colony's table and give a ruling.</li>
+          <li>[table,age2] {X_nameDef}, a shift-captain of {FACTION}, and an envoy of {ENEMY} have walked up to the gate a few steps apart. A pit of the union has found a seam under the old wood by {PLACE}, and {ENEMY} keep a grove beside it. They have argued about it for a month, and now they ask whether {A_nameDef} would hear them at the colony's table and settle it.</li>
+          <li>[table,age3] {X_nameDef} of {FACTION} has come to the gate with a survey of the ground under the old wood by {PLACE}, and an envoy of {ENEMY} has come along to make sure the colony hears the other side. The union wants to drill there, and {ENEMY} want the trees left as they are. Both ask {A_nameDef} to hear them at the colony's table and give a ruling.</li>
+          <li>[gate,age0|age1] {X_nameDef} of {FACTION} and an envoy of {ENEMY} have come to the gate, each asking the colony to judge whether the union may dig a pit under the old wood near {PLACE}, where {ENEMY} keep a grove. The colony has no table for them, so {A_nameDef} would hear them both at the gate and give a ruling.</li>
+          <li>[gate,age2|age3] {X_nameDef}, a shift-captain of {FACTION}, and an envoy of {ENEMY} have come to the gate, each asking the colony to judge whether the union may sink a drill shaft under the old wood near {PLACE}, where {ENEMY} keep a grove. The colony has no table for them, so {A_nameDef} would hear them both at the gate and give a ruling.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Rule for the shaft</label>
+            <outcome>{A_nameDef} will hear both envoys and then rule for the union's shaft.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WoodMoot"><ruling>shaft</ruling></li>
+            </effects>
+          </li>
+          <li>
+            <label>Rule for the wood</label>
+            <outcome>{A_nameDef} will hear both envoys and then rule that the old wood stays as it is.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WoodMoot"><ruling>wood</ruling></li>
+            </effects>
+          </li>
+          <li>
+            <label>Look for terms both can accept</label>
+            <outcome>{A_nameDef} will hear both envoys and then try to find terms both sides can accept.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WoodMoot"><ruling>bargain</ruling></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep out of it</label>
+            <outcome>The colony won't judge it. Both envoys go home to argue it out themselves.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><ofGroup>true</ofGroup></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[shaftcase] There is enough ore under that wood to keep three towns in work for ten years.</li>
+          <li>[woodcase] Those trees were old before anyone at this table was born.</li>
+          <li>[wonshaft] Then we start the shaft before the frost comes.</li>
+          <li>[lostwood] Then every tree they fell owes the world a seedling, and we will count them.</li>
+          <li>[wonwood] The wood stays, and the grove will remember who said so.</li>
+          <li>[lostshaft] Then the seam stays in the ground and our people go without the work.</li>
+          <li>[bargain] The shaft at the edge of the wood, and a seedling for every tree we fell.</li>
+          <li>[nobargain] We came for an answer, not for half of one.</li>
+          <li>[later] Then we will settle it between ourselves.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 97. A toll on the road ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RoadToll</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a toll on the road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RoadToll</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A toll on the road</li>
+          <li>The league's toll and the Wheel's carts</li>
+        </titles>
+        <texts>
+          <li>[age0|age1] {X_nameDef}, a factor of {FACTION}, has come to the gate. The league has stretched a rope across the road past the colony and set a toll-box beside it, and a cart train of {ENEMY} has stopped at the edge of the colony's land rather than pay: a wheelwright, a hand or two and their {BEAST}, loaded with salvage. The wheelwright wants to cross the colony's land instead of using the road. {X_nameDef} asks the colony to turn them back.</li>
+          <li>[age2|age3] {X_nameDef}, a factor of {FACTION}, is at the gate. The league has put a barrier and a toll booth on the road past the colony, and a cart train of {ENEMY} won't pay: their wheelwright, a hand or two and their {BEAST}, loaded with salvage, have stopped at the edge of the colony's land, hoping to cross it instead. {X_nameDef} asks the colony not to let them.</li>
+          <li>[age1] A factor of {FACTION}, {X_nameDef}, has come to the gate with the league's book under one arm. A cart train of {ENEMY} refused the toll on the road past the colony and turned off toward the colony's land, and its {BEAST} are standing at the edge of it now. The league wants the colony to send them back to the road and the toll-box.</li>
+          <li>[age2] {X_nameDef} of {FACTION} is at the gate with a ledger and a complaint. A cart train of {ENEMY} would not pay at the league's booth on the road past the colony, and has stopped at the edge of the colony's land with its {BEAST}, waiting to be let across. The factor asks the colony to turn them back, and the wheelwright asks to cross.</li>
+          <li>[age3] {X_nameDef}, a factor of {FACTION}, has come to the gate. The league charges every cart on the road past the colony now, and a cart train of {ENEMY} has refused: its wheelwright and {BEAST} have stopped at the edge of the colony's land instead, asking to cross it. The factor would like the colony to send them back to the booth.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Let the carts cross the colony's land</label>
+            <outcome>The carts of {ENEMY} will cross the colony's land to the far edge, and {X_nameDef} is going home to report it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadToll"><side>cross</side></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount><enemy>true</enemy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
+            </effects>
+          </li>
+          <li>
+            <label>Turn the carts back</label>
+            <outcome>The carts of {ENEMY} will go back to the road the way they came, and {X_nameDef} thanks the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadToll"><side>back</side></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-5</amount><enemy>true</enemy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+          </li>
+          <li>
+            <label>Host both at the gate and set a fair toll</label>
+            <outcome>{A_nameDef} will sit with {X_nameDef} and the wheelwright at the gate over a meal and set a fair toll.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for {X_nameDef}</label><what>meals</what><count>1</count><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the wheelwright</label><what>meals</what><count>1</count><eat>true</eat><toGroup>true</toGroup></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RoadToll"><side>fair</side></li>
+            </effects>
+          </li>
+          <li>
+            <label>Stay out of it</label>
+            <outcome>The colony stays out of it. The carts go back toward the road to find a way round, and {X_nameDef} goes home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><ofGroup>true</ofGroup></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[through] We'll be off your land by dark, and we'll close every gate behind us.</li>
+          <li>[turned] Then we go the long way round again.</li>
+          <li>[thanks] The league will write the colony down as a friend of the road.</li>
+          <li>[tollcase] Everyone else on this road pays, so they can pay too.</li>
+          <li>[cartcase] Our whole town is on those carts, and the league wants a share of all of it.</li>
+          <li>[paid] There, paid, and not a coin more than is fair.</li>
+          <li>[fair] That will do, and the book will say the Wheel paid.</li>
+          <li>[later] Then we'll settle it on the road.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 98. The lamp and the bell in a plague year ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_PlagueYear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the lamp and the bell in a plague year</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PlagueYear</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The lamp and the bell</li>
+          <li>A plague at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[age0|age1] {X_nameDef}, a hospitaller of {FACTION}, and a sexton of {ENEMY} have come to the gate together. The plague is in {PLACE}. The order has opened its sickhouse there and needs another healer, and asks for {A_nameDef}. The Bell has more dead than it can bury and asks for two diggers, {B_nameDef} and {PET_nameDef}. They would stay {COUNT} days, and whoever goes may bring the sickness home.</li>
+          <li>[age2|age3] A hospitaller of {FACTION}, {X_nameDef}, and a sexton of {ENEMY} are at the gate. The plague is in {PLACE}, and the order's ward there is full. The order asks for {A_nameDef} to work the ward for {COUNT} days, and the Bell asks for {B_nameDef} and {PET_nameDef} to dig graves for the same days. The order has masks and medicine there, but whoever goes may still bring the sickness home.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a lamp on a pole, and a sexton of {ENEMY} with a spade and a small bronze bell. {PLACE} has the plague. The order asks for {A_nameDef} to help in its sickhouse there for {COUNT} days, and the Bell asks for {B_nameDef} and {PET_nameDef} to help dig the graves. Whoever goes may bring the sickness home.</li>
+          <li>[age1] A hospitaller of {FACTION} and a sexton of {ENEMY} have walked up to the gate side by side, {X_nameDef} with a basket of boiled linen. The plague has reached {PLACE}. The order wants {A_nameDef} for its sickhouse, and the Bell wants {B_nameDef} and {PET_nameDef} to dig, for {COUNT} days. Whoever goes may bring the sickness home.</li>
+          <li>[age2] {X_nameDef}, a hospitaller of {FACTION}, has come to the gate with a sexton of {ENEMY}, both with cloth masks round their necks. The plague is in {PLACE}. The order asks for {A_nameDef} on its ward there for {COUNT} days, and the Bell for {B_nameDef} and {PET_nameDef} to dig. Whoever goes may bring the sickness home.</li>
+          <li>[age3] A hospitaller of {FACTION}, {X_nameDef}, and a sexton of {ENEMY} are at the gate, sealed masks hanging at their throats. The plague is in {PLACE}, and the order's clinic there can't keep up. The order asks for {A_nameDef}, the Bell for {B_nameDef} and {PET_nameDef} to dig, for {COUNT} days. Whoever goes may bring the sickness home.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Send all three</label>
+            <outcome>{A_nameDef} will go with the order, and {B_nameDef} and {PET_nameDef} with the Bell, each setting out for {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PlagueYear"><doctor>true</doctor><diggers>true</diggers></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to the sickhouse</label>
+            <outcome>{A_nameDef} will set out for {PLACE} to work with the order.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PlagueYear"><doctor>true</doctor><diggers>false</diggers></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {B_nameDef} and {PET_nameDef} to dig</label>
+            <outcome>{B_nameDef} and {PET_nameDef} will set out for {PLACE} to dig graves with the Bell.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PlagueYear"><doctor>false</doctor><diggers>true</diggers></li>
+            </effects>
+          </li>
+          <li>
+            <label>The colony can't spare anyone</label>
+            <outcome>{X_nameDef} and the sexton go back to {PLACE} without anyone from the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><ofGroup>true</ofGroup></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[lamp] The lamp stays lit at the sickhouse door until the last of them is well.</li>
+          <li>[bell] Everyone there is owed a bell, and we can't ring them all alone.</li>
+          <li>[later] Then we will do what we can with the hands we have.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 99. Learning traded through the colony ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LearningTraded</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>learning traded at the colony's table</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LearningTraded</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Learning traded at the table</li>
+          <li>A copyist and a technician</li>
+        </titles>
+        <texts>
+          <li>[age2|age3] {X_nameDef}, a copyist of {FACTION}, and a technician of {ENEMY} have come to the gate together. The vault has records it can no longer read on its own machines, and the society wants a copy of them. They ask to sit at the colony's table for {COUNT} days: each morning the copyist would copy the records while the technician reads them out, and each afternoon they would like {A_nameDef} to teach them both at the colony's bench.</li>
+          <li>[age0|age1] {X_nameDef}, a copyist of {FACTION}, and a technician of {ENEMY} are at the gate with a box of the vault's old records. The society wants to copy them by hand, and the vault wants to learn a craft it has lost. They ask to stay {COUNT} days at the colony's table: the copyist copying each morning with the technician reading out, and {A_nameDef} teaching them both at the bench each afternoon.</li>
+          <li>[age1] A copyist of {FACTION}, {X_nameDef}, has come to the gate with pens, ink and a stack of blank pages, and a technician of {ENEMY} has come with the vault's records. Neither people will go to the other's town, so they ask to meet at the colony's table for {COUNT} days, and to be taught by {A_nameDef} at the colony's bench in the afternoons.</li>
+          <li>[age2] {X_nameDef} of {FACTION} has brought a portable typewriter to the gate, and a technician of {ENEMY} has brought a crate of the vault's printouts. The society wants a copy of them, and the vault wants to learn some of the colony's craft. They ask for {COUNT} days at the colony's table, with {A_nameDef} teaching them both each afternoon.</li>
+          <li>[age3] {X_nameDef}, a copyist of {FACTION}, has come to the gate with a data slate, and a technician of {ENEMY} with the vault's old record cards. The society wants a copy before the cards fail, and the vault wants to learn some of the colony's craft. They ask for {COUNT} days at the colony's table, and {A_nameDef}'s afternoons at the bench.</li>
+          <li>[fallen] {X_nameDef}, a copyist of {FACTION}, and a technician of {ENEMY} have come to the gate together. The vault has lost the means to read most of its own records, and the society wants to copy what is left. They ask to sit at the colony's table for {COUNT} days, and for {A_nameDef} to teach them both at the colony's bench in the afternoons.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Host them, and let {A_nameDef} teach them each afternoon</label>
+            <outcome>The copyist and the technician will stay {COUNT} days at the colony's table, and {A_nameDef} will teach them each afternoon.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LearningTraded"><teach>true</teach></li>
+            </effects>
+          </li>
+          <li>
+            <label>Host them for the copying only</label>
+            <outcome>The copyist and the technician will stay {COUNT} days at the colony's table to copy the records, and {A_nameDef} keeps to their own work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LearningTraded"><teach>false</teach></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>The copyist and the technician go home to look for another table.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><ofGroup>true</ofGroup></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[stay] Then we start in the morning, while the light is good.</li>
+          <li>[readout] Next page, and mind the smudge in the corner.</li>
+          <li>[lesson] Show us once more, slowly this time.</li>
+          <li>[thanks] Nothing known should be lost, and now this won't be.</li>
+          <li>[later] Then we'll look for another table.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 100. Their art handed on ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ArtHandedOn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>their art handed on</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ArtHandedOn</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Their art handed on</li>
+          <li>A gift from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>[tome,deed,age0|age1] {X_nameDef} of {FACTION} has come to the gate with a book wrapped in cloth: {THING}. {FACTION} remember that {A_nameDef} {TALE}, and they want to hand {A_objective} their own art. {X_nameDef} would spend the afternoon with {A_nameDef} at the gate and then give {A_objective} the book to read.</li>
+          <li>[tome,deed,age2|age3] {X_nameDef} of {FACTION} has come to the gate carrying {THING} in a sealed case. {FACTION} remember that {A_nameDef} {TALE}, and they have decided to hand {A_objective} their own art. {X_nameDef} would spend the afternoon with {A_nameDef} at the gate and then give {A_objective} the book to read.</li>
+          <li>[tome,nodeed] {X_nameDef} of {FACTION} has come to the gate with {THING}. {FACTION} say nobody at the colony has done more for them than {A_nameDef}, and they want to hand {A_objective} their own art. {X_nameDef} would spend the afternoon with {A_nameDef} at the gate and then give {A_objective} the book to read.</li>
+          <li>[passion,deed,age0|age1] {X_nameDef} of {FACTION} has walked to the gate to teach {A_nameDef} their people's own art, {SKILL}. {FACTION} remember that {A_nameDef} {TALE}, and this is how they repay it: an afternoon at the gate, showing {A_objective} how they do it. Afterwards {A_nameDef} may care for {SKILL} more than before.</li>
+          <li>[passion,deed,age2|age3] {X_nameDef} of {FACTION} has come to the gate to teach {A_nameDef} their people's own art, {SKILL}. {FACTION} remember that {A_nameDef} {TALE}, and they want to repay it with an afternoon at the gate, showing {A_objective} how they do it. Afterwards {A_nameDef} may care for {SKILL} more than before.</li>
+          <li>[passion,nodeed] {X_nameDef} of {FACTION} has come to the gate to teach {A_nameDef} their people's own art, {SKILL}. {FACTION} say nobody at the colony has done more for them, and they would like to spend an afternoon at the gate showing {A_objective} how they do it.</li>
+          <li>[lesson,deed] {X_nameDef} of {FACTION} has come to the gate to show {A_nameDef} their people's own art, {SKILL}. {FACTION} remember that {A_nameDef} {TALE}. {A_nameDef} already cares a great deal for {SKILL}, so {X_nameDef} would spend the afternoon at the gate teaching {A_objective} what {FACTION} know of it.</li>
+          <li>[lesson,nodeed] {X_nameDef} of {FACTION} has come to the gate to show {A_nameDef} their people's own art, {SKILL}, as thanks for all {A_pronoun} has done for them. {X_nameDef} would spend the afternoon at the gate teaching {A_objective} what {FACTION} know of it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} learn it</label>
+            <outcome>{A_nameDef} will spend the afternoon with {X_nameDef} at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArtHandedOn"><gift>false</gift></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {A_nameDef} learn it, and give {X_nameDef} a gift in return</label>
+            <outcome>{A_nameDef} will spend the afternoon with {X_nameDef} at the gate, and the colony's gift is carried out to {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the colony's gift for {X_nameDef}</label><what>silver</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ArtHandedOn"><gift>true</gift></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} thanks the colony and goes home. {FACTION} may offer it again another time.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[offer] We remember what was done for us, and this is how we say so.</li>
+          <li>[show] Watch my hands first, and then try it yourself.</li>
+          <li>[handed] It's yours now, so use it well.</li>
+          <li>[later] Another time, then.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

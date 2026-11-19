@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 10 (Source/ColonyCouncil/Peoples/Events10/): the jobs they are seen doing on the map (round 9's work at
+       a thing, a person or a place, JobDriver_PEv9Work, which hands their ends on to round 10), and the moods the round gives. -->
+
+  <!-- ===================== The hearing at the table or the gate (96, 97) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_Hear</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>hearing both sides.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_Plead</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>making their case.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The days at the colony's table (99) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_Copy</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>copying records at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_ReadOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>reading records out at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_Teach</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>teaching at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_Learn</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>learning at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Their art shown (100) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_ShowArt</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>showing their art.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>look</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv10_LearnArt</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv9Work</driverClass>
+    <reportString>being shown an art.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv9Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_PlagueTown</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>helped a town through a plague</label><description>I spent days at a town with the plague in it, working beside people who would do it again tomorrow. It was hard, and I am glad I went.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ArtHandedOn</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a people taught me their art</label><description>One of their people came all this way to teach me their own art, because of what I once did for them. I didn't think anyone would remember it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

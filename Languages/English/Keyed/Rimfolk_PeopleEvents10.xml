@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 10 (Source/ColonyCouncil/Peoples/Events10/). -->
+
+  <!-- ===================== What the round shares ===================== -->
+
+  <CC_PEv10_TalkerGone>The colony's best talker is not at home to hear them.</CC_PEv10_TalkerGone>
+  <CC_PEv10_PeoplesGone>One of the two peoples is no longer at peace with the colony.</CC_PEv10_PeoplesGone>
+  <CC_PEv10_Impact_RegionHears>The region hears of it, and the side passed over remembers</CC_PEv10_Impact_RegionHears>
+  <CC_PEv10_Impact_RegionHearsBrief>the region hears</CC_PEv10_Impact_RegionHearsBrief>
+
+  <!-- ===================== 96. The moot over the old wood ===================== -->
+
+  <CC_PEv10_MootLetterLabel>The ruling on the old wood</CC_PEv10_MootLetterLabel>
+  <CC_PEv10_MootShaft>The ruling is for the shaft: {UNION} may sink it under the old wood. {UNION} think better of the colony for it, and {MOSSBORN} think worse. For the next season, steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootShaft>
+  <CC_PEv10_MootWood>The ruling is that the old wood stays as it is. {MOSSBORN} think better of the colony for it, and {UNION} think worse. For the next season, herbal medicine, which {MOSSBORN} gather in that wood, will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootWood>
+  <CC_PEv10_MootBargain>Both sides accepted the colony's terms: {UNION} will sink the shaft at the edge of the old wood and plant a seedling for every tree they fell there, which {MOSSBORN} will count. Both think a little better of the colony, and for the next season steel will be {PCT} in a hundred cheaper with every trader the colony deals with.</CC_PEv10_MootBargain>
+  <CC_PEv10_MootNoBargain>{TALKER} looked for terms both could accept, but neither side would give way. {UNION} and {MOSSBORN} will settle it themselves, and both think a little less of the colony for it.</CC_PEv10_MootNoBargain>
+  <CC_PEv10_MootHeard>{TALKER} heard both envoys {WHERE} and gave the colony's ruling.</CC_PEv10_MootHeard>
+  <CC_PEv10_AtTable>at the colony's table</CC_PEv10_AtTable>
+  <CC_PEv10_AtGate>at the gate</CC_PEv10_AtGate>
+  <CC_PEv10_MootByWord>The envoys could not wait to be heard, so the colony sent its ruling after them by word.</CC_PEv10_MootByWord>
+  <CC_PEv10_HeardShaft>Word on the roads: the colony ruled for {UNION}'s shaft under the old wood, and {MOSSBORN} took it badly.</CC_PEv10_HeardShaft>
+  <CC_PEv10_HeardWood>Word on the roads: the colony ruled that the old wood stays, and {UNION} took it badly.</CC_PEv10_HeardWood>
+  <CC_PEv10_HeardBargain>Word on the roads: the colony found terms over the old wood that {UNION} and {MOSSBORN} could both accept.</CC_PEv10_HeardBargain>
+  <CC_PEv10_HeardNoBargain>Word on the roads: {UNION} and {MOSSBORN} took their quarrel over the old wood to the colony, and it couldn't settle it.</CC_PEv10_HeardNoBargain>
+  <CC_PEv10_PriceOver>A season has passed since the ruling on the old wood, and {THING} costs what it did before.</CC_PEv10_PriceOver>
+  <CC_PEv10_Impact_Hearing>{0} hears both envoys at the colony's table for two hours, and then gives the ruling</CC_PEv10_Impact_Hearing>
+  <CC_PEv10_Impact_HearingGate>{0} hears both envoys at the gate for two hours, and then gives the ruling</CC_PEv10_Impact_HearingGate>
+  <CC_PEv10_Impact_HearingBrief>a hearing</CC_PEv10_Impact_HearingBrief>
+  <CC_PEv10_Impact_HearSocial>{0} learns something about persuasion</CC_PEv10_Impact_HearSocial>
+  <CC_PEv10_Impact_HearSocialBrief>persuasion</CC_PEv10_Impact_HearSocialBrief>
+  <CC_PEv10_Impact_Steel>Steel comes {0} in a hundred cheaper from every trader for a season</CC_PEv10_Impact_Steel>
+  <CC_PEv10_Impact_Herbs>Herbal medicine comes {0} in a hundred cheaper from every trader for a season</CC_PEv10_Impact_Herbs>
+  <CC_PEv10_Impact_PriceBrief>cheaper for a season</CC_PEv10_Impact_PriceBrief>
+  <CC_PEv10_Impact_Bargain>{0} has about {1} chances in a hundred to find terms: then both peoples +{2}, and steel {4} in a hundred cheaper for a season; otherwise both -{3}</CC_PEv10_Impact_Bargain>
+  <CC_PEv10_Impact_BargainBrief>a bargain, or neither pleased</CC_PEv10_Impact_BargainBrief>
+
+  <!-- ===================== 97. A toll on the road ===================== -->
+
+  <CC_PEv10_TollCross>The carts of {WHEEL} are crossing the colony's land to the far edge, and the factor of {LEAGUE} has gone home to report it.</CC_PEv10_TollCross>
+  <CC_PEv10_TollBack>The carts of {WHEEL} are going back to the road the way they came, and the factor of {LEAGUE} has thanked the colony.</CC_PEv10_TollBack>
+  <CC_PEv10_TollFair>{TALKER} sat with the factor of {LEAGUE} and the wheelwright of {WHEEL} at the gate and set a fair toll of {COUNT} silver, which the wheelwright paid on the spot. The carts are going on by the road.</CC_PEv10_TollFair>
+  <CC_PEv10_TollFairAlone>The factor of {LEAGUE} and the wheelwright of {WHEEL} waited for the colony at the gate, then settled on a toll of {COUNT} silver between themselves. The carts are going on by the road.</CC_PEv10_TollFairAlone>
+  <CC_PEv10_HeardCross>Word on the roads: the colony let {WHEEL}'s carts across its land past {LEAGUE}'s toll, and the league took it badly.</CC_PEv10_HeardCross>
+  <CC_PEv10_HeardBack>Word on the roads: the colony turned {WHEEL}'s carts back to {LEAGUE}'s toll, and the Wheel took it badly.</CC_PEv10_HeardBack>
+  <CC_PEv10_HeardFair>Word on the roads: the colony set a fair toll between {LEAGUE} and {WHEEL} at its gate, and both accepted it.</CC_PEv10_HeardFair>
+  <CC_PEv10_CartsGone>The Wheel's carts are no longer at the edge of the colony's land.</CC_PEv10_CartsGone>
+  <CC_PEv10_Impact_Cross>The carts of {0} walk across the colony's land and off at the far edge</CC_PEv10_Impact_Cross>
+  <CC_PEv10_Impact_CrossBrief>across the colony's land</CC_PEv10_Impact_CrossBrief>
+  <CC_PEv10_Impact_Back>The carts of {0} go back out the way they came</CC_PEv10_Impact_Back>
+  <CC_PEv10_Impact_BackBrief>turned back</CC_PEv10_Impact_BackBrief>
+  <CC_PEv10_Impact_Fair>{0} sits with both at the gate for two hours and sets a toll of about {1} silver, which the wheelwright pays the factor</CC_PEv10_Impact_Fair>
+  <CC_PEv10_Impact_FairBrief>a fair toll</CC_PEv10_Impact_FairBrief>
+
+  <!-- ===================== 98. The lamp and the bell in a plague year ===================== -->
+
+  <CC_PEv10_PlagueCantGo>The colony can't spare them now: they are busy, away, or too few would be left at home.</CC_PEv10_PlagueCantGo>
+  <CC_PEv10_PlagueThereDoctor>{PAWN_nameDef} has reached {PLACE} and is working in the sickhouse of {FACTION}.</CC_PEv10_PlagueThereDoctor>
+  <CC_PEv10_PlagueThereDigger>{PAWN_nameDef} has reached {PLACE} and is digging graves with {FACTION}.</CC_PEv10_PlagueThereDigger>
+  <CC_PEv10_PlagueHomeDoctor>{PAWN_nameDef} is home from the sickhouse at {PLACE}. {FACTION} are grateful for the help.</CC_PEv10_PlagueHomeDoctor>
+  <CC_PEv10_PlagueHomeDigger>{PAWN_nameDef} is home from digging graves at {PLACE}. {FACTION} are grateful for the help.</CC_PEv10_PlagueHomeDigger>
+  <CC_PEv10_PlagueHomeEarly>{PAWN_nameDef} is home from {PLACE} before the work there was done.</CC_PEv10_PlagueHomeEarly>
+  <CC_PEv10_PlagueDeedText>sent {PAWN_nameDef} to help at {PLACE} through the plague</CC_PEv10_PlagueDeedText>
+  <CC_PEv10_Impact_Plague>{0} set out for {1}, each on their own, and stay {2} days before coming home</CC_PEv10_Impact_Plague>
+  <CC_PEv10_Impact_PlagueBrief>to the plague town</CC_PEv10_Impact_PlagueBrief>
+  <CC_PEv10_Impact_PlagueDoctor>{0} works on the order's ward each day and learns a good deal of healing</CC_PEv10_Impact_PlagueDoctor>
+  <CC_PEv10_Impact_PlagueDoctorBrief>healing</CC_PEv10_Impact_PlagueDoctorBrief>
+  <CC_PEv10_Impact_PlagueDiggers>{0} dig graves with the Bell each day and learn something of building</CC_PEv10_Impact_PlagueDiggers>
+  <CC_PEv10_Impact_PlagueDiggersBrief>building</CC_PEv10_Impact_PlagueDiggersBrief>
+  <CC_PEv10_Impact_PlagueRisk>{0} may bring the sickness home: the same chance as anyone who lodges at a sick town</CC_PEv10_Impact_PlagueRisk>
+  <CC_PEv10_Impact_PlagueRiskBrief>sickness brought home</CC_PEv10_Impact_PlagueRiskBrief>
+  <CC_PEv10_Impact_PlagueDeed>{0} and {1} will both remember it for a long time</CC_PEv10_Impact_PlagueDeed>
+  <CC_PEv10_Impact_PlagueDeedBrief>a lasting memory</CC_PEv10_Impact_PlagueDeedBrief>
+  <CC_Memory_Deed_plagueYear>stood by a plague town</CC_Memory_Deed_plagueYear>
+  <CC_Memory_Deed_plagueYear_Name>stood by {NAME} in its plague year</CC_Memory_Deed_plagueYear_Name>
+  <CC_Memory_Deed_plagueYear_Many>stood by plague towns, {COUNT} times</CC_Memory_Deed_plagueYear_Many>
+  <CC_Dip_For_plagueYear>a plague town stood by</CC_Dip_For_plagueYear>
+
+  <!-- ===================== 99. Learning traded through the colony ===================== -->
+
+  <CC_PEv10_Copied>{COPYIST_nameDef} has copied the records of {VAULT} for another morning ({COUNT} of {OF}).</CC_PEv10_Copied>
+  <CC_PEv10_Taught>{CRAFTER_nameDef} has spent the afternoon teaching the copyist of {SOCIETY} and the technician of {VAULT} at the bench.</CC_PEv10_Taught>
+  <CC_PEv10_CraftWhat>a craft taught by {CRAFTER}</CC_PEv10_CraftWhat>
+  <CC_PEv10_LearnDone>The copyist of {SOCIETY} and the technician of {VAULT} have gone home. The society has its copy of the vault's records and left a {BOOK} of it at the colony's table, and the vault has learned a craft from {CRAFTER} in {COUNT} afternoons. Both peoples will remember what they learned here.</CC_PEv10_LearnDone>
+  <CC_PEv10_CopyDone>The copyist of {SOCIETY} and the technician of {VAULT} have gone home. The society has its copy of the vault's records and left a {BOOK} of it at the colony's table.</CC_PEv10_CopyDone>
+  <CC_PEv10_CopyPart>The copyist of {SOCIETY} and the technician of {VAULT} have gone home with part of a copy of the vault's records. There was not time to finish it.</CC_PEv10_CopyPart>
+  <CC_PEv10_LearnNone>The copyist of {SOCIETY} and the technician of {VAULT} have gone home without copying anything at the colony's table.</CC_PEv10_LearnNone>
+  <CC_PEv10_TableGone>The colony's table is gone.</CC_PEv10_TableGone>
+  <CC_PEv10_CrafterGone>The colony's crafter, or their bench, is gone.</CC_PEv10_CrafterGone>
+  <CC_PEv10_Impact_Host>They stay {1} days, each morning copying at the colony's table, eating the colony's meals and sleeping in its beds or on the floor</CC_PEv10_Impact_Host>
+  <CC_PEv10_Impact_HostBrief>hosted at the table</CC_PEv10_Impact_HostBrief>
+  <CC_PEv10_Impact_Book>With the copy finished, the society leaves the colony a {0} of it</CC_PEv10_Impact_Book>
+  <CC_PEv10_Impact_BookBrief>a book</CC_PEv10_Impact_BookBrief>
+  <CC_PEv10_Impact_Lessons>Each afternoon {0} teaches them both for two hours at the colony's bench</CC_PEv10_Impact_Lessons>
+  <CC_PEv10_Impact_LessonsBrief>lessons at the bench</CC_PEv10_Impact_LessonsBrief>
+  <CC_PEv10_Impact_TeachSocial>{0} gets better at explaining things, and a little at crafting</CC_PEv10_Impact_TeachSocial>
+  <CC_PEv10_Impact_TeachSocialBrief>teaching</CC_PEv10_Impact_TeachSocialBrief>
+  <CC_PEv10_Impact_Ages>{0} and {1} both learn here, which helps each of them along toward their next age</CC_PEv10_Impact_Ages>
+  <CC_PEv10_Impact_AgesBrief>their learning</CC_PEv10_Impact_AgesBrief>
+
+  <!-- ===================== 100. Their art handed on ===================== -->
+
+  <CC_PEv10_ArtLetterLabel>An art handed on: {0}</CC_PEv10_ArtLetterLabel>
+  <CC_PEv10_ArtTome>{TEACHER} spent the afternoon with {PAWN_nameDef} at the gate and then handed {PAWN_objective} {TOME}, the art of {FACTION}. {PAWN_nameDef} has started to read it.</CC_PEv10_ArtTome>
+  <CC_PEv10_ArtTomeLater>{TEACHER} spent the afternoon with {PAWN_nameDef} at the gate and then handed {PAWN_objective} {TOME}, the art of {FACTION}. It is lying beside {PAWN_objective}, for {PAWN_objective} to read when {PAWN_pronoun} can.</CC_PEv10_ArtTomeLater>
+  <CC_PEv10_ArtPassion>{TEACHER} spent the afternoon at the gate showing {PAWN_nameDef} how {FACTION} go about {SKILL}. {PAWN_nameDef} has taken an interest in it.</CC_PEv10_ArtPassion>
+  <CC_PEv10_ArtBurning>{TEACHER} spent the afternoon at the gate showing {PAWN_nameDef} how {FACTION} go about {SKILL}. {PAWN_nameDef} was already interested in it, and now {PAWN_pronoun} cares about it more than anything else.</CC_PEv10_ArtBurning>
+  <CC_PEv10_ArtLesson>{TEACHER} spent the afternoon at the gate teaching {PAWN_nameDef} what {FACTION} know of {SKILL}, and {PAWN_nameDef} learned a great deal.</CC_PEv10_ArtLesson>
+  <CC_PEv10_ArtChronicle>{FACTION} handed their own art on to {PAWN_nameDef}.</CC_PEv10_ArtChronicle>
+  <CC_PEv10_ArtColonistGone>The colonist they came for is not at home.</CC_PEv10_ArtColonistGone>
+  <CC_PEv10_ArtLeft>{TEACHER} of {FACTION} could not wait any longer and has gone home. {FACTION} may offer their art again another time.</CC_PEv10_ArtLeft>
+  <CC_PEv10_Impact_Art>{0} spends the afternoon with {1} at the gate, showing {1} their art</CC_PEv10_Impact_Art>
+  <CC_PEv10_Impact_ArtBrief>an afternoon at the gate</CC_PEv10_Impact_ArtBrief>
+  <CC_PEv10_Impact_ArtTome>{0} is handed {1} and reads it, by A RimWorld of Magic's own rules</CC_PEv10_Impact_ArtTome>
+  <CC_PEv10_Impact_ArtTomeBrief>their class book</CC_PEv10_Impact_ArtTomeBrief>
+  <CC_PEv10_Impact_ArtPassion>{0} finds a passion for {1}, or a deeper one</CC_PEv10_Impact_ArtPassion>
+  <CC_PEv10_Impact_ArtPassionBrief>a passion</CC_PEv10_Impact_ArtPassionBrief>
+  <CC_PEv10_Impact_ArtLesson>{0} learns a great deal of {1}</CC_PEv10_Impact_ArtLesson>
+  <CC_PEv10_Impact_ArtLessonBrief>a long lesson</CC_PEv10_Impact_ArtLessonBrief>
+  <CC_PEv10_Impact_ArtOwed>The colony owes {0} for the lesson</CC_PEv10_Impact_ArtOwed>
+  <CC_PEv10_Impact_ArtOwedBrief>a lesson owed</CC_PEv10_Impact_ArtOwedBrief>
+
+</LanguageData>

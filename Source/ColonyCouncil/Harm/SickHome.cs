@@ -113,6 +113,23 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// One of the colony's people lodged at a sick town outside a caravan of theirs (a season away at a plague town, the order's
+        /// sickhouse or the Bell's graves: Peoples/Events10/PlagueYear.cs): their stay counted as a caravan's would be, one journey of its
+        /// own, so the homecoming's one roll is this rule's (the medicine: the hospitallers' sickhouse sees to the one who works in it).
+        /// </summary>
+        public static void Lodged(Pawn p, Settlement town, SickTown kind, float hours, bool medicine)
+        {
+            var book = HarmBook.Instance;
+            if (!On || book == null || p == null || town == null || kind == SickTown.None || hours <= 0f) return;
+            var stay = book.sick.FirstOrDefault(x => x.pawn == p && x.town == town.ID && x.due < 0);
+            if (stay == null) book.sick.Add(stay = new SickStay { pawn = p, town = town.ID, townName = town.Name, caravan = -1 - p.thingIDNumber });
+            stay.hours += hours;
+            stay.lastAt = Now;
+            stay.kind = HarmTwoMath.Worse(stay.kind, kind);
+            stay.medicine |= medicine;
+        }
+
         private static void Stays(HarmBook book, int now)
         {
             foreach (var c in Find.WorldObjects.Caravans)

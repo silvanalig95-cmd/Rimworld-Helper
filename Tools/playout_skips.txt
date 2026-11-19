@@ -626,6 +626,8 @@ Rimfolk_Evt_VoidListens [option 2] a refusal: the warden of the quiet is sent ba
 Rimfolk_Evt_MindShouts [option 2] a refusal: the listener is sent back to the road (SendAway)
 Rimfolk_Evt_ListeningRing [option 2] a refusal: the cantor is sent back to the road (SendAway)
 Rimfolk_Evt_SurfaceScouts [option 2] a refusal: the scout is sent back to the road (SendAway)
+# Defs/IncidentDefs/Rimfolk_Events_PeopleEvents10.xml (the peoples' own events, round 10)
+Rimfolk_Evt_LearningTraded [option 2] a refusal: the copyist and the technician are sent back to the road (SendAway, each)
 Rimfolk_Evt_GodRiddle [option 0] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 1] done by the event's own code: the one sent walks out to the great cat and answers her there (MogsWays.Answered, Step, There)
 Rimfolk_Evt_GodRiddle [option 2] done by the event's own code: she lies at the door a while longer and walks back to the graves (MogsWays.Keep)
