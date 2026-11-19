@@ -80,13 +80,13 @@
         </doneTitles>
         <done>
           <li>[attended,feast] The colony's guests ate and drank at {PLACE} until the feast was over, and {FACTION} loaded the caravan with gifts for the road home: {ITEM}.</li>
-          <li>[attended,wedding] The colony's guests saw {DEAD} married, ate at the long tables and danced until the music stopped. {FACTION} sent them home with gifts: {ITEM}.</li>
-          <li>[attended,midwinter] The colony's guests spent the longest night by the fire at {PLACE}, with songs and stories until morning. {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended,wedding] The colony's guests saw {DEAD} married, ate at the long tables and danced until the music stopped. {FACTION} gave them gifts to take home: {ITEM}.</li>
+          <li>[attended,midwinter] The colony's guests spent the longest night by the fire at {PLACE}, with songs and stories until morning. {FACTION} gave them gifts to take home: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came, but would have liked them to stay longer.</li>
           <li>[attended,rite] The colony's guests kept {RITE} at {PLACE} beside {FACTION}, did their best with the parts nobody had explained, and were given gifts to take home: {ITEM}.</li>
           <li>[attended,agerite] The colony's guests saw the day kept at {PLACE} as {FACTION} keep it, {RITE} and all, and were given gifts to take home: {ITEM}.</li>
           <li>[attended,titledguest] {GUEST} sat at the high table at {PLACE} and was toasted by name, and the colony's guests were given gifts to take home: {ITEM}.</li>
-          <li>[attended,royalhost] {DEAD} received the colony's guests at {PLACE} with every courtesy of the Empire, and sent them home with gifts: {ITEM}.</li>
+          <li>[attended,royalhost] {DEAD} received the colony's guests at {PLACE} with every courtesy of the Empire, and gave them gifts to take home: {ITEM}.</li>
         </done>
         <failTitles>
           <li>[absent] No guests at {PLACE}</li>

@@ -34,8 +34,8 @@
         </titles>
         <texts>
           <li>[drive] A lantern-runner of {FACTION} has come from the lodge at {PLACE} with word from its keeper of the book: a beast has been taking sheep and a herd boy on the roads round {PLACE}, and the Wardens mean to drive it out of the treeline. They ask the colony for two of its best shots for a day and a half, and they pay in silver and in hides.</li>
-          <li>[drive,their:lowtech] A Warden with a red cord on the sleeve has walked from {PLACE} to ask the colony for two good shots. The Wardens have lit the lantern at the crossroads below the lodge, their sign that a beast is on the roads, and they mean to drive it out of the woods before it takes anyone else.</li>
-          <li>[drive,their:friend] The Wardens of {FACTION} have asked for {FRIEND_nameDef} by name. They have lit their warning lantern on the road to {PLACE}, and they want two of the colony's best shots for the drive against the beast.</li>
+          <li>[drive,their:lowtech] A Warden with a red cord on the sleeve has walked from {PLACE} to ask the colony for two good shots. The Wardens have lit the lantern at the crossroads below the lodge, as they do when a beast has taken someone, and they mean to drive the beast out of the woods before it takes anyone else.</li>
+          <li>[drive,their:friend] The Wardens of {FACTION} have asked for {FRIEND_nameDef} by name. They have lit a lantern on the road to {PLACE}, as they do when a beast has taken someone, and they want two of the colony's best shots for the drive against it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

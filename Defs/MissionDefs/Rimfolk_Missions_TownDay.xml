@@ -73,7 +73,7 @@
         </doneTitles>
         <done>
           <li>[attended,founding] The colony's guests kept {DEAD}'s day at {PLACE} with {FACTION}, at the tables the colony built, and were given gifts to take home: {ITEM}.</li>
-          <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} gave them gifts to take home: {ITEM}.</li>
           <li>[attended] The colony's guests were made welcome at {PLACE} and were given gifts to take home: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
           <li>[attended,founding] {DEAD}'s day was kept at {PLACE} with the colony's guests among {FACTION}, and the guests were given gifts to take home: {ITEM}.</li>

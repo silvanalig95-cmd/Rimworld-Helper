@@ -3837,6 +3837,23 @@ texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDef
 - **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
   captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
 
+#### The missions' endings told as they happen (not released yet)
+
+Found in the plain-words pass on the missions (19 November 2026). A mission's ending letter (`Missions.Finish`) comes the
+moment the mission is settled, before anything of it is seen on the map, so the older missions told as done what had
+only just been set going: carts that "took everything" and drivers who "counted out" the silver (`Couriers.CollectGoals`
+sends the carts some hours later), a runaway that "went home to where the herder was waiting down the road"
+(`Couriers.Fetch` brings the herder to the colony), a lost child's family that "came running" (they walk in from the
+edge then), guests and hands lent to a town who "came home" or "are coming home" with their gifts (the caravan is still
+at the town, the gifts in its packs, and it comes home when the player sends it), a runaway "off into the hills and
+gone" (it leaves within the hour). The words now say what is happening: the carts, the herder, the family are coming;
+the gifts and the pay are in the caravan's packs. The same pass put right the shrine's pilgrims (they come and spend the
+day beside the shrine, `Arrivals.Visit`; they don't sing or kneel, and nothing brings them back each year, so neither the
+singing nor "they'll stop here every year now" is told), the Wardens' gift (a gift of the colony's era, `Loot`, not "a
+hide"), the tamed runaway's herder (not on the road until the colony answers), and the old one lost on the colony's land,
+who was always "an old man" whoever was lost. Nothing in the code changed; the newer missions (the quests at home and the
+storylines) already told it this way.
+
 ### Quests at home, round 1: six single quests (the player's go, 16 November 2026; released 0.261.0)
 
 The player, 16 November 2026: "go ahead with quests and storylines, make sure they are written in the more clear style i

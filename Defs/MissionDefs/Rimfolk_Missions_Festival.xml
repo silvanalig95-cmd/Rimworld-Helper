@@ -67,7 +67,7 @@
           <li>[brief] A short visit to {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[attended,entertainers] The colony's entertainers played the festival at {PLACE} to the end, and {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended,entertainers] The colony's entertainers played the festival at {PLACE} to the end, and {FACTION} gave them gifts to take home: {ITEM}.</li>
           <li>[attended,invited] The colony's people kept the festival at {PLACE} with {FACTION}, and were given gifts to take home: {ITEM}.</li>
           <li>[attended] The colony's people were made welcome at {PLACE}'s festival and were given gifts to take home: {ITEM}.</li>
           <li>[brief] The colony's people reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
