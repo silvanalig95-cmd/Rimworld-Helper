@@ -17,8 +17,8 @@
     <texts>
       <li>Somebody has to decide about the raiders' bodies, and {A_nameDef} thinks it should be the council. They're still lying where they fell.</li>
       <li>[night] {A_nameDef} couldn't sleep for thinking about the dead raiders outside. {A_nameDef} wants the council to say what's done with them before another night goes by.</li>
-      <li>[past:soldier] {A_nameDef} has buried enemies before, and left them before, and says neither sits easy. The raiders' bodies are still out there, and {A_nameDef} wants the council's word on them.</li>
-      <li>[colony:Merciful] The colony has a name for mercy, and {A_nameDef} says it shouldn't stop at the living. The raiders still lie where they fell.</li>
+      <li>[past:soldier] {A_nameDef} has buried enemies before, and left them unburied before, and says neither ever felt right. The raiders' bodies are still out there, and {A_nameDef} wants the council's word on them.</li>
+      <li>[colony:Merciful] The colony is known for its mercy, and {A_nameDef} says the dead should have it too. The raiders still lie where they fell.</li>
       <li>[snow] Snow is settling on the raiders where they fell. {A_nameDef} wants the council to decide what's done with them before they're buried in it.</li>
       <li>[grieving] {A_nameDef} lost someone in the fight, and still went out to look at the raiders' bodies. {A_nameDef} wants them dealt with, one way or another, and soon.</li>
     </texts>

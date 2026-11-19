@@ -17,7 +17,7 @@
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Craft</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a path: the workshop</label>
+    <label>an apprentice crafter</label>
     <roleB><bestAt>Crafting</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
       <li>{B_nameDef} has already cleared a corner of the workbench. {A_nameDef} came of age this week, and {B_nameDef}, the best crafter the colony has, wants {A_objective} as an apprentice before anyone else can ask.\n\n{A_nameDef} hasn't been asked what {A_pronoun} wants.</li>
@@ -60,10 +60,10 @@
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Medicine</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a path: the healer</label>
+    <label>an apprentice healer</label>
     <roleB><bestAt>Medicine</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
-      <li>Steady hands, {B_nameDef} says, and a strong stomach, which is rarer. {A_nameDef} has just come of age, and {B_nameDef} wants {A_objective} in the sickroom before anyone else can claim {A_objective}.\n\nIt's a hard trade, and slow to learn.</li>
+      <li>{A_nameDef} has just come of age, and {B_nameDef} wants {A_objective} in the sickroom before anyone else can claim {A_objective}. {B_nameDef} says {A_nameDef} has steady hands and a strong stomach, and the second is harder to find.\n\nIt's a hard trade, and slow to learn.</li>
       <li>"I won't live forever," {B_nameDef} told the council, "and someone has to know what I know." {B_nameDef} wants {A_nameDef}, who came of age this week, as an apprentice in the sickroom.</li>
     </texts>
     <options>
@@ -78,7 +78,7 @@
         </effects>
       </li>
       <li>
-        <label>The fields need hands more</label>
+        <label>Send them to work in the fields instead</label>
         <outcome>The fields get {A_nameDef}, and the sickroom gets no one new. {B_nameDef} took the news without a word and went back to {B_possessive} patients.</outcome>
         <ways><toil>4</toil></ways>
         <effects>
@@ -102,7 +102,7 @@
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Scholar</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a path: the scholar</label>
+    <label>an apprentice scholar</label>
     <roleB><bestAt>Intellectual</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
       <li>"There's a mind in there," {B_nameDef} says of {A_nameDef}, who has just come of age, "and it's wasted hauling rocks." {B_nameDef} wants {A_objective} at the research bench.</li>
@@ -120,7 +120,7 @@
         </effects>
       </li>
       <li>
-        <label>Hands before books</label>
+        <label>Put them on the building crew instead</label>
         <outcome>{A_nameDef} is on the building crew, and the walls are going up faster. {B_nameDef} has been heard muttering about wasted minds.</outcome>
         <ways><tradition>3</tradition><toil>4</toil></ways>
         <effects>
@@ -143,15 +143,15 @@
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Warrior</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a path: the wall</label>
+    <label>an apprentice fighter</label>
     <roleB><bestAt>Shooting</bestAt><minOpinionOfA>-20</minOpinionOfA><canFight>true</canFight></roleB>
     <texts>
-      <li>Before the next raid, {B_nameDef} says. The colony's best shot thinks {A_nameDef}, just come of age, has the eye for it and should start training now.\n\nOthers say {A_nameDef} has seen enough fighting for a lifetime already.</li>
+      <li>{B_nameDef}, the colony's best shot, thinks {A_nameDef}, who has just come of age, has the eye for it and should start training before the next raid.\n\nOthers say {A_nameDef} has seen enough fighting for a lifetime already.</li>
       <li>{A_nameDef} is grown, and wants to stand on the wall with the others. {B_nameDef} has offered to teach. Not everyone thinks that's a good idea.</li>
     </texts>
     <options>
       <li>
-        <label>Apprentice {A_nameDef} to {B_nameDef} at arms</label>
+        <label>Apprentice {A_nameDef} to {B_nameDef} in shooting</label>
         <outcome>{A_nameDef} is on the range at dawn every day now, with {B_nameDef} standing behind, correcting.</outcome>
         <ways><mercy>-3</mercy><openness>-3</openness></ways>
         <effects>

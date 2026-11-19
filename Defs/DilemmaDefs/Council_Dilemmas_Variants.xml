@@ -71,8 +71,8 @@
     <defName>Council_Var_Dlm_Feud</defName>
     <dilemma>Council_Dilemma_Feud</dilemma>
     <texts>
-      <li>[winter] Shut in together by the snow, {A_nameDef} and {B_nameDef} have run out of patience with each other. The latest argument was over the chair nearest the stove, and it ended with neither of them in it.</li>
-      <li>[trait:Abrasive] {A_nameDef} told {B_nameDef} exactly what {A_pronoun} thinks of {B_objective}, at length, at supper. {B_nameDef} has come to the council to complain, and {A_nameDef} has come to complain about the complaint.</li>
+      <li>[winter] Shut in together by the snow, {A_nameDef} and {B_nameDef} have run out of patience with each other. The latest argument was over the chair nearest the stove, and it ended with both of them storming off.</li>
+      <li>[trait:Abrasive] {A_nameDef} told {B_nameDef} exactly what {A_pronoun} thinks of {B_objective}, at length, at supper. {B_nameDef} has come to the council to complain, and {A_nameDef} has come to say {B_nameDef} deserved it.</li>
       <li>[b:trait:Abrasive] {B_nameDef} hasn't said a kind word to {A_nameDef} in a week, and today said several unkind ones in the workshop. {A_nameDef} has had enough and wants the council to step in. {B_nameDef} says {A_nameDef} started it.</li>
       <li>[colony:Traditional] The colony has an old way of settling quarrels: both sides speak, the council decides, and that's the end of it. {A_nameDef} and {B_nameDef} have been at each other for days, and have both asked for it.</li>
       <li>[summer] It's too hot for anyone's temper, and {A_nameDef} and {B_nameDef} have been snapping at each other since sunrise. It came to shouting at the well this afternoon, over whose turn it was to draw water.</li>
@@ -126,7 +126,7 @@
     <defName>Council_Var_Dlm_Confession</defName>
     <dilemma>Council_Dilemma_Confession</dilemma>
     <texts>
-      <li>[winter] {A_nameDef} hasn't been out of bed before noon in a week, and finally told the council why: the winter dark has got into {A_objective}, and {A_pronoun} can't shake it.\n\n{B_nameDef} has offered to help.</li>
+      <li>[winter] {A_nameDef} hasn't been out of bed before noon in a week, and finally told the council why: the long winter dark has left {A_objective} low, and {A_pronoun} can't shake it off.\n\n{B_nameDef} has offered to help.</li>
       <li>[trait:Nervous] {A_nameDef} has jumped at every noise for days, and today broke down in the workshop over a dropped hammer. {A_nameDef} told the council {A_pronoun} needs a rest.\n\n{B_nameDef} has offered to look after {A_objective}.</li>
       <li>[trait:Industrious] {A_nameDef}, who never stops working, stopped this morning and couldn't start again. {A_nameDef} came to the council red-eyed, embarrassed to say {A_pronoun} is worn out.\n\n{B_nameDef} has been keeping an eye on {A_objective}.</li>
       <li>[lowmood] {A_nameDef} hasn't eaten with the others in days. Tonight {A_nameDef} sat down across from the council and said it plainly: {A_pronoun} isn't coping.\n\n{B_nameDef} has offered to help.</li>

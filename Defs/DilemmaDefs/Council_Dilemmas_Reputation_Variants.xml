@@ -36,7 +36,7 @@
     <defName>Council_Var_DlmR_TheirThief</defName>
     <dilemma>Council_DlmR_TheirThief</dilemma>
     <texts>
-      <li>[theirLowtech] The {FACTION} elders have brought {X_nameDef} into the yard with {X_possessive} hands bound, caught stealing from their own carts. In their villages, they say, a thief is beaten by a stranger so no family carries the feud. They've heard this colony doesn't flinch, and have asked for {A_nameDef}.</li>
+      <li>[theirLowtech] The {FACTION} elders have brought {X_nameDef} into the yard with {X_possessive} hands bound, caught stealing from their own carts. In their villages, they say, a thief is beaten by a stranger so no family carries the feud. They've heard this colony is hard on thieves, and have asked for {A_nameDef}.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -44,7 +44,7 @@
     <defName>Council_Var_DlmR_Handouts</defName>
     <dilemma>Council_DlmR_Handouts</dilemma>
     <texts>
-      <li>[winter] The cold has brought {FACTION}'s hungry to the gate every morning, and {A_nameDef} has fed all of them out of the colony's stores. The only tracks in the snow run from the road to the gate.\n\n{A_nameDef} has asked the council how much more can go out before spring.</li>
+      <li>[winter] The cold has brought {FACTION}'s hungry to the gate every morning, and {A_nameDef} has fed all of them out of the colony's stores.\n\n{A_nameDef} has asked the council how much more can go out before spring.</li>
       <li>[trait:Kind] {A_nameDef} hasn't turned anyone from {FACTION} away from the gate all season, and doesn't want to start. But the storeroom is thinner than it should be, and {A_nameDef} has brought the count to the council, hating every number on it.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -53,7 +53,7 @@
     <defName>Council_Var_DlmR_StingyMockery</defName>
     <dilemma>Council_DlmR_StingyMockery</dilemma>
     <texts>
-      <li>[theirHightech] {X_nameDef} of {FACTION} has started a tab for the colony's goods "since you lot like counting," and reads it aloud every time {A_nameDef} passes. The caravan guards think it's the funniest thing they've heard all season.\n\n{A_nameDef} has stopped passing.</li>
+      <li>[theirHightech] {X_nameDef} of {FACTION} has started a tab for the colony's goods "since you lot like counting," and reads it aloud every time {A_nameDef} passes. The caravan guards think it's the funniest thing they've heard all season.\n\n{A_nameDef} now goes the long way round to avoid them.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

@@ -312,7 +312,7 @@
   <CC_ImpactFlavour_Gamble_1>It's a gamble</CC_ImpactFlavour_Gamble_1>
   <CC_ImpactFlavour_Gamble_2>It could go either way</CC_ImpactFlavour_Gamble_2>
   <CC_ImpactFlavour_Gamble_3>It may not go as hoped</CC_ImpactFlavour_Gamble_3>
-  <CC_ImpactFlavour_Gamble_4>A gamble, this one</CC_ImpactFlavour_Gamble_4>
+  <CC_ImpactFlavour_Gamble_4>This one is a gamble</CC_ImpactFlavour_Gamble_4>
   <CC_ImpactFlavour_Gamble_5>There's a chance it goes wrong</CC_ImpactFlavour_Gamble_5>
   <CC_ImpactFlavour_Gamble_6>It might not come off</CC_ImpactFlavour_Gamble_6>
 
@@ -321,7 +321,7 @@
   <CC_ImpactFlavour_GambleBig_2>It would likely go wrong</CC_ImpactFlavour_GambleBig_2>
   <CC_ImpactFlavour_GambleBig_3>The odds are against it</CC_ImpactFlavour_GambleBig_3>
   <CC_ImpactFlavour_GambleBig_4>It's more likely to go wrong than right</CC_ImpactFlavour_GambleBig_4>
-  <CC_ImpactFlavour_GambleBig_5>A long shot, this one</CC_ImpactFlavour_GambleBig_5>
+  <CC_ImpactFlavour_GambleBig_5>It's a long shot</CC_ImpactFlavour_GambleBig_5>
 
   <!-- A gamble that would go badly for someone ({0}). -->
   <CC_ImpactFlavour_GambleOn_1>A gamble, and {0} carries the risk</CC_ImpactFlavour_GambleOn_1>
@@ -459,7 +459,7 @@
   <CC_ImpactFlavour_CustomKept_1>It {WOULD} keep the custom going</CC_ImpactFlavour_CustomKept_1>
   <CC_ImpactFlavour_CustomKept_2>The custom of {0} {WOULD} live on</CC_ImpactFlavour_CustomKept_2>
   <CC_ImpactFlavour_CustomKept_3>It {WOULD} honour the colony's custom</CC_ImpactFlavour_CustomKept_3>
-  <CC_ImpactFlavour_CustomKept_4>The old way {WOULD} hold</CC_ImpactFlavour_CustomKept_4>
+  <CC_ImpactFlavour_CustomKept_4>The old custom {WOULD} carry on</CC_ImpactFlavour_CustomKept_4>
 
   <!-- A custom broken or let go. -->
   <CC_ImpactFlavour_CustomBroken_1>It {WOULD} break with the colony's custom</CC_ImpactFlavour_CustomBroken_1>
@@ -926,7 +926,7 @@
   <CC_Impact_VendettaEnd>{0}'s vendetta against {1} ends</CC_Impact_VendettaEnd>
   <CC_Impact_VendettaAsk>{0} decides whether the vendetta against {1} ends, by their nature</CC_Impact_VendettaAsk>
   <CC_Impact_VendettaBrief>the vendetta settled</CC_Impact_VendettaBrief>
-  <CC_Impact_SettleVendetta>{0} lays down the vendetta against {1}</CC_Impact_SettleVendetta>
+  <CC_Impact_SettleVendetta>{0} gives up the vendetta against {1}</CC_Impact_SettleVendetta>
   <CC_Impact_Patient>{0} tends {1}, and {1}'s people will remember it</CC_Impact_Patient>
 
   <!-- Besides -->

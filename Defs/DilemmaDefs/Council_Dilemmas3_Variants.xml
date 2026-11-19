@@ -41,7 +41,7 @@
     <defName>Council_Var_Dlm_WildFriend</defName>
     <dilemma>Council_Dilemma_WildFriend</dilemma>
     <texts>
-      <li>[winter] {A_nameDef} has been leaving scraps past the wall in the snow, and something has been eating them every night: a thin wild animal that waits for {A_objective} now. {B_nameDef} saw its tracks this morning, and the small boot prints beside them.</li>
+      <li>[winter] {A_nameDef} has been leaving scraps past the wall in the snow, and a thin wild animal has been eating them every night. It waits for {A_objective} now. {B_nameDef} saw its tracks this morning, and the small boot prints beside them.</li>
       <li>[skill:Animals] {A_nameDef} has a way with animals, and has used it on a wild one that lives in the scrub past the wall. It takes food from {A_nameDef}'s hand now, and nobody else's.\n\n{B_nameDef} has seen it too, from further off, and didn't like the look of its teeth.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -82,8 +82,8 @@
     <dilemma>Council_Dilemma_LoveLetter</dilemma>
     <texts>
       <li>[lowtech] {A_nameDef} wrote a poem on a piece of bark and hid it in the woodpile for someone to find. {B_nameDef} found it first, and read it to the colony at supper, with feeling.\n\n{A_nameDef} hasn't come out of {A_possessive} room since. {B_nameDef} says it was only a bit of fun.</li>
-      <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} has offered to sign the copies.</li>
-      <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter and read it out at dinner, then gave it marks out of ten. It got a four.\n\n{A_nameDef} hasn't come down to dinner since.</li>
+      <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} still thinks it's funny.</li>
+      <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter, read it out at dinner and gave it four out of ten.\n\n{A_nameDef} hasn't come down to dinner since.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -92,7 +92,7 @@
     <defName>Council_Var_Dlm_OwnFuneral</defName>
     <dilemma>Council_Dilemma_OwnFuneral</dilemma>
     <texts>
-      <li>[old] {A_nameDef} says {A_pronoun} isn't getting any younger, and would like the matter of {A_possessive} funeral settled while {A_pronoun} can still have a say. There's a list, and the council is on it.</li>
+      <li>[old] {A_nameDef} says {A_pronoun} isn't getting any younger, and would like the matter of {A_possessive} funeral settled while {A_pronoun} can still have a say. {A_nameDef} has written a list of what needs doing, and some of it is for the council.</li>
       <li>[winter] {A_nameDef} has spent the long winter evenings planning {A_possessive} own funeral, down to the songs, and wants the colony's help to get it ready now. "In case," {A_nameDef} says, and won't say in case of what.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -103,7 +103,7 @@
     <dilemma>Council_Dilemma_Sleepwalker</dilemma>
     <texts>
       <li>[winter] {B_nameDef} found {A_nameDef} at midnight standing barefoot in the snow by the well, fast asleep, holding a bucket. It's the fourth time this week.\n\n{A_nameDef} remembers none of it. {B_nameDef} wants something done before {A_nameDef} freezes.</li>
-      <li>[lowtech] Last night {A_nameDef} walked in {A_possessive} sleep straight into {B_nameDef}'s room, lit a candle, and started kneading dough on {B_nameDef}'s bed. There was no dough.\n\n{B_nameDef} would like {B_possessive} bed back, unkneaded.</li>
+      <li>[lowtech] Last night {A_nameDef} walked in {A_possessive} sleep straight into {B_nameDef}'s room, lit a candle, and started kneading dough that wasn't there on {B_nameDef}'s bed.\n\n{B_nameDef} wants to be able to sleep in peace.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -112,7 +112,7 @@
     <defName>Council_Var_Dlm_SideDeal</defName>
     <dilemma>Council_Dilemma_SideDeal</dilemma>
     <texts>
-      <li>[past:trader] {A_nameDef} used to trade for a living and hasn't stopped. {B_nameDef} caught {A_objective} doing business with the last caravan out of the colony's stores, and found {COUNT} {THING} in {A_possessive} boot afterward.\n\n{A_nameDef} calls it a good deal. {B_nameDef} wants the council to call it what it is.</li>
+      <li>[past:trader] {A_nameDef} used to trade for a living and hasn't stopped. {B_nameDef} caught {A_objective} doing business with the last caravan out of the colony's stores, and found {COUNT} {THING} in {A_possessive} boot afterward.\n\n{A_nameDef} calls it a good deal. {B_nameDef} calls it stealing from the colony.</li>
       <li>[trait:Greedy] {B_nameDef} noticed the colony's spare tools were gone, and {A_nameDef} has a new purse with {COUNT} {THING} in it. {A_nameDef} says the tools weren't being used.\n\n{B_nameDef} has brought the empty tool box to the council as evidence.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
@@ -122,7 +122,7 @@
     <defName>Council_Var_Dlm_Credit</defName>
     <dilemma>Council_Dilemma_Credit</dilemma>
     <texts>
-      <li>[lowtech] Two versions of the fight are going around the colony. In {A_nameDef}'s, {A_nameDef} held the gate while {B_nameDef} was busy elsewhere. In {B_nameDef}'s, it was {B_nameDef}.\n\nBoth want the council to say which is true before someone makes a song of the wrong one.</li>
+      <li>[lowtech] Two versions of the fight are going around the colony. In {A_nameDef}'s, {A_nameDef} held the gate while {B_nameDef} was busy elsewhere. In {B_nameDef}'s, it was {B_nameDef}.\n\nBoth want the council to say which is true before the wrong one is the one everybody remembers.</li>
       <li>[!lowtech] {A_nameDef} and {B_nameDef} both claim the shot that turned the raid. Each has a story about whose rifle it was, and a friend who backs it up.\n\nThey want the council to settle it.</li>
       <li>[trait:Jealous] {A_nameDef} has heard the others thanking {B_nameDef} for the last fight, and won't stand for it: {A_nameDef} says the credit is {A_possessive}. {B_nameDef} says otherwise, so the council has to decide.</li>
       <li>[b:past:soldier] {B_nameDef} has been in more fights than anyone here and says {A_nameDef} froze in the last one. {A_nameDef} says {B_nameDef} wasn't even watching. Each wants the council to say who saved the colony.</li>
