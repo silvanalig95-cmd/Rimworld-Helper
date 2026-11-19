@@ -8,7 +8,7 @@
   <CC_Decree_NeedsResearch>Needs {0} researched</CC_Decree_NeedsResearch>
   <CC_Decree_NeedsPeople>Needs a colony of {0} or more</CC_Decree_NeedsPeople>
   <CC_Decree_NeedsSituation>Only in the hard times it was made for</CC_Decree_NeedsSituation>
-  <CC_Decree_NoTraders>No friendly people near who send traders</CC_Decree_NoTraders>
+  <CC_Decree_NoTraders>No friendly people who send trade caravans</CC_Decree_NoTraders>
   <CC_Decree_NothingToGive>Nothing to give: no {0} in store</CC_Decree_NothingToGive>
   <CC_Decree_Gave>{0}: {1} {2} went out today.</CC_Decree_Gave>
   <CC_Decree_GaveTo>{0}: {1} {2} went out today, to {3}.</CC_Decree_GaveTo>

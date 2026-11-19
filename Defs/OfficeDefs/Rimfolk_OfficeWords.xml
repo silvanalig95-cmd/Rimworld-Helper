@@ -45,7 +45,7 @@
     </promises>
     <planks>
       <li><key>ready</key><text>{PAWN_nameDef} promises that everyone will know their place before the next raid comes.</text><promise>everyone in their place before the next raid</promise><test>Lost</test></li>
-      <li><key>home</key><text>{PAWN_nameDef} promises to bring everyone home from every fight, and to come home last.</text><promise>everyone brought home from every fight</promise><test>Lost</test></li>
+      <li><key>home</key><text>{PAWN_nameDef} promises to bring everyone home from every fight.</text><promise>everyone brought home from every fight</promise><test>Lost</test></li>
     </planks>
   </ColonyCouncil.OfficeWordsDef>
 
@@ -104,7 +104,7 @@
     </promises>
     <planks>
       <li><key>evenings</key><text>{PAWN_nameDef} promises one evening in every week that is worth looking forward to.</text><promise>an evening worth looking forward to every week</promise><test>Mood</test></li>
-      <li><key>kindness</key><text>{PAWN_nameDef} promises fewer grand plans and more small kindnesses, the kind people remember.</text><promise>more small kindnesses</promise><test>Mood</test></li>
+      <li><key>kindness</key><text>{PAWN_nameDef} promises fewer grand plans and more small kindnesses.</text><promise>more small kindnesses</promise><test>Mood</test></li>
     </planks>
   </ColonyCouncil.OfficeWordsDef>
 

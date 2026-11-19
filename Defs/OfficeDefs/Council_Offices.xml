@@ -7,7 +7,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Speaker</defName>
     <label>speaker</label>
-    <description>Chairs the council's meetings and speaks for the colony. A good speaker slowly builds the colony's trust in the council.</description>
+    <description>Chairs the council's meetings and speaks for the colony. While someone holds the seat, everyone's trust in the council slowly rises.</description>
     <order>1</order>
     <skills><li>Social</li></skills>
     <goodTraits><li>Kind</li></goodTraits>
@@ -16,12 +16,12 @@
     <duties>
       <li>Chairs every council meeting.</li>
       <li>Everyone's trust in the council rises a little each day.</li>
-      <li>The speaker is more persuasive (social impact and negotiation).</li>
+      <li>The speaker is more persuasive (social impact up 15%, negotiation up 10%).</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} plans to clear {PAWN_possessive} throat at the next supper and see whether the room goes quiet, which would surprise {PAWN_nameDef} most of all.</li>
-      <li>{PAWN_nameDef} promises short meetings. Nobody believes it.</li>
-      <li>{PAWN_nameDef} expects to be asked to settle three arguments by the end of the week, and hopes to settle two of them.</li>
+      <li>{PAWN_nameDef} plans to say a few words at the next supper, and hopes people will listen.</li>
+      <li>{PAWN_nameDef} promises to keep meetings short.</li>
+      <li>{PAWN_nameDef} expects to spend the first week settling arguments.</li>
     </elected>
     <planks>
       <li><key>trust</key><when>LowTrust</when><text>{PAWN_nameDef} says the council has stopped listening, and promises meetings where everyone gets a word in.</text></li>
@@ -34,7 +34,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Marshal</defName>
     <label>marshal</label>
-    <description>Leads the colony's defense: runs the drills, sets the watches and is first to the wall when raiders come.</description>
+    <description>Leads the colony's defense and runs its drills. After a fight at home, a marshal who fought in it has a word with each of those who fought alongside, which eases their strain.</description>
     <order>2</order>
     <skills><li>Shooting</li><li>Melee</li></skills>
     <goodTraits><li>Tough</li><li>Bloodlust</li></goodTraits>
@@ -42,14 +42,14 @@
     <hediff>Council_Office_Marshal</hediff>
     <colonyHediff>Council_Office_MarshalColony</colonyHediff>
     <duties>
-      <li>Drills train everyone half again as fast.</li>
-      <li>Colonists aim and strike a little better.</li>
-      <li>The marshal fights better and holds steady under fire.</li>
+      <li>Drills and militia drills train everyone half again as fast.</li>
+      <li>Colonists aim and strike a little better (shooting accuracy up 0.5%, melee hit chance up 2%).</li>
+      <li>The marshal aims and strikes better, and is a little less likely to have a mental break.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} says the first thing {PAWN_pronoun} will do is walk the wall and move two of the sandbags a hand's width to the left.</li>
-      <li>{PAWN_nameDef} talks of drills at dawn, to general groaning.</li>
-      <li>{PAWN_nameDef} wants to know where everyone sleeps, in case.</li>
+      <li>{PAWN_nameDef} says the first job is to walk the wall and see where it is weak.</li>
+      <li>{PAWN_nameDef} talks about drills at dawn, and people groan.</li>
+      <li>{PAWN_nameDef} wants to know where everyone sleeps, so they can be found quickly in a raid.</li>
     </elected>
     <planks>
       <li><key>raid</key><when>RecentRaid</when><text>{PAWN_nameDef} talks of the last raid, and wants the weak side of the wall seen to before the next one.</text></li>
@@ -67,13 +67,13 @@
     <badTraits><li>Greedy</li></badTraits>
     <hediff>Council_Office_Quartermaster</hediff>
     <duties>
-      <li>Answers to dilemmas that cost food, wood or silver cost a quarter less.</li>
-      <li>The quartermaster gets better prices from traders.</li>
+      <li>Dilemma answers and decrees that take goods or silver from the stores take a quarter less.</li>
+      <li>The quartermaster gets 6% better prices from traders.</li>
     </duties>
     <elected>
-      <li>{PAWN_nameDef} means to count the stores twice over, and expects to frown both times.</li>
-      <li>{PAWN_nameDef} wants a ledger of the stores, and says the cook will be the first name in it.</li>
-      <li>{PAWN_nameDef} says the next trader is going to regret coming.</li>
+      <li>{PAWN_nameDef} means to count everything in the stores, twice.</li>
+      <li>{PAWN_nameDef} wants a written record of what goes in and out of the stores.</li>
+      <li>{PAWN_nameDef} means to drive a hard bargain with the next trader.</li>
     </elected>
     <planks>
       <li><key>meals</key><when>MealsShort</when><text>{PAWN_nameDef} points at the empty shelves and promises meals put by before anyone goes hungry.</text></li>
@@ -85,15 +85,15 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Physician</defName>
     <label>physician</label>
-    <description>The colony's chief doctor: runs the hospital, sets bones and decides who's fit to work.</description>
+    <description>The colony's chief doctor: tends the sick and hurt, and each day looks in on everyone who is recovering, which shortens their recovery a little.</description>
     <order>4</order>
     <skills><li>Medicine</li></skills>
     <goodTraits><li>Kind</li></goodTraits>
     <hediff>Council_Office_Physician</hediff>
     <colonyHediff>Council_Office_PhysicianColony</colonyHediff>
     <duties>
-      <li>Everyone heals and fights off illness a little faster.</li>
-      <li>The physician tends wounds and operates more skillfully.</li>
+      <li>Everyone's wounds heal 5% faster and immunity builds 4% faster.</li>
+      <li>The physician tends wounds and operates more skillfully (tending quality up 8%, surgery success up 5%).</li>
     </duties>
     <elected>
       <li>{PAWN_nameDef} plans to wash {PAWN_possessive} hands, look over the sickbeds and make a list of what they lack.</li>
@@ -110,19 +110,19 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Steward</defName>
     <label>steward</label>
-    <description>Looks after the colony's spirits: feasts, festivals, and keeping expectations down to earth.</description>
+    <description>Looks after the colony's spirits. At a gathering the steward attends, everyone else's strain eases a little more, and while the seat is filled people's expectations rise more slowly.</description>
     <order>5</order>
     <skills><li>Social</li><li>Artistic</li></skills>
     <goodTraits><li>Ascetic</li><li>Kind</li></goodTraits>
     <hediff>Council_Office_Steward</hediff>
     <duties>
       <li>Everyone's standards rise a quarter more slowly.</li>
-      <li>The steward gets more out of recreation.</li>
+      <li>The steward gets 15% more out of recreation.</li>
     </duties>
     <elected>
       <li>{PAWN_nameDef} wants to know what everyone would like for the next feast.</li>
-      <li>{PAWN_nameDef} says a colony that never celebrates forgets why it bothers, and means to fix that.</li>
-      <li>{PAWN_nameDef} says a lamp should be left burning in the common room of an evening, as a start.</li>
+      <li>{PAWN_nameDef} says the colony should celebrate more often, and means to see that it does.</li>
+      <li>{PAWN_nameDef} wants the common room kept warm and lit in the evenings, so people have somewhere to gather.</li>
     </elected>
     <planks>
       <li><key>spirits</key><when>LowMood</when><text>{PAWN_nameDef} says spirits are low, and promises more evenings worth staying up for.</text></li>

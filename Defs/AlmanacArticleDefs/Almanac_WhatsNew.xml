@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.269.5</version>
+        <date>19 November 2026</date>
+        <title>The decrees in plain words</title>
+        <points>
+          <li>Every decree now says plainly what it does, with its real numbers and who likes or minds it.</li>
+          <li>The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.</li>
+          <li>A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.269.4</version>
         <date>19 November 2026</date>
         <title>The missions in plain words</title>

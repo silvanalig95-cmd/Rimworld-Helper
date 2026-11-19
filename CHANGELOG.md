@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The decrees in plain words
+
+*19 November 2026, version 0.269.5*
+
+- Every decree now says plainly what it does, with its real numbers and who likes or minds it.
+- The council seats say what each one does in the colony, and the election letter's lines on each winner are plain.
+- A hunting season now marks game even with answers kept off the map, and the marshal speeds only the fighting drills, not apprenticeships or shared meals.
+
 ## The missions in plain words
 
 *19 November 2026, version 0.269.4*
