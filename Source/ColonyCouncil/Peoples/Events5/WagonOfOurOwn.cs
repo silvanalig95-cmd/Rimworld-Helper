@@ -142,7 +142,7 @@ namespace ColonyCouncil
         {
             v.done = true;
             PeopleWorkOn.Release(v.a);
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             var def = BoatBuilders.Vehicle(v.text ?? "");
             Thing made = null;
             if (built && def != null)

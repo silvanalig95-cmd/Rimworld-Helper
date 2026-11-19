@@ -168,7 +168,7 @@ namespace ColonyCouncil
         private static void Finish(Visit v, List<Pawn> crew)
         {
             v.done = true;
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             if (v.stake > 0 || v.due > 0)
             {
                 if (f != null && f.HasGoodwill && !f.IsPlayer && !f.HostileTo(Faction.OfPlayer)) WorldSituationWorker.Goodwill(f, PeopleEvents5Math.MendGoodwill, GoodwillWhy.Helped);

@@ -929,6 +929,26 @@ MODEL = {
                                                "the colony's challengers waiting for the afternoon's bout, while the ring stands"),
     "Peoples/Events5/CircuitRing.cs:fought": ("fixed", 8, 40, "the colony's challengers who fought at the ring, while it stands"),
     "Peoples/Events5/CircuitRing.cs:wins": ("fixed", 8, V, "their wins, one a challenger, while the ring stands"),
+    # The peoples' own events, round 6 (Peoples/Events6/PeopleEvents6Book.cs): the dry spells, wildfires and blights already
+    # rolled for and the burns reckoned, eight keys each; the psychic tides held back, the camps after the fire asked for and
+    # the raids the Banner was hired for, four each; the Banner's contracts, the open one and the last few done, each with its
+    # company and the names it lost (cleared when it is done); the Banner's old soldiers, PeopleEvents6.MaxVeterans kept once
+    # gone. The camps' own states live while the camp does: the tower's rods, the saplings still to plant in the burn.
+    "Peoples/Events6/PeopleEvents6Book.cs:rainRolled": ("cap", (8, 1 / 30), 30, "the dry spells the storm-walkers were rolled for, a home and a condition, eight kept"),
+    "Peoples/Events6/PeopleEvents6Book.cs:tides": ("cap", (4, 1 / 60), 120, "the psychic tides a Conclave watch held back, four kept"),
+    "Peoples/Events6/PeopleEvents6Book.cs:canopyRolled": ("cap", (8, 1 / 60), 30, "the wildfires the thorn-guards were rolled for, a home and a day, eight kept"),
+    "Peoples/Events6/PeopleEvents6Book.cs:burnSeen": ("cap", (8, 1 / 60), 30, "the newest burned tree reckoned for a camp after the fire, a key a home"),
+    "Peoples/Events6/PeopleEvents6Book.cs:blightRolled": ("cap", (8, 1 / 60), 30, "the blights a camp after the fire was rolled for, a home and a day, eight kept"),
+    "Peoples/Events6/PeopleEvents6Book.cs:afters": ("cap", (4, 1 / 60), 100, "the camps after the fire asked for at a fire in the canopy, one a home, four kept"),
+    "Peoples/Events6/PeopleEvents6Book.cs:contracts": ("cap", (4, 1 / 60), 220, "the Banner's contracts on the colony's enemy, the open one and the last few done"),
+    "Peoples/Events6/PeopleEvents6Book.cs:company": ("fixed", 8, 40, "per contract: the company at the site, eight at most, cleared when it is done (counted under contracts)"),
+    "Peoples/Events6/PeopleEvents6Book.cs:lost": ("fixed", 8, V, "per contract: the names the company lost there, eight at most (counted under contracts)"),
+    "Peoples/Events6/PeopleEvents6Book.cs:veterans": ("cap", (const("Peoples/Events6/PeopleEvents6.cs", "MaxVeterans", 6), 1 / 120), 120,
+                                                     "the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone"),
+    "Peoples/Events6/PeopleEvents6Book.cs:hires": ("cap", (4, 1 / 45), 140, "the raids the Banner was hired for, four kept"),
+    "Peoples/Events6/StormTower.cs:rods": ("fixed", 2, 40, "the storm tower's two rods, while the camp stands"),
+    "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
+                                             "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at
