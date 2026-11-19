@@ -429,6 +429,69 @@ public static class StoryWaysTests
                 C(situationKinds.Contains(k), w + ": world situations of the kind " + k + " exist");
             foreach (var k in ext.Element("harmLean")?.Elements("li").Select(x => x.Value) ?? Enumerable.Empty<string>())
                 C(HarmKinds.Of(k) != null, w + ": the hurt " + k + " is a kind of the shared budget");
+
+            // The player, 19 November 2026 ("Some storytellers and fewer traders and fewer fights. That's also good. Depending,
+            // you know, if it's fitting for the scenario, it should also just be reflected in the description"): a way brings
+            // something less often than the base game only where that is its idea (KeptBelowBase), and its description says so.
+            // A shaped way is taken over its year or its arc, and What You Sow at both ends of the deeds; Rimfolk's levers, then
+            // the game's own traders, visitors, travellers, friends in a fight, orbital traders and everyday happenings.
+            var kept = KeptBelowBase.TryGetValue(way, out var keptOf) ? keptOf : Array.Empty<(string key, string said)>();
+            var below = new HashSet<string>();
+            var phases = Enum.GetValues(typeof(ArcPhase)).Cast<ArcPhase>().ToList();
+            foreach (var key in StoryWaysMath.Keys.Where(k => k != StoryWaysMath.RaidReasons))
+            {
+                float v = values.Get(key);
+                float over = shapeOf == StoryShape.Seasons ? Enumerable.Range(0, 4).Average(q => StoryWaysMath.Combine(key, v, shapeOf, q, 0f, ArcPhase.Growth))
+                    : shapeOf == StoryShape.Arc ? phases.Sum(p => StoryWaysMath.Combine(key, v, shapeOf, 0, 0f, p) * StoryWaysMath.PhaseDays(p)) / StoryWaysMath.ArcDays
+                    : shapeOf == StoryShape.Deeds ? new[] { -1f, 0f, 1f }.Min(b => StoryWaysMath.Combine(key, v, shapeOf, 0, b, ArcPhase.Growth))
+                    : StoryWaysMath.Clamp(key, v);
+                if (over < AboutBase) below.Add(key);
+                if (shapeOf == StoryShape.Deeds)
+                    C(StoryWaysMath.Combine(key, v, shapeOf, 0, 0f, ArcPhase.Growth) >= 1f, w + ": " + key + " at the base rate or more for a colony nobody knows anything about");
+            }
+            float Yearly(string incident)
+            {
+                float sum = 0f;
+                foreach (var c in comps.Where(c => c.Element("incident")?.Value == incident))
+                {
+                    float n0 = F(c, "baseIncidentsPerYear");
+                    if (Cls(c).EndsWith("_FactionInteraction")) sum += n0;
+                    else if (Cls(c).EndsWith("_WayVisits"))
+                    {
+                        string lever = c.Element("lever")?.Value ?? StoryWaysMath.Visitors, sh = c.Element("shape")?.Value ?? "None";
+                        float share = sh == "Seasons" ? Enumerable.Range(0, 4).Average(q => Math.Max(StoryWaysMath.Floor, StoryWaysMath.SeasonVisitAccept(lever, q)))
+                            : sh == "Arc" ? phases.Sum(p => Math.Max(StoryWaysMath.Floor, StoryWaysMath.ArcVisitAccept(lever, p)) * StoryWaysMath.PhaseDays(p)) / StoryWaysMath.ArcDays
+                            : sh == "Deeds" ? StoryWaysMath.DeedVisitAccept(lever, 0f) : 1f;
+                        sum += n0 * share;
+                    }
+                }
+                return sum;
+            }
+            // The classic storyteller's (Tools/Balance/StorytellerSim.cs, from the game's def): traders 5 a year, visitors 4,
+            // travellers 6, friends in a fight 15, an orbital trader every 15 days, everyday happenings about every 4.8 days.
+            if (Yearly("TraderCaravanArrival") < 5f * AboutBase) below.Add(StoryWaysMath.Traders);
+            if (Yearly("VisitorGroup") < 4f * AboutBase || Yearly("TravelerGroup") < 6f * AboutBase) below.Add(StoryWaysMath.Visitors);
+            if (Yearly("RaidFriendly") < 15f * AboutBase) below.Add(StoryWaysMath.Allies);
+            if (comps.Any(c => Cls(c).EndsWith("_WayVisits") && c.Element("shape")?.Value == "Deeds"))
+                C(Yearly("TraderCaravanArrival") >= 5f && Yearly("VisitorGroup") >= 4f && Yearly("RaidFriendly") >= 15f,
+                    w + $": a colony nobody knows anything about gets traders, visitors and friends as under the classic storyteller ({Yearly("TraderCaravanArrival"):0.0}, {Yearly("VisitorGroup"):0.0}, {Yearly("RaidFriendly"):0.0} a year)");
+            foreach (var c in comps.Where(c => Cls(c).EndsWith("_OnOffCycle") && c.Element("incident")?.Value == "OrbitalTraderArrival"))
+                if (F(c, "numIncidentsRange") / (F(c, "onDays") + F(c, "offDays")) < AboutBase / 15f) below.Add("orbital");
+            float everyday = comps.Where(c => Cls(c).EndsWith("_CategoryMTB") && c.Element("category")?.Value == "Misc"
+                                              && c.Element("allowedTargetTags")?.Elements("li").Any(li => li.Value == "Map_PlayerHome") == true).Select(c => F(c, "mtbDays")).DefaultIfEmpty(99f).Min();
+            if (everyday > 4.8f / AboutBase) below.Add("everyday");
+            foreach (var c in comps.Where(c => Cls(c).EndsWith("_WayVisits") && c.Element("lever")?.Value == StoryWaysMath.Allies && c.Element("shape")?.Value == "Arc"))
+                C(phases.All(p => F(c, "baseIncidentsPerYear") * StoryWaysMath.ArcVisitAccept(StoryWaysMath.Allies, p) >= 15f),
+                    w + ": friends in a fight at least as often as the classic storyteller's in every part of the arc");
+            foreach (var key in below)
+                C(kept.Any(x => x.key == key), w + ": " + key + " below the base rate only where the way is about it");
+            foreach (var (key, said) in kept)
+            {
+                C(below.Contains(key), w + ": " + key + " is listed as brought less often, and is");
+                C(desc.Contains(said), w + ": what it brings less often (" + key + ") is said in its description: \"" + said + "\"");
+            }
+            if (!atBase) C(kept.Length > 0 || desc.Contains("Nothing comes less often than in the base game."), w + ": a way with nothing below the base rate says so");
+            if (QuietTimes.TryGetValue(way, out var quiet)) C(desc.Contains(quiet), w + ": its quiet season or time is said: \"" + quiet + "\"");
         }
         foreach (var kinds in Enumerable.Range(0, 4).Select(StoryWaysMath.SeasonSituations)
                      .Concat(Enum.GetValues(typeof(StoryTrouble)).Cast<StoryTrouble>().Select(StoryWaysMath.TroubleKinds))
@@ -510,6 +573,56 @@ public static class StoryWaysTests
         C(!Src("Lean/Sched.cs").Contains("StoryDirection") && !Src("Lean/Sched.cs").Contains("StoryWay"), "no new pass: the ways read the world when asked, and the storyteller's parts run on the game's own clock");
         return n;
     }
+
+    /// <summary>Within this share of the base rate counts as at it ("about as often").</summary>
+    private const float AboutBase = 0.98f;
+
+    /// <summary>
+    /// What a way brings less often than the base game, kept because it is the way's idea, and the words its description
+    /// says it with (the player, 19 November 2026; DESIGN.md "The storytellers' levers below the base rate"). Keys are
+    /// Rimfolk's levers (for the game's own parts: traders, visitors with travellers, allies for friends in a fight), and
+    /// "orbital" and "everyday" for the game's orbital traders and the home's everyday happenings. Neighbours' fights and
+    /// What You Sow's traders and friends for a colony of no name went back to the base rate; The Long Road, Neighbours and
+    /// Crossroads bring nothing less often.
+    /// </summary>
+    private static readonly Dictionary<StoryWay, (string key, string said)[]> KeptBelowBase = new()
+    {
+        // The Turning Year: each season's own happenings take the place of some everyday ones.
+        [StoryWay.TurningYear] = new[] { ("everyday", "in place of some of the everyday ones") },
+        // What You Sow: the colony's deeds come back to it, fewer of everyone for cruelty, fewer fights for kindness.
+        [StoryWay.WhatYouSow] = new[]
+        {
+            (StoryWaysMath.Traders, "fewer traders, visitors and camps"), (StoryWaysMath.Visitors, "fewer traders, visitors and camps"),
+            (StoryWaysMath.Camps, "fewer traders, visitors and camps"), (StoryWaysMath.Letters, "fewer letters, favours and missions"),
+            (StoryWaysMath.Favours, "fewer letters, favours and missions"), (StoryWaysMath.Missions, "fewer letters, favours and missions"),
+            (StoryWaysMath.Allies, "fewer friends in a fight"),
+            (StoryWaysMath.Fights, "Rimfolk's events that can end in a fight and schemes against the colony come less often"),
+            (StoryWaysMath.Schemes, "Rimfolk's events that can end in a fight and schemes against the colony come less often")
+        },
+        // Old Powers: the danger is strange, not other people; omens in place of some everyday happenings.
+        [StoryWay.OldPowers] = new[] { (StoryWaysMath.Fights, "Rimfolk's events that can end in a fight"), ("everyday", "in place of some of the everyday happenings") },
+        // Lean Years: fewer people come by, fewer good things turn up, and the danger is the land more than other people.
+        [StoryWay.LeanYears] = new[]
+        {
+            (StoryWaysMath.Traders, "traders about half as often"), (StoryWaysMath.Visitors, "visitors, travellers and camps a little less often"),
+            (StoryWaysMath.Camps, "visitors, travellers and camps a little less often"), ("orbital", "orbital traders less often"),
+            (StoryWaysMath.Fights, "Rimfolk's events that can end in a fight"), ("everyday", "everyday happenings also come less often")
+        },
+        // Rise and Fall: the good years are lighter, the trouble heavier and the region's own news.
+        [StoryWay.RiseAndFall] = new[]
+        {
+            (StoryWaysMath.Fights, "Rimfolk's events that can end in a fight and schemes against the colony less often"),
+            (StoryWaysMath.Schemes, "Rimfolk's events that can end in a fight and schemes against the colony less often"),
+            (StoryWaysMath.Situations, "less other news from the region")
+        }
+    };
+
+    /// <summary>The shaped ways' quiet times, which their descriptions say (about the base rate over the year or the arc).</summary>
+    private static readonly Dictionary<StoryWay, string> QuietTimes = new()
+    {
+        [StoryWay.TurningYear] = "few traders or camps",
+        [StoryWay.RiseAndFall] = "few traders, visitors or camps"
+    };
 
     private static float F(XElement e, string name) => float.Parse(e.Element(name)?.Value ?? "0", Inv);
 

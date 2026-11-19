@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Storytellers say what they bring
+
+*19 November 2026, version 0.266.8*
+
+- The storytellers now say what they bring less often: Lean Years fewer traders, visitors, camps and fights, Old Powers fewer fights, and What You Sow fewer of everyone for a cruel colony and fewer fights for a kind one. The others say nothing comes less often.
+- Neighbours no longer sends fewer of Rimfolk's events that can end in a fight, since revenge, debts and old enemies are its own story.
+- Under What You Sow a colony nobody knows anything about gets traders, visitors and friends as under the classic storyteller, and under Rise and Fall friends in a fight come at least that often in the good years too.
+- The storyteller descriptions and the Almanac name what each brings more of, with Lean Years' and Crossroads' orbital traders put right.
+
 ## A day off, felt
 
 *19 November 2026, version 0.266.7*

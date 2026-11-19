@@ -3182,25 +3182,35 @@ omens, and who a raid comes from):
 
 - **The Long Road**: the world calls the colony out. Raids at the gate at the classic pace, more
   ambushes and chance meetings on the road, quests a little more often; more letters from the region, favours called
-  in, camps and missions.
+  in, camps, missions, traders and travellers. Nothing comes less often than in the base game.
 - **Neighbours**: the peoples around are the story. Raids at the classic pace, most of them from a people
   with a reason (a wrong the colony did them, an old enmity), and the raid's letter names it; allies and friends come to
-  a fight more often; more letters, favours, calls to arms and visitors.
+  a fight more often; more letters, favours, calls to arms, traders and visitors. Nothing comes less often than in the
+  base game: Rimfolk's events that can end in a fight are its own story and come at the game's rate.
 - **The Turning Year**: the calendar decides. Quiet springs with sickness at the thaw, summers of heat waves and blight,
-  trade and camps in autumn, cold snaps and the hungry raids of late winter; about the classic pace over a year.
+  trade and camps in autumn, cold snaps, few traders and the hungry raids of late winter; about the classic pace over a
+  year, traders and visitors too.
 - **What You Sow**: the colony's deeds decide, as the peoples remember them. Raids at the classic pace whatever it
-  does; cruelty brings them from the wronged and thins the roads to a quarter; kindness brings traders, visitors and friends.
+  does; a colony nobody knows gets traders, visitors and friends as in the base game; cruelty brings raids from the
+  wronged and fewer traders, visitors, camps, letters and friends, down to a quarter; kindness brings more of them, and
+  fewer of Rimfolk's events that can end in a fight and fewer schemes.
 - **Old Powers**: the world feels watched. Raids nearly at the classic pace, stranger threats making up the rest, omens and strange nights
   (eclipses, auroras, a psychic calm), more pilgrims and seers, the old powers' own strange happenings about twice as
-  often (below), and word of strange skies. It names nothing.
+  often (below), and word of strange skies; the omens take the place of some everyday happenings, and Rimfolk's events
+  that can end in a fight come less often. It names nothing.
 - **Lean Years**: scarcity is the enemy. Raids at the classic pace, a hardship about every week (blight
-  most, cold snaps, heat waves, storms), few traders, and word of famine, drought and hard winters.
+  most, cold snaps, heat waves, storms), and word of famine, drought and hard winters. Fewer people come by: traders
+  about half as often, visitors, travellers and camps a little less, and Rimfolk's events that can end in a fight less
+  often; cargo pods, wanderers and the other everyday happenings come less often too.
 - **Rise and Fall**: arcs of two years, one year of rise and one year of fall: a year of growth with traders, visitors
-  and camps in plenty, then a year that begins with the region's word of a trouble (a war, a plague, a famine, a hard
-  winter, a strange sky), brings the trouble itself about a season later and ends with the rebuilding; about the classic
-  pace over the two years.
+  and camps in plenty and fewer fights, then a year that begins with the region's word of a trouble (a war, a plague, a
+  famine, a hard winter, a strange sky), brings the trouble itself about a season later, with few traders and more
+  fights, and ends with the rebuilding; about the classic pace over the two years.
 - **Crossroads**: the colony as a market. Traders twice as often, visitors and travellers more, favours and debts;
-  raids at the classic pace, larger as it grows rich.
+  raids at the classic pace, larger as it grows rich. Nothing comes less often than in the base game.
+
+Something comes less often than in the base game only where that is what the way is about, and its description on the
+storyteller screen says what (the player, 19 November 2026).
 
 Six more only bring more of their own kind of thing: nothing comes less often than in the base game, nothing in them runs
 longer than a season, and their threats come on the classic cycle.
@@ -3226,7 +3236,8 @@ clock comes round it draws one event of its kind from every event the game, the 
 kind, each by its own chance and only if it can happen now, so a mod's new event comes with its kind.
 
 **Every kind of event can still come.** A way shifts the odds toward something but shuts nothing out: nothing of Rimfolk's
-comes at less than a quarter of its own rate (under the six added last, at less than its own rate at all), every one of
+comes at less than a quarter of its own rate (and below its own rate only where that is the way's idea, said in its
+description; under the six added last, never below its own rate at all), every one of
 the game's kinds of event (the DLCs' and your mods' among them) keeps a route under every way, and no way rules any
 event out. Harm keeps the game's own rate: each way's threats come at the classic storyteller's pace or less over a
 year or an arc, its sickness about as often as the game's own, and Rimfolk's everyday hurts stay within the same budget

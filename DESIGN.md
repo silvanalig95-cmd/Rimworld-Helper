@@ -16516,7 +16516,7 @@ rates. You can always just use the base rate level, and the description should b
 impact is"; then "rise and fall, just do 1 year rise and 1 year fall ... And the turning year you can leave as it is.
 And I like all the new proposals, storytellers"; and the go, "alright, i'd like the storytellers and fixes/small
 improvements". The Turning Year and the other seven's levers are as they were (whether the eight's below-base levers go
-back to base is still the player's open question).
+back to base was answered on 19 November 2026: the section "The storytellers' levers below the base rate" below).
 
 **The six** (`StoryWay.OpenGate` to `FeastDays`, added at the end of the enum so saves and settings keep the first
 eight's numbers; `StoryWaysMath.AtBaseOrMore`; `listOrder` 69 to 74; their plates by `Tools/make_storyteller_plates.py`).
@@ -16593,6 +16593,48 @@ Gate 10.4 and 13.0, Windfalls 10.8 and 14.0, Sellswords 10.7 and 14.0 against th
 colony (the picks' and quests' `CanFireNow` and `CanRun`, which only the game knows: an escape pod only where Vanilla
 Gravship Expanded allows it, an orbital quest only with a way to orbit, the Banner's squad only with the Banner in the
 world); the population factors thinning Open Gate's joiners; the direction changing a running game.
+
+### The storytellers' levers below the base rate, kept only where they fit (the player's answer, 19 November 2026; released 0.266.8)
+
+The question left open in 0.253.0 was whether the first eight's levers below the base rate go back to it. The player:
+"Some storytellers and fewer traders and fewer fights. That's also good. Depending, you know, if it's fitting for the
+scenario, it should also just be reflected in the description." So a way brings something less often than the base
+game only where that is what the way is about, and its description on the storyteller screen says what; everything
+else is at the base rate. The base rate is 1 for Rimfolk's levers and the classic storyteller's numbers for the game's
+own parts (`Tools/Balance/StorytellerSim.cs`, from the game's def): 5 traders, 4 visitors and 6 travellers a year,
+friends in a fight 15, an orbital trader every 15 days, the home's everyday happenings about every 4.8 days. A way
+shaped by the seasons or the arc is taken over its year or its arc; What You Sow at a colony of no name and at both
+ends of the deeds. Within 2% counts as at the base rate. The threats and sickness are not part of this: they keep the
+classic pace or less, as before.
+
+| Way | Below the base rate before | Decided | Why |
+|---|---|---|---|
+| The Long Road | nothing | its description now says "Nothing comes less often than in the base game" and names what it brings more of that it didn't say: traders (6 a year and Rimfolk's 1.2), travellers (9) and the region's news sooner (situations 1.3) | |
+| Neighbours | fights 0.8 | **back to 1**; nothing below now, and said; the description now also names its trade (6 traders a year), the peoples' stronger memory (1.25) and the region's news (situations 1.2) | Rimfolk's events that may end in a fight (revenge, debts called in, tribute, an old enemy) are this way's own story: fewer of them goes against it |
+| The Turning Year | the seasons' dips (winter camps 0.3, traders 0.4; spring fights 0.5), each averaging 1 over a year; the everyday happenings every 6 days, with the season's own every 12 | **kept**, as the player said on 15 November 2026 ("the turning year you can leave as it is"); the description now says winter's few traders or camps, the season's happenings in place of some everyday ones, and traders and visitors about as often as the classic over a year (5.25 and 3.99) | the seasons are the way |
+| What You Sow | a cruel colony's traders, visitors, camps, letters, favours, missions and friends in a fight; a kind colony's fights 0.6 and schemes 0.4; a colony of no name's traders 4.4 a year, visitors 3.85 and friends 13.2 (0.55 of the peaks 8, 7 and 24) | cruel and kind **kept**, each said; **no name back to the base rate**: `StoryWaysMath.DeedNoName` 0.625 gives 5 traders, 4.4 visitors and 15 friends | the colony's deeds coming back to it is the way; a colony nobody knows anything about has done nothing to get fewer |
+| Old Powers | fights 0.7; the everyday happenings every 6 days, with omens every 8; raids a little slower, strange threats making up the rest | **kept**, all said | the danger is strange rather than other people; the omens are the strange things the way brings (everyday happenings and omens together come more often than the classic's everyday ones); raids with the strange threats keep the classic pace, as before |
+| Lean Years | Rimfolk's traders 0.5, camps 0.8, visitors 0.8 and fights 0.7; the game's traders 2.5 a year, visitors 3, travellers 5, an orbital trader every 21 days; the everyday happenings every 7 days | **kept**, each said in the description, the orbital traders' "half as often" on the Almanac page put right (two thirds) | lean years: fewer people come by, fewer good things turn up, and the danger is the land more than other people |
+| Rise and Fall | over the arc fights 0.82, schemes 0.87 and situations 0.95 (the good years lighter, the trouble heavier, fewer new world events while it runs); friends in a fight 0.6 of 18 a year in the growth and the omens (10.8 a year, 13.2 over the arc) | fights, schemes and situations **kept** and said, with the trouble's few traders, visitors and camps; **friends back to the base rate**: 0.85 of 18 in the good years (15.3), all 18 in the trouble and the rebuilding (16.2 over the arc) | the good years lighter and the trouble heavier are the arc, and the trouble is the region's news; the good years had no reason to send fewer friends |
+| Crossroads | nothing | says so, and names its letters and missions; the orbital traders "about twice as often" put right to "more often" (5 days on, 5 off: one and a half times) | |
+| The six after them | nothing (StoryWaysTests already holds them to it) | their descriptions already say what they bring more of | |
+
+**The direction** (the levers over any storyteller): Neighbours no longer lowers fights; the notes say "fewer fights"
+for Old Powers, Lean Years and What You Sow's kindness, and "fewer traders, visitors, camps and fights" for Lean Years.
+
+**Where**: `Story/StoryWaysMath.cs` (`DeedNoName` in `DeedVisitAccept`; `ArcVisitAccept`'s friends 0.85 in the growth
+and the omens); `Defs/StorytellerDefs/Rimfolk_Storytellers.xml` (Neighbours' fights lever gone, the eight
+descriptions, a comment at the head and at each kept lever); `Languages/English/Keyed/Rimfolk_Story.xml` (three
+direction notes); `Defs/AlmanacArticleDefs/Almanac_Storytellers.xml` (the opening, the floor's line, the table and the
+eight sections; keywords unchanged); README "Ways to play". Tests: `StoryWaysTests` holds every way to the rule: each
+lever, and the game's traders, visitors, travellers, friends, orbital traders and everyday happenings, below the base
+rate over the year, the arc or the deeds only where `KeptBelowBase` lists it for that way, each listed one below it and
+said in the description in the listed words; a way with nothing below says so; the Turning Year's and Rise and Fall's
+quiet times said (`QuietTimes`); a colony of no name at the base rate or more; friends in every part of the arc at the
+classic number or more. Nothing saved.
+
+**What only the game can show**: the longer descriptions on the storyteller screen (the game's description box scrolls
+a long text); traders and friends coming at these numbers in a real colony.
 
 ### The old powers' own strange happenings (the player's go, 14 November 2026; released 0.240.0)
 
