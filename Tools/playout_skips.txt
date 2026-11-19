@@ -357,7 +357,7 @@ Council_WS_Claimants [end:heirOpposed] far away, told
 Council_WS_Claimants [end:captainBacked] far away, told
 Council_WS_Claimants [end:captainOpposed] far away, told
 Council_WS_Claimants [end:captain] far away, told
-Council_WS_PeaceTalks [ask/0] the talks come days later, by the world event's own code
+Council_WS_PeaceTalks [ask/0] the delegations come to the gate days later, and the talks are settled by the world event's own code
 Council_WS_PeaceTalks [end:peace] told after it happened
 Council_WS_Mercenaries [end:won] the company's part; the share is left at the gate (already real)
 Council_WS_BanditRoad [robbed/1] a refusal
@@ -366,6 +366,7 @@ Council_WS_BanditRoad [robbed/1] a refusal
 Council_WS_Drought [herders/1] the strangers' part: the herders water their animals
 Council_WS_Drought [herders/2] a refusal
 Council_WS_NewRoad [route/1] the surveyors' part, far off
+Council_WS_NewRoad [builder/0] the work at the river crossing, far off (the colonist lent stays at the colony: a to-do in docs/HANDOFF.md)
 Council_WS_HolyYear [alms/1] a refusal
 Council_WS_HolyYear [end:graced] far away, told
 Council_WS_BanditLordFalls [captive/0] already real: the newcomer joins

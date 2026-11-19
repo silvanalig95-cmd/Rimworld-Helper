@@ -57,7 +57,7 @@
           <li>{FACTION} want food</li>
         </titles>
         <texts>
-          <li>[theirLowtech] A cart from {PLACE} is at the gate, and the driver has a purse. {FACTION} lost half a season to the blight and are buying food wherever it can be had: {COUNT} portions, any kind, at twice what it's worth.\n\nIt's a good price. It's also the colony's food, and the blight may be on its way here.</li>
+          <li>[theirLowtech] A cart from {PLACE} is at the gate, and the driver has a purse. {FACTION} lost half a season to the blight and are buying food wherever it can be had: {COUNT} portions, any kind, at twice what it's worth.\n\nIt's a good price, but it's the colony's food, and the blight may be on its way here.</li>
           <li>[theirHightech] {FACTION}'s grain buyer has driven up from {PLACE} with an empty truck bed and a full purse. They want {COUNT} portions of food, any kind, and will pay twice what it's worth.\n\nThe colony's own fields may be next.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -183,7 +183,7 @@
       <li>Short of medicine</li>
     </titles>
     <texts>
-      <li>[theirLowtech] A wet spring rotted the healroot in the ground across the region, and the herb-women at {PLACE} have nothing left on their shelves. {FACTION} are binding wounds with clean cloth and hope, and paying whatever they must for anything that heals.\n\nThe colony has medicine in its stores, and people know it.</li>
+      <li>[theirLowtech] A wet spring rotted the healroot in the ground across the region, and the herb-women at {PLACE} have nothing left on their shelves. {FACTION} are binding wounds with clean cloth and nothing else, and paying whatever they must for anything that heals.\n\nThe colony has medicine in its stores, and people know it.</li>
       <li>[theirHightech] The medicine that comes up the road to {PLACE} has stopped coming: a convoy lost, the traders say, and nobody in a hurry to send another. {FACTION} are down to their last kits and rationing them.\n\nThe colony has medicine in its stores, and people know it.</li>
     </texts>
     <summaries>
@@ -206,7 +206,7 @@
           <li>{FACTION} want medicine</li>
         </titles>
         <texts>
-          <li>{FACTION}'s healer has walked up from {PLACE} with a purse and a list of the sick. {FACTION} need {COUNT} doses of medicine, and will pay far more than it's worth.\n\nIt's a good price. It's also the medicine the colony would use on its own.</li>
+          <li>{FACTION}'s healer has walked up from {PLACE} with a purse and a list of the sick. {FACTION} need {COUNT} doses of medicine, and will pay far more than it's worth.\n\nIt's a good price, but it's medicine the colony may need for its own people.</li>
           <li>[theirLowtech] The herb-woman from {PLACE} is at the gate with her basket empty and a purse in it. She asks for {COUNT} doses of whatever the colony heals with, and will pay far more than it's worth.\n\nThe colony would be that much shorter itself.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -251,7 +251,7 @@
           <li>Healroot for sale</li>
         </titles>
         <texts>
-          <li>A herb-seller of {FACTION} has come back from the high valleys with healroot nobody else has found this year, and stopped at the colony's gate on the way to {PLACE}. {COUNT} bundles of it, at a price that would have been thought robbery last season.\n\nThis season it may be cheap.</li>
+          <li>A herb-seller of {FACTION} has come back from the high valleys with healroot nobody else has found this year, and stopped at the colony's gate on the way to {PLACE}. {COUNT} bundles of it, at a price that would have been called robbery last season, though this season it may be a bargain.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

@@ -126,6 +126,20 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
   when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
   now one entry above the newest release line ("Choose the material when ordering a piece").
+- **To do when the player asks (found 19 November 2026 in the plain-words pass on the region map; no words of the
+  player's yet): a colonist a world event sends to a far town stays at the colony.** Fifteen answers of thirteen world
+  events say a colonist goes off to another people's town for a day or several (to advise, build, teach, read old
+  writing, speak or keep watch), and the colonist's skill and the people's goodwill count at once, but nobody leaves
+  the map: the drought's well and the road's bridge ("Lend them {A_nameDef} for a day", `Council_WS_Region`), the
+  herdsman in the sickness of the herds, the great fire's roofs and the bumper harvest's sickle (`Rimfolk_WS_Beyond`;
+  there too the blood feud's talks, told at the colony's table with neither family on the map), the toll's petition, the iron's smiths and the exiles' plea (`Rimfolk_WS_Beyond2`), the
+  rebuilt bridge (`Rimfolk_WS_FollowUps`), the vault's old writing and the closed markets' talks (`Rimfolk_WS_Wider`),
+  the moot's speaker and the old thrumbo's watch (`Rimfolk_WS_Wider2`), and the other settlers' traps
+  (`Rimfolk_WS_World`). The plain-words pass made their words tell it as set going, with no time that can't have come
+  ("{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge"), and the road's
+  builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
+  storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
+  {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -385,7 +399,26 @@ repo.
   for seven lines). Left as the player said: the decrees' `support` and `oppose` lines and `Rimfolk_DecreeLines_Year`
   (talk, said in bubbles and quoted in the letters), the militia's first muster's `lines` (speech), the co-sign lines
   and the meeting's pools (talk), the decrees' and seats' moods (`ThoughtDefs`) and their hediffs (ailments).
-  Still to pick, when the player asks: the gods and faith, the peoples, the region map, the Almanac, What's new.
+  The region map, done (19 November 2026, the same go; built, not released): the entry "Plain words: the region map"
+  above the newest release line. Files taken: the world events in `Defs/WorldSituationDefs/` (the 25 files
+  `Council_WS_Hardship`, `_Land`, `_Mods_Factions`, `_Places`, `_Powers`, `_Region`, `_Warlord`, and `Rimfolk_WS_Beyond`,
+  `_Beyond2`, `_FollowUps`, `_GrownTown`, `_Legend`, `_Mods_Peoples`, `_New`, `_Region`, `_RiseFall`, `_Run`,
+  `_TownRaid`, `_Variety2`, `_Variety3`, `_Variety3_Roads`, `_WarlordSon`, `_Wider`, `_Wider2`, `_World`: names,
+  titles, the letters, summaries and beats' texts, the answers' labels and the deeds the chronicle keeps, the endings
+  and their chronicle lines, the lines kept in `SituationText`; the answers' outcomes and the message beats, made plain
+  in 0.251.0, read again for agreement and changed where they disagreed with the map; the moods' five files
+  `Council_WS_Misc`, `_Thoughts`, `_Thoughts_Region`, `Rimfolk_WS_Beyond_Thoughts`, `_Wider_Thoughts` left), the
+  storylines' frames in `Defs/StorylineDefs/` (`Rimfolk_Storylines`, `_Round2`, `_Round3`: read, already plain; their
+  parts are the missions'), the region's follow-ups (the warlord's son and the town that grew: `Rimfolk_WS_WarlordSon`,
+  `Rimfolk_WS_GrownTown`, `Rimfolk_WS_FollowUps`, and the Keyed words of `World/Region/FollowUps.cs` in
+  `Rimfolk_FollowUps.xml`) and the memory of single colonists (`World/ColonistMemory.cs`, its Keyed words in
+  `Rimfolk_ColonistMemory.xml`: read, already plain), and the Keyed words of the region map and its window read again
+  (`Rimfolk_Region`, `Rimfolk_RegionMap`, `Rimfolk_RegionVariants`, `Rimfolk_RegionVariants_Voices`, `Rimfolk_Hamlets`,
+  `Rimfolk_RaidersCamps`, `Rimfolk_TradingPosts`, `Rimfolk_RiseFall`, `Rimfolk_WorldSituations`, the world events
+  corner's keys of `Rimfolk_News`; plain since the interface batches but for the founder's first letter). Left as the
+  player said: the moods (`ThoughtDefs`), the speech in the effects' `lines`, and the region's bubbles
+  (`CC_RaidCamp_Say_*`, `CC_FarNews_Say_*`, `CC_Travel_Quarrel_Say_*`).
+  Still to pick, when the player asks: the gods and faith, the peoples, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -398,6 +431,70 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.270.1, **Plain words: the region map** (19
+  November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
+  write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
+  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  nineteenth batch of the plain-words pass: the region around the colony and the world beyond it as the player reads
+  it. The 78 world events (their names, start letters, summaries, beats, answers, endings and chronicle lines), the
+  storylines' frames, the region's follow-ups (the warlord's son, the town that grew, rebuilding, the road reopened),
+  the memory of single colonists, and the Keyed words of the region map and its window. File list in the to-do entry
+  "Rimfolk's text in plain words".
+  - **What changed.** About 3,500 lines read in the world events (1,141 letters and endings, 620 labels, 550 titles,
+    454 outcomes, 207 chronicle lines, 200 deeds, 159 names, 102 summaries), about 550 in the storylines' frames and
+    about 840 Keyed lines; 389 rewritten: 291 letters and endings, 81 outcomes (made plain in 0.251.0, changed only
+    where they disagreed with the map), 8 summaries, 4 answers' labels, 3 of the warlord's and the locusts' extra lines,
+    and 2 Keyed lines. The storylines, the follow-ups' and the colonists' memory's Keyed words and the region map's
+    were already plain. Images and riddles said plainly: the great herds' "the ground shakes at dusk, the birds follow
+    the dust" is the approved sample ("Large herds are crossing the area"), "the far country has emptied into the
+    region", "a war on the wind", "the way a fire does under ash", "the colony's name is said hard in their house",
+    "It isn't quite true... It isn't quite untrue either" ("only partly true"). Wry last lines say what is so ("Some of
+    that may even be true", "The stories about {X_objective} will last longer than some of the cures", "the colony
+    will take that", "which may be the point", "now that it can't argue", "Everyone has a new respect for nails").
+    The Empire's ban on drink and the other settlers' hunters use the approved samples of `docs/text-style-samples.md`.
+  - **Put right against the code: the hour.** A world event's letters come at any hour (a beat at its day after the
+    start, an ending when it times out or is called), so about 60 lines that named an hour that may not have come
+    ("arrived at noon ... By evening it was done", "left the colony at dawn", "came in out of the snow at dusk", "this
+    morning", "before dark", "tonight") now name none or one that has passed ("last night", "yesterday"). Hours a
+    visit's own effect keeps are true as written: the mourners pass in the afternoon (`hourFrom` 13 to 18), the
+    herders and the great caravan come toward evening, the pilgrims sing after dark.
+  - **Put right against the code: what the map shows.** Where the words named someone at the gate that no effect
+    brought, the words now say a message came (the plague's first rider, the bandit's hoard map, the mercenary
+    captain's offer, the warlord's second price), or the map now shows them (below); a herald or envoy who may be a
+    woman is no longer "he". What is told as done is what the effects do at once: the healer has come and treats the colonist
+    (`SituationWorker_Healer`), the fair's and the strike's silver is on its way with a courier (`Couriers.PaySilver`),
+    the stargazer's colonist "will sit up" with her (a visit at 21 to 23 h), the mage "sits up" studying the surge with
+    no old stones on a hill the colony may not have; no well, wall, stream, ridge or hill is named where a colony may
+    have none (the comet's watch is by a fire, the stargazer on the far ground). The strange herds' summary said a
+    careless handler "may regret trying"; the creature only bolts (`Council_Evt_RareCreature`), and it says so, in the
+    Almanac too. Three small def changes make the map true where the whole letter is about people at the gate: the gold
+    fever's prospector comes to the gate with his mule (`VisitEffect_AtGate`), the war of words' two preachers stand at
+    the gate, one of each creed (the second only while its people is at peace with the colony), and the peace talks'
+    two delegations come to the gate a day or two after the answer and stay two nights before the talks are settled
+    (`VisitEffect_Come` with `holdBeat` "talks"). Fifteen answers that send a colonist to a far town for days still
+    leave them at the colony: their words tell it as set going, and the to-do "a colonist a world event sends to a far
+    town stays at the colony" holds the rest.
+  - **Left as they were.** The moods (`ThoughtDefs`), the speech in the effects' `lines`, the region's bubbles,
+    ordinary jokes and quoted words (the Empire's levy letter, the canvassers, the work song of the stone road, the
+    song about the colony's long table), the medieval founder's "greeting", and every tag, placeholder and key; the
+    four lines of a raid on a town the colony was that `Lean/ShippedLines.cs` pins stay word for word. One placeholder
+    was dropped on purpose: the healer's leaving no longer has the colonist walk the healer to the edge of the land,
+    which nothing staged.
+  - **Code map.** No code changed: def text in 21 of the 25 world events' files (`Rimfolk_WS_GrownTown`, `_Run`,
+    `_TownRaid` and `_WarlordSon` were read and needed nothing), the three def changes in `Council_WS_Mods_Factions.xml` and
+    `Council_WS_Powers.xml` (a commit of their own), the founder's first letter in `Rimfolk_Region.xml`, five rows of
+    the Almanac's world events table (`Almanac_WorldSituations.xml`, keywords unchanged), two README lines, one line
+    added to `Tools/playout_skips.txt` and one reason there updated, DESIGN.md (the new section "The region's words
+    against the map").
+  - **Can't be checked without the game.** How the plainer letters read beside the game's own; the prospector and the
+    preachers waiting at the gate with their letters, and the delegations' two nights at the gate before the peace
+    talks' letter.
+  - **Try in the game.** Dev actions "Rimfolk": "Start world event..." with gold fever (Settlers), a war of words
+    (Ideology) and peace talks (two neighbors at war with each other), then "Next world event beat now": the prospector
+    and the two preachers stand at the gate with their letters; host the talks, and the two delegations come to the
+    gate within two days and stay two nights before the ending letter. Start a famous healer and read the visit's
+    letter at any hour: it names no noon and no evening.
+  - **Mods that would help.** None for this; it is text and three def settings.
 - 0.270.0, **The peoples' own events, round 6**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new

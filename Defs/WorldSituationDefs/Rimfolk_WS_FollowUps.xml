@@ -37,8 +37,8 @@
       <li>After {TALE}</li>
     </titles>
     <texts>
-      <li>{FACTION} are counting what {TALE} cost them. Burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again. They will need timber, stone, skilled hands and a great deal of soup.</li>
-      <li>[theirLowtech] The fighting of {TALE} has moved on, and {FACTION} are coming back to their villages around {PLACE}: what's left of them. The old people say it will take a generation. The young people have already started on the bridge.</li>
+      <li>{FACTION} are counting what {TALE} cost them: burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again, and they will need timber, stone, skilled hands and a lot of food.</li>
+      <li>[theirLowtech] The fighting of {TALE} has moved on, and {FACTION} are coming back to what is left of their villages around {PLACE}. The old people say rebuilding will take a generation, but the young people have already started on the bridge.</li>
       <li>[theirHightech] {FACTION} have published a rebuilding plan for {PLACE} after {TALE}: a long list of everything that was broken, and a shorter list of everything they have to mend it with. They are asking every neighbor for help with the difference.</li>
       <li>[afterHelped] {FACTION} have not forgotten that the colony stood by them through {TALE}. Now they are rebuilding, and the colony is the first place they've sent to.</li>
       <li>[their:friend] {FACTION} are rebuilding after {TALE}. Their message to the colony ends with a line for {FRIEND_nameDef}: there's a new house going up at {PLACE}, and they'd like {FRIEND_objective} to see it finished.</li>
@@ -113,7 +113,7 @@
         <options>
           <li>
             <label>Send {A_nameDef} to build</label>
-            <outcome>{A_nameDef} goes to {PLACE} with a mallet and a plumb-line and comes back a week later, tired and thinner, having built a bridge that {FACTION} have already named after the colony.</outcome>
+            <outcome>{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1800</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
@@ -148,7 +148,7 @@
         <options>
           <li>
             <label>Feed them on their way</label>
-            <outcome>The colony carries bread and soup out to the gate, and {FACTION}'s people eat it standing up, then walk on toward {PLACE} with full bellies.</outcome>
+            <outcome>The colony carries food out to the gate, and {FACTION}'s people eat it standing up, then walk on toward {PLACE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food carried out to the gate</label><what>rawfood</what><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -238,7 +238,7 @@
       <li>[after:Council_WS_HardWinter] The snow has gone from the passes, and the road that {TALE} closed is open again. Traders who sat out the winter in the far towns are on the move, all at once, with everything they couldn't sell.</li>
       <li>[after:Council_WS_Flood] The water has gone down and the fords are passable again after {TALE}. The river road is open, muddy and crowded with every trader who waited it out.</li>
       <li>[after:Council_WS_Plague] The quarantine is over. {TALE} has burned out, the gates of the towns are open again, and the traders who were shut out for weeks are hurrying back to their old routes.</li>
-      <li>[after:Council_WS_BanditRoad|after:Council_WS_BanditLordFalls|after:Council_WS_Warlord] The road is safe again after {TALE}. The first caravan through didn't believe it and came with twice the usual guards. The second came with its music playing.</li>
+      <li>[after:Council_WS_BanditRoad|after:Council_WS_BanditLordFalls|after:Council_WS_Warlord] The road is safe again after {TALE}. The first caravan through came with twice the usual guards, just in case, and the next came with its music playing.</li>
       <li>[after:Council_WS_Toll] The toll chain is off the road, and the traders who went the long way around are coming back the short way, all of them, at once.</li>
       <li>[after:Council_WS_Embargo] With {TALE} over, every market in the region is open again, and the carts that were turned back all season are on the road in a crowd, with a season's goods to sell.</li>
     </texts>
@@ -310,7 +310,7 @@
         <options>
           <li>
             <label>Welcome them to stop</label>
-            <outcome>Word goes down the road that the colony welcomes caravans at its well. The next one will stop.</outcome>
+            <outcome>Word goes down the road that the colony welcomes caravans to stop. The next one will.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Neighbors</who></li>
             </effects>
@@ -333,8 +333,8 @@
         </titles>
         <texts>
           <li>The first rush on the reopened road is over. Caravans still come, but at their usual pace again, and the dust has settled.</li>
-          <li>[waystop] The rush is over, but the colony's well has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
-          <li>[contract] The rush is over. The merchant house's last caravan of the season brought a note saying the colony's meals were the best of the journey, and a purse of silver to say so properly.</li>
+          <li>[waystop] The rush is over, but the colony has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
+          <li>[contract] The rush is over. The merchant house has sent a note saying the colony's meals were the best of the journey, and a purse of silver to say so properly.</li>
         </texts>
         <chronicle>The road reopened after {TALE}.</chronicle>
         <effects>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## World events in plain words
+
+*19 November 2026, version 0.270.1*
+
+- World events in plain words: their letters, summaries and endings say what happens, who does it and why.
+- World event letters no longer name an hour that hasn't come yet, and no longer mention people at the gate, or a well, wall or hill, that aren't on the map.
+- The gold fever's prospector and the war of words' two preachers now wait at the gate with their letters, and the peace talks' delegations stay two nights at the colony's gate before the talks are settled.
+
 ## The peoples' own events, round 6
 
 *19 November 2026, version 0.270.0*
