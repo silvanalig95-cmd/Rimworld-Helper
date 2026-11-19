@@ -266,6 +266,25 @@ PLAY = {
     "DilemmaEffect_WheelYard": "a yard at the edge",
     "DilemmaEffect_YardMend": "mended where they are",
     "DilemmaEffect_YardScrap": "the scrap carried out",
+    # The peoples' own events, round 6 (Peoples/Events6/): the storm-walkers' night by their rods and the rain at first light,
+    # the reader's hour beside the one the drone touches worst, the storm tower's camp and the night's watch at its mast,
+    # the thorn-guards beating out the fire (or walking off), the plot sown beside the grower, the camp in the burn and the
+    # planter beside them, the contract's march and the company at the site, the old soldier and his horse taken in and the
+    # muster's road, the Banner beside the colony or in the raid, the company's camp at the edge and a fighter enlisted.
+    "DilemmaEffect_BreakDrought": "a night by the rods, rain at first light",
+    "DilemmaEffect_TideReader": "an hour sat beside them",
+    "DilemmaEffect_StormTower": "a camp on the high ground",
+    "DilemmaEffect_TowerWatch": "the night's watch at the mast",
+    "DilemmaEffect_CanopyFire": "the fire beaten out",
+    "DilemmaEffect_OldWoodSeeds": "a plot sown",
+    "DilemmaEffect_AfterFire": "a camp in the burn",
+    "DilemmaEffect_AfterPlanter": "planting beside them",
+    "DilemmaEffect_BannerContract": "the company at the site",
+    "DilemmaEffect_OldSoldier": "a veteran and a horse taken in",
+    "DilemmaEffect_BannerMuster": "the road to the muster",
+    "DilemmaEffect_OtherSideContract": "the Banner when the raid comes",
+    "DilemmaEffect_CompanyMarch": "a company at the edge",
+    "DilemmaEffect_CompanyEnlist": "the road to the company",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

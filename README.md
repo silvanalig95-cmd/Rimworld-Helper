@@ -4712,6 +4712,25 @@ Framework and Vanilla Vehicles Expanded a fixer builds the colony **a wagon of i
 age) at the gate from its stores; and when a Wheel town moves near, its **yard stops by** for three days at the edge with a
 scrap market and a mending tent.
 
+**The peoples' own events, the sixth round.** Ten more, from the Stormglass Conclave, the Mossborn and the Ashen Banner,
+each only while that people is at peace with the colony. In a drought or a heat wave two **storm-walkers** of the Conclave
+set their rods on the colony's high ground at dusk, keep the night beside them (with the colony's best at the fields, if it
+likes) and **bring the rain** at first light, one time in four as a thunderstorm. While the Conclave watches the colony's
+sky, a psychic **drone or soothe is read ahead** like the weather and its warning names everyone it will touch; when the
+drone comes, a reader sits an hour with whoever it hits hardest. In the stormy months two readers and an apprentice camp a
+week on the high ground as a **storm tower** with a glass mast and rods that take the lightning near them, ask the colony's
+grower to sit a night watch, and leave a sealed vial and the season's forecast. When a wildfire takes the colony's woods,
+the **Mossborn's** thorn-guards come running to **beat it out** beside the colony's people; an herb-trader brings **seeds of
+the old wood** (Vanilla Plants Expanded and Alpha Biomes first) and sows a plot of them with the colony's grower; and after
+a fire or a blight, grove-keepers **camp in the burn** for a week to cut the burned trees and replant it, asking only food
+and that the colony fell nothing within their planting. A captain of the **Banner** offers **a contract on the colony's
+enemy**: the company marches on a hostile camp within reach and comes in beside the colony's fighters there, half the
+silver found there theirs by the contract; an **old soldier** of theirs settles with the colony with a war-horse and is
+called to the yearly muster; when a people at war with the colony **hires the Banner** for its next raid, a sergeant comes
+under a white flag, and the colony can buy the contract, pay them to stand aside, or let them march; and **a company on the
+march** camps a night or two at the edge, drills at dawn, buys food and may take one of the colony's fighters along for a
+season.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval

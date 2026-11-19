@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 6 (docs/peoples-events-proposals.md, items 48, 49, 50, 52, 53, 54, 55, 56, 57 and 58;
+    Source/ColonyCouncil/Peoples/Events6/). Each only from a people of its calling at peace with the colony, each played out
+    on the map. Six come only from code when their moment comes (base chance 0): the storm-walkers in a dry spell, the reader
+    when a drone the watch foresaw comes, the thorn-guards at a fire in the canopy, the grove-warden after a fire or a blight,
+    the Banner's muster for its old soldier, and the sergeant whose people were hired against the colony. Two of them come once
+    their people are already at work, so no answer means the first: the reader sits with the one the drone touches worst,
+    and the thorn-guards beat the fire out. {DEAD}, {TALE}, {BEAST} and {RELATION} carry what the event's own code says they do
+    (a number, a condition or a distance, a horse, a share of the harvest); every other placeholder is the events' own.
+  -->
+
+  <!-- ===================== 48. Breaking the drought (the Stormglass Conclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BreakDrought</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>breaking the drought</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BreakDrought</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Breaking the drought</li>
+          <li>Storm-walkers at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and another storm-walker of {FACTION} have come to the gate with a case of rods and sealed vials. For {COUNT} silver they would set their rods on {PLACE} at dusk and keep the night beside them, and at first light the {TALE} will end and the rain will come. One time in four it comes as a thunderstorm, with its lightning.</li>
+          <li>[heat] {X_nameDef} and another storm-walker of {FACTION} have come to the gate with a case of rods and sealed vials. They would end the heat wave with rain: for {COUNT} silver they set their rods on {PLACE} at dusk, keep the night beside them, and the rain comes at first light. One time in four it comes as a thunderstorm, with its lightning.</li>
+          <li>[age0] Two storm-walkers of {FACTION} have walked to the gate with bundles of rods and clay jars of storm water. For {COUNT} silver they would set the rods on {PLACE} tonight and sit up with them, and in the morning the {TALE} will end and the rain will come. Sometimes, one time in four, the rain comes with thunder and lightning.</li>
+          <li>[age1] Two storm-walkers of {FACTION} in grey coats hung with brass-capped vials have come to the gate. For {COUNT} silver they would set their rods on {PLACE} at dusk and keep the night there, and they say the {TALE} will end with rain at first light. One time in four it comes as a thunderstorm.</li>
+          <li>[age2] {X_nameDef} and another storm-walker of {FACTION} have come up the road with a case of rods and a rack of sealed vials. For {COUNT} silver they would set the rods on {PLACE} at dusk, watch the glass through the night, and bring the rain at first light to end the {TALE}. One time in four it comes as a thunderstorm.</li>
+          <li>[age3] {X_nameDef} and another storm-walker of {FACTION} have come to the gate with insulated rods and a case of sealed vials. For {COUNT} silver they would set the rods on {PLACE} at dusk and keep the night, and at first light the {TALE} will end in rain. One time in four it comes as a thunderstorm.</li>
+          <li>[rod] {X_nameDef} and another storm-walker of {FACTION} have come to the gate with rods and sealed vials. For {COUNT} silver they would set their rods on {PLACE} at dusk and keep the night, and at first light the {TALE} will end in rain. One time in four it comes as a thunderstorm, and the colony's own rod and theirs will take the lightning that falls near them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Have them bring the rain ({COUNT} silver)</label>
+            <outcome>The storm-walkers will go up to {PLACE} and set their rods at dusk. At first light the {TALE} will end and the rain will come.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the storm-walkers' fee</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BreakDrought"><keep>false</keep></li>
+            </effects>
+          </li>
+          <li>
+            <label>Have them bring the rain, and send {A_nameDef} to keep the night with them ({COUNT} silver)</label>
+            <outcome>The storm-walkers will set their rods on {PLACE} at dusk, and {A_nameDef} will sit up with them by the rods through the night and learn how they read the glass.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the storm-walkers' fee</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BreakDrought"><keep>true</keep></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>We'll wait for the rain</label>
+            <outcome>The storm-walkers nod and go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[rain] We will set the rods at dusk.</li>
+          <li>[later] Then we hope the rain finds you soon.</li>
+          <li>[set] This one is grounded, set the next.</li>
+          <li>[night] Now we sit up and watch the glass.</li>
+          <li>[came] There it is, the rain.</li>
+          <li>[storm] Keep clear of the rods while the storm is on.</li>
+          <li>[done] Write it down, the rain came at first light.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 49. The tide read (the Stormglass Conclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_TideReader</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the tide read</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TideReader</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>6~8</stayHours>
+        <answerDays>0.2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A reader for the drone</li>
+          <li>The tide read</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a reader of {FACTION}, has come to the gate. The {TALE} the watch warned of has come, and it is hardest on {A_nameDef}. The reader would sit an hour with {A_nameDef} wherever {A_pronoun} is and talk {A_objective} through it.</li>
+          <li>[two] {X_nameDef}, a reader of {FACTION}, has come to the gate. The {TALE} the watch warned of has come, and it is hardest on {A_nameDef} and {B_nameDef}. The reader would sit an hour with {A_nameDef}, and then with {B_nameDef} if the colony likes.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. The {TALE} the reader's people warned of has come, and {A_nameDef} feels it most. The reader would sit with {A_nameDef} for an hour and talk quietly until it eases.</li>
+          <li>[age1] {X_nameDef}, a reader of {FACTION} in a grey coat, has come to the gate. The {TALE} the watch foresaw is here, and it weighs most on {A_nameDef}. The reader would sit an hour with {A_nameDef} and keep {A_objective} company through it.</li>
+          <li>[age2] {X_nameDef}, a reader of {FACTION}, has come up the road as the {TALE} came. It is hardest on {A_nameDef}, and the reader would sit an hour with {A_objective} wherever {A_pronoun} is working.</li>
+          <li>[their:grateful] The Conclave thinks well of the colony, and {X_nameDef} has come to the gate as the {TALE} came. The reader would sit an hour with {A_nameDef}, who feels it most.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let the reader sit with {A_nameDef}</label>
+            <outcome>{X_nameDef} goes to {A_nameDef} and sits with {A_objective} for an hour.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_TideReader"><both>false</both></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let the reader sit with {A_nameDef}, then {B_nameDef}</label>
+            <outcome>{X_nameDef} sits an hour with {A_nameDef}, and then an hour with {B_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_TideReader"><both>true</both></li>
+            </effects>
+          </li>
+          <li>
+            <label>Thank them; we'll manage</label>
+            <outcome>{X_nameDef} nods and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sit] Sit with me a while, it passes.</li>
+          <li>[later] Then we will go, the drone will pass.</li>
+          <li>[done] It is easier when someone sits with you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 50. The storm tower (the Stormglass Conclave) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_StormTower</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the storm tower</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StormTower</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+        </seasons>
+        <titles>
+          <li>The storm tower</li>
+          <li>Readers of the storms</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a reader of {FACTION}, has come to the gate. It is the season of storms, and two readers and an apprentice would like to camp a week on {PLACE} with a glass mast and two of their rods, to write down every storm that passes. Lightning that falls near the rods strikes them without starting a fire. They would ask the colony's best at the fields to sit one night's watch with them, and when they go they leave a sealed vial and the season's forecast.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. In this season of storms two readers and an apprentice would camp a week on {PLACE}, with a tall pole hung with glass jars and two rods to call the lightning down, and keep count of every storm. They leave a sealed jar and the season's forecast when they go.</li>
+          <li>[age1] {X_nameDef}, a reader of {FACTION} in a grey coat, has come to the gate. Two readers and an apprentice would camp a week on {PLACE} with a glass mast and two rods, writing down each storm, and ask the colony's best at the fields to sit a night's watch with them. They leave a sealed vial and the season's forecast.</li>
+          <li>[age2] {X_nameDef}, a reader of {FACTION}, has come up the road. Two readers and an apprentice would set up a glass mast and two rods on {PLACE} for a week and log every storm that passes. The rods take the lightning near them without fire. They leave a sealed vial and the season's forecast when they go.</li>
+          <li>[age3] {X_nameDef}, a reader of {FACTION}, has come to the gate. Two readers and an apprentice would camp a week on {PLACE} with a mast of sealed glass and two rods, and record every storm. The rods take the lightning near them without fire, and they leave a vial and the season's forecast.</li>
+          <li>[their:grateful] The Conclave thinks well of the colony, and {X_nameDef} has come to ask whether two readers and an apprentice may camp a week on {PLACE} with their glass mast and rods to write down this season's storms.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp on {PLACE}</label>
+            <outcome>The readers will make camp on {PLACE} and set up their mast and rods.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StormTower"><meals>false</meals></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and send them food for the week ({COUNT} meals)</label>
+            <outcome>The readers will make camp on {PLACE}, and some meals are going out to them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the readers</label><what>meals</what><count>8</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_StormTower"><meals>true</meals></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this year</label>
+            <outcome>{X_nameDef} says the Conclave will watch the storms from somewhere else this year, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We will have the mast up by tomorrow.</li>
+          <li>[later] Then we will count the storms from another hill.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 52. Fire in the canopy (the Mossborn) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CanopyFire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>fire in the canopy</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CanopyFire</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~45</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Fire in the canopy</li>
+          <li>Thorn-guards at a run</li>
+        </titles>
+        <texts>
+          <li>A wildfire is burning among the colony's trees, {DEAD} fires so far, and {COUNT} thorn-guards of {FACTION} have come running from the edge of the land to beat it out, {X_nameDef} in front. They are already at it beside the colony's people.</li>
+          <li>[big] A wildfire has taken hold among the colony's trees, {DEAD} fires and spreading, and {COUNT} thorn-guards of {FACTION} have come running from the edge of the land to fight it. They are already beating it out beside the colony's people.</li>
+          <li>[age0] {COUNT} thorn-guards of {FACTION} came running out of the trees with green branches to beat the flames when they saw the smoke over the colony's woods. They are already fighting the fire, {X_nameDef} in front.</li>
+          <li>[age1] {COUNT} thorn-guards of {FACTION} in wooden armour came running when they saw the smoke over the colony's woods, and are already beating out the fire among its trees, {X_nameDef} in front.</li>
+          <li>[age2] {COUNT} thorn-guards of {FACTION} came running with beaters and shovels when they saw the smoke over the colony's woods, and are already fighting the fire among its trees, {X_nameDef} in front.</li>
+          <li>[their:grateful] The Mossborn think well of the colony, and {COUNT} of their thorn-guards came running as soon as the colony's woods caught fire. They are already beating it out, {X_nameDef} in front.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Fight it beside them</label>
+            <outcome>The thorn-guards fight on until no fire is left within their reach, and then go home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CanopyFire"><how>fight</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Fight it beside them, and ask them back to replant the burn</label>
+            <outcome>The thorn-guards fight on. Once the fire is out, grove-keepers of {FACTION} will come back to camp in the burn and replant it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CanopyFire"><how>replant</how></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank them; we'll see to it ourselves</label>
+            <outcome>The thorn-guards stop and walk back to the edge of the land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CanopyFire"><how>away</how></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[fight] Beat it back towards the bare ground.</li>
+          <li>[replant] When it is out we will come back and plant it again.</li>
+          <li>[away] As you wish, mind the wind.</li>
+          <li>[beat] Here, this one is spreading.</li>
+          <li>[out] It is out, every last one.</li>
+          <li>[back] It is out, and we will be back with saplings.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 53. Seeds of the old wood (the Mossborn) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OldWoodSeeds</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>seeds of the old wood</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldWoodSeeds</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Seeds of the old wood</li>
+          <li>An herb-trader with seeds</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an herb-trader of {FACTION}, has come to the gate with seeds of {TALE}, which the colony doesn't grow. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a plot of it near the colony's fields with {A_nameDef}, who would learn how it is grown. The plot would be the colony's to keep growing.</li>
+          <li>[food] {X_nameDef}, an herb-trader of {FACTION}, has come to the gate with seeds of {TALE}, a crop the colony doesn't grow yet. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a plot of it near the fields with {A_nameDef} and show {A_objective} how it is grown.</li>
+          <li>[health] {X_nameDef}, an herb-trader of {FACTION}, has come to the gate with seeds of {TALE}, a healing plant the colony doesn't grow. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a plot of it with {A_nameDef} and show {A_objective} how to tend it.</li>
+          <li>[beauty] {X_nameDef}, an herb-trader of {FACTION}, has come to the gate with seeds of {TALE}, a flower the colony doesn't grow. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a bed of it with {A_nameDef} near the colony's fields.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a pouch of {TALE} seeds wrapped in leaves. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a plot of it with {A_nameDef} and show {A_objective} how it is grown.</li>
+          <li>[age2] {X_nameDef}, an herb-trader of {FACTION}, has come up the road with packets of {TALE} seeds. For {COUNT} silver, or a share of the colony's harvest, {X_pronoun} would sow a plot of it near the fields with {A_nameDef}, who would learn how it is grown.</li>
+          <li>[their:grateful] The Mossborn think well of the colony, and {X_nameDef} has brought it seeds of {TALE}. For {COUNT} silver, or a share of the harvest, {X_pronoun} would sow a plot of it with {A_nameDef}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the seeds and sow a plot ({COUNT} silver)</label>
+            <outcome>{X_nameDef} and {A_nameDef} will walk out to the plot, and {X_nameDef} will sow it with {A_nameDef} beside {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the seeds' price</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OldWoodSeeds"><swap>false</swap></li>
+            </effects>
+          </li>
+          <li>
+            <label>Swap them for a share of our harvest</label>
+            <outcome>The share of the harvest is going out to {X_nameDef}, who will then sow the plot with {A_nameDef} beside {X_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldWoodSeeds"><swap>true</swap></li>
+            </effects>
+          </li>
+          <li>
+            <label>We have enough to grow</label>
+            <outcome>{X_nameDef} puts the seeds away and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[seeds] Show me the ground and we will start.</li>
+          <li>[later] Another time, then, the seeds will keep.</li>
+          <li>[sown] Keep it watered and it will come up.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 54. After the fire (the Mossborn) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_AfterFire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>after the fire</label>
+    <workerClass>ColonyCouncil.HappeningWorker_AfterFire</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>After the fire</li>
+          <li>Grove-keepers for the burn</li>
+        </titles>
+        <texts>
+          <li>[fire] {X_nameDef}, a grove-warden of {FACTION}, has come to the gate. The fire left {DEAD} burned trees on the colony's land, and the Mossborn would camp a week in the burn: cut the burned trees, the wood the colony's, plant saplings across it, and sing at their fire at night. They ask for food while they work, and that the colony fell no tree within the planting while they are there.</li>
+          <li>[blight] {X_nameDef}, a grove-warden of {FACTION}, has come to the gate. The blight has taken {DEAD} of the colony's plants, and the Mossborn would camp a week by the fields: cut out the blighted plants so it spreads no further, and plant saplings on the open ground beside them. They ask for food while they work, and that the colony fell no tree within the planting while they are there.</li>
+          <li>[asked,fire] {X_nameDef}, a grove-warden of {FACTION}, has come to the gate, as the colony asked when the fire was out. The Mossborn would camp a week in the burn, cut the {DEAD} burned trees for the colony's wood and plant saplings across it. They ask for food while they work, and that the colony fell no tree within the planting.</li>
+          <li>[age0,fire] {X_nameDef} of {FACTION} has walked to the gate with seed-carriers and baskets of saplings. They would camp a week in the burn, cut down the {DEAD} burned trees and plant young ones in their place, and sing at their fire at night. They ask for food, and that the colony cut no tree there while they work.</li>
+          <li>[age1,fire] {X_nameDef}, a grove-warden of {FACTION}, has come to the gate with seed-carriers and a cart of saplings. They would camp a week in the burn, cut the {DEAD} burned trees and replant it, and they ask for food and that the colony fell nothing within the planting.</li>
+          <li>[age2,fire] {X_nameDef}, a grove-warden of {FACTION}, has come up the road with seed-carriers and crates of saplings. They would camp a week in the burn, clear the {DEAD} burned trees and replant it. They ask for food, and that the colony fell nothing within the planting while they work.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp and replant it</label>
+            <outcome>The grove-keepers will make camp by the burn and start clearing it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_AfterFire"><fed>false</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and send them food for the week ({COUNT} meals)</label>
+            <outcome>The grove-keepers will make camp by the burn, and some meals are going out to them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the grove-keepers</label><what>meals</what><count>10</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_AfterFire"><fed>true</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} looks at the burn for a while, then goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We start with the burned trees tomorrow.</li>
+          <li>[later] The ground will wait, it always does.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 55. A contract on the colony's enemy (the Ashen Banner) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BannerContract</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a contract on the colony's enemy</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BannerContract</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <leans><li>arms</li></leans>
+        <titles>
+          <li>A contract on the colony's enemy</li>
+          <li>The Banner's offer</li>
+        </titles>
+        <texts>
+          <li>[camp] {X_nameDef}, a captain of {FACTION}, has come to the gate with an offer. {ENEMY} have a camp at {PLACE}, {TALE} from here, and the company will march on it for {COUNT} silver, if the colony sends at least one of its own fighters there to meet them. The silver found there is split by the contract, half to the company, and every name the company loses is read on the Roll.</li>
+          <li>[town] {X_nameDef}, a captain of {FACTION}, has come to the gate with an offer. {ENEMY} hold a town at {PLACE}, {TALE} from here, and the company will march on it for {COUNT} silver, if the colony sends at least one of its own fighters there to meet them. The silver found there is split by the contract, half to the company.</li>
+          <li>[age0,camp] {X_nameDef}, a war-leader of {FACTION}, has walked to the gate. {ENEMY} have a camp at {PLACE}, {TALE} from here, and the company will go against it with spears and clubs for {COUNT} silver, if the colony sends a fighter of its own to stand with them there. Half the silver found there goes to the company.</li>
+          <li>[age1,camp] {X_nameDef}, a captain of {FACTION} with the black sash, has come to the gate. For {COUNT} silver the company will march on the camp of {ENEMY} at {PLACE}, {TALE} from here, if the colony sends at least one fighter to meet them there. Half the silver found there is the company's by the contract, and every name lost goes on the Roll.</li>
+          <li>[age2] {X_nameDef}, a captain of {FACTION}, has come up the road with a contract drawn up. For {COUNT} silver the company will march on {ENEMY} at {PLACE}, {TALE} from here, with rifles, if the colony sends at least one fighter of its own to meet them. Half the silver found there goes to the company.</li>
+          <li>[their:grateful,camp] The Banner thinks well of the colony, and {X_nameDef} has come with an offer: for {COUNT} silver the company will march on the camp of {ENEMY} at {PLACE}, {TALE} from here, if the colony sends at least one fighter there to meet them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hire the company ({COUNT} silver)</label>
+            <outcome>The company will march on {PLACE}. Send a caravan with at least one fighter there; the company will come in beside them when they arrive.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the contract's price</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerContract"><upFront>false</upFront></li>
+            </effects>
+          </li>
+          <li>
+            <label>Hire them, and pay their share up front ({DEAD} silver)</label>
+            <outcome>The company will march on {PLACE}, and all the silver found there is the colony's. Send a caravan with at least one fighter there to meet them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the contract's price and the company's share</label><factor>1.5</factor><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerContract"><upFront>true</upFront></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} says the offer stands while the camp does, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[hired] Paid to the day, the company marches.</li>
+          <li>[later] The offer stands while their camp does.</li>
+          <li>[arrive] Company, with them, forward.</li>
+          <li>[roll] Their names go on the Roll tonight.</li>
+          <li>[kept] Contract kept, we march home.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 56. An old soldier settles (the Ashen Banner) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OldSoldier</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an old soldier settles</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldSoldier</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <ages>45~62</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An old soldier settles</li>
+          <li>A veteran of the Banner</li>
+        </titles>
+        <texts>
+          <li>[horse] {X_nameDef}, a soldier of {FACTION}, has come to the gate leading {BEAST}. {X_nameDef} has served the Banner most of a lifetime and is past the age for the march, and asks to settle with the colony with the horse and the kit {X_pronoun} was issued. The Banner calls its old soldiers to the muster for a week once a year, or takes a fee of {COUNT} silver instead.</li>
+          <li>[nohorse] {X_nameDef}, a soldier of {FACTION}, has come to the gate with the kit {X_pronoun} was issued. {X_nameDef} is past the age for the march and asks to settle with the colony. The Banner calls its old soldiers to the muster for a week once a year, or takes a fee of {COUNT} silver instead.</li>
+          <li>[ride,horse] {X_nameDef}, a soldier of {FACTION}, has ridden up to the gate on {BEAST}. Past the age for the march, {X_pronoun} asks to settle with the colony with the horse and the kit {X_pronoun} was issued. The Banner calls its old soldiers to the muster once a year, or takes a fee of {COUNT} silver instead.</li>
+          <li>[age0,horse] {X_nameDef}, an old warrior of {FACTION}, has walked to the gate leading {BEAST}, a spear across {X_possessive} shoulders. {X_pronoun} is past the age for the march and asks to settle here. Once a year the Banner calls its old warriors to the muster for a week, or takes {COUNT} silver instead.</li>
+          <li>[age1,horse] {X_nameDef}, a soldier of {FACTION} in worn ash-grey plate, has come to the gate leading {BEAST}. {X_pronoun} is past the age for the march and asks to settle with the colony. Once a year the Banner calls its old soldiers to the muster, or takes {COUNT} silver instead.</li>
+          <li>[age2,horse] {X_nameDef}, a soldier of {FACTION}, has come up the road leading {BEAST}, a rifle over one shoulder. Past the age for the march, {X_pronoun} asks to settle with the colony. The Banner calls its old soldiers to the muster for a week each year, or takes {COUNT} silver instead.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_nameDef} in</label>
+            <outcome>{X_nameDef} joins the colony. Once a year the Banner will call {X_objective} to the muster, or ask the fee.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldSoldier"><buyOut>false</buyOut></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Take {X_nameDef} in, and buy out the musters ({DEAD} silver)</label>
+            <outcome>{X_nameDef} joins the colony, and the Banner will not call {X_objective} to the muster again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the musters bought out</label><factor>3</factor><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OldSoldier"><buyOut>true</buyOut></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} on</label>
+            <outcome>{X_nameDef} nods and leads the horse back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[settle] I will earn my place here, you will see.</li>
+          <li>[later] Then I will try the next gate.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BannerMuster</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Banner's muster</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BannerMuster</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~30</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Banner's muster</li>
+          <li>Called to the muster</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a runner of {FACTION}, has come to the gate. It is the Banner's muster at {PLACE}, and {A_nameDef} is called to it for a week, as every old soldier of the Banner is once a year. The Banner takes a fee of {COUNT} silver instead, if the colony would rather keep {A_objective} at home.</li>
+          <li>[horse] {X_nameDef}, a runner of {FACTION}, has come to the gate. {A_nameDef} is called to the Banner's muster at {PLACE} for a week, and {BEAST} would go too. The Banner takes a fee of {COUNT} silver instead, if the colony would rather keep {A_objective} at home.</li>
+          <li>[age0] {X_nameDef}, a runner of {FACTION}, has run to the gate. The Banner's warriors gather at {PLACE}, and {A_nameDef} is called to stand with them for a week, or the Banner takes {COUNT} silver instead.</li>
+          <li>[age1] {X_nameDef}, a runner of {FACTION} with the Banner's ash-grey cloth on {X_possessive} arm, has come to the gate. {A_nameDef} is called to the muster at {PLACE} for a week, or the colony may pay the fee of {COUNT} silver.</li>
+          <li>[age2] {X_nameDef}, a runner of {FACTION}, has come up the road with the muster roll. {A_nameDef} is called to {PLACE} for a week, or the colony may pay the fee of {COUNT} silver instead.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to the muster</label>
+            <outcome>{A_nameDef} will set out for {PLACE} for the week of the muster.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerMuster"><how>go</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Pay the fee instead ({COUNT} silver)</label>
+            <outcome>The fee is going out to {X_nameDef}, and {A_nameDef} stays at home this year.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the muster fee</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerMuster"><how>fee</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Neither</label>
+            <outcome>{X_nameDef} marks it in the muster roll and goes. The Banner thinks less of the colony for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerMuster"><how>refuse</how></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[muster] Good, the Roll will see you there.</li>
+          <li>[fee] Paid, then, I will mark it in the book.</li>
+          <li>[refused] The Banner will remember this.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 57. The other side's contract (the Ashen Banner) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OtherSideContract</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the other side's contract</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OtherSideContract</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~50</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The other side's contract</li>
+          <li>A sergeant under a white flag</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sergeant of {FACTION}, has come to the gate under a white flag. {ENEMY} have hired the Banner to march with their next raid on the colony, and the Banner tells both sides of its contracts. The colony may buy the contract for {COUNT} silver, and the company will stand with the colony against that raid instead; or pay {DEAD} silver and the company will stand aside. Otherwise they march with the raid.</li>
+          <li>[age0] {X_nameDef}, a sergeant of {FACTION}, has walked to the gate holding up a white cloth. {ENEMY} have paid the Banner to fight beside them when they next raid the colony. For {COUNT} silver the Banner would fight for the colony instead, or for {DEAD} silver it would stay out of it.</li>
+          <li>[age1] {X_nameDef}, a sergeant of {FACTION}, has come to the gate under a white flag with the Banner's book. {ENEMY} have hired the company for their next raid on the colony. The colony may buy the contract for {COUNT} silver and have the company on its side, or pay {DEAD} silver for them to stand aside.</li>
+          <li>[age2] {X_nameDef}, a sergeant of {FACTION}, has come up the road under a white flag. {ENEMY} have signed the Banner on for their next raid on the colony. For {COUNT} silver the colony can have the contract and the company on its side, or for {DEAD} silver the company stays out of it.</li>
+          <li>[their:grateful] The Banner thinks well of the colony, and {X_nameDef} has come under a white flag to say that {ENEMY} have hired it for their next raid here. The colony may buy the contract for {COUNT} silver, or pay {DEAD} silver for the company to stand aside.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the contract ({COUNT} silver)</label>
+            <outcome>The company will stand with the colony when the raid of {ENEMY} comes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the contract bought</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OtherSideContract"><choice>buyout</choice></li>
+            </effects>
+          </li>
+          <li>
+            <label>Pay them to stand aside ({DEAD} silver)</label>
+            <outcome>The company will stay out of it, and the raid of {ENEMY} will come without them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the company paid to stand aside</label><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_OtherSideContract"><choice>aside</choice></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them march</label>
+            <outcome>{X_nameDef} salutes and goes. When the raid of {ENEMY} comes, some of the Banner will be in it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OtherSideContract"><choice>march</choice></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[bought] Then we hold your wall against them.</li>
+          <li>[aside] Paid, we stand aside.</li>
+          <li>[march] Then we will see you on the field.</li>
+          <li>[stand] Contract bought, we stand with you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 58. A company on the march (the Ashen Banner) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CompanyMarch</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a company on the march</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CompanyMarch</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~50</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A company on the march</li>
+          <li>The Banner camps a night</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sergeant of {FACTION}, has come to the gate. A company of {COUNT} is on its way to a contract against {ENEMY}, and asks to camp a night or two at the edge of the colony's land. They will want to buy food, and the sergeant would drill the colony's fighters if asked.</li>
+          <li>[ourfoe] {X_nameDef}, a sergeant of {FACTION}, has come to the gate. A company of {COUNT} is on its way to a contract against {ENEMY}, who are at war with the colony too, and asks to camp a night or two at the edge of its land. They will want to buy food.</li>
+          <li>[age0] {X_nameDef}, a sergeant of {FACTION}, has walked to the gate. A war band of {COUNT} of the Banner is on its way to fight {ENEMY} and asks to camp a night or two at the edge of the colony's land. They will want to trade for food.</li>
+          <li>[age1] {X_nameDef}, a sergeant of {FACTION} in ash-grey plate, has come to the gate. A company of {COUNT} is marching to a contract against {ENEMY} and asks to camp a night or two at the edge of the colony's land. They drill at dawn and will want to buy food.</li>
+          <li>[age2] {X_nameDef}, a sergeant of {FACTION}, has come up the road ahead of the column. A company of {COUNT} is on its way to a contract against {ENEMY} and asks to camp a night or two at the edge of the colony's land. They will want to buy food.</li>
+          <li>[their:grateful] The Banner thinks well of the colony, and {X_nameDef} has come to ask whether a company of {COUNT}, marching against {ENEMY}, may camp a night or two at the edge of its land.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp at the edge</label>
+            <outcome>The company will make camp at the edge of the colony's land for a night or two.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CompanyMarch"><sell>false</sell></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and sell them twenty meals ({DEAD} silver)</label>
+            <outcome>The company will make camp at the edge, and twenty meals are going out to {X_nameDef}, who will pay for them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CompanyMarch"><sell>true</sell></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>{X_nameDef} says the company will camp further down the road, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] Bedrolls down by dusk, drill at dawn.</li>
+          <li>[later] We will camp further down the road.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

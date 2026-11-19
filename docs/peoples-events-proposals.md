@@ -1,4 +1,4 @@
-# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46)
+# Rimfolk's peoples: events, interactions and camps of their own (proposal, 11 November 2026; round 1 built: 10, 5, 47, 83, 51, 1, 19, 17, 34, 95; round 2 built: 14, 22, 26, 59, 12, 25, 3, 20, 40, 63; round 3 built: 2, 4, 6, 7, 8, 9, 11, 13, 15, 16; round 4 built: 18, 21, 23, 24, 27, 28, 29, 30, 31, 32, 33; round 5 built: 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46; round 6 built: 48, 49, 50, 52, 53, 54, 55, 56, 57, 58)
 
 All of this was read-only. The to-do entry in `docs/HANDOFF.md` asks for a list per people before anything is built, and for new peoples only after that.
 
@@ -454,18 +454,18 @@ Where it lives:
     - The price is silver, or a vial of the colony's own storm for their archive.
     - Reuses: gifts' psylink, the rod. **Medium.**
 
-48. **Breaking the drought.**
+48. **Breaking the drought.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - In a drought or a heat wave, two storm-walkers set rods and vials on the colony's high ground for a night, and the next day it rains (the game's weather).
     - One time in four the rain comes as a thunderstorm, fires and all (the game's own; the rod helps).
     - Mods: Odyssey, Vanilla Events Expanded.
     - Reuses: the watch, fields by the weather. **Medium.**
 
-49. **The tide read.**
+49. **The tide read.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - During a watch, a psychic drone or soothe is held back like a sky condition, and the runner's warning names whom it will touch.
     - For a drone, a reader sits with the worst touched.
     - Reuses: `Patch_GlassHold`. **Small.**
 
-50. **(camp) The storm tower.**
+50. **(camp) The storm tower.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - In the stormy months, two readers and an apprentice camp on the colony's high ground for a week, with a glass mast and rods. Lightning near them strikes the rods without fire, and they write every storm.
     - They ask the colony's best at the fields to sit the night watch (a lesson). They leave a vial and a forecast for the season.
     - It can turn: a strike lands past the rods (the game's fire), or the apprentice takes a chill (the illness budget).
@@ -484,16 +484,16 @@ Where it lives:
     - Mods: Ideology, Vanilla Ideology Expanded - Dryads. Without Ideology, a healroot grove is sown instead.
     - Reuses: the ledger, the saplings' planting. **Medium.**
 
-52. **Fire in the canopy.**
+52. **Fire in the canopy.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - When a wildfire burns in the colony's woods, three to five thorn-guards come at a run and beat it out beside the colony's people (the game's firefighting).
     - Burns are the game's own.
     - Reuses: arrivals, the ledger. **Medium.**
 
-53. **Seeds of the old wood.**
+53. **Seeds of the old wood.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - An herb-trader brings seeds of plants the colony doesn't grow (Vanilla Plants Expanded and its add-ons, Alpha Biomes) and sows a plot with its grower, who learns them.
     - Reuses: the egg-trader's shape. **Small.**
 
-54. **(camp) After the fire.**
+54. **(camp) After the fire.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - After a wildfire or a blight, a grove-warden and seed-carriers camp in the ash for a week. They cut the burned trees (the logs are the colony's), plant saplings across the burn, and sing at night.
     - They ask for food, and that the colony not fell within the planting. The colony's planter may plant beside them, and the ledger warms.
     - It can turn: the colony fells in the planting (a wrong; they leave), or the fire starts again (the game's).
@@ -507,25 +507,25 @@ Where it lives:
 - Mercenaries (world event).
 - Favoured camps: deserters, wounded fighters, road wardens.
 
-55. **A contract on the colony's enemy.**
+55. **A contract on the colony's enemy.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - The captain offers to march against an enemy camp within reach (a bandit outpost from the game's quests, a hostile town), at a price by its size.
     - The colony sends at least one fighter, and the company meets them there for a fight on the game's map of the site.
     - Loot is split by the contract, and every name lost is read on the Roll.
     - Ages: the Banner's issue.
     - Reuses: the calls to arms' trip to a site, quests, the ledger. **Large.**
 
-56. **An old soldier settles.**
+56. **An old soldier settles.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - A veteran asks to settle with a war-horse and kit.
     - Once a year the Banner calls them to the muster for a week (a caravan of one), or the colony pays a muster fee. Refusing both costs goodwill.
     - Mods: Giddy-Up 2.
     - Reuses: joining, the conscript's caravan. **Medium.**
 
-57. **The other side's contract.**
+57. **The other side's contract.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - When a people at war with the colony hires the Banner, a sergeant comes under a white flag to say so.
     - The colony can buy out the contract, pay them to stand aside, or let them march with that people's next raid (the storyteller's own size).
     - Reuses: the game's incident queue, as the relay mast holds raids; diplomacy. **Medium.**
 
-58. **(camp) A company on the march.**
+58. **(camp) A company on the march.** *(Built, round 6: `Source/ColonyCouncil/Peoples/Events6/`.)*
     - Eight to twelve soldiers on their way to a contract camp for a night or two at the colony's edge, in a square of bedrolls, and drill at dawn.
     - They buy food in quantity. The sergeant offers to drill the colony's fighters, and asks whether any of them would enlist for a season. A soldier may ask to stay, which the Banner holds against the colony.
     - It can turn: the enemy they march against catches them here (a band against the camp; the colony may stand with them), or a soldier and a colonist brawl over a bet.

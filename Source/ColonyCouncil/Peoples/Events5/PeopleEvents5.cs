@@ -47,7 +47,8 @@ namespace ColonyCouncil
                 case MendTonight.Kind: return MendTonight.Hour(v, now);
                 case WagonOfOurOwn.Kind: return WagonOfOurOwn.Hour(v, now);
             }
-            return false;
+            // Round 6's (Peoples/Events6/): the storm-walkers' night, the tide's runner, the thorn-guards at a fire.
+            return PeopleEvents6.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -70,6 +71,8 @@ namespace ColonyCouncil
             Safe("the crater eggs", () => CraterEgg.Watch(now));
             Safe("the pieces at the cart", () => MadeBetter.Watch(now));
             Safe("the yards", () => WheelStopsBy.Watch(now));
+            // Round 6's watch (Peoples/Events6/): a dry spell, a fire and what it left, the tides held, the Banner's contracts and musters.
+            Safe("round 6", () => PeopleEvents6.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

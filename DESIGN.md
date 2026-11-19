@@ -10104,6 +10104,127 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `WheelTowns.Move` (a yard due), `FactsMath`, round 1's `PeopleWorkOn` ("train" mark), round 4's `BoatBuilders` (a vehicle by
     name). One game hook, `Patch_GardenQuiet`. Dev actions "Peoples' events 5: ...". The Almanac's peoples' pages, *Of their
     own: gifts, trust and camps* (Almanac_PeoplesD.xml).
+- **The peoples' own events, round 6** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+  `docs/peoples-events-proposals.md`, items 48, 49, 50, 52, 53, 54, 55, 56, 57 and 58 (the Stormglass Conclave, the Mossborn
+  and the Ashen Banner); `Source/ColonyCouncil/Peoples/Events6/`, the pure rules in `PeopleEvents6Math.cs`,
+  `Tools/Tests/PeopleEvents6Tests.cs` ("the peoples' events, round 6: "). As rounds 1 to 5: only from a people of its calling
+  at peace (`PeoplesD.Friendly`), in the Visitors group, base chance 0.4 or 0.5, 45 to 90 days apart and never in the first
+  fifteen days, every age in its own form, played out on the map. Six come from code at their moment (base chance 0,
+  `PeopleEvents2.Fire`): the storm-walkers in a dry spell, the reader when a foreseen drone comes, the thorn-guards at a
+  fire, the grove-warden after a fire or a blight, the Banner's muster, and the sergeant of a raid the Banner was hired for;
+  the code-fired comings at a chance times the storytellers' lean on visitors, the hire times their lean on arms. Two letters
+  come once their people are at work, so no answer means the first answer: the reader's and the thorn-guards'.
+  - **Breaking the drought** (Conclave; `DroughtBroken`): a drought (Odyssey's `Drought`, `VEE_Drought`) or the game's heat wave,
+    not one of the land's for good, run half a day; the land has a rain of its own and nothing else keeps the rain off; once
+    a dry spell at 0.5, twenty days apart. Two storm-walkers; a fee of 200 silver times the colony's wealth factor (120 to
+    400). The colony's high ground is the relay mast's choice of it (`RelayMast.Site`: eight to forty cells out, by natural
+    rock first), named on the card "the high ground by the rocks" or "the open ground by the colony" as it is. From dusk
+    each sets a rod of theirs there (`Rimfolk_PEv6_Rod`, the Conclave's own `Rimfolk_StormglassRod`, theirs, so it takes the
+    lightning near it as the colony's rod does), then they keep the night beside them (`_KeepNight`, sparks and the vials'
+    glow); with the second answer the colony's best at the fields sits up with them (kept beside the rods) and at first light
+    learns (900 Plants) and reads the glass for a season (`Rimfolk_GlassTaught`, the Conclave's lesson). At first light (6h)
+    every dry spell on the map ends (`GameCondition.End`) and the land's own rain begins, its length the rain's own; one time
+    in four the land's own thunderstorm instead, its lightning the game's. The fields by the weather reckon it. Two hours on
+    they take the rods down and go, +3.
+  - **The tide read** (Conclave; `TideRead`): while a season's watch runs on a home (`GlassWatch`) and nothing is held there,
+    the game's `PsychicDrone` or `PsychicSoothe` the storyteller sends (not a quest's) goes into the game's own queue 18 to 30
+    hours on, as a condition of the sky does (`Patch_TideHold`, beside `Patch_GlassHold`, leaving a firing another hold took).
+    The sex it will touch is picked then as the game picks it (a free colonist's), kept (`TideRecord`) and given to the tide
+    when it comes (`Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`: prefixes on the workers' `DoConditionAndLetter`), so the
+    vial-runner's letter names everyone it will touch; the runner says it at the gate. When a held drone comes, a reader comes
+    within the hour (`Rimfolk_Evt_TideReader`): an hour sitting with the colonist it touches worst (their mood the lowest;
+    round 1's `PeopleWorkOn`, `Rimfolk_PEv6_SitWith`, held where they stand) and `Rimfolk_Thought_SatThroughDrone` (+8, two
+    days); or with the two worst one after the other; +2. A held tide that never comes is let go after three days.
+  - **The storm tower** (Conclave; a camp, `Rimfolk_Camp_StormTower`, `CampWorker_StormTower`): spring and summer, on land with
+    thunderstorms of its own, a high ground. Two readers and an apprentice a week, in tents at the high ground; once settled
+    they set up a glass mast (`Rimfolk_StormglassMast`, drawn by `Tools/make_storm_glass.py`) and two of their rods, which take
+    the lightning near them. Each storm over the land is counted once and written down (told, the count in their farewell).
+    By night one reader at a time keeps the watch at the mast (`_TowerWatch`). Asks: the colony's best at the fields sits the
+    night watch (an evening lesson, 200 Plants an hour, and reads the glass for a season when they go); the colony's doctor
+    sees to them when one is ill. Going (on good terms): the rods and mast taken down, a sealed vial (`Rimfolk_StormVial`,
+    drawn, sellable) handed in at the gate, and the season's forecast: a season's watch begun free (`GlassWatch.Begin`); +3 (+2
+    more with the second answer's eight meals). It can turn, once a stay each: in a storm, at 0.3 through the shared harm
+    budget (the camps' embers' kind, `HarmKinds.CampLeft`), one of the game's lightning strikes lands on open ground with
+    something to burn 20 to 28 cells from the camp, past every rod, never within five cells of anyone and never in the
+    colony's home area; they beat the fire out (told). After the second day, at night in the rain or below ten degrees, at
+    0.25 the apprentice takes a chill (the game's flu, mild; `HarmKinds.CampFever` and the illness budget; told, the doctor's
+    ask open).
+  - **Fire in the canopy** (Mossborn; `CanopyFire`): six fires or more on trees or among them on a home map (Seasonal
+    Weather's wildfire, a dry storm, anything); once a fire (two days) at 0.6, fifteen days apart. Three to five thorn-guards in
+    at the edge nearest it, straight to the fires (`Rimfolk_PEv6_Firefight`, `JobDriver_PEv6Firefight`: the nearest fire within
+    45 cells of where it was, beaten with the game's own beating, `Pawn_NativeVerbs.TryBeatFire`, then the next). The letter
+    asks what follows (no answer: the first): when no fire is left within their reach they say so and go, +4, the trees burned
+    told; with the second answer their people come back half a day after it is out to replant the burn (the camp after the
+    fire, due at once); or thanked, they go now.
+  - **Seeds of the old wood** (Mossborn; `OldWoodSeeds`, the egg-trader's shape): a plant the colony grows nowhere (no zone,
+    no pot), sown in the ground (not a tree, not a cave plant), its research done, its season now, within the best grower's
+    skill; the player's plant mods first (`SeedPackages`: Vanilla Plants Expanded, More Plants, Succulents, Flowers, Alpha
+    Biomes), the game's own after; and a plot for it: four by four of good soil (three by three at a pinch), out of every zone
+    and building, near the colony's nearest field. The price a quarter of the plot's first harvest (60 to 300), or a quarter
+    again of it in the colony's raw harvest it has most of (carried out). The herb-trader and the grower walk to the plot, the
+    trader sows it with the grower beside them (`Rimfolk_PEv6_Seeds`, round 1's work at a place, three hours); then each cell
+    is planted (what grew wild there cut), the cells become the colony's growing zone of that plant, the grower learns (1,200
+    Plants); +2.
+  - **After the fire** (Mossborn; a camp, `Rimfolk_Camp_AfterFire`, `CampWorker_AfterFire`): ten new burned trees or more on a
+    home map (every tree's burned form, the game's `BurnedTree`), the fire out; or a blight on six plants; once each at 0.5,
+    thirty days apart; or due from the thorn-guards' second answer. A grove-warden and seed-carriers, three to five, a week in
+    the burn (its middle, reaching its farthest: 6 to 30 cells). By day: any fire there again first, then each burned tree
+    cut (`_CutBurned`; its wood the colony's, lying where it stood) or each blighted plant cut out, then saplings (`_Sapling`,
+    the land's own tree, sown: the colony's planting in their ledger), up to 24, three cells apart, out of the colony's home
+    and fields. At night they sing at their fire (19h to 22h, `_Sing`). Asks: food for the week (theirs to ask, ten meals; or
+    sent with the second answer); the colony's planter beside them (a lesson, +2 more going). The term: a tree felled by the
+    colony within the planting while they are there (`MossLedger.Notify_Felled`) is a wrong: -6, a `slighted` deed, they leave
+    (`CC_Camp_End_felled`). It can turn, once a stay after the first day, by day in dry weather above fifteen degrees, at 0.15
+    through the shared harm budget (`HarmKinds.CampLeft`): the fire starts again in the ash, out of the colony's home and four
+    cells clear of anyone, and they beat it out (told). Going: +4 when they cut or planted.
+  - **A contract on the colony's enemy** (Banner; `BannerContract`): a camp within twelve tiles of a people at war with the
+    colony and the Banner both (a site first, from the game's quests and sites, else a town), no other contract open, a
+    fighter who may leave. A captain; the price by the storyteller's points (0.6 a point for a camp, 0.9 for a town, 200 to
+    2,000), or half again with the company's share paid up front. The colony has fifteen days to get a caravan there with at
+    least one of its people; once the colony's people are on the site's map (the game's own, made when they arrive), the
+    company (three to eight by the points, a sergeant, soldiers and shots, their age's issue) comes in beside them within the
+    hour and goes for everyone up and hostile there (the game's assault). When nobody hostile is left up, half the silver
+    lying there is the company's (taken, told) unless paid up front; its dead are named for the Roll; `contractKept`, +4;
+    they march off. Not reached in time: they keep their pay, -3. The camp gone first: half the price back by their courier.
+  - **An old soldier settles** (Banner; `OldSoldier`; adds a person): a soldier of the Banner, 45 to 62, good with a blade and a
+    gun, with a war-horse (`Mounts`: the game's `Horse`; Vanilla Genetics Expanded's `GR_ParagonHorse` in the spacer age) and
+    the kit of the Banner's age. Taken in: they join; the horse is the colony's, tame, obedient, bonded to them and theirs
+    (with Giddy-Up 2, a mount); +2. Once a year (sixty days) a runner calls them to the muster at the Banner's nearest town
+    (`Rimfolk_Evt_BannerMuster`): sent (round 2's season away, the horse with them; a week there; home with 1,500 Melee and
+    `Rimfolk_Thought_Mustered`, +3), the fee (150 times the wealth factor, 100 to 300), or neither (-5, `refused`). Bought out
+    when they settle (three years' fees), never called. Sent on, the horse goes with them.
+  - **The other side's contract** (Banner; `OtherSideContract`): a raid the storyteller sends to a home (`IncidentWorker_RaidEnemy`,
+    not a quest's), the Banner at peace and not hired these 45 days, a people that could have hired it (at war with the colony,
+    at peace with the Banner, able to raid; the raid's own people if it is one): at 0.25 times the lean on arms the raid is
+    held in the game's queue 18 to 30 hours, set to come from that people (`Patch_BannerHired`, after the holds for a warning,
+    leaving a firing another hold took). The sergeant comes under a white flag (if he can't, nothing is held). Buy the
+    contract (0.6 silver a point, 200 to 2,500): when the raid comes, two to six of the company come in on the colony's side
+    (the game's allies), +3. Pay them to stand aside (0.3 a point, 100 to 1,200): the raid comes as sent, +1. Let them march
+    (no answer): the raid comes at the storyteller's own size, a little over a third of its points the Banner's soldiers under
+    that people's colours in the raid's own lord. A held raid that never comes: the colony's silver back by courier.
+  - **A company on the march** (Banner; a camp, `Rimfolk_Camp_CompanyMarch`, `CampWorker_CompanyMarch`): a people at war with
+    the Banner to march against. Eight to twelve soldiers (a sergeant, soldiers and shots) a night or two at the edge nearest
+    the colony, bedrolls round their fire, a pack animal; they take up arms against any threat on the map (`fights`), buy
+    meals and road food at the colony's market, and drill at dawn (5h to 7h, `_Drill`). The second answer sells them twenty
+    meals at the gate for a quarter over their worth. Asks: the sergeant drills one of the colony (a melee lesson); they ask
+    whether one of the colony's fighters would enlist for the season (round 2's season away to the Banner's town, fifteen
+    days, home with 150 silver, 2,500 Melee and Shooting). A soldier who asks to stay and is taken in (the camps' own joining)
+    costs 4 with the Banner, told. It can turn, once a stay each: by day, only while Rimfolk's world events may bring a fight,
+    at 0.2 the people they march against catches them here (a band against the camp, `CampRaids.Send`; the colony asked what
+    to do); in the evening with one of the colony at their fire, a bet, and at 0.3 through the shared harm budget
+    (`HarmKinds.CampBrawl`, the outsiders' quiet brawl so neither people counts a blow as an attack) the two come to blows
+    (the game's own social fight; the camp's tension +10; told). Going: +2 when nobody stayed.
+  - Harm of Rimfolk's own: none of a new kind. The stray strike and the fire in the ash are the camps' embers' kind
+    (`CampLeft`), the apprentice's chill the camps' fever (`CampFever`) with the illness budget, the bet's brawl the camps'
+    brawl (`CampBrawl`), each through the shared budget and told; the fights (the contract's, the hired raid, the band against
+    the company), the storm's lightning and the fires the thorn-guards fight are the game's own, and shown on the cards.
+    Saved: `PeopleEvents6Book` (the dry spells, fires and blights rolled, the burns reckoned, the tides held, the camps after
+    the fire asked for, the contracts, the old soldiers, the hired raids) and the camps' states, modelled in
+    `Tools/save_estimate.py`. Small hooks: `PeopleEvents5.Hour` and `Hourly`, round 2's `SeasonAway.Kinds` (the muster, the
+    season enlisted), `MossLedger.Notify_Felled` (the planting), `FactsMath`, the def check's camp counts. Four game hooks:
+    `Patch_TideHold`, `Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`, `Patch_BannerHired`, each off with the deeper game
+    hooks. Dev actions "Peoples' events 6: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*
+    (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 6 (Source/ColonyCouncil/Peoples/Events6/StormTower.cs, AfterFire.cs, CompanyMarch.cs;
+    each a camp kind with ways of its own, Camps/CampWorker.cs): the Stormglass Conclave's storm tower on the colony's high
+    ground (item 50), the Mossborn's camp in the ash after a fire or a blight (item 54), and an Ashen Banner company camped a
+    night or two on its march (item 58). None comes on the camps' own draw (weight 0): each comes when the colony answers its
+    event (Rimfolk_Evt_StormTower, Rimfolk_Evt_AfterFire, Rimfolk_Evt_CompanyMarch).
+  -->
+
+  <!-- ===================== 50. The storm tower (the Stormglass Conclave) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_StormTower</defName>
+    <label>storm tower</label>
+    <workerClass>ColonyCouncil.CampWorker_StormTower</workerClass>
+    <arrives>8~14</arrives>
+    <calling>seers</calling>
+    <weight>0</weight>
+    <people>3~3</people>
+    <days>7~7</days>
+    <ages>16~60</ages>
+    <hireChance>0</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the readers take their mast, rods and tents home with them; what they keep of the colony is the record of its storms</leavesWhy>
+    <titles>
+      <li>The storm tower</li>
+      <li>Readers on the high ground</li>
+    </titles>
+    <texts>
+      <li>Two readers of {FACTION} and their apprentice are walking up {PLACE} with a glass mast in pieces and two rods, {X_nameDef} at the front. They will write down every storm that passes for a week.</li>
+      <li>[lowtech] Two readers of {FACTION} and their apprentice are walking up {PLACE} with a tall pole and a basket of glass jars. They will keep count of every storm for a week.</li>
+    </texts>
+    <settled>
+      <li>{FACTION}'s readers have pitched their tents {PLACE} and are setting up a glass mast and two rods beside their fire.</li>
+      <li>The readers have made camp {PLACE}, their mast of sealed glass going up between the tents.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the Conclave says the colony's sky is worth a lifetime of watching, and asks whether {X_pronoun} might stay and keep its weather.</li>
+    </joinTexts>
+    <farewell>
+      <li>[left,taught] The readers took down their mast and rods and went, with {STORMS} storms written down. They left a sealed vial at the gate and the season's forecast, and the one of the colony who sat their night watch can read the glass now.</li>
+      <li>[left] The readers took down their mast and rods and went, with {STORMS} storms written down. They left a sealed vial at the gate and the season's forecast: the Conclave will watch the colony's sky for the season.</li>
+      <li>The readers took down their mast and rods and went back to the road.</li>
+    </farewell>
+    <lines>
+      <li>Never wrong, never sure.</li>
+      <li>The sky is the world thinking aloud.</li>
+      <li>Every storm is written down.</li>
+      <li>Check the vials before you sleep.</li>
+      <li>The glass is clear tonight.</li>
+    </lines>
+    <momentLines>
+      <li>[mast] The mast is up, now the rods.</li>
+      <li>[storm] Write it down, another storm.</li>
+      <li>[storm] Note the hour it came in.</li>
+      <li>[strike] That one came down past the rods.</li>
+      <li>[watch] The glass is clouding, it will not be long.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the readers by their fire and heard how Hesper Lyle read a frost in the glass a week before it came.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>watch</key>
+        <label>Send {A_nameDef} up to sit the night watch</label>
+        <tip>{A_nameDef}, the colony's best at the fields, goes up to the readers' mast for the evening and sits the watch with them, learning how they read the glass. When they go, {A_pronoun} can read it for a season.</tip>
+        <needs>evening</needs>
+        <skill>Plants</skill>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <deed>taught</deed>
+        <outcomes>
+          <li>{A_nameDef} is going up to the readers' mast to sit the watch with {X_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Plants</skill><xpPerHour>200</xpPerHour><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_TowerWatch" />
+        </effects>
+      </li>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to see to the apprentice</label>
+        <tip>The colony's doctor goes over to the readers' camp and tends whoever of them is ill, with the colony's medicine where there is any.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the readers' camp to see to their apprentice.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 54. After the fire (the Mossborn) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_AfterFire</defName>
+    <label>grove-keepers in the burn</label>
+    <workerClass>ColonyCouncil.CampWorker_AfterFire</workerClass>
+    <arrives>7~12</arrives>
+    <calling>grovekeepers</calling>
+    <weight>0</weight>
+    <people>3~5</people>
+    <days>7~7</days>
+    <ages>18~65</ages>
+    <hireChance>0.02</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>the Mossborn leave nothing in a planting but the saplings</leavesWhy>
+    <titles>
+      <li>Grove-keepers in the burn</li>
+      <li>The Mossborn come to replant</li>
+    </titles>
+    <texts>
+      <li>Grove-keepers of {FACTION} are walking in {PLACE} with axes and bundles of saplings, {X_nameDef} at the front. They will clear the burn and replant it.</li>
+      <li>[lowtech] Grove-keepers of {FACTION} are walking in {PLACE} with stone axes and baskets of saplings. They will clear the burn and plant it again.</li>
+    </texts>
+    <settled>
+      <li>The grove-keepers have made camp {PLACE} at the edge of the burn, their saplings heeled in by the fire.</li>
+      <li>{FACTION}'s grove-keepers have set up camp {PLACE}. While they are here they ask that the colony fell no tree within their planting.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the Mossborn says the colony's land could use a keeper for its trees, and asks whether {X_pronoun} might stay and tend them.</li>
+    </joinTexts>
+    <farewell>
+      <li>[planted,blight] {FACTION}'s grove-keepers packed up and went. They cut out the blighted plants and planted {PLANTED} saplings near the fields, and their ledger counts them as the colony's planting.</li>
+      <li>[planted,planter] {FACTION}'s grove-keepers packed up and went. They planted {PLANTED} saplings across the burn, some of them beside the colony's own planter, and their ledger counts them as the colony's planting.</li>
+      <li>[planted] {FACTION}'s grove-keepers packed up and went. They planted {PLANTED} saplings across the burn, and their ledger counts them as the colony's planting.</li>
+      <li>The grove-keepers packed up their camp and went back to the road.</li>
+    </farewell>
+    <lines>
+      <li>Every tree you fell owes the world a seedling.</li>
+      <li>The forest remembers every axe.</li>
+      <li>Ash is good ground for a young tree.</li>
+      <li>In the end we are all the grove.</li>
+      <li>Mind the roots when you walk.</li>
+    </lines>
+    <momentLines>
+      <li>[cut] This one is only good for the fire now.</li>
+      <li>[plant] Grow straight, little one.</li>
+      <li>[sing] Sing the slow one again.</li>
+      <li>[felled] You cut within the planting, so we are going.</li>
+      <li>[fire] It has caught again, get the beaters.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the grove-keepers by their fire and heard how Elin Sedge planted an acorn beside every stump in a valley the war had cut down.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>food</key>
+        <label>Send them food for the week (10 meals)</label>
+        <tip>One of the colony carries ten meals out to the grove-keepers' camp.</tip>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <askTexts>
+          <li>{X_nameDef} of the Mossborn has come to the gate. Clearing the burn is hungry work, {X_pronoun} says, and asks whether the colony could spare some food for the week.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will gather what they can from the woods.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Ten meals are going out to the grove-keepers' camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the grove-keepers</label><what>meals</what><count>10</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_AfterFed" />
+        </effects>
+      </li>
+      <li>
+        <key>plant</key>
+        <label>Send {A_nameDef} to plant beside them</label>
+        <tip>{A_nameDef}, the colony's best at the fields, goes out to the burn and works beside the grove-keepers for a few hours, learning as they plant.</tip>
+        <skill>Plants</skill>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going out to the burn to plant beside {X_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Plants</skill><xpPerHour>180</xpPerHour><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_AfterPlanter" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 58. A company on the march (the Ashen Banner) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_CompanyMarch</defName>
+    <label>Banner's company</label>
+    <workerClass>ColonyCouncil.CampWorker_CompanyMarch</workerClass>
+    <arrives>14~18</arrives>
+    <calling>mercenaries</calling>
+    <fights>true</fights>
+    <weight>0</weight>
+    <people>8~12</people>
+    <days>1~2</days>
+    <ages>19~48</ages>
+    <huntsPerDay>0</huntsPerDay>
+    <chopsPerDay>0</chopsPerDay>
+    <hireChance>0</hireChance>
+    <joinChance>0.1</joinChance>
+    <helpChance>0</helpChance>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.5</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <canPay>true</canPay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Mend</li><li>Haul</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>a company on the march leaves nothing behind for whoever follows it</leavesWhy>
+    <animals>
+      <li><pack>true</pack><count>1~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>A company on the march</li>
+      <li>The Banner camps at the edge</li>
+    </titles>
+    <texts>
+      <li>A company of {FACTION} is marching in {PLACE} in step, {X_nameDef} at the front. They will camp a night or two on their way to a contract.</li>
+      <li>[lowtech] A war band of {FACTION} is walking in {PLACE} in a long file, spears on their shoulders. They will camp a night or two on their way.</li>
+    </texts>
+    <settled>
+      <li>The Banner's company has its fire going {PLACE}, bedrolls laid out round it in rows and weapons stacked within reach.</li>
+      <li>{FACTION}'s company has made camp {PLACE}. A sentry walks the edge of it, and the rest are mending kit by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the company camped {PLACE}, came to the gate with {X_possessive} pack on. {X_pronoun} has marched far enough, {X_nameDef} says, and asks whether there is a place here; the Banner will hold it against the colony.</li>
+    </joinTexts>
+    <farewell>
+      <li>[caught] After the fight at the edge of the colony's land, the company carried its wounded out at dawn and marched on to its contract.</li>
+      <li>[enlisted] The company rolled its bedrolls at dawn, drilled once more and marched off, and one of the colony's own is on the road to join them for the season.</li>
+      <li>[brawl] The company rolled its bedrolls at dawn and marched off, the bet at the fire settled and not spoken of again.</li>
+      <li>The company rolled its bedrolls at dawn, drilled once more and marched off in step.</li>
+    </farewell>
+    <lines>
+      <li>Paid to the day, held to the day.</li>
+      <li>Every name on the Roll.</li>
+      <li>Keep your boots dry and your blade drier.</li>
+      <li>We march at first light.</li>
+      <li>No pay, no wall.</li>
+    </lines>
+    <momentLines>
+      <li>[drill] Again, from the top, feet first.</li>
+      <li>[drill] Form up, and keep the line straight.</li>
+      <li>[caught] To arms, they found us.</li>
+      <li>[bet] A day's pay says you cannot throw it farther than me.</li>
+    </momentLines>
+    <asks>
+      <li>
+        <key>drill</key>
+        <once>false</once>
+        <label>Have the sergeant drill {A_nameDef}</label>
+        <tip>{A_nameDef} spends a few hours at the company's fire being drilled by the sergeant. Practice in melee.</tip>
+        <skill>Melee</skill>
+        <warm>2</warm>
+        <tension>-2</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone over to the company's fire, where {X_nameDef} is drilling {A_objective} with a practice blade, feet first.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Melee</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>enlist</key>
+        <theyAsk>true</theyAsk>
+        <minDays>0.3</minDays>
+        <skill>Melee</skill>
+        <label>Send {A_nameDef} with the company for the season</label>
+        <tip>{A_nameDef} sets out for the Banner's nearest town to serve with the company for fifteen days, and comes home with a soldier's pay and what the drill ground taught. The roads there and back are the game's own.</tip>
+        <refuseLabel>Not this time</refuseLabel>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} has come up from the company's camp. The company is short of hands for this contract, {X_pronoun} says, and asks whether one of the colony's fighters would enlist for the season, for a soldier's pay.</li>
+        </askTexts>
+        <refused>
+          <li>{X_nameDef} nods and goes back to the camp.</li>
+        </refused>
+        <refuseTension>2</refuseTension>
+        <outcomes>
+          <li>{A_nameDef} is packing for the road, to join the company at the Banner's town for the season.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CompanyEnlist" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

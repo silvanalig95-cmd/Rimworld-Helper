@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 6 (Source/ColonyCouncil/Peoples/Events6/): the jobs they are seen doing on the map, the
+       Conclave's glass mast and sealed storm vial (drawn by Tools/make_storm_glass.py), and the moods the round gives. -->
+
+  <!-- ===================== The visitor who works on a colonist, or at a place (round 1's PeopleWorkOn) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_SitWith</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>sitting with TargetA through the drone.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>quiet</mark><done>ColonyCouncil.TideSatDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Seeds</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>sowing a plot with TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>beside</place><atPlace>true</atPlace><mark>sow</mark><done>ColonyCouncil.OldWoodSeedsDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Their own work at a thing or a place (JobDriver_PEv6Work, JobDriver_PEv6Firefight) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Rod</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>setting a rod in the ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>glass</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_KeepNight</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>keeping the night by the rods.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>glass</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_RodDown</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>taking a rod down.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_TowerWatch</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>keeping the night's watch at the glass mast.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>glass</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Firefight</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Firefight</driverClass>
+    <reportString>beating out the fire.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_CutBurned</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>cutting TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>chop</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Sapling</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>planting a sapling.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>sow</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Sing</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>singing by the fire.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv6_Drill</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv6Work</driverClass>
+    <reportString>drilling.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv6Work"><mark>drill</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The Conclave's glass mast and storm vial (StormTower.cs) ===================== -->
+
+  <ThingDef>
+    <defName>Rimfolk_StormglassMast</defName>
+    <label>glass mast</label>
+    <description>A brass pole of the Stormglass Conclave on a three-legged footing, with sealed glass vessels of storm water hung from its crossbars. The readers set it up beside their rods and watch the glass through the night: it clouds and feathers before the weather turns.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/StormglassMast</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,2)</drawSize>
+      <drawOffset>(0,0,0.5)</drawOffset>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>30</pathCost>
+    <fillPercent>0.15</fillPercent>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <Beauty>3</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+  </ThingDef>
+
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_StormVial</defName>
+    <label>sealed storm vial</label>
+    <description>A small glass vial of storm water, sealed by the readers of the Stormglass Conclave, with the day and the storm it was filled in written on the paper label round its neck. They leave one with a colony whose storms they wrote down. Traders pay a little for one.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/StormVial</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>45</MarketValue>
+      <Mass>0.3</Mass>
+      <MaxHitPoints>40</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Beauty>4</Beauty>
+    </statBases>
+    <tradeability>Sellable</tradeability>
+  </ThingDef>
+
+  <!-- ===================== The round's moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_SatThroughDrone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sat with through the drone</label><description>A reader of the Conclave sat with me for an hour while the drone was at its worst and talked me through it. It helped.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_Mustered</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>mustered with the Banner</label><description>I spent the week of the muster with the Banner, drilled with the old company and heard the Roll read. It was good to see them.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
