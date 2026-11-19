@@ -410,7 +410,8 @@ repo.
     sack.
   - **Code map.** No code changed: def text in 23 of the 26 `Rimfolk_Dilemmas_*` files; five lines of
     `Rimfolk_Variety3.xml` (the art bill's short line, the stockpile given up in three lines, the claimed ruin's short
-    line); DESIGN.md's play-out list; `docs/dilemma-balance.md`.
+    line); DESIGN.md's play-out list; the Almanac's table of the animal questions (`Almanac_Council_Animals.xml`: three
+    names, keywords unchanged); `docs/dilemma-balance.md`.
   - **Can't be checked without the game.** How the plainer questions read in the letter beside the outcomes and the
     gathering lines, which keep their voice; whether the new names read well in the letter's title ("Dilemma: An
     inspired artist") and on the dilemmas page; that the sentences which now start with a name read better than the
