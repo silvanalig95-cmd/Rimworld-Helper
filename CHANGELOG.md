@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A day off, felt
+
+*19 November 2026, version 0.266.7*
+
+- A colonist you give a day off now has the mood "a day off" (+6) for as long as it lasts, gone when it ends or you end it early.
+- The day off still eases strain faster while it runs and more when it runs its course, as before.
+
 ## Rooms by what is in them
 
 *19 November 2026, version 0.266.6*
