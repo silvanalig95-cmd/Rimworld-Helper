@@ -26,7 +26,7 @@
         <!-- The colony asked for a youth of theirs to foster -->
         <li>[ward,warm,askward,theirHightech] Yes, and gladly. Our youth has a bag packed and a list of questions longer than the bag.</li>
         <li>[ward,warm,askward,letter] Your letter was read to the whole family, and the youth we chose hasn't sat still since. They will come.</li>
-        <li>[ward,cordial,askward,theirLowtech] A youth of ours will come. Teach them well and feed them well, as we would one of yours.</li>
+        <li>[ward,cordial,askward,theirLowtech] A youth of our house will come. Teach them well and feed them well, as we would one of yours.</li>
         <li>[ward,cool,askward,theirHightech] We'll send someone. We expect them back as well as they left.</li>
         <li>[ward,cool,askward,call] All right, {WRITER}. One of ours will come. Don't make us regret it.</li>
         <li>[ward,refusal,askward,theirHightech] We've asked, and no family here wants to send a youth away for a year. I'm sorry.</li>

@@ -301,8 +301,8 @@ repo.
   neighbours, notables and peoples (the letter form's parts, the neighbours' written answers for every purpose, pacts,
   truces, favours, fealty, feasts, matches, ransom, envoys, wards, renown, a town taking back, the handed-over town's
   letters), with the letters' Keyed words read again. File list in the to-do entry "Rimfolk's text in plain words".
-  - **What changed.** About 5,870 lines read, 612 rewritten (the letter form's pools 573, the neighbours' answers and
-    the peoples' letters 39). Wry last lines and running jokes said plainly ("Repairs needed: the roof, the fence, the
+  - **What changed.** About 5,870 lines read, 610 rewritten (the letter form's pools 573, the neighbours' answers and
+    the peoples' letters 37). Wry last lines and running jokes said plainly ("Repairs needed: the roof, the fence, the
     well cover, and my temper" is "the roof, the fence and the well cover"; "the potholes now have potholes"; "I will
     write again when one side wins"; "Two out of three is good for a town"; "The grass is richer than we are"), things
     given a will or a voice ("it knows what it is doing", "It is shy", the mule "still making its case", "the river
@@ -322,8 +322,10 @@ repo.
     stay riddles; poems and songs (`Rimfolk_Letters_Poem.xml`) stay verse; sermons (`Rimfolk_Letters_Sermon.xml`) and
     the stories of a god's sign, curse or myth are the faiths' words, for the gods' round. Spoken lines over heads
     (`Rimfolk_Pool_NeighbourSays`, couriers' and visitors' lines, the challenger's words) and the neighbours' talk
-    (`OutsiderSays`) are not letters and were left. Every tag, placeholder and fact kept (the rewrite tool refused any
-    line whose tags or placeholders changed); the peoples' sayings still stand in their lines (each people keeps three
+    (`OutsiderSays`) are not letters and were left. The retired lines `Lean/ShippedLines.cs` names (two ward answers
+    with "our house") stay word for word: they are never drawn, and RenownTests asks that they stay. Every tag,
+    placeholder and fact kept (the rewrite tool refused any line whose tags or placeholders changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken); the peoples' sayings still stand in their lines (each people keeps three
     or more, PeoplesLoreTests asks two). Plain lines already in the letters' Keyed files since the interface batches.
   - **Put right against the code.** The unschooled raiders' ransom answers asked for gold ("Gold. Real gold, not painted
     rocks", "send gold"), while a ransom is paid in silver (`Ransoms.cs`: `ThingDefOf.Silver`); they now ask for
