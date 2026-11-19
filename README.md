@@ -1407,9 +1407,9 @@ The herd and the pets are part of the colony's life, not only its larder and its
 - **Visitors for the animals:** a drovers' animal doctor tends the colony's hurt and sick animals where they stand
   and, paid, works one through a step of its training; a travelling beast show camps with beasts from far places to
   buy, takes one of the colony's grown beasts for seven tenths of its worth, and lets the children help feed them.
-- **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
-  by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
-  a grudging truce.
+- **Personal stories:** an old companion's last good days (if it dies first, its death ends the story with a
+  farewell), an orphan raised by hand until the two may bond, a stray that comes in from the edge of the colony, a feud
+  with an animal that ends in a grudging truce.
 - **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
   crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
   the ideoligion frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
@@ -1579,9 +1579,15 @@ walks in the look of its own:
   archotech's call for the Machine, the void monolith for the Void), the sky flashes in its colour and its circle shows
   on the ground, everyone on the map turns toward it, the devout pray, calm animals lie down and shy ones run; the sky
   takes its colour and the wind dies for a few hours; a mark is left where it stood (a ring of flowers or scorched
-  ground, a spring, a tree, frost, ash, slag or a standing stone); its track plays (Anomaly's, Odyssey's, Ideology's
-  archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some say". An omen
-  is small: a sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
+  ground, a spring, a tree, frost, ash, or lightning striking the ground); its track plays (Anomaly's, Odyssey's,
+  Ideology's archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some
+  say", saying at the end what was left there. Some gods leave something worth having, by your colony's age and from
+  your mods where they have it, about 100 to 300 silver and at most once in ten days: a god of the hunt a fresh kill of
+  the land's game, a god of war a weapon of your age in a ring of scorched ground, a god of the roads a standing stone of
+  the land's own rock (no colonist's work, its author unknown), a god of the hearth firewood and a few warm meals, a god
+  of the forge a stack of steel (plasteel for a spacer colony), a god of machines a few components (an advanced one for
+  a spacer colony). The colony's book and the moods of those who saw it say what was left too. An omen is small: a
+  sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
   and green flashes, embers and heat, dust, pale spores, a skip flash and footprints, sparks, lightning glow, snow and
   frost, dark rings and smoke, light shafts, pale rings, sand, water, gold glints (the game's own flecks, A RimWorld of
   Magic's and Vanilla Psycasts Expanded's). The camera goes to every god's doing on the map: its moments, omens, its
@@ -1804,7 +1810,7 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
-*nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
+*two healers, two cooks* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
 infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
 infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight
@@ -3072,6 +3078,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **Nice Inventory Tab:** a piece of clothing or armour ordered for a colonist from their gear tab stays out of the
   crafter's pocket, so the mod still has them put it on; and a colonist who is away keeps working and puts it on when back
   near the base (the setting "Clothes made for someone, put on when they are back", Your other mods).
+  When a piece made from a material is ordered there, after the bench a short menu lists each material the colony has
+  enough of on the map for one piece, with how much is on hand; the bill then uses only the one picked, every other
+  material unticked in its settings, and "Any material" makes the bill as the mod does (the setting "Choose the
+  material when ordering a piece", Your other mods).
 - **Vanilla Factions Expanded - Empire:** its ballroom only where the room is for music (the setting "Ballrooms only for
   music rooms", Your other mods). The mod calls any room with a musical instrument a ballroom, unless it has a bed,
   throne or workbench, so a drum turned a dining room or a temple into a ballroom. With the setting on, a room with an

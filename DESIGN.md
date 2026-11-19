@@ -2347,10 +2347,10 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Council_Dilemmas3**
 
-- **the young hunter** (`Council_Dilemma_YoungHunter`): "Teach A to shoot": A learns at B's side (shooting) · "Let B show A the messy part": A learns at B's side (cooking), also when it goes wrong · "A carries the game bags, nothing more": a hunt party ("B's hunt").
+- **the young hunter** (`Council_Dilemma_YoungHunter`): "Teach A to shoot": A learns at B's side (shooting) · "Let B show A how to skin a kill": A learns at B's side (cooking), also when it goes wrong · "A carries the game bags, nothing more": a hunt party ("B's hunt").
 - **where the dead go** (`Council_Dilemma_WhereTheDeadGo`): "Hold a funeral for the animal": gathering to hear it, A speaks ("the animal's funeral").
-- **an animal in decline** (`Council_Dilemma_PetFading`): "Take the pet on one last walk": A goes for a long walk · "Nurse the pet": B keeps the pet company, also when it goes wrong · "Let B decide": only when it goes wrong: B goes for a long walk.
-- **a hungry look** (`Council_Dilemma_PetPot`): "B apologizes to the pet": gathering to hear it, B speaks ("B's apology to the pet").
+- **an animal in decline** (`Council_Dilemma_PetFading`): "Walk the pet out past the walls and let it go": A goes for a long walk · "Nurse the pet": B keeps the pet company, also when it goes wrong · "Let B decide": only when it goes wrong: B goes for a long walk.
+- **a plan to eat a pet** (`Council_Dilemma_PetPot`): "B apologizes to the pet": gathering to hear it, B speaks ("B's apology to the pet").
 - **a love letter** (`Council_Dilemma_LoveLetter`): "Make B apologize at dinner": gathering to hear it, B speaks ("B's apology"), also when it goes wrong · "Let A read the rest aloud": gathering to hear it, A speaks ("the reading of the letter"), also when it goes wrong · "Give B the worst chores for a week": a work party of B (clean, haul, corpses) ("B's worst chores").
 - **a funeral in advance** (`Council_Dilemma_OwnFuneral`): "Hold a living funeral": gathering to hear it, A speaks ("A's living funeral"), also when it goes wrong · "Let A pick a grave site": A goes for a long walk.
 - **the bite** (`Council_Dilemma_PetBite`): "Keep the pet penned for a while": A keeps the pet company.
@@ -2358,15 +2358,15 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Council_Dilemmas_ComingOfAge**
 
-- **a path: the workshop** (`Council_Dilemma_Path_Craft`): "Apprentice A to B in crafting": A learns at B's side (crafting).
-- **a path: the healer** (`Council_Dilemma_Path_Medicine`): "Apprentice A to B in medicine": A learns at B's side (medicine).
-- **a path: the scholar** (`Council_Dilemma_Path_Scholar`): "Apprentice A to B in study": A learns at B's side (intellectual).
-- **a path: the wall** (`Council_Dilemma_Path_Warrior`): "Apprentice A to B at arms": A learns at B's side (shooting).
+- **an apprentice crafter** (`Council_Dilemma_Path_Craft`): "Apprentice A to B in crafting": A learns at B's side (crafting).
+- **an apprentice healer** (`Council_Dilemma_Path_Medicine`): "Apprentice A to B in medicine": A learns at B's side (medicine).
+- **an apprentice scholar** (`Council_Dilemma_Path_Scholar`): "Apprentice A to B in study": A learns at B's side (intellectual).
+- **an apprentice fighter** (`Council_Dilemma_Path_Warrior`): "Apprentice A to B in shooting": A learns at B's side (shooting).
 
 **Council_Dilemmas_Customs**
 
 - **the planting day** (`Council_Dilemma_PlantingBlessing`, once the planting blessing): "Make a day of the planting": a work party up to 6 (sow) by the fields ("the planting day"), then a gathering at the field's edge to hear A ("a word at the field's edge") · "A sows the first row": a work party of A (sow) ("the first row").
-- **the remembrance walk** (`Council_Dilemma_RemembranceWalk`): "Walk to the graves together": a walk together to a grave and back ("the walk to the graves") · "Those who want to can go": A sits by a grave · "The living have work to do": A sits by a grave.
+- **the remembrance walk** (`Council_Dilemma_RemembranceWalk`): "Walk to the graves together": a walk together to a grave and back ("the walk to the graves") · "Those who want to can go": A sits by a grave · "Keep everyone at work today": A sits by a grave.
 - **the midsummer swim** (`Council_Dilemma_MidsummerSwim`): "Everyone to the water": gathering ("the midsummer swim") · "A swim once the day's work is done": gathering ("the evening swim").
 - **the harvest dance** (`Council_Dilemma_HarvestDance`): "Dance until the fire burns down": bonfire with music ("the harvest dance") · "One dance, then bed": bonfire with music ("the harvest dance").
 - **first-frost soup** (`Council_Dilemma_FirstFrostSoup`): "One big pot for everyone": feast from the stores ("the first frost soup").
@@ -2386,11 +2386,11 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 **Council_Dilemmas_Goals**
 
 - **a teacher for a dream** (`Council_Dilemma_Goal_Mentor`): "Ask B to make the time": A learns at B's side, also when it goes wrong · "Free up B's evenings": A learns at B's side.
-- **a dream fading** (`Council_Dilemma_Goal_GivingUp`): "Rally the colony behind A": gathering to hear it, A speaks ("the dinner for A"), also when it goes wrong · "A few easy days to think it over": time off for A.
+- **giving up on a dream** (`Council_Dilemma_Goal_GivingUp`): "Rally the colony behind A": gathering to hear it, A speaks ("the dinner for A"), also when it goes wrong · "A few easy days to think it over": time off for A.
 - **if I don't make it** (`Council_Dilemma_Goal_Remember`): "Write it into the colony's records": gathering to hear it, A speaks ("the reading of A's dream").
 - **a foolish dream** (`Council_Dilemma_Goal_Foolish`): "Stand behind A's dream": gathering to hear it ("the council's word at dinner").
 - **two dreams, one colony** (`Council_Dilemma_Goal_TwoDreams`): "Make them help each other": B keeps A company.
-- **the road out** (`Council_Dilemma_Goal_Caravan`): "Give A the council's blessing": A goes out to the gate.
+- **leaving with a caravan** (`Council_Dilemma_Goal_Caravan`): "Give A the council's blessing": A goes out to the gate.
 
 **Council_Dilemmas_Health**
 
@@ -2400,26 +2400,26 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Council_Dilemmas_Life**
 
-- **keeping apart** (`Council_DlmL_Quarantine`): "Have someone nurse A apart from the rest": B keeps A company.
+- **keeping the sick apart** (`Council_DlmL_Quarantine`): "Have someone nurse A apart from the rest": B keeps A company.
 - **fever at the camp** (`Council_DlmL_CampSick`): "Send them medicine": A goes to the camp's fire · "Send our doctor to tend them": B goes to the camp's fire · "Food and blankets, not medicine": A goes to the camp's fire.
-- **an empty pot at the camp** (`Council_DlmL_CampHungry`): "Have our best tracker show their hunters the game": B goes to the camp's fire · "Fill their pot": food carried out to X ("the food for the camp").
-- **the empty chair** (`Council_DlmL_EmptyChair`): "Have a good talker tell A the whole of it": B keeps A company.
-- **a day off, now** (`Council_DlmL_DayOffBadTime`): "Give A the days": time off for A · "Everyone takes a half day, in turn": time off for A.
-- **it's gone too far** (`Council_DlmL_FrictionGrown`): "Sit them down and make them talk it out": A keeps B company · "One week, one job, together": a work party of A and B (haul, clean, repair) ("the shared job").
-- **putting down the tools** (`Council_DlmL_ElderRest`): "Let A rest; A has earned it": time off for A · "Ask A to teach B instead": B learns at A's side.
+- **hunger at the camp** (`Council_DlmL_CampHungry`): "Have our best tracker show their hunters the game": B goes to the camp's fire · "Give them food": food carried out to X ("the food for the camp").
+- **a missed meeting** (`Council_DlmL_EmptyChair`): "Have a good talker tell A the whole of it": B keeps A company.
+- **time off at a bad time** (`Council_DlmL_DayOffBadTime`): "Give A the days": time off for A · "Everyone takes a half day, in turn": time off for A.
+- **a quarrel that has grown** (`Council_DlmL_FrictionGrown`): "Sit them down and make them talk it out": A keeps B company · "Put them on the same job for a week": a work party of A and B (haul, clean, repair) ("the shared job").
+- **retiring from the heavy work** (`Council_DlmL_ElderRest`): "Let A rest, since A has earned it": time off for A · "Ask A to teach B instead": B learns at A's side.
 - **a child's question** (`Council_DlmL_ChildQuestion`): "Ask our most learned to answer it": A learns at B's side (intellectual) · "Tell A a story instead": gathering to hear it ("the story for A").
 - **a dead traveler's journal** (`Council_DlmL_FoundJournal`): "Read it aloud over supper": gathering to hear it, A speaks ("the reading of the journal") · "Bury it with a marker": a walk together far out and back ("the burying of the journal").
 - **a promise not kept** (`Council_DlmL_BrokenPromise`): "Apologize at the table": gathering to hear it ("the council's apology to A") · "Have our best talker explain what happened": B keeps A company.
 - **the same work every day** (`Council_DlmL_SameWork`): "Have someone teach A a new trade": A learns at B's side.
-- **small hands at the workbench** (`Council_DlmL_ChildAtTheBench`): "B takes A on as an apprentice": A learns at B's side (crafting) · "Small jobs only, under B's eye": A learns at B's side (crafting) · "Let A make one thing, start to finish": A learns at B's side (crafting) · "Play is a child's work": time off for A.
-- **the doctor needs sleep** (`Council_DlmL_TiredDoctor`): "B sleeps; someone else sits up": B sent to bed · "Teach the basics to everyone who's awake": gathering to hear it, B speaks ("B's lesson in nursing") · "B keeps watch; others cover their work": a vigil at A's bedside ("B's watch at A's bedside").
+- **a child at the workbench** (`Council_DlmL_ChildAtTheBench`): "B takes A on as an apprentice": A learns at B's side (crafting) · "Small jobs only, under B's eye": A learns at B's side (crafting) · "Let A make one thing, start to finish": A learns at B's side (crafting) · "Tell them to go and play": time off for A.
+- **the doctor needs sleep** (`Council_DlmL_TiredDoctor`): "B sleeps, and someone else sits up": B sent to bed · "Teach the basics to everyone who's awake": gathering to hear it, B speaks ("B's lesson in nursing") · "B keeps watch; others cover their work": a vigil at A's bedside ("B's watch at A's bedside").
 - **the last of the medicine** (`Council_DlmL_LastMedicine`): "Send a forager out for wild herbs": a search of the land ("B's search for wild herbs"), also when it goes wrong · "Treat A with the medicine": B keeps A company, also when it goes wrong.
 - **an old remedy** (`Council_DlmL_OldRemedy`): "Let B try the old remedy": B keeps A company, also when it goes wrong.
 - **medicine for a stranger** (`Council_DlmL_StrangerMedicine`): "Have A look at X, but keep the medicine": A spends time with X · "Give X a dose": A spends time with X.
 - **a strange cure** (`Council_DlmL_OddCure`): "Let X try it, with our doctor watching": B learns at X's side (medicine), also when it goes wrong · "Let X try the cure": A spends time with X, also when it goes wrong.
 - **a child missing from the camp** (`Council_DlmL_CampLostChild`): "Send our best tracker to search": a search of the land ("the search for the lost child"), also when it goes wrong · "Keep the gate lit and the bell ringing all night": a vigil at the gate ("the lit gate").
-- **the same bowl again** (`Council_DlmL_SameMeal`): "Have our best cook try something new each week": feast from the stores ("B's new supper"), also when it goes wrong · "Send a forager out for something fresh": a search of the land ("B's forage for something fresh"), also when it goes wrong.
-- **elbow to elbow** (`Council_DlmL_Crowded`): "Have a builder mark out a new room": a walk together in the open ("the walk round the new room").
+- **the same meal every day** (`Council_DlmL_SameMeal`): "Have our best cook try something new each week": feast from the stores ("B's new supper"), also when it goes wrong · "Send a forager out for something fresh": a search of the land ("B's forage for something fresh"), also when it goes wrong.
+- **too crowded** (`Council_DlmL_Crowded`): "Have a builder mark out a new room": a walk together in the open ("the walk round the new room").
 
 **Council_Dilemmas_Mods_Hospitality**
 
@@ -2428,11 +2428,11 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 **Council_Dilemmas_Pets**
 
-- **the eaten dinner** (`Council_Dilemma_PetDinner`): "A cooks B a new meal": feast from the stores ("A's dinner for B").
+- **a pet eats someone's dinner** (`Council_Dilemma_PetDinner`): "A cooks B a new meal": feast from the stores ("A's dinner for B").
 
 **Council_Dilemmas_Reputation**
 
-- **a joke at our expense** (`Council_DlmR_StingyMockery`): "Send X off with a gift": A spends time with X.
+- **a joke at our expense** (`Council_DlmR_StingyMockery`): "Send X off with 50 silver": A spends time with X.
 - **the way it's done here** (`Council_DlmR_SkipCustom`): "Have B tell A why it matters": B keeps A company.
 - **how it used to be** (`Council_DlmR_OldCustom`): "Bring it back, the way it was": feast from the stores with music ("the old custom") · "Bring it back, with a few changes": feast from the stores with music ("the old custom").
 - **a friend at the gate** (`Council_DlmR_FriendAtTheGate`): "A can go out to X": A spends time with X · "Open the gate for X": A spends time with X.
@@ -2445,39 +2445,39 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 - **midsummer night** (`Council_Dilemma_Midsummer`): "Light the bonfire": bonfire (its own wood) with music · "A small fire, no drinking": bonfire (its own wood) ("the small fire").
 - **harvest home** (`Council_Dilemma_HarvestHome`): "A harvest feast for everyone": feast from the stores · "A modest supper": feast from the stores ("the harvest supper").
 - **the longest night** (`Council_Dilemma_Midwinter`): "Extra rations for the long night": feast from the stores with music · "Stories by the fire, no feast": bonfire ("the stories by the fire").
-- **after the battle** (`Council_Dilemma_VictoryFeast`): "A victory feast": feast from the stores · "A quick hot meal, then the walls": feast from the stores ("the hot meal after the battle") · "Have the best cook stretch half the food": feast from the stores, also when it goes wrong · "Repairs first, celebrations later": a work party up to 6 (repair, build, corpses, clean) ("the repairs after the battle").
+- **after the battle** (`Council_Dilemma_VictoryFeast`): "A victory feast": feast from the stores · "A quick hot meal, then the walls": feast from the stores ("the hot meal after the battle") · "Have the best cook stretch half the food": feast from the stores, also when it goes wrong · "Get straight to the repairs": a work party up to 6 (repair, build, corpses, clean) ("the repairs after the battle").
 - **naming the year** (`Council_Dilemma_NameTheYear`): "Name it for those we lost": a walk together to a grave and back ("the names said at the graves").
-- **the spoils** (`Council_Dilemma_Spoils`): "The fighters get the spoils": a work party of the others (clean, corpses, haul) ("the cleanup").
+- **the spoils** (`Council_Dilemma_Spoils`): "Give the spoils to those who fought": a work party of the others (clean, corpses, haul) ("the cleanup").
 - **the enemy dead** (`Council_Dilemma_EnemyDead`): "Give them graves": a work party up to 4 (corpses, clean) ("the burying of the raiders") · "One grave for all of them": a work party up to 3 (corpses, clean) ("the trench outside the wall").
 
 **Council_Dilemmas_Secrets**
 
-- **blood on old hands** (`Council_Dilemma_Secret_BloodPast`): "Have A tell the whole story": gathering to hear it, A speaks ("A's story") · "Let A work off the past": a work party of A (corpses, clean, haul) ("A's penance").
-- **the loose tongue** (`Council_Dilemma_Secret_LooseTongue`): "Make B apologize at supper": gathering to hear it, B speaks ("B's apology") · "Sit them down until they sort it out": A keeps B company.
+- **a violent past** (`Council_Dilemma_Secret_BloodPast`): "Have A tell the whole story": gathering to hear it, A speaks ("A's story") · "Let A work off the past": a work party of A (corpses, clean, haul) ("A's penance").
+- **gossip about a secret** (`Council_Dilemma_Secret_LooseTongue`): "Make B apologize at supper": gathering to hear it, B speaks ("B's apology") · "Sit them down until they sort it out": A keeps B company.
 - **a kindness found out** (`Council_Dilemma_Secret_KindnessFound`): "Raise a cup to A at supper": feast from the stores ("the supper for A").
-- **one more bout** (`Council_Dilemma_Secret_OneMoreBout`): "Let A teach fighting instead": B learns at A's side (melee).
+- **a challenge to fight** (`Council_Dilemma_Secret_OneMoreBout`): "Let A teach fighting instead": B learns at A's side (melee).
 - **using again** (`Council_Dilemma_Secret_UsingAgain`): "A week off, with B beside A": time off for A and B; B keeps A company.
-- **what came out** (`Council_Dilemma_Secret_WhatCameOut`): "Talk it through one evening": gathering to hear it, A speaks ("the evening of questions").
+- **after a secret came out** (`Council_Dilemma_Secret_WhatCameOut`): "Talk it through one evening": gathering to hear it, A speaks ("the evening of questions").
 
 **Council_Dilemmas_Social**
 
-- **a line down the middle** (`Council_Dilemma_Soc_SwornRivals`): "Make them teach each other their trades": B learns at A's side.
-- **the remembrance** (`Council_Dilemma_Soc_Remembrance`): "Hold the remembrance night": gathering ("the remembrance night") · "Allow speeches, but no feast": gathering to hear it, A speaks ("the speeches").
-- **a rival's word** (`Council_Dilemma_Soc_Accusation`): "Make B take it back in public": gathering to hear it, B speaks ("B's retraction").
+- **a feud that splits the colony** (`Council_Dilemma_Soc_SwornRivals`): "Make them teach each other their trades": B learns at A's side.
+- **remembering the fight** (`Council_Dilemma_Soc_Remembrance`): "Hold the remembrance night": gathering ("the remembrance night") · "Allow speeches, but no feast": gathering to hear it, A speaks ("the speeches").
+- **an accusation without proof** (`Council_Dilemma_Soc_Accusation`): "Make B take it back in public": gathering to hear it, B speaks ("B's retraction").
 - **a friend left behind** (`Council_Dilemma_Soc_LeftBehind`): "Ask A to make time for B": A keeps B company · "Bring B into the new crowd": B keeps A company, also when it goes wrong.
-- **the closed circle** (`Council_Dilemma_Soc_ClosedCircle`): "Have A host a supper for everyone": feast from the stores ("A's supper").
+- **a group that shuts someone out** (`Council_Dilemma_Soc_ClosedCircle`): "Have A host a supper for everyone": feast from the stores ("A's supper").
 - **inseparable** (`Council_Dilemma_Soc_Inseparable`): "Let them work together": a work party of A and B (haul, clean, repair) ("the first shift together") · "Give them the night watch, together": a vigil at the gate ("the night watch").
 - **the cover story** (`Council_Dilemma_Soc_CoverUp`): "Punish them both": a work party of A and B (clean, haul) ("the punishment").
 - **a plea for a friend** (`Council_Dilemma_Soc_Plea`): "Halve it, if B takes the other half": a work party of A and B (haul, clean) ("the shared punishment").
 
 **Council_Dilemmas_Strangers**
 
-- **the trader's eye** (`Council_DlmS_HeirloomOffer`): "Sell it": A sits by a grave.
-- **a voice through the door** (`Council_DlmS_PrisonerPlea`): "Hear X out properly": A spends time with X.
-- **hungry at the gate** (`Council_DlmS_Beggars`): "Send them home with seed, and a grower's advice": B spends time with X · "Fill their sacks": food carried out to X ("the food for their people") · "Give them silver instead": silver carried out to X ("the silver for their people").
+- **a trader wants an heirloom** (`Council_DlmS_HeirloomOffer`): "Sell it": A sits by a grave.
+- **a prisoner's plea** (`Council_DlmS_PrisonerPlea`): "Hear X out properly": A spends time with X.
+- **hungry at the gate** (`Council_DlmS_Beggars`): "Send them home with seed, and a grower's advice": B spends time with X · "Fill their sacks": food carried out to X ("the food for their people") · "Give them 60 silver instead": silver carried out to X ("the silver for their people").
 - **the traveling healer** (`Council_DlmS_Healer`): "Pay X to teach B": B learns at X's side (medicine) · "Pay the healer": B learns at X's side (medicine), also when it goes wrong · "Let B treat it, with our own medicine": B keeps A company, also when it goes wrong.
-- **a guest's tongue** (`Council_DlmS_RudeGuest`): "Ask our best talker to settle it": B spends time with X, also when it goes wrong.
-- **a face from before** (`Council_DlmS_OldAcquaintance`): "Pay for their silence": silver carried out to X ("the silver for X's silence").
+- **a rude guest** (`Council_DlmS_RudeGuest`): "Ask our best talker to settle it": B spends time with X, also when it goes wrong.
+- **a visitor who knows a secret** (`Council_DlmS_OldAcquaintance`): "Pay for their silence": silver carried out to X ("the silver for X's silence").
 
 **Council_Events_Callers**
 
@@ -7299,8 +7299,8 @@ can't build. Every suggestion goes through one gate (`Avail`):
   made or is in stock, no winter advice on space maps.
 - **Era of the colony**: the research advisor suggests projects from the colony's own tech
   level first.
-- **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
-  (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
+- **Ambitions** are offered only if every goal is possible right now. "Turrets on the approaches"
+  never comes up for a medieval colony, but "traps on the approaches" does.
 
 ### Things by what they are for (the player's request, 7 November 2026)
 
@@ -9894,7 +9894,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     raiders driving off beasts is a loss of stock, not a hurt, at a raid's small chance. Saved: `PeopleEvents3Book` (red ink,
     shrines, thefts, the table) and the camps' states, modelled in `Tools/save_estimate.py`. Dev actions "Peoples' events 3:
     ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*.
-- **The peoples' own events, round 4** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 4** (the player's go, 19 November 2026: "Events sounds great"; released 0.268.0)
   `docs/peoples-events-proposals.md`, items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 (the society, the enclave, the river
   folk and the Wardens); `Source/ColonyCouncil/Peoples/Events4/`, the pure rules in `PeopleEvents4Math.cs`,
   `Tools/Tests/PeopleEvents4Tests.cs` ("the peoples' events, round 4: "). As rounds 1 to 3: only from a people of its calling
@@ -10070,9 +10070,9 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     between 19h and 23h, no threat on), three or more of the colony's buildings damaged; once a raid at 0.5, ten days apart.
     A fixer and two hands with lamps. Paid in the raiders' broken gear (weapons and clothes lying forbidden outside the stores,
     below 60% or tainted, twelve at most) and `MendSilver` (40 to 250 by the hit points missing), or `MendSilverOnly` and the
-    gear kept. Through the night each takes the three damaged buildings nearest them (`Rimfolk_PEv5_Mend`, sparks, a bar,
-    each mended whole), the last of them gathering the gear into their pack (`Rimfolk_PEv5_Gather`); gone at first light
-    whatever is left, +3.
+    gear kept. Through the night each takes the three damaged buildings nearest them (`Rimfolk_PEv5_Mend`, sparks and a
+    lamp's glow, a bar, each mended whole), the last of them gathering the gear into their pack (`Rimfolk_PEv5_Gather`);
+    gone at first light whatever is left, +3.
   - **Made better** (Wheel; a gift, `MadeBetter`): a colonist's own equipped weapon or worn armour (sharp armour 0.2 or more)
     with a quality below masterwork, the dearest. Paid `BetterSilver` (80 to 800, three tenths of its worth) and
     `BetterSteel`, or half again in silver alone. The fixer takes it at the colonist's side (`Rimfolk_PEv5_HandOver`), the
@@ -14859,7 +14859,8 @@ pure rules in `GodPresenceMath.cs` (linked, `GodPresenceTests`).
   through `Patch_GodStillsWind`, an hour to five by the kind, named plainly or "a strange stillness"), everyone on the
   map turning (animals within forty cells; the devout pray, calm animals lie down, shy wild ones within 22 cells run;
   three speak, `_GodMoment`), and the mark (`GodPresenceMath.MarkFor`: a ring of flowers or scorch marks, frost, ash, a
-  spring of shallow water, a tree of the biome, a lump of slag or a chunk of the land's stone); 1.2 seconds later the
+  spring of shallow water, a tree of the biome, lightning, or the goods of a mark worth having, chosen as the moment
+  begins and said on its card: "A god's mark worth having" below); 1.2 seconds later the
   track (`MusicManagerPlay.ForcePlaySong`: the player's own from `Sounds/Rimfolk/Gods/<Domain>/` first, else the look's,
   a wrath's darker ones first, varied by the god and the hour); four seconds after the sting the card. With the music
   off, no fade, silence or track: the sting at once.
@@ -16447,6 +16448,42 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
   something off. Someone nearby goes at once, as before.
 
+### Choose the material when ordering a piece from the gear tab (the player's go, 19 November 2026; released 0.268.1)
+
+The player: "when you know giving a order through the inventory to create like a piece of clothing or armor or
+whatever, it would really be cool to also be able to select from which material that piece of clothing should be made
+... when I select the open item slot, select the item that I want to create, and then I have to select where it's
+created from, and then maybe I could also immediately select which material it uses. So it would just list or show
+materials that I have enough of for the job, and then create the job, but only select this one material as a allowed
+material and by default deselect everything else, so that I'm sure it doesn't use anything else." Their go on the
+lead's proposal: "yes, please", "all the three".
+
+- **The mod's own flow** (Nice Inventory Tab's DLL, decompiled outside the game, never loaded): an empty slot's menu,
+  "Make", a piece, then a bench (or the piece's own line for its first bench), calls
+  `NiceInventoryTab.CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`: it makes
+  the bill, registers it as made for the colonist whose tab it is (`BillFinished_Patch.Register`, with
+  `ITab_Pawn_Gear_Patch.lastPawn`), names it, adds it to the bench, says so and moves the camera there.
+- **The material step** (`Integrations/MaterialChoice.cs`, `Patch_MaterialChoiceOrder`, a prefix on that call by
+  name): for a piece made from a material (the product is made from stuff and the recipe takes its stuff from an
+  ingredient), one more menu opens, titled "Material for the (piece)": "Any material" first, then each material the
+  recipe takes (from its material ingredient, never a fixed one like components; allowed for the piece and by the
+  recipe) that the colony has enough of for one piece, with how much is on hand and the material's own icon. On hand
+  is what lies on the map, seen and not forbidden; one piece's need is the game's own count for that material
+  (`IngredientCount.CountRequiredOfFor`, so gold and silver count in their own units). The order
+  (`MaterialChoiceMath.Offered`, pure, in the tests): the material that makes the most pieces first, then by name. With
+  none enough, a greyed line says so under "Any material". Each line's tooltip says what one piece takes. Clicking
+  outside the menu orders nothing.
+- **The bill.** Either choice calls the mod's own `CommandCreate` as it would have been called (the prefix lets
+  Rimfolk's own call through), so the bill, the wear request, the name and the message are the mod's; it is made for
+  the colonist the menu was opened for. For a material, the new bill's ingredient filter then allows only that one:
+  every other material its material ingredient takes is unticked, the chosen one ticked, the rest of the filter (hit
+  points, quality, other ingredients) left as it was. "Any material" leaves the mod's bill as it is.
+- **Standing down.** A piece not made from a material goes straight on, as before. Without the mod the hook stands
+  down; with the mod but its order not found, one warning in the log and the mod's own way; a failure while opening
+  the menu, logged once, leaves the mod's own way for the session.
+- The setting "Choose the material when ordering a piece" (`materialChoice`, on, under the deeper hooks), on the "Your
+  other mods" page under Nice Inventory Tab.
+
 ### Rooms judged by what is in them (the player's go, 19 November 2026; released 0.266.6)
 
 The player (17 November 2026): "I want the gatherings where food is involved, of course, happening in my dining room,
@@ -16500,6 +16537,83 @@ November 2026): "Rooms judged by what's in them. That sounds good."
   rooms (`KeepOut`, `GuestHelpMath.PrivateRoom`); the journal's moods, which are the game's own thoughts.
 - Tests: `RoomUseTests` (the reading, the order, the player's rooms, and every place above reading the rooms through
   `RoomUtil`; only the kept places compare the game's dining or rec role directly).
+
+### A god's mark worth having (the player's go, 19 November 2026; released 0.268.3)
+
+The player: "so the god events and occurences are super cool! but many of them just generate a single stone [chunk]??
+it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting
+or valuable item". The go, on the lead's proposal: "yes, please", "all the three".
+
+- **The cause.** A god's moment (a blessing, a coming, a reveal, a departure; `GodPresenceMath.MarkFor`) leaves its
+  look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`), and 10 of the 17 looks left one stone chunk of the land's
+  rock (the Storm, the Hunt, War, the Way, the Hearth) or one steel slag chunk (War among spacers, the Craft and the
+  fabricator, the Machine and the iron spirit). Nothing said what was left.
+- **Each look its own mark** (`GodMark`, new values; the enum is never saved, and `Stone` and `Slag` are gone):
+  - the Storm: `Lightning`, a flash in the sky, a glow and thunder at the place (the game's lightning flash and glow,
+    no strike: no fire, nobody hurt) and a ring of scorched ground; no goods;
+  - the Hunt: `Kill`, a fresh kill of the land's game: an animal of the land (`BiomeAnimals.Of`, the commoner
+    likelier), flesh, not a person, an insect, a Pokémon or an animal the colony's faith holds sacred, from a fox's size
+    to a deer's (0.5 to 1.5; 0.3 to 2 on a land with none such), grown, its meat and leather at their prices, as much
+    of them as a butcher of middling skill gets (three quarters, `GodMarkMath.KillWorth`), worth no more than 360
+    silver (a deer is about that), else the least worth of the few tried; laid on open ground near the place, killed
+    there (the game's own death, the corpse fresh and not forbidden), a little of its blood beside it outside the home
+    area;
+  - War, and War among spacers: `Weapon`, a ring of scorched ground and a weapon in the middle of it: any weapon of the
+    player's game carried in the hands (every mod's; no grenade, nothing that can't be dropped or traded, no persona
+    weapon, nothing past the spacer age), of the colony's own age first (`PeopleAgesMath.AgeOfTech`), an earlier age's
+    only when none of its own fits, the commoner likelier, of a material the age has (`GenStuff`, by the age's tech
+    level), worth 100 silver up to the age's worth and a half (180 tribal, 240 medieval, 300 after), else the nearest to
+    the age's worth; of poor or normal make, never poor where that takes it under 100; with no open ground for the ring
+    (under a roof), the weapon alone;
+  - the Way: `StandingStone`, a standing stone of the land's own rock: Vanilla Furniture Expanded - Art's obelisk, else
+    the game's small sculpture, of the blocks the land's first rock is dressed into (granite blocks where none is), of
+    normal quality, a work of art nobody of the colony made (the game's way with an outsider's work: no story of the
+    colony's on it, its author unknown); set up on free open ground near the place as the colony's, packed up beside it
+    where none is free;
+  - the Hearth: `Hearth`, a bundle of firewood (25 wood) and three to eight warm meals of the colony's age: simple ones
+    tribal, fine ones medieval and industrial, lavish ones spacer, Vanilla Cooking Expanded's stews, soups, grills and
+    bakes or the game's own;
+  - the Craft and the fabricator: `Metal`, a stack of the colony's working metal: steel, plasteel in a spacer colony;
+  - the Machine and the iron spirit: `Components`, a few components, in a spacer colony an advanced one and two more.
+  The other looks keep theirs (flowers, a tree, a spring, frost, ash, scorch; Revel's and Tamiu's none).
+- **What it is worth** (`GodMarkMath`, by the colony's age, `Ages.Ours`: 120 silver tribal, 160 medieval, 210
+  industrial, 260 spacer, never under 100 or over 300): 65, 85 or 110 steel, 30 plasteel; 4, 5 or 7 components, an
+  advanced one and 2 in the spacer age; the firewood and 6 to 8 meals (6 lavish ones in the spacer age); the weapon
+  within its worth; the kill by its size; the standing stone at normal quality (the obelisk only while it is within 300
+  silver, else the small sculpture).
+- **How often.** The moments that leave a look's mark are a god coming onto the land (a stranger at the gate or a
+  sacred animal: one in 40 days at the most, about one a year), a great effect of the gods' touch (one in 40 days at a
+  home at the most), an answered prayer of the sick, of a raid or of a drought (a god once in ten days at the most), a
+  god's kindness in the world (a fever eased, a kindness returned, a gift) and the rare risings and wakings: in a colony
+  that prays, five to ten a year. Only the looks above leave goods: of the colony's fifteen gods Smoulder (metal), Pip
+  (components), Ennu and Ducat (the standing stone); the Hunt, War and the Hearth are the looks of the peoples' gods and
+  of a god born to the colony in those domains. So one to four marks of goods a year, 150 to 800 silver. And a mark of
+  goods comes at most once in ten days, any god, any home (`GodMarkMath.WorthGapDays`, kept with the game in
+  `GodPresenceComponent.lastWorth`): six a year at the most, 1,800 silver at the very most; within the wait a moment
+  leaves the mark's plain form (`GodMarkMath.Lesser`: war, the hearth, the forge and the machine a ring of scorched
+  ground, the hunt and the way nothing).
+- **Chosen first, laid at the sting.** `GodPresence.Manifest` asks `GodMarkGoods.Plan` as the moment begins: the
+  goods are made (the animal not yet on the map), the ground is checked (`GodTrails.CanMark`: flowers and a tree only
+  on fertile open soil, a spring on natural ground off the home area, scorch, ash, frost and lightning under the sky),
+  and the words written; `GodTrails.Mark` lays it all at the sting, a glint in the god's colour on each thing. A mark the
+  ground can't take, or goods that can't be had (no game on the land), leaves the plain form or nothing, and says so.
+- **The words match the map** (`CC_GodP_Left_*`, one sentence each, the god never named): "When it was over, a stack of
+  65 steel lay where it happened.", "...a freshly killed deer lay on the ground where it happened.", "...the ground
+  where it happened was scorched in a ring, and a steel longsword lay in the middle of it.", "...an obelisk of the
+  land's own granite stood where it happened.", "...a bundle of firewood and 7 fine stews, still warm, lay where it
+  happened.", "Lightning struck the ground where it happened and left a ring of scorched earth.", and the ground's marks
+  too ("...a ring of flowers had come up where it happened."). The sentence follows the card's words (`GodCard.Send`'s
+  `left`), the line in the colony's book (`Gods.Moment`, through `PresenceSpec.left`, which the wiring fills in from
+  `GodPresence.LastLeft`) and the "Why" of the moods of those who saw it (`GodTouch.NoteMoment`), joined by
+  `GodMarkMath.WithLeft`.
+- **Dev mode**: "Gods: a god's mark here..." lays any mark at a cell in the colony's age or any other, the wait set aside,
+  and says its words and worth (also in the log); "Gods: a moment of a look here..." leaves a mark's goods whenever it is
+  tried; "Gods: what each look finds in this game (log)" names each look's marks.
+- Code: `Gods/Presence/GodMarkMath.cs` (new, pure, linked in the tests), `GodMarkGoods.cs` (new: `GodMarkPlan`,
+  `GodMarkGoods`), `GodTrails.cs` (`Mark` by plan, `CanMark`, the lightning), `GodPresence.cs` (the plan, `LastLeft`,
+  `GodPresenceComponent.lastWorth`), `GodCard.cs`, `GodPresenceDebug.cs`, `GodPresenceMath.cs` (`GodMark`, `MarkRadius`);
+  `Gods/GodPresenceSeam.cs` (`PresenceSpec.left`), `GodsWiring.cs`, `Gods.cs`, `Touch/GodTouch.cs`; the looks' marks;
+  `Languages/English/Keyed/Rimfolk_GodPresence.xml`. Tests: `GodMarkTests` (new).
 
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 

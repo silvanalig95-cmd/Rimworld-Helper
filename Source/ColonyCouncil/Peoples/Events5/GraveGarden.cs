@@ -205,6 +205,8 @@ namespace ColonyCouncil
             if (r == null || !r.stones.Remove(c)) return;
             var stone = Flagstone(map);
             if (stone == null || !c.InBounds(map) || c.GetEdifice(map) != null || (c.GetTerrain(map)?.IsWater ?? true)) return;
+            // The grass where the stone goes is cleared with the laying.
+            if (c.GetPlant(map) is Plant grass && !grass.def.plant.IsTree) grass.Destroy();
             map.terrainGrid.SetTerrain(c, stone);
             r.laid++;
             r.worked = true;

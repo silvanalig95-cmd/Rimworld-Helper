@@ -33,16 +33,16 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Rounds 4 and 5 are built, not released (the entries above the newest release line).
+   lists each round's numbers). Round 4 is released (0.268.0); round 5 is built, not released (the entry above the newest
+   release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
    numbered proposals and the lead's first batch); nothing is built until the player picks from it.
 6. **The storytellers' below-base levers**: built, not released (the entry "The storytellers: fewer only where it fits,
    and said" above the newest release line).
-7. **New wishes, 19 November 2026, on the to-do list**, each waiting for its go: choose the material when ordering a
-   piece from the gear tab; a day off lifts the mood while it lasts; a god's mark worth having, not a stone chunk (the
-   entries below).
+7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
+   the mood (0.266.7), choosing the material from the gear tab (built), a god's mark worth having (being built).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
 - Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
@@ -118,35 +118,14 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, sounds good"; built, not released): riding out to far work, Bautista
   walked.** The report with the player's words, what their save showed, the cause and what was built are now one entry
   above the newest release line ("Riding out to far work: the beast taken first").
-- **To do when the player asks (19 November 2026): a god's mark worth having, not a stone chunk.** The player: "so the
-  god events and occurences are super cool! but many of them just generate a single stone [chunk]?? it's a very
-  anticlimatic item and doesn't thematically fit for most of them, let alone it being a really not interesting or
-  valuable item". The cause: a god's moment (blessing, appearance, reveal, departure; `GodPresenceMath.MarkFor`) leaves
-  its look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `Gods/Presence/GodTrails.Mark`), and 10 of the 17 looks
-  have `Stone` (one chunk of the land's rock: Storm, Hunt, War, Way, Hearth) or `Slag` (one steel slag chunk:
-  War_Spacer, Craft, Craft_Spacer, Machine, Machine_Old). **The lead's proposal, waiting for the player's go**: each a
-  mark of its own that fits and is worth something (about 100 to 300 silver, by the colony's age and the player's mod
-  pool), shown on the map where the god was: Storm a ring of scorched ground where lightning struck (no item); Hunt a
-  fresh kill of the land's game left on the ground; War a ring of scorch and a weapon of the colony's age left lying (the
-  pool's, normal or poor quality); Way a standing stone, a small sculpture of the land's own stone; Hearth a bundle of
-  firewood and a few warm meals; Craft a few bars of the colony's working metal (steel, then plasteel for spacer);
-  Machine and its old form a few components (an advanced one for spacer). The book's line and the touch's words say
-  what was left.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): a god's mark worth
+  having, not a stone chunk.** The report with the player's words, the cause and what was built are now one entry above
+  the newest release line ("A god's mark worth having").
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"): a day off lifts the mood while it lasts.**
   The wish and what was built are now one entry above the newest release line ("A day off lifts the mood").
-- **To do when the player asks (19 November 2026): choose the material when ordering a piece from the gear tab.** The
-  player: "when you know giving a order through the inventory to create like a piece of clothing or armor or whatever, it
-  would really be cool to also be able to select from which material that piece of clothing should be made. I mean, now I
-  basically create the task and then have to go to the task in the tailor's table or whatever and kind of go deselect all
-  materials and then only enable those that I actually want them to use ... when I select the open item slot, select the
-  item that I want to create, and then I have to select where it's created from, and then maybe I could also immediately
-  select which material it uses. So it would just list or show materials that I have enough of for the job, and then
-  create the job, but only select this one material as a allowed material and by default deselect everything else". The
-  mod is Nice Inventory Tab (its DLL decompiled in the session's scratchpad, `nit_out2/`: its slot's float menus, then
-  `BillFinished_Patch.Register` for the bill). **The lead's proposal**: after the bench is chosen, one more menu step
-  listing the stuff the colony holds enough of for one piece (by the recipe's stuff cost, counted on the map), each with
-  how much there is; the bill then made with only that stuff allowed in its ingredient filter; "any material" kept as the
-  first choice for the mod's own way.
+- **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
+  when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
+  now one entry above the newest release line ("Choose the material when ordering a piece").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -171,14 +150,14 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); rounds 4 and 5 are built, not
-  released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 6 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), and round 5
+  built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 6 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
-  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Built, not released (19 November 2026).
+  4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Built, not released (19 November 2026).
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
@@ -287,8 +266,53 @@ repo.
   `Rimfolk_Letters_Bring.xml`, `Rimfolk_YearLetter.xml`, `Rimfolk_Notables.xml`' route lines, the letter keys of
   `Rimfolk_Dealings`, `_Diplomacy`, `_Fealty`, `_Feasts`, `_Matches`, `_Pacts`, `_Ransom`, `_Wards`, `_Couriers`, read
   again: already plain since the interface batches).
-  Still to pick, when the player asks: the gods and faith, wishes and ambitions, personal stories, council questions,
-  the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
+  Wishes and ambitions, done (19 November 2026, the same go; built, not released): the entry "Plain words: wishes and
+  ambitions" above the newest release line. Files taken: every wish in `Defs/WishDefs/` (all 24 files: label,
+  description, reasons, what fulfils it, what's lost, and its request, request for another, thanks, lapse and reminder
+  lines), the ambitions in `Defs/AmbitionDefs/` (`Council_Ambitions` to `Council_Ambitions7`, `Extra_AmbitionLines`,
+  `Extra_AmbitionLines2`, `Rimfolk_Ambitions_Defense`, `Rimfolk_Ambitions_Mods_PokeWorld`: names, descriptions, pitches,
+  what's said when reached, the gathering's name), the life goals in `Defs/AspirationDefs/` (all 15 files: names, goal
+  and deed, the lines when chosen and when reached; the two ThoughtDefs in `Rimfolk_Aspirations_Lives.xml` left, moods),
+  and the Keyed words of wishes and goals (`CC_Reason_*` wherever they sit, the wish, promise, self-help, petition,
+  promises-kept, ambition and life-goal keys of `ColonyCouncil.xml`, `Rimfolk_WishesGoals`, `Rimfolk_Aspirations_Sparks`,
+  `Rimfolk_Kept`, `Rimfolk_Wishes_Petitions`, `Rimfolk_Lives`, `Rimfolk_LifeNew`, `Rimfolk_People4`, read again: plain
+  since the interface batches but for one reason). Left as the brief said: the wish lines in `Defs/FlavorPoolDefs/`
+  (`Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, `Council_Wish_Voices`,
+  the wish parts of `Council_Mods_People_Lines`), and the wishes' talk in `InteractionDefs`.
+  Personal stories, done (19 November 2026, the same go; built, not released): the entry "Plain words: personal stories"
+  above the newest release line. Files taken: every personal story in `Defs/ArcDefs/` (`Council_Arcs_Bonds`, `_Crafts`,
+  `_Heart`, `_Home`, `_Mods_Magic`, `Rimfolk_Arc_FearLaid`, `Rimfolk_Arcs_Ages`, `_Animals`, `_LifeNew`,
+  `_Mods_PokeWorld`, `_Three`, `_Together`, `_World`, and the extra chronicle lines of `Rimfolk_Arcs_MoreWords`: each
+  story's summary, its stages' names, what the Story tab says comes next, the chronicle lines that also make the letter
+  at the end, the chronicle lines when a story comes to nothing, and the names of what is staged on the map), and the
+  stories' Keyed words (`Rimfolk_Arcs.xml`, the stray's message and the farewell in `Rimfolk_Animals.xml`, the
+  stories' marks over heads in `Rimfolk_HarmSeven.xml`, read again: plain since the interface batches but for the
+  settings' count of stages, the stray's message and one mark). Left as the player said: the journal lines in every
+  story (the colonist's, the other's and the third's, the fizzle lines and the eulogies are journals), the stories'
+  talk (`Council_Arc_Talks`, `Rimfolk_Arc_Lives_Talks`, the talks in the story files: `InteractionDefs`), their moods
+  (`Council_Arc_Thoughts`, `Rimfolk_Arc_Lives_Thoughts`, the ThoughtDefs in the story files) and the quirks and names
+  they leave (`Council_Arc_Keepsakes`: character). The region's follow-ups and the memory of single colonists
+  (`World/Region/FollowUps.cs`, `World/ColonistMemory.cs`) are the region's, not personal stories: for the region map.
+  Council questions, part 1, done (19 November 2026, the same go; built, not released): the entry "Plain words: council
+  questions, part 1" above the newest release line. Files taken: the 29 files `Defs/DilemmaDefs/Council_*.xml`
+  (`Council_Dilemmas`, `2`, `3`, `_ComingOfAge`, `_Customs`, `_Customs2`, `_Goals`, `_Health`, `_Life`,
+  `_Mods_Hospitality`, `_Pets`, `_Reputation`, `_Seasons`, `_Secrets`, `_Social`, `_Strangers`, and their variants
+  files `Council_Dilemmas_Variants`, `2_Variants`, `3_Variants`, `_AfterBattle_Variants`, `_Customs_Variants`,
+  `_Goals_Variants`, `_Life_Variants`, `_Reputation_Variants`, `_Seasons_Variants`, `_Secrets_Variants`,
+  `_Social_Variants`, `_Strangers_Variants`, `_Strangers_Variants2`: each question's name, its texts and the variants'
+  texts, the answers' labels, the names of what plays out, the customs' names and the greyed answers' reasons; the
+  outcomes, done in 0.251.0, read again for agreement), and the Keyed words those questions use (the answers'
+  descriptions in `Rimfolk_DilemmaImpact.xml`, the letter's, the dilemmas page's and the traditions' keys of
+  `ColonyCouncil.xml`, `Rimfolk_Choices.xml`, the planting day's and the play-outs' keys, read again: plain since the
+  interface batches but for four lines). Left as the player said: the lines said at the gatherings the answers set going
+  (the effects' `lines`: speech) and the moods the answers give (`ThoughtDefs`). Still to do: council questions, part
+  2, the 26 files `Defs/DilemmaDefs/Rimfolk_Dilemmas_*.xml` (`Animals`, `Animals2`, `Banish`, `Beast`, `Camps`,
+  `Camps_Variants`, `Choices`, `Customs_New`, `Customs_YearFour`, `Faith`, `Family`, `Fealty`, `Guests`, `Lives`,
+  `Lives_Customs`, `Lives_Variants`, `Match`, `MovingOn`, `New`, `Pokemon`, `SacredDay`, `TownKin`, `Truce`,
+  `Variety2`, `Variety3`, `YearFour`) with the Keyed words of their own workers (`Dilemmas/DilemmaWorkers_*.cs`: keys in
+  `Rimfolk_DilemmasVariety`, `Rimfolk_Variety2`, `Rimfolk_Variety3`, `Rimfolk_YearFour`, `Rimfolk_Faith_Council`).
+  Still to pick, when the player asks: the gods and faith, council questions part 2, the peoples, camps and visitors,
+  the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -301,88 +325,6 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 4**
-  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
-  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
-  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
-  Items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 of `docs/peoples-events-proposals.md` (eleven: the brief said ten,
-  its list has eleven, all built): the learned society's fellowship examined and its summer school; the spacer enclave's
-  contract to the last digit and its broker stranded by a pod crash; the river folk's fouled water, lanterns on the water,
-  families flooded out and boat-builders; the Lantern Wardens' page in the book, their run to a manhunt and the hive
-  burned. DESIGN.md "The peoples' own events, round 4" has every rule; README "The peoples' own events, the fourth
-  round"; the Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesC.xml and
-  Almanac_PeoplesD.xml; keywords unchanged).
-  - Code: `Source/ColonyCouncil/Peoples/Events4/` (new): `PeopleEvents4Math.cs` (pure, linked), `PeopleEvents4Book.cs` (a
-    game component: fellows, the examined, best students, contracts, pods, fouled water, lanterns, pages, the examination
-    waiting), `PeopleEvents4.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv4Work` and its `PEv4Work` marks),
-    `Fellowship.cs` (18), `SummerSchool.cs` (21, `CampWorker_SummerSchool`), `EnclaveContract.cs` (23, the due day's event),
-    `BrokerPod.cs` (24, the lander), `FouledWater.cs` (27), `KnotLanterns.cs` (28), `FloodedOut.cs` (29,
-    `CampWorker_FloodedOut`), `BoatBuilders.cs` (30, `CampWorker_BoatBuilders`), `WardensPage.cs` (31), `WardensManhunt.cs`
-    (32), `HiveBurned.cs` (33), `PeopleEvents4Debug.cs`. Small hooks: `PeopleEvents3.Hour` and `Hourly` (round 4's, one line
-    each), `HappeningTracker.DeathNote.great` (a great beast's kind taken before its death) and `Notify_Killed` (the page,
-    the manhunt's kills), `Interplay.Notify_GatheringOver` (`Fellowship.GatheringOver`), `HappeningWorker_RiverCatch` and
-    `HappeningWorker_RiverNets` (stopped while fouled water is left), `DilemmaEffect_KnotRest` (lanterns at a crossing),
-    `FactsMath` (the three camps' tags), round 1's `PeopleWorkOn` (a "quiet" mark), `Integrations/Expertise.cs` (`CanGive`,
-    `Give`: an expertise by the mod's own tracker). Defs: `Rimfolk_Events_PeopleEvents4.xml` (twelve events; four fired
-    from code: the contract's day, the knot night's lanterns, the page, the manhunt), `Rimfolk_CampKinds_PeopleEvents4.xml`
-    (three camps), `Rimfolk_PeopleEvents4_Misc.xml` (ten jobs, the red cord, the hull's three stages, four moods and the
-    sting's mood hint), Keyed `Rimfolk_PeopleEvents4.xml`, `Textures/ColonyCouncil/Things/BoatHull_1..3.png` (drawn by
-    `Tools/make_boat_hull.py`). Tools: the play-out audit's effects and three skips, the save model's lists.
-  - Decided here (open in the proposals): the examination's verdict comes at the evening's end (as the palmer's table),
-    the quiet one is heard by nobody and stings nobody; a declined examination waits sixty days like a failed one; the
-    school's sulk stops the day's lessons and raises the camp's tension (no mood); the contract's goods are found from the
-    colony's own benches and stores, and an unpaid fee goes into the colony's debts (round 2's terms' way); a crate missing
-    when the lander comes counts as taken, even one hauled and merged into the stores; fouled water needs a body half a
-    day in it, a wastepack or poisoned ground within three cells; without Merren the knot night's lanterns are torches on
-    the bank taken back in the morning, and an unanswered letter lets them set them; where a crossing of theirs stands the
-    crossing's rest sets them, so there is only one letter that night; the flooded families' racks are VFE Classical's or
-    Vanilla Furniture Expanded - Props and Decor's, and their old and young become Hospitality's guests only with it (the second answer greyed out
-    without it); the boat-builders' refused trees mean the camps' own felling is held at nought; the Wardens' manhunt
-    letter comes once they are already fighting, so no answer means the hunt's own terms (default the first answer); the
-    hive's torch-age Wardens hold torches to the hives when they stand by one and are not fighting.
-  - Harm: only the flooded families' flu (`HarmKinds.CampFever`, 0.06 once a stay, the illness budget); the broker's crash is
-    the game's own pod crash (`HealthUtility.DamageUntilDowned`, as the field sickhouse's patients); the fights at the
-    manhunt and the hive, the fire and the insects are the game's own. No new harm kind.
-  - Tests: `Tools/Tests/PeopleEvents4Tests.cs` (about 200 checks: the rules, the defs, the words, the player's mods, the seams).
-  - Not run here (none of it could be): every play-out on the map (the gathering's verdict at its end, the fellow at the
-    colonist's side, the book's courier, the school's table and the lessons following the fellow there, the books carried
-    out and dropped back, the argument and the talker's walk, the lander's pods and the marshals carrying goods, the
-    pod crash and the broker's pod opening, the rescue to a bed and the guest tended, the marshals carrying the broker off,
-    the crates lifted, the warden's and colonist's cleaning, Biotech's pollution cleared, the boatmen setting Merren's
-    floating lanterns on water (a building spawned on water) or torches, the vigil at their light, the flood camp's racks and
-    fishing, the hand-over to Hospitality's guests and their stay's end, the hull's stages and the builders at it, Vehicle
-    Framework's `GenerateVehicle` for the dinghy and the boat on the water, the red cord on the arm, VSE's expertise added by
-    reflection (the tracker's own Add method looked up by its first argument), the Wardens' assault on the manhunters and
-    the dressing, the hive's assault, the arms by age and the torches' fire).
-  - Try in the game (dev mode; "Rimfolk", "Peoples' events 4: what the record keeps (log)" shows the state and what each
-    event would find here; fire each event with the game's own incident tool, each needs what it says): 1. The fellowship:
-    a colonist at Intellectual 12, the society at peace: `Rimfolk_Evt_FellowExamined`; the card shows the chance; the
-    evening's gathering and the verdict at its end, or the quiet examination with a bar; passed: the message, the mood,
-    the expertise with VSE, and a book at the gate fifteen days on. 2. The summer school: summer: `Rimfolk_Evt_SummerSchool`
-    (or "Peoples' events 4: one of their camps here now..."); in the afternoon send colonists from the camp's page (two a
-    day), lend books; "Peoples' events 4: the school's disputation now" and end it from the page; when they go, the books
-    and the best student's textbook by their camp. 3. The contract: a cooking bench, barrel, drug lab, sculptor's table,
-    fabrication bench or cotton, the enclave at peace: `Rimfolk_Evt_EnclaveContract`; sign; "Peoples' events 4: the
-    enclave's contract due now"; the pods at the trade spot, hand over all, what you have, or default (the fee carried or
-    owed). 4. The pod: `Rimfolk_Evt_BrokerPod`; the crash on the land; bring the broker in; "Peoples' events 4: the broker's
-    lander now"; the marshals carry the broker off and lift the crates, the fifth paid; or take the cargo. 5. Fouled water:
-    a corpse lying in a river or lake half a day (or a wastepack by it, or Biotech pollution on the bank), the river folk at
-    peace: `Rimfolk_Evt_FouledWater`; the warden at the spot; clean it together, or leave it (the boat-trader and nets stop).
-    6. Lanterns: water on the map, the river folk at peace: "Peoples' events 4: the knot night's lanterns now"; the boatmen
-    at the bank with their light, gather, the lanterns set (Merren's floating ones stay), the torches gone in the morning.
-    7. Flooded out: start `Council_WS_Flood` ("Start world event..."), fresh water: `Rimfolk_Evt_FloodedOut`; the second
-    answer with Hospitality; the camp's racks, fishing, the food letter, the guests; the knot as they go. 8. The
-    boat-builders: water and ten wild trees: `Rimfolk_Evt_BoatBuilders`; "Peoples' events 4: the hull a stage on now" to
-    see the stages; buy the dinghy from the page (Vehicle Framework and Vanilla Vehicles Expanded). 9. The page: a legend,
-    nemesis or alpha (the beasts' dev actions) killed by a colonist; "Peoples' events 4: the Wardens' page waits no longer";
-    the keeper at the gate; the cord tied (health tab), the expertise or passion. 10. The manhunt: a manhunter pack (the
-    game's incident), the Wardens at peace: "Peoples' events 4: the Wardens to the manhunt now"; they come in fighting;
-    afterwards they skin their kills. 11. The hive: the game's infestation: `Rimfolk_Evt_HiveBurned`; together (draft
-    colonists near the hive), alone, or watch.
-  - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Skills Expanded, Goji's
-    Fantasy Race: Merren, Hospitality, VFE Classical, Vanilla Furniture Expanded - Props and Decor, Vehicle Framework with Vanilla Vehicles Expanded,
-    Vanilla Factions Expanded - Insectoids 2, Vanilla Food Variety Expanded's recipe book). For a boat-building look beyond the
-    drawn hull, Vanilla Vehicles Expanded's own dinghy is already used when it is bought.
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own events, round 5**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
@@ -475,6 +417,372 @@ repo.
     the player's subscriptions, not enabled) has gravestones the grave-garden could set by each grave if it were enabled.
     The vehicles' tech levels are not in the catalogue, so which of Vanilla Vehicles Expanded's vehicles is "a car or truck
     in the industrial age" (`VVE_Mule`, else `VVE_Highwayman`) is worth a look in the game.
+- 0.268.5, **Plain words: council questions,
+  part 1** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The thirteenth batch of the plain-words pass, the first half of the council's questions: the 29 `Council_*`
+  dilemma files (the thief in the stores, the feud, the cook's feast, the customs through the year, life goals,
+  illness and the camps' troubles, the colony's name on the roads, secrets come out, friends and rivals, strangers at
+  the gate): each question's name and texts with its variants, the answers' labels, the names of what plays out, and
+  the Keyed words of what each answer does. File list in the to-do entry "Rimfolk's text in plain words"; part 2 (the
+  26 `Rimfolk_Dilemmas_*` files) is still to do.
+  - **What changed.** About 2,630 lines read in the 29 files (some 1,550 in this batch's fields, the other 1,080 the
+    outcomes of 0.251.0, read for agreement) and the 800 Keyed lines of what each answer does; 327 rewritten (220
+    question texts and variants, 103 names and answer labels, 4 Keyed). Riddling or cut-short openings said plainly
+    ("Still chewing, pockets stuffed full. That was how {B_nameDef} found {A_nameDef} in the storeroom" is
+    "{B_nameDef} found {A_nameDef} in the storeroom in the middle of the night, still chewing"; "Four pieces.", "One
+    minute on the table, that was all.", "Missing from the stores this week:"), twists and punchlines at the end ("Most
+    of them begin with "High."", "Items two through eleven assume item one", "{A_nameDef} can recite every course, and
+    did", "{B_nameDef} has offered to sign the copies", "and both are probably right"), images and made-up phrases
+    ("the biting things" are insects, "worn each other down to the nerve", "the winter dark has got into
+    {A_objective}", "as calmly as if asking for the salt", "a voice the council had to lean in to hear"), and colon
+    lists as plain sentences (the planting day, the midsummer swim, the funeral plan, the hoarder's haul, the tally of
+    the hungry at the gate). Question names that were images say what the question is about: "a path: the workshop",
+    "the healer", "the scholar" and "the wall" are **an apprentice crafter**, **healer**, **scholar**, **fighter**; "a
+    hungry look" **a plan to eat a pet**; "blood on old hands" **a violent past**; "the one still breathing" **a wounded
+    enemy**; "a voice through the door" **a prisoner's plea**; "elbow to elbow" **too crowded**; "the empty chair" **a
+    missed meeting**; 36 more (46 names and 55 answers in all). Answers that were sayings say what the council does
+    ("Hands before books" is **Put them on the building crew instead**, "Play is a child's work" **Tell them to go and
+    play**, "Fill their pot" **Give them food**), and answers that pay out silver name the sum the effect takes ("Send
+    silver instead" **Send 80 silver instead**, "Pay for the bite" **Pay 50 silver for the bite**, "Send {X_nameDef} off
+    with a gift" **with 50 silver**). DESIGN.md's list of the answers that play out uses the new names;
+    `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py` (it also picks up seven newer questions of
+    other rounds).
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("{A_nameDef} says it was a small
+    jar", "{A_nameDef} says it was a compliment", "{B_nameDef} would blame {A_objective} for the rain"). Quoted speech
+    keeps the speaker's voice; the faiths' words in the customs keep theirs (the tree song, the vigil, the water's
+    blessing, the ancestors' supper); the customs' names stay as they are (a tradition in a save is known by its name);
+    the one-word name "inseparable" stays (`Tools/textcheck.py` holds a single word as an identifier). The lines said at
+    the gatherings the answers set going (the `lines` of the feast, bonfire, gathering, toast and words effects: speech)
+    and the moods the answers give (`ThoughtDefs`) are on the player's leave list; the outcomes are 0.251.0's. Every
+    tag, placeholder and key kept (the rewrite tool refused any line whose placeholder people, grammar symbols or tag
+    block changed, and `Tools/textcheck.py --base` on the rewritten files finds nothing broken). No line of
+    `Lean/ShippedLines.cs` is in these files.
+  - **Put right against the code.** "Take {PET_nameDef} on one last walk" read as putting the animal down, but the
+    answer walks it out and lets it go (`DilemmaEffect_ReleasePet`: it leaves the land alive); it is "Walk
+    {PET_nameDef} out past the walls and let {PET_objective} go". "Let {A_nameDef} off the chores for a season" and
+    "Keep {A_nameDef} under watch for a season": nothing lasts a season (the first gives the rest of today's work hours
+    off, `DilemmaEffect_Rest`; the second gives moods only), so the answers no longer name one. "Repairs first,
+    celebrations later": no celebration follows (a work party and the mood of none), so it is "Get straight to the
+    repairs". The midsummer bonfire's question promised "the night shift let off until dawn", but the answer lights a
+    fire with music for five or six hours and changes no one's hours; it says singing and drinking late into the night
+    (also the variant's "until the sky goes pale"). The remembrance night was to cost "a day of everyone's work", but it
+    is an evening gathering (from 17 h, four to five hours); it says a late night. Checked and true as written: every
+    silver sum in an answer and in the questions' texts against the effect that pays or takes it (25 to 400: the
+    hunters' 300 and the false trail's 150, the pirates' 400 and half of it, the tonic's 100 and 60, the guest's 150),
+    the greyed answers' skill levels (Animals 4, Social 6, Medicine 2), the lanterns along the walls, the torch at each
+    door and the fire of the harvest dance. Still narrative and left (no outcome text was redone): "One free afternoon
+    in three" and the storeroom corner for the crowded colonist play out only once or not at all, as the outcomes of
+    0.251.0 tell it.
+  - **Code map.** No code changed: def text in the 29 `Council_*` files; four lines of `Rimfolk_DilemmaImpact.xml`
+    ("A gamble, this one" and "A long shot, this one" said plainly, "The old way would hold" is the old custom carrying
+    on, a vendetta "laid down" is given up); DESIGN.md's play-out list; `docs/dilemma-balance.md`.
+  - **Can't be checked without the game.** How the plainer questions read in the letter beside the outcomes and the
+    gathering lines, which keep their voice; whether the new names read well in the letter's title ("Dilemma: A plan to
+    eat a pet") and on the dilemmas page.
+  - **Try in the game.** With dev mode on, open the council window's decrees page and press "Dev: dilemma now" a few
+    times; read each letter, the line under each answer and the title. Wait for a coming of age (an apprentice crafter,
+    healer, scholar or fighter), a pet growing old ("Walk ... out past the walls and let ... go": the pet leaves the
+    land), the midsummer bonfire and a life goal (time off for a dream: the rest of the day off).
+  - **Mods that would help.** None for this; it is text only.
+- 0.268.4, **Plain words: personal stories**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  twelfth batch of the plain-words pass: the colonists' personal stories, all 39 of them (the long way home to back to
+  it, the animals' four, PokéWorld's partner, A RimWorld of Magic's long discipline): what each story is (its summary,
+  the Story tab's tooltip), its stages' names, what the Story tab says comes next, the chronicle lines (read one after
+  another, they are also the letter that tells the story when it ends well), the chronicle lines when it comes to
+  nothing, and the names of what is staged on the map. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 770 lines read, 162 rewritten (159 in the story files, 3 Keyed). Riddling or cut-short lines
+    said plainly ("The first days are behind {PAWN_nameDef}. {LOST} is not." is "The first days of grief are over for
+    {PAWN_nameDef}, but {PAWN_pronoun} still thinks of {LOST} all the time"; "{PAWN_nameDef} trusts the council again.
+    Not blindly." "again, though not blindly"; "Someone has been crying at night ... It's {PAWN_nameDef}" names them
+    first), things given a will ("Fear has a hold on", "The camp's fire draws", "The craving won this time", "the dream
+    let {PAWN_objective} be"), images and invented idioms ("cooling, slowly, the way a hearthstone does", "left
+    {PAWN_objective} in the dirt", "a careful word at a time", "the wall gave way", "the homecoming has worn thin",
+    "{OTHER_nameDef} carries {PAWN_nameDef}'s craft"), twists at the end ("and it was unremarkable", "chose back", "and
+    in no hurry"), and the summaries' colon lists as plain sentences ("Days out on the road, a traveler misses someone
+    at home. Back again, the two of them sit up late while the whole journey is told" is "A colonist away on a journey
+    misses someone at home. Once back, the two of them sit up late while the traveler tells them about the whole
+    journey"). Stage names that were images say what the stage is ("the empty place" **the first days**, "small things
+    again" **better days**, "the weight of it" **keeping quiet**, "the body tells" **slowing down**, "every morning a
+    gift" **still together**, "news on the wind" **bad news**, "over, mostly" **still afraid**, "under one roof"
+    **talking it out**, "no faith left" and "faith restored" **no trust left** and **trust restored**, as it is the
+    council they mean); what comes next says what the story waits for ("Next: time. Grief doesn't hurry." is "Next: a
+    few days to grieve."). The stray's message says the handlers will tame it, and a mage's slip in the storm "the spark
+    jumped" is "shocked by the spark".
+  - **Left as they were.** Most lines were already plain, and ordinary jokes stay ("two old goats", "open war" with the
+    colony's dog, "the cooks have noticed", "if {PAWN_nameDef} can stay awake for them"). The stories' names stay as
+    they are in the Almanac, README and the colonists' records ("the road calls", "one more spring", "a grudge laid
+    down"), and so do the one-word stage names `Tools/textcheck.py` holds as identifiers ("square", "maybe",
+    "cooling", "there"). The retired lines `Lean/ShippedLines.cs` names (the long discipline's two fizzle lines about
+    "the wall", never drawn) stay word for word; their drawn fellows in `Rimfolk_Arcs_MoreWords.xml` are rewritten.
+    Journals (every journal, fizzle and eulogy line in the story files), the stories' talk (`InteractionDefs`), moods
+    (`ThoughtDefs`) and the quirks and names they leave (character) are on the player's leave list. Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block or placeholder people changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken).
+  - **Put right against the code.** An old companion's summary said its death "is the story's end", but the story ends
+    well at its last stage while the animal lives, and only its death before then ends it with a farewell
+    (`ArcTracker`: the last stage completes it); the summary, the Almanac's animals table and README now say "if it
+    dies first". The feud with an animal promised "an ambush in the doorway, a stolen lunch", but what is staged is the
+    animal running at its colonist's heels and off again (`AnimalScene.Pester`); the summary says that. Passing it on
+    said the student is taught "until they're nearly as good" and "has nearly caught up", but the student starts at
+    least four levels below the elder and the lessons wait for two levels gained (`ArcWorker_Elder`, the gate's `gain`
+    2); they now say the student has gained two levels and come a long way. The road calls had the colonist walk the
+    travelers "to the boundary stone", but they see them off at the colony's gate (`PlaySpot.Gate`); it says the gate,
+    and so does the walk's name. A grudge laid down said the anger dated "since {LOST}" died, but a vendetta can be for
+    someone taken (`Vendetta.kidnapped`); it says "what happened to {LOST}". Word from far away called the news "the
+    traders' news", but it is a world event the colony hears of in any way; it says the news. One more spring's last
+    line had the elder answering "the children's questions" in a colony that may have none; it says the days in the
+    sun, as staged. The settings' tip said three or four stages; a story has three to five (`ArcDef.ConfigErrors`).
+    Checked and true as written: three quiet days before the old wounds' talk (`NoFriction` 72 hours), the Wanderer
+    after 15 days away, the dreads of the dark, storms and the eclipse (the quirks the fear faced starts from).
+  - **Code map.** No code changed: def text in `Defs/ArcDefs/`, three Keyed lines (`Rimfolk_Arcs.xml`,
+    `Rimfolk_Animals.xml`, `Rimfolk_HarmSeven.xml`), one Almanac table row (`Almanac_Council_Animals.xml`, keywords
+    unchanged) and one README line.
+  - **Can't be checked without the game.** How the letter that ends a story reads now its chronicle lines are plainer,
+    beside the journal lines quoted under it, which keep their voice; whether the new stage names fit the message at the
+    top ("{PAWN_nameDef}'s story (a long grief) moves on: better days").
+  - **Try in the game.** Dev actions "Rimfolk": "Personal story: list what could begin", then "Personal story: begin
+    one for..." on a colonist (a long grief, the one left, a grudge laid down, a fear faced, the road calls, a rival in
+    love) and "Personal story: next stage" to move it on; read each message at the top, the Story tab's "Next:" line
+    and, at the end, the letter. Begin an old companion and let it finish with the animal alive (the letter), then
+    another where the animal dies (the farewell). Begin the stray and read the message when the handlers are asked to
+    tame it.
+  - **Mods that would help.** None for this; it is text only.
+- 0.268.3, **A god's mark worth having** (19
+  November 2026; the player: "so the god events and occurences are super cool! but many of them just generate a single
+  stone [chunk]?? it's a very anticlimatic item and doesn't thematically fit for most of them, let alone it being a
+  really not interesting or valuable item"; the go on the lead's proposal: "yes, please", "all the three"). DESIGN.md "A
+  god's mark worth having".
+  - **The cause.** A god's moment (a blessing, a coming, a reveal, a departure; `GodPresenceMath.MarkFor`) leaves its
+    look's mark (`Defs/GodDefs/Rimfolk_GodLooks.xml` `<mark>`, `GodTrails.Mark`), and 10 of the 17 looks left one stone
+    chunk (the Storm, the Hunt, War, the Way, the Hearth) or one steel slag chunk (War among spacers, the Craft and the
+    fabricator, the Machine and the iron spirit). Nothing said what was left.
+  - **What was built.** Each of the ten its own mark, shown where it happened: the Storm lightning (the sky's flash, a
+    glow, thunder, no fire) and a ring of scorched ground; the Hunt a fresh kill of the land's game (`BiomeAnimals`, fox
+    to deer size, never a Pokémon or a sacred animal, killed on the spot, the corpse fresh and not forbidden); War a ring
+    of scorch and a weapon of the colony's age from every mod's weapons (poor or normal, no grenade or persona weapon);
+    the Way a standing stone of the land's rock (Vanilla Furniture Expanded - Art's obelisk, else the game's small
+    sculpture; normal quality, author unknown, no story of the colony's on it), set up as the colony's; the Hearth 25
+    wood and 3 to 8 warm meals of the age (Vanilla Cooking Expanded's stews, soups, grills and bakes, or the game's own);
+    the Craft a stack of steel (plasteel for a spacer colony); the Machine a few components (an advanced one and two in
+    the spacer age). Worth about 120, 160, 210 or 260 silver by the colony's age (`Ages.Ours`), never under 100 or over
+    300. A mark of goods comes at most once in ten days, any god (`GodMarkMath.WorthGapDays`, saved as
+    `GodPresenceComponent.lastWorth`); within the wait a moment leaves the plain form (war, hearth, forge, machine a ring
+    of scorch; hunt and way nothing). The mark is chosen as the moment begins, so its card, the colony's book and the
+    moods of those who saw it end with what was left ("When it was over, a stack of 65 steel lay where it happened."),
+    every mark's words, the ground's ones too; a mark the ground can't take (flowers under a roof) says nothing.
+  - **How often** (from the code's own waits): the moments that leave a look's mark come five to ten times a year in a
+    colony that prays (a god coming onto the land about once a year, a great effect of the touch one in 40 days at the
+    most, answered prayers a god once in ten days at the most, the gods' kindnesses in the world, rare risings). Of the
+    colony's fifteen gods only Smoulder (metal), Pip (components), Ennu and Ducat (the standing stone) leave goods; the
+    Hunt, War and Hearth looks are the peoples' gods' and a newborn god's. So one to four marks of goods a year, 150 to
+    800 silver, and six a year at the most (1,800 silver at the very most).
+  - **Code map**: `Gods/Presence/GodMarkMath.cs` (new, pure, linked in the tests: the worth by age, the counts, the
+    names, the weapon's tier, the kill's size, the wait, the words' keys, `WithLeft`), `GodMarkGoods.cs` (new:
+    `GodMarkPlan`, `Plan`, the goods of each mark, `LayKill`, `Raise`, `Lay`, `Forget`, `AnyTime`), `GodTrails.cs`
+    (`Mark` by plan, `CanMark`, `Strike`, `TreeAt`, `SpringAt`; the stone chunk gone), `GodPresence.cs` (the plan in
+    `Manifest`, `LastLeft`, `GodPresenceComponent.lastWorth`), `GodCard.cs` (`left`), `GodPresenceDebug.cs` (the new dev
+    action, the moment's dev action without the wait, the looks' log), `GodPresenceMath.cs` (`GodMark`: `Lightning`,
+    `Kill`, `Weapon`, `StandingStone`, `Hearth`, `Metal`, `Components`; `Stone` and `Slag` gone; `MarkRadius`);
+    `Gods/GodPresenceSeam.cs` (`PresenceSpec.left`), `GodsWiring.cs`, `Gods.cs` (`Moment`), `Touch/GodTouch.cs`
+    (`NoteMoment`); `Defs/GodDefs/Rimfolk_GodLooks.xml` (the ten marks, comments and two descriptions);
+    `Languages/English/Keyed/Rimfolk_GodPresence.xml` (`CC_GodP_Left_*`); README (the gods' coming). Tests:
+    `GodMarkTests` (new).
+  - **Can't be checked without the game**: each mark laid on a real map (the kill's corpse and blood, the lightning's
+    flash and glow, the obelisk's picture standing and its art tab saying the author is unknown, the meals' and the
+    weapon's labels in the words, VCE's meals made from nothing), the worth the game puts on the kill and the obelisk,
+    a save made between a moment's start and its sting, and the wait kept across a save.
+  - **Try in the game**: dev mode, Debug actions, Rimfolk, "Gods: a god's mark here...", pick Weapon, Kill,
+    StandingStone, Hearth, Metal or Components and an age, click open ground: the goods appear and the message says the
+    words and the worth. "Gods: a moment of a look here...", the Craft (or the Way), Blessing, click open ground: after
+    the sting a stack of steel (or a standing stone) is there, and the card ends with "When it was over, ..."; the Gods'
+    book's line for it says the same. The Storm's blessing: a flash, thunder and a ring of scorch marks.
+  - **Mods that would help**: none needed; everything is the game's own or already in the player's list (Vanilla
+    Furniture Expanded - Art for the obelisk, Vanilla Cooking Expanded and its Stews for the meals, both on 1.6 and kept
+    up).
+- 0.268.2, **Plain words: wishes and
+  ambitions** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
+  pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,
+  descriptive and "reasonable", over trying to make the text be creative, as this just most of the time sounds
+  awkward"). The eleventh batch of the plain-words pass: the colonists' wishes (what they ask for, for themselves and for
+  others, their thanks, their reminders and what they say when they give up, with each wish's name, description,
+  reason, what fulfils it and what's lost), the council's ambitions (names, descriptions, pitches, what's said when
+  reached) and the life goals (goal and deed, the lines when chosen and when reached). File list in the to-do entry
+  "Rimfolk's text in plain words".
+  - **What changed.** About 5,950 lines read, 244 rewritten (wishes 172, ambitions 34, life goals 37, one Keyed reason).
+    Punchlines and twists at the end said plainly ("{OTHER_nameDef} makes it look easy. When I try, it looks like an
+    accident" is "I'd like to get that good at it", the approved sample; "Mine. Well, ours. Mostly mine!"; "The fence
+    posts and I will carry on sparring. They're losing."; "A rack would get me down to two"), things given a will ("The
+    rock and I will have to work things out", "the land bites the careless", "Hunger always comes back, and it never
+    sends word first", "the roads will learn our name"), invented images and idioms ("Wood walls are just firewood we've
+    agreed to live inside", "Every broken promise is a stone in somebody's pocket", "Pemmican tastes like a boot that
+    went to war", "sky-metal"), riddling lines ("Every day without it is a week", "It looks at me before it does
+    anything now. I think that means something", "When somebody snaps out here, it isn't a plate that gets broken"),
+    and a few descriptions given a subject or a plain verb ("the heat turns the food" is "spoils"). Four ambition names
+    say what they ask: "a ring of iron" is **turrets on the approaches**, "teeth in the mud" **traps on the approaches**,
+    "the long store" **a store of pemmican**, "nobody is the only one" **two healers, two cooks**; the walls' bonfire is
+    "a fire for the new walls", the life goal "a town on the Rim" has its capital. The Almanac's ambition table
+    (`Almanac_Council_Lists.xml`, keywords unchanged), DESIGN.md ("Ambitions are offered only if...") and README ("Only
+    those the colony can achieve now are pitched") use the new names. Bedroom wishes' "fulfilled when" lines name whose
+    room ("{FOR_nameDef}'s bedroom"), so a wish asked for someone else reads right.
+  - **Left as they were.** Most lines were already plain, and ordinary jokes a person would make stay ("I've seen nicer
+    rooms in a pirate outpost", "Crate labels again. Riveting."); each voice keeps its tone (the cold voice clipped, the
+    child's lines a child's) and every cheerful line not rewritten keeps its exclamation mark. The wish lines in
+    `Defs/FlavorPoolDefs/` (about 2,100 more request, thanks, lapse and reminder lines for the same wishes in
+    `Extra_WishLines`, `Extra_WishLines2`, `Rimfolk_Lines_Wishes`, `Rimfolk_Lines_Wishes_Often`, and the shared reminder,
+    last call and envy pools) were left as the brief said, and the wishes' talk (`InteractionDefs`), moods and granted
+    thoughts (`ThoughtDefs`) and journals are on the player's leave list. Every tag, placeholder and key kept (the
+    rewrite tool refused any line whose tag block or placeholder people changed, and `Tools/textcheck.py` finds nothing
+    broken).
+  - **Put right against the code.** `CC_Reason_Justice` said the prisoner "is the only raider still alive", but the wish
+    takes any hostile grown prisoner on the map (`WishWorker_Justice`, a short-tempered colonist within two days of a
+    raid); it now says the colonist is still angry about the last raid and the prisoner is one of the enemy. A child's
+    reading goal said the colony has "only four" books; it now says there aren't many. The tea wish's lapse ("Sick and
+    thirsty, then"): the approved sample's rewrite spoke of clean water, but the wish is for tea, so it says there's still
+    no tea. Checked and true as written: the faith evening's sway, about 12% and more with openness and liking
+    (`FaithCouncilMath.WishSway`, `FaithMath.Sway`), and its couple of hours; six plants of the home crop
+    (`SownEnough`); the sun lamp over six cells; snow nine in ten cleared (`PeopleFourMath.SnowCleared`); six spare parts;
+    five beers; the treasury spent below half (`keepShare`); half a year before the travel wish (`minDaysInColony` 30);
+    every ambition's numbers against its goals, and every life goal's count against its amount.
+  - **Code map.** No code changed: def text, one Keyed line, the Almanac table's names, DESIGN.md and README names.
+  - **Can't be checked without the game.** How the plainer request and thanks lines read in a wish letter beside the
+    FlavorPoolDefs lines for the same wish, which keep their old voice; whether a cheerful colonist reads flat without
+    the punchline.
+  - **Try in the game.** Open the council window and wait for a few wishes (a room, a telescope, honey, a bench lamp, a
+    pack animal); read each letter, promise one and read the thanks, let another lapse. Call a council meeting and read
+    the pitches; in a colony with turrets researched, look for "turrets on the approaches", and in a small one "two
+    healers, two cooks". Watch a colonist choose a life goal (the message at the top) and reach one (the letter).
+  - **Mods that would help.** None for this; it is text only.
+- 0.268.1, **Choose the material when
+  ordering a piece** (19 November 2026). The player: "when you know giving a order through the inventory to create like a
+  piece of clothing or armor or whatever, it would really be cool to also be able to select from which material that
+  piece of clothing should be made. I mean, now I basically create the task and then have to go to the task in the
+  tailor's table or whatever and kind of go deselect all materials and then only enable those that I actually want them
+  to use ... when I select the open item slot, select the item that I want to create, and then I have to select where
+  it's created from, and then maybe I could also immediately select which material it uses. So it would just list or
+  show materials that I have enough of for the job, and then create the job, but only select this one material as a
+  allowed material and by default deselect everything else, so that I'm sure it doesn't use anything else." The lead's
+  proposal: after the bench is chosen, one more menu step listing the stuff the colony holds enough of for one piece (by
+  the recipe's stuff cost, counted on the map), each with how much there is; the bill made with only that stuff allowed
+  in its ingredient filter; "any material" kept as the first choice for the mod's own way. The go: "yes, please", "all
+  the three". DESIGN.md "Choose the material when ordering a piece from the gear tab".
+  - **What the DLL shows** (Nice Inventory Tab, `andromeda.niceinventorytab`, and its FloatSubMenu helper, decompiled
+    with ilspycmd in the scratchpad, never loaded): the empty slot's menu (`ApparelSlotUtility.OpenFloatMenu`), "Make",
+    a piece (`MakeSubMenusToCraft`: a sub-menu of benches, and the piece's own line for its first bench) all end in
+    `CommandUtility.CommandCreate(Building_WorkTable, ThingDef, RecipeDef, ApparelLayerDef)`, which makes the bill
+    (`recipe.MakeNewBill()`), registers it for `ITab_Pawn_Gear_Patch.lastPawn` (`BillFinished_Patch.Register`), renames
+    it, adds it to the bench, gives its message and jumps the camera. Only apparel is offered there.
+  - **What was built.** A prefix on `CommandCreate` (by name, standing down without the mod) opens the material step for
+    a piece made from a material: "Any material" first, then each material the recipe's material ingredient takes for
+    the piece (`GenStuff.AllowedStuffsFor`, the ingredient's filter and the recipe's fixed filter; never a fixed
+    ingredient) with enough on the map for one piece (spawned, seen, not forbidden; one piece's need by
+    `IngredientCount.CountRequiredOfFor`), the most pieces first, then by name, each with how much is on hand, its own
+    icon and a tooltip of what one piece takes; a greyed line when none has enough. Either choice calls the mod's own
+    `CommandCreate` (the prefix lets Rimfolk's call through), for the colonist the menu was opened for; for a material,
+    the new bill's ingredient filter then allows only that one (the others the ingredient takes unticked; hit points,
+    quality and other ingredients left alone). A piece not made from a material goes straight on. Setting
+    `materialChoice` (on, deeper hooks; Your other mods, Nice Inventory Tab). Almanac (Quality of life mods, the Nice
+    Inventory Tab paragraph) and README.
+  - **Code map**: `Integrations/MaterialChoice.cs` (new: `MaterialChoice.StuffIngredient`, `Have`, `Offer`, `Make`,
+    `OnlyThis`; `Patch_MaterialChoiceOrder`), `Integrations/MaterialChoiceMath.cs` (new, pure, linked in the tests:
+    `Enough`, `Pieces`, `Offered`), `CouncilSettings.cs` and `UI/SettingsCatalog.cs` (`materialChoice`), Keyed
+    `Rimfolk_MaterialChoice.xml` (new). Tests: `MaterialChoiceTests` (new).
+  - **Can't be checked without the game**: the menu opening after the bench is clicked inside the mod's sub-menus (the
+    mod's menus close and Rimfolk's opens where the mouse is), the material icons and tooltips, the bill's ingredient
+    filter shown with only the chosen material ticked, the piece made from it and still put on by the one it was for.
+  - **Try in the game**: on a colonist's gear tab (Nice Inventory Tab) click an empty slot, "Make", a duster or a
+    parka, then a tailoring bench: a menu "Material for the duster" lists "Any material" and the fabrics and leathers
+    with enough on hand, most first ("Cloth (340 on hand)"); pick one, open the bench's bill: only that material is
+    ticked; once made, it is of that material and the colonist puts it on. A piece not made from a material (a flak
+    vest) goes straight to the bill as before; "Any material" leaves the bill as the mod makes it; with the setting
+    off, no material step.
+  - **Mods that would help**: none; the mod's own menus and the game's material icons are enough.
+- 0.268.0, **The peoples' own events, round 4**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 18, 21, 23, 24, 27, 28, 29, 30, 31, 32 and 33 of `docs/peoples-events-proposals.md` (eleven: the brief said ten,
+  its list has eleven, all built): the learned society's fellowship examined and its summer school; the spacer enclave's
+  contract to the last digit and its broker stranded by a pod crash; the river folk's fouled water, lanterns on the water,
+  families flooded out and boat-builders; the Lantern Wardens' page in the book, their run to a manhunt and the hive
+  burned. DESIGN.md "The peoples' own events, round 4" has every rule; README "The peoples' own events, the fourth
+  round"; the Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesC.xml and
+  Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events4/` (new): `PeopleEvents4Math.cs` (pure, linked), `PeopleEvents4Book.cs` (a
+    game component: fellows, the examined, best students, contracts, pods, fouled water, lanterns, pages, the examination
+    waiting), `PeopleEvents4.cs` (the visits' dispatch, the homes' hour, `JobDriver_PEv4Work` and its `PEv4Work` marks),
+    `Fellowship.cs` (18), `SummerSchool.cs` (21, `CampWorker_SummerSchool`), `EnclaveContract.cs` (23, the due day's event),
+    `BrokerPod.cs` (24, the lander), `FouledWater.cs` (27), `KnotLanterns.cs` (28), `FloodedOut.cs` (29,
+    `CampWorker_FloodedOut`), `BoatBuilders.cs` (30, `CampWorker_BoatBuilders`), `WardensPage.cs` (31), `WardensManhunt.cs`
+    (32), `HiveBurned.cs` (33), `PeopleEvents4Debug.cs`. Small hooks: `PeopleEvents3.Hour` and `Hourly` (round 4's, one line
+    each), `HappeningTracker.DeathNote.great` (a great beast's kind taken before its death) and `Notify_Killed` (the page,
+    the manhunt's kills), `Interplay.Notify_GatheringOver` (`Fellowship.GatheringOver`), `HappeningWorker_RiverCatch` and
+    `HappeningWorker_RiverNets` (stopped while fouled water is left), `DilemmaEffect_KnotRest` (lanterns at a crossing),
+    `FactsMath` (the three camps' tags), round 1's `PeopleWorkOn` (a "quiet" mark), `Integrations/Expertise.cs` (`CanGive`,
+    `Give`: an expertise by the mod's own tracker). Defs: `Rimfolk_Events_PeopleEvents4.xml` (twelve events; four fired
+    from code: the contract's day, the knot night's lanterns, the page, the manhunt), `Rimfolk_CampKinds_PeopleEvents4.xml`
+    (three camps), `Rimfolk_PeopleEvents4_Misc.xml` (ten jobs, the red cord, the hull's three stages, four moods and the
+    sting's mood hint), Keyed `Rimfolk_PeopleEvents4.xml`, `Textures/ColonyCouncil/Things/BoatHull_1..3.png` (drawn by
+    `Tools/make_boat_hull.py`). Tools: the play-out audit's effects and three skips, the save model's lists.
+  - Decided here (open in the proposals): the examination's verdict comes at the evening's end (as the palmer's table),
+    the quiet one is heard by nobody and stings nobody; a declined examination waits sixty days like a failed one; the
+    school's sulk stops the day's lessons and raises the camp's tension (no mood); the contract's goods are found from the
+    colony's own benches and stores, and an unpaid fee goes into the colony's debts (round 2's terms' way); a crate missing
+    when the lander comes counts as taken, even one hauled and merged into the stores; fouled water needs a body half a
+    day in it, a wastepack or poisoned ground within three cells; without Merren the knot night's lanterns are torches on
+    the bank taken back in the morning, and an unanswered letter lets them set them; where a crossing of theirs stands the
+    crossing's rest sets them, so there is only one letter that night; the flooded families' racks are VFE Classical's or
+    Vanilla Furniture Expanded - Props and Decor's, and their old and young become Hospitality's guests only with it (the second answer greyed out
+    without it); the boat-builders' refused trees mean the camps' own felling is held at nought; the Wardens' manhunt
+    letter comes once they are already fighting, so no answer means the hunt's own terms (default the first answer); the
+    hive's torch-age Wardens hold torches to the hives when they stand by one and are not fighting.
+  - Harm: only the flooded families' flu (`HarmKinds.CampFever`, 0.06 once a stay, the illness budget); the broker's crash is
+    the game's own pod crash (`HealthUtility.DamageUntilDowned`, as the field sickhouse's patients); the fights at the
+    manhunt and the hive, the fire and the insects are the game's own. No new harm kind.
+  - Tests: `Tools/Tests/PeopleEvents4Tests.cs` (about 200 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the gathering's verdict at its end, the fellow at the
+    colonist's side, the book's courier, the school's table and the lessons following the fellow there, the books carried
+    out and dropped back, the argument and the talker's walk, the lander's pods and the marshals carrying goods, the
+    pod crash and the broker's pod opening, the rescue to a bed and the guest tended, the marshals carrying the broker off,
+    the crates lifted, the warden's and colonist's cleaning, Biotech's pollution cleared, the boatmen setting Merren's
+    floating lanterns on water (a building spawned on water) or torches, the vigil at their light, the flood camp's racks and
+    fishing, the hand-over to Hospitality's guests and their stay's end, the hull's stages and the builders at it, Vehicle
+    Framework's `GenerateVehicle` for the dinghy and the boat on the water, the red cord on the arm, VSE's expertise added by
+    reflection (the tracker's own Add method looked up by its first argument), the Wardens' assault on the manhunters and
+    the dressing, the hive's assault, the arms by age and the torches' fire).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 4: what the record keeps (log)" shows the state and what each
+    event would find here; fire each event with the game's own incident tool, each needs what it says): 1. The fellowship:
+    a colonist at Intellectual 12, the society at peace: `Rimfolk_Evt_FellowExamined`; the card shows the chance; the
+    evening's gathering and the verdict at its end, or the quiet examination with a bar; passed: the message, the mood,
+    the expertise with VSE, and a book at the gate fifteen days on. 2. The summer school: summer: `Rimfolk_Evt_SummerSchool`
+    (or "Peoples' events 4: one of their camps here now..."); in the afternoon send colonists from the camp's page (two a
+    day), lend books; "Peoples' events 4: the school's disputation now" and end it from the page; when they go, the books
+    and the best student's textbook by their camp. 3. The contract: a cooking bench, barrel, drug lab, sculptor's table,
+    fabrication bench or cotton, the enclave at peace: `Rimfolk_Evt_EnclaveContract`; sign; "Peoples' events 4: the
+    enclave's contract due now"; the pods at the trade spot, hand over all, what you have, or default (the fee carried or
+    owed). 4. The pod: `Rimfolk_Evt_BrokerPod`; the crash on the land; bring the broker in; "Peoples' events 4: the broker's
+    lander now"; the marshals carry the broker off and lift the crates, the fifth paid; or take the cargo. 5. Fouled water:
+    a corpse lying in a river or lake half a day (or a wastepack by it, or Biotech pollution on the bank), the river folk at
+    peace: `Rimfolk_Evt_FouledWater`; the warden at the spot; clean it together, or leave it (the boat-trader and nets stop).
+    6. Lanterns: water on the map, the river folk at peace: "Peoples' events 4: the knot night's lanterns now"; the boatmen
+    at the bank with their light, gather, the lanterns set (Merren's floating ones stay), the torches gone in the morning.
+    7. Flooded out: start `Council_WS_Flood` ("Start world event..."), fresh water: `Rimfolk_Evt_FloodedOut`; the second
+    answer with Hospitality; the camp's racks, fishing, the food letter, the guests; the knot as they go. 8. The
+    boat-builders: water and ten wild trees: `Rimfolk_Evt_BoatBuilders`; "Peoples' events 4: the hull a stage on now" to
+    see the stages; buy the dinghy from the page (Vehicle Framework and Vanilla Vehicles Expanded). 9. The page: a legend,
+    nemesis or alpha (the beasts' dev actions) killed by a colonist; "Peoples' events 4: the Wardens' page waits no longer";
+    the keeper at the gate; the cord tied (health tab), the expertise or passion. 10. The manhunt: a manhunter pack (the
+    game's incident), the Wardens at peace: "Peoples' events 4: the Wardens to the manhunt now"; they come in fighting;
+    afterwards they skin their kills. 11. The hive: the game's infestation: `Rimfolk_Evt_HiveBurned`; together (draft
+    colonists near the hive), alone, or watch.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Vanilla Skills Expanded, Goji's
+    Fantasy Race: Merren, Hospitality, VFE Classical, Vanilla Furniture Expanded - Props and Decor, Vehicle Framework with Vanilla Vehicles Expanded,
+    Vanilla Factions Expanded - Insectoids 2, Vanilla Food Variety Expanded's recipe book). For a boat-building look beyond the
+    drawn hull, Vanilla Vehicles Expanded's own dinghy is already used when it is bought.
 - 0.267.0, **Storylines, round 3, and the one
   away quest: a dream of the gods, raiders settling nearby, the town's well, the vault's sealed case, the lost founder's
   grave and a cache in old ruins** (19 November 2026). The player's go, on the overview of the open list: "Quests round 3

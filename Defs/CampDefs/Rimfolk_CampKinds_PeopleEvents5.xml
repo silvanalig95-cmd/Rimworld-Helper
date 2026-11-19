@@ -52,7 +52,7 @@
     <texts>
       <li>Bell-keepers and sextons of {FACTION} are walking in {PLACE} with spades and bundles of linen, {X_nameDef} at the front. They have come to bury the dead lying on the colony's land.</li>
       <li>[lowtech] {FACTION}'s bell-keepers and sextons are walking in {PLACE} with spades over their shoulders and a small bell on every cord. They have come to bury the dead.</li>
-      <li>[industrial|spacer] {FACTION}'s bell-keepers and sextons are coming in {PLACE} with spades, a handcart of shrouds and their bells. They have come to bury the dead.</li>
+      <li>[industrial|spacer] {FACTION}'s bell-keepers and sextons are coming in {PLACE} with spades, bundles of shrouds and their bells. They have come to bury the dead.</li>
     </texts>
     <settled>
       <li>The Bell's people have made camp {PLACE}: a fire, a lamp, and their spades stacked ready for the morning.</li>
@@ -293,7 +293,7 @@
     </structures>
     <sleep>Tents</sleep>
     <leaves>NoTrace</leaves>
-    <leavesWhy>a yard on wheels packs everything it builds back onto its carts and takes it on to the next stop</leavesWhy>
+    <leavesWhy>a yard that never stops for long packs everything it builds back onto its pack animals and takes it on to the next stop</leavesWhy>
     <tidy>Careless</tidy>
     <works><li>Mend</li><li>Haul</li></works>
     <animals>
@@ -304,22 +304,22 @@
       <li>A yard at the edge</li>
     </titles>
     <texts>
-      <li>The yard of {FACTION} is rolling in {PLACE} with its carts and pack animals, {X_nameDef} walking in front. They will set up a scrap market and a mending tent for three days.</li>
-      <li>[lowtech] {FACTION}'s yard is rolling in {PLACE} with creaking carts piled high with scrap and tools. They will trade and mend things for three days.</li>
-      <li>[industrial|spacer] {FACTION}'s yard is rolling in {PLACE}, carts and trailers loaded with scrap, tools and spare parts. They will trade and mend things for three days.</li>
+      <li>The yard of {FACTION} is coming in {PLACE} with its pack animals, {X_nameDef} walking in front. They will set up a scrap market and a mending tent for three days.</li>
+      <li>[lowtech] {FACTION}'s yard is coming in {PLACE} with pack animals piled high with scrap and tools. They will trade and mend things for three days.</li>
+      <li>[industrial|spacer] {FACTION}'s yard is coming in {PLACE}, pack animals loaded with scrap, tools and spare parts. They will trade and mend things for three days.</li>
     </texts>
     <settled>
-      <li>The Wheel's yard has set up {PLACE}: carts in a ring, a mending tent, and scrap laid out on tarpaulins for sale.</li>
+      <li>The Wheel's yard has set up {PLACE}: pack animals tethered, a mending tent, and scrap laid out for sale at the stall.</li>
       <li>{FACTION}'s yard has unloaded {PLACE}, and the fixers already have the mending tent open.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the yard says {X_pronoun} has had enough of the road for a while, and asks whether the colony could use someone who can fix almost anything.</li>
     </joinTexts>
     <farewell>
-      <li>[stayed,mended] The yard packed everything back onto its carts and rolled on, a few days later than it meant to. The colony's mended things are back where they belong.</li>
-      <li>[sour] The yard packed up and rolled on. The fixer who argued over the price did not say goodbye.</li>
-      <li>[mended] The yard packed everything back onto its carts and rolled on, after mending what the colony brought them.</li>
-      <li>The yard packed everything back onto its carts and rolled on to the next stop.</li>
+      <li>[stayed,mended] The yard loaded everything back onto its pack animals and moved on, a few days later than it meant to. The colony's mended things are back where they belong.</li>
+      <li>[sour] The yard packed up and moved on. The fixer who argued over the price did not say goodbye.</li>
+      <li>[mended] The yard loaded everything back onto its pack animals and moved on, after mending what the colony brought them.</li>
+      <li>The yard loaded everything back onto its pack animals and moved on to the next stop.</li>
     </farewell>
     <lines>
       <li>Nothing is broken, only waiting.</li>

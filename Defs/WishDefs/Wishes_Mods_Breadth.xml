@@ -65,14 +65,14 @@
       <plain><li>Hot tea and the steam in my face. I feel half human again.</li></plain>
       <warm><li>Kindest thing anyone's done for me all week, that pot.</li></warm>
       <blunt><li>Good. Another.</li></blunt>
-      <cheerful><li>A whole pot just for me. Well, nearly.</li></cheerful>
+      <cheerful><li>A whole pot, nearly all for me.</li></cheerful>
       <gloomy><li>I'm no better. But my hands are warm.</li></gloomy>
       <cold><li>Symptoms improved.</li></cold>
     </thanks>
     <expired>
       <plain><li>Cold water it is.</li></plain>
       <blunt><li>I'll cough on whoever forgot.</li></blunt>
-      <gloomy><li>Sick and thirsty, then. It's how things go here.</li></gloomy>
+      <gloomy><li>I'm sick and there's still no tea. Nobody here looks after the sick.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>I'm still coughing, if anyone has a pot on.</li></plain>
@@ -261,7 +261,7 @@
       <plain><li>Not a hare in the field this morning. It's working.</li></plain>
       <warm><li>Thank you. I gave it my old hat.</li></warm>
       <blunt><li>The crops are ours now.</li></blunt>
-      <cheerful><li>I named it after the council. It looks just like you.</li></cheerful>
+      <cheerful><li>I gave it my old hat and a name. It looks very smart.</li></cheerful>
       <gloomy><li>The birds will figure it out eventually. For now, it works.</li></gloomy>
       <cold><li>Crop losses reduced.</li></cold>
     </thanks>

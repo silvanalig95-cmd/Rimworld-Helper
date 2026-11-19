@@ -12,7 +12,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_WantsToStay</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a reason to stay</label>
+    <label>a visitor who wants to stay</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
     <cooldownDays>40</cooldownDays>
@@ -46,7 +46,7 @@
         </effects>
       </li>
       <li>
-        <label>Pay {FACTION} to let {X_objective} go</label>
+        <label>Pay {FACTION} 200 silver to let {X_objective} go</label>
         <outcome>Two hundred silver went to {FACTION} for the trouble, and {X_nameDef} stayed. A few people think it was too much to pay.</outcome>
         <ways><generosity>4</generosity><openness>5</openness></ways>
         <effects>
@@ -104,7 +104,7 @@
   <!-- ===================== A rude visitor ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_RudeGuest</defName>
-    <label>a guest's tongue</label>
+    <label>a rude guest</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
     <cooldownDays>35</cooldownDays>
@@ -118,7 +118,7 @@
     <texts>
       <li>"Back home we feed that to the pigs," said {X_nameDef} of {FACTION} at dinner, looking at {A_nameDef}'s plate. Then {X_nameDef} looked at {A_nameDef} and said what they do back home with people like {A_nameDef}. Only the other visitors laughed.\n\n{A_nameDef} put down {A_possessive} spoon very slowly.</li>
       <li>{X_nameDef} has spent the whole visit telling anyone who'll listen what is wrong with {A_nameDef}, starting with the voice and working down to the family. {A_nameDef} has heard all of it. {X_nameDef} made sure of that.\n\nThe colony would like to stay on good terms with {FACTION}. {A_nameDef} would like to know whether a guest is allowed to say anything at all.</li>
-      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nGuests are safe under this roof; that has always been the rule. The way {A_nameDef} sees it, the rule ought to work both ways.</li>
+      <li>{X_nameDef} spat on the floor {A_nameDef} swept that morning and called {A_objective} something that made the cook drop a ladle. When {A_nameDef} asked {X_nameDef} to repeat it, {X_nameDef} did, slower.\n\nGuests are safe under this roof, and that has always been the rule. The way {A_nameDef} sees it, the rule ought to work both ways.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -195,7 +195,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_HeirloomOffer</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the trader's eye</label>
+    <label>a trader wants an heirloom</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
     <cooldownDays>50</cooldownDays>
@@ -209,7 +209,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the {FACTION} trader, has had {A_nameDef}'s heirloom in {X_possessive} hands for some time now, turning it to the light. "Good old work," {X_nameDef} says. "Collectors pay for this." It belonged to somebody now buried out back.\n\nThe offer is real silver, more than the thing is worth to anyone who didn't know its owner. {A_nameDef} hasn't said yes or no, and keeps glancing at the council.</li>
-      <li>Four offers so far, each better than the last. {X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving and keeps coming back to it.\n\nIt's one of the few things {A_nameDef} has left of the dead, and {A_nameDef} has left it to the council.</li>
+      <li>{X_nameDef} noticed the heirloom {A_nameDef} carries within a minute of arriving, and has made four offers for it so far, each better than the last.\n\nIt's one of the few things {A_nameDef} has left of the dead, and {A_nameDef} has left it to the council.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -226,7 +226,7 @@
         </effects>
       </li>
       <li>
-        <label>Haggle until it hurts</label>
+        <label>Haggle hard</label>
         <outcome>{A_nameDef} haggled until {X_nameDef} was sweating, and got {COUNT} silver for it. {A_nameDef} watched it go into the trader's pack and didn't say another word all day.</outcome>
         <ways><generosity>-3</generosity><tradition>-5</tradition></ways>
         <effects>
@@ -262,7 +262,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PrisonerPlea</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a voice through the door</label>
+    <label>a prisoner's plea</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
     <cooldownDays>40</cooldownDays>
@@ -276,7 +276,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>Every night, through the cell door, {X_nameDef} tells {A_nameDef} about a field back with {FACTION} that won't plant itself, and about how none of this was ever {X_possessive} idea. {A_nameDef} believes every word.\n\nNow {A_nameDef} is asking the council to let {X_nameDef} go home. The ones who caught {X_nameDef} remember things differently.</li>
+      <li>Every night, through the cell door, {X_nameDef} tells {A_nameDef} about a field back home with {FACTION} that nobody else will plant, and about how none of this was ever {X_possessive} idea. {A_nameDef} believes every word.\n\nNow {A_nameDef} is asking the council to let {X_nameDef} go home. The ones who caught {X_nameDef} remember things differently.</li>
       <li>{A_nameDef} carried {X_nameDef}'s meal down this morning and came back without the bowl and with a request. {X_nameDef} has a child back with {FACTION}, or says so, and begged {A_nameDef} to ask the council for {X_possessive} freedom.\n\nIt might be true. Prisoners say a great many things, and {A_nameDef} has never been good at telling the true ones from the rest.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -324,7 +324,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_FallenPlea</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the one still breathing</label>
+    <label>a wounded enemy</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.1</weight>
     <cooldownDays>30</cooldownDays>
@@ -409,7 +409,7 @@
         </effects>
       </li>
       <li>
-        <label>Give them silver instead</label>
+        <label>Give them 60 silver instead</label>
         <outcome>{X_nameDef} got sixty silver and directions to the nearest market. It's a long way on empty stomachs.</outcome>
         <ways><generosity>4</generosity></ways>
         <effects>
@@ -452,7 +452,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PetBit</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>teeth marks</label>
+    <label>a visitor bitten by a pet</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
     <cooldownDays>40</cooldownDays>
@@ -469,7 +469,7 @@
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>Pay for the bite</label>
+        <label>Pay 50 silver for the bite</label>
         <outcome>The council paid {X_nameDef} fifty silver for the bite, and {X_nameDef} seemed satisfied with it.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
@@ -507,7 +507,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PredatorDen</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the den in the brush</label>
+    <label>a predator's den near the colony</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
     <cooldownDays>40</cooldownDays>
@@ -574,7 +574,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_ChildPet</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>can I keep it</label>
+    <label>a child wants a wild pet</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
@@ -784,7 +784,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_OldAcquaintance</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a face from before</label>
+    <label>a visitor who knows a secret</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
     <cooldownDays>50</cooldownDays>
@@ -870,8 +870,8 @@
       <nemesis>true</nemesis>
     </stranger>
     <texts>
-      <li>It's back. {A_nameDef} saw {X_definite} at the tree line this morning, pacing the edge of the fields as if waiting for a door to be left open. It's the beast that mauled one of the colonists and limped off into the wild.</li>
-      <li>There are tracks around the colony again, deep ones, and {A_nameDef} knows whose they are. They belong to {X_definite}, the animal that tore into a colonist, got away, and earned itself a name.\n\nSome want it dead today. Some want it tamed, which doesn't sit well with the one it mauled.</li>
+      <li>{A_nameDef} saw {X_definite} at the tree line this morning, pacing along the edge of the fields. It's the beast that mauled one of the colonists and limped off into the wild, and now it's back.</li>
+      <li>There are tracks around the colony again, deep ones, and {A_nameDef} knows whose they are. They belong to {X_definite}, the animal that tore into a colonist, got away, and was given a name.\n\nSome want it dead today. Some want it tamed, which doesn't sit well with the one it mauled.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -923,7 +923,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_NemesisInChains</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the one in the cell</label>
+    <label>an old enemy in the cell</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
     <cooldownDays>30</cooldownDays>
@@ -935,7 +935,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef} is the one who hurt {A_nameDef} and got away. Now {X_nameDef} sits in a cell, eating the colony's food and sleeping under the colony's roof, and {A_nameDef} has stood outside that door every night since the capture, saying nothing.\n\nThe council has to decide what {X_nameDef} is now: a debt to be settled, a mouth to be fed, or a pair of hands to be won over.</li>
-      <li>{A_nameDef} still carries what {X_nameDef} did, in the body and elsewhere. {X_nameDef} still has the nerve to ask the wardens for an extra blanket.\n\nThe colony wants to know what the council means to do with this prisoner. {A_nameDef} wants to know whether {A_possessive} say counts for anything.</li>
+      <li>{A_nameDef} still carries the marks of what {X_nameDef} did, in body and mind. {X_nameDef} still has the nerve to ask the wardens for an extra blanket.\n\nThe colony wants to know what the council means to do with this prisoner. {A_nameDef} wants to know whether {A_possessive} say counts for anything.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -979,7 +979,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_BuyTheAnimal</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a fair offer</label>
+    <label>an offer for a pet</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
@@ -991,7 +991,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>One hundred and twenty silver, on the spot. {X_nameDef} of {FACTION} has fallen hard for {PET_nameDef}, {A_nameDef}'s animal, and it's a very good price.\n\n{A_nameDef} has been standing between {X_nameDef} and {PET_nameDef} ever since the offer was made.</li>
+      <li>{X_nameDef} of {FACTION} has fallen hard for {PET_nameDef}, {A_nameDef}'s animal, and has offered one hundred and twenty silver for {PET_objective} on the spot, which is a very good price.\n\n{A_nameDef} has been standing between {X_nameDef} and {PET_nameDef} ever since the offer was made.</li>
       <li>Every time the {FACTION} visitors pass {PET_nameDef}, {X_nameDef} stops to scratch an ear and mutters about money. Today {X_nameDef} made a real offer: one hundred and twenty silver, right now, and {PET_nameDef} goes home with {X_nameDef}.\n\nThe colony could use the silver. Some say {PET_nameDef} would be safer somewhere that gets raided less. {A_nameDef} hasn't said a word, and has started brushing {PET_nameDef} very thoroughly.</li>
     </texts>
     <defaultOption>2</defaultOption>

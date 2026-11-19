@@ -164,7 +164,7 @@ namespace ColonyCouncil
         public static void AgeTags(HashSet<string> tags, Faction f) => PeopleEvents.AgeTags(tags, f);
     }
 
-    /// <summary>How one of round 5's jobs looks while it is done: "dust", "dig" (earth turned), "sparks", "quiet".</summary>
+    /// <summary>How one of round 5's jobs looks while it is done: "dust", "dig" (earth turned), "sparks", "lamp" (sparks by lamplight), "quiet".</summary>
     public class PEv5Work : DefModExtension
     {
         public string mark = "dust";
@@ -211,6 +211,11 @@ namespace ColonyCouncil
                 switch (Mark)
                 {
                     case "sparks": FleckMaker.ThrowMicroSparks(at.ToVector3Shifted(), map); break;
+                    // Mending by night (the Wheel's crew): sparks, and the glow of the lamp they work by.
+                    case "lamp":
+                        FleckMaker.ThrowMicroSparks(at.ToVector3Shifted(), map);
+                        FleckMaker.ThrowFireGlow(pawn.DrawPos, map, 0.5f);
+                        break;
                     case "dig":
                         FleckMaker.ThrowDustPuff(at, map, 0.7f);
                         if (pawn.IsHashIntervalTick(960, delta)) FilthMaker.TryMakeFilth(at, map, ThingDefOf.Filth_Dirt);

@@ -56,6 +56,23 @@
   <CC_GodP_Card_Text_Omen>Something of {NAME}: a sound, a light, a moment when everything held still.</CC_GodP_Card_Text_Omen>
   <CC_GodP_Card_Text_Omen_Veiled>A sign. Nobody can read it.</CC_GodP_Card_Text_Omen_Veiled>
 
+  <!-- What a moment left where it happened (GodMarkGoods), said after the card's words, in the colony's book and in the moods of those who saw it. -->
+  <CC_GodP_Left_Flowers>When it was over, a ring of flowers had come up where it happened.</CC_GodP_Left_Flowers>
+  <CC_GodP_Left_Tree>When it was over, a full-grown tree stood where it happened.</CC_GodP_Left_Tree>
+  <CC_GodP_Left_Spring>When it was over, a pool of water had come up out of the ground where it happened.</CC_GodP_Left_Spring>
+  <CC_GodP_Left_Scorch>When it was over, the ground where it happened was scorched in a ring.</CC_GodP_Left_Scorch>
+  <CC_GodP_Left_Frost>When it was over, there was snow on the ground where it happened.</CC_GodP_Left_Frost>
+  <CC_GodP_Left_Ash>When it was over, there was a ring of ash on the ground where it happened.</CC_GodP_Left_Ash>
+  <CC_GodP_Left_Lightning>Lightning struck the ground where it happened and left a ring of scorched earth.</CC_GodP_Left_Lightning>
+  <CC_GodP_Left_Kill>When it was over, a freshly killed {ANIMAL} lay on the ground where it happened.</CC_GodP_Left_Kill>
+  <CC_GodP_Left_Weapon>When it was over, the ground where it happened was scorched in a ring, and {WEAPON} lay in the middle of it.</CC_GodP_Left_Weapon>
+  <CC_GodP_Left_WeaponAlone>When it was over, {WEAPON} lay where it happened.</CC_GodP_Left_WeaponAlone>
+  <CC_GodP_Left_StandingStone>When it was over, {STONE} of the land's own {ROCK} stood where it happened.</CC_GodP_Left_StandingStone>
+  <CC_GodP_Left_Hearth>When it was over, a bundle of firewood and {MEALS}, still warm, lay where it happened.</CC_GodP_Left_Hearth>
+  <CC_GodP_Left_Metal>When it was over, a stack of {METAL} lay where it happened.</CC_GodP_Left_Metal>
+  <CC_GodP_Left_Components>When it was over, {PARTS} lay where it happened.</CC_GodP_Left_Components>
+  <CC_GodP_Left_ComponentsAnd>{ADVANCED} and {PARTS}</CC_GodP_Left_ComponentsAnd>
+
   <!-- The dev actions' words. -->
   <CC_GodP_DevEpithet>tried in dev mode</CC_GodP_DevEpithet>
   <CC_GodP_DevOmen>Something stirred, as if {NAME} were near.</CC_GodP_DevOmen>

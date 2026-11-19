@@ -5,6 +5,59 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council's questions in plain words
+
+*19 November 2026, version 0.268.5*
+
+- The council's questions in plain words, part 1: the thief, the feud, the customs through the year, secrets, friends and rivals and strangers at the gate now say plainly what happened and who wants what.
+- Questions are named for what they are about, such as an apprentice crafter, a plan to eat a pet or a missed meeting, and answers say what the council does and how much silver it costs.
+- Some answers now match what happens on the map: an old pet walked out past the walls is let go, the repairs come with no celebration after, and the midsummer bonfire no longer promises the night shift off.
+
+## Personal stories in plain words
+
+*19 November 2026, version 0.268.4*
+
+- Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.
+- Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.
+- An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.
+
+## A god's mark worth having
+
+*19 November 2026, version 0.268.3*
+
+- A god's moment no longer leaves a single stone or slag chunk. Each look leaves its own mark, worth about 100 to 300 silver by the colony's age.
+- The Storm strikes lightning and scorches the ground; the Hunt leaves a fresh kill of the land's game; War leaves a scorched ring and a weapon of the colony's age.
+- The Way raises a standing stone of the land's rock; the Hearth leaves firewood and warm meals; the Craft a stack of steel; the Machine a few components.
+- A mark of goods comes at most once in ten days; in between, a moment leaves only scorch marks or nothing.
+- The god's card, the colony's book and the moods of those who saw it say what was left behind.
+
+## Wishes in plain words
+
+*19 November 2026, version 0.268.2*
+
+- Wishes, ambitions and life goals are written in plain words: what the colonist wants and why, without punchlines or invented sayings.
+- Four ambitions have clearer names: turrets on the approaches, traps on the approaches, a store of pemmican, and two healers, two cooks.
+- A bedroom wish asked for someone else now names whose room it is.
+- A colonist who wants a prisoner executed after a raid no longer claims it is the last raider alive.
+
+## Pick the material
+
+*19 November 2026, version 0.268.1*
+
+- Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.
+- The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.
+- The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.
+
+## The peoples' events, round 4
+
+*19 November 2026, version 0.268.0*
+
+- The learned society examines a colonist who becomes learned enough, in the evening before the colony or quietly. If they pass, they are named a fellow and get a book each season, and with Vanilla Skills Expanded the Researcher expertise.
+- In summer the society's school camps for a week and gives a lesson every afternoon at its table. Lend it your books, and the best student goes home with one.
+- The spacer enclave offers contracts for goods your colony makes, collected by its lander on the day. A broker's pod may also crash on your land with cargo to look after.
+- The river folk ask you to clean water you have fouled and set lanterns on your water on their knot night. When a flood takes their landing they camp on your bank, and their boat-builders build a hull by your water that you can buy as a dinghy.
+- The Lantern Wardens write a great beast your colonist brings down into their book and tie a red cord on the hunter's sleeve. They also come to help against a manhunt, and burn out insect hives near the colony.
+
 ## Storylines, round 3
 
 *19 November 2026, version 0.267.0*

@@ -221,7 +221,7 @@ public static class PeopleEvents5Tests
             "thirteen jobs, each driven by a driver of the round or round 1's and given by the round's code");
         var work = jobs.Where(j => j.Element("driverClass")!.Value == "ColonyCouncil.JobDriver_PEv5Work").ToList();
         var workOn = jobs.Where(j => j.Element("driverClass")!.Value == "ColonyCouncil.JobDriver_PeopleWorkOn").ToList();
-        C(work.All(j => new[] { "dust", "dig", "sparks", "quiet" }.Contains(j.Descendants("mark").Single().Value)) && workOn.Count == 4
+        C(work.All(j => new[] { "dust", "dig", "sparks", "lamp", "quiet" }.Contains(j.Descendants("mark").Single().Value)) && workOn.Count == 4
           && workOn.All(j => Regex.IsMatch(everyCode, @"class " + j.Descendants("done").Single().Value.Replace("ColonyCouncil.", "") + @" : PeopleWorkDone")),
             "the round's own work by its marks; the beast trained, looked over and the piece handed over and back are round 1's work on someone");
         C(workOn.Any(j => j.Descendants("mark").Single().Value == "train") && Read("Peoples", "Events", "PeopleWorkOn.cs").Contains("case \"train\":"), "round 1's work has a beast's mark");

@@ -84,7 +84,7 @@
     <reportString>mending TargetA by lamplight.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="ColonyCouncil.PEv5Work"><mark>sparks</mark></li>
+      <li Class="ColonyCouncil.PEv5Work"><mark>lamp</mark></li>
     </modExtensions>
   </JobDef>
 

@@ -293,6 +293,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/BallroomMath.cs" Link="BallroomMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BreweryKitchenMath.cs" Link="BreweryKitchenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MadeForWearMath.cs" Link="MadeForWearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/MaterialChoiceMath.cs" Link="MaterialChoiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/RoomUseMath.cs" Link="RoomUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
@@ -347,6 +348,7 @@
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterThreadMath.cs" Link="LetterThreadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Letters/LetterClickMath.cs" Link="LetterClickMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceMath.cs" Link="GodPresenceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodMarkMath.cs" Link="GodMarkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Presence/GodPresenceOwnMath.cs" Link="GodPresenceOwnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/OfferingWayMath.cs" Link="OfferingWayMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodsOnMapMath.cs" Link="GodsOnMapMath.cs" />

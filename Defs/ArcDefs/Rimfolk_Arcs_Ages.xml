@@ -15,7 +15,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_BadNights</defName>
     <label>bad nights</label>
-    <summary>A child with nightmares, or a fright that won't let go, and a parent or a grown-up fond of them who sits up with them until the nights are quiet again.</summary>
+    <summary>A child has nightmares or can't get over a fright, and a parent or a grown-up who is fond of them sits up with them until they sleep well again.</summary>
     <workerClass>ColonyCouncil.ArcWorker_NightTerrors</workerClass>
     <children>true</children>
     <weight>1.2</weight>
@@ -45,7 +45,7 @@
           <warm><li>{OTHER_nameDef} isn't sleeping. I'm going to sit up with {OTHER_objective} tonight, whatever the work in the morning.</li></warm>
         </otherJournal>
         <chronicle>
-          <li>Someone has been crying at night and pretending to be asleep when anyone comes to look. It's {PAWN_nameDef}, and {OTHER_nameDef} has noticed.</li>
+          <li>{PAWN_nameDef} has been crying at night and pretending to be asleep when anyone comes to look, and {OTHER_nameDef} has noticed.</li>
           <li>Nightmares have been keeping young {PAWN_nameDef} awake.</li>
         </chronicle>
         <gate>
@@ -268,7 +268,7 @@
           <plain><li>I put {OTHER_nameDef} in charge of a job today. {OTHER_nameDef} did it better than I would have. I'll never say so. I just did, here.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is taken for grown now, by {OTHER_nameDef} as much as anyone.</li>
+          <li>Everyone treats {PAWN_nameDef} as a grown-up now, {OTHER_nameDef} included.</li>
           <li>{OTHER_nameDef} has stopped treating {PAWN_nameDef} like a child.</li>
         </chronicle>
         <effects>
@@ -315,7 +315,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_NewParent</defName>
     <label>a new parent</label>
-    <summary>A baby of theirs born in the colony: sleepless nights, a pair of hands from someone who cares, and finding their feet as a parent.</summary>
+    <summary>A colonist's baby is born. After sleepless nights and some help from someone who cares, they settle into being a parent.</summary>
     <workerClass>ColonyCouncil.ArcWorker_NewParent</workerClass>
     <needsOther>false</needsOther>
     <weight>1.2</weight>
@@ -455,13 +455,13 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_OneMoreSpring</defName>
     <label>one more spring</label>
-    <summary>Someone old (65 or more) whose body has started to fail puts their affairs in order: what they want done told to someone they trust, one last piece of work, and peace.</summary>
+    <summary>Someone old (65 or more) whose health has started to fail puts their affairs in order. They tell someone they trust what they want done, make one last piece of work, and spend some quiet days in the sun.</summary>
     <workerClass>ColonyCouncil.ArcWorker_OneMoreSpring</workerClass>
     <needsOther>false</needsOther>
     <maxDays>80</maxDays>
     <stages>
       <li>
-        <label>the body tells</label>
+        <label>slowing down</label>
         <waiting>Next: a few days to think it over.</waiting>
         <journal>
           <plain>
@@ -596,8 +596,8 @@
           <cold><li>Everything I can do is done. The rest isn't my concern.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has put {PAWN_possessive} affairs in order and is at peace, and in no hurry.</li>
-          <li>Old {PAWN_nameDef} is ready for whatever comes, and spends the days in the sun with the children's questions.</li>
+          <li>{PAWN_nameDef} has put {PAWN_possessive} affairs in order and is at peace.</li>
+          <li>Old {PAWN_nameDef} is ready for whatever comes, and spends the days sitting in the sun.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_AtPeace</thought></li>

@@ -361,14 +361,14 @@
         <li>[spark:battle] I saw what they tried to do to us today. They'll keep coming, and I'll keep count.</li>
         <li>[inherited] When the raiders came, {NAME} held the wall longer than any of us. Now I'll {GOAL}, carrying {NAME}'s weapon.</li>
         <li>The raiders keep coming. Fine. I'm going to be the reason they stop.</li>
-        <li>[trait:Bloodlust] Every raid is a gift. I want to unwrap twenty-five of them.</li>
+        <li>[trait:Bloodlust] I look forward to every raid. I want to bring down twenty-five of them.</li>
       </plain>
       <cold><li>Twenty-five hostiles. I'll keep count.</li></cold>
       <blunt><li>They come to take what's ours. I'll make sure twenty-five of them don't leave.</li></blunt>
     </chosen>
     <achieved>
       <plain>
-        <li>Twenty-five. I've stopped counting faces. I haven't stopped counting.</li>
+        <li>Twenty-five. I don't remember all their faces, but I kept the count.</li>
         <li>[trait:Brawler] I took most of the twenty-five up close, near enough to see their eyes. That's how it should be done.</li>
       </plain>
       <blunt><li>Twenty-five down. They can keep sending more.</li></blunt>
@@ -511,7 +511,7 @@
         <li>Three people who came here in chains now eat at our table. I talked each of them round.</li>
       </plain>
       <cheerful><li>Three new friends who used to be prisoners! I'm the best talker on the Rim.</li></cheerful>
-      <gloomy><li>Some nights I wonder if I talked them into a better life or only a different cage.</li></gloomy>
+      <gloomy><li>Some nights I wonder if they're really better off here, or only stuck somewhere new.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
 

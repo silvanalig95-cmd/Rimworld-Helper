@@ -31,6 +31,77 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.268.5</version>
+        <date>19 November 2026</date>
+        <title>The council's questions in plain words</title>
+        <points>
+          <li>The council's questions in plain words, part 1: the thief, the feud, the customs through the year, secrets, friends and rivals and strangers at the gate now say plainly what happened and who wants what.</li>
+          <li>Questions are named for what they are about, such as an apprentice crafter, a plan to eat a pet or a missed meeting, and answers say what the council does and how much silver it costs.</li>
+          <li>Some answers now match what happens on the map: an old pet walked out past the walls is let go, the repairs come with no celebration after, and the midsummer bonfire no longer promises the night shift off.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.4</version>
+        <date>19 November 2026</date>
+        <title>Personal stories in plain words</title>
+        <points>
+          <li>Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.</li>
+          <li>Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.</li>
+          <li>An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.3</version>
+        <date>19 November 2026</date>
+        <title>A god's mark worth having</title>
+        <points>
+          <li>A god's moment no longer leaves a single stone or slag chunk. Each look leaves its own mark, worth about 100 to 300 silver by the colony's age.</li>
+          <li>The Storm strikes lightning and scorches the ground; the Hunt leaves a fresh kill of the land's game; War leaves a scorched ring and a weapon of the colony's age.</li>
+          <li>The Way raises a standing stone of the land's rock; the Hearth leaves firewood and warm meals; the Craft a stack of steel; the Machine a few components.</li>
+          <li>A mark of goods comes at most once in ten days; in between, a moment leaves only scorch marks or nothing.</li>
+          <li>The god's card, the colony's book and the moods of those who saw it say what was left behind.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.2</version>
+        <date>19 November 2026</date>
+        <title>Wishes in plain words</title>
+        <points>
+          <li>Wishes, ambitions and life goals are written in plain words: what the colonist wants and why, without punchlines or invented sayings.</li>
+          <li>Four ambitions have clearer names: turrets on the approaches, traps on the approaches, a store of pemmican, and two healers, two cooks.</li>
+          <li>A bedroom wish asked for someone else now names whose room it is.</li>
+          <li>A colonist who wants a prisoner executed after a raid no longer claims it is the last raider alive.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.1</version>
+        <date>19 November 2026</date>
+        <title>Pick the material</title>
+        <points>
+          <li>Ordering a piece of clothing or armour from Nice Inventory Tab's gear tab now asks for the material after the bench, listing each material the colony has enough of for one piece, with how much is on hand.</li>
+          <li>The bill then uses only the material you picked, with every other material unticked in its settings, and "Any material" makes the bill as before.</li>
+          <li>The setting "Choose the material when ordering a piece" on the Your other mods page turns the step off.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.268.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' events, round 4</title>
+        <points>
+          <li>The learned society examines a colonist who becomes learned enough, in the evening before the colony or quietly. If they pass, they are named a fellow and get a book each season, and with Vanilla Skills Expanded the Researcher expertise.</li>
+          <li>In summer the society's school camps for a week and gives a lesson every afternoon at its table. Lend it your books, and the best student goes home with one.</li>
+          <li>The spacer enclave offers contracts for goods your colony makes, collected by its lander on the day. A broker's pod may also crash on your land with cargo to look after.</li>
+          <li>The river folk ask you to clean water you have fouled and set lanterns on your water on their knot night. When a flood takes their landing they camp on your bank, and their boat-builders build a hull by your water that you can buy as a dinghy.</li>
+          <li>The Lantern Wardens write a great beast your colonist brings down into their book and tie a red cord on the hunter's sleeve. They also come to help against a manhunt, and burn out insect hives near the colony.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.267.0</version>
         <date>19 November 2026</date>
         <title>Storylines, round 3</title>

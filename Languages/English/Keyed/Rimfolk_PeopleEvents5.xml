@@ -136,7 +136,7 @@
   <CC_PEv5_YardNoFixer>None of the yard's fixers is free right now.</CC_PEv5_YardNoFixer>
   <CC_PEv5_YardNothingWorn>Nothing of the colony's is worn enough to need mending.</CC_PEv5_YardNothingWorn>
   <CC_PEv5_YardNoScrap>The colony has no scrap to sell.</CC_PEv5_YardNoScrap>
-  <CC_PEv5_Impact_Yard>The yard of {0} camps three days at the edge of the colony's land, with a scrap market (their trader), a mending tent and their carts.</CC_PEv5_Impact_Yard>
+  <CC_PEv5_Impact_Yard>The yard of {0} camps three days at the edge of the colony's land, with a scrap market (their trader), a mending tent and their pack animals.</CC_PEv5_Impact_Yard>
   <CC_PEv5_Impact_YardBrief>A Wheel yard at the edge</CC_PEv5_Impact_YardBrief>
   <CC_PEv5_Impact_YardMend>A fixer from the yard goes round the colony's {0} worn things and mends each back to whole.</CC_PEv5_Impact_YardMend>
   <CC_PEv5_Impact_YardMendBrief>Worn things mended</CC_PEv5_Impact_YardMendBrief>

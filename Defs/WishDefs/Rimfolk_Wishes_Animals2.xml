@@ -46,14 +46,14 @@
         <li>I don't need it to be mine. I'd just like to see it every morning.</li>
       </warm>
       <blunt>
-        <li>Bring home {SUBJECT}. I've asked for less, but never wanted anything more.</li>
+        <li>Bring home {SUBJECT}. I've never wanted anything more.</li>
       </blunt>
       <cheerful>
         <li>Picture {SUBJECT} trotting round the yard! I've already thought of a name.</li>
         <li>I've drawn them on every scrap of paper I've ever had. Now I'd like a real one.</li>
       </cheerful>
       <gloomy>
-        <li>Everyone has something they love. Mine lives out past the fields, and it doesn't know we're here.</li>
+        <li>Everyone here has something they love. For me it's the animals out past the fields, and we don't have one.</li>
       </gloomy>
       <cold>
         <li>I'm fond of the kind, and it would earn its keep. Bringing {SUBJECT} home is time well spent.</li>
@@ -72,7 +72,7 @@
     </thanks>
     <expired>
       <plain><li>Maybe one day. They're still out there.</li></plain>
-      <gloomy><li>Out past the fields, where they always are.</li></gloomy>
+      <gloomy><li>They're still out past the fields, and we still haven't got one.</li></gloomy>
       <blunt><li>Then I'll keep drawing them. It's all I've got.</li></blunt>
     </expired>
     <reminder>
@@ -112,10 +112,10 @@
         <li>I'd treat it well. It would earn its keep and get the best of the hay.</li>
       </warm>
       <blunt>
-        <li>Give me a pack animal. I'm tired of being one.</li>
+        <li>Give me a pack animal. I'm tired of carrying everything myself.</li>
       </blunt>
       <cheerful>
-        <li>Me and {SUBJECT}, on the road together! Well, to the far field and back.</li>
+        <li>With {SUBJECT}, I could haul to the far field and back in one trip.</li>
       </cheerful>
       <gloomy>
         <li>My back's going. Something has to carry this stuff, and soon it won't be me.</li>
@@ -129,7 +129,7 @@
       <warm><li>We'll get on, the two of us.</li></warm>
       <blunt><li>Load it up.</li></blunt>
       <cheerful><li>Look how much it can carry!</li></cheerful>
-      <cold><li>Carrying capacity improved.</li></cold>
+      <cold><li>Now I can carry a lot more.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll carry it myself. I always have.</li></plain>

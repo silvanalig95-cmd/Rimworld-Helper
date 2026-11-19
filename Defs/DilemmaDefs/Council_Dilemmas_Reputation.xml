@@ -73,7 +73,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_CountingOnMercy</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>counting on our mercy</label>
+    <label>a prisoner counting on mercy</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
     <cooldownDays>40</cooldownDays>
@@ -91,7 +91,7 @@
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>Show {X_objective} the colony's other side</label>
+        <label>Be harder on {X_objective}</label>
         <outcome>The watch on {X_nameDef}'s cell was doubled, the extra blanket taken away, and the wardens stopped answering {X_possessive} jokes. {X_nameDef} has gone quiet, and {A_nameDef} is pleased about it.</outcome>
         <ways><mercy>-5</mercy></ways>
         <effects>
@@ -156,7 +156,7 @@
         </effects>
       </li>
       <li>
-        <label>Send silver instead</label>
+        <label>Send 80 silver instead</label>
         <outcome>Eighty silver went to {FACTION}. It will buy them bread from someone else's ovens, and {A_nameDef} wishes it had been the colony's own.</outcome>
         <ways><mercy>4</mercy><generosity>3</generosity></ways>
         <effects>
@@ -198,7 +198,7 @@
       <adult>true</adult>
     </stranger>
     <texts>
-      <li>The {FACTION} party has brought one of its own before the council. {X_nameDef} was caught with a hand in the caravan's purse. They could punish {X_objective} themselves, but they would rather the colony did it: this colony has a name for not flinching, and no one will blame their leader for what happens here.\n\nThey have asked for {A_nameDef} by name to hold the whip. {X_nameDef} is standing in the yard with {X_possessive} hands tied, looking at the ground.</li>
+      <li>The {FACTION} party has brought one of its own before the council. {X_nameDef} was caught with a hand in the caravan's purse. They could punish {X_objective} themselves, but they would rather the colony did it, because this colony is known for being hard, and then no one will blame their leader for what happens.\n\nThey have asked for {A_nameDef} by name to hold the whip. {X_nameDef} is standing in the yard with {X_possessive} hands tied, looking at the ground.</li>
       <li>{X_nameDef} stole from {X_possessive} own caravan, and the {FACTION} leader wants it punished properly, by people with a name for it. "We heard how you do things," the leader told the council, and nodded at {A_nameDef}.\n\n{X_nameDef} hasn't said a word since being dragged in. {A_nameDef} hasn't either.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -242,7 +242,7 @@
   <!-- ===================== Generous: the stores are thinning ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_Handouts</defName>
-    <label>always a bowl</label>
+    <label>feeding the hungry at the gate</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Faction</workerClass>
     <weight>1.2</weight>
     <cooldownDays>45</cooldownDays>
@@ -251,7 +251,7 @@
       <bestAt>Cooking</bestAt>
     </roleA>
     <texts>
-      <li>{A_nameDef}'s tally, from the back of the storeroom door:\n\nFirst lot from {FACTION}, four. Fed.\nSecond lot, seven. Fed.\nThird lot, eleven, some of them cousins. Fed.\nFourth lot, fifteen. Fed.\n\nWord has spread that there's always a bowl at this colony's gate. {A_nameDef} wants the council to say how long that stays true.</li>
+      <li>{A_nameDef} keeps a tally on the back of the storeroom door of the hungry people from {FACTION} the colony has fed. The first group was four, then seven, then eleven, some of them cousins, and then fifteen.\n\nWord has spread that there's always a bowl at this colony's gate. {A_nameDef} wants the council to say how long that stays true.</li>
       <li>Another knock at the gate, another thin face from {FACTION} and a story about a burned granary or a lame ox. {A_nameDef}, who does the cooking and most of the counting, has started hiding the good bread.\n\n"I don't mind feeding them," {A_nameDef} told the council. "But it's every day now, and the shelves go down faster than they fill."</li>
       <li>"They said on the road you never say no," the woman from {FACTION} told {A_nameDef} at the gate this morning, holding out her bowl. She was the sixtieth this season.\n\nThe storeroom isn't empty yet. {A_nameDef} would like to keep it that way.</li>
     </texts>
@@ -314,12 +314,12 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the {FACTION} trader, weighed {A_nameDef}'s silver twice, bit a coin, and asked loudly whether the colony charged guests for the well water too. "Word is you lot count every grain," {X_nameDef} said. "Thought I'd save you the bother."\n\nThe caravan guards laughed. {A_nameDef} went red to the ears, and wants the council to answer it one way or another.</li>
-      <li>The mice in this colony's storeroom have taken a vow of fasting. The candles are lit one at a time and passed round. {X_nameDef} of {FACTION} has heard the colony is tight with its silver, and has a joke about it for anyone standing near the trade goods.\n\n{A_nameDef} laughed at the first one. By the fifth {A_nameDef} had stopped, and asked the council for something that would shut {X_nameDef} up. A gift, perhaps, that no one could call mean.</li>
+      <li>{X_nameDef} of {FACTION} has heard the colony is tight with its silver, and has a joke about it for anyone standing near the trade goods. One is that the mice in the storeroom have taken a vow of fasting.\n\n{A_nameDef} laughed at the first one. By the fifth {A_nameDef} had stopped, and asked the council for something that would shut {X_nameDef} up. A gift, perhaps, that no one could call mean.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>Send {X_nameDef} off with a gift</label>
+        <label>Send {X_nameDef} off with 50 silver</label>
         <outcome>{X_nameDef} was handed fifty silver "for the road", in front of the caravan guards. {X_nameDef} weighed the purse in one hand and made no more jokes that day.</outcome>
         <ways><generosity>6</generosity></ways>
         <effects>
@@ -489,7 +489,7 @@
     <defaultOption>0</defaultOption>
     <options>
       <li>
-        <label>Guests are guests</label>
+        <label>Let the guest carry on as before</label>
         <outcome>The council said a welcome with conditions isn't much of a welcome. {X_nameDef} carries on as before, and {A_nameDef} has taken to sleeping with {A_possessive} door barred.</outcome>
         <ways><openness>4</openness></ways>
         <effects>
@@ -607,8 +607,8 @@
     </roleA>
     <texts>
       <li>{A_nameDef} fell asleep on {A_possessive} feet at the threshing floor this morning and went down hard. This colony is known for working from before sunrise to after dark, and for being proud of it.\n\n{A_nameDef} has asked the council for one day off. Not a sick day, just a day to sit somewhere and do nothing, without anyone keeping count.</li>
-      <li>The colony has a name for hard work, and {A_nameDef} has worked harder than most. It shows in {A_possessive} shaking hands and short temper, and this week {A_nameDef} dropped a full bucket down the well and just stood there staring after it.\n\n{A_nameDef} came to the council and asked, in a voice they had to lean in to hear, whether anyone here is ever allowed a day of rest.</li>
-      <li>Traders say this colony works dark to dark, and they mean it as praise. {A_nameDef} has been working dark to dark for a season, and has started to hear it differently.\n\n"One day," {A_nameDef} told the council. "One whole day where no one needs me for anything."</li>
+      <li>The colony has a name for hard work, and {A_nameDef} has worked harder than most. It shows in {A_possessive} shaking hands and short temper, and this week {A_nameDef} dropped a full bucket down the well and just stood there staring after it.\n\n{A_nameDef} came to the council and asked, very quietly, whether anyone here is ever allowed a day of rest.</li>
+      <li>Traders say this colony works dark to dark, and they mean it as praise. {A_nameDef} has been working dark to dark for a season, and has stopped thinking of it as praise.\n\n"One day," {A_nameDef} told the council. "One whole day where no one needs me for anything."</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -667,12 +667,12 @@
     <texts>
       <li>This colony is known for taking its time, and most people here are happy to live up to it. {A_nameDef} has been bringing in the crops more or less alone while the others nap in the shade, and today threw a sickle down in the middle of the yard.\n\n"I'm not carrying all of you through another winter," {A_nameDef} told the council. Several people looked up from their naps to listen.</li>
       <li>Visitors envy the colony's easy pace. {A_nameDef} has stopped finding it charming. The fields are {A_nameDef}'s, most of the hauling is {A_nameDef}'s, and this morning {A_nameDef} found the woodpile empty and three colonists asleep against it.\n\n{A_nameDef} wants the council to make everyone pull their weight, or at least to say out loud who's been pulling it.</li>
-      <li>{A_nameDef} counted. Of everything sown and brought in this season, most went through {A_nameDef}'s hands, and the colony's long lunches got longer the whole time.\n\n{A_nameDef} has laid the numbers out in front of the council, and is waiting to see who reads them.</li>
+      <li>{A_nameDef} has counted, and most of everything sown and brought in this season went through {A_nameDef}'s hands, while the colony's long lunches got longer the whole time.\n\n{A_nameDef} has laid the numbers out in front of the council and wants them read.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>Everyone pulls their weight</label>
+        <label>Make everyone pull their weight</label>
         <outcome>Chores are handed out by name now, on a list by the kitchen door. The naps are shorter and the grumbling louder, and {A_nameDef} is sleeping through the night again.</outcome>
         <ways><toil>8</toil></ways>
         <effects>

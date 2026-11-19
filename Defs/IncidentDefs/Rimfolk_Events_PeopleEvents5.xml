@@ -168,11 +168,11 @@
           <li>Sextons at the gate</li>
         </titles>
         <texts>
-          <li>{X_nameDef} and another sexton of {FACTION} have come to the gate with spades and a handcart. They have seen the colony's {COUNT} graves and would like to make them a grave-garden: three days of work laying flagstones between the graves, planting roses beside them and setting up a bell-post. They ask only for their meals while they work.</li>
+          <li>{X_nameDef} and another sexton of {FACTION} have come to the gate with spades and a sack of rose cuttings. They have seen the colony's {COUNT} graves and would like to make them a grave-garden: three days of work laying flagstones between the graves, planting roses beside them and setting up a bell-post. They ask only for their meals while they work.</li>
           <li>[lost] {X_nameDef} and another sexton of {FACTION} have come to the gate. They heard that {DEAD} was buried here, and they would like to make the colony's {COUNT} graves a grave-garden: flagstones between the graves, roses beside them and a bell-post among them, three days' work for their meals.</li>
           <li>[age0] Two sextons of {FACTION} have walked to the gate with digging sticks and a basket of rose cuttings. They would lay flat stones between the colony's {COUNT} graves, plant the roses and set up a post with a small bell, three days' work for their meals.</li>
-          <li>[age1] Two sextons of {FACTION} in grey hoods have come to the gate with spades, a cart of flagstones and rose cuttings wrapped in sacking. {X_nameDef} would make the colony's {COUNT} graves a grave-garden with a bell-post, three days' work for their meals.</li>
-          <li>[age2] {X_nameDef} and another sexton of {FACTION} have come up the road with a handcart of tools and rose bushes in pots. They would make the colony's {COUNT} graves a grave-garden, with flagstones, roses and a bell-post, over three days, for their meals.</li>
+          <li>[age1] Two sextons of {FACTION} in grey hoods have come to the gate with spades and rose cuttings wrapped in sacking. {X_nameDef} would make the colony's {COUNT} graves a grave-garden with a bell-post, three days' work for their meals.</li>
+          <li>[age2] {X_nameDef} and another sexton of {FACTION} have come up the road with tools and rose cuttings in a sack. They would make the colony's {COUNT} graves a grave-garden, with flagstones, roses and a bell-post, over three days, for their meals.</li>
           <li>[anomaly] {X_nameDef} and another sexton of {FACTION} have come to the gate. They would make the colony's {COUNT} graves a grave-garden with flagstones, roses and a bell-post, and they say that where a bell-post stands, the dead lie quiet. It is three days' work for their meals.</li>
           <li>[their:grateful] The Bell thinks well of the colony, and {X_nameDef} has come with another sexton to make its {COUNT} graves a grave-garden: flagstones, roses and a bell-post, three days' work for their meals.</li>
         </texts>
@@ -237,7 +237,7 @@
           <li>{X_nameDef}, a bell-keeper of {FACTION}, has come to the gate. {COUNT} dead are lying on the colony's land after the fight, and the Bell would camp nearby for a few days, dig a row of graves beyond the wall and bury them, ringing the bell at each dusk. They would be glad of wood and cloth for the graves.</li>
           <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with sextons carrying digging sticks. {COUNT} dead lie on the colony's land after the fight, and the Bell would camp a few days, dig a row of graves beyond the wall and ring the bell over them at dusk.</li>
           <li>[age1] {X_nameDef}, a bell-keeper of {FACTION} in a grey habit, has come to the gate with sextons and spades. {COUNT} dead lie on the colony's land after the fight. The Bell would camp a few days to dig a row of graves beyond the wall and bury them, ringing the bell at each dusk.</li>
-          <li>[age2] {X_nameDef} of {FACTION} has come up the road with a cart of spades and shrouds. {COUNT} dead lie on the colony's land after the fight, and the Bell would camp a few days, dig a row of graves beyond the wall and bury them all, the bell rung at each dusk.</li>
+          <li>[age2] {X_nameDef} of {FACTION} has come up the road with sextons carrying spades and bundles of shrouds. {COUNT} dead lie on the colony's land after the fight, and the Bell would camp a few days, dig a row of graves beyond the wall and bury them all, the bell rung at each dusk.</li>
           <li>[anomaly] {X_nameDef}, a bell-keeper of {FACTION}, has come to the gate. {COUNT} dead lie on the colony's land after the fight, and the Bell would rather they did not lie there long. They would camp a few days, dig a row of graves beyond the wall and ring the bell over them at each dusk.</li>
           <li>[their:grateful] The Bell thinks well of the colony, and {X_nameDef} has come to the gate with sextons. They would camp a few days to bury the {COUNT} dead lying on the colony's land in a row of graves beyond the wall, the bell rung at each dusk.</li>
         </texts>
@@ -299,7 +299,7 @@
           <li>[feud] {X_nameDef} and two others of {FACTION} have come to the gate for their dead, {COUNT} of whom still lie in the field of the fallen. They are no friends of {TALE}, who keep the field, and if the colony will not let them take their dead they may go and take them from the camp.</li>
           <li>[age0] Three of {FACTION} have walked to the gate with poles and hides to carry their dead. {COUNT} of their people still lie unburied in the field, and they would take them home. {TALE}, who keep the field, would rather bury them here.</li>
           <li>[age1] {X_nameDef} and two others of {FACTION} have come to the gate with a hand-bier. {COUNT} of their people still lie unburied in the field of the fallen, and they would carry them home to be buried among their own. {TALE}, who keep the field, would rather bury them here.</li>
-          <li>[age2] {X_nameDef} and two others of {FACTION} have driven up to the gate. {COUNT} of their people still lie unburied in the field of the fallen, and they would take them home. {TALE}, who keep the field, would rather bury them where they lie.</li>
+          <li>[age2] {X_nameDef} and two others of {FACTION} have come up the road to the gate. {COUNT} of their people still lie unburied in the field of the fallen, and they would take them home. {TALE}, who keep the field, would rather bury them where they lie.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -365,7 +365,7 @@
           <li>{X_nameDef}, a roaming tamer of {FACTION}, has come to the gate. {X_pronoun} has been watching {BEAST} and says it could learn {COUNT} more tasks than it knows. {X_nameDef} would spend this afternoon putting it through all of them with {A_nameDef}, the colony's best hand with animals, at its side, and leave the two of them bonded.</li>
           <li>[bonded] {X_nameDef}, a roaming tamer of {FACTION}, has come to the gate. {BEAST} is already bonded to {A_nameDef}, but it still has {COUNT} tasks left to learn, and {X_nameDef} would finish its training this afternoon with {A_nameDef} beside it.</li>
           <li>[pokemon] {X_nameDef}, a roaming tamer of {FACTION}, has come to the gate and stopped to watch {BEAST}. {X_pronoun} says it could learn {COUNT} more things, and offers to train it this afternoon with {A_nameDef} beside it, so that the two of them end the day bonded.</li>
-          <li>[age0] {X_nameDef}, a tamer of {FACTION}, has walked to the gate with a hound at {X_possessive} heel. {X_pronoun} would spend the afternoon working with {BEAST} and {A_nameDef} together until it knows every task it can learn, {COUNT} in all, and leave them bonded.</li>
+          <li>[age0] {X_nameDef}, a tamer of {FACTION}, has walked to the gate. {X_pronoun} would spend the afternoon working with {BEAST} and {A_nameDef} together until it knows every task it can learn, {COUNT} in all, and leave them bonded.</li>
           <li>[age2] {X_nameDef}, a roaming tamer of {FACTION}, has come up the road with a pouch of treats and a whistle. {X_pronoun} would spend the afternoon training {BEAST} with {A_nameDef} beside it, {COUNT} tasks in all, and leave the two of them bonded.</li>
           <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef}, one of its roaming tamers, would like to finish {BEAST}'s training this afternoon with {A_nameDef} at its side, {COUNT} tasks still to learn.</li>
         </texts>
@@ -552,7 +552,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a tamer of {FACTION}, has come to the gate. With {TALE} on, the Circuit is holding bouts on the way, and it would pitch a ring by the colony for a few days, with a bout every afternoon. Anyone of the colony who is good with animals may step up and challenge.</li>
-          <li>[pokemon] {X_nameDef}, a tamer of {FACTION}, has come to the gate with a Pokémon at {X_possessive} side. While {TALE} is on, the Circuit would pitch a bout-ring by the colony for a few days, with a bout every afternoon, and the colony's trainers are welcome to challenge.</li>
+          <li>[pokemon] {X_nameDef}, a tamer of {FACTION}, has come to the gate. While {TALE} is on, the Circuit would pitch a bout-ring by the colony for a few days, with a bout every afternoon, and the colony's trainers are welcome to challenge.</li>
           <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. While {TALE} is on, the Circuit's tamers are on the move, and they would mark out a ring with torches by the colony and hold a bout every afternoon for a few days. Anyone of the colony may challenge.</li>
           <li>[age2] {X_nameDef}, a tamer of {FACTION}, has come up the road ahead of the others. While {TALE} is on, the Circuit would set up a bout-ring by the colony for a few days with a bout every afternoon, and the colony's best hands with animals are welcome to challenge.</li>
           <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has come to ask whether the tamers may pitch their ring nearby for a few days while {TALE} is on, with a bout every afternoon for anyone who wants to challenge.</li>
@@ -617,7 +617,7 @@
           <li>[nogear] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew and their lamps. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for {COUNT} silver.</li>
           <li>[age0] {X_nameDef} of {FACTION} has come to the gate with a crew carrying torches, hammers and baskets. They would mend what the raid broke tonight ({TALE}) and be gone by morning, for the raiders' broken weapons and {COUNT} silver, or {DEAD} silver alone.</li>
           <li>[age1] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew carrying lanterns and tools. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
-          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has pulled up at the gate with a crew, work lamps and a welding kit. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a crew, work lamps and a welding kit. They would mend what the raid damaged tonight ({TALE} and more) and be gone by morning, for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
           <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} has brought a crew to mend what the raid damaged tonight ({TALE} and more), for the raiders' broken gear and {COUNT} silver, or {DEAD} silver alone.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -746,8 +746,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate. If the colony gives {X_objective} {TALE} from its stores and {COUNT} silver for the work, {X_pronoun} and a hand will build it a {THING} at the gate in a day.</li>
-          <li>[wagon] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a cart of tools and axle irons. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
-          <li>[truck] {X_nameDef}, a fixer of {FACTION}, has driven up to the gate with a workshop trailer. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
+          <li>[wagon] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a bag of tools and axle irons. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
+          <li>[truck] {X_nameDef}, a fixer of {FACTION}, has come to the gate with a heavy toolbox and a hand. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
           <li>[age0] {X_nameDef} of {FACTION} has walked to the gate with a bag of tools. {X_pronoun} would build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver, as the Wheel builds its own.</li>
           <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come up the road with a toolbox and a spare wheel. "If it rolls, it comes with us," {X_pronoun} says, and offers to build the colony a {THING} at the gate in a day from {TALE} out of its stores, for {COUNT} silver.</li>
           <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} offers to build it a {THING} at the gate in a day, from {TALE} out of its stores, for {COUNT} silver.</li>
@@ -813,11 +813,11 @@
           <li>The yard from {PLACE}</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate. Their town, {PLACE}, has moved on and now stands only a few days away, and its yard would like to camp at the edge of the colony's land for three days, with its carts, a mending tent and a scrap market.</li>
+          <li>{X_nameDef}, a fixer of {FACTION}, has come to the gate. Their town, {PLACE}, has moved on and now stands only a few days away, and its yard would like to camp at the edge of the colony's land for three days, with its pack animals, a mending tent and a scrap market.</li>
           <li>[scrap] {X_nameDef}, a fixer of {FACTION}, has come to the gate. {PLACE} has moved close by, and its yard would camp at the edge of the colony's land for three days, with a scrap market and a mending tent. {X_pronoun} has noticed the colony's scrap and would buy it for {COUNT} silver.</li>
-          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate ahead of the yard's carts. {PLACE} has moved close by, and the yard would camp at the edge of the colony's land for three days to trade, buy scrap and mend things.</li>
-          <li>[age1] {X_nameDef}, a fixer of {FACTION}, has come to the gate ahead of a line of carts. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
-          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has driven up to the gate ahead of the yard's trucks and trailers. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has walked to the gate ahead of the rest of the yard. {PLACE} has moved close by, and the yard would camp at the edge of the colony's land for three days to trade, buy scrap and mend things.</li>
+          <li>[age1] {X_nameDef}, a fixer of {FACTION}, has come to the gate ahead of a line of pack animals. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
+          <li>[age2] {X_nameDef}, a fixer of {FACTION}, has come to the gate ahead of the rest of the yard. {PLACE} has moved close by, and the yard would camp three days at the edge of the colony's land with a mending tent and a scrap market.</li>
           <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} has come to ask whether the yard of {PLACE}, now camped nearby, may stop at the edge of the colony's land for three days to trade and mend.</li>
         </texts>
         <defaultOption>2</defaultOption>
