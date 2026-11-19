@@ -136,7 +136,7 @@
         <li>A real masterwork! People will be making up songs about it, at least around here.</li>
       </cheerful>
       <gloomy>
-        <li>Everything we build burns eventually. I'd like to make one thing that's worth crying over.</li>
+        <li>Everything we build burns eventually. I'd like to make one thing that's worth keeping safe.</li>
       </gloomy>
       <cold>
         <li>A masterwork sells for several times what an ordinary one does. Same wood, same nails.</li>
@@ -146,7 +146,7 @@
     <achieved>
       <plain><li>That's it. That's the one. Everybody come and look.</li></plain>
       <warm><li>It's for all of us. Everyone helped, even if they only cooked dinner.</li></warm>
-      <blunt><li>Wash your hands before you touch it. Both of them.</li></blunt>
+      <blunt><li>Wash your hands before you touch it.</li></blunt>
       <cheerful><li>A masterwork, made right here! I need to sit down.</li></cheerful>
       <gloomy><li>It's perfect. I'll probably never make anything this good again.</li></gloomy>
       <cold><li>It's worth many times what went into it. I've told the trader not to bother asking.</li></cold>
@@ -170,7 +170,7 @@
       <plain>
         <li>The fires eat wood faster than we cut it. When the snow comes we'll be burning the furniture.</li>
         <li>I can count the logs in the stockpile on my fingers, and winter's not far off. We need to cut.</li>
-        <li>[fall] The leaves are going. In a few weeks so are the trees we can reach. Cut now.</li>
+        <li>[fall] The leaves are falling. In a few weeks the snow will make the trees hard to reach, so cut now.</li>
         <li>[tribal] The old ones say a woodpile should be taller than the tallest of us. Ours isn't.</li>
       </plain>
       <warm>
@@ -195,7 +195,7 @@
       <warm><li>We'll all sleep warm this winter, even whoever gets the bed by the door.</li></warm>
       <blunt><li>Stack it higher if you like. I'm done chopping.</li></blunt>
       <cheerful><li>Look at it, it's taller than me! We're going to be so toasty.</li></cheerful>
-      <gloomy><li>Enough to last the winter. If the winter plays fair.</li></gloomy>
+      <gloomy><li>Enough to last the winter, unless it's a very long one.</li></gloomy>
       <cold><li>Three hundred logs. I've worked out how many nights that is, and it's enough.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>

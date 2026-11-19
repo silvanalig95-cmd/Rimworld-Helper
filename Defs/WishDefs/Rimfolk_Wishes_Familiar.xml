@@ -23,21 +23,21 @@
     <fulfilledWhen>{OTHER_nameDef} is {FOR_nameDef}'s familiar: once promised, {FOR_nameDef} stays with it a while in a quiet hour of the day, and it is bound.</fulfilledWhen>
     <request>
       <plain>
-        <li>The magic sits better with something alive beside it. {OTHER_nameDef} already follows me about; let me bind it properly.</li>
+        <li>My magic works better with an animal beside me. {OTHER_nameDef} already follows me about, so let me bind it properly.</li>
         <li>Every mage I ever learned from had a familiar. I'd like an hour with {OTHER_nameDef}, and then it would be mine.</li>
-        <li>[lowmood] The mana comes slow and lonely lately. A familiar would help, and {OTHER_nameDef} would do.</li>
+        <li>[lowmood] My mana has been slow to come back lately, and I feel alone. A familiar would help, and {OTHER_nameDef} would do.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} and I understand each other already. Binding it would only say so out loud.</li>
+        <li>{OTHER_nameDef} and I already understand each other. Binding it would make it official.</li>
       </warm>
       <blunt>
         <li>I need a familiar. {OTHER_nameDef} is the one. An hour of quiet is all it takes.</li>
       </blunt>
       <cheerful>
-        <li>Picture it: me at the bench, {OTHER_nameDef} glowing at my feet. Say yes.</li>
+        <li>I'd love to work at the bench with {OTHER_nameDef} glowing at my feet. Please say yes.</li>
       </cheerful>
       <gloomy>
-        <li>A mage alone wears out. Let me bind {OTHER_nameDef} before I do.</li>
+        <li>A mage without a familiar wears out. Let me bind {OTHER_nameDef} before that happens to me.</li>
       </gloomy>
       <cold>
         <li>A familiar near a mage means more mana and fewer wounds. {OTHER_nameDef} is suitable. I need an hour.</li>
@@ -53,7 +53,7 @@
       <cold><li>Bound. The mana comes easier already.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Never mind the familiar. The hour never came.</li></plain>
+      <plain><li>Never mind the familiar. Nobody could spare me the hour.</li></plain>
       <gloomy><li>No familiar, then. I'll manage alone, as usual.</li></gloomy>
     </expired>
     <reminder>

@@ -140,7 +140,7 @@
     </request>
     <thanks>
       <plain>
-        <li>{OTHER_nameDef} looked at me differently today. I think that meant something.</li>
+        <li>{OTHER_nameDef} looked at me differently today, as if {OTHER_pronoun} didn't hate us any more.</li>
         <li>We're still decent people, then.</li>
       </plain>
       <warm><li>Thank you. I'd have hated to be wrong about this place.</li></warm>
@@ -176,7 +176,7 @@
     <fulfilledWhen>{PAWN_nameDef} gets to a party.</fulfilledWhen>
     <request>
       <plain>
-        <li>When was the last time anyone here laughed? Not counting the time the boomalope exploded.</li>
+        <li>When was the last time anyone here laughed? We need a night off together.</li>
         <li>One evening with food and drink and no work. I'd settle for that.</li>
         <li>We work from dawn to dark every day. Let's take one night off together.</li>
         <li>[afterraid] We're alive. That's worth a drink.</li>
@@ -286,12 +286,12 @@
     </thanks>
     <expired>
       <plain>
-        <li>We're not going after {OTHER_nameDef}. Say it out loud, so I know whose voice it was.</li>
+        <li>So we're not going after {OTHER_nameDef}. I want whoever decided that to say it to my face.</li>
       </plain>
       <gloomy><li>{OTHER_nameDef} belongs to {SUBJECT} now, and we let it happen. I hope they forgive us. I won't.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Every night, I wonder if {OTHER_nameDef} is looking at the same stars.</li></plain>
+      <plain><li>Every night I wonder where {OTHER_nameDef} is, and whether {OTHER_pronoun}'s all right.</li></plain>
       <blunt><li>It's been weeks. {OTHER_nameDef} is still out there. Are we going or not?</li></blunt>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -301,7 +301,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Hunt</defName>
     <label>a hunt</label>
-    <description>A colonist who loves shooting, or one with blood on the brain, wants to go hunting. Promise it and the council marks an animal for them.</description>
+    <description>A colonist who loves shooting, or one who is itching for violence, wants to go hunting. Promise it and the council marks an animal for them.</description>
     <workerClass>ColonyCouncil.WishWorker_Hunt</workerClass>
     <forbiddenBy><li>NoHunting</li><li>NoMeat</li></forbiddenBy>
     <category>Work</category>
@@ -332,7 +332,7 @@
         <li>Who's coming hunting? Last one back carries the meat!</li>
       </cheerful>
       <gloomy>
-        <li>Out there it's just me, the wind and an animal that doesn't know it's about to die. Peaceful, in a way.</li>
+        <li>Out there it's just me and the animal, and it's quiet. I find it peaceful.</li>
       </gloomy>
       <cold>
         <li>The local wildlife is an unharvested food stock. I'm qualified to harvest it.</li>

@@ -27,12 +27,12 @@
       </plain>
       <cold><li>Every working I add is another option in a fight. I'll add {COUNT}.</li></cold>
       <cheerful><li>New spells! I've a list, and I'm going to work through every one of them.</li></cheerful>
-      <gloomy><li>The gift doesn't stand still. If I don't grow, it'll grow wild.</li></gloomy>
+      <gloomy><li>If I don't keep learning to control the gift, it could get out of hand.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
         <li>I counted my workings tonight and there are more than there were. The new ones are starting to feel like mine.</li>
-        <li>What used to take a long breath now takes a short one.</li>
+        <li>Workings that used to take me a long time now come quickly.</li>
       </plain>
       <warm><li>Everything I've learned is for the people here. I hope I never need half of it.</li></warm>
       <cold><li>A wider repertoire. Useful.</li></cold>
@@ -53,7 +53,7 @@
     <chosen>
       <plain>
         <li>I know my forms. I don't know enough of them, and the ones I know have gone dull.</li>
-        <li>[spark:downed] I went down because I had one answer and the enemy had two. I need more answers.</li>
+        <li>[spark:downed] I went down because the enemy knew more moves than I did. I need to learn more.</li>
         <li>[spark:Council_Moment_ComparedForms] Watching another fighter's forms showed me how much I've let slide.</li>
       </plain>
       <blunt><li>More techniques. Better ones. Every morning until I have them.</li></blunt>
@@ -61,7 +61,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>I have answers now I didn't have before. My body knows them before I think of them.</li>
+        <li>I know moves now that I didn't before, and my body uses them before I've even thought.</li>
         <li>Trained every morning this season, and it shows. I'm a different fighter.</li>
       </plain>
       <blunt><li>Done. Next.</li></blunt>

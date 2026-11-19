@@ -41,7 +41,7 @@
         <li>Sharing a room means sharing everyone's snoring. Could I get a room of my own?</li>
         <li>I don't need much. A bed, a door that closes, somewhere to keep my things.</li>
         <li>[trigger:barracks] Somebody's elbow woke me at three in the morning. I want a room with a door I can shut.</li>
-        <li>[trigger:barracks] Someone in the barracks talks in their sleep. Last night it was about me.</li>
+        <li>[trigger:barracks] Someone in the barracks talks in their sleep, and I can't get any rest.</li>
         <li>[winter] It's a long winter to spend without a door to shut. I'd give a lot for a room to myself.</li>
         <li>[trait:Greedy] I work harder than most people here, and I still haven't got a room of my own.</li>
         <li>[trait:Jealous] Some people here have rooms of their own. I'd like to know why I don't.</li>
@@ -49,7 +49,7 @@
         <li>[newcomer] I know I'm new here, but I'm not used to sleeping in a room full of strangers.</li>
         <li>[repeat] I asked about a room of my own before. I'm still asking.</li>
         <li>[lowmood] I just need somewhere to close the door and not be looked at.</li>
-        <li>[trait:Psychopath] Other people's sleeping noises are an unnecessary variable. Remove them.</li>
+        <li>[trait:Psychopath] I have no interest in the others, and I don't want to hear them sleeping. Give me a room of my own.</li>
       </plain>
       <warm>
         <li>If someone needs a room more than me, give it to them first. But if there's one to spare, I'd love it.</li>
@@ -60,7 +60,7 @@
         <li>Give me a room with a door. I'll build it myself if I have to.</li>
       </blunt>
       <cheerful>
-        <li>I've already decided where my bed would go! Under the window, if there's a window.</li>
+        <li>I've already decided where my bed would go, right under the window.</li>
         <li>You know what would make me unbearably happy? A room with my name on the door.</li>
       </cheerful>
       <gloomy>
@@ -125,7 +125,7 @@
         <li>I didn't really think anyone would build me a room.</li>
       </gloomy>
       <cold>
-        <li>I'll stop asking. I won't stop remembering.</li>
+        <li>I'll stop asking, but I'll remember that nobody built it.</li>
       </cold>
     </expired>
   </ColonyCouncil.WishDef>
@@ -147,7 +147,7 @@
     <grantedThought>Council_Granted_NicerBedroom</grantedThought>
     <luxury>true</luxury>
     <talkInteraction>Council_Talk_Room</talkInteraction>
-    <fulfilledWhen>{FOR_possessive} bedroom reaches impressiveness {TARGET} ("{SUBJECT}"). Better furniture, art, smooth or nice floors and more space all help.</fulfilledWhen>
+    <fulfilledWhen>{FOR_nameDef}'s bedroom reaches impressiveness {TARGET} ("{SUBJECT}"). Better furniture, art, smooth or nice floors and more space all help.</fulfilledWhen>
     <request>
       <plain>
         <li>Could my room have some decent furniture? Maybe a bit of art?</li>
@@ -234,7 +234,7 @@
     <luxury>true</luxury>
     <template>Council_Bedroom</template>
     <talkInteraction>Council_Talk_Room</talkInteraction>
-    <fulfilledWhen>{FOR_possessive} bedroom's space reaches {TARGET} ("{SUBJECT}"). Move a wall out, or plan a new, bigger bedroom.</fulfilledWhen>
+    <fulfilledWhen>{FOR_nameDef}'s bedroom reaches a space of {TARGET} ("{SUBJECT}"). Move a wall out, or plan a new, bigger bedroom.</fulfilledWhen>
     <request>
       <plain>
         <li>I hit my elbow on the wall every time I turn over. Could my room be a bit bigger?</li>
@@ -326,7 +326,7 @@
         <li>A bed for two, for {OTHER_nameDef} and me! We'd be the happiest people in the colony.</li>
       </cheerful>
       <gloomy>
-        <li>I lie there at night and {OTHER_nameDef} is right there, and still so far away.</li>
+        <li>At night {OTHER_nameDef} sleeps across the room from me, and I miss {OTHER_objective}.</li>
       </gloomy>
       <cold>
         <li>Separate beds for partners make no sense. Assign {OTHER_nameDef} and me one.</li>
@@ -348,7 +348,7 @@
         <li>A bed for two! We may never get up again.</li>
       </cheerful>
       <gloomy>
-        <li>The nights are shorter with someone to share them.</li>
+        <li>The nights don't feel so long now that we share a bed.</li>
       </gloomy>
     </thanks>
     <expired>
@@ -369,7 +369,7 @@
     <defName>Council_Wish_BedroomFurniture</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} for {FOR_possessive} room</label>
-    <description>A small piece of furniture to make a bedroom feel lived-in.</description>
+    <description>This colonist wants a small piece of furniture to make their bedroom feel lived-in.</description>
     <workerClass>ColonyCouncil.WishWorker_BedroomFurniture</workerClass>
     <lasting>true</lasting>
     <lostText>The {THINGBARE} is gone from {FOR_nameDef}'s room.</lostText>
@@ -448,7 +448,7 @@
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Light</grantedThought>
     <talkInteraction>Council_Talk_Room</talkInteraction>
-    <fulfilledWhen>{FOR_possessive} bedroom has a light source, for example {THING}.</fulfilledWhen>
+    <fulfilledWhen>{FOR_nameDef}'s bedroom has a light source, for example {THING}.</fulfilledWhen>
     <request>
       <plain>
         <li>It's pitch black in my room. I stubbed my toe four times last night. Could I get {THING}?</li>
@@ -480,7 +480,7 @@
         <li>[night] Light at night. I can finally find my boots.</li>
       </plain>
       <gloomy>
-        <li>The shadows stay in the corners now.</li>
+        <li>It's not so dark in there now.</li>
       </gloomy>
       <cheerful>
         <li>It's so cozy now! I'm going to read in bed every night.</li>
@@ -524,7 +524,7 @@
     <grantedThought>Council_Granted_ComfortTemp</grantedThought>
     <allowForOthers>true</allowForOthers>
     <talkInteraction>Council_Talk_Comfort</talkInteraction>
-    <fulfilledWhen>{FOR_possessive} bedroom gets {THING}, or simply stays comfortable through the night.</fulfilledWhen>
+    <fulfilledWhen>{FOR_nameDef}'s bedroom gets {THING}, or simply stays comfortable through the night.</fulfilledWhen>
     <request>
       <plain>
         <li>Another bad night in my room. Put {THING} in there and I'd sleep fine.</li>
@@ -613,7 +613,7 @@
         <li>[trigger:floor] Somebody stepped in my soup on the way past. I was eating on the floor.</li>
         <li>[rain] Eating in the mud when it rains is a special kind of misery.</li>
         <li>[old] I'm too old to eat squatting. Get us a table.</li>
-        <li>[trait:Gourmand] Good food deserves a table. Even bad food deserves a table.</li>
+        <li>[trait:Gourmand] Food should be eaten at a table, not off the floor. Even ours.</li>
       </plain>
       <warm>
         <li>I'd cook the first supper at a real table myself, the good stew with dumplings.</li>
@@ -711,7 +711,7 @@
         <li>Every evening is the same as the last one. I'd settle for anything new.</li>
       </gloomy>
       <cold>
-        <li>Bored people pick fights. Give them {THING} and they'll fight over that instead.</li>
+        <li>Bored people pick fights. Give them {THING} to keep them busy.</li>
       </cold>
     </request>
     <thanks>
@@ -729,7 +729,7 @@
     <expired>
       <plain>
         <li>Back to watching the clouds go by.</li>
-        <li>[winter] I'll count snowflakes. I'm up to four thousand.</li>
+        <li>[winter] I'll sit and watch the snow, then. There's nothing else to do.</li>
       </plain>
       <gloomy>
         <li>Same old evenings. I'll go back to staring at the wall.</li>
@@ -767,7 +767,7 @@
         <li>I already know what I'll plant: daylilies, or roses, or both!</li>
       </cheerful>
       <gloomy>
-        <li>Most things out here are trying to kill us. I'd like one plant by my bed that isn't.</li>
+        <li>Most things out here are dangerous. I'd like one living thing by my bed that's just nice to have around.</li>
       </gloomy>
       <blunt>
         <li>I want a plant pot in my room. It's not complicated.</li>
@@ -779,7 +779,7 @@
         <li>[winter] A bit of green in the middle of winter. That'll do.</li>
       </plain>
       <gloomy>
-        <li>There's another living thing in my room. It doesn't talk back.</li>
+        <li>There's something alive in my room now. It's quiet company, and I like it.</li>
       </gloomy>
     </thanks>
     <expired>

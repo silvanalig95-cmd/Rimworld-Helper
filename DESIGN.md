@@ -7152,8 +7152,8 @@ can't build. Every suggestion goes through one gate (`Avail`):
   made or is in stock, no winter advice on space maps.
 - **Era of the colony**: the research advisor suggests projects from the colony's own tech
   level first.
-- **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
-  (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
+- **Ambitions** are offered only if every goal is possible right now. "Turrets on the approaches"
+  never comes up for a medieval colony, but "traps on the approaches" does.
 
 ### Things by what they are for (the player's request, 7 November 2026)
 
