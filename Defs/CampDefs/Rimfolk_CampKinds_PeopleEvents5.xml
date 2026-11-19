@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own camps of round 5 (Source/ColonyCouncil/Peoples/Events5/FieldOfFallen.cs, CircuitRing.cs, WheelStopsBy.cs;
+    each a camp kind with ways of its own, Camps/CampWorker.cs): the Quiet Bell's field of the fallen (item 38), the Circuit
+    of Tamers' bout-ring while a fair runs (item 42), and the Wheel's yard when its town moves near (item 46). None comes on
+    the camps' own draw (weight 0): each comes when the colony answers its event (Rimfolk_Evt_FieldOfFallen,
+    Rimfolk_Evt_CircuitRing, Rimfolk_Evt_WheelStopsBy).
+  -->
+
+  <!-- ===================== 38. The field of the fallen (the Quiet Bell) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_FieldOfFallen</defName>
+    <label>field of the fallen</label>
+    <workerClass>ColonyCouncil.CampWorker_FieldOfFallen</workerClass>
+    <arrives>7~12</arrives>
+    <calling>sextons</calling>
+    <weight>0</weight>
+    <people>4~6</people>
+    <days>3~6</days>
+    <ages>25~65</ages>
+    <hireChance>0.02</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Textiles</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0.05</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Haul</li></works>
+    <animals>
+      <li><pack>true</pack><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>The field of the fallen</li>
+      <li>The Bell comes for the dead</li>
+    </titles>
+    <texts>
+      <li>Bell-keepers and sextons of {FACTION} are walking in {PLACE} with spades and bundles of linen, {X_nameDef} at the front. They have come to bury the dead lying on the colony's land.</li>
+      <li>[lowtech] {FACTION}'s bell-keepers and sextons are walking in {PLACE} with spades over their shoulders and a small bell on every cord. They have come to bury the dead.</li>
+      <li>[industrial|spacer] {FACTION}'s bell-keepers and sextons are coming in {PLACE} with spades, a handcart of shrouds and their bells. They have come to bury the dead.</li>
+    </texts>
+    <settled>
+      <li>The Bell's people have made camp {PLACE}: a fire, a lamp, and their spades stacked ready for the morning.</li>
+      <li>{FACTION}'s sextons have set up camp {PLACE} and marked out where the row of graves will go beyond the wall.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the Bell says the colony's land has given {X_objective} a great deal of work, and asks whether {X_pronoun} might stay and keep its graves.</li>
+    </joinTexts>
+    <farewell>
+      <li>[buried,claimed] The Bell's people packed their spades and went. Their dead's own people took some of them home, and the rest lie in the row of graves beyond the wall.</li>
+      <li>[buried,stirred] The Bell's people packed up and left the row of graves beyond the wall. {X_nameDef} rang the bell over it one last time, and said the ground there should be quiet now.</li>
+      <li>[buried] The Bell's people packed their spades and left. The dead lie in a row of graves beyond the wall, and {X_nameDef} rang the bell over them one last time.</li>
+      <li>The Bell's people packed up their camp and went back to the road.</li>
+    </farewell>
+    <lines>
+      <li>Deep enough that nothing stirs.</li>
+      <li>One more before the light goes.</li>
+      <li>Wrap this one in the good linen.</li>
+      <li>Everyone is owed a bell.</li>
+      <li>The ground keeps what it is given.</li>
+    </lines>
+    <momentLines>
+      <li>[dig] That one is deep enough.</li>
+      <li>[dig] Start the next one a step to the left.</li>
+      <li>[bury] Quiet now, you are home.</li>
+      <li>[bury] Gently, lay this one down slowly.</li>
+      <li>[ring] Ring once for friend and foe alike.</li>
+      <li>[ring] Everyone is owed a bell.</li>
+      <li>[stirs] The field is stirring, get the others up.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat by the Bell's fire and heard how they came to bury the dead of the long war.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>wood</key>
+        <label>Send them wood for the graves (40 wood)</label>
+        <tip>One of the colony carries forty wood out to the Bell's camp, for grave boards and the fire.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the Bell has come to the gate. There are many graves to mark, {X_pronoun} says, and asks whether the colony could spare some wood for the boards.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will mark the graves with stones instead.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Forty wood is going out to the Bell's camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for the graves</label><what>wood</what><count>40</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+      <li>
+        <key>cloth</key>
+        <label>Send them cloth for the shrouds (20 cloth)</label>
+        <tip>One of the colony carries twenty cloth out to the Bell's camp, to wrap the dead before they are buried.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the Bell has come to the gate. Their linen will not go round all the dead, {X_pronoun} says, and asks for some cloth for shrouds.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will bury them in what they wore.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Twenty cloth is going out to the Bell's camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>cloth for the shrouds</label><what>Cloth</what><count>20</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 42. The Circuit's ring (the Circuit of Tamers) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_CircuitRing</defName>
+    <label>Circuit's ring</label>
+    <workerClass>ColonyCouncil.CampWorker_CircuitRing</workerClass>
+    <arrives>8~14</arrives>
+    <calling>tamers</calling>
+    <weight>0</weight>
+    <people>6~10</people>
+    <days>4~6</days>
+    <ages>18~55</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>show</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>Meal</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>fair</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs><count>4</count></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Haul</li></works>
+    <animals>
+      <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li>Husky</li><li>LabradorRetriever</li><li>Wolf_Timber</li></kinds><count>3~4</count><at>pasture</at></li>
+      <li><pokemon>true</pokemon><count>2~3</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>The Circuit's ring</li>
+      <li>Tamers on the way to the fair</li>
+    </titles>
+    <texts>
+      <li>Tamers of {FACTION} are walking in {PLACE} with their animals, {X_nameDef} at the front. They will mark out a ring with torches and hold a bout there every afternoon.</li>
+      <li>[ws:fair] On their way to {SITUATION}, tamers of {FACTION} are walking in {PLACE} with their animals. They will hold a bout every afternoon at their ring.</li>
+    </texts>
+    <settled>
+      <li>The Circuit's tamers have made camp {PLACE}, with a ring marked out by torches beside their tents.</li>
+      <li>{FACTION}'s tamers have pitched their tents {PLACE} and set torches round a ring of trampled grass, ready for the afternoon's bout.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the Circuit says the colony's hands are as good with animals as anyone on the road, and asks whether {X_pronoun} might stay and learn from them.</li>
+    </joinTexts>
+    <farewell>
+      <li>[champion] The tamers pulled up their torches and went on to the fair. Before they left, {X_nameDef} tied the Circuit's token on the arm of the colony's best challenger.</li>
+      <li>[fought] The tamers pulled up their torches and went on to the fair, talking about the colony's challengers all the way to the road.</li>
+      <li>The tamers pulled up their torches and went on to the fair.</li>
+    </farewell>
+    <lines>
+      <li>Keep your eyes on the animal, not on me.</li>
+      <li>Win their trust and they will win your battles.</li>
+      <li>To be beaten fairly is an honour.</li>
+      <li>Feed them first, then yourself.</li>
+      <li>Who is next in the ring?</li>
+    </lines>
+    <momentLines>
+      <li>[challenge] Step into the ring when you are ready.</li>
+      <li>[spar] Good, again, and lower this time.</li>
+      <li>[won] Well fought, that was a fair win.</li>
+      <li>[lost] Not this time, but you kept your feet.</li>
+      <li>[champion] This token is yours, you earned it in the ring.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[show] {X_nameDef} put two of the Circuit's animals through their paces by the ring, and {A_nameDef} watched the whole thing.</li>
+      <li>[tales] {A_nameDef} sat with the tamers by their fire and heard how Nessa Pell found the egg in the crater.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>challenge</key>
+        <label>Send {A_nameDef} to challenge in this afternoon's bout</label>
+        <tip>{A_nameDef} goes to the ring and takes on one of the tamers' animals in a friendly bout, as the Circuit's tamers do. Who wins depends on {A_possessive} handling and melee. Two challengers a day at most. One bout in twenty-five, the animal's blow lands and leaves a bruise.</tip>
+        <once>false</once>
+        <skill>Animals</skill>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going over to the ring for this afternoon's bout.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RingChallenge" />
+        </effects>
+      </li>
+      <li>
+        <key>feed</key>
+        <label>Send feed for their animals (30 raw food)</label>
+        <tip>One of the colony carries thirty raw food out to the tamers' camp for their animals.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the Circuit has come to the gate. The animals are hungry after the road, {X_pronoun} says, and asks whether the colony could spare some feed for them.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will let the animals graze a little further out.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Thirty raw food is going out to the tamers' camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>feed for their animals</label><what>rawfood</what><count>30</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== 46. The Wheel stops by (the Wheel) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WheelYard</defName>
+    <label>Wheel's yard</label>
+    <workerClass>ColonyCouncil.CampWorker_WheelYard</workerClass>
+    <arrives>8~15</arrives>
+    <calling>salvagers</calling>
+    <weight>0</weight>
+    <people>5~8</people>
+    <days>3~3</days>
+    <ages>16~60</ages>
+    <trader>true</trader>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>mend</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Metal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+      <li><role>craft</role></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>a yard on wheels packs everything it builds back onto its carts and takes it on to the next stop</leavesWhy>
+    <tidy>Careless</tidy>
+    <works><li>Mend</li><li>Haul</li></works>
+    <animals>
+      <li><pack>true</pack><count>2~3</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>The Wheel stops by</li>
+      <li>A yard at the edge</li>
+    </titles>
+    <texts>
+      <li>The yard of {FACTION} is rolling in {PLACE} with its carts and pack animals, {X_nameDef} walking in front. They will set up a scrap market and a mending tent for three days.</li>
+      <li>[lowtech] {FACTION}'s yard is rolling in {PLACE} with creaking carts piled high with scrap and tools. They will trade and mend things for three days.</li>
+      <li>[industrial|spacer] {FACTION}'s yard is rolling in {PLACE}, carts and trailers loaded with scrap, tools and spare parts. They will trade and mend things for three days.</li>
+    </texts>
+    <settled>
+      <li>The Wheel's yard has set up {PLACE}: carts in a ring, a mending tent, and scrap laid out on tarpaulins for sale.</li>
+      <li>{FACTION}'s yard has unloaded {PLACE}, and the fixers already have the mending tent open.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the yard says {X_pronoun} has had enough of the road for a while, and asks whether the colony could use someone who can fix almost anything.</li>
+    </joinTexts>
+    <farewell>
+      <li>[stayed,mended] The yard packed everything back onto its carts and rolled on, a few days later than it meant to. The colony's mended things are back where they belong.</li>
+      <li>[sour] The yard packed up and rolled on. The fixer who argued over the price did not say goodbye.</li>
+      <li>[mended] The yard packed everything back onto its carts and rolled on, after mending what the colony brought them.</li>
+      <li>The yard packed everything back onto its carts and rolled on to the next stop.</li>
+    </farewell>
+    <lines>
+      <li>Nothing is broken, only waiting.</li>
+      <li>Buy it cheap, sell it better.</li>
+      <li>Hand me the big wrench.</li>
+      <li>If it rolls, it comes with us.</li>
+      <li>We'll have that running by supper.</li>
+    </lines>
+    <momentLines>
+      <li>[haggle] That price is fair, and you know it.</li>
+      <li>[haggle] I'm not mending it for nothing, friend.</li>
+      <li>[stay] We'll stay a couple of days longer, the trade here is good.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[mend] {X_nameDef} came over from the yard and mended {COUNT} {THING} of the colony's for nothing.</li>
+      <li>[tales] {A_nameDef} sat by the yard's fire and heard about the night their valley burned.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>mend</key>
+        <label>Have the yard mend our worn clothes and weapons</label>
+        <tip>One of the yard's fixers goes round the colony's worn clothes and weapons, in its stores and on its people, and mends each back to whole. The price is about a third of what the wear has taken off their worth, carried out to the yard.</tip>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>One of the yard's fixers is coming over to mend the colony's worn things, and the silver is going out to the yard.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_YardMend" />
+        </effects>
+      </li>
+      <li>
+        <key>scrap</key>
+        <label>Sell them our scrap</label>
+        <tip>The colony's slag and broken clothes and weapons are carried out to the yard, and the yard pays for them in silver.</tip>
+        <tension>-2</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>The colony's scrap is going out to the yard, and the yard is paying for it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_YardScrap" />
+        </effects>
+      </li>
+      <li>
+        <key>wood</key>
+        <label>Send wood for their forge (40 wood)</label>
+        <tip>One of the colony carries forty wood out to the yard for their forge.</tip>
+        <theyAsk>true</theyAsk>
+        <askTexts>
+          <li>{X_nameDef} of the yard has come to the gate. Their forge is running low, {X_pronoun} says, and asks whether the colony could spare some wood.</li>
+        </askTexts>
+        <refuseLabel>We need it</refuseLabel>
+        <refused>
+          <li>{X_nameDef} says they will burn what scrap wood they have.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>Forty wood is going out to the yard.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for the forge</label><what>wood</what><count>40</count><to>Camp</to><who>None</who><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

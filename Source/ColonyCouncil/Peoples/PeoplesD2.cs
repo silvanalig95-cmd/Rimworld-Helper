@@ -147,6 +147,8 @@ namespace ColonyCouncil
         /// <summary>The bout is fought (JobDriver_TamerBout's end): who won, the blow that may have landed, and what the tamer says and gives.</summary>
         public static void Done(Pawn trainer, Pawn mon)
         {
+            // A bout at the Circuit's ring (Peoples/Events5/CircuitRing.cs) goes by the same rules, kept there.
+            if (CircuitRing.BoutDone(trainer, mon)) return;
             var visits = CouncilGameComponent.Instance?.happenings?.visits;
             var v = visits?.FirstOrDefault(x => x.kind == Kind && !x.done && x.a == trainer && x.place == mon);
             if (v == null || trainer == null || mon == null || trainer.Dead) return;

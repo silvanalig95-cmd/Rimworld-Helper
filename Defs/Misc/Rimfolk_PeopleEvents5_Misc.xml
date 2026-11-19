@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples' own events, round 5 (Source/ColonyCouncil/Peoples/Events5/): the jobs they are seen doing on the map, the
+       Quiet Bell's bell-post for the colony's grave-garden, the Circuit's token, and the moods the round gives. -->
+
+  <!-- ===================== The visitor who works on a colonist, or a beast (round 1's PeopleWorkOn) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Bond</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>putting TargetA through every task it can learn.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>train</mark><done>ColonyCouncil.BondGivenDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_EggLook</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>looking TargetA over.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>train</mark><done>ColonyCouncil.CraterEggLookDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_HandOver</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>taking a piece of TargetA's to mend.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>quiet</mark><done>ColonyCouncil.MadeBetterTakenDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_HandBack</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeopleWorkOn</driverClass>
+    <reportString>handing TargetA's piece back.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleWorkJob"><place>here</place><mark>quiet</mark><done>ColonyCouncil.MadeBetterBackDone</done></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Their own work at a thing or a place (JobDriver_PEv5Work, JobDriver_PEv5Bury) ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Stone</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>laying a flagstone between the graves.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>dust</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Rose</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>planting a rose by a grave.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>dig</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Post</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>raising the bell-post.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>dig</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Mend</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>mending TargetA by lamplight.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Gather</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>gathering the raiders' broken gear.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Frame</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>building the colony's vehicle.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>sparks</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Dig</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>digging a grave in the row.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>dig</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Ring</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Work</driverClass>
+    <reportString>ringing the bell over the graves.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.PEv5Work"><mark>quiet</mark></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PEv5_Bury</defName>
+    <driverClass>ColonyCouncil.JobDriver_PEv5Bury</driverClass>
+    <reportString>carrying TargetA to a grave.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== The Quiet Bell's bell-post (GraveGarden.cs) ===================== -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_BellPost</defName>
+    <label>bell-post</label>
+    <description>A post of dark oak with a crosspiece and a small bronze bell, set up among the colony's graves by sextons of the Quiet Bell. While it stands, the graves round it are a grave-garden: anyone resting there finds the ground quiet, and a funeral at one of its graves is a fuller rite. With Anomaly, a body lying on its ground does not rise.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/BellPost</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,2)</drawSize>
+      <drawOffset>(0,0,0.5)</drawOffset>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>42</pathCost>
+    <fillPercent>0.15</fillPercent>
+    <rotatable>false</rotatable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>140</MaxHitPoints>
+      <Mass>12</Mass>
+      <MarketValue>120</MarketValue>
+      <Flammability>0.6</Flammability>
+      <Beauty>6</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+    <building>
+      <isInert>true</isInert>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+  </ThingDef>
+
+  <!-- ===================== The Circuit's token (CircuitRing.cs) ===================== -->
+
+  <HediffDef>
+    <defName>Rimfolk_CircuitToken</defName>
+    <label>Circuit's token</label>
+    <description>A small token on a violet cord, tied on by a tamer of the Circuit for the most bouts won at their ring by the colony. Every tamer knows what it means.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.62, 0.42, 0.8)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+  </HediffDef>
+
+  <!-- ===================== Their moods ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_QuietGround</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>quiet ground</label><description>I spent a while in the grave-garden among the stones and the roses. It is quiet there.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_FullerRite</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a fuller rite</label><description>The funeral was held in the grave-garden, among the stones and the roses, and the bell-post was rung at the end. It felt like a proper farewell.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_RingChampion</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>won the Circuit's token</label><description>I won more bouts than anyone else of ours at the Circuit's ring, and the tamers tied their token on my arm.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

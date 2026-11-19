@@ -55,6 +55,8 @@ namespace ColonyCouncil
                 if (!Arising.TryTownTile(from, PeoplesDMath.MoveMin, PeoplesDMath.MoveMax, new HashSet<Faction> { s.Faction }, null, out var to) || to == from) return false;
                 s.Tile = to;
                 RegionTowns.Refresh(true);
+                // Moved near a home: its yard comes to camp at the edge (Peoples/Events5/WheelStopsBy.cs).
+                PeopleEvents5.Safe("a yard near", () => WheelStopsBy.Moved(s));
                 Tell.Message(NewsKind.World, Importance.Flavor, null, "CC_PeoplesD_WheelMoved".Translate(s.Label, s.Faction.Name).Resolve(), new LookTargets(s), MessageTypeDefOf.NeutralEvent);
                 return true;
             }

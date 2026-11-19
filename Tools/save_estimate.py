@@ -896,6 +896,39 @@ MODEL = {
     "Peoples/Events4/SummerSchool.cs:lessons": ("fixed", 8, V, "their lessons counted, one a student, while the camp stands"),
     "Peoples/Events4/SummerSchool.cs:ownBooks": ("fixed", 4, V, "the books the fellows brought themselves, by id, while the camp stands"),
     "Peoples/Events4/FloodedOut.cs:guests": ("fixed", 3, 40, "the flooded families' old and young taken in as guests, three at most, while the camp stands"),
+    # The peoples' own events, round 5 (Peoples/Events5/PeopleEvents5Book.cs): the gravewardens' burials of the risen, four
+    # kept, each with its dead and its row of graves (cleared when done); the mourners due, PeopleEvents5Math.MaxMourns kept;
+    # the colony's grave-gardens, one a home, with the work still to do (cleared when it is done); the crater eggs,
+    # PeopleEvents5Math.MaxEggs kept, with who tended each; the pieces at the Wheel's cart and the yards due, four each; the
+    # raids whose night was rolled for, eight. The camps' own states live while the camp does: the field's dead and graves,
+    # the ring's challengers and their wins.
+    "Peoples/Events5/PeopleEvents5Book.cs:stirs": ("cap", (4, 1 / 60), 160, "the gravewardens' burials of the colony's risen dead, four kept"),
+    "Peoples/Events5/PeopleEvents5Book.cs:dead": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "StirGraves", 12), 40,
+                                                  "per burial: the risen they bury, PeopleEvents5Math.StirGraves at most, cleared when it is done (counted under stirs)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:plots": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "StirGraves", 12), V,
+                                                   "per burial: its row of graves (counted under stirs)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:mourns": ("cap", (const("Peoples/Events5/PeopleEvents5Math.cs", "MaxMourns", 6), 1 / 60), 120,
+                                                    "the raiders' peoples whose mourners are due, PeopleEvents5Math.MaxMourns kept"),
+    "Peoples/Events5/PeopleEvents5Book.cs:gardens": ("cap", (4, 1 / 120), 200, "the colony's grave-gardens, one a home, four at most"),
+    "Peoples/Events5/PeopleEvents5Book.cs:stones": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "MaxStones", 30), V,
+                                                    "per grave-garden: the flagstones still to lay, cleared when the work is done (counted under gardens)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:roses": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "MaxRoses", 10), V,
+                                                   "per grave-garden: the roses still to plant, cleared when the work is done (counted under gardens)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:eggs": ("cap", (const("Peoples/Events5/PeopleEvents5Math.cs", "MaxEggs", 4), 1 / 60), 200,
+                                                  "the Circuit's crater eggs, PeopleEvents5Math.MaxEggs kept"),
+    "Peoples/Events5/PeopleEvents5Book.cs:tenders": ("fixed", 6, 40, "per egg: the colonists who tended it (counted under eggs)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:hours": ("fixed", 6, V, "per egg: each tender's hours (counted under eggs)"),
+    "Peoples/Events5/PeopleEvents5Book.cs:betters": ("cap", (4, 1 / 40), 160, "the pieces at the Wheel's cart, the open ones and the last few done"),
+    "Peoples/Events5/PeopleEvents5Book.cs:yards": ("cap", (4, 1 / 60), 100, "the Wheel's yards due, one a home, four kept"),
+    "Peoples/Events5/PeopleEvents5Book.cs:mendRaids": ("cap", (8, 1 / 15), 30, "the raids whose night the Wheel's crew was rolled for, a home and a tick, eight kept"),
+    "Peoples/Events5/FieldOfFallen.cs:dead": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "FallenGraves", 16), 40,
+                                              "the field of the fallen's dead, while its camp stands"),
+    "Peoples/Events5/FieldOfFallen.cs:plots": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "FallenGraves", 16), V,
+                                               "its row of graves, while the camp stands"),
+    "Peoples/Events5/CircuitRing.cs:waiting": ("fixed", const("Peoples/Events5/PeopleEvents5Math.cs", "ChallengesPerDay", 2), 40,
+                                               "the colony's challengers waiting for the afternoon's bout, while the ring stands"),
+    "Peoples/Events5/CircuitRing.cs:fought": ("fixed", 8, 40, "the colony's challengers who fought at the ring, while it stands"),
+    "Peoples/Events5/CircuitRing.cs:wins": ("fixed", 8, V, "their wins, one a challenger, while the ring stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
     # peoples and faiths that hold it), built once per world (30 to 70 in a world of a dozen to twenty peoples) and a few
     # more as peoples arise and newborns come (GodsMath.MaxNewborns); the ties between them, GodTiesMath.MaxTies a god at
