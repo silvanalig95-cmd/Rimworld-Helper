@@ -24,7 +24,7 @@
     <lines>
       <plain>
         <li>[takeback,warm] We talked it over at the long table, the way you taught us, and the answer is yes. Come home.</li>
-        <li>[takeback,warm,theirLowtech] The fire was yours before it was ours. Come and sit at it again.</li>
+        <li>[takeback,warm,theirLowtech] The place was yours before it was ours. Come back to it.</li>
         <li>[takeback,warm,theirHightech] Approved by everyone who voted. The place is yours again whenever you are ready.</li>
         <li>[takeback,cordial] We have thought about it, and we agree. The place was yours first, and it can be yours again.</li>
         <li>[takeback,cordial,call] Yes. Come and take it over; we will open the gates.</li>
@@ -32,7 +32,7 @@
         <li>[takeback,cool] Very well. It has been hard going on our own, and we will not pretend otherwise.</li>
         <li>[takeback,cool,theirHightech] Agreed. Running the place alone costs more than we have.</li>
         <li>[takeback,refusal] No. You handed it to us, and we have made it ours.</li>
-        <li>[takeback,refusal,theirLowtech] A gift given is not taken back. The fire stays with us.</li>
+        <li>[takeback,refusal,theirLowtech] A gift given is not taken back. The town stays with us.</li>
         <li>[takeback,refusal,theirHightech] Declined. The town runs itself now, and its people want it that way.</li>
         <li>[takeback,refusal,call] I'm sorry, but no. People here are proud of what they've built.</li>
       </plain>

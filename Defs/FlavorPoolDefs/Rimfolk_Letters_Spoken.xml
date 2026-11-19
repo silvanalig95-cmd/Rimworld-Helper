@@ -19,11 +19,11 @@
         <li>[theirs,s:open,cool|curt|refusal] {FROM} gave me this to say, and no more:</li>
         <li>[theirs,s:open,war] Under the white feather, I bring {FROM}'s words:</li>
         <li>[theirs,s:open,w:tribal] Listen. These are {FROM}'s words, carried from the fire at {TOWN}:</li>
-        <li>[theirs,s:close] That is all {FROM} said, though it was said twice so I would not drop it on the road.</li>
+        <li>[theirs,s:close] That is all {FROM} said. {FROM} said it twice, so that I would remember it on the road.</li>
         <li>[theirs,s:close] Those are the words. I have carried them as well as I can.</li>
-        <li>[theirs,s:close,warm|cordial] {FROM} said to say it warmly, so imagine it so.</li>
+        <li>[theirs,s:close,warm|cordial] {FROM} asked me to say it warmly.</li>
         <li>[theirs,s:close,cool|curt|refusal] That is all. {FROM} did not want more said.</li>
-        <li>[theirs,s:close,w:tribal] The words are given. Now they are yours to keep.</li>
+        <li>[theirs,s:close,w:tribal] That is the whole message.</li>
         <!-- The colony's words, as its carrier will give them -->
         <li>[ours,s:open] {FROM} of {COLONY} bids me tell you this:</li>
         <li>[ours,s:open] I bring words from {COLONY}, from {FROM}, for {TO}:</li>

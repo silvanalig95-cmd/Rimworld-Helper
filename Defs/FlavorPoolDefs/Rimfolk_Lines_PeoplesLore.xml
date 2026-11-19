@@ -35,20 +35,20 @@
         <li>[invitation,cordial,their:healers] If the sick can spare one of us, one of us will come, {WRITER}. Keep the lamp lit and we will find your gate.</li>
         <!-- The herding folk: the count at dusk, the pot, the grass -->
         <li>[greetings,warm,their:herders] Your words came to the fire at dusk, {WRITER}, after the count, which is the best time for words. The elders say your colony may eat from our pot.</li>
-        <li>[condolences,warm,their:herders] The elders counted your dead with ours at dusk, {WRITER}, one by one, so that the grass will know them. A herder never leaves anyone behind on the road.</li>
+        <li>[condolences,warm,their:herders] The elders counted your dead with ours at dusk, {WRITER}, one by one. A herder never leaves anyone behind on the road.</li>
         <li>[condolences,cordial,their:herders] We are sorry for your loss, {WRITER}. The camp will sing for them when it moves on.</li>
         <li>[warning,warm,their:herders] Your rider found us before the trouble did, {WRITER}. The herd is in the far valley with every head counted, and the elders will not forget it.</li>
         <li>[warning,cordial,their:herders] We heard your warning, {WRITER}. The herd is moving, and the archers ride its edges.</li>
-        <li>[invitation,cordial,their:herders] When the grass brings us your way, we will stop at your gate, {WRITER}. The grass will tell when.</li>
+        <li>[invitation,cordial,their:herders] When our grazing takes us your way, we will stop at your gate, {WRITER}.</li>
         <!-- The road league: the waystone, good ink, every crate home -->
-        <li>[greetings,warm,their:traders] Your colony is in the Waystone Book in good ink, {WRITER}, and the waymasters drank to it. Every caravan of ours on your road knows your gate.</li>
-        <li>[greetings,cool,their:traders] The league has your letter. The book has room for your name in good ink or in red, and which is up to you.</li>
+        <li>[greetings,warm,their:traders] Your colony is written in the Waystone Book in good ink, as a fair dealer, {WRITER}, and the waymasters drank to it. Every caravan of ours on your road knows your gate.</li>
+        <li>[greetings,cool,their:traders] The league has your letter. In our book a name is written in good ink for a fair dealer or in red for a bad one, and which yours will be is up to you.</li>
         <li>[condolences,warm,their:traders] The league is sorry for your loss, {WRITER}. We carry our dead home on the road, every one, and we would help you carry yours.</li>
         <li>[condolences,cordial,their:traders] Hard news, {WRITER}, and the league is sorry for it. The road is lonelier without them.</li>
         <li>[warning,warm,their:traders] Your warning reached the waystation ahead of the trouble, {WRITER}. The caravans are holding, every crate is safe, and the league owes you for it.</li>
         <li>[warning,cordial,their:traders] Noted and passed down the road, {WRITER}. The wardens are riding out.</li>
         <!-- The pilgrim fellowship: the open door, the shells, the shrine -->
-        <li>[greetings,warm,their:pilgrims] Your name is among the doors that opened, {WRITER}, and the fellowship says it at every shrine. Peace on your house.</li>
+        <li>[greetings,warm,their:pilgrims] Your colony is among those that opened their doors to us, {WRITER}, and the fellowship says its name at every shrine. Peace on your house.</li>
         <li>[condolences,warm,their:pilgrims] We said your dead's names at the shrine this morning, {WRITER}, and will say them again at the next. Nobody walks the last road alone.</li>
         <li>[condolences,cordial,their:pilgrims] The fellowship mourns with you, {WRITER}. A pilgrim will stop to pray at your graves when the road passes them.</li>
         <li>[warning,warm,their:pilgrims] Your warning turned our bands off the bad road, {WRITER}, and every one of them will bless your door for it.</li>

@@ -25,7 +25,7 @@
       <plain>
         <!-- The colony asked for a youth of theirs to foster -->
         <li>[ward,warm,askward] We have a youth who has talked of nothing else since your letter came, {WRITER}. They will come.</li>
-        <li>[ward,warm,askward,theirLowtech] It is an honor to be asked. One of our house will come to learn from yours.</li>
+        <li>[ward,warm,askward,theirLowtech] It is an honor to be asked. A youth of ours will come to learn from you.</li>
         <li>[ward,cordial,askward] Yes. Keep them busy and keep them fed, and send them home a little wiser.</li>
         <li>[ward,cordial,askward,theirHightech] Approved. We've picked someone keen, and their family has signed off on it.</li>
         <li>[ward,cordial,askward,call] Good to hear from you, {WRITER}. We'll send someone, and they're already packing.</li>

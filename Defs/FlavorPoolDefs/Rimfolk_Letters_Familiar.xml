@@ -36,7 +36,7 @@
         <li>[fa:salute,fam:new,theirs,cordial|cool] To {TOFULL} at {COLONY},</li>
         <li>[fa:salute,fam:new,theirs,cool|curt] {TOFULL},</li>
         <li>[fa:salute,fam:new,theirs,curt|refusal] To whoever answers for {COLONY},</li>
-        <li>[fa:salute,fam:new,theirs,warm|cordial,w:tribal] To {TOFULL}, whose name came to our fire before this letter did,</li>
+        <li>[fa:salute,fam:new,theirs,warm|cordial,w:tribal] To {TOFULL}, whose name we have heard spoken here before,</li>
         <li>[fa:salute,fam:new,theirs,cordial|cool,w:tribal] To {TOFULL} of {COLONY}, from {TOWN}, which you do not know yet,</li>
         <li>[fa:salute,fam:new,theirs,cordial|cool,w:spacer] To {TOFULL}, {COLONY}. First letter, so: hello.</li>
         <li>[fa:salute,fam:new,theirs,cordial,w:industrial] Dear {TOFULL}, you will not know my hand yet,</li>
@@ -49,7 +49,7 @@
         <li>[fa:salute,fam:known,theirs,warm|cordial] Dear {TO}, once more,</li>
         <li>[fa:salute,fam:known,theirs,cordial] To {TO} of {COLONY}, greetings again,</li>
         <li>[fa:salute,fam:known,theirs,cordial|cool] To {TOFULL}, in answer,</li>
-        <li>[fa:salute,fam:known,theirs,warm|cordial,w:tribal] {TO}, whose words have come to our fire before,</li>
+        <li>[fa:salute,fam:known,theirs,warm|cordial,w:tribal] {TO}, whose letters we have had before,</li>
         <li>[fa:salute,fam:known,theirs,cordial,w:spacer] {TO}, {COLONY}. Good to hear from you again.</li>
         <li>[fa:salute,fam:known,theirs,cordial,m:trade] {TO}, my correspondent and, I hope, my customer,</li>
         <!-- Familiar: first names, a habit of writing -->
@@ -63,7 +63,7 @@
         <li>[fa:salute,fam:familiar,theirs,cordial] {TO}, the usual greetings from {TOWN},</li>
         <li>[fa:salute,fam:familiar,theirs,cordial] To {TO}, from your correspondent at {TOWN},</li>
         <li>[fa:salute,fam:familiar,theirs,cordial|cool] {TO},</li>
-        <li>[fa:salute,fam:familiar,theirs,warm|cordial,w:tribal] {TO}, friend of our fire,</li>
+        <li>[fa:salute,fam:familiar,theirs,warm|cordial,w:tribal] {TO}, our friend,</li>
         <li>[fa:salute,fam:familiar,theirs,warm|cordial,w:tribal] {TO}, whose words the children now ask for by name,</li>
         <li>[fa:salute,fam:familiar,theirs,cordial,w:spacer] {TO}. Channel open, as usual.</li>
         <li>[fa:salute,fam:familiar,theirs,cordial,w:industrial] {TO}, same desk, same pen, same greeting,</li>
@@ -82,14 +82,14 @@
         <li>[fa:salute,fam:close,theirs,warm|cordial] {TO}, old friend,</li>
         <li>[fa:salute,fam:close,theirs,cordial] {TO}, as always,</li>
         <li>[fa:salute,fam:close,theirs,cordial] {TO}, my faithful correspondent,</li>
-        <li>[fa:salute,fam:close,theirs,warmly,w:tribal] {TO}, who has a place at our fire whether you come to it or not,</li>
-        <li>[fa:salute,fam:close,theirs,warmly,w:tribal] {TONICK}, friend of the long road,</li>
+        <li>[fa:salute,fam:close,theirs,warmly,w:tribal] {TO}, who is always welcome at our fire,</li>
+        <li>[fa:salute,fam:close,theirs,warmly,w:tribal] {TONICK}, my old friend,</li>
         <li>[fa:salute,fam:close,theirs,warmly,w:spacer] {TONICK}. Hi. You know the rest.</li>
         <li>[fa:salute,fam:close,theirs,warmly,w:industrial] {TO}, old pal,</li>
-        <li>[fa:salute,fam:close,theirs,warmly,their:herders] {TO}, best friend the herd never met,</li>
+        <li>[fa:salute,fam:close,theirs,warmly,their:herders] {TO}, friend of all us herders,</li>
         <li>[fa:salute,fam:close,theirs,warmly,their:scholars] {TO}, most cited of my correspondents,</li>
         <li>[fa:salute,fam:close,theirs,warmly,their:crew] {TO}, my friend at the far end of the post road, fair winds,</li>
-        <li>[fa:salute,fam:close,theirs,a:empire,warm|cordial] My dear {TO}, the court may keep its forms; I will not, with you,</li>
+        <li>[fa:salute,fam:close,theirs,a:empire,warm|cordial] My dear {TO}, with you I will leave the court's formal greetings aside,</li>
         <!-- Cooled: formal again -->
         <li>[fa:salute,fam:cooled,theirs] {TOFULL},</li>
         <li>[fa:salute,fam:cooled,theirs] To {TOFULL} of {COLONY},</li>
@@ -100,7 +100,7 @@
         <li>[fa:salute,fam:cooled,theirs,warm|cordial] {TO}, though that name is harder to write than it was,</li>
         <li>[fa:salute,fam:cooled,theirs,a:war] {TOFULL}, across a war I did not want,</li>
         <li>[fa:salute,fam:cooled,theirs,a:war] To {COLONY}, from the other side,</li>
-        <li>[fa:salute,fam:cooled,theirs,w:tribal] {TOFULL}. The fire is lower than it was.</li>
+        <li>[fa:salute,fam:cooled,theirs,w:tribal] {TOFULL}. We are not as warm toward you as we were.</li>
         <li>[fa:salute,fam:cooled,theirs,w:spacer] {TOFULL}, {COLONY}. Formal channel.</li>
 
         <!-- ================= Theirs, plain English: openings ================= -->
@@ -124,16 +124,16 @@
         <li>[fa:open,fam:known,theirs,cordial] Your letter came, and I answer it, as we seem to be in the way of doing.</li>
         <li>[fa:open,fam:known,theirs,cordial|cool] I have your letter. You know by now that I answer them, if not always quickly.</li>
         <li>[fa:open,fam:known,theirs,cool] Your letter came. I answer, as before.</li>
-        <li>[fa:open,fam:known,theirs,warm|cordial,w:tribal] Your words came to our fire again, and this time the old ones knew whose they were.</li>
+        <li>[fa:open,fam:known,theirs,warm|cordial,w:tribal] Your letter was read out at our fire again, and this time the old ones knew who it was from.</li>
         <li>[fa:open,fam:known,theirs,cordial,w:spacer] Your message is in. We are starting to be regular correspondents, which on this world counts for something.</li>
         <li>[fa:open,fam:known,theirs,cordial,m:trade] A correspondent who writes back is a good sign in my trade. A customer who comes back is a better one. I mention it.</li>
         <li>[fa:open,fam:familiar,theirs,warmly] Your letter came, and I knew the hand before I broke the seal.</li>
         <li>[fa:open,fam:familiar,theirs,warmly] I keep your letters in a drawer now. It is getting full, and I have no plans to empty it.</li>
-        <li>[fa:open,fam:familiar,theirs,warmly] I read your letter at the table, and someone asked who I was smiling at. I said nobody. They knew.</li>
+        <li>[fa:open,fam:familiar,theirs,warmly] I read your letter at the table, smiling, and everyone could guess who it was from.</li>
         <li>[fa:open,fam:familiar,theirs,warmly] The carrier said there was a letter from {COLONY}, and the whole house knew who it was for before I did.</li>
         <li>[fa:open,fam:familiar,theirs,warm|cordial] Here we are again, you and I and a sheet of paper.</li>
-        <li>[fa:open,fam:familiar,theirs,cordial] Your letter came, as they do, and here is mine back, as it does.</li>
-        <li>[fa:open,fam:familiar,theirs,cordial] I have stopped counting our letters. Somewhere past the first handful it began to seem rude.</li>
+        <li>[fa:open,fam:familiar,theirs,cordial] Your letter came, as they do, and here is my answer.</li>
+        <li>[fa:open,fam:familiar,theirs,cordial] I have stopped counting our letters. There have been too many to count.</li>
         <li>[fa:open,fam:familiar,theirs,cordial|cool] Your letter, my answer. We have the way of it by now.</li>
         <li>[fa:open,fam:familiar,theirs,cordial,m:trade] You are the only customer I write to who sends news instead of complaints. It is refreshing, and I have told the others.</li>
         <li>[fa:open,fam:familiar,theirs,cordial,m:duty] Your letters come straight to my desk now. The clerks have given up sorting them.</li>
@@ -148,9 +148,9 @@
         <li>[fa:open,fam:close,theirs,warmly] I know your letters well enough now to read them in your voice.</li>
         <li>[fa:open,fam:close,theirs,warm|cordial] Old friend, I will skip the pleasantries. You know them already, and I mean them.</li>
         <li>[fa:open,fam:close,theirs,cordial] We have been writing long enough that I no longer think about how to begin. I simply begin.</li>
-        <li>[fa:open,fam:close,theirs,warmly,w:tribal] When your words come, the old ones move over and make room for me nearest the fire to hear them. That is how it is with you now.</li>
+        <li>[fa:open,fam:close,theirs,warmly,w:tribal] When your letter comes, the old ones make room for me nearest the fire to read it out. Everyone here knows you now.</li>
         <li>[fa:open,fam:close,theirs,warmly,w:spacer] Read your message twice and saved it to the good folder. Yes, I have a good folder. You are most of it.</li>
-        <li>[fa:open,fam:close,theirs,warmly,w:industrial] I have worn a groove in the path to the post box, and it is your fault.</li>
+        <li>[fa:open,fam:close,theirs,warmly,w:industrial] I go to the post box every day now, hoping for your letters.</li>
         <li>[fa:open,fam:close,theirs,warmly,c:tea] I put the kettle on before I opened your letter. It has become a small ceremony, and you are the reason for it.</li>
         <li>[fa:open,fam:close,theirs,warmly,c:coffee] I made a fresh pot before I opened your letter. Your letters deserve the good cup.</li>
         <li>[fa:open,fam:cooled,theirs] Your letter came. I will answer it, as I answer all letters.</li>
@@ -160,8 +160,8 @@
         <li>[fa:open,fam:cooled,theirs,cool|curt|refusal] I have your letter. I will be brief, and you will understand why.</li>
         <li>[fa:open,fam:cooled,theirs,warm|cordial] I have thought a long while about how to write this, and decided to write it plainly.</li>
         <li>[fa:open,fam:cooled,theirs,a:war] I never thought I would write to you across a war. I find I do not know how.</li>
-        <li>[fa:open,fam:cooled,theirs,a:war] Our peoples are at war, and the letters between us must pass under a white flag now. That says enough.</li>
-        <li>[fa:open,fam:cooled,theirs,w:tribal] The fire at {TOWN} burns lower for {COLONY} than it did. You know why, or you should.</li>
+        <li>[fa:open,fam:cooled,theirs,a:war] Our peoples are at war, and the letters between us must pass under a white flag now.</li>
+        <li>[fa:open,fam:cooled,theirs,w:tribal] We at {TOWN} do not think as well of {COLONY} as we did. You know why, or you should.</li>
         <li>[fa:open,fam:cooled,theirs,m:trade] I keep my accounts honestly, and I keep the one between us too. It is not in your favour this season.</li>
         <li>[fa:open,fam:cooled,theirs,w:spacer] Message received. Logged. Answered. That is the procedure, and today I am following the procedure.</li>
         <!-- A new hand writing for the colony -->
@@ -169,15 +169,15 @@
         <li>[fa:pen,pen:new,theirs,warmly,fam:familiar|fam:close] A new hand from {COLONY}. Welcome, {TO}. Tell {LASTPEN} that I notice these things, and that I hope all is well.</li>
         <li>[fa:pen,pen:new,theirs,cordial|cool,fam:known|fam:familiar|fam:close] I note that {TO} writes now, where {LASTPEN} wrote before. I answer whoever writes.</li>
         <li>[fa:pen,pen:new,theirs,warmly,fam:close] So {TO} has the pen now. I will have to break you in, {TO}. {LASTPEN} took a year.</li>
-        <li>[fa:pen,pen:new,theirs,warmly|cordial,fam:familiar|fam:close,w:tribal] Your words come in a new voice. Tell {LASTPEN} the fire remembers.</li>
+        <li>[fa:pen,pen:new,theirs,warmly|cordial,fam:familiar|fam:close,w:tribal] Your words come in a new voice. Tell {LASTPEN} we have not forgotten them.</li>
         <li>[fa:pen,pen:new,theirs,cordial,fam:known|fam:familiar|fam:close,w:spacer] New sender on the channel. Hello, {TO}. Say hello to {LASTPEN} for me.</li>
         <li>[fa:pen,pen:new,theirs,fam:cooled] I see {TO} writes now. I would sooner have heard from {LASTPEN}, but no matter.</li>
         <!-- A long silence -->
-        <li>[fa:long,fam:long,theirs,warmly|cordial,fam:known|fam:familiar|fam:close] It has been a long while since we wrote. I had begun to wonder whether the road had swallowed our letters.</li>
+        <li>[fa:long,fam:long,theirs,warmly|cordial,fam:known|fam:familiar|fam:close] It has been a long while since we wrote. I had begun to wonder whether our letters were getting lost on the road.</li>
         <li>[fa:long,fam:long,theirs,warmly,fam:familiar|fam:close] So much time has gone by since we last wrote that I had to think how we used to begin. Like this, I think.</li>
         <li>[fa:long,fam:long,theirs,cordial|cool,fam:known|fam:familiar|fam:close] A long silence, and then your letter. I will not ask what kept you if you do not ask what kept me.</li>
         <li>[fa:long,fam:long,theirs,warmly,fam:close] I had nearly stopped looking for your letters. Do not make me do that again.</li>
-        <li>[fa:long,fam:long,theirs,w:tribal,fam:known|fam:familiar|fam:close] Seasons have gone by since words last passed between our fires. We thought of you in them.</li>
+        <li>[fa:long,fam:long,theirs,w:tribal,fam:known|fam:familiar|fam:close] Seasons have gone by since we last wrote to each other. We thought of you all the same.</li>
         <li>[fa:long,fam:long,theirs,fam:cooled] It has been some time. Perhaps that is as well.</li>
 
         <!-- ================= Theirs, plain English: closings ================= -->
@@ -202,17 +202,17 @@
         <li>[fa:close,fam:familiar,theirs,cordial] The same as ever, and glad of it,</li>
         <li>[fa:close,fam:familiar,theirs,cordial,m:trade] Yours in letters and in trade, as ever,</li>
         <li>[fa:close,fam:familiar,theirs,cordial,m:duty] For {TOWN}, and for myself,</li>
-        <li>[fa:close,fam:familiar,theirs,warmly,w:tribal] Walk well, friend of the fire,</li>
+        <li>[fa:close,fam:familiar,theirs,warmly,w:tribal] Go well, friend,</li>
         <li>[fa:close,fam:familiar,theirs,cordial,w:spacer] Same time next cycle,</li>
         <li>[fa:close,fam:close,theirs,warmly] Your old friend,</li>
         <li>[fa:close,fam:close,theirs,warmly] Ever yours,</li>
-        <li>[fa:close,fam:close,theirs,warmly] With all the love the post allows,</li>
+        <li>[fa:close,fam:close,theirs,warmly] With all my love,</li>
         <li>[fa:close,fam:close,theirs,warmly] Until I can say all this across a table,</li>
-        <li>[fa:close,fam:close,theirs,warmly] Your friend, who misses your letters between letters,</li>
+        <li>[fa:close,fam:close,theirs,warmly] Your friend, who misses you,</li>
         <li>[fa:close,fam:close,theirs,warmly] Write soon, or I shall write twice and embarrass us both,</li>
         <li>[fa:close,fam:close,theirs,warm|cordial] Always,</li>
         <li>[fa:close,fam:close,theirs,cordial] Your faithful correspondent,</li>
-        <li>[fa:close,fam:close,theirs,warmly,w:tribal] Your place by our fire is kept,</li>
+        <li>[fa:close,fam:close,theirs,warmly,w:tribal] You are always welcome at our fire,</li>
         <li>[fa:close,fam:close,theirs,warmly,w:spacer] Love from {TOWN}. Do not let it go to your head,</li>
         <li>[fa:close,fam:close,theirs,warmly,w:industrial] Your pal, always,</li>
         <li>[fa:close,fam:close,theirs,warmly,c:tea] Yours, with the kettle on for you,</li>
@@ -227,7 +227,7 @@
         <li>[fa:close,fam:cooled,theirs,cool|curt|refusal] No more.</li>
         <li>[fa:close,fam:cooled,theirs,warm|cordial] Yours, still, though it is harder to write,</li>
         <li>[fa:close,fam:cooled,theirs,a:war] Until this war is over, if it ends,</li>
-        <li>[fa:close,fam:cooled,theirs,w:tribal] The fire will tell us if it is to burn higher again.</li>
+        <li>[fa:close,fam:cooled,theirs,w:tribal] We will see whether things can be better between us again.</li>
 
         <!-- ================= The colony's own, plain English ================= -->
         <li>[fa:salute,fam:new,ours,warm|cordial] To {TOFULL} of {TOWN}, greetings from {COLONY},</li>
@@ -269,7 +269,7 @@
         <li>[fa:open,fam:new,ours,cordial] This is the first letter {COLONY} has sent you, as far as any of us know, so forgive us if it is a little stiff.</li>
         <li>[fa:open,fam:new,ours,cordial|cool] We do not know each other yet. I will be plain, which seems the best way to begin.</li>
         <li>[fa:open,fam:new,ours,v:blunt] I am {FROM}, of {COLONY}. We have not written before. Here is why I write now.</li>
-        <li>[fa:open,fam:new,ours,v:eloquent,warm|cordial] A first letter is an odd thing to write, all hope and no habit. Let this one be the first of many.</li>
+        <li>[fa:open,fam:new,ours,v:eloquent,warm|cordial] A first letter is an odd thing to write. I hope it will be the first of many.</li>
         <li>[fa:open,fam:new,ours,v:kind,warm|cordial] We have heard of {TOWN}, and so I write to you for the first time, and a little nervously.</li>
         <li>[fa:open,fam:new,ours,a:war] We have not written to you before, and it is a hard time to begin. Still, we begin.</li>
         <li>[fa:open,fam:known,ours,warm|cordial] We were glad of your last letter, and here is ours in turn.</li>
@@ -289,7 +289,7 @@
         <li>[fa:open,fam:close,ours,warmly] There is a stack of your letters on the shelf here, and it is the stack nobody is allowed to move.</li>
         <li>[fa:open,fam:close,ours,warmly] I know you will forgive the haste and the blots. Old friends do.</li>
         <li>[fa:open,fam:close,ours,warm|cordial] We have written to each other long enough that I no longer wonder what to say first.</li>
-        <li>[fa:open,fam:close,ours,v:eloquent,warmly] If letters were a road, ours would be well worn by now, with a bench at every turn.</li>
+        <li>[fa:open,fam:close,ours,v:eloquent,warmly] We have written to each other so often now that it has become an old and welcome habit.</li>
         <li>[fa:open,fam:close,ours,v:blunt,warmly] Old friend. Straight to it, then.</li>
         <li>[fa:open,fam:close,ours,v:kind,warmly] Every letter of yours is read twice here, once quickly and once slowly. This is the slow one, answering.</li>
         <li>[fa:open,fam:cooled,ours] We had your letter. We answer it, as we answer all letters.</li>
@@ -372,15 +372,15 @@
         <li>[fa:open,fam:cooled,theirs,olde,a:war] I never thought to write to thee across a war, and I find the words come hard.</li>
         <li>[fa:pen,pen:new,theirs,olde,warmly|cordial,fam:known|fam:familiar|fam:close] I see the hand is {TO}'s this time. Commend me to {LASTPEN}, whose letters I had grown fond of.</li>
         <li>[fa:pen,pen:new,theirs,olde,fam:cooled] I see {TO} writeth now. I had sooner heard from {LASTPEN}, but no matter.</li>
-        <li>[fa:long,fam:long,theirs,olde,fam:known|fam:familiar|fam:close] Long hath it been since letters passed betwixt us. I had begun to think the road had eaten them.</li>
+        <li>[fa:long,fam:long,theirs,olde,fam:known|fam:familiar|fam:close] Long hath it been since letters passed betwixt us. I had begun to think our letters lost upon the road.</li>
         <li>[fa:close,fam:new,theirs,olde,warm|cordial] In hope of thine answer, and of a long acquaintance after,</li>
         <li>[fa:close,fam:new,theirs,olde,cordial|cool] Thine, with due respect,</li>
         <li>[fa:close,fam:known,theirs,olde] Until thy next,</li>
         <li>[fa:close,fam:familiar,theirs,olde,warmly] Thine, as ever,</li>
         <li>[fa:close,fam:familiar,theirs,olde,cordial] As is our wont,</li>
         <li>[fa:close,fam:close,theirs,olde,warmly] Thine own, ever and always,</li>
-        <li>[fa:close,fam:close,theirs,olde,warmly] Thy friend unto the end of ink,</li>
-        <li>[fa:close,fam:close,theirs,olde,warmly] Fare thee well, and may the post keep faith with us both,</li>
+        <li>[fa:close,fam:close,theirs,olde,warmly] Thy friend, now and always,</li>
+        <li>[fa:close,fam:close,theirs,olde,warmly] Fare thee well, and may our letters ever reach us safe,</li>
         <li>[fa:close,fam:cooled,theirs,olde] Thine, as courtesy requireth,</li>
         <li>[fa:close,fam:cooled,theirs,olde] No more at this time.</li>
 
@@ -443,9 +443,9 @@
         <li>[fa:salute,fam:close,sv:beast,warmly] {TO}, whose scent we would know anywhere now,</li>
         <li>[fa:open,fam:familiar|fam:close,sv:beast,warmly] Your letter smells of your road, as it always does, and the pack came to sniff it, as it always does.</li>
         <li>[fa:open,fam:cooled,theirs,sv:beast] Your letter came. Hackles are up at {TOWN}. You know why.</li>
-        <li>[fa:salute,fam:close,sv:green,warmly] {TO}, whose letters are our second sun,</li>
-        <li>[fa:open,fam:familiar|fam:close,sv:green,warmly] Your letters come like rain in a dry month. We have learned to lean toward them.</li>
-        <li>[fa:open,fam:cooled,sv:green] The season has turned between us. Leaves fall. We write.</li>
+        <li>[fa:salute,fam:close,sv:green,warmly] {TO}, whose letters do us as much good as sunlight,</li>
+        <li>[fa:open,fam:familiar|fam:close,sv:green,warmly] Your letters are as welcome to us as rain in a dry month.</li>
+        <li>[fa:open,fam:cooled,sv:green] Things have cooled between us. We write all the same.</li>
         <li>[fa:salute,fam:close,sv:fey,warmly] By leaf and by string, by the hour of dew, and by your name which we keep under a stone: greetings, {TO}.</li>
         <li>[fa:open,fam:cooled,sv:fey] By iron and by ash: a letter, as is owed. Only as is owed.</li>
         <li>[fa:open,fam:new,sv:ancient] I have written first letters before. Several thousand. This one is to you, and I have noted it in the register.</li>
@@ -457,10 +457,10 @@
         <li>[fa:open,fam:cooled,sv:machine] Correspondent recognised. Standing revised downward. Proceeding formally.</li>
         <li>[fa:close,fam:close,sv:machine,warmly] Retaining this correspondence in permanent memory. That is the closest this unit comes to "fondly".</li>
         <li>[fa:close,fam:cooled,sv:machine] Correspondence continues on a formal footing.</li>
-        <li>[fa:open,fam:familiar|fam:close,sv:hive,warmly] We know your marks now. The many lean toward your letters.</li>
+        <li>[fa:open,fam:familiar|fam:close,sv:hive,warmly] We know your marks now. The many are glad of your letters.</li>
         <li>[fa:open,fam:cooled,sv:hive] We read. We remember what was done. We answer, less.</li>
         <li>[fa:close,fam:close,sv:hive,warmly] The many keep your name in the warm cells.</li>
-        <li>[fa:open,fam:familiar|fam:close,sv:deep,warmly] Letters many have passed, and between us grows a thing that is not a word.</li>
+        <li>[fa:open,fam:familiar|fam:close,sv:deep,warmly] Letters many have passed, and friends, we have become.</li>
         <li>[fa:open,fam:cooled,sv:deep] Colder the letters grow. Colder we answer. Below, it is noted.</li>
       </plain>
     </lines>

@@ -24,7 +24,7 @@
       <plain>
         <!-- Their answer to the colony asking to swear fealty -->
         <li>[fealty,warm] We have long hoped you would ask. One of ours will come to your gate for the oath, and your people will not regret it.</li>
-        <li>[fealty,warm,theirLowtech] It is a good thing, a small people under a strong roof. We will come to your gate to hear your oath.</li>
+        <li>[fealty,warm,theirLowtech] It is a good thing for a small people to have a strong one's protection. We will come to your gate to hear your oath.</li>
         <li>[fealty,warm,theirHightech] Approved, and gladly. Expect our representative at your gate to formalize it.</li>
         <li>[fealty,cordial] We accept. We will come to your gate for the oath, and then we will speak of what each side owes.</li>
         <li>[fealty,cordial,call] Yes, we'll take it. Someone will be at your gate soon to hear the oath.</li>

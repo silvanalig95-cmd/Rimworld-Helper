@@ -28,7 +28,7 @@
       <plain>
         <!-- From one of a colony known in a town nearby -->
         <li>[greetings,warm,colony:known,!colony:renowned] We have heard a little of your colony, {WRITER}, and all of it good.</li>
-        <li>[greetings,cordial,colony:known,!colony:renowned,theirLowtech] Your colony's name has reached us, {WRITER}. We are glad to put a hand to it.</li>
+        <li>[greetings,cordial,colony:known,!colony:renowned,theirLowtech] Your colony's name has reached us, {WRITER}. We are glad to have a letter from you at last.</li>
         <li>[greetings,cordial,colony:known,!colony:renowned,theirHightech] Your colony is {RENOWN}, we hear. Good to have a letter to go with it.</li>
         <li>[greetings,cool,colony:known] We know your colony's name. We will see whether you live up to it.</li>
         <!-- From one of a colony known across the region or wider -->
