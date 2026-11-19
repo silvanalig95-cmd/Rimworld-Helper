@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods' words in plain words
+
+*19 November 2026, version 0.270.2*
+
+- The gods' cards, messages and buttons are in plain words: what was seen and heard on the map, while the gods' tales, sayings and the colony's book keep their old voice.
+- Each god's presence on the land now says plainly what it does, and no god's card names an hour that isn't the hour it comes.
+- A god's beast that leaves because someone tried to tame it now says so, and what the voice in the dark takes is told as the map shows it.
+
 ## World events in plain words
 
 *19 November 2026, version 0.270.1*

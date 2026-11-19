@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.270.2</version>
+        <date>19 November 2026</date>
+        <title>The gods' words in plain words</title>
+        <points>
+          <li>The gods' cards, messages and buttons are in plain words: what was seen and heard on the map, while the gods' tales, sayings and the colony's book keep their old voice.</li>
+          <li>Each god's presence on the land now says plainly what it does, and no god's card names an hour that isn't the hour it comes.</li>
+          <li>A god's beast that leaves because someone tried to tame it now says so, and what the voice in the dark takes is told as the map shows it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.270.1</version>
         <date>19 November 2026</date>
         <title>World events in plain words</title>

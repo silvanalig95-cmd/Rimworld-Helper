@@ -94,7 +94,7 @@
     <defName>Rimfolk_GodPresence</defName>
     <conditionClass>ColonyCouncil.GameCondition_GodPresence</conditionClass>
     <label>a god's presence</label>
-    <description>The sky has taken a god's color, and the wind has died.</description>
+    <description>The sky has taken on a strange color, and the wind has died.</description>
     <canBePermanent>false</canBePermanent>
   </GameConditionDef>
 

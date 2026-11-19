@@ -48,9 +48,9 @@
   <CC_GodO_Vein_Text>A vein of gold has come up through the rock beside the deep shaft, where the {COUNT} silver went down. It wasn't there before.</CC_GodO_Vein_Text>
   <CC_GodO_VeinBent_Title>A vein that glints</CC_GodO_VeinBent_Title>
   <CC_GodO_VeinBent_TitleNamed>{GOD}'s answer</CC_GodO_VeinBent_TitleNamed>
-  <CC_GodO_VeinBent_Text>A vein has come up through the rock beside the deep shaft, where the {COUNT} silver went down. It glints like gold, but under that skin it is steel.</CC_GodO_VeinBent_Text>
+  <CC_GodO_VeinBent_Text>A vein has come up through the rock beside the deep shaft, where the {COUNT} silver went down. It glints like gold, but underneath it is steel.</CC_GodO_VeinBent_Text>
   <CC_GodO_Saw_Vein>{WHO} found a vein of gold come up in the rock by the deep shaft at {HOME}, where the silver had gone down.</CC_GodO_Saw_Vein>
-  <CC_GodO_Saw_VeinBent>{WHO} found a vein by the deep shaft at {HOME} that glinted like gold, and was steel under its skin.</CC_GodO_Saw_VeinBent>
+  <CC_GodO_Saw_VeinBent>{WHO} found a vein by the deep shaft at {HOME} that glinted like gold, but was steel underneath.</CC_GodO_Saw_VeinBent>
   <CC_GodO_Vein_Act>took the silver down and gave gold back</CC_GodO_Vein_Act>
   <CC_GodO_VeinBent_Act>took half of what was promised and gave back steel painted gold</CC_GodO_VeinBent_Act>
 
@@ -69,7 +69,7 @@
 
   <CC_GodO_Burn_Dream>I dreamt of the warm voice under the mountain, and it wasn't reasonable any more. It said we keep silver that isn't ours.</CC_GodO_Burn_Dream>
   <CC_GodO_Burn_Title>A burn in the night</CC_GodO_Burn_Title>
-  <CC_GodO_Burn_TitleNamed>{GOD} displeased</CC_GodO_Burn_TitleNamed>
+  <CC_GodO_Burn_TitleNamed>A burn from {GOD}</CC_GodO_Burn_TitleNamed>
   <CC_GodO_Burn_Text>{PAWN} woke from a warm dream with a burn across the palm of one hand. Nothing in the room was hot.</CC_GodO_Burn_Text>
   <CC_GodO_BurnDream_Text>{PAWN} woke from a dream of a warm voice under the mountain that was not pleased.</CC_GodO_BurnDream_Text>
   <CC_GodO_Journal_Burn>I dreamt of the warm voice again and it wasn't pleased with us. When I woke my hand was burned, and nothing in the room was hot.</CC_GodO_Journal_Burn>
@@ -98,9 +98,9 @@
   <CC_GodO_HurtLimped_Text>The wounded thrumbo got up from the edge of the colony and limped away.</CC_GodO_HurtLimped_Text>
   <CC_GodO_Tended_Title>The wounded thrumbo</CC_GodO_Tended_Title>
   <CC_GodO_Tended_TitleNamed>{GOD}'s kin</CC_GodO_Tended_TitleNamed>
-  <CC_GodO_Tended_Text>{PAWN} knelt by the wounded thrumbo and tended its wounds, and it let them. Then it got up and walked away across the land, and a strange peace has settled over the colony.</CC_GodO_Tended_Text>
+  <CC_GodO_Tended_Text>{PAWN} knelt by the wounded thrumbo and tended its wounds, and it let them. Then it got up and walked away across the land, and the colony feels oddly at peace.</CC_GodO_Tended_Text>
   <CC_GodO_Journal_Tended>A wounded thrumbo lay at the edge of the colony and let me tend it. It looked at me the whole time. Then it got up and went, and I felt calmer than I have in a long while.</CC_GodO_Journal_Tended>
-  <CC_GodO_Saw_Tended>{WHO} tended a wounded thrumbo at the edge of {HOME}, and it got up and went its way, and a peace came after.</CC_GodO_Saw_Tended>
+  <CC_GodO_Saw_Tended>{WHO} tended a wounded thrumbo at the edge of {HOME}, and it got up and went its way, and the colony felt at peace afterwards.</CC_GodO_Saw_Tended>
 
   <CC_GodO_Last_Dream>I dreamt of a white beast walking the whole world, looking for others like it, and finding none.</CC_GodO_Last_Dream>
   <CC_GodO_Last_Text>{PAWN} woke from a dream of a white beast searching the world for the rest of its kind.</CC_GodO_Last_Text>
@@ -173,7 +173,7 @@
   <CC_GodO_Saw_Turret>{WHO} crossed the {THING}'s line in a fight at {HOME}, and it held its fire until they were clear.</CC_GodO_Saw_Turret>
 
   <CC_GodO_Sulk_Text>The colony's lights are going out and coming back, slowly, one after another.</CC_GodO_Sulk_Text>
-  <CC_GodO_Saw_Sulk>{WHO} saw every light at {HOME} flicker slow and sad, going out and coming back.</CC_GodO_Saw_Sulk>
+  <CC_GodO_Saw_Sulk>{WHO} saw every light at {HOME} flicker slowly, going out and coming back.</CC_GodO_Saw_Sulk>
 
   <!-- ===================== Cirrus ===================== -->
 

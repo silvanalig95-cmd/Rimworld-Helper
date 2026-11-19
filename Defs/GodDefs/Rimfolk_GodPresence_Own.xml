@@ -21,13 +21,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Hollin</defName>
     <label>the green leaning</label>
-    <description>Every plant on the land leans one way, toward one tree, and leaves and seeds drift there on no wind. The dryads stand still. Whatever grows is growing fast. Nobody can say why.</description>
+    <description>The plants all lean toward one tree, and leaves and seeds drift toward it even though there is no wind. The dryads stand still. Plants grow faster while it lasts.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Hollin</god>
         <effect>Growth</effect>
         <named>{NAME} listening</named>
-        <namedText>{NAME} is listening. Every plant on the land leans toward one tree, leaves and seeds drift there on no wind, and the dryads stand still. Whatever grows, grows fast, and a tree felled now sits badly with whoever fells it.</namedText>
+        <namedText>{NAME} is listening. The plants all lean toward one tree, leaves and seeds drift toward it with no wind, and the dryads stand still. Plants grow faster, and anyone who fells a tree now feels bad about it.</namedText>
         <motes><li>Mote_GreenTwinkle</li><li>Mote_Flowers</li></motes>
         <sounds><li>AnimaTreeProgress</li></sounds>
       </li>
@@ -38,13 +38,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Smoulder</defName>
     <label>warm stone</label>
-    <description>The rock is warm to the touch, steam rises from the cracks at its foot and a faint ash comes down. Ore glints in the rock faces, and the rooms under the mountain are warm. Nobody can say why.</description>
+    <description>The rock is warm to the touch, steam rises from cracks in it and a little ash falls. Ore shows in the rock faces, and rooms dug into the mountain are warmer.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Smoulder</god>
         <effect>WarmStone</effect>
         <named>{NAME} breathing</named>
-        <namedText>{NAME} breathes under the mountain. The rock is warm, steam rises at its foot, a faint ash falls and ore glints in the faces. The rooms under the rock are warmer still, and whoever sleeps there may hear a warm voice.</namedText>
+        <namedText>{NAME} breathes under the mountain. The rock is warm, steam rises from cracks in it, a little ash falls and ore shows in the rock faces. Rooms dug into the rock are warmer still, and anyone who sleeps there may hear a warm voice.</namedText>
         <motes><li>Mote_Heat</li></motes>
         <sounds><li>TM_VibrationLow</li><li>GeyserSpray</li></sounds>
       </li>
@@ -55,13 +55,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Bellwether</defName>
     <label>the white beast grazing</label>
-    <description>A great white beast is grazing on the land. The wild animals near it lie down and graze in peace, none of them will turn on anyone, and the colony's people find it hard to quarrel. Nobody can say why.</description>
+    <description>A great white beast is grazing on the land. The wild animals near it lie down and graze peacefully and won't attack anyone, and the colony's people quarrel less.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Bellwether</god>
         <effect>Grazing</effect>
         <named>{NAME} passing</named>
-        <namedText>{NAME} is passing over the land. The wild beasts near him lie down and graze in peace, none will turn on anyone, and quarrels are rare while he grazes.</namedText>
+        <namedText>{NAME} is passing over the land. The wild animals near him lie down and graze peacefully and won't attack anyone, and there are fewer quarrels while he grazes.</namedText>
         <motes><li>Mote_Twinkle</li></motes>
         <sounds><li>Pawn_Thrumbo_Call</li></sounds>
       </li>
@@ -72,13 +72,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Morel</defName>
     <label>spore-fall</label>
-    <description>Pale spores drift on the air, glowing faintly after dark, and mushrooms have come up in rings. Food left out of the cold goes soft fast, the dead go to earth, mushrooms grow as you watch and sicknesses pass quicker. Nobody can say why.</description>
+    <description>Pale spores drift in the air and glow faintly after dark, and mushrooms have come up in rings. Food left out of the cold and the bodies of the dead rot faster, mushrooms grow faster and sicknesses pass more quickly.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Morel</god>
         <effect>Rot</effect>
         <named>{NAME} close</named>
-        <namedText>{NAME} is close. Pale spores drift on the air and mushrooms come up in rings. What lies out of the cold rots fast, the dead go back to the earth, the mushrooms grow and sicknesses pass.</namedText>
+        <namedText>{NAME} is close. Pale spores drift in the air and mushrooms come up in rings. Anything left out of the cold rots fast, the dead go back to the earth sooner, mushrooms grow faster and sicknesses pass more quickly.</namedText>
         <motes><li>Mote_Twinkle_grayscale</li></motes>
       </li>
     </modExtensions>
@@ -88,13 +88,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Ennu</defName>
     <label>a warm evening</label>
-    <description>The evening is warm and the hearths burn long and bright. Talk is kinder than usual, the animals follow the stranger about, and every visitor seems glad to be here.</description>
+    <description>The evening is warm and the hearths burn long and bright. People talk more kindly than usual, the animals follow the stranger around, and every visitor seems glad to be here.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Ennu</god>
         <effect>Warmth</effect>
         <named>{NAME} under our roof</named>
-        <namedText>{NAME} is under the colony's roof. The hearths burn long and warm, talk is kind, the animals follow the guest about, and every visitor is glad of the place.</namedText>
+        <namedText>{NAME} is under the colony's roof. The hearths burn long and warm, people talk kindly, the animals follow the guest around, and every visitor is glad to be here.</namedText>
         <motes><li>Mote_Twinkle</li></motes>
       </li>
     </modExtensions>
@@ -104,13 +104,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Pip</defName>
     <label>a hum in the wires</label>
-    <description>Every light pulses softly in a pattern and the machines hum to themselves. The batteries hold their charge, the powered benches run well, and one door has taken against one person. Nobody can say why.</description>
+    <description>Every light pulses softly in a pattern and the machines hum. Batteries lose less charge, the powered benches work faster, and one door won't open for one person until someone else opens it.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Pip</god>
         <effect>Hum</effect>
         <named>{NAME} awake</named>
-        <namedText>{NAME} is awake in the wires. The lights pulse in a pattern, the batteries hold, the powered benches run well, and one door won't open for one person until someone else opens it.</namedText>
+        <namedText>{NAME} is awake in the wires. The lights pulse in a pattern, batteries lose less charge, the powered benches work faster, and one door won't open for one person until someone else opens it.</namedText>
         <motes><li>Mote_PsiCurrent</li><li>Mote_Bolt</li></motes>
         <sounds><li>TM_VibrationLow</li><li>Power_OnSmall</li></sounds>
       </li>
@@ -121,13 +121,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Cirrus</defName>
     <label>a sky too high</label>
-    <description>The sky has cleared and seems far higher than it should, and the weather will not change. Lightning flickers over the far hills with no rain, the birds have gone, and those who look up feel looked at. Nobody can say why.</description>
+    <description>The sky is unusually clear and high, and the weather stays the same. There is lightning over the far hills but no rain, the birds have gone, and people who look up feel as if something is watching them.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Cirrus</god>
         <effect>HighSky</effect>
         <named>{NAME} looking down</named>
-        <namedText>{NAME} is looking down. The sky is clear and far too high, the weather holds, lightning flickers over the far hills with no rain, and those who look up feel looked at.</namedText>
+        <namedText>{NAME} is looking down. The sky is unusually clear and high, the weather stays the same, there is lightning over the far hills but no rain, and people who look up feel watched.</namedText>
         <sounds><li>Thunder_OffMap</li></sounds>
       </li>
     </modExtensions>
@@ -137,13 +137,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Hush</defName>
     <label>a white silence</label>
-    <description>A white silence lies over the land. Nobody speaks, the cold deepens, frost forms along the walls and nothing left out of doors rots. The old, the sick and the little ones feel the cold first.</description>
+    <description>Everything has gone white and silent. Nobody speaks, the cold deepens, frost forms along the walls and nothing left out of doors rots. The old, the sick and small children feel the cold first.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Hush</god>
         <effect>WhiteSilence</effect>
         <named>{NAME} near</named>
-        <namedText>{NAME} is near. Nobody speaks, the cold deepens, frost forms along the walls and the dead keep out of doors. The old, the sick and the little ones feel the cold first.</namedText>
+        <namedText>{NAME} is near. Nobody speaks, the cold deepens, frost forms along the walls and nothing out of doors rots, the dead included. The old, the sick and small children feel the cold first.</namedText>
         <motes><li>Mote_WhiteIce</li><li>Mote_Ice</li></motes>
         <sounds><li>TM_WindLowSD</li></sounds>
       </li>
@@ -154,7 +154,7 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Undertow</defName>
     <label>the dark</label>
-    <description>The dark has come closer. Lamps don't reach as far as they did, one corner of the colony stays dark however it is lit, and minds are open to things they shouldn't hear.</description>
+    <description>It is darker than it should be. Lamps don't reach as far as they did, one corner of the colony stays dark however well it is lit, and people's minds are more open to psychic influence.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Undertow</god>
@@ -169,13 +169,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Helios</defName>
     <label>the long noon</label>
-    <description>The sun hangs where it is and the light of the hour holds. The air warms, the solar panels give more and the crops grow fast. Night owls and those the sun burns can't rest. Nobody can say why.</description>
+    <description>The sun seems to stand still in the sky, and the daylight stays as it is. The air warms, solar panels give more power and the crops grow fast. Night owls and those the sun burns can't rest.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Helios</god>
         <effect>LongNoon</effect>
         <named>{NAME} staring</named>
-        <namedText>{NAME} is staring down. The light of the hour holds, the air warms, the solar panels give more and the crops grow fast. Night owls and those the sun burns can't rest.</namedText>
+        <namedText>{NAME} is staring down. The daylight stays as it is, the air warms, solar panels give more power and the crops grow fast. Night owls and those the sun burns can't rest.</namedText>
         <motes><li>Mote_Holy</li></motes>
       </li>
     </modExtensions>
@@ -185,13 +185,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Selene</defName>
     <label>a moon too close</label>
-    <description>The moon hangs huge and close over the land. The night is as light as its face is full, and those asleep under it heal fast and dream deep. Nobody can say why.</description>
+    <description>The moon hangs huge and close over the land. The fuller it is, the lighter the night, and those asleep under it heal faster and dream deeply.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Selene</god>
         <effect>MoonSleep</effect>
         <named>{NAME} watching</named>
-        <namedText>{NAME} is watching. The night is as light as her face is full, those asleep under her heal fast and dream deep, and a dream at the full moon may come true.</namedText>
+        <namedText>{NAME} is watching. The fuller her face, the lighter the night; those asleep under her heal faster and dream deeply, and a dream at the full moon may come true.</namedText>
         <motes><li>Mote_BlueTwinkle</li></motes>
       </li>
     </modExtensions>
@@ -201,7 +201,7 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Murmur</defName>
     <label>a croaking in the wells</label>
-    <description>A deep croaking comes up from the wells and the wet ground, felt in the chest. Frogs are out, water stands by the well and rain is coming. What grows on wet ground grows fast. Nobody can say why.</description>
+    <description>A deep croaking comes up from the wells and the wet ground, felt in the chest. Frogs are out, water stands by the well and rain is coming. Plants on wet ground grow faster.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Murmur</god>
@@ -217,13 +217,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Ducat</defName>
     <label>a glint</label>
-    <description>Coins glint in the stores, a golden beetle has crossed a table, and a few coins have wandered off toward the edge of the land. Traders give the colony better bargains. Nobody can say why.</description>
+    <description>Coins glint in the stores, a golden beetle has crossed a table, and a few coins lie in a trail toward the edge of the land. Traders give the colony better prices.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Ducat</god>
         <effect>Glint</effect>
         <named>{NAME} going by</named>
-        <namedText>{NAME} is going by. Coins glint in the stores and trail off toward the edge of the land, and traders give the colony better bargains.</namedText>
+        <namedText>{NAME} is going by. Coins glint in the stores and lie in a trail toward the edge of the land, and traders give the colony better prices.</namedText>
         <motes><li>Mote_Twinkle_grayscale</li></motes>
       </li>
     </modExtensions>
@@ -236,13 +236,13 @@
   <GameConditionDef ParentName="Rimfolk_GodPresenceOwnBase">
     <defName>Rimfolk_GodPresence_Revel</defName>
     <label>a merry air</label>
-    <description>A sweet smoke drifts about the place where nothing is burning, and now and then someone laughs in an empty room. People enjoy themselves more easily. Nobody can say why.</description>
+    <description>A sweet smoke drifts about the place though nothing is burning, and now and then someone laughs in an empty room. People enjoy themselves more easily.</description>
     <modExtensions>
       <li Class="ColonyCouncil.OwnPresence">
         <god>Revel</god>
         <effect>Revelry</effect>
         <named>{NAME} at the table</named>
-        <namedText>{NAME} is at the table. A sweet smoke drifts where nothing burns, someone laughs in an empty room, and every pleasure comes easier for a while.</namedText>
+        <namedText>{NAME} is at the table. A sweet smoke drifts about though nothing is burning, someone laughs in an empty room, and people enjoy themselves more easily for a while.</namedText>
         <motes><li>Mote_Twinkle</li></motes>
         <sounds><li>Pawn_Goat_Call</li></sounds>
       </li>

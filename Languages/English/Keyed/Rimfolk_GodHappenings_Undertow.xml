@@ -31,7 +31,7 @@
   <!-- ===================== The hollow ear ===================== -->
 
   <CC_GodUndertow_Ear_Title>A hollow ear</CC_GodUndertow_Ear_Title>
-  <CC_GodUndertow_Ear_Text>{PAWN} stopped in the old ruins and pressed a hand over one ear. {PAWN_pronoun} says it went quiet in there, quieter than quiet, and now and then something on the other side of the quiet says {PAWN_possessive} name.</CC_GodUndertow_Ear_Text>
+  <CC_GodUndertow_Ear_Text>{PAWN} stopped in the old ruins and pressed a hand over one ear. {PAWN} says that ear has gone completely silent, and now and then {PAWN_pronoun} hears {PAWN_possessive} own name said from somewhere far away.</CC_GodUndertow_Ear_Text>
   <CC_GodUndertow_Saw_Ear>{HEARER} stood in the old ruins at {HOME} and came away with a hollow ear, hearing a name said from very far down.</CC_GodUndertow_Saw_Ear>
 
 </LanguageData>
