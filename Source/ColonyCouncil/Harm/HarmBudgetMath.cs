@@ -228,6 +228,14 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HarmKind CampNight = new HarmKind("campNight", "something comes in the night for a neighbour's camp (quests)", "quests", 0.006f, false);
 
+        /// <summary>
+        /// A fight a storyline brings to the colony (storylines, round 3: Storylines/StorylineRaiders.cs, StorylineVault.cs): the
+        /// raiders' small raid that tests the colony, the raid that comes for a price refused, and the machine in a sealed case
+        /// opened. The game's own raid or the game's own machine, within the budget; when the budget holds it back, the raiders
+        /// keep away and the case holds old goods instead. A part the colony took on, a few a year at most.
+        /// </summary>
+        public static readonly HarmKind StoryFight = new HarmKind("storyFight", "a fight a storyline brings to the colony (quests)", "quests", 0.006f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -247,7 +255,7 @@ namespace ColonyCouncil
             UnionDrill,
             GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn, GodCup,
             Uncanny,
-            Outlaw, CampNight
+            Outlaw, CampNight, StoryFight
         };
 
         public static HarmKind Of(string key)

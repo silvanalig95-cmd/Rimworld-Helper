@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- S11, the vault's sealed case (Source/ColonyCouncil/Storylines/StorylineVault.cs; the rules in
+       Storylines/Flows/VaultFlow.cs; the storyline's own words in Defs/StorylineDefs/Rimfolk_Storylines_Round3.xml).
+       {FACTION} is the vault's people (or another spacer people), {PLACE} their vault or town, {GIVER} their runner, {RIVAL}
+       their engineer, {NAME} who or what came out of the case, {COUNT} the components asked for, {SILVER} the pay, {ITEM} the
+       components asked for (in terms) or how many days the engineer worked (in letters), {DAYS} the time once taken on.
+       Lines tagged [vault] are for the Sunken Vault itself. Answers' words use only {FACTION}. -->
+
+  <!-- ===================== Part 1: power cells for the vault ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_VaultCells</defName>
+    <label>power cells for a vault</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultCells</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Components for the vault at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[vault] {GIVER}, a runner of {FACTION}, has come from the vault at {PLACE}: its power cells are failing one by one, and the lights below are going out. They ask the colony for components to keep the last of them going.</li>
+          <li>[!vault] {GIVER}, a runner of {FACTION}, has come from {PLACE}: the power cells of their old vault are failing one by one. They ask the colony for components to keep the last of them going.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{GIVER} went back to {PLACE} to say the colony will help.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will keep the lights on as long as they can.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>vault</story>
+        <part>cells</part>
+        <start>true</start>
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles within {DAYS}. Their runners come for them and pay {SILVER} silver, more than they are worth. If only half of them are ready, they take those and pay their plain worth.\n\nIf less than half are ready, more of the vault goes dark.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for {FACTION}'s runners.</li>
+        </accepted>
+        <reminder>
+          <li>{FACTION}'s runners come soon, and the stockpiles are still short of {ITEM}.</li>
+        </reminder>
+        <notes>
+          <li>[ready] The components for {PLACE} are ready, and {FACTION}'s runners are coming for them within {DAYS}.</li>
+        </notes>
+        <endTitles>
+          <li>[sent] Components for {PLACE}</li>
+          <li>[partly] Some components for {PLACE}</li>
+          <li>[none] No components for {PLACE}</li>
+        </endTitles>
+        <ends>
+          <li>[sent] {FACTION}'s runners are coming for the components, with {SILVER} silver for them.</li>
+          <li>[partly] Only part of it is ready. {FACTION}'s runners are coming for {ITEM}, with {SILVER} silver, their plain worth.</li>
+          <li>[none] There were too few components ready for {FACTION}'s runners to come. More of the vault at {PLACE} has gone dark.</li>
+        </ends>
+        <good><li>sent</li></good>
+        <bad><li>none</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 2: the engineer at the colony's bench ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_VaultEngineer</defName>
+    <label>an engineer from a vault</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultEngineer</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Host {RIVAL}, an engineer of {FACTION}</li>
+        </titles>
+        <texts>
+          <li>A few days ago the colony sent components to {FACTION} for their failing power cells. Now they want to send {RIVAL}, one of their engineers, to stay at the colony for a few days and work at one of its benches on parts they cannot make at {PLACE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host {RIVAL}</label>
+            <outcome>{RIVAL} is on the way.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will manage with the tools they have.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[worked] Thank you, that was all the work I needed to do.</li>
+          <li>[short] Thank you, though I could not finish everything without parts.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>vault</story>
+        <part>engineer</part>
+        <terms>
+          <li>If the colony agrees, {RIVAL} comes within a day and stays about {DAYS}. {RIVAL} needs a bed and meals from the colony's stores, and works about four hours each day at one of the colony's work benches. Each day's work uses one component from the colony's stores, {ITEM} in all; on a day with none, the work is lost. When {RIVAL} leaves, {FACTION} pay for the components used.\n\nIf {RIVAL} dies or is taken prisoner at the colony, {FACTION} will blame the colony.</li>
+        </terms>
+        <accepted>
+          <li>{RIVAL} of {FACTION} is on the way to the colony.</li>
+        </accepted>
+        <notes>
+          <li>[came] {RIVAL}, an engineer of {FACTION}, has arrived.</li>
+          <li>[nopart] {RIVAL} had no component from the colony's stores today, so the day's work is lost.</li>
+        </notes>
+        <endTitles>
+          <li>[worked] {RIVAL} has gone home</li>
+          <li>[short] {RIVAL} has gone home</li>
+          <li>[harmed] {RIVAL} came to harm</li>
+        </endTitles>
+        <ends>
+          <li>[worked] {RIVAL} has gone home to {PLACE} after {ITEM} days of work at the colony's bench, and left {SILVER} silver for the components used.</li>
+          <li>[short] {RIVAL} has gone home to {PLACE} after {ITEM} days of work at the colony's bench, and left {SILVER} silver for the components used. On some days there was no component for the work.</li>
+          <li>[harmed] {RIVAL}, the engineer of {FACTION}, died or was taken prisoner at the colony. {FACTION} blame the colony.</li>
+        </ends>
+        <good><li>worked</li></good>
+        <bad><li>harmed</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Part 3: the sealed case ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_VaultCase</defName>
+    <label>a sealed case in the colony's care</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultCase</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Keep a sealed case for {FACTION}</li>
+        </titles>
+        <texts>
+          <li>A few days ago {RIVAL} of {FACTION} worked at the colony's bench. Now {FACTION} want to leave a sealed case from the vault in the colony's care for some days, and they do not say what is in it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep the case</label>
+            <outcome>Their runner will bring the case.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will keep it somewhere else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylinePart">
+        <story>vault</story>
+        <part>case</part>
+        <terms>
+          <li>If the colony agrees, {GIVER} brings the case within a day and leaves it by the colony's stores for some days, and then comes back for it. If it is still sealed then, {FACTION} will owe the colony a favour.\n\nIf the case is opened or lost, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{GIVER} of {FACTION} will bring the case within a day.</li>
+        </accepted>
+        <notes>
+          <li>[left] {GIVER} has left the sealed case by the colony's stores, and will come back for it in a few days.</li>
+          <li>[machine] A machine came out of the opened case and is attacking.</li>
+        </notes>
+        <endTitles>
+          <li>[machine] A machine from the case</li>
+          <li>[opened] The case opened</li>
+          <li>[returned] The case handed back</li>
+          <li>[lost] The case is gone</li>
+        </endTitles>
+        <ends>
+          <li>[opened,sleeper,joined] The colony opened the case {FACTION} left in its care. Someone was asleep inside it: {NAME} woke, and asked to stay with the colony. {FACTION} will hear that it was opened.</li>
+          <li>[opened,sleeper,ranoff] The colony opened the case {FACTION} left in its care. Someone was asleep inside it: {NAME} woke, and left the colony at once. {FACTION} will hear that it was opened.</li>
+          <li>[opened,machine] The colony opened the case {FACTION} left in its care, and a machine came out of it and attacked. {FACTION} will hear that it was opened.</li>
+          <li>[opened,goods] The colony opened the case {FACTION} left in its care, and found old goods inside. {FACTION} will hear that it was opened.</li>
+          <li>[returned] {FACTION} have their case back, still sealed, and they owe the colony a favour.</li>
+          <li>[lost] The case {FACTION} left in the colony's care is gone, and they hold it against the colony.</li>
+        </ends>
+        <good><li>returned</li></good>
+        <bad><li>lost</li></bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- The sealed case in the colony's care: keep it sealed, or open it. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Storyline_VaultCard</defName>
+    <label>the sealed case</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StorylineCard</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The sealed case</li>
+        </titles>
+        <texts>
+          <li>The case {FACTION} left in the colony's care has been in its stores for half a day, and some of the colony want to know what is inside.\n\nThe colony can keep it sealed: {FACTION} come back for it in a few days and will owe the colony a favour. Or it can open it now, and keep whatever is inside: {FACTION} will hold that against the colony.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Keep it sealed</label>
+            <outcome>The case stays sealed until {FACTION} come back for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>keep</choice>
+              </li>
+            </effects>
+          </li>
+          <li>
+            <label>Open it</label>
+            <outcome>The colony opens the case.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StorylineChoice">
+                <choice>open</choice>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StorylineCard">
+        <story>vault</story>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

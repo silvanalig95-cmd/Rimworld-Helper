@@ -37,6 +37,12 @@ namespace ColonyCouncil
         /// <summary>The mission tells the people's memory itself how it went (World/FactionMemory.cs); else it's remembered as a promise kept or broken.</summary>
         public virtual bool OwnMemory => false;
 
+        /// <summary>
+        /// The colony's own: nobody of the world asked it (a colonist's dream of their god, the raiders' price), so it has no
+        /// people that must stay at peace with the colony for it to go on (Storylines/StorylineDream.cs, StorylineRaiders.cs).
+        /// </summary>
+        public virtual bool OfTheColony => false;
+
         protected override bool CanHappen(Map map, HappeningExtension ext)
         {
             // One of Rimfolk's peoples' asks: only in its season of need (a plague year), and from its people (Peoples/).

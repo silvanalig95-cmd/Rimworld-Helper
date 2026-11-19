@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Storylines, round 3 (Source/ColonyCouncil/Storylines/; the frame's words and how they're tagged are in
+       Rimfolk_Storylines.xml beside this): a dream of the gods, raiders settling nearby, the town's well ran dry, the vault's
+       sealed case and the lost founder's grave. Each one's part events and cards are in
+       Defs/MissionDefs/Rimfolk_Storyline_*.xml, where the meaning of each name in its words is listed. -->
+
+  <!-- ===================== S6, a dream of the gods ===================== -->
+
+  <!-- {GIVER} the dreamer, {NAME} their god by the name the colony knows it by, {KIND} the colony's word for a god's place
+       (a shrine, a chapel, a church), {WAY} which way the place lies from the colony. The god's mind is never in it. -->
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Dream</defName>
+    <label>a dream of the gods</label>
+    <description>One of the colony's devout dreams of a place for their god on the colony's land. What the colony does about the dream decides how the dreamer feels about it afterwards.</description>
+    <kind>dream</kind>
+    <outcomes>
+      <li>[place,outcome:built] a {KIND} for {NAME} built where {GIVER} dreamed it</li>
+      <li>[place,outcome:notbuilt] nothing built in time</li>
+      <li>[place,outcome:declined] the colony did not build it</li>
+      <li>[watch,outcome:seen] a light seen at the {KIND} during the watch</li>
+      <li>[watch,outcome:unwatched] nobody kept the watch</li>
+      <li>[watch,outcome:declined] the colony did not keep the watch</li>
+      <li>[offering,outcome:given] the offering given</li>
+      <li>[offering,outcome:notgiven] no offering in time</li>
+      <li>[offering,outcome:declined] the offering refused</li>
+      <li>[outcome:gone] ended when {GIVER} was no longer with the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:watch] {GIVER} wants to keep a watch at the new {KIND}.</li>
+      <li>[next:offering] {GIVER} has been sleeping badly again.</li>
+    </coming>
+    <good><li>given</li><li>seen</li><li>built</li></good>
+    <bad><li>notbuilt</li><li>notgiven</li><li>refused</li><li>unbuilt</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{GIVER} dreamed of a {KIND} for {NAME} {WAY} of the colony, and the colony did not build it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>unbuilt</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{GIVER} dreamed of a {KIND} for {NAME} {WAY} of the colony, and none was built there in time.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>given</key>
+        <tone>good</tone>
+        <summaries>
+          <li>{GIVER} dreamed that {NAME} asked for a {KIND} and an offering, and the colony gave both.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>refused</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{GIVER} dreamed that {NAME} asked for an offering at the new {KIND}, and the colony refused it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>notgiven</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{GIVER} dreamed that {NAME} asked for an offering at the new {KIND}, and none was brought in time.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>lost</key>
+        <summaries>
+          <li>the {KIND} {GIVER} dreamed of for {NAME} is gone, and nothing more came of the dream.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>{GIVER}'s dream</li>
+        </titles>
+        <texts>
+          <li>[dreamerlost] {GIVER} is no longer with the colony, and nobody else had the same dream. Nothing more will come of it.</li>
+          <li>[godgone] Nobody at the colony speaks of {NAME} any more, and nothing more will come of {GIVER}'s dream.</li>
+        </texts>
+        <summaries>
+          <li>[dreamerlost] {GIVER} was no longer with the colony, and nothing more came of the dream.</li>
+          <li>[godgone] nothing more came of {GIVER}'s dream.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of {GIVER}'s dream.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S9, raiders settling nearby ===================== -->
+
+  <!-- {FACTION} the people who warn the colony, {PLACE} their town, {OTHERPEOPLE} the raiders, {KIND} the raiders' kind of
+       camp by their age (a war camp, a brigands' hold, a bandit camp, a raider base), {SILVER} their price each season,
+       {TRAPS} the traps or turrets asked for, {WALLS} the lengths of wall. -->
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Raiders</defName>
+    <label>raiders settling nearby</label>
+    <description>Raiders are setting up a camp in the region. A people nearby warns the colony, and how the colony meets the raiders decides whether the camp is broken or the raiders ask a price each season.</description>
+    <kind>raiders</kind>
+    <outcomes>
+      <li>[defences,outcome:ready] the defences built</li>
+      <li>[defences,outcome:partly] part of the defences built</li>
+      <li>[defences,outcome:unready] few defences built</li>
+      <li>[defences,outcome:declined] the colony did not build any</li>
+      <li>[raid,outcome:repelled] the raiders beaten off</li>
+      <li>[raid,outcome:overrun] the raiders had the better of the colony</li>
+      <li>[raid,outcome:quiet] the raiders did not come</li>
+      <li>[raid,outcome:declined] the colony kept out of it</li>
+      <li>[strike,outcome:cleared] the {KIND} broken</li>
+      <li>[strike,outcome:failed] the strike on the {KIND} failed</li>
+      <li>[strike,outcome:declined] the colony did not help with the strike</li>
+      <li>[tribute,outcome:paid] {SILVER} silver paid</li>
+      <li>[tribute,outcome:declined] the price refused</li>
+      <li>[outcome:gone] ended when one of the two was no longer at odds with the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:raid] {OTHERPEOPLE} will test the colony soon.</li>
+      <li>[next:strike] {FACTION} mean to strike the {KIND}.</li>
+      <li>[next:tribute] {OTHERPEOPLE} will ask the colony for silver.</li>
+      <li>[end:theycleared] {FACTION} have gone against the {KIND} on their own.</li>
+    </coming>
+    <good><li>campgone</li><li>theycleared</li><li>movedon</li><li>cleared</li><li>repelled</li><li>ready</li></good>
+    <bad><li>overrun</li><li>failed</li><li>unready</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} warned the colony that {OTHERPEOPLE} were setting up a {KIND} nearby, and the colony left it to them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>leftalone</key>
+        <summaries>
+          <li>{OTHERPEOPLE} meant to test the colony, and the colony kept its gate shut and left {FACTION} to deal with them.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>campgone</key>
+        <tone>good</tone>
+        <summaries>
+          <li>[joined] the colony joined {FACTION} in a strike on the {KIND} of {OTHERPEOPLE}, and the camp is gone.</li>
+          <li>[!joined] {FACTION} broke the {KIND} of {OTHERPEOPLE} with the colony's help, and the camp is gone.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>theycleared</key>
+        <tone>good</tone>
+        <titles>
+          <li>The {KIND} is gone</li>
+        </titles>
+        <texts>
+          <li>{FACTION} went against the {KIND} of {OTHERPEOPLE} without the colony's help, and broke it. The raiders have left the region.</li>
+        </texts>
+        <summaries>
+          <li>{FACTION} broke the {KIND} of {OTHERPEOPLE} on their own, without the colony's help.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>movedon</key>
+        <titles>
+          <li>{OTHERPEOPLE} have moved on</li>
+        </titles>
+        <texts>
+          <li>A year has gone by since {OTHERPEOPLE} set up their {KIND} near the colony. They have broken camp and moved on, and they will not ask the colony for silver again.</li>
+        </texts>
+        <summaries>
+          <li>{OTHERPEOPLE} asked the colony for silver each season for a year, and then moved on.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more raiders' camp</li>
+        </titles>
+        <texts>
+          <li>[otherpeace] {OTHERPEOPLE} are no longer at war with the colony, and their {KIND} is no threat to it now.</li>
+          <li>[otherdestroyed] {OTHERPEOPLE} are gone, and their {KIND} with them.</li>
+          <li>[war] {FACTION} are at war with the colony now, and the colony has no more part in their trouble with {OTHERPEOPLE}.</li>
+          <li>[destroyed] {FACTION} are gone, and the colony has no more part in their trouble with {OTHERPEOPLE}.</li>
+        </texts>
+        <summaries>
+          <li>[otherpeace] {OTHERPEOPLE} made peace with the colony while their {KIND} stood nearby.</li>
+          <li>[otherdestroyed] {OTHERPEOPLE} were gone while their {KIND} stood nearby.</li>
+          <li>[war] {FACTION} turned against the colony while {OTHERPEOPLE} were camped nearby.</li>
+          <li>[destroyed] {FACTION} were gone while {OTHERPEOPLE} were camped nearby.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the {KIND} of {OTHERPEOPLE}.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S10, the town's well ran dry ===================== -->
+
+  <!-- {FACTION} the town's people, {PLACE} their town, {GIVER} the one who came first, {RIVAL} their foreman, {NAME} the
+       colonist lent, {COUNT} how much was asked for, then how many refugees, {SILVER} the pay. -->
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Well</defName>
+    <label>the town's well ran dry</label>
+    <description>The well of a town near the colony has run dry. The colony is asked for water or food and for a hand to dig a new well, and whether the new well is found decides what happens to the town.</description>
+    <kind>well</kind>
+    <outcomes>
+      <li>[water,outcome:sent,!food] all the water sent</li>
+      <li>[water,outcome:sent,food] all the meals sent</li>
+      <li>[water,outcome:partly] part of it sent</li>
+      <li>[water,outcome:none] not enough in time</li>
+      <li>[water,outcome:declined] turned down</li>
+      <li>[digger,outcome:found] {NAME} helped them find a new well</li>
+      <li>[digger,outcome:notfound] the new well came up dry</li>
+      <li>[digger,outcome:lost] {NAME} did not come back</li>
+      <li>[digger,outcome:declined] nobody lent</li>
+      <li>[refugees,outcome:takenin] {COUNT} of them taken in</li>
+      <li>[refugees,outcome:declined] the refugees turned away</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:digger] {FACTION} still have no water at {PLACE}.</li>
+      <li>[next:refugees] Some of the people of {PLACE} are leaving the town.</li>
+      <li>[end:grew] {FACTION} will send word about the new well.</li>
+      <li>[end:theirown] {FACTION} are digging on their own.</li>
+    </coming>
+    <good><li>grew</li><li>theirown</li><li>takenin</li><li>found</li><li>sent</li></good>
+    <bad><li>nohelp</li><li>turnedaway</li><li>lostdigger</li><li>none</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} asked the colony for help when the well at {PLACE} ran dry, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>nohelp</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} asked the colony for help when the well at {PLACE} ran dry, and the colony did not have it ready in time.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>grew</key>
+        <tone>good</tone>
+        <titles>
+          <li>Water at {PLACE} again</li>
+        </titles>
+        <texts>
+          <li>The new well at {PLACE} is giving water, and the town is growing again. {FACTION} remember that the colony sent {NAME} to help dig it.</li>
+        </texts>
+        <summaries>
+          <li>the colony lent {NAME} to dig a new well at {PLACE}, and the town is growing again.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>theirown</key>
+        <titles>
+          <li>Water at {PLACE} again</li>
+        </titles>
+        <texts>
+          <li>{FACTION} dug on at {PLACE} without the colony's help, and found water. The town has its well again.</li>
+        </texts>
+        <summaries>
+          <li>{FACTION} found water at {PLACE} on their own, after the colony lent nobody to dig.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>lostdigger</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the colony lent {NAME} to dig a new well at {PLACE}, and {NAME} did not come back.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>takenin</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the well at {PLACE} stayed dry, and the colony took in {COUNT} of the town's people.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>turnedaway</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the well at {PLACE} stayed dry, and the colony turned away the town's people who came to it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more help for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and want no more help from it with their well.</li>
+          <li>[destroyed] {FACTION} are gone, and nobody is left at {PLACE} to dig a well for.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while the well at {PLACE} was dry.</li>
+          <li>[destroyed] {FACTION} were gone while the well at {PLACE} was dry.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the dry well at {PLACE}.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S11, the vault's sealed case ===================== -->
+
+  <!-- {FACTION} the vault's people (or another spacer people), {PLACE} their vault or town, {GIVER} their runner, {RIVAL}
+       their engineer, {NAME} who or what was in the case, {COUNT} the components asked for, {SILVER} the pay. -->
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Vault</defName>
+    <label>the vault's sealed case</label>
+    <description>A vault is running out of power. The colony is asked for parts and to host one of its engineers, and in the end the vault leaves a sealed case in the colony's care.</description>
+    <kind>vault</kind>
+    <outcomes>
+      <li>[cells,outcome:sent] all the components sent</li>
+      <li>[cells,outcome:partly] part of the components sent</li>
+      <li>[cells,outcome:none] not enough components in time</li>
+      <li>[cells,outcome:declined] turned down</li>
+      <li>[engineer,outcome:worked] {RIVAL} worked at the colony's bench every day</li>
+      <li>[engineer,outcome:short] {RIVAL} lost some days for want of components</li>
+      <li>[engineer,outcome:harmed] {RIVAL} came to harm</li>
+      <li>[engineer,outcome:declined] the colony did not take in the engineer</li>
+      <li>[case,outcome:opened] the case opened</li>
+      <li>[case,outcome:returned] the case handed back sealed</li>
+      <li>[case,outcome:lost] the case lost</li>
+      <li>[case,outcome:declined] the colony would not keep the case</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:engineer] {FACTION} want to send one of their engineers to the colony.</li>
+      <li>[next:case] {FACTION} have something to leave in the colony's care.</li>
+    </coming>
+    <good><li>favour</li><li>returned</li><li>worked</li><li>sent</li></good>
+    <bad><li>dark</li><li>blamed</li><li>lostcase</li><li>harmed</li><li>lost</li><li>none</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} asked the colony for components for their failing power cells, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>dark</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} asked the colony for components for their failing power cells, and the colony did not have them ready in time.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>noengineer</key>
+        <summaries>
+          <li>the colony sent {FACTION} components for their power cells, but would not take in their engineer.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>blamed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>{FACTION} sent their engineer {RIVAL} to the colony, and {RIVAL} came to harm there.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>opened</key>
+        <summaries>
+          <li>[sleeper,joined] the colony opened the case {FACTION} left in its care, and {NAME}, who was asleep in it, joined the colony.</li>
+          <li>[sleeper,ranoff] the colony opened the case {FACTION} left in its care, and {NAME}, who was asleep in it, left at once.</li>
+          <li>[machine] the colony opened the case {FACTION} left in its care, and a machine came out of it and attacked.</li>
+          <li>[goods] the colony opened the case {FACTION} left in its care, and found old goods in it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>favour</key>
+        <tone>good</tone>
+        <summaries>
+          <li>the colony kept the case {FACTION} left in its care sealed and handed it back, and {FACTION} owe the colony a favour.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>lostcase</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the case {FACTION} left in the colony's care was lost before they came back for it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>refusedcase</key>
+        <summaries>
+          <li>{FACTION} wanted to leave a sealed case in the colony's care, and the colony would not keep it.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more dealings with {FACTION}</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and there will be no more dealings over their vault.</li>
+          <li>[destroyed] {FACTION} are gone, and their vault with them.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while it was helping with their vault.</li>
+          <li>[destroyed] {FACTION} were gone while the colony was helping with their vault.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the colony's dealings with {FACTION}'s vault.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+  <!-- ===================== S12, the lost founder's grave ===================== -->
+
+  <!-- {FACTION} the people whose founder it is, {PLACE} their town, {NAME} the founder, {WAY} which way the search area lies
+       from the colony, {COUNT} the mourners. -->
+  <ColonyCouncil.StorylineDef>
+    <defName>Rimfolk_Storyline_Grave</defName>
+    <label>the lost founder's grave</label>
+    <description>A people say one of their founders is buried on the colony's land. Whether the colony finds the grave, hosts their mourners and keeps the grave decides how they think of the colony for years.</description>
+    <kind>grave</kind>
+    <outcomes>
+      <li>[search,outcome:found] the colony found {NAME}'s grave</li>
+      <li>[search,outcome:theyfound] their own searcher found {NAME}'s grave</li>
+      <li>[search,outcome:builtover] the grave was built over</li>
+      <li>[search,outcome:declined] the colony did not search</li>
+      <li>[mourners,outcome:hosted] the mourners hosted well</li>
+      <li>[mourners,outcome:poorly] the mourners hosted, though not always fed</li>
+      <li>[mourners,outcome:harmed] one of the mourners came to harm</li>
+      <li>[mourners,outcome:builtover] the grave was built over</li>
+      <li>[mourners,outcome:declined] the mourners turned away</li>
+      <li>[outcome:gone] ended when {FACTION} turned against the colony</li>
+      <li>[outcome:ended] it went no further</li>
+    </outcomes>
+    <coming>
+      <li>[next:mourners] {FACTION} want to come and mourn {NAME} at the grave.</li>
+    </coming>
+    <good><li>kept</li><li>found</li><li>hosted</li></good>
+    <bad><li>builtover</li><li>refused</li><li>harmed</li></bad>
+    <endings>
+      <li>
+        <key>declined</key>
+        <summaries>
+          <li>{FACTION} asked the colony to look for the grave of {NAME}, one of their founders, and the colony said no.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>kept</key>
+        <tone>good</tone>
+        <summaries>
+          <li>[found] the colony found the grave of {NAME}, one of the founders of {FACTION}, and hosted their mourners. They will come to it each year.</li>
+          <li>[theyfound] {FACTION} found the grave of {NAME}, one of their founders, on the colony's land, and the colony hosted their mourners. They will come to it each year.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>refused</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the colony turned away the mourners of {FACTION} who came to the grave of {NAME}, and they hold it against the colony.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>builtover</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>the grave of {NAME}, one of the founders of {FACTION}, was built over at the colony, and they hold it against the colony.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>harmed</key>
+        <tone>bad</tone>
+        <summaries>
+          <li>mourners of {FACTION} came to the grave of {NAME} at the colony, and one of them came to harm there.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>No more mourners for {NAME}</li>
+        </titles>
+        <texts>
+          <li>[war] {FACTION} are at war with the colony now, and will not come to {NAME}'s grave.</li>
+          <li>[destroyed] {FACTION} are gone, and nobody is left to mourn {NAME}.</li>
+        </texts>
+        <summaries>
+          <li>[war] {FACTION} turned against the colony while {NAME}'s grave was being looked for.</li>
+          <li>[destroyed] {FACTION} were gone while {NAME}'s grave was being looked for.</li>
+        </summaries>
+      </li>
+      <li>
+        <key>faded</key>
+        <summaries>
+          <li>nothing more came of the search for {NAME}'s grave.</li>
+        </summaries>
+      </li>
+    </endings>
+  </ColonyCouncil.StorylineDef>
+
+</Defs>

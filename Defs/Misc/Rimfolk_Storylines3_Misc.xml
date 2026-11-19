@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Storylines, round 3, and the one away quest (Source/ColonyCouncil/Storylines/, Missions/Workers_MissionHome5.cs): the
+       vault's sealed case, the old cache in the ruins, the founder's grave marker, the search of a marked area, the lent hand
+       walking out, the engineer at the bench, and the dreamer's two moods. Sprites: Tools/make_quest_items.py. -->
+
+  <!-- ===================== Things ===================== -->
+
+  <!-- The vault's sealed case (StorylineVault.cs): left in the colony's care, opened or handed back. -->
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_VaultCase</defName>
+    <label>sealed vault case</label>
+    <description>A heavy metal case from the vault, its lid sealed shut. The vault left it in the colony's care, and it belongs to them.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/VaultCase</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.9,0.9)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>60</MarketValue>
+      <Mass>18</Mass>
+      <MaxHitPoints>200</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Beauty>0</Beauty>
+    </statBases>
+  </ThingDef>
+
+  <!-- The old cache in the ruins (Workers_MissionHome5.cs): brought home and collected by the people whose map showed it. -->
+  <ThingDef ParentName="Rimfolk_QuestItemBase">
+    <defName>Rimfolk_QuestCache</defName>
+    <label>old cache</label>
+    <description>A small chest bound with iron, closed a long time ago. A neighbouring people's old map showed where it was hidden, and it is theirs.</description>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/QuestCache</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.8,0.8)</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>30</MarketValue>
+      <Mass>8</Mass>
+      <MaxHitPoints>150</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Beauty>0</Beauty>
+    </statBases>
+  </ThingDef>
+
+  <!-- The founder's grave marker (StorylineGrave.cs): set where the grave was found, the colony's to keep. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_FounderGrave</defName>
+    <label>old grave marker</label>
+    <description>An old stone set where one of a neighbouring people's founders is buried. Their mourners come to it. Building over it, or taking it down, would be taken as a slight.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/FounderGrave</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+      <shadowData>
+        <volume>(0.4, 0.4, 0.2)</volume>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>30</pathCost>
+    <fillPercent>0.25</fillPercent>
+    <rotatable>false</rotatable>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Beauty>2</Beauty>
+      <Flammability>0</Flammability>
+      <WorkToBuild>1</WorkToBuild>
+    </statBases>
+    <building>
+      <isInert>true</isInert>
+      <claimable>false</claimable>
+      <deconstructible>true</deconstructible>
+    </building>
+    <size>(1,1)</size>
+  </ThingDef>
+
+  <!-- ===================== Jobs ===================== -->
+
+  <!-- A look around a spot of a part's search area for about an hour (StorylineRound3.cs). -->
+  <JobDef>
+    <defName>Rimfolk_Storyline_Search</defName>
+    <driverClass>ColonyCouncil.JobDriver_StorylineSearch</driverClass>
+    <reportString>searching the ground.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- The lent hand walking out to the edge of the map with the town's foreman (StorylineWell.cs). -->
+  <JobDef>
+    <defName>Rimfolk_Storyline_LentOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_StorylineLentOut</driverClass>
+    <reportString>setting out to dig a well.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- The vault's engineer at one of the colony's work benches (StorylineVault.cs). -->
+  <JobDef>
+    <defName>Rimfolk_Storyline_BenchWork</defName>
+    <driverClass>ColonyCouncil.JobDriver_StorylineBenchWork</driverClass>
+    <reportString>working at a bench.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== The dreamer's moods (StorylineDream.cs) ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Storyline_DreamHonoured</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>my dream was honoured</label>
+        <description>I dreamed of a place for my god and of an offering, and the colony gave both. I feel I did what was asked of me.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Storyline_DreamTroubled</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>troubled by my dream</label>
+        <description>My god asked something of us in a dream, and it was not done. I keep thinking about it.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
