@@ -158,7 +158,13 @@ namespace ColonyCouncil
         /// tick of the hour (179) the visitors who may cast a helpful spell in peace roll for it.
         /// </summary>
         public const int RarePeoplesMagic = 179;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic };
+
+        /// <summary>
+        /// Riding out to far work with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs; only with Giddy-Up and riding out on): a
+        /// beast waiting for its rider keeps waiting while the rider is at work out past the base.
+        /// </summary>
+        public const int RareRideOut = 143;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;
