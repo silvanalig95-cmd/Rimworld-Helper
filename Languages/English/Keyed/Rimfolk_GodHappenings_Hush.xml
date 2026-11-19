@@ -11,7 +11,7 @@
 
   <CC_GodHush_Word_Title>A word in the frost</CC_GodHush_Word_Title>
   <CC_GodHush_Word_TitleNamed>{GOD}'s word in the frost</CC_GodHush_Word_TitleNamed>
-  <CC_GodHush_Word_Text>When {PAWN} came out at first light, there was a word written in the frost {WHERE}, in letters no hand had made: {WORD}.</CC_GodHush_Word_Text>
+  <CC_GodHush_Word_Text>When {PAWN} came out at first light, there was a word written in the frost {WHERE}, though nobody had written it: {WORD}.</CC_GodHush_Word_Text>
   <CC_GodHush_Where_Door>beside the {DOOR}</CC_GodHush_Where_Door>
   <CC_GodHush_Where_Window>on the {DOOR}</CC_GodHush_Where_Window>
   <CC_GodHush_Where_Ground>on the open ground at the edge of the colony</CC_GodHush_Where_Ground>

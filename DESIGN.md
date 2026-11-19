@@ -15400,7 +15400,7 @@ under the world. Tamiu is the one who keeps the dead whole and lies across the d
   cat harmed sends the cats off in one night and brings the rats (`kinWrath`).
 - **The riddle at the threshold** (`MogsWays.Ask`, `HappeningWorker_GodRiddle`, `Rimfolk_Evt_GodRiddle`, `MogMath`): once
   a stay at most, from her second day, in the day (`RiddleDue`: about three seasons in four), she lies across the way in
-  (outside the colony's outermost door) and a card puts her riddle, heard "in no voice at all", one of the colony's age's
+  (outside the colony's outermost door) and a card puts her riddle, heard though nobody speaks it, one of the colony's age's
   four (`CC_Mog_RiddleQ_<age>_<i>`): send the sharpest wits (Intellectual), the best talker (Social), or let her lie.
   The one sent walks out to her and says their answer aloud; it is wrong by the card's risk, at their own skill
   (`WrongChance`: three in four with none, one in three at ten, one in ten from fifteen), told only when they reach her.
@@ -15737,7 +15737,7 @@ passes to anyone, and nothing reads a family.
   toward each saint's god a little more (`SaintsMath.WithSaints`, +0.35 of the strongest lean, never past it); its damned
   leave each believer uneasy about the god each is tied to, once (`SaintsMath.DamnedDread` 20, with its line of why).
 - **The book** (`Saints.BookLines`, `GodLorePage.SaintsPart`): "Of its saints", in the keeper's hand, under the chapter the
-  colony keeps the god under: its own ("Saint Mira, who kept the sick for years, named by the council on 5th of Aprimay,
+  colony keeps the god under: its own ("Saint Mira, who cared for the sick for years, named by the council on 5th of Aprimay,
   5502. Her day is kept each year on the day she died."), its faiths' ("The faith of the Way of Ash holds Saint Aranea among
   its saints."), the damned ("The faith of the Way of Ash fears Vorgath the Damned, and never prays to them.") and those
   kept no more.
