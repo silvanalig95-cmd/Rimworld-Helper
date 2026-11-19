@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 759; modelled: 759; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** after two, **4,232 KB** after five.
+Saved collections found: 772; modelled: 772; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,064 KB** after a year, **3,778 KB** after two, **4,236 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -319,6 +319,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Harm/Harm.cs:lastHurt` | the shared cap of hurts from everyday life: the last one's tick per colonist hurt in the last three days, pruned past them daily and at saving | colonists | 10 | 10 | 10 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
+| `Peoples/Events6/PeopleEvents6Book.cs:contracts` | the Banner's contracts on the colony's enemy, the open one and the last few done | cap | 1 | 2 | 4 | 0.9 |
 | `Peoples/Events2/PeopleEvents2Book.cs:terms` | the enclave's terms for a part fitted, one open with a people at a time, PeopleEvents2Math.MaxTerms kept | cap | 1 | 1 | 3 | 0.8 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
 | `Ambitions/Ambitions.cs:voterPawns` | while the letter waits | while | 20 | 20 | 20 | 0.8 |
@@ -369,10 +370,12 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Peoples/Events5/PeopleEvents5Book.cs:mourns` | the raiders' peoples whose mourners are due, PeopleEvents5Math.MaxMourns kept | cap | 1 | 2 | 5 | 0.6 |
+| `Peoples/Events6/AfterFire.cs:saplings` | the cells still to plant in the burn, while the camp stands | fixed | 24 | 24 | 24 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Storylines/Storylines.cs:afters` | what an ending leaves for a year (a season's share, no traders): gone once over | cap | 3 | 3 | 3 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
+| `Peoples/Events6/PeopleEvents6Book.cs:hires` | the raids the Banner was hired for, four kept | cap | 1 | 3 | 4 | 0.5 |
 | `Apparel/ApparelPickBook.cs:notNow` | colonists whose clothes suggestions are set aside, ten days each, the ended pruned daily | colonists | 6 | 6 | 6 | 0.5 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
@@ -405,6 +408,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `OldPowers/OldPowersBook.cs:lately` | the old powers' short memory of the forms they took ('seer|fold1|12'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
+| `Peoples/Events6/PeopleEvents6Book.cs:tides` | the psychic tides a Conclave watch held back, four kept | cap | 1 | 2 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
@@ -424,6 +428,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Peoples/Events4/PeopleEvents4Book.cs:fellows` | the society's corresponding fellows, PeopleEvents4Math.MaxFellows kept | cap | 0 | 1 | 2 | 0.4 |
 | `Peoples/Events5/FieldOfFallen.cs:plots` | its row of graves, while the camp stands | fixed | 16 | 16 | 16 | 0.4 |
 | `Peoples/Events5/PeopleEvents5Book.cs:yards` | the Wheel's yards due, one a home, four kept | cap | 1 | 2 | 4 | 0.4 |
+| `Peoples/Events6/PeopleEvents6Book.cs:afters` | the camps after the fire asked for at a fire in the canopy, one a home, four kept | cap | 1 | 2 | 4 | 0.4 |
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
 | `CouncilGameComponent.cs:beasts` | one per colony: the beast that stays on its land (its known ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
@@ -460,6 +465,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Faith/FaithCouncilTracker.cs:plans` | the evening of faith waiting to be held: one at a time, let go when its gathering is over | while | 1 | 1 | 1 | 0.3 |
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
+| `Peoples/Events6/PeopleEvents6Book.cs:veterans` | the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone | cap | 0 | 1 | 2 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
 | `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Peoples/Events3/SpringCalving.cs:inCalf` | the calving camp's beasts in calf, four to seven, while its camp stands | fixed | 7 | 7 | 7 | 0.3 |
@@ -480,6 +486,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Peoples/Events3/FieldSickhouse.cs:beds` | the beds made up for them, while the camp stands | fixed | 6 | 6 | 6 | 0.2 |
 | `Peoples/Events3/FieldSickhouse.cs:patients` | the field sickhouse's patients, two to six, while its camp stands | fixed | 6 | 6 | 6 | 0.2 |
 | `Peoples/Events5/PeopleEvents5Book.cs:mendRaids` | the raids whose night the Wheel's crew was rolled for, a home and a tick, eight kept | cap | 4 | 8 | 8 | 0.2 |
+| `Peoples/Events6/PeopleEvents6Book.cs:rainRolled` | the dry spells the storm-walkers were rolled for, a home and a condition, eight kept | cap | 2 | 4 | 8 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Visitors/VisitorTrip.cs:people` | a visit's people, while it lasts | while | 6 | 6 | 6 | 0.2 |
@@ -533,6 +540,9 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `World/WorldSituation.cs:sufferers` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `Peoples/Events3/FieldSickhouse.cs:fed` | the peoples whose sick the colony fed, by id, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
 | `Peoples/Events4/PeopleEvents4Book.cs:lanternYears` | the knot nights whose lanterns came, a people and a year, twelve kept | cap | 1 | 2 | 5 | 0.1 |
+| `Peoples/Events6/PeopleEvents6Book.cs:blightRolled` | the blights a camp after the fire was rolled for, a home and a day, eight kept | cap | 1 | 2 | 5 | 0.1 |
+| `Peoples/Events6/PeopleEvents6Book.cs:burnSeen` | the newest burned tree reckoned for a camp after the fire, a key a home | cap | 1 | 2 | 5 | 0.1 |
+| `Peoples/Events6/PeopleEvents6Book.cs:canopyRolled` | the wildfires the thorn-guards were rolled for, a home and a day, eight kept | cap | 1 | 2 | 5 | 0.1 |
 | `Pressures/Pressures.cs:workCounts` | per colonist | fixed | 6 | 6 | 6 | 0.1 |
 | `Gods/GodLore.cs:seenActing` | the gods the colony has seen act plainly, one a god at most | fixed | 14 | 14 | 14 | 0.1 |
 | `Character/Character.cs:tiers` | five ways | fixed | 5 | 5 | 5 | 0.1 |
@@ -589,6 +599,7 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Gods/Presence/GodAvatar.cs:given` | the god's robe and crown, while it walks as one | while | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events/PeopleCamps.cs:trail` | the lantern post's hunters out on the trail, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events5/CircuitRing.cs:waiting` | the colony's challengers waiting for the afternoon's bout, while the ring stands | fixed | 2 | 2 | 2 | 0.1 |
+| `Peoples/Events6/StormTower.cs:rods` | the storm tower's two rods, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/OnMapTimed.cs:cells` | per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
@@ -720,6 +731,8 @@ Rimfolk's part of the save, roughly: **3,063 KB** after a year, **3,775 KB** aft
 | `Peoples/Events5/PeopleEvents5Book.cs:roses` | per grave-garden: the roses still to plant, cleared when the work is done (counted under gardens) | fixed | 10 | 10 | 10 | (in its record) |
 | `Peoples/Events5/PeopleEvents5Book.cs:stones` | per grave-garden: the flagstones still to lay, cleared when the work is done (counted under gardens) | fixed | 30 | 30 | 30 | (in its record) |
 | `Peoples/Events5/PeopleEvents5Book.cs:tenders` | per egg: the colonists who tended it (counted under eggs) | fixed | 6 | 6 | 6 | (in its record) |
+| `Peoples/Events6/PeopleEvents6Book.cs:company` | per contract: the company at the site, eight at most, cleared when it is done (counted under contracts) | fixed | 8 | 8 | 8 | (in its record) |
+| `Peoples/Events6/PeopleEvents6Book.cs:lost` | per contract: the names the company lost there, eight at most (counted under contracts) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:l` | per person: one per side (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:marks` | per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people) | fixed | 12 | 12 | 12 | (in its record) |

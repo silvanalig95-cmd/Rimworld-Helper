@@ -33,8 +33,8 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0); round 5 is built, not released (the entry above the newest
-   release line).
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0); round 6 is built, not released (the
+   entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -150,16 +150,16 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), and round 5
-  built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 6 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0)
+  and round 6 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 7 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
-  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Built, not released (19 November 2026).
-  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
+  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
+  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Built, not released (19 November 2026).
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
@@ -488,6 +488,100 @@ repo.
     at the gate now...", turn the stranger away, and read the card when it goes. "Gods in the world: the Hunger takes
     now" with a colony animal bonded to nobody: the animal it takes vanishes in a puff of smoke, as the card says.
   - **Mods that would help.** None for this; it is text only.
+- 0.270.0, **The peoples' own events, round 6**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 48, 49, 50, 52, 53, 54, 55, 56, 57 and 58 of `docs/peoples-events-proposals.md` (ten, all built): the Stormglass
+  Conclave's storm-walkers who bring the rain in a drought or a heat wave, a psychic drone or soothe read ahead by their
+  watch (its warning naming everyone it will touch, a reader sitting with the worst touched) and the storm tower they camp
+  at on the high ground; the Mossborn's thorn-guards who beat out a fire in the colony's woods, the seeds of the old wood
+  sown with the colony's grower, and their camp in the burn after a fire or a blight; the Ashen Banner's contract on the
+  colony's enemy, the old soldier who settles with a war-horse and the yearly muster, the contract the other side made with
+  them, and a company camped a night or two on its march. DESIGN.md "The peoples' own events, round 6" has every rule; README
+  "The peoples' own events, the sixth round"; the Almanac's peoples' page, *Of their own: gifts, trust and camps*
+  (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events6/` (new): `PeopleEvents6Math.cs` (pure, linked), `PeopleEvents6Book.cs` (a
+    game component: the dry spells, fires and blights rolled, the burns reckoned, the tides held, the camps after the fire
+    asked for, the Banner's contracts, its old soldiers and the raids it was hired for), `PeopleEvents6.cs` (the visits'
+    dispatch, the homes' hour, the high ground and the rods, the fires, `JobDriver_PEv6Work` with a queue and its `PEv6Work`
+    marks, `JobDriver_PEv6Firefight`), `DroughtBroken.cs` (48), `TideRead.cs` (49, and `Patch_TideHold`,
+    `Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`), `StormTower.cs` (50, `CampWorker_StormTower`), `CanopyFire.cs` (52),
+    `OldWoodSeeds.cs` (53), `AfterFire.cs` (54, `CampWorker_AfterFire`), `BannerContract.cs` (55), `OldSoldier.cs` (56, the
+    muster and `MusterAway`), `OtherSideContract.cs` (57, and `Patch_BannerHired`), `CompanyMarch.cs` (58,
+    `CampWorker_CompanyMarch`, `EnlistAway`), `PeopleEvents6Debug.cs`. Small hooks: `PeopleEvents5.Hour` and `Hourly` (round
+    6's, one line each), round 2's `SeasonAway.Kinds` (the muster, the season enlisted), round 1's `PeopleWorkOn.Finish` (a
+    worker with another open order is not sent home: the reader's second sitting), `MossLedger.Notify_Felled` (a tree felled
+    in the planting), `FactsMath` (the three camps' tags), the def check's camp counts (`{STORMS}`, `{PLANTED}`). Defs:
+    `Rimfolk_Events_PeopleEvents6.xml` (eleven events; six fired from code: the storm-walkers, the reader, the thorn-guards,
+    the grove-warden, the muster, the hired sergeant), `Rimfolk_CampKinds_PeopleEvents6.xml` (three camps),
+    `Rimfolk_PeopleEvents6_Misc.xml` (eleven jobs, the glass mast, the storm vial, two moods), Keyed
+    `Rimfolk_PeopleEvents6.xml`, `Textures/ColonyCouncil/Things/StormglassMast.png` and `StormVial.png` (drawn by
+    `Tools/make_storm_glass.py`). Tools: the play-out audit's effects and five skips, the save model's lists.
+  - Decided here (open in the proposals): "the colony's high ground" is the relay mast's own choice of it
+    (`RelayMast.Site`: by the rock first), and the card names it as it is ("the high ground by the rocks" or "the open ground by
+    the colony"); the rain ends every dry spell on the map (Odyssey's and Vanilla Events Expanded's droughts, the heat wave) and
+    is the land's own rain, one time in four its own thunderstorm; the night with them is the second answer, a lesson and the
+    Conclave's glass for a season; the drone or soothe holds the watch's one slot, and the sex it touches is fixed when it is
+    held so the warning can name everyone (the game would pick it as it came); the reader's letter comes as the drone does,
+    no answer meaning the reader sits with the worst touched (their mood the lowest), and the second answer the two worst;
+    the storm tower comes in spring and summer on land with thunderstorms, its second answer eight meals, its "vial" a drawn
+    keepsake that sells, its "forecast for the season" the Conclave's own season's watch begun free; the stray strike and the
+    fire in the ash are the camps' embers' kind in the shared harm budget (`CampLeft`), the chill the camps' fever with the
+    illness budget, the bet's brawl the camps' brawl, so no new harm kind; the thorn-guards' letter comes once they are at the
+    fire (no answer: they fight it), its second answer asks them back to replant (the camp after the fire, due half a day
+    after it is out, then for a burn of three trees or more); the seeds are sown in a new growing zone of four by four (the
+    colony's to keep), paid in silver or a quarter again in its most-stocked raw harvest; after a blight the grove-keepers cut
+    out the blighted plants and plant saplings on open ground nearby, never in the fields; felling within the planting is a
+    tree cut by the colony within its reach while they are there; the contract's target is a hostile site first (the game's
+    quests and sites), else a hostile town, both enemies of the Banner too (else the company could not fight there), the
+    colony's people must be on its map within fifteen days, "loot split by the contract" is half the silver lying there when
+    the fight is over (all the colony's with their share paid up front); the war-horse is the game's horse, the Paragon horse
+    of Vanilla Genetics Expanded in the spacer age; the muster is at the Banner's nearest town; the other side's raid is any
+    raid by a people at war with the colony and at peace with the Banner, "buying out the contract" puts the company on the
+    colony's side against that raid, "letting them march" makes a little over a third of the raid's own points the Banner's
+    soldiers under that people's colours; the company's "square of bedrolls" is the camps' ring of bedrolls round the fire
+    (no square form exists, and the words say so); the soldier who stays is the camps' own joining; enlisting is a season
+    away to the Banner's town.
+  - Fixed in passing (a bug of round 5, released 0.269.0): the gravewardens' burial, the grave-garden, the night crew and the
+    wagon never found the people their visit was for (their visits keep their own words where rounds 2 to 4 kept that
+    people's name), so their thanks were never given, the gravewardens' last word and message were never shown, and the
+    others' messages named the people "?". `PeopleEvents5.PeopleOf` now finds them by who came, and round 6 uses it too.
+  - Harm: none of a new kind. The stray strike, the fire in the ash, the chill and the bet's brawl go through the shared harm
+    budget under the camps' kinds and are told; the fights (at the contract's site, the hired raid, the band against the
+    company), the storm's lightning and the fires the thorn-guards fight are the game's own, and the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents6Tests.cs` (about 230 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the walkers' rods set on the high ground and kept through
+    the night, a colonist kept beside them, the dry spell ended and the rain or the storm at first light, the rods taking the
+    strikes near them; the drone held in the game's queue and its sex given to it as it comes, the runner at the gate, the
+    reader's hour with one and then the other; the tower's mast and rods raised by the camp, the storms counted, the night's
+    watch at the mast, the stray strike and the fire beaten out, the chill, the vial at the gate and the watch begun; the
+    thorn-guards' run and their beating with the game's own `TryBeatFire`; the plot's cells sown and made a zone of the plant;
+    the burned trees cut for wood and the saplings planted, the songs at night, the felling hook, the fire in the ash; the
+    company spawned beside the colony's people on a site's map and their assault, the silver taken, the march home; the
+    veteran and the horse taken in, the horse trained and bonded, the muster's road and home; the raid held, its faction set,
+    its points split and the Banner's soldiers added to its lord, or the company in on the colony's side; the company's camp,
+    its dawn drill, the meals sold, the enlisted colonist's season, the band against the camp, the bet).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 6: what the record keeps (log)" shows the state and what each event
+    would find here; the drawn events with the game's own incident tool): 1. The drought: "Peoples' events 6: the storm-walkers
+    now" (a heat wave started if no dry spell is on); either paid answer; watch the rods go up at dusk, and the rain at first
+    light. 2. The tide: "Peoples' events 6: a drone held by the watch now" (a watch begun if none); the runner's letter names
+    everyone; when the drone comes a day later, the reader comes to sit with the worst touched. 3. The storm tower: in spring
+    or summer `Rimfolk_Evt_StormTower` (or "one of their camps here now..."); the mast and rods, a storm counted, the watch
+    ask in the evening, the vial at the gate when they go; "a camp of theirs turns now..." for the strike and the chill. 4.
+    The fire: "Peoples' events 6: the thorn-guards to a fire now" (a fire set among the trees nearest the colony); their run
+    and the beating; the second answer. 5. The seeds: `Rimfolk_Evt_OldWoodSeeds`; the plot sown and its zone. 6. After the
+    fire: once ten trees have burned, "the camp after the fire due here now"; the cutting, the saplings, the song; fell a
+    tree within the planting to see them leave. 7. The contract: `Rimfolk_Evt_BannerContract` with a hostile site or town
+    within reach; send a caravan, or try "the contract's company in beside our people here now" on any map with colonists.
+    8. The old soldier: `Rimfolk_Evt_OldSoldier`; then "an old soldier's muster due now". 9. The other side's contract: "a raid
+    held for the Banner now" (a people at war with the colony and at peace with the Banner needed); answer and wait for the
+    raid. 10. The company: `Rimfolk_Evt_CompanyMarch`; the dawn drill, the asks, "a camp of theirs turns now..." for the band
+    and the bet.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Odyssey and Vanilla Events Expanded's
+    droughts, Seasonal Weather's wildfire, Vanilla Plants Expanded with More Plants, Succulents and Flowers, Alpha Biomes,
+    Vanilla Genetics Expanded's Paragon horse, Giddy-Up 2 to ride the war-horse, Vanilla Factions Expanded - Medieval 2 for the
+    Banner's issued kit). The glass mast and the storm vial are drawn here.
 - 0.269.5, **Plain words: the council and its
   decrees** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

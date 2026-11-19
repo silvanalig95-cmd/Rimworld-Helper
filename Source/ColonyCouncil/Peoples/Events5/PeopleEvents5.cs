@@ -47,7 +47,8 @@ namespace ColonyCouncil
                 case MendTonight.Kind: return MendTonight.Hour(v, now);
                 case WagonOfOurOwn.Kind: return WagonOfOurOwn.Hour(v, now);
             }
-            return false;
+            // Round 6's (Peoples/Events6/): the storm-walkers' night, the tide's runner, the thorn-guards at a fire.
+            return PeopleEvents6.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -70,6 +71,8 @@ namespace ColonyCouncil
             Safe("the crater eggs", () => CraterEgg.Watch(now));
             Safe("the pieces at the cart", () => MadeBetter.Watch(now));
             Safe("the yards", () => WheelStopsBy.Watch(now));
+            // Round 6's watch (Peoples/Events6/): a dry spell, a fire and what it left, the tides held, the Banner's contracts and musters.
+            Safe("round 6", () => PeopleEvents6.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>
@@ -147,6 +150,13 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("peoples' events 5: the bell", e);
             }
         }
+
+        /// <summary>
+        /// The people a visit of the round is for: the one its text names (rounds 2 to 4 put it there), else the people of
+        /// whoever came (round 5's and 6's visits keep their own words in the text).
+        /// </summary>
+        public static Faction PeopleOf(Visit v) =>
+            PeoplesF.PeopleOf(v) ?? v?.group.Prepend(v.x).FirstOrDefault(p => p?.Faction != null && !p.Faction.IsPlayer)?.Faction;
 
         public static void Safe(string what, Action a)
         {

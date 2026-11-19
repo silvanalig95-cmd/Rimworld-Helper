@@ -448,6 +448,9 @@ wishPh.UnionWith(new[] { "GUESTS", "OLDPLACE", "READING" });
 // And of round 3 (Peoples/Events3/RoadGang.cs, FieldSickhouse.cs, SpringCalving.cs): the road gang's floor in a word, how
 // many the field sickhouse kept, how many calves were born at the calving camp (CampWorker.Fill).
 wishPh.UnionWith(new[] { "FLOOR", "PATIENTS", "CALVES" });
+// And of round 6 (Peoples/Events6/StormTower.cs, AfterFire.cs): how many storms the storm tower wrote down, how many saplings
+// the grove-keepers planted after the fire (CampWorker.Fill).
+wishPh.UnionWith(new[] { "STORMS", "PLANTED" });
 // Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs, PeoplesMagic.LetterTags): a caster's class in a word, with its
 // article and many of them, and in a letter the classes among the writer's people ("druids and rangers").
 wishPh.UnionWith(new[] { "CRAFT", "ACRAFT", "CRAFTS", "AMONG" });

@@ -98,7 +98,9 @@ namespace ColonyCouncil
             // And of round 4 (Rimfolk_CampKinds_PeopleEvents4.xml).
             "them:camp:SummerSchool", "them:camp:FloodedOut", "them:camp:BoatBuilders",
             // And of round 5 (Rimfolk_CampKinds_PeopleEvents5.xml).
-            "them:camp:FieldOfFallen", "them:camp:CircuitRing", "them:camp:WheelYard"
+            "them:camp:FieldOfFallen", "them:camp:CircuitRing", "them:camp:WheelYard",
+            // And of round 6 (Rimfolk_CampKinds_PeopleEvents6.xml).
+            "them:camp:StormTower", "them:camp:AfterFire", "them:camp:CompanyMarch"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

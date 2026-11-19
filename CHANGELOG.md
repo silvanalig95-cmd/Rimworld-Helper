@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 6
+
+*19 November 2026, version 0.270.0*
+
+- In a drought or a heat wave, two storm-walkers of the Stormglass Conclave can set their rods on the colony's high ground for a night and bring the rain at first light.
+- While the Conclave watches the colony's sky, a psychic drone or soothe is foreseen a day ahead and the warning names everyone it will touch; when a drone comes, a reader sits with whoever it hits hardest.
+- In spring and summer the Conclave may camp a week on the high ground with a glass mast and rods that take the lightning near them, and leave a sealed vial and the season's forecast.
+- When fire takes the colony's woods, the Mossborn's thorn-guards come running to beat it out, and their grove-keepers may camp in the burn for a week to clear and replant it.
+- A Mossborn herb-trader brings seeds of a plant the colony doesn't grow yet and sows a plot of it with the colony's grower.
+- The Ashen Banner offers contracts on the colony's enemies, fighting beside the colony's people at an enemy camp for half the silver found there.
+- An old Banner soldier may settle with the colony with a war-horse, and a people at war with the colony may hire the Banner for its next raid: buy the contract, pay them to stand aside, or let them march.
+- Put right: four of round 5's visits now find their people, so the Quiet Bell's gravewardens, the sextons, the night crew and the wagon's fixer give their thanks and name who came.
+
 ## The decrees in plain words
 
 *19 November 2026, version 0.269.5*
