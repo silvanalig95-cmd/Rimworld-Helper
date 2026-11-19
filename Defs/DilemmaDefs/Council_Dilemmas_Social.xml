@@ -10,7 +10,7 @@
   <!-- ===================== Sworn rivals ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_SwornRivals</defName>
-    <label>a line down the middle</label>
+    <label>a feud that splits the colony</label>
     <weight>1.2</weight>
     <cooldownDays>35</cooldownDays>
     <roleA>
@@ -24,7 +24,7 @@
     </roleB>
     <texts>
       <li>Somebody carved a line down the middle of the dining table this week. {A_nameDef} eats on one side of it and {B_nameDef} on the other, and the rest of the colony has had to pick a side to sit on. Neither of them can say anymore how the feud started.\n\n{A_nameDef} and {B_nameDef} came to the council together, which has never happened before. Each wants it ended for good, and each has a clear idea of who should lose.</li>
-      <li>Work crews are picked by side now. Jokes are told at one or the other's expense, and the dining room goes quiet whenever {A_nameDef} and {B_nameDef} are both in it. Yesterday someone asked, only half joking, which side the council was on.</li>
+      <li>The feud between {A_nameDef} and {B_nameDef} has split the colony in two. Work crews are picked by side now, jokes are told at one or the other's expense, and the dining room goes quiet whenever both of them are in it. Yesterday someone asked, only half joking, which side the council was on.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -49,7 +49,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Keep them apart: separate shifts, separate meals</label>
+        <label>Keep them apart, with separate shifts and meals</label>
         <outcome>{A_nameDef} works the mornings now and {B_nameDef} the afternoons, and meals are taken in shifts so they only meet by accident. The others had their weeks rearranged to make it work, and complain about it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Separated</thought></li>
@@ -267,7 +267,7 @@
   <!-- ===================== The remembrance ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_Remembrance</defName>
-    <label>the remembrance</label>
+    <label>remembering the fight</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Feast</workerClass>
     <weight>0.9</weight>
     <cooldownDays>40</cooldownDays>
@@ -277,7 +277,7 @@
       <minTie>30</minTie>
     </roleB>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} stood together the last time the colony was attacked, and they haven't stopped talking about it since. They want a night set aside to remember the fight properly: a fire, a real meal, the whole story told start to end, and a drink for everyone who bled.\n\nIt would cost about {COUNT} raw food and a day of everyone's work. {A_nameDef} says some things are worth a day. {B_nameDef} says the ones who bled deserve at least that.</li>
+      <li>{A_nameDef} and {B_nameDef} stood together the last time the colony was attacked, and they haven't stopped talking about it since. They want a night set aside to remember the fight properly, with a fire, a real meal, the whole story told from start to end and a drink for everyone who bled.\n\nIt would cost about {COUNT} raw food and a late night for everyone. {A_nameDef} says some things are worth it. {B_nameDef} says the ones who bled deserve at least that.</li>
       <li>Since the last attack, {A_nameDef} and {B_nameDef} have been close in the way only people who've been shot at together are. They've come to the council asking for a remembrance night for the fight, with food, a fire, and everyone there to hear it.\n\nThe cooks have worked out the cost, about {COUNT} raw food, and aren't pleased. {A_nameDef} and {B_nameDef} say that's what the stores are for.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -324,7 +324,7 @@
         </effects>
       </li>
       <li>
-        <label>No. The stores are for the living</label>
+        <label>No, the stores are for the living</label>
         <outcome>{A_nameDef} and {B_nameDef} drank to the fight alone, out by the wall, and haven't been as quick to volunteer since.</outcome>
         <ways><generosity>-4</generosity><tradition>-4</tradition></ways>
         <effects>
@@ -352,7 +352,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_Accusation</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a rival's word</label>
+    <label>an accusation without proof</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
     <roleB>
@@ -362,7 +362,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} stood up at dinner and announced that {A_nameDef} has been stealing silver from the stores. {B_nameDef} has no proof, only a feeling, a rough count of the silver and a long history of hating {A_nameDef}.\n\n{B_nameDef} wants {A_nameDef} punished. {A_nameDef} wants {B_nameDef} to take it back, in front of the same people who heard it.</li>
-      <li>Gone missing this month: a knife, some silver, a good pair of boots. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen a thing.\n\n{A_nameDef} says {B_nameDef} would blame {A_objective} for the rain.</li>
+      <li>This month a knife, some silver and a good pair of boots have gone missing. {B_nameDef} says {A_nameDef} took them, and says it loudly and often, though no one else has seen a thing.\n\n{A_nameDef} says {B_nameDef} would blame {A_objective} for the rain.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -545,7 +545,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_ClosedCircle</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>the closed circle</label>
+    <label>a group that shuts someone out</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
     <minColonists>5</minColonists>
@@ -558,7 +558,7 @@
       <notTie>Friends</notTie>
     </roleB>
     <texts>
-      <li>{B_nameDef} and {B_possessive} friends have claimed the best table and the warm corner, and they go quiet whenever {A_nameDef} walks in. None of them has been rude, exactly, which makes it hard to complain about.\n\n{A_nameDef} is complaining anyway, and wants the council to break the circle open. {B_nameDef} says who {B_pronoun} sits with is {B_possessive} own business.</li>
+      <li>{B_nameDef} and {B_possessive} friends have claimed the best table and the warm corner, and they go quiet whenever {A_nameDef} walks in. None of them has been rude, exactly, which makes it hard to complain about.\n\n{A_nameDef} is complaining anyway, and wants the council to make them let {A_objective} in. {B_nameDef} says who {B_pronoun} sits with is {B_possessive} own business.</li>
       <li>There's a group in this colony that eats together, works together and laughs at jokes no one else understands. {A_nameDef} isn't in it, and {B_nameDef}, who can't stand {A_nameDef}, is most of the reason why.\n\n"Since when does friendship need the council's permission?" was {B_nameDef}'s answer when {A_nameDef} brought it up.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -824,7 +824,7 @@
     </roleB>
     <texts>
       <li>{B_nameDef} has been watching the stores, and says the quartermaster's friends do better than everyone else: the fine meals, the warm coats, first pick of every trade. The quartermaster is {A_nameDef}, whom {B_nameDef} has despised for a long time.\n\n{B_nameDef} wants {A_nameDef} called to account. {A_nameDef} says {B_nameDef} would find favoritism in a bowl of plain rice.</li>
-      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} has offered to light the fire with it.</li>
+      <li>{B_nameDef} brought the council a list of every extra ration, new coat and good bed that has gone to {A_nameDef}'s friends since {A_nameDef} took the quartermaster's keys. Some of it is true. Some of it looks like the work of a rival with time on {B_possessive} hands.\n\n{A_nameDef} says the list is nonsense.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
