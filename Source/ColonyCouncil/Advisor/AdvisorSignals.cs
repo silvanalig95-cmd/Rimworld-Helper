@@ -399,7 +399,8 @@ namespace ColonyCouncil
             var s = Signal(kinds < needed ? 0.3f + 0.05f * (needed - kinds) : 0.25f, "CC_Adv_Rec_Title".Translate(kinds, needed),
                 "CC_Adv_Rec_Detail".Translate(avgJoy.ToStringPercent()) + " " + suggestion, 0.4f);
             s.suggestThing = giver;
-            s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_RecRoom");
+            // The plan of a rec room only where no room serves as one yet (RoomUtil: games in a temple or a dining room count).
+            if (!RoomUtil.AnyRecRoom(map)) s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_RecRoom");
             yield return s;
         }
     }
@@ -534,14 +535,15 @@ namespace ColonyCouncil
             int colonists = RoomUtil.ColonistCount(map);
             if (colonists == 0) yield break;
 
-            if (colonists >= 3 && !RoomUtil.ColonyRooms(map).Any(r => r.Role == RoomUtil.RecRoom) && Avail.AnyBuildable(map, Avail.IsJoyGiver))
+            // A room counts by what is in it: a temple or a dining room with games in it already serves as a rec room (RoomUtil).
+            if (colonists >= 3 && !RoomUtil.AnyRecRoom(map) && Avail.AnyBuildable(map, Avail.IsJoyGiver))
             {
                 var s = Signal(0.1f, "CC_Idea_RecRoom_Title".Translate(), "CC_Idea_RecRoom_Detail".Translate());
                 s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_RecRoom");
                 s.key = "recroom";
                 yield return s;
             }
-            var dining = RoomUtil.ColonyRooms(map).Where(r => r.Role == RoomUtil.DiningRoom).ToList();
+            var dining = RoomUtil.DiningRooms(map);
             if (dining.Count > 0 && dining.Max(r => RoomUtil.Impressiveness(r)) < 40f)
             {
                 yield return Signal(0.09f, "CC_Idea_Dining_Title".Translate(), "CC_Idea_Dining_Detail".Translate());

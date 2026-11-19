@@ -147,26 +147,10 @@ repo.
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
   along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
-- **To do when the player asks (17 November 2026): rooms, the ballroom over the temple and the dining room.** The
-  player: "I have a dining room ... But what I also have in there is a drum and also the ideology, lectern and ritual
-  spot ... The altar and the lectern. Now, as soon as I have this drum in the room, it's counted as a ballroom, which,
-  you know, is not appropriate at all. It's not even counted as kind of an ideology room ... it's definitely not a
-  dining room ... I just want to have the drum somewhere, but not immediately have that become a ballroom, as it's just
-  weird ... I want the gatherings where food is involved, of course, happening in my dining room"; then "ballroom seems
-  to override temple, which is not correct in my opinion".
-  - **The cause.** Vanilla Factions Expanded - Empire's `VFEE_Ballroom` (`RoomRoleWorker_Ballroom`, 1.7 source): any
-    musical instrument (the Ideology drum among them) scores 10000, unless the room holds a bed, throne, work table or an
-    entity holder; the game's dining room scores 12 a table, the rec room 7 a recreation thing, the temple (Ideology's
-    worship room) 75 an altar, at least 2000. The highest wins and only one name shows. In the game's code (RW-Decompile,
-    `Toils_Ingest`, `JoyUtility`) the "ate in impressive dining room" and recreation moods read the room's
-    impressiveness, not its name. The name matters for VFE Empire's titles and balls, and for Rimfolk: council meetings,
-    play-outs and visitors look for the room named dining room, then rec room (`CouncilMeeting.FindVenue`,
-    `PlaySpots`, `Visitors`), and the advisor's room ideas and the art wish read the names too, so a dining room shown as
-    a ballroom or temple loses Rimfolk's gatherings, and a rec room shown as a temple brings the "build a rec room" idea.
-  - **The lead's fix**: (A) built 17 November 2026 (the entry "Ballrooms only for music rooms" above the newest release
-    line, a drum alone never makes one either). (B), still waiting for the player's go: Rimfolk reads a room by
-    what is in it, not by the one name: a room with dining tables counts as a dining room for its gatherings and
-    advice, one with recreation things as a rec room, whatever the game shows.
+- **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
+  released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
+  for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
+  entry above the newest release line ("Rooms judged by what is in them").
 - **To do when the player asks (10 November 2026): events and interactions of each of Rimfolk's peoples, by their lore.**
   The player: "I really LOVE the new factions you created, and I'd be down for more later. however, I'd first like more
   faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new gene.
@@ -293,6 +277,56 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Rooms judged by what is in
+  them** (19 November 2026). The player (17 November 2026): "I have a dining room ... But what I also have in there is a
+  drum and also the ideology, lectern and ritual spot ... The altar and the lectern ... I want the gatherings where food
+  is involved, of course, happening in my dining room, even if maybe another room is kind of the one for the ideological
+  items"; then "ballroom seems to override temple, which is not correct in my opinion". Fix A (VFE Empire's ballroom
+  only for music rooms) was released in 0.265.2. The go for fix B, on the overview of the open list (19 November 2026):
+  "Rooms judged by what's in them. That sounds good." DESIGN.md "Rooms judged by what is in them".
+  - **The cause.** The game shows one role per room, the highest score (a dining table 12, a recreation building 7, an
+    altar of the colony's faith at least 2000, a stove 28, a bench 27). Rimfolk read only that role: council meetings,
+    play-outs and feasts, visitors and the advisor looked for the room named dining room, then rec room. The player's
+    dining room with the altar shows as a temple, so its meetings and meals went to another room or out into the open
+    air, and a rec room shown as something else brought the idea of building one. (The game's eating and recreation
+    moods read the room's impressiveness wherever it happens, not its name.)
+  - **What it does.** A room with a dining table of the colony's counts as a room where people eat, and one with a
+    recreation building as a rec room, whatever the game shows (a temple, a ballroom, a throne room, a kitchen with a
+    table); never a bedroom, barracks, hospital, prison, nursery, guest room, bathroom or sauna. Each place keeps its
+    order with the room the game calls a dining room (or rec room) first, then one that serves as one, larger first.
+    With the player's rooms, meetings, meals and feasts go to their real dining room, or to the temple with the tables,
+    and never out into the open for lack of a room named dining room; the advisor no longer suggests a rec room while a
+    room with games stands. A rec room the game calls something else is named as the map shows it ("in the temple").
+  - **Code map**: `RoomUseMath.cs` (new, linked in the tests: `PrivateRoles`, `Private`, `ServesAsDining`,
+    `ServesAsRec`, `Rank`, `Order`, `ReadAs`), `RoomUtil.cs` (`ServesAsDining`, `ServesAsRec`, `IsDiningRoom`,
+    `IsRecRoom`, `IsCommonRoom`, `DiningRank`, `DiningRooms`, `RecRooms`, `AnyDiningRoom`, `AnyRecRoom`, `RoomsFor`,
+    the reading kept 60 ticks). Read so in `Ambitions/CouncilMeeting.cs` (`FindVenue`), `Ambitions/Ambitions.cs`
+    (`MeetingVenue`), `PlayOut/PlaySpots.cs` (`TryFind`, new `RecVenue`), `Visitors/Visitors.cs` (`IndoorsCell`),
+    `Happenings/VisitorServices.cs` (`Corner`), `Happenings/Workers_Callers.cs` (the wedding), `Advisor/AdvisorSignals.cs`
+    (the rec room and dining ideas, the recreation advice's room plan), `AdvisorSignals_Rooms.cs` (dining outgrown, rec
+    room outgrown), `AdvisorSignals_Rooms2.cs` (dining cramped), `AdvisorSignals2.cs` (darkness), `AdvisorSignals5.cs`
+    (no seat), `Wishes/WishWorkers_Work.cs` (the art wish), `Wishes/WishWorkers_LifeNew.cs` (the roofed way's table),
+    `Ambitions/AmbitionGoals.cs`, `AmbitionGoals2.cs` (`Goal_Room`, `Goal_RoomStat`), `Building/TemplatePlanner.cs`
+    (`RoleCenters`), `Building/BaseReview.cs` (`RoleName`, the `also` readings, the little map's colours),
+    `Items/ItemCardArt.cs` (`MoodRole`), `Dilemmas/DilemmaWorkers_Faith.cs` (the faiths' corners),
+    `Integrations/GuestWill.cs`, `Harm/Quarrels.cs`, `Lives/LifeNew.cs`, `Social/Groups/GroupHabits.cs`,
+    `Pressures/Pressures.cs` (crowded rooms). Keyed: `CC_Venue_InRoom` (ColonyCouncil.xml), `CC_FaithClash_CornerIn`
+    (Rimfolk_Faith_Council.xml). Almanac "dining room" and "recreation room" pages (a paragraph each, keywords
+    unchanged), README (council meetings). Tests: `RoomUseTests` (new).
+  - **Kept on the game's one role**: the game's own roles and moods; words that name a room as the game shows it (a
+    guest lodged in a room, the crowded room's name, a god's doing, the base map's tooltip, a custom room's offered name);
+    `Social/Autonomy.cs` `OkRole` (where someone with no bed may lie down goes by what the room is for, so a kitchen or
+    temple with a table stays out); the rooms of every other role; the visitors' private rooms (`KeepOut`,
+    `GuestHelpMath.PrivateRoom`); the journal's moods (the game's own thoughts).
+  - **Can't be checked without the game**: the meetings and feasts going to the temple with tables, the venue's words,
+    the advisor's cards with and without a room that serves as a rec room, the base review's little map colouring a
+    temple with tables as a dining room, Ideology's drum counting as recreation (only if its def has a kind of
+    recreation).
+  - **Try in the game**: with the dining room holding the altar (the game shows "temple" over it) and no other room the
+    game calls a dining room, call a council meeting from the Ambition page: it is announced "around the dining table"
+    and held at a table there. A feast from a council answer gathers at that table too. The Priorities page has
+    no "Idea: a recreation room" while the rec room, or any room with a game in it, stands.
+  - **Mods that would help**: none.
 - 0.266.4, **Clothes made for someone, put
   on when they are back** (18 November 2026). The player:
   "So I have this mod where I can directly from a pawn's inventory give the task to craft like a certain piece of

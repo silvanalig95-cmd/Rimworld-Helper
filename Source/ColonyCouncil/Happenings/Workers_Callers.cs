@@ -382,7 +382,7 @@ namespace ColonyCouncil
         }
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            Colonists(map).Count > 0 && Arrivals.Friendly(Fits) != null && (MarriageSpot(map) != null || RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Any());
+            Colonists(map).Count > 0 && Arrivals.Friendly(Fits) != null && (MarriageSpot(map) != null || RoomUtil.AnyDiningRoom(map));
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

@@ -183,17 +183,18 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Seats enough, but the dining room is too cramped for the colony that eats in it now.</summary>
+    /// <summary>
+    /// Seats enough, but the dining room is too cramped for the colony that eats in it now: the one with the most seats,
+    /// read by its tables (RoomUtil.DiningRooms), whatever the game calls it.
+    /// </summary>
     public class AdvisorWorker_DiningCramped : AdvisorSignalWorker
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var role = RoomUtil.DiningRoom;
-            if (role == null) yield break;
             int people = RoomGrowth.People(map).Count;
             int seats = 0, best = -1;
             Room main = null;
-            foreach (var room in RoomUtil.RoomsWithRole(map, role))
+            foreach (var room in RoomUtil.DiningRooms(map))
             {
                 int n = RoomUtil.RoomCount(room, Avail.IsChair);
                 seats += n;

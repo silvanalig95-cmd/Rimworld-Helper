@@ -280,7 +280,7 @@ namespace ColonyCouncil
                 }
                 case GuestWillMath.Want.Rec:
                 {
-                    bool has = RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom).Any();
+                    bool has = RoomUtil.AnyRecRoom(map);
                     now = (has ? "CC_GuestWill_There" : "CC_GuestWill_NoneYet").Translate().Resolve();
                     return has;
                 }

@@ -80,7 +80,7 @@ namespace ColonyCouncil
                     return room != null && !room.PsychologicallyOutdoors;
                 }
                 case "rec":
-                    return Leisure(p) && p.GetRoom()?.Role != null && p.GetRoom().Role == DefRefs.Named<RoomRoleDef>("RecRoom");
+                    return Leisure(p) && RoomUtil.IsRecRoom(p.GetRoom());
                 case "work":
                 {
                     var wt = job?.workGiverDef?.workType;

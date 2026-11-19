@@ -74,7 +74,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A room with a given role (by worker class name), optionally holding certain furniture and looking good.</summary>
+    /// <summary>
+    /// A room with a given role (by worker class name), optionally holding certain furniture and looking good. A dining or
+    /// rec room counts by what is in it (RoomUtil.RoomsFor): tables in a temple make "a room to eat in".
+    /// </summary>
     public class Goal_Room : AmbitionGoal
     {
         /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
@@ -115,7 +118,7 @@ namespace ColonyCouncil
             var roleDef = Role;
             var pred = thingRole.NullOrEmpty() ? null : RoomTemplateDef.RolePredicate(thingRole);
             float best = 0f;
-            foreach (var room in RoomUtil.RoomsWithRole(map, roleDef))
+            foreach (var room in RoomUtil.RoomsFor(map, roleDef))
             {
                 float things = pred == null || thingCount <= 0 ? 1f : Ratio(RoomUtil.RoomCount(room, pred), thingCount);
                 float imp = minImpressiveness <= 0f ? 1f : Ratio(RoomUtil.Impressiveness(room), minImpressiveness);

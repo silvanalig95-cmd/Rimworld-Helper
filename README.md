@@ -1772,7 +1772,9 @@ most often have many in each.
 
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
-the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
+the dining table, in the rec room, by the campfire or in the open; a room with dining tables or games counts by what is
+in it, whatever name the game shows over it, so a dining room with an altar that the game calls a temple still hosts
+the meeting), when (six in the evening as a rule; an hour
 or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
 what's on the table. This week and the Ambition page count down to it, a reminder comes an
 hour before, and the Ambition page can hold it now or put it off a day. No meeting starts at night.

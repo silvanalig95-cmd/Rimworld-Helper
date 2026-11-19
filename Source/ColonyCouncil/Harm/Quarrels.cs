@@ -42,15 +42,14 @@ namespace ColonyCouncil
 
         // ================= The groups come to blows (3.6.1) =================
 
-        /// <summary>Both at a table or a gathering: in a dining or rec room together, or in one gathering's lord.</summary>
+        /// <summary>Both at a table or a gathering: in a dining or rec room together (by what is in it: RoomUtil.IsCommonRoom), or in one gathering's lord.</summary>
         private static bool AtTable(Pawn a, Pawn b)
         {
             var la = a.GetLord();
             if (la != null && la == b.GetLord()) return true;
             var room = a.GetRoom();
             if (room == null || room != b.GetRoom() || room.PsychologicallyOutdoors) return false;
-            string role = room.Role?.defName;
-            return role == "DiningRoom" || role == "RecRoom";
+            return RoomUtil.IsCommonRoom(room);
         }
 
         /// <summary>A dig at the other lot just made (GroupMoments.After): between two bitter groups at a table, maybe a brawl.</summary>

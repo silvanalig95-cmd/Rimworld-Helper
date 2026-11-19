@@ -434,7 +434,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A corner inside for guests when a night out would hurt them: an open spot in the colony's dining room or rec
-        /// room (never a cell, a bedroom, a hospital or a cold store), warm enough for every one of them, that they can all reach.
+        /// room, read by what is in it (RoomUtil.DiningRooms, RecRooms: a temple with tables counts), never a cell, a
+        /// bedroom, a hospital or a cold store, warm enough for every one of them, that they can all reach.
         /// </summary>
         public static IntVec3 IndoorsCell(Map map, List<Pawn> party, string role = null)
         {
@@ -445,7 +446,7 @@ namespace ColonyCouncil
                 var first = role.NullOrEmpty() ? null : RoomUtil.RoleNamed(role);
                 var named = first != null ? RoomUtil.RoomsWithRole(map, first).Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 6)
                     .OrderByDescending(r => r.CellCount).ToList() : new List<Room>();
-                var rooms = named.Concat(RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Concat(RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom))
+                var rooms = named.Concat(RoomUtil.DiningRooms(map).Concat(RoomUtil.RecRooms(map)).Distinct()
                     .Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 12).OrderByDescending(r => r.CellCount));
                 foreach (var room in rooms)
                 {
