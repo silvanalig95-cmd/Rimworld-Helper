@@ -36,27 +36,27 @@
           <li>Someone at the gate</li>
         </titles>
         <texts>
-          <li>[age0] {X_nameDef}, a {TALE} with no people near, has come to the gate as the light goes and asks {A_nameDef} for a place by the fire for the night. {X_pronoun} carries nothing but a stick and a skin of water, and doesn't seem tired at all.</li>
-          <li>[age1] {X_nameDef}, a {TALE} on the long road, has knocked at the gate and asks {A_nameDef} for a bed and a bowl for one night, in the name of whatever the colony holds holy. The dust on {X_possessive} cloak is from no road anyone here knows.</li>
+          <li>[age0] {X_nameDef}, a {TALE} with no people near, has come to the gate and asks {A_nameDef} for a place by the fire for the night. {X_nameDef} carries nothing but a stick and a skin of water, and doesn't seem tired at all.</li>
+          <li>[age1] {X_nameDef}, a {TALE} on the long road, has knocked at the gate and asks {A_nameDef} for a bed and a bowl for one night, in the name of whatever the colony holds holy. The dust on {X_possessive} cloak is not from any road anyone here knows.</li>
           <li>[age2] {X_nameDef}, a {TALE} with a battered pack and a coat too thin for the season, is waiting at the gate. {X_pronoun} asks {A_nameDef} for a roof for the night and a plate of whatever is going, and offers nothing for it but thanks.</li>
           <li>[age3] {X_nameDef}, a {TALE} in a scuffed suit with no ship and no beacon, walked in out of the wilds and asks {A_nameDef} for shelter for a night. {X_possessive} suit's readings are all zeroes, which shouldn't be possible.</li>
           <li>A {TALE} named {X_nameDef} is standing at the gate with {X_possessive} hood down and asks {A_nameDef}, quite simply, whether there is room for one more tonight.</li>
-          <li>[storm] {X_nameDef}, a {TALE}, asks {A_nameDef} for shelter for the night. The sky has been heavy all afternoon, and {X_pronoun} glances at it the way someone glances at an old friend.</li>
+          <li>[storm] {X_nameDef}, a {TALE}, asks {A_nameDef} for shelter for the night, and keeps glancing up at the sky as if looking for an old friend.</li>
           <li>[harvest] {X_nameDef}, a {TALE} with seeds caught in the hem of {X_possessive} coat, asks {A_nameDef} for a bed for the night and says the colony's fields look thirsty.</li>
           <li>[hunt] {X_nameDef}, a {TALE} who walks without a sound, asks {A_nameDef} for shelter for the night. The dogs, for once, have not barked at all.</li>
           <li>[healing] {X_nameDef}, a {TALE} with a satchel that smells of clean herbs, asks {A_nameDef} for a bed for the night and asks after the colony's sick before anything else.</li>
           <li>[way] {X_nameDef}, a {TALE} who seems to have walked every road there is, asks {A_nameDef} for a corner for the night and the news from these parts.</li>
-          <li>[hearth] {X_nameDef}, an old {TALE} with ember-bright eyes and a shawl that smells of smoke, asks {A_nameDef} for a bowl and a corner by the fire.</li>
+          <li>[hearth] {X_nameDef}, an old {TALE} with bright eyes and a shawl that smells of smoke, asks {A_nameDef} for a bowl and a corner by the fire.</li>
           <li>[dead] {X_nameDef}, a {TALE} in gray who knows the names on the colony's graves without being told, asks {A_nameDef} for shelter for the night.</li>
-          <li>[night] {X_nameDef}, a {TALE} who only came out of the trees at dusk, asks {A_nameDef} for a bed and says {X_pronoun} sleeps lightly.</li>
+          <li>[night] {X_nameDef}, a {TALE} who says {X_pronoun} travels mostly by night, asks {A_nameDef} for a bed and says {X_pronoun} sleeps lightly.</li>
           <li>[wild] {X_nameDef}, a {TALE} with leaves in {X_possessive} hair and mud to the knee, asks {A_nameDef} for shelter for the night, and the birds come down to the wall to look.</li>
           <li>[waters] {X_nameDef}, a {TALE} whose clothes are wet though it hasn't rained for days, asks {A_nameDef} for a dry corner for the night.</li>
           <li>[war] {X_nameDef}, a {TALE} with an old soldier's way of standing, asks {A_nameDef} for a bed for the night and doesn't take {X_possessive} eyes off the colony's walls.</li>
           <li>[craft] {X_nameDef}, a {TALE} with burn scars on both hands, asks {A_nameDef} for a bed for the night and looks over the colony's tools with interest.</li>
           <li>[machine] {X_nameDef}, a {TALE} who talks a little too evenly, asks {A_nameDef} for shelter for the night and somehow knows the colony's power is low.</li>
-          <li>[void] {X_nameDef}, a {TALE} whose shadow seems a little late to follow, asks {A_nameDef} for shelter for the night. It's hard to remember {X_possessive} face afterwards.</li>
-          <li>[ennu,rememberskind] {X_nameDef}, a {TALE}, is at the gate again, or someone very like the last one. {X_pronoun} smiles at {A_nameDef} as if they were old friends, and asks for a bed for the night.</li>
-          <li>[ennu,rememberscold] {X_nameDef}, a {TALE}, stands at the gate and asks {A_nameDef} for shelter. {X_pronoun} looks at the colony's door for a long moment before knocking, as if remembering how it was answered once.</li>
+          <li>[void] {X_nameDef}, a {TALE} whose shadow seems to lag a little behind {X_objective}, asks {A_nameDef} for shelter for the night. It's hard to remember {X_possessive} face afterwards.</li>
+          <li>[ennu,rememberskind] {X_nameDef}, a {TALE}, is at the gate again, or someone very like the last one. {X_nameDef} smiles at {A_nameDef} as if they were old friends, and asks for a bed for the night.</li>
+          <li>[ennu,rememberscold] {X_nameDef}, a {TALE}, stands at the gate and asks {A_nameDef} for shelter. {X_nameDef} looks at the colony's door for a long moment before knocking, as if remembering how it was answered once.</li>
           <li>[ennu,remembersharm] {X_nameDef}, a {TALE} with an old bruise on {X_possessive} cheek, asks {A_nameDef} for shelter for the night. Nobody here can say why the bruise looks so familiar.</li>
           <li>[ennu,remembers] {X_nameDef}, a {TALE}, asks {A_nameDef} for a place for the night, and already seems to know where the well is.</li>
         </texts>
@@ -191,7 +191,7 @@
 
   <ColonyCouncil.DeedDef>
     <defName>Rimfolk_Deed_GodSheltered</defName>
-    <label>was kind to a stranger who was more</label>
+    <label>was kind to a strange visitor at the gate</label>
     <theme>godsheltered</theme>
     <facets><kindness>9</kindness></facets>
     <fadeDays>300</fadeDays>
@@ -214,7 +214,7 @@
 
   <ColonyCouncil.DeedDef>
     <defName>Rimfolk_Deed_FollowedSacred</defName>
-    <label>followed a god's beast</label>
+    <label>followed a strange beast</label>
     <theme>followedsacred</theme>
     <facets><courage>4</courage><discretion>3</discretion></facets>
     <fadeDays>240</fadeDays>
@@ -225,7 +225,7 @@
 
   <ColonyCouncil.DeedDef>
     <defName>Rimfolk_Deed_FedSacred</defName>
-    <label>fed a god's beast</label>
+    <label>fed a strange beast</label>
     <theme>fedsacred</theme>
     <facets><kindness>5</kindness></facets>
     <fadeDays>150</fadeDays>
@@ -236,7 +236,7 @@
 
   <ColonyCouncil.DeedDef>
     <defName>Rimfolk_Deed_HuntedSacred</defName>
-    <label>hurt a god's beast</label>
+    <label>hurt a strange beast</label>
     <theme>huntedsacred</theme>
     <facets><kindness>-6</kindness><courage>2</courage></facets>
     <fadeDays>300</fadeDays>

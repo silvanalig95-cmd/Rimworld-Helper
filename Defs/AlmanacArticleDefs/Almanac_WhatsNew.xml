@@ -31,6 +31,44 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.270.2</version>
+        <date>19 November 2026</date>
+        <title>The gods' words in plain words</title>
+        <points>
+          <li>The gods' cards, messages and buttons are in plain words: what was seen and heard on the map, while the gods' tales, sayings and the colony's book keep their old voice.</li>
+          <li>Each god's presence on the land now says plainly what it does, and no god's card names an hour that isn't the hour it comes.</li>
+          <li>A god's beast that leaves because someone tried to tame it now says so, and what the voice in the dark takes is told as the map shows it.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.270.1</version>
+        <date>19 November 2026</date>
+        <title>World events in plain words</title>
+        <points>
+          <li>World events in plain words: their letters, summaries and endings say what happens, who does it and why.</li>
+          <li>World event letters no longer name an hour that hasn't come yet, and no longer mention people at the gate, or a well, wall or hill, that aren't on the map.</li>
+          <li>The gold fever's prospector and the war of words' two preachers now wait at the gate with their letters, and the peace talks' delegations stay two nights at the colony's gate before the talks are settled.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.270.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' own events, round 6</title>
+        <points>
+          <li>In a drought or a heat wave, two storm-walkers of the Stormglass Conclave can set their rods on the colony's high ground for a night and bring the rain at first light.</li>
+          <li>While the Conclave watches the colony's sky, a psychic drone or soothe is foreseen a day ahead and the warning names everyone it will touch; when a drone comes, a reader sits with whoever it hits hardest.</li>
+          <li>In spring and summer the Conclave may camp a week on the high ground with a glass mast and rods that take the lightning near them, and leave a sealed vial and the season's forecast.</li>
+          <li>When fire takes the colony's woods, the Mossborn's thorn-guards come running to beat it out, and their grove-keepers may camp in the burn for a week to clear and replant it.</li>
+          <li>A Mossborn herb-trader brings seeds of a plant the colony doesn't grow yet and sows a plot of it with the colony's grower.</li>
+          <li>The Ashen Banner offers contracts on the colony's enemies, fighting beside the colony's people at an enemy camp for half the silver found there.</li>
+          <li>An old Banner soldier may settle with the colony with a war-horse, and a people at war with the colony may hire the Banner for its next raid: buy the contract, pay them to stand aside, or let them march.</li>
+          <li>Put right: four of round 5's visits now find their people, so the Quiet Bell's gravewardens, the sextons, the night crew and the wagon's fixer give their thanks and name who came.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.269.5</version>
         <date>19 November 2026</date>
         <title>The decrees in plain words</title>

@@ -33,8 +33,8 @@ most sense." So, in this order, three builds at a time:
    above the newest release line).
 2. **Rooms judged by what is in them** (the rooms entry's fix B) and **quests, round 3** (`docs/quests-proposals.md`).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0); round 5 is built, not released (the entry above the newest
-   release line).
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0); round 6 is built, not released (the
+   entry above the newest release line).
 4. **The plain-words text pass**, the categories not yet done, a batch at a time (the entry "Rimfolk's text in plain
    words" below).
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -126,6 +126,20 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
   when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
   now one entry above the newest release line ("Choose the material when ordering a piece").
+- **To do when the player asks (found 19 November 2026 in the plain-words pass on the region map; no words of the
+  player's yet): a colonist a world event sends to a far town stays at the colony.** Fifteen answers of thirteen world
+  events say a colonist goes off to another people's town for a day or several (to advise, build, teach, read old
+  writing, speak or keep watch), and the colonist's skill and the people's goodwill count at once, but nobody leaves
+  the map: the drought's well and the road's bridge ("Lend them {A_nameDef} for a day", `Council_WS_Region`), the
+  herdsman in the sickness of the herds, the great fire's roofs and the bumper harvest's sickle (`Rimfolk_WS_Beyond`;
+  there too the blood feud's talks, told at the colony's table with neither family on the map), the toll's petition, the iron's smiths and the exiles' plea (`Rimfolk_WS_Beyond2`), the
+  rebuilt bridge (`Rimfolk_WS_FollowUps`), the vault's old writing and the closed markets' talks (`Rimfolk_WS_Wider`),
+  the moot's speaker and the old thrumbo's watch (`Rimfolk_WS_Wider2`), and the other settlers' traps
+  (`Rimfolk_WS_World`). The plain-words pass made their words tell it as set going, with no time that can't have come
+  ("{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge"), and the road's
+  builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
+  storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
+  {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -150,16 +164,16 @@ repo.
   cool!! add all to to-do"; then "but perhaps do several batches so i don't have a huge job after"; then "also hold
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
-  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), and round 5
-  built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 6 to 10 follow one per release. Ten
+  round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0)
+  and round 6 built, not released, on the player's go of 19 November 2026 ("Events sounds great"), and rounds 7 to 10 follow one per release. Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
   2. 14, 22, 26, 59, 12, 25, 3, 20, 40, 63. Released 0.229.0 (12 November 2026).
   3. The league 2, 4; the order 6, 7, 8; the herders 9, 11, 13; the pilgrims 15, 16. Released 0.230.0 (14 November 2026).
   4. The society 18, 21; the enclave 23, 24; the river folk 27, 28, 29, 30; the Wardens 31, 32, 33. Released 0.268.0 (19 November 2026).
-  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Built, not released (19 November 2026).
-  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58.
+  5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
+  6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Built, not released (19 November 2026).
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70.
   8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82.
   9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
@@ -385,7 +399,52 @@ repo.
   for seven lines). Left as the player said: the decrees' `support` and `oppose` lines and `Rimfolk_DecreeLines_Year`
   (talk, said in bubbles and quoted in the letters), the militia's first muster's `lines` (speech), the co-sign lines
   and the meeting's pools (talk), the decrees' and seats' moods (`ThoughtDefs`) and their hediffs (ailments).
-  Still to pick, when the player asks: the gods and faith, the peoples, the region map, the Almanac, What's new.
+  The region map, done (19 November 2026, the same go; built, not released): the entry "Plain words: the region map"
+  above the newest release line. Files taken: the world events in `Defs/WorldSituationDefs/` (the 25 files
+  `Council_WS_Hardship`, `_Land`, `_Mods_Factions`, `_Places`, `_Powers`, `_Region`, `_Warlord`, and `Rimfolk_WS_Beyond`,
+  `_Beyond2`, `_FollowUps`, `_GrownTown`, `_Legend`, `_Mods_Peoples`, `_New`, `_Region`, `_RiseFall`, `_Run`,
+  `_TownRaid`, `_Variety2`, `_Variety3`, `_Variety3_Roads`, `_WarlordSon`, `_Wider`, `_Wider2`, `_World`: names,
+  titles, the letters, summaries and beats' texts, the answers' labels and the deeds the chronicle keeps, the endings
+  and their chronicle lines, the lines kept in `SituationText`; the answers' outcomes and the message beats, made plain
+  in 0.251.0, read again for agreement and changed where they disagreed with the map; the moods' five files
+  `Council_WS_Misc`, `_Thoughts`, `_Thoughts_Region`, `Rimfolk_WS_Beyond_Thoughts`, `_Wider_Thoughts` left), the
+  storylines' frames in `Defs/StorylineDefs/` (`Rimfolk_Storylines`, `_Round2`, `_Round3`: read, already plain; their
+  parts are the missions'), the region's follow-ups (the warlord's son and the town that grew: `Rimfolk_WS_WarlordSon`,
+  `Rimfolk_WS_GrownTown`, `Rimfolk_WS_FollowUps`, and the Keyed words of `World/Region/FollowUps.cs` in
+  `Rimfolk_FollowUps.xml`) and the memory of single colonists (`World/ColonistMemory.cs`, its Keyed words in
+  `Rimfolk_ColonistMemory.xml`: read, already plain), and the Keyed words of the region map and its window read again
+  (`Rimfolk_Region`, `Rimfolk_RegionMap`, `Rimfolk_RegionVariants`, `Rimfolk_RegionVariants_Voices`, `Rimfolk_Hamlets`,
+  `Rimfolk_RaidersCamps`, `Rimfolk_TradingPosts`, `Rimfolk_RiseFall`, `Rimfolk_WorldSituations`, the world events
+  corner's keys of `Rimfolk_News`; plain since the interface batches but for the founder's first letter). Left as the
+  player said: the moods (`ThoughtDefs`), the speech in the effects' `lines`, and the region's bubbles
+  (`CC_RaidCamp_Say_*`, `CC_FarNews_Say_*`, `CC_Travel_Quarrel_Say_*`).
+  The gods and faith, done (19 November 2026, the same go; built, not released): the entry "Plain words: the gods and
+  faith" above the newest release line. Files taken: the gods' and worship's Keyed words (`Rimfolk_Gods`,
+  `Rimfolk_GodBook`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`, `Rimfolk_GodsWorld`, `Rimfolk_GodPresence`,
+  `Rimfolk_GodPresenceOwn`, `Rimfolk_GodOwnHappenings`, `Rimfolk_GodHappenings_Ducat`, `_Helios`, `_Hush`, `_Murmur`,
+  `_Revel`, `_Selene`, `_Tamiu`, `_Undertow`, `Rimfolk_GodTouch`, `Rimfolk_GodImpact`, `Rimfolk_Worship`,
+  `Rimfolk_Offerings`, `Rimfolk_Saints`, `Rimfolk_Belief`; the ideoligions' `Rimfolk_Faith`, `Rimfolk_Faith_Council`,
+  `Rimfolk_Faith_People`, `Rimfolk_RoleClothes` and `Rimfolk_TurretFaith` read again: plain since interface-4), and the
+  texts in `Defs/GodDefs/` that tell what happened on the map or that a player reads as a thing, a place or a button:
+  each god's own presence on the land (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, Tamiu's in
+  `Rimfolk_GodsOnMap_Mog`: the name and description), the stranger at the gate, its answers and the deeds it leaves
+  (`Rimfolk_GodsOnMap`), Tamiu's riddle at the door (`Rimfolk_GodsOnMap_Mog`), the bargain in a dream and the wounded
+  thrumbo (`Rimfolk_GodOwnHappenings`), the council's questions about the gods and the saints (`Rimfolk_Worship_Dilemmas`,
+  `Rimfolk_Saints`), the gods' two camps (`Rimfolk_GodsWorld_Camps`, the camps' round left it for this one), the
+  priest's seat (`Rimfolk_Worship_Office`), the mood hints' advice (`Rimfolk_Worship_Thoughts`), the job reports, the
+  saint's relic, the god's light and the warm afternoon (`Rimfolk_GodImpact`). Kept in the old voice, as the player
+  asked ("the only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"): the gods'
+  own lore in `Rimfolk_Gods.xml` (names, epithets, the chapters' plain lines, sayings, what people tell of each god and
+  how it is seen, tales and their pieces, the ties between gods, the neighbours' letter lines), the book's verses and the
+  keeper's notes (`Rimfolk_GodBook`, the book's entries in `Rimfolk_Gods` and its "Saw" lines), the festivals' names and
+  customs and the keeper's reading of each god's temper (`Rimfolk_Worship_Gods`, `Rimfolk_GodsWorld_Ways`,
+  `Rimfolk_Pantheon_Domains`), the seer's sayings (but for the unclear ones), Tamiu's riddles and the Choir's letter.
+  Left as the player said: the bubbles and talk (every `FlavorPoolDef` in `Defs/GodDefs/`, the gods' hands and scoffs,
+  the `TalkLinesDef`s and `InteractionDefs`), journals, dreams (the `GodWaysDef` dreams and the dream pools), prayers
+  and sermons (pools), moods (`ThoughtDefs`), what the gods leave on the body (`HediffDefs`, the gifts of
+  `Rimfolk_GodsWorld_Gifts` and the touch's blessings among them: ailments), the dev tools' words for the gods' hidden
+  state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer).
+  Still to pick, when the player asks: the peoples, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -398,6 +457,228 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.270.2, **Plain words: the gods and faith**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward", and "the
+  only thing i don't mind and even enjoy, is old medieval writing", "especially the relitions"). The nineteenth batch of
+  the plain-words pass: everything about the gods and faith said in plain modern words (the gods' and worship's
+  interface and messages, the god cards' framing words, the worship, offering and rite buttons and tips, the god events'
+  cards that tell what happened on the map, each god's presence on the land, the council's questions about the gods and
+  the saints, the gods' camps, the priest's seat), while the gods' and faiths' own texts keep their old voice. File list
+  and what was kept in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 2,090 Keyed entries read (the gods' Keyed files, which the interface batches left for this
+    round, and the ideoligions' again) and about 700 lines of `Defs/GodDefs/` in this batch's fields, beside the gods'
+    own lore (some 600 lines of sayings, tales and what people tell of each god) read for riddles; 217 rewritten (156
+    Keyed, 61 in the defs). Images and similes said plainly ("the light went wrong", "a sound like a door opening",
+    "eyes like wet stones", "a light about it that the dusk doesn't dim", "a color nobody has a word for", "as cold and
+    quiet as a frozen pond", "a bruise that goes all the way down", "in letters no hand had made"), riddling lines said
+    as meant ("quieter than quiet, and now and then something on the other side of the quiet says {PAWN_possessive}
+    name" is "that ear has gone completely silent, and now and then {PAWN_pronoun} hears {PAWN_possessive} own name said
+    from somewhere far away"; "Give it back to nobody" is "Dedicate it to no god"; "smoke or dreams" is "something to
+    smoke or take"), twists at the end gone ("It names no price. It never does." is "It does not say what it wants in
+    return."; "it seems to have decided that it does"; "as if it isn't sure it may"; "The ground there has not
+    forgotten"), things given a will ("the kind fields love", "one door has taken against one person", "coins have
+    wandered off", "The moonlight is keeping {PAWN} company"), and "Nobody can say why." taken off every presence, as the
+    approved samples in `docs/text-style-samples.md` did (Hollin's, Cirrus's and Smoulder's presences are those samples).
+    The seer keeps speaking darkly, but the unclear sayings say what they warn of ("The sky here has two minds" is "Two
+    powers are pulling at the sky here, and the weather will turn back and forth more than once before it settles";
+    "Something below was promised something, and it keeps count" is the approved sample's "Something under the ground
+    was promised a payment, and it remembers what it is owed").
+  - **Put right against the code** (DESIGN.md, "The gods' words told as they happen"). Hours: the gods' kindnesses and
+    angers in the world, a god's touch, the dream of a gift and a gift taken back, the voice in the dark's bargain and
+    price, an answered prayer and its rain, the stranger at the gate, and the gods' camps' farewells no longer name an
+    hour the code doesn't keep ("overnight", "this morning", "at breakfast", "tonight", "in the night", "as the light
+    goes", "at dawn"); the moon's return, at three at night, finds the wounded still asleep. The map: the beast the voice
+    takes vanishes in a puff of smoke, the food it gives lies in the middle of the colony, the god's beast leaves because
+    someone tried to tame it (and says so), Pip's batteries lose less charge, a god's clear days are dry, not long; the
+    temple vow has two seasons, not "a month". The unseen gods: "{GOD} displeased" (a god's mind, in a card's title) is
+    "A burn from {GOD}"; the deeds "was kind to a stranger who was more" and "followed a god's beast" say what the colony
+    saw ("a strange visitor at the gate", "a strange beast"). Fourteen lines that opened a sentence with a pronoun
+    placeholder (shown in lower case) now open with the name. Words only: no code or def setting changed.
+  - **Kept in the old voice.** The gods' own lore (`Rimfolk_Gods.xml`: "Whoever finds the first tree hears Hollin's whole
+    name, and never sleeps again", "Never promise {GOD} anything you haven't read twice"), the book's verses and the
+    keeper's notes ("It was given to {WHO} to see it", "{PAWN} doubts, and I pray it passes"), the keeper's reading of
+    each god's temper ("{NAME} is quiet, which is not the same as fed"), the festivals and their customs ("the Shuttered
+    Night: the shutters closed and every lamp lit, so that it passes by"), Tamiu's riddles, the Choir's letter, and every
+    line already plain (most of the newer happenings' cards, the offerings' words and the saints' were). Every tag,
+    placeholder and key kept (the rewrite tool refused any line whose tag block, placeholder people or numbers changed;
+    `Tools/textcheck.py --base` the lead branch finds nothing broken). No line of `Lean/ShippedLines.cs` is in these
+    files. Left as the player said: bubbles and talk, journals, dreams, prayers and sermons, moods, and what the gods
+    leave on the body (ailments).
+  - **Code map.** Keyed text in 16 files (`Rimfolk_GodsWorld`, `Rimfolk_GodsOnMap`, `Rimfolk_Worship`,
+    `Rimfolk_GodPresence`, `Rimfolk_GodPresenceOwn`, `Rimfolk_GodTouch`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_GodOwnHappenings`, `Rimfolk_Belief`, `Rimfolk_GodHappenings_Selene`, `_Helios`, `_Ducat`, `_Hush`,
+    `_Undertow`, `Rimfolk_Offerings`, `Rimfolk_Saints`); def text in 7 files of `Defs/GodDefs/`
+    (`Rimfolk_GodPresence_Own`, `Rimfolk_GodPresence`, `Rimfolk_GodsOnMap`, `Rimfolk_GodsOnMap_Mog`,
+    `Rimfolk_Worship_Dilemmas`, `Rimfolk_Saints`, `Rimfolk_GodsWorld_Camps`); two comments in `Gods/Saints/`; DESIGN.md
+    (the new section under "Everything from a god told at once", and two quoted phrases elsewhere).
+  - **Can't be checked without the game.** How the plainer cards read beside the gods' own presences, music and marks
+    on the map; the presences' longer descriptions in the top-right list's tooltip.
+  - **Try in the game.** Dev mode, Debug actions, Rimfolk: "Gods: a god's own presence here now..." for Cirrus, Pip or
+    Hush, and hover the presence in the top-right list: it says plainly what it does. "Gods in the world: a god's
+    kindness in its own shape now...", the mended machine or the barrels: the message names no hour. "Gods: a stranger
+    at the gate now...", turn the stranger away, and read the card when it goes. "Gods in the world: the Hunger takes
+    now" with a colony animal bonded to nobody: the animal it takes vanishes in a puff of smoke, as the card says.
+  - **Mods that would help.** None for this; it is text only.
+- 0.270.1, **Plain words: the region map** (19
+  November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when you
+  write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive and
+  "reasonable", over trying to make the text be creative, as this just most of the time sounds awkward"). The
+  nineteenth batch of the plain-words pass: the region around the colony and the world beyond it as the player reads
+  it. The 78 world events (their names, start letters, summaries, beats, answers, endings and chronicle lines), the
+  storylines' frames, the region's follow-ups (the warlord's son, the town that grew, rebuilding, the road reopened),
+  the memory of single colonists, and the Keyed words of the region map and its window. File list in the to-do entry
+  "Rimfolk's text in plain words".
+  - **What changed.** About 3,500 lines read in the world events (1,141 letters and endings, 620 labels, 550 titles,
+    454 outcomes, 207 chronicle lines, 200 deeds, 159 names, 102 summaries), about 550 in the storylines' frames and
+    about 840 Keyed lines; 389 rewritten: 291 letters and endings, 81 outcomes (made plain in 0.251.0, changed only
+    where they disagreed with the map), 8 summaries, 4 answers' labels, 3 of the warlord's and the locusts' extra lines,
+    and 2 Keyed lines. The storylines, the follow-ups' and the colonists' memory's Keyed words and the region map's
+    were already plain. Images and riddles said plainly: the great herds' "the ground shakes at dusk, the birds follow
+    the dust" is the approved sample ("Large herds are crossing the area"), "the far country has emptied into the
+    region", "a war on the wind", "the way a fire does under ash", "the colony's name is said hard in their house",
+    "It isn't quite true... It isn't quite untrue either" ("only partly true"). Wry last lines say what is so ("Some of
+    that may even be true", "The stories about {X_objective} will last longer than some of the cures", "the colony
+    will take that", "which may be the point", "now that it can't argue", "Everyone has a new respect for nails").
+    The Empire's ban on drink and the other settlers' hunters use the approved samples of `docs/text-style-samples.md`.
+  - **Put right against the code: the hour.** A world event's letters come at any hour (a beat at its day after the
+    start, an ending when it times out or is called), so about 60 lines that named an hour that may not have come
+    ("arrived at noon ... By evening it was done", "left the colony at dawn", "came in out of the snow at dusk", "this
+    morning", "before dark", "tonight") now name none or one that has passed ("last night", "yesterday"). Hours a
+    visit's own effect keeps are true as written: the mourners pass in the afternoon (`hourFrom` 13 to 18), the
+    herders and the great caravan come toward evening, the pilgrims sing after dark.
+  - **Put right against the code: what the map shows.** Where the words named someone at the gate that no effect
+    brought, the words now say a message came (the plague's first rider, the bandit's hoard map, the mercenary
+    captain's offer, the warlord's second price), or the map now shows them (below); a herald or envoy who may be a
+    woman is no longer "he". What is told as done is what the effects do at once: the healer has come and treats the colonist
+    (`SituationWorker_Healer`), the fair's and the strike's silver is on its way with a courier (`Couriers.PaySilver`),
+    the stargazer's colonist "will sit up" with her (a visit at 21 to 23 h), the mage "sits up" studying the surge with
+    no old stones on a hill the colony may not have; no well, wall, stream, ridge or hill is named where a colony may
+    have none (the comet's watch is by a fire, the stargazer on the far ground). The strange herds' summary said a
+    careless handler "may regret trying"; the creature only bolts (`Council_Evt_RareCreature`), and it says so, in the
+    Almanac too. Three small def changes make the map true where the whole letter is about people at the gate: the gold
+    fever's prospector comes to the gate with his mule (`VisitEffect_AtGate`), the war of words' two preachers stand at
+    the gate, one of each creed (the second only while its people is at peace with the colony), and the peace talks'
+    two delegations come to the gate a day or two after the answer and stay two nights before the talks are settled
+    (`VisitEffect_Come` with `holdBeat` "talks"). Fifteen answers that send a colonist to a far town for days still
+    leave them at the colony: their words tell it as set going, and the to-do "a colonist a world event sends to a far
+    town stays at the colony" holds the rest.
+  - **Left as they were.** The moods (`ThoughtDefs`), the speech in the effects' `lines`, the region's bubbles,
+    ordinary jokes and quoted words (the Empire's levy letter, the canvassers, the work song of the stone road, the
+    song about the colony's long table), the medieval founder's "greeting", and every tag, placeholder and key; the
+    four lines of a raid on a town the colony was that `Lean/ShippedLines.cs` pins stay word for word. One placeholder
+    was dropped on purpose: the healer's leaving no longer has the colonist walk the healer to the edge of the land,
+    which nothing staged.
+  - **Code map.** No code changed: def text in 21 of the 25 world events' files (`Rimfolk_WS_GrownTown`, `_Run`,
+    `_TownRaid` and `_WarlordSon` were read and needed nothing), the three def changes in `Council_WS_Mods_Factions.xml` and
+    `Council_WS_Powers.xml` (a commit of their own), the founder's first letter in `Rimfolk_Region.xml`, five rows of
+    the Almanac's world events table (`Almanac_WorldSituations.xml`, keywords unchanged), two README lines, one line
+    added to `Tools/playout_skips.txt` and one reason there updated, DESIGN.md (the new section "The region's words
+    against the map").
+  - **Can't be checked without the game.** How the plainer letters read beside the game's own; the prospector and the
+    preachers waiting at the gate with their letters, and the delegations' two nights at the gate before the peace
+    talks' letter.
+  - **Try in the game.** Dev actions "Rimfolk": "Start world event..." with gold fever (Settlers), a war of words
+    (Ideology) and peace talks (two neighbors at war with each other), then "Next world event beat now": the prospector
+    and the two preachers stand at the gate with their letters; host the talks, and the two delegations come to the
+    gate within two days and stay two nights before the ending letter. Start a famous healer and read the visit's
+    letter at any hour: it names no noon and no evening.
+  - **Mods that would help.** None for this; it is text and three def settings.
+- 0.270.0, **The peoples' own events, round 6**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 48, 49, 50, 52, 53, 54, 55, 56, 57 and 58 of `docs/peoples-events-proposals.md` (ten, all built): the Stormglass
+  Conclave's storm-walkers who bring the rain in a drought or a heat wave, a psychic drone or soothe read ahead by their
+  watch (its warning naming everyone it will touch, a reader sitting with the worst touched) and the storm tower they camp
+  at on the high ground; the Mossborn's thorn-guards who beat out a fire in the colony's woods, the seeds of the old wood
+  sown with the colony's grower, and their camp in the burn after a fire or a blight; the Ashen Banner's contract on the
+  colony's enemy, the old soldier who settles with a war-horse and the yearly muster, the contract the other side made with
+  them, and a company camped a night or two on its march. DESIGN.md "The peoples' own events, round 6" has every rule; README
+  "The peoples' own events, the sixth round"; the Almanac's peoples' page, *Of their own: gifts, trust and camps*
+  (Almanac_PeoplesD.xml; keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events6/` (new): `PeopleEvents6Math.cs` (pure, linked), `PeopleEvents6Book.cs` (a
+    game component: the dry spells, fires and blights rolled, the burns reckoned, the tides held, the camps after the fire
+    asked for, the Banner's contracts, its old soldiers and the raids it was hired for), `PeopleEvents6.cs` (the visits'
+    dispatch, the homes' hour, the high ground and the rods, the fires, `JobDriver_PEv6Work` with a queue and its `PEv6Work`
+    marks, `JobDriver_PEv6Firefight`), `DroughtBroken.cs` (48), `TideRead.cs` (49, and `Patch_TideHold`,
+    `Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`), `StormTower.cs` (50, `CampWorker_StormTower`), `CanopyFire.cs` (52),
+    `OldWoodSeeds.cs` (53), `AfterFire.cs` (54, `CampWorker_AfterFire`), `BannerContract.cs` (55), `OldSoldier.cs` (56, the
+    muster and `MusterAway`), `OtherSideContract.cs` (57, and `Patch_BannerHired`), `CompanyMarch.cs` (58,
+    `CampWorker_CompanyMarch`, `EnlistAway`), `PeopleEvents6Debug.cs`. Small hooks: `PeopleEvents5.Hour` and `Hourly` (round
+    6's, one line each), round 2's `SeasonAway.Kinds` (the muster, the season enlisted), round 1's `PeopleWorkOn.Finish` (a
+    worker with another open order is not sent home: the reader's second sitting), `MossLedger.Notify_Felled` (a tree felled
+    in the planting), `FactsMath` (the three camps' tags), the def check's camp counts (`{STORMS}`, `{PLANTED}`). Defs:
+    `Rimfolk_Events_PeopleEvents6.xml` (eleven events; six fired from code: the storm-walkers, the reader, the thorn-guards,
+    the grove-warden, the muster, the hired sergeant), `Rimfolk_CampKinds_PeopleEvents6.xml` (three camps),
+    `Rimfolk_PeopleEvents6_Misc.xml` (eleven jobs, the glass mast, the storm vial, two moods), Keyed
+    `Rimfolk_PeopleEvents6.xml`, `Textures/ColonyCouncil/Things/StormglassMast.png` and `StormVial.png` (drawn by
+    `Tools/make_storm_glass.py`). Tools: the play-out audit's effects and five skips, the save model's lists.
+  - Decided here (open in the proposals): "the colony's high ground" is the relay mast's own choice of it
+    (`RelayMast.Site`: by the rock first), and the card names it as it is ("the high ground by the rocks" or "the open ground by
+    the colony"); the rain ends every dry spell on the map (Odyssey's and Vanilla Events Expanded's droughts, the heat wave) and
+    is the land's own rain, one time in four its own thunderstorm; the night with them is the second answer, a lesson and the
+    Conclave's glass for a season; the drone or soothe holds the watch's one slot, and the sex it touches is fixed when it is
+    held so the warning can name everyone (the game would pick it as it came); the reader's letter comes as the drone does,
+    no answer meaning the reader sits with the worst touched (their mood the lowest), and the second answer the two worst;
+    the storm tower comes in spring and summer on land with thunderstorms, its second answer eight meals, its "vial" a drawn
+    keepsake that sells, its "forecast for the season" the Conclave's own season's watch begun free; the stray strike and the
+    fire in the ash are the camps' embers' kind in the shared harm budget (`CampLeft`), the chill the camps' fever with the
+    illness budget, the bet's brawl the camps' brawl, so no new harm kind; the thorn-guards' letter comes once they are at the
+    fire (no answer: they fight it), its second answer asks them back to replant (the camp after the fire, due half a day
+    after it is out, then for a burn of three trees or more); the seeds are sown in a new growing zone of four by four (the
+    colony's to keep), paid in silver or a quarter again in its most-stocked raw harvest; after a blight the grove-keepers cut
+    out the blighted plants and plant saplings on open ground nearby, never in the fields; felling within the planting is a
+    tree cut by the colony within its reach while they are there; the contract's target is a hostile site first (the game's
+    quests and sites), else a hostile town, both enemies of the Banner too (else the company could not fight there), the
+    colony's people must be on its map within fifteen days, "loot split by the contract" is half the silver lying there when
+    the fight is over (all the colony's with their share paid up front); the war-horse is the game's horse, the Paragon horse
+    of Vanilla Genetics Expanded in the spacer age; the muster is at the Banner's nearest town; the other side's raid is any
+    raid by a people at war with the colony and at peace with the Banner, "buying out the contract" puts the company on the
+    colony's side against that raid, "letting them march" makes a little over a third of the raid's own points the Banner's
+    soldiers under that people's colours; the company's "square of bedrolls" is the camps' ring of bedrolls round the fire
+    (no square form exists, and the words say so); the soldier who stays is the camps' own joining; enlisting is a season
+    away to the Banner's town.
+  - Fixed in passing (a bug of round 5, released 0.269.0): the gravewardens' burial, the grave-garden, the night crew and the
+    wagon never found the people their visit was for (their visits keep their own words where rounds 2 to 4 kept that
+    people's name), so their thanks were never given, the gravewardens' last word and message were never shown, and the
+    others' messages named the people "?". `PeopleEvents5.PeopleOf` now finds them by who came, and round 6 uses it too.
+  - Harm: none of a new kind. The stray strike, the fire in the ash, the chill and the bet's brawl go through the shared harm
+    budget under the camps' kinds and are told; the fights (at the contract's site, the hired raid, the band against the
+    company), the storm's lightning and the fires the thorn-guards fight are the game's own, and the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents6Tests.cs` (about 230 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the walkers' rods set on the high ground and kept through
+    the night, a colonist kept beside them, the dry spell ended and the rain or the storm at first light, the rods taking the
+    strikes near them; the drone held in the game's queue and its sex given to it as it comes, the runner at the gate, the
+    reader's hour with one and then the other; the tower's mast and rods raised by the camp, the storms counted, the night's
+    watch at the mast, the stray strike and the fire beaten out, the chill, the vial at the gate and the watch begun; the
+    thorn-guards' run and their beating with the game's own `TryBeatFire`; the plot's cells sown and made a zone of the plant;
+    the burned trees cut for wood and the saplings planted, the songs at night, the felling hook, the fire in the ash; the
+    company spawned beside the colony's people on a site's map and their assault, the silver taken, the march home; the
+    veteran and the horse taken in, the horse trained and bonded, the muster's road and home; the raid held, its faction set,
+    its points split and the Banner's soldiers added to its lord, or the company in on the colony's side; the company's camp,
+    its dawn drill, the meals sold, the enlisted colonist's season, the band against the camp, the bet).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 6: what the record keeps (log)" shows the state and what each event
+    would find here; the drawn events with the game's own incident tool): 1. The drought: "Peoples' events 6: the storm-walkers
+    now" (a heat wave started if no dry spell is on); either paid answer; watch the rods go up at dusk, and the rain at first
+    light. 2. The tide: "Peoples' events 6: a drone held by the watch now" (a watch begun if none); the runner's letter names
+    everyone; when the drone comes a day later, the reader comes to sit with the worst touched. 3. The storm tower: in spring
+    or summer `Rimfolk_Evt_StormTower` (or "one of their camps here now..."); the mast and rods, a storm counted, the watch
+    ask in the evening, the vial at the gate when they go; "a camp of theirs turns now..." for the strike and the chill. 4.
+    The fire: "Peoples' events 6: the thorn-guards to a fire now" (a fire set among the trees nearest the colony); their run
+    and the beating; the second answer. 5. The seeds: `Rimfolk_Evt_OldWoodSeeds`; the plot sown and its zone. 6. After the
+    fire: once ten trees have burned, "the camp after the fire due here now"; the cutting, the saplings, the song; fell a
+    tree within the planting to see them leave. 7. The contract: `Rimfolk_Evt_BannerContract` with a hostile site or town
+    within reach; send a caravan, or try "the contract's company in beside our people here now" on any map with colonists.
+    8. The old soldier: `Rimfolk_Evt_OldSoldier`; then "an old soldier's muster due now". 9. The other side's contract: "a raid
+    held for the Banner now" (a people at war with the colony and at peace with the Banner needed); answer and wait for the
+    raid. 10. The company: `Rimfolk_Evt_CompanyMarch`; the dawn drill, the asks, "a camp of theirs turns now..." for the band
+    and the bet.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Odyssey and Vanilla Events Expanded's
+    droughts, Seasonal Weather's wildfire, Vanilla Plants Expanded with More Plants, Succulents and Flowers, Alpha Biomes,
+    Vanilla Genetics Expanded's Paragon horse, Giddy-Up 2 to ride the war-horse, Vanilla Factions Expanded - Medieval 2 for the
+    Banner's issued kit). The glass mast and the storm vial are drawn here.
 - 0.269.5, **Plain words: the council and its
   decrees** (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the
   pass: "when you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral,

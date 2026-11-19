@@ -292,7 +292,7 @@ namespace ColonyCouncil
         private static void Finish(Visit v, StirRecord r, List<Pawn> wardens)
         {
             v.done = true;
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             if (r != null)
             {
                 r.done = true;

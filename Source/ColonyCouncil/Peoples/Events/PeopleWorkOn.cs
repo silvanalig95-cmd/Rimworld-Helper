@@ -196,8 +196,13 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("peoples' events: work done " + job?.defName, e);
             }
             Release(on);
-            PeoplesG.Home(v.group.Prepend(worker));
+            // A worker the work's own end gave another order (round 6's reader, who sits with a second colonist) stays for it.
+            PeoplesG.Home(v.group.Prepend(worker).Where(p => p != worker || !Busy(worker)));
         }
+
+        /// <summary>The worker has an order of theirs still open.</summary>
+        private static bool Busy(Pawn worker) =>
+            CouncilGameComponent.Instance?.happenings?.visits?.Any(x => x != null && x.kind == Kind && !x.done && x.x == worker) ?? false;
 
         private static void GiveUp(Visit v)
         {

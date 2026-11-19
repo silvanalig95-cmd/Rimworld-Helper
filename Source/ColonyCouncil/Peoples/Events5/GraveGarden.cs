@@ -257,7 +257,7 @@ namespace ColonyCouncil
         private static void Finish(Visit v, GardenRecord r, List<Pawn> sextons)
         {
             v.done = true;
-            var f = PeoplesF.PeopleOf(v);
+            var f = PeopleEvents5.PeopleOf(v);
             if (r != null && r.Stands)
             {
                 if (f != null && f.HasGoodwill && !f.IsPlayer && !f.HostileTo(Faction.OfPlayer))

@@ -3800,7 +3800,8 @@ the colony half.
   (pen your animals or risk it spreading home, lend a handler).
 - **The powers:** a neighbor's **leader dies** and the next one takes over (kind, greedy, harsh or steady, and it
   shows), **two claimants** fight over a seat and the colony may back one, a **war of words** between two creeds
-  (Ideology), **peace talks** the colony can host to end a war between two neighbors for good, a **mercenary company**
+  (Ideology), **peace talks** the colony can host to end a war between two neighbors for good (both delegations stay two nights
+  at its gate), a **mercenary company**
   for hire (against a rising warlord's people, if there is one), **bandits** on the road to a neighbor's town, a
   **bandit lord's fall** that scatters deserters, wounded stragglers and buried loot (a lieutenant may rise as a
   warlord, or the band turn sellswords), and a **holy year** with pilgrims on every road and fewer fights.
@@ -3890,7 +3891,7 @@ the colony half.
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
   the old families or the reformers with silver) and **gold fever** (Settlers: prospectors on every road, one who
-  wants to work the colony's stream for a share).
+  comes to the gate to pan the colony's land for a share).
 
 Some days or weeks after a world event ends, its people may come back about it, depending on how it ended: survivors
 of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town
@@ -4712,6 +4713,25 @@ fixer takes a colonist's weapon or armour to their cart for a day and brings it 
 Framework and Vanilla Vehicles Expanded a fixer builds the colony **a wagon of its own** (a small truck from the industrial
 age) at the gate from its stores; and when a Wheel town moves near, its **yard stops by** for three days at the edge with a
 scrap market and a mending tent.
+
+**The peoples' own events, the sixth round.** Ten more, from the Stormglass Conclave, the Mossborn and the Ashen Banner,
+each only while that people is at peace with the colony. In a drought or a heat wave two **storm-walkers** of the Conclave
+set their rods on the colony's high ground at dusk, keep the night beside them (with the colony's best at the fields, if it
+likes) and **bring the rain** at first light, one time in four as a thunderstorm. While the Conclave watches the colony's
+sky, a psychic **drone or soothe is read ahead** like the weather and its warning names everyone it will touch; when the
+drone comes, a reader sits an hour with whoever it hits hardest. In the stormy months two readers and an apprentice camp a
+week on the high ground as a **storm tower** with a glass mast and rods that take the lightning near them, ask the colony's
+grower to sit a night watch, and leave a sealed vial and the season's forecast. When a wildfire takes the colony's woods,
+the **Mossborn's** thorn-guards come running to **beat it out** beside the colony's people; an herb-trader brings **seeds of
+the old wood** (Vanilla Plants Expanded and Alpha Biomes first) and sows a plot of them with the colony's grower; and after
+a fire or a blight, grove-keepers **camp in the burn** for a week to cut the burned trees and replant it, asking only food
+and that the colony fell nothing within their planting. A captain of the **Banner** offers **a contract on the colony's
+enemy**: the company marches on a hostile camp within reach and comes in beside the colony's fighters there, half the
+silver found there theirs by the contract; an **old soldier** of theirs settles with the colony with a war-horse and is
+called to the yearly muster; when a people at war with the colony **hires the Banner** for its next raid, a sergeant comes
+under a white flag, and the colony can buy the contract, pay them to stand aside, or let them march; and **a company on the
+march** camps a night or two at the edge, drills at dawn, buys food and may take one of the colony's fighters along for a
+season.
 
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league

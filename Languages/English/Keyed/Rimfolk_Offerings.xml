@@ -10,7 +10,7 @@
 
   <!-- ===== Asked first: the card ===== -->
   <CC_GodGift_Ask_Label>{PAWN} asks to give {WHAT} to {GOD}</CC_GodGift_Ask_Label>
-  <CC_GodGift_Ask_Text>{PAWN} would like to give {WHAT} from the stores to {GOD}, at {PLACE}. {WHY} {HOPE}\n\nThe colony has {HELD} of it in its stores and would keep {LEFT}. {PAWN} won't take any of it without the colony's leave.</CC_GodGift_Ask_Text>
+  <CC_GodGift_Ask_Text>{PAWN} would like to give {WHAT} from the stores to {GOD}, at {PLACE}. {WHY} {HOPE}\n\nThe colony has {HELD} of it in its stores and would keep {LEFT}. {PAWN} won't take any of it without the colony's permission.</CC_GodGift_Ask_Text>
   <CC_GodGift_Ask_Why>{PAWN} says the everyday gifts are only what the colony can spare, and that {GOD} should now and then have something the colony values.</CC_GodGift_Ask_Why>
   <CC_GodGift_Ask_Dream>{PAWN} dreamt that {GOD} asked for this, and wants to give it while the dream is still fresh.</CC_GodGift_Ask_Dream>
   <CC_GodGift_Ask_Hope>{PAWN} hopes {GOD} will {HOPE}.</CC_GodGift_Ask_Hope>

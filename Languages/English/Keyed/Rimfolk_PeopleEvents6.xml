@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' own events, round 6 (Source/ColonyCouncil/Peoples/Events6/). -->
+
+  <!-- ===================== Shared (PeopleEvents6.cs) ===================== -->
+
+  <CC_PEv6_HighGroundRock>the high ground by the rocks</CC_PEv6_HighGroundRock>
+  <CC_PEv6_HighGroundOpen>the open ground by the colony</CC_PEv6_HighGroundOpen>
+
+  <!-- ===================== 48. Breaking the drought (DroughtBroken.cs) ===================== -->
+
+  <CC_PEv6_RainLabel>The rain came</CC_PEv6_RainLabel>
+  <CC_PEv6_RainCame>The storm-walkers of {FACTION} kept the night by their rods, and at first light it began to rain. The {CONDITION} is over.</CC_PEv6_RainCame>
+  <CC_PEv6_RainStorm>The storm-walkers of {FACTION} kept the night by their rods, and at first light a thunderstorm broke over the colony's land. The {CONDITION} is over. The storm's lightning is its own, and the rods take what falls near them.</CC_PEv6_RainStorm>
+  <CC_PEv6_RainKept>{PAWN_nameDef} kept the night with them and learned how they read the glass, and {PAWN_possessive} forecasts will be better for a season.</CC_PEv6_RainKept>
+  <CC_PEv6_DryOver>The dry spell is already over.</CC_PEv6_DryOver>
+  <CC_PEv6_KeeperGone>The one who would keep the night with them is not here.</CC_PEv6_KeeperGone>
+  <CC_PEv6_Impact_Rain>The storm-walkers set two rods on {0} at dusk and keep the night beside them. At first light the {1} ends and the land's own rain begins.</CC_PEv6_Impact_Rain>
+  <CC_PEv6_Impact_RainBrief>Rain at first light</CC_PEv6_Impact_RainBrief>
+  <CC_PEv6_Impact_RainStorm>One time in four the rain comes as a thunderstorm, with its own lightning and the fires it can start. Their rods, and the colony's if it has one, take the lightning that falls near them.</CC_PEv6_Impact_RainStorm>
+  <CC_PEv6_Impact_RainStormBrief>One time in four, a thunderstorm</CC_PEv6_Impact_RainStormBrief>
+  <CC_PEv6_Impact_RainKeep>{0} sits up with them by the rods all night, learns about the fields and how they read the glass, and reads it for a season after.</CC_PEv6_Impact_RainKeep>
+  <CC_PEv6_Impact_RainKeepBrief>A night by the rods</CC_PEv6_Impact_RainKeepBrief>
+
+  <!-- ===================== 49. The tide read (TideRead.cs) ===================== -->
+
+  <CC_PEv6_TideMen>men</CC_PEv6_TideMen>
+  <CC_PEv6_TideWomen>women</CC_PEv6_TideWomen>
+  <CC_PEv6_TideHeldLabel>{0} foreseen</CC_PEv6_TideHeldLabel>
+  <CC_PEv6_TideHeld>{RUNNER}, a {WORD} of {FACTION}, is on the way to the gate with the Conclave's warning: the glass shows a {CONDITION} coming to the colony soon, though not today. It will touch the colony's {SEX}: {NAMES}.</CC_PEv6_TideHeld>
+  <CC_PEv6_TideHeldWord>Word has come from {FACTION}: the glass shows a {CONDITION} coming to the colony soon, though not today. It will touch the colony's {SEX}: {NAMES}.</CC_PEv6_TideHeldWord>
+  <CC_PEv6_TideReaderComes>When it comes, a reader of the Conclave will come to sit with the one it touches worst.</CC_PEv6_TideReaderComes>
+  <CC_PEv6_TideRunnerSays>{0} on the way, the glass says, and it will touch the {1}.</CC_PEv6_TideRunnerSays>
+  <CC_PEv6_Sat>{READER} sat an hour with {PAWN_nameDef} through the drone.</CC_PEv6_Sat>
+  <CC_PEv6_SatCause>an hour with {READER} through the drone.</CC_PEv6_SatCause>
+  <CC_PEv6_TouchedGone>The one the drone touches worst is not here.</CC_PEv6_TouchedGone>
+  <CC_PEv6_NoSecond>Nobody else is touched badly enough.</CC_PEv6_NoSecond>
+  <CC_PEv6_Impact_Sit>{0} sits an hour with {1}, wherever they are, and talks them through the drone.</CC_PEv6_Impact_Sit>
+  <CC_PEv6_Impact_SitBoth>{0}, and then {1}</CC_PEv6_Impact_SitBoth>
+  <CC_PEv6_Impact_SitBrief>An hour's company through the drone</CC_PEv6_Impact_SitBrief>
+
+  <!-- ===================== 50. The storm tower (StormTower.cs) ===================== -->
+
+  <CC_PEv6_TowerRaised>{X_nameDef} and the other readers have set up their glass mast and two rods by their camp. Lightning that falls near the rods will strike them without starting a fire.</CC_PEv6_TowerRaised>
+  <CC_PEv6_TowerStorm>A storm is passing over the readers' camp, and {X_nameDef} is writing it down: {COUNT} so far this week.</CC_PEv6_TowerStorm>
+  <CC_PEv6_TowerStrike>A bolt came down past the readers' rods and set the ground alight. {X_nameDef} and the others are beating out the fire.</CC_PEv6_TowerStrike>
+  <CC_PEv6_TowerChill>{THING}, the readers' apprentice, has taken a chill out on the high ground at night. The colony's doctor can see to the apprentice from the camp's page.</CC_PEv6_TowerChill>
+  <CC_PEv6_TowerWatched>One of the colony has already sat the watch with them.</CC_PEv6_TowerWatched>
+  <CC_PEv6_Impact_Tower>Two readers and an apprentice of {0} camp a week on {1} with a glass mast and two rods, and write down the storms.</CC_PEv6_Impact_Tower>
+  <CC_PEv6_Impact_TowerBrief>A week on the high ground</CC_PEv6_Impact_TowerBrief>
+  <CC_PEv6_Impact_TowerLeaves>When they go they leave a sealed vial and the season's forecast: the Conclave watches the colony's sky for a season and warns of what is coming.</CC_PEv6_Impact_TowerLeaves>
+  <CC_PEv6_Impact_TowerLeavesBrief>A vial and a season's forecast</CC_PEv6_Impact_TowerLeavesBrief>
+  <CC_PEv6_Impact_TowerTurns>It can turn: in a storm a bolt may land past their rods and start a fire, and their apprentice may take a chill out on the high ground at night.</CC_PEv6_Impact_TowerTurns>
+  <CC_PEv6_Impact_TowerTurnsBrief>A stray bolt, a chill</CC_PEv6_Impact_TowerTurnsBrief>
+
+  <!-- ===================== 52. Fire in the canopy (CanopyFire.cs) ===================== -->
+
+  <CC_PEv6_CanopyOut>The thorn-guards of {FACTION} beat out the last of the fire in the colony's woods and went home. {COUNT} trees burned.</CC_PEv6_CanopyOut>
+  <CC_PEv6_CanopyOutBack>The thorn-guards of {FACTION} beat out the last of the fire in the colony's woods and went home. {COUNT} trees burned, and grove-keepers of {FACTION} will come back to replant the burn.</CC_PEv6_CanopyOutBack>
+  <CC_PEv6_Impact_Canopy>The thorn-guards beat out the fire beside the colony's people until no fire is left within their reach. Any burns are the fire's own.</CC_PEv6_Impact_Canopy>
+  <CC_PEv6_Impact_CanopyBrief>The fire beaten out</CC_PEv6_Impact_CanopyBrief>
+  <CC_PEv6_Impact_CanopyBack>Once the fire is out, grove-keepers of {0} come back to camp in the burn for a week and replant it.</CC_PEv6_Impact_CanopyBack>
+  <CC_PEv6_Impact_CanopyBackBrief>The burn replanted</CC_PEv6_Impact_CanopyBackBrief>
+  <CC_PEv6_Impact_CanopyAway>The thorn-guards of {0} stop and go home.</CC_PEv6_Impact_CanopyAway>
+  <CC_PEv6_Impact_CanopyAwayBrief>The thorn-guards leave</CC_PEv6_Impact_CanopyAwayBrief>
+
+  <!-- ===================== 53. Seeds of the old wood (OldWoodSeeds.cs) ===================== -->
+
+  <CC_PEv6_SeedsSown>{X} sowed {COUNT} cells of {PLANT} near the colony's fields with {PAWN} beside {X}, and showed {PAWN} how it is grown. The plot is the colony's growing zone of it now.</CC_PEv6_SeedsSown>
+  <CC_PEv6_SeedsNoPlot>{X} found no open ground near the colony's fields for the plot, and went home.</CC_PEv6_SeedsNoPlot>
+  <CC_PEv6_GrowerGone>The colony's grower is not here.</CC_PEv6_GrowerGone>
+  <CC_PEv6_NoHarvest>The colony has no stored harvest to swap.</CC_PEv6_NoHarvest>
+  <CC_PEv6_NoPlot>There is no open ground near the fields for a plot.</CC_PEv6_NoPlot>
+  <CC_PEv6_HarvestCarried>a share of the harvest</CC_PEv6_HarvestCarried>
+  <CC_PEv6_Impact_Seeds>{0} sows a plot of {1} cells of {2} near the colony's fields with {3} beside them, and the plot becomes the colony's growing zone of it.</CC_PEv6_Impact_Seeds>
+  <CC_PEv6_Impact_SeedsBrief>A plot sown</CC_PEv6_Impact_SeedsBrief>
+  <CC_PEv6_Impact_SeedsLesson>{0} learns how it is grown.</CC_PEv6_Impact_SeedsLesson>
+  <CC_PEv6_Impact_SeedsLessonBrief>A lesson at the plot</CC_PEv6_Impact_SeedsLessonBrief>
+
+  <!-- ===================== 54. After the fire (AfterFire.cs) ===================== -->
+
+  <CC_PEv6_AfterRekindled>The fire has started again in the ash of the burn. {X_nameDef} and the grove-keepers are beating it out.</CC_PEv6_AfterRekindled>
+  <CC_PEv6_FelledName>a tree felled in their planting</CC_PEv6_FelledName>
+  <CC_PEv6_AfterFed>They have had their food already.</CC_PEv6_AfterFed>
+  <CC_PEv6_AfterPlanterThere>One of the colony has planted beside them already.</CC_PEv6_AfterPlanterThere>
+  <CC_PEv6_AfterNothingToPlant>There is nothing left to plant.</CC_PEv6_AfterNothingToPlant>
+  <CC_PEv6_Impact_After>Grove-keepers of {0} camp a week in the burn, cut the burned trees (the wood is the colony's), plant saplings across it and sing at their fire at night. The saplings count as the colony's planting in their ledger.</CC_PEv6_Impact_After>
+  <CC_PEv6_Impact_AfterBlight>Grove-keepers of {0} camp a week by the fields, cut out the blighted plants and plant saplings on the open ground beside them. The saplings count as the colony's planting in their ledger.</CC_PEv6_Impact_AfterBlight>
+  <CC_PEv6_Impact_AfterBrief>A week replanting</CC_PEv6_Impact_AfterBrief>
+  <CC_PEv6_Impact_AfterTerm>They ask that the colony fell no tree within the planting while they are there. If it does, they leave, and their people think less of the colony.</CC_PEv6_Impact_AfterTerm>
+  <CC_PEv6_Impact_AfterTermBrief>No felling in the planting</CC_PEv6_Impact_AfterTermBrief>
+  <CC_PEv6_Impact_AfterTurns>It can turn: in dry, warm weather the fire may start again in the ash, and they beat it out.</CC_PEv6_Impact_AfterTurns>
+  <CC_PEv6_Impact_AfterTurnsBrief>The fire may start again</CC_PEv6_Impact_AfterTurnsBrief>
+  <CC_Camp_End_felled>The colony felled a tree within their planting, so the {NAME} from {FACTION} packed up their camp {PLACE} and left. Their people will remember it.</CC_Camp_End_felled>
+
+  <!-- ===================== 55. A contract on the colony's enemy (BannerContract.cs) ===================== -->
+
+  <CC_PEv6_RoadDay>about a day on the road</CC_PEv6_RoadDay>
+  <CC_PEv6_RoadDays>about {0} days on the road</CC_PEv6_RoadDays>
+  <CC_PEv6_ContractMade>The company of {FACTION} is marching on {PLACE}. A caravan of the colony's with at least one fighter must get there; the company will come in beside them when it arrives.</CC_PEv6_ContractMade>
+  <CC_PEv6_ContractGone>The camp at {PLACE} is gone. The company of {FACTION} marched home, and the Banner is sending back half the price.</CC_PEv6_ContractGone>
+  <CC_PEv6_ContractLapsed>The company of {FACTION} waited at {PLACE} until the contract's last day, but nobody of the colony came. They marched home with their pay, and the Banner thinks a little less of the colony.</CC_PEv6_ContractLapsed>
+  <CC_PEv6_ContractArrivedLabel>The Banner's company</CC_PEv6_ContractArrivedLabel>
+  <CC_PEv6_ContractArrived>The company of {FACTION}, {COUNT} strong, has come in beside the colony's people at {PLACE}, as the contract says, and is going for the enemy there.</CC_PEv6_ContractArrived>
+  <CC_PEv6_ContractKeptLabel>Contract kept</CC_PEv6_ContractKeptLabel>
+  <CC_PEv6_ContractKept>The fight at {PLACE} is over, and the company of {FACTION} has kept its contract.</CC_PEv6_ContractKept>
+  <CC_PEv6_ContractShare>By the contract they took their half of the silver found there, {COUNT} in all.</CC_PEv6_ContractShare>
+  <CC_PEv6_ContractRoll>The company lost {NAMES}, and their names will be read on the Roll.</CC_PEv6_ContractRoll>
+  <CC_PEv6_ContractNoTarget>The camp is gone.</CC_PEv6_ContractNoTarget>
+  <CC_PEv6_Impact_Contract>The company marches on {0}. The colony must get a caravan there with at least one fighter within {1} days; the company comes in beside them when they arrive, and the fight is on the game's own map of the place.</CC_PEv6_Impact_Contract>
+  <CC_PEv6_Impact_ContractBrief>A march on the enemy</CC_PEv6_Impact_ContractBrief>
+  <CC_PEv6_Impact_ContractHalf>Half the silver found there goes to the company, by the contract.</CC_PEv6_Impact_ContractHalf>
+  <CC_PEv6_Impact_ContractAll>With their share paid up front, all the silver found there is the colony's.</CC_PEv6_Impact_ContractAll>
+  <CC_PEv6_Impact_ContractSplitBrief>The split</CC_PEv6_Impact_ContractSplitBrief>
+
+  <!-- ===================== 56. An old soldier settles (OldSoldier.cs) ===================== -->
+
+  <CC_PEv6_MusterName>the Banner's muster</CC_PEv6_MusterName>
+  <CC_PEv6_VeteranCantGo>They can't leave the colony now.</CC_PEv6_VeteranCantGo>
+  <CC_PEv6_MusterThere>{PAWN_nameDef} has reached {PLACE} for the muster of {FACTION}, and will drill with the company there for the week.</CC_PEv6_MusterThere>
+  <CC_PEv6_MusterHome>{PAWN_nameDef} is home from the muster of {FACTION} at {PLACE}, sharper with a blade after the week's drill.</CC_PEv6_MusterHome>
+  <CC_PEv6_MusterHomeEarly>{PAWN_nameDef} is home from {PLACE}, the muster cut short.</CC_PEv6_MusterHomeEarly>
+  <CC_PEv6_Impact_Settle>{0} joins the colony with {1}, bonded and trained to {0}.</CC_PEv6_Impact_Settle>
+  <CC_PEv6_Impact_SettleAlone>{0} joins the colony.</CC_PEv6_Impact_SettleAlone>
+  <CC_PEv6_Impact_SettleBrief>A veteran joins</CC_PEv6_Impact_SettleBrief>
+  <CC_PEv6_Impact_Muster>Once a year {0} calls them to the muster for a week, or asks a fee of {1} silver instead. Refusing both costs goodwill.</CC_PEv6_Impact_Muster>
+  <CC_PEv6_Impact_MusterBought>{0} will not call them to the muster again.</CC_PEv6_Impact_MusterBought>
+  <CC_PEv6_Impact_MusterBrief>The yearly muster</CC_PEv6_Impact_MusterBrief>
+  <CC_PEv6_Impact_MusterGo>{0} sets out for {1} as a caravan of one, drills with the Banner there for {2} days and comes home. The roads there and back are the game's own.</CC_PEv6_Impact_MusterGo>
+  <CC_PEv6_Impact_MusterGoBrief>A week at the muster</CC_PEv6_Impact_MusterGoBrief>
+
+  <!-- ===================== 57. The other side's contract (OtherSideContract.cs) ===================== -->
+
+  <CC_PEv6_HireAside>The raid of {ENEMY} came without the Banner: {FACTION} stood aside, as paid.</CC_PEv6_HireAside>
+  <CC_PEv6_HireMarched>{COUNT} soldiers of {FACTION} march with the raid of {ENEMY}, under their colours, as the contract says.</CC_PEv6_HireMarched>
+  <CC_PEv6_HireStandLabel>The Banner stands with the colony</CC_PEv6_HireStandLabel>
+  <CC_PEv6_HireStand>As the contract the colony bought says, {COUNT} soldiers of {FACTION} have come in to stand with the colony against the raid of {ENEMY}.</CC_PEv6_HireStand>
+  <CC_PEv6_HireNotCome>The raid of {ENEMY} never came, and {FACTION} is sending back the colony's silver.</CC_PEv6_HireNotCome>
+  <CC_PEv6_Impact_HireBuy>When the raid of {1} comes, soldiers of {0} come in on the colony's side and stand with it against them.</CC_PEv6_Impact_HireBuy>
+  <CC_PEv6_Impact_HireBuyBrief>The Banner on the colony's side</CC_PEv6_Impact_HireBuyBrief>
+  <CC_PEv6_Impact_HireAside>The raid of {1} comes without {0}.</CC_PEv6_Impact_HireAside>
+  <CC_PEv6_Impact_HireAsideBrief>The Banner stands aside</CC_PEv6_Impact_HireAsideBrief>
+  <CC_PEv6_Impact_HireMarch>The raid of {1} comes at the size the storyteller sent it, and part of it is soldiers of {0}.</CC_PEv6_Impact_HireMarch>
+  <CC_PEv6_Impact_HireMarchBrief>The Banner marches with the raid</CC_PEv6_Impact_HireMarchBrief>
+
+  <!-- ===================== 58. A company on the march (CompanyMarch.cs) ===================== -->
+
+  <CC_PEv6_BetBack>You're on.</CC_PEv6_BetBack>
+  <CC_PEv6_BetBack_2>Make it two days' pay.</CC_PEv6_BetBack_2>
+  <CC_PEv6_BetBack_3>I'll take that bet.</CC_PEv6_BetBack_3>
+  <CC_PEv6_MarchStayed>{THING} left the company's camp to stay with the colony. The Banner will hold it against the colony.</CC_PEv6_MarchStayed>
+  <CC_PEv6_MarchBrawl>{X_nameDef} of the Banner and {A_nameDef} came to blows over a bet at the company's fire.</CC_PEv6_MarchBrawl>
+  <CC_PEv6_MarchEnlisted>One of the colony is already with the company.</CC_PEv6_MarchEnlisted>
+  <CC_PEv6_NoneCanLeave>None of the colony's fighters can leave now.</CC_PEv6_NoneCanLeave>
+  <CC_PEv6_MealsSold>meals for the company</CC_PEv6_MealsSold>
+  <CC_PEv6_EnlistThere>{PAWN_nameDef} has reached {PLACE} and joined the company of {FACTION} for the season.</CC_PEv6_EnlistThere>
+  <CC_PEv6_EnlistHome>{PAWN_nameDef} is home from a season with the company of {FACTION}, with {PAY} silver of pay and what the drill ground taught.</CC_PEv6_EnlistHome>
+  <CC_PEv6_EnlistHomeEarly>{PAWN_nameDef} is home from {PLACE}, the season cut short.</CC_PEv6_EnlistHomeEarly>
+  <CC_PEv6_Impact_March>A company of {1} soldiers of {0} camps a night or two at the edge of the colony's land, drills at dawn and buys food.</CC_PEv6_Impact_March>
+  <CC_PEv6_Impact_MarchBrief>A company at the edge</CC_PEv6_Impact_MarchBrief>
+  <CC_PEv6_Impact_MarchTurns>It can turn: {0} may catch them here and come for their camp, and a bet at their fire may end in a brawl with one of the colony. A soldier may ask to stay, which the Banner holds against the colony.</CC_PEv6_Impact_MarchTurns>
+  <CC_PEv6_Impact_MarchTurnsBrief>Their enemy, a bet, a soldier who stays</CC_PEv6_Impact_MarchTurnsBrief>
+  <CC_PEv6_Impact_Enlist>{0} sets out for {1} as a caravan of one to serve with the company for {2} days, and comes home. The roads there and back are the game's own.</CC_PEv6_Impact_Enlist>
+  <CC_PEv6_Impact_EnlistBrief>A season with the company</CC_PEv6_Impact_EnlistBrief>
+  <CC_PEv6_Impact_EnlistPay>{0} comes home with {1} silver of pay.</CC_PEv6_Impact_EnlistPay>
+  <CC_PEv6_Impact_EnlistPayBrief>A soldier's pay</CC_PEv6_Impact_EnlistPayBrief>
+
+</LanguageData>

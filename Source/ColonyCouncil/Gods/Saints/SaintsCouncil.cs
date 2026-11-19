@@ -7,7 +7,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The council's card after a remarkable death (Defs/GodDefs/Rimfolk_Saints.xml, Rimfolk_Dlm_Saint): the fallen, their
-    /// deed and the god they held. {DEAD} their name, {DEED} why ("who kept the sick for years"), {SAINT} their title as a saint
+    /// deed and the god they held. {DEAD} their name, {DEED} why ("who cared for the sick for years"), {SAINT} their title as a saint
     /// ("Saint Mira"), {ASAINT} what the council would name them ("a saint of Hollin"; "a saint" where the colony doesn't know
     /// the god), {GOD} the colony's name for their god.
     /// </summary>

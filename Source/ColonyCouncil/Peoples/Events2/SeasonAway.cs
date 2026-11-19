@@ -43,7 +43,10 @@ namespace ColonyCouncil
         public static readonly Dictionary<string, AwayKind> Kinds = new Dictionary<string, AwayKind>
         {
             [Pilgrimage.AwayKey] = new PilgrimAway(),
-            [LeagueGuard.AwayKey] = new GuardAway()
+            [LeagueGuard.AwayKey] = new GuardAway(),
+            // Round 6's (Peoples/Events6/): the old soldier's muster, a season with the Banner's company.
+            [OldSoldier.AwayKey] = new MusterAway(),
+            [CompanyMarch.AwayKey] = new EnlistAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;
