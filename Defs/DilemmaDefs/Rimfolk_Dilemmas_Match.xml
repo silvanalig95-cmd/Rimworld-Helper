@@ -21,7 +21,7 @@
       <li>[another,away] {FACTION} want {A_nameDef} to marry {X_nameDef} and go to live at {TOWN}. {A_nameDef} would be leaving {B_nameDef} behind, and has told the council so in plain words.</li>
       <li>[children] {A_nameDef} would go to live at {TOWN} if the match with {X_nameDef} goes ahead, and {A_possessive} children would stay here. {A_nameDef} has asked the council not to send {A_objective} away from them.</li>
       <li>[dislike] {A_nameDef} can't stand {X_nameDef}, and {FACTION} have just agreed to marry the two of them. {A_nameDef} has come before the council to say so before it is too late.</li>
-      <li>[dislike,empire] {X_nameDef} of {FACTION} holds a title and expects a match to match it. {A_nameDef} has met {X_objective}, didn't like {X_objective}, and wants the council to know before it says yes.</li>
+      <li>[dislike,empire] {X_nameDef} of {FACTION} holds a title and expects a marriage worthy of it. {A_nameDef} has met {X_objective}, didn't like {X_objective}, and wants the council to know before it says yes.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>

@@ -52,7 +52,7 @@
         </effects>
       </li>
       <li>
-        <label>Snow means more work, not less</label>
+        <label>No snow day: there are paths to clear</label>
         <outcome>Snow means paths to clear and roofs to sweep, so {A_nameDef} was handed a shovel. {A_nameDef} built a very small snowman by the path, on {A_possessive} own, out of spite.</outcome>
         <ways><toil>3</toil><tradition>-2</tradition></ways>
         <effects>
@@ -176,8 +176,8 @@
     <modExtensions><li Class="ColonyCouncil.CustomConditions"><minTemp>2</minTemp></li></modExtensions>
     <texts>
       <li>{A_nameDef} wants to plant a tree. Not just any tree: {A_possessive} tree, at the edge of the fields, with {A_possessive} name on a stone beside it. And then every child gets one. {A_nameDef} has thought this through.</li>
-      <li>{A_nameDef} found a sapling growing in a crack by the wall and wants to give it a proper home. The idea grew in the telling: every spring, every child plants a tree, and the colony grows a grove of them.</li>
-      <li>[lowtech] You could tell anyone's age by their tree, where {A_nameDef}'s mother grew up: every child planted one the first spring they could walk. {A_nameDef} would like to start that here.</li>
+      <li>{A_nameDef} found a sapling growing in a crack by the wall and wants to give it a proper home. The idea has grown since: every spring, every child plants a tree, and the colony grows a grove of them.</li>
+      <li>[lowtech] Where {A_nameDef}'s mother grew up, every child planted a tree in the first spring they could walk, so you could tell anyone's age by their tree. {A_nameDef} would like to start that here.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the children's trees</traditionLabel>
@@ -208,7 +208,7 @@
         </effects>
       </li>
       <li>
-        <label>Trees take room from the crops</label>
+        <label>No trees: the land is for crops</label>
         <outcome>The land is for crops, the council said. {A_nameDef} planted the sapling in a pot by {A_possessive} bed instead, and talks to it.</outcome>
         <ways><toil>2</toil><tradition>-2</tradition></ways>
         <effects>

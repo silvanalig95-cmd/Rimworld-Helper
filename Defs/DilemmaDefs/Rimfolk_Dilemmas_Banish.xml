@@ -75,7 +75,7 @@
       <li>[warned,started] After the council's word, {A_nameDef} has thrown punches again: {FIGHTS} since, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put the question to the council plainly: how much longer?\n\n{VOICES}</li>
       <li>[apart] The nights apart didn't settle it. Since then {A_nameDef} has been in {FIGHTS} more, with {WITH}, and some at the table now say the colony would be better off without {A_objective}.\n\n{VOICES}</li>
       <li>{A_nameDef} is in trouble again: {FIGHTS} since the council last stepped in, with {WITH}. {B_nameDef}, the colony's {TITLE}, has put it to the council once more.\n\n{VOICES}</li>
-      <li>[apart,insults] Kept to the nights for a while, {A_nameDef} found trouble anyway: {FIGHTS} since, with {WITH}, and hard words besides. {B_nameDef}, the colony's {TITLE}, wants the council to decide, once and for all.\n\n{VOICES}</li>
+      <li>[apart,insults] Even working nights, {A_nameDef} has found trouble: {FIGHTS} since, with {WITH}, and hard words besides. {B_nameDef}, the colony's {TITLE}, wants the council to decide, once and for all.\n\n{VOICES}</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>

@@ -21,17 +21,17 @@
     <seasons><li>Spring</li></seasons>
     <texts>
       <li>The first warm days are here, and winter's dirt is in every corner: tracked mud, ash, things put down and never picked up. {A_nameDef} wants a day of it, everyone with a broom, and a toast in a clean room after.</li>
-      <li>{A_nameDef} opened every door this morning to let the spring in, and didn't like what it showed. {A_nameDef} asks for a day for the cleaning, all hands, before the sowing takes everyone.</li>
+      <li>{A_nameDef} opened every door this morning to air the place out, and didn't like how dirty it all looked in the daylight. {A_nameDef} asks for everyone to spend a day cleaning, before the sowing keeps them all busy.</li>
       <li>[again] The warm days are back, and so is the dirt. {A_nameDef} has the brooms out already, and asks whether it's to be a day of spring cleaning again.</li>
       <li>[tradition] It's the time of year for the spring cleaning, and {A_nameDef} has been counting buckets. The colony has kept the day for years now.</li>
-      <li>[missed] Last spring the cleaning was let go, and the colony felt it all year. {A_nameDef} asks that it not happen twice.</li>
+      <li>[missed] Last spring nobody did the cleaning, and the place stayed dirty all year. {A_nameDef} doesn't want that to happen again.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>spring cleaning</traditionLabel>
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>All hands for a day</label>
+        <label>Everyone cleans, with a toast after</label>
         <outcome>They cleaned from one end of the colony to the other, then carried everything lying about to where it belongs, and finished with a toast in a room that smelled of soap.</outcome>
         <outcomes>
           <li>[years] The spring cleaning went the way it always does: brooms first, then the hauling, then a toast. Someone found a thing that went missing last autumn.</li>
@@ -54,7 +54,7 @@
         </effects>
       </li>
       <li>
-        <label>The morning only</label>
+        <label>Four of them clean for the morning</label>
         <outcome>Four of them cleaned and hauled through the morning, and the rest got on with the day. The worst of it is gone.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
@@ -96,7 +96,7 @@
     <texts>
       <li>A warm, dry day, and {A_nameDef} wants the colony to walk its bounds: all round the edge of the land, stopping at every turn to set a stone, so the young ones grow up knowing where home ends.</li>
       <li>{A_nameDef} grew up walking the bounds every summer, and says a place isn't really yours until you've walked all the way round it together. It would take the morning.</li>
-      <li>[again] The bounds want walking again, {A_nameDef} says, and the stones want finding.</li>
+      <li>[again] {A_nameDef} says it's time to walk the bounds again and check that the stones are still there.</li>
       <li>[tradition] It's bounds-walking weather. {A_nameDef} has a list of every stone they set, and wants to see them all again.</li>
       <li>[missed] Nobody walked the bounds last summer, and {A_nameDef} wonders aloud whether the stones are still where they were left.</li>
     </texts>
@@ -170,7 +170,7 @@
       <passion>Intellectual</passion>
     </roleA>
     <texts>
-      <li>It's a clear, warm evening without a cloud, and {A_nameDef} wants everyone outside tonight: blankets on the ground, lights out, and the whole sky. It would mean a late night, and a late start tomorrow.</li>
+      <li>It's a clear, warm evening without a cloud, and {A_nameDef} wants everyone outside tonight on blankets, with the lights out, to look at the stars. It would mean a late night, and a late start tomorrow.</li>
       <li>{A_nameDef} has been watching the sky all week and says tonight will be the clearest yet. {A_nameDef} wants to sit out late with everyone and name what's up there.</li>
       <li>[again] Another clear summer night, and {A_nameDef} already has the blankets out for the star night.</li>
       <li>[tradition] It's the star night, and {A_nameDef} has been waiting for a sky like this one all summer.</li>

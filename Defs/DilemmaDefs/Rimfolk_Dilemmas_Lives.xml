@@ -20,8 +20,8 @@
     <roleA><child>true</child></roleA>
     <modExtensions><li Class="ColonyCouncil.FamilyRole"><b>Guardian</b></li></modExtensions>
     <texts>
-      <li>"I was aiming at the post."\n"The post is over there."\n\n{A_nameDef} ran when the window went, then came back on {A_possessive} own, which {B_nameDef} counts in {A_possessive} favor. {B_nameDef} has brought it to the council anyway, mostly to see what the council will say.</li>
-      <li>The chickens are out, the rain barrel is over, and the cook's bread has gone from the step. Every track leads to {A_nameDef}, who says it was an experiment. {B_nameDef} would like the council to decide what experiments are for.</li>
+      <li>{A_nameDef} broke a window with a stone. "I was aiming at the post," {A_pronoun} said, though the post is on the other side of the yard.\n\n{A_nameDef} ran when the window broke, then came back on {A_possessive} own, which {B_nameDef} counts in {A_possessive} favor. {B_nameDef} has brought it to the council anyway, to see what the council will say.</li>
+      <li>The chickens are out, the rain barrel is over, and the cook's bread has gone from the step. Every track leads to {A_nameDef}, who says it was an experiment. {B_nameDef} would like the council to put a stop to the experiments.</li>
       <li>[lowtech] {A_nameDef} tried to climb onto the storehouse roof to see the hills and brought half the thatch down with {A_objective}. {A_nameDef} is fine. The roof is not. {B_nameDef} wants the council's word on it.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -137,7 +137,7 @@
         </effects>
       </li>
       <li>
-        <label>Children get over these things</label>
+        <label>Leave it; children get over these things</label>
         <outcome>The council said children are tougher than they look and {A_nameDef} would get over it. {A_nameDef} is still awake at night. {B_nameDef} has stopped asking.</outcome>
         <ways><mercy>-3</mercy><toil>1</toil></ways>
         <effects>
@@ -209,7 +209,7 @@
         </effects>
       </li>
       <li>
-        <label>Time will do it</label>
+        <label>Give it time</label>
         <outcome>The council decided time would do what words couldn't. {A_nameDef} goes to bed early these days, and lies awake.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
@@ -250,7 +250,7 @@
         </effects>
       </li>
       <li>
-        <label>They learn by working beside us</label>
+        <label>Let them learn by working beside the adults</label>
         <outcome>The council decided the children learn best at the grown-ups' elbows, doing real work. {A_nameDef} spent the day following the builders about. {B_nameDef} thinks it's a mistake, and said so.</outcome>
         <ways><toil>3</toil><tradition>2</tradition></ways>
         <effects>
@@ -339,12 +339,12 @@
     <texts>
       <li>{A_nameDef} has never been further than the fields, and wants to go out with the next caravan, or the next anything. {B_nameDef} says {A_nameDef} is far too young. {A_nameDef} says {B_nameDef} was younger when {B_pronoun} left home.</li>
       <li>Every trader and traveler who comes by gets the same questions from {A_nameDef}, where they've been and how far and what it was like. Now {A_nameDef} wants to go and see the world {A_objective}self. {B_nameDef} has asked the council to say no. {A_nameDef} has asked the council to say yes.</li>
-      <li>[colony:Restless] The young ones are always looking at the road. {A_nameDef} has packed a bag, and asked the council's leave before using it. {B_nameDef} is beside {A_objective}, arms folded.</li>
+      <li>[colony:Restless] The young ones here are always talking about leaving. {A_nameDef} has packed a bag, and asked the council's leave before using it. {B_nameDef} is beside {A_objective}, arms folded.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>{A_nameDef} goes with the next journey out</label>
+        <label>Let {A_nameDef} go with the next journey out</label>
         <outcome>Yes, the council said: when someone next sets out from the colony, {A_nameDef} may go along. {A_nameDef}'s bag was packed by nightfall. {B_nameDef} has been quiet.</outcome>
         <outcomes>
           <li>[b:quirk:Worrier] The council said yes. {B_nameDef} has made {A_nameDef} a list of everything that could go wrong on the road, and a second list of what to do about each one. {A_nameDef} has packed both.</li>
@@ -365,7 +365,7 @@
         </effects>
       </li>
       <li>
-        <label>A long walk past the fields with {B_nameDef}, first</label>
+        <label>A long walk past the fields first</label>
         <outcome>A day's walk out past the fields, with {B_nameDef}, to start with. They came back at dusk, muddy, still talking. {A_nameDef} wants to go further. {B_nameDef} has stopped saying never.</outcome>
         <ways><openness>1</openness><mercy>1</mercy></ways>
         <effects>
@@ -380,7 +380,7 @@
   <!-- ===================== One last look at the hills ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderWalk</defName>
-    <label>one last look at the hills</label>
+    <label>a walk to the hills</label>
     <weight>1</weight>
     <cooldownDays>60</cooldownDays>
     <roleA><minAge>65</minAge></roleA>
@@ -487,14 +487,14 @@
   <!-- ===================== The old one's tale ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderTale</defName>
-    <label>the old one's tale</label>
+    <label>an elder's story</label>
     <weight>1</weight>
     <cooldownDays>60</cooldownDays>
     <minColonists>4</minColonists>
     <roleA><minAge>60</minAge><notTrait><li>Psychopath</li></notTrait></roleA>
     <roleB><bestAt>Intellectual</bestAt></roleB>
     <texts>
-      <li>Give {A_nameDef} one evening, with everyone together, and {A_pronoun} will tell the colony's story from the very beginning, the way {A_pronoun} remembers it, before it's forgotten. {B_nameDef} thinks it should be written down too.</li>
+      <li>{A_nameDef} asks for one evening with everyone together, to tell the colony's story from the very beginning the way {A_pronoun} remembers it, before it's forgotten. {B_nameDef} thinks it should be written down too.</li>
       <li>"Half the people at that table don't know how this place started," {A_nameDef} told the council, "and I'm one of the last who does." {A_nameDef} wants to tell it, once, to everyone. {B_nameDef} has offered to keep a record.</li>
       <li>[winter] The nights are long, and {A_nameDef} has asked to spend one of them telling the colony's history to everyone, the whole of it, with the cold kept out by the fire. {B_nameDef} would like to take it down as {A_pronoun} speaks.</li>
     </texts>
@@ -543,13 +543,13 @@
   <!-- ===================== The old one and the little one ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderAndChild</defName>
-    <label>the old one and the little one</label>
+    <label>an elder and a child</label>
     <weight>1.1</weight>
     <cooldownDays>45</cooldownDays>
     <roleA><minAge>60</minAge><notTrait><li>Psychopath</li></notTrait></roleA>
     <roleB><child>true</child><minOpinionOfA>0</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} has taken a shine to {B_nameDef}, and wants to teach {B_objective} what {A_pronoun} knows, a little every day. Some of the grown-ups think the child should be with other children, or at lessons, not following an old one about.</li>
+      <li>{A_nameDef} has taken a shine to {B_nameDef}, and wants to teach {B_objective} what {A_pronoun} knows, a little every day. Some of the grown-ups think the child should be with other children, or at lessons, not following an old person about.</li>
       <li>{B_nameDef} has been sitting with {A_nameDef} every afternoon, watching {A_objective} work and asking questions. {A_nameDef} asks the council's leave to make it proper: a pupil, and a teacher with time to spare.</li>
       <li>[quirk:Storyteller] {B_nameDef} turns up at {A_nameDef}'s chair every evening for a story, and every evening {A_nameDef} slips a lesson into it. {A_nameDef} wants the council's leave to make the lessons proper ones.</li>
     </texts>
@@ -578,7 +578,7 @@
         </effects>
       </li>
       <li>
-        <label>Children belong with children</label>
+        <label>Send the child back to the other children</label>
         <outcome>{B_nameDef} belongs with the other children, at lessons and games, the council said. {A_nameDef} said nothing. {B_nameDef} still turns up at {A_nameDef}'s chair in the evenings, when the grown-ups aren't looking.</outcome>
         <ways><tradition>-1</tradition><mercy>-1</mercy></ways>
         <effects>
@@ -591,7 +591,7 @@
   <!-- ===================== Cold in the bones ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderCold</defName>
-    <label>cold in the bones</label>
+    <label>an elder who can't get warm</label>
     <weight>1</weight>
     <cooldownDays>45</cooldownDays>
     <seasons><li>Winter</li><li>PermanentWinter</li><li>Fall</li></seasons>
@@ -708,20 +708,20 @@
   <!-- ===================== The worrier's watch (quirk) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_WorrierWatch</defName>
-    <label>the worrier's watch</label>
+    <label>a worrier asks for a night watch</label>
     <weight>1.3</weight>
     <cooldownDays>40</cooldownDays>
     <roleA><tags>quirk:Worrier</tags></roleA>
     <roleB><canFight>true</canFight><minOpinionOfA>0</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} hasn't slept properly in a week for listening to the night, and has asked the council for a watch on the walls every night, with {A_objective}self on it if need be. {B_nameDef} says the colony can't spare the sleep.</li>
+      <li>{A_nameDef} hasn't slept properly in a week, lying awake listening for noises, and has asked the council for a watch on the walls every night, with {A_objective}self on it if need be. {B_nameDef} says the colony can't spare the sleep.</li>
       <li>{A_nameDef}'s list of what could come over the walls at night, in order of likelihood:\n\nRaiders.\nSomething hungry, on four legs.\nRaiders who heard the first ones did well.\nFire.\n\nIt runs to two pages. {A_nameDef} wants a night watch. {B_nameDef}, who would be standing it, doesn't.</li>
       <li>[afterraid] Since the last attack, {A_nameDef} checks the doors four times before bed and still lies awake. {A_nameDef} asks for a night watch, just for a while. {B_nameDef} would take a turn.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>Set a night watch for a while</label>
+        <label>Set a night watch</label>
         <outcome>The council set a night watch for the next few weeks, with {B_nameDef} taking the first turns. {A_nameDef} slept through the night for the first time in a week. {B_nameDef} didn't.</outcome>
         <ways><openness>-2</openness><toil>2</toil></ways>
         <effects>

@@ -22,9 +22,9 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>The stores won't last the week, and the herd eats from them every day. {B_nameDef} has done the sums out loud at supper: cull {COUNT} head and the rest of us eat. {A_nameDef}, who has raised most of them, has gone very quiet.\n\nThe council has to decide what the herd is for.</li>
-      <li>{A_nameDef} found {B_nameDef} at the pens with a knife and a list. The colony is going hungry, and {B_nameDef} says {COUNT} of the herd are eating food that people need.\n\n{A_nameDef} says a herd killed in a bad winter is a herd you never get back. Both are right, and both want the council's word.</li>
-      <li>[winter] Snow on the fields and the stores nearly bare. The herd is eating hay the colony may need to trade for bread. {B_nameDef} wants {COUNT} head culled. {A_nameDef} wants the council to think about spring.</li>
+      <li>The stores won't last the week, and the herd eats from them every day. At supper {B_nameDef} worked it out aloud: if {COUNT} head are culled, there will be enough food for everyone else. {A_nameDef}, who raised most of them, has gone very quiet.\n\nThe council has to decide whether to keep the herd or the food.</li>
+      <li>{A_nameDef} found {B_nameDef} at the pens with a knife and a list. The colony is going hungry, and {B_nameDef} says {COUNT} of the herd are eating food that people need.\n\n{A_nameDef} says that a herd killed off in a bad winter takes years to build up again. Both have a point, and both want the council to decide.</li>
+      <li>[winter] There is snow on the fields and the stores are nearly empty. The herd is eating hay the colony may need to trade for bread. {B_nameDef} wants {COUNT} head culled. {A_nameDef} asks the council to think about how the colony will manage without them in spring.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -40,11 +40,11 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmA_CulledHerd</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word for the herd</label><organizer>A</organizer><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a few words for the culled herd</label><organizer>A</organizer><spots><li>Fields</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.5~0.75</duration></li>
         </effects>
       </li>
       <li>
-        <label>Tighten everyone's belts</label>
+        <label>Keep the herd, and everyone eats less</label>
         <outcome>The herd stays, and the people eat less until the stores recover. {B_nameDef} complains at every meal. {A_nameDef} has been thanking them one at a time, down at the pens.</outcome>
         <ways><mercy>3</mercy><generosity>1</generosity></ways>
         <effects>
@@ -86,7 +86,7 @@
   <!-- ===================== A wild animal in the crops ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_CropRaider</defName>
-    <label>a raider in the crops</label>
+    <label>an animal in the crops</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CropRaider</workerClass>
     <weight>1</weight>
     <cooldownDays>25</cooldownDays>
@@ -105,9 +105,9 @@
       <maxBodySize>3</maxBodySize>
     </stranger>
     <texts>
-      <li>Something has found the colony's fields, {X_indefinite}, and it likes them. {A_nameDef} came in this morning with a handful of chewed stalks and a face like thunder.\n\n{A_nameDef} wants it dealt with. {B_nameDef} thinks an animal that bold might be worth taming.</li>
+      <li>{A_nameDef} came in this morning with a handful of chewed stalks, very angry: {X_indefinite} has been eating the crops in the colony's fields.\n\n{A_nameDef} wants it dealt with. {B_nameDef} thinks an animal that bold might be worth taming.</li>
       <li>Every night something gets into the crops, and this morning {A_nameDef} caught it in the act: {X_indefinite}, standing in the middle of the field with its mouth full, not in the least sorry.\n\nThe hunters could have it in the pot by supper. Or someone could sit out in the fields at night and drive it off.</li>
-      <li>[skill:Plants] {A_nameDef} has been nursing that field since the thaw. Now {X_indefinite} is eating it a row at a time, and {A_nameDef} has asked the council, very politely, for permission to do something drastic.</li>
+      <li>[skill:Plants] {A_nameDef} has been tending that field since the thaw. Now {X_indefinite} is eating it a row at a time, and {A_nameDef} has asked the council, very politely, for permission to do something drastic.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -177,8 +177,8 @@
       <bestAt>Medicine</bestAt>
     </roleB>
     <texts>
-      <li>{PET_nameDef} is sick, {X_possessive} breathing short and hot: {THEIRILLNESS}. {A_nameDef} has been sitting with {X_objective} since dawn.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it, and no one can say who'll need it next.</li>
-      <li>{A_nameDef} asked {B_nameDef} to look at {PET_nameDef}, and {B_nameDef} came back grave: {THEIRILLNESS}. "I can treat it," {B_nameDef} told the council, "if you'll let me use what's left in the cupboard on an animal."</li>
+      <li>{PET_nameDef} is sick ({THEIRILLNESS}), breathing fast and feverish. {A_nameDef} has been sitting with {X_objective} since dawn.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it, and no one can say who'll need it next.</li>
+      <li>{A_nameDef} asked {B_nameDef} to look at {PET_nameDef}, and {B_nameDef} came back looking worried: {THEIRILLNESS}. "I can treat it," {B_nameDef} told the council, "if you'll let me use what's left in the cupboard on an animal."</li>
       <li>[winter] {PET_nameDef} has {THEIRILLNESS}, and the cold isn't helping. {A_nameDef} wants the doctors to use the good medicine. The doctors want to know if the council agrees, with winter still to come.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -204,7 +204,7 @@
         </effects>
       </li>
       <li>
-        <label>{A_nameDef} nurses {PET_nameDef} through</label>
+        <label>{A_nameDef} nurses {PET_nameDef} without medicine</label>
         <outcome>No medicine, but {A_nameDef} will sit up with {PET_nameDef} at night, keep {X_objective} warm and get water into {X_objective}, and hope for the best.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
@@ -239,7 +239,7 @@
   <!-- ===================== A predator stalking the pens ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_PenStalker</defName>
-    <label>something at the pens</label>
+    <label>a predator at the pens</label>
     <workerClass>ColonyCouncil.DilemmaWorker_PenStalker</workerClass>
     <weight>1</weight>
     <cooldownDays>30</cooldownDays>
@@ -258,8 +258,8 @@
       <maxBodySize>2.6</maxBodySize>
     </stranger>
     <texts>
-      <li>The herd was restless all night, and this morning {A_nameDef} found the tracks: {X_indefinite} has been circling the pens, close enough to put its nose to the fence. {PET_nameDef} won't eat.\n\n{B_nameDef} wants to go out after it. {A_nameDef} wants a watch kept at the pens. The council has a day before it tries the fence for real.</li>
-      <li>{A_nameDef} saw it at dusk: {X_indefinite}, lying in the long grass downwind of the pens, watching the herd. It didn't run when {A_nameDef} shouted.\n\nSomething that patient will be back tonight.</li>
+      <li>The herd was restless all night, and this morning {A_nameDef} found the tracks: {X_indefinite} has been circling the pens, close enough to put its nose to the fence. {PET_nameDef} won't eat.\n\n{B_nameDef} wants to go out after it. {A_nameDef} wants a watch kept at the pens. It will probably try to get through the fence within a day.</li>
+      <li>{A_nameDef} saw it at dusk: {X_indefinite}, lying in the long grass downwind of the pens, watching the herd. It didn't run when {A_nameDef} shouted.\n\nIt will probably be back tonight.</li>
       <li>[night] {B_nameDef} woke the colony at midnight: {X_indefinite} at the pens, pacing the fence. It slunk off when the lanterns came out. It hasn't gone far.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -328,7 +328,7 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>{B_nameDef}'s ideoligion holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has asked the council, very quietly, not to.</li>
+      <li>{B_nameDef}'s ideoligion holds that a bond between a person and an animal is a wrong done to both of them, and {A_nameDef} and {PET_nameDef} are never apart. {B_nameDef} has asked the council to say something.\n\n{A_nameDef} has quietly asked the council not to.</li>
       <li>{B_nameDef} found {PET_nameDef} asleep on {A_nameDef}'s bed and said a prayer over it, loudly, the kind you say over something unclean. {A_nameDef} hasn't spoken to {B_nameDef} since, and shuts the door at night now.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -396,7 +396,7 @@
     </roleA>
     <texts>
       <li>{PET_nameDef} is heavy with young, and so are others of the herd. {A_nameDef} wants a watch kept in the pens these nights, the whole colony taking turns with a lantern, the way it was done where {A_pronoun} grew up.\n\nIt would cost a few nights' sleep.</li>
-      <li>"Spring's the herd's year turning," {A_nameDef} says. The young are coming any night now, and {A_nameDef} wants a lambing watch: everyone in turn, in the straw, so nothing is born alone in the dark.</li>
+      <li>"Spring's the herd's year turning," {A_nameDef} says. The young are coming any night now, and {A_nameDef} wants a lambing watch, with everyone taking a turn in the pens at night so that someone is there whenever the young are born.</li>
       <li>[colony:Traditional] Spring again, and the herd is near its time. {A_nameDef} asks for the lambing watch, the whole colony in turn at the pens through the night.</li>
     </texts>
     <traditionOption>0</traditionOption>
@@ -451,7 +451,7 @@
     </roleA>
     <texts>
       <li>The herd's coats are heavy and the days are warm. {A_nameDef} wants to make a day of the shearing and the milking: everyone out at the pens, the work done together, and something to eat in the sun afterward.</li>
-      <li>{A_nameDef} remembers shearing days from long ago: a whole village in a yard, laughing at the ones that got away. {A_nameDef} would like one here.</li>
+      <li>{A_nameDef} remembers the shearing days of {A_possessive} childhood, when a whole village gathered in one yard and laughed at the animals that got away. {A_nameDef} would like one here.</li>
       <li>[colony:Traditional] It's the time of year for the shearing day. {A_nameDef} has the shears out already, and an eye on the weather.</li>
     </texts>
     <traditionOption>0</traditionOption>

@@ -23,14 +23,14 @@
     <answerDays>1</answerDays>
     <texts>
       <li>{A_nameDef} walked the {THING} field this morning and counted {COUNT} rows of bare earth in the middle of the growing season. {A_pronoun} wants hands out there to sow it while there's still time for a crop. {B_nameDef} says the hands are wanted elsewhere, and the field was always too big.</li>
-      <li>[lowtech] The {THING} field lies half bare, the weeds coming in at its edges. {A_nameDef} says a field nobody sows is a field the land takes back, and asks for a few hands for an afternoon with the seed. {B_nameDef} would sooner give it back now and be done with it.</li>
+      <li>[lowtech] The {THING} field lies half bare, the weeds coming in at its edges. {A_nameDef} says the weeds will take over a field nobody sows, and asks for a few people to spend an afternoon sowing it. {B_nameDef} would rather give the field up now.</li>
       <li>[!lowtech] {A_nameDef} brought the council the numbers on the {THING} field: {COUNT} cells unsown, and the season still open. {B_nameDef} has numbers too, on everything else that needs doing, and suggests the field come off the plan.</li>
       <li>[skill:Plants] {A_nameDef} can't bear to look at the {THING} field. Good ground, a long season left, and {COUNT} cells of it doing nothing. {B_nameDef} says {A_nameDef} can't sow everything {A_pronoun} marks out.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>A few hands to sow it this afternoon</label>
+        <label>Send a few hands to sow it</label>
         <outcome>{A_nameDef} took a few of the colony out to the {THING} field with the seed, and the bare rows were sown before the light went.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} went ahead down the furrows with the seed bag, and the others sowed behind until the bare ground was gone.</li>
@@ -75,10 +75,10 @@
     <cooldownDays>40</cooldownDays>
     <answerDays>1.5</answerDays>
     <texts>
-      <li>{A_nameDef} has come to the council about the {PLAIN} field. The stores are full of food, {A_pronoun} says, and short of what {THING} gives. {A_pronoun} wants the field turned over to {THING}. {B_nameDef} grew that {PLAIN} and says food in the stores is the only thing that never goes wrong.</li>
-      <li>[medicine] {A_nameDef} counted what's left in the medicine chest and didn't like the number. The colony eats well; it would heal better. {A_nameDef} wants the {PLAIN} field sown with {THING} instead. {B_nameDef} says a winter is long and a field of herbs feeds nobody.</li>
+      <li>{A_nameDef} has come to the council about the {PLAIN} field. The stores are full of food, {A_pronoun} says, and short of what {THING} gives. {A_pronoun} wants the field turned over to {THING}. {B_nameDef} grew that {PLAIN} and says a colony can never have too much food.</li>
+      <li>[medicine] {A_nameDef} counted what's left in the medicine chest and didn't like the number. The colony has plenty of food but not enough medicine. {A_nameDef} wants the {PLAIN} field sown with {THING} instead. {B_nameDef} says a winter is long and a field of herbs feeds nobody.</li>
       <li>[cloth] {A_nameDef} is at the bench with nothing to cut: the colony is short of cloth and has more {PLAIN} than it can eat. {A_pronoun} asks for the {PLAIN} field to grow {THING}. {B_nameDef}, who sows it, would keep it as it is.</li>
-      <li>[lowtech,medicine] The healers' stores are near empty, {A_nameDef} says, and the old remedy grows from the ground if anyone sows it. {A_pronoun} would have {THING} in the {PLAIN} field by the next moon. {B_nameDef} says the field was cleared for bread.</li>
+      <li>[lowtech,medicine] The healers' stores are near empty, {A_nameDef} says, and the old remedy grows from the ground if anyone sows it. {A_pronoun} would have {THING} sown in the {PLAIN} field. {B_nameDef} says the field was cleared for bread.</li>
       <li>[!lowtech,cloth] {A_nameDef} brought the council a list of what the colony wears out in a season, and the cloth in store won't cover it. The {PLAIN} field could grow {THING}. {B_nameDef} has a list too, of what the colony eats.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -179,15 +179,15 @@
     <cooldownDays>30</cooldownDays>
     <answerDays>1</answerDays>
     <texts>
-      <li>There are {COUNT} things marked out to be built about the colony and standing unbuilt, some of them waiting on stuff the stores don't have. {A_nameDef} wants a few hands for an afternoon to put up what can be put up. {B_nameDef}, who keeps the stores, would take the plans the colony can't pay for off the ground.</li>
-      <li>[lowtech] {A_nameDef} has walked the colony and counted {COUNT} places where something was begun and never finished: posts in the ground, a frame with no walls. {A_pronoun} asks for a few hands to finish them. {B_nameDef} says half of them want stuff nobody has.</li>
+      <li>There are {COUNT} things marked out to be built about the colony and standing unbuilt, some of them waiting on stuff the stores don't have. {A_nameDef} wants a few hands for an afternoon to put up what can be put up. {B_nameDef}, who keeps the stores, would cancel the plans the colony has no materials for.</li>
+      <li>[lowtech] {A_nameDef} has walked the colony and counted {COUNT} places where something was begun and never finished: posts in the ground, a frame with no walls. {A_pronoun} asks for a few hands to finish them. {B_nameDef} says half of them need materials the colony doesn't have.</li>
       <li>[!lowtech] {A_nameDef} brought the council a plan of the colony with {COUNT} buildings marked on it and not one of them built. {B_nameDef} went through the stores and says several of them can never be finished with what's there.</li>
       <li>[skill:Construction] It bothers {A_nameDef} to walk past the {COUNT} unbuilt plans every morning. {A_pronoun} could have most of them up in an afternoon with a few hands to carry. {B_nameDef} wants the impossible ones crossed out first.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>A building party this afternoon</label>
+        <label>A building party</label>
         <outcome>{A_nameDef} led a few of the colony round the plans, carrying stuff to them and putting up what could be put up.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
@@ -198,7 +198,7 @@
         </effects>
       </li>
       <li>
-        <label>Take off what we can't pay for</label>
+        <label>Cancel what the colony has no materials for</label>
         <outcome>The plans waiting on stuff the stores don't hold are taken off the ground. What's left is what the colony can build.</outcome>
         <ways><toil>-1</toil></ways>
         <effects>
@@ -232,7 +232,7 @@
     <texts>
       <li>{A_nameDef} walked the outside of the colony's wall and counted {COUNT} grown trees close enough to touch it. Anyone coming at the colony could stand behind any one of them, {A_pronoun} says, and wants them down. {B_nameDef} says they're the only shade on that side, and the colony is a worse place without them.</li>
       <li>[lowtech] {A_nameDef} has hunted from behind trees all {A_possessive} life and knows what {COUNT} of them by the wall would mean in a raid. {A_pronoun} wants the axes out. {B_nameDef} says the trees were here first.</li>
-      <li>[!lowtech] {A_nameDef} sketched the colony's lines of fire for the council: {COUNT} trees by the wall, each one a place to hide. {A_pronoun} wants clear ground. {B_nameDef} says a wall in a wood is a wall nobody sees from the road.</li>
+      <li>[!lowtech] {A_nameDef} sketched the colony's lines of fire for the council: {COUNT} trees by the wall, each one a place to hide. {A_pronoun} wants clear ground. {B_nameDef} says the trees hide the wall from anyone on the road.</li>
       <li>[sacred] {A_nameDef} wants the {COUNT} trees by the wall cut down, for the colony's safety. {B_nameDef} holds trees sacred and has said so to the whole council, as plainly as {B_pronoun} can.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -299,7 +299,7 @@
         </effects>
       </li>
       <li>
-        <label>One now, and see</label>
+        <label>Slaughter just one for now</label>
         <outcome>One is marked for slaughter, the oldest of the herd. The council will look at the hay again when the snow comes.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_MarkSlaughter"><one>true</one></li>
@@ -323,15 +323,15 @@
   <!-- ===================== What to teach it ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_TrainBeast</defName>
-    <label>what to teach it</label>
+    <label>training an animal</label>
     <workerClass>ColonyCouncil.DilemmaWorker_TrainBeast</workerClass>
     <weight>1.1</weight>
     <cooldownDays>35</cooldownDays>
     <answerDays>1.5</answerDays>
     <texts>
       <li>{PET_nameDef} is old enough to learn a trade, and two people want it to learn theirs. {A_nameDef} would teach {PET_objective} to haul, so the stores fill themselves while everyone else works. {B_nameDef} would teach {PET_objective} to guard, and to go for anyone who comes over the wall.</li>
-      <li>[lowtech] {A_nameDef} says a beast like {PET_nameDef} could carry wood from the forest to the fire all day. {B_nameDef} says the same beast could stand at the gate at night and keep it. Both want the training to start tomorrow.</li>
-      <li>[!lowtech] {A_nameDef} has watched {PET_nameDef} fetch and carry and says {PET_pronoun}'d be the best hauler the colony has. {B_nameDef} has watched {PET_nameDef} bristle at strangers and says {PET_pronoun}'s a guard born.</li>
+      <li>[lowtech] {A_nameDef} says a beast like {PET_nameDef} could carry wood from the forest to the fire all day. {B_nameDef} says the same animal could stand guard at the gate at night. Both want the training to start tomorrow.</li>
+      <li>[!lowtech] {A_nameDef} has watched {PET_nameDef} fetch and carry and says {PET_pronoun}'d be the best hauler the colony has. {B_nameDef} has watched {PET_nameDef} bristle at strangers and says {PET_pronoun}'s a born guard.</li>
       <li>[skill:Animals] {A_nameDef} knows {PET_nameDef} better than anyone and wants {PET_objective} hauling: steady work, safe work. {B_nameDef} wants {PET_objective} trained to fight beside the colony when the raiders come.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -382,7 +382,7 @@
     <texts>
       <li>{A_nameDef} is home after {COUNT} days on the road, with the dust still on {A_objective}, and those who went with {A_objective} look as worn as {A_pronoun} does. {A_pronoun} asks for a day off for all of them. {B_nameDef} kept their work going while they were away and says there's a backlog that won't wait.</li>
       <li>[lowtech] {A_nameDef} came back from {COUNT} days of walking with blisters on {A_possessive} blisters. Among {A_possessive} people, {A_pronoun} says, a traveller home was given a day by the fire and asked what the road was like. {B_nameDef} has been doing two people's work since they left.</li>
-      <li>[!lowtech] Back after {COUNT} days out, {A_nameDef} wants a day to rest and a chance to tell someone what happened out there. {B_nameDef} covered the work while they were away and would like it covered back now.</li>
+      <li>[!lowtech] Back after {COUNT} days out, {A_nameDef} wants a day to rest and a chance to tell someone what happened out there. {B_nameDef} covered their work while they were away and would like some help with it now.</li>
       <li>[trait:Industriousness] {A_nameDef} is back from {COUNT} days on the road and would go straight back to work, but the others who came back with {A_objective} are dead on their feet. {A_pronoun} asks the council for a day off for them. {B_nameDef} says the colony needs every hand.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -400,10 +400,10 @@
         </effects>
       </li>
       <li>
-        <label>{A_nameDef} tells {B_nameDef} the road</label>
+        <label>{A_nameDef} tells {B_nameDef} about the journey</label>
         <outcome>{A_nameDef} sat down with {B_nameDef} for an hour and told {B_objective} the whole road, the good and the bad, before they both went back to work.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the road told</label><who>A</who><to>Person</to><whom>B</whom><sit>true</sit><hours>12~21</hours><duration>0.75~1.25</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>telling about the journey</label><who>A</who><to>Person</to><whom>B</whom><sit>true</sit><hours>12~21</hours><duration>0.75~1.25</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmY_RoadTold</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
@@ -435,7 +435,7 @@
       <li>{A_nameDef} has stopped coming to the words of {FAITH}, and when asked, said {A_pronoun} isn't sure anymore what {A_pronoun} believes. {B_nameDef} would sit with {A_objective} and hear every doubt. Others say it's {A_nameDef}'s own affair and the council should keep out of it.</li>
       <li>[guide] As {FAITH}'s guide, {B_nameDef} has noticed {A_nameDef} drifting and asks the council's leave to spend an hour with {A_objective}, just talking. {A_nameDef} says {A_pronoun} would rather work it out alone.</li>
       <li>[altar] {A_nameDef} was seen standing by the altar of {FAITH} after dark, not praying, just standing there. {B_nameDef} would go and sit with {A_objective}. Some say {A_nameDef} should be left alone at the altar, if that's where {A_pronoun} goes.</li>
-      <li>[lowtech] {A_nameDef} told {B_nameDef} that the old words of {FAITH} sound hollow to {A_objective} lately. {B_nameDef} came to the council: an hour by the fire together might bring them back, or might not.</li>
+      <li>[lowtech] {A_nameDef} told {B_nameDef} that the old words of {FAITH} sound hollow to {A_objective} lately. {B_nameDef} came to the council: an hour by the fire together might help, or might not.</li>
       <li>[!lowtech] {A_nameDef} has been reading about other faiths and asking questions of {FAITH} that nobody here can answer. {B_nameDef} would like to try. {A_nameDef} hasn't asked anyone to.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -486,7 +486,7 @@
     <texts>
       <li>Nobody guides {FAITH} in the colony: nobody leads its words, settles its quarrels, or speaks for it to the doubters. {A_nameDef} and {B_nameDef} could each do it, and the faithful are split between them. The council could name one, or leave the faithful to manage without.</li>
       <li>[lowtech] Among the faithful of {FAITH} there's no one to keep the words and say them over the dead. {A_nameDef} has kept them in {A_possessive} head for years; {B_nameDef} has a gentler way with people. The council is asked to choose.</li>
-      <li>[!lowtech] {FAITH} has had no moral guide here for some time, and it shows: questions go unanswered, and the evenings of faith are nobody's to call. {A_nameDef} has put {A_objective}self forward. So has {B_nameDef}.</li>
+      <li>[!lowtech] {FAITH} has had no moral guide here for some time, and it shows: questions go unanswered, and nobody calls the faith's evenings. {A_nameDef} has put {A_objective}self forward. So has {B_nameDef}.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>

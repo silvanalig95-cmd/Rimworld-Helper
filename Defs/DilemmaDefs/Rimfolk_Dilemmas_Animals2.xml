@@ -22,7 +22,7 @@
     </roleA>
     <texts>
       <li>The wind has turned and there's ice at the edge of the trough. The herd is still out grazing, {PET_nameDef} furthest of all. {A_nameDef} wants as many hands as can be spared to go out together and bring them in to the barn while there's still light.</li>
-      <li>{A_nameDef} has been watching the sky all morning. "They'll want to be under a roof tonight," {A_nameDef} says, and asks the council for a few hands: out to the herd with ropes, and every head of it home before dark.</li>
+      <li>{A_nameDef} has been watching the sky all morning. "They'll want to be under a roof tonight," {A_nameDef} says, and asks the council for a few people to go out to the herd with ropes and bring every animal home before dark.</li>
       <li>[fall] The last of the grazing is going brown, and the nights are long now. Where {A_nameDef} grew up, the whole household brought the herd home on the same day each fall, and ate together after. {A_nameDef} would like to do the same here.</li>
       <li>[afterraid] The raid scattered the herd across the land: {PET_nameDef} is still out past the fields, and others with it. {A_nameDef} wants to gather them all in together before anything else finds them.</li>
       <li>[snow] Snow's coming in sideways and half the herd is still out in it. {A_nameDef} is already at the door with the ropes, waiting for the council to say how many can go.</li>
