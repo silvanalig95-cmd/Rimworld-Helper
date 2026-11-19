@@ -31,6 +31,31 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.271.1</version>
+        <date>19 November 2026</date>
+        <title>What's new in plain words</title>
+        <points>
+          <li>The What's new rounds from before 0.266.0 are in plain words: titles that were riddles or wordplay now name what changed, and figures of speech say plainly what happened.</li>
+          <li>The longest points that ran lists together with semicolons, such as the seven automations and the herd's leader, now read as short sentences, and CHANGELOG.md says the same.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.271.0</version>
+        <date>19 November 2026</date>
+        <title>The peoples' own events, round 7</title>
+        <points>
+          <li>When someone makes a masterwork or a legend, a master of the Kiln Guild may come to judge it: true work gets the guild's mark, and a fault is said plainly.</li>
+          <li>A journeyman who spent a wander-year at the colony comes back a year later as a master, with a masterwork for the one who taught them.</li>
+          <li>Three journeymen may camp for a week and build a lasting work with the colony's stone or wood: a carved bridge, a grand statue in its hall, or a fountain where it gathers.</li>
+          <li>The Signal Line offers one call a season on its masts, raises a mast at a friend's town so letters there come faster, and sends line crews to camp on the high ground.</li>
+          <li>When a union pit caves in, the colony's miner and doctor can go and help dig the trapped miners out, for pay and the union's thanks.</li>
+          <li>The union's assayer may find oil under the colony and sink a Rimefeller well, or mark a deep seam for the union's drill.</li>
+          <li>When the colony is worn down, a shift-captain may speak at its fire and a petition for rest reaches the council; during a strike, a picket may camp by the road.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.270.6</version>
         <date>19 November 2026</date>
         <title>The mods' Almanac pages in plain words</title>
@@ -399,11 +424,11 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.265.3</version>
         <date>17 November 2026</date>
-        <title>A god's words at once</title>
+        <title>A god's doings shown at once</title>
         <points>
           <li>Everything a god does now shows as a message on the right as it happens, never held for the evening's colony news: the gods' own happenings, a god's sign, rain kept away, an offering taken or left, a god's demand ignored.</li>
           <li>Where a god's happening moves the camera, the camera now always moves first and the message follows, as with Revel's stash and visions.</li>
-          <li>The moods after a god's doing now say in their tooltip what was seen and whose doing the colonist holds it was, by the name they know that god by, or that they don't know which god it was.</li>
+          <li>The moods after a god's doing now say in their tooltip what was seen and which god the colonist thinks did it, by the name they know that god by, or that they don't know which god it was.</li>
           <li>The Gods' book's lines no longer end with two full stops, and a few of its words read better.</li>
         </points>
       </li>
@@ -448,10 +473,10 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.264.1</version>
         <date>17 November 2026</date>
-        <title>A god's sign with its words</title>
+        <title>A god's sign and its message</title>
         <points>
           <li>When a god's sign moves the camera, its message now follows after the same short pause, even on a busy day, instead of waiting for the evening news.</li>
-          <li>Only a colonist a short walk away is sent to look at what a god left; otherwise the first one to pass near it stops and says what they see.</li>
+          <li>Only a colonist a short walk away is sent to look at what a god left; otherwise the first colonist to pass near it stops and says what they see.</li>
           <li>The Gods' book writes down who found a sign once they have actually seen it, and the moods and small effects that follow go to them.</li>
         </points>
       </li>
@@ -492,7 +517,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Storylines: runs of quests told over weeks. Each part is its own quest that opens with what happened before, and how it ends decides what comes next.</li>
           <li>The factor's goods: keep a factor's sealed crates dry and unopened for a season, then decide what to do when a rival trader offers to buy them.</li>
-          <li>The beast coming down the valley: get ready with traps or a wall, look at its kill at the edge of the land, then face one of the region's legend beasts, with the hunters beside you if they think well of the colony.</li>
+          <li>The beast coming down the valley: prepare with traps or a wall, look at its kill at the edge of the land, then fight one of the region's legend beasts, with the hunters beside you if they think well of the colony.</li>
           <li>The children from the burned village: shelter them for a few days, then take them in, find them a home with neighbours, or send them on with food. Seasons later one of them comes back grown.</li>
           <li>Running storylines show on the Neighbours page under the missions, with their parts so far, and their endings go in the chronicle.</li>
         </points>
@@ -515,13 +540,13 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.260.0</version>
         <date>16 November 2026</date>
-        <title>The Open Cup</title>
+        <title>A new god: Revel, the Open Cup</title>
         <points>
-          <li>A fifteenth god, Revel, the Open Cup: the spirit in drink, smoke and the long night, who gives a good night first and takes his price in the morning.</li>
-          <li>Now and then one drink or dose in the stores is his, though it looks like any other: whoever takes it may get the best high of their life, a sharp mind, a vision or no fear, or a crash, a craving or, rarely, an addiction.</li>
+          <li>A fifteenth god, Revel, the Open Cup: the god of drink, drugs and late nights, whose gifts bring a good night and a bad morning after.</li>
+          <li>Now and then one drink or dose in the stores is his, though it looks like any other: whoever takes it may get the best high of their life, a sharp mind, a vision or no fear, or else a crash, a craving or, rarely, an addiction.</li>
           <li>A man with goat's horns may walk in to a party or a late fire with a cup to share, and is gone before dawn.</li>
-          <li>Nights that run past midnight, a craving that gets someone up in the dark, a stash found far out, and a friend who sits up all night with someone through a craving.</li>
-          <li>His signs, his merry air that makes recreation go further, his feast of the Long Night, and his own way of taking what is left for him: drunk off in the night.</li>
+          <li>His happenings: parties that run past midnight, a craving that gets someone up at night, a stash found far from the base, and a friend who sits up all night with someone through a craving.</li>
+          <li>He has his own signs, a cheerful mood that makes recreation go further, a feast called the Long Night, and his own way with offerings: what is left for him is drunk during the night.</li>
         </points>
       </li>
 
@@ -586,7 +611,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>In their free hours camp people clean the blood, ash and trash on their own ground, and orderly kinds tidy their site before they go.</li>
           <li>Refuse is left behind only after a sour stay or when a careless kind leaves in a hurry.</li>
           <li>A longer stay grows by the kind of camp a day or so at a time: fire seats, a lean-to, a pen, a drying rack, a bench, an altar, a banner, a latrine.</li>
-          <li>A short stay stays small, and a long one reaches a settled look within ten cells of the fire, never on your ground.</li>
+          <li>A short stay stays small, and a long one grows into a settled camp within ten cells of the fire, never on your ground.</li>
           <li>A camp's fire that couldn't be placed on arrival is set down again once its ground is clear.</li>
         </points>
       </li>
@@ -618,10 +643,10 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.256.0</version>
         <date>15 November 2026</date>
-        <title>The gods felt, and what follows them</title>
+        <title>How the gods' doings are felt</title>
         <points>
           <li>Whoever sees something of the gods now feels it, by what they believe: a believer is glad and comforted, someone in dread is afraid, a scoffer shrugs.</li>
-          <li>Most of the gods' doings are now followed by something of that god's own, usually small, sometimes more, and rarely something the colony remembers.</li>
+          <li>Most of the gods' doings are now followed by an effect that fits that god: usually small, sometimes larger, and rarely one the colony remembers.</li>
           <li>Each god has its own look on the map: leaves, embers, sparks, frost, water, sand, gold.</li>
           <li>An offering is taken before everyone's eyes a month apart at most, and a god that came often lately gives the others their turn.</li>
           <li>The camera now moves only for the big moments of the gods.</li>
@@ -783,11 +808,11 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>15 November 2026</date>
         <title>The rider at the gate, and winter clothes for everyone</title>
         <points>
-          <li>The great caravan's rider now comes to the gate in hard frost, and telling him the hill road plays out on the map.</li>
+          <li>The great caravan's rider now comes to the gate in hard frost, and when you tell him about the hill road, it plays out on the map.</li>
           <li>If the rider has already gone, the road is written down and taken out to the edge of the colony's land, and answers whose visitor has left can't be given.</li>
           <li>The caravan's card shows what the answer does later, and every world event's ending letter says what it changed.</li>
-          <li>Visitors, traders and raiders come in varied winter clothes by their people's taste, and in their warmest when nothing is warm enough.</li>
-          <li>Rimfolk's own visitors and couriers are no longer kept away by cold or heat, and leave only when it really gets to them.</li>
+          <li>Visitors, traders and raiders come in a variety of winter clothes by their people's taste, and in their warmest when nothing is warm enough.</li>
+          <li>Rimfolk's own visitors and couriers are no longer kept away by cold or heat, and leave only when it really becomes too much for them.</li>
         </points>
       </li>
 
@@ -829,11 +854,11 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.240.0</version>
         <date>15 November 2026</date>
-        <title>The old powers stir</title>
+        <title>Old Powers' strange happenings</title>
         <points>
           <li>Old Powers has fourteen strange happenings of its own, each played out on the map: a seer at the end of a season, a night when everyone turns to face one way, a stone that hums in a storm, a sealed scroll in old ruins, and more.</li>
-          <li>Pale wolves run once round the colony under the full moon, and in the morning someone finds no tracks where they ran.</li>
-          <li>On foggy or moonless nights, eyes watch the colony from the edge of the dark until someone walks out to them.</li>
+          <li>Under the full moon, pale wolves run once around the colony, and in the morning someone finds they left no tracks.</li>
+          <li>On foggy or moonless nights, eyes are seen watching the colony from the edge of the dark until someone walks out to them.</li>
           <li>A god drawn near may go by in the night: its own signs one after another, then its own presence for a while after dawn, named only when the colony knows it.</li>
           <li>A wandering enchanter offers to work a piece of the colony's gear up a grade for silver, and the bearer stands with them while it is done.</li>
           <li>They come under every storyteller about once in three weeks, and about once in ten days under Old Powers or its story direction.</li>
@@ -844,7 +869,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.239.0</version>
         <date>15 November 2026</date>
-        <title>Visitors' own day</title>
+        <title>Visitors' idle hours</title>
         <points>
           <li>Visitors now fill their idle hours with things of their own: they talk, sit by a fire or on a bench, warm their hands in the cold and get out of the rain.</li>
           <li>Guests play your games and instruments, watch your screens and use your telescope only while none of your colonists want them, and get up as soon as one heads over.</li>
@@ -867,7 +892,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.238.2</version>
         <date>15 November 2026</date>
-        <title>Every chapter its sign</title>
+        <title>A sign for every chapter</title>
         <points>
           <li>Every chapter of the Gods' book now shows its god's coloured sign, the god it was told of or the god its name belongs to.</li>
           <li>The plain seal stays only on a second name of a god whose sign already shows elsewhere, so the book never gives away that two names are one god.</li>
@@ -877,7 +902,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.238.1</version>
         <date>14 November 2026</date>
-        <title>The Gods' book mended</title>
+        <title>Fixes to the Gods' book</title>
         <points>
           <li>The Gods' book shows each chapter's whole name again, and the large first letter of its first line is no longer cut.</li>
           <li>Each god's sign now shows in its own colours, as on the draft sheet, over its chapter's name, in the book's list and on its cards.</li>
@@ -894,7 +919,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>In a cold snap someone may sit up all night by the bed of the old, a baby or the sick, and if they last till dawn the cold breaks.</li>
           <li>At night a darkness may drift toward whoever is nearest to breaking; a lamp beside them or a friend sitting with them stops it.</li>
           <li>The day after an eclipse the noon burns white and hot, and after the longest night the colony walks out to watch the sun come up.</li>
-          <li>When the moon gives back a deed, a morning card says what was found and by whose bed, and at the full moon her light lies on still water.</li>
+          <li>When the moon repays someone for a deed in the night, a card the next morning says what was found and by whose bed, and at the full moon her light shows on still water.</li>
           <li>In a dry spell the colony may sing at the well at dusk and bring the rain, and when a long dry spell breaks, frogs come up all over the colony.</li>
           <li>Silver gone from a hoard leaves a trail of coins out to the edge of the land, and at Ducat's feast someone presses coins into a visitor's hand.</li>
           <li>A cat comes to stay beside anyone near death and walks off once they pull through, and a cat finds a colonist's body left lying far out.</li>
@@ -908,12 +933,12 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Seven gods now have happenings of their own on the map: Hollin, Smoulder, Bellwether, Morel, Ennu, Pip and Cirrus.</li>
           <li>Hollin's dryads may turn to a colonist and give one word that points at something real, and her roots break up through the floors of a colony that fells too much.</li>
-          <li>A miner may dream of a warm voice offering gold for silver dropped down the deepest shaft; keep the bargain to the letter and gold comes up in the rock, bend it and the vein is steel under a skin of gold.</li>
-          <li>The white thrumbo bows to the colony's youngest at dusk and walks his road through the colony at dawn, waiting at your fences until someone opens a gate.</li>
+          <li>A miner may dream of a warm voice offering gold for silver dropped down the deepest shaft; if the bargain is kept exactly, gold appears in the rock, and if it is bent, the vein is steel with only a thin layer of gold.</li>
+          <li>The white thrumbo bows to the colony's youngest at dusk and walks his own path through the colony at dawn, waiting at your fences until someone opens a gate.</li>
           <li>A figure of pale threads may stand at the graves on the night after a death, and Morel's rings of mushrooms come up round what was left to rot.</li>
           <li>The Guest at the gate asks one small thing each visit and tells other gods' stories by the fire; on the Open Door night a bowl set out is empty by morning.</li>
           <li>Pip keeps a switched-off machine running an hour and writes half a message to the stars on the comms console, and a turret may hold its fire as a colonist crosses its line.</li>
-          <li>Cirrus's falling star now comes only to a colony that watches the sky, and whoever sees the wrong-way star dreams where pods will fall.</li>
+          <li>Cirrus's falling star now comes only to a colony that watches the sky, and whoever sees a star moving the wrong way dreams where drop pods will fall.</li>
         </points>
       </li>
 
@@ -934,11 +959,11 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.235.0</version>
         <date>14 November 2026</date>
-        <title>Each one's gods</title>
+        <title>Each colonist's own gods</title>
         <points>
           <li>Each colonist now holds the gods in their own way: who they are draws them toward one or another, never their family, and praying, gifts, vows, feast days and what they see make it stronger while neglect and unanswered prayers wear it down.</li>
           <li>A colonist's Culture tab shows their gods in words, such as devoted to one or in dread of another, with the reason when you hover, and each chapter of the Gods' book lists who holds to that god and who dreads it.</li>
-          <li>Colonists pray to and swear by the god they hold most, and the devoted keep a small rite of their own now and then: a hand on a tree, a coin dropped into the rock, an extra bowl at the table, a sit by a grave at dusk.</li>
+          <li>Colonists pray to and swear by the god they hold most, and the devoted keep a small rite of their own now and then: a hand on a tree, a coin dropped into the rock, an extra bowl at the table, sitting by a grave at dusk.</li>
           <li>A strong moment can win someone over to another god, said aloud and in their journal, while a god's anger can leave someone afraid of it, keeping away from its place and flinching at its signs.</li>
           <li>Two colonists who hold rival gods bicker about it now and then, and a colonist feels it when their god shows itself, its place is torn down or its feast day passes unkept.</li>
         </points>
@@ -947,12 +972,12 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.234.0</version>
         <date>14 November 2026</date>
-        <title>The gods, each their own</title>
+        <title>Each god's own presence</title>
         <points>
           <li>Each god now leaves its own presence on the map, with its own name, words and effect, from faster plants under Hollin to a white silence under Hush.</li>
           <li>A god's presence is named only once the colony is sure whose it is, and its numbers show under its label.</li>
           <li>Each god takes its offerings in its own way, from a sapling where Hollin's gift lay to Ducat's gift handed to a visitor.</li>
-          <li>Helios never takes what is left for him: the noon light lies on it, and at dusk it is still there.</li>
+          <li>Helios never takes what is left for him: the noon light falls on the gift, and at dusk it is still there.</li>
           <li>Bellwether and Ennu send omens of their own, such as a great hoofprint at dawn or a knock at the door with nobody there.</li>
           <li>Tamiu's watch over the graves is now one of the gods' own presences, and a cat eats her offerings at dawn.</li>
         </points>
@@ -987,7 +1012,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.232.0</version>
         <date>14 November 2026</date>
-        <title>The gods understood</title>
+        <title>Signs and chapters for the gods</title>
         <points>
           <li>Each god now has its own sign, in the form of the colony's age: scratched on a stone, painted on a shield, stamped on a badge or lit in a ring. It shows beside its chapter in the Gods' book and on a god's card when the colony is sure who it was.</li>
           <li>Each chapter of the Gods' book opens with what the colony takes the god to be, in plain words and in the keeper's hand.</li>
@@ -1023,7 +1048,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.231.0</version>
         <date>14 November 2026</date>
-        <title>The days of food as the kitchen would make them</title>
+        <title>Days of food counted as meals</title>
         <points>
           <li>Food Alert's days of food now count what your stores would make: meals as they are, and raw food, flour and every other ingredient as the meals your own recipes and benches would cook from them.</li>
           <li>Kibble, hay and other animal feed are left out, and everything is counted by its nutrition, never by the piece; Food Alert's tooltip says what is counted, and a switch under your other mods turns it off.</li>
@@ -1035,7 +1060,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.230.1</version>
         <date>14 November 2026</date>
-        <title>Doors kept for the colony</title>
+        <title>Rooms closed to guests</title>
         <points>
           <li>Guests and visitors of every kind keep out of your colonists' bedrooms at any hour, unless the bed there is theirs.</li>
           <li>Nobody goes into a cold store, a room kept cold with food in it, even when the game calls it a kitchen because of a butcher's table.</li>
@@ -1062,7 +1087,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.229.1</version>
         <date>14 November 2026</date>
-        <title>Plain words and a dinner forgiven</title>
+        <title>Plain spelling, and no bad mood for a lost dinner</title>
         <points>
           <li>Letters from people with little or no schooling are spelled right now, with no misspelled or crossed-out words, just short and plain sentences.</li>
           <li>The jokes that leaned on bad spelling are plain ones now, like the bandit who wants real gold and not painted rocks, or the writer who asks you to forgive the plain words.</li>
@@ -1078,9 +1103,9 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>A pilgrim fellowship may ask if anyone would walk with them to a shrine; whoever goes is away ten to thirty days and comes home with a shell, steadier faith and a grief or guilt eased.</li>
           <li>The road league asks for one guard and one pack beast to walk with a great caravan or a trading season, home with a share of the profit, and its caravans come more often for a while.</li>
           <li>The spacer enclave fits a bionic part at your medical bed, paid now or in four instalments; miss one and their landers stay away until the debt is paid. They may also rent ground for a pad and trade every day.</li>
-          <li>River folk lay a crossing over your river in a day with your wood, and rest at it on their knot night each year.</li>
+          <li>River folk build a crossing over your river in a day with your wood, and rest at it each year on their knot night, when they remember everyone pulled from the water.</li>
           <li>A Kiln Guild master reworks a colonist's bow or gun into a unique piece, or a blade into a masterwork, with their name in it.</li>
-          <li>In a drought the herders bring their herd to your water and camp by it; the learned society asks you to keep books saved from the fire; the Circuit fits a lame beast with a leg or takes it to their stables; the Signal Line sells news of sites nearby.</li>
+          <li>In a drought the herders bring their herd to your water and camp by it. The learned society asks you to keep books saved from a fire, the Circuit fits a lame beast with a leg or takes it to their stables, and the Signal Line sells news of sites nearby.</li>
         </points>
       </li>
 
@@ -1115,10 +1140,10 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>12 November 2026</date>
         <title>Ways to play</title>
         <points>
-          <li>Eight new storytellers, each a way to play named for what it does, with no character and a plain plate: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.</li>
-          <li>The Long Road calls the colony out into the region, Neighbours sends raids from peoples with a reason, The Turning Year gives every year the same shape, and What You Sow lets the world answer the colony's deeds.</li>
-          <li>Old Powers makes the world feel watched, Lean Years makes scarcity the enemy, Rise and Fall tells long arcs with a trouble foretold, and Crossroads makes the colony a market that draws traders and raiders by its wealth.</li>
-          <li>Every kind of event can still come under each of them: a storyteller leans toward something, never away from anything.</li>
+          <li>Eight new storytellers, each a way to play named for what it does, with no character portrait and a plain picture: The Long Road, Neighbours, The Turning Year, What You Sow, Old Powers, Lean Years, Rise and Fall and Crossroads.</li>
+          <li>The Long Road sends more of the story out into the region, Neighbours sends raids from peoples who have a reason, The Turning Year gives every year the same shape, and under What You Sow the world responds to the colony's deeds.</li>
+          <li>Old Powers brings more strange and unexplained events, Lean Years makes scarcity the main danger, Rise and Fall runs long stretches of good and bad times with warning of the trouble ahead, and Crossroads makes the colony a market that draws traders and raiders by its wealth.</li>
+          <li>Every kind of event can still come under each of them: a storyteller makes some events more likely and never rules any out.</li>
           <li>Threats stay at the classic storyteller's pace or less over a year, and sickness about as often as the game's own.</li>
           <li>A new setting, Story direction, leans any storyteller you play toward one of the eight, in a new game or one already running.</li>
           <li>The ways draw on your mods' events where they fit, such as Vanilla Events Expanded, Seasonal Weather and A RimWorld of Magic.</li>
@@ -1144,7 +1169,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>The Gods' book is now a holy book: each name the colony has heard a god by is a chapter that grows as your people learn.</li>
           <li>A chapter's parts fill only from what your people saw, were told or came to believe: its names among each people, what it is, how it is known, what it loves and hates, its sayings, tales, kin, feasts and rites.</li>
           <li>Every line is said as someone's ("so Mirel of the League told it at our gate", "so Avila holds"), and when two disagree both stand side by side.</li>
-          <li>Tales are set down piece by piece as they are told, with the missing pieces left as gaps, and what nobody has heard of is silence or a torn page.</li>
+          <li>Tales are written down piece by piece as they are told, with the missing pieces left as gaps, and what nobody has heard of is left blank or shown as a torn page.</li>
           <li>Colonists and visitors now also tell what a god is and how it is seen, and new sayings come before old ones.</li>
           <li>A believer who sees a god's hand comes to hold what that god loves or hates, under the god they took it for, so they can be wrong.</li>
           <li>The book reads like scripture: chapter and verse, a drop capital, the keeper's notes and dates in the margin, and a change of hand marked.</li>
@@ -1168,14 +1193,14 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.224.0</version>
         <date>12 November 2026</date>
-        <title>The gods, one way</title>
+        <title>The gods' pace, the same in every game</title>
         <points>
-          <li>Selene's night no longer comes twice in a few days: what was done by day comes back only around a full moon, a moon apart at least, and only after a day that stood out. Tending the wounded every day is no reason.</li>
-          <li>When the moon comes back to the same person for the same deed, it goes a step further and people say it happened again; otherwise it takes a different form from last time.</li>
+          <li>Selene's night no longer comes twice in a few days: the moon repays the day's deeds only around a full moon, at least a month apart, and only after a day that stood out. Tending the wounded every day is no reason.</li>
+          <li>When the moon repays the same person for the same kind of deed again, it goes a step further and people say it happened again; otherwise it takes a different form from last time.</li>
           <li>Every happening of the gods keeps its own pace: once it could come again its chance starts small and grows, so you can't tell when it will come.</li>
           <li>A myth at supper, a prayer answered, the rock rumbling over a deep mine, a god answering in the weather, mocking and bickering over faith, a god's dream and a visit to a god's mark all come much further apart.</li>
-          <li>The gods are felt, one way in every game: the setting "How real are the gods" is gone.</li>
-          <li>Each god draws nearer by what happens: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush, quarrels between gods, offerings and harm. A god drawn near may show itself plainly, answer more strongly, take an offering in a breath of light or rise in its true form, while the others stay hidden.</li>
+          <li>The setting "How real are the gods" is gone: the gods now work the same way in every game, as its choice Felt did.</li>
+          <li>Each god draws nearer by what happens: a drought for Murmur, a deep mine for Smoulder, a hard winter for Hush, quarrels between gods, offerings and harm. A god drawn near may show itself plainly, answer more strongly, take an offering in a flash of light or appear in its true form, while the others stay hidden.</li>
           <li>A god is still named only when the colony is sure it was that god.</li>
         </points>
       </li>
@@ -1190,7 +1215,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>A letter is on the road only once whoever carries it has left the map, so a guest who stays on no longer has it answered while still at your gate.</li>
           <li>Answers, refusals and silence come only when they could: an answer nobody can carry waits for its road back, and mail sent on by a messenger never comes before it reached the region.</li>
           <li>Calling in a debt is a short list by kind, what can be asked now first and the rest under "Not now" with why, each saying what it does and how much.</li>
-          <li>The goods follow who owes and what they have: a trader sends from their stock, a healer medicine, a farmer food, a smith steel, and food comes as a staple load, never four yoghurts.</li>
+          <li>The goods depend on who owes and what they have: a trader sends from their stock, a healer medicine, a farmer food, a smith steel, and food comes as a proper load of a staple food rather than a few odd items.</li>
           <li>A word with another people is offered only where it would help, and by letter a word, a captive let go and help toward peace come with the answer.</li>
         </points>
       </li>
@@ -1213,8 +1238,8 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Mog's season</title>
         <points>
           <li>The one Mog chooses has a lucky season while she stays: sicknesses pick someone else, and everyday mishaps pass them by.</li>
-          <li>Mog sees Ennu for what it is: in her season the stranger may come to the gate, and she leaves her favourite to follow it about, staring.</li>
-          <li>People notice, and say so, and the colony's book of the gods has it.</li>
+          <li>Mog recognises Ennu: in her season the stranger may come to the gate, and she leaves her favourite to follow it around and stare at it.</li>
+          <li>People notice it and talk about it, and the colony's book of the gods records it.</li>
         </points>
       </li>
 
@@ -1239,13 +1264,13 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>11 November 2026</date>
         <title>The gods in the world</title>
         <points>
-          <li>The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows the hand.</li>
+          <li>The gods act unseen, like a storyteller: weather, blight, flares and traders come, and a god is named only when the colony knows whose doing it was.</li>
           <li>Each god has its own ways, from Hollin's wild growth and blight to Smoulder's silver and heat, Pip's mended machines and short circuits, and Murmur's rain and drought.</li>
           <li>Someone may tell a dream at breakfast and ask to spend a night under the open sky, then come back changed, sometimes marked or older.</li>
-          <li>At night the moon returns what the colony did by day, kindness as kindness and cruelty as cruelty.</li>
-          <li>Gods quarrel where you can see it: snow and warm wind over the valleys, wild growth and rings of mushrooms.</li>
+          <li>At night the moon repays what the colony did by day: kindness with kindness and cruelty with cruelty.</li>
+          <li>Quarrels between gods show on the map: snow and warm wind over the valleys, wild growth and rings of mushrooms.</li>
           <li>Harm one of Bellwether's thrumbos and every people hears of it; harm a cat and the cats leave and the rats come back.</li>
-          <li>People talk of the gods in bubbles, at supper and in their letters, and a hermit seer says true things darkly.</li>
+          <li>People talk about the gods in bubbles, at supper and in their letters, and a hermit seer says true things in unclear words.</li>
         </points>
       </li>
 
@@ -1257,9 +1282,9 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Each god now shows itself in its own way: drifting leaves, a winged shadow at noon, fairy rings, lights flickering in a pattern, frost like writing, a croak before rain, a coin where nobody dropped one.</li>
           <li>A stranger may come to the gate under a name of its own, remember how it was welcomed, and show what it was when it goes.</li>
           <li>A great white thrumbo may pass through with others following at a distance, and someone can sit near him while he grazes.</li>
-          <li>A gray cat may come and stay a while with one colonist, and she will not be kept.</li>
-          <li>Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake what sleeps there.</li>
-          <li>The moon waxes and wanes through each season, and what was done by day can come back by morning.</li>
+          <li>A gray cat may come and stay a while with one colonist, but she can't be tamed or kept.</li>
+          <li>Mining deep under the mountain can make the rock rumble, and a colony that keeps going may wake something that sleeps there.</li>
+          <li>The moon waxes and wanes through each season, and deeds done by day can be repaid by morning.</li>
         </points>
       </li>
 
@@ -1281,7 +1306,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.216.0</version>
         <date>11 November 2026</date>
-        <title>A god walks among you</title>
+        <title>How a god looks on the map</title>
         <points>
           <li>A god on the map now looks like one: larger than anyone near it, in its own colours, robe and crown, with a halo and a slowly turning ring under it, lights rising off it and a light that walks with it at night.</li>
           <li>When a god comes, the game slows to normal speed and the camera goes there; the music fades into a beat of silence, then a sting and a track of the god's own, while the sky takes its colour and the wind dies.</li>
@@ -1299,7 +1324,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>The gods: one pantheon for the whole world. Every faith's deities are real gods with a domain of their own, a people without Ideology has two or three gods of its age and land, and Rimfolk's peoples each have a patron.</li>
           <li>Gods have ties and natures: rivals, lovers, kin, allies and old wrongs, proud ones, jealous ones and cold ones. Some don't fit at all: archotechs, the Hunger, a trickster, a dead god, a fading god and the Sleeper in the vault.</li>
-          <li>The colony stands with each god in words, from wrathful to beloved, by what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god a little galls its rivals.</li>
+          <li>The colony's standing with each god is shown in words, from wrathful to beloved, and changes with what it does: a big harvest, a raid beaten off, a great beast brought down, a funeral. Pleasing one god annoys its rivals a little.</li>
           <li>A Gods page in the region window, under Peoples: the colony's gods, the others it knows and the rumours of the rest, with the whole pantheon drawn as a web.</li>
           <li>Colonists swear by their gods now and then, and the neighbours' letters name theirs.</li>
           <li>Two new settings: Gods, and How real are the gods (Believed, Felt, Walking).</li>
@@ -1335,7 +1360,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Some of the peoples now bring gifts of their own: the herding folk a young beast chosen for one of your people, the hospitallers a limb fitted at your bed, the Conclave a first psylink out in a thunderstorm, the Lattice a mechlink and a mech, the Mossborn a Gauranlen seed for a promise.</li>
           <li>Each gift comes once to a colonist, and never two close together.</li>
-          <li>The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one for good ink and better prices, or break a seal and be written in red.</li>
+          <li>The road league may leave sealed crates in your stores until a second caravan fetches them: keep every one and the league records the colony as honest and gives better prices, or break a seal and be recorded as a cheat.</li>
           <li>Scholars camp beside an old place on your map for four days and tell you exactly what sleeps inside, or open it themselves if you let them.</li>
           <li>In a holy year or a great pilgrimage, the pilgrims may raise a hostel by your road where the region's travellers stop a night with their news.</li>
           <li>While a great beast roams your land, the Lantern Wardens may keep a lantern post at its edge, and the Wardens and the Circuit may come the same day to argue over hunting it or taming it.</li>
@@ -1361,7 +1386,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Old friends by letter</title>
         <points>
           <li>Letters with the same person grow familiar over time: first letters are formal, later ones use first names and short names, and old friends sign with the first name.</li>
-          <li>A wrong, a broken word or a war cools a correspondence: the letters turn formal and short again, with no jokes.</li>
+          <li>A wrong, a broken promise or a war makes the letters cooler: they turn formal and short again, with no jokes.</li>
           <li>Letters take up earlier ones, asking after someone ill or a harvest and saying how it turned out.</li>
           <li>Help, gifts, poems and recipes are remembered and thanked for, and a running joke about a goat or a pumpkin carries on.</li>
           <li>The reading window says how many letters have passed and how things stand.</li>
@@ -1421,7 +1446,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.206.2</version>
         <date>11 November 2026</date>
-        <title>A beast is no reason to go</title>
+        <title>Camps stay when beasts attack</title>
         <points>
           <li>Camps no longer pack up when a beast takes revenge for their hunt, or when a manhunter, a predator or insects are about.</li>
           <li>Only raiders, a people at war with theirs, or the colony harming them on purpose send a camp away.</li>
@@ -1433,7 +1458,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.206.1</version>
         <date>10 November 2026</date>
-        <title>Straight to the mailbag, back in the saddle</title>
+        <title>Couriers go straight to the mailbag</title>
         <points>
           <li>Couriers, porters, go-betweens and the post rider now come in from the map edge nearest the mailbag, walk straight to it, set down or take what they carry there, and leave at once, with no more circling the base or lingering at a spot away from it.</li>
           <li>With Giddy-Up, they stay in the saddle at the mailbag, and one who got off for the stores gets back on before leaving; a beast whose rider can't come leaves by itself.</li>
@@ -1554,7 +1579,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>10 November 2026</date>
         <title>A larger mailbag</title>
         <points>
-          <li>The mailbag by the gate is drawn half again as large, so the post and its bag are easy to spot.</li>
+          <li>The mailbag by the gate is drawn one and a half times as large, so the post and its bag are easy to spot.</li>
           <li>It still takes a single cell, and pawns walk past and over it as before.</li>
         </points>
       </li>
@@ -1579,7 +1604,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Illnesses first in the health panel</title>
         <points>
           <li>In the health panel each illness or injury now shows in the panel's main font, with a wider, thicker bar and a larger icon, so it reads before anything else.</li>
-          <li>The overall health bar under each name is now a thin, quiet line, with how they stand still named at the right.</li>
+          <li>The overall health bar under each name is now a thin, faint line, with how they stand still named at the right.</li>
         </points>
       </li>
 
@@ -1725,7 +1750,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>9 November 2026</date>
         <title>Role clothes the colony can reach</title>
         <points>
-          <li>When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need a dear research off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.</li>
+          <li>When the game picks the clothes for your ideoligion's roles, it now leaves out pieces that need an expensive research project off the usual path, such as VFE Classical's togas, unless your colony has them or your ideoligion calls for them.</li>
           <li>The mood for a role's clothes names each missing piece and how to get it: whether the colony has one, where it can be made, or which research it needs and how far along it is.</li>
           <li>A new button, Choose other clothes for the role, shows the clothes the game allows for that role, those you can make first, and replaces the one you pick once you confirm, just as the game's own editor would.</li>
           <li>Factions' ideoligions are left as the game makes them; a setting, Role clothes the colony can reach, turns the first part off.</li>
@@ -1813,7 +1838,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.188.1</version>
         <date>9 November 2026</date>
-        <title>The heart said once on the Mood tab</title>
+        <title>No repeats in the Mood tab's Heart section</title>
         <points>
           <li>The Heart section under the Mood tab's summary no longer repeats the bars, what the band does to them, the advice or the day off; those stay at the top.</li>
           <li>It now holds only what the top leaves out: what built strain lately and what eased it, the weight under it, who close wore on them or lifted them, and what filled the good side.</li>
@@ -1847,7 +1872,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.186.1</version>
         <date>9 November 2026</date>
-        <title>Planning starts at a glance, as it should have</title>
+        <title>Planning opens on Rooms at a glance again</title>
         <points>
           <li>The planning window now really opens on Rooms, at a glance, every room plan in columns; it had opened on the list of room plans instead.</li>
           <li>The Rooms tab also starts at a glance until you choose the list, whichever page the window opens on.</li>
@@ -1860,7 +1885,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>The weapon in the picture, and trades for the whole colony</title>
         <points>
           <li>Rimfolk's weapon card shows the weapon itself, large and framed in its quality's colour, in its own material and style, and small pictures wherever it lists other weapons.</li>
-          <li>A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a quiet line says so.</li>
+          <li>A suggested weapon now sits as its own row in the equipment box, on Nice Inventory Tab and on the game's gear tab, with its picture, rating, gain, reason and buttons; when nothing better is stored, a short line says so.</li>
           <li>Clicking a weapon's rating badge opens Rimfolk's card for it.</li>
           <li>Two colonists can be asked to trade even when one gives up some, if the colony gains: the best weapons go to those who fight most, judged by their skill, how often they are drafted, their kills and their work, and the line names both sides.</li>
           <li>Colonists sometimes propose such a trade themselves, the one who would gain asking or the one who rarely fights offering, when both are near and both weapons in hand.</li>
@@ -1871,12 +1896,12 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.185.0</version>
         <date>9 November 2026</date>
-        <title>The heart counts: stronger moods, a day off, and what would help</title>
+        <title>Stronger effects of strain, a day off, and advice</title>
         <points>
           <li>Strain now weighs -4, -8 and -14 on mood by its band and the good side lifts +3, +6 and +10; a setting chooses mild, felt or strong.</li>
           <li>Beyond mood, a worn colonist works and learns more slowly, needs a little more sleep and heals a little slower, while one in good heart learns and recovers a little faster; illness is fought off at most a twentieth slower.</li>
           <li>From worn down, a colonist may have a bad afternoon: a few hours off work to cry beside their bed, look out over the land, have a drink or visit a grave, easing a good share of their strain.</li>
-          <li>Hearts spread a little: someone worn down wears on those close to them, someone in high spirits lifts them, never enough on its own to wear anyone down.</li>
+          <li>Moods spread a little: someone worn down drags down those close to them and someone in high spirits lifts them, but never enough on its own to wear anyone down.</li>
           <li>Each strained colonist gets advice on what would help most, from a proper meal or a better bed to a party, a friend sent over or a decree that eases strain, with a button wherever Rimfolk can do it.</li>
           <li>Give a strained colonist a day off from a button: their work hours become free time with a lie-in, it eases far more than an ordinary day, once in five days each, and danger ends it.</li>
           <li>The Mood tab shows mood, the heart, the three things weighing on them and lifting them most, what their state does to them and the best advice at the top, with every detail below in sections that fold; RimHUD's lines match it.</li>
@@ -1925,9 +1950,9 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.181.0</version>
         <date>9 November 2026</date>
-        <title>The heart is felt: strain that stays, joy beside it, and both shown on the map</title>
+        <title>Strain that lasts, good heart beside it, both shown on the map</title>
         <points>
-          <li>Heavy things weigh for days: losing a partner, kin or a friend, being downed, a deadly sickness of their own or of someone close, a fight at home with colonists down; rest no longer washes it away overnight, and strain eases less while it runs high.</li>
+          <li>Heavy things weigh for days: losing a partner, kin or a friend, being downed, a deadly sickness of their own or of someone close, a fight at home with colonists down; a night's rest no longer clears it, and strain eases less while it runs high.</li>
           <li>The good side grows beside strain, more slowly the harder things are, so someone worn down by the plague can still be in good heart thanks to their friends; both moods count at once.</li>
           <li>Colonists show how they are: sitting a while or looking out when strained, pacing at night or a sharp word when worn, humming at work or lingering at the table in good heart, singing and dancing in high spirits, each with a word of their own.</li>
           <li>Strong feelings act: grief at the grave or by the empty bed, fear seeking company indoors after dark, anger slamming a door, love sitting with a partner, homesickness talking of home by the fire, joy shared with a friend.</li>
@@ -1972,7 +1997,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.179.0</version>
         <date>8 November 2026</date>
-        <title>All of Rimfolk's windows move, size and wear its own look</title>
+        <title>All of Rimfolk's windows move, resize and use its own look</title>
         <points>
           <li>The council's windows, Planning and Defenses now float like the region window: moved by the title bar, sized from any edge, made large and back, left open while you play on the map, one of the four at a time, each opening where you last left it.</li>
           <li>The Almanac and Rimfolk's dialogs, from the letter window, the journey planner and the camp to the market, the founding window, the hand-over and the small naming dialogs, have the same frame and remember their place and size.</li>
@@ -1989,7 +2014,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>The region window now floats: drag it by its title bar, size it from any edge or corner, make it large with the button or a double-click on its title and back, and it stays open while you click on the map or pick a colonist; it opens where you last left it.</li>
           <li>The trade window moves and sizes the same way, and both remember their place between games, fitted onto your screen if it changes.</li>
-          <li>Both wear Rimfolk's own look: a calm dark ground, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.</li>
+          <li>Both use Rimfolk's own look: a calm dark background, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.</li>
           <li>A wider window shows more: two columns in Here and away and Faces, a wider list of peoples, more of each people's acts side by side.</li>
           <li>Settings: Rimfolk's own look and Rimfolk's windows move and resize, both on, and Put Rimfolk's windows back; off, the windows look and sit as before. The council's windows, the Almanac and Rimfolk's dialogs follow next.</li>
         </points>
@@ -2035,9 +2060,9 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.174.0</version>
         <date>8 November 2026</date>
-        <title>Answers say how they would land, not what they change</title>
+        <title>Answers say how people would take them</title>
         <points>
-          <li>Under each answer of a council question, an event or a world event there is now one short line in the story's own voice about how it would land, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.</li>
+          <li>Under each answer of a council question, an event or a world event there is now one short line about how people would take it, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.</li>
           <li>The line never says the opposite of what happens, names who it touches, and keeps to the weightiest one or two things, a risk to someone always among them; the wording varies from letter to letter but stays the same each time a letter opens.</li>
           <li>Hovering an answer still shows the plain hint of what it does, and the setting What each answer does keeps hints in words, exact numbers or nothing for anyone who prefers them.</li>
         </points>
@@ -2081,7 +2106,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>8 November 2026</date>
         <title>Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet</title>
         <points>
-          <li>The Signal Line keeps radio masts across the region: a lineman may raise one on your high ground, and while it sings your letters travel twice as fast and a raid's warning comes a few hours before it; storms wear it down, and the linemen climb it to mend it.</li>
+          <li>The Signal Line keeps radio masts across the region: a lineman may raise one on your high ground, and while it works your letters travel twice as fast and a raid's warning comes a few hours before it; storms wear it down, and the linemen climb it to mend it.</li>
           <li>The Deepwell Union drills the deep seam under your land for a share, its assayer leaves a crate at your gate, and now and then it strikes, stopping its trade until a shift-captain is given food or a good talker; the drill can hurt your miner, on the shared budget.</li>
           <li>The Last Republic counts your people bed to bed, offers citizen's papers with better trade and a duty owed, may call a colonist up for a season's service who comes home with pay, and praises or denounces you on its radio.</li>
           <li>The Hollow Fleet, a grounded colony ship's crew in ship's grey, lands a shuttle by your gate to trade, buys salvage and ship chunks, and a sleeper woken after two hundred years may ask you for shelter.</li>
@@ -2174,12 +2199,12 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.167.0</version>
         <date>8 November 2026</date>
-        <title>Camps that build properly, keep a day and leave things behind</title>
+        <title>Camps that build properly, keep a daily routine and leave things behind</title>
         <points>
           <li>A camp now builds for all its people: a bed for every sleeper, round the fire, in one hut or in tents that are real rooms with walls all round, a door and a roof, with tables and seats, lights, butcher and crafting spots, a hitching spot for their animals, all sized to how many came and how long they stay.</li>
-          <li>Each kind builds in its people's age from your enabled mods: leather bedrolls, Classical tents, log huts with a tribal curtain for a tribe; cloth tents from Medieval 2 and stools; chemlamps from Settlers in the industrial age; steel and synthread for spacers.</li>
+          <li>Each kind builds in its people's age from your enabled mods: a tribe with leather bedrolls, Classical tents and log huts with a tribal curtain, a medieval people with cloth tents and stools from Medieval 2, an industrial one with chemlamps from Settlers, and spacers with steel and synthread.</li>
           <li>A wooded spot is a fine site: they fell the trees in the way, cut bushes, carry chunks aside and mine plain rock as your own builders would, and only give up a piece for what they may never touch.</li>
-          <li>Campers keep a day: sleep in their own beds, eat at their table from what they hunted, gathered and cooked, and work by their calling: wood, hunting, fishing with Odyssey or Vanilla Fishing Expanded, plain rock, wild plants, simple crafts and mending; evenings by the fire talking, and they defend their camp when enemies come close.</li>
+          <li>Campers follow a daily routine: they sleep in their own beds, eat at their table from what they hunted, gathered and cooked, and work by their calling: wood, hunting, fishing with Odyssey or Vanilla Fishing Expanded, plain rock, wild plants, simple crafts and mending; evenings by the fire talking, and they defend their camp when enemies come close.</li>
           <li>They take from the land freely but never anything of yours: no buildings, machinery, stores, crops, animals, home area or zones, no ore or anything worth more than plain stone, and never an animal you marked to take its body.</li>
           <li>When they leave they pack their bedrolls, tents, tables and stools on the map over a few hours and leave walls, huts and the fire pit standing for anyone to use; a few kinds take theirs down for reasons of their own.</li>
           <li>What they leave behind follows how the stay went: a woodpile, hides, a cairn or a gift after a good one; refuse, offal that draws a predator, embers in dry grass or a lame beast after a bad one, the hurts on the shared budget.</li>
@@ -2232,8 +2257,8 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Four new peoples join the region, each with its founding story, sayings, faith, town, emblem, titles, letters and talk in its own voice, and each in the form of its age.</li>
           <li>The Stormglass Conclave reads the weather: for a fee a seer foresees the season's next cold snap or heat wave a day early, a runner brings the warning to your gate and your fields plan for it, and a storm-walker can set a lightning rod under your highest roof that takes the strikes nearby without fire.</li>
-          <li>The Mossborn keep a ledger of the trees you fell and the ones you plant and grow warmer or cooler by it; a seed-carrier plants saplings round a colony that cleared a dozen trees, a sapling by a fresh grave, and with Ideology a tree-connector prunes your Gauranlen tree.</li>
-          <li>The Ashen Banner wear one issued kit in every age; you can hire a squad that camps by your walls for fifteen days and fights what comes, a sentry at your gate by day, paid by letter at their fire, and they walk if the wage never comes.</li>
+          <li>The Mossborn keep a ledger of the trees you fell and the ones you plant and grow friendlier or cooler toward you by it; a seed-carrier plants saplings around a colony that cleared a dozen trees, a sapling by a fresh grave, and with Ideology a tree-connector prunes your Gauranlen tree.</li>
+          <li>The Ashen Banner wear one issued kit in every age; you can hire a squad that camps by your walls for fifteen days and fights what comes, or a sentry at your gate by day, paid by letter at their fire, and they leave if they are never paid.</li>
           <li>The Kiln Guild commissions work from your crafters and pays by its quality, bids on your masterworks, and sends a journeyman for a wander-year at your benches who leaves a piece of their own behind.</li>
           <li>Their gear and gifts draw from your enabled mods: Vanilla Psycasts Expanded's Staticlords and Frostshapers, A RimWorld of Magic's druids, rangers, enchanters and geomancers, Medieval 2's arbalests and tabards, Vanilla Expanded - Classical's wreaths, with vanilla in their place when a mod is missing.</li>
         </points>
@@ -2244,7 +2269,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>7 November 2026</date>
         <title>Your mods' things in Rimfolk's gifts, feasts and finds</title>
         <points>
-          <li>Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for the dry, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.</li>
+          <li>Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for those who don't drink alcohol, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.</li>
           <li>Each people gives what fits its age and ways: a tribe's jade or pemmican, a medieval town's gold or wine, an industrial people's packaged food, a spacer's glitterworld medicine, and your brewing, cooking and art mods' own among them.</li>
           <li>Wedding and match gifts, the town's seasonal gift, the prospectors' finds, a tribe's ransom, a favour's goods, a help letter's food and medicine, an envoy's parting gift, a guest's provisions and what an outsider brings next time all draw from this.</li>
           <li>Carvings and keepsakes, and the blade a fallen star becomes, are ones your colony knows how to make; a wedding or funeral mission can ask for drinks, and your own wine or mead counts.</li>
@@ -2307,7 +2332,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Four new peoples: Wardens, the Quiet Bell, Tamers and the Wheel</title>
         <points>
           <li>The Lantern Wardens, beast-hunters of the crossroads, in furs and lantern-red hoods: when a legend, a beast nemesis or a pack alpha is on your land they come to hunt it, and your best shot can hunt beside them. Their pelt-buyer pays well for hides, and when a beast has killed one of yours a Warden keeps a lantern burning at your gate through the night.</li>
-          <li>The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when the ground is listening.</li>
+          <li>The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when something stirs underground.</li>
           <li>The Circuit of Tamers, travelling with their companions (Pokémon with PokéWorld): a tamer may challenge your best handler to a friendly bout and give an egg when beaten fairly, egg-traders swap and sell, and a ranger brings back an animal of yours that strayed.</li>
           <li>The Wheel, a rolling salvage town whose towns really move: their fixer mends your gear, scrap-runners buy slag and broken things, and a mechanoid wreck near you brings them to strip it with you.</li>
           <li>Each has its own look and signature, gear, kinds of people and gifts from your enabled mods, a faith, a town, missions and their own voice, in every age; peoples that arise during play can become one of them.</li>
@@ -2319,7 +2344,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>7 November 2026</date>
         <title>Pets that hunt by nature, and an alert for a hungry one</title>
         <points>
-          <li>Your animals now hunt when their kind would in reality: dogs including huskies, cats, foxes, wolves, bears, big cats, birds of prey, snakes and crocodiles, and the hunters among your mods' animals and the Pokémon, judged species by species. Lapdogs, grazers, fowl and the gentle ones don't.</li>
+          <li>Your animals now hunt when their kind would in real life: dogs including huskies, cats, foxes, wolves, bears, big cats, birds of prey, snakes and crocodiles, and the hunters among your mods' animals and the Pokémon, judged species by species. Lapdogs, grazers, fowl and the gentle ones don't.</li>
           <li>They take only what sits below them in the food chain and what they could really take: a husky takes hares, squirrels and foxes, two huskies an ibex, a cat rats and squirrels, a bear a deer, never anything that would fight back hard, a manhunter, anyone's tame animal, or a creature from the colony's own stories.</li>
           <li>A hungry hunter with nothing to eat in its area goes hunting and eats its kill; a fed one now and then catches small game, and sometimes carries it home to its person. They stay inside their allowed area and never hunt in danger, while drafted, penned, young or hurt.</li>
           <li>A new alert names any animal that is hungry with nothing it may eat in reach and can't hunt, and says why: the food is outside its area, forbidden, or there is nothing it eats, with how to fix it. The person bonded to it says so once.</li>
@@ -2334,7 +2359,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Fourteen more kinds of everyday mishap, sharing the same budget, so the total stays where it was and each kind comes less often.</li>
           <li>Sickness can spread: a sick colonist who keeps working after a petition to rest was ignored, a visitor or courier from a plague-struck people, a camp's fever at their fire, an outside patient who brings something worse, or a hedge healer's bad batch. The quarantine decree, shutting the gate in a plague, sending your doctor and a room of their own guard against them, and the answers say so.</li>
-          <li>Small things can grow: untended worms or insect bites in a malaria country can turn into the real illness. Sleeves and sleeping indoors help.</li>
+          <li>Small ailments can grow worse: untended worms or insect bites in a malaria country can turn into the real illness. Sleeves and sleeping indoors help.</li>
           <li>The cold: waiting long at the gate in a frost, a lone night watch in the cold, a weather lover out in the rain or snow, a sleepwalker after a nightmare, a restless walk alone at dusk, and a slip into icy water while fishing. Warm clothes, company, a bolted door and walls keep them safe.</li>
           <li>With Dubs Bad Hygiene, drinking untreated water can bring the stomach bug when the mod's own water illnesses are off.</li>
           <li>A field sown by the weather that a frost beyond the forecast still killed now says so on the field.</li>
@@ -2429,7 +2454,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Fill suggested puts the marked goods into the trade within the silver both sides have, what the colony is short of first; Clear suggested takes them out again. Nothing changes until you press Accept, and rows you set yourself are left alone.</li>
           <li>The silver row shows each side's silver after the trade, and a trade at home shows the days of food now and after it.</li>
           <li>With Vanilla Trading Expanded, its market's rising and falling prices feed the marks and the best-deal sort and are named in the tooltip, the goods its contracts ask for are kept or marked worth buying when cheap, and your bank silver shows at the foot.</li>
-          <li>With Trade Helper, which already lists what is bought and sold, the silver-after line stands down. Each part has its own setting in a new Trade screen section of What's on.</li>
+          <li>With Trade Helper, which already lists what is bought and sold, Rimfolk leaves out its silver-after line. Each part has its own setting in a new Trade screen section of What's on.</li>
         </points>
       </li>
 
@@ -2923,7 +2948,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>The party travels by caravan with a planned kit for the road and first shelter, or by the colony's own pods, shuttle or gravship. When they arrive a letter asks to settle, and the founders gather on their first night, round a fire when there is wood for one.</li>
           <li>Newcomers are made in a window like the one the game offers after a game over. They are free when the old colony is abandoned; with it kept they come at most once a year, and the old colony pays their passage.</li>
           <li>When a founding needs it, Rimfolk raises the game's colony limit by one, never past five, and says so in the window. It lowers it again when the old colony is abandoned or the founding is called off.</li>
-          <li>Make this the seat moves where your colony as a whole is run from, at most once a season. Letters to the world, the world's days and the neighbours with faces follow it, and the old seat's people trust the council a little less.</li>
+          <li>The button Make this the seat moves where your colony as a whole is run from, at most once a season. Letters to the world, the world's days and the neighbours with faces follow it, and the old seat's people trust the council a little less.</li>
           <li>The region map's Ours view lists every home with its people, speaker, mood and strain, and with more than one colony every window names the colony in view.</li>
         </points>
       </li>
@@ -2954,7 +2979,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.116.0</version>
         <date>6 November 2026</date>
-        <title>One way in</title>
+        <title>Settings on five pages</title>
         <points>
           <li>The settings are on five pages by what you think about: How much happens (every rate in one place), How hard, What's on, How you're told, and Your other mods (only the mods you have loaded). Every setting keeps its value; search still finds any of them.</li>
           <li>The presets reach every part now, the region, diplomacy, the heart and its good side, everyday hurts and the gathering budget included: light touch, story-rich, demanding, and default to put back what they change.</li>
@@ -2967,7 +2992,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.115.0</version>
         <date>6 November 2026</date>
-        <title>One festive year</title>
+        <title>Customs on the calendar</title>
         <points>
           <li>Every custom the colony keeps lives on the calendar now: a seasonal custom comes round on the day it was first kept, a custom tied to a moment (the planting day, the victory feast, telling the bees) comes with its occasion, and the calendar shows when each next comes and how many years it has been kept.</li>
           <li>One rule makes a tradition: a day or a custom kept three years running. A custom let pass before then starts over and leaves the calendar; breaking a tradition costs as before, and breaking it twice in a row ends it.</li>
@@ -2993,7 +3018,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.113.1</version>
         <date>6 November 2026</date>
-        <title>Three good bands</title>
+        <title>Three bands of good heart</title>
         <points>
           <li>The heart's good side has three bands that each lift the mood, as first approved: steady (+2), in good heart (+3) and in high spirits (+5). Below steady it is nothing to speak of yet.</li>
           <li>Steady gives only its mood; in good heart and in high spirits keep their brighter dreams and quicker recovery from strain, and high spirits its inspirations and kind words. Steady shows on the meter, the card and the inspector like the others.</li>
@@ -3007,7 +3032,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>In good heart</title>
         <points>
           <li>The heart has a good side now: while a colonist's strain is at nothing and good things keep coming, they grow in good heart, mostly from what can't be bought: friends close by, a purpose, a life goal moving, a deed the colony speaks well of, gatherings, good talks and a run of small joys. Fine rooms and meals add only a little.</li>
-          <li>Hardship spends the good side before strain builds, so a colonist in good heart takes a hard knock in stride.</li>
+          <li>Hardship uses up the good side before strain builds, so a colonist in good heart is less shaken by a hard knock.</li>
           <li>In good heart gives a small good mood and sweeter dreams and drains strain faster; in high spirits more so. It grows ordinary like any good mood.</li>
           <li>In high spirits and safe, now and then they find one of the game's own inspirations, or walk over to someone close who is struggling and say a kind word that lifts them.</li>
           <li>It shows as a second meter beside strain on the Mood tab, on the colonist's card and in the inspector. A new setting, The heart's good side, beside the heart's own, switches it off.</li>
@@ -3031,13 +3056,13 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.111.0</version>
         <date>6 November 2026</date>
-        <title>One teller, one pace</title>
+        <title>Fewer gatherings, news told once</title>
         <points>
-          <li>The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are let go quietly.</li>
+          <li>The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are dropped without a message.</li>
           <li>Calendar days that come round within three days of each other are kept together, and one within two days of another gathering is kept at supper instead. One seasonal custom a season, a life goal's toast raised at the next gathering, and never more than about a week without one.</li>
           <li>In the simulator a colony now gathers about 2.7 times a week instead of 4.7, the busiest week has 9 instead of 14, and fewer gatherings come within a day of the last. A new setting, Gatherings a week before the colony's own wait, on the People page, sets the room.</li>
           <li>One teller decides how news reaches you: what is hard to miss always shows, other news shows until the colony's day is full and then waits for the evening's news, which keeps the lines that weigh most. Nothing is told twice.</li>
-          <li>Fixed: a plan that fell through still gave its moods and said people took heart from it; now it never came about. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.</li>
+          <li>Fixed: a plan that fell through still gave its moods and said people took heart from it; now it gives none, since it never happened. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.</li>
           <li>The election's hustings are a gathering on the day of the vote: the candidates speak and are cheered or heckled before the votes are read.</li>
         </points>
       </li>
@@ -3045,7 +3070,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.110.0</version>
         <date>6 November 2026</date>
-        <title>One name</title>
+        <title>One name for each colonist</title>
         <points>
           <li>Each colonist is known by one name now, on their card, in talk and in letters: "Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town." Their other names and reputation's sides show underneath.</li>
           <li>Names move slowly: once given, nobody can take one for 30 days, and after that only someone clearly doing more of that work for 15 days in a row takes it. Whoever lost a name can't take it back for two months, so names no longer pass back and forth between two people.</li>
@@ -3058,7 +3083,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.109.2</version>
         <date>6 November 2026</date>
-        <title>The world's voices</title>
+        <title>More words from visitors and camps</title>
         <points>
           <li>Visitors have far more to say at the gate and the table, about 320 new lines by their people's ways and how well they know the one they talk to, with the Empire's court kept apart.</li>
           <li>Camps of travellers speak by their kind, the hour, the weather, the world event that brought them and a camp come back: about 300 new lines, true farewells for every kind, and 69 conversations with a camp's people where there was one before.</li>
@@ -3083,7 +3108,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.109.0</version>
         <date>6 November 2026</date>
-        <title>One heart</title>
+        <title>Small moods feed the heart</title>
         <points>
           <li>Small letdowns are felt as a moment now (at most 3 points, for half a day), and the weight beyond the moment wears on the heart's strain when they keep coming. Pressures and lasting setbacks give a moment when they begin or worsen and build strain while they hold.</li>
           <li>Small joys mirror them: a short good moment, and a run of them eases strain. On the mood tab both read as one row each, "Small letdowns" and "Small joys", with what they were when you hover them.</li>
@@ -3101,7 +3126,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>Four new council questions, each only while its situation is on the map: the cold snap's hours (shorter days or a fire kept in the coldest bedroom), blight in the fields (cut the sick plants, harvest early or let it spread), the good weapon in the stores (who carries it), and the animal left behind when its person dies (who becomes its master).</li>
           <li>A new event while a herd crosses the map: mark a few of them, or the biggest, for the hunters, or let them pass, with the game's own risk of a beast turning on its hunter named before the choice.</li>
-          <li>Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying dear and hedge healers coming by more often.</li>
+          <li>Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying high prices and hedge healers coming by more often.</li>
           <li>Two new camps of travellers: woodcutters, who come only where the woods stand thick and fell real trees round their camp, and herb-gatherers, who gather at dawn and come more often while medicine is scarce.</li>
           <li>Each comes in the forms of every age, and they join the existing pools, so the colony sees no more questions, events or camps a year than before, only more kinds of them.</li>
         </points>
@@ -3123,13 +3148,13 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.106.1</version>
         <date>6 November 2026</date>
-        <title>What the save showed</title>
+        <title>Fixes found in a save</title>
         <points>
           <li>Fixed: an election could leave a seat out of its count when a candidate already held a seat nobody else could stand for, so a seat won unopposed went unfilled and a by-election followed. The results letter now names every open seat and what became of it.</li>
           <li>Fixed: raids sent by a raiders' camp never counted as fights won, so they left no victory, marks, deeds or calendar day.</li>
           <li>Fixed: shearing day was asked just after the sheep were shorn, a planting day found "nothing that needed doing" beside fields still waiting for seed, and a gathering called off for a fight or the weather now says so instead of a vaguer reason.</li>
           <li>People no longer repeat their own words: each keeps out their own recent lines, a journal never takes the same words twice, and a mood with only one or two lines draws from the wider pool.</li>
-          <li>Words true to the map: a chick is not a calf, an elected officer's lines say what they mean to do instead of what never happened, a life goal's spark is said in words, and the chronicle reads as sentences without "(s)" or "ended in over", telling a conversion once.</li>
+          <li>Text that matches the map: a chick is not a calf, an elected officer's lines say what they mean to do instead of what never happened, a life goal's spark is said in words, and the chronicle reads as sentences without "(s)" or "ended in over", telling a conversion once.</li>
         </points>
       </li>
 
@@ -3352,10 +3377,10 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Fealty and vassals</title>
         <points>
           <li>The colony can swear fealty to a stronger neighbour at peace: someone of theirs comes to the gate, anyone who objects has their say before the council, and the speaker swears by their rite, in each age's form.</li>
-          <li>A liege takes tribute at the gate each season, 150 to 600 silver's worth by the colony's wealth; short, it is owed, and still owed a season on, the oath breaks.</li>
+          <li>A liege takes tribute at the gate each season, 150 to 600 silver's worth by the colony's wealth; if it falls short, the rest is owed, and if it is still owed a season later, the oath breaks.</li>
           <li>A liege's band comes when a home is raided, nine times in ten, and its letter calls the colony's levies when its town is attacked; renouncing costs their grudge unless they failed the colony that season.</li>
           <li>The hamlet once sworn and up to two struggling towns that ask for protection are the colony's vassals: produce at harvest as the council sets it, levies when called, and asks for help, a judgment or a camp broken.</li>
-          <li>The quartermaster's collect the dues task is open: a vassal's season of dues by letter and carter, or the colony's tribute to its liege seen paid in full.</li>
+          <li>The quartermaster's task Collect the dues is open: a vassal's season of dues by letter and carter, or the colony's tribute to its liege seen paid in full.</li>
           <li>Faction Territories' vassals get a head of their first people who writes, thinks of the colony and asks for help, including against the mod's invasions; their tribute, purchases and points stay that mod's.</li>
           <li>31 conversation pieces, 27 letter lines and 16 spoken lines speak of fealty and vassals.</li>
         </points>
@@ -3444,7 +3469,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Feasts with guests: once a season, invite up to three notables of peoples at peace by letter or call, from a people's card, the calendar or the steward's suggestion; each answers by their regard and whether their people's hopes are offered.</li>
           <li>On the day the guests walk in with one or two of their people and wait by the gate, and up to four contests are held on the map: wrestling, a race, a hunt, a game at the colony's tables, and a shooting match where a mod gives targets.</li>
           <li>The feast is the colony's gathering with the guests at its table; the champion of the day is named and the prize is carried to them, and the guests stay the night and go home at first light.</li>
-          <li>Their welcome moves their regard and their people's memory: a meal, a fine one for the Empire, what they hoped for, the prize, a bed; an empty plate is a slight.</li>
+          <li>Their welcome moves their regard and their people's memory: a meal, a fine one for the Empire, what they hoped for, the prize, a bed; a guest left without a meal takes it as an insult.</li>
           <li>The risks are named before the choice: a wrestling blow goes in hard about one time in 25, a hunted beast may turn, and about one guest night in 15 ends in a fistfight.</li>
           <li>Each feast has its Event card, a row on the calendar, a feast day in This week and its guests in Here and away; 27 conversation pieces, 24 letter lines and 47 spoken lines speak of it.</li>
           <li>The colony's own at a neighbour's feast tell what they won when they come home.</li>
@@ -3467,7 +3492,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.90.0</version>
         <date>5 November 2026</date>
-        <title>What lies between peoples</title>
+        <title>Talk of debts, pacts and captives</title>
         <points>
           <li>Visitors have about 150 new things to say about debts of honor, pacts, truces, captives and envoys, each in their own people's way: an envoy at your table through the rain, a raid and a funeral, a former captive back as a guest, a band that buried its own after your fight.</li>
           <li>Neighbours answer letters about debts, pacts, truces, ransom and envoys in many more words, by how they took it and by their ways, and letters of any kind now mention a debt, pact, truce, captive or envoy that stands between you.</li>
@@ -3643,7 +3668,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.80.0</version>
         <date>4 November 2026</date>
-        <title>What stands near</title>
+        <title>What stands near the colony</title>
         <points>
           <li>A raiders' camp's raid comes in from the camp's side, or from the nearest side that lets it in, and its letter says which.</li>
           <li>A raiders' camp breaks up once its leader is dead, taken or one of the colony, and the warlord's son no longer names or weakens a camp he can't lead.</li>
@@ -3656,7 +3681,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.79.1</version>
         <date>4 November 2026</date>
-        <title>Quiet by the bed</title>
+        <title>Building noise by the bed</title>
         <points>
           <li>Fixed: "building work by my bed" no longer comes to colonists far from their beds, or for an unfinished building behind a wall that nobody is working on.</li>
           <li>It now comes only to someone in their own bedroom while a colonist is building in that room or on its walls, as its words say.</li>
@@ -3666,7 +3691,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.79.0</version>
         <date>4 November 2026</date>
-        <title>The region's voices</title>
+        <title>More talk about the region</title>
         <points>
           <li>Visitors now talk about the region's new places: trading posts, hamlets, raiders' camps their neighbours remember, a town being given up, a ruin settled again, the town that grew and the warlord's son, each people in the words of its own age.</li>
           <li>A visitor who has never met one of your colonists may already know their name from home, for good or ill, and say what for.</li>
@@ -3750,7 +3775,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.74.0</version>
         <date>4 November 2026</date>
-        <title>What lies between you</title>
+        <title>Talk of favours and grudges</title>
         <points>
           <li>Visitors and their letters now speak of what lies between your peoples: a favor they owe and whether it came, a good word promised and said, a family's claim on someone who joined you, silver owed, a grant of land or a town made your vassal.</li>
           <li>They speak of their grudges too: for their dead, or for a colonist's vendetta against them.</li>
@@ -3833,7 +3858,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.68.0</version>
         <date>4 November 2026</date>
-        <title>Every colony its own</title>
+        <title>Each colony keeps its own days and people</title>
         <points>
           <li>Each colony now keeps its own calendar: its own founding day, its own days and traditions, kept at its own home.</li>
           <li>Camps come to each colony on their own, with a camp, neighbours and a war party for each, and allies answer a raid at any home.</li>
@@ -3905,7 +3930,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.66.0</version>
         <date>4 November 2026</date>
-        <title>One voice</title>
+        <title>Fewer messages on busy days</title>
         <points>
           <li>On a day when one kind of news goes on and on, Rimfolk's messages past a set number wait for the evening's Colony news instead of filling the corner, so nothing is lost.</li>
           <li>The same message twice within a few hours now shows once.</li>
@@ -4142,7 +4167,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.57.1</version>
         <date>3 November 2026</date>
-        <title>A frozen golem thaws</title>
+        <title>A frozen golem moves again</title>
         <points>
           <li>With RimWorld of Magic, a golem that had lost its energy need stood frozen: every moment its own workings looked for the missing energy and stopped, so it only turned to face where it was ordered, and set dormant it faded over and over.</li>
           <li>Now a golem always keeps the needs its golem lists, and one found without its energy gets it back and refills it from its workstation, with a message once. If it can't be given back, the golem can at least walk. The setting "Golems keep their energy" turns it off.</li>
@@ -4158,7 +4183,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>How two get on now sets limits, from the game's compatibility, their faiths, views, shared passions and temper. Two who don't click stay friendly colleagues however much they talk, two who click warm quickly, and hovering someone in the Social tab says why.</li>
           <li>Comrades come from fighting near each other, more when one carried the other out, tended them under fire or stood over them while they were down. Every fight together counts in full, and in long quiet spells the bond fades to what their fights together leave.</li>
           <li>Rivalries come of things that happened and say what they're about: cross words that add up, a social fight, a blow in a rage or in a fight, an operation gone wrong, an affair, envy of a much better room or title. A grudge holds a few days, then fades slowly unless renewed.</li>
-          <li>A council seat lost is felt toward the winner, as much as it was wanted. Losing to the same person again, or an abrasive winner who rubs it in, can start a rivalry, while a move to another seat stays a mood.</li>
+          <li>Losing a council seat lowers the loser's opinion of the winner, by how much they wanted the seat. Losing to the same person again, or an abrasive winner who rubs it in, can start a rivalry, while a move to another seat stays a mood.</li>
           <li>Love and gratitude: a partner may be jealous of a new close friend, things are awkward for a while after a rejection or a breakup, and someone carried out of a fight or nursed through an illness is grateful and says so.</li>
           <li>Existing saves settle gently: pairs know each other from their days together, and old comradeships fade unless they are earned again in a fight.</li>
         </points>
@@ -4188,7 +4213,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.56.2</version>
         <date>3 November 2026</date>
-        <title>Camps that can come</title>
+        <title>More chances for a camp to come</title>
         <points>
           <li>Camps only ever had one try a day, at ten in the morning, and any other question of Rimfolk's in the hours before shut that morning. In a busy colony that kept about four mornings in five shut, so a camp could take a year or more.</li>
           <li>Now the day's try comes in the first open hour from 8 in the morning to 5 in the afternoon. A question that just came, one still waiting for an answer, danger on the map or extreme weather only put it off to a later hour.</li>
@@ -4234,7 +4259,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.55.3</version>
         <date>3 November 2026</date>
-        <title>A wedding still lands</title>
+        <title>A wedding still counts in full</title>
         <points>
           <li>Something new now counts by its own age: a wedding just attended lifts a spoiled colonist nearly in full, then counts for a little less each day until, after about six days, it is just another good memory. This holds after loading a save too.</li>
           <li>Standards' cut on the game's good moods eases in the same way, so it falls on everyday comforts and hardly at all on something that just happened.</li>
@@ -4249,7 +4274,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Used to everyday comforts, not to new joys</title>
         <points>
           <li>Being used to the good life now comes mostly off everyday comforts: lasting moods such as a fine room, beliefs or trust in the council, and memories of a kind a colonist has had often lately, like the third fine meal this week.</li>
-          <li>Something new loses the least, so a wedding, a gift or a first success still lands nearly in full, and a life goal reached always counts in full.</li>
+          <li>Something new loses the least, so a wedding, a gift or a first success still counts nearly in full, and a life goal reached always counts in full.</li>
           <li>Each good mood's tooltip says which it is: part of everyday life, had often lately, or still new. The overall effect on mood stays the same.</li>
         </points>
       </li>
@@ -4257,7 +4282,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.55.1</version>
         <date>3 November 2026</date>
-        <title>Spoiled, not punished</title>
+        <title>Smaller good moods instead of one bad mood</title>
         <points>
           <li>Used to the good life no longer shows as one big bad mood. Instead each good mood is felt a little less, by the same share, once a colonist's good moods pile up past their standards' line, so the Mood tab shows smaller good moods and no large minus.</li>
           <li>Each good mood that counts for less says so in its tooltip, with what it would be worth without it, and the good times line on the Mood tab gives the share and the numbers behind it.</li>
@@ -4470,7 +4495,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Stranded spacers camp by their wrecked hull, trade spacer parts and medicine for components, plasteel or steel, and leave the hull behind as salvage.</li>
           <li>With Anomaly, quiet scholars keep a night watch on the woken monolith, share their notes with the colony's study and ask for beds in a storm.</li>
           <li>A travelling beast show brings beasts from far places. Buy one, sell them one of the colony's, or let the children help feed them.</li>
-          <li>With Odyssey, the run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.</li>
+          <li>With Odyssey, the fish run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.</li>
         </points>
       </li>
 
@@ -4621,7 +4646,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.45.1</version>
         <date>1 November 2026</date>
-        <title>Customs that remember their years</title>
+        <title>Customs remembered year after year</title>
         <points>
           <li>Seasonal customs and festivals have many more openings and outcomes, chosen to fit the weather, the people asking and the land.</li>
           <li>A custom kept year after year reads like one: the letters remember the last time, speak of a custom kept for years, and say so when one was let go.</li>
@@ -4658,7 +4683,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>1 November 2026</date>
         <title>Visitors at the market, the hunt and the guest beds</title>
         <points>
-          <li>With RimMarket, visitors camped on the colony's land and people from nearby camps walk over to the colony's own stalls by day and buy what suits them: drovers feed, a smith metal, a family a meal. They pay at the stall as RimMarket's shoppers do, and a dear price may put them off (setting "Campers buy at RimMarket's stalls").</li>
+          <li>With RimMarket, visitors camped on the colony's land and people from nearby camps walk over to the colony's own stalls by day and buy what suits them: drovers feed, a smith metal, a family a meal. They pay at the stall as RimMarket's shoppers do, and a high price may put them off (setting "Campers buy at RimMarket's stalls").</li>
           <li>The drovers' milk can be bought from their camp's page once a day: a drover milks every beast with milk to give and sets the milk down by the colony's gate, and a colonist then takes over the silver it came to.</li>
           <li>A visiting singer walks over and plays the colony's harp or piano after dark, while the other pilgrims sing at their camp.</li>
           <li>Visiting hunters take a real wild beast that is fair game: never the colony's or one it marked, nothing big or rare, and the beast never turns on them. They dress it at their camp and take the meat and hide home. Hunters warned off the land really go.</li>
@@ -4694,7 +4719,7 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Gate lines laid out before plans were drawn for the colony have their sandbags within a grenade's throw of the gate. Against raiders who throw grenades, the line's review says so and offers to plan the gate again.</li>
           <li>Against raids of 3000 points and more, killboxes, gate sandbag lines and firing lines drawn for more shooters than one line holds get a second rank three rows behind the first, behind sandbags of its own.</li>
           <li>Colonies facing mechanoid raids get an EMP step on each defense line: two EMP IEDs on the way in, and the EMP grenades, launcher and shells the colony can make.</li>
-          <li>A bait yard step places an orbital trade beacon in a clear yard in front of the gate. A raid of people dropping its pods into the colony's middle comes down at a powered beacon four times in ten (mechanoids don't), and there that is outside the wall.</li>
+          <li>A bait yard step places an orbital trade beacon in a clear yard in front of the gate. A raid of people dropping its pods into the colony's middle comes down at a powered beacon four times in ten (mechanoids don't), which is outside the wall.</li>
           <li>Where enemies lay sieges or mechanoid clusters land, a mortar step places the mortar pit deep inside once mortars are researched.</li>
         </points>
       </li>
@@ -4742,7 +4767,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <points>
           <li>A camp's healer goes out at dawn and gathers the herbs they bring: wild healroot near the camp harvested for real, else a walk with stops among the grass. Drovers milk or shear a beast of their own herd for the milk or wool they give, and goods come out of their trader's own stock.</li>
           <li>Whatever a camp brings is carried to the colony's edge by one of them and set down there, and the letter comes when it's there. A caravan's stores are carried to the gate by one of its drivers.</li>
-          <li>The blessing is walked to the colony's fields at dusk, with prayers said there; a mender comes over to the colonist's side to mend their gear; a test hole is dug by the gate with the find left beside it; a stall's wares are really set out by the gate and packed up again after.</li>
+          <li>The blessing is given at the colony's fields at dusk, with prayers said there. A mender comes over to the colonist to mend their gear, a test hole is dug by the gate with the find left beside it, and a stall's wares are really set out by the gate and packed up again afterwards.</li>
           <li>Silver from a trader is only what their purse held. Mourners carry their dead's ashes and keep their vigil at the lamp, and a camp leaving in peace carries its dead home.</li>
         </points>
       </li>
@@ -4750,7 +4775,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.43.1</version>
         <date>30 October 2026</date>
-        <title>What's handed over is carried</title>
+        <title>What's handed over is carried there</title>
         <points>
           <li>Food carried out to the beast at the edge of the trees went into the animal's pack and was never eaten. It's now set down in front of it, and it eats.</li>
           <li>Silver the colony pays a camp (a gift, someone hired, an ask, a gift to move on), its parting meals and its cart's makings are carried over from the stores and handed to one of them; they no longer vanish from the stockpile.</li>
@@ -4809,9 +4834,9 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.41.2</version>
         <date>30 October 2026</date>
-        <title>An animal's help in a fight is a short glow</title>
+        <title>An animal's help in a fight is a short good mood</title>
         <points>
-          <li>"My animal fought for me" lasts about four hours now, the glow after the fight, where it lasted twelve days.</li>
+          <li>"My animal fought for me" lasts about four hours now, a short good mood after the fight, where it lasted twelve days.</li>
           <li>One a colonist already has goes once it is that old. No memory of Rimfolk's in a save keeps a longer time than its kind has now.</li>
         </points>
       </li>
@@ -4831,7 +4856,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>A year's letter at each anniversary of the landing</title>
         <points>
-          <li>At each anniversary of the landing a letter comes, with the annals' setting, about the year on the land and from beyond it, which the annals leave out: the herd (its head, who leads it and of which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The annalist writes it.</li>
+          <li>At each anniversary of the landing a letter comes about the year on the land and beyond it, the parts the annals leave out, and it follows the annals' setting. It covers the herd (how many head, who leads it and from which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads sent down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines from the year's chronicle about strangers and the world. The annalist writes it.</li>
           <li>The founding day's own event still marks the day; the annals still write the calendar year. The letter adds the land and the neighbours, and nothing the other two say.</li>
         </points>
       </li>
@@ -4841,7 +4866,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Chains followed to the end, and automations you can see and undo</title>
         <points>
-          <li>The Making page follows each chain to the end: from a thing the blueprints are short of or a bill waits on, down through the recipes of the benches you have, each part a link of its own, four links at most and never round in a circle. Each link says what there is and what is wanted, how much is used and made in a day (meals eaten, medicine spent, what the active bills take and give, what the growing zones yield) and how long the stock lasts, which bench and recipe would make it best (the best able hand's skill, the distance from the materials' store, the product an hour of work gives), how long a batch takes, and the whole chain's lead time. "Set the chain's bills" sets them all, the parts' first.</li>
+          <li>The Making page follows each chain to the end. It starts from something the blueprints are short of or a bill waits on and goes down through the recipes of the benches you have, each part a link of its own, four links at most and never in a circle. Each link says what there is and what is wanted, how much is used and made in a day (meals eaten, medicine spent, what the active bills take and give, what the growing zones yield) and how long the stock lasts. It also says which bench and recipe would make it best (by the best able worker's skill, the distance from the materials' store and the product an hour of work gives), how long a batch takes, and how long the whole chain takes. "Set the chain's bills" sets them all, the parts' bills first.</li>
           <li>A link no bench makes but a plant yields (cotton for cloth, healroot for herbal medicine) says how many cells to sow, and "Sow it" adds them beside the zone that grows it or lays out a new zone near the fields on fertile, open ground.</li>
           <li>The bills automation has its own switches for meals, medicine, components and the chains. A materials budget a day bounds the blueprints the automations place, and daily caps bound the take-down orders and the chopping marks; a new switch sows for what a chain wants.</li>
           <li>The Making page shows, for every automation, on or off, what the council would do now, and the last things it did, each undone at a click: the bill off the bench (and not set again for a fortnight), the step back to proposed, the research pick, the zone, the orders, the blueprints, the marks.</li>
@@ -4853,9 +4878,9 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Production chains, and the council's automations</title>
         <points>
-          <li>The Making page follows the chains. "Wanted for the building and the bills" names each material the blueprints and frames are short of beyond the stock, or that a bill on some bench waits on with none in stock, and the bench here that makes it, with a bill sized to the want (the stock, the want and a fifth more, never under the usual count). Bills waiting on an ingredient the colony has none of are listed with the bill that would feed them, or told what to grow, mine or trade for. A batch something waits on comes first and is marked in gold, whatever the colony's stock of it. Bill counts for meals and medicine grow with the colony: three days of two meals a head, two medicine a head, within bounds.</li>
-          <li>Automations, each its own switch under Building in the settings, all off unless you turn them on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a quiet message, and keeps a log on the check-myself page; it never acts while there is fighting on the map, and never over your own orders.</li>
-          <li>The seven: bills for what the colony lacks (the staples it can make, and whatever the blueprints and the other bills wait on, two an hour at most; a bill you remove isn't set again for a fortnight); urgent steps go straight into the plan; an idle research bench takes up the cheapest project of the colony's own era; goods nobody stores get their stockpile; wall stubs, dead conduit and pipe ends and pointless doors get their take-down orders; dark bedrooms and benches get their lamps and chairs planned; trees near the base are marked for chopping when the woodpile won't see the cold through.</li>
+          <li>The Making page follows the chains. "Wanted for the building and the bills" names each material that the blueprints and frames need beyond the stock, or that a bill waits on with none in stock, and the bench here that makes it, with a bill sized to the need (the stock, the need and a fifth more, never under the usual count). Bills waiting on an ingredient the colony has none of are listed with the bill that would supply it, or with what to grow, mine or trade for. A batch that something waits on comes first and is marked in gold, whatever the colony's stock of it. Bill counts for meals and medicine grow with the colony: three days of two meals for each person and two medicine for each person, within limits.</li>
+          <li>Automations, each its own switch under Building in the settings, all off unless you turn them on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a short message, and keeps a log on the check-myself page; it never acts while there is fighting on the map, and never over your own orders.</li>
+          <li>The seven automations: bills for what the colony lacks, covering the staples it can make and whatever the blueprints and other bills wait on, at most two an hour (a bill you remove isn't set again for a fortnight). Urgent steps go straight into the plan. An idle research bench takes up the cheapest project of the colony's own era. Goods nobody stores get a stockpile. Wall stubs, dead conduit and pipe ends and pointless doors get take-down orders. Dark bedrooms and benches get lamps and chairs planned. Trees near the base are marked for chopping when the woodpile won't last the cold season.</li>
           <li>Everything the council does is undone the ordinary way: on the bench, in the plan, in the research tab, or on the map.</li>
         </points>
       </li>
@@ -4865,10 +4890,10 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Rearrange a room, thought through</title>
         <points>
-          <li>"Rearrange a room" now walks the room before it decides. Once every piece has a place, the council traces the ways people take from the doors to everything they use, by the game's own costs (a chair or a bedroll is crossed slowly, a work spot is someone's standing place half the time), and tries each piece at its few best places for the arrangement that walks best as a whole: no work spot on someone else's way, no chair in the aisle, the main ways two cells wide where the room is busy (many pieces, or more than one door), no floor cut off and no dead-end slivers that serve nothing, and the biggest open stretch kept for gatherings and for what comes next.</li>
+          <li>"Rearrange a room" now works out how people walk through the room before it decides. Once every piece has a place, the council traces the ways people take from the doors to everything they use, by the game's own costs (a chair or a bedroll is crossed slowly, a work spot is someone's standing place half the time), and tries each piece at its few best places for the arrangement that is easiest to walk through as a whole: no work spot on someone else's way, no chair in the aisle, the main ways two cells wide where the room is busy (many pieces, or more than one door), no floor cut off and no dead-end slivers that serve nothing, and the biggest open stretch kept for gatherings and for what comes next.</li>
           <li>What each piece is for counts in full. A lamp goes where it lights the work (the benches' spots, a sickbed) that no other lamp lights yet, instead of a corner by the door; a sun lamp still goes to the middle. A screen keeps its watch area open and gets its back to a wall, and the chairs on the watch area face it; a billiards table keeps the ring round it free. Chairs and other pieces people cross are known by their path cost.</li>
           <li>Whether a piece already stands well is weighed against the work of moving it: a stool moves for a small gain, a bench or a stocked shelf only for a clear one (its build work and the goods to carry out and back count against the move, up to a point).</li>
-          <li>The window says how the room walks, now and after: the main ways' width at the narrowest and the squeeze points, work spots standing in someone else's way and chairs slowing the ways, dead-end cells and floor nobody can reach, the biggest open stretch, the everyday walking in steps a day, and the work spots out of the lamps' light.</li>
+          <li>The window says how easy the room is to walk through, now and after: the main ways' width at the narrowest and the squeeze points, work spots standing in someone else's way and chairs slowing the ways, dead-end cells and floor nobody can reach, the biggest open stretch, the everyday walking in steps a day, and the work spots out of the lamps' light.</li>
         </points>
       </li>
 
@@ -4889,7 +4914,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>The new stories, seen at a glance</title>
         <points>
-          <li>"Rimfolk: check myself" (development mode) has a new part for the slower stories: the regulars the colony keeps up with, each with their visits, the bond and when they are due back, and whether one could come back now; the herd's leader, its line and whether its last season has been told, or what the herd still needs for a leader; the beast that stays, or the animal being watched toward a name, or the rest before the next one, and how many wild animals of size are on the land; the shiny rumour and its days left; and whether traveling trainers can come at all.</li>
+          <li>"Rimfolk: check myself" (development mode) has a new part for the slower stories. It shows the regulars the colony keeps up with, with their visits, the bond, when they are due back and whether one could come back now. It shows the herd's leader, its line and whether its last season has been told, or what the herd still needs to have a leader. It shows the beast that stays, or the animal being watched before it gets a name, or the rest before the next one, and how many large wild animals are on the land. It also shows the shiny rumour and its days left, and whether traveling trainers can come at all.</li>
           <li>The Overview page has a card, "The herd and the land": who leads the herd and of which line and generation, whether it is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the wind, and the neighbours settled for good.</li>
         </points>
       </li>
@@ -4909,9 +4934,9 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>A Pokémon that keeps coming, a shiny rumour, and traveling trainers</title>
         <points>
-          <li>With PokéWorld, the beast that stays can be a wild Pokémon: one seen on the land three days running is named by a colonist, whoever sees it says so, and until it is fed or caught it gets into the stores now and then and makes off with a few of what it would eat. The council's question about it has its own answers: leave food out (carried out and left), keep the stores shut with a watch at the gate, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is the player's, with PokéWorld's own balls, and the catch is told), let it be, or drive it off.</li>
-          <li>A shiny rumour: a trainer at the gate has heard of a shiny Pokémon of some species seen in the region. Keep an eye out and the rumour holds for twenty days; while it does, the shiny may show itself on the colony's land, where it is named like any beast that stays, and the one who named it knows the rumour was true. Or it was a story after all.</li>
-          <li>Traveling trainers, a new kind of camp (only with PokéWorld's Pokémon in play): two or three trainers of a friendly people with their Pokémon at their heels, who trade, teach training to whoever asks, and put on a friendly contest with the colony's best Pokémon as a show at their fire (a gathering there; the higher level is likelier to win, never surely; nobody is hurt). They come back like any remembered camp, and the score comes back with them: a rematch, with words for who won last time.</li>
+          <li>With PokéWorld, the beast that stays can be a wild Pokémon: one seen on the land three days running is named by a colonist, and whoever sees it says so. Until it is fed or caught it gets into the stores now and then and makes off with a little of what it eats. The council's question about it has its own answers: leave food out (carried out and left), keep the stores shut with a watch at the gate, let the namer try to catch it, let it be, or drive it off. The namer walks out to it with a ball at the belt; the player makes the throw with PokéWorld's own balls, and the catch is told.</li>
+          <li>A shiny rumour: a trainer at the gate has heard of a shiny Pokémon of some species seen in the region. Keep an eye out and the rumour holds for twenty days; while it does, the shiny may show itself on the colony's land, where it is named like any beast that stays, and the one who named it knows the rumour was true. If it never shows, the rumour was only a story.</li>
+          <li>Traveling trainers, a new kind of camp (only with PokéWorld's Pokémon in play): two or three trainers of a friendly people with their Pokémon, who trade, teach training to anyone who asks, and hold a friendly contest at their fire against the colony's best Pokémon. It is a gathering there; the higher level is likelier to win but never certain to, and nobody is hurt. They come back like any remembered camp, and so does the score: a rematch mentions who won last time.</li>
           <li>Under the hood: a camp kind can be about Pokémon (possible only with PokéWorld's Pokémon in play), a camp's animals can be Pokémon of the roaming kinds, and a camp's lines know whether its people are back and how the shows have gone.</li>
         </points>
       </li>
@@ -4921,9 +4946,9 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>The herd's year, and a beast that stays</title>
         <points>
-          <li>The herd has a leader. With four head or more, the eldest of the many (and later the old leader's own blood) leads the colony's herd and is named by its keeper or the herdmaster, who speaks to it at the pens; a letter and the chronicle tell it. Its line is counted from then on: a calf born of the leader's blood is the second generation, the third, and so on, each new generation told the first time it is reached. When the leader grows old its last season is told and the keeper sits with it at the pens of an evening; when it dies the herd has lost its leader, and in a day or two follows one of its own line if there is one, else a new line begins.</li>
+          <li>The herd has a leader. With four or more animals, the eldest adult of the kind there is most of (and later the old leader's own offspring) leads the colony's herd. Its keeper or the herdmaster names it and speaks to it at the pens, and a letter and the chronicle say so. Its line is counted from then on: a calf of the leader is the second generation, its calf the third, and so on, each new generation told the first time it is reached. When the leader grows old its last season is told, and the keeper sits with it at the pens in the evenings. When it dies the herd is without a leader, and a day or two later it follows one of the leader's line if there is one; otherwise a new line begins.</li>
           <li>The first calf of each spring is a moment: a letter, a glad thought for the colony, and the keeper goes down to the pens to see it stand. The first foal ever is still kept on the calendar as before.</li>
-          <li>A beast that stays: a wild wolf, bear, stag or the like seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. A few days later the council is asked what to make of it, and again every so often while it stays: leave food out for it (carried out and left where it is, meat or fodder by its diet), keep everyone close with a watch at the gate, send the hunters, let the namer try to tame it, let it be, or drive it off with torches. After a season it is part of the land, and the story closes; hunted, tamed, driven off or moved on, it closes sooner, and the chronicle keeps how.</li>
+          <li>A beast that stays: a wild wolf, bear, stag or the like seen on the colony's land three days running is given a name by a colonist (a child first, else someone who loves animals), and from then on whoever sees it says so. A few days later the council is asked what to do about it, and again every so often while it stays. The answers: leave food out for it (carried out and left where it is, meat or fodder by its diet), keep everyone close with a watch at the gate, send the hunters, let the namer try to tame it, let it be, or drive it off with torches. After a season it counts as part of the land and the story ends. If it is hunted, tamed, driven off or moves on, the story ends sooner, and the chronicle records how.</li>
         </points>
       </li>
 
@@ -4932,9 +4957,9 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Other settlers, the road over a year, and people left behind</title>
         <points>
-          <li>Other settlers: a party of a friendly people founds a steading a few days from the colony, a new town on the world map, and their leader comes to the gate. Over nearly a year (the longest world event yet) the steading grows household by household, their hunters work the colony's woods, they ask for food in a hungry month or, slighted, set their traps on the colony's side of the stream. At the turning of the year the leader comes back in person: bind the two settlements as allies, invite the settlers to join the colony (they walk over and the steading is left empty), agree a boundary, or tell them to keep to their side. Warm answers and slights are weighed against each other all year, and the year ends in an alliance, in new colonists, in bad blood, in the settlers giving up, or in plain neighbours.</li>
-          <li>The road, over a year: when "a new road" was brought past the colony's gate, it is used (merchants, travelers, a carter robbed on it, the people's road wardens at the gate); the wardens made welcome come back to ask for ground for a post, and their camp arrives to build it and then settles as the colony's neighbour, fighting whatever comes up the road; and at the post a crossroads town grows, which the colony may name after itself. Each follows the one before, so the road's story takes a year or two.</li>
-          <li>People a world event leaves behind: in a plague, an old woman brings two children orphaned by it to the gate (take the children in, send them on with food, or not); deserters of a war, a holy war, a levy or a mercenary company camp out of sight at the edge of the colony's land, ask for steel to mend their gear, and can be asked to stand guard, taking up arms against whatever threatens the colony while their camp stands. Any camp asked to stand guard fights as a war party does.</li>
+          <li>Other settlers: a party of a friendly people founds a steading a few days from the colony, a new town on the world map, and their leader comes to the gate. Over nearly a year (the longest world event yet) the steading grows household by household and their hunters work the colony's woods. They ask for food in a hungry month, or, if slighted, set their traps on the colony's side of the stream. At the turn of the year the leader comes back in person, and the colony can make the two settlements allies, invite the settlers to join the colony (they walk over and the steading is left empty), agree a boundary, or tell them to keep to their side. Warm answers and slights are weighed against each other all year, and the year ends in an alliance, new colonists, bad blood, the settlers giving up, or ordinary neighbours.</li>
+          <li>The road, over a year: once "a new road" has been brought past the colony's gate, it is used by merchants and travelers, a carter is robbed on it, and the people's road wardens come to the gate. Wardens who were made welcome come back to ask for ground for a post; their camp arrives to build it, then settles as the colony's neighbour and fights whatever comes up the road. At the post a crossroads town grows, which the colony may name after itself. Each step follows the one before, so the road's story takes a year or two.</li>
+          <li>People a world event leaves behind: in a plague, an old woman brings two children orphaned by it to the gate, and the colony can take the children in, send them on with food, or refuse. Deserters from a war, a holy war, a levy or a mercenary company camp out of sight at the edge of the colony's land and ask for steel to mend their gear. They can be asked to stand guard, and then fight whatever threatens the colony while their camp stands. Any camp asked to stand guard fights as a war party does.</li>
           <li>Under the hood: a world event can follow an earlier one by a flag it ended with, a beat can bring a camp of one kind or settle the camp that is here as the colony's neighbour, a letter's visitors can include children and bring the event's own person back to the gate, and taking in the children alone leaves whoever brought them free to go home.</li>
         </points>
       </li>
@@ -4944,7 +4969,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Faces that come back, visitors who notice, guests in the colony's stories</title>
         <points>
-          <li>The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering cook, the scribe, the players' storyteller and the kindred spirit are remembered when they go (up to five of them). From twenty days on, one of them comes back as "a familiar face at the gate", asks after the colonist they dealt with, and teaches a lesson in their trade for a welcome. Each warm answer deepens the thread, a cold one frays it, and someone not seen for half a year is forgotten. On their third visit or later, if the thread holds, it turns: they ask to stay for good, or ask their friend to come along on the road. The World page lists them under "Out there".</li>
+          <li>The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering cook, the scribe, the players' storyteller and the kindred spirit are remembered when they go (up to five of them). From twenty days on, one of them comes back as "a familiar face at the gate", asks after the colonist they dealt with, and teaches a lesson in their trade for a welcome. Each warm answer makes the bond stronger and a cold one weakens it, and someone not seen for half a year is forgotten. On their third visit or later, if the bond holds, they ask to stay for good, or ask their friend to come along on the road. The World page lists them under "Out there".</li>
           <li>Visitors notice the colony. A guest or a visitor at the gate says a line about a great hall, the art on the walls, the graves, a shrine, the walls and the guns, the many animals or the wide fields, once per thing seen. Word spreads: a colony whose halls, art, graves or walls travellers keep remarking on becomes famed for them (four new colony traits), and the tourists, the celebrity, the players, the notable guest, pilgrims, scholars and scribes come to it more often. "Travellers speak of..." on the World page says what the colony is known for.</li>
           <li>With Hospitality: a guest already staying can be the stranger of a story, about half the time when one of the guests fits. The old flame, the one asking to learn a trade, and the tinker or the teller who becomes a regular can be someone sleeping in the guest beds rather than a new face at the edge of the map; an answer that has them join hands them over through Hospitality, so their people are told the same way. The setting "Guests in the colony's stories" (Guests page) turns it off.</li>
         </points>
@@ -4955,7 +4980,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>30 October 2026</date>
         <title>Neighbours for good</title>
         <points>
-          <li>A refugee family or a hermit whose stay went well asks, at their parting, to stay on the colony's land for good. Let settle, their camp becomes their home at the edge of the colony's land: they live off the land around it, trade (their stock is new every so often), come over to the gate every few days, ask and are asked (the same questions the council gets about any camp), and the council can still ask them to move on. Or take them all into the colony, camp and goods and children. One such neighbour at a time; camps still come and go beside them.</li>
+          <li>A refugee family or a hermit whose stay went well asks, when leaving, to stay on the colony's land for good. If allowed, their camp becomes their home at the edge of the colony's land: they live off the land around it, trade (their stock changes every so often), come over to the gate every few days, ask and are asked the same questions the council gets about any camp, and the council can still ask them to move on. Or the colony can take them all in, with their camp, goods and children. Only one such neighbour at a time; camps still come and go beside them.</li>
           <li>Neighbours have their troubles: one of them falls ill now and then and asks for the colony's doctor; raiders on the land may kill one of them, and the rest may bury their dead and move on. Their unease eases with time rather than growing. The World page has their card under "Our neighbours".</li>
         </points>
       </li>
@@ -4963,10 +4988,10 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.30.0</version>
         <date>30 October 2026</date>
-        <title>Camps that come back, a stay with a shape, and help in a fight</title>
+        <title>Camps that come back, stays that follow a pattern, and help in a fight</title>
         <points>
           <li>A camp that stayed and left in peace is remembered, with up to four of its people. A month or more later, when a camp could come again, it may be the same faces coming back (likelier after a warm stay or when the colony asked them back, less each time), with news of what became of them since. They settle in quicker, and the colonist who made a friend of them is glad to see them. The World page lists the camps the colony knows that may pass this way again.</li>
-          <li>Every stay has a shape. A day and a half in, they ask something of the colony or do it a good turn. Midway through a longer stay trouble comes: one of the council's questions about them, or one of theirs falls ill and they ask for the colony's doctor, or their cart breaks and they ask for the makings. In the last day whoever speaks for them comes to say goodbye, and the colony can ask them back or send them off with meals for the road.</li>
+          <li>Every stay follows a pattern. A day and a half in, they ask something of the colony or do it a good turn. Midway through a longer stay trouble comes: one of the council's questions about them, or one of theirs falls ill and they ask for the colony's doctor, or their cart breaks and they ask for the makings. In the last day whoever speaks for them comes to say goodbye, and the colony can ask them back or send them off with meals for the road.</li>
           <li>Help in a fight. When enemies have been on the colony's land for an hour, a people at peace with the colony and at war with the attacker may send a war party to fight them: a letter asks whether to welcome them, hold them at the edge or send them away. They hunt the enemy alongside the colony's own; when the fight is over they make camp to rest a day or two, have their wounded seen to and sell what the fight left them, and their people remember that the colony owes them. A new threat while they rest sends them after it.</li>
         </points>
       </li>
@@ -5067,7 +5092,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>29 October 2026</date>
         <title>The ground plan</title>
         <points>
-          <li>A Ground plan button on the Plan page draws the next rooms on the map together: the rooms in the plan in your order, then the proposals, each at the spot that fits best with the ones before it kept clear. How the base grows if the plan is followed.</li>
+          <li>A Ground plan button on the Plan page draws the next rooms on the map together: the rooms in the plan in your order, then the proposals, each at the spot that fits best with the ones before it kept clear. It shows how the base grows if the plan is followed.</li>
           <li>Each room is outlined in its own colour with its name, and listed in the window with its reasons: the walls it shares, the rooms it goes with, the gate, the fields, the quiet. "Plan it here" opens the planner at that spot.</li>
           <li>A room whose size can't be built yet is drawn at the size that can; one with no spot near the colony is listed as such.</li>
         </points>
@@ -5078,7 +5103,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <date>29 October 2026</date>
         <title>The base, looked over</title>
         <points>
-          <li>A Base page under Colony: once an hour, or when you ask, the council walks the base and lists what stands where it shouldn't, what leads nowhere, and what a click can put right, most pressing first.</li>
+          <li>A Base page under Colony: once an hour, or when you ask, the council looks over the base and lists what stands where it shouldn't, what leads nowhere, and what a click can put right, most pressing first.</li>
           <li>Rooms: a kitchen far from the freezer or the dining room, a workshop far from its store, a hospital far from the gate, a barn far from the fields; bedrooms or the hospital right by a workshop or a barn, a prison cell by the bedrooms; and long walks from the bedrooms to meals.</li>
           <li>Doors: one with the same room on both sides or no wall beside it, and a freezer door that opens into a warm room or the open air with no airlock between.</li>
           <li>Walls: short stubs left over from rebuilding, never a pillar on its own or a wall holding up a roof.</li>
@@ -5128,7 +5153,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.23.2</version>
         <date>29 October 2026</date>
-        <title>Slots kept just so</title>
+        <title>Limits for reserved slots</title>
         <points>
           <li>A reserved kind can be kept to its slots with "no more than that": one slot of meals, and never a second stack, however much room is left.</li>
           <li>"Per stack" sets the most of a kind in one stack on the shelf, like four meals. Haulers top it up to that and bring no more.</li>
@@ -5187,7 +5212,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.20.2</version>
         <date>28 October 2026</date>
-        <title>What the words say, done</title>
+        <title>Work parties do what their words say</title>
         <points>
           <li>Work parties do what their words say: rebuilding the woodpile fells trees and carries the logs to a heap by the gate, hauling stone moves the chunks, patching the roofs marks every unroofed room for roofing, and the clean-up after the butcher's work is at the butcher's table.</li>
           <li>The unflattering likeness is a sculpture its maker really made, and comes up only while one stands in the colony. Smashed, it goes to rubble when the visit to it is over, and the one it mocked sweeps up the pieces.</li>
@@ -5203,7 +5228,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.20.1</version>
         <date>28 October 2026</date>
-        <title>Ties weigh, they don't bar</title>
+        <title>Ties at home no longer bar a guest</title>
         <points>
           <li>What ties a guest to home no longer bars them from joining. Each tie asks for more friends in the colony than Hospitality does: two for a partner or young children there, one for parents or a faith held fast.</li>
           <li>Each reason to stay beyond the first makes up for one of those friends, so a guest in love here with a very good stay needs fewer.</li>
@@ -5242,14 +5267,14 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.18.4</version>
         <date>28 October 2026</date>
-        <title>Kept at a price, and faith that holds</title>
+        <title>Keeping someone has a price, and the one-faith decree has limits</title>
         <points>
           <li>Keeping a colonist who asked to move on now always costs: trust, by how much they wanted to go, and a longing that grows over weeks until what they wanted comes to them.</li>
           <li>A relative can be sent for to come and live here, for silver and a little goodwill. A partner asked to join costs goodwill too.</li>
           <li>A promised room has to be theirs within a fortnight, or the broken promise costs trust again.</li>
           <li>Someone kept and still unhappy asks once more, and keeping them then costs more: someone's room given up, or the council's word and a bitter memory.</li>
           <li>The one-ideoligion decree alone carries anyone only part of the way. The rest takes friends, family or a partner among its believers.</li>
-          <li>The set in their ways, the proud and those whose ideoligion frowns on preaching dig in while the decree holds, and it wears off slowly.</li>
+          <li>The set in their ways, the proud and those whose ideoligion frowns on preaching resist while the decree holds, and its pull wears off slowly.</li>
           <li>Whoever comes over under the decree stays drawn back to the ideoligion they left.</li>
         </points>
       </li>
@@ -5359,11 +5384,11 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.17.6</version>
         <date>27 October 2026</date>
-        <title>Who raises them, and the one left</title>
+        <title>Who raises an orphan, and the one left behind</title>
         <points>
           <li>A child with nobody of their own here brings the council a question a day after their parents die: who raises them. Name an adoptive parent, let the child choose, or let the whole colony raise them. An adoptive mother or father and their adopted son or daughter show on the Social tab, and are parent and child for the family's toasts, pride and grief.</li>
           <li>A dead colonist's own room goes a day later to the closest of their family here without a room of their own, and the bed is theirs. Heirlooms go to family first, blood closest.</li>
-          <li>When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time carrying it.</li>
+          <li>When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time learning to live with it.</li>
           <li>The wedding day of a couple parted by death comes round as the survivor's own, kept with an hour at the grave or a long walk.</li>
           <li>When a widowed parent finds someone new, their children are glad for them, or hurt for the parent they lost, and say so.</li>
           <li>Parents were never proud when their child came of age, because of a mistake in who counted as a parent; they are now, adoptive parents too.</li>
@@ -5388,7 +5413,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.17.4</version>
         <date>27 October 2026</date>
-        <title>Sat down, seen off, asked in</title>
+        <title>Visits, send-offs and guests at the table</title>
         <points>
           <li>A visit whose words have the two sit down together (a pot of tea, the kitchen table, an evening by the fire) now does: both take seats across a table from each other, or by a fire, and stay there talking. Before, the visitor followed the other through their work.</li>
           <li>Someone leaving the colony for good walks to the gate with those seeing them off and goes on alone from there, instead of leaving before the send-off.</li>
@@ -5427,7 +5452,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.17.1</version>
         <date>27 October 2026</date>
-        <title>As the answer said, in its own time</title>
+        <title>Answers play out when they say</title>
         <points>
           <li>A feast an answer spends raw food on is cooked first. In the hours before it, its organizer (or the colony's best cook among those asked) cooks that food into meals at one of the colony's stoves, the best meal they can make there, and the feast waits while the pot is on. The food is no longer taken from the stores when the answer is given, so the colony doesn't pay twice.</li>
           <li>A fight or a walk-out that an answer's risk brings comes partway into the supper, work party or visit the answer set going, where its words put it, instead of the moment the answer is given.</li>
@@ -5520,7 +5545,7 @@ When you load a save after an update, a letter lists the newest round once. The 
         <title>Decrees when they're needed</title>
         <points>
           <li>A decree the colony needs now and wants can come again sooner: after fight on fight, with the home filthy and many hurt, a clean sweep someone asks for is possible again in about four days instead of eight.</li>
-          <li>A needed repeat is minded less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.</li>
+          <li>People mind a needed repeat less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.</li>
           <li>It never becomes a decree for every day: at least a day and a third of its rest always stays, and once it has been declared twice in a month the need counts for half.</li>
           <li>The decree's card says when it's needed and why, and how much the colony wants it. A clean sweep and a sick bay also count the fighting as a need.</li>
         </points>
@@ -5529,7 +5554,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.16.0</version>
         <date>25 October 2026</date>
-        <title>Weather that changes like weather</title>
+        <title>More natural weather</title>
         <points>
           <li>The game still chooses each weather from the land's own, Seasonal Weather's and other mods' included, but Rimfolk weighs the choice by the land and the last days. Spells of rain and of dry weather hold and then break, a long dry spell in the warm with a storm.</li>
           <li>One weather follows another as it would: a storm seldom comes out of a clear sky except on a hot afternoon, fog comes after a cold clear night or rain, and a cold front brings snow, or a storm where it's still warm. A morning fog lifts by late morning.</li>
@@ -5544,7 +5569,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.15.0</version>
         <date>25 October 2026</date>
-        <title>The weather remembered</title>
+        <title>Weather records</title>
         <points>
           <li>Each home map keeps a weather record. The coldest night, the hottest day, the longest rain and the longest dry spell since the colony came are remarked on when broken, and the first snow is set against last year's. The Overview page has a Weather card.</li>
           <li>Each season is set against the same season a year before, and one far from usual here is remembered by a name ("the winter of the long cold", "the dry summer") in the chronicle and the year's annals.</li>
@@ -5584,16 +5609,16 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.14.0</version>
         <date>25 October 2026</date>
-        <title>Shaped for the colony</title>
+        <title>Defense plans shaped for the colony</title>
         <points>
           <li>Defense plans are drawn for your colony: from its shooters and how far their weapons reach, whether the raiders it meets throw grenades, its bows, how big raids are and the turret it would build. The planner says what each was drawn for, and Shooters and Depth add or take away.</li>
           <li>Killboxes laid out by what the 1.6 game code shows: the way in turns twice, then runs straight for four or five cells, so a raider at the last corner can't see your shooters; every shooter stands within about 24° of the doorway's line, where its walls give the raider in it no cover, and against grenades more than a throw back. Decoy mini-turrets in the box, or an autocannon behind the gap in the line; traps and things that slow them in the way in, never in the box.</li>
           <li>Firing positions in pockets: a piece of wall in front and sandbags at its corners and beside it, for three-quarters cover while leaning out to shoot. The killbox, the firing line and the sniper's post use them, and a line's review counts them.</li>
           <li>A baffled gate: a passage that turns into a walled yard, a small killbox that is also the colony's way in. Against raiders who throw grenades, a line's first step offers it where it fits.</li>
-          <li>Side lines behind a gate stand where nobody outside sees them and the gate gives a raider little cover. The perimeter wall has an airlock, a gate, a cell and a gate; the trap corridor puts a fence beside each trap; turrets in a nest stand beyond each other's blast; the mortar pit keeps its mortars and shells apart.</li>
+          <li>Side lines behind a gate stand where nobody outside can see them and where the gate gives a raider little cover. The perimeter wall has an airlock: a gate, a cell and a gate. The trap corridor puts a fence beside each trap, turrets in a nest stand out of each other's blast, and the mortar pit keeps its mortars and shells apart.</li>
           <li>The palisade and castle gates have a killing yard: archers behind embrasures across its far side, and the way on through a gate in its corner, where the melee fighters wait.</li>
           <li>A line's review offers to plan a killbox again when the colony outgrows it, or when it was laid out before plans were drawn and its last corner sees the shooters.</li>
-          <li>The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too and lean round corners; how a pocket works; where shooters stand in a killbox; and how far a turret's blast reaches.</li>
+          <li>The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too, and lean round corners. They also explain how a pocket works, where shooters stand in a killbox and how far a turret's blast reaches.</li>
         </points>
       </li>
 
@@ -5610,7 +5635,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.13.0</version>
         <date>24 October 2026</date>
-        <title>More to live through</title>
+        <title>Build priorities, and more camps, talk and events</title>
         <points>
           <li>A lucky charm counts whenever it's on them, worn, in hand, as a sidearm or in their pack, not only while they hold it.</li>
           <li>Build priorities: a button on every blueprint and frame sets it low, normal, high or urgent (a click steps through for everything selected, a right-click picks one). Builders leave a level alone while something higher can go ahead, with its materials on the map, reachable and within someone's skill; a job you give by hand is always taken, a blueprint keeps its level as a frame, and a light tint on the map shows the level: red for urgent, amber for high, blue for low. The setting "Build priorities on blueprints" turns it off.</li>
@@ -5618,15 +5643,15 @@ When you load a save after an update, a letter lists the newest round once. The 
           <li>Colonists talk about the day coming up on the calendar, the latest world news and the camp on the map, and children get a talk of their own, about growing up here. Talk repeats far less, about 6,900 lines where there were 2,600, every voice with its own lines for each turn, memory and in-joke, and none of it at the wrong moment: no teasing on a day of mourning.</li>
           <li>Fourteen new everyday events (a killing frost, something at the pens, fire on the far ridge, a war band in the valley, a gambler, a traveling teacher and more), new turns for nine of the most frequent, and two season-long stories: an apprentice from the town and a traveler with a fever.</li>
           <li>Seven new world events (a prophet on the roads, an old vault opened, markets closed between two peoples, a merchant house failing, the ice road in a hard freeze, a moot of the peoples, an old thrumbo and its horn hunters), and eleven older ones play differently a second time, following from what the colony did.</li>
-          <li>45 new dreams, so nearly every habit, quirk, life goal and story has one, and eight quirks the colony lives into: a lamp lit for travelers, a horror of smoke, coins counted twice, the fields walked at dawn, a dream book, a healer's salve, juggling at supper, a trick against the cold.</li>
-          <li>Calendar days from what the colony lived through (a camp's gift, a world event it took part in, the faith's holy days, one brought home from captivity), kept with a walk out to what the day remembers; memories and deeds from camps, missions and world events, and jokes passed on to a friend who missed them; ten bad days that follow from what happened, like rain on a feast day; and 22 encounters by the water and under rare skies.</li>
+          <li>45 new dreams, so nearly every habit, quirk, life goal and story has one, and eight quirks colonists can pick up: a lamp lit for travelers, a horror of smoke, coins counted twice, the fields walked at dawn, a dream book, a healer's salve, juggling at supper, a trick against the cold.</li>
+          <li>Calendar days from what the colony lived through (a camp's gift, a world event it took part in, the faith's holy days, the day someone was brought home from captivity), kept with a walk out to the place the day remembers. Also memories and deeds from camps, missions and world events, jokes passed on to a friend who missed them, ten bad days that follow from what happened (like rain on a feast day), and 22 encounters by the water and under rare skies.</li>
         </points>
       </li>
 
       <li>
         <version>0.12.1</version>
         <date>24 October 2026</date>
-        <title>Walls at their sides</title>
+        <title>Walls beside the sandbag lines, and fixes</title>
         <points>
           <li>The gate, the perimeter wall and the sandbag line put a piece of wall at the outer end of each sandbag line, so a raider who swings wide can't shoot along it, and a new wall and sandbag firing line, for where raiders come straight on, gives each of six shooters a wall on either side.</li>
           <li>A colonist carried off by raiders no longer counts against anyone: their wish is let go quietly instead of running out against the council and those who backed it, their birthday and anniversaries stay on the calendar, and their hours come back after a rest day.</li>
@@ -5641,7 +5666,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.12.0</version>
         <date>24 October 2026</date>
-        <title>Seen, not told</title>
+        <title>Shown on the map, not only told</title>
         <points>
           <li>The people world news sends to the gate now come: a feud's runaway and the elder who takes the blood price, the toll-keeper's man, a smith and a merchant's agent who buy and pay on the spot, pilgrims and prospectors camping by the water, a deserter, two claimants' riders.</li>
           <li>Small sums and food change hands on the map too: visitors count out their tips, a beaten challenger hands over the stake, a neighbor's runner pays for a find the colony sells, the lord's carters come for a tithe in kind, and food for the hungry who keep coming is carried out to them at the gate.</li>
@@ -5683,7 +5708,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.11.3</version>
         <date>23 October 2026</date>
-        <title>Couriers home, panels fresh</title>
+        <title>Courier and panel fixes</title>
         <points>
           <li>A courier who never reached the colony gives up a day after setting out, not a day after you sent for them, and a trip whose courier was captured, enslaved or stuck at the edge now ends instead of waiting forever.</li>
           <li>A courier's pack animal leaves with them when the courier goes, instead of staying behind on the map.</li>
@@ -5696,7 +5721,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.11.2</version>
         <date>23 October 2026</date>
-        <title>Faith that settles</title>
+        <title>Conversions that hold</title>
         <points>
           <li>A colonist who took up another ideoligion could flip back to the old one within days and back again, losing their role each time. Now they settle into it for a year, during which no leaning wears on them or takes over; the one they left stays only a small leaning, and a fading leaning never takes over. Someone with dear friends on both sides may still change in a long while, never back and forth.</li>
           <li>An ideoligion the game has let go of, its last believers gone, is forgotten: nobody leans toward it, shows it on the Culture tab or takes it up.</li>
@@ -5707,11 +5732,11 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.11.1</version>
         <date>23 October 2026</date>
-        <title>Habits, mended</title>
+        <title>Habit fixes</title>
         <points>
-          <li>Remembering every birthday could never take root or grow into kindness: it's lived only on someone's birthday, and asked for sixty. Four birthdays remembered now do it.</li>
-          <li>Knocking on wood gladdened colonists wounded early in a long fight: now only those with no wound since the fight began. That mood and the best bite's follow the setting for moods, like every other, and with quirks switched off, nobody's hidden habits live on, take root or make news.</li>
-          <li>A deep-rooted habit now lasts four months after they stop, as its line says, and one habit leads to one trait change: humming that steadies the lazy is spent on it.</li>
+          <li>The habit of remembering every birthday could never take root or grow into kindness: it only happens on someone's birthday, and it needed sixty. Four birthdays remembered now do it.</li>
+          <li>Knocking on wood cheered up colonists who had been wounded early in a long fight: now only those with no wound since the fight began. That mood and the best bite's follow the setting for moods, like every other, and with quirks switched off, nobody's hidden habits carry on, take root or make news.</li>
+          <li>A deep-rooted habit now lasts four months after they stop, as its line says, and one habit leads to one trait change: humming that makes the lazy steadier is used up once it does.</li>
           <li>Wishes talk about what they are: a fountain, a sculpture or flowers about making the colony beautiful, a guest bed or a comms console about guests and neighbours, recruiting or freeing a prisoner about the prisoner, a council meeting about the council. A promised wish that lapses says its own words for the broken promise first, and a first anniversary's "it still feels new here" can come at last.</li>
         </points>
       </li>
@@ -5719,14 +5744,14 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.11.0</version>
         <date>23 October 2026</date>
-        <title>Habits that grow from a life</title>
+        <title>Habits from what colonists do</title>
         <points>
           <li>Each quirk on a colonist's Story tab, under Heart, now says how it came, what it does and how long it lasts: "can't stand a mess (from all the cleaning). Cleaning speed +10%, mood -2 in a messy room, tidies up in their free time. Stays while they keep at cleaning." One that does nothing to play says so.</li>
           <li>Habits come each in their own way. Most grow out of what someone does: Rimfolk notes once an hour what each colonist is doing (their kind of work, early mornings, late nights, time outdoors) and remembers about three weeks of it. A habit of work never comes without its work, and the more of it, the likelier. A few are simply who someone is and come to anyone they fit.</li>
           <li>Seven new habits: steady hands (doctoring), measures twice (building), sharpens every blade (smithing), knows every trail (hunting), carries more than they should (hauling), keeps late hours (being up after eleven), and can't sit still (by nature).</li>
-          <li>A habit lived doesn't fade while it is. Lived on sixty days, it takes root and its knack and good mood grow a little (cleaning 15% faster instead of 10%, say).</li>
+          <li>A habit doesn't fade while it is kept up. Kept up for sixty days, it takes root and its knack and good mood grow a little (cleaning 15% faster instead of 10%, say).</li>
           <li>Every habit shows on the map: a moment of its own in their free time (tidying a dirty room, watching the sun come up, looking for pretty stones, looking in on the sick, wishing someone a happy birthday) or a word now and then at the work.</li>
-          <li>The superstitions that were only flavour do something small: knocking on wood gladdens after a fight come through unhurt, talking to the dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing).</li>
+          <li>The superstitions that were only flavour do something small: knocking on wood cheers someone after a fight they came through unhurt, talking to the dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing).</li>
           <li>A habit lived for months grows into a trait: harder work, kindness, night owl, or one of six traits of Rimfolk's own that are only ever earned (tidy, green thumb, born cook, animal friend, healer's hands, trail-wise). With Vanilla Traits Expanded, its neat and animal lover are given instead. Tough and fast walker can now be earned too, never lost.</li>
           <li>The character page shows "where life is taking them": the trait changes a colonist is heading toward, with how many of the things that lead there have happened. Hover one for the list.</li>
         </points>
@@ -5869,7 +5894,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.10.4</version>
         <date>22 October 2026</date>
-        <title>Turn the line</title>
+        <title>Turning a defense line</title>
         <points>
           <li>Picking a spot for a new defense line by hand can now turn the line: the rotate keys (or the game's rotate buttons above the menu) turn which way it faces from the way the helper worked out, and the cursor says which way it faces and how to turn it.</li>
           <li>Placing a defense plan by hand ("Place it myself") shows the same rotate buttons beside its keys.</li>
@@ -6085,7 +6110,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.7.1</version>
         <date>20 October 2026</date>
-        <title>Eating well is no rut, and lean saves</title>
+        <title>Fine meals don't get old, and smaller saves</title>
         <points>
           <li>Fine and lavish meals no longer count towards "the same meal again". A colonist who eats a fine meal every day enjoys it, and doesn't sour on it. Simple meals, pemmican and the like still count, and a varied table is still rewarded.</li>
           <li>Saves stay lean: everything Rimfolk keeps now has a limit, about 2 MB after five years in a large colony. Curfews no longer keep notes on people the game has forgotten, and a removed map is no longer held on to for the defense line shown on it.</li>
@@ -6111,7 +6136,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.6.2</version>
         <date>20 October 2026</date>
-        <title>No more freeze when the region stirs</title>
+        <title>No more freeze when a world event is chosen</title>
         <points>
           <li>The game no longer freezes and then crashes when a world event is chosen for the region. Looking for a spot for "a new town nearby", Rimfolk started a second search of the world map inside the first, which the game can't survive. A save that crashed this way loads and plays on.</li>
           <li>"Plans gathering dust" is gone: plans marked out and not yet started never weigh on anyone. Frames left half-built for two days still do.</li>
@@ -6148,7 +6173,7 @@ When you load a save after an update, a letter lists the newest round once. The 
       <li>
         <version>0.5.1</version>
         <date>17 October 2026, evening</date>
-        <title>Fungus meals and digging into the dark</title>
+        <title>Fungus meals and room plans in unexplored rock</title>
         <points>
           <li>With Ideology, a "cook fungus meal" bill at any stove makes simple meals that always have fungus in them, a kind of meal of their own, so one colonist's food policy can take only these while everyone else's leaves them out (Alpha Memes' fungus diet no longer makes them sick). A new Almanac page, "fungus meals", shows how to set it up.</li>
           <li>Room plans reach into unexplored ground: the inside is marked for mining and dug out as the colonists get there, rock in the walls stays as the wall, and the rest of the room (walls on open ground, the door, furniture and floor) follows as the ground comes to light.</li>

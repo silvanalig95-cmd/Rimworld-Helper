@@ -10299,7 +10299,7 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     `Patch_TideHold`, `Patch_TideTouchesDrone`, `Patch_TideTouchesSoothe`, `Patch_BannerHired`, each off with the deeper game
     hooks. Dev actions "Peoples' events 6: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps*
     (Almanac_PeoplesD.xml).
-- **The peoples' own events, round 7** (the player's go, 19 November 2026: "Events sounds great"; not released yet)
+- **The peoples' own events, round 7** (the player's go, 19 November 2026: "Events sounds great"; released 0.271.0)
   `docs/peoples-events-proposals.md`, items 60, 61, 62, 64, 65, 66, 67, 68, 69 and 70 (the Kiln Guild, the Signal Line and the
   Deepwell Union); `Source/ColonyCouncil/Peoples/Events7/`, the pure rules in `PeopleEvents7Math.cs`,
   `Tools/Tests/PeopleEvents7Tests.cs` ("the peoples' events, round 7: "). As rounds 1 to 6: only from a people of its calling
