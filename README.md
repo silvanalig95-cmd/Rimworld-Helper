@@ -1407,9 +1407,9 @@ The herd and the pets are part of the colony's life, not only its larder and its
 - **Visitors for the animals:** a drovers' animal doctor tends the colony's hurt and sick animals where they stand
   and, paid, works one through a step of its training; a travelling beast show camps with beasts from far places to
   buy, takes one of the colony's grown beasts for seven tenths of its worth, and lets the children help feed them.
-- **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
-  by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
-  a grudging truce.
+- **Personal stories:** an old companion's last good days (if it dies first, its death ends the story with a
+  farewell), an orphan raised by hand until the two may bond, a stray that comes in from the edge of the colony, a feud
+  with an animal that ends in a grudging truce.
 - **Hard choices:** the herd or the stores in a hungry week (a real cull, or lean days for everyone), a grazer in the
   crops, the good medicine for a sick animal, a predator at the pens (left alone, it may break in and take one), a bond
   the ideoligion frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
@@ -1579,9 +1579,15 @@ walks in the look of its own:
   archotech's call for the Machine, the void monolith for the Void), the sky flashes in its colour and its circle shows
   on the ground, everyone on the map turns toward it, the devout pray, calm animals lie down and shy ones run; the sky
   takes its colour and the wind dies for a few hours; a mark is left where it stood (a ring of flowers or scorched
-  ground, a spring, a tree, frost, ash, slag or a standing stone); its track plays (Anomaly's, Odyssey's, Ideology's
-  archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some say". An omen
-  is small: a sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
+  ground, a spring, a tree, frost, ash, or lightning striking the ground); its track plays (Anomaly's, Odyssey's,
+  Ideology's archonexus song, or your own); and its card comes, dark paper and gold with its symbol, plain or "some
+  say", saying at the end what was left there. Some gods leave something worth having, by your colony's age and from
+  your mods where they have it, about 100 to 300 silver and at most once in ten days: a god of the hunt a fresh kill of
+  the land's game, a god of war a weapon of your age in a ring of scorched ground, a god of the roads a standing stone of
+  the land's own rock (no colonist's work, its author unknown), a god of the hearth firewood and a few warm meals, a god
+  of the forge a stack of steel (plasteel for a spacer colony), a god of machines a few components (an advanced one for
+  a spacer colony). The colony's book and the moods of those who saw it say what was left too. An omen is small: a
+  sound, a glimmer, someone looking up. Each god has its own look as it comes and wherever it acts: leaves
   and green flashes, embers and heat, dust, pale spores, a skip flash and footprints, sparks, lightning glow, snow and
   frost, dark rings and smoke, light shafts, pale rings, sand, water, gold glints (the game's own flecks, A RimWorld of
   Magic's and Vanilla Psycasts Expanded's). The camera goes to every god's doing on the map: its moments, omens, its

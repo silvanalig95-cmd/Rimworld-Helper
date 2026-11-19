@@ -25,7 +25,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_LongWayHome</defName>
     <label>the long way home</label>
-    <summary>Days out on the road, a traveler misses someone at home. Back again, the two of them sit up late while the whole journey is told.</summary>
+    <summary>A colonist away on a journey misses someone at home. Once back, the two of them sit up late while the traveler tells them about the whole journey.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Away</workerClass>
     <children>true</children>
     <maxDays>80</maxDays>
@@ -149,7 +149,7 @@
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could tell {OTHER_objective} a word about the road.</li>
       <li>[otherleft] By the time {PAWN_nameDef} had stories to tell, {OTHER_nameDef} had left the colony.</li>
-      <li>[timeout] {PAWN_nameDef} has been on the road so long that the homecoming {PAWN_pronoun} kept picturing has worn thin.</li>
+      <li>[timeout] {PAWN_nameDef} has been away so long that {PAWN_pronoun} has stopped picturing the homecoming.</li>
       <li>{PAWN_nameDef} never did tell {OTHER_nameDef} about the road.</li>
     </fizzleChronicle>
     <eulogy>
@@ -177,7 +177,7 @@
     <stages>
       <li>
         <label>a stranger here</label>
-        <waiting>Next: someone makes {PAWN_nameDef} feel welcome. {OTHER_nameDef} might.</waiting>
+        <waiting>Next: someone makes {PAWN_nameDef} feel welcome, perhaps {OTHER_nameDef}.</waiting>
         <journal>
           <plain>
             <li>Still don't know where anything is kept. I asked where the spare blankets were and three people pointed three different ways.</li>
@@ -194,7 +194,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} still eats at the end of the table, and still has to ask where things are kept.</li>
-          <li>{PAWN_nameDef} hasn't settled in. When {PAWN_pronoun} talks about the colony, {PAWN_pronoun} still says "your".</li>
+          <li>{PAWN_nameDef} hasn't settled in yet. When {PAWN_pronoun} talks about the colony, {PAWN_pronoun} still says "your colony", not "ours".</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -322,7 +322,7 @@
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] With {OTHER_nameDef} gone, {PAWN_nameDef} feels like a stranger here again.</li>
-      <li>{PAWN_nameDef} still sits at the end of the table.</li>
+      <li>{PAWN_nameDef} still hasn't settled in, and still sits at the end of the table.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -346,7 +346,7 @@
     <maxDays>60</maxDays>
     <stages>
       <li>
-        <label>a shadow at my heels</label>
+        <label>following at my heels</label>
         <waiting>Next: more hours together, {PAWN_nameDef} and {PET_nameDef}.</waiting>
         <journal>
           <plain>
@@ -370,7 +370,7 @@
         <gate><kind>Hold</kind><hold>Near</hold><hours>18</hours><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
       <li>
-        <label>learning each other</label>
+        <label>getting to know each other</label>
         <waiting>Next: more handling and training with {PET_nameDef}.</waiting>
         <journal>
           <plain>
@@ -402,7 +402,7 @@
       </li>
       <li>
         <label>trust</label>
-        <waiting>Next: time enough for a real bond.</waiting>
+        <waiting>Next: more time together, until they bond.</waiting>
         <journal>
           <plain>
             <li>{PET_nameDef} fell asleep with {PET_possessive} head on my foot while I ate. I finished my supper without moving.</li>
@@ -444,7 +444,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} and {PET_nameDef} are bonded now.</li>
-          <li>{PET_nameDef} chose {PAWN_nameDef}, and in the end {PAWN_nameDef} chose back.</li>
+          <li>{PET_nameDef} took to {PAWN_nameDef} first, and in the end the two of them bonded.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_AnimalBond" />

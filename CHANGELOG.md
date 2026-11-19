@@ -5,6 +5,24 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Personal stories in plain words
+
+*19 November 2026, version 0.268.4*
+
+- Personal stories are written in plain words: what each story is, its stages, what comes next and the lines that make up the letter at the end.
+- Stage names say what the stage is, such as the first days, keeping quiet and bad news, and the Story tab says what each story waits for.
+- An old companion's story ends well while the animal lives, the student in passing it on gains two levels, and the colonist who stays behind sees the camp off at the gate.
+
+## A god's mark worth having
+
+*19 November 2026, version 0.268.3*
+
+- A god's moment no longer leaves a single stone or slag chunk. Each look leaves its own mark, worth about 100 to 300 silver by the colony's age.
+- The Storm strikes lightning and scorches the ground; the Hunt leaves a fresh kill of the land's game; War leaves a scorched ring and a weapon of the colony's age.
+- The Way raises a standing stone of the land's rock; the Hearth leaves firewood and warm meals; the Craft a stack of steel; the Machine a few components.
+- A mark of goods comes at most once in ten days; in between, a moment leaves only scorch marks or nothing.
+- The god's card, the colony's book and the moods of those who saw it say what was left behind.
+
 ## Wishes in plain words
 
 *19 November 2026, version 0.268.2*

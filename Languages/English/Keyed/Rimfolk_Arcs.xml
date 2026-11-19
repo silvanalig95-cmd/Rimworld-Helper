@@ -29,7 +29,7 @@
 
   <!-- Settings. -->
   <CC_Settings_Arcs>Personal stories</CC_Settings_Arcs>
-  <CC_Settings_Arcs_Tip>A few times a year, one colonist's own story begins: a homecoming, a reconciliation, an apprenticeship that ends in a masterwork, a long grief that eases, an old debt repaid, a secret finally told, a fear faced. Each grows out of what Rimfolk already knows about them (their losses, rivals, secrets, skills and feelings) and moves on through three or four stages as things happen in play: a skill reached, a talk, a piece made, days with a condition held. The stages show in their journal, the chronicle and the Story tab, with small earned moods at the end. At most one per colonist.
+  <CC_Settings_Arcs_Tip>A few times a year, one colonist's own story begins: a homecoming, a reconciliation, an apprenticeship that ends in a masterwork, a long grief that eases, an old debt repaid, a secret finally told, a fear faced. Each grows out of what Rimfolk already knows about them (their losses, rivals, secrets, skills and feelings) and moves on through three to five stages as things happen in play: a skill reached, a talk, a piece made, days with a condition held. The stages show in their journal, the chronicle and the Story tab, with small earned moods at the end. At most one per colonist.
 
 Rare: about two a year in a colony of six. Normal: about four. Frequent: about seven. Off: none begin, and any under way wait.</CC_Settings_Arcs_Tip>
   <CC_Arcs_Off>off</CC_Arcs_Off>

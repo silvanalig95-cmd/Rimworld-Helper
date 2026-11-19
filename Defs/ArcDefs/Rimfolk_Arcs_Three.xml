@@ -21,7 +21,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Suitors</defName>
     <label>a rival in love</label>
-    <summary>Two colonists are fond of the same person, and both of them know it. Walks together, a few stiff words between the rivals, then the choice: a romance with one of them, or, if none comes in time, whichever of the two is liked better, or neither.</summary>
+    <summary>Two colonists are fond of the same person, and both of them know it. After some time together and a few stiff words between the rivals, the one they're fond of chooses: a romance with one of them or, if none comes in time, whichever of the two they like better, or neither.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Suitors</workerClass>
     <withThird>true</withThird>
     <weight>0.9</weight>
@@ -45,7 +45,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has taken to saving {OTHER_nameDef} a seat at supper, and to walking the long way round to wherever {OTHER_nameDef} is working.</li>
-          <li>{PAWN_nameDef} is sweet on {OTHER_nameDef}. The cooks have noticed. {OTHER_nameDef} hasn't, yet.</li>
+          <li>{PAWN_nameDef} is sweet on {OTHER_nameDef}. The cooks have noticed, but {OTHER_nameDef} hasn't yet.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -84,7 +84,7 @@
           <gloomy><li>I should have said something to {THIRD_nameDef} months ago. Now there's {OTHER_nameDef}.</li></gloomy>
         </thirdJournal>
         <chronicle>
-          <li>There are two of them now. {THIRD_nameDef} is fond of {OTHER_nameDef} as well, and {PAWN_nameDef} knows it.</li>
+          <li>{THIRD_nameDef} is fond of {OTHER_nameDef} as well, and {PAWN_nameDef} knows it.</li>
           <li>{THIRD_nameDef} has started bringing {OTHER_nameDef} hot broth in the mornings, and {PAWN_nameDef} has started getting up earlier.</li>
         </chronicle>
         <gate>
@@ -102,7 +102,7 @@
       </li>
       <li>
         <label>waiting for an answer</label>
-        <waiting>Next: {OTHER_nameDef} chooses one of them, or time and {OTHER_possessive} heart decide it.</waiting>
+        <waiting>Next: {OTHER_nameDef} chooses one of them, or neither.</waiting>
         <journal>
           <plain>
             <li>{THIRD_nameDef} and I had it out behind the storehouse. It's {OTHER_nameDef}'s choice, not ours, and we'll both live with it. I said that out loud, so now I have to.</li>
@@ -131,7 +131,7 @@
         </thirdJournal>
         <chronicle>
           <li>"It's {OTHER_nameDef}'s choice, not ours," {PAWN_nameDef} and {THIRD_nameDef} agreed, and shook on it.</li>
-          <li>The rivals have stopped circling. {PAWN_nameDef} and {THIRD_nameDef} have left it to {OTHER_nameDef}, and promised to wish the winner well.</li>
+          <li>{PAWN_nameDef} and {THIRD_nameDef} have stopped competing, left the choice to {OTHER_nameDef}, and promised to wish the winner well.</li>
         </chronicle>
         <gate>
           <kind>Custom</kind>
@@ -188,9 +188,9 @@
           </plain>
         </thirdJournal>
         <chronicle>
-          <li>[won] {OTHER_nameDef} chose {PAWN_nameDef}. {THIRD_nameDef} kept the bargain, and held out a hand that same evening.</li>
+          <li>[won] {OTHER_nameDef} chose {PAWN_nameDef}. {THIRD_nameDef} kept {THIRD_possessive} word and went over to shake {PAWN_nameDef}'s hand.</li>
           <li>[lost] {OTHER_nameDef} chose {THIRD_nameDef}, and {PAWN_nameDef} kept {PAWN_possessive} word and wished them well.</li>
-          <li>[neither] In the end {OTHER_nameDef} chose neither. {PAWN_nameDef} and {THIRD_nameDef} made their peace over a jug that night.</li>
+          <li>[neither] In the end {OTHER_nameDef} chose neither of them, and {PAWN_nameDef} and {THIRD_nameDef} made their peace over a jug.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Cast">
@@ -263,7 +263,7 @@
     <fizzleChronicle>
       <li>[elsewhere] {OTHER_nameDef} took up with someone else, and the rivalry between {PAWN_nameDef} and {THIRD_nameDef} came to nothing.</li>
       <li>[otherdead] {OTHER_nameDef} died before choosing between {PAWN_nameDef} and {THIRD_nameDef}.</li>
-      <li>[thirddead] With {THIRD_nameDef} dead, {PAWN_nameDef} has no rival left, and no heart for the contest.</li>
+      <li>[thirddead] With {THIRD_nameDef} dead, {PAWN_nameDef} has no rival left and no wish to go on with it.</li>
       <li>The rivalry between {PAWN_nameDef} and {THIRD_nameDef} over {OTHER_nameDef} has worn itself out.</li>
     </fizzleChronicle>
     <eulogy>
@@ -282,7 +282,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_TwoStudents</defName>
     <label>torn between two students</label>
-    <summary>A teacher with two students in the same craft, both wanting the teacher's eye. Jealousy, a fair word for each, the two students making it up between themselves, and both coming on.</summary>
+    <summary>A teacher has two students in the same craft, and both want the teacher's attention. The teacher has a fair word for each, the two students make it up between themselves, and both improve.</summary>
     <workerClass>ColonyCouncil.ArcWorker_TwoStudents</workerClass>
     <withThird>true</withThird>
     <masterLevel>11</masterLevel>
@@ -378,7 +378,7 @@
           <plain><li>{THIRD_nameDef} told me I have a better eye than {OTHER_nameDef}. Then told me {OTHER_nameDef} has a steadier hand. I'm not sure that was a compliment.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>"Different hands, different gifts," {PAWN_nameDef} told {THIRD_nameDef}, as {PAWN_pronoun} had told {OTHER_nameDef}. The rest is between the two students.</li>
+          <li>"You're each good at different things," {PAWN_nameDef} told {THIRD_nameDef}, as {PAWN_pronoun} had told {OTHER_nameDef}. Now it's up to the two students to sort it out between themselves.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -502,7 +502,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Siblings</defName>
     <label>brothers and sisters</label>
-    <summary>Two brothers or sisters at odds, and the parent between them: a word with each, an uneasy peace, and in time a family that can sit at one table.</summary>
+    <summary>Two brothers or sisters are at odds, and their parent is caught between them. The parent has a quiet word with each, an uneasy peace follows, and in time the family can sit at one table again.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Siblings</workerClass>
     <withThird>true</withThird>
     <children>true</children>
@@ -715,7 +715,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Between</defName>
     <label>caught in the middle</label>
-    <summary>Two friends have fallen out, and the colonist is the one both of them talk to. A word with each, then the two of them under one roof, and maybe the three of them friends again.</summary>
+    <summary>Two friends have fallen out, and the colonist is the one both of them talk to. After a talk with each, the two talk it out between themselves, and the three of them may be friends again.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Between</workerClass>
     <withThird>true</withThird>
     <maxDays>60</maxDays>
@@ -782,7 +782,7 @@
         </gate>
       </li>
       <li>
-        <label>under one roof</label>
+        <label>talking it out</label>
         <waiting>Next: {OTHER_nameDef} and {THIRD_nameDef} talking it out between themselves, or a few days of getting along.</waiting>
         <journal>
           <plain>
