@@ -976,6 +976,16 @@ MODEL = {
     "Peoples/Events8/LandingParty.cs:crew": ("fixed", 6, 20, "the landing party's crew as they came, six at most, while the camp stands"),
     "Peoples/Events8/FieldLab.cs:tasks": ("fixed", const("Peoples/Events8/PeopleEvents8Math.cs", "MaxLabTasks", 3), 80,
                                          "the colony's gene work and samples waiting at the field lab, while the camp stands"),
+    # The peoples' own events, round 9 (Peoples/Events9/PeopleEvents9Book.cs): the long breaks the Choir was rolled for,
+    # PeopleEvents9Math.MaxShoutsRolled keys; the vault's calls for fighters, three kept, each with what came up from its lower level while
+    # the fight is on (its map gone, they go). The mech yard's own state lives while the camp does: its mechs (six at most) and the rock
+    # they cut (six loads a day for a week at most).
+    "Peoples/Events9/PeopleEvents9Book.cs:shouts": ("cap", (const("Peoples/Events9/PeopleEvents9Math.cs", "MaxShoutsRolled", 8), 1 / 30), 20,
+                                                    "the colonists' long breaks the Choir was rolled for, a pawn and an hour, PeopleEvents9Math.MaxShoutsRolled kept"),
+    "Peoples/Events9/PeopleEvents9Book.cs:seals": ("cap", (3, 1 / 180), 120, "the Sunken Vault's calls for the colony's fighters, three kept"),
+    "Peoples/Events9/PeopleEvents9Book.cs:enemies": ("fixed", 30, 10, "what came up from the vault's lower level, while its fight is on (made at most thirty)"),
+    "Peoples/Events9/MechYard.cs:mechs": ("fixed", const("Peoples/Events9/PeopleEvents9Math.cs", "YardMechsMax", 6), 10, "the mech yard's mechs, while the camp stands"),
+    "Peoples/Events9/MechYard.cs:chunks": ("fixed", 42, 10, "the rock the mech yard's mechs cut, six loads a day for a week at most, while the camp stands"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the

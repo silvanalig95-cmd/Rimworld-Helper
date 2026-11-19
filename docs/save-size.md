@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 787; modelled: 787; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** after two, **4,240 KB** after five.
+Saved collections found: 792; modelled: 792; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** after two, **4,241 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -423,6 +423,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** aft
 | `Scenarios/ScenarioParts.cs:days` | a scenario part's days, fixed by the scenario | fixed | 3 | 3 | 3 | 0.4 |
 | `Ailments/AilmentTracker.cs:budget` | the shared illness budget: one ledger a home (its debts, the game's last disease and skip, the counts of those held back, came all the same and put off, the last record line); gone with the home or once all of it is older than a debt is kept; an older save has none and owes nothing | fixed | 1 | 1 | 1 | 0.4 |
 | `CouncilGameComponent.cs:herds` | one per colony: its herd's leader and line (the line's ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
+| `Peoples/Events9/MechYard.cs:chunks` | the rock the mech yard's mechs cut, six loads a day for a week at most, while the camp stands | fixed | 42 | 42 | 42 | 0.4 |
 | `Building/Suggest/SameRules.cs:pieceCells` | per step: the blueprints an order-giving step placed (lamps, chairs, an airlock) | fixed | 16 | 16 | 16 | 0.4 |
 | `Calendar/ColonyCalendar.cs:forgotten` | days put away by hand: only the player's clicks | fixed | 10 | 10 | 10 | 0.4 |
 | `Camps/Camp.cs:trees` | while the camp stays | while | 10 | 10 | 10 | 0.4 |
@@ -470,6 +471,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** aft
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
 | `Peoples/Events6/PeopleEvents6Book.cs:veterans` | the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone | cap | 0 | 1 | 2 | 0.3 |
+| `Peoples/Events9/PeopleEvents9Book.cs:enemies` | what came up from the vault's lower level, while its fight is on (made at most thirty) | fixed | 30 | 30 | 30 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
 | `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Peoples/Events3/SpringCalving.cs:inCalf` | the calving camp's beasts in calf, four to seven, while its camp stands | fixed | 7 | 7 | 7 | 0.3 |
@@ -516,6 +518,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** aft
 | `Peoples/Events4/SummerSchool.cs:lessons` | their lessons counted, one a student, while the camp stands | fixed | 8 | 8 | 8 | 0.2 |
 | `Peoples/Events5/CircuitRing.cs:wins` | their wins, one a challenger, while the ring stands | fixed | 8 | 8 | 8 | 0.2 |
 | `Peoples/Events7/PeopleEvents7Book.cs:shares` | the union's year's shares of a well it sank, four kept | cap | 0 | 1 | 2 | 0.2 |
+| `Peoples/Events9/PeopleEvents9Book.cs:seals` | the Sunken Vault's calls for the colony's fighters, three kept | cap | 0 | 1 | 2 | 0.2 |
 | `Social/Battle.cs:fallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Peoples/Events/PeopleEventsBook.cs:read` | the old places the scholars read, PeopleEventsMath.MaxRead kept | cap | 2 | 3 | 8 | 0.2 |
@@ -538,6 +541,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** aft
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |
 | `Missions/Missions.cs:group` | per mission | fixed | 4 | 4 | 4 | 0.2 |
 | `Peoples/Events/PeopleCamps.cs:travellers` | the hostel's travellers resting there now, while the camp stands | fixed | 4 | 4 | 4 | 0.2 |
+| `Peoples/Events9/PeopleEvents9Book.cs:shouts` | the colonists' long breaks the Choir was rolled for, a pawn and an hour, PeopleEvents9Math.MaxShoutsRolled kept | cap | 2 | 4 | 8 | 0.2 |
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutTracker.cs:stage` | one count per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.2 |
 | `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
@@ -627,6 +631,7 @@ Rimfolk's part of the save, roughly: **3,066 KB** after a year, **3,780 KB** aft
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events8/RationPost.cs:hungry` | the hungry at the ration post's fire, three at most, while the camp stands | fixed | 3 | 3 | 3 | 0.1 |
+| `Peoples/Events9/MechYard.cs:mechs` | the mech yard's mechs, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
 | `Colonies/LandingRecord.cs:conditions` | the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open | while | 2 | 2 | 2 | 0.0 |
 | `Diplomacy/DiplomacyBook.cs:chosenCarts` | trade pacts whose valuable cart was picked on purpose, one id a live pact, dropped when it ends | fixed | 2 | 2 | 2 | 0.0 |
 | `Peoples/Events7/PeopleEvents7Book.cs:picketRolled` | the strikes a picket was rolled for, a people and a tick, eight kept | cap | 0 | 1 | 2 | 0.0 |

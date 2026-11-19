@@ -32,8 +32,8 @@ most sense." So, in this order, three builds at a time:
 1. **Riding out to far work** (a bug): released 0.266.5.
 2. **Rooms judged by what is in them** (released 0.266.6) and **quests, round 3** (released 0.267.0).
 3. **The peoples' events, rounds 4 to 10**, one round per release (`docs/peoples-events-proposals.md`; the entry below
-   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0); round 9 is
-   being built.
+   lists each round's numbers). Round 4 is released (0.268.0), round 5 (0.269.0), round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 (0.273.0);
+   round 10 is being built.
 4. **The plain-words text pass**: every category done and released (0.266.9 to 0.271.1) but the peoples' own texts and
    Almanac pages, which wait for the player's answer (below; the entry "Rimfolk's text in plain words").
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
@@ -175,7 +175,7 @@ repo.
   with the peoples update also until i say so!"; then "no actually do one round but after it should just be on
   to-do like any new request please".** Round 1 is released (0.213.0), round 2 (0.229.0) and
   round 3 (0.230.0), the last two on "you can go ahead on the todos" (12 November 2026); round 4 (0.268.0), round 5 (0.269.0),
-  round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 being built, on the player's go of 19 November 2026 ("Events sounds great"), and round 10 follows. Ten
+  round 6 (0.270.0), round 7 (0.271.0), round 8 (0.272.0), round 9 (0.273.0), round 10 being built, on the player's go of 19 November 2026 ("Events sounds great").  Ten
   rounds, one at a time when asked (each round its own agent and release; shared shapes come early: the
   visitor working on a colonist in round 1, goods held in trust 1 then 20, the caravan of one 14 then 3, 67, 77, 98):
   1. 10, 5, 47, 83, 51, 1, 19, 17, 34, 95 (the recommended ten). Released 0.213.0 (11 November 2026).
@@ -185,8 +185,8 @@ repo.
   5. The Bell 35 to 38; the Circuit 39, 41, 42; the Wheel 43 to 46. Released 0.269.0 (19 November 2026).
   6. The Conclave 48, 49, 50; the Mossborn 52, 53, 54; the Banner 55 to 58. Released 0.270.0 (19 November 2026).
   7. The Guild 60, 61, 62; the Signal Line 64, 65, 66; the Union 67 to 70. Released 0.271.0 (19 November 2026).
-  8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82. Built, not released (19 November 2026).
-  9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94.
+  8. The Republic 71 to 74; the Fleet 75 to 78; the Helix Works 79 to 82. Released 0.272.0 (19 November 2026).
+  9. The Lattice 84, 85, 86; the Choir 87 to 90; the Vault 91 to 94. Built, not released (19 November 2026).
   10. Between peoples 96 to 99; every people's art handed on, 100.
 - **To do when the player asks (13 November 2026, gathered while the usage limit was reached; the player: "gather all
   the comments since the limit is reached and add to to-do"):**
@@ -519,6 +519,100 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.273.0, **The peoples' own events, round 9**
+  (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
+  like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
+  gene. Super cool idea and these should be applied to the other factions according to their lore, design and theme!").
+  Items 84 to 94 of `docs/peoples-events-proposals.md` (eleven, all built): the Lattice's link for a mechanitor of the colony's (two
+  more bandwidth while the Lattice is at peace, and now and then another linked mind's dream, or a link for work only), its mech gone
+  feral on the colony's land with two link-wardens after it (relinked at the gate and paid for, taken down with them for the wreck, or
+  left to wander off), and its mech yard camped most of a week (some of its mechs cutting plain rock it leaves to the colony, the
+  rest stacking it, hired for a day to haul and mend); the Choir's cantor at a colonist's bed through the night (Royalty: the
+  psylink a level higher, or a first level for a sensitive one, for the colony's art or an evening of being listened to), its warden
+  of the quiet a day at the side of one shaken by the void (Anomaly: sanity back with Vanilla Anomaly Expanded - Insanity, the void's
+  memories lifted, and the void's next threat named and kept to), its listener beside a colonist in a long mental break until it
+  ends, and its listening ring at the colony's quietest place, singing each evening and felt at home at night; the Sunken Vault's call
+  when insects or mechs broke into its lower level (a caravan and the game's fight beside the vault's security, a share of its stores),
+  one of its last bionics for a colonist who lost an eye or a limb (for a year's supply, fitted by the game's surgery), its overseer
+  talking with the colony's best talker three evenings over the radio or by letters (then an ask, or an old supply cache heard of),
+  and its surface scouts camped a week and taught each afternoon. DESIGN.md "The peoples' own events, round 9" has every rule; README
+  "The peoples' own events, the ninth round"; the Almanac's peoples' page, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml;
+  keywords unchanged).
+  - Code: `Source/ColonyCouncil/Peoples/Events9/` (new): `PeopleEvents9Math.cs` (pure, linked), `PeopleEvents9Book.cs` (a game
+    component: the long breaks rolled for, the void's word, the vault's calls and their fights, `SealRecord`), `PeopleEvents9.cs` (the
+    visits' dispatch, the homes' hour, `JobDriver_PEv9Work` with its `PEv9Work` marks and its follow, the time left kept),
+    `LatticeLinked.cs` (84, `Hediff_LatticeLink`, `LatticeLinkStats`), `FeralMech.cs` (85), `MechYard.cs` (86, `CampWorker_MechYard`),
+    `HumDeepened.cs` (87), `VoidListens.cs` (88, `Steer`), `MindShouts.cs` (89), `ListeningRing.cs` (90, `CampWorker_ListeningRing`),
+    `SealBroken.cs` (91), `LastPart.cs` (92), `ConsoleTalk.cs` (93, and the overseer's ask), `SurfaceScouts.cs` (94,
+    `CampWorker_SurfaceScouts`), `PeopleEvents9Debug.cs`. Small hooks: `PeopleEvents8.Hour` and `Hourly` (round 9's, one line each),
+    `Patch_LineMastWarns` (the void's word steered first, before the mast's own), `FactsMath` (the three camps' tags), the def check's
+    placeholders (`{CUT}`, `{NIGHTS}`, `{LESSONS}`). Defs: `Rimfolk_Events_PeopleEvents9.xml` (twelve events; two fired from code: the
+    listener for a long break, the overseer's ask), `Rimfolk_CampKinds_PeopleEvents9.xml` (three camps), `Rimfolk_PeopleEvents9_Misc.xml`
+    (thirteen jobs of the round's own, three of round 1's work on a colonist, seven moods, the link), Keyed `Rimfolk_PeopleEvents9.xml`.
+    Tools: the play-out audit's effects and seven skips, the save model's lists.
+  - Decided here (open in the proposals): the link's "+2 bandwidth" is a hediff whose Biotech stat is put on at startup (the def loads
+    without Biotech), the Lattice named on it; "for as long as the Lattice stays at peace" is that people: hostile or gone, the link goes
+    quiet for good (linked again only by a new event); the dreams are told at dawn, one night in seven, half good, half bad; the second
+    answer, a link for work only (+1, no dreams), is the round's own. The feral mech is one of the Lattice's light war mechs (Biotech's
+    and the game's, and Alpha Mechs', Rimsenal Spacer's and Advanced Armaments' of the same weight) by the home's threat; "runs wild" is the game's own hostile mechs (it answers to nobody), roaming
+    open ground a fair walk out; "relinked, they pay" is a tenth of its worth for the trouble, the mech called to the gate over the
+    link; "destroyed, the colony keeps the parts" is its wreck, unforbidden, the wardens fighting beside the colony's people; left
+    alone it wanders off after a day and a half; the drovers' bull's kind of harm. The mech yard's mechs are Biotech's constructoids,
+    tunnelers and lifters and Rimsenal Spacer's borers and omniservants (their work read from their names; none of Alpha Mechs'
+    labour mechs cuts or carries rock); "mine plain rock" is the camps' own rule for what may be taken; the
+    rock is left to the colony; "hire for a day" is 120 silver by wealth, lifters hauling into the colony's stockpiles and the rest
+    mending; "a hostile mechanitor's band" is a people at war with the Lattice, an industrial or spacer one first. The hum: Royalty only
+    (psylinks); the cantor at the colonist's own bed, five hours from the evening; "an evening of being listened to" is round G's
+    listening felt by the colony once the night is over; a first level only for the psychically sensitive trait or more (1.3), on
+    Vanilla Psycasts Expanded's Harmonist or Empath path. The void: "shaken" is Insanity's sanity below half or one of Anomaly's own
+    void memories; three tenths of the sanity back; "say what kind of threat the void sends next" is kept true by steering the
+    storyteller's own next void threat at that home within a month to the one named (nothing added, nothing held; when it can't come
+    then, the next one of the void is what it is); the second answer, the warning alone, is the round's own. The mind that shouts: a
+    break three hours long that turns on nobody, rolled once at 0.5, twenty days apart; the listener follows a wanderer; the second
+    answer lets the colony's best talker learn how. The ring: "the quietest place" is, of six sites a long walk out, the one with the
+    fewest of the colony's buildings near; "felt each night" is round G's listening rule late each evening after the song; "loud work"
+    is mining, building or taking down within 25 cells at night; the strange song at 0.35 once a stay while Anomaly's void stirs. The
+    seal: the vault's town within 30 tiles, five days to set out; insects at 0.6 (the game's and Insectoids 2's, the heaviest left out),
+    else mechs; the fight is the calls to arms' battle map beside the town; "a share of the vault's spacer stores" is its last goods
+    twice over and two advanced components; the vault remembers its town defended. The last part: the game's bionic eye, arm or leg
+    (no mod in the list adds one); "the colony has no part" is no item any install recipe puts on that part; "a large supply" is 15 to
+    30 components and 200 to 500 raw food; "holds the age a year" is the age rule's gift memory at its full weight (30); the second
+    answer, handed over with the game's surgery bill set, is the round's own. The console: three evenings at dusk, an hour each; "the
+    best talker" by Social; the ask (components or medicine, a runner at the gate) or the cache (the game's item stash 3 to 9 tiles off,
+    25 days) half and half; without a radio, a runner each evening and the answer written at the colony's table. The scouts: plants,
+    animals and shooting in turn, asked by letter each afternoon; the teaching counts as supply (150 silver) and, once, as one of theirs
+    who learned at the colony; sky-sick a day in the tent (talked out by the best talker), lost a night (the best with animals looks),
+    a beast that turns (the wild one too close's kind).
+  - Harm: none of a new kind. The feral mechs (`DroversBull`) and the beast that turns on a scout (`TooClose`) go through the shared
+    harm budget and are told; the fights (the feral mech, the vault's lower level, the band against the yard) and the surgery are the
+    game's own, and the cards say so.
+  - Tests: `Tools/Tests/PeopleEvents9Tests.cs` (about 230 checks: the rules, the defs, the words, the player's mods, the seams).
+  - Not run here (none of it could be): every play-out on the map (the link put in and the bandwidth on the mechanitor's card, the dawn
+    dreams, the link gone quiet; the feral mech roaming, called to the gate and relinked, or taken down with the wardens and its wreck;
+    the yard's mechs cutting and stacking rock, hired for the colony's hauling and mending, a mech gone feral, a band at the yard; the
+    cantor at the bed through the night and the psylink in the morning, the evening's listening felt; the warden following a shaken
+    colonist, the sanity back, the warning's letter and the next void threat taking that form; the listener following a colonist in a
+    break and the break ending; the ring at its quiet place, the song at dusk, the moods at night, loud work heard, the strange song;
+    the caravan's window, the fight's map beside the vault with its security, the share set down; the bionic fitted at the bed or the
+    bill set; the talker at the radio or the table, the runners, the ask's runner, the cache on the world map; the scouts' lessons at
+    their fire, the odds and ends, the sky-sick scout, the lost one, the beast).
+  - Try in the game (dev mode; "Rimfolk", "Peoples' events 9: what the record keeps (log)" shows the state and what each event would
+    find here; the drawn events with the game's own incident tool): 1. The link (Biotech, a mechanitor at home):
+    `Rimfolk_Evt_LatticeLinked`, each answer; the bandwidth in the mechanitor's tab; "the linked dream now"; make the Lattice hostile to
+    see the link go quiet. 2. The feral mech (Biotech): `Rimfolk_Evt_FeralMech`, each answer. 3. The mech yard: "one of their camps here
+    now..." or `Rimfolk_Evt_MechYard`; the rock by day, the hire on the camp's page, "a camp of theirs turns now..." for the feral mech
+    and the band. 4. The hum (Royalty, a psycaster or a psychically sensitive colonist, in the evening): `Rimfolk_Evt_HumDeepened`. 5.
+    The void (Anomaly, a colonist with a void memory or low sanity): `Rimfolk_Evt_VoidListens`, then a void threat with the incident
+    tool to see it take the named form. 6. The mind that shouts: start a sad wander on a colonist with the game's tools, wait three
+    hours, then "a listener for a mind in a long break now". 7. The ring: "one of their camps here now..."; the song at 19h, the moods at
+    22h, "a camp of theirs turns now..." for the strange song. 8. The seal: `Rimfolk_Evt_SealBroken`, send a caravan of two or more to
+    the vault's town (or "the vault's fight now" once there). 9. The last part (a colonist missing an eye or a limb, no part in stock):
+    `Rimfolk_Evt_VaultLastPart`, each answer. 10. The console: `Rimfolk_Evt_ConsoleTalk` with and without a powered comms console; "the
+    console's next evening now" three times for the end. 11. The scouts: "one of their camps here now..."; the lesson letter at noon;
+    "a camp of theirs turns now..." for the sky-sick, the lost and the beast.
+  - Mods that would help: none needed; all the round draws on is in the player's list (Biotech's mechs and mechlinks, Alpha Mechs' war
+    mechs, Rimsenal Spacer's and Advanced Armaments' light war mechs, Royalty's psylinks with Vanilla Psycasts Expanded's paths, Anomaly's void with Vanilla Anomaly Expanded - Insanity's sanity,
+    Vanilla Factions Expanded - Insectoids 2's insects, Rimsenal Spacer's labour mechs, the game's bionics).
 - 0.272.0, **The peoples' own events, round 8**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new

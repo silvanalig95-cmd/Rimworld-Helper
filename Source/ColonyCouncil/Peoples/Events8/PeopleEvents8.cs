@@ -51,7 +51,8 @@ namespace ColonyCouncil
                 case GeneTakenOut.Kind: return GeneTakenOut.Hour(v, now);
                 case WholeXenogerm.Kind: return WholeXenogerm.Hour(v, now);
             }
-            return false;
+            // Round 9's (Peoples/Events9/): the feral mech and its wardens, the warden of the quiet, the listener at a break, the evenings with the overseer.
+            return PeopleEvents9.Hour(v, comp, now);
         }
 
         /// <summary>
@@ -70,6 +71,8 @@ namespace ColonyCouncil
             Safe("the deeds", () => RepublicMedal.Watch(now));
             Safe("the famines", () => RationPost.Watch(now));
             Safe("the sleepers woken", () => SleeperOfTheirs.Watch(now));
+            // Round 9's watch (Peoples/Events9/): the Lattice's links and dreams, minds in a long break, the void's word, the vault's call.
+            Safe("round 9", () => PeopleEvents9.Hourly(now));
         }
 
         /// <summary>A new game or a load: what is kept only between hours is forgotten.</summary>

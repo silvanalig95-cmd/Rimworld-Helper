@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' own events, round 9
+
+*19 November 2026, version 0.273.0*
+
+- The Lattice may link the colony's mechanitor into its own: two more bandwidth while it stays at peace, and now and then another linked mind's dream.
+- A mech of the Lattice's may go feral on the colony's land; its link-wardens can relink it at the gate, or the colony takes it down with them and keeps the wreck.
+- The Lattice may camp a mech yard for most of a week, its mechs cutting rock they leave behind, and hired for a day they haul and mend.
+- A cantor of the Choir may sit through the night at a colonist's bed and take their psylink a level higher, and with Anomaly a warden of the quiet may stay a day beside someone shaken by the void and name the void's next threat.
+- A listener may sit beside a colonist in a long mental break until it passes, and a listening ring may camp at the colony's quietest place and sing each evening.
+- The Sunken Vault may call the colony's fighters when insects or mechs break into its lower level, and trade one of its last bionics to a colonist who lost an eye or a limb.
+- The vault's overseer may talk with the colony's best talker over the radio for three evenings, and its surface scouts may camp a week to be taught plants, animals and shooting.
+
 ## The peoples' own events, round 8
 
 *19 November 2026, version 0.272.0*

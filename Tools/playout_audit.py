@@ -327,6 +327,28 @@ PLAY = {
     "DilemmaEffect_LabGene": "gene work at the colonist's side",
     "DilemmaEffect_LabSample": "a sample drawn at the colonist's side",
     "DilemmaEffect_LabBuys": "a genepack sold to the camp",
+    # The peoples' own events, round 9 (Peoples/Events9/): the link put in where the mechanitor stands, the feral mech relinked at the
+    # gate or taken down, the mech yard and its hire, the night at the colonist's bed, the warden at a colonist's side or at the colony's
+    # edge, the listener beside a mind in a break, the listening ring and a psycaster sitting with it, the caravan's window for the
+    # vault's fight, the bionic fitted at the bed or handed over, the evenings at the radio or the table, the scouts' camp and its lessons,
+    # the talk at the tent, the search, and their odds and ends set down at the fire.
+    "DilemmaEffect_LatticeLink": "linked in where they stand",
+    "DilemmaEffect_FeralMech": "the mech relinked at the gate, or taken down",
+    "DilemmaEffect_MechYard": "a mech yard by the colony",
+    "DilemmaEffect_YardHire": "the yard's mechs at the colony's work",
+    "DilemmaEffect_HumDeepened": "a night at the colonist's bed",
+    "DilemmaEffect_VoidListens": "a day at their side, or an hour at the edge",
+    "DilemmaEffect_MindShouts": "sat with through the break",
+    "DilemmaEffect_ListeningRing": "a listening ring by the colony",
+    "DilemmaEffect_RingSit": "a psycaster sits with the ring",
+    "DilemmaEffect_SealBroken": "a caravan to the vault",
+    "DilemmaEffect_VaultLastPart": "the part fitted at the bed, or handed over",
+    "DilemmaEffect_ConsoleTalk": "the evenings at the radio or the table",
+    "DilemmaEffect_SurfaceScouts": "the scouts' camp by the colony",
+    "DilemmaEffect_ScoutLesson": "a lesson at the scouts' fire",
+    "DilemmaEffect_ScoutTalkOut": "talked out of the tent",
+    "DilemmaEffect_ScoutSearch": "the lost scout looked for",
+    "DilemmaEffect_ScoutOdds": "odds and ends set down at the fire",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

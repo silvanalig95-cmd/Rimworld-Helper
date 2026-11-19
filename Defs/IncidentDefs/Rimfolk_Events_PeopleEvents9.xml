@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own events, round 9 (docs/peoples-events-proposals.md, items 84 to 94; Source/ColonyCouncil/Peoples/Events9/). Each only
+    from a people of its calling at peace with the colony, each played out on the map. Two come only from code when their moment comes
+    (base chance 0): the Choir's listener for a colonist three hours into a mental break that turns on nobody, and the overseer's runner
+    at the end of the evenings with the vault's console. {TALE}, {RELATION} and {THING} carry what the event's own code says they do (a
+    bandwidth, a mech's kind, a psylink, the art offered, a break, what came up from the vault's lower level, a bionic and the part it
+    goes on, the radio); every other placeholder is the events' own. The overseer's talk by radio has no visitor at the gate: it comes
+    over the colony's own radio.
+  -->
+
+  <!-- ===================== 84. Linked into the Lattice ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LatticeLinked</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>linked into the Lattice</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LatticeLinked</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>25~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Linked into the Lattice</li>
+          <li>The Lattice's link</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate. The Lattice would link {B_nameDef}, the colony's mechanitor, into its own: two hours with {X_possessive} array where {B_pronoun} stands. From then on {B_nameDef} could command {COUNT} more bandwidth of mechs, for as long as the Lattice and the colony are at peace. People linked in sometimes dream another linked mind's dream, good or bad.</li>
+          <li>{X_nameDef}, a mech-tender of {FACTION}, is at the gate with an array headset in {X_possessive} hands. The Lattice has heard that the colony has a mechanitor, {B_nameDef}, and offers to link {B_objective} in where {B_pronoun} stands, two hours' work. Linked in, {B_nameDef} could command {COUNT} more bandwidth while the Lattice stays at peace with the colony, and would now and then dream another's dream.</li>
+          <li>[age0|age1] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate carrying the Lattice's old array in a padded case. {X_pronoun} says the Lattice keeps the link going as best it can these days, and would link {B_nameDef} into it where {B_pronoun} stands, two hours' work: {COUNT} more bandwidth while the Lattice and the colony are at peace, and now and then another's dream.</li>
+          <li>[age2] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate with an array headset held together with tape and wire. {X_pronoun} would link {B_nameDef} into the Lattice where {B_pronoun} stands, two hours' work, and from then on {B_nameDef} could command {COUNT} more bandwidth while the Lattice and the colony are at peace. Those linked in sometimes dream another's dream.</li>
+          <li>[age3] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate wearing the Lattice's array headset over the indigo robe. The Lattice would link {B_nameDef} in where {B_pronoun} stands, two hours' work: {COUNT} more bandwidth for as long as the Lattice and the colony are at peace. People linked in sometimes dream another linked mind's dream, good or bad.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Link {B_nameDef} in</label>
+            <outcome>{X_nameDef} walks over to {B_nameDef} and starts the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeLink"><whole>true</whole></li>
+            </effects>
+          </li>
+          <li>
+            <label>Link {B_nameDef} in for work only (one more bandwidth, no dreams)</label>
+            <outcome>{X_nameDef} sets the array to share the work and nothing else, and walks over to {B_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeLink"><whole>false</whole></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} packs the array away and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[link] Stay where you are while I link you in, it takes about two hours.</li>
+          <li>[later] The Lattice will ask again another time.</li>
+          <li>[linked] You're linked in now, and the yards know you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 85. A mech gone feral ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FeralMech</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a mech gone feral</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FeralMech</workerClass>
+    <baseChance>0.25</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <battle>true</battle>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>22~50</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>true</notable>
+        <titles>
+          <li>A mech gone feral</li>
+          <li>The Lattice's link-wardens</li>
+        </titles>
+        <texts>
+          <li>Two link-wardens of {FACTION} have come to the gate, {X_nameDef} first. A {TALE} of the Lattice's has slipped its link and gone feral: it is out on the colony's land now and attacks anything that comes near it. The wardens can call it back over the link from the gate and relink it there, and the Lattice would pay {COUNT} silver for the trouble. Or the colony's people could take it down with them and keep the wreck for its parts.</li>
+          <li>{X_nameDef} and another link-warden of {FACTION} are at the gate. One of the Lattice's mechs, a {TALE}, lost its link on the road and has wandered onto the colony's land, where it attacks whatever comes close. They would call it in and relink it at the gate, and pay {COUNT} silver for the trouble, or go after it with the colony's fighters and leave the colony the wreck.</li>
+          <li>[age0|age1] Two link-wardens of {FACTION} have come to the gate in plate under their indigo robes, {X_nameDef} first. A {TALE} the Lattice still kept running has slipped its link and gone feral on the colony's land. They can call it back over the link from the gate and relink it there, for {COUNT} silver to the colony for the trouble, or take it down with the colony's people and leave the colony the parts.</li>
+          <li>[age2] Two link-wardens of {FACTION} have come to the gate with rifles slung, {X_nameDef} first. A {TALE} of theirs has gone feral and is out on the colony's land, attacking whatever comes near. They would call it in over the link and relink it at the gate, paying {COUNT} silver for the trouble, or take it down with the colony's fighters, the wreck the colony's.</li>
+          <li>[age3] Two link-wardens of {FACTION} have come to the gate in flak vests under their robes, charge rifles slung, {X_nameDef} first. A {TALE} of the Lattice's has slipped its link and roams the colony's land, attacking whatever comes near. They can call it back over the link and relink it at the gate, for {COUNT} silver to the colony, or take it down with the colony's people and leave the wreck.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them call it in and relink it ({COUNT} silver)</label>
+            <outcome>{X_nameDef} calls the {TALE} over the link from the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FeralMech"><how>relink</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Take it down with them and keep the wreck</label>
+            <outcome>The link-wardens go out after the {TALE}, and the colony's fighters can join them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FeralMech"><how>down</how></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send the wardens home and leave it be</label>
+            <outcome>The wardens go home, and the {TALE} roams the colony's land until it wanders off.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FeralMech"><how>home</how></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[relink] I'll call it from here, it still knows the link.</li>
+          <li>[down] Better destroyed than feral, so let's go.</li>
+          <li>[later] Then keep your people away from it.</li>
+          <li>[relinked] It's linked again, and it's coming home with us.</li>
+          <li>[destroyed] It's done, and the parts are yours.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 86. A mech yard ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MechYard</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a mech yard</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MechYard</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>24~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A mech yard</li>
+          <li>The Lattice's yard</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate. The Lattice would set up a mech yard by the colony for five to seven days: {X_nameDef}, two link-hands and a few of their labour mechs. By day the mechs would cut plain rock near the camp and stack it there, and the colony could hire them for a day to haul or mend for it.</li>
+          <li>{X_nameDef} of {FACTION} is at the gate, asking whether the Lattice may keep a mech yard near the colony for most of a week. They have mechs that cut rock and mechs that carry it, and they would leave the cut stone behind. The colony could hire the mechs for a day of its own work.</li>
+          <li>[age0|age1] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate with two link-hands and the last of the Lattice's working mechs walking behind them. They would camp by the colony for five to seven days, the mechs cutting plain rock near the camp, and the colony could hire the mechs for a day of hauling or mending.</li>
+          <li>[age2] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate. The Lattice would set up a yard by the colony for most of a week, its mechs cutting plain rock nearby and stacking it, with {X_nameDef} and two link-hands keeping them running. The colony could hire the mechs for a day to haul or mend.</li>
+          <li>[age3] {X_nameDef}, a mech-tender of {FACTION}, has come to the gate, an array headset over the indigo robe. The Lattice would camp a mech yard by the colony for five to seven days: some of the mechs cutting plain rock, the rest stacking it, and the colony free to hire them for a day of hauling or mending.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them set up the yard</label>
+            <outcome>{X_nameDef} goes back to bring the yard in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MechYard"><hired>false</hired></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them set up, and hire the mechs for the first day ({COUNT} silver)</label>
+            <outcome>The silver is carried out to {X_nameDef}, who goes back to bring the yard in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the mechs' hire</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MechYard"><hired>true</hired></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll set up beyond your fields and keep the mechs out of your way.</li>
+          <li>[later] Then we'll find another place to work.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 87. The hum deepened ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HumDeepened</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the hum deepened</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HumDeepened</workerClass>
+    <baseChance>0.35</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Royalty</li>
+        </mods>
+        <ages>30~70</ages>
+        <stayHours>14~16</stayHours>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The hum deepened</li>
+          <li>A cantor at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a cantor of {FACTION}, has come to the gate as evening falls. {X_pronoun} would sit with {B_nameDef} through the night, humming, while {B_pronoun} lies listening in {B_possessive} bed, and by morning {B_nameDef} would have {TALE}. The Choir asks for a piece of the colony's art for it, or an evening in which the cantor listens to the colony.</li>
+          <li>[psylink] {X_nameDef}, a cantor of {FACTION}, is at the gate in a lilac robe. {X_pronoun} says {B_nameDef}'s psylink can go a level deeper, to {TALE}, if {X_pronoun} sits at {B_possessive} bed through the night and hums while {B_pronoun} listens. The Choir would take a piece of the colony's art for it, or an evening of listening to the colony.</li>
+          <li>[first] {X_nameDef}, a cantor of {FACTION}, has come to the gate as it gets dark. {X_pronoun} says {B_nameDef} hears more than most people do, and that a night of the Choir's humming at {B_possessive} bed would wake {TALE} in {B_objective}. The Choir asks for a piece of the colony's art, or an evening in which the cantor listens to the colony.</li>
+          <li>[art] {X_nameDef}, a cantor of {FACTION}, has come to the gate at dusk. {X_pronoun} would sit through the night at {B_nameDef}'s bed and hum while {B_pronoun} listens; by morning {B_nameDef} would have {TALE}. For it the Choir would take {RELATION} from the colony's art, or an evening of listening to the colony.</li>
+          <li>[age0|age1] {X_nameDef}, a cantor of {FACTION}, has come to the gate as evening falls, barefoot under a pale robe. {X_pronoun} would sit with {B_nameDef} through the night and hum, and by morning {B_nameDef} would have {TALE}. The Choir asks for a piece of the colony's art, or an evening of being listened to.</li>
+          <li>[age2|age3] {X_nameDef}, a cantor of {FACTION}, has come to the gate in an eltex robe of the Choir's lilac. {X_pronoun} would sit at {B_nameDef}'s bed through the night, humming, and by morning {B_nameDef} would have {TALE}. The Choir asks for a piece of the colony's art, or an evening in which the cantor listens to the colony.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give the Choir {RELATION} from the colony's art</label>
+            <outcome>The art is carried out to {X_nameDef}, who goes in to sit with {B_nameDef} through the night.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HumDeepened"><art>true</art></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let the cantor listen to the colony for an evening</label>
+            <outcome>{X_nameDef} goes in to sit with {B_nameDef} through the night, listening to the colony as {X_pronoun} hums.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HumDeepened"><art>false</art></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not tonight</label>
+            <outcome>{X_nameDef} goes back to the road in the dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[night] Lie down and listen, and I'll stay until morning.</li>
+          <li>[later] The hum will still be there another night.</li>
+          <li>[morning] It's deeper now, and you'll hear it more clearly.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 88. The void listens back ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VoidListens</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the void listens back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VoidListens</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Anomaly</li>
+        </mods>
+        <ages>30~70</ages>
+        <stayHours>12~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The void listens back</li>
+          <li>A warden of the quiet</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a warden of the quiet of {FACTION}, has come to the gate. {X_pronoun} says the Choir can hear that {B_nameDef} has been shaken by something of the void, and offers to stay at {B_possessive} side through the day, which helps. At the end {X_pronoun} would tell the colony what the void is likely to send to it next.</li>
+          <li>{X_nameDef} of {FACTION}, a warden of the quiet, is at the gate. The Choir's wardens listen to the void the way others watch the weather, {X_pronoun} says, and {B_nameDef} has been too close to it. {X_pronoun} would spend the day beside {B_objective}, and then say what the void is likely to send next.</li>
+          <li>[sanity] {X_nameDef}, a warden of the quiet of {FACTION}, has come to the gate. {X_pronoun} says {B_nameDef} has been losing {B_possessive} hold on what is real since the void came close, and offers to stay at {B_possessive} side through the day to give some of it back. At the end {X_pronoun} would say what the void is likely to send next.</li>
+          <li>[age0|age1] {X_nameDef}, a warden of the quiet of {FACTION}, has walked to the gate in a pale robe with nothing in {X_possessive} hands. {X_pronoun} would stay beside {B_nameDef}, who has been shaken by the void, through the day, and then tell the colony what the void is likely to send to it next.</li>
+          <li>[age2|age3] {X_nameDef}, a warden of the quiet of {FACTION}, has come to the gate in an eltex robe. {X_pronoun} says {B_nameDef} has been shaken by the void and offers to stay at {B_possessive} side through the day, and at the end to tell the colony what the void is likely to send next.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} stay with {B_nameDef} through the day</label>
+            <outcome>{X_nameDef} goes to {B_nameDef} and keeps beside {B_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VoidListens"><sit>true</sit></li>
+            </effects>
+          </li>
+          <li>
+            <label>Only ask what the void will send next</label>
+            <outcome>{X_nameDef} walks out to the edge of the colony's land to listen for an hour.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VoidListens"><sit>false</sit></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sit] I'll stay near you today, you don't have to talk.</li>
+          <li>[edge] Give me an hour at the edge of your land and I'll tell you.</li>
+          <li>[later] Then keep a light on tonight.</li>
+          <li>[quiet] It's quieter in you now than it was this morning.</li>
+          <li>[warn] Listen, this is what I hear coming next.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 89. A mind that shouts ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MindShouts</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a mind that shouts</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MindShouts</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~65</ages>
+        <stayHours>8~10</stayHours>
+        <answerDays>0.2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A mind that shouts</li>
+          <li>A listener at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a listener of {FACTION}, has come to the gate. {X_pronoun} says {X_pronoun} heard {B_nameDef} from the road, the way the Choir hears a mind in distress, and would sit beside {B_objective} until it passes. {B_nameDef} has been in a mental break ({TALE}) for hours.</li>
+          <li>{X_nameDef} of {FACTION}, a listener, is at the gate. {B_nameDef} has been in a mental break ({TALE}) for some hours, and {X_nameDef} says the Choir could hear it from the road. {X_pronoun} would sit with {B_objective}, following if {B_pronoun} wanders, until it ends.</li>
+          <li>[alone] {X_nameDef}, a listener of {FACTION}, has come to the gate. {X_pronoun} heard {B_nameDef} from the road, in a mental break ({TALE}) for hours, and would sit beside {B_objective} until it passes.</li>
+          <li>[age0|age1] {X_nameDef}, a listener of {FACTION}, has walked to the gate in a pale robe. {X_pronoun} says {B_nameDef}'s distress carried to the road, a mental break ({TALE}) that has gone on for hours, and asks to sit beside {B_objective} until it passes.</li>
+          <li>[age2|age3] {X_nameDef}, a listener of {FACTION}, has come to the gate. {X_pronoun} heard {B_nameDef} from the road: a mental break ({TALE}) that has gone on for hours. {X_pronoun} would sit beside {B_objective} until it ends, and someone of the colony could sit with them and learn how.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} sit with {B_nameDef}</label>
+            <outcome>{X_nameDef} goes to {B_nameDef} and sits beside {B_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MindShouts"><helper>false</helper></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {A_nameDef} sit with them and learn how</label>
+            <outcome>{X_nameDef} and {A_nameDef} go to {B_nameDef} and sit beside {B_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MindShouts"><helper>true</helper></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let it run its course</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sit] I'll sit with them, it won't take long.</li>
+          <li>[later] Then I'll go, but keep an eye on them.</li>
+          <li>[calm] There, it's passed, and you're back with us.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 90. A listening ring ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ListeningRing</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a listening ring</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ListeningRing</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~70</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A listening ring</li>
+          <li>The Choir would sing here</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a cantor of {FACTION}, has come to the gate. {X_pronoun} and a few of the Choir would camp for some days at the quietest place on the colony's land and sing there each evening. The colony would feel it at night: most people find it calming, some find it unsettling. {X_pronoun} asks that loud work be kept away from them at night.</li>
+          <li>{X_nameDef} of {FACTION} is at the gate. The Choir would like to sit in a ring for a few days somewhere quiet on the colony's land, away from its workshops, and sing each evening; people at home usually feel it, most as a calm, some as an unease. They ask only that the colony keep its loud work away from them at night.</li>
+          <li>[void] {X_nameDef}, a cantor of {FACTION}, has come to the gate. {X_pronoun} and a few of the Choir would camp some days at the quietest place on the colony's land and sing each evening, felt at home at night. With the void as close to the colony as it is, {X_pronoun} says, the singing may not go well, and if it doesn't they will leave.</li>
+          <li>[age0|age1] {X_nameDef}, a cantor of {FACTION}, has walked to the gate with a few others in pale robes. They would sit in a ring at the quietest place on the colony's land for some days and sing each evening, and the colony would feel it at night. They ask that the colony keep loud work away from them after dark.</li>
+          <li>[age2|age3] {X_nameDef}, a cantor of {FACTION}, has come to the gate in an eltex robe of the Choir's lilac. A few of the Choir would camp for some days at the quietest place on the colony's land and sing each evening; the colony would feel it at night. They ask that loud work be kept away from them after dark.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp</label>
+            <outcome>{X_nameDef} goes back to bring the others to the quiet place.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ListeningRing"><promise>false</promise></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and keep loud work away from them at night</label>
+            <outcome>{X_nameDef} thanks the colony for the quiet and goes back to bring the others.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ListeningRing"><promise>true</promise></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll find the quiet place, and you'll hear us in the evening.</li>
+          <li>[later] Another time, then.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 91. The seal broken ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SealBroken</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the seal broken</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SealBroken</workerClass>
+    <baseChance>0.2</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <battle>true</battle>
+        <ages>16~40</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>true</notable>
+        <titles>
+          <li>The seal broken</li>
+          <li>The vault's call</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a surface-runner of {FACTION}, has come to the gate out of breath. {TALE} have got into the vault's lower level at {PLACE}, and the vault's security can't hold them alone. The overseer asks for the colony's fighters: two or more of its grown people, by caravan, within five days. The fight would be on open ground beside the vault, with the vault's security beside them, and the vault would share what is left of its stores.</li>
+          <li>[insects] {X_nameDef}, a surface-runner of {FACTION}, has run to the gate. Insects from a hive under the hills have dug into the vault's lower level at {PLACE}, and they are coming up. The overseer asks for two or more of the colony's grown people to come by caravan within five days and fight beside the vault's security; the vault would share what is left of its stores.</li>
+          <li>[mechs] {X_nameDef}, a surface-runner of {FACTION}, has run to the gate. Old mechs have broken through into the vault's lower level at {PLACE}, and the vault's security can't hold them. The overseer asks for two or more of the colony's grown people to come by caravan within five days and fight beside the vault's security; the vault would share what is left of its stores.</li>
+          <li>[age0|age1] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate in a patched vault suit and a cape. {TALE} have got into the vault's lower level at {PLACE}, and the vault's security has only spears and old rifles left. The overseer asks the colony for two or more fighters by caravan within five days, and would share what is left of the vault's stores.</li>
+          <li>[age2|age3] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate in an olive vault suit. {TALE} have got into the vault's lower level at {PLACE}, and the vault's security is holding the door. The overseer asks for two or more of the colony's fighters by caravan within five days, and would share what is left of the vault's stores.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send fighters to {PLACE}</label>
+            <outcome>The colony will form a caravan for {PLACE}, and {X_nameDef} runs ahead to tell the overseer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SealBroken"><fight>true</fight></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {COUNT} components and some medicine for their security instead</label>
+            <outcome>The components and the medicine are carried out to {X_nameDef}, who takes them back to the vault.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {X_nameDef}</label><what>MedicineIndustrial</what><count>5</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SealBroken"><fight>false</fight></li>
+            </effects>
+          </li>
+          <li>
+            <label>We can't spare anyone</label>
+            <outcome>{X_nameDef} runs back to the vault with the answer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[come] I'll tell the overseer you're coming.</li>
+          <li>[supplies] It isn't fighters, but it will help.</li>
+          <li>[later] Then we'll hold the door ourselves.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 92. The last part ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VaultLastPart</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the last part</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultLastPart</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>12~16</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The last part</li>
+          <li>The vault's medic</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the vault medic of {FACTION}, has come to the gate. The vault has heard that {B_nameDef} lost {B_possessive} {RELATION} and that the colony has nothing to replace it, and {X_nameDef} has brought one of the vault's last bionics: {TALE}. The vault can't make another. For it the vault wants {COUNT} components and some raw food, which would keep the vault going for a year.</li>
+          <li>{X_nameDef} of {FACTION}, the vault's medic, is at the gate with a sealed case. Inside is one of the last bionics the vault has, {TALE}, for {B_nameDef}, who lost {B_possessive} {RELATION}. The vault would trade it for {COUNT} components and some raw food, enough to keep its machines running a year, and {X_nameDef} can fit it at the colony's bed.</li>
+          <li>[fallen] {X_nameDef}, the vault medic of {FACTION}, has come to the gate. The vault kept a few bionics from before, and can't make anything like them any more; {X_nameDef} has brought one of the last, {TALE}, for {B_nameDef}, who lost {B_possessive} {RELATION}. The vault wants {COUNT} components and some raw food for it, a year's supply for the vault.</li>
+          <li>[age0|age1] {X_nameDef}, the vault medic of {FACTION}, has come to the gate in a patched suit, carrying a case the vault has kept closed for years. Inside is {TALE}, for {B_nameDef}, who lost {B_possessive} {RELATION}. The vault would trade it for {COUNT} components and some raw food, and {X_nameDef} can fit it at the colony's bed.</li>
+          <li>[age2|age3] {X_nameDef}, the vault medic of {FACTION}, has come to the gate with a surgical mask round {X_possessive} neck and a sealed case: {TALE}, one of the vault's last, for {B_nameDef}, who lost {B_possessive} {RELATION}. The vault wants {COUNT} components and some raw food for it, a year's supply for the vault.</li>
+          <li>[nodoctor] {X_nameDef}, the vault medic of {FACTION}, has come to the gate with one of the vault's last bionics, {TALE}, for {B_nameDef}, who lost {B_possessive} {RELATION}. The vault wants {COUNT} components and some raw food for it. The colony has no doctor of its own, so {X_nameDef} would fit it at the colony's bed.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Trade for it, and let {X_nameDef} fit it</label>
+            <outcome>The components and the food are carried out to the gate, and {X_nameDef} goes in to fit the part at {B_nameDef}'s bed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {X_nameDef}</label><what>rawfood</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultLastPart"><ours>false</ours></li>
+            </effects>
+          </li>
+          <li>
+            <label>Trade for it, and have {A_nameDef} fit it</label>
+            <outcome>The components and the food are carried out to the gate, and {X_nameDef} hands the part over for {A_nameDef} to fit.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {X_nameDef}</label><what>rawfood</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultLastPart"><ours>true</ours></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} closes the case and goes back to the vault.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[fit] Get them into a bed and I'll fit it.</li>
+          <li>[hand] Here it is, and your doctor can fit it.</li>
+          <li>[later] Then it goes back below.</li>
+          <li>[fitted] It's in, and it should last longer than the vault will.</li>
+          <li>[sorry] I'm sorry, it didn't take.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 93. The console that talks to nobody ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ConsoleTalk</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the console that talks to nobody</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ConsoleTalk</workerClass>
+    <baseChance>0.35</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~40</ages>
+        <stayHours>3~5</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The console that talks to nobody</li>
+          <li>The overseer calls</li>
+        </titles>
+        <texts>
+          <li>[radio] The colony's {TALE} has picked up a voice on an old channel: the overseer of {FACTION}, speaking from the vault's console. Nobody has answered that console in years, the overseer says, and asks whether {A_nameDef} would talk with the overseer for an hour each evening, for the next {COUNT} evenings.</li>
+          <li>[radio] A voice has come over the colony's {TALE} this evening: the overseer of {FACTION}, on the vault's old console, which calls into the air every evening and is never answered. The overseer would like to talk with {A_nameDef}, an hour each evening for {COUNT} evenings, about the surface and the colony.</li>
+          <li>[letters] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate with a letter from the overseer. The vault's console calls into the air every evening and nobody answers, the letter says, and asks whether {A_nameDef} would write back each evening for the next {COUNT}, a runner coming for each answer.</li>
+          <li>[letters,age0|age1] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate with a letter on old vault paper. The overseer writes that the vault's console has been silent for years and asks whether {A_nameDef} would write back each evening for {COUNT} evenings; a runner would come for each letter.</li>
+          <li>[radio,age2|age3] The colony's {TALE} crackles this evening with the overseer of {FACTION}, calling from the vault's console. The overseer asks to talk with {A_nameDef} for an hour each evening for the next {COUNT} evenings; nobody else has answered in years.</li>
+          <li>[letters,age2|age3] {X_nameDef}, a surface-runner of {FACTION}, has brought a letter to the gate. The overseer writes that the vault's console reaches nobody, and asks whether {A_nameDef} would write back each evening for the next {COUNT} evenings, a runner fetching each answer.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} answer each evening</label>
+            <outcome>{A_nameDef} will answer the overseer each evening for the next {COUNT} evenings.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ConsoleTalk"><evenings>3</evenings></li>
+            </effects>
+          </li>
+          <li>
+            <label>Answer this evening only</label>
+            <outcome>{A_nameDef} will answer the overseer this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ConsoleTalk"><evenings>1</evenings></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave it unanswered</label>
+            <outcome>Nobody answers the overseer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[letter] I'll wait for the answer and take it back.</li>
+          <li>[later] The overseer will keep calling anyway.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ConsoleAsk</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the overseer's ask</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ConsoleAsk</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~40</ages>
+        <stayHours>4~6</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The overseer's ask</li>
+          <li>A runner from the vault</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a surface-runner of {FACTION}, has come to the gate. On the last evening the overseer asked {A_nameDef} whether the colony could spare {COUNT} {THING} for the vault, and has sent {X_nameDef} to carry them back.</li>
+          <li>[radio] {X_nameDef}, a surface-runner of {FACTION}, is at the gate. On the radio last evening the overseer asked {A_nameDef} for {COUNT} {THING} for the vault, and {X_nameDef} has come to carry them back if the colony can spare them.</li>
+          <li>[medicine] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate. The overseer told {A_nameDef} that the vault's sick bay is nearly empty, and asked for {COUNT} {THING}; {X_nameDef} has come to carry them back.</li>
+          <li>[components] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate. The overseer told {A_nameDef} that more of the vault's machines stop each season, and asked for {COUNT} {THING}; {X_nameDef} has come to carry them back.</li>
+          <li>[age0|age1] {X_nameDef}, a surface-runner of {FACTION}, has walked to the gate with an empty sack. The overseer asked {A_nameDef} for {COUNT} {THING} for the vault, and {X_nameDef} has come for them.</li>
+          <li>[age2|age3] {X_nameDef}, a surface-runner of {FACTION}, has come to the gate in an olive vault suit. The overseer asked {A_nameDef} for {COUNT} {THING} for the vault, and {X_nameDef} has come to carry them back.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give the vault {COUNT} {THING}</label>
+            <outcome>The {THING} is carried out to {X_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the {THING} for {X_nameDef}</label><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ConsoleGive"><half>false</half></li>
+            </effects>
+          </li>
+          <li>
+            <label>Give half of it</label>
+            <outcome>Half of what the overseer asked for is carried out to {X_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the {THING} for {X_nameDef}</label><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ConsoleGive"><half>true</half></li>
+            </effects>
+          </li>
+          <li>
+            <label>We can't spare it</label>
+            <outcome>{X_nameDef} goes back to the vault with nothing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[thanks] The overseer will be glad of it.</li>
+          <li>[later] Then I'll tell the overseer, and nobody will hold it against you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== 94. Surface scouts ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SurfaceScouts</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>surface scouts</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SurfaceScouts</workerClass>
+    <baseChance>0.35</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~40</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Surface scouts</li>
+          <li>Scouts from the vault</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a surface-scout of {FACTION}, has come to the gate. {X_pronoun} and two other scouts would camp by the colony for a week to learn the surface, and ask to be taught something each afternoon: plants, animals or shooting. They have a few last things from the vault to trade, and one of them may ask to stay.</li>
+          <li>{X_nameDef} of {FACTION}, a surface-scout, is at the gate, squinting at the sky. The vault is sending three of its scouts to learn how people live up here, and they would camp a week by the colony and ask to be taught each afternoon. Whatever they learn, the vault keeps.</li>
+          <li>[fallen] {X_nameDef}, a surface-scout of {FACTION}, has come to the gate. The vault can no longer live on what it kept from before, and its scouts have to learn the surface: three of them would camp a week by the colony and ask to be taught plants, animals and shooting in the afternoons.</li>
+          <li>[age0|age1] {X_nameDef}, a surface-scout of {FACTION}, has come to the gate in a patched vault suit with a cape over it. {X_pronoun} and two others would camp a week by the colony and ask to be taught each afternoon, plants, animals or shooting, and they have a few of the vault's last things to trade.</li>
+          <li>[age2|age3] {X_nameDef}, a surface-scout of {FACTION}, has come to the gate in a duster over an olive vault suit. Three of the vault's scouts would camp a week by the colony to learn the surface, asking to be taught each afternoon, and would trade the last odds and ends they brought up.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them camp</label>
+            <outcome>{X_nameDef} goes back to bring the other scouts.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SurfaceScouts"><fed>false</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them camp, and send food with them ({COUNT} raw food)</label>
+            <outcome>The food is carried out to {X_nameDef}, who goes back to bring the other scouts.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {X_nameDef}</label><what>rawfood</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SurfaceScouts"><fed>true</fed></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[camp] We'll set up where you say, and we'll try not to get lost.</li>
+          <li>[later] Then we'll learn somewhere else.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -10544,6 +10544,120 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     warning), `FactionMemory` (the deed `medal`), `ArisingMath` and `Arising` (the disembarked), `FactsMath`, the def check's
     placeholders. No game hooks of its own. Dev actions "Peoples' events 8: ...". The Almanac's peoples' pages, *Of their own: gifts,
     trust and camps* (Almanac_PeoplesD.xml).
+- **The peoples' own events, round 9** (the player's go, 19 November 2026: "Events sounds great"; released 0.273.0)
+  `docs/peoples-events-proposals.md`, items 84 to 94 (the Lattice, the Choir of the Spire and the Sunken Vault);
+  `Source/ColonyCouncil/Peoples/Events9/`, the pure rules in `PeopleEvents9Math.cs`, `Tools/Tests/PeopleEvents9Tests.cs` ("the
+  peoples' events, round 9: "). As rounds 1 to 8: only from a people of its calling at peace (`PeoplesD.Friendly`), in the Visitors
+  group, base chance 0.2 to 0.4, 30 to 90 days apart and never in the first ten days (the Lattice's twenty, the vault's fight
+  twenty-five), every age in its own form, played out on the map. Two come from code at their moment (base chance 0,
+  `PeopleEvents2.Fire`): the Choir's listener for a mind in a long break (at 0.5 times the storytellers' lean on visitors, twenty
+  days apart) and the overseer's runner at the end of the evenings at the console. Round 8's hour hands on to round 9's
+  (`PeopleEvents8.Hour` and `Hourly`, one line each). The gifts (the link, the hum, the last part) keep the peoples' gift rule
+  (`PeopleEvents.MayGive`). Three use round 1's work on a colonist (`PeopleWorkOn`); the rest a job driver of the round's own
+  (`JobDriver_PEv9Work`: up to a thing, a person or a cell, a while there with a bar and a mark, the time left kept with the game; with
+  `follow`, a person who walks off is followed and the work goes on at their side).
+  - **Linked into the Lattice** (Lattice; `LatticeLinked`; Biotech): a mechanitor of the colony's (a mechlink) not linked yet: a
+    mech-tender at the gate links them in where they stand (`Rimfolk_PEv9_Link`, two hours, sparks and a bar). The link
+    (`Rimfolk_LatticeLink`, `Hediff_LatticeLink`, the Lattice named on it) gives +2 bandwidth (its stages' Biotech stat put on at
+    startup, so the def loads without Biotech) for as long as that Lattice is at peace with the colony: the hour it isn't (hostile,
+    gone), the link goes quiet for good, told. With the whole link, at dawn about one night in seven they have dreamed another linked
+    mind's dream, half good (`Rimfolk_Thought_LatticeDreamGood`, +3 a day) and half bad (`_LatticeDreamBad`, -3). The second answer
+    links them for work only: +1 bandwidth, no dreams. +3 (+2).
+  - **A mech gone feral** (Lattice; `FeralMech`; Biotech): one of the Lattice's light war mechs (Biotech's militor, scorcher and
+    legionary, the game's pikeman, Alpha Mechs' bellicor, artilleron, daggersnout and blitzkrieg, Rimsenal Spacer's psiloid, Advanced
+    Armaments' legionary fusilier: the strongest within 0.35 of the home's threat points, else the weakest) comes in at the edge and roams open ground a fair walk out from the colony, attacking whatever comes near (it answers to
+    nobody: the game's own hostile mechs, a defend-point group), and two link-wardens come to the gate. The drovers' bull's kind in
+    the shared harm budget (`HarmKinds.DroversBull`, at 0.8), only where fights are allowed. Relink: a warden calls it over the link (it
+    is the Lattice's again and walks to the gate), relinks it there (`_Relink`, sparks) and they walk home together; the Lattice pays a
+    tenth of its worth (60 to 300 silver) for the trouble, +4. Take it down: the wardens assault it (`LordJob_AssaultThings`), the
+    colony's fighters free to join (the game's fight); downed, it is finished; its wreck is the colony's, unforbidden. Or the wardens
+    go home and it wanders off after a day and a half. `pev:feral`.
+  - **A mech yard** (Lattice; `MechYard`, `CampWorker_MechYard`; Biotech): a mech-tender and two link-hands camp five to seven days
+    with four to six labour mechs in their group: half rock-cutters (Biotech's constructoids and tunnelers, Rimsenal Spacer's borers),
+    half haulers (Biotech's lifters, Rimsenal Spacer's omniservants). By day the rock-cutters cut plain rock
+    near the camp by the camps' own rule for what may be taken (`CampTake.PlainRock`, `CampTake.May`, the site's fate), six loads a
+    day at most (`_CutRock`, an hour, dust; the game's own `DestroyMined`), and the haulers carry the chunks to a pile beside the camp
+    (the game's haul); the rock is left to the colony when they go. The tender and the link-hands see to the mechs (`_TendMech`).
+    Ask: hire the mechs for a day (120 silver by wealth; also from the gate, the second answer): the haulers carry the colony's loose
+    things into its stockpiles (the game's own storage haul), the rest mend its worn buildings to full (`_Mend`). It can turn, once a
+    stay each, by day after their first: a mech slips its link and goes feral (0.25, the drovers' bull's kind; told as a threat, the
+    camp's people go after it), or a band of a people at war with the Lattice (an industrial or spacer one first) comes against the
+    camp for its mechs (0.3, `CampRaids.Send`). Going: +3.
+  - **The hum deepened** (Choir; `HumDeepened`; Royalty): in the evening (16 to 21h) a cantor comes for the colonist whose psylink is
+    the highest below six (else the most psychically sensitive without one, 1.3 or more) and sits at their bed through the night,
+    humming while they lie listening (`Rimfolk_PEv9_Hum`, five hours, the meditation's mark). By morning the psylink is a level higher
+    (with Vanilla Psycasts Expanded, the level's point for one more power) or a first level wakes on the Choir's paths (Harmonist,
+    Empath). The price: the colony's dearest piece of art (200 silver's worth at least), carried out; or an evening in which the
+    cantor listens to the colony: once the night is over, everyone at home feels it by the listening's own rule (round G's
+    `ChoirListening.Heard`, `PeoplesGMath.Felt`: a calm for most, an unease for some), the colonist always calm. +3.
+  - **The void listens back** (Choir; `VoidListens`; Anomaly): a colonist shaken by the void (Vanilla Anomaly Expanded - Insanity's
+    sanity below half, or one of Anomaly's own memories of the void on them: the inhuman rambling heard, the disturbing talk, the
+    darkness, the harbinger's scream, a ritual done on them): a warden of the quiet stays at their side through the day (`_SitWith`,
+    eight hours, following them), and three tenths of their sanity returns, those memories are lifted and they have
+    `Rimfolk_Thought_QuietWarden` (+4 for 3 days). At the end, or with the second answer after only an hour at the colony's edge
+    (`_ListenEdge`), the warden names the void's next threat: one of Anomaly's own threats the game could send to the home now, by its
+    own weight, told in a letter. The word holds a month: the storyteller's next threat of the void at that home (an Anomaly threat it
+    fires anyway) takes the form named when that one can come then (`VoidListens.Steer`, at the start of the mast's own hook on
+    `Storyteller.TryFire`: nothing is added, nothing held), and a message says the warden named it. +3. `pev:void`.
+  - **A mind that shouts** (Choir; `MindShouts`): a colonist three hours into a mental break that turns on nobody (not an aggressive
+    one, not panic), rolled once a break at 0.5, twenty days apart: a listener at the gate, who heard it from the road. Let in, the
+    listener sits beside them two hours, following if they wander (`_SitWith`), and the break ends there (the game's own recovery,
+    `Rimfolk_Thought_ChoirSatWith`, +4 a day). With the second answer the colony's best talker sits with them too and learns how
+    (1500 Social). A break that ends by itself sends the listener home. +2. `pev:shout`.
+  - **A listening ring** (Choir; `ListeningRing`, `CampWorker_ListeningRing`): three to five (a cantor and listeners) camp three to five
+    days at the colony's quietest place (of six sites a long walk out, the one with the fewest of the colony's buildings near, then
+    the farthest) and sing at their fire at dusk (`_Sing`, the meditation's mark). Late in the evening everyone at home feels it by
+    the listening's rule (`PeoplesGMath.Felt`): `Rimfolk_Thought_RingCalm` (+3) or `_RingUnease` (-3), a day; told the first night,
+    the moods after. Asks: a psycaster of the colony's (the one with the least focus) sits with them two hours (`_RingSit`) and comes
+    back with a full focus and a calm; they ask, by letter, that loud work be kept away at night (also promised at the gate, the
+    second answer): a colonist mining, building or taking down within 25 cells of the ring at night is heard there, once a night,
+    the camp the tenser (more for a broken promise, told); a promise kept leaves them +2 warmer. It can turn, with Anomaly while the
+    void stirs, once a stay at 0.35: their song goes strange, everyone at home who can hear it has `_RingStrange` (-4 a day), told,
+    and they pack up and leave. Going: +3.
+  - **The seal broken** (Vault; `SealBroken`, `SealRecord`): the vault's town within 30 tiles, fights allowed, three grown colonists
+    or more: a surface-runner with the overseer's call. What came up from the lower level: at 0.6 insects (the game's and Vanilla
+    Factions Expanded - Insectoids 2's of up to the royal megaspider's weight), else mechs (the game's mechanoid group). Answered, the
+    caravan window opens and the call is kept five days (longer while a caravan of two or more grown colonists is on the road to the
+    town, the calls to arms' `Answering`); within a tile of the town, the fight is on the game's caravan battle map beside it, what came
+    up at 0.6 of the home's threat points assaulting, four of the vault's security at most beside the colony's people
+    (`LordJob_AssistColony`). Won (none of what came up on its feet, some of the colony's still), the vault's last goods twice over
+    (`HappeningWorker_VaultBarter.Crate`, by its age) and two advanced components are set down by the colony's people, +15, and the
+    vault remembers its town defended (`townDefended`). Left before it was won, nothing; nobody came by the day, -3. Or the colony
+    sends components (4 to 10) and five medicine for the security instead, remembered as supply, +3.
+  - **The last part** (Vault; `LastPart`): a colonist missing an eye, an arm, a hand, a leg or a foot, for whom the colony holds no part
+    of any kind (any item an install recipe of any mod puts on that part or what it hangs from), a bed: the vault's medic (Medicine 8
+    to 13) with one of the vault's last bionics (the game's bionic eye, arm or leg: no mod in the player's list adds one; the vault
+    can't make them, so in every age it is one kept from before). The price: 15 to 30 components and 200 to 500 raw food by the
+    colony's wealth, carried out, remembered as a year's supply (a memory of the age rule's gifts at its full weight, 30, which stays
+    within a few hundredths of a full year's supply for the year). Fitted by the game's own surgery: by the medic at the colony's bed,
+    the colony's doctor at the bedside learning (`Rimfolk_PEv9_Bionic`, round 1's limb fitting), or with the second answer handed over
+    at the gate and the game's surgery bill set on the colonist for the colony's own doctor. The card shows the surgeon's chance. +5.
+  - **The console that talks to nobody** (Vault; `ConsoleTalk`): the colony's best talker. With a radio (a powered comms console, or the
+    Signal Line's mast singing: `VoiceForColony.Radio`) the overseer comes over it (nobody at the gate); without one a surface-runner
+    brings a letter. Three evenings (or one, the second answer), at dusk the talker goes to the radio, or writes back at the colony's
+    table while that evening's runner waits (`_Console`, an hour; 400 Social each), each evening told. At the end of three, half the
+    time the overseer asks for 4 to 10 components or 3 to 8 medicine (`Rimfolk_Evt_ConsoleAsk`: a runner at the gate; give all, half
+    or none; remembered as supply, +5 or +2), else tells where an old supply cache of the vault's lies 3 to 9 tiles off: the game's item
+    stash with components, survival packs, medicine and one of the vault's last goods, kept 25 days, a place heard of (`HeardPlaces`),
+    told in a letter. +4 (one evening +1). `pev:console`.
+  - **Surface scouts** (Vault; `SurfaceScouts`, `CampWorker_SurfaceScouts`): three scouts camp a week. Each afternoon (12 to 15h)
+    they ask to be taught, by letter, plants, animals or shooting in turn: the colony's best at it teaches two hours at their fire
+    (`_Lesson`, the scouts sat round it), each scout 1500 in it, the teacher 250 Social, the vault remembering it as supply (150 silver)
+    and, the first time, as one of theirs who learned at the colony (`learnedHere`): both hold its age. Asks besides: their last odds
+    and ends set down at their fire for 200 silver by wealth (the vault's goods by its age, components, medicine, survival packs), and
+    their hurt tended. One may ask to stay (the camp's own join, 0.15). It can turn, once a stay each: one is sky-sick in the morning
+    and keeps to the tent a day (0.4; the camp asks someone of the colony, its best talker, to talk them out, an hour, `_TalkOut`); one
+    goes out at dusk in mild weather and is lost, lying out a long walk from the camp (0.3; the camp asks the colony's best with
+    animals to look, `_Search`; else they find their way back at first light); one walks up to a wild beast they don't know to fear
+    (a hunter or a big one) and it turns on them (0.25, the wild one too close's kind, `HarmKinds.TooClose`, in the shared budget: the
+    game's own attack, told as it happens). The second answer sends 80 raw food with them, remembered as supply. Going: +3.
+  - Harm of Rimfolk's own: none of a new kind. The feral mechs (the event's and the yard's) are the drovers' bull's kind
+    (`DroversBull`), the beast that turns on a scout the wild one too close's (`TooClose`), each through the shared budget and told;
+    the fight with the feral mech, the vault's fight, the band against the yard and the surgery are the game's own, shown on the
+    cards. Saved: `PeopleEvents9Book` (the breaks rolled for, the void's word, the vault's calls and their fights), the link (a hediff)
+    and the camps' states, modelled in `Tools/save_estimate.py`. Small hooks: round 8's `Hour` and `Hourly`, `Patch_LineMastWarns`
+    (the void's word, before the mast's own), `FactsMath`, the def check's placeholders. No game hooks of its own. Dev actions
+    "Peoples' events 9: ...". The Almanac's peoples' pages, *Of their own: gifts, trust and camps* (Almanac_PeoplesD.xml).
 
 ### The peoples' descriptions, each in its own words (the player's request, 14 November 2026; released 0.252.0)
 

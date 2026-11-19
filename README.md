@@ -4770,6 +4770,23 @@ the first to see raiders coming. The **Helix Works** may take a harmful gene out
 xenogerm of one of their kinds into another (a coma follows), sell a young hybrid from their vats (Vanilla Genetics
 Expanded), or set up a **field lab** for a week, their gene work open all the while; a beast of theirs can get loose.
 
+**The peoples' own events, the ninth round.** Eleven more, from the Lattice, the Choir of the Spire and the Sunken Vault,
+each only while that people is at peace with the colony. With Biotech a mech-tender may **link the colony's mechanitor
+into the Lattice**: two more bandwidth for as long as the Lattice stays at peace with the colony, and now and then
+another linked mind's dream, good or bad. A **mech of theirs gone feral** may roam the colony's land with two
+link-wardens after it: they can call it in and relink it at the gate (the Lattice pays for the trouble), or the colony
+takes it down with them and keeps the wreck. A **mech yard** may camp most of a week, its mechs cutting plain rock and
+leaving it to the colony, and hired for a day they haul and mend. With Royalty a **cantor** may sit through the night at
+a colonist's bed, and by morning their psylink is a level higher (or wakes), for a piece of the colony's art or an
+evening of listening to the colony. With Anomaly a **warden of the quiet** may stay a day at the side of a colonist shaken
+by the void, giving some of their sanity back (Vanilla Anomaly Expanded - Insanity), and name the next threat the void
+sends. A **listener** may sit beside a colonist in a long mental break until it ends, and a **listening ring** may camp at
+the colony's quietest place and sing each evening, felt at home at night. The **Sunken Vault** may call the colony's
+fighters when **insects or mechs break into its lower level** (a caravan, a fight beside the vault's security, a share of
+its stores), trade **one of its last bionics** for a year's supply when a colonist has lost an eye or a limb, **talk with
+the colony's best talker over the radio** for three evenings (by letters without one) and then ask for something or tell
+of an old supply cache, and send **surface scouts** to camp a week and be taught plants, animals and shooting.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
 soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval
