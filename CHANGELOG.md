@@ -4244,7 +4244,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 - With Ideology, every meal bill but the fungus meal's starts with fungus unticked, so the cooks keep the fungus for fungus meals. Tick it back on any bill that should use it; a dish from another mod that can't be made without fungus keeps it.
 - In a save from before this, the meal bills already in a queue get fungus unticked once, when the save is loaded.
 
-## Build priorities and much more to happen
+## Build priorities, and more camps, talk and events
 
 *24 October 2026, version 0.13.0*
 
