@@ -25,7 +25,7 @@
         <li>[greetings,warm,their:hunters] Your letter was read at the lantern post tonight, {WRITER}. The colony has a good page in our book, and it stays open.</li>
         <li>[greetings,cordial,their:hunters] The lodge has your letter, {WRITER}. If a beast comes onto your land, a Warden will hear of it.</li>
         <li>[greetings,cool,their:hunters] We have your letter. The book will say what kind of neighbour you are, in time.</li>
-        <li>[news,warm,their:hunters] Every lodge hears where the beasts are moving, {WRITER}, and where people are. Here is what the lanterns tell us this season.</li>
+        <li>[news,warm,their:hunters] Every lodge hears where the beasts are moving, {WRITER}, and where people are. Here is what our lodges have heard this season.</li>
         <li>[news,cordial,their:hunters] Our trackers see the roads before anyone. This is what they saw.</li>
         <li>[help,warm,their:hunters] What you asked for is coming with a lantern-runner, {WRITER}. The Wardens keep what they promise until it is done.</li>
         <li>[help,cordial,their:hunters] The lodge can spare it, and it is on the road with our runner.</li>
@@ -40,7 +40,7 @@
         <li>[greetings,cordial,their:sextons] The Bell has your letter, {WRITER}, and keeps it with the others, quietly.</li>
         <li>[greetings,cool,their:sextons] We have your letter. The Bell rings for everyone, in the end.</li>
         <li>[news,warm,their:sextons] The dead come to us from every road, {WRITER}, and so does the news of how they died. Here is what the grave-gardens heard.</li>
-        <li>[news,cordial,their:sextons] The ground hears a great deal, and so do those who dig it. This is the season's word.</li>
+        <li>[news,cordial,their:sextons] Those who dig the graves hear a great deal. This is the season's word.</li>
         <li>[help,warm,their:sextons] The Bell has little, but what it has is given. What you asked for is coming with a bell-carrier.</li>
         <li>[help,cordial,their:sextons] We can spare it, quietly, and it is on the road.</li>
         <li>[help,refusal,their:sextons] The grave-gardens are full this season, {WRITER}, and everything we have goes into the ground. There is nothing to send.</li>
@@ -48,7 +48,7 @@
         <li>[condolences,warm,their:sextons] We rang for your dead this evening, {WRITER}, once each, as for our own. Everyone is owed a bell.</li>
         <li>[condolences,cordial,their:sextons] The Bell is sorry for your loss, {WRITER}. The ground keeps what it is given, gently.</li>
         <li>[warning,warm,their:sextons] Your warning came in time, {WRITER}. The grave-gardens are shut and the bell is ready, and the Bell owes you more than a letter.</li>
-        <li>[warning,cordial,their:sextons] We have your warning, {WRITER}. We will listen to the ground tonight.</li>
+        <li>[warning,cordial,their:sextons] We have your warning, {WRITER}. We will keep watch tonight.</li>
         <!-- The Circuit of Tamers: the sash, the ring, the bond -->
         <li>[greetings,warm,their:tamers] Your letter got read out at the ring tonight, {WRITER}, between bouts, and everybody cheered.</li>
         <li>[greetings,cordial,their:tamers] The Circuit has your letter, {WRITER}. Any tamer on the road will stop by and say hello.</li>
@@ -67,7 +67,7 @@
         <li>[greetings,warm,their:salvagers] Your letter caught up with the Wheel two stops on, {WRITER}, and the whole yard read it over supper.</li>
         <li>[greetings,cordial,their:salvagers] The Wheel has your letter, {WRITER}. Next time we come round, we will stop.</li>
         <li>[greetings,cool,their:salvagers] We have your letter. Trade with us once, and we will talk properly.</li>
-        <li>[news,warm,their:salvagers] The Wheel sees the whole region every few years, {WRITER}, and buys its rubbish. Here is what the rubbish says.</li>
+        <li>[news,warm,their:salvagers] The Wheel sees the whole region every few years, {WRITER}, and hears the gossip at every stop. Here is the season's.</li>
         <li>[news,cordial,their:salvagers] Every stop has gossip, and we pick it up with the scrap. This is the season's.</li>
         <li>[help,warm,their:salvagers] Nothing is broken, only waiting, {WRITER}, and what you need is coming with a scrap-runner.</li>
         <li>[help,cordial,their:salvagers] Call it a loan against the next swap, and it is on its way.</li>

@@ -54,7 +54,7 @@
         <li>[help,warm,tie:ward:ours] {WARD} heard you needed help and asked us to send it. We would have anyway.</li>
         <li>[invitation,warm,tie:ward:ours] We would come gladly. {WARD} asked to come along, but their year with us isn't out.</li>
         <!-- While a hostage is held either way -->
-        <li>[greetings,cordial,tie:hostage:theirs,theirLowtech,!tie:hostage:due] {HOSTAGE} stands for our word among you. Treat them as we treat the word.</li>
+        <li>[greetings,cordial,tie:hostage:theirs,theirLowtech,!tie:hostage:due] {HOSTAGE} is with you as the pledge of our word. Treat them as well as we keep it.</li>
         <li>[greetings,warm,tie:hostage:theirs,!tie:hostage:due] Thank you for your letter. Tell {HOSTAGE} their family is well.</li>
         <li>[news,cordial,tie:hostage:theirs,!tie:hostage:due] Here is our news. {HOSTAGE} will want to hear it, so read it to them.</li>
         <li>[greetings,cool,tie:hostage:ours,theirHightech,!tie:hostage:due] {HOSTAGE} is kept as agreed. We see no reason to say more.</li>

@@ -272,8 +272,21 @@ repo.
   so the council questions, camps and visitors as categories are still to do). Numbers that disagreed with the code
   were put right on the way (the good life's line for the spoiled, 15; an answer that fell through gives no moods; a
   camp at the end of its patience leaves, it doesn't attack; a decree enacted again within a month is resented more).
-  Still to pick, when the player asks: the gods and faith, the letters, wishes and ambitions, personal stories,
-  council questions, the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
+  The letters, done (19 November 2026, the player's go on the overview: "Plain words text sounds great"; built, not
+  released): the entry "Plain words: the letters" above the newest release line. Files taken: the letter form's pools
+  `Defs/FlavorPoolDefs/Rimfolk_Letters_*.xml` (Salute, Open, Aside, Close, PS, Heart, Ours, Familiar, Thread, Set, Note,
+  Call, When, Spoken, Story, Raid, Chronicle, Part, Lead, Diary, Enclosure, Hands; Poem and Sermon read, kept: verse and
+  the faiths' words), the neighbours' written answers (`Rimfolk_Pool_NeighbourWrites` in `Rimfolk_Neighbours.xml` and
+  its extensions in `Rimfolk_Lines_Diplomacy`, `_DiplomacyMore`, `_Pacts`, `_PactEnds`, `_Fealty`, `_FealtyMore`,
+  `_Feasts`, `_FeastsMore`, `_Matches`, `_MatchesMore`, `_Ransom`, `_Wards`, `_WardsMore`, `_ColonyBonds`,
+  `_ColonyRenown`, `_NeighbourWrites_Ties`, `_Overtaken`, `_Peoples`, `_PeoplesC` to `_PeoplesG`, `_PeoplesLore`,
+  `Rimfolk_TownAfter.xml`, `Rimfolk_StageThree_Town.xml`), the handed-over town's letters (`Rimfolk_Pool_TownLetter`,
+  `Rimfolk_Lines_TownLetter_StageThree`), and the letters' Keyed words (`Rimfolk_LetterForm.xml`,
+  `Rimfolk_Letters_Bring.xml`, `Rimfolk_YearLetter.xml`, `Rimfolk_Notables.xml`' route lines, the letter keys of
+  `Rimfolk_Dealings`, `_Diplomacy`, `_Fealty`, `_Feasts`, `_Matches`, `_Pacts`, `_Ransom`, `_Wards`, `_Couriers`, read
+  again: already plain since the interface batches).
+  Still to pick, when the player asks: the gods and faith, wishes and ambitions, personal stories, council questions,
+  the peoples, camps and visitors, the region map, council and decrees, the Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -286,6 +299,55 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.266.9, **Plain words: the letters**
+  (19 November 2026; the player's go on the overview: "Plain words text sounds great"; their words for the pass: "when
+  you write text for the mod, especially when it's supposed to be flavour, i'd like you to be more neutral, descriptive
+  and "reasonable", over trying to make the text be creative", "the only thing i don't mind and even enjoy, is old
+  medieval writing"). The tenth batch of the plain-words pass, the letters: every line of the letters to and from the
+  neighbours, notables and peoples (the letter form's parts, the neighbours' written answers for every purpose, pacts,
+  truces, favours, fealty, feasts, matches, ransom, envoys, wards, renown, a town taking back, the handed-over town's
+  letters), with the letters' Keyed words read again. File list in the to-do entry "Rimfolk's text in plain words".
+  - **What changed.** About 5,870 lines read, 610 rewritten (the letter form's pools 573, the neighbours' answers and
+    the peoples' letters 37). Wry last lines and running jokes said plainly ("Repairs needed: the roof, the fence, the
+    well cover, and my temper" is "the roof, the fence and the well cover"; "the potholes now have potholes"; "I will
+    write again when one side wins"; "Two out of three is good for a town"; "The grass is richer than we are"), things
+    given a will or a voice ("it knows what it is doing", "It is shy", the mule "still making its case", "the river
+    says hello too", the fire that "calls", "the trees argue with the sky"), riddling or cut-short
+    lines ("more than last year, fewer than next", "Won. Lost the fence.", "That is how you know", "Some things are
+    better as questions"), invented idioms explained ("gone to the long fire" is "has died", "a friend of our fire",
+    "the moon of the first green" is the month the first shoots come up, the league's "good ink or red", the fey's
+    "dream sideways"), and the colon-and-semicolon chains of the recipes, the chronicle sheet and the stories as plain
+    sentences. The approved samples of `docs/text-style-samples.md` used where they stand: the short note's weak floor,
+    the ambush at the ford (plain, and in the medieval line made clear in its own voice), the cannibal people's winter
+    aside, the storm's marks the children dare each other to touch.
+  - **Left as they were.** The medieval (`olde`) lines keep their voice ("needeth", "meaneth", "Most dear", "Herewith",
+    "Item:"); only those that were unclear were made clear in it ("To {TO}, these," and "the light was false" now say
+    what they mean, "Winter hath its teeth in us" is "Winter is hard upon us"). The strange voices keep their forms
+    (the android's capitals, the hive's "we", the beasts' smells, the fey formula "By leaf and by string", the ancient's
+    long postscripts, the eldritch word order), with their riddles' twists and unclear endings made plain. Riddles
+    stay riddles; poems and songs (`Rimfolk_Letters_Poem.xml`) stay verse; sermons (`Rimfolk_Letters_Sermon.xml`) and
+    the stories of a god's sign, curse or myth are the faiths' words, for the gods' round. Spoken lines over heads
+    (`Rimfolk_Pool_NeighbourSays`, couriers' and visitors' lines, the challenger's words) and the neighbours' talk
+    (`OutsiderSays`) are not letters and were left. The retired lines `Lean/ShippedLines.cs` names (two ward answers
+    with "our house") stay word for word: they are never drawn, and RenownTests asks that they stay. Every tag,
+    placeholder and fact kept (the rewrite tool refused any line whose tags or placeholders changed, and
+    `Tools/textcheck.py --base` on the rewritten files finds nothing broken); the peoples' sayings still stand in their lines (each people keeps three
+    or more, PeoplesLoreTests asks two). Plain lines already in the letters' Keyed files since the interface batches.
+  - **Put right against the code.** The unschooled raiders' ransom answers asked for gold ("Gold. Real gold, not painted
+    rocks", "send gold"), while a ransom is paid in silver (`Ransoms.cs`: `ThingDefOf.Silver`); they now ask for
+    silver. Checked and true as written: a friend's warning of raiders says "hours, not days" (`DealingMath.WarnHours`,
+    3 to 5 hours); a request granted brings their porters to the gate (`Dealings.cs`, `WorldWrites.cs`).
+  - **Code map.** No code changed. The rewrite was done line by line in the pools' XML; LetterFormTests' rules hold
+    (no dash or exclamation mark, thee and thou only in `olde`, the unschooled in short sentences, every placeholder
+    known).
+  - **Can't be checked without the game.** How the plainer jokes read in a whole letter beside the medieval and the
+    strange voices; whether a letter now feels flat where the old wry line carried it.
+  - **Try in the game.** Write to a few neighbours of different ages and peoples (Diplomacy screen, People, Write) and
+    read the answers in full; let a pen friend's letters build up to "old friends by letter" and watch the running
+    jokes (the goat, the bridge, the well bucket) come back in plain words; read a tribe's letter (the dates "in the
+    month the leaves fell"), a medieval one (still "thee" and "Herewith"), and a long letter with a story or a raid's
+    account; with an unschooled raider people holding a colonist, ask them by letter about the captive.
+  - **Mods that would help.** None for this; it is text only.
 - 0.266.8, **The storytellers: fewer only
   where it fits, and said** (19 November 2026; the player's answer to the question left open in 0.253.0, whether the
   first eight's levers below the base rate go back to it: "Some storytellers and fewer traders and fewer fights. That's

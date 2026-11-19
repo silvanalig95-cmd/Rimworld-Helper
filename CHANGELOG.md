@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Letters in plain words
+
+*19 November 2026, version 0.266.9*
+
+- The neighbours' letters, notes, stories and accounts now say what happened in ordinary words, without the wry twists and riddles.
+- Medieval letters keep their old voice, and the strange writers (androids, hives, fairies, the long-lived) keep their own ways of writing, with their meaning made clear.
+- Raider bands holding a colonist ask for silver in their letters, which is what a ransom is paid in.
+
 ## Storytellers say what they bring
 
 *19 November 2026, version 0.266.8*

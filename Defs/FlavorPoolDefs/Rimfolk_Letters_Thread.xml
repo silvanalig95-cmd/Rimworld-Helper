@@ -52,8 +52,8 @@
         <li>[re:ill:ask,ours,v:kind,warmly] If {RE} is still abed, tell {RE} we asked, and that we would bring soup if the road were shorter.</li>
         <li>[re:ill:ask,ours,at:ps] How is {RE}?</li>
         <li>[re:ill:still,theirs,re:last] You asked after {RE}. No better yet, I am sorry to say, but no worse either, and we take turns at the bedside.</li>
-        <li>[re:ill:still,theirs] {RE} is still unwell. The healers say it will be slow. We say it had better be thorough, then.</li>
-        <li>[re:ill:still,theirs,warmly] {RE} is still abed, and is the worst patient anyone at {TOWN} has ever nursed, which we take as a sign of life.</li>
+        <li>[re:ill:still,theirs] {RE} is still unwell. The healers say it will be slow.</li>
+        <li>[re:ill:still,theirs,warmly] {RE} is still abed, and is the most impatient patient anyone at {TOWN} has ever nursed. We take that as a good sign.</li>
         <li>[re:ill:still,theirs,cordial|cool] {RE} remains unwell.</li>
         <li>[re:ill:still,theirs,w:tribal] {RE} still lies by the fire, and the healer sings over the sickness each night.</li>
         <li>[re:ill:still,theirs,w:spacer] {RE} is still on the medical cot. The readings are steady. Steady is not the same as good.</li>
@@ -61,27 +61,27 @@
         <li>[re:ill:better,theirs] {RE} is well again, you will be glad to know. Thinner, crosser, and very much alive.</li>
         <li>[re:ill:better,theirs,warmly] Good news first: {RE} is mended, and asked me to thank {COLONY} for asking.</li>
         <li>[re:ill:better,theirs,cordial|cool] {RE} has recovered.</li>
-        <li>[re:ill:better,theirs,w:tribal] {RE} walks again. The healer has taken the credit, and the soup-makers argue.</li>
+        <li>[re:ill:better,theirs,w:tribal] {RE} walks again. The healer and the soup-makers each say it was their doing.</li>
         <li>[re:ill:better,theirs,w:industrial|w:spacer] {RE} is back at work, against the doctor's advice and everyone else's.</li>
         <li>[re:ill:lost,theirs] You asked after {RE}, and I have to tell you that we lost {RE}. It was quiet at the end, and we were all there.</li>
         <li>[re:ill:lost,theirs,cordial|cool] I must tell you that {RE} did not recover.</li>
-        <li>[re:ill:lost,theirs,w:tribal] {RE} has gone to the long fire. We sang the whole night through.</li>
+        <li>[re:ill:lost,theirs,w:tribal] {RE} has died. We sang for {RE} the whole night through.</li>
         <!-- ================= Their news: their war ================= -->
         <li>[re:war:ask,ours] How goes it with {RE}? We hear little out here, and think of you often.</li>
         <li>[re:war:ask,ours,re:last] Your last letter spoke of the war with {RE}. How does it go now?</li>
         <li>[re:war:ask,ours,cordial|cool] We hope the war with {RE} goes well for {TOWN}.</li>
         <li>[re:war:ask,ours,v:blunt] The war with {RE}. How is it going?</li>
-        <li>[re:war:still,theirs,re:last] You asked about {RE}. The war goes on. Nobody is winning, which here means everybody is losing a little.</li>
+        <li>[re:war:still,theirs,re:last] You asked about {RE}. The war goes on. Neither side is winning, and both are losing people.</li>
         <li>[re:war:still,theirs] The war with {RE} drags on. We keep the gates shut and the watch fires lit.</li>
         <li>[re:war:still,theirs,cordial|cool] The war with {RE} continues.</li>
-        <li>[re:war:still,theirs,w:tribal] The war with {RE} still walks between our camps. The young ones paint their faces every morning.</li>
+        <li>[re:war:still,theirs,w:tribal] The war with {RE} goes on. The young ones paint their faces for war every morning.</li>
         <li>[re:war:winning,theirs] The war with {RE} is going our way, for now. I say "for now" because I have learned to.</li>
         <li>[re:war:winning,theirs,re:last] You asked how it goes with {RE}. Better than it did. They have given ground, and we have not.</li>
         <li>[re:war:losing,theirs] The war with {RE} goes badly. I will not dress it up for you.</li>
         <li>[re:war:losing,theirs,re:last] You asked about {RE}. We have lost ground, and some good people with it. We hold what we can.</li>
         <li>[re:war:peace,theirs] You will be glad to know there is peace with {RE} at last. Nobody trusts it yet, but everybody sleeps better.</li>
         <li>[re:war:peace,theirs,re:last] You asked about {RE}. It is over. Peace, of a sort, and we will take it.</li>
-        <li>[re:war:peace,theirs,w:tribal] The war with {RE} is ended. The young ones have washed their faces, and the old ones have stopped counting.</li>
+        <li>[re:war:peace,theirs,w:tribal] The war with {RE} is ended. The young ones have washed off their war paint, and the old ones have stopped counting the dead.</li>
         <li>[re:war:over,theirs] The war with {RE} has gone quiet. Nobody signed anything; it simply stopped, the way some fevers do.</li>
         <li>[re:war:over,theirs,re:last] You asked about {RE}. We have not seen their banners in a long while. Whether that is peace, nobody here will say.</li>
         <!-- ================= Their news: hard times ================= -->
@@ -91,8 +91,8 @@
         <li>[re:hard:ask,ours,v:blunt] Things still hard at {TOWN}?</li>
         <li>[re:hard:still,theirs] Things are still hard here. We manage. Managing is most of what we do now.</li>
         <li>[re:hard:still,theirs,re:last] You asked how we fare. Not well yet, but we have stopped getting worse, which is the first step.</li>
-        <li>[re:hard:still,theirs] We are still feeling {RE}. The stores are thin and tempers thinner.</li>
-        <li>[re:hard:better,theirs] Things are easier at {TOWN} now. Not good, but easier, and easier is a fine thing after hard.</li>
+        <li>[re:hard:still,theirs] We are still feeling {RE}. The stores are low, and people are short-tempered.</li>
+        <li>[re:hard:better,theirs] Things are easier at {TOWN} now. Not good, but easier.</li>
         <li>[re:hard:better,theirs,re:last] You asked how we fare. Better. The worst of {RE} is behind us, and the market is loud again.</li>
         <li>[re:hard:better,theirs,w:tribal] The hungry time is passing. The children are fat enough to be naughty again.</li>
         <!-- ================= Their news: a new head ================= -->
@@ -100,7 +100,7 @@
         <li>[re:head:ask,ours,v:blunt] How is {RE} getting on as head?</li>
         <li>[re:head:settled,theirs] {RE} has settled into leading {TOWN}. There have been fewer complaints than expected and more meetings, which is the usual trade.</li>
         <li>[re:head:settled,theirs] You asked after {RE}. Settled in, and already tired of being asked for things, which means it is going well.</li>
-        <li>[re:head:settled,theirs,w:tribal] {RE} sits in the elder's place now, and the old ones have stopped correcting how {RE} sits in it.</li>
+        <li>[re:head:settled,theirs,w:tribal] {RE} sits in the elder's place now, and the old ones have stopped grumbling about it.</li>
         <!-- ================= Their news: a raid on their town ================= -->
         <li>[re:raid:ask,ours] How is {TOWN} since the raid? We hope the damage was mended quickly.</li>
         <li>[re:raid:ask,ours] Have {RE} left you in peace since? We think of {TOWN} whenever we hear of raiders.</li>
@@ -120,20 +120,20 @@
         <li>[re:tell:ill,theirs] {ILL} has been unwell, and we have all been taking turns at the bedside. I will write when there is better news.</li>
         <li>[re:tell:ill,theirs] I should tell you that {ILL} is ill. Nobody can name it yet, which is the worrying part.</li>
         <li>[re:tell:ill,theirs,warmly] {ILL} is ill, and is being a terrible patient about it. Spare a thought for the rest of us.</li>
-        <li>[re:tell:ill,theirs,w:tribal] {ILL} lies sick by the fire, and the healer has begun the long songs.</li>
+        <li>[re:tell:ill,theirs,w:tribal] {ILL} lies sick by the fire, and the healer sings over {ILL} each night.</li>
         <li>[re:tell:war,theirs] You will have heard we are at war with {WAR}. It changes everything here, even the letters.</li>
         <li>[re:tell:war,theirs] The war with {WAR} goes on. I will not fill the letter with it, but it is in every room here.</li>
-        <li>[re:tell:war,theirs,w:tribal] We are at war with {WAR}. The drums are not for dancing this season.</li>
+        <li>[re:tell:war,theirs,w:tribal] We are at war with {WAR}. The drums are for war this season, not for dancing.</li>
         <li>[re:tell:war,theirs,w:spacer] We are at war with {WAR}. The comms are full of it. I am glad of a letter that is not.</li>
         <li>[re:tell:hard,theirs] Things are hard at {TOWN} since {FORTUNEWHY}. I tell you not to worry you, but because a friend should know.</li>
         <li>[re:tell:hard,theirs] Since {FORTUNEWHY} we have been counting every sack and every coin. We will get through it.</li>
         <li>[re:tell:head,theirs] {TOWN} has a new head: {HEAD}. Everyone is being very polite to {HEAD}, which will not last.</li>
         <li>[re:tell:head,theirs] You should know that {HEAD} leads {TOWN} now. Write to {HEAD} on the town's matters, and to me on everything else.</li>
         <li>[re:tell:loss,theirs] I am sorry to write that we lost {LOST}. The town is quieter for it.</li>
-        <li>[re:tell:loss,theirs,w:tribal] {LOST} has gone to the long fire. We sang until the stars went out.</li>
+        <li>[re:tell:loss,theirs,w:tribal] {LOST} has died. We sang for {LOST} all night.</li>
         <!-- ================= The colony's news, told first ================= -->
         <li>[re:tell:harvest,ours] The harvest is coming in here, and everyone has dirt under their nails and opinions about the weather.</li>
-        <li>[re:tell:harvest,ours] We have been at the harvest all week. My back has written a letter of complaint of its own.</li>
+        <li>[re:tell:harvest,ours] We have been at the harvest all week, and my back aches.</li>
         <li>[re:tell:harvest,ours,v:blunt] Harvest. Tired. That is the news.</li>
         <li>[re:tell:raid,ours] We had raiders at the gate not long ago. We held, and we are mending.</li>
         <li>[re:tell:raid,ours,colony:raidby] {RAIDERS} came at us not long ago. We are still sweeping up.</li>
@@ -170,8 +170,8 @@
         <li>[re:c:raid:again,ours] You asked about the raiders. I wish I could say all was quiet. Raiders came again. We held again.</li>
         <li>[re:c:newcomer:ask,theirs] How is {RE} settling in? Every place needs a newcomer to explain things to.</li>
         <li>[re:c:newcomer:ask,theirs,at:ps] How is {RE} settling in?</li>
-        <li>[re:c:newcomer:settled,ours] {RE}, whom you asked after, has settled in. Still gets lost on the way to the storeroom, but now on purpose.</li>
-        <li>[re:c:newcomer:settled,ours] You asked about {RE}. One of us now, as if always.</li>
+        <li>[re:c:newcomer:settled,ours] {RE}, whom you asked after, has settled in and knows where everything is kept now.</li>
+        <li>[re:c:newcomer:settled,ours] You asked about {RE}. {RE} is one of us now.</li>
         <li>[re:c:hungry:ask,theirs] You wrote that food was short. Is it any better? Say so if it is not.</li>
         <li>[re:c:hungry:ask,theirs,cordial|cool] I hope your stores have mended.</li>
         <li>[re:c:hungry:better,ours] You asked about our stores. Better now; nobody is counting spoonfuls any more.</li>
@@ -206,7 +206,7 @@
         <li>[re:warned:thank,theirs] We have not forgotten your warning. It is the kind of thing a town remembers.</li>
         <li>[re:warned:thank,theirs,warmly] People here still speak of the warning you sent. Some of them speak of it every time your name comes up.</li>
         <li>[re:warned:thank,theirs,w:tribal] Your warning is part of the tale now. The children tell it, a little wrong, every time.</li>
-        <li>[re:condoled:thank,theirs] Your letter after {RE} died is kept with the things we kept. I wanted you to know.</li>
+        <li>[re:condoled:thank,theirs] Your letter after {RE} died is kept with {RE}'s things. I wanted you to know.</li>
         <li>[re:condoled:thank,theirs] Your letter in our bad time was a kindness. I have read it more than once since.</li>
         <li>[re:aid:no:regret,theirs] I am still sorry we could not send the {RE} when you asked. It sits on my conscience.</li>
         <li>[re:aid:no:regret,theirs,warmly] I have not stopped being sorry about the {RE} we could not send. If you ask again, I will try harder.</li>
@@ -233,50 +233,50 @@
         <li>[re:recipe:thank,theirs] We tried the recipe in your last letter. Nobody fell ill, and two people asked for more, which here counts as a triumph.</li>
         <li>[re:recipe:hope,theirs] Did you try the recipe? Be honest. I can take it.</li>
         <li>[re:recipe:hope,theirs,at:ps] Did you try the recipe?</li>
-        <li>[re:recipe:hope,ours] Did anyone at {TOWN} try {RE}'s recipe? {RE} would like to know, and is pretending not to.</li>
+        <li>[re:recipe:hope,ours] Did anyone at {TOWN} try {RE}'s recipe? {RE} would like to know.</li>
         <li>[re:enclosure:thank,ours] Thank you for what you folded into your last letter. It is pinned up where everyone can see it.</li>
         <li>[re:enclosure:thank,theirs] Thank you for what was folded into your letter. It is kept.</li>
         <li>[re:long:thank,ours] Your long letter took two evenings to read, and both were good evenings.</li>
         <li>[re:long:thank,ours,v:blunt] Long letter. Read all of it. Write another.</li>
-        <li>[re:chronicle:thank,ours] We passed your town's news round the table here. We now know more about {TOWN} than about ourselves.</li>
+        <li>[re:chronicle:thank,ours] We passed your news from {TOWN} round the table here, and everyone enjoyed hearing it.</li>
         <li>[re:diary:thank,ours] Thank you for the pages of your days. It is strange how much nearer {TOWN} feels for knowing what you had for breakfast.</li>
         <li>[re:hands:greet,theirs] Tell {RE} thank you for the line at the foot of your letter. It made me laugh.</li>
         <li>[re:hands:greet,theirs] My regards to {RE}, who added a line last time. {RE} is welcome to add another.</li>
         <li>[re:hands:greet,ours] Give {RE} our regards, and our thanks for the line at the end of your letter.</li>
         <li>[re:hands:greet,ours,at:ps] Our regards to {RE}.</li>
         <!-- ================= Their running jokes ================= -->
-        <li>[re:jk:goat:more,theirs] News of the goat, since you will want it: she has learned to open the shed as well. We have bought a new lock. She is studying it.</li>
-        <li>[re:jk:goat:more,theirs] The goat has won. I want you to know that we fought bravely. She lives in the kitchen now, and we visit.</li>
-        <li>[re:jk:goat:more,theirs] The goat ate the shopping list, so we bought what we remembered, which was mostly bread and a hat.</li>
-        <li>[re:jk:goat:more,theirs] The goat has had kids. There are three of them now. I do not want to talk about it.</li>
-        <li>[re:jk:goat:ask,ours] How is the goat? Has anyone won yet?</li>
-        <li>[re:jk:goat:ask,ours] Is the goat still undefeated? We find we are on her side, a little.</li>
+        <li>[re:jk:goat:more,theirs] News of the goat, since you will want it: she has learned to open the shed as well, so we have bought a new lock.</li>
+        <li>[re:jk:goat:more,theirs] We have given up on the goat. She has moved into the kitchen, and we let her stay.</li>
+        <li>[re:jk:goat:more,theirs] The goat ate the shopping list, so we bought only what we could remember.</li>
+        <li>[re:jk:goat:more,theirs] The goat has had three kids, and they are already learning her tricks.</li>
+        <li>[re:jk:goat:ask,ours] How is the goat? Is she still getting out?</li>
+        <li>[re:jk:goat:ask,ours] Is the goat still getting out? We have grown fond of her from your letters.</li>
         <li>[re:jk:goat:ask,ours,at:ps] How is the goat?</li>
         <li>[re:jk:pumpkin:more,theirs] The pumpkin, since you would have asked: it has grown to the size of two fists, and someone has drawn a face on it. Nobody will admit to the face.</li>
-        <li>[re:jk:pumpkin:more,theirs] The pumpkin was entered in the fair. It came last. It was given a ribbon anyway, for courage.</li>
-        <li>[re:jk:pumpkin:ask,ours] How is the pumpkin? We have been rooting for it.</li>
+        <li>[re:jk:pumpkin:more,theirs] The pumpkin was entered in the fair. It came last, but the children were given a ribbon for it anyway.</li>
+        <li>[re:jk:pumpkin:ask,ours] How is the pumpkin? Has it grown any bigger?</li>
         <li>[re:jk:pumpkin:ask,ours,at:ps] Is the pumpkin still with you?</li>
-        <li>[re:jk:singer:more,theirs] My neighbour, the singer, has formed a group. There are three of them now. I am thinking of moving, or of learning to sing.</li>
+        <li>[re:jk:singer:more,theirs] My neighbour, the singer, has formed a group of three, and they practise every evening.</li>
         <li>[re:jk:singer:more,theirs] My neighbour has stopped singing and taken up the horn. I miss the singing, which I never thought I would write.</li>
-        <li>[re:jk:singer:ask,ours] Is your neighbour still singing? You have our sympathy, and our curiosity.</li>
+        <li>[re:jk:singer:ask,ours] Is your neighbour still singing every evening?</li>
         <li>[re:jk:singer:ask,ours,at:ps] Is the singing any better?</li>
-        <li>[re:jk:cat:more,theirs] The cat has moved from the corner of the page to the middle of it. I write around her. This is that letter.</li>
+        <li>[re:jk:cat:more,theirs] The cat has moved from the corner of the page to the middle of it, so I am writing around her.</li>
         <li>[re:jk:cat:more,theirs] The cat sends her regards. She does not, but I am being polite on her behalf.</li>
         <li>[re:jk:cat:ask,ours] Is the cat still in charge of your letters? Give her our regards, though she will not care.</li>
         <li>[re:jk:cat:ask,ours,at:ps] Our regards to the cat.</li>
-        <li>[re:jk:mule:more,theirs] The mule has agreed to the sale at last, in its own way: it now follows me everywhere and will not be left behind.</li>
-        <li>[re:jk:mule:more,theirs] The mule and I have reached an understanding. It understands that I am in charge, and I understand that I am not.</li>
-        <li>[re:jk:mule:ask,ours] How goes it with the mule? Has it come round to the idea of being yours?</li>
+        <li>[re:jk:mule:more,theirs] The mule has settled in at last. It now follows me everywhere and will not be left behind.</li>
+        <li>[re:jk:mule:more,theirs] The mule works now, but only when it wants to.</li>
+        <li>[re:jk:mule:ask,ours] How is the mule? Is it working for you yet?</li>
         <li>[re:jk:crow:more,theirs] The crow has learned a second word. I will not write it here. The children are delighted.</li>
         <li>[re:jk:crow:more,theirs] The crow now says my name and my neighbour's at the same time, so we each think the other is calling.</li>
         <li>[re:jk:crow:ask,ours] Does the crow still say your name? Has it learned anything worse?</li>
-        <li>[re:jk:chickens:more,theirs] The chickens have won the shed. We built them a new one. They went back to the old one, out of principle.</li>
-        <li>[re:jk:chickens:more,theirs] Peace talks with the chickens have broken down again. They are holding the shed and a bucket.</li>
-        <li>[re:jk:chickens:ask,ours] How are the negotiations with the chickens? We are hoping for a treaty.</li>
-        <li>[re:jk:bridge:more,theirs] The bridge washed out again, as promised. We have stopped calling it the new bridge and started calling it the next bridge.</li>
-        <li>[re:jk:bridge:ask,ours] Is the bridge still standing, or is it between bridges again?</li>
-        <li>[re:jk:well:more,theirs] We got a new rope for the well. The bucket is still down there, keeping the old rope company.</li>
-        <li>[re:jk:well:more,theirs] Someone tried to fish the old bucket out of the well and lost a second bucket. We have a collection now.</li>
+        <li>[re:jk:chickens:more,theirs] The chickens still will not leave the shed. We built them a new one, and they went back to the old one.</li>
+        <li>[re:jk:chickens:more,theirs] The chickens are still in the shed, and now they have taken over a bucket as well.</li>
+        <li>[re:jk:chickens:ask,ours] Have the chickens left the shed yet?</li>
+        <li>[re:jk:bridge:more,theirs] The bridge washed out again, as I said it would. We are building it again.</li>
+        <li>[re:jk:bridge:ask,ours] Is the bridge still standing?</li>
+        <li>[re:jk:well:more,theirs] We got a new rope for the well. The old bucket is still at the bottom.</li>
+        <li>[re:jk:well:more,theirs] Someone tried to fish the old bucket out of the well and lost a second bucket.</li>
         <li>[re:jk:well:ask,ours] Did you ever get the bucket out of the well? We have been wondering.</li>
         <!-- ================= Their riddle, guessed ================= -->
         <li>[re:riddle:guess,ours] We have argued over your riddle for a week. The best guess so far is a boot. The worst guess was mine, and I will not write it down.</li>
@@ -319,7 +319,7 @@
         <li>[re:raid:ask,ours,olde] How fareth {TOWN} since the raid? We hope the walls are whole again.</li>
         <li>[re:raid:after,theirs,olde] Since the raid all is quiet, and we have mended what was broken, save some sleep.</li>
         <li>[re:loss:sorry,ours,olde] We grieved to read of {RE}. May {RE} rest well.</li>
-        <li>[re:loss:after,theirs,olde] We miss {RE} yet, at the board and at the hearth. Time is a slow physician.</li>
+        <li>[re:loss:after,theirs,olde] We miss {RE} yet, at the board and at the hearth, and the grief is slow to heal.</li>
         <li>[re:tell:ill,theirs,olde] {ILL} lieth sick, and we sit up by turns. I shall write when there is better news.</li>
         <li>[re:tell:war,theirs,olde] We are at war with {WAR}, and every hand that can hold a spear is drilled at dawn.</li>
         <li>[re:tell:hard,theirs,olde] Times are hard at {TOWN} since {FORTUNEWHY}, and we husband every crust.</li>
@@ -340,7 +340,7 @@
         <li>[re:c:raid:quiet,ours,olde] Thou didst ask after the raid. All is quiet since, and we sleep the better.</li>
         <li>[re:c:raid:again,ours,olde] Thou didst ask of the raiders. They came again. We held again.</li>
         <li>[re:c:newcomer:ask,theirs,olde] How doth {RE} settle amongst thy folk?</li>
-        <li>[re:c:newcomer:settled,ours,olde] {RE} is settled amongst us, and one of us now, as though ever so.</li>
+        <li>[re:c:newcomer:settled,ours,olde] {RE} is settled amongst us, and is one of us now.</li>
         <li>[re:c:hungry:ask,theirs,olde] Thou didst write that victuals ran short. Is it mended?</li>
         <li>[re:c:hungry:better,ours,olde] Thou didst ask of our stores. They are mended, and none counteth crumbs now.</li>
         <li>[re:c:hungry:still,ours,olde] Our stores are short yet. We manage.</li>
@@ -349,7 +349,7 @@
         <li>[re:c:wedding:ask,theirs,olde] How fare the newly wed? Well, I trust.</li>
         <li>[re:c:wedding:well,ours,olde] The newly wed do well, and quarrel only over small things.</li>
         <li>[re:c:death:sorry,theirs,olde] We grieved to read of {RE}. May {RE} rest well.</li>
-        <li>[re:aid:thank,ours,olde] The {RE} thou didst send us in our need is not forgotten. It carried us.</li>
+        <li>[re:aid:thank,ours,olde] The {RE} thou didst send us in our need is not forgotten. It saw us through.</li>
         <li>[re:aid:hope,theirs,olde] I trust the {RE} we sent did its office.</li>
         <li>[re:gift:thank,ours,olde] We thank thee yet for the gift that came with thy letter, sent with naught asked.</li>
         <li>[re:goods:thank,theirs,olde] We forget not that thou didst answer our need for {RE}, and swiftly.</li>
@@ -374,12 +374,12 @@
         <li>[re:chronicle:thank,ours,olde] Thy town's tidings were read out at our board, every item.</li>
         <li>[re:diary:thank,ours,olde] I thank thee for the pages of thy days. {TOWN} seemeth nearer for them.</li>
         <li>[re:hands:greet,olde] Commend me to {RE}, who added a line at the foot of thy letter.</li>
-        <li>[re:jk:goat:more,theirs,olde] Of the goat: she hath learned to lift the latch of the byre also. We have set a new lock. She studieth it.</li>
-        <li>[re:jk:goat:ask,ours,olde] How fareth the goat? Hath she the mastery of thee yet?</li>
+        <li>[re:jk:goat:more,theirs,olde] Of the goat: she hath learned to lift the latch of the byre also, so we have set a new lock.</li>
+        <li>[re:jk:goat:ask,ours,olde] How fareth the goat? Doth she get out still?</li>
         <li>[re:jk:singer:more,theirs,olde] My neighbour that singeth hath gathered two more to the same purpose. There is no peace in the street.</li>
-        <li>[re:jk:mule:more,theirs,olde] The mule hath consented to the bargain at last, after its fashion: it followeth me everywhere, and will not be left.</li>
-        <li>[re:jk:bridge:more,theirs,olde] The bridge is gone again with the waters, as I foretold. We call it now the next bridge.</li>
-        <li>[re:jk:well:more,theirs,olde] We have a new rope for the well. The bucket lieth below yet, keeping the old rope company.</li>
+        <li>[re:jk:mule:more,theirs,olde] The mule is settled at last. It followeth me everywhere, and will not be left.</li>
+        <li>[re:jk:bridge:more,theirs,olde] The bridge is gone again with the waters, as I foretold, and we build it anew.</li>
+        <li>[re:jk:well:more,theirs,olde] We have a new rope for the well. The old bucket lieth at the bottom yet.</li>
         <li>[re:riddle:guess,ours,olde] We have puzzled long upon thy riddle, and are no wiser. Resolve it for us, we pray thee.</li>
         <li>[re:slight:word,theirs,olde] Thy word was given, and not kept. I say no more.</li>
         <li>[re:slight:harm,theirs,olde] What thy people did to ours is not forgotten. I answer thee, and that is all.</li>
@@ -414,12 +414,12 @@
         <li>[re:poem:thank,ours,sv:machine] Your verse has been filed under "verse" and also under "kept".</li>
         <li>[re:ill:better,theirs,sv:beast] {RE} is up and on four feet again, or two, and smells of the sun instead of the sickbed.</li>
         <li>[re:ill:ask,ours,sv:beast] How is {RE}? We have been sniffing the wind for news.</li>
-        <li>[re:war:still,theirs,sv:beast] The war with {RE} still prowls our borders. We sleep in short pieces.</li>
+        <li>[re:war:still,theirs,sv:beast] The war with {RE} goes on along our borders. We sleep in short pieces.</li>
         <li>[re:aid:thank,ours,sv:beast] The {RE} you sent still has your scent on it. We remember it.</li>
         <li>[re:ill:better,theirs,sv:ancient] {RE}, whom you asked after, has recovered. I have watched a great many people recover from a great many things, and it is still, each time, a small and genuine pleasure.</li>
         <li>[re:war:over,theirs,sv:ancient] The war with {RE} has ended, as wars do, if one waits. I have waited out eleven. This was not the worst.</li>
         <li>[re:story:thank,ours,sv:ancient] I read your story twice. I have heard it before, in other mouths, three hundred years ago. You tell it better.</li>
-        <li>[re:ill:better,theirs,sv:green] {RE} has turned toward the light again. The roots held.</li>
+        <li>[re:ill:better,theirs,sv:green] {RE} is well again. The sickness did not take hold.</li>
         <li>[re:jk:goat:more,theirs,sv:green] The goat has eaten another of our cousins' hats. The cousin has stopped speaking to the goat. The goat has not noticed.</li>
         <li>[re:ill:better,theirs,sv:hive] {RE} rejoins the many. The cells are warm again.</li>
         <li>[re:war:still,theirs,sv:hive] The war with {RE} continues. The many hold the outer tunnels.</li>

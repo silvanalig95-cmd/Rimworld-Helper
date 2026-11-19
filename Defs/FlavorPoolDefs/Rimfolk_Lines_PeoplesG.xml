@@ -53,7 +53,7 @@
         <!-- The Choir of the Spire: the hum, the listening -->
         <li>[greetings,warm,their:listeners] We heard your letter before it came, {WRITER}, a little, the way we hear the Spire. It was a kind one.</li>
         <li>[greetings,cordial,their:listeners] The ring has your letter, {WRITER}. We listened to it, and we will answer.</li>
-        <li>[greetings,cool,their:listeners] We have your letter. We are still listening to what it meant.</li>
+        <li>[greetings,cool,their:listeners] We have your letter. We have not yet decided what to make of it.</li>
         <li>[news,warm,their:listeners] The Spire is thinking, {WRITER}, and some of what it thinks is about the roads. Here is the season's, as gently as we can put it.</li>
         <li>[news,cordial,their:listeners] Listen first, we say. This is what we heard this season.</li>
         <li>[help,warm,their:listeners] What you asked for is coming with a hum-walker, {WRITER}. We heard that you needed it.</li>
