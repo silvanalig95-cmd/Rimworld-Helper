@@ -95,8 +95,8 @@ most sense." So, in this order, three builds at a time:
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
      council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); colony life 2 (A8, A11, A15,
      A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); building: text round 2's world half
-     (B9, B10, B16, B18, B30), its gods half (C32 to C36), and the last three items (A9, C25, C27). With those the
-     proposal list is all built.
+     (B9, B10, B16, B18, B30), its gods half (C32 to C36; built, not released: the entry "Text variety: the gods' thin
+     pools"), and the last three items (A9, C25, C27). With those the proposal list is all built.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -612,6 +612,50 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Text variety: the gods' thin
+  pools** (20 November 2026; the player on `docs/content-update-proposals.md`: "In general, I just want additional God
+  events, more immersion, more just further also building up on the gods in general ... And then also, just variety", and
+  the go on the whole list, the old voice included). C32 to C36 of the proposals, each marked **Built** there; DESIGN.md
+  "Text variety: the gods' thin pools" (after the gods' variety section). About 630 new lines, none rewritten, counted
+  again first (0.281.0 had added the gods' variety since the proposals): C32 the gods' own lines (150: 3 scoffs more each,
+  3 to 6; 2 more of what each is and how it is seen, in the old voice, 3 to 5; 3 more neighbours' letter lines each, 2 to
+  5, Tamiu's 3 to 6); C33 worship talk (277: the offering ways 42 to 97, the presences 90 to 150, the true dreams 15 to 29,
+  every thin pool of the table to 8, and of 0.281.0's own the vows of a season said day by day, 3 a vow, to 8 a vow); C34
+  the old voice (102 `[olde]` lines beside the plain prayers 31, thanks 12, rites 16, words at a god's place 8, saints'
+  prayers 13 and feasts 9); C35 the gods' two camps (24: every list at 8); C36 the weather and the land's journals (73: nine
+  weather pools and nine journal and talk pools to 8 plain lines).
+  - Code: `Gods/Worship/WorshipMath.cs` (`OldVoice`, `OldVoiceTag` "olde", `ElderAge` 60; pure, linked), `Gods/Worship/Worship.cs`
+    (`OldVoice(Pawn)`: the priest, the keeper of the book `GodLore.Keeper`, a devout elder, a believer of a faith another
+    people of the old ages holds as its own (`FaithAge`, with Ideology), never a scoffer; `LineWith` adds the tag, so every
+    worship and saints' line reaches them; `Lines` for several lines filled in), `Gods/Worship/WorshipCouncil.cs`
+    (`DilemmaEffect_ShrineWords` fills the words for the one who leads them and clears the pool). Defs: `Rimfolk_Gods.xml`,
+    `Rimfolk_Worship_Pools.xml`, `Rimfolk_Belief_Pools.xml`, `Rimfolk_Saints.xml`, `Rimfolk_GodPresence_OwnLines.xml`,
+    `Rimfolk_GodsOnMap_Lines.xml`, `Rimfolk_GodsWorld_Camps.xml`, new `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml` (the
+    weather and the land's journals as extensions, so their own files are untouched). Tests: `WorshipTests` (who speaks the
+    old voice; the set beside the plain lines in the six pools, each line in the old words; the tag given; the words at a
+    god's place filled in).
+  - Found and fixed on the way (a bug): the council's answers that hold words at a god's place (a god's year begun, a
+    temple vowed, a rite, a shrine moved, swept or let go) said their lines through the gathering, which fills in no god, so
+    "{GOD}" showed in the bubbles. They are filled in when the answer is given, for the one who leads them.
+  - Decided here: the scoffs untagged (a tagged one would push the plain three aside for its kind); the letters neutral about
+    what the god's hand was; a way's believers split by `mine` and `theirs`, as the code tags them; the old voice beside
+    the plain lines by a tag rather than pools of their own (the four still say a plain line now and then, their moment's
+    old line weighing more); without Ideology the fourth speaker is not known, so the old voice is the other three's;
+    `festivalDishes` left (a phrase in the messages and the book, not spoken); the happenings between the colony's people
+    (`Rimfolk_Pool_GodBetween_Say`, 1 to 3 lines at each beat of a scene) left for a round of their own; the herd's journals
+    and a pet's farewell already at 10 to 12 with their extensions, left.
+  - Harm: none. Saved: nothing new.
+  - Not run here: how often each of the four says an old line, the words at a god's place in the game, every new line over a
+    head.
+  - Try in the game: 1. With the priest set (or a devout colonist of sixty, or with Ideology one whose faith a tribal or
+    medieval people keeps), let a prayer happen (dev "Worship: ..." for a prayer, a festival's rite or an answer): the
+    priest's words come in the old voice ("Hear me, ... as thou hast heard our elders before us"), a young colonist's in
+    the plain one. 2. Answer the council's "the god of the year" (or any question with words at a god's place): the
+    gathering's bubbles name the god, never "{GOD}". 3. Let a god's offering go its way and read the remark the next day;
+    let a presence come and read what people say; a neighbour's letter after a god's hand. 4. Call the gods' pilgrims or the
+    seer (dev "Gods in the world: ..."): their arrival letter and their words at dawn, dusk and the seer's evening.
+  - Mods that would help: none for the words. The rites already use the player's own Alpha Memes chants and Vanilla
+    Ideology Expanded pieces where they are built.
 - 0.285.0, **Colony life's variety, part 2:
   life, customs, stories and the colony's own events** (20 November 2026; the player on
   `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with this in

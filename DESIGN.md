@@ -18912,6 +18912,67 @@ carrier gain a field each. Not checked without the game: the happenings' timing 
 and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
 drake's egg hatching as the colony's, Alpha Bees' hives reached.
 
+### Text variety: the gods' thin pools (the player's go, 20 November 2026; not released yet)
+
+The player on the content update: "In general, I just want additional God events, more immersion, more just further also
+building up on the gods in general ... And then also, just variety". The gods' part of the second text round: C32 to C36
+of `docs/content-update-proposals.md`, about 630 new lines and no line rewritten. The counts were taken again first, since
+0.281.0 had added the gods' variety after the proposals were written. The gods stay unseen in all of it: a line names a
+god only where its pool already does (by the colony's or the speaker's name for it), what people say is their own belief,
+and nothing shows a favour, a want or a rule.
+
+- **C32, the gods' own lines** (`Rimfolk_Gods.xml`): each of the fifteen has three more scoffers' answers (plain, and
+  untagged, so they answer a gift, a sign or a wrath alike; 3 to 6), two more lines on what it is and two on how it is
+  seen, told at the fire and set down in the book in the old voice ("{GOD} speaketh through the dryads, one word and then
+  another"; 3 to 5 each, after the three already told in order), and three more lines for a neighbour's letter about its
+  hand at the colony (2 to 5, Tamiu's 3 to 6), in the letters' flavour style and neutral about what the hand was.
+- **C33, worship talk** (plain, but the vows and the pilgrimage in the life goals' style): each god's way of taking an
+  offering has three more remarks (one for the one who holds that god, `mine`, one for anyone else, `theirs`, one for
+  either) and one more for a scoffer, and the visitor given Ducat's gift three more (42 to 97); each presence four more
+  remarks, one of them for when the colony is sure whose it is (90 to 150); each true dream two more (15 to 29). Every thin
+  pool of the proposal's table brought to eight lines: the beast given, the precious gift asked, granted and refused, the
+  gift answered, the pilgrim setting off and arriving, a place dedicated, a crisis of faith and its journal, the scoffer
+  answered, the couple's bickering over the rain, a vow kept and broken, the words at a god's place; dread, a shrine lost,
+  keeping away, rival devotees, the won-over's journal; the saints' statue, naming, words and remembering; the shared
+  memory of a god seen, the god's beast beckoning, the stranger's thanks, Tamiu's stare, the visitor at a god's mark; and
+  the festival on the calendar let pass, talked over and written up. The vow in `Rimfolk_Pool_Worship_Vow` was already at
+  nine (0.281.0 added four). Of 0.281.0's own pools, the vows of a season said day by day (`Rimfolk_Pool_Worship_VowKeep`)
+  had three lines a vow, said every day for fifteen days: brought to eight a vow. The happenings between the colony's
+  people (`Rimfolk_Pool_GodBetween_Say`) say one to three lines at each beat of a scene, once a scene and scenes days
+  apart, and their cards already come in three wordings: left for now.
+- **C34, scripture in the old voice** (the player's "the only thing i don't mind and even enjoy, is old medieval writing
+  ... especially the relitions", and the go on the whole list): 102 lines tagged `[olde]` beside the plain ones, every one
+  in the old words ("Hear me, {GOD}, as thou hast heard our elders before us"), still saying plainly what it means: the
+  prayers (36, for each moment and each god), thanks (14), a festival's rite (18, each domain), the words at a god's place
+  (10), the saints' prayers (14) and their feasts (10). Who says them (`WorshipMath.OldVoice`, `Worship.OldVoice`): the
+  priest, the keeper of the colony's book of the gods (`GodLore.Keeper`), a devout elder (sixty or more in human years),
+  and a believer of a faith of the old ages (with Ideology, a faith another people of the bow and the spear or of the
+  sword and the keep holds as its own); never a scoffer. `Worship.LineWith`, where every worship and saints' line is
+  picked, adds the tag for them, so a tagged line can only reach them, and their moment's old line weighs more than its
+  plain one; everyone else keeps the plain words. Each festival's `festivalDishes` is a phrase in the messages and the
+  book, not spoken, and stays as it is.
+- **The words at a god's place, a fix** (`DilemmaEffect_ShrineWords`): the council's answers that hold words at a god's
+  place (a year begun for a god, a temple vowed, a rite, a shrine moved, swept or let go) drew their lines from
+  `Rimfolk_Pool_Worship_RiteWords` through the gathering, which fills in no god, so its lines showed the god's
+  placeholder. They are now filled in when the answer is given, for the one who leads them (`Worship.Lines`, in the old
+  voice where they speak it), and the gathering says those.
+- **C35, the gods' camps** (`Rimfolk_GodsWorld_Camps.xml`, the camps' flavour style): the pilgrims' camp and the hermit
+  seer's each have eight arrival texts (4 and 3 before), eight lines over their heads (6 and 5) and eight words for their
+  moments (the pilgrims' prayer and grief, 4; the seer's foretelling, 2). The seer still names no god.
+- **C36, weather talk and the land's journals** (plain; `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml`, extensions of
+  the pools): the lightning rod, the tornado's journal, the flinch at lightning, the record dry and wet spells, the warm
+  spell and the forecasts of cloud, dust and a wrong one brought to eight plain lines (3 to 6 before, counting the
+  everyday add-ons); and the journals of a pack's alpha brought down, the region's legend won over or brought down, a
+  nemesis let go, a pet that stood guard, an animal asleep at the foot of the bed, an oath sworn against a beast, and the
+  calendar's companion and first foal talked over, to eight (2 to 5 before). The herd's journals (the leader gone, its
+  last season, the spring's first young, the new leader) and a pet's farewell, counted with their extensions since, were
+  already at ten to twelve.
+
+Tests: `Tools/Tests/WorshipTests.cs` (who speaks the old voice; the set beside the plain lines in each pool, each line in
+the old words; the tag given in `Worship.LineWith`; the words at a god's place filled in). No new saved state, no harm.
+Not checked without the game: how often each of the four says an old line rather than a plain one, and the words at a
+god's place said by the one who leads them.
+
 ### The world brought home (the player's go, 20 November 2026; released 0.280.0)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with

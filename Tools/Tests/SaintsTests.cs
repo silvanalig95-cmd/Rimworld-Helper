@@ -186,7 +186,7 @@ public static class SaintsTests
             foreach (var l in lines)
             {
                 C(l.Length <= 90 && Regex.Matches(l.TrimEnd('.', '?'), @"[.?!]\s").Count == 0, $"{pool}: '{l}' is one short sentence, said over a head");
-                C(!l.Contains("{GOD}") || el!.Descendants("li").Any(x => x.Value.StartsWith("[known]") && x.Value.EndsWith(l)), $"{pool}: '{l}' names the god only where the colony knows it");
+                C(!l.Contains("{GOD}") || el!.Descendants("li").Any(x => Regex.IsMatch(x.Value, @"^\[([^\]]*,)?known(,[^\]]*)?\]") && x.Value.EndsWith(l)), $"{pool}: '{l}' names the god only where the colony knows it");
             }
         }
 

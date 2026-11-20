@@ -415,6 +415,24 @@ namespace ColonyCouncil
             return (h >> 16) % 7 == 0;
         }
 
+        // ================= The old voice =================
+
+        /// <summary>The tag of a line in the old voice ([olde], as the letters' medieval lines are tagged).</summary>
+        public const string OldVoiceTag = "olde";
+
+        /// <summary>An elder, for the old voice: sixty or more in human years (the age of Flavor's [old]).</summary>
+        public const float ElderAge = 60f;
+
+        /// <summary>
+        /// Who says the faith's words in the old voice (the prayers, thanks, rites and the saints' prayers and feasts kept
+        /// beside the plain ones, tagged [olde]): the priest, the keeper of the colony's book of the gods, a devout elder, and a
+        /// believer of a faith of the old ages (<paramref name="faithAge"/>: the oldest age of the peoples who keep their faith
+        /// as their own; a faith of the bow and the spear, or of the sword and the keep); never a scoffer. Everyone else says the
+        /// plain lines.
+        /// </summary>
+        public static bool OldVoice(bool priest, bool keeper, bool devout, float age, WorldAge? faithAge, bool scoffer) =>
+            !scoffer && (priest || keeper || devout && age >= ElderAge || faithAge.HasValue && faithAge.Value <= WorldAge.Medieval);
+
         /// <summary>A scoffer's mockery offends the believer's god this much (Scoffing), once in this many days at a home; a couple bickers once in this many.</summary>
         public const float MockFavour = -1.5f, MockGapDays = 10f, BickerGapDays = 10f;
 

@@ -82,6 +82,8 @@
         <li>That stew was {OTHER_nameDef}'s, wasn't it, I could tell.</li>
         <li>[hearth] Give {OTHER_nameDef} my blessing, for the bowl and the bread.</li>
         <li>[harvest] {OTHER_nameDef} knows what grain is for, tell them I said so.</li>
+        <li>Thank {OTHER_nameDef} for me, that was a meal worth walking for.</li>
+        <li>{OTHER_nameDef} cooks like someone who was taught with care.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -318,6 +320,7 @@
         <li>[veiled] Some say {GOD} walked here, is that so?</li>
         <li>My people say {GOD} came here once.</li>
         <li>[wrath] Best not to linger where a god was angry.</li>
+        <li>On the road they told me to stop here, and I'm glad I did.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -379,6 +382,8 @@
         <li>Look at the cat, staring at {NAME} like she knows something we don't.</li>
         <li>She's left the graves to sit and watch {NAME}, of all people.</li>
         <li>Every time {NAME} turns round, that cat is right there, staring.</li>
+        <li>The cat won't let {NAME} out of her sight.</li>
+        <li>If that cat's watching {NAME}, I'm watching {NAME} too.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -473,6 +478,9 @@
         <li>All right, I'm coming, show me.</li>
         <li>I think I'm meant to go with it.</li>
         <li>[wild] Lead on, then, I'm right behind you.</li>
+        <li>The {KIND} has stopped and turned round, it's waiting for me.</li>
+        <li>I'll follow it, but not far.</li>
+        <li>It's leading me somewhere, I'll be back soon.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -556,6 +564,10 @@
         <li>Let's not tell it too often, or it'll stop being true.</li>
         <li>If it ever comes again, I'll know it this time.</li>
         <li>I'll light a candle for it tonight, just in case.</li>
+        <li>We'll tell it the same way every time, so nobody can say we made it up.</li>
+        <li>I'm glad it was you standing next to me.</li>
+        <li>Let's leave it there, it still gives me shivers.</li>
+        <li>If it comes again, we'll stay and watch to the end.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
