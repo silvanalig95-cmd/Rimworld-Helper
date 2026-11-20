@@ -85,8 +85,7 @@ most sense." So, in this order, three builds at a time:
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
      released 0.278.0);
-     council (A1, A2, A5, A6, A21), built, not released (the entry "The council at its work, in its questions and at
-     its meeting" above the newest release line); the land and its life (C19, C20, C21, C22, C24, C28, C30);
+     council (A1, A2, A5, A6, A21; released 0.279.0); the land and its life (C19, C20, C21, C22, C24, C28, C30; built, not released: the entry "The land and its life" above the newest release line);
      wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
      B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
      B11, B13, B19, B27).
@@ -607,6 +606,83 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.279.1, **The land and its life** (20
+  November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You
+  can go ahead with this in the order you think makes most sense ... more immersion", and "first do all the integrations
+  that you proposed in your document before we add additional content variety"). Part C's integrations of the land: C19,
+  C20, C21, C22, C24, C28 and C30, each marked **Built** in the proposals doc with what was decided; DESIGN.md "The land
+  and its life" has every rule. With it, the lead's addition: a ninth art tale, a named season a believer took for a god's
+  doing (C18's `SeasonGods.Named`, `Rimfolk_Tale_SeasonTaken`; DESIGN.md's C17 paragraph). The Almanac's pages *the
+  weather, as the colony knows it*, *the colony's animals*, *defense lines*, *everyday ailments*, *the gods* (the art
+  list), the mod pages below (keywords unchanged); README's weather, animals, defense lines and ailments.
+  - **C19, after the storm.** When an earthquake (Seasonal Weather's or Vanilla Events Expanded's), a tornado, a
+    flashstorm, Rimfolk's hail or a flood (Odyssey's seasonal flood, Vanilla Landmarks Expanded's tidal flooding) is
+    over and the map is quiet, the best builder or grower and three others set to work with the game's own jobs, only
+    where there is work: mending, rebuilding, roofs and clearing after a quake or a tornado; after a flashstorm, once its
+    fires are out, the burnt trees marked and cut, the ash cleaned, sowing where the season allows; after hail, sowing
+    where it flattened the young crops; after a flood, the water's leavings hauled and the dirt cleaned. The chronicle
+    keeps it once some work is done; the annals count each disaster a year. The old quake party is folded in.
+  - **C20, the advisor remembers last winter.** The weather record now counts each season's cold days (a mean below
+    6 °C), frozen days and days the snow lay; once it has a winter, the firewood, winter stores, herd feed and herd cold
+    notes each add one sentence: "Last winter the cold here lasted 19 days, and the coldest night was -24 °C; at today's
+    fires the wood in store lasts 11 such days."
+  - **C21, the autumn count.** Each autumn, four head or more, the herdmaster walks the pens counting (a round of the
+    herd); the colony is told the head by kind against last autumn's, with the leader, and the chronicle keeps it; then
+    the council's question (`Rimfolk_Dlm_HerdCount`, flavour style), the hay against last winter's cold: keep them all;
+    the yearlings to the next traders (marked to sell in the trade window, the counter goes down to the pens when a
+    caravan stops; the sale is the player's); or some of the oldest to the butcher (never the leader or anyone's own).
+  - **C22, the animals at the line.** The raid watch follows the colony's animals: those that fight near a line, the
+    enemies they bring down (their own records), those that fall there. "Keep the dogs back from the line" when several
+    fall; "the dogs held their ground here" as a note when they brought enemies down and none fell; the animal's card
+    and its person's journal keep it.
+  - **C24, a cup for the sick.** Someone with a cold, a cough or a sore throat is brought a tea (Vanilla Brewing Expanded
+    and its Coffees and Teas), hot cocoa (Vanilla Christmas Expanded) or honey (Alpha Bees, Vanilla Factions Expanded -
+    Medieval 2) from the stores by the colonist at their leisure who thinks best of them, handed over and drunk there;
+    the ailment ends a few hours sooner and the two think better of each other. One a day each, never against a drug
+    policy, a faith or a teetotaller, under "Small habits".
+  - **C28, the lines in today's weather.** Checked in the 1.6 code (`ShotReport.HitReportFor`): in fog, rain or snow the
+    game takes aim off every shot where the shooter or the target is under the open sky, both sides, turrets too, never
+    melee. A line's card says by how much while it takes a tenth or more, a raid that comes in it says so once, and its
+    lessons note it.
+  - **C30, the Almanac's mod pages.** New pages: Vanilla Ideology Expanded - Dryads, Dragons Descent (the gods' first
+    round), Vanilla Landmarks Expanded, Vanilla Christmas Expanded (this round and the gods' second), Vanilla Factions
+    Expanded - Medieval 2; "With Rimfolk" brought up to date on Vanilla Brewing Expanded, Alpha Bees, Vanilla Events
+    Expanded and Vanilla Cooking Expanded (Vanilla Fishing Expanded's fishers); a compatibility row for each. Possessed
+    Weapons, Sanguinary Animals and Demigryphs have no page: no built integration uses them.
+  - Code map: `Weather/AfterStorm.cs`, `AfterStormMath.cs`, `Advisor/AdvisorLastWinter.cs`, `Animals/HerdCount.cs`,
+    `Immersion/SickCup.cs`, `SickCupMath.cs`, `Weather/LandLifeDebug.cs` (new); `WeatherMath` (cold, frozen and snow
+    days, `WinterBefore`), `WeatherBook` (snow lying, the disasters, `LastWinter`, the annals), `WeatherDisasters`
+    (`QuakeOver` gone), `AdvisorSignals5`, `AdvisorSignals_YearFour`, `HerdStory` and `HerdStoryMath` (the count),
+    `AnimalLife.Hourly`, `PlayOut/OnMapPlays.cs` (the herd's round, `PlayAfter`), `PlayWords`, `Trade/TradeAdvice.cs`
+    (the yearlings marked), `DefenseLine`, `DefenseLineMath` (the animals' and the weather's lessons), `DefenseLinesWatch`,
+    `UI/DefenseLinesPanel.cs` (today's weather), `CouncilGameComponent.HourlyLife` (the cup), `ArtTales`, `ArtTalesMath`
+    (`Held` with the notes; the ninth tale), `Gods/Among/SeasonGods.cs`. Defs: `Misc/Rimfolk_LandLife.xml`,
+    `ThoughtDefs/Rimfolk_Thoughts_LandLife.xml`, `FlavorPoolDefs/Rimfolk_LandLife_Pools.xml`,
+    `DilemmaDefs/Rimfolk_Dilemmas_HerdCount.xml`, `AlmanacArticleDefs/Almanac_Mods_I_Integrations.xml` (new),
+    `Misc/Rimfolk_Tales.xml`, `IntegrationDefs/Council_Mods_Support.xml`; Keyed `Rimfolk_LandLife.xml` (new). Harmony: the
+    game's `IncidentWorker.TryExecute` (Vanilla Events Expanded's earthquake). Saved: the weather book's disasters and
+    winter counts (short lines), the herd's count and its yearlings for sale (`sellIds`, modelled in
+    `Tools/save_estimate.py`), a line's raid's animals and weather. Tests: `LandLifeTests` (new), `ImmersionTests` (three
+    pools), `GodsIntegrationTests` (nine tales).
+  - Not run here (none of it could be): every play-out in the game (the parties' jobs after each disaster, the burnt
+    trees cut, the herd's round, the counter's visit when a caravan stops, the cup carried, handed over and drunk), the
+    disasters read as they come (above all Odyssey's flood thing and Vanilla Landmarks Expanded's tidal flooding and
+    tornado alley, read by name), the snow lying on the land as the record counts it, the animals' records in a raid,
+    the yearling marked in the trade window (a pawn row, drawn by the same mark as the goods), the weather's aim as the
+    game eases it between weathers, and the art tale's description.
+  - Try in the game (dev mode, "Rimfolk", "Land: ..."): 1. "a disaster's work party now, as if it had just ended..." for
+    each kind, after some damage, burnt ground, an empty field or filth (between 6 and 20 o'clock it starts at once); the
+    chronicle line once it's done. 2. "a made-up last winter here", then let the firewood, winter stores or herd notes come
+    up in the advisor (or "last winter as the advisor reads it" after a real year). 3. With four head or more, "the herd's
+    autumn count now": the herdmaster walks the pens; then the count's message, and "the autumn count's question now";
+    answer "sell the yearlings", then "traders stop for the yearlings now", and open a trade with a caravan to see them
+    marked. 4. With a defense line, "a raid's notes on the first defense line (the animals, the weather)" in fog or rain:
+    the card's lessons and notes, and the weather row. 5. With a tea, hot cocoa or honey in the stores, "a cup for this
+    colonist, ill" on someone, with another colonist at their leisure.
+  - Mods that would help: Atmosphere Overhaul ([3830470974](https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974),
+    1.6 and 1.7, in their subscriptions but off; kept up to be checked on its page) for the storms, fog and weather the
+    disasters and the lines speak of; Simple FX: Smoke ([3261314247](https://steamcommunity.com/sharedfiles/filedetails/?id=3261314247),
+    to 1.6, no 1.7 tag) for the smoke after a flashstorm. Both are already in `docs/content-update-proposals.md`'s list.
 - 0.279.0, **The council at its work, in its
   questions and at its meeting** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content
   proposal overall sounds really good. You can go ahead with this in the order you think makes most sense ... more

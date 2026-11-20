@@ -28,8 +28,10 @@ namespace ColonyCouncil
             if (winter <= 0f) yield break;
             float days = YearFourMath.FeedDays(YearFour.Feed(map), YearFour.HerdADay(herd));
             if (days >= winter) yield break;
-            var s = Signal(days < winter * YearFourMath.FeedShort ? 0.5f : 0.32f, "CC_Adv_HerdFeed_Title".Translate().Resolve(),
-                "CC_Adv_HerdFeed_Detail".Translate(herd.Count, Mathf.RoundToInt(days), Mathf.RoundToInt(winter)).Resolve(), 0.7f, 0.7f);
+            // Last winter's cold and snow against the days the feed lasts (Advisor/AdvisorLastWinter.cs).
+            string detail = AdvisorLastWinter.With("CC_Adv_HerdFeed_Detail".Translate(herd.Count, Mathf.RoundToInt(days), Mathf.RoundToInt(winter)).Resolve(),
+                AdvisorLastWinter.Feed(map, days));
+            var s = Signal(days < winter * YearFourMath.FeedShort ? 0.5f : 0.32f, "CC_Adv_HerdFeed_Title".Translate().Resolve(), detail, 0.7f, 0.7f);
             s.look = new LookTargets(herd.Take(10));
             s.suggestThing = DefDatabase<ThingDef>.GetNamedSilentFail("Plant_Haygrass");
             s.key = "herdfeed";
@@ -46,8 +48,11 @@ namespace ColonyCouncil
             var cold = map.mapPawns.SpawnedColonyAnimals.Where(a => !a.Dead && a.RaceProps.Animal && !a.InContainerEnclosed
                                                                   && YearFourMath.TooCold(a.AmbientTemperature, a.GetStatValue(StatDefOf.ComfyTemperatureMin))).ToList();
             if (cold.Count < 2) yield break;
-            var s = Signal(cold.Count >= 5 ? 0.45f : 0.3f, "CC_Adv_HerdCold_Title".Translate(cold.Count).Resolve(),
-                "CC_Adv_HerdCold_Detail".Translate(TextUtil.JoinAnd(cold.Select(a => a.LabelShort).Take(4).ToList()), Mathf.RoundToInt(cold[0].AmbientTemperature)).Resolve(), 0.8f);
+            // How cold the last winter got here (Advisor/AdvisorLastWinter.cs).
+            string detail = AdvisorLastWinter.With(
+                "CC_Adv_HerdCold_Detail".Translate(TextUtil.JoinAnd(cold.Select(a => a.LabelShort).Take(4).ToList()), Mathf.RoundToInt(cold[0].AmbientTemperature)).Resolve(),
+                AdvisorLastWinter.HerdCold(map));
+            var s = Signal(cold.Count >= 5 ? 0.45f : 0.3f, "CC_Adv_HerdCold_Title".Translate(cold.Count).Resolve(), detail, 0.8f);
             s.look = new LookTargets(cold);
             s.key = "herdcold";
             yield return s;

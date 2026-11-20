@@ -126,7 +126,7 @@ namespace ColonyCouncil
                     if (p.mode == PlayGive.Fetch) return "CC_Play_Begin_Fetch".Translate(label, names, what, (p.other?.LabelShort ?? "").Named("OTHER")).Resolve();
                     return "CC_Play_Begin_Give".Translate(label, names, what, where ?? p.other?.LabelShort ?? "").Resolve();
                 }
-                case PlayKind.Rounds: return "CC_Play_Begin_Rounds".Translate(label, names, where ?? "").Resolve();
+                case PlayKind.Rounds: return (p.mode == PlayRounds.Herd ? "CC_Play_Begin_RoundsHerd" : "CC_Play_Begin_Rounds").Translate(label, names, where ?? "").Resolve();
                 case PlayKind.Haul:
                     if (PetGrave.Is(p)) return "CC_Play_Begin_PetGrave".Translate(label, names, where ?? "").Resolve();
                     return "CC_Play_Begin_Haul".Translate(label, names, p.things.Count, where ?? "").Resolve();
@@ -293,7 +293,7 @@ namespace ColonyCouncil
                     return to != null ? "CC_Play_End_Give".Translate(gn, carried ?? "", to.LabelShort).Resolve() : "CC_Play_End".Translate(label).Resolve();
                 }
                 case PlayKind.Rounds:
-                    return "CC_Play_End_Rounds".Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
+                    return (p.mode == PlayRounds.Herd ? "CC_Play_End_RoundsHerd" : "CC_Play_End_Rounds").Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
                 case PlayKind.Haul:
                     return ("CC_Play_End_Haul_" + PlayHaul.Key(p.mode)).Translate(label, names, p.tally).Resolve();
                 default: return "CC_Play_End".Translate(label).Resolve();

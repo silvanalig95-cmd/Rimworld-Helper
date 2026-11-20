@@ -297,6 +297,9 @@ namespace ColonyCouncil
             // Strength.
             y = Strength(r, x, y, w, draw);
 
+            // Today's weather, when it takes aim off the shooting.
+            y = Weather(r, x, y, w, draw);
+
             // The last raid.
             y = LastRaid(r, x, y, w, draw);
 
@@ -683,6 +686,26 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(new Rect(x, y, w, h + 8f), r.StrengthTip());
             }
             return y + 8f + h + 4f;
+        }
+
+        /// <summary>
+        /// What today's weather does to the shooting at the line (C28 of docs/content-update-proposals.md): the game takes aim
+        /// off every shot where the shooter or the target is under the open sky in fog, rain or snow (the weather factor of
+        /// its ShotReport, the same for both sides), and nothing off a shot under a roof at both ends or a blow in melee.
+        /// Said only when it takes a tenth or more.
+        /// </summary>
+        private static float Weather(DefenseLineReview r, float x, float y, float w, bool draw)
+        {
+            var wm = r.f.map?.weatherManager;
+            if (wm?.curWeather == null) return y;
+            int aim = DefenseLineMath.AimPercent(wm.CurWeatherAccuracyMultiplier);
+            if (!DefenseLineMath.AimLost(aim)) return y;
+            if (draw) UiKit.Divider(x, y + 2f, w);
+            y += 6f;
+            string text = "CC_DefLine_WeatherNow".Translate(wm.curWeather.label.Named("WEATHER"), (aim + "%").Named("AIM")).Resolve();
+            float h = Measure(text, w, GameFont.Tiny);
+            if (draw) Tiny(new Rect(x, y, w, h), text, UiKit.Ink);
+            return y + h + 4f;
         }
 
         private static float LastRaid(DefenseLineReview r, float x, float y, float w, bool draw)

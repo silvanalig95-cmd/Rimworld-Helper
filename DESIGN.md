@@ -18106,8 +18106,10 @@ sculpture made later may show one in the game's words for art: a god seen (by it
 walked to its place on its festival, the beast that stays given its name, the herd's old leader dying (with its keeper),
 and a raid held at a line (they came through the gate and nobody fell). A god is named in them only by the colony's
 name where the colony knew at the time it was that god, else as what was seen (`GodDef.unheard`). A kind comes at most
-once in a few days at a home. Vanilla Furniture Expanded - Art's statues take the same tales. The named season (C18) is
-not built yet, so it has no tale.
+once in a few days at a home. Vanilla Furniture Expanded - Art's statues take the same tales. A ninth came with the land
+and its life (not released yet): a named season a believer took for a god's doing (C18, `SeasonGods.Named`), with the
+believer as the one in it, the season's name as what it was about and the god by `ArtTales.GodWords` (said as the
+believer's view: "took the season for the doing of ..."), once in a quadrum at most at a home.
 
 - **Dev mode**: "Gods: a festival kept now, its custom at once...", "Gods: the festival's next part now", "Gods: a
   festival's rite now, the believers behind it...", "Gods: a god's beast at home: greeted, given a bite, walked to its
@@ -18962,6 +18964,131 @@ then (`Award`), unseen. The same pattern sat in other errands of the peoples' ev
   of those errands refreshes the keep out's look as it starts (`KeepOut.Refresh`), so the way counts at once.
 - Tests: `PeopleEvents8Tests` (the hour's steps, the meeting's range and the places round it, and the seams).
 
+## The land and its life (the player's go, 20 November 2026; released 0.279.1)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+with this in the order you think makes most sense ... more immersion", and "first do all the integrations that you
+proposed in your document before we add additional content variety". Built as part C proposes them: C19, C20, C21, C22,
+C24, C28 and C30, each marked **Built** there. Harm: none of it hurts anyone. Every age: nothing here is switched off
+for an age; the cup and the herd's sale take what the colony has.
+
+**C19, after the storm: a work party for every disaster** (`Weather/AfterStorm.cs`, `AfterStormMath.cs`). The weather
+record's hour (`WeatherBook.Hour`) asks `AfterStorm.OnNow` what is happening: Seasonal Weather's earthquake (its
+condition), a flashstorm (the game's, or the storytellers' map-wide one), Rimfolk's hail while it falls, a tornado on the
+map (the game's own `Tornado` thing, which Vanilla Landmarks Expanded's tornado alley sends) and a flood (Odyssey's
+`SeasonalFlood` thing, which stands on the map until the water subsides, read in the 1.6 code; Vanilla Landmarks
+Expanded's `VEE_TidalFlooding` condition). What began is counted for the year's annals; what ended has a party wait one to
+three hours (`DelayHours`). Vanilla Events Expanded's earthquake comes and goes in a moment, so a postfix on the game's
+`IncidentWorker.TryExecute` notes it (`Patch_AfterStorm_TryExecute`, with the deeper hooks). When its time comes, on a
+quiet map, and for a flashstorm with no fire left in the home area, the one best at the work leads three others in a
+work party (`DilemmaEffect_WorkParty`, the game's own jobs, hours 6 to 20):
+
+| Disaster | Leads | The party's work |
+|---|---|---|
+| Earthquake | best builder | mend, rebuild what the game marked, patch roofs, clean, haul |
+| Tornado | best builder | the same |
+| Flashstorm | best grower | the burnt trees in and round the home area and the fields marked for cutting (`MarkBurnt`), cut, ash cleaned, sowing where the season allows |
+| Hail | best grower | sow where it flattened the young crops (the hail destroys those, so nothing is left to cut), bring in the ripe |
+| Flood | best builder | haul what the water left lying about, clean |
+
+Only when there is work (something damaged or a blueprint for a quake or a tornado; burnt trees or ash for a flashstorm;
+growing weather and cells to sow for hail; filth or things to haul for a flood); a party still waiting after two days
+is let go, four wait at most. When the party has done some of the work the chronicle keeps it with its leader
+(`PlayOut.afterward` "afterstorm:kind", `AfterStorm.Over`). The year's annals say "The earth shook twice, and hail fell
+on the fields once." from `disasters`, this year's and last year's counts as a short line. The old quake party
+(`WeatherDisasters.QuakeOver`) is folded in; an older save's quake count and the earthquake or tornado going on are
+carried over once on loading. Decided here: the leader by building or growing as the work is; hail's "broken crops cut"
+became sowing again, since Rimfolk's hail destroys the young crops it flattens; a flood's "stores moved up" became the
+water's leavings carried back to the stores, the game's own hauling.
+
+**C20, the advisor remembers last winter** (`Advisor/AdvisorLastWinter.cs`, `WeatherMath.WinterBefore`). The record now
+counts each season's days too cold to grow (a mean below 6 °C, the advisor's own measure of winter, `ColdBelow`), days
+below freezing all day, and days the snow lay on most of the open land (`WeatherDay.cover`: the hour's look at every tenth
+cell each way of unroofed land, half or more under a layer of 0.1). Last winter is the four quadrums before the one now,
+seasons begun before the count was kept left out (`WeatherQuarter.counted`), spoken of only after 20 days of it and some
+cold. The firewood note adds "Last winter the cold here lasted 19 days, and the coldest night was -24 °C; at today's
+fires the wood in store lasts 11 such days" (the fires' own burn a day), the winter stores note how few of those days
+froze, the herd's feed note the snow and the days the hay lasts, the herd in the cold note the coldest night and the
+frozen days. Decided here: "its longest cold" read as the days the cold lasted, since the record keeps quadrums and a
+cold spell running from one into the next is the same winter.
+
+**C21, the autumn count of the herd** (`Animals/HerdCount.cs`, `HerdStoryMath`'s count; `Rimfolk_Dlm_HerdCount`). Each
+autumn, once a year, with four head or more, between 8 and 15 on a quiet map, the herdmaster (else the best with animals)
+walks the pens: a round of the herd (`DilemmaEffect_Rounds.herd`, `PlayRounds.Herd`: up to eight of the herd, nearest
+first, a few minutes by each, a counting line said aloud from `Rimfolk_Pool_HerdCount`). When it is done
+(`PlayAfter` "herdcount") the herd's story keeps the count and its leader (`HerdStory.head`, `headYear`, `headLeader`),
+the colony is told the head by kind against last autumn's, and the chronicle keeps it. The council's question then waits
+two days for its turn (`askUntil`), its texts in the flavour style with the head, the days the hay and kibble last and last
+winter's cold (`[lastwinter]`; the winter ahead by the climate before the record has one): keep them all; sell the
+yearlings to the next traders (`DilemmaEffect_HerdSell`: past their first stage and under a year old, nobody's own, not
+bonded, named or carrying young, eight at most, kept for a season in `HerdStory.sellIds`; marked to sell in the trade
+window, `TradeAdvice` reading pawn rows for them; when a trade caravan stops at its spot the counter visits the pens for
+them and the colony is told; a sale is the player's, by the game's Accept, and the chronicle keeps it); or some of the
+oldest to the butcher (`DilemmaEffect_HerdOldest`: the game's slaughter designation, never the leader, anyone's own,
+bonded, named or carrying young, a male and a female of each kind kept; one when the hay lasts, the share it falls short
+by when it doesn't, four and a third of the herd at most, `SlaughterCount`). Decided here: the question asked as the
+planting day's and the seasons' are, after the count; "yearlings" as under a year old; the oldest never the herd's leader;
+a sale lapses after 30 days with a message; the counter only visits the pens when the traders come (Rimfolk never sells
+by itself, and an animal led out of its pen is roped back by the game's handlers).
+
+**C22, the colony's animals at the line** (`Defense/DefenseLinesWatch.cs`, `DefenseLineMath`). While a raid is on, the
+watch follows the colony's animals too: each one's own records when first seen (`PawnsDowned`, `Kills`), the line it fights
+at (it went for a raider since the last look, within 30 cells of a gate), and one downed or killed near a line, counted
+there once. At the raid's end each is counted at its line with the enemies it brought down (the greater of its downings
+and kills, `Brought`), and the kind's word kept when all were one kind. A lesson "Keep the dogs back from the line: three
+of the colony's animals were downed or killed there" when two or more fell (or one that brought nobody down), and a note
+"The dogs held their ground here" beside the lessons when they brought enemies down and none fell. An animal that brought
+one down has it on its card (`AnimalTempers.Noted`) and its person writes it (`Rimfolk_Journal_AnimalAtLine`), unless the
+fight came to them (the pets' own heroics, `Strangers/Pets.cs`, say that). The game's own rules for animals in fights
+are untouched; nothing is added to the harm budget.
+
+**C28, the lines in today's weather** (`UI/DefenseLinesPanel.cs`, `DefenseLinesWatch`). Read in the 1.6 code
+(`Verse/ShotReport.HitReportFor`): the aim of every shot is multiplied by the weather's accuracy factor
+(`WeatherManager.CurWeatherAccuracyMultiplier`, eased between weathers) when the shooter or the target is unroofed, for
+any shooter, turrets too, unless a unique weapon ignores accuracy maluses; melee is not a shot. While today's weather
+takes a tenth or more off, a line's card says so in percent ("at 50% of its usual aim" in fog), a raid that comes in it
+has one message saying so, and the raid's lessons keep a note ("The raid came in fog") beside the others
+(`Lesson.Weather`, `DefenseLineRaid.weather`, `aim`). A held line keeps its art tale beside the two notes
+(`ArtTalesMath.Held`).
+
+**C24, a cup for the sick** (`Immersion/SickCup.cs`, `SickCupMath.cs`). Once an hour (the council's), in waking hours (7
+to 21), on a quiet home map, one set going every two hours at most: someone with a cold, a cough or a sore throat (a head
+or chest cold, a smoke, rimrot, post-flu, pollution, lingering, smoker's or spore cough, showing) who hasn't had a cup
+today is brought one by the colonist at their leisure (`SmallHabits.CanListen`), not ill themselves, who thinks best of
+them (opinion 0 or more). The first of the player's drinks in the stores the sick one will have (`FirstPot.WillDrink`:
+the drug policy, a faith, teetotalism): Vanilla Brewing Expanded - Coffees and Teas' mint, lemon, breakfast, green and earl
+grey teas, Vanilla Brewing Expanded's tea, Vanilla Christmas Expanded's hot cocoa, Alpha Bees' honey, Vanilla Factions
+Expanded - Medieval 2's raw honey. The bringer carries it over (`JobDriver_SickCup`), sets it down beside them with a line
+(`Rimfolk_Pool_SickCup`, by tea, cocoa or honey), and the sick one drinks it there (the game's `Ingest`). The ailment's
+severity eases by 0.04 (some five hours off a head cold; one almost gone is left to go), and the two think a little better
+of each other (`Rimfolk_SickCup_Got`, `_Gave`, two days). Under the "Small habits" setting; none of it without one of the
+mods. Decided here: Vanilla Cooking Expanded has no honey in the player's mods (the proposal's `VCE_Honey`), so the
+honey is Alpha Bees' and Vanilla Factions Expanded - Medieval 2's; the teas the mods have besides the three named are
+brought too, mint and lemon first; no vanilla fallback, since the game has no hot drink (as with the first pot).
+
+**C30, the Almanac's pages for the mods** (`Defs/AlmanacArticleDefs/Almanac_Mods_I_Integrations.xml`,
+`Defs/IntegrationDefs/Council_Mods_Support.xml`). New pages for the mods these integrations and the gods' two rounds use
+that had none: Vanilla Ideology Expanded - Dryads, Dragons Descent, Vanilla Landmarks Expanded, Vanilla Christmas
+Expanded and Vanilla Factions Expanded - Medieval 2, each what the mod is and what the colony's people do with it, no god
+said to do anything; the "With Rimfolk" of Vanilla Brewing Expanded, Alpha Bees, Vanilla Events Expanded, Vanilla Cooking
+Expanded (Vanilla Fishing Expanded's fishers) and the weather, animals, defense lines and ailments pages brought up to
+date; rows in the compatibility table for each (and the three existing rows extended). Possessed Weapons, Sanguinary
+Animals and Demigryphs have no page: no integration built uses them.
+
+**A ninth art tale** (the lead's addition): a named season a believer took for a god's doing (C18's `SeasonGods.Named`),
+`Rimfolk_Tale_SeasonTaken`: the believer, the season's name, the god by `ArtTales.GodWords` and said as the believer's
+view, once in a quadrum at most at a home.
+
+- **Saved:** `WeatherBook` (`stormsOn`, `afterWaiting`, `disasters`, short lines; the days' `cover` and the seasons'
+  cold, frozen and snow days in their packed lines), `HerdStory` (`countYear`, `headYear`, `head`, `headLeader`,
+  `askUntil`, `sellIds` modelled in `Tools/save_estimate.py`, `sellUntil`), `DefenseLineRaid` (`animalsFought`,
+  `animalsBrought`, `animalsDowned`, `animalKind`, `weather`, `aim`). An older save loads with none of it.
+- **Dev mode** ("Rimfolk", "Land: ..."): a disaster's work party now; last winter as the advisor reads it; a made-up last
+  winter; the herd's autumn count now; its question now; traders stop for the yearlings now; a raid's notes on the first
+  defense line; a cup for a colonist, ill (a head cold given if they have nothing).
+- **Tests:** `LandLifeTests` (the rules, the defs, the words, the player's mods, the seams), the three pools in
+  `ImmersionTests`, the ninth tale in `GodsIntegrationTests`.
+
 ## Ticking
 
 Every system keeps its own clock; nothing is merged into one scheduler. What they share is the list of ticks in
@@ -18994,17 +19121,17 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 677 | Health stories, the colony's part (with convalescence or reputation on): the cases of dangerous illness; pruning in the first hour of the day | per case (each colonist's part runs in its slice, below) |
 | 852 | Council's day, second half (first hour of the day only): the social web, social events, life goals, secrets, vendettas, quirks, legacy, the colony's ways, marks on people's characters (illness, hunger, addiction, mastery, faith, peace), traits that change (the watches, then at most one change), the links between systems (the physician's rounds, the herdmaster, setbacks counted), the day's history sample, trust effects, bitter colonists | per pair of colonists (opinions, ties, circles), per colonist and quirk def |
 | 917 | Links with other mods (only with one there): water and mending for strain and recovery | per colonist |
-| 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
+| 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks, a cup for the sick (Immersion/SickCup.cs: in waking hours, one set going every two hours a map at most) | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking); per colonist with a cold or a cough, a look for a bringer at their leisure and a cup in the stores |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor, guests eating from low stores, a day's mishaps turned to jokes; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
-| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, the animals' natures (a temperament's moment, friends and rivals, a grave, an old animal back, a speaking animal's line; Animals/), autonomy, who is home, which home is whose (a day on a home makes it someone's last home; a home founded or lost is told; Lean/Homes.cs), everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work, their home: one lookup), per home map (crowded rooms, half-built frames) |
+| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, the animals' natures (a temperament's moment, friends and rivals, a grave, an old animal back, a speaking animal's line; Animals/), autonomy, who is home, which home is whose (a day on a home makes it someone's last home; a home founded or lost is told; Lean/Homes.cs), everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/), the herd's autumn count, its question and the yearlings kept for the traders (Animals/HerdCount.cs) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work, their home: one lookup), per home map (crowded rooms, half-built frames) |
 | 1660 | Reputation and gossip (only with "Personalities and social life"): in a fight, rescues under way and the brave's company; otherwise who idles while the rest work and who tends whom; in the first hour of the day, the day's idling and tending made deeds, the names that formed or faded told, the dead and departed let go | per spawned colonist on home maps (a job look; a sight check only for the idle, the brave and their side) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 1996 | Fields by the weather (Fields/FieldWeather.cs, a map component; with "Fields by the weather" or the frost harvest on): how much colder than the land's own reckoning the hour is, kept as the day's coldest; every other hour (every hour while a frost harvest stands, at once when a field's crop or setting changes) the forecast for each hour ahead from the game's own numbers, each field set to sow by the weather grown hour by hour, and the frost harvest picked plant by plant; the frost checks' coldest hour | per home map: one forecast (31 hours, or 120 days with a field set to sow by the weather), per field set to sow by the weather a few crop runs, per outdoor plant in a growing zone a limit read |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
-| 2185 | The weather record (Weather/WeatherBook.cs, a map component): the hour's rain, snow, storm, fog and temperature noted; a finished day, and a finished season set against the year before and named; then the weather dynamics' hour (Weather/WeatherDynamics.cs): the hour's temperature kept for tomorrow's front, events' pulls that ended dropped, and a forecast when the weather is a few hours from changing | per home map: a few numbers; a forecast rolls the game's next weather once per weather |
+| 2185 | The weather record (Weather/WeatherBook.cs, a map component): the hour's rain, snow, storm, fog and temperature noted, and whether snow lies on the land (every tenth cell each way looked at); a finished day, and a finished season set against the year before and named; the disasters going on (Weather/AfterStorm.cs: the conditions, the tornado and the flood on the map), and a work party after one whose time has come; then the weather dynamics' hour (Weather/WeatherDynamics.cs): the hour's temperature kept for tomorrow's front, events' pulls that ended dropped, and a forecast when the weather is a few hours from changing | per home map: a few numbers; a forecast rolls the game's next weather once per weather |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events (a timer per home) | one roll each, Rimfolk's events one per home whose timer is due; event memory pruned in the first hour of the day |
 | 2375 | Conversations: the hour's look for what people go through together (with social life on); views drift in the first hour of the day | per home map: colonists up between one and four at night (pairs together), active conditions, lords, fires, fresh food poisoning, newcomers, prisoners, traders; new play-log lines (tames); finished studies; daily per colonist and view, mentors and secrets |
 | 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |

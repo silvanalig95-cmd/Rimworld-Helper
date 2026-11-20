@@ -1456,6 +1456,12 @@ The herd and the pets are part of the colony's life, not only its larder and its
   last season is told and the keeper sits with it at the pens of an evening; when it dies the keeper takes it hard for
   a few days, and within a day or two the herd follows a new leader, the old one's own blood first if any is grown,
   else the eldest of the many, and a new line begins.
+- **The autumn count** (not released yet): each autumn, with four head or more, the herdmaster (else whoever is best
+  with animals) walks the pens counting; the colony is told the head by kind against last autumn's, with its leader,
+  and the chronicle keeps it. Then the council is asked what to keep through the winter, the hay set against last
+  winter's cold: keep them all, sell the yearlings to the next traders (marked to sell in the trade window, and the one
+  who counted goes down to the pens when a caravan stops; the sale is yours), or a few of the oldest to the butcher for
+  the winter's meat (never the leader, anyone's own, bonded, named or carrying young).
 - **A beast that stays:** a wild animal of some size (a wolf, a bear, a stag, a boar; never an insect or a great
   beast) seen on the colony's land three days running is given a name, by a child if there is one, else by someone
   with a love of animals, and from then on whoever sees it says so in their own words. Four days later the council is
@@ -2318,7 +2324,12 @@ watch how they come in, every few seconds and only then: through the gate, round
 colonists fall; after the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west;
 Hana was downed at the sandbags on the left") with a button to the check or step it points at. A setting reminds you
 once a raid when a line's gate is shut, and a shut gate's note says what that means: raiders break it if there's no
-other way, so hold it open to keep them coming through.
+other way, so hold it open to keep them coming through. Not released yet: **the colony's animals at the line** are
+counted too (those that fought there, the enemies they brought down, those that fell): a lesson says to keep them back
+when several fall, a note says when they held, and an animal that brought one down has it on its card and in its
+person's journal. **The lines in today's weather**: in fog, rain or snow the game takes aim off every shot where the
+shooter or the target is under the open sky, both sides alike, turrets too; each line's card says by how much, a raid
+that comes in it says so once, and its lessons note it.
 
 A gap the survey finds that a line already holds (its own cells, the same pass measured a few cells off, or the same
 ways in within about 12 cells) is shown as covered by that line and never offered as a new one; a gap on another way
@@ -2817,8 +2828,19 @@ colonists bringing in the ripe crops before it falls; it rains with it only whil
 longer runs on for a day or two after. Three **quirks**: loves the snow, follows the sun, sleeps best in rain. A
 **storm keeps a trade caravan** half a day longer, and snowbound land slows the people coming for a **mission**.
 With **Seasonal Weather**, a dry, windy day in the fire season brings **firebreak** advice (one button marks the brush
-round the home area for cutting), and after an **earthquake** a few colonists go round the roofs and walls. Stormproof,
-Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed.
+round the home area for cutting). Stormproof, Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet
+Wonders are met where they're installed.
+
+**After the storm, a work party** (not released yet): when a disaster is over and the land is quiet, the one best at the
+work and three others set to it with the game's own jobs, where there's something to do. After an **earthquake**
+(Seasonal Weather's or Vanilla Events Expanded's) or a **tornado** the builders go round the roofs and walls, mending,
+rebuilding and clearing up; after a **flashstorm**, once its fires are out, the growers cut the burnt trees, clean the ash
+and sow again; after Rimfolk's **hail** they sow again where it flattened the young crops; after a **flood** (Odyssey's,
+or Vanilla Landmarks Expanded's tidal flooding) the water's leavings go back to the stores and the dirt is cleaned up.
+The chronicle keeps each once the work is done, and the year's annals count the disasters. **The advisor remembers
+last winter**: once the record has kept a year of cold days, frozen days and days the snow lay, the firewood, winter
+stores, herd feed and herd cold notes each add a sentence in the colony's own terms ("Last winter the cold here lasted
+19 days, and the coldest night was -24 °C; at today's fires the wood in store lasts 11 such days").
 
 **Weather that changes like weather.** The game still chooses each next weather from the land's own (Seasonal
 Weather's by season, any other weather mod's too); Rimfolk weighs that choice by the land and the last days, so that
@@ -5665,7 +5687,11 @@ and patients write and talk about falling ill, getting better and the doctor who
 season, the hour, their age and their temperament, and notice when it's the second time; a letter about one person's
 illness names them; dreamfever, serious illnesses and many everyday ailments color their
 dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
-medicine is short, and pulling a patient through lifts both. Settings: everyday ailments on or off (What's on),
+medicine is short, and pulling a patient through lifts both. **A cup for the sick** (not released yet): someone with a
+cold, a cough or a sore throat may be brought a tea (Vanilla Brewing Expanded and its Coffees and Teas), hot cocoa
+(Vanilla Christmas Expanded) or honey (Alpha Bees, Vanilla Factions Expanded - Medieval 2) from the stores by one of the
+colony at their leisure who thinks well of them, handed over and drunk there; the ailment ends a few hours sooner and
+the two think a little better of each other. Never against a drug policy, a faith or a teetotaller. Settings: everyday ailments on or off (What's on),
 serious illnesses on or off and how often, 25% to 200% (How hard). Off, nothing new starts; what's running finishes its
 course.
 

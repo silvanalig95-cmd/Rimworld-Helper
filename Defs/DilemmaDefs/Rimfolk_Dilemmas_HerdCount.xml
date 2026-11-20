@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The autumn count of the herd (Source/ColonyCouncil/Animals/HerdCount.cs; C21 of docs/content-update-proposals.md): asked
+    once the one counting has walked the pens, never on the council's own schedule. A is the one who counted, B one with an
+    animal of their own (else another of the grown). {HEAD} the head counted, {FEED} the days the hay and kibble in store
+    last, {WINTER} how many days last winter's cold lasted ([lastwinter]) or the winter ahead by the climate, {YEARLINGS}
+    the yearlings that could be sold, {COUNT} how many of the oldest would go to the butcher, {LEADER} the herd's leader.
+    Council questions are written in the flavour style (CLAUDE.md, 20 November 2026).
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_HerdCount</defName>
+    <label>the autumn count</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HerdCount</workerClass>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>[lastwinter] The autumn count is done: {A_nameDef} walked every pen and made it {HEAD} head. The hay and kibble in store will feed them about {FEED} days, and last winter the cold held for {WINTER} days. {A_nameDef} asks the council what the colony keeps through to spring. {B_nameDef} would rather not part with a single one.</li>
+      <li>[!lastwinter] {A_nameDef} has counted the herd, {HEAD} head in all, and set it against the stores: hay and kibble for about {FEED} days, and a winter ahead of some {WINTER} days. What goes, and what stays? {B_nameDef} has already said what {B_pronoun} thinks of selling good stock.</li>
+      <li>[lowtech] Every autumn the old herders counted their beasts and counted their hay, and {A_nameDef} has done the same: {HEAD} head, and feed for about {FEED} days. The young ones could go to the next traders, or the oldest to the knife for the winter's meat. {B_nameDef} says the herd is the colony's wealth and should be kept whole.</li>
+      <li>[skill:Animals] {A_nameDef} knows every animal in the pens and has counted them twice: {HEAD} head. The yearlings would fetch a fair price from the next traders, and the oldest would see the colony through the cold in meat. {B_nameDef} would sooner stretch the hay and keep them all.</li>
+      <li>[short,lastwinter] {A_nameDef} came back from the pens with a long face: {HEAD} head, and hay for {FEED} days, when last winter the cold held for {WINTER} days. Something has to give before the snow, {A_pronoun} says. {B_nameDef} asks the council to remember that the herd took years to build.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Keep them all</label>
+        <outcome>The council keeps the whole herd through the winter. {A_nameDef} will stretch the hay and hope for an early spring.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Sell the yearlings to the next traders</label>
+        <outcome>{A_nameDef} has picked out the yearlings to sell. When the next traders stop at the colony, {A_pronoun} will go down to the pens for them, and the trade window has them marked to sell.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HerdSell" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{COUNT} of the oldest to the butcher</label>
+        <outcome>{A_nameDef} has marked {COUNT} of the oldest for slaughter, never the herd's leader nor anyone's own. The stores will have meat for the winter, and the hay will go further.</outcome>
+        <ways><toil>1</toil><mercy>-1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HerdOldest" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmY_HerdCulled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

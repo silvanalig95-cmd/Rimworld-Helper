@@ -70,6 +70,46 @@ namespace ColonyCouncil
         /// <summary>The first calf of a spring is a moment once a year, in spring.</summary>
         public static bool SpringCalf(bool spring, int year, int markedYear) => spring && year != markedYear;
 
+        // ---------------- The autumn count (Animals/HerdCount.cs) ----------------
+
+        /// <summary>The hours of the day the count is set going in (from, to): the morning and early afternoon.</summary>
+        public const int CountFrom = 8, CountTo = 15;
+
+        /// <summary>Days after the count the council may still be asked about it.</summary>
+        public const int AskWithinDays = 2;
+
+        /// <summary>Days the yearlings are kept for the next traders before the choice lapses (they stay with the herd).</summary>
+        public const int SellDays = 30;
+
+        /// <summary>At most this many yearlings are kept for the traders, and this many of the oldest marked for the butcher.</summary>
+        public const int MaxSell = 8, MaxSlaughter = 4;
+
+        /// <summary>The count is due: autumn, not yet this year, a herd of <see cref="MinHerd"/> or more, in the count's hours.</summary>
+        public static bool CountDue(bool fall, int year, int countYear, int herd, int hour) =>
+            fall && year != countYear && herd >= MinHerd && hour >= CountFrom && hour < CountTo;
+
+        /// <summary>A yearling: past its first stage of life, and not yet a year old.</summary>
+        public static bool Yearling(float ageYears, int lifeStageIndex) => lifeStageIndex >= 1 && ageYears < 1f;
+
+        /// <summary>
+        /// How many of the oldest go to the butcher: when the hay and kibble in store fall short of the winter (last winter's
+        /// cold, or the winter ahead), the share they fall short by, of the herd; else one; at least one, at most
+        /// <see cref="MaxSlaughter"/> and a third of the herd.
+        /// </summary>
+        public static int SlaughterCount(int head, float feedDays, float winterDays)
+        {
+            if (head <= 0) return 0;
+            int most = Math.Max(1, Math.Min(MaxSlaughter, head / 3));
+            if (winterDays <= 0f || feedDays >= winterDays) return 1;
+            float lasts = Math.Max(0f, Math.Min(1f, feedDays / winterDays));
+            int n = (int)Math.Ceiling(head * (1f - lasts));
+            return Math.Max(1, Math.Min(most, n));
+        }
+
+        /// <summary>This autumn's count against last autumn's: "more", "fewer", "same", or null when there was none last year.</summary>
+        public static string Against(int head, int lastHead, int lastYear, int year) =>
+            lastYear != year - 1 || lastHead <= 0 ? null : head > lastHead ? "more" : head < lastHead ? "fewer" : "same";
+
         // ---------------- A beast that stays ----------------
 
         /// <summary>A wild animal seen on the land this many days running is one the colony starts to know.</summary>
