@@ -483,7 +483,7 @@ namespace ColonyCouncil
             if (b != null) args.Add(b.Named("B"));
             string key = "CC_GodB_Out_" + o + (b == null && o == BetweenOutcome.Ashamed ? "Alone" : "");
             // together: the two were together on the map for it (each scene brings them to one place first).
-            if (map != null) Tell.Minor(NewsKind.People, Importance.Flavor, map, TextVariants.Vary(key).Translate(args.ToArray()).Resolve(), b != null ? new LookTargets(new[] { a, b }) : new LookTargets(a));
+            if (map != null) Tell.Minor(NewsKind.People, Importance.Flavor, map, TextVariants.Vary(key).Translate(args.ToArray()).Resolve().CapitalizeFirst(), b != null ? new LookTargets(new[] { a, b }) : new LookTargets(a));
             OwnHappenings.Journal(a, "CC_GodB_Journal_" + o, what.Named("WHAT"), (b?.LabelShort ?? "").Named("OTHER"));
             if (b != null && (o == BetweenOutcome.Closer || o == BetweenOutcome.Quarrel || o == BetweenOutcome.MadeUp))
                 OwnHappenings.Journal(b, "CC_GodB_Journal_" + o, what.Named("WHAT"), a.LabelShort.Named("OTHER"));

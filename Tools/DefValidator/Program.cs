@@ -612,6 +612,9 @@ wishPh.UnionWith(new[] { "FEED", "WINTER", "DRINK", "LINE" });
 // The world brought home (World/Home/WorldHome.cs): the world event that made a quest likelier and where it is (WorldSteer),
 // and the people of an encounter's world event (WorldSeason.Fill; {SITUATION} and {SITUATIONPLACE} are above).
 wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
+// The gods between the colony's people (Gods/OnMap/Between/, Rimfolk_Pool_GodBetween_Say): the machine mended or talked to,
+// the coat carried to the cold, the one seen whispering at the edge, the light that went out.
+wishPh.UnionWith(new[] { "MACHINE", "COAT", "WHISPERER", "LIGHT" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {
