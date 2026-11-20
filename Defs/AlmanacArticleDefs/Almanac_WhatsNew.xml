@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.275.3</version>
+        <date>20 November 2026</date>
+        <title>PokéWorld on the shelves</title>
+        <points>
+          <li>PokéWorld's items now go on the storage mods' shelves: a shelf, rack or bin that takes all of the game's miscellaneous items, fertilized eggs, leathers or utility apparel takes the PokéWorld things of that kind and shows them in its filter under PokéWorld.</li>
+          <li>Shelves already built take them once when a save loads, where they take the whole list, and new ones have them ticked. A fridge takes only the eggs and what spoils, a hopper none of them, and the shelves' own limits on size, weight and stacks still apply.</li>
+          <li>The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld) turns it off. Only the shelves count the items this way, never bills, food policies or traders, so Pokémon eggs are never cooked.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.275.2</version>
         <date>20 November 2026</date>
         <title>No more grey map</title>

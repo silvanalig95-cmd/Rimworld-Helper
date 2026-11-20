@@ -23,4 +23,9 @@
   <CC_SetNote_PokemonSounds_Rarer>Their own cries, with three times as long between calls.</CC_SetNote_PokemonSounds_Rarer>
   <CC_SetNote_PokemonSounds_Own>As PokéWorld has them.</CC_SetNote_PokemonSounds_Own>
 
+  <!-- PokéWorld's items on the shelves (Integrations/PokeWorldShelves.cs), the other mods' page. -->
+  <CC_Settings_PokemonShelves>PokéWorld's items on the shelves</CC_Settings_PokemonShelves>
+  <CC_Settings_PokemonShelves_Tip>PokéWorld keeps its items in lists of its own, so shelves that take only the game's own lists, such as Deep Storage's, don't take them and don't show them. With this on, each of its items counts for the shelves as the game's own things of the same kind: the ball belts as utility apparel, the legendary leather as leather, the eggs as fertilized eggs, and the stones, fossils, balls, TMs and potions as miscellaneous items. A shelf, rack or bin that takes the whole of one of those lists then takes PokéWorld's items of that kind too and shows them in its filter under PokéWorld, and a newly built one has them ticked where it has that list ticked. Shelves you have already built take them once, when the game loads, if they take the whole list. A fridge takes only the eggs and whatever else spoils, a hopper none of them, and a shelf's own limits on size, weight and stacks still apply. Only the shelves count them this way: bills, food policies and traders don't. Off: the shelves no longer take them.</CC_Settings_PokemonShelves_Tip>
+  <CC_SetNote_PokemonShelves>PokéWorld's items go on the shelves that take the game's own things of their kind.</CC_SetNote_PokemonShelves>
+
 </LanguageData>

@@ -235,6 +235,13 @@ namespace ColonyCouncil
                 part.Add(ride, rideWarn ? UiKit.Warn : UiKit.Faint);
                 if (rideWarn && part.color != UiKit.Bad) part.color = UiKit.Warn;
             }
+            // PokéWorld's items beside the game's own (Integrations/PokeWorldShelves.cs): how many, and which storage takes them.
+            var (shelves, shelvesWarn) = PokeWorldShelves.CheckLine();
+            if (shelves != null)
+            {
+                part.Add(shelves, shelvesWarn ? UiKit.Warn : UiKit.Faint);
+                if (shelvesWarn && part.color != UiKit.Bad) part.color = UiKit.Warn;
+            }
 
             // Everything in Rimfolk's defs written for a particular mod (a "mods" list on the def or one of its
             // extensions): Almanac pages, events, world events, moments, people.
