@@ -9,7 +9,7 @@ namespace ColonyCouncil
     /// The world events of the content update's variety (part B of docs/content-update-proposals.md: B6, B7, B8 and the six
     /// of this round, Defs/WorldSituationDefs/Rimfolk_WS_Variety4.xml and _Variety5.xml): their people's own age as a tag of
     /// their lines ([theirTribal], [theirMedieval], [theirIndustrial], [theirSpacer], VarietyMath.TheirAgeTag), so each age
-    /// has its own form of the event.
+    /// has its own form of the event, and [bound] when their people is bound to the colony by a tie (Peoples/PeopleTies.cs).
     /// </summary>
     public class SituationWorker_Variety : WorldSituationWorker
     {
@@ -20,6 +20,8 @@ namespace ColonyCouncil
             if (f == null) return;
             string age = VarietyMath.TheirAgeTag(Ages.Tag(Ages.Of(f)));
             if (age != null) tags.Add(age);
+            // Bound to the colony by a tie (a pact, a marriage, a ward, an envoy, fealty, a debt of honour: Peoples/PeopleTies.cs).
+            if (PeopleTies.Bound(f)) tags.Add("bound");
         }
     }
 

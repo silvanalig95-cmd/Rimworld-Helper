@@ -216,7 +216,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>What their people hope for at the feast.</summary>
-        public static FeastHope HopeOf(Faction f) => f == null ? FeastHope.None : FeastMath.Hope(Ages.Of(f), Ages.IsEmpire(f));
+        /// <summary>What a people hopes for: by its age, the Empire by its own ways, one of Rimfolk's peoples by its calling (B28).</summary>
+        public static FeastHope HopeOf(Faction f) => f == null ? FeastHope.None : FeastMath.Hope(Ages.Of(f), Ages.IsEmpire(f), Peoples.CallingOf(f));
 
         /// <summary>Why this notable can't be invited now (by a letter or a call), or null.</summary>
         public static string InviteWhyNot(Notable n, Map home)
@@ -1378,7 +1379,9 @@ namespace ColonyCouncil
             foreach (var g in p.guests.Where(g => g.state == GuestState.Here || g.state == GuestState.Gone && g.pawn != null && g.pawn.MapHeld != map && p.arrived >= 0))
             {
                 if (g.pawn == null || g.pawn.Dead) continue;
-                bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && p.music : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
+                // A fine meal and music: the concert, or a singing contest held (B28).
+                bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && (p.music || p.results.Any(r => !r.off && r.kind == ContestKind.Singing))
+                    : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
                 g.welcome = insulted ? -15f : FeastMath.Welcome(g.ate, g.fine, hopeMet, contests, g.prize, g.bed, g.floor, g.hurt, g.sour, Empire(g));
                 // A hard year at home: the meal counts for more than the contests (Diplomacy/FeastYear.cs).
                 if (!insulted) g.welcome = FeastYear.Welcome(g, g.welcome, contests);

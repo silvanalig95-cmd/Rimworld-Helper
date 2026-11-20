@@ -21,6 +21,9 @@ namespace ColonyCouncil
     /// <item>A game at the tables: the game's own recreation (chess, poker, billiards, horseshoes, hoopstone, or a mod's
     /// game by its kind) between one of the colony's and a guest, won by the game's own skill for it and some luck.</item>
     /// <item>A shooting match, only where a mod gives targets (read by name): five shots each, hits by the game's own chance.</item>
+    /// <item>A singing contest (the content update's B28): singers in turn, each at one of the colony's instruments (the game's
+    /// harp, harpsichord, piano or drum, a mod's, played by the instrument's own sound) or, without one, by a fire, each with
+    /// a word as they start; the best song by Artistic and Social and some luck (FeastMath.SingScore).</item>
     /// </list>
     /// What is under way is the session's (not saved): a contest broken up by a reload is let go as such.
     /// </summary>
@@ -58,6 +61,8 @@ namespace ColonyCouncil
             public readonly List<Pawn> shooters = new List<Pawn>();
             public int shooter = -1;
             public readonly Dictionary<Pawn, int> scored = new Dictionary<Pawn, int>();
+            // The singing: each song's score.
+            public readonly Dictionary<Pawn, float> scoredF = new Dictionary<Pawn, float>();
         }
 
         private static readonly Dictionary<int, Run> runs = new Dictionary<int, Run>();
@@ -135,6 +140,9 @@ namespace ColonyCouncil
                     return all.Where(p => !p.DevelopmentalStage.Juvenile() && p.equipment?.Primary != null && p.equipment.Primary.def.IsRangedWeapon
                                           && !p.WorkTagIsDisabled(WorkTags.Violent) && (!ours || !Beliefs.ForbidsAny(p, NoViolenceMask)))
                         .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).ToList();
+                case ContestKind.Singing:
+                    return all.Where(p => !p.DevelopmentalStage.Baby() && p.health.capacities.CapableOf(PawnCapacityDefOf.Talking))
+                        .OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0) + (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) / 2).ToList();
                 default:
                     return new List<Pawn>();
             }
@@ -244,6 +252,9 @@ namespace ColonyCouncil
                     case ContestKind.Shooting:
                         if (Targets(home).Count == 0) return FeastWords.P("CC_Feast_CWhy_Targets");
                         return Fit(k, home.mapPawns.FreeColonistsSpawned.ToList(), null, true).Count == 0 ? FeastWords.P("CC_Feast_CWhy_Guns") : null;
+                    case ContestKind.Singing:
+                        if (Fit(k, home.mapPawns.FreeColonistsSpawned.ToList(), null, true).Count == 0) return FeastWords.P("CC_Feast_CWhy_Singing");
+                        return SingAt(home, IntVec3.Invalid) == null ? FeastWords.P("CC_Feast_CWhy_SingPlace") : null;
                 }
             }
             catch (Exception e)
@@ -278,6 +289,9 @@ namespace ColonyCouncil
                         break;
                     case ContestKind.Tables:
                         why = StartTables(p, r);
+                        break;
+                    case ContestKind.Singing:
+                        why = StartSinging(p, r);
                         break;
                     default:
                         why = StartShooting(p, r);
@@ -517,6 +531,8 @@ namespace ColonyCouncil
                         return HuntStep(p, r, false);
                     case ContestKind.Tables:
                         return TablesStep(p, r, false);
+                    case ContestKind.Singing:
+                        return SingingStep(p, r, false);
                     default:
                         return ShootingStep(p, r, false);
                 }
@@ -550,6 +566,9 @@ namespace ColonyCouncil
                     case ContestKind.Shooting:
                         result = ShootingStep(p, r, true);
                         break;
+                    case ContestKind.Singing:
+                        result = SingingStep(p, r, true);
+                        break;
                     default:
                         result = WrestlingResult(p, r);
                         break;
@@ -579,7 +598,7 @@ namespace ColonyCouncil
                 {
                     if (x == null || !x.Spawned) continue;
                     var d = x.CurJobDef;
-                    if (d == FeastDefOf.Rimfolk_FeastRun || d == FeastDefOf.Rimfolk_FeastShoot) x.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                    if (d == FeastDefOf.Rimfolk_FeastRun || d == FeastDefOf.Rimfolk_FeastShoot || d != null && d == SingJob) x.jobs.EndCurrentJob(JobCondition.InterruptForced);
                     else if (r.kind == ContestKind.Tables && x.CurJob != null && x.CurJob.doUntilGatheringEnded && d?.joyKind != null) x.jobs.EndCurrentJob(JobCondition.InterruptForced);
                     else if (r.kind == ContestKind.Hunt && d == JobDefOf.Hunt && x.Faction != Faction.OfPlayer) x.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 }
@@ -832,6 +851,99 @@ namespace ColonyCouncil
             int best = FeastMath.ShootingWinner(shooters.Select(x => r.scored[x]).ToList(), shooters.Select(x => x.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).ToList());
             var winner = best >= 0 ? shooters[best] : null;
             return Result(p, r, winner, winner != null ? r.scored[winner] : 0, r.target?.def?.label);
+        }
+
+        // ================= The singing (B28) =================
+
+        private static JobDef singJob;
+
+        /// <summary>A singer's turn (JobDriver_FeastSing).</summary>
+        public static JobDef SingJob => singJob ??= DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_FeastSing");
+
+        /// <summary>Where the singers sing: one of the colony's instruments (the nearest the gate), else a lit fire of its own; null with neither.</summary>
+        public static Thing SingAt(Map map, IntVec3 near)
+        {
+            if (map == null) return null;
+            var from = near.IsValid ? near : PlaySpots.GateCell(map, null);
+            var instrument = map.listerBuildings.allBuildingsColonist.OfType<Building_MusicalInstrument>()
+                .Where(b => b.Spawned && !b.IsForbidden(Faction.OfPlayer) && b.InteractionCell.IsValid && b.InteractionCell.Standable(map)
+                            && (!(b.TryGetComp<CompPowerTrader>() is CompPowerTrader pw) || pw.PowerOn))
+                .OrderBy(b => from.IsValid ? b.Position.DistanceToSquared(from) : 0).FirstOrDefault();
+            if (instrument != null) return instrument;
+            // A fire of the colony's burning (a campfire, a hearth): fuel in it and flames, not a torch or a lamp.
+            return map.listerBuildings.allBuildingsColonist.Where(b => b.Spawned && !b.def.IsFrame && b.GetComp<CompRefuelable>() is CompRefuelable rf && rf.HasFuel
+                                                                     && b.GetComp<CompFireOverlay>() != null && b.def.defName.IndexOf("Torch", StringComparison.OrdinalIgnoreCase) < 0
+                                                                     && b.def.defName.IndexOf("Lamp", StringComparison.OrdinalIgnoreCase) < 0)
+                .OrderBy(b => from.IsValid ? b.Position.DistanceToSquared(from) : 0).FirstOrDefault();
+        }
+
+        private static string StartSinging(GuestFeast p, Run r)
+        {
+            var map = r.map;
+            if (SingJob == null) return FeastWords.P("CC_Feast_Off_Nobody");
+            var at = SingAt(map, IntVec3.Invalid);
+            if (at == null) return FeastWords.P("CC_Feast_CWhy_SingPlace");
+            r.target = at;
+            r.spot = at is Building_MusicalInstrument mi ? mi.InteractionCell : at.Position;
+            var ours = Ours(ContestKind.Singing, map).Take(3).ToList();
+            var theirs = Theirs(p, ContestKind.Singing, map).Take(FeastMath.MaxSingers - ours.Count).ToList();
+            if (ours.Count == 0 || theirs.Count == 0) return FeastWords.P("CC_Feast_Off_Nobody");
+            // Turn about: a guest first, then one of the colony's.
+            int n = Math.Max(ours.Count, theirs.Count);
+            for (int i = 0; i < n; i++)
+            {
+                if (i < theirs.Count) r.shooters.Add(theirs[i]);
+                if (i < ours.Count) r.shooters.Add(ours[i]);
+            }
+            foreach (var x in r.shooters) r.entrants.Add(x);
+            NextSinger(r);
+            return null;
+        }
+
+        /// <summary>A singer whose turn it is (their job ends without one).</summary>
+        public static bool Singing(Pawn p)
+        {
+            var r = RunOf(p);
+            return r?.kind == ContestKind.Singing && r.shooter >= 0 && r.shooter < r.shooters.Count && r.shooters[r.shooter] == p;
+        }
+
+        /// <summary>A song sung to its end: its score kept, and the next singer steps up.</summary>
+        public static void Sang(Pawn p)
+        {
+            var r = RunOf(p);
+            if (r == null || r.kind != ContestKind.Singing || r.shooter < 0 || r.shooter >= r.shooters.Count || r.shooters[r.shooter] != p) return;
+            int art = p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0, soc = p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
+            r.scoredF[p] = FeastMath.SingScore(art, soc, r.target is Building_MusicalInstrument, Rand.Value);
+            NextSinger(r);
+        }
+
+        private static void NextSinger(Run r)
+        {
+            while (++r.shooter < r.shooters.Count)
+            {
+                var x = r.shooters[r.shooter];
+                if (x == null || !x.Spawned || x.Downed || x.InMentalState || r.target == null || !r.target.Spawned || !x.CanReach(r.target, PathEndMode.Touch, Danger.Some)) continue;
+                var job = JobMaker.MakeJob(SingJob, r.target);
+                x.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+                if (x.CurJobDef == SingJob) return;
+            }
+        }
+
+        private static FeastResult SingingStep(GuestFeast p, Run r, bool timeUp)
+        {
+            if (!timeUp && r.shooter < r.shooters.Count)
+            {
+                var x = r.shooters[r.shooter];
+                // Their turn ended without a song (called away, the job lost): the next steps up.
+                if (x == null || !x.Spawned || x.CurJobDef != SingJob) NextSinger(r);
+                if (r.shooter < r.shooters.Count) return null;
+            }
+            var singers = r.scoredF.Keys.ToList();
+            int best = FeastMath.SingWinner(singers.Select(x => r.scoredF[x]).ToList());
+            var winner = best >= 0 ? singers[best] : null;
+            // together: said where the singing ended, among the singers and those who listened.
+            if (winner != null && winner.Spawned) Outsiders.Say(winner, "feastsingwin", null);
+            return Result(p, r, winner, singers.Count, r.target?.def?.label);
         }
     }
 }

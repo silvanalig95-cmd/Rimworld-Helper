@@ -568,6 +568,7 @@
         <texts>
           <li>A messenger of {FACTION} has brought the words of {NAME} to the colony, sealed. They cover every one of theirs, wherever they are held: {FACTION} ask whether the colony would let its {COUNT} prisoners of theirs walk home under it.\n\nNothing is offered for them. {FACTION} would remember it, the messenger says, and so would the prisoners.</li>
           <li>[theirLowtech] A rider of {FACTION} has come to the gate with the {TITLE}'s seal and the words of {NAME}, which say every one of theirs may come home. The colony holds {COUNT} of them. The rider asks whether they may walk home with the rest.</li>
+          <li>[bound] {FACTION}'s messenger has brought the words of {NAME} to the colony first of all their neighbours, as the tie between them asks. The colony holds {COUNT} of their people, and {FACTION} ask, as friends, whether they may walk home under it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

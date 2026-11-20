@@ -82,6 +82,7 @@
           <li>{X_nameDef}, a young one of {FACTION}, has stopped at the gate on the way to {NAME}. {X_pronoun} heard on the road that the colony is a good place to work, and asks, before going on, whether it has a place for one more pair of hands.\n\n{X_pronoun} is not asking for wages, only a bed and a place at the table.</li>
           <li>[theirLowtech] A young {FACTION} with a bundle and a staff is at the gate. {X_nameDef} was going to stand at {NAME} with the rest, {X_pronoun} says, but would sooner be taken on by people {X_pronoun} has heard well of than by whoever bids first.</li>
           <li>[theirHightech] {X_nameDef} of {FACTION} has come up to the gate with a folder of references and a nervous smile. {X_pronoun} was on the way to {NAME}, and wanted to try the colony first.</li>
+          <li>[bound] {X_nameDef}, a young one of {FACTION}, has come to the gate on the way to {NAME}. {X_pronoun} says {X_possessive} people speak of the colony as their own, with the tie between them, and {X_pronoun} would sooner work for it than for a stranger at the fair.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -196,6 +197,7 @@
         <texts>
           <li>A runner of {FACTION} is at the gate with the colony's word of {NAME} at {PLACE}. A gift from a neighbour is the custom, {X_pronoun} says, carried back with {X_objective}: nothing grand, but a neighbour who sends nothing is noticed.\n\n{COUNT} silver would be a good gift. Good wishes would be noticed too, a little less.</li>
           <li>[theirLowtech] A runner of {FACTION} has come to the gate with a ribbon of their colours and the word of {NAME}. By their custom a neighbour sends something back with the runner for the fire, and {X_pronoun} waits politely to see what it will be.</li>
+          <li>[bound] A runner of {FACTION} is at the gate with the word of {NAME} at {PLACE}, and a note that the colony's name has been put among those of their own, as the tie between them asks. A gift for the day is the custom, carried back with the runner; {COUNT} silver would be a good one.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
