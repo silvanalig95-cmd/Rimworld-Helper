@@ -26,7 +26,7 @@ Lines restored per part (lines of the part's files that differ from the plain te
 
 - ColonyCouncil: "raid, and {OTHER_nameDef} is the only raider still alive." is now "raid, and {OTHER_nameDef}, one of the enemy, is still alive."
 
-## Life goals (1 lines)
+## Life goals (1 line)
 
 **The colony's books are not always four** (1)
 
@@ -438,9 +438,10 @@ Lines restored per part (lines of the part's files that differ from the plain te
 - Rimfolk_WS_Wider: "{FACTION}'s riders came up the road two days later asking questions, and found the cart." is now "{FACTION}'s riders will come up the road in a day or two asking questions, and find the cart."; "The driver got away. The colony's name went back to" is now "The driver will get away, but the colony's name will go back to"
 - Rimfolk_WS_Wider: "table, and has the colony's cart axle greased before dark." is now "table, and asks what needs doing before the day is out."
 
-**A thing the map doesn't show** (5)
+**A thing the map doesn't show** (6)
 
 - Council_WS_Hardship: "and the colony can take the red cord off its gatepost. {FACTION} count" is now "and the colony's gate can open to travelers again. {FACTION} count"
+- Council_WS_Places: "their way home and left the trough full. The merchants" is now "their way home, and left their thanks. The merchants"
 - Council_WS_Powers: "{A_nameDef} as witness. / There is a fresh dent in the table where someone brought a fist down on the second day. The colony has decided to leave it." is now "{A_nameDef} as witness."
 - Rimfolk_WS_Beyond2: "The colony's painted token is nailed over the gate now, as a souvenir of the most expensive piece of wood it owns." is now "The colony's name is still on the toll-keeper's list, the most expensive line of ink it has ever paid for."
 - Rimfolk_WS_Beyond2: "forgotten it. One of the exiles has planted a row of beans by the wall, from seed brought out of {PLACE}." is now "forgotten it."
@@ -505,10 +506,6 @@ Lines restored per part (lines of the part's files that differ from the plain te
 - Council_WS_Region: "family sends a loaf of bread and their thanks." is now "family sends their thanks."
 - Rimfolk_WS_Beyond2: "gate and leaves a painted wooden token, to be shown at the chain." is now "gate and writes the colony's name on his list for the chain."
 - Rimfolk_WS_FollowUps: "colony carries bread and soup out to" is now "colony carries food out to"
-
-**?** (1)
-
-- Council_WS_Places: "their way home and left the trough full. The merchants" is now "their way home, and left their thanks. The merchants"
 
 **Silver and prizes still on their way with a courier** (9)
 
