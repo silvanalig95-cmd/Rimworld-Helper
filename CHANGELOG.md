@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Faces you can tell apart
+
+*20 November 2026, version 0.289.0*
+
+- Portraits show the person's face without helmets and hats, so a new helmet or hat no longer changes who it is.
+- Every portrait is framed by the person's own head, so children and other races fill it the same way grown-ups do.
+- Each portrait sits on the person's own colour, with the mark of their people or the colony.
+- Select anyone and a large portrait of them shows above the inspect pane, with their name and the name the colony knows them by.
+- Drag the large portrait's corner to make it larger or smaller; it moves beside an open tab.
+
 ## The camps' own words, said where they happen
 
 *20 November 2026, version 0.288.1*

@@ -15961,7 +15961,7 @@ Two patch classes, each applied on its own:
 Both signatures are the same in 1.6 and 1.7 (ApiDiff). The settings (How you're told, "Colonist bar") switch each kind,
 the break mark and its margin above the minor line, the wish threshold, size, corner and the most shown.
 
-### Portraits: the face engine and the portrait at the inspect pane (the player's go, 20 November 2026; not released yet)
+### Portraits: the face engine and the portrait at the inspect pane (the player's go, 20 November 2026; released 0.289.0)
 
 The player's words (20 November 2026): "when you write letters to people or there's an event and you see the
 character's icon ... these are just not recognizable characters to me, especially the ones from other factions", "and
