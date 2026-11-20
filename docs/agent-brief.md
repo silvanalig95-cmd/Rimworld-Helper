@@ -43,6 +43,9 @@ the mod is linked in `Tools/Tests/Tests.csproj`).
 `docs/HANDOFF.md` by keeping both sides' entries; for `1.6/Assemblies/ColonyCouncil.dll` rebuild). Commit on your worktree
 branch with plain messages ending with the attribution lines the lead gives you (the session's Co-Authored-By and
 Claude-Session lines).
+Commit your work as you go, a work-in-progress commit after each item or every hour of work: the container can restart
+and stop you, and only what is committed on your branch survives it (20 November 2026, two builds' work was saved only
+because it happened to be on disk).
 Don't push. Leave a clean tree.
 
 **Report:** what you built and where (a short code map); anything you weren't sure of or decided yourself; what can't
