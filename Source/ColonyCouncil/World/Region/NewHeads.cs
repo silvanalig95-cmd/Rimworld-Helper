@@ -213,8 +213,9 @@ namespace ColonyCouncil
         public override string Chosen(WorldSituation s, SituationContext ctx, SituationBeat beat, int option, bool risk, bool byDefault, string outcome)
         {
             if (beat.key != "gate") return outcome;
+            // Unanswered, the default answer is played out all the same (the word at the gate), so it counts as given.
             var o = option < beat.options.Count ? beat.options[option] : null;
-            string answer = byDefault ? "none" : o?.flags?.FirstOrDefault(x => x == "table" || x == "gift" || x == "word") ?? "none";
+            string answer = o?.flags?.FirstOrDefault(x => x == "table" || x == "gift" || x == "word") ?? "none";
             var head = Head(s);
             var f = s.ctx.faction;
             var map = ctx.map ?? s.ctx.map;

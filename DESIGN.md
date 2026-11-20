@@ -698,7 +698,9 @@ on the world event (its flags), the follow-ups, the holding and the council's le
   comes ahead with the start letter; within the day the head stands at the gate with two to four of their people
   (`VisitEffect_AtGate` with the head). The answers: sit them at the table (a feast play-out with them as guests, the
   colony's best talker hosting, and beds for the night), a gift from the stores (silver carried out to them), or a word
-  at the gate from the best talker (the default). What each temper does, as decided here: a kind head hands over a gift of
+  at the gate from the best talker (the default: unanswered, the word is played out all the same and the head remembers
+  it as given). The words fit every age: a messenger comes ahead (no saddles or horses in the lines), and a high-tech
+  people's head sends a message and makes a round of the settlements. What each temper does, as decided here: a kind head hands over a gift of
   their own whatever the answer (silver, carried in and set down: `Couriers.PaySilver` with the head as bearer); a greedy
   head asks the colony's trade terms, thinks more of a gift, and a caravan of theirs follows two to three days later; a
   harsh head wants a token of respect: the table pleases them more than anyone, a word alone costs goodwill; a steady
@@ -735,7 +737,8 @@ on the world event (its flags), the follow-ups, the holding and the council's le
   (`HappeningTracker.Weight`) and the storyteller's (`ChanceFactorNow`). The same for their camps: a kind only their
   calling sends (`CampKindDef.calling`), and the people a camp is drawn from. Their letters close with the tie in a line
   (`PeopleTies.LetterLine`, the strongest: a marriage, a ward, a hostage, fealty, a pact, an envoy, a debt; in the
-  letters' style). Their gifts go first to the colonist who carries the tie (`PeopleTiesMath.CarrierRank`: the ward's
+  letters' style; each either way round where it can be: theirs at the colony or the colony's own with them, for a ward,
+  a hostage, a spouse, an envoy and fealty). Their gifts go first to the colonist who carries the tie (`PeopleTiesMath.CarrierRank`: the ward's
   guardian, the one married in, the colonist a debt is about, else the colony's speaker for a pact, fealty or an envoy):
   the event is cast first with `PeopleEvents.Takers` yielding only them (`PeopleTies.Giving`), and when the event's own
   needs rule them out it is cast again as ever. Read once an hour; nothing saved.
@@ -757,8 +760,10 @@ on the world event (its flags), the follow-ups, the holding and the council's le
   (tension under 50) comes to a day of the calendar kept with a feast, a bonfire or games, or the harvest's day
   (`ColonyCalendar.KeepDay`), and to a custom whose kept answer gathers the colony (harvest home, the midsummer bonfire:
   `DilemmaTracker`'s tradition): within eighteen hours, once the gathering is under way, up to three of their grown
-  join it as its guests (`LordJob_PlayOut.guests`, kept at places round it and served at a feast) and one sets down a dish
-  from their own stores (simple meals, one each, from their provisions), with a line and a message. A colonist of the
+  walk over to join it as its guests (`LordJob_PlayOut.guests`, kept at places round it and served at a feast; a message
+  says they are walking over), and the first of them to come within seven cells of its spot sets down a dish from their
+  own stores (`HoldingDays.SetDownDish`: simple meals, one each, from their provisions, `HoldingDaysMath.Dish`), with a
+  line and a message as it is set down; a gathering over before any of them got there leaves the dish at home. A colonist of the
   colony buried in the last two days brings two of them to the grave (the holding's errand to one spot, `"spot"`, a line
   or two while they stand there), each grave once. Their own good days (decided here: the day in the year they settled,
   from the first year on; a birthday of one of theirs; and, rarely, a wedding in the family when two of their grown who
@@ -770,19 +775,24 @@ on the world event (its flags), the follow-ups, the holding and the council's le
   good year's guest hands over a gift of 60 to 120 silver by the colony's wealth (decided here: guests bring no gift
   otherwise, so the good year's is the gift), and the arrival's letter says each guest's year. The host's toast names it,
   one sentence. At the end a hard year's guest who ate thinks of the meal twice and of each contest half
-  (`FeastYearMath.Welcome`), and the hard years' guests carry home what is left: two meals a party from the stores into
-  their packs, never past half of what is spare (decided here: the host grants the ask; there is no question). The end
-  letter says so.
+  (`FeastYearMath.Welcome`). As the night begins after the feast, the hard years' guests who ate ask leave to carry home
+  what is left: a free colonist brings two meals a party out of the stores to each of them, never past half of what is
+  spare and only plain cooked meals (the keep-out errand's job for food to take home, `Rimfolk_BringOutToKeep`, which
+  hands the meals into their pack instead of having them eaten), and they leave with them in the morning. A message
+  names who brings what to whom as they set off (decided here: the host grants the ask; there is no question).
 - **Camps that come back bring the world's news (B31, `Camps/CampMemory.cs`).** The letter of a remembered camp coming
   back already says what became of them; it now says what they lived through at home too: the newest world event that
   ended at their people since they left (the world events' history), told by its kind and ending (`CampNewsMath.Topic`:
   the fever and who they lost, the drought and whether the rains came, the fire and the new mill, a flood, a hard winter,
   the herds' sickness, a good harvest, the fair, a new head, a war, a raid held or not, rebuilding, holy days, mourning),
   and when the colony helped them in it, that they know. In the camps' style.
-- **Seams with the other builds of this round.** B1 (world events in the peoples' own ways) and B3 (messengers telling
-  the road's news) are another build's: the kin's word comes with the courier at the moment it reaches the colony, after
-  the courier's own spoken line (`CourierTracker`), and touches neither the courier's lines nor the world events' texts.
-- **Dev mode** ("Rimfolk", "Peoples' ties: ..."): what binds each people (log); the new head comes to the gate now; a
+- **Seams with the world brought home (0.280.0).** B1 (world events in the peoples' own ways) and B3 (messengers telling
+  the road's news) are its own and are reused, not repeated: the kin's word comes with the courier at the moment it
+  reaches the colony, after the courier's own spoken line (`CourierTracker`), and touches neither the courier's lines,
+  the road's news at the mailbag (`RoadNews`) nor the world events' paragraphs in the peoples' ways; a people's own event
+  is cast with both the world event's steer (`WorldSteer.During`) and the tie's gift carrier (`PeopleTies.Giving`).
+- **Dev mode** ("Rimfolk", "Peoples' ties: ..."): what binds each people (log); one of a bound people's own events now
+  (the tie's line in its letter, the gift's carrier first); the new head comes to the gate now; a
   visitor from a struggling town asks for a meal; the visitors here dressed as from a flourishing town; the word of each
   hard year now; help sent home asked now; the neighbours join the gathering under way, come to a colony grave, ask the
   colony's friend over; a feast's guests and their towns' years (log); what each remembered camp would say of home (log).

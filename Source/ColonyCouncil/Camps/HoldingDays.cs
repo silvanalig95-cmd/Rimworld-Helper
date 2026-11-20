@@ -20,6 +20,8 @@ namespace ColonyCouncil
         public IntVec3 errandSpot = IntVec3.Invalid;
         /// <summary>The last day of theirs the colony's friend was asked to (a day's number), so a day asks once.</summary>
         public int lastGoodDay = -1;
+        /// <summary>The dish they bring to the gathering they walk over to, in meals, set down when the first of them gets there (0: none).</summary>
+        public int dishMeals;
 
         private void ExposeHoldingDays()
         {
@@ -28,6 +30,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastGraveSeen, "lastGraveSeen", -1);
             Scribe_Values.Look(ref errandSpot, "errandSpot", IntVec3.Invalid);
             Scribe_Values.Look(ref lastGoodDay, "lastGoodDay", -1);
+            Scribe_Values.Look(ref dishMeals, "dishMeals");
         }
     }
 
@@ -81,8 +84,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The hour (Peoples/PeoplesTies.cs): a day due finds its gathering under way and the neighbours join it as its
-        /// guests, one setting down a dish; a fresh grave of the colony's brings two of them to it.
+        /// The hour (Peoples/PeoplesTies.cs): a day due finds its gathering under way and the neighbours walk over to join it
+        /// as its guests; the first of them to get there sets down their dish; a fresh grave of the colony's brings two of them to it.
         /// </summary>
         public static void Hourly(int now)
         {
@@ -97,6 +100,7 @@ namespace ColonyCouncil
                         if (now > c.dayGuestUntil) c.dayGuestUntil = -1;
                         else if (JoinGathering(c, map)) c.dayGuestUntil = -1;
                     }
+                    if (c.dishMeals > 0) SetDownDish(c, map);
                     if (!c.ErrandSet) ToTheGrave(c, map, now);
                 }
                 catch (Exception e)
@@ -124,26 +128,53 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>
+        /// The gathering is under way: up to three of their grown walk over to it as its guests (kept at places round it,
+        /// served at a feast), with a dish from their stores while they have provisions, which the first of them to get
+        /// there sets down (<see cref="SetDownDish"/>). False while no gathering is under way.
+        /// </summary>
         internal static bool JoinGathering(Camp c, Map map)
         {
-            if (!Gathering(map, out var job, out var spot)) return false;
+            if (!Gathering(map, out var job, out _)) return false;
             var come = Grown(c).Take(HoldingDaysMath.Guests(Grown(c).Count)).ToList();
             if (come.Count == 0) return true;
             foreach (var p in come)
                 if (!job.guests.Contains(p)) job.guests.Add(p);
-            // A dish from their stores, set down by the gathering.
-            int meals = Mathf.Min(come.Count, Mathf.Max(1, c.provisions));
-            var dish = ThingMaker.MakeThing(ThingDefOf.MealSimple);
-            dish.stackCount = meals;
-            var at = PlaySpots.FreeCellNear(spot, map, come[0]);
-            if (at.IsValid && GenPlace.TryPlaceThing(dish, at, map, ThingPlaceMode.Near)) c.provisions = Mathf.Max(0, c.provisions - meals);
-            else dish = null;
-            string text = (dish != null ? "CC_HoldingDay_Came" : "CC_HoldingDay_CameNoDish").Translate(c.HoldingName.Named("NAME"), (c.dayGuestLabel ?? "").Named("DAY"),
-                TextUtil.JoinAnd(come.Select(p => p.LabelShort).ToList()).Named("WHO"), meals.Named("COUNT")).Resolve();
+            c.dishMeals = HoldingDaysMath.Dish(come.Count, c.provisions);
+            string text = (c.dishMeals > 0 ? "CC_HoldingDay_Coming" : "CC_HoldingDay_ComingNoDish").Translate(c.HoldingName.Named("NAME"), (c.dayGuestLabel ?? "").Named("DAY"),
+                TextUtil.JoinAnd(come.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
             Tell.Message(NewsKind.Colony, Importance.Notable, map, text, new LookTargets(come), MessageTypeDefOf.PositiveEvent);
-            Speech.Say(come[0], "CC_HoldingDay_CameLine".Translate((c.dayGuestLabel ?? "").Named("DAY")).Resolve());
             c.Warm(come[0], 1);
             return true;
+        }
+
+        /// <summary>
+        /// The first of them to reach the gathering sets their dish down beside it, with a word: simple meals from their own
+        /// provisions. Nothing when the gathering is over before any of them got there.
+        /// </summary>
+        internal static void SetDownDish(Camp c, Map map)
+        {
+            if (!Gathering(map, out var job, out var spot))
+            {
+                c.dishMeals = 0;
+                return;
+            }
+            var by = c.Here.Where(p => job.guests.Contains(p) && p.Spawned && !p.Downed && p.Position.InHorDistOf(spot, HoldingDaysMath.DishRange))
+                .OrderBy(p => p.Position.DistanceToSquared(spot)).FirstOrDefault();
+            if (by == null) return;
+            int meals = Mathf.Min(c.dishMeals, c.provisions);
+            c.dishMeals = 0;
+            if (meals <= 0) return;
+            var dish = ThingMaker.MakeThing(ThingDefOf.MealSimple);
+            dish.stackCount = meals;
+            var at = PlaySpots.FreeCellNear(by.Position, map, by);
+            if (!at.IsValid || !GenPlace.TryPlaceThing(dish, at, map, ThingPlaceMode.Near)) return;
+            c.provisions = Mathf.Max(0, c.provisions - meals);
+            Tell.Message(NewsKind.Colony, Importance.Notable, map,
+                "CC_HoldingDay_Dish".Translate(by.Named("PAWN"), c.HoldingName.Named("NAME"), (c.dayGuestLabel ?? "").Named("DAY"), meals.Named("COUNT")).Resolve(),
+                new LookTargets(by), MessageTypeDefOf.PositiveEvent);
+            // Said as they set it down by the gathering.
+            Speech.Say(by, "CC_HoldingDay_CameLine".Translate((c.dayGuestLabel ?? "").Named("DAY")).Resolve());
         }
 
         /// <summary>One of the colony's dead buried in the last two days: two of them come to stand at the grave.</summary>

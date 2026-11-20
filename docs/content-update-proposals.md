@@ -675,7 +675,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
   - Feasts: an invitation to the next feast with guests.
 - **Text:** flavour style (world events).
 - **Harm:** none.
-- **Built** (20 November 2026, the world's integrations, part 2: the peoples and their ties, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/NewHeads.cs`, `Rimfolk_WS_NewHead.xml`). Decided: a follow-up of the world events (kind `head`), three to eight days after the seat is settled, let go after thirty days or when they no longer lead; the best talker hosts at the table (a feast with them as guests and beds for the night) or says the word at the gate (the default); the kind head's gift is silver, handed over whatever the answer; the greedy head's caravan follows two to three days on; the steady head's pact offer comes as its own letter; the head sat at the table or given a gift is on the next feast's guest list (a promise on the ledger).
+- **Built** (20 November 2026, the world's integrations, part 2: the peoples and their ties, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/NewHeads.cs`, `Rimfolk_WS_NewHead.xml`). Decided: a follow-up of the world events (kind `head`), three to eight days after the seat is settled, let go after thirty days or when they no longer lead; the best talker hosts at the table (a feast with them as guests and beds for the night) or says the word at the gate (the default); the kind head's gift is silver, handed over whatever the answer; the greedy head's caravan follows two to three days on; the steady head's pact offer comes as its own letter; the head sat at the table or given a gift is on the next feast's guest list (a promise on the ledger); the words fit every age (a messenger comes ahead; a high-tech people's head makes a round of the settlements).
 
 **B5. Traders' prices follow the region's hard and good years** (E; S to M)
 - **On the map.** While a world event runs at a people's town, their caravans, visitors' traders and towns pay more for
@@ -978,7 +978,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Ties.** Camps and the holding, the calendar (`Calendar/ColonyCalendar.cs`, `CalendarDay.cs`), gatherings.
 - **Text:** flavour style for the camp's letters; bubbles as speech.
 - **Harm:** none.
-- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Camps/HoldingDays.cs`). Decided: the days are calendar days kept with a feast, a bonfire or games, the harvest's day, and customs kept with a gathering; up to three come as the gathering's guests and set down simple meals from their provisions; a grave within two days of the death, two of them; their good days are the day they settled, a birthday and a rare wedding in the family; a birth is left out (a camp can't care for a newborn on the map).
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Camps/HoldingDays.cs`). Decided: the days are calendar days kept with a feast, a bonfire or games, the harvest's day, and customs kept with a gathering; up to three walk over as the gathering's guests, and the first of them to get there sets down simple meals from their provisions; a grave within two days of the death, two of them; their good days are the day they settled, a birthday and a rare wedding in the family; a birth is left out (a camp can't care for a newborn on the map).
 
 ### Visitors, quests and the colony's name
 
@@ -1090,7 +1090,7 @@ the contest)
 - **Ties.** Feasts (`Diplomacy/Feasts.cs`, `FeastLetters.cs`), world events.
 - **Text:** flavour style for the letters; the toast is speech.
 - **Harm:** none.
-- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Diplomacy/FeastYear.cs`). Decided: a good year is the town's fair or a bumper harvest, a hard one any bad world event there; guests brought no gift before, so the good year's gift (60 to 120 silver) is the gift; the host grants the leftovers (two meals a party, never past half of what is spare) without a question.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Diplomacy/FeastYear.cs`). Decided: a good year is the town's fair or a bumper harvest, a hard one any bad world event there; guests brought no gift before, so the good year's gift (60 to 120 silver) is the gift; the host grants the leftovers (two meals a party, never past half of what is spare) without a question, and a colonist brings them out of the stores to each guest as the night begins, into their pack.
 
 ### More text
 

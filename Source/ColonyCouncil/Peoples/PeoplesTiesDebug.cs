@@ -36,6 +36,43 @@ namespace ColonyCouncil
             Say("written to the log.");
         }
 
+        [DebugAction("Rimfolk", "Peoples' ties: one of a bound people's own events now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugBoundEvent()
+        {
+            var options = new List<DebugMenuOption>();
+            foreach (var f in Peoples().Where(f => PeopleTies.Bound(f) && ColonyCouncil.Peoples.CallingOf(f) != null))
+            {
+                var people = f;
+                string calling = ColonyCouncil.Peoples.CallingOf(people);
+                options.Add(new DebugMenuOption(people.Name + " (" + PeopleTies.Describe(people) + ")", DebugMenuOptionMode.Action, () =>
+                {
+                    var events = DefDatabase<IncidentDef>.AllDefs.Where(d => d.GetModExtension<HappeningExtension>()?.callings?.Contains(calling) == true).OrderBy(d => d.defName).ToList();
+                    if (events.Count == 0)
+                    {
+                        Say("none of the peoples' own events names their calling (" + calling + ").");
+                        return;
+                    }
+                    var list = new List<DebugMenuOption>();
+                    foreach (var d in events)
+                    {
+                        var def = d;
+                        list.Add(new DebugMenuOption(def.defName, DebugMenuOptionMode.Action, () =>
+                        {
+                            var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, Map);
+                            parms.forced = true;
+                            var carrier = PeopleTies.CarrierFor(def, Map);
+                            bool done = def.Worker.CanFireNow(parms) && def.Worker.TryExecute(parms);
+                            Say(done ? def.defName + " came: its letter closes with the tie" + (carrier != null ? ", and a gift in it goes to " + carrier.LabelShort + " first, when it may." : ".")
+                                : def.defName + " couldn't come now (its own needs on the map).");
+                        }));
+                    }
+                    Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
+                }));
+            }
+            if (options.Count == 0) Say("no people of Rimfolk's is bound to the colony now (a pact, a marriage, a ward, an envoy, fealty or a debt of honour).");
+            else Find.WindowStack.Add(new Dialog_DebugOptionListLister(options));
+        }
+
         [DebugAction("Rimfolk", "Peoples' ties: the new head comes to the gate, now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugNewHead()
         {
@@ -137,7 +174,7 @@ namespace ColonyCouncil
                 return;
             }
             c.dayGuestLabel = "the day";
-            Say(HoldingDays.JoinGathering(c, Map) ? "they come over to the gathering with a dish." : "no feast, bonfire or party is running now (start a calendar day or a party first).");
+            Say(HoldingDays.JoinGathering(c, Map) ? "they walk over to the gathering; the first of them there sets down their dish (within the hour)." : "no feast, bonfire or party is running now (start a calendar day or a party first).");
         }
 
         [DebugAction("Rimfolk", "Peoples' ties: the neighbours for good come to a colony grave now", allowedGameStates = AllowedGameStates.PlayingOnMap)]

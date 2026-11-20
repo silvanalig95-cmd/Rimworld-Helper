@@ -1196,6 +1196,8 @@ namespace ColonyCouncil
             Winners(p, map);
             p.nightAt = Now;
             Moved(p, map, FeastStage.Night);
+            // A hard year's guests ask leave to carry home what is left: it is brought out to them now (Diplomacy/FeastYear.cs).
+            if (p.purpose == FeastPurpose.Feast) FeastYear.Leftovers(p, map);
             Focus(map, p, Visitors.IndoorsCell(map, p.AllGuests.Where(x => x.Spawned).ToList()), 5f);
             SourNights(p, map);
         }
@@ -1402,8 +1404,6 @@ namespace ColonyCouncil
                     FeastWords.Name(g).Named("NAME"), Why(g, hopeMet).Named("WHY")));
             }
             NotableBook.Changed();
-            // A hard year's guests carry home what is left (Diplomacy/FeastYear.cs), before they go.
-            if (!insulted && p.purpose == FeastPurpose.Feast) lines.AddRange(FeastYear.Leftovers(p, map));
             foreach (var g in p.guests.Where(g => g.state == GuestState.Here)) g.state = GuestState.Gone;
             LeaveAll(p, map);
             p.ended = Now;

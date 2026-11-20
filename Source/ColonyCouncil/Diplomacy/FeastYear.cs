@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace ColonyCouncil
 {
     /// <summary>
     /// A feast's guests bring their town's year (the content update's B29, 20 November 2026). A guest whose town has a
     /// world event running there now comes with it: from a hard year (any bad world event at their town) they think more of
-    /// the meal than of the contests (FeastYearMath.Welcome) and, when the colony has meals to spare, ask leave to carry
-    /// what is left home and take it with thanks (the meals go from the stores into their packs as they leave); from a good
-    /// year (their fair, a bumper harvest) they bring a gift, carried in and set down at the colony as they arrive. The host's
-    /// toast at the feast names it, in one sentence. Nothing is saved: the year is read as the feast goes.
+    /// the meal than of the contests (FeastYearMath.Welcome) and, when the colony has meals to spare, ask leave after the
+    /// feast to carry what is left home: a colonist brings the meals out of the stores to each of them, into their pack
+    /// (the keep-out errand's job for food to take home), and they leave with it in the morning; from a good year (their
+    /// fair, a bumper harvest) they bring a gift, handed over at the colony as they arrive. The host's toast at the feast
+    /// names it, in one sentence. Nothing is saved: the year is read as the feast goes.
     /// </summary>
     public static class FeastYear
     {
@@ -86,52 +88,59 @@ namespace ColonyCouncil
         public static float Welcome(FeastGuest g, float welcome, int contests) => FeastYearMath.Welcome(welcome, g.ate, contests, YearOf(g, out _));
 
         /// <summary>
-        /// The feast is over (Feasts.End, before the guests leave): a hard year's guests who ate carry home what is left, meals
-        /// from the stores into their packs, while the colony has meals to spare. The lines for the end's letter.
+        /// The feast is over and the night begins (Feasts, before the guests go to their beds): a hard year's guests who ate
+        /// ask leave to carry home what is left, and while the colony has meals to spare, a free colonist brings them out of
+        /// the stores to each of them, into their pack (two a party, never past half of what is spare). A message says who
+        /// is bringing what to whom as they set off; with nobody free to carry, or no meals to spare, nothing is asked.
         /// </summary>
-        public static List<string> Leftovers(GuestFeast p, Map map)
+        public static void Leftovers(GuestFeast p, Map map)
         {
-            var lines = new List<string>();
-            if (map == null) return lines;
-            var hard = p.guests.Where(g => g.ate && g.pawn != null && g.pawn.Spawned && g.pawn.Map == map && YearOf(g, out _) == TownYear.Hard).ToList();
-            if (hard.Count == 0) return lines;
-            int colonists = map.mapPawns.FreeColonistsSpawnedCount;
-            int spare = Math.Max(0, PlaySpots.CountMeals(map) - colonists);
+            var job = KeepOutDefOf.Rimfolk_BringOutToKeep;
+            if (map == null || job == null || map.dangerWatcher.DangerRating != StoryDanger.None) return;
+            var hard = p.guests.Where(g => g.ate && g.state == GuestState.Here && g.pawn != null && g.pawn.Spawned && g.pawn.Map == map && YearOf(g, out _) == TownYear.Hard).ToList();
+            if (hard.Count == 0) return;
+            // Plain meals that keep a day on the road, the plainest first: never the colony's fine dishes.
+            var meals = PlaySpots.Meals(map).Where(t => t.def.ingestible != null && t.def.ingestible.IsMeal).OrderBy(t => t.MarketValue).ToList();
+            int spare = Math.Max(0, meals.Sum(t => t.stackCount) - map.mapPawns.FreeColonistsSpawnedCount);
             int n = FeastYearMath.Leftovers(hard.Count, spare);
-            if (n <= 0) return lines;
+            if (n <= 0) return;
             int each = Math.Max(1, n / hard.Count);
+            var busy = new HashSet<Pawn>();
             foreach (var g in hard)
             {
                 try
                 {
-                    int took = Pack(g.pawn, map, each);
-                    if (took <= 0) continue;
+                    var guest = g.pawn;
+                    Thing meal = null;
+                    Pawn by = null;
+                    foreach (var t in meals)
+                    {
+                        if (!t.Spawned || t.stackCount <= 0) continue;
+                        int count = Math.Min(each, t.stackCount);
+                        by = map.mapPawns.FreeColonistsSpawned.Where(c => !busy.Contains(c) && PlayOuts.CanTakePart(c, map) && !c.Drafted && !c.WorkTypeIsDisabled(WorkTypeDefOf.Hauling))
+                            .OrderBy(c => c.Position.DistanceToSquared(t.Position)).Take(6)
+                            .FirstOrDefault(c => c.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some, 1, count) && c.CanReach(guest, PathEndMode.Touch, Danger.Some));
+                        if (by == null) continue;
+                        meal = t;
+                        break;
+                    }
+                    if (meal == null) continue;
+                    var bring = JobMaker.MakeJob(job, meal, guest);
+                    bring.count = Math.Min(each, meal.stackCount);
+                    // together: the colonist carries the meals out and walks over to the guest to hand them over (JobDriver_BringOutFood).
+                    by.jobs.StartJob(bring, JobCondition.InterruptForced, null, false, true);
+                    if (by.CurJob != bring) continue;
+                    busy.Add(by);
                     var s = Of(g);
-                    lines.Add("CC_FeastYear_Leftovers".Translate(g.pawn.Named("NAME"), TownName(g, s).Named("TOWN"), (s?.Label ?? "").Named("EVENT"), took.Named("COUNT")).Resolve());
+                    Tell.Message(NewsKind.World, Importance.Notable, map,
+                        "CC_FeastYear_Leftovers".Translate(guest.Named("NAME"), TownName(g, s).Named("TOWN"), (s?.Label ?? "").Named("EVENT"), bring.count.Named("COUNT"), by.Named("PAWN")).Resolve(),
+                        new LookTargets(new Thing[] { by, guest }), MessageTypeDefOf.PositiveEvent);
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("a feast's guests: the leftovers", e);
                 }
             }
-            return lines;
-        }
-
-        /// <summary>So many meals from the colony's stores into the guest's pack (the plainest first); how many went.</summary>
-        private static int Pack(Pawn guest, Map map, int count)
-        {
-            if (guest?.inventory?.innerContainer == null) return 0;
-            int took = 0;
-            foreach (var meal in PlaySpots.Meals(map).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer)).OrderBy(t => t.MarketValue).ToList())
-            {
-                if (took >= count) break;
-                var part = meal.SplitOff(Math.Min(count - took, meal.stackCount));
-                if (part == null) continue;
-                int n = part.stackCount;
-                if (guest.inventory.innerContainer.TryAdd(part)) took += n;
-                else GenPlace.TryPlaceThing(part, guest.Position, map, ThingPlaceMode.Near);
-            }
-            return took;
         }
     }
 }

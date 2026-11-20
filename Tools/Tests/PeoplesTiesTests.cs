@@ -90,6 +90,8 @@ public static class PeoplesTiesTests
         Check(HoldingDaysMath.Anniversary(40, 40, 60f) && !HoldingDaysMath.Anniversary(40, 40, 0f) && !HoldingDaysMath.Anniversary(40, 41, 400f) && !HoldingDaysMath.Anniversary(-1, -1, 400f),
             "the day they settled, from the first year on");
         Check(HoldingDaysMath.WeddingChance > 0f && HoldingDaysMath.WeddingChance <= 0.05f && HoldingDaysMath.FriendWarmth >= 1, "a wedding in the family is rare");
+        Check(HoldingDaysMath.Dish(3, 10) == 3 && HoldingDaysMath.Dish(3, 1) == 1 && HoldingDaysMath.Dish(3, 0) == 0 && HoldingDaysMath.Dish(0, 10) == 0
+              && HoldingDaysMath.DishRange > 2f && HoldingDaysMath.DishRange < 15f, "a simple meal each from their provisions, set down once one of them is at the gathering");
 
         // B29: a feast's guests bring their town's year.
         Check(FeastYearMath.Year("hunger", true) == TownYear.Hard && FeastYearMath.Year("fair", false) == TownYear.Good && FeastYearMath.Year("harvest", false) == TownYear.Good
@@ -184,6 +186,13 @@ public static class PeoplesTiesTests
         foreach (TieWay w in Enum.GetValues(typeof(TieWay)))
             if (w != TieWay.None) Check(keyed.ContainsKey("CC_Ties_Letter_" + w), $"the letter's line for a {w}");
         Check(keyed.ContainsKey("CC_Ties_Letter_FealtyOurs") && keyed.ContainsKey("CC_Ties_Letter_EnvoyOurs"), "the fealty and the envoy either way");
+        Check(keyed.ContainsKey("CC_Ties_Letter_WardOurs") && keyed.ContainsKey("CC_Ties_Letter_HostageOurs") && keyed.ContainsKey("CC_Ties_Letter_MarriageOurs"),
+            "a ward, a hostage and a spouse either way: theirs at the colony, or the colony's own with them");
+        Check(keyed.ContainsKey("CC_HoldingDay_Coming") && keyed.ContainsKey("CC_HoldingDay_ComingNoDish") && keyed.ContainsKey("CC_HoldingDay_Dish")
+              && keyed["CC_HoldingDay_Coming"].Contains("walking over") && !keyed.ContainsKey("CC_HoldingDay_Came"),
+            "the neighbours are said to be walking over as they set off, and their dish to be set down only once one of them is there");
+        Check(keyed["CC_FeastYear_Leftovers"].Contains("is bringing") && keyed["CC_FeastYear_Leftovers"].Contains("{PAWN_nameDef}"),
+            "the leftovers are told as a colonist sets off with them, naming who brings them");
         foreach (var a in new[] { "table", "gift", "word", "none" }) Check(keyed.ContainsKey("CC_NewHead_Note_" + a), $"the head's note for the answer {a}");
         var kin = keyed.Where(kv => kv.Key.StartsWith("CC_Kin_Letter_") && kv.Key != "CC_Kin_Letter_Label").Select(kv => kv.Value).ToList();
         Check(kin.Any(t => t.StartsWith("[courier,many]")) && kin.Any(t => t.StartsWith("[road,many]")) && kin.Where(t => !t.Contains("many]")).All(t => t.Contains("!many")),
@@ -226,6 +235,17 @@ public static class PeoplesTiesTests
         Check(Read("Diplomacy", "Feasts.cs").Contains("FeastYear.Arrived(p, map)") && Read("Diplomacy", "Feasts.cs").Contains("toastLine = FeastYear.Toast(p)")
               && Read("Diplomacy", "Feasts.cs").Contains("FeastYear.Welcome(g, g.welcome, contests)") && Read("Diplomacy", "Feasts.cs").Contains("FeastYear.Leftovers(p, map)"),
             "B29: the gift at the gate, the toast, the welcome, the leftovers");
+        string feastYear = Read("Diplomacy", "FeastYear.cs");
+        Check(feastYear.Contains("KeepOutDefOf.Rimfolk_BringOutToKeep") && !feastYear.Contains("innerContainer.TryAdd") && Read("Visitors", "KeepOut.cs").Contains("job.def != KeepOutDefOf.Rimfolk_BringOutToKeep")
+              && File.ReadAllText(Path.Combine(root, "Defs", "Misc", "Rimfolk_KeepOut.xml")).Contains("<defName>Rimfolk_BringOutToKeep</defName>"),
+            "B29: the leftovers are carried out to the guest by a colonist and kept in their pack, never put there from the stores unseen");
+        string feasts = Read("Diplomacy", "Feasts.cs");
+        Check(feasts.IndexOf("FeastYear.Leftovers(p, map)") > feasts.IndexOf("Moved(p, map, FeastStage.Night)") && feasts.IndexOf("FeastYear.Leftovers(p, map)") < feasts.IndexOf("public static void End("),
+            "B29: the leftovers are asked for and brought out as the night begins, while the guests are still at the colony");
+        string holdingDays = Read("Camps", "HoldingDays.cs");
+        Check(holdingDays.Contains("SetDownDish(c, map)") && holdingDays.Contains("Scribe_Values.Look(ref dishMeals"), "B22: the dish is set down by the first of them to reach the gathering, and is saved while they walk");
+        string newHeads = Read("World", "Region", "NewHeads.cs");
+        Check(!newHeads.Contains("byDefault ? \"none\""), "B4: an unanswered gate plays the default word, so the head remembers the word");
         Check(Read("Camps", "CampMemory.cs").Contains("WorldNews(c, past, tags)"), "B31: the camp back says what it lived through at home");
         Check(Read("World", "Region", "RegionBook.cs").Contains("PeoplesTies.Hourly(now)") && Read("World", "Region", "RegionBook.cs").Contains("PeoplesTies.Daily(now)"), "the hour and the day with the region's own");
         Check(!Regex.IsMatch(Read("World", "KinNews.cs"), @"\b(inherit\w*|heirs?|Heir\w*|FamilyLife\w*|Bloodline\w*)\b"), "B17 is flavour and mood: no inheritance, no duty to a family line");

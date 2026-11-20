@@ -636,9 +636,11 @@ repo.
   from a plague town may come home early. B22: the neighbours for good come to calendar days kept with a feast, a bonfire
   or games, the harvest's day and customs kept with a gathering (up to three as guests, one dish from their stores), to a
   grave in the two days after a burial, and ask the colony's nearest friend to their fire on their own good days (the
-  day they settled, a birthday, a rare wedding in the family). B29: a feast guest's town's year: a hard one weighs the meal
-  over the contests and carries home two meals a party when there are meals to spare, a good one (their fair, a bumper
-  harvest) brings 60 to 120 silver, and the toast names their town. B31: a camp coming back says what it lived through at
+  day they settled, a birthday, a rare wedding in the family); the dish is set down by the first of them to reach the
+  gathering. B29: a feast guest's town's year: a hard one weighs the meal over the contests and, when there are meals to
+  spare, asks to take some home after the feast (a colonist brings two meals a party out of the stores to each of them
+  that night, into their pack), a good one (their fair, a bumper harvest) brings 60 to 120 silver, and the toast names
+  their town. B31: a camp coming back says what it lived through at
   home (the newest world event that ended at their people since, and that the colony helped).
   - Code: `Peoples/PeoplesTiesMath.cs` (pure, linked: every item's rules), `Peoples/PeopleTies.cs` (B14),
     `World/Region/FortuneShows.cs` (B12, with `Patch_FortuneShowsGroup` on `IncidentWorker_NeutralGroup.SpawnPawns`),
@@ -652,7 +654,9 @@ repo.
     (`MakePeople` dressed), `Outsiders/OutsiderAutoMath.cs`, `OutsiderAuto.cs`, `OutsiderOutcomes.cs` (the meal asked
     for), `World/Workers_Situations.cs` (both successions remember the head), `World/Region/FollowUps.cs` (kind `head`),
     `Diplomacy/FeastDialog.cs` and `Feasts.cs` (the promised head on the list, the town's year at the arrival, the toast,
-    the welcome and the leftovers), `Couriers/CourierTracker.cs` (the word with the courier), `Heart/FeelingWorkers2.cs`
+    the welcome, and the leftovers as the night begins), `Visitors/KeepOut.cs` and `Defs/Misc/Rimfolk_KeepOut.xml` (the
+    errand's twin job `Rimfolk_BringOutToKeep`: food handed into a visitor's pack to take home, not eaten there),
+    `Couriers/CourierTracker.cs` (the word with the courier), `Heart/FeelingWorkers2.cs`
     (the worry), `Calendar/CalendarKeeping.cs` and `Dilemmas/Dilemmas.cs` (a day or custom kept tells the neighbours),
     `Camps/Holding.cs` and `CampRequests.cs` (the holding's fields saved, the errand to one spot), `World/Region/RegionBook.cs`.
     Defs: `Defs/WorldSituationDefs/Rimfolk_WS_NewHead.xml`, `Defs/DilemmaDefs/Rimfolk_Dilemmas_KinSendHome.xml`,
@@ -660,14 +664,21 @@ repo.
     on 77 events in `Defs/IncidentDefs/Rimfolk_Events_PeopleEvents*.xml`, Keyed `Rimfolk_PeoplesTies.xml`. Tests:
     `PeoplesTiesTests` (the rules, the defs and lines, the seams). `Tools/DefValidator/Program.cs` knows `{EVENT}`;
     `Tools/playout_audit.py` the new play-out effect; `Tools/playout_skips.txt` the new head's ending (told after it
-    happened). Saved: nothing new as a collection: the holding's five values, the council question's context, and the
-    follow-up and the world event's flags as they were.
-  - Seams with the other builds: B1 (world events in the peoples' own ways) and B3 (messengers' road news) are the world
-    brought home's. The kin's word comes with a courier at the moment it reaches the colony, one line after the courier's
-    own spoken line in `CourierTracker` (`KinNews.CourierCame(t)`), and touches neither the courier's lines
-    (`CourierWords`, `Rimfolk_CourierLines`) nor the world events' texts; a merge there keeps both lines. The calendar's
-    `KeepDay` gets one line (`HoldingDays.DayKept`) beside the shared times'; the wishes, ambitions and calendar build may
-    touch the lines around it.
+    happened). Saved: nothing new as a collection: the holding's six values (with the dish its people carry over), the
+    council question's context, and the follow-up and the world event's flags as they were.
+  - Seams with the world brought home (0.280.0): B1 (world events in the peoples' own ways) and B3 (messengers' road
+    news) are its own and reused, not repeated. The kin's word comes with a courier at the moment it reaches the colony,
+    one line after the courier's own spoken line in `CourierTracker` (`KinNews.CourierCame(t)`), and touches neither the
+    courier's lines (`CourierWords`, `Rimfolk_CourierLines`, the road's news at the mailbag) nor the world events'
+    paragraphs. A people's own event is cast inside both the world event's steer (`WorldSteer.During`) and the tie's gift
+    carrier (`PeopleTies.Giving`): the merge of `IncidentWorker_Happening.TryExecuteWorker` keeps both. The calendar's
+    `KeepDay` gets one line (`HoldingDays.DayKept`) beside the shared times'.
+  - Finished after the restart (the first work was saved unchecked): the merge onto 0.280.0; the tie's line either way
+    round for a ward, a hostage and a spouse (the colony's own with them has its own line); the new head's words for
+    every age (a messenger ahead, no saddles; a high-tech head's own start lines) and an unanswered gate counted as the
+    word it plays out; the neighbours' dish set down when the first of them reaches the gathering, not as they set off;
+    the feast's leftovers carried out to each guest by a colonist as the night begins instead of moved into their packs
+    unseen at the end; a dev action for a bound people's own event; the tests for all of it; every check run.
   - Decided here (open in the proposals): B4's head is a follow-up (three to eight days, let go after thirty or when they
     no longer lead), the word at the gate is the default, the kind head's gift is silver, the greedy head's caravan comes
     two to three days on, the feast invitation is a promise the feast dialog reads. B12's town is the people's nearest,
@@ -684,12 +695,15 @@ repo.
     the worn and better clothes on the game's groups and the caravan's pack beast let go before its group is made (its load
     on another's back), the meal asked and seen to, the small gift carried in; a people's event cast for the carrier first
     and again as ever; the letter from home with a courier, the heart's worry, the council's question and the help carried
-    to the gate for their runner; the ward's letter and the early recall; the neighbours as a gathering's guests with their
-    dish, at a grave, and the friend's evening at their fire; the feast's gift, toast and leftovers in a guest's pack; the
-    camp's news line in its letter.
+    to the gate for their runner; the ward's letter and the early recall; the neighbours walking over as a gathering's
+    guests and the first there setting down their dish (checked hourly, so up to an hour after they arrive), at a grave,
+    and the friend's evening at their fire; the feast's gift, toast, and the leftovers carried out to a guest at night (the
+    colonist's walk into the guests' room, the meals kept in their pack and not eaten there); the camp's news line in its
+    letter.
   - Try in the game (dev mode, "Rimfolk", "Peoples' ties: ..."): 1. "what binds each people (log)": each people's ties,
     whether the colony broke its word, the factor on their events and camps, the gift's carrier, who at the colony has a
-    tie, and what their nearest town's fortune shows. 2. "the new head comes to the gate, now..." and pick a people: the
+    tie, and what their nearest town's fortune shows; then "one of a bound people's own events now..." and pick a people
+    and one of its events: the letter's last line names the tie, and a gift in it goes to the tie's carrier first. 2. "the new head comes to the gate, now..." and pick a people: the
     start letter, then within the day the head and two to four of theirs at the gate; answer with the table and watch the
     supper with them as guests; their notable's card has the note; plan a feast with guests and the head is on the list. 3.
     "a visitor from a struggling town asks for a meal..." on a visitor: their clothes are worn, and once a colonist is near
@@ -697,8 +711,10 @@ repo.
     plague or famine running at a people someone at the colony has a tie to (a match, a ward), "the word of each hard year
     comes now": the letter from home and the mood; "help sent home is asked now": the question, and the food or medicine
     carried to the gate for their runner. 5. With neighbours for good: start a party, then "the neighbours for good join the
-    gathering under way now" (they come with a dish), "come to a colony grave now", "ask the colony's friend over now". 6.
-    With a feast with guests planned, "a feast's guests and their towns' years (log)". 7. "what each remembered camp would
+    gathering under way now" (they walk over; the first there sets down their dish within the hour), "come to a colony
+    grave now", "ask the colony's friend over now". 6. With a feast with guests planned, "a feast's guests and their towns'
+    years (log)"; with a plague running at a guest's town, hold the feast and watch the evening after it: a colonist
+    carries meals out to that guest. 7. "what each remembered camp would
     say of home (log)" after a world event ended at a remembered camp's people.
   - Mods that would help: none needed. Two in their list but not enabled would add to it: Tavern (Workshop 3775694305,
     1.6 and 1.7; tables, benches and dishes for the gatherings the neighbours and the new head sit at) and P-Music

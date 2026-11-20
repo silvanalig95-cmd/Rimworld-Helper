@@ -3856,7 +3856,7 @@ doctor, and enemies on the land may kill one of them, after which the rest may b
 card on the region window's Here and away, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
 to ask them to move on. Or the colony takes them all in instead, camp and goods and children. They keep the colony's days too, while they're at ease with it: up to
 three of them come to a calendar day's feast, bonfire or games, or a custom kept with a gathering (harvest home), as its
-guests, one setting down a dish from their own stores; two of them come to stand at a grave of the colony's in the two
+guests, the first of them there setting down a dish from their own stores; two of them come to stand at a grave of the colony's in the two
 days after a burial; and on their own good days (the day they settled, a birthday, now and then a wedding in the family)
 they ask the colonist warmest with them over to their fire for the evening.
 
@@ -4446,7 +4446,7 @@ regard, and their people remember it; an empty plate is a slight. A bout's blow 
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
 conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*. A guest whose town is
 in a world event now brings its year: from a hard year they think more of the meal than of the contests and, with meals
-to spare, carry two home a party; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
+to spare, ask to take some home, and a colonist brings two a party out of the stores to them that night; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
 host's toast names their town. A new head of a people asked to the next feast at the colony's gate is on its guest list
 already.
 

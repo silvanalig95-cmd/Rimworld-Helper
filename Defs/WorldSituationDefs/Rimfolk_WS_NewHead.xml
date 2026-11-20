@@ -4,7 +4,7 @@
   <!--
     The new head comes to the gate (the content update's B4, 20 November 2026; Source/ColonyCouncil/World/Region/NewHeads.cs).
     A few days after "a new leader" or "a contested seat" settles at a people at peace with the colony, the one who now
-    leads them rides out to see the region and stops at the colony's gate with two to four of their people. It never
+    leads them sets out to see the region and stops at the colony's gate with two to four of their people. It never
     starts by itself: the world events' follow-ups start it (kind "head"). {X} the new head, {A} the colony's best talker
     (who hosts them or speaks for the colony), {COUNT} the gift's silver, {FACTION} their people, {PLACE} their town,
     {TITLE} their leader's title. Flags: kind, greedy, harsh or steady (their temper, as the succession read it),
@@ -24,13 +24,15 @@
     <durationDays>4~5</durationDays>
     <kind>head</kind>
     <titles>
-      <li>{X_nameDef} rides out</li>
+      <li>{X_nameDef} on the road</li>
       <li>The new {TITLE} of {FACTION}</li>
     </titles>
     <texts>
-      <li>[succeeded] {X_nameFull} has not held the seat at {PLACE} long, and has already saddled up to see the land {X_pronoun} now speaks for. The road brings {X_objective} past the colony.\n\nWord came ahead with a rider: the new {TITLE} means to stop at the gate, with a few of {FACTION} at {X_possessive} side.</li>
-      <li>[claimed] The quarrel over the seat at {PLACE} is barely cold, and {X_nameFull} is already on the road, riding round the neighbours who will have to live with the result. The colony is on the way.\n\nA rider came ahead to say so: the new {TITLE} will stop at the gate.</li>
-      <li>[theirLowtech] {X_nameFull}, the new {TITLE} of {FACTION}, is walking the bounds of {X_possessive} people's land, as their heads do in their first season, and the bounds pass close to the colony.\n\n{X_pronoun} will stop at the gate with a few of {X_possessive} people, the rider says, to see the neighbours with {X_possessive} own eyes.</li>
+      <li>[succeeded,theirLowtech] {X_nameFull} has not held the seat at {PLACE} long, and has already set out to see the land {X_pronoun} now speaks for. The road brings {X_objective} past the colony.\n\nWord came ahead with a messenger: the new {TITLE} means to stop at the gate, with a few of {FACTION} at {X_possessive} side.</li>
+      <li>[claimed,theirLowtech] The quarrel over the seat at {PLACE} is barely cold, and {X_nameFull} is already on the road, going round the neighbours who will have to live with the result. The colony is on the way.\n\nA messenger came ahead to say so: the new {TITLE} will stop at the gate.</li>
+      <li>[theirLowtech] {X_nameFull}, the new {TITLE} of {FACTION}, is walking the bounds of {X_possessive} people's land, as their heads do in their first season, and the bounds pass close to the colony.\n\n{X_pronoun} will stop at the gate with a few of {X_possessive} people, the messenger says, to see the neighbours with {X_possessive} own eyes.</li>
+      <li>[succeeded,theirHightech] {X_nameFull} has not held the seat at {PLACE} long, and is already out on the roads to see the settlements {X_pronoun} now speaks for. The colony is on the way.\n\nA short message came ahead: the new {TITLE} means to stop at the gate, with a few of {FACTION} along.</li>
+      <li>[claimed,theirHightech] The quarrel over the seat at {PLACE} is barely settled, and {X_nameFull} is already making the round of the neighbours who will have to live with the result.\n\nA message came ahead to say so: the new {TITLE} will stop at the colony's gate.</li>
       <li>[theirHightech] A short message from {PLACE}: {X_nameFull}, the new {TITLE} of {FACTION}, is making a round of the region's settlements and would like to stop at the colony. {X_pronoun} will come with a small escort and will not stay long.</li>
     </texts>
     <summaries>
@@ -56,7 +58,7 @@
         <texts>
           <li>[kind] {X_nameDef}, the new {TITLE} of {FACTION}, has reached the gate with a few of {X_possessive} people and is waiting there, looking the colony over with open interest. {X_pronoun} has asked after the colony's harvest and its children before anyone thought to ask after {X_possessive} journey.</li>
           <li>[greedy] {X_nameDef}, the new {TITLE} of {FACTION}, is at the gate with a few of {X_possessive} people. {X_pronoun} has already had a look at the colony's walls and its sheds, and the first thing {X_pronoun} asked was what the colony sells, what it buys, and at what prices.</li>
-          <li>[harsh] {X_nameDef}, the new {TITLE} of {FACTION}, stands at the colony's gate with a few of {X_possessive} people and has not dismounted. {X_pronoun} is waiting to see how the colony receives the head of {FACTION}, and {X_possessive} people are watching for any slight.</li>
+          <li>[harsh] {X_nameDef}, the new {TITLE} of {FACTION}, stands at the colony's gate with a few of {X_possessive} people and has not come a step further. {X_pronoun} is waiting to see how the colony receives the head of {FACTION}, and {X_possessive} people are watching for any slight.</li>
           <li>[steady] {X_nameDef}, the new {TITLE} of {FACTION}, has stopped at the gate with a few of {X_possessive} people. {X_pronoun} is in no hurry, looks at everything, and says little until spoken to.</li>
           <li>[steady,pactTalk] {X_nameDef}, the new {TITLE} of {FACTION}, has stopped at the gate with a few of {X_possessive} people. {X_pronoun} has said, plainly, that {FACTION} and the colony have done well by each other, and that {X_pronoun} would like to talk about doing better.</li>
         </texts>
@@ -66,8 +68,8 @@
             <label>Sit them at the table, with {A_nameDef} hosting</label>
             <outcome>{A_nameDef} brings {X_nameDef} and {X_possessive} people in to supper from the colony's stores, and beds are found for them for the night.</outcome>
             <outcomes>
-              <li>[kind] {A_nameDef} brings {X_nameDef} and {X_possessive} people in to supper and finds them beds for the night. Before sitting down, {X_nameDef} has a gift of {X_possessive} own carried in from the horses.</li>
-              <li>[harsh] {A_nameDef} brings {X_nameDef} in to the colony's table with every courtesy, and {X_nameDef} gets down from the saddle at last. A seat at the table was what {X_pronoun} wanted to see.</li>
+              <li>[kind] {A_nameDef} brings {X_nameDef} and {X_possessive} people in to supper and finds them beds for the night. Before sitting down, {X_nameDef} has a gift of {X_possessive} own brought in from {X_possessive} baggage.</li>
+              <li>[harsh] {A_nameDef} brings {X_nameDef} in to the colony's table with every courtesy, and {X_nameDef} comes in through the gate at last. A seat at the table was what {X_pronoun} wanted to see.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
@@ -99,10 +101,10 @@
           </li>
           <li>
             <label>A word at the gate from {A_nameDef}</label>
-            <outcome>{A_nameDef} goes out to the gate and talks with {X_nameDef} a while, and {X_nameDef} rides on afterwards.</outcome>
+            <outcome>{A_nameDef} goes out to the gate and talks with {X_nameDef} a while, and {X_nameDef} goes on {X_possessive} way afterwards.</outcome>
             <outcomes>
-              <li>[harsh] {A_nameDef} goes out to the gate and says the colony's greetings. {X_nameDef} hears {A_objective} out from the saddle, says little, and rides on. A word at the gate was not what {X_pronoun} came for.</li>
-              <li>[kind] {A_nameDef} goes out and talks with {X_nameDef} at the gate a while. {X_nameDef} leaves a gift of {X_possessive} own all the same, and rides on.</li>
+              <li>[harsh] {A_nameDef} goes out to the gate and says the colony's greetings. {X_nameDef} hears {A_objective} out at the gate, says little, and goes on {X_possessive} way. A word at the gate was not what {X_pronoun} came for.</li>
+              <li>[kind] {A_nameDef} goes out and talks with {X_nameDef} at the gate a while. {X_nameDef} leaves a gift of {X_possessive} own all the same, and goes on {X_possessive} way.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} with {X_nameDef} at the gate</label><who>A</who><to>Stranger</to><duration>1~1.5</duration></li>
@@ -129,15 +131,15 @@
       <li>
         <key>visited</key>
         <titles>
-          <li>{X_nameDef} rides home</li>
+          <li>{X_nameDef} goes home</li>
         </titles>
         <texts>
           <li>[table] {X_nameDef} has gone home to {PLACE}, and the talk there is of the supper at the colony and of {A_nameDef}, who kept the new {TITLE} at the table till late. {FACTION} will remember who sat them down.</li>
           <li>[table,invited] {X_nameDef} has gone home to {PLACE}. The colony asked {X_objective} to its next feast with guests before {X_pronoun} left, and {X_pronoun} said {X_pronoun} would come.</li>
-          <li>[gift] {X_nameDef} has ridden home to {PLACE} with the colony's gift, and {FACTION} have heard of it.</li>
-          <li>[gift,greedy] {X_nameDef} has ridden home to {PLACE} with the colony's silver, and the colony's name has gone into {X_possessive} book among the friends worth trading with. A caravan of {FACTION} has already been sent along the road.</li>
-          <li>[word,!harsh] {X_nameDef} has ridden on to the next of {FACTION}'s neighbours. The colony gave {X_objective} a civil word at the gate, and that was enough for a first meeting.</li>
-          <li>[word,harsh] {X_nameDef} has ridden on, and {FACTION} have heard that the colony kept their new {TITLE} standing at the gate. It will be remembered at {PLACE}, and not kindly.</li>
+          <li>[gift] {X_nameDef} has gone home to {PLACE} with the colony's gift, and {FACTION} have heard of it.</li>
+          <li>[gift,greedy] {X_nameDef} has gone home to {PLACE} with the colony's silver, and the colony's name has gone into {X_possessive} book among the friends worth trading with. A caravan of {FACTION} has already been sent along the road.</li>
+          <li>[word,!harsh] {X_nameDef} has gone on to the next of {FACTION}'s neighbours. The colony gave {X_objective} a civil word at the gate, and that was enough for a first meeting.</li>
+          <li>[word,harsh] {X_nameDef} has gone on, and {FACTION} have heard that the colony kept their new {TITLE} standing at the gate. It will be remembered at {PLACE}, and not kindly.</li>
           <li>[kindGift] {X_nameDef} has gone home to {PLACE}, and the gift {X_pronoun} left at the gate is in the colony's stores. {FACTION} have a head who gives first and asks after.</li>
           <li>[pactOffered] {X_nameDef} has gone home to {PLACE} and kept {X_possessive} word: {FACTION}'s offer of a trade pact has come by letter, for the colony to take or leave.</li>
           <li>{X_nameDef} has gone home to {PLACE}, and the colony knows a little better who now leads {FACTION}.</li>

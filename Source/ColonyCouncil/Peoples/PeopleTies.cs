@@ -14,6 +14,8 @@ namespace ColonyCouncil
         public Pawn carrier;
         /// <summary>The name the letter gives it: the ward, the spouse, the envoy; or null.</summary>
         public string who;
+        /// <summary>The one it names is the colony's own, living with them (a ward or hostage of the colony's at their town, the colony's own married into it).</summary>
+        public bool ours;
     }
 
     /// <summary>
@@ -46,13 +48,15 @@ namespace ColonyCouncil
                     var ours = Matches.OursOf(t);
                     var theirs = Matches.TheirsOf(t);
                     var carrier = KinMemory.Ours(theirs) ? theirs : KinMemory.Ours(ours) ? ours : null;
-                    list.Add(new PeopleBond { way = TieWay.Marriage, carrier = carrier, who = (theirs ?? ours)?.LabelShort });
+                    // Theirs came to live at the colony, or the colony's own went to live at their town.
+                    bool wentToThem = !KinMemory.Ours(theirs) && ours != null && !KinMemory.Ours(ours);
+                    list.Add(new PeopleBond { way = TieWay.Marriage, carrier = carrier, who = (wentToThem ? ours : theirs ?? ours)?.LabelShort, ours = wentToThem });
                 }
                 foreach (var w in Wards.With(f))
                 {
                     if (w == null) continue;
                     var carrier = w.Theirs && w.stage == WardStage.Here && KinMemory.Ours(w.guardian) ? w.guardian : null;
-                    list.Add(new PeopleBond { way = w.Hostage ? TieWay.Hostage : TieWay.Ward, carrier = w.Hostage ? null : carrier, who = w.pawn?.LabelShort ?? w.name });
+                    list.Add(new PeopleBond { way = w.Hostage ? TieWay.Hostage : TieWay.Ward, carrier = w.Hostage ? null : carrier, who = w.pawn?.LabelShort ?? w.name, ours = !w.Theirs });
                 }
                 var speaker = Speaker(null);
                 var envoy = Envoys.With(f, out var envoyHome);
@@ -205,6 +209,8 @@ namespace ColonyCouncil
                 if (way == TieWay.Fealty && Fealty.With(f) == null) key += "Ours";
                 // The envoy's: theirs here, or the colony's there.
                 if (way == TieWay.Envoy && Envoys.With(f, out _) == null) key += "Ours";
+                // A ward, a hostage or a spouse: theirs at the colony, or the colony's own with them.
+                if ((way == TieWay.Ward || way == TieWay.Hostage || way == TieWay.Marriage) && bond.ours) key += "Ours";
                 if (!key.CanTranslate()) return null;
                 return key.Translate((f.Name ?? "").Named("PEOPLE"), (bond.who ?? "").Named("WHO")).Resolve();
             }

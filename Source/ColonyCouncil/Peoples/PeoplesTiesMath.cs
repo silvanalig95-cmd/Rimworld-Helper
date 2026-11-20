@@ -240,6 +240,12 @@ namespace ColonyCouncil
 
         public static int Guests(int grown) => Math.Max(0, Math.Min(GuestsMost, grown));
 
+        /// <summary>Their dish: a simple meal for each who comes, from their provisions while they have any (0: none).</summary>
+        public static int Dish(int coming, int provisions) => coming <= 0 || provisions <= 0 ? 0 : Math.Min(coming, provisions);
+
+        /// <summary>The first of them this near the gathering's spot sets the dish down.</summary>
+        public const float DishRange = 7f;
+
         /// <summary>A burial this fresh (hours since the death) brings them to the grave; a grave seen once is not come to again.</summary>
         public const float FuneralHours = 48f;
 
