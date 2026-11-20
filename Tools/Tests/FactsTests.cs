@@ -298,6 +298,24 @@ public static class FactsTests
         var none = new FactSet();
         FactsMath.AddLately(none, "them", new[] { ("tie:favour:made", 31f) });
         C(none.tags.Count == 0, "nothing lately: no tag");
+
+        // The world's events: whose they are, and another people's heard of on the road (B10).
+        C(FactsMath.SituationRank(true, false, false) == 3 && FactsMath.SituationRank(false, true, false) == 2 && FactsMath.SituationRank(false, false, true) == 1
+          && FactsMath.SituationRank(false, false, false) == 0, "a world event is theirs, theirs as its second people, the region's own, or another people's");
+        C(FactsMath.Heard(0) && !FactsMath.Heard(1) && !FactsMath.Heard(2) && !FactsMath.Heard(3), "only another people's is heard of on the road");
+        var heard = new FactSet();
+        FactsMath.AddHeard(heard, "Council_WS_Plague", true, "the gray cough", "Kettleford", "the Iron Hand", 2f);
+        C(heard.tags.SetEquals(new[] { "heard", "heard:bad", "heard:ws:Council_WS_Plague" }) && heard.values["HEARD"] == "the gray cough"
+          && heard.values["HEARDPLACE"] == "Kettleford" && heard.values["HEARDPEOPLE"] == "the Iron Hand", "a world event heard of: its tags, its name, its place and its people");
+        C(heard.heat["heard"] == FactsMath.Fresh(2f, 12f, 1.2f) && heard.heat["heard"] < FactsMath.Fresh(2f, 12f, 3f),
+          "heard of on the road, less current than a people's own");
+        var heardGood = new FactSet();
+        FactsMath.AddHeard(heardGood, "Council_WS_Fair", false, "the fair", null, null, 1f);
+        C(heardGood.tags.Contains("heard:good") && !heardGood.values.ContainsKey("HEARDPLACE") && !heardGood.values.ContainsKey("HEARDPEOPLE"),
+          "a good one is heard:good, and a place or a people it has none of is left out");
+        var heardNone = new FactSet();
+        FactsMath.AddHeard(heardNone, "Council_WS_Fair", false, null, null, null, 1f);
+        C(heardNone.tags.Count == 0, "nothing heard without a name");
     }
 
     // ---------------- The library ----------------
