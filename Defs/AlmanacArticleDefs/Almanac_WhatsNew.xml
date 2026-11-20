@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.277.2</version>
+        <date>20 November 2026</date>
+        <title>Each people's own beginning</title>
+        <points>
+          <li>Each people's faith, its talk at the gate and its Almanac page now tell the same history as its description, and only the six peoples who keep a founder's name still name one.</li>
+          <li>Every people's beginning is told its own way: the league's nine wagons at Harrow Ford, the Deepwell vote, the Kiln Guild's marked bridge, the Choir's generations at the Spire.</li>
+          <li>New towns and peoples no longer take the old founders' names.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.277.1</version>
         <date>20 November 2026</date>
         <title>New traits from a life lived</title>

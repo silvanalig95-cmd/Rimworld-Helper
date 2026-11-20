@@ -19,7 +19,7 @@
     (Rimfolk_Evt_RepublicPapers); it asks a conscript for a season, who goes to its town and comes back by the world's own
     roads (Rimfolk_Evt_RepublicConscript); and its radio praises or denounces the colony once a season (Peoples/PeoplesF2.cs,
     RepublicRadio). Their ask: a witness for the count of their election (Rimfolk_Mission_RepublicCount). Their founding:
-    Clement Ashdown, the postmaster who kept the radio on. Faith (Ideology): loyalty to the Republic, Vanilla Ideology
+    a small town's postmaster who kept the radio on. Faith (Ideology): loyalty to the Republic, Vanilla Ideology
     Expanded's republic and city builders. Kinds of people: hussars, genies, highmates, Neanderthals, pigskins, the
     Uredde, Åskbarns and Venators, four in five baseliners.
   -->
@@ -69,7 +69,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Republic Never Fell</ideoName>
-    <ideoDescription>The Republic never fell: it simply has fewer citizens than it used to. Its laws stand, its census goes on, its elections are held on the day, and every citizen owes it a duty and is owed its protection in turn. Order is kept, the count is kept and the radio is kept on, because a government that stops speaking stops being one. Clement Ashdown, the postmaster who answered the radio the winter the capital went dark, read the old laws aloud every evening until other towns answered, and every law since is dated from that first broadcast.</ideoDescription>
+    <ideoDescription>The Republic never fell: it simply has fewer citizens than it used to. Its laws stand, its census goes on, its elections are held on the day, and every citizen owes it a duty and is owed its protection in turn. Order is kept, the count is kept and the radio is kept on, because a government that stops speaking stops being one. The winter the capital went dark, a small town's postmaster, the most senior official left on the radio, read the old laws aloud every evening until other towns answered, and every law since is dated from that first broadcast.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
       <!-- Elections held on the day: Vanilla Ideology Expanded's republic. -->
@@ -634,7 +634,7 @@
         <li>townWord->District of</li>
         <li>townWord->Municipality of</li>
         <li>townWord->Free Borough of</li>
-        <li>townVirtue->Ashdown</li>
+        <li>townVirtue->Lower</li>
         <li>townVirtue->New</li>
         <li>townVirtue->Old</li>
         <li>townVirtue->Upper</li>

@@ -96,7 +96,7 @@
     <match Class="PatchOperationAdd">
       <xpath>Defs/IncidentDef[defName="Council_Evt_Schoolteacher"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
       <value>
-        <li>[their:scholars] {X_nameDef}, a fellow of {FACTION}, teaches children their letters wherever there are children, as the society's first readers learned theirs from Ilse Varro's copied pages. For {COUNT} silver, {X_nameDef} will give the colony's children a day of lessons.</li>
+        <li>[their:scholars] {X_nameDef}, a fellow of {FACTION}, teaches children their letters wherever there are children, as the society's first readers learned theirs from a clerk's copies of the eleven books saved from Hesk. For {COUNT} silver, {X_nameDef} will give the colony's children a day of lessons.</li>
       </value>
     </match>
   </Operation>

@@ -138,13 +138,13 @@
       <plain>
         <li>[chat,them,their:linesmen] We fear silence more than storms, because silence is how the region fell apart.</li>
         <li>[endwarm,them,their:linesmen] If you ever need a word carried, call it up a mast and ask for me.</li>
-        <li>[faithtalk,them,their:linesmen] Ennis Calloway walked the hills with a coil of copper, and his first mast is never quiet.</li>
+        <li>[faithtalk,them,their:linesmen] The first mast went up on its ridge after the long war, and it has never gone off the air.</li>
         <li>[chat,them,their:drillers] Nobody decides alone in the union, and nobody goes down alone either.</li>
         <li>[endwarm,them,their:drillers] If your ground ever wants drilling, send for the union and ask for me.</li>
-        <li>[faithtalk,them,their:drillers] Marta Grieve put it to the vote when the seam ran dry, and we voted to stay together.</li>
+        <li>[faithtalk,them,their:drillers] When the seam ran dry the miners voted to stay together, and we still vote on everything.</li>
         <li>[chat,them,their:citizens] The Republic never fell, it simply has fewer citizens than it used to.</li>
         <li>[endwarm,them,their:citizens] Come to the town hall one day, and I'll find you the right form myself.</li>
-        <li>[faithtalk,them,their:citizens] Clement Ashdown read the old laws on the radio each evening until other towns answered.</li>
+        <li>[faithtalk,them,their:citizens] Every law we keep is dated from the first evening the old laws were read out on the radio.</li>
         <li>[chat,them,their:crew] We keep ship's time wherever we are, it is the only clock that never stopped.</li>
         <li>[endwarm,them,their:crew] If the order ever comes, I'll see that your name is in the log.</li>
         <li>[faithtalk,them,their:crew] Imre Sallow told us to keep our posts until the order came, and died before he gave it.</li>

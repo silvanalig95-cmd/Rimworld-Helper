@@ -16,7 +16,7 @@
     (Rimfolk_Plan_LatticeYards). At the gate: repairs to the colony's mechs (Rimfolk_Evt_LatticeRepair); a lost mech of
     theirs wandering onto the map, returned or kept at a cost to goodwill (Rimfolk_Evt_LatticeLostMech); the part-trader
     for the colony's subcores and chips (Rimfolk_Evt_LatticeParts); the engineers' turret. Their ask: two good crafters for
-    a day at the yards (Rimfolk_Mission_LatticeHands). Their founding: Tamsin Arro linked the first ten. Faith (Ideology):
+    a day at the yards (Rimfolk_Mission_LatticeHands). Their founding: a deserter linked the first ten. Faith (Ideology):
     the gestalt and mechanoid supremacy of Vanilla Ideology Expanded's memes, and the mechlink's transhumanist.
   -->
 
@@ -78,7 +78,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Lattice</ideoName>
-    <ideoDescription>A mind alone is a candle, and a lattice is a lamp. Every link holds two, the mind and the mech, and every mech holds the minds it is linked to, so that nothing linked is ever wholly lost. Tamsin Arro walked out among a hundred stilled mechs and linked the first ten to her own mind, and when three others took ten more each the minds began to share a quiet between them. The Lattice keeps that quiet, mends what is broken in it and never leaves a mind alone in the dark.</ideoDescription>
+    <ideoDescription>A mind alone is a candle, and a lattice is a lamp. Every link holds two, the mind and the mech, and every mech holds the minds it is linked to, so that nothing linked is ever wholly lost. A deserter walked out among a hundred stilled mechs and linked the first ten to her own mind, and when three others took ten more each, the minds began to share a quiet between them. The Lattice keeps that quiet, mends what is broken in it and never leaves a mind alone in the dark.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
       <!-- One working whole: Vanilla Ideology Expanded's gestalt and mechanoid supremacy. -->
@@ -657,7 +657,7 @@
         <li>latticeVirtue->Quiet</li>
         <li>latticeVirtue->First</li>
         <li>latticeVirtue->Exact</li>
-        <li>latticeVirtue->Arro's</li>
+        <li>latticeVirtue->Deserter's</li>
         <li>latticeVirtue->Hundred</li>
       </rulesStrings>
     </rulePack>
@@ -678,7 +678,7 @@
         <li>yardWord->Tower</li>
         <li>yardWord->Link</li>
         <li>yardVirtue->Still</li>
-        <li>yardVirtue->Arro's</li>
+        <li>yardVirtue->Deserter's</li>
         <li>yardVirtue->Quiet</li>
         <li>yardVirtue->Hundred</li>
       </rulesStrings>

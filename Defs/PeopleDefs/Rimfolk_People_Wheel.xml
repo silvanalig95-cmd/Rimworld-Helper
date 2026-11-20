@@ -16,7 +16,7 @@
     (Rimfolk_Evt_WheelMending); scrap-runners buy slag and broken things and sell a refurbished piece (Rimfolk_Evt_WheelScrap);
     a wrecked mechanoid near the colony brings them at a run (Rimfolk_Evt_WheelWreck). Their ask: parts for a broken axle
     (Rimfolk_Mission_WheelAxle). The travelling tinker and the scrap-pickers' camp come from them likeliest. Their
-    founding: Mab Wainwright, who put her house on her cart the night the valley burned and never took it off. Faith
+    founding: the night the valley burned and everyone drove out on carts, and nobody has voted to stop. Faith
     (Ideology): the town as one (collectivist), salvage (VE Memes' scrapper) and the road (VE Memes' nomad). Kinds of
     people: wasters, dirtmoles, genies, starjacks (Odyssey), VRE's androids, stoneborn, boglegs and Alpha Genes' lapis,
     three in four baseliners.
@@ -68,7 +68,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Turning Wheel</ideoName>
-    <ideoDescription>Nothing is broken, only waiting. What others throw away is bought, mended and sold back better, and nothing on the Wheel is wasted, least of all a person. The Wheel is everyone on it together: what one yard earns the whole town eats, and no one hand stops it turning. The road is home, because standing still is how the fire catches you. Mab Wainwright drove out ahead of the flames with her house on her cart, and nobody has ever voted to stop.</ideoDescription>
+    <ideoDescription>Nothing is broken, only waiting. What others throw away is bought, mended and sold back better, and nothing on the Wheel is wasted, least of all a person. The Wheel is everyone on it together: what one yard earns the whole town eats, and no one hand stops it turning. The road is home, because standing still is how the fire catches you. On the night of the fire the whole valley put its houses on carts and drove out ahead of the flames, and nobody has ever voted to stop.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
       <!-- Salvage bought and sold back better: Vanilla Ideology Expanded's scrapper. -->
@@ -629,7 +629,7 @@
         <li>yardWord->Scrapyard</li>
         <li>yardWord->Wagon Circle</li>
         <li>yardWord->Last Stop</li>
-        <li>yardVirtue->Wainwright's</li>
+        <li>yardVirtue->Cartwright's</li>
         <li>yardVirtue->Tomorrow's</li>
         <li>yardVirtue->Brass</li>
         <li>yardVirtue->Rolling</li>

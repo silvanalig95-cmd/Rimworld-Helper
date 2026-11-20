@@ -15,7 +15,7 @@
     stormglass rod set on the colony's roof that draws the lightning and keeps the forecasts right
     (Rimfolk_Evt_GlassRod); a reader who teaches the colony's weather-reader to read the glass (Rimfolk_Evt_GlassLesson).
     Their ask: an apprentice who stays a season to study the colony's sky (Rimfolk_Mission_GlassApprentice). Their
-    founding: Hesper Lyle, the glassblower who sealed a vial of every storm. Faith (Ideology): nature first, the sky read
+    founding: a harvest lost to hail, and the glassblower who sealed a vial of every storm after it. Faith (Ideology): nature first, the sky read
     (VE Memes' astrology) and the psychic tide (VE Memes' psychic focus). Kinds of people: genies, yttakin, highmates,
     Rimsenal's Åskbarns and Uredde, avaloi, archons, high elves, three in four baseliners and more.
   -->
@@ -65,12 +65,12 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Read Sky</ideoName>
-    <ideoDescription>The sky is the world thinking aloud, and a patient mind can learn its hand. Every storm is written down and every vial kept, because the planet repeats itself to those who listen; what the sky has done it will do again, and the frost that killed a harvest once is not let to kill another. The world comes first and the people who read it second, and a reader who is sure is a reader who has stopped listening. Hesper Lyle sealed a vial of every storm for thirty years until the glass spoke back, and the tower still fills one for each.</ideoDescription>
+    <ideoDescription>The sky is the world thinking aloud, and a patient mind can learn its hand. Every storm is written down and every vial kept, because the planet repeats itself to those who listen; what the sky has done it will do again, and the frost that killed a harvest once is not let to kill another. The world comes first and the people who read it second, and a reader who is sure is a reader who has stopped listening. In the village the hail had starved, a glassblower sealed a vial of every storm for thirty years until the glass spoke back, and every tower still fills one for each.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
       <!-- The sky read for what it says: Vanilla Ideology Expanded's astrology. -->
       <li MayRequire="VanillaExpanded.VMemesE">VME_Astrology</li>
-      <!-- The readers who have watched the sky longest heard first, as Hesper Lyle took thirty years to read it: Vanilla
+      <!-- The readers who have watched the sky longest heard first, as the first glassblower took thirty years to read it: Vanilla
            Ideology Expanded's elders (its psychic focus needs Royalty as well, so not that). -->
       <li MayRequire="VanillaExpanded.VMemesE">VME_Elders</li>
     </forcedMemes>
@@ -650,7 +650,7 @@
         <li>towerWord->Glasshouse</li>
         <li>towerWord->Weather Garden</li>
         <li>towerWord->Rod Hill</li>
-        <li>towerVirtue->Lyle's</li>
+        <li>towerVirtue->Glassblower's</li>
         <li>towerVirtue->Hailstone</li>
         <li>towerVirtue->Brass Cap</li>
         <li>towerVirtue->High Wind</li>

@@ -13,7 +13,7 @@
     bell-keeper leads the funeral of one of the colony (Rimfolk_Evt_BellFuneral); with Anomaly, a bell-keeper warns that
     the ground is stirring before the void acts (Rimfolk_Evt_BellVoidSigns). Their grave-gardens ask for linen for
     shrouds in a plague year (Rimfolk_Mission_BellShrouds), and the undertakers come from them likeliest. Their founding:
-    Ysolde Marr, who buried the raiders nobody would after the long war and rang a cracked bell over every grave. Faith
+    the dead nobody would bury after the long war, and a cracked chapel bell rung over every grave. Faith
     (Ideology): guilt for the unburied, and the bell-keepers as a priesthood (VE Memes' exalted priesthood); the morbid
     style. Kinds of people: dirtmoles who dig, fungoids of the grave-gardens, stoneborn carvers of the ossuaries,
     forsaken and dark elves, three in four baseliners.
@@ -80,7 +80,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Quiet Ground</ideoName>
-    <ideoDescription>Everyone is owed a bell. The dead of every people are given a grave and rung for once, friend and foe alike, because the ground keeps what it is given and gives back what it is not. Those who did the killing owe the burying most of all. The bell-keepers keep the rites and listen to the ground, and they are heard before anyone. Ysolde Marr buried the raiders nobody else would and rang her cracked bell over every grave until the fields were quiet, and the Bell has been ringing since.</ideoDescription>
+    <ideoDescription>Everyone is owed a bell. The dead of every people are given a grave and rung for once, friend and foe alike, because the ground keeps what it is given and gives back what it is not. Those who did the killing owe the burying most of all. The bell-keepers keep the rites and listen to the ground, and they are heard before anyone. After the long war the Bell went out into the fields with spades and a cracked chapel bell, buried the raiders nobody else would and rang over every grave until the ground was quiet, and it has been ringing since.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Guilty</li>
       <!-- The bell-keepers who keep the rites and are heard first: Vanilla Ideology Expanded's exalted priesthood. -->
@@ -586,7 +586,7 @@
         <li>gardenWord->Bell Tower</li>
         <li>gardenWord->Grave-garden</li>
         <li>gardenWord->Long Field</li>
-        <li>gardenVirtue->Marr's</li>
+        <li>gardenVirtue->Chapel</li>
         <li>gardenVirtue->Quiet</li>
         <li>gardenVirtue->Evening</li>
         <li>gardenVirtue->Ashen</li>

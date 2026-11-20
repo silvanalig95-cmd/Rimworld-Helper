@@ -17,7 +17,7 @@
     game's rate if the colony's hand works the drill with them (Rimfolk_Evt_UnionDrill); an assayer sells steel,
     components and blasting goods (Rimfolk_Evt_UnionGoods); in a strike their trade stalls (no caravans, no trade at their
     towns, none from their visitors) until the colony helps settle it at the gate (Rimfolk_Evt_UnionStrike). Their ask: two
-    good miners for a short shift (Rimfolk_Mission_UnionShift). Their founding: Marta Grieve and the vote to stay. Faith
+    good miners for a short shift (Rimfolk_Mission_UnionShift). Their founding: the miners' vote to stay. Faith
     (Ideology): the union as one (collectivist), the tunnellers, and Vanilla Ideology Expanded's industrialism. Kinds of
     people: dirtmoles, Neanderthals, wasters, the Stoneborn, boglegs, Korgs and awakened gorillas, four in five baseliners.
   -->
@@ -66,7 +66,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Union Book</ideoName>
-    <ideoDescription>The ground keeps what it is given, and the union goes down together to ask for it back. Every member and every shift is written in the book, nobody decides alone, and a strike is called only by vote. Work is the whole of the faith: a seam worked well, a shaft shored right, everyone up again at the end of the shift. When the seam under Deepwell ran dry and the owners fled, Marta Grieve put it to the vote in the hall, and the miners chose to stay together, so the book's first page is that vote and every name under it.</ideoDescription>
+    <ideoDescription>The ground keeps what it is given, and the union goes down together to ask for it back. Every member and every shift is written in the book, nobody decides alone, and a strike is called only by vote. Work is the whole of the faith: a seam worked well, a shaft shored right, everyone up again at the end of the shift. When the seam under Deepwell ran dry and the owners fled in the night, the miners put it to the vote in the hall and chose to stay together, so the book's first page is that vote and every name under it.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
       <!-- Those who go down into the ground: Ideology's tunnellers. -->
@@ -640,7 +640,7 @@
         <li>pitWord->Headframe</li>
         <li>pitWord->Diggings</li>
         <li>pitWord->Boomtown</li>
-        <li>pitVirtue->Grieve's</li>
+        <li>pitVirtue->Union</li>
         <li>pitVirtue->Second</li>
         <li>pitVirtue->Copper</li>
         <li>pitVirtue->Lucky</li>

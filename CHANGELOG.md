@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Each people's own beginning
+
+*20 November 2026, version 0.277.2*
+
+- Each people's faith, its talk at the gate and its Almanac page now tell the same history as its description, and only the six peoples who keep a founder's name still name one.
+- Every people's beginning is told its own way: the league's nine wagons at Harrow Ford, the Deepwell vote, the Kiln Guild's marked bridge, the Choir's generations at the Spire.
+- New towns and peoples no longer take the old founders' names.
+
 ## New traits from a life lived
 
 *20 November 2026, version 0.277.1*
