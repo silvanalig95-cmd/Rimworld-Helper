@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content update's variety, the world (Source/ColonyCouncil/World/Variety/; docs/content-update-proposals.md, part B). Plain words. -->
+
+  <!-- A season of games: the colony's games day (GamesDay.cs; Diplomacy/Feasts.cs, FeastPurpose.Games). -->
+  <CC_Variety_GamesDay_Off>Feasts with guests are switched off in the settings.</CC_Variety_GamesDay_Off>
+  <CC_Variety_GamesDay_Busy>The colony already has guests coming for a feast.</CC_Variety_GamesDay_Busy>
+  <CC_Variety_GamesDay_Impact>In two days or so, on the first fine morning, the young people of the two peoples come for bouts, a race and a shooting match where the colony has targets, eat at its table and stay the night.</CC_Variety_GamesDay_Impact>
+  <CC_Variety_GamesDay_ImpactBrief>a games day at the colony</CC_Variety_GamesDay_ImpactBrief>
+  <CC_Feast_Arrive_Games>The young people have come for the games day: {GUESTS} of {PEOPLES}, each with one or two friends. They are walking up to the gate to wait there.</CC_Feast_Arrive_Games>
+  <CC_Feast_HereAs_Games>here for the games day</CC_Feast_HereAs_Games>
+  <CC_Feast_Week_Games>A games day: {GUESTS}</CC_Feast_Week_Games>
+
+  <!-- A pardon proclaimed (Pardon.cs). -->
+  <CC_Variety_Pardon_Impact>The colony's {0} prisoners of their people are walked out to the edge of its land by a warden and let go.</CC_Variety_Pardon_Impact>
+  <CC_Variety_Pardon_ImpactBrief>prisoners sent home</CC_Variety_Pardon_ImpactBrief>
+  <CC_Variety_Pardon_Released>The wardens are walking the colony's {0} prisoners of {1} out to the edge of its land, to go home under the pardon.</CC_Variety_Pardon_Released>
+
+  <!-- The great burying: the colony's unburied dead taken to the old field (VarietyWorkers.cs, DilemmaEffect_BuryingTake). -->
+  <CC_Variety_Burying_Impact>The sextons carry the {0} dead lying out on the colony's land to their beast and take them away to be buried.</CC_Variety_Burying_Impact>
+  <CC_Variety_Burying_ImpactBrief>the dead taken away</CC_Variety_Burying_ImpactBrief>
+
+</LanguageData>

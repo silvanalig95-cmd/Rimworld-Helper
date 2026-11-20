@@ -22,7 +22,9 @@ namespace ColonyCouncil
     public enum FeastPurpose
     {
         Feast,
-        Wedding
+        Wedding,
+        /// <summary>A games day in a season of games (World/Variety/GamesDay.cs): the young of two friendly peoples come for the contests, the meal and a night.</summary>
+        Games
     }
 
     /// <summary>Where a feast with guests stands, step by step (never a time left).</summary>

@@ -318,6 +318,15 @@ namespace ColonyCouncil
             int times = history.Count(r => r.defName == d.defName);
             // The way to play leaning the game draws the kinds it is about (Story/StoryDirection.cs).
             w *= StoryDirection.SituationFactor(d.kind);
+            // What its own worker says of now (World/Variety/: cloth after the flocks were lost).
+            try
+            {
+                w *= UnityEngine.Mathf.Max(0f, d.Worker.WeightFactor(map));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world situation weight " + d.defName, e);
+            }
             return w / (1f + times * 0.5f);
         }
 

@@ -238,6 +238,8 @@
     <situationKinds>
       <li>weather</li>
       <li>drove</li>
+      <!-- Cloth gone scarce (World/Variety/, B6): wool is wanted. -->
+      <li>Rimfolk_WS_ClothScarce</li>
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>

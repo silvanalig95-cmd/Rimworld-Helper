@@ -138,9 +138,9 @@ namespace ColonyCouncil
         /// <summary>How tidy they keep their ground: their own word, else orderly for those who leave no trace, careless for those who come to fight.</summary>
         public CampTidy Tidy => tidy != CampTidy.Usual ? tidy : leaves == CampLeaves.NoTrace ? CampTidy.Orderly : fights ? CampTidy.Careless : CampTidy.Usual;
         /// <summary>
-        /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds): while one
-        /// runs, the camp comes <see cref="situationWeight"/> times as often, and its lines can ask for [ws:kind] and
-        /// name it ({SITUATION}).
+        /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds, or one world event by
+        /// its defName: cloth gone scarce for the shearers): while one runs, the camp comes <see cref="situationWeight"/>
+        /// times as often, and its lines can ask for [ws:kind] and name it ({SITUATION}).
         /// </summary>
         public List<string> situationKinds;
         public float situationWeight = 3f;

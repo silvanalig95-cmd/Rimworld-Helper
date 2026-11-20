@@ -59,6 +59,8 @@
       <li>weather</li>
       <li>rebuild</li>
       <li>fire</li>
+      <!-- Timber gone scarce (World/Variety/, B6): by its name, as cloth and iron are scarcities too. -->
+      <li>Rimfolk_WS_TimberScarce</li>
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>

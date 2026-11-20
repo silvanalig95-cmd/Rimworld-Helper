@@ -86,7 +86,7 @@ namespace ColonyCouncil
             if (kind == null || kind.situationKinds.NullOrEmpty()) return null;
             var inst = WorldSituations.Instance;
             if (inst == null) return null;
-            return inst.Running.FirstOrDefault(s => s.def != null && kind.situationKinds.Contains(s.def.kind));
+            return inst.Running.FirstOrDefault(s => s.def != null && (kind.situationKinds.Contains(s.def.kind) || kind.situationKinds.Contains(s.def.defName)));
         }
 
         /// <summary>The name the texts use for a world event: "the gray cough", or the event itself.</summary>
