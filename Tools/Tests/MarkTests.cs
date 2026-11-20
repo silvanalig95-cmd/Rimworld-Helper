@@ -84,7 +84,8 @@ public static class MarkTests
         var marks = new List<XElement>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "PersonaDefs"), "*Marks*.xml"))
             marks.AddRange(XDocument.Load(file).Root!.Elements("ColonyCouncil.PersonaMarkDef"));
-        Check(marks.Count >= 35 && marks.Count <= 60, $"about forty marks ({marks.Count})");
+        // Six more from the colony's own life (the content update's A22, LifeVariety/LifeMarksDeeds.cs).
+        Check(marks.Count >= 35 && marks.Count <= 70, $"about forty to sixty marks ({marks.Count})");
         var families = new Dictionary<string, List<XElement>>();
         var thoughtsUsed = new HashSet<string>();
         foreach (var m in marks)

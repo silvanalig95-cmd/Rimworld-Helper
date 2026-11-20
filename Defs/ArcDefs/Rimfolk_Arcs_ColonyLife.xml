@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Six personal stories of the colony's own life (the content update's variety, the player's go of 20 November 2026;
+    Source/ColonyCouncil/LifeVariety/ColonyStories.cs), each starting from what Rimfolk knows and moving on only as things
+    happen on the map:
+    - a custom of their own: the one who first asked for a custom, until it is kept a second year and becomes a tradition
+      ({NAME} the custom; let pass, [letpass]);
+    - a promise waited on: a wish the council promised, still open after four days, until it is met ({NAME} the wish; let
+      lapse, [lapsed]);
+    - ready for the seat: someone whose life goal is a seat, practising its work, standing for it, and holding it ({NAME} the
+      seat; an election lost, [lost]);
+    - a prayer for a friend: a believer with someone close laid up, sitting with them, and giving thanks at the shrine of the
+      god they hold ({NAME}, as they call it) when the friend is well: their belief, never the colony's knowledge;
+    - an unexpected gift: a gift on the giving day from someone they thought little of, a word of thanks, and a friendship;
+    - the year's aim: a life goal said aloud at the year's first supper, halfway, and reached ({GOAL}).
+    Personal stories, so the flavour style.
+  -->
+
+  <!-- ===================================================================================================== -->
+  <!-- A custom of their own                                                                                  -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_CustomOfTheirOwn</defName>
+    <label>a custom of their own</label>
+    <summary>The one who first asked for one of the colony's customs, watching it come round again the next year and become a tradition. Let pass before then, it comes to nothing.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_CustomOfTheirOwn</workerClass>
+    <weight>0.8</weight>
+    <maxDays>200</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>asked for</label>
+        <waiting>Next: {NAME} comes round again next year and is kept.</waiting>
+        <journal>
+          <plain>
+            <li>I asked for {NAME}, and the colony kept it. I keep thinking about next year already.</li>
+            <li>It was my idea, {NAME}. Nobody said so out loud, but they all know.</li>
+            <li>{NAME} went well. I'd like it to go on after this year, and the year after that.</li>
+          </plain>
+          <warm><li>Everyone came for {NAME}. I didn't expect that, and I was glad.</li></warm>
+          <blunt><li>{NAME} happened. Good. Same again next year.</li></blunt>
+          <cheerful><li>My custom, kept. I'm already planning how next year's will be bigger.</li></cheerful>
+          <gloomy><li>They kept {NAME} once. Once is easy. We'll see about next year.</li></gloomy>
+          <cold><li>The custom was kept. Whether it lasts depends on whether it was worth keeping.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} hopes {NAME}, which {PAWN_pronoun} first asked for, will be kept again next year.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>20</minDays>
+          <timeoutDays>75</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>kept again</label>
+        <waiting>Next: {NAME} is kept a third year and becomes a tradition.</waiting>
+        <journal>
+          <plain>
+            <li>{NAME} came round again, and the colony kept it again. Twice is the start of something.</li>
+            <li>Nobody had to be reminded about {NAME} this year. I noticed that.</li>
+            <li>One more year and {NAME} is a tradition. I'm trying not to count the days.</li>
+          </plain>
+          <warm><li>The children asked about {NAME} before anyone else did this year. That's how a custom lasts.</li></warm>
+          <blunt><li>Kept twice. One more.</li></blunt>
+          <cheerful><li>Twice now. One more year and it's ours for good.</li></cheerful>
+          <gloomy><li>Kept twice. Something will get in the way of the third, it usually does.</li></gloomy>
+          <cold><li>The custom has been kept two years running. The third will decide it.</li></cold>
+        </journal>
+        <chronicle><li>{NAME}, which {PAWN_nameDef} first asked for, was kept again.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>20</minDays>
+          <timeoutDays>75</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>a tradition</label>
+        <journal>
+          <plain>
+            <li>{NAME} is a tradition now. I asked for it once, three years ago, and now it belongs to everyone.</li>
+            <li>Somebody told a newcomer today that we've always kept {NAME}. I didn't correct them.</li>
+          </plain>
+          <warm><li>It's the colony's now, not mine, and that's what I wanted all along.</li></warm>
+          <blunt><li>{NAME} is a tradition. Took three years.</li></blunt>
+          <cheerful><li>A tradition, and mine. Well, everyone's, but I asked first.</li></cheerful>
+          <gloomy><li>A tradition. It'll be kept long after anyone remembers who asked for it.</li></gloomy>
+          <cold><li>The custom is now a tradition. It will last as long as the colony does.</li></cold>
+        </journal>
+        <chronicle><li>{NAME}, which {PAWN_nameDef} first asked for, is a tradition of the colony now.</li></chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[letpass] The colony let {NAME} pass this year. I suppose it wasn't what I thought it was.</li>
+        <li>[letpass] {NAME} came round and nobody kept it. I kept it a little, on my own.</li>
+        <li>I hoped {NAME} would last. It didn't, this time.</li>
+      </plain>
+      <gloomy><li>[letpass] I asked for {NAME}, and now it's gone. That's how most things go here.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[letpass] {NAME}, which {PAWN_nameDef} first asked for, was let pass.</li>
+      <li>{NAME} did not become a tradition after all.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} asked for {NAME}, years ago. We'll keep it for {OTHER_objective}.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A promise waited on                                                                                    -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_PromiseWaited</defName>
+    <label>a promise waited on</label>
+    <summary>Someone the council promised their wish, still waiting for it days later: hopeful, then restless, until it is kept. If the promise lapses, it comes to nothing.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_PromiseWaited</workerClass>
+    <weight>0.9</weight>
+    <maxDays>40</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>hoping</label>
+        <waiting>Next: two days of waiting, then restless.</waiting>
+        <journal>
+          <plain>
+            <li>The council said it would see to {NAME}. I've stopped asking, which isn't the same as stopped hoping.</li>
+            <li>A promise is a promise. I keep telling myself that every morning.</li>
+            <li>I walked past where {NAME} ought to be today, just to look.</li>
+          </plain>
+          <warm><li>They promised, and I believe them. I'd just like to see it soon.</li></warm>
+          <blunt><li>Promised. Still waiting.</li></blunt>
+          <cheerful><li>Any day now. I've got a good feeling about {NAME}.</li></cheerful>
+          <gloomy><li>They promised. People promise all sorts of things.</li></gloomy>
+          <cold><li>The promise was made. I am noting how long it takes to keep.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} is waiting on the council's promise of {NAME}.</li></chronicle>
+        <gate>
+          <kind>Time</kind>
+          <days>2</days>
+          <minDays>2</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>restless</label>
+        <waiting>Next: the promise kept.</waiting>
+        <journal>
+          <plain>
+            <li>Still no {NAME}. I've started counting the days, and I wish I hadn't.</li>
+            <li>Somebody asked me how I was and I said fine, and then I talked about {NAME} for ten minutes.</li>
+            <li>I'm not angry. I'm waiting. They're different, though not by much.</li>
+          </plain>
+          <warm><li>I know there's a lot to do. I just hope they haven't forgotten.</li></warm>
+          <blunt><li>How long does a promise take? Long, apparently.</li></blunt>
+          <cheerful><li>It's coming, it has to be. I'm being very patient about it.</li></cheerful>
+          <gloomy><li>I knew it would be like this.</li></gloomy>
+          <cold><li>The promise is overdue. I will wait, but I am keeping count.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} is still waiting for {NAME}, and getting restless.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>0</minDays>
+          <timeoutDays>30</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>kept</label>
+        <journal>
+          <plain>
+            <li>{NAME}, at last. The council kept its word, and I'll remember that it did.</li>
+            <li>It came. I'd almost stopped expecting it, and now I'm a bit ashamed of that.</li>
+          </plain>
+          <warm><li>They kept their promise. I'm going to thank whoever made it happen.</li></warm>
+          <blunt><li>Promise kept. Good.</li></blunt>
+          <cheerful><li>It's here, I knew it would be.</li></cheerful>
+          <gloomy><li>They kept it, this time.</li></gloomy>
+          <cold><li>The promise has been kept. The council's word is worth something.</li></cold>
+        </journal>
+        <chronicle><li>The council kept its promise to {PAWN_nameDef}: {NAME}.</li></chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-5</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[lapsed] The promise came to nothing. I won't ask the council for anything for a while.</li>
+        <li>[lapsed] They promised {NAME}, and it never came. I should have known.</li>
+        <li>I stopped waiting. It was easier.</li>
+      </plain>
+      <cold><li>[lapsed] The promise was not kept. I have made a note of it.</li></cold>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[lapsed] The council's promise to {PAWN_nameDef} of {NAME} came to nothing.</li>
+      <li>{PAWN_nameDef} stopped waiting for {NAME}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} was waiting on a promise of the council's, and never saw it kept.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- Ready for the seat                                                                                     -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_ReadyForTheSeat</defName>
+    <label>ready for the seat</label>
+    <summary>Someone who has set their heart on a seat on the council: practising the seat's own work, standing for it at an election, and holding it. An election lost ends it.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_ReadyForTheSeat</workerClass>
+    <weight>0.9</weight>
+    <maxDays>150</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>the seat in mind</label>
+        <waiting>Next: practice at the seat's work ({SKILL}).</waiting>
+        <journal>
+          <plain>
+            <li>If I'm going to be {NAME}, I'd better be good at what the {NAME} does. Starting today.</li>
+            <li>Nobody gives a seat to someone who only wants it. I'll show them I can do the work.</li>
+            <li>I've been watching how the work of the {NAME} gets done, and I'd do some of it differently.</li>
+          </plain>
+          <warm><li>I'd like to be {NAME} for the colony's sake. First I'd like to be worth it.</li></warm>
+          <blunt><li>Want the seat. Doing the work first.</li></blunt>
+          <cheerful><li>Practice now, the seat later. I'm going to be so good at this.</li></cheerful>
+          <gloomy><li>They'll never pick me. I'll practise anyway.</li></gloomy>
+          <cold><li>The seat goes to the most capable. I intend to be the most capable.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} has set {PAWN_possessive} heart on being {NAME}, and is practising the work.</li></chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>3000</amount>
+          <minDays>3</minDays>
+          <timeoutDays>40</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>learning the work</label>
+        <waiting>Next: standing for the seat at an election.</waiting>
+        <journal>
+          <plain>
+            <li>I'm better at the work than I was. Now I need an election, and the nerve to stand.</li>
+            <li>People have started asking me things they'd ask the {NAME}. I answer them.</li>
+            <li>When the next vote comes, I'm putting my name forward. I've decided.</li>
+          </plain>
+          <warm><li>I think I could do right by everyone in the seat. I'd like the chance.</li></warm>
+          <blunt><li>Ready. Waiting for the vote.</li></blunt>
+          <cheerful><li>Bring on the election. I've already got a speech, mostly.</li></cheerful>
+          <gloomy><li>I'm ready. I'm not sure anyone else thinks so.</li></gloomy>
+          <cold><li>The work is learned. The vote is the remaining obstacle.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} means to stand for {NAME} at the next election.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>2</minDays>
+          <timeoutDays>90</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>standing for it</label>
+        <waiting>Next: the count.</waiting>
+        <journal>
+          <plain>
+            <li>My name is down for {NAME}. Whatever happens at the count, I stood.</li>
+            <li>I've been to see people about the vote. Some of them listened.</li>
+            <li>I can't sleep. The count is close, and I want this more than I let on.</li>
+          </plain>
+          <warm><li>Win or lose, I'm glad I stood. I'll shake the winner's hand either way.</li></warm>
+          <blunt><li>Standing for {NAME}. Vote for me.</li></blunt>
+          <cheerful><li>I'm a candidate for {NAME}, me, of all people.</li></cheerful>
+          <gloomy><li>I'll lose, probably. But I stood.</li></gloomy>
+          <cold><li>I am standing for the seat. The outcome depends on the others now.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} is standing for {NAME}.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>0</minDays>
+          <timeoutDays>30</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>the seat</label>
+        <journal>
+          <plain>
+            <li>{NAME}. They chose me. I've wanted this a long time, and now I have to be good at it.</li>
+            <li>I won. The first thing I did was go back to the work, because that's what got me here.</li>
+          </plain>
+          <warm><li>Thank you, everyone who voted for me. I won't forget it.</li></warm>
+          <blunt><li>Won. Back to work.</li></blunt>
+          <cheerful><li>I'm {NAME}, and I practised for it.</li></cheerful>
+          <gloomy><li>I got the seat. Now every mistake in it is mine.</li></gloomy>
+          <cold><li>The seat is mine. The preparation was worth it.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef}, who practised for it, is {NAME} now.</li></chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[lost] I stood for {NAME} and lost. I'll keep doing the work. There will be another vote.</li>
+        <li>[lost] The count went against me. I shook the winner's hand, and I meant it, mostly.</li>
+        <li>[timeout] No election came. I'm still practising, for whenever one does.</li>
+        <li>The seat will have to wait.</li>
+      </plain>
+      <gloomy><li>[lost] I lost. I knew I would.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[lost] {PAWN_nameDef} stood for {NAME} and lost.</li>
+      <li>{PAWN_nameDef} is not {NAME}, for now.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} wanted to be {NAME} and was working hard for it, and would have been good at it.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A prayer for a friend                                                                                  -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_PrayerForAFriend</defName>
+    <label>a prayer for a friend</label>
+    <summary>Someone who holds to a god, with a friend laid up ill or badly hurt: sitting with them, praying for them, and when the friend is well, taking it as the god's answer and giving thanks at its shrine. What they believe, not what anyone knows.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_PrayerForAFriend</workerClass>
+    <weight>1</weight>
+    <maxDays>35</maxDays>
+    <stages>
+      <li>
+        <label>a prayer</label>
+        <waiting>Next: a day at {OTHER_nameDef}'s side.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is laid up, and I've asked {NAME} to see {OTHER_objective} through it. I don't know what else to do.</li>
+            <li>I prayed to {NAME} for {OTHER_nameDef} tonight, and then I sat with {OTHER_objective} until {OTHER_pronoun} slept.</li>
+            <li>The healer does what the healer does. I'll do what I can, which is ask {NAME}.</li>
+          </plain>
+          <warm><li>I'll sit with {OTHER_nameDef} every evening until {OTHER_pronoun}'s well, and I'll pray for {OTHER_objective} every night.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s sick. I prayed. I'm sitting with {OTHER_objective}.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} will pull through, I've asked {NAME} and I'm not taking no for an answer.</li></cheerful>
+          <gloomy><li>I prayed for {OTHER_nameDef}. I've prayed for people before.</li></gloomy>
+          <cold><li>I have asked {NAME} to spare {OTHER_nameDef}. It cannot hurt.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} is praying to {NAME} for {OTHER_nameDef}, who is laid up.</li></chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} sitting with {B_nameDef}</label><who>A</who><whom>B</whom><hours>16~21</hours><duration>1~1.5</duration></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>1</days>
+          <minDays>1</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>at the bedside</label>
+        <waiting>Next: {OTHER_nameDef} well again.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is no worse today. I'm counting that.</li>
+            <li>I said the old words for {OTHER_nameDef} again this morning, the ones my people say for the sick.</li>
+            <li>Every time {OTHER_nameDef} wakes I'm there. Some of the time I'm praying, some of the time I'm just there.</li>
+          </plain>
+          <warm><li>I brought {OTHER_nameDef} soup and sat with {OTHER_objective} until it was gone.</li></warm>
+          <blunt><li>Still sick. Still praying.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} smiled today. That's a good sign, I'm sure of it.</li></cheerful>
+          <gloomy><li>I don't know if anyone hears me. I keep asking anyway.</li></gloomy>
+          <cold><li>No change. I will continue.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} keeps praying to {NAME} for {OTHER_nameDef}.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>0</minDays>
+          <timeoutDays>30</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>taken as an answer</label>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is up and about. I believe {NAME} heard me, and I'm going to the shrine to say thank you.</li>
+            <li>Whether it was {NAME} or the healer or {OTHER_nameDef}'s own stubbornness, I'm giving thanks to {NAME}.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is well. I gave thanks at the shrine, and then I gave {OTHER_objective} a long hug.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s better. Thanked {NAME}.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} is well, and I knew {NAME} would listen.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} recovered. I'll thank {NAME}, in case.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has recovered. I owe {NAME} thanks, by my own reckoning.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} sat with me every day while I was laid up, and prayed for me. I didn't ask, and I'm glad.</li></plain>
+        </otherJournal>
+        <chronicle><li>{OTHER_nameDef} is well again, and {PAWN_nameDef}, who prayed for {OTHER_objective}, gave thanks to {NAME}.</li></chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineThanks"><label>{A_nameDef}'s thanks at the shrine</label><who>A</who><hours>8~20</hours></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] I prayed for {OTHER_nameDef} every day, and {OTHER_pronoun} died anyway. I don't know what to think now.</li>
+        <li>[timeout] {OTHER_nameDef} is still laid up. I've run out of words to pray.</li>
+        <li>It didn't go the way I asked.</li>
+      </plain>
+      <gloomy><li>[otherdead] Nobody heard me. Or somebody did, and the answer was no.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef} prayed for {OTHER_nameDef}, who died all the same.</li>
+      <li>{PAWN_nameDef} stopped praying for {OTHER_nameDef}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} prayed for me every day I was laid up. Now I'll do the same for {OTHER_objective}.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- An unexpected gift                                                                                     -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_UnexpectedGift</defName>
+    <label>an unexpected gift</label>
+    <summary>Someone given a gift on the giving day by a person they thought little of: surprised, then going to say thank you, and ending up friends.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_UnexpectedGift</workerClass>
+    <weight>1.2</weight>
+    <maxDays>40</maxDays>
+    <stages>
+      <li>
+        <label>a surprise</label>
+        <waiting>Next: going to say thank you.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} drew my name and gave me {NAME}. I'd hardly said ten words to {OTHER_objective} all year.</li>
+            <li>Of everyone who could have drawn my name, it was {OTHER_nameDef}. And {OTHER_pronoun} chose well, which is the strange part.</li>
+            <li>I didn't think {OTHER_nameDef} knew anything about me. Apparently {OTHER_pronoun} does.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} thought about what I'd like. Nobody's done that in a long time.</li></warm>
+          <blunt><li>Got {NAME} from {OTHER_nameDef}. Didn't expect that.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} gave me {NAME}. I have to think of something nice to say back.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} gave me {NAME}. I've been unkind about {OTHER_objective}, and now I feel it.</li></gloomy>
+          <cold><li>The gift from {OTHER_nameDef} was well chosen. I underestimated {OTHER_objective}.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} was given {NAME} on the giving day by {OTHER_nameDef}, of all people.</li></chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} thanks {B_nameDef}</label><who>A</who><whom>B</whom><hours>8~21</hours><duration>0.5~1</duration></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>2</days>
+          <minDays>2</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>a word of thanks</label>
+        <waiting>Next: the two of them friends.</waiting>
+        <journal>
+          <plain>
+            <li>I went and thanked {OTHER_nameDef} properly. We ended up talking for an hour.</li>
+            <li>{OTHER_nameDef} is better company than I thought. I've been wrong about {OTHER_objective}.</li>
+            <li>I keep finding reasons to work near {OTHER_nameDef} now.</li>
+          </plain>
+          <warm><li>I told {OTHER_nameDef} what the gift meant to me, and {OTHER_pronoun} went red and changed the subject.</li></warm>
+          <blunt><li>Thanked {OTHER_nameDef}. Turns out {OTHER_pronoun}'s all right.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} and I have the same terrible sense of humour, who knew?</li></cheerful>
+          <gloomy><li>All that time I could have had a friend, and I didn't look.</li></gloomy>
+          <cold><li>{OTHER_nameDef} is good company. I had not noticed.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} thanked {OTHER_nameDef} for the gift, and the two have been talking since.</li></chronicle>
+        <gate>
+          <kind>Tie</kind>
+          <tie>Friends</tie>
+          <amount>25</amount>
+          <minDays>2</minDays>
+          <timeoutDays>30</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>friends</label>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} and I are friends now. It started with {NAME}, of all things.</li>
+            <li>I'm keeping {NAME} somewhere I can see it. It reminds me not to judge people too quickly.</li>
+          </plain>
+          <warm><li>A friend, from a name drawn out of a hat. I'm grateful for the hat.</li></warm>
+          <blunt><li>Friends with {OTHER_nameDef} now. Good.</li></blunt>
+          <cheerful><li>Best gift I ever got, and it wasn't really the gift.</li></cheerful>
+          <gloomy><li>I nearly missed this. I'm glad I didn't.</li></gloomy>
+          <cold><li>A useful friendship, and a pleasant one. I am glad of both.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>I drew {OTHER_nameDef}'s name on the giving day and we've been friends ever since. Good hat.</li></plain>
+        </otherJournal>
+        <chronicle><li>{PAWN_nameDef} and {OTHER_nameDef} became friends after the giving day.</li></chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherleft] {OTHER_nameDef} is gone, and I never really thanked {OTHER_objective}.</li>
+        <li>[otherdead] {OTHER_nameDef} gave me {NAME}, and now {OTHER_pronoun}'s dead. I keep it by my bed.</li>
+        <li>We're civil now, {OTHER_nameDef} and I. Not friends, but civil.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} and {OTHER_nameDef} never quite became friends.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} drew my name once, and we've been friends since. I'll keep the gift.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- The year's aim                                                                                         -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_YearsAim</defName>
+    <label>the year's aim</label>
+    <summary>Someone who said their life goal aloud at the year's first supper, working at it through the year: halfway there, then reaching it, as said in front of everyone. Giving it up ends it.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_YearsAim</workerClass>
+    <weight>1</weight>
+    <maxDays>120</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>said aloud</label>
+        <waiting>Next: halfway there.</waiting>
+        <journal>
+          <plain>
+            <li>I said it at the first supper: this year I'll {GOAL}. Everyone heard me, so now I have to.</li>
+            <li>It's easier to give up on something you only said to yourself. I said this one to the whole table.</li>
+            <li>I've written it down, too: {GOAL}. It's on the wall by my bed.</li>
+          </plain>
+          <warm><li>Some of them said they'd help me. I'm going to hold them to it, kindly.</li></warm>
+          <blunt><li>Said I'd {GOAL}. Starting now.</li></blunt>
+          <cheerful><li>This is the year. I said it out loud and everything.</li></cheerful>
+          <gloomy><li>I said it in front of everyone. Now they'll all see if I fail.</li></gloomy>
+          <cold><li>The aim is public. That is a useful pressure.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} said at the year's first supper that {PAWN_pronoun} would {GOAL} this year.</li></chronicle>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>5</minDays>
+          <timeoutDays>40</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>halfway</label>
+        <waiting>Next: the aim reached.</waiting>
+        <journal>
+          <plain>
+            <li>Halfway, or near enough. Someone asked me at supper how it was going, and I had an answer.</li>
+            <li>The year's going fast. So am I, I hope.</li>
+            <li>I nearly let it slide last week. Then I remembered I'd said it out loud.</li>
+          </plain>
+          <warm><li>Everyone who asks how it's going makes it a little easier to keep going.</li></warm>
+          <blunt><li>Halfway. Keep going.</li></blunt>
+          <cheerful><li>Halfway there. The other half will be quicker, surely.</li></cheerful>
+          <gloomy><li>Halfway, and the hard part's still ahead.</li></gloomy>
+          <cold><li>Progress is adequate. The year has time left.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} is halfway to what {PAWN_pronoun} said at the first supper: to {GOAL}.</li></chronicle>
+        <gate>
+          <kind>Goal</kind>
+          <minDays>1</minDays>
+          <timeoutDays>60</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>done, as said</label>
+        <journal>
+          <plain>
+            <li>I said I'd {GOAL} this year, at the first supper, in front of everyone. I did.</li>
+            <li>Next year at the first supper I'll have to think of something new to say. I'm looking forward to it.</li>
+          </plain>
+          <warm><li>Thank you to everyone who asked how it was going. It helped more than you knew.</li></warm>
+          <blunt><li>Said it. Did it.</li></blunt>
+          <cheerful><li>Done, in the same year I said it. Who's next?</li></cheerful>
+          <gloomy><li>Done. I half expected to be standing up next year explaining why not.</li></gloomy>
+          <cold><li>The aim said at the year's start is met within the year.</li></cold>
+        </journal>
+        <chronicle><li>{PAWN_nameDef} did what {PAWN_pronoun} said at the year's first supper: {PAWN_pronoun} managed to {GOAL}.</li></chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[goalgone] I've let the aim I said at the first supper go. I'll say something different next year.</li>
+        <li>[timeout] The year's nearly done, and I'm not there. I said it out loud, and I'm still not there.</li>
+        <li>Not this year, then.</li>
+      </plain>
+      <gloomy><li>[goalgone] Everyone heard me say it. Now everyone knows I didn't.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[goalgone] {PAWN_nameDef} gave up what {PAWN_pronoun} said at the year's first supper.</li>
+      <li>{PAWN_nameDef} did not reach the year's aim.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>At the first supper {OTHER_nameDef} said what {OTHER_pronoun} meant to do this year, and was well on the way.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

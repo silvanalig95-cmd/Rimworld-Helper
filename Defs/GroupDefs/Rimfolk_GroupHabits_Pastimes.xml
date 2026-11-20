@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Group habits from the colony's pastimes (the content update's A24, 20 November 2026; Source/ColonyCouncil/Social/
+    Groups/GroupHabits.cs), kept as they come like reading and music: once an hour, two or more of a group really together
+    doing the thing keep it (one habit a day for a group, as ever). Never called as a gathering.
+    where: fish (fishing side by side: Odyssey's fishing, PokéWorld's), bath (the hot water: Dubs Bad Hygiene's pool, hot
+    tub and sauna, ReGrowth's hot spring), cup (tea or coffee in the same room: Vanilla Brewing Expanded - Coffees and Teas,
+    or any coffee or tea a mod adds), games (cards, chess or darts: the game's poker and chess tables, Vanilla Furniture
+    Expanded's dartboard). Each is also something a friendship group may be named for, and the kinds that keep it list it
+    after their own (Rimfolk_GroupKinds.xml). The pools are spoken aloud: no names, one sentence a line.
+  -->
+
+  <!-- ===================== The habits ===================== -->
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Fishing</defName>
+    <label>fishing together</label>
+    <description>They fish the same water side by side, and talk in low voices so as not to scare anything off.</description>
+    <where>fish</where>
+    <hourFrom>6</hourFrom>
+    <hourTo>19</hourTo>
+    <pool>Rimfolk_Pool_Group_Fishing</pool>
+    <cohesion>2</cohesion>
+    <ease>3</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Bath</defName>
+    <label>the hot water</label>
+    <description>They soak together in the hot water: a pool, a hot tub, a sauna or a hot spring.</description>
+    <where>bath</where>
+    <hourFrom>10</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Bath</pool>
+    <cohesion>2</cohesion>
+    <ease>4</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Cup</defName>
+    <label>a pot of tea or coffee</label>
+    <description>They drink tea or coffee at the same table and talk over the day.</description>
+    <where>cup</where>
+    <hourFrom>6</hourFrom>
+    <hourTo>21</hourTo>
+    <pool>Rimfolk_Pool_Group_Cup</pool>
+    <cohesion>1.5</cohesion>
+    <ease>2</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Cards</defName>
+    <label>cards, chess or darts</label>
+    <description>They play cards, chess or darts together of an evening, and argue about the score.</description>
+    <where>games</where>
+    <hourFrom>16</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Cards</pool>
+    <cohesion>2</cohesion>
+    <ease>2</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <!-- ===================== What a friendship group may be named for ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Fishing</defName>
+    <label>fishing</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Fishing</habit>
+    <names>
+      <li>the anglers</li>
+      <li>the riverbank crowd</li>
+      <li>the early lines</li>
+      <li>[lowtech] the net menders</li>
+      <li>[!lowtech] the fishing club</li>
+    </names>
+    <why>They are friends, and fish the same water together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Bath</defName>
+    <label>the hot water</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Bath</habit>
+    <names>
+      <li>the soakers</li>
+      <li>the warm-water crowd</li>
+      <li>the steam bench</li>
+      <li>[lowtech] the hot spring circle</li>
+      <li>[!lowtech] the bathhouse regulars</li>
+    </names>
+    <why>They are friends, and soak in the hot water together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Cup</defName>
+    <label>tea and coffee</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Cup</habit>
+    <names>
+      <li>the tea table</li>
+      <li>the coffee pot</li>
+      <li>the second cup</li>
+      <li>[lowtech] the kettle circle</li>
+      <li>[spacer] the brew-station crowd</li>
+    </names>
+    <why>They are friends, and drink tea or coffee at the same table.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Cards</defName>
+    <label>cards and games</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Cards</habit>
+    <names>
+      <li>the card players</li>
+      <li>the chess players</li>
+      <li>the darts crowd</li>
+      <li>[lowtech] the dice and boards</li>
+      <li>[!lowtech] the poker night</li>
+    </names>
+    <why>They are friends, and play cards, chess or darts together of an evening.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== What's said at them ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Fishing</defName>
+    <lines>
+      <plain>
+        <li>Something's nibbling at mine.</li>
+        <li>Keep your voice down, they can hear you.</li>
+        <li>That one got away, and it was this big.</li>
+        <li>The water's colder than yesterday.</li>
+        <li>Pass me the bait, would you?</li>
+        <li>I'll have one before you do, watch.</li>
+        <li>Best part of the day, this.</li>
+        <li>Nothing yet, but I'm in no hurry.</li>
+        <li>[morning] They bite best early, everyone knows that.</li>
+        <li>[winter] My fingers are too cold to tie a hook.</li>
+        <li>[rain] Fish don't mind the rain, so why should we?</li>
+        <li>[child] Can I hold the line for a bit?</li>
+        <li>[grouprole:joker] I'm not fishing, I'm feeding them.</li>
+        <li>[grouprole:anchor] Same spot tomorrow, then.</li>
+        <li>[grouprole:quiet] Shh.</li>
+        <li>[grouprole:newcomer] How do you tell when it's a bite?</li>
+        <li>[groupkind:hunters] It's the same as stalking, only wetter.</li>
+      </plain>
+      <warm><li>I don't care if we catch anything, I like the company.</li></warm>
+      <blunt><li>Quiet.</li></blunt>
+      <cheerful><li>Got one, look at it.</li></cheerful>
+      <gloomy><li>They're not biting, and they won't.</li></gloomy>
+      <cold><li>That's three for me and none for you.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Bath</defName>
+    <lines>
+      <plain>
+        <li>I'm not getting out until I can't feel my back.</li>
+        <li>Move over a bit, there's room.</li>
+        <li>That's the first time I've been warm all week.</li>
+        <li>Don't splash, I've just got comfortable.</li>
+        <li>My shoulders needed this.</li>
+        <li>Who left the towel in the water?</li>
+        <li>Five more minutes, then supper.</li>
+        <li>[winter] Hard to believe there's snow outside.</li>
+        <li>[child] Can I jump in?</li>
+        <li>[grouprole:joker] I'm going to live in here from now on.</li>
+        <li>[grouprole:anchor] We should do this every evening.</li>
+        <li>[grouprole:quiet] Ahh.</li>
+        <li>[grouprole:worrier] Is it meant to be this hot?</li>
+        <li>[groupkind:elders] My knees thank you all.</li>
+      </plain>
+      <warm><li>This is the best thing the colony ever built.</li></warm>
+      <blunt><li>Hotter.</li></blunt>
+      <cheerful><li>I could fall asleep right here.</li></cheerful>
+      <gloomy><li>Back to the cold in a minute.</li></gloomy>
+      <cold><li>It loosens the muscles, that's all.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Cup</defName>
+    <lines>
+      <plain>
+        <li>Is there any left in the pot?</li>
+        <li>This one's stronger than yesterday's.</li>
+        <li>Sit down, I'll pour.</li>
+        <li>How's your day been so far?</li>
+        <li>I needed this.</li>
+        <li>Too hot, give it a minute.</li>
+        <li>Who made this, it's good.</li>
+        <li>[morning] I'm not awake until the second cup.</li>
+        <li>[winter] Hold it with both hands, it warms you up.</li>
+        <li>[lowtech] Leaves from the hill, the good ones.</li>
+        <li>[child] Can I have a little?</li>
+        <li>[grouprole:joker] I take mine with a lot of gossip.</li>
+        <li>[grouprole:anchor] Same time tomorrow?</li>
+        <li>[grouprole:quiet] Thanks.</li>
+        <li>[grouprole:newcomer] How do you take yours?</li>
+        <li>[groupkind:kitchen] I'll make the next pot properly.</li>
+        <li>[groupkind:elders] We drank it stronger when I was young.</li>
+      </plain>
+      <warm><li>A cup with friends is the best part of the morning.</li></warm>
+      <blunt><li>More.</li></blunt>
+      <cheerful><li>Another pot, I'm buying.</li></cheerful>
+      <gloomy><li>It's gone cold already.</li></gloomy>
+      <cold><li>It keeps me working, that's what it's for.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Cards</defName>
+    <lines>
+      <plain>
+        <li>Your turn, and don't take all night.</li>
+        <li>That's not how the rules go.</li>
+        <li>I had a better hand than that, I swear.</li>
+        <li>Check.</li>
+        <li>Double or nothing.</li>
+        <li>Who's keeping score?</li>
+        <li>One more round, then bed.</li>
+        <li>Right in the middle, did you see that?</li>
+        <li>[child] Can I play the next one?</li>
+        <li>[grouprole:joker] I'm not cheating, I'm just very lucky.</li>
+        <li>[grouprole:anchor] Same table tomorrow night.</li>
+        <li>[grouprole:quiet] Mine.</li>
+        <li>[grouprole:firebrand] Again, I want a rematch.</li>
+        <li>[grouprole:newcomer] Can someone explain the rules again?</li>
+        <li>[groupkind:scholars] Three moves from now you lose your queen.</li>
+        <li>[groupkind:comrades] We played this in the barracks every night.</li>
+      </plain>
+      <warm><li>I don't mind losing to you lot.</li></warm>
+      <blunt><li>Deal.</li></blunt>
+      <cheerful><li>I win again, pay up.</li></cheerful>
+      <gloomy><li>I always lose at this.</li></gloomy>
+      <cold><li>You're leaving your king open.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

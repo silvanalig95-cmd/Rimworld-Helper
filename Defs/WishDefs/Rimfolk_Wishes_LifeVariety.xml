@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A11: a toy for the little one (Source/ColonyCouncil/LifeVariety/ToyWish.cs). A grown-up fond of a child of three to
+    twelve (a parent, an elder or a friend of the child, all alike) asks for a toy made at the bench for them: Vanilla
+    Christmas Expanded's toys where the colony can make them, else a small sculpture. Met when one is made: the one who
+    asked carries it to the child. {OTHER} is the child, {SUBJECT} "a toy" or "a small carving", {THING} the first of
+    them the colony can make. Wishes, so the flavour style.
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_Toy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{SUBJECT} for {OTHER_nameDef}</label>
+    <description>A grown-up fond of one of the colony's children wants a toy made for them at the bench (with Vanilla Christmas Expanded one of its toys, else a small sculpture). Once it is made, they take it to the child themselves.</description>
+    <workerClass>ColonyCouncil.WishWorker_Toy</workerClass>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>14</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <envy>0.05</envy>
+    <objectionChance>0.05</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>Someone makes {THING} at the bench.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} has been talking to a stick with a face scratched on it for a week, and deserves a better friend than that stick.</li>
+        <li>{OTHER_nameDef} plays with whatever the grown-ups throw away, and makes it look like a game. Imagine what {OTHER_pronoun} would do with a real toy.</li>
+        <li>I caught {OTHER_nameDef} building a little house out of chips from the woodpile, very carefully, and nobody to live in it. Could someone make something to live in it?</li>
+        <li>[lowtech] When I was small we had carved animals, a whole herd of them, and I was never lonely. {OTHER_nameDef} has none.</li>
+        <li>[!lowtech] Every child I ever knew had at least one toy worn half to nothing from being loved. {OTHER_nameDef} has nothing to wear out.</li>
+        <li>[winter] The evenings are long, and {OTHER_nameDef} spends them watching the fire with nothing in {OTHER_possessive} hands.</li>
+        <li>[trait:Kind] It would cost the bench an afternoon, and {OTHER_nameDef} would carry it everywhere for a year.</li>
+      </plain>
+      <warm>
+        <li>I'd like something made for {OTHER_nameDef}, something that's {OTHER_possessive} own. I'll carry it over myself.</li>
+        <li>{OTHER_nameDef} never asks for anything, which is exactly why somebody should ask for {OTHER_objective}.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} needs a toy. Someone at the bench could make one in an afternoon.</li>
+      </blunt>
+      <cheerful>
+        <li>A toy for {OTHER_nameDef}. I've already decided which way I'll hide it behind my back.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} is growing up out here with nothing but chores and cold. One toy wouldn't fix that, but it would help.</li>
+      </gloomy>
+      <cold>
+        <li>A child with something to play with is quieter and learns faster. A toy for {OTHER_nameDef} is a sensible use of the bench.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's made. I'm taking it to {OTHER_nameDef} myself, and I'd like to see {OTHER_possessive} face.</li>
+        <li>[promised] The council said it would see to it, and there it is on the bench. Now to find {OTHER_nameDef}.</li>
+      </plain>
+      <warm><li>Thank you. I've been looking forward to this more than {OTHER_nameDef} will.</li></warm>
+      <blunt><li>Good. It's done. I'll take it over.</li></blunt>
+      <cheerful><li>It's perfect. {OTHER_nameDef} is going to shriek.</li></cheerful>
+      <gloomy><li>It's a good one. I hope it lasts longer than most things here.</li></gloomy>
+      <cold><li>The toy is made. I will deliver it.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Nobody made anything for {OTHER_nameDef} after all. I suppose the stick will have to do.</li></plain>
+      <warm><li>I'll whittle something myself, badly. {OTHER_nameDef} won't mind.</li></warm>
+      <gloomy><li>Of course. There's never an afternoon for a child here.</li></gloomy>
+      <cold><li>The bench had other work. I'll remember that.</li></cold>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_ToyGiven</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>a toy of my own</label>
+        <description>Someone made a toy just for me, and brought it to me themselves.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_ToyHanded</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>gave a child a toy</label>
+        <description>I asked for a toy for a child, and I was the one who handed it over.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

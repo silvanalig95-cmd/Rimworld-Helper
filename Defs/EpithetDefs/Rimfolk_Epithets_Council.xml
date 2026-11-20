@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Names for long service in the council's seats that had none (the content update's A23, 20 November 2026), as Old Doc
+    and Old Iron are for the physician's and the marshal's: two years (120 days) as quartermaster, reeve, herdmaster,
+    steward or elder; and Word-Kept for two promises in a seat judged kept at the yearly election. Same rules as
+    Council_Epithets.xml; the records are in Defs/Misc/Rimfolk_Records_Council.xml.
+  -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_OldKeys</defName>
+    <label>Old Keys</label>
+    <record>Council_DaysAsQuartermaster</record>
+    <threshold>120</threshold>
+    <earned>{PAWN_nameDef} has kept the colony's stores for two years now, and knows what is on every shelf without looking. The colony has taken to calling {PAWN_objective} Old Keys.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_OldFurrow</defName>
+    <label>Old Furrow</label>
+    <record>Council_DaysAsReeve</record>
+    <threshold>120</threshold>
+    <earned>Two years as reeve, and {PAWN_nameDef} has walked every field at first light on nearly every one of those days. The colony calls {PAWN_objective} Old Furrow now.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Drover</defName>
+    <label>the Drover</label>
+    <record>Council_DaysAsHerdmaster</record>
+    <threshold>120</threshold>
+    <earned>{PAWN_nameDef} has kept the colony's herd for two years, and the animals come to {PAWN_possessive} call before anyone else's. People have started calling {PAWN_objective} the Drover.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Host</defName>
+    <label>the Host</label>
+    <record>Council_DaysAsSteward</record>
+    <threshold>120</threshold>
+    <earned>Two years as steward: the suppers planned, the feasts laid, the long evenings kept going. The colony calls {PAWN_nameDef} the Host.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_OldVoice</defName>
+    <label>the Old Voice</label>
+    <record>Council_DaysAsElder</record>
+    <threshold>120</threshold>
+    <earned>{PAWN_nameDef} has sat as an elder of the council for two years, and when {PAWN_pronoun} speaks at a meeting the room goes quiet. People call {PAWN_objective} the Old Voice.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_WordKept</defName>
+    <label>Word-Kept</label>
+    <record>Council_SeatPromisesKept</record>
+    <threshold>2</threshold>
+    <earned>Twice {PAWN_nameDef} has promised the colony something to win a seat, and twice the year showed it kept. People have started calling {PAWN_objective} Word-Kept.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>

@@ -1254,6 +1254,11 @@ MODEL = {
     "ColonyLife/Readings.cs:lines": ("fixed", 5, 120, "per reading: the year's lines, five at most (counted under readings)"),
     "ColonyLife/Readings.cs:spoke": ("fixed", 8, 40, "per reading: who has had their turn at the supper (counted under readings)"),
     "ColonyLife/Readings.cs:said": ("fixed", 8, 40, "per reading: who said their aim (counted under readings)"),
+    # Colony life's variety, part 2 (LifeVariety/LifeVarietyBook.cs): customs' first askers, toys lately, the giving day
+    "LifeVariety/LifeVarietyBook.cs:firstAskers": ("cap", (const("LifeVariety/LifeVarietyBook.cs", "MaxAskers", 40), 0.15), 60, "who first asked for each custom the colony keeps, one a custom; LifeVarietyBook.MaxAskers at most (A22)"),
+    "LifeVariety/LifeVarietyBook.cs:toys": ("cap", (const("LifeVariety/LifeVarietyBook.cs", "MaxToys", 12), 0.1), 40, "children given a toy within forty days, dropped after; LifeVarietyBook.MaxToys at most (A11)"),
+    "LifeVariety/LifeVarietyBook.cs:gifts": ("cap", (const("LifeVariety/LifeVarietyBook.cs", "MaxGifts", 16), 0.1), 70, "the giving day's gifts of the last eight days, once a winter; LifeVarietyBook.MaxGifts at most (A26)"),
+    "LifeVariety/LifeVarietyBook.cs:pairs": ("while", 6, 180, "the giving day under way: one gift a person at home, gone within two days (A26)"),
     "PlayOut/PlayOuts.cs:led": ("fixed", 1, P, "per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only"),
     "PlayOut/PlayOuts.cs:risks": ("fixed", 1, 120, "per play-out: an answer's fight or walk-out held for the scene, one or two at most"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),
