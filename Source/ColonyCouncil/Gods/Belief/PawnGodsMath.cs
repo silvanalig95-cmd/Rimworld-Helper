@@ -256,7 +256,21 @@ namespace ColonyCouncil
             ("Dirtmole", "Smoulder", 18f), ("Stoneborn", "Smoulder", 22f), ("AG_Drakonori", "Smoulder", 25f), ("AG_Efreet", "Smoulder", 18f), ("Impid", "Smoulder", 14f),
             ("AG_MindDevourer", "Undertow", 20f), ("AG_Forsaken", "Undertow", 16f),
             ("Starjack", "Cirrus", 18f),
-            ("DV_Venator", "Bellwether", 14f)
+            ("DV_Venator", "Bellwether", 14f),
+            // The rest of the player's xenotypes (C11 of docs/content-update-proposals.md), each by what it is: the cold-born to
+            // the Long White, the monstrous and the miserable to the Hunger, the deep miners to the Coil, the storm-born (Åskbarn
+            // means thunder) to the sky, the made and the machine-minded to the Hum, the hive and insect kinds to the rot, the
+            // tree-eyed to the Rootmother, the sun-basking saurids to the Giver, the pleasure-made and the waste-eaters to the Open
+            // Cup, the swift to the road, the glitterworld's dreamers to the Mirror; Paws of Interest's kinds by their own (the
+            // kitten to Tamiu, the rain dragon to the toad); the awakened apes to the Old Horn.
+            ("AG_Animusen", "Hush", 18f), ("AG_Malachai", "Undertow", 18f), ("AG_Wretch", "Undertow", 12f), ("AG_Lapis", "Smoulder", 18f),
+            ("Uredd", "Cirrus", 12f), ("Askbarn", "Cirrus", 18f), ("AG_Taukai", "Pip", 14f), ("AG_Helixien", "Pip", 12f), ("VRE_Archon", "Pip", 16f),
+            ("AG_Hiveling", "Morel", 18f), ("VRE_Insector", "Morel", 14f), ("VRE_Ocularkin", "Hollin", 18f), ("VRESaurids_Saurid", "Helios", 16f),
+            ("Highmate", "Revel", 14f), ("Waster", "Revel", 14f), ("AG_Fleetkind", "Ennu", 14f), ("DV_Avaloi", "Selene", 16f),
+            ("PoI_Umbreon", "Selene", 20f), ("PoI_Espeon", "Helios", 20f), ("PoI_Glaceon", "Hush", 20f), ("PoI_Flareon", "Smoulder", 20f),
+            ("PoI_Leafeon", "Hollin", 20f), ("PoI_Vaporeon", "Murmur", 20f), ("PoI_Skitty", "Mog", 16f), ("PoI_Goodra", "Murmur", 16f),
+            ("Bonobo", "Bellwether", 14f), ("Chimp", "Bellwether", 14f), ("Gorilla", "Bellwether", 14f), ("Orangutan", "Bellwether", 14f),
+            ("RimworldMonkey", "Bellwether", 14f)
         };
 
         /// <summary>Words in someone's past (a backstory's title or defName, a word that starts so) that draw them to a god.</summary>

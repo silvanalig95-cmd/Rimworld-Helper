@@ -449,7 +449,7 @@ namespace ColonyCouncil
             foreach (var p in miners) Dream(p, "CC_GodO_Stretch_Dream");
             OwnHappenings.Came(b, OwnHappening.SmoulderStretch, now);
             var first = miners[0];
-            Tell.Message(NewsKind.People, Importance.Notable, map, (miners.Count > 1 ? "CC_GodO_Stretch_Text" : "CC_GodO_Stretch_TextOne").Translate(first.Named("PAWN"), miners.Count.Named("COUNT"))
+            Tell.Message(NewsKind.People, Importance.Notable, map, TextVariants.Vary(miners.Count > 1 ? "CC_GodO_Stretch_Text" : "CC_GodO_Stretch_TextOne").Translate(first.Named("PAWN"), miners.Count.Named("COUNT"))
                 .Resolve(), new LookTargets(miners), MessageTypeDefOf.NeutralEvent);
             OwnHappenings.Say(first, "stretch", g);
             GodTouch.About(map, "CC_GodO_Saw_Stretch", pawns: miners);

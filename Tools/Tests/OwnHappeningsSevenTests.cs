@@ -42,10 +42,10 @@ public static class OwnHappeningsSevenTests
         // ================= The happenings and their pace =================
 
         var seven = new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Mog" };
-        var mine = OwnHappeningsMath.All.Where(h => seven.Contains(OwnHappeningsMath.GodOf(h))).ToList();
+        var mine = OwnHappeningsMath.All.Where(h => seven.Contains(OwnHappeningsMath.GodOf(h)) && !OwnHappeningsMath.IsBetween(h)).ToList();
         C(mine.Count == 22 && seven.All(OwnHappeningsMath.Gods.Contains) && mine.Select(OwnHappeningsMath.Name).Distinct().Count() == 22,
             "twenty-two happenings in the shared list (OwnHappening), each its own, of the seven's keys (Tamiu's is Mog)");
-        C(seven.Where(g => g != "Mog").All(g => OwnHappeningsMath.Of(g).Count >= 3 && OwnHappeningsMath.Of(g).Count <= 5) && OwnHappeningsMath.Of("Mog").Count == 2,
+        C(seven.Where(g => g != "Mog").All(g => mine.Count(h => OwnHappeningsMath.GodOf(h) == g) >= 3 && mine.Count(h => OwnHappeningsMath.GodOf(h) == g) <= 5) && mine.Count(h => OwnHappeningsMath.GodOf(h) == "Mog") == 2,
             "three to five for each of the six, two more for Tamiu");
         C(mine.Min(h => (int)h) > (int)OwnHappening.CirrusThunder, "added after batch 1's, so a save's list of when each last came keeps its order");
         foreach (var h in mine)
@@ -299,7 +299,7 @@ public static class OwnHappeningsSevenTests
           && frame.Contains("ExposeSeven();") && frame.Contains("Scribe_Collections.Look(ref last"),
             "saved with the shared book: when each last came (its one list), each god's happening under way, the ruins' rooms heard");
         string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
-        C(est.Contains("\"Gods/OnMap/OwnHappenings.cs:last\": (\"fixed\", 59,") && est.Contains("Gods/OnMap/OwnSeven.cs:ruins"), "the saved lists modelled in the save estimate (one a happening, both batches)");
+        C(est.Contains("\"Gods/OnMap/OwnHappenings.cs:last\": (\"fixed\", " + OwnHappeningsMath.All.Length + ",") && est.Contains("Gods/OnMap/OwnSeven.cs:ruins"), "the saved lists modelled in the save estimate (one a happening, both batches)");
         C(!Regex.IsMatch(all, @"\bSched\."), "no clock slot of their own: the gods' hour and their own due steps");
         C(File.ReadAllText(Path.Combine(root, "Tools", "Tests", "Tests.csproj")).Contains("OwnSevenMath.cs"), "the pure rules linked for the tests");
 

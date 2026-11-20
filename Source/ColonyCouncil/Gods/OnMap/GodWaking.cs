@@ -100,7 +100,7 @@ namespace ColonyCouncil
             if (form != null) spec.veiled = false;
             spec.title = form != null ? GodsOnMapWords.Title(god, map, false, "CC_GodM_Woken_Title", "CC_GodM_Woken_TitleNamed")
                 : "CC_GodM_Quake_Title".Translate().Resolve().CapitalizeFirst();
-            spec.text = (form != null ? "CC_GodM_Woken_Text" : "CC_GodM_Quake_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
+            spec.text = TextVariants.Vary(form != null ? "CC_GodM_Woken_Text" : "CC_GodM_Quake_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.ThreatSmall, new LookTargets(cell, map));
             var seer = GodsOnMapWords.Seer(map, cell, 50f) ?? miner;
             string saw = GodsOnMapWords.Saw(god, map, cell, form != null ? GodActKind.Appear : GodActKind.Wrath, seer, form != null ? "CC_GodM_Saw_Woken" : "CC_GodM_Saw_Quake");

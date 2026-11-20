@@ -548,7 +548,7 @@ namespace ColonyCouncil
             if (map == null || what.NullOrEmpty()) return;
             string key = K(what);
             var all = new List<NamedArgument>(args ?? new NamedArgument[0]) { ColonyCouncil.Homes.Name(map).Named("HOME") };
-            string text = (key + "_Text").Translate(all.ToArray()).Resolve();
+            string text = TextVariants.Vary(key + "_Text").Translate(all.ToArray()).Resolve();
             GodPresence.Look(look);
             if (letter)
             {

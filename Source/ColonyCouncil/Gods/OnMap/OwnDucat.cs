@@ -207,7 +207,7 @@ namespace ColonyCouncil
                 var g = God;
                 OwnHappenings.Stand(p, s.trailEnd, 420);
                 OwnHappenings.SayFrom(p, Pool, g, "trail");
-                OwnHappenings.Line(map, "CC_GodDucat_Trail_Text".Translate(p.Named("PAWN"), s.trailCoins.Named("COUNT"), (s.trailDoor ? "CC_GodDucat_Way_Door" : "CC_GodDucat_Way_Open").Translate().Resolve().Named("WAY")).Resolve(),
+                OwnHappenings.Line(map, TextVariants.Vary("CC_GodDucat_Trail_Text").Translate(p.Named("PAWN"), s.trailCoins.Named("COUNT"), (s.trailDoor ? "CC_GodDucat_Way_Door" : "CC_GodDucat_Way_Open").Translate().Resolve().Named("WAY")).Resolve(),
                     new LookTargets(new[] { new TargetInfo(s.trailFrom, map), new TargetInfo(s.trailEnd, map) }));
                 if (g != null) OwnHappenings.Saw(g, map, s.trailFrom, GodActKind.Omen, p, "CC_GodDucat_Saw_Trail", s.trailCoins.Named("COUNT"));
                 s.trailUntil = -1;
@@ -320,7 +320,7 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) Speech.Say(p, line, v);
             FleckMaker.ThrowLightningGlow(v.DrawPos, map, 0.35f);
             if (v.Faction != null) StoryChains.Goodwill(v.Faction, OwnHappeningsMath.PurseGoodwill, GoodwillWhy.Gift);
-            string text = "CC_GodDucat_Purse_Text".Translate(p.Named("PAWN"), given.Named("COUNT"), v.LabelShort.Named("VISITOR"), (v.Faction?.Name ?? "").Named("PEOPLE"),
+            string text = TextVariants.Vary("CC_GodDucat_Purse_Text").Translate(p.Named("PAWN"), given.Named("COUNT"), v.LabelShort.Named("VISITOR"), (v.Faction?.Name ?? "").Named("PEOPLE"),
                 Homes.Name(map).Named("HOME")).Resolve();
             OwnHappenings.Line(map, text, new LookTargets(p));
             if (g != null)
@@ -397,7 +397,7 @@ namespace ColonyCouncil
                 OwnHappenings.Stand(p, s.coinAt, 240);
                 FleckMaker.ThrowLightningGlow(s.coinAt.ToVector3Shifted(), map, 0.4f);
                 OwnHappenings.SayFrom(p, Pool, g, "beetle");
-                OwnHappenings.Line(map, "CC_GodDucat_Beetle_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(new TargetInfo(s.coinAt, map)));
+                OwnHappenings.Line(map, TextVariants.Vary("CC_GodDucat_Beetle_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(new TargetInfo(s.coinAt, map)));
                 if (g != null) OwnHappenings.Saw(g, map, s.coinAt, GodActKind.Omen, p, "CC_GodDucat_Saw_Beetle");
                 return;
             }

@@ -292,7 +292,7 @@ namespace ColonyCouncil
             var speaker = who.RandomElement();
             OwnHappenings.SayFrom(speaker, Pool, g, "night");
             OwnHappenings.Sound(map, at, 0.5f, "Pawn_Goat_Call");
-            OwnHappenings.Line(map, "CC_GodRevel_Night_Text".Translate(Homes.Name(map).Named("HOME"), who.Count.Named("COUNT")).Resolve(), new LookTargets(new TargetInfo(at, map)));
+            OwnHappenings.Line(map, TextVariants.Vary("CC_GodRevel_Night_Text").Translate(Homes.Name(map).Named("HOME"), who.Count.Named("COUNT")).Resolve(), new LookTargets(new TargetInfo(at, map)));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, speaker, "CC_GodRevel_Saw_Night");
             b.Due(Now + 250);
             return true;
@@ -499,7 +499,7 @@ namespace ColonyCouncil
             OwnHappenings.Stand(p, s.visionAt, 400);
             OwnHappenings.Glow(map, s.visionAt, Amber, 6, 1f, 0.35f);
             OwnHappenings.SayFrom(p, Pool, g, s.visionTrue ? "visiontrue" : "visionfalse");
-            string text = (s.visionTrue ? "CC_GodRevel_Vision_TextTrue" : "CC_GodRevel_Vision_TextFalse").Translate(p.Named("PAWN"), (s.visionSight ?? "").Named("SIGHT")).Resolve();
+            string text = TextVariants.Vary(s.visionTrue ? "CC_GodRevel_Vision_TextTrue" : "CC_GodRevel_Vision_TextFalse").Translate(p.Named("PAWN"), (s.visionSight ?? "").Named("SIGHT")).Resolve();
             GodPresence.Look(new LookTargets(new TargetInfo(s.visionAt, map)));
             OwnHappenings.Line(map, text, new LookTargets(new TargetInfo(s.visionAt, map)));
             if (g == null) return;
@@ -564,7 +564,7 @@ namespace ColonyCouncil
             s.cravingDrug = dose.def.label;
             s.cravingUntil = Now + GenDate.TicksPerHour * 2;
             OwnHappenings.Came(b, OwnHappening.RevelCraving, OwnHappenings.Now);
-            OwnHappenings.Line(p.Map, "CC_GodRevel_Craving_Text".Translate(p.Named("PAWN"), dose.def.label.Named("DRUG")).Resolve(), new LookTargets(p));
+            OwnHappenings.Line(p.Map, TextVariants.Vary("CC_GodRevel_Craving_Text").Translate(p.Named("PAWN"), dose.def.label.Named("DRUG")).Resolve(), new LookTargets(p));
             b.Due(Now + 300);
             return true;
         }
@@ -634,7 +634,7 @@ namespace ColonyCouncil
             OwnHappenings.Stand(p, placed.Position, 240);
             OwnHappenings.Glow(map, placed.Position, Amber, 5, 0.5f, 0.3f);
             OwnHappenings.SayFromWith(p, Pool, g, new[] { placed.LabelNoCount.Named("WHAT") }, "stash");
-            string text = "CC_GodRevel_Stash_Text".Translate(p.Named("PAWN"), placed.Label.Named("WHAT")).Resolve();
+            string text = TextVariants.Vary("CC_GodRevel_Stash_Text").Translate(p.Named("PAWN"), placed.Label.Named("WHAT")).Resolve();
             GodPresence.Look(new LookTargets(placed));
             OwnHappenings.Line(map, text, new LookTargets(placed));
             if (g != null) OwnHappenings.Saw(g, map, placed.Position, GodActKind.Blessing, p, "CC_GodRevel_Saw_Stash", placed.Label.Named("WHAT"));
@@ -672,7 +672,7 @@ namespace ColonyCouncil
             OwnHappenings.Glow(map, seat, Wine, 4, 0.4f, 0.3f);
             OwnHappenings.Sound(map, seat, 0.35f, "Pawn_Goat_Call");
             if (g != null) GodTouchFx.Show(g, map, seat, TouchTier.Small, false);
-            OwnHappenings.Line(map, "CC_GodRevel_Binge_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
+            OwnHappenings.Line(map, TextVariants.Vary("CC_GodRevel_Binge_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
             if (seer != null)
             {
                 OwnHappenings.SayFromWith(seer, Pool, g, new[] { p.Named("OTHER") }, "bingesaw");
@@ -769,7 +769,7 @@ namespace ColonyCouncil
             var g = God;
             OwnHappenings.Glow(map, addict.Position, Amber, 6, 0.6f, 0.35f);
             OwnHappenings.SayFromWith(addict, Pool, g, new[] { sitter.Named("OTHER") }, "letgoeased");
-            OwnHappenings.Line(map, "CC_GodRevel_LetGo_Text".Translate(sitter.Named("SITTER"), addict.Named("PAWN"), (c.addiction.Chemical?.label ?? c.addiction.LabelBase).Named("DRUG")).Resolve(),
+            OwnHappenings.Line(map, TextVariants.Vary("CC_GodRevel_LetGo_Text").Translate(sitter.Named("SITTER"), addict.Named("PAWN"), (c.addiction.Chemical?.label ?? c.addiction.LabelBase).Named("DRUG")).Resolve(),
                 new LookTargets(addict));
             if (g == null) return;
             OwnHappenings.Saw(g, map, addict.Position, GodActKind.Blessing, sitter, "CC_GodRevel_Saw_LetGo", addict.LabelShort.Named("PAWN"));
@@ -830,7 +830,7 @@ namespace ColonyCouncil
             OwnHappenings.Came(b, OwnHappening.RevelSatyr, OwnHappenings.Now);
             var spec = PresenceSpec.For(g, map, PresenceKind.Appear, x.Position, x);
             spec.title = GodsOnMapWords.Title(g, map, false, "CC_GodRevel_Satyr_Title", "CC_GodRevel_Satyr_TitleNamed");
-            spec.text = "CC_GodRevel_Satyr_Text".Translate(Homes.Name(map).Named("HOME"), drink.label.Named("DRINK")).Resolve();
+            spec.text = TextVariants.Vary("CC_GodRevel_Satyr_Text").Translate(Homes.Name(map).Named("HOME"), drink.label.Named("DRINK")).Resolve();
             spec.what = "CC_GodRevel_Saw_Satyr";
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Notable, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(x));
             b.Due(Now + 250);

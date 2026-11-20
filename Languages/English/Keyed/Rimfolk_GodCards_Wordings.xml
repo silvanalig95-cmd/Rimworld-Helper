@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Each god's happening cards in three wordings (C31 of docs/content-update-proposals.md; the player had seen the same card
+    three times): the second and third wording of every card that had one (its first is in the god's own file), saying the
+    same thing seen with the same placeholders, one picked at random each time (TextVariants.Vary). Plain words: the cards are
+    the world's voice, not a god's, and never name it.
+  -->
+
+  <!-- ===================== Hollin ===================== -->
+
+  <CC_GodO_Roots_Text_2>Overnight the floor of the {ROOM} split open near where the trees were cleared. Roots have pushed up through the crack, with brambles behind them.</CC_GodO_Roots_Text_2>
+  <CC_GodO_Roots_Text_3>Roots came up through the {ROOM} floor in the night, close to the cleared ground, and brambles are already growing through the hole they made.</CC_GodO_Roots_Text_3>
+  <CC_GodO_Dryads_Text_2>All the dryads on the land stopped at once and faced {PAWN}. One walked over and stood in front of {PAWN}, and {PAWN} says it said a single word: "{WORD}".</CC_GodO_Dryads_Text_2>
+  <CC_GodO_Dryads_Text_3>The dryads froze where they were and turned toward {PAWN}, and one of them came right up to {PAWN}. {PAWN} heard it say one word: "{WORD}".</CC_GodO_Dryads_Text_3>
+  <CC_GodO_Walk_Text_2>The tall shape of roots has come up again, further across the land. New grass and flowers have sprung up in a line between where it stood and where it stands now, and the wild animals are following it.</CC_GodO_Walk_Text_2>
+  <CC_GodO_Walk_Text_3>Further across the land the shape of roots has risen once more, with a strip of fresh green and flowers running back to where it was before. The wild beasts are walking along behind it.</CC_GodO_Walk_Text_3>
+  <CC_GodO_WalkAlone_Text_2>The tall shape of roots has come up again, further across the land. New grass and flowers have sprung up in a line between where it stood and where it stands now.</CC_GodO_WalkAlone_Text_2>
+  <CC_GodO_WalkAlone_Text_3>Further across the land the shape of roots has risen once more, with a strip of fresh green and flowers running back to where it was before.</CC_GodO_WalkAlone_Text_3>
+  <CC_GodO_OldTree_Text_2>A ring of wild healroot has grown up round the base of the colony's oldest {TREE}, the one that was spared while the others round it came down. Nobody sowed it.</CC_GodO_OldTree_Text_2>
+  <CC_GodO_OldTree_Text_3>The oldest {TREE} in the colony, left standing through all the felling, now has wild healroot growing in a circle at its foot. Nobody here planted any.</CC_GodO_OldTree_Text_3>
+
+  <!-- ===================== Smoulder ===================== -->
+
+  <CC_GodO_Vein_Text_2>Gold has come up through the rock beside the deep shaft, just where the {COUNT} silver was dropped. It was not there before.</CC_GodO_Vein_Text_2>
+  <CC_GodO_Vein_Text_3>Beside the deep shaft, where {COUNT} silver went down, the rock now shows a vein of gold that nobody had seen before.</CC_GodO_Vein_Text_3>
+  <CC_GodO_VeinBent_Text_2>A vein shines in the rock beside the deep shaft, where {COUNT} silver was dropped. It looks like gold at first, but under the shine it is steel.</CC_GodO_VeinBent_Text_2>
+  <CC_GodO_VeinBent_Text_3>Where the {COUNT} silver went down the deep shaft, a vein has come up in the rock. It has a skin of gold, and steel underneath.</CC_GodO_VeinBent_Text_3>
+  <CC_GodO_Seam_Text_2>Silver has appeared in the rock face near where {PAWN} carved the piece named for Aurelian the Ninth. It was not there the day before.</CC_GodO_Seam_Text_2>
+  <CC_GodO_Seam_Text_3>Near the spot where {PAWN} made the carving named for Aurelian the Ninth, a seam of silver now shows in the rock. Yesterday there was none.</CC_GodO_Seam_Text_3>
+  <CC_GodO_Heat_Text_2>The floor in the deep working is hot to stand on, and the air over it wavers.</CC_GodO_Heat_Text_2>
+  <CC_GodO_Heat_Text_3>Heat is coming up through the floor of the deep working, and the air above it ripples.</CC_GodO_Heat_Text_3>
+  <CC_GodO_Stretch_Text_2>{COUNT} of the miners woke up having dreamt the same thing: something huge under the mountain, slowly stretching.</CC_GodO_Stretch_Text_2>
+  <CC_GodO_Stretch_Text_3>This morning {COUNT} of the colony's miners told the same dream, of something very large beneath the mountain, stretching itself out.</CC_GodO_Stretch_Text_3>
+  <CC_GodO_Stretch_TextOne_2>{PAWN} woke up having dreamt of something huge under the mountain, slowly stretching.</CC_GodO_Stretch_TextOne_2>
+  <CC_GodO_Stretch_TextOne_3>{PAWN} told of a dream this morning: something very large beneath the mountain, stretching itself out.</CC_GodO_Stretch_TextOne_3>
+  <CC_GodO_Burn_Text_2>{PAWN} woke from a warm dream with a burn across one palm. There was nothing hot anywhere in the room.</CC_GodO_Burn_Text_2>
+  <CC_GodO_Burn_Text_3>{PAWN} came out of a warm dream to find a burn across the palm of one hand, though nothing in the room could have done it.</CC_GodO_Burn_Text_3>
+  <CC_GodO_BurnDream_Text_2>{PAWN} woke from a dream of a warm voice under the mountain, and the voice was not pleased.</CC_GodO_BurnDream_Text_2>
+  <CC_GodO_BurnDream_Text_3>{PAWN} dreamt of a warm voice deep under the mountain that sounded displeased, and woke uneasy.</CC_GodO_BurnDream_Text_3>
+
+  <!-- ===================== Bellwether ===================== -->
+
+  <CC_GodO_Dusk_Text_2>As dusk fell the {BEAST} came to the edge of the colony, stopped, and bent his head down toward {YOUNG}.</CC_GodO_Dusk_Text_2>
+  <CC_GodO_Dusk_Text_3>The {BEAST} halted at the colony's edge at dusk and lowered his great head toward {YOUNG}.</CC_GodO_Dusk_Text_3>
+  <CC_GodO_DuskNone_Text_2>As dusk fell the {BEAST} came to the edge of the colony, stopped, and stood looking at it for a long time.</CC_GodO_DuskNone_Text_2>
+  <CC_GodO_DuskNone_Text_3>The {BEAST} halted at the colony's edge at dusk and stayed there a long while, watching it.</CC_GodO_DuskNone_Text_3>
+  <CC_GodO_RoadWait_Text_2>At dawn the {BEAST} started along his road through the colony and came to a stop where the walls or fences block it. He is standing there, waiting to go through.</CC_GodO_RoadWait_Text_2>
+  <CC_GodO_RoadWait_Text_3>The {BEAST} set out through the colony at first light and has stopped at the wall or fence across his road. He is waiting there to pass.</CC_GodO_RoadWait_Text_3>
+  <CC_GodO_RoadOpen_Text_2>Someone opened a way through, and the {BEAST} carried on along his road across the land.</CC_GodO_RoadOpen_Text_2>
+  <CC_GodO_RoadOpen_Text_3>With a way opened for him, the {BEAST} went on through and across the land.</CC_GodO_RoadOpen_Text_3>
+  <CC_GodO_RoadBack_Text_2>No way was opened, so the {BEAST} turned round and went back the way he had come.</CC_GodO_RoadBack_Text_2>
+  <CC_GodO_RoadBack_Text_3>Nobody let the {BEAST} through, and in the end he turned and walked back the way he came.</CC_GodO_RoadBack_Text_3>
+  <CC_GodO_HurtLimped_Text_2>The wounded thrumbo got to its feet at the edge of the colony and limped off.</CC_GodO_HurtLimped_Text_2>
+  <CC_GodO_HurtLimped_Text_3>The injured thrumbo stood up from where it lay at the colony's edge and went away, limping.</CC_GodO_HurtLimped_Text_3>
+  <CC_GodO_Tended_Text_2>{PAWN} knelt beside the wounded thrumbo and dressed its wounds, and it allowed it. Then it got up and walked off across the land, and a strange calm has settled on the colony.</CC_GodO_Tended_Text_2>
+  <CC_GodO_Tended_Text_3>The wounded thrumbo let {PAWN} kneel and tend it. When it was done it rose and walked away across the land, and the colony has felt oddly peaceful since.</CC_GodO_Tended_Text_3>
+  <CC_GodO_Last_Text_2>{PAWN} dreamt of a white beast going all over the world looking for the rest of its kind, and woke.</CC_GodO_Last_Text_2>
+  <CC_GodO_Last_Text_3>{PAWN} woke this morning from a dream of a white beast searching everywhere for others like it.</CC_GodO_Last_Text_3>
+
+  <!-- ===================== Morel ===================== -->
+
+  <CC_GodO_Mourner_Text_2>As dusk falls, something is standing at the edge of the graves at {HOME}: a figure of pale threads, as tall as a person, perfectly still.</CC_GodO_Mourner_Text_2>
+  <CC_GodO_Mourner_Text_3>There is a figure at the edge of {HOME}'s graves this evening, about the height of a person and made of pale threads. It has not moved.</CC_GodO_Mourner_Text_3>
+  <CC_GodO_MournerGone_Text_2>By dawn the figure at the graves had gone, and there was a ring of mushrooms where it had stood.</CC_GodO_MournerGone_Text_2>
+  <CC_GodO_MournerGone_Text_3>The figure at the graves was gone at first light. In its place is a ring of mushrooms.</CC_GodO_MournerGone_Text_3>
+  <CC_GodO_RingBody_Text_2>Overnight a ring of mushrooms grew up round {WHAT}, who still lies unburied.</CC_GodO_RingBody_Text_2>
+  <CC_GodO_RingBody_Text_3>{WHAT} is still lying unburied, and this morning there is a ring of mushrooms round them.</CC_GodO_RingBody_Text_3>
+  <CC_GodO_RingStores_Text_2>White threads have spread overnight round the {WHAT} going rotten in the stores.</CC_GodO_RingStores_Text_2>
+  <CC_GodO_RingStores_Text_3>In the stores, the rotting {WHAT} is surrounded this morning by white threads that were not there yesterday.</CC_GodO_RingStores_Text_3>
+  <CC_GodO_RingBuried_Text_2>Overnight a ring of mushrooms grew up on open ground near the colony.</CC_GodO_RingBuried_Text_2>
+  <CC_GodO_RingBuried_Text_3>There is a ring of mushrooms on the open ground near the colony this morning that was not there last night.</CC_GodO_RingBuried_Text_3>
+  <CC_GodO_Threads_Text_2>White threads lie across the floor of the room the {THING} keeps cold, flat like cobwebs.</CC_GodO_Threads_Text_2>
+  <CC_GodO_Threads_Text_3>The floor of the room cooled by the {THING} is covered in white threads, spread out like flattened cobwebs.</CC_GodO_Threads_Text_3>
+
+  <!-- ===================== Ennu ===================== -->
+
+  <CC_GodO_TestAsked_Text_2>The {TRAVELLER} who is staying with the colony has asked for {WHAT}.</CC_GodO_TestAsked_Text_2>
+  <CC_GodO_TestAsked_Text_3>The colony's guest, a {TRAVELLER}, asked for {WHAT}.</CC_GodO_TestAsked_Text_3>
+  <CC_GodO_Bowl_Text_2>The bowl left out on the table last night has been emptied, and there is chalk writing on the table: "{CHALK}" None of the colony was up in the night.</CC_GodO_Bowl_Text_2>
+  <CC_GodO_Bowl_Text_3>This morning the bowl set out last night is empty, and someone has chalked on the table: "{CHALK}" Nobody here was awake to do it.</CC_GodO_Bowl_Text_3>
+
+  <!-- ===================== Pip ===================== -->
+
+  <CC_GodO_WontStop_Text_2>Someone switched the {THING} off, and it is still going.</CC_GodO_WontStop_Text_2>
+  <CC_GodO_WontStop_Text_3>The {THING} keeps running even though it was switched off.</CC_GodO_WontStop_Text_3>
+  <CC_GodO_Stars_Text_2>In the small hours the comms console switched itself on. This morning there is a message on its screen, sent to nobody anyone knows of, and cut off part way: "{MESSAGE}"</CC_GodO_Stars_Text_2>
+  <CC_GodO_Stars_Text_3>The comms console turned on by itself during the night, and it is showing an unfinished message this morning, addressed to nowhere: "{MESSAGE}"</CC_GodO_Stars_Text_3>
+  <CC_GodO_StarsTerminal_Text_2>In the small hours the comms console switched itself on, and the old terminal on the land hummed in answer. This morning there is a message on the console, cut off part way: "{MESSAGE}"</CC_GodO_StarsTerminal_Text_2>
+  <CC_GodO_StarsTerminal_Text_3>The comms console turned on by itself during the night and the old terminal out on the land answered it with a hum. The console is showing an unfinished message: "{MESSAGE}"</CC_GodO_StarsTerminal_Text_3>
+  <CC_GodO_Sulk_Text_2>One after another, slowly, the colony's lights are dimming and coming back.</CC_GodO_Sulk_Text_2>
+  <CC_GodO_Sulk_Text_3>The lights round the colony keep fading out and coming back on, one at a time, slowly.</CC_GodO_Sulk_Text_3>
+
+  <!-- ===================== Cirrus ===================== -->
+
+  <CC_GodO_Pods_Text_2>Pods have fallen out of the sky {WAY} of the colony, right where {PAWN} dreamt something came down.</CC_GodO_Pods_Text_2>
+  <CC_GodO_Pods_Text_3>Something has come down {WAY} of the colony: pods, landing just where {PAWN} saw a fall in a dream.</CC_GodO_Pods_Text_3>
+  <CC_GodO_Aurora_Text_2>On the coldest night anyone can remember lately, light has filled the whole sky over {HOME}.</CC_GodO_Aurora_Text_2>
+  <CC_GodO_Aurora_Text_3>The sky over {HOME} is full of moving light tonight, the coldest night in a long time.</CC_GodO_Aurora_Text_3>
+  <CC_GodO_Thunder_Text_2>Lightning is flickering at the edge of the land and thunder rolls over the far hills, yet the sky over {HOME} is clear and no rain comes.</CC_GodO_Thunder_Text_2>
+  <CC_GodO_Thunder_Text_3>There is thunder over the distant hills and lightning along the edge of the land, while over {HOME} the sky stays clear and dry.</CC_GodO_Thunder_Text_3>
+
+  <!-- ===================== Ducat ===================== -->
+
+  <CC_GodDucat_Trail_Text_2>{PAWN} found a line of single silver coins leading from the store {WAY}, a few steps apart, {COUNT} in all. The rest are gone.</CC_GodDucat_Trail_Text_2>
+  <CC_GodDucat_Trail_Text_3>A trail of {COUNT} silver coins, one every few steps, runs from the store {WAY}. {PAWN} found it, and the last of the coins are missing.</CC_GodDucat_Trail_Text_3>
+  <CC_GodDucat_Purse_Text_2>{PAWN} pushed {COUNT} silver into {VISITOR}'s hand and refused to take it back. {PEOPLE} think more of {HOME} for it.</CC_GodDucat_Purse_Text_2>
+  <CC_GodDucat_Purse_Text_3>{PAWN} gave {VISITOR} {COUNT} silver and would not hear of having it returned, and {PEOPLE} think better of {HOME} because of it.</CC_GodDucat_Purse_Text_3>
+  <CC_GodDucat_Beetle_Text_2>A golden beetle crossed the table and climbed down to the floor. {PAWN} followed it and found a gold coin where it stopped, though nobody had dropped one.</CC_GodDucat_Beetle_Text_2>
+  <CC_GodDucat_Beetle_Text_3>{PAWN} followed a golden beetle off the table and across the floor, and where it came to rest there was a gold coin nobody had lost.</CC_GodDucat_Beetle_Text_3>
+
+  <!-- ===================== Helios ===================== -->
+
+  <CC_GodHelios_LookBack_Text_2>It is the day after the eclipse, and the noon over {HOME} is white and fierce: the heat presses down, the shadows stay where they are, and the air shimmers above the stones. Everyone outside has stopped to shade their eyes.</CC_GodHelios_LookBack_Text_2>
+  <CC_GodHelios_LookBack_Text_3>Noon the day after the eclipse is harsh and glaring at {HOME}. The shadows have stopped moving, the stones throw off heat, and those out of doors stand shading their eyes.</CC_GodHelios_LookBack_Text_3>
+  <CC_GodHelios_Fruit_Text_2>{COUNT} of {HOME} went out into the noon sun by the fields and ate the year's first fruit there, without asking for anything.</CC_GodHelios_Fruit_Text_2>
+  <CC_GodHelios_Fruit_Text_3>At noon {COUNT} of {HOME} ate the first fruit of the year out in the sun beside the fields, and asked for nothing.</CC_GodHelios_Fruit_Text_3>
+  <CC_GodHelios_Fruit_TextNone_2>{COUNT} of {HOME} went out into the noon sun by the fields and stood together a while; the stores had no fresh fruit to bring.</CC_GodHelios_Fruit_TextNone_2>
+  <CC_GodHelios_Fruit_TextNone_3>At noon {COUNT} of {HOME} stood out in the sun beside the fields together, with no fresh fruit in the stores to eat.</CC_GodHelios_Fruit_TextNone_3>
+  <CC_GodHelios_Dawn_Text_2>The longest night is over: {COUNT} of {HOME} went out to the east side to face the sunrise, and stood a while in the golden light.</CC_GodHelios_Dawn_Text_2>
+  <CC_GodHelios_Dawn_Text_3>After the longest night, {COUNT} of {HOME} stood on the east side watching the sun come up, and stayed in its gold light a while.</CC_GodHelios_Dawn_Text_3>
+
+  <!-- ===================== Hush ===================== -->
+
+  <CC_GodHush_Word_Text_2>{PAWN} came out at first light and found a word written in the frost {WHERE}, though nobody had written it: {WORD}.</CC_GodHush_Word_Text_2>
+  <CC_GodHush_Word_Text_3>There was a word in the frost {WHERE} when {PAWN} came out at dawn, and nobody had put it there: {WORD}.</CC_GodHush_Word_Text_3>
+  <CC_GodHush_Thaw_Text_2>{KEEPER} stayed up the whole night at {FRAIL}'s bedside, {WARMTH}. At dawn the cold broke, and the frost on the ground melted away like water.</CC_GodHush_Thaw_Text_2>
+  <CC_GodHush_Thaw_Text_3>All night {KEEPER} sat with {FRAIL}, {WARMTH}, and at first light the cold gave way and the frost ran off the ground.</CC_GodHush_Thaw_Text_3>
+  <CC_GodHush_Walk_Text_2>Something walked {HOW} {HOME} in the night, beyond the walls, and left a line of frost an arm's width wide behind it. Nobody saw what it was.</CC_GodHush_Walk_Text_2>
+  <CC_GodHush_Walk_Text_3>In the night a line of frost, an arm's width across, was laid {HOW} {HOME} outside the walls, where something walked. Nobody saw it.</CC_GodHush_Walk_Text_3>
+  <CC_GodHush_Walk_TextSeen_2>Something walked {HOW} {HOME} in the night, beyond the walls, and left a line of frost an arm's width wide behind it. {WHO} saw it: tall and white, and it moved away whenever anyone came close.</CC_GodHush_Walk_TextSeen_2>
+  <CC_GodHush_Walk_TextSeen_3>In the night a line of frost, an arm's width across, was laid {HOW} {HOME} outside the walls, where something walked. {WHO} saw it, tall and white, and it kept its distance from anyone who came near.</CC_GodHush_Walk_TextSeen_3>
+  <CC_GodHush_Grave_Text_2>At dusk {DEAD}'s grave was thick with frost, and nothing else was. Then the cold settled over {HOME}, and nobody felt like talking.</CC_GodHush_Grave_Text_2>
+  <CC_GodHush_Grave_Text_3>Frost covered {DEAD}'s grave at dusk and nothing around it. After that the cold came down on {HOME}, and people went quiet.</CC_GodHush_Grave_Text_3>
+  <CC_GodHush_Grave_TextQuiet_2>At dusk {DEAD}'s grave was thick with frost, and nothing else was.</CC_GodHush_Grave_TextQuiet_2>
+  <CC_GodHush_Grave_TextQuiet_3>Frost covered {DEAD}'s grave at dusk and nothing around it.</CC_GodHush_Grave_TextQuiet_3>
+  <CC_GodHush_Melt_Text_2>The frost has gone from {DEAD}'s grave, and a ring of mushrooms has come up where it was.</CC_GodHush_Melt_Text_2>
+  <CC_GodHush_Melt_Text_3>Where the frost lay on {DEAD}'s grave there is now a ring of mushrooms.</CC_GodHush_Melt_Text_3>
+  <CC_GodHush_Melt_TextBare_2>The frost has gone from {DEAD}'s grave.</CC_GodHush_Melt_TextBare_2>
+  <CC_GodHush_Melt_TextBare_3>The frost on {DEAD}'s grave has thawed.</CC_GodHush_Melt_TextBare_3>
+
+  <!-- ===================== Murmur ===================== -->
+
+  <CC_GodMurmur_Song_Text_2>At dusk {COUNT} of {HOME} gathered round the {WATER} and sang down into it.</CC_GodMurmur_Song_Text_2>
+  <CC_GodMurmur_Song_Text_3>{COUNT} of {HOME} stood singing over the {WATER} as the light went.</CC_GodMurmur_Song_Text_3>
+  <CC_GodMurmur_Rain_Text_2>After {HOME} sang at the water the rain came, light at first and then steady, and a deep croak rose from the water beneath it.</CC_GodMurmur_Rain_Text_2>
+  <CC_GodMurmur_Rain_Text_3>Rain followed the singing at the water at {HOME}, soft and then steady, and something deep in the water croaked.</CC_GodMurmur_Rain_Text_3>
+  <CC_GodMurmur_GiveBack_Text_2>The water has gone down, and {PAWN} found things lying on the mud at its edge: {WHAT}. None of it belongs to anyone here.</CC_GodMurmur_GiveBack_Text_2>
+  <CC_GodMurmur_GiveBack_Text_3>On the mud the falling water left behind, {PAWN} found {WHAT}. Nobody here lost them.</CC_GodMurmur_GiveBack_Text_3>
+  <CC_GodMurmur_Frogs_Text_2>The rain has finally come, and frogs with it, dozens of them climbing out of the wet ground all over {HOME} and croaking through the night.</CC_GodMurmur_Frogs_Text_2>
+  <CC_GodMurmur_Frogs_Text_3>With the rain at last came the frogs: dozens of them up out of the soaked ground across {HOME}, croaking all night.</CC_GodMurmur_Frogs_Text_3>
+  <CC_GodMurmur_Frogs_TextHeard_2>The rain has finally come, and with it frogs croaking from every puddle in {HOME}, though nobody has seen one.</CC_GodMurmur_Frogs_TextHeard_2>
+  <CC_GodMurmur_Frogs_TextHeard_3>With the rain at last came a croaking of frogs from every puddle at {HOME}, and not one of them in sight.</CC_GodMurmur_Frogs_TextHeard_3>
+
+  <!-- ===================== Revel ===================== -->
+
+  <CC_GodRevel_Night_Text_2>It is past midnight at {HOME} and the evening is still going: {COUNT} of the colony are up, and nobody wants to turn in.</CC_GodRevel_Night_Text_2>
+  <CC_GodRevel_Night_Text_3>The evening at {HOME} has run on well past midnight, with {COUNT} of the colony still up and in no hurry to sleep.</CC_GodRevel_Night_Text_3>
+  <CC_GodRevel_Vision_TextTrue_2>{PAWN}, high, stopped and stared, then walked out to what they had seen: {SIGHT}. It was really there.</CC_GodRevel_Vision_TextTrue_2>
+  <CC_GodRevel_Vision_TextTrue_3>High, {PAWN} stared at something, then went out to it: {SIGHT}. And it was there.</CC_GodRevel_Vision_TextTrue_3>
+  <CC_GodRevel_Vision_TextFalse_2>{PAWN}, high, stopped and stared, then walked out to where they saw {SIGHT}, and stayed there a long time. Nobody else sees anything there.</CC_GodRevel_Vision_TextFalse_2>
+  <CC_GodRevel_Vision_TextFalse_3>High, {PAWN} stared at something, then went out to where they saw {SIGHT} and stood there a long while. There is nothing there that anyone else can see.</CC_GodRevel_Vision_TextFalse_3>
+  <CC_GodRevel_Craving_Text_2>{PAWN} woke in the small hours wanting it, and got up and went to the stores for {DRUG}.</CC_GodRevel_Craving_Text_2>
+  <CC_GodRevel_Craving_Text_3>In the middle of the night the craving got {PAWN} out of bed and down to the stores for {DRUG}.</CC_GodRevel_Craving_Text_3>
+  <CC_GodRevel_Stash_Text_2>Far out on the land {PAWN} found {WHAT} hidden right at {PAWN_possessive} feet, and nobody knows who put it there.</CC_GodRevel_Stash_Text_2>
+  <CC_GodRevel_Stash_Text_3>Out on the far ground, {PAWN} came across {WHAT} tucked away at {PAWN_possessive} feet. Nobody knows who left it.</CC_GodRevel_Stash_Text_3>
+  <CC_GodRevel_Binge_Text_2>{PAWN}, deep in the binge, is chatting and laughing with an empty seat, as if someone there were pouring for them.</CC_GodRevel_Binge_Text_2>
+  <CC_GodRevel_Binge_Text_3>Deep in the binge, {PAWN} keeps talking and laughing at an empty seat, as if somebody in it were filling their cup.</CC_GodRevel_Binge_Text_3>
+  <CC_GodRevel_LetGo_Text_2>{SITTER} stayed up all night with {PAWN} through the worst of the craving, and by morning it had let up: {DRUG} has less of a hold on them.</CC_GodRevel_LetGo_Text_2>
+  <CC_GodRevel_LetGo_Text_3>All night {SITTER} sat with {PAWN} through the craving, and in the morning it was easier: the pull of {DRUG} on them is weaker.</CC_GodRevel_LetGo_Text_3>
+  <CC_GodRevel_Satyr_Text_2>A tall man with a goat's horns came in out of the dark at {HOME}, laughing, holding a cup of {DRINK}, and went straight to the people still up.</CC_GodRevel_Satyr_Text_2>
+  <CC_GodRevel_Satyr_Text_3>Out of the dark at {HOME} walked a tall, laughing man with goat's horns and a cup of {DRINK}, and he headed straight for whoever was still awake.</CC_GodRevel_Satyr_Text_3>
+
+  <!-- ===================== Selene ===================== -->
+
+  <CC_GodSelene_Water_Text_2>At the full moon {PAWN} saw it reflected in the still water by the colony, bright as a face, though the moon itself was behind {PAWN_objective}. {PAWN} stayed at the water's edge a long time.</CC_GodSelene_Water_Text_2>
+  <CC_GodSelene_Water_Text_3>The full moon lay in the still water by the colony as bright as a face, though the moon itself was behind {PAWN_objective}, and {PAWN} stood at the edge looking at it a long while.</CC_GodSelene_Water_Text_3>
+  <CC_GodSelene_Watch_Text_2>The moon is bright on {PAWN}'s watch tonight: {PAWN_pronoun} can see further into the dark than usual, and {PAWN_possessive} aim is steadier.</CC_GodSelene_Watch_Text_2>
+  <CC_GodSelene_Watch_Text_3>Strong moonlight lies round {PAWN} on watch tonight: {PAWN_pronoun} sees further in the dark, and {PAWN_possessive} aim is steadier for it.</CC_GodSelene_Watch_Text_3>
+  <CC_GodSelene_DarkFace_Text_2>With no moon tonight, {PAWN} kept watch at the door until the small hours, looking out.</CC_GodSelene_DarkFace_Text_2>
+  <CC_GodSelene_DarkFace_Text_3>There was no moon, and {PAWN} stood at the door looking out into the dark until late.</CC_GodSelene_DarkFace_Text_3>
+
+  <!-- ===================== Tamiu ===================== -->
+
+  <CC_GodTamiu_WentAway_Text_2>The {CAT} that stayed by {PAWN} through the worst of it has stood up, stretched, and walked away. {PAWN} is still with us.</CC_GodTamiu_WentAway_Text_2>
+  <CC_GodTamiu_WentAway_Text_3>{PAWN} is still with us, and the {CAT} that kept beside {PAWN} through the worst has stretched and gone off.</CC_GodTamiu_WentAway_Text_3>
+  <CC_GodTamiu_Lost_Text_2>A {CAT} sat crying beside {DEAD}'s body out on the far ground until {PAWN} came, and stayed by it after. {DEAD} can be brought home now.</CC_GodTamiu_Lost_Text_2>
+  <CC_GodTamiu_Lost_Text_3>Out on the far ground a {CAT} kept crying beside {DEAD}'s body until {PAWN} found it, and stayed there afterwards. {DEAD} can be carried home now.</CC_GodTamiu_Lost_Text_3>
+  <CC_Mog_Came_Text_2>A {BEAST} has walked in from the edge of the land, bigger than any lion, with gold eyes and a collar of lapis and gold nobody here gave her. She is heading for the graves as if she knows where they are.</CC_Mog_Came_Text_2>
+  <CC_Mog_Came_Text_3>From the edge of the land comes a {BEAST}, larger than any lion, gold-eyed, wearing a collar of lapis and gold that is not the colony's. She is making for the graves as though she has been here before.</CC_Mog_Came_Text_3>
+  <CC_Mog_Came_TextKin_2>A {BEAST} has walked in from the edge of the land, bigger than any lion, with gold eyes and a collar of lapis and gold nobody here gave her. Cats are following her, and she is heading for the graves as if she knows where they are.</CC_Mog_Came_TextKin_2>
+  <CC_Mog_Came_TextKin_3>From the edge of the land comes a {BEAST}, larger than any lion, gold-eyed, wearing a collar of lapis and gold that is not the colony's. A line of cats follows her toward the graves.</CC_Mog_Came_TextKin_3>
+  <CC_Mog_Right_Text_2>{PAWN_nameDef} stood in front of the {BEAST} and gave the answer: "{ANSWER}". She rose, pushed her great head under {PAWN_possessive} hand, and now walks at {PAWN_possessive} heel.</CC_Mog_Right_Text_2>
+  <CC_Mog_Right_Text_3>"{ANSWER}," {PAWN_nameDef} told the {BEAST}. She got up, nudged {PAWN_possessive} hand with her great head, and has walked at {PAWN_possessive} heel since.</CC_Mog_Right_Text_3>
+  <CC_Mog_Wrong_Text_2>{PAWN_nameDef} stood in front of the {BEAST} and gave the answer: "{ANSWER}". She studied {PAWN_objective} a long time, then rose and went back to the graves without a sound.</CC_Mog_Wrong_Text_2>
+  <CC_Mog_Wrong_Text_3>"{ANSWER}," {PAWN_nameDef} told the {BEAST}. She looked at {PAWN_objective} a long while, got up, and walked back to the graves in silence.</CC_Mog_Wrong_Text_3>
+  <CC_Mog_Wrong_TextCuffed_2>{PAWN_nameDef} stood in front of the {BEAST} and gave the answer: "{ANSWER}". She studied {PAWN_objective} a long time, then struck {PAWN_objective} once across the arm with her claws out, and went back to the graves.</CC_Mog_Wrong_TextCuffed_2>
+  <CC_Mog_Wrong_TextCuffed_3>"{ANSWER}," {PAWN_nameDef} told the {BEAST}. She looked at {PAWN_objective} a long while, cuffed {PAWN_objective} across the arm with her claws out, and walked back to the graves.</CC_Mog_Wrong_TextCuffed_3>
+
+  <!-- ===================== Undertow ===================== -->
+
+  <CC_GodUndertow_Shun_Text_2>Since the night {PAWN} said yes to the voice, the animals keep away from {PAWN_objective}: a {BEAST} lying close by got up as {PAWN_pronoun} came near and walked off without a backward look.</CC_GodUndertow_Shun_Text_2>
+  <CC_GodUndertow_Shun_Text_3>The animals won't come near {PAWN_objective} any more, not since {PAWN} said yes to the voice. A {BEAST} resting nearby rose as {PAWN_pronoun} approached and went away.</CC_GodUndertow_Shun_Text_3>
+  <CC_GodUndertow_Drift_Text_2>In the night a darkness came in slowly from the colony's edge, as if it knew where it was going, and stayed over {PAWN} until dawn.{LAMPS} {PAWN} says it spoke, and that it was kind.</CC_GodUndertow_Drift_Text_2>
+  <CC_GodUndertow_Drift_Text_3>A darkness crept in from the edge of the colony during the night and stood over {PAWN} till dawn.{LAMPS} {PAWN} says it talked, and it was kind.</CC_GodUndertow_Drift_Text_3>
+  <CC_GodUndertow_Light_Text_2>In the night a darkness came in from the colony's edge toward {PAWN}, stopped at the lamplight near {PAWN_objective}, and waited there until dawn.{LAMPS}</CC_GodUndertow_Light_Text_2>
+  <CC_GodUndertow_Light_Text_3>A darkness crept in from the edge of the colony toward {PAWN} during the night, and halted at the lamplight beside {PAWN_objective} until dawn.{LAMPS}</CC_GodUndertow_Light_Text_3>
+  <CC_GodUndertow_Company_Text_2>In the night a darkness came in from the colony's edge toward {PAWN} and stopped a few steps off, where {HOLDER} was sitting with {PAWN_objective}. It stayed there till dawn and came no nearer.</CC_GodUndertow_Company_Text_2>
+  <CC_GodUndertow_Company_Text_3>A darkness crept in toward {PAWN} during the night, but stopped short where {HOLDER} sat with {PAWN_objective}, and waited there until dawn without coming closer.</CC_GodUndertow_Company_Text_3>
+  <CC_GodUndertow_Gone_Text_2>In the night a darkness drifted in from the colony's edge toward {PAWN}, and by dawn it had gone.</CC_GodUndertow_Gone_Text_2>
+  <CC_GodUndertow_Gone_Text_3>A darkness crept in toward {PAWN} during the night, and was gone at first light.</CC_GodUndertow_Gone_Text_3>
+  <CC_GodUndertow_Ear_Text_2>{PAWN} stopped in the old ruins and put a hand over one ear. {PAWN} says the ear has gone silent, and now and then {PAWN_pronoun} hears {PAWN_possessive} own name called from very far off.</CC_GodUndertow_Ear_Text_2>
+  <CC_GodUndertow_Ear_Text_3>In the old ruins {PAWN} suddenly covered one ear. Since then that ear hears nothing, {PAWN} says, except that now and then {PAWN_pronoun} hears {PAWN_possessive} own name, spoken from far away.</CC_GodUndertow_Ear_Text_3>
+
+  <!-- ===================== The gods on the map ===================== -->
+
+  <CC_GodM_Rising_Text_2>The ground broke open at the edge of {HOME}'s land, and roots dragged themselves up out of it into a shape taller than any tree, bark and moss, with a knot in the wood for a face. It stands there, not moving.</CC_GodM_Rising_Text_2>
+  <CC_GodM_Rising_Text_3>At the edge of {HOME}'s land, roots tore up out of the ground and drew themselves into a figure taller than a tree, made of bark and moss, a knot in the wood where its face should be. It has not moved.</CC_GodM_Rising_Text_3>
+  <CC_GodM_Surfaced_Text_2>In the wet ground near {HOME} something has come up to the surface: a {BEAST}, mottled and very old, with wet dark eyes. It is watching the colony.</CC_GodM_Surfaced_Text_2>
+  <CC_GodM_Surfaced_Text_3>A {BEAST} has risen out of the wet ground near {HOME}, mottled and ancient, its eyes wet and dark. It is looking toward the colony.</CC_GodM_Surfaced_Text_3>
+  <CC_GodM_Woken_Text_2>The rock deep under {HOME} gave way and the deep working fell in. Then the mountainside cracked open and something climbed out: red and black, bigger than a house, smoke round its teeth and heat pouring off it like a forge. It is watching the colony.</CC_GodM_Woken_Text_2>
+  <CC_GodM_Woken_Text_3>Far below {HOME} the deep working collapsed, the mountainside split, and out of it came something red and black and larger than a house, with smoke about its teeth and the heat of a forge. It is looking at the colony.</CC_GodM_Woken_Text_3>
+  <CC_GodM_Quake_Text_2>The rock deep under {HOME} gave way and the deep working fell in. The whole mountain shook, and a shadow far bigger than any cloud crossed the land.</CC_GodM_Quake_Text_2>
+  <CC_GodM_Quake_Text_3>Far below {HOME} the deep working collapsed. The mountain shook from end to end, and a shadow larger than any cloud passed over the land.</CC_GodM_Quake_Text_3>
+  <CC_GodM_Animal_Text_2>A {BEAST} has walked in from the edge of the land, larger than any of its kind and glowing faintly in the dusk. It looks at the colony as if it has been here before.</CC_GodM_Animal_Text_2>
+  <CC_GodM_Animal_Text_3>From the edge of the land comes a {BEAST}, bigger than others of its kind, with a faint glow about it even in the dusk. It watches the colony as if it knows the place.</CC_GodM_Animal_Text_3>
+  <CC_GodM_Animal_TextKin_2>A {BEAST} has walked in from the edge of the land, larger than any of its kind, pale and faintly glowing. Others of its kind trail a long way behind it and keep their distance.</CC_GodM_Animal_TextKin_2>
+  <CC_GodM_Animal_TextKin_3>From the edge of the land comes a pale {BEAST}, bigger than the rest of its kind and glowing faintly. Others like it follow far behind and keep away.</CC_GodM_Animal_TextKin_3>
+  <CC_GodM_Boon_Text_2>{PAWN_nameDef} followed the {BEAST} across the land, and it looked back every so often to see that {PAWN_pronoun} was still coming. Then it stopped.</CC_GodM_Boon_Text_2>
+  <CC_GodM_Boon_Text_3>The {BEAST} led {PAWN_nameDef} across the land, glancing back now and then to check {PAWN_pronoun} still followed, and then it came to a halt.</CC_GodM_Boon_Text_3>
+  <CC_GodM_Sacrilege_Text_2>{HARMER} wounded the {BEAST}. It turned and looked at the colony, and nobody moved.</CC_GodM_Sacrilege_Text_2>
+  <CC_GodM_Sacrilege_Text_3>The {BEAST} is bleeding where {HARMER} struck it. It turned to look at the colony, and everyone stood still.</CC_GodM_Sacrilege_Text_3>
+  <CC_GodM_Sacrilege_TextSlain_2>{HARMER} killed the {BEAST}. As it went down its glow faded out, and nobody moved.</CC_GodM_Sacrilege_TextSlain_2>
+  <CC_GodM_Sacrilege_TextSlain_3>The {BEAST} fell to {HARMER}, and its glow went out as it fell. Nobody moved.</CC_GodM_Sacrilege_TextSlain_3>
+  <CC_GodM_KinStruck_Text_2>{HARMER} wounded one of the {KIN}s following the {BEAST}. The {BEAST} turned its great head and looked at the colony for a long time.</CC_GodM_KinStruck_Text_2>
+  <CC_GodM_KinStruck_Text_3>One of the {KIN}s trailing the {BEAST} was hurt by {HARMER}, and the {BEAST} turned to look at the colony for a long moment.</CC_GodM_KinStruck_Text_3>
+
+  <!-- ===================== The festivals ===================== -->
+
+  <CC_Feast_Smoulder_Text_2>For the Deep Silver, {PAWN} took {COUNT} silver from the stores at {HOME} and dropped it down {PLACE}, saying the mountain's names over it.</CC_Feast_Smoulder_Text_2>
+  <CC_Feast_Smoulder_Text_3>{PAWN} kept the Deep Silver at {HOME}: {COUNT} silver carried from the stores and let fall down {PLACE}, with the mountain's names said over it.</CC_Feast_Smoulder_Text_3>
+  <CC_Feast_Smoulder_TextNone_2>For the Deep Silver, {PAWN} went down to {PLACE} at {HOME} empty-handed, the stores holding no silver, and said the mountain's names there anyway.</CC_Feast_Smoulder_TextNone_2>
+  <CC_Feast_Smoulder_TextNone_3>{PAWN} kept the Deep Silver at {HOME} with nothing to throw, there being no silver in the stores, and said the mountain's names over {PLACE} all the same.</CC_Feast_Smoulder_TextNone_3>
+  <CC_Feast_Hush_Text_2>For the Stillness, {COUNT} of {HOME} ate a silent supper of {FOOD} together {WHERE}.</CC_Feast_Hush_Text_2>
+  <CC_Feast_Hush_Text_3>{COUNT} of {HOME} kept the Stillness with a supper of {FOOD} {WHERE}, and nobody spoke.</CC_Feast_Hush_Text_3>
+  <CC_Feast_Hush_TextSome_2>For the Stillness, {COUNT} of {HOME} sat down to a silent supper {WHERE}, and {ATE} of them had {FOOD}.</CC_Feast_Hush_TextSome_2>
+  <CC_Feast_Hush_TextSome_3>{COUNT} of {HOME} kept the Stillness with a silent supper {WHERE}; {ATE} of them had {FOOD} to eat.</CC_Feast_Hush_TextSome_3>
+  <CC_Feast_Hush_TextNoFood_2>For the Stillness, {COUNT} of {HOME} sat together in silence {WHERE}; there was no plain meal in the stores to share.</CC_Feast_Hush_TextNoFood_2>
+  <CC_Feast_Hush_TextNoFood_3>{COUNT} of {HOME} kept the Stillness sitting quietly together {WHERE}, without a plain meal in the stores to eat.</CC_Feast_Hush_TextNoFood_3>
+  <CC_Feast_Undertow_Text_2>For the Shuttered Night, {PAWN} went through {HOME} at nightfall closing {DOORS} doors and lighting the lamps, and by ten o'clock {LIT} lights were burning.</CC_Feast_Undertow_Text_2>
+  <CC_Feast_Undertow_Text_3>{PAWN} kept the Shuttered Night at {HOME}, shutting {DOORS} doors and lighting lamps as night fell, until {LIT} lights burned by ten o'clock.</CC_Feast_Undertow_Text_3>
+  <CC_Feast_Undertow_TextNoDoors_2>For the Shuttered Night, {PAWN} went through {HOME} at nightfall lighting the lamps, and by ten o'clock {LIT} lights were burning.</CC_Feast_Undertow_TextNoDoors_2>
+  <CC_Feast_Undertow_TextNoDoors_3>{PAWN} kept the Shuttered Night at {HOME}, lighting lamps as night fell, until {LIT} lights burned by ten o'clock.</CC_Feast_Undertow_TextNoDoors_3>
+  <CC_Feast_Selene_Text_2>For the Longest Night, {WATCHERS} watched from the walls of {HOME} until dawn, and at breakfast {DREAMS} of the colony told their dreams.</CC_Feast_Selene_Text_2>
+  <CC_Feast_Selene_Text_3>{WATCHERS} kept the Longest Night on the walls of {HOME} till dawn, and over breakfast {DREAMS} of the colony told what they had dreamt.</CC_Feast_Selene_Text_3>
+  <CC_Feast_Selene_TextNoDreams_2>For the Longest Night, {WATCHERS} watched from the walls of {HOME} until dawn; at breakfast nobody had a dream to tell.</CC_Feast_Selene_TextNoDreams_2>
+  <CC_Feast_Selene_TextNoDreams_3>{WATCHERS} kept the Longest Night on the walls of {HOME} till dawn, and nobody told a dream at breakfast.</CC_Feast_Selene_TextNoDreams_3>
+
+</LanguageData>
