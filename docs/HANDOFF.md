@@ -95,7 +95,8 @@ most sense." So, in this order, three builds at a time:
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
      council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); building: colony life 2 (A8,
      A11, A15, A16, A22 to A26, A28, twelve events, six personal stories), text round 2's world half (B9, B10, B16,
-     B18, B30) and its gods half (C32 to C36).
+     B18, B30) and its gods half (C32 to C36); the last variety items (A9, C25, C27; built, not released: the entry "The
+     colony's last variety items" above the newest release line).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -691,6 +692,70 @@ repo.
     ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to 1.7, updated 25 October) for the
     feel of the festival evenings and the old song. Vanilla Christmas Expanded is already on and used (the toys, the giving
     day's gifts and lamps). Still missing: a bell for the giving day or a calendar day (no 1.6 or 1.7 mod found).
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The colony's last variety items: a
+  day off for a friend, the colony's names for its places, rooms from the player's mods** (20 November 2026; the player on
+  `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can go ahead with
+  this in the order you think makes most sense"). A9, C25 and C27, the last three variety items of the list, each marked
+  **Built** in the proposals doc with what was decided. DESIGN.md "The colony's last variety items" (after "Colony life's
+  variety, part 2") has every rule; README in Wishes, Build: room plans and a new "The colony's names for its places"; the
+  Almanac's wish list (people, the council and the world) and Management's room plans (keywords unchanged). No harm.
+  - **A9, a day off for a friend.** Someone at home worn down or near breaking two days running, whose day off could be
+    given now, may have a day off asked for them by anyone close to them (the heart's closeness 0.6, about an opinion of 50,
+    a partner, kin) or a kind colonist who doesn't think badly of them: the asker's own wish about them, flavour style. Met
+    by the heart's day off given after it was asked (or under way) or the calendar's rest day; the asker's thanks, the two
+    closer, and seven times in ten an hour's visit (with answers playing out; else the day off's own time with a friend).
+    Let lapse, only the asker loses trust, and the worn one isn't told (not among the friends who take it personally). The
+    heart's advice on a day off says who asked. Kept apart from worn thin and the step-down question both ways.
+  - **C25, the colony's names for its places.** Five happenings name a place, by one who was there, said aloud once, a
+    message pointing at it and a line in the chronicle: a god seen where it stood ("the rise where Bellwether was seen", by
+    the colony's name where it knows the god, else what was seen; named an hour after, once the card is over), the first
+    grave out in the open ("the field of the graves"), a gathering beside a grown tree ("the old oak": a party, a wedding, a
+    council meeting), a raid held at a gate with nobody lost ("the gate that held"), a flood that reached the path or fields
+    ("the drowned path", "the drowned field", Odyssey's flood). A cell and a size, twelve a home, ten cells apart, no two
+    of one name, kept with the map. Used on a god's card when a god comes again where a name is, at supper, in the colony's
+    letters (`{OURPLACE}`, `colony:place`), in the chronicle; a quiet label with "Names of places on the map" (off by
+    default). Tree cut, gate or graves gone: the label fades for a season, then the name is forgotten.
+  - **C27, room plans from the player's mods.** A writer's study (Vanilla Books Expanded), a coffee corner (Vanilla Brewing
+    Expanded - Coffees and Teas), a dryad grove (Vanilla Ideology Expanded - Dryads), a festive hall (Vanilla Christmas
+    Expanded), a beekeeper's yard (Alpha Bees) and a fish house (Vanilla Fishing Expanded, with Vanilla Cooking Expanded -
+    Sushi's prep table where it is), each only with its mod; every mod named is active in the player's list and every def
+    name checked against `docs/player-mods/` (poolcheck OK).
+  - Code map: `Source/ColonyCouncil/Wishes/FriendDayOff.cs` (the worker, the look-ups, the company), `FriendDayOffMath.cs`
+    (pure, linked in the tests); `WishWorker.OtherNotTold` read in `CouncilDynamics.Expire`; one-line hooks in
+    `CouncilLife/StepDown.cs`, `CouncilLife/LifeArcs.cs`, `Heart/HeartAdvice.cs`. `Source/ColonyCouncil/Places/`:
+    `PlaceNames.cs` (`PlaceBook`, a map component saved with each home map, modelled in `Tools/save_estimate.py`; the
+    naming, the hour, the fading, the label), `PlaceTalk.cs` (supper), `PlaceNameMath.cs` (pure, linked in the tests),
+    `LastVarietyDebug.cs`; hooks in `Gods/Gods.cs` (Moment), `Gods/Presence/GodCard.cs` (Send), `Defense/DefenseLinesWatch.cs`
+    (the line held), `CouncilGameComponent.cs` (HourlyLife), `Text/Facts/FactsColony.cs` (colony:place, OURPLACE);
+    settings `placeNames` (on) and `placeLabels` (off) in `CouncilSettings.cs` and `UI/SettingsCatalog.cs`. Defs:
+    `Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml`, `Defs/FlavorPoolDefs/Rimfolk_Pools_PlaceNames.xml`, seven lines in
+    `Rimfolk_Letters_Aside.xml`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml`; words
+    `Languages/English/Keyed/Rimfolk_FriendDayOff.xml`, `Rimfolk_PlaceNames.xml`. Tests `Tools/Tests/LastVarietyTests.cs`,
+    the mods' room pieces in `RoomTemplateTests`, `OURPLACE` in `LetterFormTests` and the DefValidator. No new `Sched` offset.
+  - Decided here: see each item's **Built** line in the proposals doc. The beast that stays already has its own name, so
+    it names no place. A god's place waits an hour after the moment, so its name comes after the card, not before. The
+    wedding's spot is the game's private field (read by name, `AccessTools.FieldRefAccess`; checked by ApiDiff).
+  - Not run here (none of it could be): a god's place named after a real coming and the card naming it the next time; the
+    first grave named when someone walks by; a party or a wedding beside a grown tree; a raid held at a gate; Odyssey's flood
+    reaching a path; the label at different zooms and fading; supper talk at the table; the colony's letters with
+    `{OURPLACE}`; the friend's wish met by the button and by a rest day, the visit after, a lapse; the six rooms placed with
+    their mods' real pieces (sizes as the catalogue gives them: a mod piece of another size is left out by the planner).
+  - Try in the game (dev mode, "Rimfolk"): 1. Have someone worn down two days (strain 55 or more), then "Last variety: a
+    day off for a friend, asked now by..." on someone close to them or kind; give the day off from the Mood tab and watch
+    the thanks and the visit. 2. Settings, "Names of places on the map" on; "Last variety: name the place at the mouse as..."
+    for each kind, then "...list the named places here", "...a named place brought up at supper now" (at supper, someone
+    eating beside another), and "...the place at the mouse gone a season ago" (the next hour forgets it). 3. Hold a party
+    beside a grown tree; let a raid come through a gate and be held; bury a colonist outdoors and walk past. 4. In the room
+    planner, the six new rooms (Leisure, Work and Food) with their mods.
+  - Mods that would help: none needed for the label (the game's own label drawing) or the rooms (the mods' own
+    furniture, all already on). The flowers of Vanilla Plants Expanded - Flowers
+    ([3748351639](https://steamcommunity.com/sharedfiles/filedetails/?id=3748351639), 1.6 and 1.7, already on) and Alpha
+    Props - Parks and Gardens' flowers (on) can be sown in the beekeeper's yard's and the dryad grove's pots. For a coffee
+    corner and a festive hall with a counter and tavern tables: Tavern
+    ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305), 1.6 and 1.7, kept up, in the list but
+    off; needs Vanilla Expanded Framework, on). For a smoker in the fish house: only Medieval Overhaul's
+    ([3219596926](https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926), 1.6 in the catalogue, in the list but
+    off), nothing found on 1.7.
 - 0.284.0, **Colony life's text variety: the
   journals, the teasing, the decrees' voices, the answers to wishes, the social log, social events, the seats' words and
   the year's last** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall

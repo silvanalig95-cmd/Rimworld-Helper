@@ -105,8 +105,9 @@ namespace ColonyCouncil
     /// chronicle:
     /// <list type="bullet">
     /// <item>a god seen on the land (Gods.Moment: it came, acted, showed itself, blessed or raged where it stood, out in the
-    /// open), named by the first who saw it, by what the colony knows: the colony's name for the god where it knows the god
-    /// did it, else what was seen ("the rise where the great white thrumbo was seen"), never more (ArtTales.GodWords);</item>
+    /// open), by what the colony knew of it then: the colony's name for the god where it knows the god did it, else what was
+    /// seen ("the rise where the great white thrumbo was seen"), never more (ArtTales.GodWords); named an hour after the
+    /// moment at the earliest (its card comes first), by the one who saw it still nearest the place;</item>
     /// <item>the colony's first grave out in the open with one of its own in it: "the field of the graves", by the one of the
     /// colony near it who thought most of the dead, once someone is;</item>
     /// <item>a gathering (a party, a wedding, a council meeting) held out in the open beside a grown tree: "the old oak", by
