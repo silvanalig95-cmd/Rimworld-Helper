@@ -38,7 +38,16 @@ public static class TraitChangeTests
     private static readonly HashSet<string> GameThoughts = new HashSet<string>
     {
         "AteHumanlikeMeatDirect", "AteHumanlikeMeatAsIngredient", "AteRawHumanlikeMeat", "AteHumanMeat_Disapproved", "AteHumanMeat_Horrible",
-        "AteHumanMeat_Abhorrent", "AteHumanMeat_Preferred", "AteHumanMeat_RequiredStrong", "AteHumanMeat_RequiredRavenous"
+        "AteHumanMeat_Abhorrent", "AteHumanMeat_Preferred", "AteHumanMeat_RequiredStrong", "AteHumanMeat_RequiredRavenous",
+        "AteHumanlikeMeatDirectCannibal", "AteHumanlikeMeatAsIngredientCannibal"
+    };
+    // The game's precepts the rules name (Ideology), from the player's catalogue (docs/player-mods, defs.tsv.gz).
+    private static readonly HashSet<string> GamePrecepts = new HashSet<string> { "Cannibalism_Preferred", "Cannibalism_RequiredStrong", "Cannibalism_RequiredRavenous" };
+    // The kinds of work a practice reads (the game's WorkTypeDefs), and the special ones (Quirks/Practice.cs).
+    private static readonly HashSet<string> GameWork = new HashSet<string>
+    {
+        "Hauling", "Cooking", "Smithing", "Cleaning", "Doctor", "Hunting", "Growing", "Mining", "Construction", "Crafting", "Tailoring", "Art",
+        "Research", "Handling", "PlantCutting", "Warden", "work", "night", "morning", "outdoors"
     };
     private static readonly HashSet<string> GameEvents = new HashSet<string>
     {
@@ -125,6 +134,88 @@ public static class TraitChangeTests
         }
         foreach (var p in lastBy.Keys) most = Math.Max(most, lastBy[p]);
         Check(made <= 61 && made >= 50, $"ten years of a colony always ready: about one change per ten days ({made})");
+
+        // ---------- 37: a way out of a bad trait isn't held back by the colony's ten days ----------
+        Check(TraitChangeMath.RateBlocked(-1, now - 3 * Day, -1, 0, now, false, true) == null, "a way out doesn't wait for the colony's ten days");
+        Check(TraitChangeMath.RateBlocked(-1, now - 3 * Day, -1, 0, now, false, false) == "colony", "a gain still does");
+        Check(TraitChangeMath.RateBlocked(now - 30 * Day, now - 3 * Day, -1, 0, now, false, true) == "person", "a way out still waits for the person's sixty days");
+        Check(TraitChangeMath.RateBlocked(now - 30 * Day, now - 3 * Day, -1, 0, now, true, true) == null, "unless it undoes what Rimfolk gave");
+        Check(TraitChangeMath.RateBlocked(-1, now - 3 * Day, now - 30 * Day, 90, now, false, true) == "trait", "and the rule's own gap since the trait last changed holds");
+        {
+            // Eight colonists: the first six have a gain ready every day they're free; colonists 6 and 7 carry a bad trait
+            // whose way out is ready from day 100. As in the daily pass: what is allowed today goes into a pot, one is
+            // picked at random, at most one change a day. Averaged over many colonies, how long the ways out wait.
+            var rng = new Random(11);
+            (float wait, float gains) Run(bool waysOutFree)
+            {
+                float waited = 0f, gainsAll = 0f;
+                const int runs = 300;
+                for (int run = 0; run < runs; run++)
+                {
+                    int lastAny = -1, gains = 0;
+                    var outDay = new Dictionary<int, int>();
+                    var lastOf = new Dictionary<int, int>();
+                    for (int d = 0; d < 300; d++)
+                    {
+                        int tick = d * Day;
+                        var pot = new List<(int person, bool wayOut)>();
+                        for (int person = 0; person < 8; person++)
+                        {
+                            int lp = lastOf.TryGetValue(person, out int y) ? y : -1;
+                            if (person < 6 && TraitChangeMath.RateBlocked(lp, lastAny, -1, 0, tick) == null) pot.Add((person, false));
+                            if (person >= 6 && d >= 100 && !outDay.ContainsKey(person)
+                                && TraitChangeMath.RateBlocked(lp, lastAny, -1, 0, tick, false, waysOutFree) == null) pot.Add((person, true));
+                        }
+                        if (pot.Count == 0) continue;
+                        var pick = pot[rng.Next(pot.Count)];
+                        lastAny = tick;
+                        lastOf[pick.person] = tick;
+                        if (pick.wayOut) outDay[pick.person] = d;
+                        else gains++;
+                    }
+                    waited += (outDay.TryGetValue(6, out int a) ? a - 100 : 200) + (outDay.TryGetValue(7, out int b) ? b - 100 : 200);
+                    gainsAll += gains;
+                }
+                return (waited / (2f * runs), gainsAll / runs);
+            }
+            var free = Run(true);
+            var before = Run(false);
+            Check(free.wait < 2f, $"a way out comes within days of being ready, gains or not ({free.wait:0.0} days on average)");
+            Check(before.wait > 10f, $"before, it waited its turn with the gains for the colony's ten-day slot ({before.wait:0.0} days on average)");
+            Check(free.gains >= 24f && free.gains <= 31f, $"gains still come about one in ten days ({free.gains:0.0} in 300 days)");
+        }
+
+        // ---------- What is a way out ----------
+        var nervesSteady = new List<int> { -1 };
+        var stepNervous = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, -1, 0, false, nerves, new List<int> { -1, 0 });
+        var stepNone = TraitChangeMath.Plan(TraitChangeKind.StepUp, false, 0, 0, false, nerves, new List<int> { -1, 0 });
+        Check(TraitChangeMath.IsWayOut(nervesSteady, stepNervous), "nervous steadied to none is a way out of a bad trait");
+        Check(!TraitChangeMath.IsWayOut(nervesSteady, stepNone), "none to steadfast, by the same rule, is a gain");
+        var lazyUp = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, -1, 0, false, nerves, new List<int> { -1, 0, 1 });
+        var industriousUp = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, 1, 0, false, nerves, new List<int> { -1, 0, 1 });
+        Check(TraitChangeMath.IsWayOut(nervesSteady, lazyUp) && !TraitChangeMath.IsWayOut(nervesSteady, industriousUp), "industrious to hard worker is no way out: it starts from a good degree");
+        Check(TraitChangeMath.IsWayOut(new List<int> { 0 }, lose) && !TraitChangeMath.IsWayOut(null, lose), "a loss is a way out only when the rule names it so");
+        Check(!TraitChangeMath.IsWayOut(new List<int> { 0 }, TraitChangeMath.Plan(TraitChangeKind.Lose, false, 0, 0, false, kind, none)), "nothing to leave: no way out");
+
+        // ---------- A zero count, sums of work, the rule that gave it, what the page shows ----------
+        Check(float.IsPositiveInfinity(TraitChangeMath.NoneDays(new List<int>(), now, -1)), "none counted and never changed: as long as Rimfolk has counted");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now - 200 * Day, now - 50 * Day }, now, -1) - 50f) < 0.01f, "counted from the newest");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now - 200 * Day }, now, now - 20 * Day) - 20f) < 0.01f, "or from the trait's last change, if later: a stretch from before it came doesn't count");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int>(), now, now - 20 * Day) - 20f) < 0.01f, "none counted since it came: the days since it came");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now + 5 * Day, now - 40 * Day }, now, -1) - 40f) < 0.01f, "a moment from the future (a loaded save) is ignored");
+        Check(TraitChangeMath.PracticeParts("Cooking+Smithing").SequenceEqual(new[] { "Cooking", "Smithing" }) && TraitChangeMath.PracticeParts("Hauling").SequenceEqual(new[] { "Hauling" }),
+            "a practice adds up the kinds of work it names");
+        var famineRule = new List<string> { "Rimfolk_TC_CannibalFamine" };
+        Check(TraitChangeMath.GaveIt(new List<int> { 100 * Day }, new List<bool> { true }, new List<string> { "Rimfolk_TC_CannibalFamine" }, famineRule),
+            "the famine's way out is for the cannibal famine gave");
+        Check(!TraitChangeMath.GaveIt(new List<int> { 100 * Day }, new List<bool> { true }, new List<string> { "Rimfolk_TC_CannibalFaith" }, famineRule),
+            "not for one a faith gave");
+        Check(TraitChangeMath.GaveIt(new List<int> { 100 * Day }, new List<bool> { true }, new List<string> { "Rimfolk_TC_CannibalFaith" }, null),
+            "a way out that names no rule takes whichever gave it");
+        Check(TraitChangeMath.BuildingShows(true, 0, 5), "38: a way out shows from the start, with nothing of it there yet");
+        Check(!TraitChangeMath.BuildingShows(false, 0, 5) && !TraitChangeMath.BuildingShows(false, 1, 4) && TraitChangeMath.BuildingShows(false, 2, 4),
+            "any other rule shows once a third of its evidence is there");
+        Check(!TraitChangeMath.BuildingShows(false, 0, 0), "a rule with only parts that hold by default isn't shown for them");
 
         // ---------- Absorbing: a trait stands for the change, nothing doubles ----------
         float Total(float n, float l, float d) => PersonaMath.Total(n, l, d);
@@ -366,25 +457,56 @@ public static class TraitChangeTests
                 Check(markNames.Contains(m), $"{name}: the mark {m} it waits out is a mark, a family or a story");
             foreach (var tally in r.Element("tallies")?.Elements("li") ?? Enumerable.Empty<XElement>())
             {
-                foreach (var th in List((string)tally.Element("thoughts"))) Check(GameThoughts.Contains(th), $"{name}: the memory {th} is the game's");
+                foreach (var th in List((string)tally.Element("thoughts"))) Check(GameThoughts.Contains(th) || modNames.Contains(th), $"{name}: the memory {th} is the game's or its mod's");
                 foreach (var ev in List((string)tally.Element("events"))) Check(GameEvents.Contains(ev), $"{name}: the deed {ev} is the game's");
                 foreach (var ta in List((string)tally.Element("tales"))) Check(GameTales.Contains(ta), $"{name}: the tale {ta} is the game's");
+                foreach (var m in List((string)tally.Element("marks"))) Check(markNames.Contains(m), $"{name}: the mark {m} it counts as it comes is a mark, a family or a story");
                 Check(!string.IsNullOrWhiteSpace((string)tally.Element("label")), $"{name}: a deed counted is named in the letter");
+                int noneDays = (int?)tally.Element("noneDays") ?? 0;
+                Check(noneDays >= 0 && noneDays <= 240, $"{name}: a zero count fits in the 240 days deeds are kept ({noneDays})");
+                if (noneDays > 0) Check(tally.Element("count") == null && tally.Element("withinDays") == null, $"{name}: a zero count asks for no count or window of its own");
             }
+            if (TraitChangeMath.TryParseFacts((string)r.Element("practice"), out var practice, out _))
+                foreach (var f in practice)
+                    foreach (var part in TraitChangeMath.PracticeParts(f.name))
+                        Check(GameWork.Contains(part), $"{name}: the practice {part} is a kind of work the practice log keeps");
+            foreach (var pr in List((string)r.Element("notPrecepts")))
+                Check(GamePrecepts.Contains(pr) && (string)r.Element("dlc") == "Ideology", $"{name}: the precept {pr} is Ideology's, and the rule needs Ideology");
+            if (r.Element("notPrecepts") != null) Check(!string.IsNullOrWhiteSpace((string)r.Element("notPreceptsLabel")), $"{name}: the faith it asks for is said in plain words");
             if (TraitChangeMath.TryParseFacts((string)r.Element("records"), out var recs, out _))
                 foreach (var f in recs) Check(GameRecords.Contains(f.name) || f.name.StartsWith("Council_"), $"{name}: the record {f.name} is kept by the game or Rimfolk");
             foreach (var pace in r.Element("pace")?.Elements("li") ?? Enumerable.Empty<XElement>())
                 Check(GameRecords.Contains((string)pace.Element("record") ?? ""), $"{name}: the pace reads a record the game keeps");
             float chance = (float?)r.Element("chance") ?? 0.1f;
             Check(chance > 0f && chance <= 0.2f, $"{name}: a small chance per day once it holds ({chance})");
-            if (trait == "Psychopath" || trait == "Cannibal")
+            if ((trait == "Psychopath" || trait == "Cannibal") && change == "Gain")
             {
                 Check((string)r.Element("onceKey") == trait, $"{name}: {trait} comes at most once in a colony's life");
                 Check(r.Element("tallies") != null && (int?)r.Element("tallies")!.Elements("li").Max(li => (int?)li.Element("count") ?? 1) >= 1,
                     $"{name}: {trait} needs deeds counted, never a single happening");
                 Check(((int?)r.Element("tone") ?? 0) < 0, $"{name}: {trait} is a negative letter");
+                if (trait == "Cannibal") Check(r.Element("tallies")!.Elements("li").All(li => ((int?)li.Element("count") ?? 1) >= 3), $"{name}: cannibalism needs at least three separate meals");
             }
-            if (trait == "Cannibal") Check(r.Element("tallies")!.Elements("li").All(li => ((int?)li.Element("count") ?? 1) >= 3), $"{name}: cannibalism needs at least three separate meals");
+            // A way out of a bad trait (37, 38): a loss or a step, good news, from degrees it steps from.
+            var wayOut = r.Element("wayOutOf")?.Elements("li").Select(li => int.Parse(li.Value)).ToList();
+            if (change == "Lose" && ((int?)r.Element("tone") ?? 0) > 0) Check(wayOut != null && wayOut.Count > 0, $"{name}: a good loss is a way out of a bad trait (wayOutOf)");
+            if (r.Element("onlyGiven") != null) Check(wayOut != null && wayOut.Count > 0, $"{name}: undoing what Rimfolk gave is a way out");
+            if (wayOut != null)
+            {
+                Check(change != "Gain" && ((int?)r.Element("tone") ?? 0) > 0, $"{name}: a way out is a loss or a step, and good news");
+                if (change == "StepUp" || change == "StepDown")
+                {
+                    var from = r.Element("from")!.Elements("li").Select(li => int.Parse(li.Value)).ToList();
+                    Check(wayOut.All(from.Contains) && !wayOut.Contains(0), $"{name}: it leads out of degrees it steps from, never from none");
+                }
+                else Check(wayOut.SequenceEqual(new[] { 0 }) || r.Element("anyDegree") != null, $"{name}: a loss of a trait without degrees leads out of 0");
+            }
+            foreach (var g in r.Element("givenBy")?.Elements("li") ?? Enumerable.Empty<XElement>())
+            {
+                var by = rules.FirstOrDefault(x => (string)x.Element("defName") == g.Value);
+                Check(by != null && (string)by.Element("trait") == trait && ((string)by.Element("change") ?? "Gain") == "Gain" && r.Element("onlyGiven") != null,
+                    $"{name}: only for the {trait} that {g.Value} gave");
+            }
         }
         Check(rules.Count(r => (string)r.Element("trait") == "Psychopath") >= 1 && rules.Count(r => (string)r.Element("trait") == "Cannibal") >= 1, "the two extreme traits have their rules");
         foreach (var r in rules)
@@ -425,6 +547,177 @@ public static class TraitChangeTests
                 Check(100.01f + calmDays < 160f && 112.01f + calmDays < 160f, "both of the player's colonists can be past the calm before day 160");
             }
         }
+        // ---------- More traits that come and go, the first batch (the player's go, 20 November 2026) ----------
+        {
+            XElement? Rule(string n) => rules.FirstOrDefault(r => (string)r.Element("defName") == n);
+            float Chance(XElement r) => (float?)r.Element("chance") ?? 0.1f;
+            List<string> AnyOf(XElement r, int i) => List((string)r.Element("marks")?.Elements("li").ElementAtOrDefault(i)?.Element("any")).ToList();
+            int CountOf(XElement r, int i) => (int?)r.Element("marks")?.Elements("li").ElementAtOrDefault(i)?.Element("count") ?? 1;
+            bool Uncommon(XElement r) => Chance(r) >= 0.05f && Chance(r) <= 0.08f;
+            bool Rare(XElement r) => Chance(r) >= 0.02f && Chance(r) <= 0.04f;
+            bool Common(XElement r) => Chance(r) >= 0.1f && Chance(r) <= 0.15f;
+            string NotMarks(XElement r) => (string)r.Element("notMarks") ?? "";
+            int NotDays(XElement r) => (int?)r.Element("notMarksDays") ?? 60;
+            bool WayOut(XElement r) => r.Element("wayOutOf") != null && ((int?)r.Element("gapDays") ?? 120) == 0;
+            const string Vte = "vanillaexpanded.vanillatraitsexpanded";
+            bool Vtes(XElement r) => r.Element("mods")?.Elements("li").Any(li => li.Value == Vte) == true;
+
+            // 1. Jealous fades, any jealous: a seat, or two promises kept; no seat or vote lost in 120 days; trust back.
+            var seat = Rule("Rimfolk_TC_JealousFadesSeat");
+            var promises = Rule("Rimfolk_TC_JealousFadesPromises");
+            Check(seat != null && promises != null, "1: jealous has two ways out, a seat and two promises kept");
+            foreach (var r in new[] { seat, promises }.Where(x => x != null).Select(x => x!))
+            {
+                Check((string)r.Element("trait") == "Jealous" && (string)r.Element("change") == "Lose" && r.Element("onlyGiven") == null, "1: any jealous fades, not only Rimfolk's");
+                Check(NotMarks(r).Contains("VotedOut") && NotMarks(r).Contains("LostElection") && NotDays(r) == 120, "1: no seat or vote lost in the last 120 days");
+                Check((string)r.Element("moved") == "trust>=0" && Uncommon(r) && Chance(r) == 0.08f && WayOut(r), "1: trust back where it was, 8% a day, a way out");
+            }
+            if (seat != null) Check(AnyOf(seat, 0).SequenceEqual(new[] { "Elected" }) && CountOf(seat, 0) == 1, "1: given a seat");
+            if (promises != null) Check(AnyOf(promises, 0).SequenceEqual(new[] { "PromiseKept" }) && CountOf(promises, 0) == 2, "1: two promises kept to them");
+
+            // 2. Bloodlust Rimfolk gave fades: no fight mark in 120 days, a long peace, warmth back near where it was.
+            var blood = Rule("Rimfolk_TC_BloodlustFades");
+            Check(blood != null && (string)blood.Element("trait") == "Bloodlust" && (bool?)blood.Element("onlyGiven") == true, "2: only the bloodlust Rimfolk gave");
+            if (blood != null)
+            {
+                foreach (var fight in new[] { "Rimfolk_Mark_HeldTheLine", "Rimfolk_Mark_RaidsHardened", "Rimfolk_Mark_DownedHardened", "Rimfolk_Mark_SworeVengeance" })
+                    Check(NotMarks(blood).Contains(fight), $"2: no {fight} in the waiting");
+                Check(NotDays(blood) == 120 && AnyOf(blood, 0).SequenceEqual(new[] { "LongPeace" }), "2: 120 days with no fight mark, and a long peace");
+                Check((string)blood.Element("moved") == "warmth>=-5" && Chance(blood) == 0.05f && WayOut(blood), "2: warmth back near where it was, 5% a day");
+            }
+
+            // 4. Cannibal Rimfolk gave fades: the famine's after 180 days without human flesh and no hungry season in 120;
+            // the faith's once they take up a faith that doesn't call for it.
+            var famine = Rule("Rimfolk_TC_CannibalFamineFades");
+            var faith = Rule("Rimfolk_TC_CannibalFaithFades");
+            if (famine != null)
+            {
+                var meals = famine.Element("tallies")!.Elements("li").Single();
+                Check((int?)meals.Element("noneDays") == 180 && List((string)meals.Element("events")).Contains("AteHumanMeat"), "4: 180 days without eating human flesh (a zero count)");
+                Check(List((string)meals.Element("thoughts")).Contains("AteHumanlikeMeatDirectCannibal"), "4: a cannibal's own meal counts (the cannibal's memory)");
+                Check(NotMarks(famine) == "HungrySeason" && NotDays(famine) == 120, "4: no hungry season in 120 days");
+                Check(famine.Element("givenBy")!.Elements("li").Single().Value == "Rimfolk_TC_CannibalFamine" && Chance(famine) == 0.06f && WayOut(famine),
+                    "4: only for the cannibal famine gave, 6% a day");
+            }
+            else Check(false, "4: the famine's cannibal has a way out");
+            if (faith != null)
+            {
+                Check(AnyOf(faith, 0).SequenceEqual(new[] { "Converted" }) && List((string)faith.Element("notPrecepts")).Count() == 3, "4: a new faith that doesn't call for it");
+                Check(faith.Element("givenBy")!.Elements("li").Single().Value == "Rimfolk_TC_CannibalFaith" && Chance(faith) == 0.08f && WayOut(faith),
+                    "4: only for the cannibal a faith gave, 8% a day");
+            }
+            else Check(false, "4: the faith's cannibal has a way out");
+
+            // 5. World weary lifts: two long peaces, a good mark, no loss in 60 days, outlook back near where it was.
+            var weary = Rule("Rimfolk_TC_VTE_WorldWearyLifts");
+            if (weary != null)
+            {
+                var peace = weary.Element("tallies")!.Elements("li").Single();
+                Check((string)peace.Element("marks") == "LongPeace" && (int?)peace.Element("count") == 2, "5: two long peaces, counted as they come");
+                Check(AnyOf(weary, 0).ToHashSet().SetEquals(new[] { "MovingRitual", "Mastered", "Legendary", "Freed", "AddictionOvercome", "Elected", "TaughtWell" }), "5: and one good mark");
+                Check(NotMarks(weary) == "Loss" && NotDays(weary) == 60 && (string)weary.Element("moved") == "outlook>=-5", "5: no loss in 60 days, outlook back near");
+                Check(Vtes(weary) && Chance(weary) == 0.06f && WayOut(weary) && weary.Element("onlyGiven") == null, "5: any world weary, 6% a day");
+            }
+            else Check(false, "5: world weary has a way out");
+
+            // 6. Rebel settles: two promises kept or a seat; no broken promise, lost seat or vote in 120 days; trust back.
+            foreach (var n in new[] { "Rimfolk_TC_VTE_RebelSettlesPromises", "Rimfolk_TC_VTE_RebelSettlesSeat" })
+            {
+                var r = Rule(n);
+                Check(r != null, $"6: {n}");
+                if (r == null) continue;
+                Check(NotMarks(r).Contains("BrokenPromise") && NotMarks(r).Contains("VotedOut") && NotMarks(r).Contains("LostElection") && NotDays(r) == 120,
+                    "6: no broken promise, lost seat or lost vote in 120 days");
+                Check((string)r.Element("moved") == "trust>=0" && Vtes(r) && Chance(r) == 0.08f && WayOut(r), "6: trust back, 8% a day");
+                Check(n.EndsWith("Seat") ? AnyOf(r, 0).SequenceEqual(new[] { "Elected" }) : AnyOf(r, 0).SequenceEqual(new[] { "PromiseKept" }) && CountOf(r, 0) == 2, "6: a seat, or two promises kept");
+            }
+
+            // 10. Pyromaniac fades: 120 calm days, 60 recent hours at the stove or the forge, a masterwork or a skill mastered.
+            var pyro = Rule("Rimfolk_TC_PyromaniacFades");
+            if (pyro != null)
+            {
+                Check((int?)pyro.Element("calmDays") == 120 && (string)pyro.Element("practice") == "Cooking+Smithing>=60", "10: 120 calm days and 60 hours at the stove or the forge");
+                Check(AnyOf(pyro, 0).ToHashSet().SetEquals(new[] { "Masterwork", "Mastered" }) && Rare(pyro) && WayOut(pyro), "10: a masterwork or a skill mastered, rare");
+            }
+            else Check(false, "10: pyromaniac has a way out");
+
+            // 16. Lush and stoner dry out: an addiction overcome in 120 days, as the teetotal rule.
+            var teetotal = Rule("Rimfolk_TC_Teetotal");
+            foreach (var n in new[] { "Rimfolk_TC_VTE_LushDriesOut", "Rimfolk_TC_VTE_StonerDriesOut" })
+            {
+                var r = Rule(n);
+                Check(r != null && teetotal != null, $"16: {n}");
+                if (r == null || teetotal == null) continue;
+                Check(AnyOf(r, 0).SequenceEqual(AnyOf(teetotal, 0)) && (int?)r.Element("marks")!.Elements("li").First().Element("withinDays") == 120
+                      && (string)r.Element("moved") == (string)teetotal.Element("moved"), "16: as the teetotal rule asks");
+                Check(Vtes(r) && Common(r) && Chance(r) == 0.15f && WayOut(r), "16: common, 15% a day");
+            }
+
+            // 14. Talking it through: four sessions in 90 days in place of one mark of the way up it stands beside.
+            foreach (var (twin, of) in new[]
+                     {
+                         ("Rimfolk_TC_TherapyVolatile", "Rimfolk_TC_VolatileSoftens"), ("Rimfolk_TC_TherapyNervous", "Rimfolk_TC_NervesSteadier"),
+                         ("Rimfolk_TC_TherapyDepressive", "Rimfolk_TC_DepressionLifts"), ("Rimfolk_TC_TherapyPessimist", "Rimfolk_TC_MoodBrightens")
+                     })
+            {
+                var r = Rule(twin);
+                var o = Rule(of);
+                Check(r != null && o != null, $"14: {twin} stands beside {of}");
+                if (r == null || o == null) continue;
+                var talk = r.Element("tallies")!.Elements("li").Single();
+                Check(List((string)talk.Element("thoughts")).SequenceEqual(new[] { "TherapyRelieved" }) && (int?)talk.Element("count") == 4 && (int?)talk.Element("withinDays") == 90,
+                    $"14: {twin}: four sessions with a therapist in 90 days");
+                Check(r.Element("mods")!.Elements("li").Single().Value == "orion.therapy", $"14: {twin}: only with Therapy (Continued)");
+                int marksOf = o.Element("marks")?.Elements("li").Sum(li => (int?)li.Element("count") ?? 1) ?? 0;
+                int marksHere = r.Element("marks")?.Elements("li").Sum(li => (int?)li.Element("count") ?? 1) ?? 0;
+                Check(marksHere == marksOf - 1, $"14: {twin}: the sessions take the place of one of its marks ({marksHere} of {marksOf})");
+                foreach (var field in new[] { "trait", "change", "moved", "now", "notMarks", "notMarksDays", "calmDays", "gapDays", "chance", "tone" })
+                    Check((string)r.Element(field) == (string)o.Element(field), $"14: {twin}: {field} as {of}");
+                var from = r.Element("from")!.Elements("li").Select(li => int.Parse(li.Value)).ToList();
+                Check(from.Count == 1 && from[0] < 0 && o.Element("from")!.Elements("li").Any(li => int.Parse(li.Value) == from[0])
+                      && r.Element("wayOutOf")!.Elements("li").Single().Value == from[0].ToString(), $"14: {twin}: only the way up out of the bad degree");
+            }
+
+            // 26. Brave: held the line twice and carried someone to safety, nerve up 15; never a wimp or a coward.
+            var brave = Rule("Rimfolk_TC_VTE_Brave");
+            if (brave != null)
+            {
+                Check((string)brave.Element("change") == "Gain" && AnyOf(brave, 0).SequenceEqual(new[] { "Rimfolk_Mark_HeldTheLine" }) && CountOf(brave, 0) == 2
+                      && AnyOf(brave, 1).SequenceEqual(new[] { "SavedSomeone" }), "26: held the line twice and carried someone to safety");
+                var blocked = brave.Element("blockedBy")!.Elements("li").Select(li => li.Value).ToList();
+                Check(blocked.Contains("Wimp") && blocked.Contains("VTE_Coward") && (string)brave.Element("moved") == "nerve>=15", "26: nerve up 15, never a wimp or a coward");
+                Check(Vtes(brave) && Chance(brave) == 0.08f && ((int?)brave.Element("tone") ?? 0) > 0, "26: uncommon, good news");
+            }
+            else Check(false, "26: brave can come");
+
+            // 27. Jogger: a fast walker steps up after 120 recent hours hauling, or a second season abroad.
+            var haul = Rule("Rimfolk_TC_JoggerHauling");
+            var road = Rule("Rimfolk_TC_JoggerAbroad");
+            Check(haul != null && road != null, "27: two ways to jogger");
+            foreach (var r in new[] { haul, road }.Where(x => x != null).Select(x => x!))
+            {
+                Check((string)r.Element("trait") == "SpeedOffset" && (string)r.Element("change") == "StepUp"
+                      && r.Element("from")!.Elements("li").Single().Value == "1" && Chance(r) == 0.06f, "27: fast walker to jogger, 6% a day");
+                var step = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, 1, 0, false, Degrees["SpeedOffset"], new List<int> { 1 });
+                Check(step.ok && step.to == 2 && step.hasAfter, "27: a fast walker steps up to jogger");
+            }
+            if (haul != null) Check((string)haul.Element("practice") == "Hauling>=120", "27: 120 recent hours hauling");
+            if (road != null) Check(AnyOf(road, 0).SequenceEqual(new[] { "Rimfolk_Mark_WorldSeen" }), "27: a second season abroad within a year (the mark that says so)");
+
+            // 37 and 38 for the rules already there: every way out of a bad trait is marked.
+            foreach (var (n, degree) in new[]
+                     {
+                         ("Rimfolk_TC_NervesSteadier", -1), ("Rimfolk_TC_VolatileSoftens", -2), ("Rimfolk_TC_MoodBrightens", -1), ("Rimfolk_TC_DepressionLifts", -2),
+                         ("Rimfolk_TC_WorkHarder", -1), ("Rimfolk_TC_HabitIndustrious", -1), ("Rimfolk_TC_Teetotal", 1), ("Rimfolk_TC_FascinationEases", 2),
+                         ("Rimfolk_TC_AbrasiveFades", 0), ("Rimfolk_TC_WimpFades", 0), ("Rimfolk_TC_GreedyFades", 0), ("Rimfolk_TC_VTE_CowardFades", 0),
+                         ("Rimfolk_TC_VTE_VengefulVowOver", 0), ("Rimfolk_TC_VTE_VengefulCalms", 0), ("Rimfolk_TC_RT_CravenFades", 0)
+                     })
+                Check(Rule(n)?.Element("wayOutOf")?.Elements("li").Select(li => int.Parse(li.Value)).SequenceEqual(new[] { degree }) == true, $"37: {n} is a way out of degree {degree}");
+            foreach (var r in rules.Where(r => ((string)r.Element("change") ?? "Gain") == "Gain"))
+                Check(r.Element("wayOutOf") == null, $"37: {(string)r.Element("defName")}: a gain is never a way out");
+            Check(rules.Count(r => r.Element("wayOutOf") != null) == 15 + 15, $"thirty ways out of a bad trait ({rules.Count(r => r.Element("wayOutOf") != null)})");
+        }
+
         Check(rules.Select(r => (string)r.Element("defName")).Distinct().Count() == rules.Count, "every rule has its own name");
         return cases;
     }

@@ -1330,11 +1330,14 @@ rules are `Social/TogetherFourMath.cs` (checked in `Tools/Tests/TogetherFourTest
 The game's traits can grow, appear or fade at the end of a stretch of life the player can read (`Persona/TraitChanges.cs`,
 `TraitChangeMath.cs`). Each rule is a `TraitChangeDef`: a trait, gain, loss or a step of one degree (through none, so a
 nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
-stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions, the
-game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
+stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions (and
+marks counted as they come, or a stretch with none), the game's records, a share of time from record snapshots every
+ten days, calm days, skills, the faith they hold; guards for DLC, mods and tech. 71 rules (20 November 2026): 31 give a
+trait, 18 take one away, 22 move a trait one degree; 30 of them are ways out of a bad trait (`wayOutOf`, below).
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
-  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days (except to
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens; a way out of a bad trait doesn't
+  wait for the colony's 10 days (see "More traits that come and go" below). Nobody twice in 60 days (except to
   take away a trait Rimfolk gave, see "Vengeful from Rimfolk" below); the same
   trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
   so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
@@ -1402,6 +1405,94 @@ Alder (killed day 98.27); the vow is open with no kills, and Avila has Rimfolk r
   `HasRival`, `MarkNames`), `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`settledTick`),
   `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`, `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page
   "traits that change". Tests: `TraitChangeTests` (the vows from their save, the limits, the rules).
+
+### More traits that come and go, the first batch (the player's go, 20 November 2026; not released yet)
+
+The player, 17 November 2026: "while i generally like the idea of traits emerging and/or disappearing (we shouild also
+build up on this as to do)"; 19 November 2026: "More trades come and go sounds great"; 20 November 2026: "go ahead with
+the next tasks, including the traits" (and later the same day, "go ahead with all the traits": the other 26 proposals
+follow in two more builds). This build is the lead's recommended first batch of `docs/traits-proposals.md`: 37, 38, 1,
+2, 4, 5, 6, 14, 10, 16, 26 and 27, each marked there. Harm: none of it gives a bad trait; every new rule takes one away
+or gives a good one.
+
+- **37, a way out isn't held back by the colony's 10 days.** A rule names the degrees it leads out of (`wayOutOf`; 0 for
+  a trait without degrees). A change from one of them, for someone who has the trait there (`TraitChangeMath.IsWayOut`:
+  nervous steadied to none is one, none to steadfast from the same rule is a gain, industrious to hard worker is
+  not), doesn't wait for the colony's 10 days (`RateBlocked(..., wayOut)`); the person's 60 days and the rule's own gap
+  still hold, and a way out still counts as the colony's change, so gains wait 10 days after it. The daily pass now
+  runs within the colony's 10 days too, for the rules that lead out of something only. The 15 ways out already there
+  are marked (nervous, volatile, pessimist, depressive, lazy twice, chemical interest, chemical fascination, abrasive,
+  wimp, greedy, coward, vengeful twice, craven), so 30 in all.
+- **38, every way out on the character page from the start.** "Where life is taking them" shows every way out of a
+  bad trait the colonist has, first and whatever is there yet (`TraitChangeMath.BuildingShows`), then up to three other
+  rules with a third of their evidence, as before. Under each way out, a line of what is still missing in plain words,
+  one short phrase per part ("Still missing: one of: given a seat; 120 days without a mark of these: lost the vote,
+  voted out of a seat (30 so far)"); the tooltip lists every part. A way out that grows from a habit shows once they
+  have the habit (they can't be steered toward one). Its gap since the trait last changed is shown as a part while it
+  lasts (`Gate(..., gapAsPart)`). New parts on the page for every rule: the marks it waits out (`notMarks`, which the
+  rules checked but the page never showed), a stretch without something (a zero count), the faith it asks for. Parts
+  that hold by default (nothing of a kind lately, a stretch without something, the gap) don't count as evidence toward
+  showing a rule that isn't a way out, so an idle colonist isn't shown "1 of 2" toward idleness.
+- **1, jealous fades** (any jealous): two rules, `Rimfolk_TC_JealousFadesSeat` (given a seat) and
+  `..._JealousFadesPromises` (two promises kept to them); each with no seat or vote lost on their page in the last 120
+  days and trust moved from their nature 0 or more ("back to where it was"), 8% a day, no gap.
+- **2, bloodlust Rimfolk gave fades** (`Rimfolk_TC_BloodlustFades`, `onlyGiven`): no fight mark (held the line, hardened
+  by the raids, went down and got up harder, swore vengeance) on their page in the last 120 days, a long peace since it
+  came, warmth moved -5 or more ("near where it was"), 5% a day.
+- **4, cannibal Rimfolk gave fades**, each for the cannibal its own rule gave (`givenBy`, new: `GaveIt` reads the rule of
+  the newest change): famine's (`Rimfolk_TC_CannibalFamineFades`) after 180 days without eating human flesh (a zero
+  count, new: a tally with `noneDays`, counted from the newest meal or from when the trait came, whichever is later,
+  `TraitChangeMath.NoneDays`; the meals are the game's three history events and every human-flesh memory, a cannibal's
+  own among them) and no hungry season in 120 days, 6% a day; a faith's (`..._CannibalFaithFades`, Ideology) once they
+  took up a new ideoligion since it came and it holds none of the precepts that call for human flesh (new:
+  `notPrecepts`, with its words for the page `notPreceptsLabel`), 8% a day.
+- **5, world weary lifts** (`Rimfolk_TC_VTE_WorldWearyLifts`, Vanilla Traits Expanded, any): two long peaces, one good
+  mark (moved by a ceremony, mastered a craft, a legendary piece, freed, overcame an addiction, given a seat, saw a
+  student through), no death that marked them in 60 days, outlook moved -5 or more, 6% a day. A long peace leaves the
+  page after 60 days and the next can only come 60 days later, so two can't be on the page at once: they are counted as
+  they come instead (new: a tally's `marks`, fed by one line in `PersonaMarks.Give`, `TraitChanges.Notify_Mark`; kept
+  240 days like any deed).
+- **6, rebel settles** (Vanilla Traits Expanded, any): `Rimfolk_TC_VTE_RebelSettlesPromises` (two promises kept) and
+  `..._RebelSettlesSeat` (given a seat), each with no broken promise, lost seat or lost vote in 120 days and trust moved
+  0 or more, 8% a day.
+- **10, pyromaniac fades** (`Rimfolk_TC_PyromaniacFades`): 120 days without a breakdown (no fire-starting spree, nor any
+  other), 60 recent hours at the stove and the forge together (new: a practice that adds kinds of work,
+  `Cooking+Smithing>=60`, `TraitChangeMath.PracticeParts`), and a masterwork or a skill mastered, 3% a day. The game
+  gives firefighting back with the trait gone.
+- **16, lush and stoner dry out** (`Rimfolk_TC_VTE_LushDriesOut`, `..._StonerDriesOut`): an addiction overcome in the
+  last 120 days and pride moved +3, as the teetotal rule, 15% a day.
+- **14, talking it through** (Therapy (Continued), `orion.therapy`): four sessions in 90 days (the mod's
+  `TherapyRelieved` memory, read by name, a tally `Therapy`) take the place of one mark in four twins of the ways up, each
+  otherwise as the rule it stands beside and only for the bad degree: volatile to nervous (`Rimfolk_TC_TherapyVolatile`:
+  120 calm days and the sessions), nervous to none (`..._TherapyNervous`: two marks of danger held instead of three),
+  depressive to pessimist (`..._TherapyDepressive`: one good mark instead of two), pessimist to none
+  (`..._TherapyPessimist`: two good marks instead of three). Anxious (15) and mood swings (25) come with their own rules
+  in a later build. Without the mod the four do nothing.
+- **26, brave** (`Rimfolk_TC_VTE_Brave`, Vanilla Traits Expanded): held the line twice and carried someone to safety
+  since, nerve moved +15, never a wimp, a coward or a craven, 8% a day.
+- **27, jogger**: a fast walker steps up to jogger (`SpeedOffset` 1 to 2; a trained trait, only ever gained), two rules:
+  `Rimfolk_TC_JoggerHauling` (120 recent hours hauling, 60 days in the colony) and `..._JoggerAbroad` (a second season
+  abroad within a year, the mark that says so), 6% a day, 120 days after becoming a fast walker.
+- **Told.** As every change: a letter (good news) with what led to it and dates (now also the marks it waited out, a
+  stretch without something, the faith they follow), a journal line in six voices, the chronicle, "Traits gained and
+  lost". The words are plain (CLAUDE.md, 14 November 2026).
+- **Dev mode.** "Traits that change: give a trait as Rimfolk would..." (a gain the gate allows, now, so a way out of what
+  Rimfolk gave can be tried) and "Traits that change: a way out of a bad trait, now..." (each way out for the selected
+  colonist, with what it lacks), beside "why or why not" and "the first that holds, now".
+- **Code**: `Persona/TraitChangeMath.cs` (pure: `RateBlocked(wayOut)`, `IsWayOut`, `NoneDays`, `PracticeParts`,
+  `GaveIt(rules, by)`, `BuildingShows`), `Persona/TraitChangeDefs.cs` (`wayOutOf`, `givenBy`, `notPrecepts`,
+  `notPreceptsLabel`; a tally's `marks` and `noneDays`), `Persona/TraitChanges.cs` (the daily pass, `Notify_Mark`, the
+  gate, `TraitPart` and `Parts` with the missing words, `Building`, `DebugRules`, `DebugApply`), `Persona/Marks.cs`
+  (one line), `Persona/TraitChangeDebug.cs`, `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml` (new: the fifteen ways
+  out), the brave and jogger rules in `_Mods.xml` and `_Habits.xml`, `wayOutOf` on the fifteen older ways out,
+  `Languages/English/Keyed/Rimfolk_TraitChanges.xml`. Nothing new is saved (the tallies hold the new counts). Tests:
+  `TraitChangeTests` (37's rule and a colony's year of it, what a way out is, the zero count, the rule that gave it,
+  what the page shows, each of the twelve's conditions against the proposal).
+- **For the next builds** (the other 26 proposals): a way out names `wayOutOf` and `gapDays` 0; "this or that" is two
+  rules; "no X in N days" is `notMarks`; "N days without X" is a tally with `noneDays`; "two of a mark that leaves the page
+  before the next comes" is a tally with `marks`; a faith is `notPrecepts`; a sum of work is `A+B` in `practice`; "at most"
+  hours is `practice` with `<=`. Not built yet: a friendship condition (8), a mark for the nurse (28), a fight mark
+  counted only while drunk (35, a tally like `whileHungry`), a year bonded with an animal of a kind (30).
 
 ### The animals' natures (the player's picks, 7 November 2026)
 

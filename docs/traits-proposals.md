@@ -2,8 +2,11 @@
 
 The player, 17 November 2026: "while i generally like the idea of traits emerging and/or disappearing (we shouild also
 build up on this as to do)"; and 19 November 2026, on the plan to write a list first and let the player pick: "More
-trades come and go sounds great". Nothing here is built. Pick by number (or strike and change any of it), and the picked
-ones are built together.
+trades come and go sounds great". Pick by number (or strike and change any of it), and the picked ones are built
+together. The player's go of 20 November 2026, "go ahead with the next tasks, including the traits": the lead's first
+batch (below) is built, not released yet, each item marked **Built**; the same day, "go ahead with all the traits": the
+other 26 follow in two more builds (the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25; the new traits 28 to 36). DESIGN.md,
+"More traits that come and go, the first batch", has every rule as built and the parts the later builds reuse.
 
 ## Today
 
@@ -41,22 +44,22 @@ new part.
 
 1. **Jealous fades** (any jealous, not only Rimfolk's): given a seat (Elected), or two promises kept to them
    (PromiseKept); no seat or vote lost in the last 120 days; trust back to where it was or higher. Uncommon (8%). It came
-   from losing votes, so winning one or being treated fairly takes the sting out.
+   from losing votes, so winning one or being treated fairly takes the sting out. **Built** (20 November 2026, not released yet). Two rules, a seat or two promises kept; "trust back" read as trust moved 0 or more from their nature.
 2. **Bloodlust Rimfolk gave fades**: 120 days with no fight mark (HeldTheLine, RaidsHardened, DownedHardened,
    SworeVengeance), a long peace (LongPeace), warmth back near where it was. Uncommon (5%). It came from a run of hard
-   fights, so a long quiet lets it go, as vengeful already does.
+   fights, so a long quiet lets it go, as vengeful already does. **Built** (20 November 2026, not released yet). "Warmth back near" read as warmth moved -5 or more.
 3. **Psychopath Rimfolk gave fades**: 180 days with no execution or organ taken (new: a deed count that must be zero),
    three marks of care (SavedSomeone, TaughtWell, ForgivenBy, Kindness), warmth up 15. Rare (2%), once per person. The
    one trait Rimfolk gives from cruelty gets a slow way back through a long stretch of decent life.
 4. **Cannibal Rimfolk gave fades**: from famine, after 180 days without eating human flesh (new: a zero count) and no
    hungry season in 120 days, uncommon (6%); from a faith, once they take up a faith that does not call for it
-   (Converted), uncommon (8%). What hunger or a faith brought goes when the hunger or the faith does.
+   (Converted), uncommon (8%). What hunger or a faith brought goes when the hunger or the faith does. **Built** (20 November 2026, not released yet). Each way for the cannibal its own rule gave; the zero count is a tally with `noneDays`, from the last meal or from when it came.
 5. **World-weary lifts** (Vanilla Traits Expanded, any): two long peaces (LongPeace) and one good mark (MovingRitual,
    Mastered, Legendary, Freed, AddictionOvercome, Elected, TaughtWell), no loss in 60 days, outlook back near where it
-   was. Uncommon (6%). It came from losses and hard years; good years bring them back.
+   was. Uncommon (6%). It came from losses and hard years; good years bring them back. **Built** (20 November 2026, not released yet). The two long peaces are counted as they come (a long peace leaves the page before the next one comes); "outlook back near" is outlook moved -5 or more.
 6. **Rebel settles** (Vanilla Traits Expanded, any): two promises kept (PromiseKept) or a seat given (Elected), no broken
    promise, lost seat or lost vote in 120 days, trust back to where it was. Uncommon (8%). It came from broken promises;
-   kept ones win them back.
+   kept ones win them back. **Built** (20 November 2026, not released yet). Two rules, as jealous.
 7. **Workaholic eases** (Vanilla Traits Expanded; neither good nor bad, but it costs them their rest): 60 days with an
    eighth of their time at recreation and a long peace. Uncommon (6%). It came from a season without rest; a season of
    rest undoes it.
@@ -70,7 +73,7 @@ new part.
    recreation and one of Masterwork, Mastered, TaughtWell. Uncommon (6%). The step after that is the existing lazy to
    none.
 10. **Pyromaniac fades**: 120 calm days, 60 recent hours at the stove or the forge (Cooking or Smithing), and a
-    masterwork or a mastered skill. Rare (3%). The urge put to use, with no fire-starting break in a long while.
+    masterwork or a mastered skill. Rare (3%). The urge put to use, with no fire-starting break in a long while. **Built** (20 November 2026, not released yet). The hours at the stove and the forge are added together.
 11. **Gourmand eases**: a hungry season shared with the colony (HungrySeason), then 60 days without a food binge, pride
     down 3. Uncommon (5%). Having gone hungry with everyone, they learn to make do. A good outcome of a bad thing that
     happened anyway.
@@ -81,14 +84,14 @@ new part.
 14. **Talking it through** (Therapy (Continued), `orion.therapy`, active in the player's list): four therapy sessions
     in 90 days (its `TherapyRelieved` memory, read by name) count as a good mark toward the ways up for nerves (volatile
     to nervous, nervous to none), mood (depressive to pessimist, pessimist to none), anxious (15) and mood swings (25).
-    A soft integration: nothing without the mod.
+    A soft integration: nothing without the mod. **Built** (20 November 2026, not released yet). Four rules beside the ways up for nerves and mood, the sessions in place of one mark; anxious (15) and mood swings (25) come with their own rules.
 
 ## C. Ways out of bad traits from the player's mods
 
 15. **Anxious calms** (Vanilla Traits Expanded): 90 calm days and held the line once or two long peaces, nerve up 8.
     Uncommon (8%).
 16. **Lush and stoner dry out** (Vanilla Traits Expanded): an addiction overcome in the last 120 days
-    (AddictionOvercome), as the existing teetotal rule. Common (15%).
+    (AddictionOvercome), as the existing teetotal rule. Common (15%). **Built** (20 November 2026, not released yet).
 17. **Squeamish hardens** (Vanilla Traits Expanded): 40 recent hours as a doctor and 30 times tending others (the game's
     record). Uncommon (8%).
 18. **Kleptomaniac reformed** (Vanilla Traits Expanded): forgiven (ForgivenBy) or given a seat (Elected), 120 calm days,
@@ -111,9 +114,9 @@ new part.
 ## D. New good traits from good things
 
 26. **Brave** (Vanilla Traits Expanded): held the line twice and carried someone to safety, nerve up 15; never for a
-    wimp or a coward. Uncommon (8%). Courage shown again and again.
+    wimp or a coward. Uncommon (8%). Courage shown again and again. **Built** (20 November 2026, not released yet). Never a craven either (RimTraits, if loaded).
 27. **Jogger** (fast walker to jogger, a trained trait like fast walker): 120 recent hours hauling, or two seasons
-    abroad (WorldSeen). Uncommon (6%).
+    abroad (WorldSeen). Uncommon (6%). **Built** (20 November 2026, not released yet). Two rules; "two seasons abroad" is the mark for a second season abroad within a year.
 28. **Nursed someone back, and healer's hands from it**: a new mark for the nurse (the other side of "nursed back to
     health", which already names who did it), counted toward kind and squeamish's way out (17), and a second way to
     Rimfolk's healer's hands beside the habit: 60 recent hours as a doctor and three patients nursed back. Uncommon (8%).
@@ -141,12 +144,12 @@ new part.
 
 37. **A way out isn't held back by the colony's 10 days.** Today any change holds every other one in the colony for 10
     days; a way out of a bad trait would no longer wait for it (gains still would), so the ways out are not crowded out
-    by gains.
+    by gains. **Built** (20 November 2026, not released yet).
 38. **The character page shows every way out from the start.** "Where life is taking them" shows a way out of a trait
     Rimfolk gave from the day it came; every way out of a bad trait would show there from the start, with what is still
-    missing in plain words (a long peace, a seat, time at rest), so the player can steer toward it.
+    missing in plain words (a long peace, a seat, time at rest), so the player can steer toward it. **Built** (20 November 2026, not released yet).
 
-## The lead's recommended first batch
+## The lead's recommended first batch (built, 20 November 2026, not released yet)
 
 **37, 38, 1, 2, 4, 5, 6, 14, 10, 16, 26, 27** (twelve). They close every gap Rimfolk opened itself (jealous, bloodlust,
 cannibal, world-weary and rebel, all given today with no way out), make the ways out come often enough to be seen and

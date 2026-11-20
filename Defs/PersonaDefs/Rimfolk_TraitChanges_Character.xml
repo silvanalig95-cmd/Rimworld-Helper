@@ -42,6 +42,7 @@
     <label>sharp edges worn smooth by kindness</label>
     <trait>Abrasive</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <marks>
       <li><any>Kindness, ForgivenBy, NursedBack, SavedBy, Married, TaughtWell, BecameParent</any><count>2</count></li>
     </marks>
@@ -68,6 +69,7 @@
     <label>a wimp who held the line</label>
     <trait>Wimp</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <marks>
       <li><any>Rimfolk_Mark_HeldTheLine, SavedSomeone, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened</any><count>2</count></li>
     </marks>
@@ -211,6 +213,7 @@
     <label>greed loosened by people worth more than things</label>
     <trait>Greedy</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <marks>
       <li><any>Kindness, Married, RaisedChild, BecameParent, NursedBack, ForgivenBy, MovingRitual</any><count>2</count></li>
     </marks>

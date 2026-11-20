@@ -52,6 +52,7 @@ most sense." So, in this order, three builds at a time:
      far town stays at the colony" below).
   3. **More traits that come and go, the lead's first batch**: 37, 38, 1, 2, 4, 5, 6, 14, 10, 16, 26 and 27 of
      `docs/traits-proposals.md` (the player named no numbers, so the recommended twelve; the rest wait for a pick).
+     Built, not released: the entry "More traits that come and go, the first batch" above the newest release line.
   4. **The peoples' own texts**: the Almanac's peoples' pages in plain words, their "Where their ways began" sections,
      each people's talk piece on how their ways began and the 21 faiths' descriptions that name a founder, each told in
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
@@ -197,15 +198,11 @@ repo.
   counts a shut door as a way raiders might break through.** The finding (from the plain-words pass on the Almanac, part
   2), the cause in the game's 1.6 code and what was built are now one entry above the newest release line ("The defense
   survey's shut doors").
-- **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
-  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
-  trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
-  along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
-  The player, 19 November 2026, on the overview: "More trades come and go sounds great". The list is written:
-  `docs/traits-proposals.md` (19 November 2026), 38 proposals in six groups (a way out of each bad trait Rimfolk gives,
-  of the bad traits colonists arrive with, of the mods' bad traits, new good traits from good things, a few from the
-  mods' traits for flavour, and how often and how it shows), with the lead's first batch (37, 38, 1, 2, 4, 5, 6, 14,
-  10, 16, 26, 27). Nothing is built until the player picks.
+- **Done, the first batch (20 November 2026, the player's go: "go ahead with the next tasks, including the traits"; built,
+  not released): more traits that come and go.** The to-do of 17 November 2026 with the player's words, the proposal list
+  (`docs/traits-proposals.md`) and what was built are now one entry above the newest release line ("More traits that
+  come and go, the first batch"). The player's "go ahead with all the traits" (20 November 2026) covers the other 26
+  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25, then the new traits 28 to 36.
 - **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
@@ -568,6 +565,72 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **More traits that come and go, the
+  first batch** (20 November 2026; the player, 17 November 2026: "while i generally like the idea of traits emerging
+  and/or disappearing (we shouild also build up on this as to do)"; 19 November 2026: "More trades come and go sounds
+  great"; 20 November 2026: "go ahead with the next tasks, including the traits", and later the same day "go ahead with
+  all the traits"). The lead's recommended first batch of `docs/traits-proposals.md`, twelve of 38, each marked there:
+  37, a way out of a bad trait isn't held back by the colony's 10 days (gains still are, and wait 10 days after a way
+  out); 38, the character page shows every way out of a bad trait the colonist has from the start, first, with a line of
+  what is still missing in plain words; 1, jealous fades (any) after a seat or two promises kept; 2, a bloodlust Rimfolk
+  gave fades after 120 days without a fight mark and a long peace; 4, a cannibal Rimfolk gave goes, famine's after 180
+  days without human flesh and no hungry season in 120, a faith's once they take up a faith that doesn't call for it; 5,
+  world weary lifts after two long peaces and a good mark; 6, a rebel settles after two promises kept or a seat; 10, a
+  pyromaniac loses the urge after 120 calm days, 60 recent hours at the stove and the forge and a masterwork or a skill
+  mastered; 16, a lush or a stoner dries out after beating an addiction; 14, with Therapy (Continued) four sessions in
+  90 days count as a mark toward steadier nerves and a brighter mood; 26, brave after holding the line twice and
+  carrying someone to safety; 27, a fast walker becomes a jogger after 120 recent hours hauling or a second season
+  abroad. 18 new rules (71 in all), 30 of them ways out. No bad trait is added. DESIGN.md "More traits that come and go,
+  the first batch" has every rule and the parts the next builds reuse; the Almanac's page *traits that change* has a new
+  section, "Ways out of a bad trait" (keywords unchanged); README "Traits that change".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `RateBlocked(..., wayOut)`, `IsWayOut`, `NoneDays`,
+    `PracticeParts`, `GaveIt(..., rules, by)`, `BuildingShows`), `Persona/TraitChangeDefs.cs` (`wayOutOf`, `givenBy`,
+    `notPrecepts`, `notPreceptsLabel`; a tally's `marks` and `noneDays`; config errors for each),
+    `Persona/TraitChanges.cs` (the daily pass runs the ways out within the colony's 10 days, `Notify_Mark`, the gate's
+    `givenBy` and gap as a part, the zero count, the faith, sums of work, `TraitPart` and `Parts` with the missing words
+    and the marks a rule waits out, `Building`, `DebugRules`, `DebugApply`), `Persona/Marks.cs` (one line in `Give`),
+    `Persona/TraitChangeDebug.cs` (two dev actions), `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml` (new: fifteen
+    ways out), `Rimfolk_TC_VTE_Brave` in `_Mods.xml`, the two jogger rules in `_Habits.xml`, `wayOutOf` on the fifteen
+    older ways out (`_Spectrum`, `_Character`, `_Habits`, `_Mods`), Keyed `Rimfolk_TraitChanges.xml` (the missing words,
+    the letter's new lines, the settings tip and the page's tip say a way out doesn't wait). Nothing new is saved (the
+    tallies hold the new counts; the save model's tallies estimate is up from 3 to 5 kinds). Tests: `TraitChangeTests`
+    (37's rule and a colony's year of it against the old rule, what a way out is, the zero count, the rule that gave it,
+    what the page shows, each of the twelve's conditions against the proposal, every good loss a way out);
+    `Tools/Tests/ModDefNames.txt` has Therapy (Continued)'s `TherapyRelieved`.
+  - Decided here (open in the proposals): "this or that" is two rules (jealous, rebel, jogger), each at the proposal's
+    chance, so both together come a little more often; "trust back to where it was" is trust moved 0 or more from their
+    nature, "warmth/outlook back near" moved -5 or more (a trait Rimfolk gave already took the move into itself, so these
+    mostly hold for it; they matter for a trait the colonist came with); "no X in N days" reads the marks on their page,
+    as the rules already did (a minor mark leaves the page after its keeping, 90 days for some); "two long peaces" are
+    counted as they come, since a long peace leaves the page 60 days after it came and the next can only come 60 days
+    later; "two seasons abroad" is the mark for a second season abroad within a year (one mark); the zero count starts
+    from the last meal or from when the trait came, whichever is later, so a stretch from before it came doesn't count
+    and an older save's meals (not counted before this build) can't make it come early; "a faith that does not call for
+    it" is an ideoligion holding none of the game's three precepts that prefer or require human flesh; the therapy twins
+    keep the rule they stand beside in everything but one mark, and only for the bad degree (nervous to none's mark is one
+    of danger held, as that rule asks); brave is also never for RimTraits' craven (not in their list now); the jogger
+    waits 120 days after becoming a fast walker and asks 60 days in the colony, as the fast walker rule; every way out
+    waits no gap since it came; the 15 older ways out are marked too (37 and 38 hold for them), lazy to none among them,
+    and chemical interest to none; a way out that grows from a habit shows on the page only once they have the habit.
+    The four Therapy (Continued) rules assume its `TherapyRelieved` memory goes to the patient after each session (the
+    catalogue has the def, active; the mod's own files aren't here): if it goes to the therapist, the sessions count for
+    the therapist instead.
+  - Harm: none. No rule here gives a bad trait.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, the page's "Where life
+    is taking them" with its "Still missing" lines and their wrapping, the dev actions' menus); the therapy memory's
+    receiver; Vanilla Traits Expanded's brave, lush, stoner, rebel and world weary taking and leaving as the game's own
+    traits do (their work tags and conflicts are the game's to apply); firefighting coming back for a former pyromaniac.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist, a way out
+    marked): 1. A jealous, rebel, world weary, pyromaniac, lush, stoner, nervous or pessimist colonist: their character
+    page, "Where life is taking them", shows each way out at once with "Still missing: ...". 2. "Traits that change: give a
+    trait as Rimfolk would..." on a colonist, pick `Rimfolk_TC_BloodlustGained` or `Rimfolk_TC_CannibalFamine`, then
+    look at the page: the way out shows, and "a way out of a bad trait, now..." makes it happen with its letter. 3. Make
+    a change on one colonist, then within ten days a way out on another with "a way out of a bad trait, now...": the
+    daily pass lets a way out through the colony's ten days (the log's "why or why not" says "colony" for gains only).
+    4. With Therapy (Continued): a nervous colonist with four sessions in 90 days and two marks of danger held.
+  - Mods that would help: none needed. Therapy (Continued) (`orion.therapy`, Workshop 3509488682, tagged 1.6 and 1.7,
+    active in their list) gives the sessions; Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7, active) the
+    traits.
 - 0.274.2, **A piece made for someone, kept
   for them** (20 November 2026; the player: "So while the material selection for creating a item seems to work for the
   most part, although it should, in my opinion, only show the materials where I also have enough available, or

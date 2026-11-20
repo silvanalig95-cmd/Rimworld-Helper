@@ -276,3 +276,5 @@ AM_Aura
 # Vanilla Factions Expanded - Classical 1.6 (oskarpotocki.vfe.classical): the toga and the centurion's helmet
 VFEC_Toga
 VFEC_Apparel_CenturionHelmet
+# Therapy (Continued) 1.6 (orion.therapy): the memory a patient gets after a session (docs/player-mods, defs.tsv.gz, active)
+TherapyRelieved

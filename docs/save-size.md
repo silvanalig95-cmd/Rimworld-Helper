@@ -761,7 +761,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `Persona/PawnPersona.cs:stances` | per person: one per topic (23), and per newcomer for 60 days (counted under people) | fixed | 24 | 24 | 24 | (in its record) |
 | `Persona/TraitChanges.cs:absorbed` | per change: how the trait moved each side (counted under changes) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/TraitChanges.cs:snapshots` | per colonist: 10 snapshots, every ten days (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
-| `Persona/TraitChanges.cs:tallies` | per colonist: deeds counted, 240 days, 12 per kind (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
+| `Persona/TraitChanges.cs:tallies` | per colonist: deeds, memories (therapy sessions) and marks (long peaces) counted, 240 days, 12 per kind (counted under watches) | fixed | 5 | 5 | 5 | (in its record) |
 | `Persona/TraitChanges.cs:values` | per snapshot: the records a pace reads (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:game` | per hunt: 3 animals at most (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:hands` | per play-out: who went (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |

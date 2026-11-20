@@ -182,6 +182,7 @@
     <label>harder working, from humming through the days</label>
     <trait>Industriousness</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-1</li></wayOutOf>
     <from><li>-1</li><li>0</li><li>1</li></from>
     <habit>Council_Quirk_Hums</habit>
     <gapDays>120</gapDays>
@@ -290,6 +291,63 @@
       <cheerful><li>I raced the dog to the stockpile today. I won! Mostly.</li></cheerful>
       <gloomy><li>All that hauling got me something, at least. Quick legs.</li></gloomy>
       <cold><li>My pace has increased with the distance covered. A predictable adaptation.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    Jogger (docs/traits-proposals.md 27, 20 November 2026): a fast walker steps up to jogger after 120 recent hours of
+    hauling, or after a second season abroad within a year (the mark that says so). Two rules, one for each.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_JoggerHauling</defName>
+    <label>a jogger after a long season of heavy hauling</label>
+    <trait>SpeedOffset</trait>
+    <change>StepUp</change>
+    <from><li>1</li></from>
+    <practice>Hauling>=120</practice>
+    <daysHere>60</daysHere>
+    <gapDays>120</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>Months of carrying loads across the colony at a fast walk have made {PAWN_nameDef} quicker still on {PAWN_possessive} feet.</meaning>
+    <journal>
+      <plain>
+        <li>I run most places now. Walking feels slow.</li>
+        <li>I can get across the colony and back before the stew boils.</li>
+      </plain>
+      <warm><li>If something needs carrying in a hurry, I'm the one to ask.</li></warm>
+      <blunt><li>I'm fast. Use it.</li></blunt>
+      <cheerful><li>I raced the dog to the far stockpile and won easily.</li></cheerful>
+      <gloomy><li>All that hauling had to be good for something.</li></gloomy>
+      <cold><li>My speed has increased with the work. A useful result.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_JoggerAbroad</defName>
+    <label>a jogger after seasons on the road</label>
+    <trait>SpeedOffset</trait>
+    <change>StepUp</change>
+    <from><li>1</li></from>
+    <marks>
+      <li><any>Rimfolk_Mark_WorldSeen</any></li>
+    </marks>
+    <gapDays>120</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>Two seasons away on the road within a year have made {PAWN_nameDef}, already a fast walker, quicker still on {PAWN_possessive} feet.</meaning>
+    <journal>
+      <plain>
+        <li>After all that walking abroad, the colony feels small. I cross it in no time.</li>
+        <li>I'm still in the habit of a long day's march.</li>
+      </plain>
+      <warm><li>I came back from the road quicker on my feet. That's useful for everyone here.</li></warm>
+      <blunt><li>Long roads made me fast.</li></blunt>
+      <cheerful><li>My legs are used to the road now, and I like it.</li></cheerful>
+      <gloomy><li>So much walking. At least I got faster.</li></gloomy>
+      <cold><li>The travel trained me. I move faster than I did.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
