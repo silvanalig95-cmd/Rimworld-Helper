@@ -486,6 +486,9 @@ namespace ColonyCouncil
         /// <summary>Who inspired the latest "fulfilled" spark for each colonist and goal.</summary>
         private Dictionary<string, string> inspiredBy = new Dictionary<string, string>();
 
+        /// <summary>Dev mode: sets them on this goal now (LifeVariety/LifeVarietyDebug.cs), as a spark would.</summary>
+        internal Aspiration DebugBegin(CouncilGameComponent comp, Pawn p, AspirationDef def, string spark) => Begin(comp, p, def, spark, null);
+
         /// <summary>Their life goal under way, or null. Asked by the "within reach" mood for every colonist, so a plain loop.</summary>
         public Aspiration Active(Pawn p)
         {
