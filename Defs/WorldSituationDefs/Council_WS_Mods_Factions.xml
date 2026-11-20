@@ -125,7 +125,7 @@
         </titles>
         <texts>
           <li>The Empire's campaign has its silver and has gone wherever campaigns go. {FACTION} at {PLACE} speak well of the colony, and the steward has sent a short, formal letter of thanks.</li>
-          <li>The levy is in, and the campaign has marched with it. The steward at {PLACE} has written the colony's name into the roll of loyal settlements, and {FACTION} speak of its people with more respect than before.</li>
+          <li>The levy is in, and the campaign has gone on its way with it. The steward at {PLACE} has written the colony's name into the roll of loyal settlements, and {FACTION} speak of its people with more respect than before.</li>
         </texts>
         <chronicle>The colony paid its share of the Empire's levy.</chronicle>
       </li>
@@ -515,7 +515,7 @@
         <message>true</message>
         <texts>
           <li>Another string of prospectors passed the colony, headed for the hills above {PLACE}. {A_nameDef} tried to sell one of them a coil of rope for twice what it was worth, and nearly managed it.</li>
-          <li>Word from {PLACE}: another party of prospectors has gone up into the hills, and the town's store has sold its last shovel.</li>
+          <li>Word from {PLACE}: another band of prospectors has gone up into the hills, and the town's store has sold its last shovel.</li>
         </texts>
       </li>
     </beats>

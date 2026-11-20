@@ -326,7 +326,7 @@
     <works><li>Gather</li></works>
     <titles>
       <li>Scholars at the old place</li>
-      <li>Fellows of the learned society at {OLDPLACE}</li>
+      <li>Fellows of {FACTION} at {OLDPLACE}</li>
     </titles>
     <texts>
       <li>Two fellows of {FACTION} have pitched a small camp {PLACE}, beside {OLDPLACE}, to measure it. {X_nameDef} told {A_nameDef} they would say exactly what lies inside before they go.</li>

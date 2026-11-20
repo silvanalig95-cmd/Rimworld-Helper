@@ -438,7 +438,7 @@
         <texts>
           <li>The roads have dried enough to drive on, and the carts are moving again, in a hurry, with a week to make up. The ruts they left will be there until next spring.</li>
           <li>[helped] The roads have dried at last, and the travelers and carters who sat out the mud are back on them. More than one of them stopped at the colony on the way past to say thank you.</li>
-          <li>The sun has been out long enough to dry the roads, and {FACTION}'s carts and travelers are moving toward {PLACE} again. Everyone who was stuck in the mud is trying to make up the lost week at once.</li>
+          <li>The sun has been out long enough to dry the roads, and {FACTION}'s carts and travelers are moving toward {PLACE} again. All who were stuck in the mud are trying to make up the lost week at once.</li>
         </texts>
         <chronicle>The spring mud dried on the region's roads.</chronicle>
       </li>
@@ -712,7 +712,7 @@
         </titles>
         <texts>
           <li>The great burying is done above {PLACE}, and the old field is a field again. The sextons have gone home, and nobody else in the region has to look at it.</li>
-          <li>The sextons of {FACTION} have finished at the old field above {PLACE}. The dead are buried, the bells have been rung, and the field has been left to grow over.</li>
+          <li>The sextons of {FACTION} have finished at the old field above {PLACE}. The dead are in the ground, the bells have been rung, and the field has been left to grow over.</li>
         </texts>
         <chronicle>The great burying above {PLACE} was done.</chronicle>
       </li>
@@ -774,7 +774,7 @@
         <message>true</message>
         <texts>
           <li>Travelers going the long way round {NAME} are on the road past the colony with their pack beasts, grumbling about the extra day.</li>
-          <li>A few travelers going the long way round {NAME} are passing the colony on the road, loaded for the extra day's walk.</li>
+          <li>A few travelers going the long way round {NAME} are passing the colony on the road, loaded for the extra day on the road.</li>
         </texts>
       </li>
       <li>
@@ -881,7 +881,7 @@
         </titles>
         <texts>
           <li>The new bridge at {PLACE} is open, and the road goes the short way again. The colony's stretch of road has gone quiet, which some at the colony are relieved about and some aren't.</li>
-          <li>The bridge at {PLACE} is rebuilt, and the carts are back on the short road. The travelers who went past the colony while it was down have gone back to their usual way.</li>
+          <li>The new bridge at {PLACE} is up, and the carts are back on the short road. The travelers who went past the colony while it was down have gone back to their usual way.</li>
         </texts>
         <chronicle>A new bridge was built at {PLACE}.</chronicle>
       </li>
