@@ -93,6 +93,19 @@ most sense." So, in this order, three builds at a time:
   can't run the game), a screenshot of a CK card as the look to aim for, and static art (from an image AI or an artist,
   PNG with transparency): frames for a few standings, a parchment for letters, crests for the 23 peoples. Faces stay
   the game's own so they match the map.
+  The player, later the same day: "I added port[raits] of the rim. I mean, that's really an absolutely awesome mod. Let
+  me know if you need any data from it. And we can definitely brainstorm and enhance on that one and build up upon it.
+  If you can then do like read images, so to say, and I don't know, modify them or enhance what's already there." So
+  Portraits of the Rim (2937991425) is on; how it picks and draws a portrait is not known yet. Needed from the player:
+  the mod's folder (About, Assemblies, Defs, LoadFolders.xml and a few texture folders; the DLL only decompiled), the
+  updated mod list (ModsConfig.xml) for `docs/player-mods`, and screenshots of its portrait in the game and of a
+  Rimfolk letter and card. Ideas to build on it, for the player to pick:
+  6. Its painted portrait wherever Rimfolk shows a face (letters, event cards, the colonist card, the council's seats
+     and elections, the year letter, the who's who), drawn live from the mod when it is on, never copied into Rimfolk;
+     the game's own portrait otherwise.
+  7. The frame by standing, the favourite colour and the crest (1 and 2 above) around the painted portrait.
+  8. The same for outsiders who come back (heads, envoys, regulars, enemies), so a face is known on its second visit.
+  9. What the mod can already show of a life (age, scars, a lost eye, mood), followed where it does; nothing it can't.
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
