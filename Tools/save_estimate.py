@@ -405,7 +405,7 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
     # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).
-    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 59, V, "when each god's own happening last came, one a happening (Revel's eight among them)"),
+    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 90, V, "when each god's own happening last came, one a happening (Revel's eight and the thirty-one between the colony's people among them)"),
     "Gods/OnMap/OwnHappenings.cs:horned": ("fixed", const("Gods/OnMap/OwnHappeningsMath.cs", "HornKept", 8), 40, "the children who touched the white beast's horn, OwnHappeningsMath.HornKept at most"),
     "Gods/OnMap/OwnHappenings.cs:watches": ("fixed", const("Gods/OnMap/OwnHappenings.cs", "MaxWatches", 8), V, "the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most"),
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
@@ -1013,6 +1013,13 @@ MODEL = {
     "Peoples/Events10/PeopleEvents10Book.cs:prices": ("cap", (const("Peoples/Events10/PeopleEvents10Math.cs", "MaxPrices", 4), 1 / 60), 120,
                                                       "the season's prices a moot's ruling moved, each dropped when its season is over"),
     "Peoples/Events10/PeopleEvents10Book.cs:artGiven": ("cap", (23, 1 / 60), 30, "the peoples that handed on their art, once a game each"),
+    # Other peoples' hurt in the colony's beds (World/Region/TakenIn.cs): a runaway from a raiders' camp and a call to arms'
+    # wounded, TakenInMath.MaxPatients at once, each gone when well or after TakenInMath.StayDays; the wounded on their way,
+    # TakenInMath.MaxComing parties, each gone a day to three after the colony offered its beds.
+    "World/Region/TakenIn.cs:patients": ("fixed", const("World/Region/TakenInMath.cs", "MaxPatients", 8), 160,
+                                         "other peoples' hurt in the colony's beds, while they are here (twenty days at most)"),
+    "World/Region/TakenIn.cs:coming": ("fixed", const("World/Region/TakenInMath.cs", "MaxComing", 4), 160,
+                                       "a call to arms' wounded on their way to the colony's beds, a day to three each"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the
@@ -1073,6 +1080,19 @@ MODEL = {
     "Gods/Among/GodsAmongBook.cs:tales": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxTales", 6), 1 / 60), 160, "pilgrims home with a tale owed at supper, six days each, GodsAmongBook.MaxTales"),
     "Gods/Among/GodsAmongBook.cs:deadHeld": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxDeadHeld", 12), 1 / 20), 110, "the god each of the colony's dead held, kept five days for their eulogy, GodsAmongBook.MaxDeadHeld"),
     "Gods/Among/GodsAmongBook.cs:seasons": ("cap", (const("Gods/Among/GodsAmongMath.cs", "MaxSeasons", 12), 1 / 30), 220, "the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons"),
+    # The gods between the colony's people (Gods/OnMap/Between/Between.cs, BetweenState): the happenings under way (one at a
+    # home at a time, BetweenState.MaxScenes), the woodcutters counted for the brambles (OwnHappeningsMath.FellersKept), the
+    # newcomers already welcomed, the fights and insults already answered, the sealed stones already looked at (each a few
+    # dozen ids at most, the oldest let go).
+    "Gods/OnMap/Between/Between.cs:scenes": ("cap", (const("Gods/OnMap/Between/Between.cs", "MaxScenes", 4), 1), 300, "the happenings between the colony's people under way, BetweenState.MaxScenes"),
+    "Gods/OnMap/Between/Between.cs:fellers": ("cap", (const("Gods/OnMap/OwnBetweenMath.cs", "FellersKept", 8), 1 / 5), 130, "the woodcutters counted for Hollin's brambles, OwnHappeningsMath.FellersKept"),
+    "Gods/OnMap/Between/Between.cs:welcomed": ("cap", (const("Gods/OnMap/Between/Between.cs", "WelcomedKept", 20), 1 / 15), V, "the newcomers already welcomed, BetweenState.WelcomedKept"),
+    "Gods/OnMap/Between/Between.cs:answered": ("cap", (const("Gods/OnMap/Between/Between.cs", "AnsweredKept", 20), 1 / 3), 40, "the fights and insults already answered, BetweenState.AnsweredKept"),
+    # Telling the bees (Immersion/TellingBees.cs): the news waiting a few days for the one who tends the hives
+    # (TellingBeesMath.MaxWaiting), and the newcomers already told of (TellingBeesMath.ToldKept).
+    "Immersion/TellingBees.cs:waiting": ("cap", (const("Immersion/TellingBeesMath.cs", "MaxWaiting", 6), 1 / 20), 140, "the news waiting to be told to the bees, three days at most, TellingBeesMath.MaxWaiting"),
+    "Immersion/TellingBees.cs:told": ("cap", (const("Immersion/TellingBeesMath.cs", "ToldKept", 30), 1 / 15), V, "the newcomers the bees were told of, TellingBeesMath.ToldKept"),
+    "Gods/OnMap/Between/Between.cs:sealedSeen":("cap", (const("Gods/OnMap/Between/Between.cs", "SealedKept", 12), 1 / 30), V, "the sealed stones already looked at, BetweenState.SealedKept"),
     # The world brought home (World/Home/WorldHomeBook.cs): a colonist's vow of a vigil day each week while a holy year lasts
     # (one at a time mostly, WorldHomeBook.MaxVows), and the clothes dyed in mourning colours while the neighbours mourn (one
     # piece a colonist for a few weeks, WorldHomeMath.MaxDyed; a mourning a year or two).

@@ -148,14 +148,16 @@ namespace ColonyCouncil
             PawnGods.Festival(home, g, d.label);
             var b = Worship.Book;
             var shrine = Shrines.Of(map, g).Select(s => s.thing).OrderByDescending(Shrines.IsTemple).FirstOrDefault();
+            // Kept with less, as the council answered on its eve (Gods/Worship/WorshipCouncilMore.cs): no offering and no guests.
+            bool lean = WorshipCouncilMore.EveAnswer(g, map) == "lean";
             if (shrine != null && b != null)
             {
                 // The rite at its place, and an offering carried there.
                 b.SetMark(Gods.HomeKey(map), "rite", g.id, Worship.Now, Worship.Now + GenDate.TicksPerDay / 2);
-                if (GodWorshipDef.TakesOfferings(g) && !b.offerings.Any(o => o != null && o.shrine == shrine && o.fate == OfferingFate.Waiting))
+                if (!lean && GodWorshipDef.TakesOfferings(g) && !b.offerings.Any(o => o != null && o.shrine == shrine && o.fate == OfferingFate.Waiting))
                     b.offerings.Add(new OfferingRecord { shrine = shrine, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
-            Visitors(g, map);
+            if (!lean) Visitors(g, map);
             // The Guest's Open Door and the sky's night kept, and the other festivals as their words say (Gods/OnMap/OwnHappenings.cs, OwnFeasts.cs).
             OwnHappenings.FestivalKept(g, map);
             // A beast at home taken for this god's: a bite first, and walked to its place (Gods/OnMap/GodBeasts.cs).

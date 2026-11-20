@@ -242,6 +242,7 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Collections.Look(ref last, "last", LookMode.Value);
             ExposeSeven();
+            ExposeBetween();
             Scribe_References.Look(ref lookBy, "lookBy");
             Scribe_Values.Look(ref lookAt, "lookAt", IntVec3.Invalid);
             Scribe_Values.Look(ref lookTag, "lookTag");
@@ -547,7 +548,7 @@ namespace ColonyCouncil
             if (map == null || what.NullOrEmpty()) return;
             string key = K(what);
             var all = new List<NamedArgument>(args ?? new NamedArgument[0]) { ColonyCouncil.Homes.Name(map).Named("HOME") };
-            string text = (key + "_Text").Translate(all.ToArray()).Resolve();
+            string text = TextVariants.Vary(key + "_Text").Translate(all.ToArray()).Resolve();
             GodPresence.Look(look);
             if (letter)
             {
@@ -881,6 +882,10 @@ namespace ColonyCouncil
             b.felledSinceTree++;
             // Counted for Hollin's next Greening: a sapling for each (Gods/OnMap/OwnFeasts.cs).
             OwnFeasts.Felled(b);
+            // Counted for the one who felled it: the brambles round their stump (Gods/OnMap/Between/BetweenHollin.cs).
+            HollinStumps.Felled(b, plant, by);
+            // A vow of a tree a week broken by its vower's axe (Gods/Worship/VowsSeason.cs).
+            VowsSeason.Felled(by);
         }
 
         /// <summary>One of the game's events happened at a home (Patch_OwnEventHappened): thrumbos passing.</summary>

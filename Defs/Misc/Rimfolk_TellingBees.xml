@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Telling the bees (Source/ColonyCouncil/Immersion/TellingBees.cs; C23 of docs/content-update-proposals.md): when one of
+    the colony dies or someone new joins, the one who tends Alpha Bees' hives walks round them and tells them. After a death
+    the teller's grief eases a little (+2 for two days). Plain words: people talking, one sentence each; {NAME} the one the
+    news is of.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_TellBees</defName>
+    <driverClass>ColonyCouncil.JobDriver_TellBees</driverClass>
+    <reportString>telling the bees.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Bees_Told</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>told the bees</label>
+        <description>I went round the hives and told the bees. It's an old thing to do, and it helped more than I thought.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TellingBees</defName>
+    <lines>
+      <plain>
+        <li>[dead] Bees, {NAME} has died, and I thought you should hear it from us.</li>
+        <li>[dead] I've come to tell you that {NAME} is gone.</li>
+        <li>[dead] {NAME} won't be coming by the hives any more, bees.</li>
+        <li>[dead] We've lost {NAME}, so keep quiet a while with us.</li>
+        <li>[new] Bees, this is about {NAME}, who has come to live with us.</li>
+        <li>[new] There's someone new, bees, and their name is {NAME}.</li>
+        <li>[new] {NAME} is one of us now, so don't sting them.</li>
+        <li>[new] I've come to tell you about {NAME}, who's just joined us.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

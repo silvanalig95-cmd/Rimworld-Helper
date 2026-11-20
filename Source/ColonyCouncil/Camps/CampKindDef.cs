@@ -63,6 +63,12 @@ namespace ColonyCouncil
         public bool trader;
         /// <summary>A word their trader's kind should contain ("Combat"), or none for an ordinary one.</summary>
         public string traderKind;
+        /// <summary>
+        /// What their trader always carries besides their people's own stock (the salt caravan's salt, the market's honey):
+        /// each the first of its defs that exists, so a mod's goods listed first fall back to the game's after them; an
+        /// entry left with none (its mod not loaded) adds nothing.
+        /// </summary>
+        public List<CampGoods> traderGoods;
         /// <summary>Animals and trees they take from the land around the camp, per day (fractions are a chance).</summary>
         public float huntsPerDay;
         public float chopsPerDay;

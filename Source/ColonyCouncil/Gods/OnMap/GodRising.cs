@@ -45,7 +45,7 @@ namespace ColonyCouncil
             var spec = PresenceSpec.For(god, map, PresenceKind.Appear, at);
             // The card says only what is seen.
             spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Rising_Title", "CC_GodM_Rising_TitleNamed");
-            spec.text = "CC_GodM_Rising_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
+            spec.text = TextVariants.Vary("CC_GodM_Rising_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(at, map));
             Remember(god, map, at, spec.veiled, "CC_GodM_Saw_Rising", "CC_GodM_Rising_Act", "CC_GodM_Memory_Rising");
             Said(god, map, at);
@@ -115,7 +115,7 @@ namespace ColonyCouncil
             var spec = PresenceSpec.For(god, map, PresenceKind.Appear, at, x);
             string seen = GodShapes.TrueLook(god)?.label ?? x.def.label;
             spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Surfaced_Title", "CC_GodM_Surfaced_TitleNamed");
-            spec.text = "CC_GodM_Surfaced_Text".Translate(Homes.Name(map).Named("HOME"), seen.Named("BEAST")).Resolve();
+            spec.text = TextVariants.Vary("CC_GodM_Surfaced_Text").Translate(Homes.Name(map).Named("HOME"), seen.Named("BEAST")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(x));
             Remember(god, map, at, spec.veiled, "CC_GodM_Saw_Surfaced", "CC_GodM_Surfaced_Act", "CC_GodM_Memory_Surfaced", seen.Named("BEAST"));
             Said(god, map, at);

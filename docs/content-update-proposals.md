@@ -702,6 +702,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Built** (20 November 2026, the world's integrations, part 2: the peoples and their ties, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/NewHeads.cs`, `Rimfolk_WS_NewHead.xml`). Decided: a follow-up of the world events (kind `head`), three to eight days after the seat is settled, let go after thirty days or when they no longer lead; the best talker hosts at the table (a feast with them as guests and beds for the night) or says the word at the gate (the default); the kind head's gift is silver, handed over whatever the answer; the greedy head's caravan follows two to three days on; the steady head's pact offer comes as its own letter; the head sat at the table or given a gift is on the next feast's guest list (a promise on the ledger); the words fit every age (a messenger comes ahead; a high-tech people's head makes a round of the settlements).
 
 **B5. Traders' prices follow the region's hard and good years** (E; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `World/Region/RegionPrices.cs`, `RegionPricesMath`). Decided: a quarter dearer, a fifth cheaper in a bumper year; every trader of the world event's people, buying and selling alike; a war between neighbours and closed markets touch both peoples; one factor with the moot's season price on the same hook, kept within half and one and a half; the hover reads "Food dear at Ashford (famine): 25% more with the Ashford Union, buying or selling."
 - **On the map.** While a world event runs at a people's town, their caravans, visitors' traders and towns pay more for
   what that town lacks:
   - food in a famine, blight, locust year, year without a summer or drought;
@@ -809,6 +810,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### The region
 
 **B11. The hamlet's hard seasons follow the region** (I; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `HamletLife.RegionYear`, `HamletMath`). Decided: the nearest running world event within 15 tiles of the hamlet's town; "a little sooner" is an ask already below a fortune of 30 (20 otherwise), the gap between asks kept; the carter's word is said by their courier who comes to the gate for the help, once; a bumper year near makes the harvest's load half again as big.
 - **What happens now.** The colony's own hamlet asks for food, a doctor or tools at random
   (`HamletMath.NeedFor`, a roll).
 - **On the map.** When a world event runs within reach of the hamlet, the need follows it:
@@ -836,6 +838,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/FortuneShows.cs`). Decided: the town is the people's nearest to the colony, only the two ends show (struggling, flourishing); clothes worn to 40 to 65%; one pack beast fewer for caravans and camps; the meal is asked of the nearest colonist and seen to first by the colonists themselves; a flourishing town's gift is 20 to 45 silver about one time in three, from visitors only; camps are dressed but ask for no meal.
 
 **B13. Signs of the raiders' camp on the map** (E; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `World/Region/RaidersCampSigns.cs`, `TakenIn.cs`). Decided: the scouts before every raid of a found camp, an hour or so watching, the raid an hour or two after they were seen from where they came in; the runaway from the camp's third day, a 5% chance a day, once; taken in, +6 goodwill, the deed `rescued` and the next raid's mean days halved once; the smoke at the 18th hour, every three days at most, half the time; the defense planner is left as it is (the message and the raid's letter name the side).
 - **On the map.** While a raiders' camp stands:
   - **Scouts.** Before each of its raids, two of its scouts are seen at the map edge on the side the raid will come
     from, an hour or two ahead. They watch, then go. The message names the side.
@@ -943,6 +946,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Text:** flavour style for the camps' letters (arrival, join, help). The bubbles are speech, one sentence each.
 
 **B19. Camps' herds, dogs and goods from the full mod pool** (E; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `Defs/CampDefs/`, `CampKindDef.traderGoods`). Decided: the beasts as listed, the megareindeer also with the snowbound caravan; a camp's dog is now any that fits rather than the first; the salt (else pemmican) and the market's honey also always in the camp's trader's pack; honey is VFE Medieval 2's or Alpha Bees'.
 - **On the map.**
   - **Herds.** Drovers', herders' and calving camps bring beasts from the player's animal mods where the land and
     weather allow, besides muffalo, yak and sheep:
@@ -1075,6 +1079,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### Diplomacy at home
 
 **B27. Answer a call to arms from home** (E; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `Diplomacy/CallsFromHome.cs`, `World/Region/TakenIn.cs`). Decided: supplies are 60 raw food (else 20 meals), 6 medicine and up to two spare weapons; silver in place of service is a season's tribute, from the medieval age on; two to four wounded a day to three later; either answer counts as half the deed of fighters sent; the doctor who tended them most is named in the deed `tended` when they leave.
 - **What happens now.**
   - A defense partner's call and a liege's call for levies can only be answered by sending colonists away by caravan.
   - Otherwise the pact breaks, or levies count as refused (`Diplomacy/CallsToArms.cs`, `Fealty.LeviesRefused`).
@@ -1209,7 +1214,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet), and C5, C9, C10, C11, C13, C23 and C31 (the gods' variety, with thirty-one new happenings between the colony's people, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1395,6 +1400,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `Vows`, `VowKind`, life goals (`Rimfolk_Worship_Goals.xml`), `WorshipJobs`, the visitors at the gate.
   Life-goal text is in the flavour style.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Worship/VowsSeason.cs`). Decided: each a life goal (weight 0.35) set by the devout or the priest, only to its gods (`WorshipMath.VowFits`), fifteen days; the lamp is the light within eight cells of the god's place, filled from the stores below six tenths, broken the night it is out or gone; a tree a week near its place, broken by a week with none or by felling a tree; plain bread broken by a fine or lavish meal; callers are a party of visitors or traders, broken when one leaves unfed.
 
 **C6 (I) A vowed pilgrimage that really walks out** (M)
 - **When:** today the pilgrimage vow walks to the far edge of the colony's own land. When a holy place of that god lies
@@ -1440,6 +1446,7 @@ Each item that adds text says which of these it follows.
   - Only for someone up and about, never someone on bed rest (`BedRest`). Never in a heat wave.
 - **Ties:** ailments, `Health/BedRest`, `OwnHelios` (a fourth happening for him), belief.
 - **Harm:** the sunburn ailment keeps its own rate; an hour adds nothing to it.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/OnMap/Between/BetweenHelios.cs`, `HeliosSun`). Decided: 11 to 14 o'clock, clear, 15 to 34 degrees, no heat wave; an illness or ailment the body is fighting off, up and about and not to be kept abed (`HealthAIUtility.ShouldSeekMedicalRest`); the severity eased by 0.06 once after the hour; the one walked out remembers the kindness.
 
 **C10 (V) The gods' rarest gifts, from the mods** (M)
 - **What changes:** the great tier of the gods' touch (one in 40 days at most for any god, `GodTouchMath`) may, once in
@@ -1464,6 +1471,7 @@ Each item that adds text says which of these it follows.
 - **Harm:** the weapons are persona weapons (`CompProperties_BladelinkWeapon`), with the game's own bonds and traits;
   what the mod's weapons do (`GhostlySickness` among its hediffs) is the mod's own, to be read before building.
   Rimfolk adds no harm.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Touch/GodRareGifts.cs`). Decided: after a god's great effect (not an anger), half the time once 120 days have passed since the last rare gift for the whole colony; a masterwork in a ring of ash; the egg after Smoulder's waking on the same wait, its hatchling the colony's. Read before building: the mod's JavelinShock and RockSmash are its weapons' hit effects, GhostlySickness the ghostly flintlock's (not given).
 
 **C11 (V) Who is drawn to which god: the rest of the player's xenotypes** (S)
 - **What changes:** about 30 active xenotypes draw nobody today. Each would get a pull by what it is
@@ -1489,6 +1497,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** belief, the Culture tab, the book.
 - **Mod pool:** every row checked against `xenotypes.tsv`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `PawnGodsMath.XenotypeDraws`). Decided: weights 12 to 20 by how plainly the xenotype fits; beside the table, Paws of Interest's Skitty (a kitten) to Tamiu and Goodra (a rain dragon) to Murmur.
 
 **C12 (E) The keeper at work** (M)
 - **On the map:** the book's keeper is chosen today but never seen at the work.
@@ -1513,6 +1522,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `WorshipCouncil`, the room planner and the defense lines, `Festivals`, `PawnGods`, the book's verse on what
   was chosen.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Worship/WorshipCouncilMore.cs`, `Defs/GodDefs/Rimfolk_Worship_Dilemmas_More.xml`). Decided: "in the way" is a blueprint or frame of the colony's within a cell and a half of the place; the hard season is under five days of food or a raid in the last three days, asked on the festival's eve, its answer kept on the day (with less: no offering and no guests; the rite only: held that evening, the day not kept; let pass); "laughed at the rite" is the scoffer's mockery before the faithful (`FaithHeart`) within five days, kept from the rites for fifteen days; a shrine nobody keeps is a dedicated place whose god nobody at home holds, given to the asker's own god.
 
 **C14 (I) The raiders' gods, heard at the wall** (S to M)
 - **On the map:** today the colony learns a raiding people's gods silently (`Pantheon.LearnFromVisitors`). Instead:
@@ -1644,6 +1654,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** deaths and grief, newcomers, the journal.
 - **Mod pool:** Alpha Bees; never comes without it.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Immersion/TellingBees.cs`). Decided: the beekeeper by Alpha Bees' own beekeeping priority, then skill with animals (else the best with animals); up to four hives in a round, in daylight on a quiet day; after a death +2 for two days; the news let go after three days; under the small habits setting.
 
 **C24 (I) A cup for the sick** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **On the map:** the first-pot habit already carries coffee or tea to a friend in the morning (`Immersion/FirstPot.cs`).
@@ -1771,6 +1782,7 @@ Each item that adds text says which of these it follows.
   `Rimfolk_GodsOnMap*.xml`) have one wording each. The player has seen the same card three times.
 - **Add:** two more wordings each, about 156 lines, saying the same thing seen, with the same placeholders.
 - **Style:** plain words; the cards are the world's voice, not a god's.
+- **Built** (20 November 2026, not released yet; `Languages/English/Keyed/Rimfolk_GodCards_Wordings.xml`). The 99 card texts of the gods' own happenings, the gods on the map and the festivals, each with two more wordings, told through `TextVariants.Vary`; the 31 new happenings between the colony's people (DESIGN.md, "The gods between the colony's people") come in three wordings from the start.
 
 **T2 / C32 (T) The gods' own lines** (M)
 - **Now and to add**, each god's lines in `Rimfolk_Gods.xml`:

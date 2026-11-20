@@ -368,6 +368,9 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/MogMath.cs" Link="MogMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnHappeningsMath.cs" Link="OwnHappeningsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnSevenMath.cs" Link="OwnSevenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnBetweenMath.cs" Link="OwnBetweenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Immersion/TellingBeesMath.cs" Link="TellingBeesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodRareGiftsMath.cs" Link="GodRareGiftsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnFeastsMath.cs" Link="OwnFeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodBeastsMath.cs" Link="GodBeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ArtTalesMath.cs" Link="ArtTalesMath.cs" />
@@ -377,6 +380,10 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="GodPaceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Among/GodsAmongMath.cs" Link="GodsAmongMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Home/WorldHomeMath.cs" Link="WorldHomeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Region/RegionPricesMath.cs" Link="RegionPricesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Region/RaidersCampSignsMath.cs" Link="RaidersCampSignsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Region/TakenInMath.cs" Link="TakenInMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/CallsFromHomeMath.cs" Link="CallsFromHomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodTouchMath.cs" Link="GodTouchMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodImpactMath.cs" Link="GodImpactMath.cs" />

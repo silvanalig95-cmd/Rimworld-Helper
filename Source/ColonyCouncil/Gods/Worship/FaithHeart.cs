@@ -103,6 +103,8 @@ namespace ColonyCouncil
             Worship.Say(believer, "Rimfolk_Pool_Worship_ScoffReply", g, scoffer);
             CouncilGameComponent.GiveThought(believer, WorshipDefOf.Rimfolk_Worship_Mocked, scoffer);
             PawnGods.Mocked(believer, g);
+            // Kept for the council's question of the scoffer at the rite (Gods/Worship/WorshipCouncilMore.cs).
+            Worship.Book?.AddMark(scoffer, "mocked", g.id);
             Worship.Favour(g, map, WorshipMath.MockFavour, "CC_Wsh_Why_Mocked".Translate(scoffer.LabelShort.Named("PAWN")).Resolve(), FavourSource.Neglect, GodOffence.Scoffing);
         }
 

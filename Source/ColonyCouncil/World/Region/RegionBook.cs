@@ -185,6 +185,10 @@ namespace ColonyCouncil
             if (RiseFall.On) Safe("rise and fall, the hour", () => RiseFall.Hourly(this, now));
             // Settlers at the gate or on the road to found a hamlet (World/Region/Hamlet.cs).
             if (Hamlets.AnyOnTheRoad()) Safe("hamlets, the hour", () => Hamlets.Hourly(this, now));
+            // Help sent to a hamlet in the region's hard year: their courier at the gate says what is happening there (HamletLife.cs).
+            if (Hamlets.AnyWord()) Safe("hamlets, the carter's word", () => Hamlets.CarterWord(now));
+            // Other peoples' hurt in the colony's beds: a runaway from a raiders' camp, a partner's wounded (World/Region/TakenIn.cs).
+            if (TakenIn.Any) Safe("taken in, the hour", () => TakenIn.Hourly(now));
             // A colony being handed over: its meeting, its day, its ceremony, and the town made once those who go have left (Colonies/HandOvers.cs).
             if (HandOvers.Any) Safe("hand-overs, the hour", () => HandOvers.Hourly(now));
             // The towns the colony was: what became of them (taken by force, settled again), and their yes to the colony's letter (Colonies/TownsAfter.cs).

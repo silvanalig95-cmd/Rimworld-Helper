@@ -206,7 +206,7 @@ namespace ColonyCouncil
             {
                 s.shunCarded = true;
                 // apart: what the beasts do around one person, told as seen; nobody is with anyone in it.
-                OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Shun_Title", null, "CC_GodUndertow_Shun_Text".Translate(p.Named("PAWN"), a.KindLabel.Named("BEAST")).Resolve(),
+                OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Shun_Title", null, TextVariants.Vary("CC_GodUndertow_Shun_Text").Translate(p.Named("PAWN"), a.KindLabel.Named("BEAST")).Resolve(),
                     new LookTargets(p), null, p.Named("PAWN"));
             }
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, seer, "CC_GodUndertow_Saw_Shun", p.LabelShort.Named("SHUNNED"), a.KindLabel.Named("BEAST"));
@@ -355,19 +355,19 @@ namespace ColonyCouncil
                 case OwnHappeningsMath.DriftEnd.Reached:
                     OwnHappenings.Memory(p, StoodOverThought);
                     if (g != null) PawnGods.Fear(p, g, 10f, "CC_GodUndertow_Why_StoodOver".Translate(GodLorePage.Date(Now).Named("DATE")).Resolve());
-                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Drift_Title", null, "CC_GodUndertow_Drift_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p),
+                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Drift_Title", null, TextVariants.Vary("CC_GodUndertow_Drift_Text").Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p),
                         LetterDefOf.NegativeEvent, p.Named("PAWN"));
                     if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, p, "CC_GodUndertow_Saw_Drift", p.LabelShort.Named("DESPERATE"));
                     break;
                 case OwnHappeningsMath.DriftEnd.HeldByLight:
-                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Light_Title", null, "CC_GodUndertow_Light_Text".Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
+                    OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Light_Title", null, TextVariants.Vary("CC_GodUndertow_Light_Text").Translate(p.Named("PAWN"), lamps.Named("LAMPS")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
                     if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p.Awake() ? p : null, "CC_GodUndertow_Saw_Light", p.LabelShort.Named("DESPERATE"));
                     break;
                 case OwnHappeningsMath.DriftEnd.HeldByCompany:
                     Held(map, p, holder, at);
                     break;
                 default:
-                    if (seen) OwnHappenings.Line(map, "CC_GodUndertow_Gone_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
+                    if (seen) OwnHappenings.Line(map, TextVariants.Vary("CC_GodUndertow_Gone_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
                     break;
             }
         }
@@ -382,7 +382,7 @@ namespace ColonyCouncil
                 OwnHappenings.Memory(holder, KeptOffThought);
                 OwnHappenings.MemoryOf(p, KeptOffMeThought, holder);
             }
-            string text = "CC_GodUndertow_Company_Text".Translate(p.Named("PAWN"), (holder?.LabelShort ?? "").Named("HOLDER")).Resolve();
+            string text = TextVariants.Vary("CC_GodUndertow_Company_Text").Translate(p.Named("PAWN"), (holder?.LabelShort ?? "").Named("HOLDER")).Resolve();
             OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Company_Title", null, text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, holder, "CC_GodUndertow_Saw_Company", p.LabelShort.Named("DESPERATE"));
         }
@@ -427,7 +427,7 @@ namespace ColonyCouncil
             OwnHappenings.Stand(p, IntVec3.Invalid, 420);
             OwnHappenings.ModMote(map, p.Position, new Color(0.25f, 0.2f, 0.35f), 1.2f, "Mote_ShadowCloud", "Mote_Shadow");
             OwnHappenings.SayFrom(p, Pool, null, "ear");
-            OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Ear_Title", null, "CC_GodUndertow_Ear_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
+            OwnHappenings.CardOf(null, map, null, "CC_GodUndertow_Ear_Title", null, TextVariants.Vary("CC_GodUndertow_Ear_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), null, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, p, "CC_GodUndertow_Saw_Ear", p.LabelShort.Named("HEARER"));
             OwnHappenings.Came(b, OwnHappening.UndertowEar, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             return true;

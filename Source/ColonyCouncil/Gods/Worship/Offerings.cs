@@ -311,7 +311,7 @@ namespace ColonyCouncil
             who.AddRange(map.mapPawns.FreeColonistsSpawned.Where(p => Worship.GodOf(p) == g).OrderByDescending(Worship.Devout));
             foreach (var p in who.Distinct())
             {
-                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) || !WorshipJobs.Free(p)) continue;
+                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) && p != o.asked || !WorshipJobs.Free(p)) continue;
                 if (!p.CanReach(shrine, PathEndMode.Touch, Danger.Some)) continue;
                 if (WorshipJobs.Start(p, WorshipJobs.At(WorshipJobs.LookJob, shrine, Rand.Range(180, 300)))) return;
             }
@@ -386,13 +386,15 @@ namespace ColonyCouncil
             }
             var demand = o.demand ? b.demands.FirstOrDefault(d => d != null && !d.done && !d.met && d.god == g.id && d.home == o.home) : null;
             var who = new List<Pawn>();
+            // The one the council asked (a scoffer set to carry it), first; else the dreamer of a demand, the priest, the devout.
+            if (o.asked != null) who.Add(o.asked);
             if (demand?.dreamer != null) who.Add(demand.dreamer);
             var priest = Worship.Priest(map);
             if (priest != null) who.Add(priest);
             who.AddRange(map.mapPawns.FreeColonistsSpawned.Where(p => Worship.GodOf(p) == g).OrderByDescending(Worship.Devout));
             foreach (var p in who.Distinct())
             {
-                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) || !WorshipJobs.Free(p)) continue;
+                if (p == null || p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Baby() || Worship.Scoffer(p) && p != o.asked || !WorshipJobs.Free(p)) continue;
                 if (!p.CanReach(o.shrine, PathEndMode.Touch, Danger.Some)) continue;
                 var t = Pick(map, g, p, demand != null ? demand.kind : (OfferingKind?)null, out int count, out float fit);
                 if (t == null) continue;

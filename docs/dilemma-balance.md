@@ -46,7 +46,7 @@ with an effect the scales don't measure (a faith's certainty, a guardian named, 
 it gets no verdict, and is read by hand.
 ```
 
-285 dilemmas, 931 answers. Flagged: 61 dilemmas, 88 answers (first pass: 61 dilemmas; second pass: 0).
+289 dilemmas, 943 answers. Flagged: 61 dilemmas, 88 answers (first pass: 61 dilemmas; second pass: 0).
 
 ## First pass: the dilemmas rebalanced in this round
 
@@ -584,9 +584,9 @@ it gets no verdict, and is read by hand.
 | a child and an animal (`Rimfolk_DlmE_ChildAndBeast`) | 1 | Let them play this afternoon | 10 | 12 | 0 | -2 | mood -2 | partly scored (AnimalScene): read by hand |
 |  | 2 | A helps B with the animals | 14 | 6 | 0 | 7 | mood +3, trust +2, skill +3 | partly scored (AnimalScene): read by hand |
 |  | 3 | Not yet | 9 | 3 | 0 | 6 | mood +6 | partly scored (AnimalScene): read by hand |
-| a chair for old bones (`Rimfolk_DlmE_ElderChair`) | 1 | B makes A a chair | 15 | 9 | 0 | 6 | mood +12, trust -9, goods +3 | trade-off |
-|  | 2 | The best seat by the fire tonight | 4 | 0 | 0 | 3 | mood +2, trust +2 | trade-off |
-|  | 3 | The stool has done this long | 9 | 12 | 0 | -3 | mood -12, trust +9 | trade-off |
+| a chair for old bones (`Rimfolk_DlmE_ElderChair`) | 1 | B makes A a chair | 12 | 9 | 0 | 3 | mood +12, trust -9 | partly scored (MadeChair): read by hand |
+|  | 2 | The best seat by the fire tonight | 4 | 0 | 0 | 3 | mood +2, trust +2 | partly scored (MadeChair): read by hand |
+|  | 3 | The stool has done this long | 9 | 12 | 0 | -3 | mood -12, trust +9 | partly scored (MadeChair): read by hand |
 | a young voice (`Rimfolk_DlmE_YoungVoice`) | 1 | A speaks at supper | 15 | 11 | 0 | 4 | mood +3, trust +3, work -2 | trade-off |
 |  | 2 | B hears A out first | 10 | 6 | 0 | 4 | mood +3, trust +2 | trade-off |
 |  | 3 | A can wait A turn | 20 | 12 | 0 | 8 | mood +8 | trade-off |
@@ -982,6 +982,23 @@ it gets no verdict, and is read by hand.
 | two rival gods (`Rimfolk_Dlm_RivalGods`) | 1 | {GOD} first | 3 | 3 | 0 | 0 | nothing scored | partly scored (GodFavour, ShrineWords): read by hand |
 |  | 2 | {GOD2} first | 3 | 3 | 0 | 0 | nothing scored | partly scored (GodFavour, ShrineWords): read by hand |
 |  | 3 | Both, side by side | 0 | 0 | 0 | 0 | nothing scored | partly scored (GodFavour, ShrineWords): read by hand |
+
+### Rimfolk_Worship_Dilemmas_More.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| the shrine in the way (`Rimfolk_Dlm_ShrineInTheWay`) | 1 | Move it, with a rite | 0 | 0 | 0 | 0 | nothing scored | partly scored (ShrineInTheWay, ShrineWords): read by hand |
+|  | 2 | Build round it | 2 | 0 | 0 | 2 | trust +2 | partly scored (ShrineInTheWay, ShrineWords): read by hand |
+|  | 3 | Take it down | 0 | 3 | 0 | -3 | trust -3 | partly scored (ShrineInTheWay, ShrineWords): read by hand |
+| the feast in a hard season (`Rimfolk_Dlm_FeastHardSeason`) | 1 | Keep it, with less | 0 | 0 | 0 | 0 | nothing scored | partly scored (FestivalEve, ShrineWords): read by hand |
+|  | 2 | Keep only the rite | 0 | 0 | 0 | 0 | nothing scored | partly scored (FestivalEve, ShrineWords): read by hand |
+|  | 3 | Let it pass this year | 0 | 2 | 0 | -2 | trust -2 | partly scored (FestivalEve, ShrineWords): read by hand |
+| the scoffer at the rite (`Rimfolk_Dlm_ScofferAtRite`) | 1 | Keep B from the rites | 2 | 3 | 0 | -2 | trust -2 | partly scored (BarScoffer, GodFavour, ScofferCarries, ShrineWords): read by hand |
+|  | 2 | B carries the next offering | 2 | 0 | 0 | 2 | trust +2 | partly scored (BarScoffer, GodFavour, ScofferCarries, ShrineWords): read by hand |
+|  | 3 | Let it be | 0 | 2 | 0 | -2 | trust -2 | partly scored (BarScoffer, GodFavour, ScofferCarries, ShrineWords): read by hand |
+| a shrine nobody keeps (`Rimfolk_Dlm_ShrineUnkept`) | 1 | Keep it for {GOD} | 0 | 0 | 0 | 0 | nothing scored | partly scored (GodFavour, ShrineGiven, ShrineLetFall, ShrineWords): read by hand |
+|  | 2 | Give it to {GOD2} | 2 | 0 | 0 | 2 | trust +2 | partly scored (GodFavour, ShrineGiven, ShrineLetFall, ShrineWords): read by hand |
+|  | 3 | Let it fall | 0 | 0 | 0 | 0 | nothing scored | partly scored (GodFavour, ShrineGiven, ShrineLetFall, ShrineWords): read by hand |
 
 ## Second pass
 

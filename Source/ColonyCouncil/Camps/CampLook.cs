@@ -287,7 +287,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The kind of animal for an entry: for pack beasts, the kind their own people's caravans use, if one suits this land
         /// and weather; otherwise one of its kinds that can stand the weather here (a pack beast only where this land allows
-        /// one), those that live wild here likelier, or for a dog the first that fits.
+        /// one), those that live wild here likelier, or for a dog any one that fits (the game's and the animal mods' dogs
+        /// alike: docs/content-update-proposals.md, B19).
         /// </summary>
         private static PawnKindDef AnimalKindFor(CampAnimals g, Faction f, Map map)
         {
@@ -303,7 +304,7 @@ namespace ColonyCouncil
                 .Where(k => k?.race?.race != null && k.RaceProps.Animal && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)
                             && (!k.RaceProps.packAnimal || biome == null || biome.IsPackAnimalAllowed(k.race))).ToList();
             if (opts.Count == 0) return null;
-            if (g.follow) return opts[0];
+            if (g.follow) return opts.RandomElement();
             return opts.RandomElementByWeight(k => BiomeAnimals.LivesIn(biome, k) ? 4f : 1f);
         }
 

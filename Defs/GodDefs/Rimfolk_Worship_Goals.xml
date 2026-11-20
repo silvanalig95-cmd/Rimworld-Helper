@@ -82,6 +82,154 @@
     </achieved>
   </ColonyCouncil.AspirationDef>
 
+  <!--
+    The four vows of a season (Source/ColonyCouncil/Gods/Worship/VowsSeason.cs; C5 of docs/content-update-proposals.md):
+    a lamp kept lit at the god's place (Pip, Selene, Helios, the Hunger), a tree planted each week (Hollin), plain bread
+    (Hush, Morel), every caller fed (Ennu, Ducat). Each a life goal set by the devout or the priest to the god they hold,
+    kept when the season is out, broken by what anyone can see. In the flavour style of the life goals.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_VowLamp</defName>
+    <label>a lamp kept lit</label>
+    <workerClass>ColonyCouncil.AspirationWorker_VowLamp</workerClass>
+    <weight>0.35</weight>
+    <goal>keep a lamp lit at my god's place for a season</goal>
+    <deed>kept a lamp lit at their god's place for a season</deed>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>loss</li><li>battle</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed it: the lamp at my god's place stays lit from now till the season turns, and I'll be the one to see to it.</li>
+        <li>A light at the shrine, every night of the season. I'll carry the fuel myself.</li>
+        <li>[spark:loss] It went so dark when they died. I'll keep one light burning, at least, and keep it where it counts.</li>
+        <li>[lowtech] I've sworn to keep the torch at the holy place burning a whole season, and to feed it with my own hands.</li>
+      </plain>
+      <warm><li>Somebody should keep a light there for the ones who come at night. Let it be me.</li></warm>
+      <blunt><li>Vowed a lamp. It stays lit. I check it every day.</li></blunt>
+      <cheerful><li>A whole season of a little light at the shrine. I like that it'll be mine.</li></cheerful>
+      <gloomy><li>If the dark comes, it'll find the one lamp I kept. That's something.</li></gloomy>
+      <cold><li>I have vowed a lamp kept lit for a season. It will be kept.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The season's out and the lamp never went dark once. I kept it.</li>
+        <li>Every night of the season it burned. I'll miss going to see to it.</li>
+      </plain>
+      <warm><li>I kept the light for everyone. I hope somebody felt it.</li></warm>
+      <blunt><li>Lamp stayed lit. Vow kept.</li></blunt>
+      <cold><li>The light was kept to the last night of the season.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_VowTrees</defName>
+    <label>a tree a week</label>
+    <workerClass>ColonyCouncil.AspirationWorker_VowTrees</workerClass>
+    <weight>0.35</weight>
+    <goal>plant a tree by hand every week for a season</goal>
+    <deed>planted a tree every week for a season</deed>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>birth</li><li>loss</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed a tree a week, every week of the season, set in the ground with my own hands. And I'll not lift an axe till it's done.</li>
+        <li>We take enough from the woods. I've sworn to give one back each week until the season turns.</li>
+        <li>[spark:birth] Something new came into the world. Let the trees grow up with it, one a week, by my hand.</li>
+      </plain>
+      <warm><li>A tree a week. Somebody will sit under them one day, and that's enough for me.</li></warm>
+      <blunt><li>Vowed a tree a week. No felling for me this season.</li></blunt>
+      <cheerful><li>Saplings! One every week! I'm going to have the best-kept little grove in the colony.</li></cheerful>
+      <gloomy><li>I won't see most of them grown. I'll plant them anyway.</li></gloomy>
+      <cold><li>I have vowed a tree each week for the season. I will plant them.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The season's out, and every week there's a young tree standing where there wasn't one.</li>
+        <li>I kept it: a tree a week, and my axe never touched a trunk.</li>
+      </plain>
+      <warm><li>Go and look at them. They're small yet, but they're ours.</li></warm>
+      <blunt><li>Trees planted. Vow kept.</li></blunt>
+      <cold><li>A tree each week, for the whole season, as I swore.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_VowPlainBread</defName>
+    <label>plain bread</label>
+    <workerClass>ColonyCouncil.AspirationWorker_VowPlainBread</workerClass>
+    <weight>0.35</weight>
+    <goal>eat plain food only for a season</goal>
+    <deed>ate plain food only for a season</deed>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li><li>Gourmand</li></notTrait></who>
+    <sparks><li>loss</li><li>downed</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed plain bread for a season: simple meals and nothing finer, not even at a feast.</li>
+        <li>Nothing wasted, nothing grand. Plain food till the season's out, and I've sworn it.</li>
+        <li>[spark:loss] I don't want the good things just now. Plain bread will do me, and I've sworn to it.</li>
+      </plain>
+      <warm><li>Leave the fine plates for the others. A plain bowl is all I want this season.</li></warm>
+      <blunt><li>Plain food only. Vowed it. Don't offer me the fancy stuff.</li></blunt>
+      <cheerful><li>Simple meals for a whole season! It's going to make the first fine supper after taste incredible.</li></cheerful>
+      <gloomy><li>It all tastes the same lately anyway. I may as well make a vow of it.</li></gloomy>
+      <cold><li>I have vowed plain food for a season. Nothing finer will pass my lips.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>A whole season of plain bread, and I never broke it, not once.</li>
+        <li>The season's turned. I ate simply, as I swore, and I feel the better for it.</li>
+      </plain>
+      <warm><li>It was easier than I thought, with all of you passing me the plain bowls.</li></warm>
+      <blunt><li>Plain food, whole season. Vow kept.</li></blunt>
+      <cold><li>Plain food to the last day. It is kept.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_VowVisitors</defName>
+    <label>every caller fed</label>
+    <workerClass>ColonyCouncil.AspirationWorker_VowVisitors</workerClass>
+    <weight>0.35</weight>
+    <goal>see every caller at the gate fed for a season</goal>
+    <deed>fed every caller at the gate for a season</deed>
+    <forbiddenBy><li>NoReligion</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <sparks><li>loss</li><li>birth</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've vowed that no one comes to our gate this season and goes away unfed. I'll carry the bowls myself.</li>
+        <li>Whoever calls, trader or traveller, gets a meal from my hands. I swore it.</li>
+        <li>[lowtech] Every stranger at the gate shall have bread from me this season. That is my vow.</li>
+      </plain>
+      <warm><li>Nobody should knock on our door and leave hungry. Not while I'm here.</li></warm>
+      <blunt><li>Vowed to feed every caller. Keep the meals stocked.</li></blunt>
+      <cheerful><li>Feeding everyone who comes by! It's the best vow I ever made.</li></cheerful>
+      <gloomy><li>I was hungry on the road once, and nobody fed me. I'll not be that kind of door.</li></gloomy>
+      <cold><li>I have vowed that every caller this season is fed. It will be done.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The season's out, and not one caller left our gate hungry.</li>
+        <li>Every one of them fed, from my own hands. I kept it.</li>
+      </plain>
+      <warm><li>I liked seeing their faces when the bowl came out. I'll keep doing it, vow or no.</li></warm>
+      <blunt><li>Every caller fed. Vow kept.</li></blunt>
+      <cold><li>No caller left unfed this season. It is kept.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- The vows' own work at their place: the lamp seen to, the sapling set, the meal set down by a caller (JobDriver_VowKeep). -->
+  <JobDef>
+    <defName>Rimfolk_VowKeep</defName>
+    <driverClass>ColonyCouncil.JobDriver_VowKeep</driverClass>
+    <reportString>keeping a vow.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
   <!-- ===================== The vow's meals ===================== -->
 
   <ColonyCouncil.WishDef>

@@ -100,7 +100,7 @@ namespace ColonyCouncil
             if (form != null) spec.veiled = false;
             spec.title = form != null ? GodsOnMapWords.Title(god, map, false, "CC_GodM_Woken_Title", "CC_GodM_Woken_TitleNamed")
                 : "CC_GodM_Quake_Title".Translate().Resolve().CapitalizeFirst();
-            spec.text = (form != null ? "CC_GodM_Woken_Text" : "CC_GodM_Quake_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
+            spec.text = TextVariants.Vary(form != null ? "CC_GodM_Woken_Text" : "CC_GodM_Quake_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.ThreatSmall, new LookTargets(cell, map));
             var seer = GodsOnMapWords.Seer(map, cell, 50f) ?? miner;
             string saw = GodsOnMapWords.Saw(god, map, cell, form != null ? GodActKind.Appear : GodActKind.Wrath, seer, form != null ? "CC_GodM_Saw_Woken" : "CC_GodM_Saw_Quake");
@@ -108,6 +108,8 @@ namespace ColonyCouncil
             GodMarks.Note(god, map, cell, (form != null ? "CC_GodM_Woken_Act" : "CC_GodM_Quake_Act").Translate().Resolve(), PresenceKind.Wrath, form != null && !spec.veiled);
             GodMarks.Witnessed(map, cell, (form != null ? "CC_GodM_Memory_Woken" : "CC_GodM_Memory_Quake").Translate().Resolve(), miner == null ? null : new[] { miner });
             if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
+            // Now and then a warm drake's egg among the fallen rock of the deep (Dragons Descent; GodRareGifts).
+            GodRareGifts.AfterWaking(god, map, at);
             return true;
         }
 

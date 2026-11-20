@@ -85,6 +85,11 @@ PLAY = {
     "DilemmaEffect_SaintWords": "words",
     "DilemmaEffect_GiveBeast": "beast given",
     "DilemmaEffect_LesserOffering": "offering carried",
+    # More council questions of faith (Gods/Worship/WorshipCouncilMore.cs): the offering carried by the scoffer, the place
+    # given to another god (someone walks out and says the words), the place in the way taken up, built round or taken down.
+    "DilemmaEffect_ScofferCarries": "offering carried",
+    "DilemmaEffect_ShrineGiven": "place given",
+    "DilemmaEffect_ShrineInTheWay": "place moved",
     # The colony's own settings changed for a while and put back (Dilemmas/AnswerShifts.cs), and the game's own orders
     # (Dilemmas/DilemmaWorkers_Variety.cs): timetables shifted, work handed over, an operation on the medical tab, drug
     # bills suspended, a slave freed by the game's emancipation, self-tend or the best medicine for a patient.

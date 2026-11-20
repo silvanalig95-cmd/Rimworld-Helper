@@ -55,7 +55,15 @@ namespace ColonyCouncil
         /// <summary>A temple raised to the god (a life goal).</summary>
         Temple,
         /// <summary>A beast of the god's spared: no animal of its sacred kind hunted for a season.</summary>
-        BeastSpared
+        BeastSpared,
+        /// <summary>A lamp kept lit at the god's place for a season (Pip, Selene, Helios, the Hunger's shuttered lamps): a life goal.</summary>
+        Lamp,
+        /// <summary>A tree planted by hand each week for a season (Hollin): a life goal.</summary>
+        Trees,
+        /// <summary>Plain bread for a season: simple meals only, broken by a fine one (Hush, Morel): a life goal.</summary>
+        PlainBread,
+        /// <summary>Every caller at the gate fed for a season (Ennu, Ducat): a life goal.</summary>
+        Visitors
     }
 
     /// <summary>What became of an offering left at a shrine.</summary>
@@ -460,8 +468,41 @@ namespace ColonyCouncil
         {
             VowKind.NoMeat => 20,
             VowKind.BeastSpared => 15,
+            VowKind.Lamp => SeasonVowDays,
+            VowKind.Trees => SeasonVowDays,
+            VowKind.PlainBread => SeasonVowDays,
+            VowKind.Visitors => SeasonVowDays,
             _ => 0
         };
+
+        /// <summary>The four vows of a season (C5 of docs/content-update-proposals.md) run a season: fifteen days.</summary>
+        public const int SeasonVowDays = 15;
+
+        /// <summary>The four vows of a season, each only to the gods its words are for (by key); the older vows to any god.</summary>
+        public static bool VowFits(VowKind k, string god) => k switch
+        {
+            VowKind.Lamp => god == "Pip" || god == "Selene" || god == "Helios" || god == "Undertow",
+            VowKind.Trees => god == "Hollin",
+            VowKind.PlainBread => god == "Hush" || god == "Morel",
+            VowKind.Visitors => god == "Ennu" || god == "Ducat",
+            _ => true
+        };
+
+        /// <summary>A vow of the season, kept on the map by the vower's own walk.</summary>
+        public static bool SeasonVow(VowKind k) => k == VowKind.Lamp || k == VowKind.Trees || k == VowKind.PlainBread || k == VowKind.Visitors;
+
+        /// <summary>The lamp kept lit stands this near the god's place (cells).</summary>
+        public const float LampNear = 8f;
+
+        /// <summary>A tree a week: the season's weeks (days each), and whether a week went by with none planted.</summary>
+        public const int TreeWeekDays = 7;
+
+        public static int TreeWeek(int daysSinceVow) => Math.Max(0, daysSinceVow) / TreeWeekDays;
+
+        public static bool WeekMissed(int daysSinceVow, int planted) => daysSinceVow >= TreeWeekDays && planted < TreeWeek(daysSinceVow);
+
+        /// <summary>Plain bread: a meal at or above this (the game's FoodPreferability as an int, MealFine 9) breaks it.</summary>
+        public static bool TooFine(int preferability, int mealFine) => preferability >= mealFine;
 
         /// <summary>The chance a prayer for someone close who is gravely ill becomes a vow of no meat; a hunter's look at a sacred beast a vow to spare its kind.</summary>
         public const float NoMeatVowChance = 0.3f, BeastVowChance = 0.25f;

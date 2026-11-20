@@ -144,7 +144,7 @@ namespace ColonyCouncil
             }
             var speaker = outside.RandomElementWithFallback();
             if (speaker != null) OwnHappenings.SayFrom(speaker, Pool, g, "lookback");
-            string text = "CC_GodHelios_LookBack_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
+            string text = TextVariants.Vary("CC_GodHelios_LookBack_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             var at = speaker?.Position ?? OwnHappenings.Middle(map);
             OwnHappenings.CardOf(g, map, "Eclipse", "CC_GodHelios_LookBack_Title", "CC_GodHelios_LookBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), LetterDefOf.NeutralEvent);
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Act, speaker, "CC_GodHelios_Saw_LookBack");
@@ -253,7 +253,7 @@ namespace ColonyCouncil
                 if (n > 0)
                 {
                     bool ate = s.fruitEaten > 0;
-                    OwnHappenings.Line(map, (ate ? "CC_GodHelios_Fruit_Text" : "CC_GodHelios_Fruit_TextNone").Translate((ate ? s.fruitEaten : n).Named("COUNT"), Homes.Name(map).Named("HOME")).Resolve(),
+                    OwnHappenings.Line(map, TextVariants.Vary(ate ? "CC_GodHelios_Fruit_Text" : "CC_GodHelios_Fruit_TextNone").Translate((ate ? s.fruitEaten : n).Named("COUNT"), Homes.Name(map).Named("HOME")).Resolve(),
                         new LookTargets(new TargetInfo(s.fruitAt, map)));
                     if (g != null && ate) Worship.Booked(g, map, s.fruitAt, "CC_GodHelios_Book_Fruit".Translate(s.fruitEaten.Named("COUNT")).Resolve());
                 }
@@ -366,7 +366,7 @@ namespace ColonyCouncil
                 int n = HeliosState.Count(s.dawnSaw);
                 if (n > 0)
                 {
-                    OwnHappenings.Line(map, "CC_GodHelios_Dawn_Text".Translate(n.Named("COUNT"), Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(new TargetInfo(s.dawnAt, map)));
+                    OwnHappenings.Line(map, TextVariants.Vary("CC_GodHelios_Dawn_Text").Translate(n.Named("COUNT"), Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(new TargetInfo(s.dawnAt, map)));
                     GodTouch.About(map, "CC_GodHelios_Saw_Dawn", pawns: map.mapPawns.FreeColonistsSpawned.Where(p => HeliosState.Has(s.dawnSaw, p)).ToList());
                     if (g != null) OwnHappenings.Saw(g, map, s.dawnAt, GodActKind.Blessing, null, "CC_GodHelios_Saw_Dawn", n.Named("COUNT"));
                 }

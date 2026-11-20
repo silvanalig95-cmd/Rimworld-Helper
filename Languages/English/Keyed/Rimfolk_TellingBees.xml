@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Telling the bees (Source/ColonyCouncil/Immersion/TellingBees.cs): plain words. {PAWN} the teller, {NAME} the one the news is of. -->
+
+  <CC_Bees_Report>telling the bees.</CC_Bees_Report>
+  <CC_Bees_Told_Dead>{PAWN} went round the beehouses and told the bees that {NAME} has died.</CC_Bees_Told_Dead>
+  <CC_Bees_Told_Dead_2>{PAWN} stood a moment at each of the hives to tell the bees about {NAME}'s death.</CC_Bees_Told_Dead_2>
+  <CC_Bees_Told_Dead_3>The bees have been told: {PAWN} went from hive to hive with the news that {NAME} is dead.</CC_Bees_Told_Dead_3>
+  <CC_Bees_Told_New>{PAWN} went round the beehouses and told the bees about {NAME}, who has joined the colony.</CC_Bees_Told_New>
+  <CC_Bees_Told_New_2>{PAWN} stood a moment at each of the hives to tell the bees that {NAME} lives here now.</CC_Bees_Told_New_2>
+  <CC_Bees_Told_New_3>The bees have been told: {PAWN} went from hive to hive with the news that {NAME} has joined the colony.</CC_Bees_Told_New_3>
+  <CC_Bees_Journal_Dead>I went round the hives and told the bees that {NAME} has died. It's the old way, and it felt right.</CC_Bees_Journal_Dead>
+  <CC_Bees_Journal_New>I told the bees about {NAME} today, so they'll know them.</CC_Bees_Journal_New>
+
+</LanguageData>

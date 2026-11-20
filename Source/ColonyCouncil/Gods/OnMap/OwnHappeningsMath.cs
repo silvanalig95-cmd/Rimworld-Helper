@@ -132,7 +132,72 @@ namespace ColonyCouncil
         /// <summary>A horned reveller walks in out of the dark to a party or a late fire, shares a drink, and is gone before dawn.</summary>
         RevelSatyr,
         /// <summary>The god takes one drink or one dose in the stores, and whoever takes it gets one of his effects (RevelCup).</summary>
-        RevelCup
+        RevelCup,
+
+        // ---- Round 6, the gods between the colony's people (Gods/OnMap/Between/; the rules in OwnBetweenMath.cs), added last ----
+
+        /// <summary>Two who fought find two saplings come up side by side, and are brought to stand at them together.</summary>
+        HollinBound,
+        /// <summary>Brambles round the last stump of one who felled many trees, shown them by one who holds her.</summary>
+        HollinStumps,
+        /// <summary>A masterwork made: the forge throws heat and sparks; the maker proud, the next-best crafter resentful.</summary>
+        SmoulderPraise,
+        /// <summary>Under the mountain a few stones come down where someone stood, and the one beside them pulled them back.</summary>
+        SmoulderNearMiss,
+        /// <summary>At dusk an old one tells a child of the Old Horn at the edge, and the wild grazers come near.</summary>
+        BellwetherTold,
+        /// <summary>A hunter's beast turns and looks at them, and they let it go; the colony is of two minds about it.</summary>
+        BellwetherSpared,
+        /// <summary>Food left to rot in the stores: two argue whose it was, or dig it in together for her.</summary>
+        MorelWasted,
+        /// <summary>White threads round a sarcophagus a body was sealed in; her believers and the keeper's argue over it.</summary>
+        MorelSealed,
+        /// <summary>A bowl carried to someone new by the colony's kindest, who sits with them.</summary>
+        EnnuWelcomed,
+        /// <summary>Someone out far at night is waited up for at the door by the one who likes them best.</summary>
+        EnnuWaitedUp,
+        /// <summary>Two lay hands on a machine broken down a while, and it hums back.</summary>
+        PipTwoHands,
+        /// <summary>Someone talking to a machine is laughed at, and the machine hums and lights up for them.</summary>
+        PipTalked,
+        /// <summary>Two out under the night sky watch a star cross together.</summary>
+        CirrusTwoWatchers,
+        /// <summary>Two stop under the clouds and each sees a different god's shape in them.</summary>
+        CirrusCloudShape,
+        /// <summary>A warmer coat carried from the stores to one who is cold, and the frost melts round them.</summary>
+        HushCoat,
+        /// <summary>On a winter night someone who holds the Long White asks the loud ones for quiet.</summary>
+        HushNoise,
+        /// <summary>Someone with a deep grudge or in despair is seen whispering into the dark at the edge.</summary>
+        UndertowWhisper,
+        /// <summary>A light by the sleepers goes out in the night; two argue whose it was to keep.</summary>
+        UndertowLampOut,
+        /// <summary>One getting over an illness walked out into the noon sun and sat with an hour (C9).</summary>
+        HeliosSun,
+        /// <summary>Two at odds in the noon light, which lies gold on both alike.</summary>
+        HeliosAlike,
+        /// <summary>On a hot noon a friend calls someone working in the sun into the shade.</summary>
+        HeliosShade,
+        /// <summary>One who said a cruel word stands under the moon at night, and says sorry in the morning.</summary>
+        SeleneSorry,
+        /// <summary>Two tell the same dream at breakfast.</summary>
+        SeleneSameDream,
+        /// <summary>A cat sits on a grave, and the two who loved the dead come and sit with it.</summary>
+        MogGraveCat,
+        /// <summary>Two clever ones trade riddles at supper, and a cat walks at the winner's heel.</summary>
+        MogRiddle,
+        /// <summary>On a hot afternoon at the water's edge one splashes another, and the frogs set up croaking.</summary>
+        MurmurSplash,
+        /// <summary>A frog in a bedroom after rain: one would leave it be, the other wants it out.</summary>
+        MurmurFrogIn,
+        /// <summary>A gold coin found, passed hand to hand to those who need cheering, and at last to the stores.</summary>
+        DucatPassed,
+        /// <summary>A miser counts the silver at night, and it is found scattered in heaps by morning.</summary>
+        DucatMiser,
+        /// <summary>One cup set between two at odds at the late fire.</summary>
+        RevelRivalsCup,
+        /// <summary>Two drunk make a wager, and the loser scrubs the winner's floor in the morning.</summary>
+        RevelWager
     }
 
     /// <summary>The one word Hollin's dryads give, each pointing at something real on the land.</summary>
@@ -283,7 +348,8 @@ namespace ColonyCouncil
                 case OwnHappening.RevelLetGo: return (12f, 3f, 10f);
                 case OwnHappening.RevelSatyr: return (30f, 15f, 30f);
                 case OwnHappening.RevelCup: return (12f, 10f, 15f);
-                default: return (30f, 0f, 0f);
+                // Round 6, the gods between the colony's people (OwnBetweenMath.cs).
+                default: return BetweenPaceOf(h);
             }
         }
 
