@@ -23,6 +23,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mechanitors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Biotech</li>
@@ -87,6 +88,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mechanitors</li></callings>
         <group>Visitors</group>
         <battle>true</battle>
         <mods>
@@ -155,6 +157,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mechanitors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Biotech</li>
@@ -219,6 +222,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>listeners</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Royalty</li>
@@ -284,6 +288,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>listeners</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Anomaly</li>
@@ -411,6 +416,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>listeners</li></callings>
         <group>Visitors</group>
         <ages>24~70</ages>
         <stayHours>6~10</stayHours>
@@ -471,6 +477,7 @@
     <earliestDay>25</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>vaultfolk</li></callings>
         <group>Visitors</group>
         <battle>true</battle>
         <ages>16~40</ages>
@@ -535,6 +542,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>vaultfolk</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>12~16</stayHours>
@@ -603,6 +611,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>vaultfolk</li></callings>
         <group>Visitors</group>
         <ages>16~40</ages>
         <stayHours>3~5</stayHours>
@@ -725,6 +734,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>vaultfolk</li></callings>
         <group>Visitors</group>
         <ages>16~40</ages>
         <stayHours>6~10</stayHours>

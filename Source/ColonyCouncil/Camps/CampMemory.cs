@@ -246,7 +246,48 @@ namespace ColonyCouncil
                 if (key.CanTranslate()) lines.Add(key.Translate().RawText);
             }
             string line = Flavor.Pick(lines, tags) ?? Flavor.PickText(lines);
-            return c.Format(line);
+            string news = c.Format(line);
+            // What they lived through at home since they left: a world event that ended at their people (B31).
+            string world = WorldNews(c, past, tags);
+            return world.NullOrEmpty() ? news : news + " " + world;
+        }
+
+        /// <summary>
+        /// The world event that ended at their people while they were away (the newest one a camp would speak of: the
+        /// fever and who they lost, the drought and whether the rains came, the fire and the rebuilding), in a line in the
+        /// camps' own style; null when none did (CampNewsMath).
+        /// </summary>
+        public static string WorldNews(Camp c, PastCamp past, HashSet<string> tags)
+        {
+            var history = WorldSituations.Instance?.history;
+            if (c?.faction == null || past == null || history == null || history.Count == 0) return null;
+            try
+            {
+                var theirs = history.Where(r => r != null && r.faction == c.faction && !r.defName.NullOrEmpty()).ToList();
+                var topics = theirs.Select(r => CampNewsMath.Topic(r.defName, DefDatabase<WorldSituationDef>.GetNamedSilentFail(r.defName)?.kind, r.ending)).ToList();
+                int i = CampNewsMath.Pick(theirs.Select(r => r.endTick).ToList(), topics.Select(t => t != null).ToList(), past.leftTick);
+                if (i < 0) return null;
+                var r0 = theirs[i];
+                var t2 = new HashSet<string>(tags ?? new HashSet<string>()) { "news:" + topics[i] };
+                if (r0.helped) t2.Add("helped");
+                var lines = new List<string>();
+                for (int k = 1; k <= 60; k++)
+                {
+                    string key = "CC_Camp_WorldNews_" + k;
+                    if (key.CanTranslate()) lines.Add(key.Translate().RawText);
+                }
+                // Only a line written for this news, never another's.
+                string line = Flavor.Pick(lines.Where(l => l.Contains("news:" + topics[i] + "]") || l.Contains("news:" + topics[i] + ",")).ToList(), t2);
+                if (line.NullOrEmpty()) return null;
+                string town = r0.place.kind == RefKind.Town ? NotableBook.TownOf(r0.place.id)?.Name ?? WorldLedger.TownRecord(r0.place.id)?.name : null;
+                line = line.Formatted((town ?? c.faction.Name).Named("TOWN"), r0.Called.Named("EVENT")).Resolve();
+                return c.Format(line);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a camp back: the world's news", e);
+                return null;
+            }
         }
 
         /// <summary>For the World page: the camps the colony remembers, in a line ("the drovers of the Hill Tribes, gone 23 days").</summary>

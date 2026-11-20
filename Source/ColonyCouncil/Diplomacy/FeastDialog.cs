@@ -42,6 +42,9 @@ namespace ColonyCouncil
             if (people != null)
                 foreach (var n in candidates.Where(n => n.faction == people && Feasts.InviteWhyNot(n, this.home) == null).Take(FeastMath.MaxGuests - picked.Count))
                     picked.Add(n.id);
+            // A new head the colony asked to its next feast at the gate (World/Region/NewHeads.cs) is on the list already.
+            foreach (var n in candidates.Where(n => !picked.Contains(n.id) && NewHeads.Promised(n) && Feasts.InviteWhyNot(n, this.home) == null).ToList())
+                if (picked.Count < FeastMath.MaxGuests) picked.Add(n.id);
             // What each invited people hopes for, offered first when the colony can hold it.
             foreach (var n in candidates.Where(n => picked.Contains(n.id)))
                 foreach (ContestKind k in System.Enum.GetValues(typeof(ContestKind)))

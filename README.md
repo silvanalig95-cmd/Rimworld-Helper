@@ -3805,7 +3805,10 @@ when the colony asked them back, less each time, and never more than three times
 became of them since; they start with no unease and settle in quicker, and the colonist who made a friend of them is
 glad to see them. Here and away lists the camps that may pass this way again, and when no camp is on the land it says
 why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the
-way is open.
+way is open. A camp that comes back also says what it lived through at home since: the newest world event that
+ended among its people (the fever and who they lost, the drought and whether the rains came, the fire and the
+rebuilding), and that the colony helped, when it did. A camp from a struggling town comes in worn clothes and with one
+pack beast fewer; from a flourishing town, a step better dressed.
 
 **Help in a fight.** When enemies have been on the colony's land for an hour (a raid, a siege, a mechanoid cluster), a
 people at peace with the colony and at war with the attacker may send three to seven fighters, about half as strong as
@@ -3851,7 +3854,11 @@ council's questions about a camp (a theft, their beasts in the fields, one who w
 unease eases a little each day instead of growing. Now and then one of them falls ill and they ask for the colony's
 doctor, and enemies on the land may kill one of them, after which the rest may bury their dead and move on. Their
 card on the region window's Here and away, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
-to ask them to move on. Or the colony takes them all in instead, camp and goods and children.
+to ask them to move on. Or the colony takes them all in instead, camp and goods and children. They keep the colony's days too, while they're at ease with it: up to
+three of them come to a calendar day's feast, bonfire or games, or a custom kept with a gathering (harvest home), as its
+guests, one setting down a dish from their own stores; two of them come to stand at a grave of the colony's in the two
+days after a burial; and on their own good days (the day they settled, a birthday, now and then a wedding in the family)
+they ask the colonist warmest with them over to their fire for the evening.
 
 **Road wardens and deserters** come with the world's events rather than on their own. The wardens camp to build a post
 on the colony's land when it lets them (see "the road, over a year" under World events), and when the post stands they
@@ -3880,7 +3887,14 @@ doctors and neighbors asking for medicine in a plague year, more hungry pilgrims
 warlord rises), and so do some of the game's own (more herds in a migration, more cold snaps in a hard winter, plague
 likelier in a plague year; this needs the deeper game hooks, and only matters where your storyteller picks by
 weight). It puts two or three questions to the council along the way, sends its own visitors and caravans, and ends in
-a way that depends on what the colony did, with a letter that pays off what came before. Each has several ways to
+a way that depends on what the colony did, with a letter that pays off what came before. A few days after a people's new
+leader takes the seat, they ride out and stop at the colony's gate with a few of their people: sit them at the table,
+give a gift, or say a word at the gate, and their temper shows in what they do (a kind head leaves a gift, a greedy one
+sends a caravan, a harsh one wants a token of respect, a steady one offers a trade pact where goodwill allows). When a
+hard world event strikes a people, those at the colony with a tie to them (married in, come from them, their ward,
+hostage or envoy) hear of it by the next courier or the road: a letter from home, worry for a few days and on their card
+while it lasts, and often an ask to send food or medicine home with the next courier, which counts as the colony's help.
+The colony's own ward or envoy at the struck town writes, and from a plague town may come home early. Each has several ways to
 begin, more letters along the way and more ways to end, and its answers, like a dilemma's, can turn out in more than
 one way, picked to fit the moment, so one that comes back reads differently. The region remembers who
 helped: a people the colony stood by in a plague says so when the next hard year comes, and a famous healer charges
@@ -4430,7 +4444,19 @@ same feast as any other: the meal from the stores, and its host raises a cup to 
 champion of the day gets the prize, and the guests stay the night and go home at first light. Their welcome moves their
 regard, and their people remember it; an empty plate is a slight. A bout's blow goes in hard now and then, and a guest's
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
-conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*.
+conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*. A guest whose town is
+in a world event now brings its year: from a hard year they think more of the meal than of the contests and, with meals
+to spare, carry two home a party; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
+host's toast names their town. A new head of a people asked to the next feast at the colony's gate is on its guest list
+already.
+
+**Ties bring a people's own.** A people bound to the colony (a pact, a marriage, a ward or hostage either way, an envoy
+either way, fealty either way, a debt of honour either way) sends its own events and camps about half again as often,
+and a people the colony broke its word with about a third less. Their letters name the tie, and their gifts go first to
+the colonist who carries it (the ward's guardian, the one married in, the colonist of a debt, else the speaker). A
+visitor group from a struggling town comes in worn clothes, a caravan with a pack beast fewer, and one of them asks for a
+meal, which the colonists see to first; from a flourishing town they come better dressed and now and then bring a small
+gift.
 
 **Marriage alliances.** A match between one of the colony's and one of a people at peace: "Speak for a match" with
 someone of theirs at the colony (two who courted their way to lovers speak for themselves), a letter proposing one (the

@@ -353,6 +353,8 @@ namespace ColonyCouncil
                 return null;
             }
             h.feast = p;
+            // A new head asked to this feast at the colony's gate: the colony's word kept (World/Region/NewHeads.cs).
+            NewHeads.Invited(invited.Where(n => p.guests.Any(g => g.notable == n.id)));
             var actors = new List<HistoryActor> { new HistoryActor(Diplomacy.Colony(home), HistoryRole.Did) };
             foreach (var g in p.guests)
             {
@@ -747,6 +749,9 @@ namespace ColonyCouncil
                     text += "\n\n" + string.Join(" ", p.guests.Where(g => g.state == GuestState.Here && g.hope != FeastHope.None).Select(g =>
                         FeastWords.P("CC_Feast_Arrive_Hope", FeastWords.Name(g).Named("NAME"), FeastWords.Hope(g.hope).Named("HOPE"))));
             }
+            // Their town's year comes with them: a good year's gift handed over, a hard year said (Diplomacy/FeastYear.cs).
+            string year = FeastYear.Arrived(p, map);
+            if (!year.NullOrEmpty()) text += "\n\n" + year;
             Tell.Letter(NewsKind.World, Importance.Notable, map, FeastWords.P("CC_Feast_Arrive_Label", FeastWords.Name(map).Named("FEAST")), text, LetterDefOf.PositiveEvent,
                 new LookTargets(came.Take(3)), people);
         }
@@ -1145,7 +1150,9 @@ namespace ColonyCouncil
                 var eff = new DilemmaEffect_Feast
                 {
                     why = FeastWhy.Guests, label = FeastWords.Name(map), guests = PlayGuests.Feast, guestCount = 12, music = music, hours = new IntRange(from, to), waitHours = 3f,
-                    duration = new FloatRange(2.5f, 3f)
+                    duration = new FloatRange(2.5f, 3f),
+                    // The host's cup names a guest's town and its year, when one has a year to name (Diplomacy/FeastYear.cs).
+                    toastLine = FeastYear.Toast(p)
                 };
                 play = eff.Begin(new DilemmaContext { map = map });
             }
@@ -1371,6 +1378,8 @@ namespace ColonyCouncil
                 if (g.pawn == null || g.pawn.Dead) continue;
                 bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && p.music : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
                 g.welcome = insulted ? -15f : FeastMath.Welcome(g.ate, g.fine, hopeMet, contests, g.prize, g.bed, g.floor, g.hurt, g.sour, Empire(g));
+                // A hard year at home: the meal counts for more than the contests (Diplomacy/FeastYear.cs).
+                if (!insulted) g.welcome = FeastYear.Welcome(g, g.welcome, contests);
                 var n = NotableBook.Instance?.Get(g.notable);
                 if (n != null)
                 {
@@ -1393,6 +1402,8 @@ namespace ColonyCouncil
                     FeastWords.Name(g).Named("NAME"), Why(g, hopeMet).Named("WHY")));
             }
             NotableBook.Changed();
+            // A hard year's guests carry home what is left (Diplomacy/FeastYear.cs), before they go.
+            if (!insulted && p.purpose == FeastPurpose.Feast) lines.AddRange(FeastYear.Leftovers(p, map));
             foreach (var g in p.guests.Where(g => g.state == GuestState.Here)) g.state = GuestState.Gone;
             LeaveAll(p, map);
             p.ended = Now;

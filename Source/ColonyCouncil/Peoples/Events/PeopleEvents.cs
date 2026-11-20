@@ -44,8 +44,18 @@ namespace ColonyCouncil
         /// <summary>A gift of this kind could come to this colonist now: never had it, the gap since the last gift past.</summary>
         public static bool MayGive(string kind, Pawn p) => p != null && !PeopleEventsBook.Given(kind, p) && PeopleEventsBook.GiftOpen;
 
-        /// <summary>The colony's grown people up and about who could have a gift of this kind.</summary>
-        public static IEnumerable<Pawn> Takers(Map map, string kind) => PeoplesG.Grown(map).Where(p => MayGive(kind, p));
+        /// <summary>
+        /// The colony's grown people up and about who could have a gift of this kind. While a people's own event is cast for
+        /// the colonist who carries the colony's tie with them (Peoples/PeopleTies.cs), only that colonist, when they may
+        /// have it: the event falls back to everyone when its own needs rule them out.
+        /// </summary>
+        public static IEnumerable<Pawn> Takers(Map map, string kind)
+        {
+            var first = PeopleTies.GiftTo;
+            var all = PeoplesG.Grown(map).Where(p => MayGive(kind, p));
+            if (first != null && all.Contains(first)) return new List<Pawn> { first };
+            return all;
+        }
 
         /// <summary>Tags for their lines: the people's age and the colony's.</summary>
         public static void AgeTags(HashSet<string> tags, Faction f)
