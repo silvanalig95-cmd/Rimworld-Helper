@@ -51,6 +51,33 @@ namespace ColonyCouncil
         /// <summary>The star-watchers lie out under the sky these hours of the night (from dusk to one), and sleep after.</summary>
         public static bool StarHour(int hour) => hour >= 20 || hour < 1;
 
+        // ================= B24. A stud visit =================
+
+        /// <summary>Their male standing with the colony's females is the likelier way round (their bloodline is what they want spread).</summary>
+        public const float StudTheirsWeight = 1.5f;
+
+        /// <summary>How long their animal stands in the colony's pen: five to seven days.</summary>
+        public static float StudDays(float roll) => 5f + Clamp01(roll) * 2f;
+
+        /// <summary>The fee for a young one of his: about a seventh of his worth, in tens, from 30 to 200 silver.</summary>
+        public static int StudFee(float marketValue) => Tens(Math.Max(30f, Math.Min(200f, marketValue / 7f)));
+
+        /// <summary>The silver the colony asks for his keep instead (the second answer): half the fee, at least 20.</summary>
+        public static int StudKeep(int fee) => Tens(Math.Max(20f, fee * 0.5f));
+
+        /// <summary>Their goodwill for a stand kept to its end, and what losing their animal costs.</summary>
+        public const int StudGoodwill = 8, StudPenalty = 10;
+
+        /// <summary>When the young one comes: the rest of her gestation from where she is in it (0 to 1), and two to five days on the road.</summary>
+        public static int YoungDueTicks(float progress, float gestationDays, float roll) =>
+            (int)(Math.Max(0f, 1f - Clamp01(progress)) * Math.Max(1f, gestationDays) * DayTicks + (2f + Clamp01(roll) * 3f) * DayTicks);
+
+        public const int DayTicks = 60000;
+
+        private static float Clamp01(float v) => v < 0f ? 0f : v > 1f ? 1f : v;
+
+        private static int Tens(float v) => (int)Math.Round(v / 10f) * 10;
+
         // ================= B6. Cloth gone scarce =================
 
         /// <summary>Cloth goes scarce more readily this long after a sickness in the herds or markets closed ended.</summary>
