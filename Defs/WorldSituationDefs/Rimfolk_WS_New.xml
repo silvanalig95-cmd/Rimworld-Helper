@@ -45,6 +45,8 @@
     <texts>
       <li>Word has gone round {PLACE} and the farms beyond it that the colony's stalls are worth the walk. For a fortnight or so, {FACTION} mean to make the colony's market their own: buyers will come up the road in the mornings, a few at a time, with their purses.\n\nWhat's on the counters is what they'll buy.</li>
       <li>[stalls] {FACTION} have taken to calling the colony's row of stalls "the market", as if it were a town's. Buyers from {PLACE} will be coming up the road most mornings for a fortnight or so.\n\nThe better the counters are stocked, the more they'll take home.</li>
+      <li>[spring] The roads have dried out after the spring rains, and {FACTION} at {PLACE} have heard that the colony keeps a good market. Buyers will come up the road most mornings for the next fortnight with silver to spend.\n\nWhatever is on the colony's counters will sell.</li>
+      <li>[fall] With the harvest in, {FACTION} have silver to spend, and the word at {PLACE} is that the colony's stalls are worth the walk. Buyers mean to come up the road most mornings for a fortnight or so.\n\nThe colony's counters will need to be well stocked.</li>
     </texts>
     <summaries>
       <li>Buyers from {FACTION} come to the colony's stalls every few days and buy off the counters. Traders may ask for a pitch, and visitors come more often.</li>
@@ -178,6 +180,8 @@
         <texts>
           <li>[pitch] The market days are over. The traders' stall has come down, and the buyers of {FACTION} will be back next season, they say, if the colony's counters are as good.</li>
           <li>[!pitch] The market days are over, and the road from {PLACE} is quiet again. {FACTION} say the colony's stalls were the best thing about the season.</li>
+          <li>[pitch] The market days are over, and {FACTION}'s buyers have stopped coming up from {PLACE}. The traders who kept a stall on the colony's land say they would gladly come again.</li>
+          <li>[!pitch] The market days are over. {FACTION}'s buyers have gone back to the markets at {PLACE}, and the colony's counters are quiet in the mornings again.</li>
         </texts>
         <chronicle>Market days at the colony came to an end.</chronicle>
         <effects>
@@ -220,6 +224,8 @@
     <texts>
       <li>The comms console has been busy all week. Ships are running the orbital lanes over the region in numbers nobody here has seen before, and every few hours another one hails the colony with a list of goods.\n\nA trading house of {FACTION} has asked for the colony by name. They may send someone down.</li>
       <li>Somewhere above the clouds, the orbital lanes have filled up. The comms console picks up a new trader's call most evenings, and the night sky has more moving lights in it than stars.\n\nOne of the calls was from a trading house of {FACTION}, asking what the colony has to sell.</li>
+      <li>The comms console has picked up more ship traffic this week than in the whole season before. Something is drawing traders to the region's orbit, and they are calling every settlement with a working radio.\n\nA trading house of {FACTION} is among them, and has asked what the colony has to sell.</li>
+      <li>[winter] The long winter nights show how busy the orbital lanes have become: lights cross the sky every hour, and the comms console chimes with one trader's call after another.\n\nA trading house of {FACTION} has made contact, and may send an agent down to buy.</li>
     </texts>
     <summaries>
       <li>Orbital traders call much more often. Debris from the lanes can come down, and a trading house of {FACTION} may send an agent down to buy.</li>
@@ -307,6 +313,8 @@
         </titles>
         <texts>
           <li>The traffic overhead has thinned out, and the comms console is quiet most nights again. Whatever brought the ships to the region has moved on, and the ships with it.</li>
+          <li>The comms console is quiet again. The traders who crowded the orbital lanes have gone on to other systems, and only the usual ships still call.</li>
+          <li>Traffic in the orbital lanes has fallen back to what it was, and {FACTION}'s trading house has stopped calling. The night sky over the colony is back to its ordinary stars.</li>
         </texts>
         <chronicle>The orbital lanes over the region went quiet again.</chronicle>
       </li>
@@ -350,10 +358,13 @@
     </names>
     <titles>
       <li>{NAME} at {PLACE}</li>
+      <li>A court sits at {PLACE}</li>
     </titles>
     <texts>
       <li>A circuit judge has come to {PLACE}, and {FACTION} are holding {NAME} there for the next few weeks. Every quarrel in the region that has waited a year for a hearing is on its way to the judge's table.\n\nThe colony may have business of its own to bring.</li>
       <li>{FACTION} have opened {NAME} at {PLACE}. The judge rides a circuit of the region's towns and only comes this way once a year, so the court will be busy.\n\nThe court's clerk is writing to every settlement nearby, the colony among them.</li>
+      <li>[spring] The roads are open again, and the judge has started the year's circuit. {NAME} sits at {PLACE} for the next few weeks, and {FACTION} are sending word to every settlement that has a case to bring.\n\nThe colony is near enough to be asked.</li>
+      <li>[theirLowtech] {FACTION} have opened {NAME} at {PLACE}, and the judge is hearing cases from first light until dark. Thieves, boundary quarrels and unpaid debts from all over the region are waiting their turn.\n\nThe colony may bring a case of its own, or a prisoner.</li>
     </texts>
     <summaries>
       <li>The court at {PLACE} will try a prisoner the colony hands over, or hear the colony's grievance against another people. The judge may stop at the colony on the way on.</li>
@@ -429,6 +440,7 @@
         </titles>
         <texts>
           <li>The judge of {NAME} is on the road to the next town on the circuit, and has stopped at the colony's gate with a clerk at their side. It will be late before they reach anywhere else.\n\nThey ask for a bed for the night, or failing that, water and bread at the gate.</li>
+          <li>The judge of {NAME} has stopped at the colony's gate on the way to the next town of the circuit, with a clerk carrying the court's papers. The road ahead is long and the light is going.\n\nThe judge asks for a bed for the night, or at least bread and water at the gate.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -470,6 +482,8 @@
         <texts>
           <li>[handed] {NAME} at {PLACE} has risen, and the judge has moved on along the circuit. The prisoner the colony handed over was tried and sentenced, and {FACTION} speak of the colony as a neighbour that keeps the peace.</li>
           <li>[!handed] {NAME} at {PLACE} has risen, and the judge has moved on along the circuit. The region's quarrels are settled for another year, more or less.</li>
+          <li>[handed] The judge has finished at {PLACE} and gone on along the circuit. The prisoner the colony handed to the court was tried there, and {FACTION} have thanked the colony for bringing them in.</li>
+          <li>[!handed] The court at {PLACE} has closed its doors, and the judge and the clerk are on the road to the next town. {FACTION} say it was a busy year for the court.</li>
         </texts>
         <chronicle>{NAME} at {PLACE} rose.</chronicle>
         <effects>

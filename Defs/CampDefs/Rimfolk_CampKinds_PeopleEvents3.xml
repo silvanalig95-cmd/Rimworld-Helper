@@ -56,13 +56,20 @@
     <texts>
       <li>{FACTION}'s road gang is walking in to the edge of the colony's land {PLACE}: {X_nameDef} the waymaster, the labourers with their tools, and two road wardens at the back. They will lay {FLOOR} a stretch a day.</li>
       <li>[ws:road] With {SITUATION} going through the region, {FACTION}'s road gang has come to lay its stretch across the colony's land, camped at the edge {PLACE}.</li>
+      <li>[spring] With the ground dry enough to work, {FACTION}'s road gang has come to the edge of the colony's land {PLACE}: {X_nameDef} the waymaster, the labourers and two wardens. They will lay {FLOOR} a stretch at a time.</li>
+      <li>{X_nameDef}, waymaster of {FACTION}, has brought a road gang to camp at the edge of the colony's land {PLACE}. The road will run past the colony when they are done, {X_pronoun} told {A_nameDef}, laid in {FLOOR} a stretch a day.</li>
     </texts>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat at the road gang's fire and heard how nine waymasters once sent their wagons through Harrow Ford together, under nine flags, and nobody fired on them.</li>
+      <li>[tales] {A_nameDef} sat with the road gang after their shift and heard where the road will go next, and which towns are waiting for it.</li>
+    </helpTexts>
     <settled>
       <li>The road gang's tents are up at the edge {PLACE}, the tools stacked, and the waymaster has paced out the first day's stretch of {FLOOR}.</li>
       <li>{FACTION}'s road gang has made camp {PLACE}; the wardens walk the line while the labourers lay the first of the road.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the road gang has watched the colony's people at work, and asks whether it could use a hand who knows how to lay a road.</li>
+      <li>{X_nameDef}, one of the road gang camped {PLACE}, says {X_pronoun} has laid roads all over the region and would like to stay by one for a change, and asks whether the colony has a place for {X_objective}.</li>
     </joinTexts>
     <farewell>
       <li>[done,spur] The road gang has gone on up the line, the road of {FLOOR} laid edge to edge across the colony's land and a spur to its gate.</li>
@@ -77,10 +84,18 @@
       <li>One for the ditch and one for the bed.</li>
       <li>Mind the line, the wardens are watching it.</li>
       <li>The carts will thank us for this.</li>
+      <li>[morning] Tools out, the line's where we left it.</li>
+      <li>[rain] Keep at it, it's only rain.</li>
+      <li>Fill the ruts first, then the bed.</li>
+      <li>[evening] That's the day's stretch done.</li>
     </lines>
     <momentLines>
       <li>[road] Another stretch down, and the next one waiting.</li>
       <li>[road] Tamp it down, and then tamp it again.</li>
+      <li>[road] Level it out, the carts will feel every bump.</li>
+      <li>[road] One more stretch and we're past the bend.</li>
+      <li>[road] Straight and even, the waymaster will be pleased.</li>
+      <li>[road] That's good work, on to the next.</li>
     </momentLines>
     <asks>
       <li>
@@ -211,13 +226,20 @@
     <texts>
       <li>Sisters of {FACTION} are walking in with poles and bedding to raise a field sickhouse {PLACE}, {X_nameDef} carrying the order's lamp. Nobody on a sickbed is anyone's enemy, {X_pronoun} told {A_nameDef}.</li>
       <li>[ws:sickness] With {SITUATION} on the region, {FACTION}'s sisters have come to raise their field sickhouse {PLACE}, a long hut of beds and the lamp at its door.</li>
+      <li>{X_nameDef} and the other sisters of {FACTION} are carrying beds and bedding in {PLACE} to raise a field sickhouse. Anyone sick may come, {X_pronoun} told {A_nameDef}, and the lamp will be lit at its door every night they are here.</li>
+      <li>[winter] Sisters of {FACTION} have come with poles and blankets to raise a field sickhouse {PLACE}. Winter fills the sickbeds, {X_nameDef} told {A_nameDef}, and they would rather be near the people who need them.</li>
     </texts>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat by the lamp at the sickhouse door and heard {X_nameDef} tell of Aldith, who stayed behind to nurse a fever town alone through a winter.</li>
+      <li>[tales] {A_nameDef} sat with the sisters between rounds and heard the names of some of those written in the Book of the Spared.</li>
+    </helpTexts>
     <settled>
       <li>The order's long hut stands {PLACE}, beds in a row inside and the lamp lit at its door; {X_nameDef} says it won't go out while they are here.</li>
       <li>{FACTION}'s field sickhouse is up {PLACE}, and the sisters are boiling linen at the fire for the first of the sick.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the field sickhouse has seen how the colony treats the sick of strangers, and asks whether it could use someone who nurses.</li>
+      <li>{X_nameDef} of the sickhouse says the order can spare one sister, and asks whether the colony would take {X_objective} in to nurse its own sick.</li>
     </joinTexts>
     <farewell>
       <li>[died] The sisters struck their sickhouse with one fewer than came to it, and blessed the colony's gate as they went; {PATIENTS} of the region's sick lay in the hut while they kept it.</li>
@@ -231,6 +253,10 @@
       <li>Boil it, and boil it again.</li>
       <li>Three more beds by evening, I think.</li>
       <li>Sleep now, and drink when you wake.</li>
+      <li>Clean hands before every bed.</li>
+      <li>[night] Trim the lamp, it's a long night.</li>
+      <li>[morning] Fresh water for every bed, and then the rounds.</li>
+      <li>We were spared, and so we owe.</li>
     </lines>
     <momentLines>
       <li>[round] Bed to bed, and the sickest first.</li>
@@ -407,6 +433,8 @@
     <texts>
       <li>{FACTION}'s herders are bringing their beasts in calf onto the colony's sheltered ground {PLACE}, {X_nameDef} counting them through aloud.</li>
       <li>[ws:herds] With {SITUATION} on the drove roads, {FACTION}'s herders have brought their beasts in calf to the colony's sheltered ground {PLACE}.</li>
+      <li>{FACTION}'s herders are bringing their beasts heavy with young onto the colony's sheltered ground {PLACE}. The calving is close, {X_nameDef} told {A_nameDef}, and the wind on the open plain is too cold for a newborn.</li>
+      <li>[rain] Through the spring rain, {FACTION}'s herders are leading their beasts in calf to the colony's sheltered ground {PLACE}, {X_nameDef} counting them aloud as they come.</li>
     </texts>
     <settled>
       <li>The calving camp is up {PLACE}: tents, a fire, and the heavy beasts lying in the lee of the ground, every head counted.</li>
@@ -414,6 +442,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the calving camp has watched the colony's people with beasts, and asks whether it could use another herder.</li>
+      <li>{X_nameDef} of the calving camp says {X_pronoun} has helped more calves into the world than {X_pronoun} can count, and asks whether the colony could use someone who knows beasts.</li>
     </joinTexts>
     <farewell>
       <li>[ours] The herders gathered the herd and went on, {CALVES} calves at their mothers' heels, and {X_nameDef} reminded the colony at the gate to count its own at dusk.</li>
@@ -427,6 +456,10 @@
       <li>Keep that one out of the wind.</li>
       <li>Not one lost, not yet.</li>
       <li>Easy, easy.</li>
+      <li>[night] Keep a lantern by the pen, it could be tonight.</li>
+      <li>[morning] Check the pen first thing, every morning.</li>
+      <li>That one's due any day.</li>
+      <li>Warm water and clean straw, that's all they need.</li>
     </lines>
     <momentLines>
       <li>[herd] All here, every head.</li>
@@ -434,6 +467,7 @@
       <li>[lost] We lost the mother, and the calf will need us now.</li>
       <li>[search] Over here, I thought I heard it.</li>
       <li>[found] There you are, and the lantern nearly out.</li>
+      <li>[born] Rub it down, and let the mother see it.</li>
     </momentLines>
     <helpTexts>
       <li>[milk] {X_nameDef} milked one of the herd at the calving camp and carried what it gave over to the edge of the camp for the colony: {COUNT} {THING}.</li>

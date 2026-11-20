@@ -122,6 +122,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the beekeepers {PLACE}, says the bees like it here better than anywhere on the road, and asks whether the colony would like someone who knows them to stay.</li>
+      <li>{X_nameDef} of the beekeepers camped {PLACE} says the colony's flowers would keep a hive or two busy all summer, and asks whether there is a place here for someone to keep them.</li>
     </joinTexts>
     <farewell>
       <li>The beekeepers from {FACTION} have roped their hives back onto the pack beast and gone on after the flowers.</li>
@@ -277,6 +278,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the mushroom pickers {PLACE}, says the colony's woods are the best picking {X_pronoun} has had in years, and asks whether there might be a place here for someone who knows them.</li>
+      <li>{X_nameDef} of the pickers says {X_pronoun} has walked every wood in the region and liked the colony's best, and asks whether there is a place for {X_objective} here.</li>
     </joinTexts>
     <farewell>
       <li>The mushroom pickers from {FACTION} have gone on with their baskets full and their beast still sniffing.</li>
@@ -291,6 +293,7 @@
       <li>Don't let him eat it.</li>
       <li>Smell that, that's a truffle.</li>
       <li>[rain] There'll be more by morning.</li>
+      <li>[morning] Early, before the slugs get to them.</li>
     </lines>
     <momentLines>
       <li>[carry] Careful, they bruise.</li>
@@ -401,6 +404,8 @@
     <texts>
       <li>A handful of young people of {FACTION} with bundles on their shoulders have stopped at the colony's land for the night. {X_nameDef} told {A_nameDef} they are going to look for places, and asked whether they might camp {PLACE} a night or two. They would work for their supper, {X_pronoun} said, if the colony had any.</li>
       <li>[ws:hiring] Young people of {FACTION} walking to {SITUATION} have stopped at the edge of the colony's land. {X_nameDef}, the eldest of them, asked {A_nameDef} whether they might camp {PLACE} for a night or two, and said every one of them would work a day for a meal.</li>
+      <li>[their:medieval] Three or four young people of {FACTION} have stopped at the colony's land on their way to find places, each with the sign of a trade in their hat. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a night or two, and work for their keep.</li>
+      <li>[their:industrial] A few young people of {FACTION} with kitbags have stopped at the edge of the colony's land. They are off to look for work, {X_nameDef} told {A_nameDef}, and would camp {PLACE} a night or two if the colony let them, and work for their supper.</li>
     </texts>
     <settled>
       <li>The young people have made camp {PLACE}, a fire and a ring of bundles round it, and somebody is already practising what to say to a master.</li>
@@ -422,6 +427,7 @@
       <li>Who has the bread?</li>
       <li>[their:tribal] The elders will look at our hands first.</li>
       <li>[their:industrial] They say the mill pays in coin, not in kind.</li>
+      <li>[evening] Tomorrow we'll find somewhere, you'll see.</li>
     </lines>
     <momentLines>
       <li>[carry] Where does this go?</li>
@@ -484,12 +490,14 @@
       <li>Carters of {FACTION} have brought their beasts up off the road to the colony's land. The road ahead is no good for a loaded cart, {X_nameDef} told {A_nameDef}, and they would sooner wait {PLACE} than sit in a ditch. They will sell from their load while they wait.</li>
       <li>[ws:mud] Carters of {FACTION} have given up on the road for now: {SITUATION} has swallowed it to the axles. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until it dries, and said they would sell from their load to pay their way.</li>
       <li>[ws:bridge] Carters of {FACTION} going the long way round have stopped at the colony to rest their beasts. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a couple of days before the next stretch, and said they would trade from their load.</li>
+      <li>[their:industrial] Carters of {FACTION} have pulled their wagons off the road onto the colony's land. The road ahead is no good for a full load, {X_nameDef} told {A_nameDef}, and they would wait {PLACE} a day or two, selling from the wagons while they wait.</li>
     </texts>
     <settled>
       <li>The carters' camp {PLACE} is up: a fire, their beasts on a line, and their goods stacked under a sheet for anyone who wants to look.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the carters camped {PLACE}, says {X_pronoun} has spent enough of {X_possessive} life waiting for roads to dry, and asks whether the colony could use someone who can drive a team.</li>
+      <li>{X_nameDef} of the carters says {X_pronoun} has seen enough of the road from a wagon seat, and asks whether the colony could use a steady pair of hands.</li>
     </joinTexts>
     <farewell>
       <li>The carters from {FACTION} have put their beasts back in the traces and gone on down the road.</li>
@@ -503,9 +511,13 @@
       <li>Keep the sheet over the load.</li>
       <li>[rain] And there it goes again.</li>
       <li>[ws:mud] You could lose a cart in that mud.</li>
+      <li>[morning] Check the hooves before anything else.</li>
+      <li>Sell what we can, the load only gets heavier.</li>
     </lines>
     <momentLines>
       <li>[repair] That'll get us home.</li>
+      <li>[repair] There, that'll hold until the next town.</li>
+      <li>[repair] Good as new, near enough.</li>
     </momentLines>
     <helpTexts>
       <li>[mend] {X_nameDef} of the carters had a needle and a strap out anyway, and mended a colonist's worn gear while the beasts rested.</li>
@@ -581,12 +593,14 @@
       <li>A family of {FACTION} with sacks and children has come along the road, looking for fields already harvested. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and glean what the reapers left, as is the custom where they come from.</li>
       <li>[ws:hunger] A family of {FACTION} has come with empty sacks, with {SITUATION} on at home. {X_nameDef} asked {A_nameDef}, not quite meeting {A_possessive} eyes, whether they might camp {PLACE} and glean what the colony's reapers left in the stubble.</li>
       <li>[their:tribal] A band of {FACTION} has come with baskets, walking the edges of the land the way their people do after a harvest. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and gather what was left.</li>
+      <li>[their:medieval] A family of {FACTION} with sacks over their shoulders has come along the road after the harvest. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and glean the colony's stubble, as the old custom allows.</li>
     </texts>
     <settled>
       <li>The gleaners' camp {PLACE} is small: a fire, the sacks, and the children asleep in a heap before it's even dark.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the gleaners camped {PLACE}, asked {A_nameDef} very quietly whether the colony had work for someone who would do anything.</li>
+      <li>{X_nameDef}, one of the gleaners camped {PLACE}, says the family could manage with one mouth fewer, and asks whether the colony could find work for {X_objective}.</li>
     </joinTexts>
     <farewell>
       <li>The gleaners have shouldered their sacks, heavier than when they came, and gone on to the next fields.</li>
@@ -599,6 +613,9 @@
       <li>There's a good handful here.</li>
       <li>We'll have bread this week.</li>
       <li>Say thank you to the lady.</li>
+      <li>[morning] Out early, before the birds get it.</li>
+      <li>[child] Can I carry the sack this time?</li>
+      <li>[evening] Shake out the sacks and see what we have.</li>
     </lines>
     <momentLines>
       <li>[carry] Nearly a full sack.</li>
@@ -702,12 +719,15 @@
     <texts>
       <li>A team of young people of {FACTION} have stopped on the colony's land to rest their legs on the way to the games. {X_nameDef}, who runs them harder than anyone, asked {A_nameDef} whether they might camp {PLACE} and train a day or two.</li>
       <li>[ws:games] {FACTION}'s team for {SITUATION} has stopped on the colony's land to rest and train before the last stretch. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a day or two, and said they would be no trouble, which nobody on the team believed.</li>
+      <li>[their:tribal] Young runners and wrestlers of {FACTION} have stopped at the colony's land on their way to the gathering games. {X_nameDef}, who trains them, asked {A_nameDef} whether they might camp {PLACE} and practise for a day or two.</li>
+      <li>[their:industrial] An athletics team of {FACTION} has stopped on the colony's land to stretch their legs before the meet. {X_nameDef}, their trainer, asked {A_nameDef} whether they might camp {PLACE} and train for a day or two.</li>
     </texts>
     <settled>
       <li>The games team has made camp {PLACE}. Two of them are already racing each other round it, and the rest are pretending not to watch.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the games team camped {PLACE} says {X_pronoun} will never be the region's best, and would sooner be useful somewhere. {X_pronoun} asks whether the colony has a place.</li>
+      <li>{X_nameDef}, one of the games team, says {X_pronoun} has run enough races for one life, and asks whether the colony could use someone young and quick.</li>
     </joinTexts>
     <farewell>
       <li>The games team has packed up and gone on toward the games at a jog, because their trainer made them.</li>
@@ -726,6 +746,8 @@
     </lines>
     <momentLines>
       <li>[kill] Good shot, that counts as practice.</li>
+      <li>[kill] That's supper, and good practice for the throw.</li>
+      <li>[kill] Clean shot, the trainer will be pleased.</li>
     </momentLines>
     <helpTexts>
       <li>[meat] The games team brought back more from their hunting than they could eat, and left {COUNT} meat on the colony's side of their camp.</li>
@@ -791,12 +813,15 @@
     <texts>
       <li>A few worn travelers of {FACTION} have stopped for the night at the edge of the colony's land, on their way home. {X_nameDef} told {A_nameDef}, plainly, that they were outlaws until the pardon, and asked whether they might camp {PLACE} a night before the last of the road.</li>
       <li>[ws:pardon] Outlaws of {FACTION} walking home under {SITUATION} have stopped at the edge of the colony's land. {X_nameDef} asked {A_nameDef} for a night's camp {PLACE}, and said they wanted nothing else, which was clearly not quite true.</li>
+      <li>[their:tribal] A few of {FACTION} who were sent away from their people have stopped at the edge of the colony's land on the way back. {X_nameDef} told {A_nameDef} the elders have called them home, and asked whether they might camp {PLACE} one night.</li>
+      <li>[their:industrial] A few travelers of {FACTION} with old kitbags have stopped at the edge of the colony's land. They were outlawed once, {X_nameDef} told {A_nameDef} plainly, and the amnesty is taking them home, and they would like to camp {PLACE} for a night.</li>
     </texts>
     <settled>
       <li>The travelers walking home have made a small fire {PLACE}. They sit close round it and talk about what they will find.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of those camped {PLACE} on the way home, says there is nobody left at home for {X_objective} after all these years, and asks whether the colony would take {X_objective} instead.</li>
+      <li>{X_nameDef} of those walking home says {X_pronoun} is not sure there is still a home to go to, and asks whether the colony would let {X_objective} stay instead.</li>
     </joinTexts>
     <farewell>
       <li>The travelers walking home have gone on at first light, faster than they came.</li>
@@ -809,6 +834,9 @@
       <li>My mother will still be cross.</li>
       <li>One more day's walk.</li>
       <li>I wonder if the old mill's still there.</li>
+      <li>[evening] Last night on the road, I hope.</li>
+      <li>I hope someone still keeps my seat at the table.</li>
+      <li>[morning] Up and walking, we're nearly there.</li>
     </lines>
     <momentLines>
       <li>[carry] Last of the wood for tonight.</li>
@@ -887,6 +915,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the star-watchers {PLACE}, says {X_pronoun} has never seen a sky like the colony's, and asks whether {X_pronoun} might stay under it for good.</li>
+      <li>{X_nameDef} of the star-watchers says the nights here are darker and clearer than anywhere in the region, and asks whether the colony would have someone who watches them.</li>
     </joinTexts>
     <farewell>
       <li>The star-watchers from {FACTION} have rolled up their charts and gone, yawning, in the middle of the day.</li>
@@ -901,6 +930,7 @@
       <li>[ws:stars] That's forty since dusk.</li>
       <li>[ws:comet] It's moved since last night.</li>
       <li>[rain] No sky tonight, then.</li>
+      <li>[night] Look up, and give your eyes a while.</li>
     </lines>
     <momentLines>
       <li>[carry] More blankets for the night.</li>

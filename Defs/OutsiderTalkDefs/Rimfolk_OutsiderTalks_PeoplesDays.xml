@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Each people's own talk, more of it (B16 of docs/content-update-proposals.md, text round 2): six pieces for each of
+    the 23 peoples beside their four or six of Rimfolk_OutsiderTalks_Peoples*.xml and _PeoplesLore.xml, on their working
+    day, food and drink, their young, their towns and land, the other peoples and the colony as they see it. The other
+    peoples are told by the real relations in the save, with the conditions the talk already has: their:war ({WAR}, a
+    people they are at war with, war:ourfoe or war:ourfriend for how it stands with the colony), their:peace ({PEACEWITH},
+    a war of theirs ended lately) and !their:war (at war with nobody who counts). The colony as they see it goes by their
+    regard (likesus, wary) and what is true of it. Lines that name a tool or a weapon of an age have the other age's
+    form, as a people's age changes at its own pace. This file holds the first twelve peoples, _PeoplesDays2.xml the
+    rest. The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml.
+  -->
+
+  <!-- ================= The Ashen Banner ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] What does a day in the company look like when there's no fighting?</li>
+      <li>[them,their:lowtech] Drill at dawn with pike and crossbow, then mending, then more drill.</li>
+      <li>[them] Drill at dawn, then cleaning the guns, then more drill.</li>
+      <li>[us] Every day?</li>
+      <li>[them] Every day, a company that stops drilling is just a crowd with weapons.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] What does the company eat on the march?</li>
+      <li>[them] Hard bread, salt pork and whatever the contract says the town must provide.</li>
+      <li>[us] And when the town doesn't provide it?</li>
+      <li>[them] Then the paymaster writes it down, and the town pays for it later.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] Are there children in the company?</li>
+      <li>[them] Some, they stay in the home town with the baggage while we're out on a contract.</li>
+      <li>[us] Do they grow up to be soldiers too?</li>
+      <li>[them] Most do, but nobody draws the company's pay before sixteen, that's the rule.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:mercenaries,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A barracks with a town around it, and a quartermaster's store bigger than the chapel.</li>
+      <li>[us] Does anyone live there who isn't a soldier?</li>
+      <li>[them] The families, the smiths and the sutlers, and they all work for the company.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] Does the company take sides between the peoples here?</li>
+      <li>[them,their:war] Only when paid, but {WAR} are at war with us, so that one is our own fight.</li>
+      <li>[them,their:peace,!their:war] We made peace with {PEACEWITH} lately, so they'll be hiring again soon.</li>
+      <li>[them,!their:war] Never, we fight for whoever pays, and just now nobody's at war with us.</li>
+      <li>[us,their:war,war:ourfoe] We're on bad terms with {WAR} ourselves.</li>
+      <li>[us,their:war] I hope it ends soon for your sake.</li>
+      <li>[us,!their:war] That sounds like a quiet season for you.</li>
+      <li>[them,their:war] It ends when one side stops paying for it, that's how wars go.</li>
+      <li>[them,!their:war] Quiet seasons are when the company mends its boots.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_AshenBannerColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] What does a soldier make of our colony?</li>
+      <li>[them,likesus] A place I'd sign a contract with, if the terms were fair.</li>
+      <li>[them,wary] I'd want my wage paid in advance before I stood guard here.</li>
+      <li>[them] Fair ground, and I've already worked out where I'd post the sentries.</li>
+      <li>[us] That's a soldier's way of looking at things.</li>
+      <li>[them] It's the only way I have, it's habit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Choir of the Spire ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] What does a day of listening look like?</li>
+      <li>[them] We sit in the quiet halls around the Spire and write down what we hear.</li>
+      <li>[us] What do you hear?</li>
+      <li>[them] The hum, mostly, and on the days it's louder we write more.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] What do the Choir eat?</li>
+      <li>[them] Plain food, bread and broth and fruit, nothing with a strong taste.</li>
+      <li>[us] Why not?</li>
+      <li>[them] A plain meal doesn't distract you while you're listening, we say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] Do your children hear the hum too?</li>
+      <li>[them] Each generation born near the Spire hears a little more of it than the last.</li>
+      <li>[us] Is that a good thing?</li>
+      <li>[them] We think so, though some of the young ones find it hard to sleep.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:listeners,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] Rings of quiet halls around a monolith, and nobody raises their voice.</li>
+      <li>[us] Not even the children?</li>
+      <li>[them] The children are allowed to, the halls can bear a little noise.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] How do the Choir get on with the other peoples?</li>
+      <li>[them,their:war] Badly with {WAR} just now, though we fight as little as we can.</li>
+      <li>[them,their:peace,!their:war] Better with {PEACEWITH} now, and the halls are glad of the quiet after a war.</li>
+      <li>[them,!their:war] Well, we trade them psychic things for art and keep out of their quarrels.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} are no friends of ours either.</li>
+      <li>[us,their:war] I hope it stays far from your halls.</li>
+      <li>[us,!their:war] I'm glad things are calm for you.</li>
+      <li>[them,their:war] We hope it stays far away, a battle is very loud to people like us.</li>
+      <li>[them,!their:war] So are we, it leaves more time for listening.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_ChoirColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] What does the Choir make of our colony?</li>
+      <li>[them,likesus] It's a kind sort of noise here, people talking and working, I like listening to it.</li>
+      <li>[them,wary] It's loud here, and I find it hard to listen.</li>
+      <li>[them] Busy, and I like listening to an ordinary day.</li>
+      <li>[us] You're welcome to stay a while.</li>
+      <li>[them] Thank you, I'll keep out of everyone's way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Deepwell Union ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] What's a shift like down the shaft?</li>
+      <li>[them] Ten hours at the face, then up for air with the next shift coming down.</li>
+      <li>[us] Who decides who works which shift?</li>
+      <li>[them] We vote on it, like everything else, and it's all written in the book.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] What do miners eat at Deepwell?</li>
+      <li>[them] Pasties, mostly, a whole meal you can carry down the shaft in your pocket.</li>
+      <li>[us] Are they any good?</li>
+      <li>[them] After ten hours at the face, they're the best thing you'll ever taste.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] Do your children go down the mine?</li>
+      <li>[them] Not before they're grown, the union voted on that years ago.</li>
+      <li>[us] What do they do until then?</li>
+      <li>[them] School in the union hall, and every one of them learns to read the book.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:drillers,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A shaft, a headframe, the union hall and rows of houses all the same.</li>
+      <li>[us] Will it stay there?</li>
+      <li>[them] As long as the seam lasts, and when it runs out we vote on where to go.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] How does the union get on with the other peoples?</li>
+      <li>[them,their:war] Badly with {WAR}, and every shift talks of nothing else.</li>
+      <li>[them,their:peace,!their:war] Better with {PEACEWITH} since the peace, and the members are glad of it.</li>
+      <li>[them,!their:war] Well enough, we sell to anyone who pays the price the members agreed.</li>
+      <li>[us,their:war,war:ourfoe] We've had our own trouble with {WAR}.</li>
+      <li>[us,their:war] I hope it ends soon.</li>
+      <li>[us,!their:war] Then I'm glad things are quiet for you.</li>
+      <li>[them,their:war] The members want it over, but it isn't only up to us.</li>
+      <li>[them,!their:war] So are we, quiet means full shifts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_DeepwellColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] What does a miner think of our colony?</li>
+      <li>[them,likesus] You work hard here, I can tell, and you don't seem to mind it.</li>
+      <li>[them,wary] I'd like to know who decides things here, and whether anyone asks the rest.</li>
+      <li>[them] Good ground, I'd like to know what's under it.</li>
+      <li>[us] That's honest of you.</li>
+      <li>[them] The union doesn't waste words, we've too much digging to do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The spacer enclave ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] What does a broker do all day?</li>
+      <li>[them] Listens to the ships above, then to the towns below, and writes down the difference.</li>
+      <li>[us] The difference?</li>
+      <li>[them] What one will pay and the other will sell for, that's what we live on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] What do people eat at the enclave?</li>
+      <li>[them] Whatever came down on the last ship, so it's different every week.</li>
+      <li>[us] That sounds interesting.</li>
+      <li>[them] It is, and expensive, and some weeks it's all tinned fish.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] How are the enclave's children raised?</li>
+      <li>[them] On the pads, among the cargo, learning to count before they can read.</li>
+      <li>[us] Count what?</li>
+      <li>[them] Crates and prices, and later what a promise is worth.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:brokers,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A landing pad with a market around it, open every hour a ship might land.</li>
+      <li>[us] Is it ever quiet?</li>
+      <li>[them] Between ships, for an hour or so, and everyone sleeps then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] How does the enclave get on with the other peoples?</li>
+      <li>[them,their:war] With {WAR}, badly, and that is bad for business.</li>
+      <li>[them,their:peace,!their:war] With {PEACEWITH}, better since the peace, and their account is open again.</li>
+      <li>[them,!their:war] We trade with everyone, so we can't afford to quarrel with anyone.</li>
+      <li>[us,their:war,war:ourfoe] We're not on good terms with {WAR} either.</li>
+      <li>[us,their:war] I hope it doesn't cost you too much.</li>
+      <li>[us,!their:war] Good for business, I imagine.</li>
+      <li>[them,their:war] Everything costs something, and we'll write it in the manifest.</li>
+      <li>[them,!their:war] Very good, and we'd like it to stay that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_EnclaveColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] What does a broker make of our colony?</li>
+      <li>[them,likesus] A good account to hold, and I'd like it to stay that way.</li>
+      <li>[them,wary] A risk, until I see how you deal.</li>
+      <li>[them,small] Small, but small accounts grow.</li>
+      <li>[them] Interesting, I'm still working out what you have to sell.</li>
+      <li>[us] We'll keep that in mind.</li>
+      <li>[them] Please do, the enclave remembers every account.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Helix Works ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What does a sequencer do in a day?</li>
+      <li>[them] Reads, mostly, the ledger and the samples, and changes very little.</li>
+      <li>[us] I thought you'd be changing genes all day.</li>
+      <li>[them] One change a season is a busy season, and every one goes in the ledger.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What do the Works eat?</li>
+      <li>[them] Vat-grown food, mostly, since that's what we're good at, and the garden gives us the rest.</li>
+      <li>[us] Does it taste like anything?</li>
+      <li>[them] It tastes like food, though the garden's apples are better.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] Do your children have their genes chosen for them?</li>
+      <li>[them] Never, they choose their own when they're old enough to understand.</li>
+      <li>[us] And until then?</li>
+      <li>[them] They grow up as they were born, and plenty decide to stay that way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:editors,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A gene lab with a vat hall, and a quiet garden where the vats can't be heard.</li>
+      <li>[us] Why a garden?</li>
+      <li>[them] The founders had one, and we've kept it as they left it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] How do the Works get on with the other peoples?</li>
+      <li>[them,their:war] {WAR} are at war with us, which we never asked for.</li>
+      <li>[them,their:peace,!their:war] Better with {PEACEWITH} since the peace, and they've started selling us samples again.</li>
+      <li>[them,!their:war] Well enough, people come to us for medicine, whatever they think of the vats.</li>
+      <li>[us,their:war,war:ourfoe] We've had trouble with {WAR} too.</li>
+      <li>[us,their:war] I'm sorry to hear it.</li>
+      <li>[us,!their:war] I'm glad to hear it.</li>
+      <li>[them,their:war] We'd treat their wounded all the same, if they asked us.</li>
+      <li>[them,!their:war] So are we, the vats need quiet years.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HelixWorksColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What do the Works make of our colony?</li>
+      <li>[them,likesus] Good people, as far as I can tell, and that counts for more than genes.</li>
+      <li>[them,wary] I'd want to know how you treat people who are different from you.</li>
+      <li>[them] Interesting, I'd like to know how you keep everyone healthy.</li>
+      <li>[us] We try to look after each other.</li>
+      <li>[them] That works better than most things in the ledger.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The herding folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] What does a herder's day look like?</li>
+      <li>[them] Out with the herd at first light, back at dusk for the count.</li>
+      <li>[us] And in between?</li>
+      <li>[them] Watching the grass and the sky, and keeping the dogs busy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] What do your people eat?</li>
+      <li>[them] Milk, curd and meat, and bread when we trade for flour.</li>
+      <li>[us] Do you eat your own herd?</li>
+      <li>[them] Only the old and the lame, the rest are counted.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] When do your children start herding?</li>
+      <li>[them] As soon as they can walk behind a goat.</li>
+      <li>[us] That young?</li>
+      <li>[them] Tamsa was a girl when she drove the herd north, so we start them early.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:herders,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] Round houses and pens, and in a month it will be somewhere else.</li>
+      <li>[us] Don't you miss staying in one place?</li>
+      <li>[them] The grass doesn't stay, so neither do we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] How do the herding folk get on with the others?</li>
+      <li>[them,their:war] Badly with {WAR}, we keep the herd close and the spears closer.</li>
+      <li>[them,their:peace,!their:war] Better with {PEACEWITH} now, the pastures are shared again.</li>
+      <li>[them,!their:war] Well, anyone who doesn't steal from the herd is welcome at the pot.</li>
+      <li>[us,their:war,war:ourfoe] We don't trust {WAR} either.</li>
+      <li>[us,their:war] Keep the herd safe, then.</li>
+      <li>[us,!their:war] Then the grass is good for everyone.</li>
+      <li>[them,their:war] The herd is counted every night, and that won't change.</li>
+      <li>[them,!their:war] This year it is, and we're glad of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HerdersColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] What do you make of our colony?</li>
+      <li>[them,colony:animals] You keep animals, so we have something to talk about.</li>
+      <li>[them,likesus] Good people, I'd share a pot with you.</li>
+      <li>[them] You stay in one place, and I'd find that hard, but you look settled.</li>
+      <li>[us] Come back any time.</li>
+      <li>[them] We will, when the grass brings us this way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Hollow Fleet ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] What does the crew do all day, if the ship never flies?</li>
+      <li>[them] We keep the watches, check the systems and write the log.</li>
+      <li>[us] What goes in the log?</li>
+      <li>[them] Most days, that the ship is holding position, and that's a good day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] What does the crew eat?</li>
+      <li>[them] Ship's rations, the same recipe since the voyage, and a garden in the cargo hold.</li>
+      <li>[us] Two hundred years of the same recipe?</li>
+      <li>[them] It's a good recipe, and changing it would need the captain's order.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] Are your children crew too?</li>
+      <li>[them] Every child is entered in the log at birth and given a post at twelve.</li>
+      <li>[us] What kind of post?</li>
+      <li>[them] The one their parent held, mostly, so the watches stay filled.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:crew,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] It's the hull, with a few things built around it that aren't ship.</li>
+      <li>[us] Is the ship comfortable to live in?</li>
+      <li>[them] It was built for a voyage, not a life, but we've made it do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] How does the Fleet get on with the other peoples?</li>
+      <li>[them,their:war] {WAR} are hostile, and the ship is at its battle stations.</li>
+      <li>[them,their:peace,!their:war] The log shows peace with {PEACEWITH} now, and the watch has been eased.</li>
+      <li>[them,!their:war] Correctly, we trade with them and keep to our posts.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} are no friends of ours either.</li>
+      <li>[us,their:war] I hope the hull holds.</li>
+      <li>[us,!their:war] That sounds very orderly.</li>
+      <li>[them,their:war] The hull was built for worse than them, and it's held for two hundred years.</li>
+      <li>[them,!their:war] It is, and order is most of what we have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_HollowFleetColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] What does the crew make of our colony?</li>
+      <li>[them,likesus] A well-run post, if you'll take that as the compliment it is.</li>
+      <li>[them,wary] I'd need to see your log before I could say.</li>
+      <li>[them] You've built a lot on the ground, which none of us ever learned to do.</li>
+      <li>[us] You'd be welcome to look around.</li>
+      <li>[them] Thank you, I'll note it in the log.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Kiln Guild ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] What does a day in the guild look like?</li>
+      <li>[them] Kiln lit before dawn, work until the light goes, and the mark on whatever's finished.</li>
+      <li>[us] Do you mark everything?</li>
+      <li>[them] Everything, so anyone can find us if it breaks.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] What does the guild eat?</li>
+      <li>[them] Bread baked in the kilns' heat, and a stew that sits by the forge all day.</li>
+      <li>[us] That sounds good.</li>
+      <li>[them] It is, and the bread has the baker's mark on it too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] How does someone join the guild?</li>
+      <li>[them] As an apprentice at twelve, and a journeyman after seven years.</li>
+      <li>[us] And then?</li>
+      <li>[them] A year among other peoples, and only then a master with a mark of your own.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:artisans,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] Kilns, forges and a carved guildhall, and the best-built houses in the region.</li>
+      <li>[us] You'd say that, though.</li>
+      <li>[them] I would, and the marks on the stones would back me up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] How does the guild get on with the other peoples?</li>
+      <li>[them,their:war] We're at war with {WAR}, and the forges are making weapons instead of hinges.</li>
+      <li>[them,their:peace,!their:war] Well enough with {PEACEWITH} since the peace, and we're glad to be making hinges again.</li>
+      <li>[them,!their:war] Well, everyone needs good work done, and they come to us for it.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} have caused us trouble too.</li>
+      <li>[us,their:war] That's a waste of good smiths.</li>
+      <li>[us,!their:war] That's a good position to be in.</li>
+      <li>[them,their:war] We'll be glad to get back to honest work when it's over.</li>
+      <li>[them,!their:war] It is, as long as the work stays good.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_KilnGuildColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] What does a guild mason make of our colony?</li>
+      <li>[them,likesus] There's honest work here, and I'd say so to the guild.</li>
+      <li>[them,wary] I'd want to see who built your roofs before I slept under them.</li>
+      <li>[them] I've been looking at how you build, out of habit.</li>
+      <li>[us] And what do you think?</li>
+      <li>[them] Some of it's good and some isn't, and the guild always says so plainly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Lattice ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] What does a Lattice mechanitor do all day?</li>
+      <li>[them] Tend the mechs, check the links, and charge whoever needs charging.</li>
+      <li>[us] Don't you get tired of them?</li>
+      <li>[them] No, working with them feels like working with friends.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] Do your people eat like everyone else?</li>
+      <li>[them] Plain meals, at the same hour, and we eat together so nobody eats alone.</li>
+      <li>[us] Is that important?</li>
+      <li>[them] A mind left on its own is what we fear most, so yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] Are your children linked to the mechs?</li>
+      <li>[them] Not until they're grown and ask for it, the link is for life.</li>
+      <li>[us] What do they do before then?</li>
+      <li>[them] Learn to repair what the mechs break, which keeps them very busy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:mechanitors,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A charging yard, a gestation hall and a control tower, and mechs everywhere.</li>
+      <li>[us] Isn't it noisy?</li>
+      <li>[them] It hums, and after a while you only notice when it stops.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] How does the Lattice get on with the other peoples?</li>
+      <li>[them,their:war] {WAR} are at war with us, and the mechs are on watch day and night.</li>
+      <li>[them,their:peace,!their:war] We made peace with {PEACEWITH}, and the war mechs are resting.</li>
+      <li>[them,!their:war] Quietly, we repair their mechs and buy their subcores.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} are no friends of ours either.</li>
+      <li>[us,their:war] I hope the watch holds.</li>
+      <li>[us,!their:war] A quiet arrangement.</li>
+      <li>[them,their:war] The mechs don't sleep, so the watch will hold.</li>
+      <li>[them,!their:war] We prefer it, most of us are quiet people.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LatticeColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] What does the Lattice make of our colony?</li>
+      <li>[them,likesus] People here look out for each other, which we respect.</li>
+      <li>[them,wary] Everyone here thinks alone, and that would worry me.</li>
+      <li>[them] Busy, and I've been counting how many hands a few mechs would save you.</li>
+      <li>[us] We do things our own way here.</li>
+      <li>[them] So you do, I'm only saying what a Lattice would notice.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The road league ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] What does a carter's day look like on the road?</li>
+      <li>[them] Up before light, everything loaded and checked, and as far as we can get before dark.</li>
+      <li>[us] Every day?</li>
+      <li>[them] Every day the road's open, and a waystation at the end of it if we're lucky.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] What do carters eat on the road?</li>
+      <li>[them] Whatever the waystation's cooking, and it's usually beans.</li>
+      <li>[us] Every night?</li>
+      <li>[them] Every night, and a waymaster who serves anything else gets good ink in the Book.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] Do your children travel with the caravans?</li>
+      <li>[them] From the cradle, most of them, and they know the road better than the maps do.</li>
+      <li>[us] Do they ever settle?</li>
+      <li>[them] Some stay on to keep a waystation, and the rest keep moving.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:traders,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A walled waystation where two roads meet, with stables, a store and beds.</li>
+      <li>[us] Is it busy?</li>
+      <li>[them] Busy enough that the waymaster never sleeps more than four hours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] How does the league get on with the other peoples?</li>
+      <li>[them,their:war] We're at war with {WAR}, so our caravans go the long way round them.</li>
+      <li>[them,their:peace,!their:war] {PEACEWITH} are at peace with us again, and the road through their land is open.</li>
+      <li>[them,!their:war] We carry for everyone, so we keep the road open between all of them.</li>
+      <li>[us,their:war,war:ourfoe] We'd give {WAR} red ink in our book too.</li>
+      <li>[us,their:war] That must cost you some trade.</li>
+      <li>[us,!their:war] Open roads are good for everyone.</li>
+      <li>[them,their:war] The long way costs us, but a caravan that's robbed costs more.</li>
+      <li>[them,!their:war] They are, and keeping them open is the league's whole business.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_LeagueColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] What does the league make of our colony?</li>
+      <li>[them,likesus] Good ink, as far as I'm concerned, and I'd say so to the waymaster.</li>
+      <li>[them,wary] I haven't decided what ink you deserve yet.</li>
+      <li>[them] A stop worth making, if the road brings us this way.</li>
+      <li>[us] We'll try to deserve good ink.</li>
+      <li>[them] Deal fairly, and you won't have to try.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Mossborn ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] What does a grove-keeper do all day?</li>
+      <li>[them] Counts the trees, plants the seedlings and walks the edge of the grove for fallen wood.</li>
+      <li>[us] Counts them?</li>
+      <li>[them] Every tree cut and every tree planted, near and far, so the count stays even.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] What do the Mossborn eat?</li>
+      <li>[them] Nuts, berries, mushrooms and roots, and meat when the hunters are lucky.</li>
+      <li>[us] Do you farm?</li>
+      <li>[them] We plant, but only trees, and the rest the forest gives us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] How are your children raised?</li>
+      <li>[them] Every child plants a tree when they can first hold a trowel, and tends it as they grow.</li>
+      <li>[us] What happens to the tree?</li>
+      <li>[them] It grows beside them all their life, and it's the one they're buried near.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:grovekeepers,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A grove of living trees, with our houses among the roots and the dead under the saplings.</li>
+      <li>[us] Don't you cut any wood at all?</li>
+      <li>[them] Only what has fallen, or what we've already paid for with a seedling.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] How do the Mossborn get on with the other peoples?</li>
+      <li>[them,their:war] {WAR} are at war with us, and a war always costs the forest.</li>
+      <li>[them,their:peace,!their:war] At peace with {PEACEWITH} now, and we've begun planting where the fighting was.</li>
+      <li>[them,!their:war] Patiently, we think better of the ones who plant than the ones who only clear.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} have troubled us too.</li>
+      <li>[us,their:war] I hope it ends before many trees are lost.</li>
+      <li>[us,!their:war] That sounds like a patient way to live.</li>
+      <li>[them,their:war] A forest takes a long time to grow back, so we hope it ends soon.</li>
+      <li>[them,!their:war] It's the only way, trees don't hurry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_MossbornColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] What do the Mossborn make of our colony?</li>
+      <li>[them,likesus] You're good neighbors, and our elders speak well of you.</li>
+      <li>[them,wary] The count will tell us what kind of neighbors you are.</li>
+      <li>[them] I've been looking at your trees, and how many there are.</li>
+      <li>[us] We try to be fair to the land.</li>
+      <li>[them] Then the count will show it, in time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The hospitaller order ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderDay</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] What's a day like in one of the order's sickhouses?</li>
+      <li>[them] Rounds at dawn, rounds at noon, rounds at dusk, and the lamp lit at nightfall.</li>
+      <li>[us] And in between?</li>
+      <li>[them] Washing, boiling, mending and writing names in the Book of the Spared.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderFood</defName>
+    <topic>food</topic>
+    <uses>chat</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] What does the order eat?</li>
+      <li>[them] Broth, bread and whatever the patients don't finish.</li>
+      <li>[us] That doesn't sound like much.</li>
+      <li>[them] It's enough, and the patients come first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderYoung</defName>
+    <topic>family</topic>
+    <uses>chat,know</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] Do children ever join the order?</li>
+      <li>[them] Some we nursed as children come back when they're grown and take the vows.</li>
+      <li>[us] Why do they come back?</li>
+      <li>[them] We were spared, and so we owe, they say, and they mean it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderTown</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:healers,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A sickhouse with a town around it, and a lamp over every door.</li>
+      <li>[us] Does anyone sleep there?</li>
+      <li>[them] The patients do, mostly, and the rest of us take turns.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderOthers</defName>
+    <topic>people</topic>
+    <uses>chat,home</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] How does the order get on with the other peoples?</li>
+      <li>[them,their:war] {WAR} are at war with us, and we'll still nurse their wounded if they come.</li>
+      <li>[them,their:peace,!their:war] Since the peace with {PEACEWITH}, our wards have room again.</li>
+      <li>[them,!their:war] We take in anyone who comes to the door, so we try to be no one's enemy.</li>
+      <li>[us,their:war,war:ourfoe] {WAR} have done us no kindness either.</li>
+      <li>[us,their:war] That's more than most would do.</li>
+      <li>[us,!their:war] Your work never stops, does it?</li>
+      <li>[them,their:war] Aldith let raiders in, and we keep her lamp.</li>
+      <li>[them,!their:war] It doesn't, but the lamp stays lit.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesDay_OrderColony</defName>
+    <topic>colony</topic>
+    <uses>chat</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] What does the order make of our colony?</li>
+      <li>[them,likesus] Good people, the sort who'd open the door at night.</li>
+      <li>[them,wary] I'd like to know what you do with the wounded raiders.</li>
+      <li>[them] Busy, and I hope your sick are well looked after.</li>
+      <li>[us] We do our best.</li>
+      <li>[them] That's all the order asks of anyone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

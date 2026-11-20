@@ -92,7 +92,9 @@
         situation:new situation:long situation:helped situation:sickness :hunger :cold :war :trade :faith
         :politics :empire :disaster :beasts ws:DEFNAME (a name can be a person's, a ship's or a band's: write
         for the one event); situation:ended ended:theirs ended:helped ended:bad (a hard time) ended:ws:DEFNAME
-        ended:sickness... ; condition condition:DEFNAME (toxic fallout, a cold snap, a volcanic winter...)
+        ended:sickness... ; condition condition:DEFNAME (toxic fallout, a cold snap, a volcanic winter...);
+        heard heard:bad heard:good heard:ws:DEFNAME (another people's world event, as a visitor of a third people
+        has heard of it on the road: {HEARD} what it is called, {HEARDPLACE} where, {HEARDPEOPLE} whose)
       what the world's history holds lately (30 days): town:lately town:lately:KIND (something at their town, by
         the history's kind and its family: town:lately:world, town:lately:world:taken, town:lately:world:began)
         them:lately them:lately:KIND (something the outsider took part in: them:lately:tie:favour:made)

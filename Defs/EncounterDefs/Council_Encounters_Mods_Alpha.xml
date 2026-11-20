@@ -146,6 +146,8 @@
     <texts>
       <li>The ground shook. {A_nameDef} looked up to see {X_indefinite} walking past the colony, taller than anything the colony has ever built, and put down {A_possessive} tools until it had gone.</li>
       <li>{A_nameDef} watched {X_definite} from the wall until it was only a shape on the horizon. Afterwards {A_pronoun} couldn't say how long it had taken.</li>
+      <li>[morning] Early in the morning {A_nameDef} felt the ground shudder and went out to look. {X_indefinite} was crossing the far side of the land slowly, and birds rose ahead of it.</li>
+      <li>{A_nameDef} stopped work to watch {X_indefinite} go past in the distance, and stayed watching until it was gone.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Awe</thought></li>
@@ -167,6 +169,8 @@
     <texts>
       <li>Out on the mudflats, {A_nameDef} watched {X_indefinite} pick its way between ribs as tall as trees, the bones of something that came here to die long ago.</li>
       <li>In the hollow of an enormous skull, out of the sun, {A_nameDef} found {X_indefinite} sheltering, and left it in peace.</li>
+      <li>{A_nameDef} found {X_indefinite} drinking rainwater that had pooled in the hollow of an old bone, and waited for it to finish before going on.</li>
+      <li>[evening] At dusk the great bones threw long shadows across the mudflats. {A_nameDef} watched {X_indefinite} walk between them, and thought about how long they must have lain there.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_StrangeLand</thought></li>
@@ -186,6 +190,8 @@
     <texts>
       <li>{A_nameDef} lay in the grass under the giant flowers and watched {X_indefinite} graze nearby, close enough to hear it chewing.</li>
       <li>From between flower stalks as thick as {A_nameDef}'s waist came {X_indefinite}, dusted yellow with pollen. It sneezed.</li>
+      <li>[spring] The giant flowers were in full bloom, and {X_indefinite} was eating its way through the fallen petals. {A_nameDef} sat and watched it for a while.</li>
+      <li>{A_nameDef} heard rustling between the flower stalks and found {X_indefinite} asleep in the shade, its sides rising and falling. {A_pronoun} walked quietly away.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_StrangeLand</thought></li>
@@ -203,6 +209,8 @@
     <texts>
       <li>{A_nameDef} ducked under a mushroom cap the size of a roof for a moment's shade, and found {X_indefinite} had had the same idea.</li>
       <li>In the green half-light under the giant mushrooms, {A_nameDef} watched {X_indefinite} nose through the white threads on the ground, and kept well clear of the big caps and their spores.</li>
+      <li>[rain] Rain was drumming on the giant caps overhead, but underneath it was dry. {A_nameDef} sheltered there and watched {X_indefinite} doing the same a little way off.</li>
+      <li>{A_nameDef} followed a trail of broken white threads across the ground and found {X_indefinite} at the end of it, eating a fallen piece of cap.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_StrangeLand</thought></li>
@@ -220,6 +228,8 @@
     <texts>
       <li>{A_nameDef} saw {X_indefinite} freeze among the trees. A dozen eyes on the nearest trunk had turned to look at it. Then they turned to look at {A_nameDef}.</li>
       <li>In the red haze under the trees, every time the eyes in the bark blinked, {X_definite} flinched, and so did {A_nameDef}. Neither of them stayed long.</li>
+      <li>{A_nameDef} tried not to look at the eyes in the bark and watched {X_indefinite} instead. It kept its head low and moved quickly through the trees.</li>
+      <li>[night] Even at night the eyes in the trees opened and closed. {A_nameDef} saw {X_indefinite} lying close against a trunk with its own eyes shut, and decided not to stay long either.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncA_Watched</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>

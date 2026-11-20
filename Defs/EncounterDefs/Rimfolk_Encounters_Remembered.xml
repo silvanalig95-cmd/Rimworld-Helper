@@ -88,6 +88,8 @@
     <texts>
       <li>{X_nameDef} mentioned, lightly, that {FACTION} once helped this colony when it needed it, and wondered aloud whether anyone here remembered.</li>
       <li>{FACTION} don't keep accounts of what they give their neighbors, {X_nameDef} told {A_nameDef}, and then told {A_objective} exactly what they had given this colony.</li>
+      <li>{X_nameDef} reminded {A_nameDef} that {FACTION} had helped the colony once, and said {X_possessive} people would be glad to see the favour returned some day.</li>
+      <li>{X_nameDef} of {FACTION} talked with {A_nameDef} about neighbors who help each other, and looked at {A_objective} pointedly as {X_pronoun} said it.</li>
     </texts>
     <ways><generosity>-1</generosity></ways>
   </ColonyCouncil.EncounterDef>

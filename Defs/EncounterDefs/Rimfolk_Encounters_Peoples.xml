@@ -70,6 +70,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} explained the Waystone Book to {A_nameDef}: every fair dealer on the road is written in black ink, and every robber in red. {X_pronoun} said the colony was in black, and showed {A_objective} the page.</li>
       <li>{A_nameDef} asked {X_nameDef} what "good ink" meant. It is the best thing a wayfarer can say about anyone, {X_pronoun} said, and it takes years to earn and one bad trade to lose.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that any colony can be written into the Waystone Book in black ink or red, and that the waymasters read it before they send a caravan anywhere.</li>
+      <li>{A_nameDef} asked {X_nameDef} who keeps the Waystone Book. The waymasters, {X_pronoun} said, and every one of them can tell you who is in red.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -86,6 +88,8 @@
     <texts>
       <li>{X_nameDef}, the league's trader, told {A_nameDef} how the league began at Harrow Ford: nine waymasters sent one guard and one wagon each through the ford together, under nine flags, and nobody fired on them.</li>
       <li>{X_nameDef} told {A_nameDef} that the league still crosses Harrow Ford nine wagons at a time once a year, so that nobody forgets why they keep the road together.</li>
+      <li>{X_nameDef}, the league's trader, told {A_nameDef} that before the league the road through Harrow Ford belonged to whoever had the most rifles, and a caravan paid to pass or didn't pass at all.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the warden of the roads does. Speaks for all the waymasters, {X_pronoun} said, and settles their quarrels before they reach the road.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -104,6 +108,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} noticed the old injury {A_nameDef} still favours, and asked to look at it. {X_pronoun} told {A_objective} how to rest it and which way to keep it warm, and said the order sees a lot of old wounds like that.</li>
       <li>{X_nameDef} watched {A_nameDef} favour the old injury for a while, then came over and showed {A_objective} a simple way to ease it at night. Nobody on a sickbed is anyone's enemy, {X_pronoun} said, and nobody with a bad back is either.</li>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} how the old injury happened, listened to all of it, and then told {A_objective} which stretches would keep it from stiffening.</li>
+      <li>[winter] {X_nameDef} noticed {A_nameDef} rubbing the old injury in the cold, and told {A_objective} to keep it warm and keep it moving, as the order tells everyone.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_LookedOver</thought></li>
@@ -121,6 +127,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about Aldith, the carter's daughter who stayed behind in the fever years and nursed a whole town alone, and why every sickhouse of the order keeps a lamp lit over its door all night.</li>
       <li>[night] {X_nameDef} asked {A_nameDef} whether the colony keeps a light burning at night for travelers. The order does, {X_pronoun} said, because Aldith did, and nobody has let one go out since.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the order writes the name of everyone who leaves its wards alive in the Book of the Spared, and that the book is very long now.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the order takes in raiders too. Aldith did, {X_pronoun} said, and some of those she nursed were the first to take vows with her.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -139,6 +147,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to look at the colony's animals, the way {X_possessive} people look over a herd at dusk, and told {A_nameDef} which of them looked well and which needed watching.</li>
       <li>{X_nameDef} walked over to one of the colony's animals and looked it over carefully. When {A_nameDef} asked why, {X_pronoun} said {X_possessive} people count every animal at dusk, and can't help doing it anywhere.</li>
+      <li>{X_nameDef} of {FACTION} walked over to one of the colony's animals, ran a hand along its side and checked its feet, and told {A_nameDef} what {X_possessive} people look for in a healthy beast.</li>
+      <li>[evening] At dusk {X_nameDef} went to stand by one of the colony's animals, counting under {X_possessive} breath out of habit, and told {A_nameDef} that {X_possessive} people never skip the count.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
@@ -155,6 +165,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the year the wells failed, when a herd girl named Tamsa drove the last forty head north through the dust to grass nobody believed was there, and brought every one back.</li>
       <li>{A_nameDef} asked {X_nameDef} why {X_possessive} people never stay in one place. Because Tamsa didn't, {X_pronoun} said, and the camps that stayed put that year are not there any more.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every herders' camp counts its animals at dusk, one by one, because of the year the wells failed and the camps that killed their herds and waited for rain.</li>
+      <li>{A_nameDef} asked {X_nameDef} who leads the herding folk. Each camp has its elder, {X_pronoun} said, and nobody else.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -173,6 +185,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef} where the colony buries its dead, and went to stand at one of the graves a while. Pilgrims stop at the graves of good people, {X_pronoun} said, and {X_pronoun} supposed everyone here was one.</li>
       <li>{X_nameDef} said a short prayer at the colony's graves before going on, and told {A_nameDef} that the fellowship blesses a house whether it lets them in or not.</li>
+      <li>{X_nameDef} of {FACTION} went to the colony's graves and said a quiet prayer at one of them. {X_pronoun} told {A_nameDef} afterwards that the fellowship prays at the graves of good people wherever it walks.</li>
+      <li>[evening] At dusk {X_nameDef} went to stand at one of the colony's graves with {X_possessive} head bowed, then came back and asked {A_nameDef} who was buried there.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -189,6 +203,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} showed {A_nameDef} the cord of shells round {X_possessive} neck, one for every shrine reached, and told {A_objective} about old Brannoc, who was turned out of his town for praying at the wrong one.</li>
       <li>{A_nameDef} counted the shells on {X_nameDef}'s cord and got to twenty before losing track. {X_nameDef} laughed and said the first one was the hardest to get, because it meant leaving home.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the fellowship asks for shelter at the nearest door every evening, and blesses the house the next morning whether it was let in or not.</li>
+      <li>{A_nameDef} asked {X_nameDef} where {X_pronoun} is walking to next. The next shrine on the road, {X_pronoun} said, and then the one after that.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -208,6 +224,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to look at the colony's books, and asked {A_nameDef} where each one had come from. {X_pronoun} wrote two of the titles down for the society's archive.</li>
       <li>{X_nameDef} looked over the colony's books and asked {A_nameDef} a question about one of them that {A_pronoun} couldn't answer. {X_pronoun} said that was the best kind of question.</li>
+      <li>{X_nameDef} of {FACTION} went over to the colony's books and read a few pages of one standing up, then asked {A_nameDef} how the colony came by it.</li>
+      <li>{X_nameDef} looked along the colony's books and told {A_nameDef} that every book should be copied at least once, in case of fire.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>300</xp></li>
@@ -224,6 +242,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the fire at Hesk, when a clerk saved eleven books and a ledger in a handcart and spent the rest of her life copying them for anyone who would feed her.</li>
       <li>{A_nameDef} asked {X_nameDef} what the society argues about every year on the night of the fire. What was lost, {X_pronoun} said, and nobody has ever won the argument.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the society sends copyists to any town or colony that keeps records, to copy them for the archive.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the archive holds. Histories, ledgers, plans of machines and charts of the stars, {X_pronoun} said, and more every year.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -241,6 +261,8 @@
     <texts>
       <li>{X_nameDef}, the enclave's trader, worked out for {A_nameDef} what the colony's last harvest would fetch in orbit, down to the last silver. {X_pronoun} said the enclave never names a price it won't honour.</li>
       <li>{A_nameDef} tried to haggle with {X_nameDef}, who listened politely and then explained, figure by figure, why the price was already fair. {A_nameDef} had to agree.</li>
+      <li>{X_nameDef}, the enclave's trader, told {A_nameDef} what the colony's best goods would fetch in orbit and what they would fetch on the ground, and why the two figures were different.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the enclave ever makes a bad deal. Once or twice, {X_pronoun} said, and they honoured those too.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_CaravanGossip</thought></li>
@@ -256,6 +278,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} how the enclave began: an ore hauler with a dead drive, and a crew who sold its cargo, its passage and its debts one deal at a time instead of selling the hull for scrap.</li>
       <li>{X_nameDef} told {A_nameDef} that every deal the enclave has made is written in the old hauler's manifest, and that the first entry is still the best one.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the enclave's towns are markets around landing pads, and that a pad is worth more to them than any wall.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the enclave's marshals are so well armed. Because cargo draws thieves, {X_pronoun} said, and the enclave would rather not lose any.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -274,6 +298,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} showed {A_nameDef} a knot for mending nets that holds when it's wet, with a bit of string from {X_possessive} pocket. {A_nameDef} got it on the fourth try.</li>
       <li>{X_nameDef} asked {A_nameDef} whether the colony fishes its water, and showed {A_objective} with {X_possessive} hands the river folk's way of laying a net across a current.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} how to tell from the color of the water where the fish will be, and when the current is too strong to cross.</li>
+      <li>[rain] {X_nameDef} watched the rain with {A_nameDef} and showed {A_objective} how the river folk tie up a boat so that it rides up when the water rises.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
@@ -290,6 +316,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night the dam broke upriver, and the ferries that pulled people off the rooftops for three days. Every year, {X_pronoun} said, they tie a knot in their nets for each one.</li>
       <li>{A_nameDef} asked {X_nameDef} why the river folk will carry anyone across, enemy or not. Because the ferries didn't ask whose roof it was, {X_pronoun} said.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the river folk's towns are landings with docks and fish racks, and that the ferry runs in any weather a boat can stand.</li>
+      <li>{A_nameDef} asked {X_nameDef} how many knots are in the nets now. More than anyone has counted, {X_pronoun} said, and the old ones are tied into every new net.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -307,6 +335,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} how a warden finds a pack's leader by its tracks: the deepest prints, and the ones the others never step in front of.</li>
       <li>{X_nameDef} asked {A_nameDef} who hunts for the colony, and gave {A_objective} the wardens' first rule to pass on: never follow a wounded beast into cover.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that a beast that has killed a person moves differently afterwards, and that a warden learns to see it in the tracks.</li>
+      <li>[snow] {X_nameDef} showed {A_nameDef} how to tell the age of a track in the snow by how sharp its edges still are.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>250</xp></li>
@@ -323,6 +353,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about Tobin Garrow, who hung his dead brother's lantern at a crossroads and kept it lit for eleven years, until the beast that killed him was dead.</li>
       <li>[night] {A_nameDef} asked {X_nameDef} why a warden's lantern is never let go out. {X_pronoun} said it means someone is still hunting, and that is a promise.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every lodge of the wardens keeps a book with a page for every beast they have hunted down, and empty pages for the ones still loose.</li>
+      <li>{A_nameDef} asked {X_nameDef} how a warden keeps count of the hunts. With knots on a cord, {X_pronoun} said, one for every beast felled.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -341,6 +373,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} stopped at the colony's graves and stood there a while. {X_pronoun} told {A_nameDef} afterwards that the ground was quiet, and that it was well kept.</li>
       <li>{X_nameDef} asked {A_nameDef} whether {X_pronoun} might go and stand at the colony's graves, as sextons do wherever they pass. {X_pronoun} came back and said nothing there was troubled.</li>
+      <li>{X_nameDef} of {FACTION} went to the colony's graves and stood quietly at one of them for a while. When {X_pronoun} came back, {X_pronoun} told {A_nameDef} that a well-kept grave stays quiet.</li>
+      <li>[evening] At dusk {X_nameDef} asked to stand at the colony's graves, and stood there a while with {X_possessive} head down. Afterwards {X_pronoun} thanked {A_nameDef} for letting {X_objective}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -357,6 +391,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} how the Quiet Bell began: in the fields after the long war, with a spade and a cracked chapel bell, burying friend and enemy alike until the ground was quiet.</li>
       <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} was ever afraid of the dead. No, {X_pronoun} said, only of the ones nobody buried.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Quiet Bell will bury anyone left unburied, whoever they were and whoever killed them, and asks nothing for it.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the Bell rings only once over each grave. Once is enough to let the dead know they are buried, {X_pronoun} said.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -375,6 +411,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to one of the colony's animals and looked it over with a tamer's eye. {X_pronoun} told {A_nameDef} what it would be good at, and how to bring it on.</li>
       <li>{X_nameDef} crouched beside one of the colony's animals and let it come to {X_objective}. It was a companion, not property, {X_pronoun} told {A_nameDef}, and it would show what it could do when it trusted someone.</li>
+      <li>{X_nameDef} of {FACTION} went over to one of the colony's animals and spoke quietly to it before touching it. {X_pronoun} told {A_nameDef} that an animal should always know you are coming.</li>
+      <li>{X_nameDef} looked over one of the colony's animals and asked {A_nameDef} who trains it. A good temper is worth more than strength in the ring, {X_pronoun} said, and it was worth finding out which this one had.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
@@ -391,6 +429,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} showed {A_nameDef} the tokens on {X_possessive} violet sash, one for every bout won fairly, and told {A_objective} about Nessa Pell, who found an egg in the crater of a falling star.</li>
       <li>{A_nameDef} asked {X_nameDef} what the greatest honour among the tamers is. To be beaten fairly by a stranger, {X_pronoun} said, and grinned as though hoping for it.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Circuit's towns are built around a ring for bouts, with a hatchery and stables for every kind of animal.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether an animal is ever hurt in a bout. Not in a fair one, {X_pronoun} said, and the Circuit has no use for any other kind.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -409,6 +449,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to the colony's broken machine, crouched beside it and looked it over. It needs a new part, {X_pronoun} told {A_nameDef}, nothing worse, and the Wheel would have mended it by morning.</li>
       <li>{X_nameDef} looked over the broken machine for a while and told {A_nameDef} exactly what had worn out and why. {A_nameDef} wished {X_pronoun} had brought tools.</li>
+      <li>{X_nameDef} of {FACTION} went over to the colony's broken machine, tapped it in a few places and listened, and told {A_nameDef} which part to look at first.</li>
+      <li>{X_nameDef} looked over the broken machine and told {A_nameDef} it was worth mending rather than scrapping, and that the Wheel would have bought it either way.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
@@ -425,6 +467,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night a fire swept through their valley, and they put their houses on carts and drove out ahead of it. Nobody has voted to stop since, {X_pronoun} said.</li>
       <li>{A_nameDef} asked {X_nameDef} whether the Wheel will ever stay in one place. {X_pronoun} laughed and said someone asks that at every vote, and loses every time.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every Wheel town packs up and moves every month or so, houses, workshops and all, on wheels and runners.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the Wheel never jokes about fire. {X_nameDef} stopped smiling, said it was the one thing they never joke about, and left it at that.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -443,6 +487,8 @@
     <texts>
       <li>Out under the night sky, {X_nameDef} of {FACTION} showed {A_nameDef} how their readers watch the clouds and write down what they see, and said the record is worth more than any single guess.</li>
       <li>{X_nameDef} stood out under the open sky with {A_nameDef} a while and talked about the weather the way other people talk about family. The Conclave is rarely wrong, {X_pronoun} said, and never certain.</li>
+      <li>{X_nameDef} of {FACTION} stood out under the open sky with {A_nameDef} and pointed out which clouds bring rain and which only look like they will.</li>
+      <li>[night] Out under the night sky, {X_nameDef} told {A_nameDef} that the Conclave believes the weather is the planet thinking aloud, and that a trained mind can feel it days ahead.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -459,6 +505,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the hailstorm that took a village's whole harvest, and the glassblower there who began keeping a vial of every storm's rain so it would never come unseen again.</li>
       <li>{A_nameDef} asked {X_nameDef} how many vials the towers hold now. Three hundred years of them, {X_pronoun} said, and every cap says what came after.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Conclave will watch a colony's sky for a season, for a fee, and send a runner ahead of every cold snap or heat wave.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the readers are ever wrong. Often enough, {X_pronoun} said, and they write that down too.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -476,6 +524,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef} how many trees the colony has cut, and how many it has planted. {A_nameDef} didn't know. {X_nameDef} said the forest does.</li>
       <li>{X_nameDef} told {A_nameDef} that every tree felled is owed a seedling, and showed {A_objective} how the Mossborn set one beside a stump so that it takes.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every grove keeps a count of the trees cut and planted nearby, and that the colony's land is in the count too.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the Mossborn fear most. A forest fire, {X_pronoun} said at once, because it takes a hundred years of trees in an afternoon.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>250</xp></li>
@@ -492,6 +542,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the valley a war had cut bare, and the survivors who planted an acorn beside every stump and stayed to live among the young trees.</li>
       <li>{A_nameDef} asked {X_nameDef} why the Mossborn bury their dead under saplings. So that they become part of the grove, {X_pronoun} said, as the woman who planted the first one did.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Mossborn think better of a neighbor who plants than of one who only clears.</li>
+      <li>{A_nameDef} asked {X_nameDef} where the Mossborn live. Among the trees, {X_pronoun} said, in groves where every tree was planted by someone.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -510,6 +562,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} and {A_nameDef} ended up comparing how they had each held a wall, and which side of a pike is the safe one to stand on.</li>
       <li>{X_nameDef} looked at the way {A_nameDef} stands and said {A_pronoun} had been in a fight or two. They swapped stories until somebody called {A_nameDef} away.</li>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} how the colony keeps its watch at night, and told {A_objective} how the Banner does it: two at a time, and never the same two twice in a row.</li>
+      <li>{X_nameDef} told {A_nameDef} that a soldier who keeps quiet in a fight lives longer, and that the Banner's sergeants say so every morning.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FellowFighter</thought></li>
@@ -526,6 +580,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the Roll, the list of everyone who has died under the grey banner, read aloud every year on the night of the battle that burned it.</li>
       <li>{A_nameDef} asked {X_nameDef} why the Banner fights for whoever pays. Because the king it was raised for is dead, {X_pronoun} said, and a contract kept is the only thing left to be loyal to.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that a keeper of the Roll will come to a colony's grave to add the name of anyone of theirs who died holding a wall.</li>
+      <li>{A_nameDef} asked {X_nameDef} what happens when a town stops paying the company. The company leaves, {X_pronoun} said, on the day the pay stops, and not an hour later.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -544,6 +600,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef} to describe the last thing {A_pronoun} made, and how. {X_pronoun} said plainly what was good about it and what wasn't, and told {A_objective} to put a mark on the next one.</li>
       <li>{X_nameDef} asked {A_nameDef} whether {A_pronoun} marks {A_possessive} work. In the guild, {X_pronoun} said, a maker who won't put a mark on a thing shouldn't have made it.</li>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} what {A_pronoun} likes to make best, and told {A_objective} how a journeyman of the guild learns: seven years at a master's bench, then a year among other peoples.</li>
+      <li>{X_nameDef} told {A_nameDef} that the guild says plainly when work is bad, and that a maker who can hear it gets better faster.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
@@ -560,6 +618,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the bridge at Hardwater, carried off three times by floods and rebuilt with the mason's mark on every stone, so that everyone would know whose work it was if it failed again.</li>
       <li>{A_nameDef} asked {X_nameDef} whether the fourth bridge at Hardwater still stands. It does, {X_pronoun} said, and the guild's oath is what it is because of it.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the guild's towns are the best built in the region, and that every stone in them carries its mason's mark.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the guild values most. Good work, {X_pronoun} said, above rank and above money.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -579,6 +639,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to look at the colony's comms console and told {A_nameDef} how far its voice would carry from here, and which relay of the Line would hear it first.</li>
       <li>{X_nameDef} looked over the colony's console and showed {A_nameDef} how the Line always says where it heard something, so a message can be traced back to its source.</li>
+      <li>{X_nameDef} of {FACTION} went to the colony's comms console and listened to the static for a moment, then told {A_nameDef} which of the Line's masts would be in reach on a clear night.</li>
+      <li>{X_nameDef} looked over the colony's comms console and told {A_nameDef} how to keep it clear of interference in a storm.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>250</xp></li>
@@ -595,6 +657,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the lineman who walked the hills after the long war with a coil of copper wire and raised a mast on every height he could climb, until one valley could hear the next.</li>
       <li>{A_nameDef} asked {X_nameDef} whether the first mast still stands. On its ridge, {X_pronoun} said, and it has never gone off the air.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Line's linemen climb the masts in any weather, in signal-orange oilskins so they can be seen from the next hill.</li>
+      <li>{A_nameDef} asked {X_nameDef} how news travels along the Line. From mast to mast, {X_pronoun} said, and each operator says where they heard it before passing it on.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -612,6 +676,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef} how the colony decides things. When {A_nameDef} explained the council, {X_pronoun} wanted to know who votes and how often, and said the union would call it too few.</li>
       <li>{X_nameDef} told {A_nameDef} that in the union even the boss is elected every year, and nobody decides anything alone. {A_nameDef} said that sounded slow. {X_pronoun} said it was, and that was the point.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that a strike in the union is only ever called by vote, and that while it lasts nobody in the union works.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the union does when a seam runs out. They vote on where to go next, {X_pronoun} said, and then everyone goes together.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -628,6 +694,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night the seam at Deepwell ran dry and the owners left, and the miners voted in the hall to stay together and wrote every name in a book.</li>
       <li>{A_nameDef} asked {X_nameDef} whether {X_possessive} own name is in the union's book. Every member and every shift, {X_pronoun} said, and showed {A_objective} the red armband that goes with it.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every shift worked in the union is written in the book, so nobody can say later who did their share and who didn't.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the union's boss has more say than anyone else. One vote like everyone else, {X_pronoun} said, and a new election every year.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -645,6 +713,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef}, very politely, for {A_possessive} full name, age and trade, and wrote them down in a small notebook. For the census, {X_pronoun} explained, in case the Republic ever needs to know.</li>
       <li>{X_nameDef} told {A_nameDef} that the Republic still holds its elections on the set day, whatever happens, and asked whether the colony keeps a list of its people. {A_nameDef} said it knew them all by name. {X_nameDef} said that wasn't the same thing.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Republic broadcasts the news every evening, and that any colony with a radio can listen.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the Civic Guard is for. To keep order, {X_pronoun} said, the way a government should.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -660,6 +730,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the winter the capital went dark, when a small town's postmaster began reading the old laws aloud on the radio every evening, and other towns answered.</li>
       <li>{A_nameDef} asked {X_nameDef} whether the old government is really gone. {X_nameDef} said the Republic has a census, a radio and an election next spring, so no, not really.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Republic's laws are dated from the winter the capital went dark, and that every citizen knows the date.</li>
+      <li>{A_nameDef} asked {X_nameDef} what citizenship papers are good for. Better trade terms, {X_pronoun} said, and a duty owed in return.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -677,6 +749,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} showed {A_nameDef} the small log book every crew member keeps, and the line {X_pronoun} writes in it each day: holding position. {A_nameDef} asked whether it ever says anything else. Not yet, {X_pronoun} said.</li>
       <li>{X_nameDef} stood very straight while talking to {A_nameDef}, as the crew do at every rank, and asked how the colony keeps its watches at night.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the crew still keep the ship's watches and ranks, and write the log every day, two hundred years after it came down.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the crew do about the sleepers still in their caskets. They keep them, {X_pronoun} said, until the order comes.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -693,6 +767,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about Captain Imre Sallow, who ordered the crew to keep their posts until the order came to disembark, and died before he could give it.</li>
       <li>{A_nameDef} asked {X_nameDef} why nobody has given the order since. Nobody has the rank, {X_pronoun} said, and changed the subject.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the crew still hope to lift off one day, and that every part they buy goes toward it.</li>
+      <li>{A_nameDef} asked {X_nameDef} what {X_pronoun} would do if the order to disembark ever came. {X_nameDef} thought about it for a long time and said {X_pronoun} didn't know.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -710,6 +786,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} asked {A_nameDef} whether {X_pronoun} might shake {A_possessive} hand before doing it. In the Works, {X_pronoun} explained, nothing touches a body without its owner saying yes, and old habits stay.</li>
       <li>{X_nameDef} told {A_nameDef} that every child of the Works chooses their own genes when they are old enough. {A_nameDef} asked what {X_nameDef} had chosen. {X_pronoun} said that was {X_possessive} own business, kindly.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Works write every change they make to a body in their ledger, and that the ledger goes back to the founders.</li>
+      <li>{A_nameDef} asked {X_nameDef} why so few people of the Works look alike. Each generation works on the next, {X_pronoun} said, and nobody wants to be the same as everyone else.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -725,6 +803,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} how the founders of the lab fled a plague in the vats and left the machines running, and how the people they left behind kept the vats warm through the winter and taught themselves the work.</li>
       <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} was grown in a vat. Most of them were, {X_pronoun} said, and the ledger says which one.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that every lab of the Works has a quiet garden beside the vat hall, as the founders' lab did.</li>
+      <li>{A_nameDef} asked {X_nameDef} who runs the Works. A sequencer in each lab, {X_pronoun} said, and the chief editor over all of them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -744,6 +824,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} went over to one of the colony's mechs and looked it over closely. {X_pronoun} told {A_nameDef} which part of it would wear out first, and how the Lattice mends it.</li>
       <li>{X_nameDef} stood beside one of the colony's mechs a while without saying anything, then told {A_nameDef} it was well kept. The Lattice fears nothing more than a mech left to itself, {X_pronoun} said.</li>
+      <li>{X_nameDef} of {FACTION} went over to one of the colony's mechs and stood beside it with a hand on its frame, as if listening, and told {A_nameDef} how the Lattice can tell when a mech is close to failing.</li>
+      <li>{X_nameDef} looked over one of the colony's mechs and told {A_nameDef} why the Lattice buys every subcore it can, and what a good one is worth to a mech.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
@@ -760,6 +842,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the old battlefield where a hundred war mechs stood still for years, until a deserter with a mechlink linked ten of them to her own mind.</li>
       <li>{A_nameDef} asked {X_nameDef} what it is like to be linked with the others. {X_pronoun} said it is like knowing someone is in the next room, all the time.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that a mech of the Lattice that wanders onto a colony's land is still theirs, and that they don't easily forgive a colony that keeps one.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the Lattice fears most. A mind left on its own, {X_pronoun} said, a person's or a mech's.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -778,6 +862,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} hummed quietly while {A_nameDef} talked to {X_objective}, a low note that never quite changed. When {A_nameDef} asked, {X_pronoun} said it was the Spire's, and that {X_pronoun} had stopped noticing it years ago.</li>
       <li>{X_nameDef} hummed along with something {A_nameDef} couldn't hear, then stopped and apologised. Among the Choir, {X_pronoun} said, a song held with others is the best thing there is.</li>
+      <li>{X_nameDef} of {FACTION} hummed under {X_possessive} breath the whole time {A_nameDef} was speaking. When {A_nameDef} stopped, {X_nameDef} stopped too, and said it helped {X_objective} listen.</li>
+      <li>[evening] In the evening {X_nameDef} hummed a long, low note while {A_nameDef} sat nearby. {X_pronoun} said the Choir sings at dusk in every hall around the Spire.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
@@ -793,6 +879,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} that the colony is very loud, and meant the minds, not the noise. {X_pronoun} said it kindly, and asked {A_nameDef} to sit quietly with {X_objective} a minute, which {A_nameDef} did.</li>
       <li>{A_nameDef} asked {X_nameDef} what the Spire is. {X_nameDef} said the Choir believes it is thinking, and that nobody should listen to the void, because it listens back.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the Choir trade psychic gear and rare things from the Spire for art, which they love more than anything.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the Choir ever fight. Rarely, {X_pronoun} said, and only with their minds.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
@@ -810,6 +898,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} showed {A_nameDef} an old part of {X_possessive} suit that still works, made before the vault was sealed, and asked how the colony makes the components that the vault can no longer make.</li>
       <li>{X_nameDef} asked {A_nameDef} to show {X_objective} how the colony mends its tools. Nobody in the vault knows any more, {X_pronoun} said, and they would like to learn it again.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that a little more of the vault's old gear stops working every year, and that nobody below knows how to make more.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the number on the back of {X_possessive} suit means. Every dweller has one, {X_pronoun} said, and it is called at every roll.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>200</xp></li>
@@ -827,6 +917,8 @@
     <texts>
       <li>{X_nameDef} of {FACTION} told {A_nameDef} about the day the overseer broke the vault's seal and walked out first, and half of them went back below for a week because nobody had told them what the sky would look like.</li>
       <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} has got used to the sky yet. Mostly, {X_pronoun} said, except on very clear days, when there is too much of it.</li>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the vault's towns are the vault door in a hillside, with a surface camp that grows a little every year.</li>
+      <li>[rain] {X_nameDef} watched the rain with {A_nameDef} and said that the first rain after the seal broke frightened half the vault.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>

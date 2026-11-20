@@ -52,6 +52,8 @@
     <texts>
       <li>Three journeymen of {FACTION} are walking in with their tools, {X_nameDef} at the front. They will camp by the colony and build {WORK}.</li>
       <li>[lowtech] Three journeymen of {FACTION} are walking in with mallets and chisels on their backs. They will camp by the colony and build {WORK}.</li>
+      <li>{X_nameDef} and two more journeymen of {FACTION} are walking in to camp by the colony. They are spending their year among other peoples, {X_pronoun} told {A_nameDef}, and will build {WORK} before they go.</li>
+      <li>[summer] Three journeymen of {FACTION} have come in the long days to camp by the colony and build {WORK}. Every stone will carry their mark, {X_nameDef} told {A_nameDef}, so the colony will know whose work it is.</li>
     </texts>
     <settled>
       <li>The journeymen of {FACTION} have pitched their tents {PLACE} and laid out their tools. They are waiting for the colony's stone or wood before they start on {WORK}.</li>
@@ -59,6 +61,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the journeymen camped {PLACE}, says {X_pronoun} has found more good work here than anywhere on the road, and asks whether there is a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef} of the journeymen says {X_possessive} year on the road is nearly done, and asks whether the colony would keep a mason rather than send {X_objective} home to the guild.</li>
     </joinTexts>
     <farewell>
       <li>[stood,madedo] The journeymen packed their tools and went. They had to make do with less stone than they asked for, and {WORK} stands a little plainer for it, but it stands, with the guild's mark on it.</li>
@@ -72,6 +75,10 @@
       <li>Every stone gets the mark.</li>
       <li>Good work outlasts the people who made it.</li>
       <li>Keep your chisel sharp and your line straight.</li>
+      <li>[morning] Sharpen the chisels before we start.</li>
+      <li>If it's not good enough, it comes down.</li>
+      <li>Check the level, then check it again.</li>
+      <li>[evening] Cover the work, the dew gets in.</li>
     </lines>
     <momentLines>
       <li>[short] We can't go on without more stone.</li>
@@ -83,6 +90,7 @@
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the journeymen by their fire and heard how the bridge at Hardwater was washed away three times and built a fourth with a mark on every stone.</li>
+      <li>[tales] {A_nameDef} sat with the journeymen by their fire and heard how a guild master looks over a piece of work and says plainly whether it is good enough.</li>
     </helpTexts>
     <asks>
       <li>
@@ -147,6 +155,8 @@
     <texts>
       <li>A crew of {FACTION} is walking up {PLACE} with a {MAST} in pieces and coils of wire, {X_nameDef} at the front. They will camp there for a week.</li>
       <li>[lowtech] A crew of {FACTION} is walking up {PLACE} with poles, flags and a lamp on their backs. They will camp there for a week.</li>
+      <li>{X_nameDef} and the line crew of {FACTION} are carrying a {MAST} up {PLACE} in pieces. It is the highest ground for miles, {X_pronoun} told {A_nameDef}, and they will camp there a week while they raise it.</li>
+      <li>[winter,!lowtech] In their orange oilskins, a crew of {FACTION} is walking up {PLACE} with coils of wire and a {MAST} in pieces. Winter or not, they will camp there for a week and raise it.</li>
     </texts>
     <settled>
       <li>{FACTION}'s line crew has pitched its tents {PLACE}, and is getting the {MAST} ready to raise beside the fire.</li>
@@ -154,6 +164,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the line crew camped {PLACE}, says {X_pronoun} has climbed enough masts for one life, and asks whether there is a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef} of the line crew says the colony would hear the region's news sooner with an operator of its own, and asks whether there is a place for {X_objective} here.</li>
     </joinTexts>
     <farewell>
       <li>[kept] The line crew packed its wire and tents and went down the road, leaving the mast on the high ground. It is the colony's now, and carries its letters and the Line's warnings.</li>
@@ -168,6 +179,10 @@
       <li>Say where you heard it.</li>
       <li>Keep the wire taut and dry.</li>
       <li>The next valley can hear us now.</li>
+      <li>[morning] Check the guy ropes before anyone climbs.</li>
+      <li>[storm] Nobody climbs in this.</li>
+      <li>Short and clear, that's how you send it.</li>
+      <li>[night] Keep the lamp lit at the top.</li>
     </lines>
     <momentLines>
       <li>[raise] Up it goes, hold the guy ropes.</li>
@@ -179,6 +194,7 @@
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the line crew by their fire and heard how the first lineman walked the hills with a coil of wire until one valley could hear the next.</li>
+      <li>[tales] {A_nameDef} sat with the line crew by their fire and heard the day's news from three valleys away, each piece with where they heard it.</li>
     </helpTexts>
     <asks>
       <li>
@@ -305,6 +321,8 @@
     <texts>
       <li>Strikers of {FACTION} are walking in along the road, {X_nameDef} at the front. They will keep a picket by the colony's road while the strike lasts.</li>
       <li>[lowtech] Diggers of {FACTION} are walking in along the road with their picks over their shoulders. They will camp by the colony's road until the union settles its quarrel.</li>
+      <li>{X_nameDef} and the strikers of {FACTION} are setting up a picket by the colony's road. The members voted to stop work, {X_pronoun} told {A_nameDef}, and they will stand here until the union says otherwise.</li>
+      <li>[winter] Strikers of {FACTION} have come along the road, {X_nameDef} at the front, to keep a picket by the colony's road through the winter. A strike called by vote is kept by everyone, {X_pronoun} told {A_nameDef}, whatever the season.</li>
     </texts>
     <settled>
       <li>The strikers of {FACTION} have made camp {PLACE}, by the road, with a fire going and their bedrolls round it.</li>
@@ -312,6 +330,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the strikers camped {PLACE}, says the pit can manage without {X_objective}, and asks whether there is a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef}, one of the strikers on the picket, says {X_pronoun} has voted in enough strikes, and asks whether the colony could use someone who knows how to dig.</li>
     </joinTexts>
     <farewell>
       <li>[settled] The strike is settled, and the strikers packed up the picket and went home, singing as they went down the road.</li>
@@ -325,15 +344,22 @@
       <li>One out, all out.</li>
       <li>We'll stand here as long as it takes.</li>
       <li>Put it to the vote.</li>
+      <li>[morning] Picket's up, everyone to their place.</li>
+      <li>[cold] Close round the fire, we're here a while.</li>
+      <li>Nobody crosses, and nobody shouts at anyone who tries.</li>
+      <li>[evening] Write today's names in the book.</li>
     </lines>
     <momentLines>
       <li>[settled] It's settled, we're going home.</li>
       <li>[vote] The vote is in, back to work.</li>
       <li>[breakers] Strikebreakers on the road, stand together.</li>
       <li>[song] Come on, all of you, the old song.</li>
+      <li>[song] Sing it so the pit can hear us.</li>
+      <li>[breakers] Stand together and let them see us.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the strikers by their fire and heard how the miners of Deepwell voted to stay together when the seam ran dry.</li>
+      <li>[tales] {A_nameDef} sat with the strikers by their fire and heard how the union's book holds every member's name and every shift since the first one.</li>
     </helpTexts>
     <asks>
       <li>

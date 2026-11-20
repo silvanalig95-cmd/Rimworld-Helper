@@ -50,6 +50,8 @@
     <texts>
       <li>Two readers of {FACTION} and their apprentice are walking up {PLACE} with a glass mast in pieces and two rods, {X_nameDef} at the front. They will write down every storm that passes for a week.</li>
       <li>[lowtech] Two readers of {FACTION} and their apprentice are walking up {PLACE} with a tall pole and a basket of glass jars. They will keep count of every storm for a week.</li>
+      <li>{X_nameDef} and another reader of {FACTION} have come up {PLACE} with their apprentice to set up a storm tower. The weather here has never been written down, {X_pronoun} told {A_nameDef}, and they mean to watch it for a week.</li>
+      <li>[summer] Readers of {FACTION} are walking up {PLACE} in the heat with a mast in pieces on their backs. Summer storms come fast, {X_nameDef} told {A_nameDef}, and they want every one of them written down.</li>
     </texts>
     <settled>
       <li>{FACTION}'s readers have pitched their tents {PLACE} and are setting up a glass mast and two rods beside their fire.</li>
@@ -57,6 +59,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the Conclave says the colony's sky is worth a lifetime of watching, and asks whether {X_pronoun} might stay and keep its weather.</li>
+      <li>{X_nameDef} of the storm tower asks whether the colony would keep a reader of its own to watch its sky, rather than send {X_objective} back to the glass towers.</li>
     </joinTexts>
     <farewell>
       <li>[left,taught] The readers took down their mast and rods and went, with {STORMS} storms written down. They left a sealed vial at the gate and the season's forecast, and the one of the colony who sat their night watch can read the glass now.</li>
@@ -69,6 +72,10 @@
       <li>Every storm is written down.</li>
       <li>Check the vials before you sleep.</li>
       <li>The glass is clear tonight.</li>
+      <li>[rain] Fill a vial, quickly, before it stops.</li>
+      <li>[morning] Read the glass before breakfast.</li>
+      <li>Write the hour, the wind and what followed.</li>
+      <li>[storm] Stay off the mast while it's like this.</li>
     </lines>
     <momentLines>
       <li>[mast] The mast is up, now the rods.</li>
@@ -76,9 +83,11 @@
       <li>[storm] Note the hour it came in.</li>
       <li>[strike] That one came down past the rods.</li>
       <li>[watch] The glass is clouding, it will not be long.</li>
+      <li>[watch] Something is coming in, I can feel it in the glass.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the readers by their fire and heard how a glassblower whose village lost its harvest to hail learned to read a frost in the glass a week before it came.</li>
+      <li>[tales] {A_nameDef} sat with the readers while they sealed the day's vial and heard what is written on the brass caps on the oldest shelves.</li>
     </helpTexts>
     <asks>
       <li>
@@ -158,6 +167,8 @@
     <texts>
       <li>Grove-keepers of {FACTION} are walking in {PLACE} with axes and bundles of saplings, {X_nameDef} at the front. They will clear the burn and replant it.</li>
       <li>[lowtech] Grove-keepers of {FACTION} are walking in {PLACE} with stone axes and baskets of saplings. They will clear the burn and plant it again.</li>
+      <li>{X_nameDef} and the grove-keepers of {FACTION} have come to the burnt ground {PLACE} with saplings on their backs. What the fire took is owed back, {X_pronoun} told {A_nameDef}, and they will clear the dead wood and plant again.</li>
+      <li>[spring] Grove-keepers of {FACTION} are walking in {PLACE} in the planting season, with saplings wrapped in wet moss. They will clear the burn and plant it, {X_nameDef} told {A_nameDef}, a seedling for every tree the fire took.</li>
     </texts>
     <settled>
       <li>The grove-keepers have made camp {PLACE} at the edge of the burn, their saplings heeled in by the fire.</li>
@@ -165,6 +176,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the Mossborn says the colony's land could use a keeper for its trees, and asks whether {X_pronoun} might stay and tend them.</li>
+      <li>{X_nameDef} of the grove-keepers says the colony's trees would do better with someone to keep the count, and asks whether {X_pronoun} might stay.</li>
     </joinTexts>
     <farewell>
       <li>[planted,blight] {FACTION}'s grove-keepers packed up and went. They cut out the blighted plants and planted {PLANTED} saplings near the fields, and their ledger counts them as the colony's planting.</li>
@@ -178,6 +190,10 @@
       <li>Ash is good ground for a young tree.</li>
       <li>In the end we are all the grove.</li>
       <li>Mind the roots when you walk.</li>
+      <li>[morning] Water the new ones first.</li>
+      <li>Clear the dead wood, but leave the stumps.</li>
+      <li>[rain] Good rain for planting.</li>
+      <li>One seedling for every tree the fire took.</li>
     </lines>
     <momentLines>
       <li>[cut] This one is only good for the fire now.</li>
@@ -185,9 +201,11 @@
       <li>[sing] Sing the slow one again.</li>
       <li>[felled] You cut within the planting, so we are going.</li>
       <li>[fire] It has caught again, get the beaters.</li>
+      <li>[plant] Firm the soil around it, gently.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the grove-keepers by their fire and heard how the first grove was planted, an acorn beside every stump in a valley the war had cut down.</li>
+      <li>[tales] {A_nameDef} sat with the grove-keepers among the young trees and heard how the Mossborn bury their dead under saplings, so that each of them becomes part of the grove.</li>
     </helpTexts>
     <asks>
       <li>
@@ -280,6 +298,8 @@
     <texts>
       <li>A company of {FACTION} is marching in {PLACE} in step, {X_nameDef} at the front. They will camp a night or two on their way to a contract.</li>
       <li>[lowtech] A war band of {FACTION} is walking in {PLACE} in a long file, spears on their shoulders. They will camp a night or two on their way.</li>
+      <li>Soldiers of {FACTION} are marching in {PLACE} in good order, {X_nameDef} calling the step. They are on their way to a contract, {X_pronoun} told {A_nameDef}, and will camp a night or two before going on.</li>
+      <li>[winter] A company of {FACTION} on a winter march is coming in {PLACE}, {X_nameDef} at the front. They will camp a night or two to rest before the road to their contract.</li>
     </texts>
     <settled>
       <li>The Banner's company has its fire going {PLACE}, bedrolls laid out round it in rows and weapons stacked within reach.</li>
@@ -287,6 +307,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the company camped {PLACE}, came to the gate with {X_possessive} pack on. {X_pronoun} has marched far enough, {X_nameDef} says, and asks whether there is a place here; the Banner will hold it against the colony.</li>
+      <li>{X_nameDef} of the company says {X_possessive} contract is done and {X_pronoun} has no wish to sign another, and asks whether the colony would take in a soldier who wants to stop.</li>
     </joinTexts>
     <farewell>
       <li>[caught] After the fight at the edge of the colony's land, the company carried its wounded out at dawn and marched on to its contract.</li>
@@ -300,12 +321,18 @@
       <li>Keep your boots dry and your blade drier.</li>
       <li>We march at first light.</li>
       <li>No pay, no wall.</li>
+      <li>[morning] Fall in, we march at first light.</li>
+      <li>[evening] Boots off and feet up, we march early.</li>
+      <li>[rain] Keep your kit dry, it's a long march yet.</li>
+      <li>Count the rations, the paymaster will ask.</li>
     </lines>
     <momentLines>
       <li>[drill] Again, from the top, feet first.</li>
       <li>[drill] Form up, and keep the line straight.</li>
       <li>[caught] To arms, they found us.</li>
       <li>[bet] A day's pay says you cannot throw it farther than me.</li>
+      <li>[drill] Hold the line, and nobody breaks step.</li>
+      <li>[bet] Double or nothing, and the loser stands the night watch.</li>
     </momentLines>
     <asks>
       <li>

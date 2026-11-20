@@ -134,13 +134,18 @@ namespace ColonyCouncil
         {
             var ws = WorldSituations.Instance;
             if (ws == null) return;
-            WorldSituation best = null;
+            WorldSituation best = null, heard = null;
             int bestRank = -1;
             foreach (var s in ws.Running)
             {
                 if (s?.def == null || s.ctx == null) continue;
-                int rank = s.ctx.faction == p && p != null ? 3 : s.ctx.enemy == p && p != null ? 2 : s.ctx.faction == null ? 1 : 0;
-                if (rank <= 0) continue;
+                int rank = FactsMath.SituationRank(s.ctx.faction == p && p != null, s.ctx.enemy == p && p != null, s.ctx.faction == null);
+                // Another people's: not theirs to tell, but heard of on the road (the newest).
+                if (FactsMath.Heard(rank))
+                {
+                    if (heard == null || s.startTick > heard.startTick) heard = s;
+                    continue;
+                }
                 if (rank > bestRank || rank == bestRank && best != null && s.startTick > best.startTick)
                 {
                     best = s;
@@ -163,6 +168,9 @@ namespace ColonyCouncil
                 f.Tag("ws:" + best.def.defName, h);
                 if (best.help > 0) f.Tag("situation:helped", 1.5f);
             }
+            if (heard != null)
+                FactsMath.AddHeard(f, heard.def.defName, heard.def.bad, Texts.WithThe(heard.ctx.name, heard.def.label), heard.ctx.placeName, heard.ctx.faction?.Name,
+                    heard.DaysIn);
             // One just over, theirs or the region's.
             var ended = ws.history.Where(r => r != null && r.endTick > 0 && Days(r.endTick) <= 15f && (r.faction == null || r.faction == p)).OrderByDescending(r => r.endTick).FirstOrDefault();
             if (ended != null)

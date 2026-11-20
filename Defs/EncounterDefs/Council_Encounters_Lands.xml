@@ -228,6 +228,8 @@
     <texts>
       <li>Pale lights drifted low over the marsh tonight, where nobody could be standing. {A_nameDef} watched them, and beside {A_objective} {X_definite} growled until they faded.</li>
       <li>At the gate {X_definite} was whining. Out on the marsh small cold lights were moving among the reeds, and {A_nameDef} stood with {X_objective} until they went out one by one.</li>
+      <li>[fog] Lights moved out over the marsh in the fog tonight, low and slow. {X_definite} pressed against {A_nameDef}'s legs and kept watching them until they were gone.</li>
+      <li>[winter] On a winter night {A_nameDef} saw faint lights drifting over the marsh. {X_definite} sat beside {A_objective} with its ears up, and neither of them moved until the lights faded.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_MarshLights</thought><exceptTrait><li>Nerves</li></exceptTrait></li>
@@ -295,6 +297,8 @@
     <texts>
       <li>All morning {X_definite} kept running off toward the rocks and coming back. When {A_nameDef} finally followed, there was a crack in the hillside with cold air breathing out of it, and water dripping somewhere far inside.</li>
       <li>{A_nameDef} lost sight of {X_definite} among the boulders and found {X_objective} at last half inside a narrow cave, covered in cobwebs and very pleased about it.</li>
+      <li>{X_definite} came back from the rocks with dust on its nose and wouldn't settle until {A_nameDef} went to look. Behind a fallen slab there was a low cave mouth, cool and quiet, with dry leaves blown far inside.</li>
+      <li>[rain] When the rain came, {X_definite} ran for the hillside and disappeared. {A_nameDef} found it sitting dry in the mouth of a small cave, looking out at the weather.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CaveFind</thought></li>
@@ -492,6 +496,8 @@
     <texts>
       <li>A shape came out of the fog toward {A_nameDef}, big and dark and slow, and turned into {X_indefinite} a few paces away. Both of them stopped dead, and both of them backed away.</li>
       <li>In the thick fog {A_nameDef} could hear {X_indefinite} breathing somewhere close and couldn't see it at all, until it walked right past {A_objective}, close enough to smell.</li>
+      <li>[morning] In the morning fog {A_nameDef} heard something moving over the wet ground, then saw {X_indefinite} come out of the white a stone's throw away. It stared at {A_objective} and walked back into the fog.</li>
+      <li>[winter] The fog was cold and thick, and {A_nameDef} nearly walked into {X_indefinite} standing quite still in it. They looked at each other for a moment before it moved off.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogShape</thought><exceptTrait><li>Nerves</li><li>Wimp</li></exceptTrait></li>

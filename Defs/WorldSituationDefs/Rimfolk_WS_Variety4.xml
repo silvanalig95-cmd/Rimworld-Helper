@@ -288,6 +288,7 @@
         </titles>
         <texts>
           <li>The log carts are coming down to {PLACE} again, and the carpenters are working full weeks. {FACTION} put their roofs back on partly with the colony's wood, and they remember whose beams those are.</li>
+          <li>Timber is coming down to {PLACE} again, and the carpenters have stopped turning work away. {FACTION} have not forgotten that some of their new roofs went up on the colony's wood.</li>
         </texts>
         <chronicle>Timber came back to the region; {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -301,6 +302,7 @@
         </titles>
         <texts>
           <li>Timber is moving on the roads again, and the price of a plank has come down to something a person can say out loud.</li>
+          <li>The log carts are back on the roads, and {FACTION}'s carpenters at {PLACE} have stopped buying planks off old barns. The price of timber is falling back to what it was.</li>
         </texts>
         <chronicle>Timber came back to the region.</chronicle>
       </li>
