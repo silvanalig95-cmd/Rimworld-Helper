@@ -93,26 +93,29 @@ most sense." So, in this order, three builds at a time:
   can't run the game), a screenshot of a CK card as the look to aim for, and static art (from an image AI or an artist,
   PNG with transparency): frames for a few standings, a parchment for letters, crests for the 23 peoples. Faces stay
   the game's own so they match the map.
-  The player, later the same day: "I added port[raits] of the rim. I mean, that's really an absolutely awesome mod. Let
-  me know if you need any data from it. And we can definitely brainstorm and enhance on that one and build up upon it.
-  If you can then do like read images, so to say, and I don't know, modify them or enhance what's already there." So
-  Portraits of the Rim (2937991425) is on; how it picks and draws a portrait is not known yet. Needed from the player:
-  the mod's folder (About, Assemblies, Defs, LoadFolders.xml and a few texture folders; the DLL only decompiled), the
-  updated mod list (ModsConfig.xml) for `docs/player-mods`, and screenshots of its portrait in the game and of a
-  Rimfolk letter and card. Ideas to build on it, for the player to pick:
-  6. Its painted portrait wherever Rimfolk shows a face (letters, event cards, the colonist card, the council's seats
-     and elections, the year letter, the who's who), drawn live from the mod when it is on, never copied into Rimfolk;
-     the game's own portrait otherwise.
-  7. The frame by standing, the favourite colour and the crest (1 and 2 above) around the painted portrait.
-  8. The same for outsiders who come back (heads, envoys, regulars, enemies), so a face is known on its second visit.
-  9. What the mod can already show of a life (age, scars, a lost eye, mood), followed where it does; nothing it can't.
-  The player, then: "now they're all looking in the same direction. At least make them also, have the other direction,
-  but as much as you can work like with angles and positions ... if you need if I can generate sprites for that with
-  another mod or AI, give me instructions." So:
-  10. Mirrored where it reads better: two people in one letter or card face each other, a card's portrait faces its
-      text (drawn flipped, the mod's art untouched).
-  11. Other angles need new art for every layer the mod builds a portrait from, matched to each other; the instructions
-      for making them (with another mod or an image AI) wait until the mod's files show its layers, sizes and names.
+  The player, later the same day, first added Portraits of the Rim, then: "Actually, I don't think I will want to use
+  this mod. I'd rather try to build up something with you or use other, AI generated art instead. So please, let's go
+  that direction and brainstorm." Also, of the faces: "now they're all looking in the same direction. At least make
+  them also, have the other direction, but as much as you can work like with angles and positions". So Rimfolk's own
+  painted portraits, with art the player makes with an image AI from prompt sheets the lead writes; the lead checks,
+  crops, colour-matches, keys out plain backgrounds, mirrors and frames it here (PIL), and builds it into the mod. Ideas
+  brainstormed with the player on 20 November 2026 (for the player to pick):
+  A. A painted portrait made for each of the colony's named people: the lead writes one prompt per colonist from the
+     save (age, sex, skin, hair and beard, xenotype, scars, a lost eye, their work and standing), the player generates
+     it, and Rimfolk ties it to that pawn for good; newcomers keep the game's face until theirs is added.
+  B. A library for everyone else (outsiders, newcomers): a few hundred painted busts in the same style, each tagged by
+     the lead from the image (sex, age, skin, hair colour and length, beard, build, the age of their clothes, the
+     people's look), matched to a pawn by its looks and kept for that pawn for life; it grows with each batch.
+  C. Facing: every portrait made facing one way and mirrored by the code, so two people in a letter face each other
+     and a card's portrait faces its text.
+  D. The frame by standing, the favourite colour behind and the crest of their people or the colony (1 and 2 above),
+     as art from the same sheets: frames for a few standings, crests for the 23 peoples, a parchment for letters.
+  E. Painted scenes for the event cards, in the CK manner: a feast, a burial, a raid at the wall, a council meeting, a
+     camp, a storm, a wedding and so on, each in the tribal, medieval, industrial and spacer look; a mood picture, never
+     showing what the map doesn't.
+  F. The character card and the who's who (2 and 4 above) built on A and B.
+  The player's picks wait: the style (painted oil, ink and wash, manuscript, or another), the tool they use, how many
+  images a batch, and where to start (A for their own colonists first is the lead's suggestion).
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
