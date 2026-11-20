@@ -760,7 +760,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 1: the face
+- 0.289.0, **Portraits, phase 1: the face
   engine and the portrait at the inspect pane** (20 November 2026; the player: "especially for my own pawns, because
   these even at a certain length feel unrecognizable anymore, especially if you regularly change armor and clothing",
   "a good face engine, so to say, that does the face well and bigger already is probably a huge improvement", and the
