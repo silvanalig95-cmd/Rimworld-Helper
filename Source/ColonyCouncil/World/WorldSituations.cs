@@ -227,6 +227,23 @@ namespace ColonyCouncil
                 End(s, ending);
                 return;
             }
+            // A colonist it sent to a far town is still away: it ends once they are home (its letters name them and what they did).
+            bool due = s.pendingTick > 0 && now >= s.pendingTick && !s.pendingEnding.NullOrEmpty() || now >= s.endTick;
+            if (due && FarErrandMath.HoldsEnd(FarErrands.Out(s), now, Math.Max(s.endTick, s.pendingTick)))
+            {
+                s.SetNum(FarErrands.HeldKey, 1);
+                Beats(s, now);
+                return;
+            }
+            // Home again after it was held: a little while for the letters that waited for them, then it ends.
+            if (due && s.Num(FarErrands.HeldKey) == 1)
+            {
+                s.SetNum(FarErrands.HeldKey, 0);
+                s.endTick = FarErrandMath.EndAfterHome(now, s.endTick);
+                if (s.pendingTick > 0) s.pendingTick = FarErrandMath.EndAfterHome(now, s.pendingTick);
+                Beats(s, now);
+                return;
+            }
             if (s.pendingTick > 0 && now >= s.pendingTick && !s.pendingEnding.NullOrEmpty())
             {
                 End(s, s.pendingEnding);
@@ -410,6 +427,22 @@ namespace ColonyCouncil
                     can = false;
                     retry = false;
                 }
+                // While a colonist it sent is away: a letter written from the far town comes on their last day there, one that
+                // would fall to them waits until they are home (FarErrands).
+                if (can)
+                {
+                    var turn = FarErrands.Turn(s, beat, map, now);
+                    if (turn == FarErrandMath.BeatTurn.Drop)
+                    {
+                        s.beats.Remove(bs);
+                        continue;
+                    }
+                    if (turn == FarErrandMath.BeatTurn.Wait)
+                    {
+                        bs.due = now + FarErrandMath.WaitTicks;
+                        continue;
+                    }
+                }
                 // One question at a time from the world: a beat with a question waits for the last one's answer.
                 if (can && !beat.options.NullOrEmpty() && Waiting)
                 {
@@ -488,8 +521,9 @@ namespace ColonyCouncil
                     ctx.count = VarietyUtil.Round(Mathf.Max(1, Mathf.RoundToInt(n)));
                 }
                 if (!worker.PrepareBeat(s, beat, ctx)) return false;
-                // The beat's own person stays the situation's from now on (the doctor asked for is the one remembered).
-                s.ctx.a = ctx.a;
+                // The beat's own person stays the situation's from now on (the doctor asked for is the one remembered), but
+                // not over the one it sent to a far town while they are away: its later letters name them.
+                if (!FarErrands.Out(s)) s.ctx.a = ctx.a;
                 s.ctx.count = ctx.count;
             }
             catch (Exception e)
@@ -587,6 +621,8 @@ namespace ColonyCouncil
                 // first, so it can hold the moods of those taking part.
                 using var _plays = PlayOuts.Collect();
                 bool risk = o.riskChance > 0f && Rand.Chance(worker.RiskChance(s, ctx, o));
+                // A colonist sent to a far town brings home how it went: the gamble's words are told then (WorldEffect_Away).
+                FarErrands.AnswerRisk = risk;
                 if (!risk || !o.riskReplaces)
                 {
                     foreach (var e in PlayOuts.Ordered(o.effects))
@@ -636,6 +672,7 @@ namespace ColonyCouncil
             }
             finally
             {
+                FarErrands.AnswerRisk = false;
                 // The letter's text is written; let go of the people so the save doesn't hold them twice.
                 ctx.a = ctx.b = ctx.stranger = ctx.other = null;
                 ctx.map = null;

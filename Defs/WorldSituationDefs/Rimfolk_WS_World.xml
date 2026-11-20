@@ -229,14 +229,22 @@
           </li>
           <li>
             <label>Send {A_nameDef} to {X_nameDef} to settle it</label>
-            <outcome>{A_nameDef} goes to {PLACE} to sit down with {X_nameDef}. It takes a good deal of {A_possessive} patience, but they agree where the line runs and that the colony's dogs may have what they find in the traps on its side.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE}, to sit down with {X_nameDef} and settle it.</outcome>
             <riskChance>0.4</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>{A_nameDef} goes to {PLACE} to sit down with {X_nameDef}, and the two of them part angrier than they met. The traps stay where they are.</riskOutcome>
             <riskFlags><li>keepOff</li></riskFlags>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>0.5</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><forbids>keepOff</forbids></li>
+                  <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+                </effects>
+                <home>
+                  <li>[!risk] {A_nameDef} is back from {PLACE}. It took the morning and most of {A_possessive} patience, but {A_pronoun} and {X_nameDef} agreed where the line runs, and that the colony's dogs may have what they find in the traps on its side.</li>
+                  <li>[risk] {A_nameDef} is back from {PLACE}. {A_pronoun} and {X_nameDef} parted angrier than they met, and the traps stay where they are.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>peace</li></flags>
             <help>2</help>
@@ -244,9 +252,17 @@
           </li>
           <li>
             <label>Pull up their traps and send them back</label>
-            <outcome>The traps go back to {PLACE} in a heap, carried by the colony's hunter and dropped at their edge without a word. The settlers understand, and resent it.</outcome>
+            <outcome>The traps go back to {PLACE} in a heap, carried by {A_nameDef}, who sets out to drop them at the settlers' edge without a word.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>0</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE}, where {A_pronoun} dropped the traps at the settlers' edge without a word. The settlers got the message. They don't like it.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>keepOff</li></flags>
             <ways><openness>-2</openness></ways>

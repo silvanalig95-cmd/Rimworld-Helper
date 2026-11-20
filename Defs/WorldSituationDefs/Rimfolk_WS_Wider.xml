@@ -363,12 +363,20 @@
         <options>
           <li>
             <label>Send {A_nameDef} to read for them</label>
-            <outcome>{A_nameDef} goes off to {PLACE} with a lamp and a notebook, to read the old writing there.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE} with a lamp and a notebook, to read the old writing in {NAME}.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.2</share><max>900</max><onlyIfChosen>true</onlyIfChosen></li>
-              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_ReadTheOldWriting</thought></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
+                  <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.2</share><max>900</max></li>
+                  <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_ReadTheOldWriting</thought></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE} after four days, talking fast, with a dozen pages of copied writing and the beginnings of a sense of what {NAME} was for.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>read</li></flags>
             <help>2</help>
@@ -731,16 +739,31 @@
         <options>
           <li>
             <label>{A_nameDef} sits them down</label>
-            <outcome>{A_nameDef} goes off to {PLACE} to sit between {FACTION}'s merchants and {ENEMY}'s and go over the old debt line by line, until they agree how it will be paid.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE}, to sit at a table between {FACTION}'s merchants and {ENEMY}'s and go over the old debt line by line.</outcome>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The talks went round in circles for two days and ended with {ENEMY}'s merchants leaving the table. {NAME} goes on, and both sides think the colony could have tried harder.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>900</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>2</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>900</xp></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE}. {A_pronoun} spent two days at a table between {FACTION}'s merchants and {ENEMY}'s, going over the old debt line by line until both sides were too tired to shout, and by the end they agreed how it will be paid.</li>
+                </home>
+              </li>
             </effects>
             <riskEffects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>2</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>500</xp></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE}. The talks went round in circles for two days and ended with {ENEMY}'s merchants leaving the table. {NAME} goes on, and both sides think the colony could have tried harder.</li>
+                </home>
+              </li>
             </riskEffects>
             <flags><li>settled</li></flags>
             <riskFlags><li>failed</li></riskFlags>

@@ -167,6 +167,12 @@ namespace ColonyCouncil
             }
             foreach (var e in endings)
                 if (e.key.NullOrEmpty()) yield return "an ending has no key";
+            // A letter from the far town needs an answer that sends someone there.
+            bool sends = beats.Any(b => b.options != null && b.options.Any(o => (o.effects?.OfType<WorldEffect_Away>().Any() ?? false) || (o.riskEffects?.OfType<WorldEffect_Away>().Any() ?? false)));
+            foreach (var b in beats.Where(b => b.atPlace && !sends))
+                yield return "beat " + b.key + " is written from the far town, but no answer sends anyone there";
+            foreach (var b in beats.Where(b => b.atPlace && (b.colonist != null || b.skill != null)))
+                yield return "beat " + b.key + " is written from the far town, so it is the colonist sent there's: no colonist or skill of its own";
         }
     }
 
@@ -295,6 +301,11 @@ namespace ColonyCouncil
         public float answerDays = 1.5f;
         /// <summary>A red choice letter.</summary>
         public bool threat;
+        /// <summary>
+        /// Its words are written from where an answer sent the event's colonist (WorldEffect_Away): it comes only while they
+        /// are there, on their last day, and not at all once they have left; they stay on until it is answered (FarErrands).
+        /// </summary>
+        public bool atPlace;
     }
 
     /// <summary>One answer to a beat's question.</summary>

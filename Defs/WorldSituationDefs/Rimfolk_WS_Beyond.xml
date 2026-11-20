@@ -155,12 +155,20 @@
         <options>
           <li>
             <label>Send {A_nameDef} to {PLACE}</label>
-            <outcome>{A_nameDef} goes off to {PLACE} with a bag of tools, to help put up a dozen new roofs.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE} with a bag of tools, to help raise the new roofs.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1500</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
-              <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_RoofRaiser</epithet><chance>0.6</chance></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1500</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+                  <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_RoofRaiser</epithet><chance>0.6</chance></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE} after four days, with a sunburnt neck and a dozen new roofs behind {A_objective}.</li>
+                </home>
+              </li>
             </effects>
             <help>2</help>
             <deed>lent {A_nameDef} to raise the roofs of {PLACE}</deed>
@@ -369,23 +377,28 @@
         <skill>Social</skill>
         <minLevel>6</minLevel>
         <forbids><li>handed</li></forbids>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><count>1~2</count><ages>50~75</ages></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><count>1~2</count><ages>50~75</ages><enemy>true</enemy><stranger>false</stranger></li>
+        </effects>
         <titles>
           <li>Talk between the families</li>
         </titles>
         <texts>
-          <li>The elders of both families are tired of burying people over {NAME}. They have agreed to sit down together on neutral ground, if someone they both trust sits between them.\n\nBoth named the colony. The colony's best talker is {A_nameDef}.</li>
-          <li>[hid] {ENEMY}'s family knows the colony hid the boy, and so does {FACTION}'s. Oddly, that has made both willing to talk, as long as it's at the colony's table and {A_nameDef} sits between them.</li>
+          <li>The elders of both families are tired of burying people over {NAME}. They have agreed to sit down together on neutral ground, if someone they both trust sits between them.\n\nBoth named the colony, and their elders have come to its gate. The colony's best talker is {A_nameDef}.</li>
+          <li>[hid] {ENEMY}'s family knows the colony hid the boy, and so does {FACTION}'s. Oddly, that has made both willing to talk, as long as it's at the colony's gate and {A_nameDef} sits between them.</li>
           <li>[their:dearfriend] Both families want talks, and {FACTION} have asked that {FRIEND_nameDef} be there, since their people trust {FRIEND_objective}. {A_nameDef} would do the talking.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>{A_nameDef} sits between them</label>
-            <outcome>{A_nameDef} spends a long day at the table with two families who won't look at each other. By the end of it they have stopped arguing about the killing and started arguing about the blood price, which is a step toward settling it.</outcome>
+            <outcome>{A_nameDef} sits for hours at the gate with the elders of two families who won't look at each other. By the end they are arguing about the size of the blood price instead of about blood, and {A_nameDef} calls that progress.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>In the second hour an uncle of {ENEMY}'s family said something about a grandmother. {A_nameDef} got everyone out before it came to blows, but the feud is worse than it was.</riskOutcome>
+            <riskOutcome>In the second hour an uncle of {ENEMY}'s family said something about a grandmother. {A_nameDef} got them apart before it came to blows, but the feud is worse than it was.</riskOutcome>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} between the two families at the gate</label><who>A</who><to>Stranger</to><orTo><li>Gate</li></orTo><hours>9~18</hours><duration>3~4</duration></li>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>900</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><about>other</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><enemy>true</enemy><about>other</about></li>
@@ -504,8 +517,8 @@
           <li>{NAME} goes on</li>
         </titles>
         <texts>
-          <li>{NAME} has gone quiet. There has been no more blood, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nOn both sides, the talks at the colony's table are remembered as the day it got worse.</li>
-          <li>{NAME} hasn't ended, only gone quiet. The families of {FACTION} and {ENEMY} won't sit in the same room, and both blame the colony's table for it.</li>
+          <li>{NAME} has gone quiet. There has been no more blood, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nOn both sides, the talks at the colony's gate are remembered as the day it got worse.</li>
+          <li>{NAME} hasn't ended, only gone quiet. The families of {FACTION} and {ENEMY} won't sit in the same room, and both blame the talks at the colony's gate for it.</li>
         </texts>
         <chronicle>{NAME} smoldered on after talks at the colony went wrong.</chronicle>
         <effects>
@@ -520,8 +533,8 @@
           <li>{NAME} cools</li>
         </titles>
         <texts>
-          <li>The families never settled on a price, but there has been no blood since they sat at the colony's table. {NAME} has cooled into the kind of grudge people complain about at market instead of acting on.</li>
-          <li>No price was ever agreed, but no more blood has been spilled since the families met at the colony's table. {NAME} has settled into an ordinary grudge, the kind people grumble about at market.</li>
+          <li>The families never settled on a price, but there has been no blood since they sat down at the colony's gate. {NAME} has cooled into the kind of grudge people complain about at market instead of acting on.</li>
+          <li>No price was ever agreed, but no more blood has been spilled since the families met at the colony's gate. {NAME} has settled into an ordinary grudge, the kind people grumble about at market.</li>
         </texts>
         <chronicle>{NAME} cooled after the families talked at the colony.</chronicle>
         <effects>
@@ -812,12 +825,20 @@
         <options>
           <li>
             <label>Send {A_nameDef} with a sickle</label>
-            <outcome>{A_nameDef} goes off to help in {FACTION}'s fields with a sickle. The wages will follow once {FACTION} have sold the grain.</outcome>
+            <outcome>{A_nameDef} sets out for {FACTION}'s fields with a sickle over {A_possessive} shoulder. The wages will follow once {FACTION} have sold the grain.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Plants</skill><xp>1200</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_Mission_HarvestHands</thought></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>harvestHelp</kind><about>place</about></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Plants</skill><xp>1200</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_Mission_HarvestHands</thought></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+                  <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>harvestHelp</kind><about>place</about></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from four days in {FACTION}'s fields, brown, aching and full of harvest supper. The wages will follow once the grain is sold.</li>
+                </home>
+              </li>
               <li Class="ColonyCouncil.WorldEffect_Owe"><amount>120~220</amount></li>
             </effects>
             <help>2</help>
@@ -873,7 +894,7 @@
         </titles>
         <texts>
           <li>The harvest is in all over the region, and every village is holding its supper. {A_nameDef} thinks the colony should hold one too: the long table, the good food, and a toast to a good year.\n\nIt would cost a feast's worth of food. This year the colony can afford it.</li>
-          <li>Every village in the region has held its harvest supper by now, and {A_nameDef} has been to none of them. The colony could hold its own: the long table, the good food, and a toast to the land.\n\nIt would take a feast's worth of food, and this year the stores can spare it.</li>
+          <li>[!hands] Every village in the region has held its harvest supper by now, and {A_nameDef} has been to none of them. The colony could hold its own: the long table, the good food, and a toast to the land.\n\nIt would take a feast's worth of food, and this year the stores can spare it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
