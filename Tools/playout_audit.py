@@ -357,6 +357,9 @@ PLAY = {
     "DilemmaEffect_PlagueYear": "a caravan of one each to the plague town",
     "DilemmaEffect_LearningTraded": "three days at the colony's table",
     "DilemmaEffect_ArtHandedOn": "an afternoon at the gate, then the art",
+    # A world event's answer that sends a colonist to a far town (World/FarErrands.cs): a caravan of one there, their days
+    # there and the road home, the season away's own (Peoples/Events2/SeasonAway.cs).
+    "WorldEffect_Away": "a caravan of one to a far town and home",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

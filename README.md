@@ -753,6 +753,15 @@ collector and a runaway mule's owner; 137 lines of their own). Only peoples at p
 it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
 cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
 
+**Sent to a far town.** When a world event's answer sends one of the colony to another people's town for a day or
+several (to dig a well, raise roofs, bring in a harvest, teach the smiths, read an old vault's writing, speak at a
+petition, a plea or a moot, sit between merchants, keep watch over an old thrumbo), they go: a walk to the map's edge, a
+caravan of one on the world's roads, their days there and the road home, as the peoples' pilgrims and guards travel.
+What they learned and the people's thanks count when they are home, with a letter that says how it went, and the world
+event waits for them before it ends. The answer's card says how long they will be away, road included, and greys the
+answer while they can't leave or the town is more than eight days off. The blood feud's two families now come to the
+gate for their talks, and the talker sits with them there.
+
 Visitors do what their letters say, and keep out of the colony's rooms and fields while they do. They sleep when
 they're tired or night has come, on open ground near their spot; guests given a bed or a roof sleep in a corner
 indoors, and with Hospitality in the colony's free guest beds, which they give back when they go. A camp out on the

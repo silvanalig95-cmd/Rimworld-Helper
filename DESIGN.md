@@ -1406,7 +1406,7 @@ Alder (killed day 98.27); the vow is open with no kills, and Avila has Rimfolk r
   `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`, `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page
   "traits that change". Tests: `TraitChangeTests` (the vows from their save, the limits, the rules).
 
-### More traits that come and go, the first batch (the player's go, 20 November 2026; not released yet)
+### More traits that come and go, the first batch (the player's go, 20 November 2026; released 0.275.0)
 
 The player, 17 November 2026: "while i generally like the idea of traits emerging and/or disappearing (we shouild also
 build up on this as to do)"; 19 November 2026: "More trades come and go sounds great"; 20 November 2026: "go ahead with
@@ -2906,8 +2906,65 @@ preachers stand there, one of each creed (the second only while its people is at
 peace talks' two delegations come to the gate a day or two after the colony agrees and stay two nights
 (`VisitEffect_Come`, `holdBeat` "talks"), the talks settled by `SituationWorker_PeaceTalks` once they have gone. Answers
 that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
-and the colonist stays at the colony for now (a to-do in docs/HANDOFF.md; the town's well storyline sends its digger
-away, `Storylines/StorylineWell.cs`).
+and the colonist now really goes (the next section).
+
+### A colonist a world event sends to a far town goes (the player's go, 20 November 2026; not released yet)
+
+Sixteen answers of fourteen world events send a colonist to another people's town, or to a place just beyond the
+colony, for a day or several: to advise, build, teach, read old writing, speak or keep watch. They used to leave the
+colonist at the colony while the words sent them off, with the skill and the goodwill counted at once. Now the colonist
+goes, by the peoples' events' season away (`Peoples/Events2/SeasonAway.cs`): a walk to the map's edge, a caravan of one
+on the game's own roads to the town, their days there (kept in the world), and a caravan of one home. That way was
+chosen over the town's well storyline's (`Storylines/StorylineWell.cs`, the digger kept in the world for set days with
+no caravan) because the caravan is what the world map shows: the player sees the colonist travel to the very town the
+words name, and the time away is the real road.
+
+- **The effect.** `WorldEffect_Away` (`World/FarErrands.cs`), named in an answer's effects (or its risk's, where the
+  risk replaces the answer): `days` at the place; `to` Town (the event's {PLACE}) or Near (a tile beside the colony,
+  one with `near` "river" or "hills" first, `placeLabel` what the words call it); `effects` applied when they are home
+  after their days there (the learning, goodwill, a mood, an epithet, research); `wage` (the event's {COUNT} in silver,
+  set down at their feet as they come in); `home` (the letter that says how it went, picked by the event's tags, and
+  [risk] when the answer's gamble came true). The season away's kind "world" (`FarErrandAway`, in `SeasonAway.Kinds`)
+  tells the arrival, lodges them at a town where a plague or a famine of the region's goes round for the illness
+  budget's own roll (`SickHome.Lodged`, as for a caravan stopped there), and brings them home. Which answer sent them is
+  kept in the season away's own words (`FarErrandMath.Note`: the event, the beat, the answer, which list and where in
+  it, the gamble, {COUNT}), so nothing new is saved. The answer's card shows the days away with the road (the season
+  away's own lines: away so many days, the road's dangers the world's own, a sick town's chance) and what their days
+  there come to. Should they not get away after all, what their days would have brought comes at once, as before.
+- **Greyed.** The answer can't be given while {A} can't leave (down, drafted, in a mental state, in a caravan, away
+  already: `PeopleEvents2.MayLeave`), would leave fewer than three able grown hands at home, has no way out to the
+  map's edge, or the town is out of reach (no road on the world, or more than eight days' road each way:
+  `FarErrandMath.MaxRoadDays`, as the league's guard). None of these answers is a letter's default.
+- **The event waits for them.** While its colonist is away, the world event doesn't end (its time or an answer's
+  ending: `FarErrandMath.HoldsEnd`, thirty days past at most), and once they are home it ends no sooner than two days
+  later, so its letters that waited come first (`EndAfterHome`); while it waits past its end, a letter held back (another
+question still open) keeps trying as it would before the end. Its beats that would fall to them (the event's own
+  person, or one with a skill when nobody at home is as good) wait until they are home: the iron's first smelting "for
+  the days A spent at their forges", the exiles' mother "since A spoke for them", the vault's deeper door, the harvest
+  supper. While they are away the event's person stays the one it sent (a later beat's own colonist doesn't take their
+  place). A beat written from the far town (`SituationBeat.atPlace`: the moot's high pastures, "A writes from PLACE")
+  comes only while they are there, on their last day, and is dropped once they have left; they stay on up to three days
+  past their days while it is still to come or unanswered (`AwayKind.Stays`, new in the season away).
+- **The words.** Each answer tells it as set going, and the gamble's words, where it has one, come home with the
+  colonist in the letter. The new and changed lines keep the world events' own flavour (CLAUDE.md, the player's rule of
+  20 November 2026), most of them the earlier outcomes moved to the homecoming.
+- **The blood feud's talks** were told at the colony's table with neither family on the map. The map changed rather
+  than the words' place: the event is about the colony as the neutral ground both families named, and its endings
+  remember the talks at the colony, so the elders of both families now come to the gate with the question
+  (`VisitEffect_AtGate`, one of each people) and the talker sits with them there for some hours (`DilemmaEffect_Visit`
+  to them, its outcome told when it is done). The words say the gate rather than the table, since that is where the
+  visit shows them (visitors keep out of the colony's rooms), and the endings say the same.
+- **The answers and their days there** (the road both ways comes on top: a town five tiles off is two and a half days
+  each way): the drought's well, a day; the new road's bridge, a day at the river crossing a tile from the colony, the
+  road gang's silver carried home; the sickness of the herds, two days; the great fire's roofs, four; the bumper
+  harvest's sickle, four; the toll's petition, a day; the iron's smiths, three; the exiles' plea, a day; the rebuilt
+  bridge, a week; the vault's old writing, four; the closed markets' talks, two; the moot's speaker, with the gift or
+  without, four, the vote asked on the last; the old thrumbo's watch, four nights at the herders' fire in the hills a
+  tile from the colony; the other settlers' traps, half a day talking with their leader, or none, the traps dropped at
+  their edge and straight home.
+- **Dev mode** ("Rimfolk"): "World event: the question that sends a colonist away, now...", "World event: the colonist
+  sent away is there now", "...days there up now", "...home now". The rules are pure in `World/FarErrandMath.cs`,
+  tested in `FarErrandTests`.
 
 ## Pace: how often the colony gathers
 

@@ -322,10 +322,13 @@
         <options>
           <li>
             <label>Send {A_nameDef}, with the gift</label>
-            <outcome>The herald takes the silver for the host's table and bows to {A_nameDef}, who will set out for {PLACE} in the morning.</outcome>
+            <outcome>The herald takes the silver for the host's table and bows to {A_nameDef}, who sets out for {PLACE} that same day.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the host's table</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the host's table</label><what>silver</what><tens>true</tens><steward>false</steward><who>None</who></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+              </li>
             </effects>
             <flags><li>speaker</li></flags>
             <help>1</help>
@@ -337,6 +340,9 @@
             <outcome>The herald writes down, without comment, that the colony sends a speaker and nothing for the table.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+              </li>
             </effects>
             <flags><li>speaker</li></flags>
             <ways><generosity>-1</generosity></ways>
@@ -386,6 +392,7 @@
       <li>
         <key>pastures</key>
         <requires><li>speaker</li></requires>
+        <atPlace>true</atPlace>
         <day>6~10</day>
         <titles>
           <li>The high pastures</li>
@@ -677,10 +684,19 @@
         <options>
           <li>
             <label>Lend {A_nameDef} to the watch</label>
-            <outcome>{A_nameDef} goes off to the herders' fire in the hills to take a turn at the watch.</outcome>
+            <outcome>{A_nameDef} sets out for the herders' fire in the hills, to take {A_possessive} turn at the watch.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>900</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>4</days>
+                <to>Near</to><near>hills</near><placeLabel>the herders' fire in the hills</placeLabel>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>900</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from four nights at the herders' fire, with a cold, a sore back and a great deal to say about how a thrumbo sleeps.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>guarded</li></flags>
             <help>2</help>

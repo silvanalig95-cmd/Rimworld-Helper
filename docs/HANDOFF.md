@@ -180,20 +180,10 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
   when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
   now one entry above the newest release line ("Choose the material when ordering a piece").
-- **To do when the player asks (found 19 November 2026 in the plain-words pass on the region map; no words of the
-  player's yet): a colonist a world event sends to a far town stays at the colony.** Fifteen answers of thirteen world
-  events say a colonist goes off to another people's town for a day or several (to advise, build, teach, read old
-  writing, speak or keep watch), and the colonist's skill and the people's goodwill count at once, but nobody leaves
-  the map: the drought's well and the road's bridge ("Lend them {A_nameDef} for a day", `Council_WS_Region`), the
-  herdsman in the sickness of the herds, the great fire's roofs and the bumper harvest's sickle (`Rimfolk_WS_Beyond`;
-  there too the blood feud's talks, told at the colony's table with neither family on the map), the toll's petition, the iron's smiths and the exiles' plea (`Rimfolk_WS_Beyond2`), the
-  rebuilt bridge (`Rimfolk_WS_FollowUps`), the vault's old writing and the closed markets' talks (`Rimfolk_WS_Wider`),
-  the moot's speaker and the old thrumbo's watch (`Rimfolk_WS_Wider2`), and the other settlers' traps
-  (`Rimfolk_WS_World`). The plain-words pass made their words tell it as set going, with no time that can't have come
-  ("{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge"), and the road's
-  builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
-  storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
-  {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
+- **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): a colonist a world
+  event sends to a far town really goes.** The to-do (found 19 November 2026 in the plain-words pass on the region map)
+  and what was built are now one entry above the newest release line ("A colonist a world event sends to a far town
+  goes").
 - **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): the defense survey
   counts a shut door as a way raiders might break through.** The finding (from the plain-words pass on the Almanac, part
   2), the cause in the game's 1.6 code and what was built are now one entry above the newest release line ("The defense
@@ -565,7 +555,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **More traits that come and go, the
+- 0.275.0, **More traits that come and go, the
   first batch** (20 November 2026; the player, 17 November 2026: "while i generally like the idea of traits emerging
   and/or disappearing (we shouild also build up on this as to do)"; 19 November 2026: "More trades come and go sounds
   great"; 20 November 2026: "go ahead with the next tasks, including the traits", and later the same day "go ahead with
@@ -631,6 +621,67 @@ repo.
   - Mods that would help: none needed. Therapy (Continued) (`orion.therapy`, Workshop 3509488682, tagged 1.6 and 1.7,
     active in their list) gives the sessions; Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7, active) the
     traits.
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **A colonist a world event sends to
+  a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the
+  to-do found 19 November 2026 in the plain-words pass on the region map: answers of world events said a colonist goes
+  off to another people's town for a day or several, to advise, build, teach, read old writing, speak or keep watch,
+  and the skill and the goodwill counted at once, but nobody left the map; the blood feud's talks were told at the
+  colony's table with neither family on the map). Sixteen answers of fourteen world events now send the colonist for
+  real, by the peoples' events' season away (`SeasonAway`, round 2): a walk to the map's edge, a caravan of one on the
+  game's roads to the event's town (or a tile beside the colony: the road's river crossing, the herders' fire in the
+  hills), their days there, and a caravan of one home; the learning, the goodwill, the moods, the epithets, the vault's
+  research and the road gang's wage come when they are home, with a letter that says how it went (the gamble's words,
+  where the answer has one, are told then). The answer's card shows the days away with the road; it is greyed while the
+  colonist can't leave, the colony would keep fewer than three able grown hands, there's no way out or no road, or the
+  town is more than eight days each way. The world event waits for its colonist before it ends (thirty days past at
+  most, and two days after they are home), its letters that would fall to them wait until they are back, and the moot's
+  vote is asked of the speaker at the moot on their last day there (they stay on up to three days for it). The blood
+  feud's elders of both families come to the gate with the question, and the talker sits with them there. Days there
+  (the road both ways on top): the drought's well 1, the new road's bridge 1 (a tile out, the wage carried home), the
+  herds' sickness 2, the great fire's roofs 4, the bumper harvest 4, the toll's petition 1, the iron's smiths 3, the
+  exiles' plea 1, the rebuilt bridge 7, the vault's writing 4, the closed markets' talks 2, the moot's speaker (with the
+  gift or without) 4, the old thrumbo's watch 4 (a tile out), the settlers' traps: the talk half a day, the traps
+  carried back 0. DESIGN.md "A colonist a world event sends to a far town goes"; README "Sent to a far town"; the
+  Almanac's world events page, *Reading one* (keywords unchanged).
+  - Code: `Source/ColonyCouncil/World/FarErrandMath.cs` (new, pure, linked into the tests), `FarErrands.cs` (new:
+    `WorldEffect_Away`, `FarErrandAway`, `FarErrands`), `FarErrandsDebug.cs` (new, four dev actions). Hooks:
+    `SeasonAway.Kinds` (the kind "world") and `AwayKind.Stays` (new, used in the season's "there" stage);
+    `WorldSituations.Tick` (the end held, `farErrandHeld` in the event's numbers), `Beats` (wait, come or drop),
+    `Run` (the event's person kept while away), `Resolve` (`FarErrands.AnswerRisk`); `WorldSituationWorker.CastBeat`
+    (a letter from the far town keeps its colonist); `SituationBeat.atPlace` and two config checks. Defs: the seven
+    world events' files, Keyed `Rimfolk_WorldSituations.xml` (12 keys). Tools: the play-out audit knows
+    `WorldEffect_Away`; eight skips gone (the road's builder, the herdsman, the harvest hands, the smiths, the exiles'
+    plea, the feud's talks, both settlers' answers). Nothing new is saved: which answer sent them is in the season
+    away's own words (`FarErrandMath.Note`).
+  - Text (the player's rule of 20 November 2026, flavour kept for world events; a restore of the world events' text to
+    before 0.270.1 should keep these lines): in each sending answer the `outcome` (now "sets out for ...") and the new
+    `home` lines (mostly the earlier flavour outcomes moved to the homecoming); `riskOutcome` removed from the drought's
+    well, the herdsman, the toll's petition, the exiles' plea, the closed markets' talks and the settlers' talk (their
+    words are the homecoming's [risk] lines); the moot's gift answer "who sets out for {PLACE} that same day" (was "in
+    the morning"); the harvest supper's "has been to none of them" line tagged [!hands]; the feud's mediate texts (the
+    elders "have come to its gate", "at the colony's gate"), its answer's outcome and risk outcome (at the gate) and four
+    ending lines ("the colony's table" now "the colony's gate").
+  - Decided here: the season away over the well storyline's way (the world map shows the caravan going to the very town;
+    the time away is the real road); the days from the words (the earlier flavour outcomes' "four days", "a week", "four
+    nights"); the settlers' traps carried back is a sending answer too (the words had the colony's hunter carry them to
+    the settlers' edge); the feud's map changed, not its words' place (the event is about the colony as neutral ground,
+    and its endings remember the talks at the colony), the gate rather than the table because that is where the visit
+    shows them; the petition refused costs its goodwill when the speaker is home; the settlers' talk gone wrong no
+    longer gives +5 goodwill.
+  - Tests: `Tools/Tests/FarErrandTests.cs` (the rules, the sixteen answers and their days, the words, the feud, the
+    seams).
+  - Not run here (none of it could be): the walk to the edge and the caravan of one on the world map to the town and
+    back, the arrival message, the homecoming's letter and the silver at the builder's feet, the answer greyed with its
+    reason, the event's letters waiting and its end held, the moot's vote asked on the last day, the feud's elders at the
+    gate and the talker with them.
+  - Try in the game (dev mode, "Rimfolk"): 1. "World event: the question that sends a colonist away, now..." and pick
+    one (say the great fire's roofs); answer it; watch the colonist walk out and the caravan of one on the world map.
+    2. "World event: the colonist sent away is there now", then "...days there up now", then "...home now": the
+    homecoming's letter, the learning and the goodwill; the event's end comes two days later. 3. The moot: send the
+    speaker; on their last day there the vote's letter comes; answer, and they come home. 4. The feud: the mediate
+    question brings both families' elders to the gate; the talker sits with them; the words come when they are done.
+    5. With two grown colonists, or the colonist drafted, the answer is greyed with the reason.
+  - Mods that would help: none needed; the caravans, roads and world map are the game's own.
 - 0.274.2, **A piece made for someone, kept
   for them** (20 November 2026; the player: "So while the material selection for creating a item seems to work for the
   most part, although it should, in my opinion, only show the materials where I also have enough available, or

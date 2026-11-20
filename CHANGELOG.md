@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ways out of bad traits
+
+*20 November 2026, version 0.275.0*
+
+- A way out of a bad trait no longer waits for the colony's ten days, so traits gained elsewhere can't crowd it out, and the character page shows every way out a colonist has from the start, with what is still missing.
+- Jealousy and a rebel's defiance fade after a seat on the council or two promises kept, and world weariness lifts after two long peaces and something good.
+- A bloodlust Rimfolk gave fades after a long peace, and a cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it.
+- A pyromaniac who works at the stove or the forge and stays calm loses the urge, and a lush or a stoner dries out after beating an addiction.
+- With Therapy (Continued), four sessions with a therapist count toward steadier nerves and a brighter mood.
+- Two new good traits: brave after holding the line and carrying someone to safety, and jogger for a fast walker after heavy hauling or seasons on the road.
+
 ## Kept for the one it was made for
 
 *20 November 2026, version 0.274.2*

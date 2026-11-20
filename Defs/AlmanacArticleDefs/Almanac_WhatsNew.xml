@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.275.0</version>
+        <date>20 November 2026</date>
+        <title>Ways out of bad traits</title>
+        <points>
+          <li>A way out of a bad trait no longer waits for the colony's ten days, so traits gained elsewhere can't crowd it out, and the character page shows every way out a colonist has from the start, with what is still missing.</li>
+          <li>Jealousy and a rebel's defiance fade after a seat on the council or two promises kept, and world weariness lifts after two long peaces and something good.</li>
+          <li>A bloodlust Rimfolk gave fades after a long peace, and a cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it.</li>
+          <li>A pyromaniac who works at the stove or the forge and stays calm loses the urge, and a lush or a stoner dries out after beating an addiction.</li>
+          <li>With Therapy (Continued), four sessions with a therapist count toward steadier nerves and a brighter mood.</li>
+          <li>Two new good traits: brave after holding the line and carrying someone to safety, and jogger for a fast walker after heavy hauling or seasons on the road.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.274.2</version>
         <date>20 November 2026</date>
         <title>Kept for the one it was made for</title>
