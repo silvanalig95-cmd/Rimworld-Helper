@@ -903,8 +903,8 @@ a year.
 Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
 nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
 Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 53 kinds of mark: downed in a raid, carried out of one, holding the
-line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
+lean of their own. Then life marks them, with 58 kinds of mark: downed in a raid, carried out of one, holding the
+line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness or nursing someone through one, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
 beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
 bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
@@ -952,7 +952,7 @@ little goodwill), a promised room has to come within a fortnight, and someone st
 keeping them costs more again.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 100 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 112 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
@@ -967,7 +967,7 @@ again and again, and a fast walker after a season of hauling. A habit lived for 
 from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
 healer's hands, trail-wise, scholar, mender); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
-loaded. Fifty-nine of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
+loaded. Sixty of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
 after a seat or two promises kept, a rebel settles the same way, a bloodlust Rimfolk gave fades after a long peace, a
 cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it, world weariness lifts
 after two long peaces and something good, a pyromaniac who works the stove or the forge and stays calm loses the urge,
@@ -977,11 +977,18 @@ feel for others again after half a year without an execution and with care shown
 came with fades after most of a year without a fight; a gourmand who went hungry and then didn't binge eats like anyone
 else, slothful steps up to lazy after hard work done well, very neurotic eases to neurotic in a long calm, and a recluse
 with a friend opens up (Biotech); for Vanilla Traits Expanded, a workaholic learns to rest, the anxious calm down, the
-squeamish harden after long hours as a doctor, a kleptomaniac stops taking once forgiven or given a seat, a slob tidies up
+squeamish harden after long hours as a doctor and many wounds tended or a patient nursed back to health, a kleptomaniac stops taking once forgiven or given a seat, a slob tidies up
 after hours of cleaning or the tidy habit (Dubs Bad Hygiene's slob and unhygienic too), an animal hater softens after a
 bond, three animals tamed or naming the animals, the submissive stand up, a snob is humbled, a couch potato gets up and
 an insomniac sleeps again; Vanilla Anomaly Expanded - Insanity's mood swings and impulsiveness settle; a brave
-colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road. The character page shows
+colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road.
+A doctor who nurses someone back to health is marked by it too, and that counts toward kindness; healer's hands also come
+of long hours as a doctor and three patients nursed back. New traits from the player's mods: a perfectionist after a
+run of masterworks, a dog person or a cat person after a year bonded with one of the colony's dogs or cats, a
+fisherman after many hours fishing (Vanilla Fishing Expanded), wanderlust after seasons away, a mountain lover after a
+year under a mountain's rock, and, rarely and only of what already happened on the map, desensitized after fights that
+cost lives and many burials (it fades again after a long peace and some kindness), a drunken master in a brawler who
+held the line drunk three times, and an occultist after long dark study (Anomaly), all three neither good nor bad. The character page shows
 "where life is taking them": every way out of a bad trait the colonist has, from the start, with what is still
 missing in plain words, then the other changes they are heading toward, with how many of the things that lead there
 have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own

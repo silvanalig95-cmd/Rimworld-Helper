@@ -8,7 +8,9 @@ batch (below) is built, not released yet, each item marked **Built**; the same d
 other 26 follow in two more builds (the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25; the new traits 28 to 36). DESIGN.md,
 "More traits that come and go, the first batch", has every rule as built and the parts the later builds reuse; the
 second batch (the ways out, built the same day, not released yet, each marked **Built**) is in "More traits that come
-and go, the other ways out".
+and go, the other ways out", and the third (the new traits 28 to 36, built the same day, not released yet, each marked
+**Built**) in "More traits that come and go, the new traits". With the third batch every one of the 38 is built, and
+the list is done.
 
 ## Today
 
@@ -95,7 +97,7 @@ new part.
 16. **Lush and stoner dry out** (Vanilla Traits Expanded): an addiction overcome in the last 120 days
     (AddictionOvercome), as the existing teetotal rule. Common (15%). **Built** (20 November 2026, not released yet).
 17. **Squeamish hardens** (Vanilla Traits Expanded): 40 recent hours as a doctor and 30 times tending others (the game's
-    record). Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). The nursing mark of 28 joins it with the new traits' build.
+    record). Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). The nursing mark of 28 joins it with the new traits' build: built with them, a rule of its own with a patient nursed back in place of the 30 times tending others.
 18. **Kleptomaniac reformed** (Vanilla Traits Expanded): forgiven (ForgivenBy) or given a seat (Elected), 120 calm days,
     trust up 5. Rare (4%). Trusted, they stop taking. **Built** (20 November 2026, the second batch, not released yet). Two rules.
 19. **Slob tidies up** (Vanilla Traits Expanded's slob; Dubs Bad Hygiene's slob and unhygienic, one step up): 40 recent
@@ -122,25 +124,37 @@ new part.
 28. **Nursed someone back, and healer's hands from it**: a new mark for the nurse (the other side of "nursed back to
     health", which already names who did it), counted toward kind and squeamish's way out (17), and a second way to
     Rimfolk's healer's hands beside the habit: 60 recent hours as a doctor and three patients nursed back. Uncommon (8%).
+    **Built** (20 November 2026, the third batch, not released yet). The mark ("nursed someone back to health") goes to the doctor when a patient pulls through a dangerous
+    illness, once for each patient; it is one of kind's three marks, and squeamish's way out takes it in place of the 30
+    times tending others (a rule of its own).
 29. **Perfectionist** (Vanilla Traits Expanded): three masterworks and a mastered skill
-    within 180 days, pride up 10. Rare (4%), neither good nor bad.
+    within 180 days, pride up 10. Rare (4%), neither good nor bad. **Built** (20 November 2026, the third batch, not released yet). A legendary piece counts as
+    a masterwork.
 30. **Dog person or cat person** (Vanilla Traits Expanded): a year bonded with one of the colony's dogs or cats. Common
-    once it holds (10%).
-31. **Fisherman** (Vanilla Fishing Expanded): 80 recent hours fishing (the Fishing work). Uncommon (8%).
+    once it holds (10%). **Built** (20 November 2026, the third batch, not released yet). A year is the game's, 60 days, from the bond's own start; two rules,
+    never both traits, never an animal hater.
+31. **Fisherman** (Vanilla Fishing Expanded): 80 recent hours fishing (the Fishing work). Uncommon (8%). **Built** (20 November 2026, the third batch, not released yet).
+    The Fishing work is Odyssey's, which the mod builds on in 1.6.
 
 ## E. A few flavourful ones from the mods' traits
 
 32. **Wanderlust** (Vanilla Traits Expanded): two seasons abroad within a year (WorldSeen twice), openness up 10.
-    Uncommon (5%), neither good nor bad.
+    Uncommon (5%), neither good nor bad. **Built** (20 November 2026, the third batch, not released yet). The mark for a second season abroad within a year,
+    twice.
 33. **Desensitized** (Vanilla Traits Expanded): two costly fights (SurvivedLoss) and
     20 burials (the game's record), warmth down 6. Rare (3%), neither good nor bad, from hard things that already
-    happened. Its way out: a long peace and two kindness marks.
+    happened. Its way out: a long peace and two kindness marks. **Built** (20 November 2026, the third batch, not released yet). The burials are the game's
+    record of corpses buried; the costly fights the mark for a fight the colony won but lost people in. Its way out is
+    neither good nor bad news either, so it is not one of the ways out of a bad trait (37, 38).
 34. **Mountain lover** (Vanilla Traits Expanded): a year almost always under a mountain's roof, as the undergrounder
-    rule. Rare (3%).
+    rule. Rare (3%). **Built** (20 November 2026, the third batch, not released yet). The undergrounder's 97% of their time under a roof, and the roof a
+    mountain's rock for about twelve of their waking hours a day lately (new: hours under a rock roof in the practice
+    log).
 35. **Drunken master** (Vanilla Traits Expanded): a brawler who held the line three times while drunk (new: a fight mark
-    counted only while drunk). Rare (3%), neither good nor bad.
+    counted only while drunk). Rare (3%), neither good nor bad. **Built** (20 November 2026, the third batch, not released yet). A brawler is the game's trait;
+    drunk is the game's alcohol high when the mark comes, at the end of the fight.
 36. **Occultist** (Anomaly): 60 recent hours of dark study and drawn to the unknown twice (TouchedByTheUnknown).
-    Uncommon (5%), neither good nor bad.
+    Uncommon (5%), neither good nor bad. **Built** (20 November 2026, the third batch, not released yet).
 
 ## F. How often, and how it shows
 

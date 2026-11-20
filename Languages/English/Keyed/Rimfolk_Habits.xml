@@ -7,6 +7,7 @@
   <CC_Practice_Night>late nights</CC_Practice_Night>
   <CC_Practice_Morning>early mornings</CC_Practice_Morning>
   <CC_Practice_Outdoors>time outdoors</CC_Practice_Outdoors>
+  <CC_Practice_Rock>time under a rock roof</CC_Practice_Rock>
 
   <CC_Quirk_CountedStores>{PAWN_nameDef} has been over the stores twice: the food won't last the week.</CC_Quirk_CountedStores>
 

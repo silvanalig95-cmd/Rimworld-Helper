@@ -2,7 +2,8 @@
 <Defs>
 
   <!--
-    Marks of kindness, shame and betrayal (Source/ColonyCouncil/Persona/Marks.cs): nursed through an illness, a kindness
+    Marks of kindness, shame and betrayal (Source/ColonyCouncil/Persona/Marks.cs): nursed through an illness or nursing
+    someone through one, a kindness
     remembered, a promise the council kept or broke, forgiven after a breakdown, a secret betrayed, a seat lost, a heart
     broken. {OTHER} is the other person in it; where a mark comes from a memory with labelDay, {LABEL} is the day.
   -->
@@ -29,6 +30,39 @@
           <cheerful><li>I survived {LABEL}, mostly out of spite, and partly because {OTHER_nameDef} wouldn't let me do otherwise.</li></cheerful>
           <gloomy><li>I came through {LABEL}. {OTHER_nameDef} made sure of it, though I'm not sure I'd have bothered.</li></gloomy>
           <cold><li>{OTHER_nameDef}'s care through {LABEL} was competent and patient. I will remember it.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!--
+    The other side of being nursed back to health (docs/traits-proposals.md 28, 20 November 2026): the doctor who saw a
+    patient through a dangerous illness (Health/HealthTracker.cs, PulledThrough). Each patient once while it lasts, and
+    again a day later for the next one, so "three patients nursed back" can be counted (healer's hands).
+  -->
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_NursedSomeone</defName>
+    <label>nursed someone back to health</label>
+    <shifts><warmth>4</warmth><pride>3</pride><outlook>2</outlook></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has been surer of {PAWN_objective}self as a doctor since nursing {OTHER} through {LABEL}.</shaped>
+    <defaultLabel>a long illness</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>NursedSomeone</family>
+        <repeatDays>1</repeatDays>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is over {LABEL} at last. I tended {OTHER_objective} every day of it.</li>
+            <li>I sat up with {OTHER_nameDef} through the worst of {LABEL}, and today {OTHER_pronoun} walked to supper on {OTHER_possessive} own.</li>
+            <li>{OTHER_nameDef} thanked me for getting {OTHER_objective} through {LABEL}. I was glad to do it.</li>
+          </plain>
+          <warm><li>Seeing {OTHER_nameDef} well again after {LABEL} is the best part of this work.</li></warm>
+          <blunt><li>{OTHER_nameDef} survived {LABEL}. I made sure of it.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} got over {LABEL}, and I helped. A good day.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} pulled through {LABEL}. Not everyone I tend does.</li></gloomy>
+          <cold><li>{OTHER_nameDef} recovered from {LABEL} under my care. The treatment worked.</li></cold>
         </journal>
       </li>
     </modExtensions>

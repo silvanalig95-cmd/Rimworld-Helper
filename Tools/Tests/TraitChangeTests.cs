@@ -51,7 +51,9 @@ public static class TraitChangeTests
     private static readonly HashSet<string> GameWork = new HashSet<string>
     {
         "Hauling", "Cooking", "Smithing", "Cleaning", "Doctor", "Hunting", "Growing", "Mining", "Construction", "Crafting", "Tailoring", "Art",
-        "Research", "Handling", "PlantCutting", "Warden", "work", "night", "morning", "outdoors"
+        "Research", "Handling", "PlantCutting", "Warden", "work", "night", "morning", "outdoors", "rock",
+        // Odyssey's fishing and Anomaly's dark study (docs/player-mods defs.tsv.gz: WorkTypeDef Fishing, DarkStudy).
+        "Fishing", "DarkStudy"
     };
     private static readonly HashSet<string> GameEvents = new HashSet<string>
     {
@@ -62,7 +64,7 @@ public static class TraitChangeTests
     private static readonly HashSet<string> GameRecords = new HashSet<string>
     {
         "KillsHumanlikes", "Kills", "TimesInMentalState", "TimeGettingJoy", "TimeUnderRoof", "TimeAsColonistOrColonyAnimal", "TimeInBed",
-        "AnimalsTamed", "TimesTendedOther"
+        "AnimalsTamed", "TimesTendedOther", "CorpsesBuried"
     };
     // The breakdowns a tally counts (the game's MentalStateDefs, docs/player-mods defs.tsv.gz).
     private static readonly HashSet<string> GameMentalStates = new HashSet<string> { "Binging_Food" };
@@ -240,6 +242,49 @@ public static class TraitChangeTests
         Check(!TraitChangeMath.BuildingShows(false, 0, 5) && !TraitChangeMath.BuildingShows(false, 1, 4) && TraitChangeMath.BuildingShows(false, 2, 4),
             "any other rule shows once a third of its evidence is there");
         Check(!TraitChangeMath.BuildingShows(false, 0, 0), "a rule with only parts that hold by default isn't shown for them");
+
+        // ---------- The new traits' parts (28 to 36): drunk, the marks on the page, dogs and cats, a bond's length ----------
+        Check(TraitChangeMath.TallyCounts(false, true, false, true) && !TraitChangeMath.TallyCounts(false, true, false, false),
+            "35: held the line drunk counts; sober, not");
+        Check(TraitChangeMath.TallyCounts(false, false, false, false) && TraitChangeMath.TallyCounts(true, false, true, false) && !TraitChangeMath.TallyCounts(true, false, false, true),
+            "a tally that asks nothing counts always; one asked while hungry still only while hungry");
+        Check(!TraitChangeMath.TallyCounts(true, true, true, false) && TraitChangeMath.TallyCounts(true, true, true, true), "both asked: both must hold");
+        {
+            // Two masterworks counted as they came, a third made before the count began and still on the page, and the
+            // two counted ones on the page too (the same marks, the same ticks).
+            var counted = new List<int> { now - 40 * Day, now - 10 * Day };
+            var page = new List<int> { now - 70 * Day, now - 40 * Day, now - 10 * Day };
+            Check(TraitChangeMath.PageMarksToAdd(counted, page, -1, now, 180f).SequenceEqual(new[] { now - 70 * Day }),
+                "29: a masterwork from before the count began counts, the ones already counted don't twice");
+            Check(TraitChangeMath.PageMarksToAdd(counted, page, now - 50 * Day, now, 180f).Count == 0, "only marks since the trait last changed");
+            Check(TraitChangeMath.PageMarksToAdd(new List<int>(), page, -1, now, 30f).SequenceEqual(new[] { now - 10 * Day }), "and within the days the tally asks");
+            Check(TraitChangeMath.PageMarksToAdd(new List<int> { now - 10 * Day + Day / 4 }, new List<int> { now - 10 * Day }, -1, now, 180f).Count == 0,
+                "a mark counted within half a day of its time on the page is the same one");
+            Check(TraitChangeMath.PageMarksToAdd(null, null, -1, now, 0f).Count == 0, "nothing on the page: nothing added");
+        }
+        // 30: the dogs and cats of the player's list (docs/player-mods races.tsv, active): the game's, Odyssey's and Vanilla Animals Expanded's.
+        foreach (var (defName, label) in new[]
+                 {
+                     ("Husky", "husky"), ("LabradorRetriever", "labrador retriever"), ("YorkshireTerrier", "yorkshire terrier"), ("AEXP_Corgi", "corgi"),
+                     ("AEXP_FrenchBulldog", "french bulldog"), ("AEXP_GermanShepherd", "german shepherd"), ("AEXP_Poodle", "poodle"),
+                     ("AEXP_WelshTerrier", "welsh terrier"), ("AEXP_AfricanWildDog", "african wild dog")
+                 })
+            Check(TraitChangeMath.PetKind(defName, label) == TraitChangeMath.Dog, $"30: a {label} is a dog");
+        foreach (var (defName, label) in new[]
+                 {
+                     ("Cat", "cat"), ("Cat_Scimitar", "scimitar cat"), ("AEXP_CatMaineCoon", "maine coon"), ("AEXP_CatSiamese", "siamese cat"),
+                     ("AEXP_CatSphynx", "sphynx cat"), ("AEXP_CatPersian", "persian cat")
+                 })
+            Check(TraitChangeMath.PetKind(defName, label) == TraitChangeMath.Cat, $"30: a {label} is a cat");
+        foreach (var (defName, label) in new[]
+                 {
+                     ("PrairieDog", "prairie dog"), ("Wolf_Timber", "timber wolf"), ("Lynx", "lynx"), ("Fox_Red", "red fox"), ("BogHound", "bog hound"),
+                     ("AA_RipperHound", "ripper hound"), ("GR_Catbear", "catbear"), ("Muffalo", "muffalo"), ("PW_Delcatty", "Delcatty")
+                 })
+            Check(TraitChangeMath.PetKind(defName, label) == null, $"30: a {label} is neither a dog nor a cat");
+        Check(Math.Abs(TraitChangeMath.BondDays(new List<int> { now - 20 * Day, now - 70 * Day }, now) - 70f) < 0.01f, "30: of two bonds the longer counts");
+        Check(Math.Abs(TraitChangeMath.BondDays(new List<int> { -5 }, now) - now / (float)Day) < 0.01f, "30: a bond from the colony's first day counts from then");
+        Check(TraitChangeMath.BondDays(new List<int> { now + Day }, now) == 0f && TraitChangeMath.BondDays(null, now) == 0f, "30: no bond, or one from a loaded future: no days");
 
         // ---------- Absorbing: a trait stands for the change, nothing doubles ----------
         float Total(float n, float l, float d) => PersonaMath.Total(n, l, d);
@@ -938,7 +983,109 @@ public static class TraitChangeTests
             }.Contains((string)r.Element("defName"))).ToList();
             Check(second.Count == 29 && second.All(WayOut) && second.All(r => ((int?)r.Element("tone") ?? 0) > 0 && (string)r.Element("change") != "Gain"),
                 $"the second batch: 29 ways out, none of them a gain ({second.Count})");
-            Check(rules.Count(r => r.Element("wayOutOf") != null) == 15 + 15 + 29, $"fifty-nine ways out of a bad trait ({rules.Count(r => r.Element("wayOutOf") != null)})");
+            Check(rules.Count(r => r.Element("wayOutOf") != null) == 15 + 15 + 29 + 1, $"sixty ways out of a bad trait, the last 17 with 28's nurse ({rules.Count(r => r.Element("wayOutOf") != null)})");
+
+            // ---------- The new traits, 28 to 36 (the player's "go ahead with all the traits", 20 November 2026) ----------
+            bool Gain(XElement r, string trait) => (string)r.Element("trait") == trait && ((string)r.Element("change") ?? "Gain") == "Gain";
+            int Tone(XElement r) => (int?)r.Element("tone") ?? 0;
+            string PracticeOf(XElement r) => (string)r.Element("practice") ?? "";
+            bool CountsMarks(XElement? t, string marks, int count) => t != null && List((string)t.Element("marks")).ToHashSet().SetEquals(List(marks))
+                                                                         && ((int?)t.Element("count") ?? 1) == count && t.Element("noneDays") == null;
+            // 28. A mark for the nurse; counted toward kind and squeamish's way out; healer's hands from 60 hours and three patients.
+            {
+                Check(markNames.Contains("Rimfolk_Mark_NursedSomeone") && markNames.Contains("NursedSomeone"), "28: the nurse has a mark of their own");
+                var kindRule = Need("Rimfolk_TC_KindGained");
+                Check(AnyOf(kindRule, 0).Contains("NursedSomeone") && AnyOf(kindRule, 0).Contains("NursedBack"), "28: kind counts nursing someone back as well as being nursed back");
+                var sq = Need("Rimfolk_TC_VTE_SqueamishNursed");
+                var sq17 = Need("Rimfolk_TC_VTE_SqueamishHardens");
+                Check(Lose(sq, "VTE_Squeamish") && PracticeOf(sq) == PracticeOf(sq17) && AnyOf(sq, 0).SequenceEqual(new[] { "NursedSomeone" }) && sq.Element("records") == null,
+                    "28 and 17: squeamish's way out with the nurse's mark in place of 30 times tending others");
+                Check(Chance(sq) == Chance(sq17) && WayOut(sq) && Vtes(sq), "28 and 17: as 17 in all else");
+                var healer = Need("Rimfolk_TC_HealerNursing");
+                var habitHealer = Need("Rimfolk_TC_HabitHealer");
+                Check(Gain(healer, "Rimfolk_Healer") && (string)habitHealer.Element("trait") == "Rimfolk_Healer" && healer.Element("habit") == null,
+                    "28: a second way to healer's hands, beside the habit");
+                Check(PracticeOf(healer) == "Doctor>=60" && CountsMarks(Tally(healer, "Nursed"), "NursedSomeone", 3), "28: 60 recent hours as a doctor and three patients nursed back");
+                Check(Chance(healer) == 0.08f && Uncommon(healer) && Tone(healer) > 0, "28: uncommon (8%), good news");
+            }
+            // 29. Perfectionist: three masterworks and a mastered skill within 180 days, pride up 10; rare, neither good nor bad.
+            {
+                var r = Need("Rimfolk_TC_VTE_Perfectionist");
+                var fine = Tally(r, "FineWork");
+                Check(Gain(r, "VTE_Perfectionist") && Vtes(r) && fine != null && List((string)fine.Element("marks")).Contains("Masterwork")
+                      && (int?)fine.Element("count") == 3 && (int?)fine.Element("withinDays") == 180, "29: three masterworks within 180 days (a legendary piece counts as one)");
+                Check(AnyOf(r, 0).SequenceEqual(new[] { "Mastered" }) && (int?)r.Element("marks")!.Elements("li").First().Element("withinDays") == 180, "29: and a skill mastered within 180 days");
+                Check(Moved(r) == "pride>=10" && Chance(r) == 0.04f && Rare(r) && Tone(r) == 0, "29: pride up 10, rare (4%), neither good nor bad");
+            }
+            // 30. Dog person or cat person: a year bonded with one of the colony's dogs or cats; common once it holds.
+            foreach (var (n, trait, kindOf) in new[] { ("Rimfolk_TC_VTE_DogPerson", "VTE_DogPerson", "dog"), ("Rimfolk_TC_VTE_CatPerson", "VTE_CatPerson", "cat") })
+            {
+                var r = Need(n);
+                Check(Gain(r, trait) && Vtes(r) && (bool?)r.Element("bondedAnimal") == true && (string)r.Element("bondedKind") == kindOf, $"30: {trait}: bonded with one of the colony's {kindOf}s");
+                Check((int?)r.Element("bondedDays") == 60, $"30: {trait}: for a year (60 days)");
+                Check(Chance(r) == 0.1f && Common(r) && Tone(r) > 0, $"30: {trait}: common once it holds (10%)");
+            }
+            // 31. Fisherman: 80 recent hours fishing (Vanilla Fishing Expanded, on Odyssey's fishing).
+            {
+                var r = Need("Rimfolk_TC_VCEF_Fisherman");
+                Check(Gain(r, "VCEF_Fisherman") && Mods(r, "vanillaexpanded.vcef") && (string)r.Element("dlc") == "Odyssey" && PracticeOf(r) == "Fishing>=80",
+                    "31: 80 recent hours of the Fishing work, with Vanilla Fishing Expanded");
+                Check(Chance(r) == 0.08f && Uncommon(r), "31: uncommon (8%)");
+            }
+            // 32. Wanderlust: two seasons abroad within a year (the mark, twice), openness up 10; neither good nor bad.
+            {
+                var r = Need("Rimfolk_TC_VTE_Wanderlust");
+                Check(Gain(r, "VTE_Wanderlust") && Vtes(r) && CountsMarks(Tally(r, "Abroad"), "Rimfolk_Mark_WorldSeen", 2), "32: a second season abroad within a year, twice");
+                Check(Moved(r) == "openness>=10" && Chance(r) == 0.05f && Uncommon(r) && Tone(r) == 0, "32: openness up 10, uncommon (5%), neither good nor bad");
+            }
+            // 33. Desensitized: two costly fights and 20 burials, warmth down 6; rare, neither good nor bad; its way out a long peace and two kindnesses.
+            {
+                var r = Need("Rimfolk_TC_VTE_Desensitized");
+                Check(Gain(r, "VTE_Desensitized") && Vtes(r) && CountsMarks(Tally(r, "CostlyFights"), "SurvivedLoss", 2), "33: two fights that cost the colony lives");
+                Check((string)r.Element("records") == "CorpsesBuried>=20" && Moved(r) == "warmth<=-6", "33: 20 corpses buried (the game's record), warmth down 6");
+                Check(Chance(r) == 0.03f && Rare(r) && Tone(r) == 0, "33: rare (3%), neither good nor bad");
+                var eases = Need("Rimfolk_TC_VTE_DesensitizedEases");
+                Check(Lose(eases, "VTE_Desensitized") && AnyOf(eases, 0).SequenceEqual(new[] { "LongPeace" }) && CountsMarks(Tally(eases, "Kindness"), "Kindness", 2),
+                    "33: it goes again after a long peace and two kindnesses remembered");
+                Check(Tone(eases) == 0 && eases.Element("wayOutOf") == null && eases.Element("onlyGiven") == null, "33: neither good nor bad going, any desensitized, not a way out of a bad trait");
+            }
+            // 34. Mountain lover: a year almost always under a mountain's roof, as the undergrounder rule; rare.
+            {
+                var r = Need("Rimfolk_TC_VTE_MountainLover");
+                var under = Need("Rimfolk_TC_Undergrounder");
+                Check(Gain(r, "VTE_ChildOfMountain") && Vtes(r) && PaceAtLeast(r) == PaceAtLeast(under) && (string)r.Element("pace")!.Element("li")!.Element("record") == "TimeUnderRoof"
+                      && (int?)r.Element("daysHere") == (int?)under.Element("daysHere") && (string)r.Element("now") == (string)under.Element("now"), "34: as the undergrounder");
+                Check(TraitChangeMath.TryParseFacts(PracticeOf(r), out var rock, out _) && rock.Count == 1 && rock[0].name == "rock" && rock[0].atLeast
+                      && rock[0].value >= PracticeMath.Steady(10f) && rock[0].value <= PracticeMath.Steady(16f), "34: the roof a mountain's rock for most of their waking hours lately");
+                Check(Chance(r) == 0.03f && Rare(r), "34: rare (3%)");
+            }
+            // 35. Drunken master: a brawler who held the line three times while drunk; rare, neither good nor bad.
+            {
+                var r = Need("Rimfolk_TC_VTE_DrunkenMaster");
+                var drunk = Tally(r, "HeldDrunk");
+                Check(Gain(r, "VTE_DrunkenMaster") && Vtes(r) && r.Element("withTrait")!.Elements("li").Single().Value == "Brawler" && GameTraits.Contains("Brawler"), "35: a brawler");
+                Check(CountsMarks(drunk, "Rimfolk_Mark_HeldTheLine", 3) && (bool?)drunk!.Element("whileDrunk") == true, "35: held the line three times, each while drunk");
+                Check(Chance(r) == 0.03f && Rare(r) && Tone(r) == 0, "35: rare (3%), neither good nor bad");
+            }
+            // 36. Occultist: 60 recent hours of dark study and drawn to the unknown twice; uncommon, neither good nor bad.
+            {
+                var r = Need("Rimfolk_TC_Occultist");
+                Check(Gain(r, "Occultist") && (string)r.Element("dlc") == "Anomaly" && PracticeOf(r) == "DarkStudy>=60", "36: 60 recent hours of dark study (Anomaly)");
+                Check(CountsMarks(Tally(r, "DrawnBeyond"), "Rimfolk_Mark_TouchedByTheUnknown", 2), "36: drawn to what lies beyond, twice");
+                Check(Chance(r) == 0.05f && Uncommon(r) && Tone(r) == 0, "36: uncommon (5%), neither good nor bad");
+            }
+            // Harm at the game's own rate: no new bad trait; the three from hard things are rare or uncommon and neither good nor bad.
+            var third = new[]
+            {
+                "Rimfolk_TC_HealerNursing", "Rimfolk_TC_VTE_SqueamishNursed", "Rimfolk_TC_VTE_Perfectionist", "Rimfolk_TC_VTE_DogPerson", "Rimfolk_TC_VTE_CatPerson",
+                "Rimfolk_TC_VCEF_Fisherman", "Rimfolk_TC_VTE_Wanderlust", "Rimfolk_TC_VTE_Desensitized", "Rimfolk_TC_VTE_DesensitizedEases",
+                "Rimfolk_TC_VTE_MountainLover", "Rimfolk_TC_VTE_DrunkenMaster", "Rimfolk_TC_Occultist"
+            }.Select(Need).ToList();
+            Check(third.All(r => Tone(r) >= 0), "the new traits: none of them bad news");
+            Check(third.Count(r => ((string)r.Element("change") ?? "Gain") == "Gain") == 10, "the new traits: ten gains, one more way out, and desensitized going again");
+            foreach (var n in new[] { "Rimfolk_TC_VTE_Desensitized", "Rimfolk_TC_VTE_DrunkenMaster", "Rimfolk_TC_Occultist" })
+                Check(Tone(Need(n)) == 0 && Chance(Need(n)) <= 0.05f, $"{n}: from hard things that already happened, rare and neither good nor bad");
+            Check(rules.Count == 112, $"112 rules in all ({rules.Count})");
         }
 
         Check(rules.Select(r => (string)r.Element("defName")).Distinct().Count() == rules.Count, "every rule has its own name");

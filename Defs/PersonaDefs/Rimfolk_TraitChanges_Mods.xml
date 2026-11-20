@@ -250,6 +250,283 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!--
+    The new traits (docs/traits-proposals.md 29 to 35, 20 November 2026, the player's "go ahead with all the traits"):
+    each from Vanilla Traits Expanded by its defName in docs/player-mods/traits.tsv (active). A count of marks reads
+    them as they come and while they are on the page; held the line while drunk only as it comes. Perfectionist,
+    wanderlust, desensitized and drunken master are neither good nor bad (tone 0), and the last three come only of what
+    already happened on the map: seasons away, fights the colony lost people in and its burials, fights won drunk.
+  -->
+
+  <!-- 29. Perfectionist: three masterworks and a skill mastered within 180 days, pride moved +10. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_Perfectionist</defName>
+    <label>a perfectionist after a run of fine work</label>
+    <trait>VTE_Perfectionist</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <tallies>
+      <li><key>FineWork</key><marks>Masterwork, Legendary</marks><count>3</count><withinDays>180</withinDays><label>made a masterwork or a legendary piece</label></li>
+    </tallies>
+    <marks>
+      <li><any>Mastered</any><withinDays>180</withinDays></li>
+    </marks>
+    <moved>pride>=10</moved>
+    <chance>0.04</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become a perfectionist.</news>
+    <meaning>Three masterworks and a skill mastered in the last 180 days have raised {PAWN_nameDef}'s standards. {PAWN_nameDef} now cares a great deal about how well {PAWN_possessive} work turns out.</meaning>
+    <journal>
+      <plain>
+        <li>I took a table apart today and made it again. The first one was fine, but fine isn't good enough for me anymore.</li>
+        <li>I checked every joint twice before I let anyone use it.</li>
+      </plain>
+      <warm><li>Everyone here deserves things that are made properly. I won't hand over less.</li></warm>
+      <blunt><li>If it isn't done right, it isn't done.</li></blunt>
+      <cheerful><li>Another piece came out exactly as I wanted. I could get used to that.</li></cheerful>
+      <gloomy><li>Nothing I make is ever quite right. I keep trying anyway.</li></gloomy>
+      <cold><li>Anything below my best is a waste of material.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 30. Dog person, cat person: a year (60 days) bonded with one of the colony's dogs or cats. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_DogPerson</defName>
+    <label>a dog person after a year with their dog</label>
+    <trait>VTE_DogPerson</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <bondedAnimal>true</bondedAnimal>
+    <bondedKind>dog</bondedKind>
+    <bondedDays>60</bondedDays>
+    <blockedBy><li>VTE_CatPerson</li><li>VTE_AnimalHater</li></blockedBy>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a dog person.</news>
+    <meaning>{PAWN_nameDef} has been bonded to one of the colony's dogs for a year, and now likes having dogs around more than most people do.</meaning>
+    <journal>
+      <plain>
+        <li>My dog follows me from one job to the next. I'd miss it if it didn't.</li>
+        <li>I saved the best scraps from supper for the dog again.</li>
+      </plain>
+      <warm><li>A dog is good company. Mine has been with me through a lot this year.</li></warm>
+      <blunt><li>Good dog. Best one here.</li></blunt>
+      <cheerful><li>The dog met me at the door again today, wagging its tail the whole time.</li></cheerful>
+      <gloomy><li>Some days the dog is the only one glad to see me.</li></gloomy>
+      <cold><li>The dog is reliable and asks for little. I value that.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_CatPerson</defName>
+    <label>a cat person after a year with their cat</label>
+    <trait>VTE_CatPerson</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <bondedAnimal>true</bondedAnimal>
+    <bondedKind>cat</bondedKind>
+    <bondedDays>60</bondedDays>
+    <blockedBy><li>VTE_DogPerson</li><li>VTE_AnimalHater</li></blockedBy>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a cat person.</news>
+    <meaning>{PAWN_nameDef} has been bonded to one of the colony's cats for a year, and now likes having cats around more than most people do.</meaning>
+    <journal>
+      <plain>
+        <li>The cat sleeps on my bed most nights now. I've stopped moving it.</li>
+        <li>I left a bit of fish out for the cat. It pretended not to notice.</li>
+      </plain>
+      <warm><li>My cat has been with me a year now. I like the company.</li></warm>
+      <blunt><li>Cats are better company than most people.</li></blunt>
+      <cheerful><li>The cat sat in my lap all evening. I didn't get anything done and didn't mind.</li></cheerful>
+      <gloomy><li>The cat doesn't ask questions. That suits me.</li></gloomy>
+      <cold><li>Cats are independent and clean. I approve.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 32. Wanderlust: two seasons abroad again within a year of the last (the mark for it, twice), openness moved +10. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_Wanderlust</defName>
+    <label>wanderlust after seasons away</label>
+    <trait>VTE_Wanderlust</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <tallies>
+      <li><key>Abroad</key><marks>Rimfolk_Mark_WorldSeen</marks><count>2</count><label>a second season abroad within a year</label></li>
+    </tallies>
+    <moved>openness>=10</moved>
+    <chance>0.05</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has developed a wanderlust.</news>
+    <meaning>After season after season away from the colony, {PAWN_nameDef} has come to like travelling, and gets restless if {PAWN_pronoun} stays at home too long.</meaning>
+    <journal>
+      <plain>
+        <li>I keep looking at the road out of the colony.</li>
+        <li>I still think about the towns we passed through. I'd like to see more of them.</li>
+      </plain>
+      <warm><li>I love it here, but there's a whole world out there I haven't seen yet.</li></warm>
+      <blunt><li>I want to go somewhere. Anywhere.</li></blunt>
+      <cheerful><li>I've started a list of places to see next. It's getting long.</li></cheerful>
+      <gloomy><li>The walls feel closer every day I stay.</li></gloomy>
+      <cold><li>Staying in one place is starting to feel like a waste of time.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    33. Desensitized: two fights the colony won but lost people in (fought through a costly fight, counted as it comes),
+    20 corpses buried (the game's record), warmth moved -6; rare. It fades again after a long peace and two kindnesses
+    remembered; neither good nor bad either way, so neither is a way out of a bad trait.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_Desensitized</defName>
+    <label>desensitized after costly fights and many burials</label>
+    <trait>VTE_Desensitized</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <tallies>
+      <li><key>CostlyFights</key><marks>SurvivedLoss</marks><count>2</count><label>fought through a costly fight</label></li>
+    </tallies>
+    <records>CorpsesBuried>=20</records>
+    <moved>warmth&lt;=-6</moved>
+    <chance>0.03</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become desensitized.</news>
+    <meaning>{PAWN_nameDef} has been through two fights in which people of the colony died and has buried many bodies. Death and corpses no longer upset {PAWN_objective} as they used to.</meaning>
+    <journal>
+      <plain>
+        <li>I dug another grave today and thought about supper while I did it.</li>
+        <li>I walked past the bodies after the fight and didn't look away.</li>
+      </plain>
+      <warm><li>I still care about the people we lose. I just don't fall apart anymore.</li></warm>
+      <blunt><li>Bodies don't bother me now.</li></blunt>
+      <cheerful><li>Someone has to bury the dead, and I can do it now without feeling sick. That's something.</li></cheerful>
+      <gloomy><li>I've buried too many to feel each one.</li></gloomy>
+      <cold><li>A corpse is a task. I handle it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_DesensitizedEases</defName>
+    <label>no longer desensitized after a long peace and some kindness</label>
+    <trait>VTE_Desensitized</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <tallies>
+      <li><key>Kindness</key><marks>Kindness</marks><count>2</count><label>a kindness remembered</label></li>
+    </tallies>
+    <chance>0.05</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} is no longer desensitized.</news>
+    <meaning>A long peace and the kindness of others have softened {PAWN_nameDef}. Death and corpses upset {PAWN_objective} again, as they do most people.</meaning>
+    <journal>
+      <plain>
+        <li>Someone talked about the people we've lost and I had to leave the room. That hasn't happened in a long time.</li>
+        <li>I can't walk past the graves without stopping anymore.</li>
+      </plain>
+      <warm><li>People have been kind to me. It has made me feel things again, the bad along with the good.</li></warm>
+      <blunt><li>Death bothers me again. Probably for the best.</li></blunt>
+      <cheerful><li>It's been quiet for so long that I've remembered how to be soft.</li></cheerful>
+      <gloomy><li>I feel the losses again. I'm not sure I wanted that back.</li></gloomy>
+      <cold><li>My reactions to death have returned to normal. I'm not certain that's an improvement.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    34. Mountain lover (Vanilla Traits Expanded's "child of the mountain"): as the undergrounder, 97% of their time under a
+    roof over the last 60 days, 180 days in the colony and openness 0 or less; and the roof a mountain's rock for most of
+    their waking hours lately (240 recent hours, about twelve hours a day, in the practice kept for habits).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_MountainLover</defName>
+    <label>a mountain lover after a year under the rock</label>
+    <trait>VTE_ChildOfMountain</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <pace>
+      <li><record>TimeUnderRoof</record><atLeast>0.97</atLeast><days>60</days><label>time under a roof</label></li>
+    </pace>
+    <practice>rock>=240</practice>
+    <daysHere>180</daysHere>
+    <now>openness&lt;=0</now>
+    <chance>0.03</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a mountain lover.</news>
+    <meaning>{PAWN_nameDef} has spent a year almost always under a roof, most of it under a mountain's rock, and now feels at home there.</meaning>
+    <journal>
+      <plain>
+        <li>I like the quiet under the rock. You can't hear the wind in here.</li>
+        <li>I went outside for a while today and was glad to get back under the mountain.</li>
+      </plain>
+      <warm><li>The mountain keeps all of us safe. I've grown fond of it.</li></warm>
+      <blunt><li>Rock over my head. That's how I like it.</li></blunt>
+      <cheerful><li>Cool in summer, warm in winter, and nothing falls on you from the sky. The mountain is a fine home.</li></cheerful>
+      <gloomy><li>Out under the sky I feel exposed. Under the rock I don't.</li></gloomy>
+      <cold><li>Stone overhead is the safest roof there is.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 35. Drunken master: a brawler who held the line three times while drunk (counted only as it comes, drunk); rare. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_DrunkenMaster</defName>
+    <label>a drunken master after fights won drunk</label>
+    <trait>VTE_DrunkenMaster</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <withTrait><li>Brawler</li></withTrait>
+    <tallies>
+      <li><key>HeldDrunk</key><marks>Rimfolk_Mark_HeldTheLine</marks><whileDrunk>true</whileDrunk><count>3</count><label>held the line while drunk</label></li>
+    </tallies>
+    <chance>0.03</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become a drunken master.</news>
+    <meaning>{PAWN_nameDef}, a brawler, has held the line three times while drunk, and now fights better up close after a drink.</meaning>
+    <journal>
+      <plain>
+        <li>I had a drink before the fight and fought better than I ever have sober.</li>
+        <li>The others think I'm reckless. I just know a drink makes me loose and quick.</li>
+      </plain>
+      <warm><li>If a drink helps me keep the others safe in a fight, I'll have one.</li></warm>
+      <blunt><li>A drink, then the fight. Works for me.</li></blunt>
+      <cheerful><li>Three fights now with a drink in me, and three times I came out on top.</li></cheerful>
+      <gloomy><li>I fight best when I'm drunk. I'm not proud of it.</li></gloomy>
+      <cold><li>Alcohol improves my close fighting. I use it accordingly.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== Vanilla Fishing Expanded (vanillaexpanded.vcef) ==================== -->
+
+  <!--
+    31. Fisherman (docs/traits-proposals.md, 20 November 2026): 80 recent hours of fishing (the game's Fishing work, which
+    is Odyssey's; Vanilla Fishing Expanded builds on it in 1.6). Its trait by its defName in docs/player-mods/traits.tsv.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VCEF_Fisherman</defName>
+    <label>a fisherman after a season at the water</label>
+    <trait>VCEF_Fisherman</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vcef</li></mods>
+    <dlc>Odyssey</dlc>
+    <practice>Fishing>=80</practice>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a fisherman.</news>
+    <meaning>{PAWN_nameDef} has spent many hours fishing lately, and has come to enjoy it and to be good at it.</meaning>
+    <journal>
+      <plain>
+        <li>I spent the whole morning at the water and came back with a full basket.</li>
+        <li>I know which spots the fish like now, and when they bite.</li>
+      </plain>
+      <warm><li>Fresh fish for supper again. I like bringing it home for everyone.</li></warm>
+      <blunt><li>I fish. I'm good at it.</li></blunt>
+      <cheerful><li>The fish were biting all afternoon. Best day I've had in a while.</li></cheerful>
+      <gloomy><li>It's quiet at the water. Nobody bothers me there.</li></gloomy>
+      <cold><li>Fishing is a dependable source of food, and I'm efficient at it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
   <!-- ==================== RimTraits - General Traits (sierra.rt.generaltraits) ==================== -->
 
   <ColonyCouncil.TraitChangeDef>
