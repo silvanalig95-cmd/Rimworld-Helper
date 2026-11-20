@@ -105,6 +105,8 @@
     <texts>
       <li>The evening stayed hot after dark, and lightning flickered silently along the horizon. {A_nameDef} sat out watching it, and so did {X_indefinite}, restless in the long grass.</li>
       <li>Heat lightning lit the far hills with no thunder behind it. Out in the field {X_indefinite} lifted its head at every flash, and {A_nameDef}, on the step, counted them with it.</li>
+      <li>{A_nameDef} couldn't sleep in the heat and went outside. Silent lightning flickered on the horizon, and {X_indefinite} was moving about restlessly at the edge of the field.</li>
+      <li>The air was heavy and still, and the far clouds lit up without a sound. {A_nameDef} and {X_indefinite} both stood watching from opposite ends of the field.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_HeatLightning</thought></li>
@@ -171,6 +173,8 @@
     <texts>
       <li>The blizzard drove everything to shelter. When {A_nameDef} forced the door open to check the woodpile, {X_indefinite} was huddled in the lee of the wall, and {A_nameDef} left it there.</li>
       <li>Through the blizzard {A_nameDef} could barely see the fence, but {X_indefinite} was there, pressed against the colony's wall out of the wind.</li>
+      <li>{A_nameDef} went out into the blizzard to check the doors and found {X_indefinite} sheltering behind a wall, covered in snow. {A_pronoun} left it alone and went back inside.</li>
+      <li>In the worst of the blizzard {A_nameDef} looked out and saw {X_indefinite} curled up out of the wind, waiting for the snow to stop like everyone else.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_Blizzard</thought></li>
