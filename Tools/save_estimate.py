@@ -1076,10 +1076,11 @@ MODEL = {
     "Gods/World/GodWorldBook.cs:lasts": ("fixed", 30, 90, "when each kind of the gods' doings last came, a key a kind and a home"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
-    # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that
-    # arises (six standing at most); PeopleAgesMath.MaxRecords kept, a people no longer in the world dropped on saving.
-    "Peoples/PeopleAges.cs:ages": ("cap", (const("Peoples/PeopleAgesMath.cs", "MaxRecords", 40), 15), 300,
-                                   "one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped"),
+    # its heading and why), made the first time the region's day looks at it; those of Rimfolk's in the world at once,
+    # one for each that arises (six standing at most) and one for each of another mod's people Rimfolk knows (the dark
+    # elves: one in a world); PeopleAgesMath.MaxRecords kept, a people no longer in the world dropped on saving.
+    "Peoples/PeopleAges.cs:ages": ("cap", (const("Peoples/PeopleAgesMath.cs", "MaxRecords", 40), 16), 300,
+                                   "one record a people of Rimfolk's (those in the world at once, and each that arises) and one for another mod's people Rimfolk knows, PeopleAgesMath.MaxRecords kept, gone peoples dropped"),
     # Carrying and hauling (Hauling/HaulBook.cs): one load per pawn carrying something for Rimfolk (its work's produce, a
     # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
     # the skills and work givers of the work, the stockpile a bill picked for a kind, and a run's one or two materials.

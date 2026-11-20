@@ -247,11 +247,18 @@ namespace ColonyCouncil
         /// </summary>
         public float newPeoples = 1f;
         /// <summary>
-        /// The region: Rimfolk's peoples' ages change over the years (Peoples/PeopleAges.cs): each rises toward the next age
-        /// at a pace of its ways, faster for the colony's trade, gifts of learning, teaching and alliance, and falls back an
-        /// age when cut off from the world. Off: every people lives in the age it began in, and nothing moves.
+        /// The region: Rimfolk's peoples' ages change over the years (Peoples/PeopleAges.cs), and those of the other mods'
+        /// peoples Rimfolk knows (Peoples/Foreign/): each rises toward the next age at a pace of its ways, faster for the
+        /// colony's trade, gifts of learning, teaching and alliance, and falls back an age when cut off from the world. Off:
+        /// every people lives in the age it began in, and nothing moves.
         /// </summary>
         public bool peopleAges = true;
+        /// <summary>
+        /// The region: only peoples with a radio answer the comms console (Peoples/ConsoleRadio.cs): the console's call to a
+        /// people of the tribal or medieval age, by the age it lives in now, with no town near the Signal Line's masts, is
+        /// greyed with how a letter reaches them. Off: the game's console calls every people. Needs the deeper game hooks.
+        /// </summary>
+        public bool radioConsole = true;
         /// <summary>
         /// The gods (Gods/; docs/design/gods.md): one pantheon per world, from the faiths' deities, Rimfolk's makers and the
         /// peoples' patrons, the colony's favour with each in words, their ties, the Gods page. Off: no pantheon, nothing moves.
@@ -989,6 +996,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
             Scribe_Values.Look(ref peopleAges, "peopleAges", true);
+            Scribe_Values.Look(ref radioConsole, "radioConsole", true);
             Scribe_Values.Look(ref gods, "gods", true);
             // "How real the gods are" (Believed, Felt, Walking) is retired: the gods are felt, one way, and each god's own
             // nearness moves how plainly it acts (Gods/GodNear.cs). An older settings file's choice is read and let go.
