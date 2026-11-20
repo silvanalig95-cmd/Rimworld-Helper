@@ -693,6 +693,8 @@
     <texts>
       <li>{FACTION}'s road wardens have come back to the colony's gate with a proposal. The road past it is theirs to keep and too long to keep from {PLACE}; they would like to put a post by the colony, a fire and a few beds and a stack of spears, and keep it in turns. They would want nothing of the colony but the ground, and would ride out against anything that came up the road.\n\nThe talker among them waits at the gate for an answer.</li>
       <li>[theirLowtech] The wardens of {FACTION} who rest at the colony's gate have asked, through the one who does their talking, for a piece of ground at the edge of the colony's land. They would put up a palisade and a hut and keep a watch on the road from it, three or four of them at a time, changing with the season.\n\nThe colony's gate would never again be the first thing a bandit saw.</li>
+      <li>{FACTION}'s road wardens have sent word from {PLACE}: the road past the colony is more than they can keep from the town, and they would like to put a post near the colony, with a fire, a few beds and a watch kept in turns.\n\nThey would want nothing of the colony but the ground. Two of them will come to the gate for an answer.</li>
+      <li>[theirHightech] The road wardens of {FACTION} have written from {PLACE} with a plan: a post by the colony, with a few bunks and a watch on the road kept by three or four of them at a time.\n\nThe road past the colony would be watched day and night. Two of their people will come to the gate to hear what the colony thinks.</li>
     </texts>
     <summaries>
       <li>Let the wardens build on the colony's land and their camp comes to put the post up; finished, it stays as the colony's neighbour, and they fight what comes up the road. Or the post goes up a day down the road, or not at all.</li>
@@ -709,6 +711,7 @@
         </titles>
         <texts>
           <li>Two of {FACTION}'s wardens are at the gate for the colony's answer. A post at the edge of its land, kept in turns by three or four of them, with the road watched and ridden from it; or the same post a day down the road, out of the colony's way; or no post at all. They'd prefer the first, they say, and they'd understand the others.</li>
+          <li>Two wardens of {FACTION} have come to the gate, armed and polite, to hear what the colony thinks of their post. They would build it at the edge of the colony's land if they may, a day down the road if the colony would rather, or not at all.\n\nThey would like the first, but say they will take the colony's answer either way.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -880,6 +883,8 @@
     <texts>
       <li>It started with a tinker who stopped at the wardens' post and didn't leave, and a woman who sold soup to the carters. Now there are a dozen houses on the road near the colony, a smithy, two inns and a market on the first day of the week, and {FACTION} have put it on their maps as {PLACE}, {TALE}.\n\nThe colony is no longer the only settlement on this stretch of road. It is, for now, the older one.</li>
       <li>[theirLowtech] Where the road meets the wardens' post near the colony, a town has grown the way towns do: a cookshop, a smith, a man who mends harness, a woman who sells beer, and the carters who stop for all four. {FACTION} call it {PLACE}, {TALE}, and have sent a reeve.\n\nThe colony has a town for a neighbour.</li>
+      <li>[theirHightech] Where the road meets the wardens' post near the colony, a town has grown up in a season: a fuel stop, a repair shop, a canteen and rooms for the carters above it. {FACTION} have put it on their maps as {PLACE}, {TALE}.\n\nThe colony has a town for a neighbor.</li>
+      <li>[spring] Over the winter some people stayed on at the wardens' post near the colony, and in the spring they started building. Now there is a row of houses, a smithy and a market by the road, and {FACTION} call it {PLACE}, {TALE}.\n\nThe colony is no longer alone on this stretch of road.</li>
     </texts>
     <summaries>
       <li>Traders come by more often with a market town on the road, and its people will come to look at the colony. The town is on the map to stay; the colony can give it a name.</li>
@@ -915,6 +920,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s reeve at the new town has walked up to the colony's gate with a question nobody expected: the town has a name on {FACTION}'s maps, {PLACE}, but its people have taken to calling it after the colony, since the colony was here first and the road past its gate is why they are. Would the colony mind if the town took its name for good?</li>
+          <li>The reeve of the new town has come up the road to the colony's gate. The people of {PLACE} have taken to calling their town after the colony, since the colony was here first and the road past its gate is why the town is there.\n\nThe reeve has come to ask whether the colony would let the town take its name for good.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -959,6 +965,7 @@
         <texts>
           <li>[named] The crossroads town is on {FACTION}'s maps for good, under the colony's name, with a market every week and the wardens' post at its edge. Carters a month's travel away know the colony's name now, and most of them think it's the town.</li>
           <li>[!named] {PLACE} is on {FACTION}'s maps for good, with a market every week and the wardens' post at its edge. The colony has a town for a neighbour, and the road it asked for has brought it one.</li>
+          <li>[!named] {PLACE} has a market every week now, a reeve and a wardens' post at its edge, and {FACTION} have marked it on their maps for good. Some of the traders who stop there have been coming on up the road to the colony.</li>
         </texts>
         <chronicle>A crossroads town, {PLACE}, grew up on the road near the colony.</chronicle>
         <effects>

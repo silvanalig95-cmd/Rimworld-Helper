@@ -36,6 +36,8 @@
     <texts>
       <li>A letter has come from the imperial steward at {PLACE}, sealed in red wax and copied, by the look of it, a hundred times:\n\n"To the settlements within a month's ride. The Empire raises a levy for its campaign on the far side of the world. Contributions are expected, in silver or in kind. This is not a tax. It is an opportunity to be remembered."</li>
       <li>[titled] An imperial steward at {PLACE} has written to the colony, addressing its titled colonists by their full honors. The Empire is raising a levy for a campaign far away, and those who hold its titles are expected to set an example.\n\nThe letter is polite. It is also very clear.</li>
+      <li>The imperial steward at {PLACE} has written to every settlement in the region: the Empire is raising a levy for a campaign on the far side of the world, and every settlement within reach is to give what it can, in silver or in goods.\n\nThe colony has not been asked for anything yet. The letter says a clerk will call.</li>
+      <li>[summer] A copy of the imperial levy notice has come to the colony from {PLACE}, the ink barely dry. The Empire wants the campaign's silver before the summer is out, and the steward means to collect it from every settlement in the region.\n\nThose who pay in full, the notice says, will be named in the campaign's dispatches.</li>
     </texts>
     <summaries>
       <li>{FACTION} will ask the colony for a share of the levy. Paying earns their goodwill; refusing costs some, though it won't come to blows.</li>
@@ -106,6 +108,7 @@
         <message>true</message>
         <texts>
           <li>A rider from {PLACE} brought a copy of the campaign's dispatches. The colony is named among the settlements that paid the levy in full, between a mining town and a monastery.</li>
+          <li>Word from {PLACE}: the levy has reached the campaign, and the steward read out the names of the settlements that paid in full. The colony's was among them.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_LevyNamed</thought></li>
@@ -122,6 +125,7 @@
         </titles>
         <texts>
           <li>The Empire's campaign has its silver and has gone wherever campaigns go. {FACTION} at {PLACE} speak well of the colony, and the steward has sent a short, formal letter of thanks.</li>
+          <li>The levy is in, and the campaign has marched with it. The steward at {PLACE} has written the colony's name into the roll of loyal settlements, and {FACTION} speak of its people with more respect than before.</li>
         </texts>
         <chronicle>The colony paid its share of the Empire's levy.</chronicle>
       </li>
@@ -133,6 +137,7 @@
         </titles>
         <texts>
           <li>The Empire's campaign has its silver, from other settlements. The steward at {PLACE} has not written again. The colony's name is in his ledger, with a line through it.</li>
+          <li>The levy has been raised without the colony's silver. Nobody at {PLACE} has said a word about it to the colony, and no more letters have come from the steward.</li>
         </texts>
         <chronicle>The colony refused the Empire's levy.</chronicle>
       </li>
@@ -143,6 +148,7 @@
         </titles>
         <texts>
           <li>The Empire's campaign has its silver and has moved on. At {PLACE} the levy notices have come down, and a notice for a horse fair has gone up in their place.</li>
+          <li>The levy is over. The steward's clerks at {PLACE} have gone back to counting grain, the campaign is somewhere far away, and the region has stopped talking about it.</li>
         </texts>
         <chronicle>The Empire raised a levy around {PLACE}.</chronicle>
       </li>
@@ -176,6 +182,8 @@
     <texts>
       <li>A unit of the Empire's troops walked away from their posts near {PLACE} last week, and some of them took their gear with them. The Empire has posted a reward for every one brought back.\n\nImperial patrols are on the roads, asking questions at every gate. Some of the deserters are hiding in the hills. Some of them are only tired.</li>
       <li>[titled] The Empire has written to the colony's titled colonists in person: deserters from a garrison near {PLACE} are loose in the region, and those who hold the Empire's honors are expected to help bring them in.\n\nSome of the deserters have gone over to the Empire's enemies. Most of them just want to go home.</li>
+      <li>Imperial patrols are stopping travellers on every road around {PLACE}. A company of the Empire's soldiers has deserted its garrison, and {FACTION} want every one of them back, with a reward for each.\n\nThe deserters are said to be heading for the hills, or for home, or for anywhere the Empire is not.</li>
+      <li>[spring] With the thaw, a dozen of the Empire's soldiers walked out of the garrison near {PLACE} and did not come back. {FACTION} have posted a reward for them, and patrols are asking after them at every farm and gate.\n\nAt {PLACE} they say most of the deserters were conscripts who never wanted to be soldiers.</li>
     </texts>
     <summaries>
       <li>A deserter may come to the colony asking for help. {FACTION} will pay for any that are handed over, and won't thank anyone who hides one.</li>
@@ -248,6 +256,7 @@
         <message>true</message>
         <texts>
           <li>An imperial patrol stopped at the gate and asked {A_nameDef} whether anyone in uniform had come through. {A_nameDef} said no and offered them water, which they accepted.</li>
+          <li>An imperial patrol stopped at the colony's gate for an hour or so, looking the colony over and asking after deserters, before it went on toward {PLACE}.</li>
         </texts>
       </li>
     </beats>
@@ -293,6 +302,9 @@
     </titles>
     <texts>
       <li>{FACTION} is choosing its consuls for the coming year. The senate at {PLACE} is split between the old families, who want things as they are, and the reformers, who want land for the veterans and bread for the city.\n\nCanvassers from both sides are out on every road, shaking every hand they can reach. Some of them have reached the colony.</li>
+      <li>[spring] Election season has come to {PLACE}. {FACTION} chooses its consuls every year, and this year the old families and the reformers are each sure they will win.\n\nPosters are going up on every wall in the city, and canvassers are walking out to every farm and settlement that might give them silver.</li>
+      <li>The senate of {FACTION} has called the vote for its consuls. At {PLACE} the reformers promise land for the veterans, and the old families promise that nothing will change.\n\nBoth sides want friends outside the city, and the colony is near enough to be asked.</li>
+      <li>[fall] {FACTION} votes for its consuls before the winter. The reformers say the harvest at {PLACE} was poor and the old families say it was good, and the whole city is arguing about which.\n\nCanvassers for both sides will be on the roads within the week.</li>
     </texts>
     <summaries>
       <li>Both sides would like the colony's backing, which mostly means its silver. Whoever wins will remember who helped.</li>
@@ -319,6 +331,7 @@
         </titles>
         <texts>
           <li>Two canvassers from {PLACE} arrived within an hour of each other and are pretending not to see one another. The man from the old families talks about order, the reformer about bread. Either would carry the colony's good wishes back to the senate, along with {COUNT} silver for the campaign.\n\n{A_nameDef} has listened to both, and has opinions.</li>
+          <li>A canvasser for the reformers and one for the old families of {PLACE} have reached the colony's gate together, each having tried to get there first. Each asks for the colony's good wishes and {COUNT} silver for the campaign, and each says the other side will ruin the republic.\n\n{A_nameDef} has heard them both out.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -358,6 +371,7 @@
         <message>true</message>
         <texts>
           <li>Word from {PLACE}: the candidates are paying for games in the city, with chariot races, a play and free bread. {A_nameDef} has been talking about the chariots ever since.</li>
+          <li>Word from {PLACE}: the old families have paid for a week of races and the reformers for free bread in the market, and the city is enjoying the election more than anyone expected.</li>
         </texts>
       </li>
     </beats>
@@ -401,6 +415,7 @@
         </titles>
         <texts>
           <li>{FACTION} has its new consuls. The canvassers have gone home, the posters are coming down, and the colony was never once mentioned in the speeches.</li>
+          <li>The votes at {PLACE} have been counted, and {FACTION} has its consuls for the year. The city has gone back to work, and the old election posters are being used to light fires.</li>
         </texts>
         <chronicle>{FACTION} elected new consuls.</chronicle>
       </li>
@@ -442,6 +457,9 @@
     </titles>
     <texts>
       <li>Somebody from {PLACE} found gold in a creek bed last month, and now every settler with a pan and a mule is heading for the hills. {FACTION}'s mayor has given up trying to keep the town's blacksmith at his forge.\n\nProspectors are on every road, and every one of them needs beans, rope and somewhere to sleep.</li>
+      <li>[spring] The snow is off the hills above {PLACE}, and someone has found gold in the meltwater. By the time the news reached the colony, half of {FACTION}'s town had bought a pan.\n\nProspectors with mules and shovels are on every road, each one sure he will be the one to strike it rich.</li>
+      <li>Gold has been found in the hills near {PLACE}, or so everyone says. {FACTION}'s storekeeper is selling maps of the diggings at a silver apiece, and no two of the maps agree.\n\nProspectors are passing through the region by the dozen, and they need food, rope and somewhere to sleep.</li>
+      <li>[fall] A nugget the size of a thumb came out of a creek near {PLACE} last week, and {FACTION}'s town has talked of nothing else since. Farmers have left their harvest standing to go and dig.\n\nThere will be prospectors on every road until the snow comes.</li>
     </texts>
     <summaries>
       <li>Travelers and traders come by more often. Prospectors may ask to try their luck on the colony's land.</li>
@@ -470,6 +488,7 @@
         </titles>
         <texts>
           <li>A prospector from {PLACE} with a bent pan and a very patient mule wants to work the colony's land for a week. He offers the colony a third of anything he finds, and swears on his mother that there's color in this ground.\n\n{A_nameDef} has walked that ground every day for a year and never seen any.</li>
+          <li>A prospector of {FACTION} has come to the gate with a pick, a pan and a mule carrying everything he owns. He has heard the colony's land has never been worked for gold, and asks to try it for a week; the colony would have a third of whatever he finds.\n\n{A_nameDef} thinks there is nothing in that ground but rock and clay.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -496,6 +515,7 @@
         <message>true</message>
         <texts>
           <li>Another string of prospectors passed the colony, headed for the hills above {PLACE}. {A_nameDef} tried to sell one of them a coil of rope for twice what it was worth, and nearly managed it.</li>
+          <li>Word from {PLACE}: another party of prospectors has gone up into the hills, and the town's store has sold its last shovel.</li>
         </texts>
       </li>
     </beats>
@@ -507,6 +527,8 @@
         </titles>
         <texts>
           <li>The creek near {PLACE} has given up what little gold it had. The prospectors are drifting home or on to the next rumor, and {FACTION}'s blacksmith is back at his forge.</li>
+          <li>The gold near {PLACE} has run out, if there was ever much of it. Most of the prospectors have gone home poorer than they came, and {FACTION}'s town is quieter than it has been all season.</li>
+          <li>[winter] The first snow has closed the diggings above {PLACE}, and the prospectors have come down out of the hills. Some talk of going back in the spring; most have had enough of it.</li>
         </texts>
         <chronicle>The gold fever near {PLACE} played out.</chronicle>
       </li>

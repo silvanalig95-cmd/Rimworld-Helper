@@ -549,6 +549,8 @@
     <texts>
       <li>[lowtech] The mines in the hills beyond {PLACE} have flooded, and the iron that came out of them has stopped coming. Smiths across the region are melting down old plowshares to make nails, and {FACTION} are paying whatever they must for anything with iron in it.\n\nThe colony has iron in its stores, and people know it.</li>
       <li>[!lowtech] A smelter has gone down upriver, and steel has vanished from the region's markets almost overnight. {FACTION} are rationing it in {PLACE}, and every trader on the road asks the same thing: who has any to sell?\n\nThe colony does, and people know it.</li>
+      <li>[theirLowtech] A rockfall has closed the pass to the hill mines that supply {PLACE}, and no iron has come down since. {FACTION}'s smiths are down to old scrap, and a new plowshare costs what a sheep did last year.\n\nThe colony has iron in its stores, and people know it.</li>
+      <li>[theirHightech] The steelworks that supplied {PLACE} has shut down after an accident, and {FACTION} are rationing what steel they have left. Traders on the road ask at every settlement whether it has any to sell.\n\nThe colony has steel in its stores, and people know it.</li>
     </texts>
     <summaries>
       <li>{FACTION} will pay well for steel, and want a teacher for their smiths. Tinkers come by more often. A colony with metal to spare can do well out of it, or do good.</li>
@@ -611,6 +613,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s smiths have heard that {A_nameDef} knows how to make old iron go further: how to mend instead of replace, weld instead of melt. They ask whether {A_nameDef} would spend a few days at {PLACE} teaching them.\n\nIt would cost {A_nameDef}'s time. It would save {FACTION} a great deal of iron.</li>
+          <li>{FACTION}'s smiths are wasting good iron, and they know it. Word has reached them that {A_nameDef} can make a little metal go a long way, and they ask whether {A_nameDef} would come to {PLACE} for a few days and teach them.\n\nThe colony would be without {A_nameDef} for three days.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -666,6 +669,7 @@
         </titles>
         <texts>
           <li>Iron is moving on the roads again, and the price of nails has come down. {FACTION} got through the lean weeks partly on the colony's metal and the colony's know-how, and their smiths say so to anyone who asks.</li>
+          <li>Iron is coming down to the markets again. {FACTION} have not forgotten that the colony helped them through the lean weeks, and their smiths at {PLACE} speak well of it.</li>
         </texts>
         <chronicle>Iron came back to the region; {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -679,6 +683,7 @@
         </titles>
         <texts>
           <li>Steel is back on the region's markets, and the prices are coming down. Everyone has a new respect for nails.</li>
+          <li>Iron and steel are back on the region's markets at the old prices, and the smiths at {PLACE} have stopped melting down scrap to get by.</li>
         </texts>
         <chronicle>Iron came back to the region.</chronicle>
       </li>

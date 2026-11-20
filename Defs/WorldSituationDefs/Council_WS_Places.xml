@@ -29,6 +29,7 @@
       <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up and the well is dug, and they held their first market before the roofs were on.\n\nThey are short of nearly everything, timber most of all, and they will be looking for neighbors to trade with.</li>
       <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and someone has already painted the name over the gate, slightly crooked.\n\nA new town needs everything at once, and {PLACE} will be looking for neighbors to trade with.</li>
       <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. They are mostly young, mostly hopeful, and mostly short of everything.\n\nTheir first letter to the colony is already on the road.</li>
+      <li>[fall] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}, late in the year and in a hurry to get roofs on before the cold. The first houses are up, and the settlers are sleeping six to a room.\n\nThey will need timber and food before the winter, and neighbors willing to trade.</li>
     </texts>
     <summaries>
       <li>{PLACE} is on the map to stay. Its first traders will come by soon, and caravans and visitors from {FACTION} come more often while the town finds its feet.</li>
