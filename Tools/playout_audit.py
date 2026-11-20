@@ -365,6 +365,7 @@ PLAY = {
     # Colony life's variety, part 1 (CouncilLife/): the heart's day off given from an answer (or the rest of today), the
     # night watch's rota and a welcome's evening hour each morning of their decrees, and the one sent away met at the gate.
     "DilemmaEffect_HeartDayOff": "rest",
+    "DilemmaEffect_MadeChair": "handed over",
     "DilemmaEffect_WatchRota": "vigil",
     "DilemmaEffect_WelcomeEvening": "visit",
     "ArcEffect_MeetSentAway": "visit",

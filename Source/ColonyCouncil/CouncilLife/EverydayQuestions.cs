@@ -532,3 +532,41 @@ namespace ColonyCouncil
         }
     }
 }
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// A chair made for someone and set in their room (a chair for old bones): the most comfortable of
+    /// <see cref="chairs"/> the colony can build now, its research done (only what the colony has unlocked: the player's
+    /// mods' armchairs first, Vanilla Furniture Expanded's, then the game's), made and set in their room as
+    /// <see cref="DilemmaEffect_Made"/> does it. None the colony can build: nothing is made.
+    /// </summary>
+    public class DilemmaEffect_MadeChair : DilemmaEffect_Made
+    {
+        public string chairs = "VFES_ModernArmchair|Seat_RoyalArmchair|Armchair|DiningChair|Stool";
+
+        /// <summary>The first of the chairs the colony can build now on this map, by defName, or null.</summary>
+        public string Buildable(Map map)
+        {
+            if (map == null || chairs.NullOrEmpty()) return null;
+            foreach (var n in chairs.Split('|'))
+            {
+                var d = DefDatabase<ThingDef>.GetNamedSilentFail(n.Trim());
+                if (d != null && Avail.CanBuild(d, map)) return d.defName;
+            }
+            return null;
+        }
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            things = Buildable(ctx?.map);
+            if (things != null) base.Describe(ctx, sheet);
+        }
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            things = Buildable(ctx?.map);
+            if (things != null) base.Apply(ctx);
+        }
+    }
+}

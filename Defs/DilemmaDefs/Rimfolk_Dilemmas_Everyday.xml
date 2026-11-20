@@ -617,7 +617,7 @@
         <outcome>{B_nameDef} made {A_nameDef} a chair and set it in {A_possessive} room. {A_nameDef} said it would do, which from {A_nameDef} is high praise.</outcome>
         <ways><generosity>1</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Made"><label>a chair for {A_nameDef}</label><things>Armchair|DiningChair|Stool</things><maker>B</maker><forWhom>A</forWhom><inRoom>true</inRoom><makeHours>2</makeHours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_MadeChair"><label>a chair for {A_nameDef}</label><chairs>VFES_ModernArmchair|Seat_RoyalArmchair|Armchair|DiningChair|Stool</chairs><maker>B</maker><forWhom>A</forWhom><inRoom>true</inRoom><makeHours>2</makeHours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ChairMade</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
         </effects>

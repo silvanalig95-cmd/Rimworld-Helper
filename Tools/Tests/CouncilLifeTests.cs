@@ -178,7 +178,7 @@ public static class CouncilLifeTests
         var onMap = new HashSet<string>
         {
             "DilemmaEffect_Lesson", "DilemmaEffect_WorkParty", "DilemmaEffect_Visit", "DilemmaEffect_HeartDayOff", "DilemmaEffect_Feast", "DilemmaEffect_HandOver",
-            "DilemmaEffect_SowPatch", "DilemmaEffect_Vigil", "DilemmaEffect_Rounds", "DilemmaEffect_AnimalScene", "DilemmaEffect_Made", "DilemmaEffect_Words",
+            "DilemmaEffect_SowPatch", "DilemmaEffect_Vigil", "DilemmaEffect_Rounds", "DilemmaEffect_AnimalScene", "DilemmaEffect_Made", "DilemmaEffect_MadeChair", "DilemmaEffect_Words",
             "DilemmaEffect_NameAnimal", "DilemmaEffect_NewMaster", "DilemmaEffect_CarryOut", "DilemmaEffect_Bonfire", "DilemmaEffect_Gathering", "DilemmaEffect_KeepFire",
             "DilemmaEffect_SwapRooms"
         };
@@ -226,6 +226,8 @@ public static class CouncilLifeTests
         foreach (var part in new[] { "Work and rest", "Food and the stores", "Sickness and care", "The young and the old", "Animals", "Guests and strangers", "Quarrels and friendships", "The seasons" })
             C(file.Contains("=== " + part + " ==="), $"the colony's life: {part.ToLowerInvariant()}");
         C(Code("PlayOut/PlayWork.cs").Contains("if (at == \"sickroom\") return Everyday.SickroomCell(map);"), "the sickroom's scrubbing starts at its beds");
+        C(everydayCode.Contains("Avail.CanBuild(d, map)") && file.Contains("<chairs>VFES_ModernArmchair|Seat_RoyalArmchair|Armchair"),
+            "the chair made is the most comfortable the colony can build now, the player's mods' armchairs first");
         C(everydayCode.Contains("AnimalFacts.HerdmasterAt(map) != null") && everydayCode.Contains("pet.Name = new NameSingle(n)"), "the newborn named on the council's word, only with no herdmaster to name it");
 
         // ================= The seams =================

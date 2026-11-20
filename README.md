@@ -495,7 +495,7 @@ a wound or an illness likes rest when ill and a clean sweep, and asks for either
 and wounded, children, prisoners and cooking still come first, and so do sleep, meals and washing. This is one of the
 deeper game hooks.
 
-Thirty-six decrees in all. The five newest each mean one thing on the map: **a hunting season** (two head of safe game
+Thirty-eight decrees in all. The two newest show on the map each day: **the night watch** (six days, asked for after an attack: two of the colony's fighters in turn walk the walls and the gate from nine until one and start late the next morning; what a night watch keeps away it keeps away, and each night walked counts toward the name Night-Watch) and **a welcome for newcomers** (ten days, asked for when someone new stands outside every group: each evening a settled colonist who likes them spends an hour with each newcomer at a table, which counts as welcomes from the group they are finding their way into). The five before them each mean one thing on the map: **a hunting season** (two head of safe game
 marked for the hunters each morning), **wood for the winter** (the nearest wild trees marked for the cutters each
 morning until the stores hold the winter's wood, more for a colony that heats with it), **foraging days** (wild plants
 ripe for picking marked each morning), **saving the power** (for a colony on the grid: the lamps switched off from
@@ -579,7 +579,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 227 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 286 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -591,7 +591,17 @@ put down the tools, a child's question, a broken promise, the same meal every da
 own: a broken window and nobody owning up, a child frightened after a fight or grieving a parent, lessons or play,
 a youngster who wants to see the world, an elder who wants one last walk in the hills, won't see the doctor, has a
 tale to tell or feels the cold in their bones. Some come only when they fit the day: the mess after a fight, a sick
-night, lessons in a busy time, seed for a neighbour in spring. Many answers call on whoever is
+night, lessons in a busy time, seed for a neighbour in spring. Twenty-five more come from the colony's everyday
+life and set two people toward or against each other, each answer done on the map: the only one who knows a craft and
+someone keen to learn it, the one who always cleans, a hard worker who won't stop, every hand to a ripe harvest, the
+best cooking eaten tonight or kept, seconds when food is short, a helper in the kitchen, a patch of one's own, company
+for someone bored in the sickbed, the doctoring shared, a dirty sickroom, a child and one of the animals (Biotech), a
+chair for old bones, a young person who wants a say, the herd left to one pair of hands, a name for a newborn animal,
+two who want the same animal, visitors at supper or their news by the fire, two friends who fell out, an old friend
+left out, talk behind a back, the first warm day, a cold bedroom and a storm at night. The seat whose work it is
+speaks in its own. And two of the council's own: a seat holder worn down or laid up who asks to step down (let go, a
+deputy for ten days, or asked to stay), and two wishes that each need the same stuff when the stores hold enough for
+one (first come first served, the other first, or neither yet; whoever waits is told why). Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes. Many have
 several openings and several ways to turn out, picked to fit the moment, and a letter doesn't repeat the text it used
 last time when another fits.
@@ -1236,7 +1246,7 @@ fulfilment need counts toward the heart's purpose, and Rimfolk's own goals come 
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 33 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 36 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
@@ -1251,13 +1261,18 @@ the new leg (the first steps on a fitted leg with a friend at their side, a frus
 work) and back to it (one of the land's dangers hurt them: a shaken day, a talk with the one closest to them, real
 work again at what it happened at). Others grow out of the world and the colony's offices: the road calls (a friend made at a camp, and the itch to
 go with them), the weight of office (a new seat on the council that sits heavy) and word from far away (family out in
-the world when sickness, famine or war comes there). The young and the old have their own: bad nights (a child's
+the world when sickness, famine or war comes there). Three come from the council's and the heart's life: after the vote
+(voted out of a seat held a year: sour days, a word with the winner, then helping them into the seat or meaning to stand
+again), the one sent away (the colonist closest to someone the council banished: a hard day, a walk out to the edge of
+the land, a talk with the chaplain or a friend, and better days, or a walk out to meet them if they come back to the
+gate) and worn thin (after coming apart under the strain: a friend comes to sit with them, a day off taken, the heart's
+or a rest day, and back to themselves, the friend marked by it). The young and the old have their own: bad nights (a child's
 nightmares), not a child any more (a teenager and a grown-up who won't see it), a new parent (Biotech), one more
 spring (an elder in poor health) and the last two of us (two old rivals, the last of their generation). Four are
 **stories of three**: a rival in love (two people fond of the same one, who chooses, or doesn't), torn between two
 students (a mentor with two learners), brothers and sisters (a parent and two children at odds) and caught in the
 middle (someone between two friends who can't stand each other). Their talks need the two people together, they can
-end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 33rd, the long
+end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 36th, the long
 discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already
 knows about the colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on
 only when something happens in play: a skill reached, a talk between the two of them in the social log, a piece of
@@ -1767,6 +1782,11 @@ days) name the seat's holder when they're at home and not already in it, with th
 the outcomes; each one answered counts toward their record in the seat at the next election. A newly seated holder's
 story, the weight of office, now waits for a real hard call (such a question, a decree they backed declared while
 someone hates it, or answering for a promise at supper) and names it, and with none in twenty days it ends quietly.
+
+A holder worn down or near breaking five days running, or ten days in a sickbed, asks to step down (never during an
+election): the seat empties with no hard feelings and goes to a by-election, someone good at its work stands in for ten
+days while the holder has a day off (the deputy does the seat's walks, counts and words), or they're asked to stay. Voted
+out of a seat held a year or more, a colonist may have a story of their own, after the vote.
 
 ### Traditions
 Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
