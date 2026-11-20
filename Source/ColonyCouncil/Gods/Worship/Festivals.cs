@@ -81,7 +81,8 @@ namespace ColonyCouncil
     /// A festival kept and let pass (from the calendar's keeping, Calendar/CalendarKeeping.cs). Kept, the colony's feast is
     /// held as any feast day is (the one feast engine, with the day's words of the god's own dishes), and besides it the god's
     /// rite: the priest (else the keeper of the day, else one who holds the god) walks to the god's place and keeps the rite
-    /// there, with Alpha Memes' or Ideology's chant for the god's kind where those are loaded and a RimWorld of Magic priest's
+    /// there, those who hold the god standing behind (OwnFeasts.Gather), and the festival's own custom plays out as its words
+    /// say (Gods/OnMap/OwnFeasts.cs and the gods' own files), with Alpha Memes' or Ideology's chant for the god's kind where those are loaded and a RimWorld of Magic priest's
     /// light; an offering of the god's liking is carried to its place; and a people that holds the god may send a few of its
     /// own for the day (the game's visitors). The god is pleased (a rite, more for the god honoured this year); let pass, it
     /// is displeased (neglect).
@@ -155,8 +156,10 @@ namespace ColonyCouncil
                     b.offerings.Add(new OfferingRecord { shrine = shrine, god = g.id, home = Gods.HomeKey(map), chosen = Worship.Now });
             }
             Visitors(g, map);
-            // The Guest's Open Door and the sky's night kept (Gods/OnMap/OwnHappenings.cs).
+            // The Guest's Open Door and the sky's night kept, and the other festivals as their words say (Gods/OnMap/OwnHappenings.cs, OwnFeasts.cs).
             OwnHappenings.FestivalKept(g, map);
+            // A beast at home taken for this god's: a bite first, and walked to its place (Gods/OnMap/GodBeasts.cs).
+            GodBeasts.Festival(g, map);
         }
 
         public static void Passed(CalendarDay d, Map map)
@@ -195,9 +198,12 @@ namespace ColonyCouncil
             {
                 if (p.Map != map || !Worship.Ours(p) || p.DevelopmentalStage.Juvenile() || Worship.Scoffer(p) || !WorshipJobs.Free(p, false)) continue;
                 if (!p.CanReach(shrine, PathEndMode.Touch, Danger.Some)) continue;
-                if (WorshipJobs.Start(p, WorshipJobs.At(WorshipJobs.RiteJob, shrine, Rand.Range(1500, 2200))))
+                int ticks = Rand.Range(1500, 2200);
+                if (WorshipJobs.Start(p, WorshipJobs.At(WorshipJobs.RiteJob, shrine, ticks)))
                 {
                     b.homeMarks.Remove(m);
+                    // Those who hold the god stand behind the one leading it, as a gathering (Gods/OnMap/OwnFeasts.cs).
+                    OwnFeasts.Gather(p, shrine, g, ticks + 600);
                     return;
                 }
             }
@@ -224,6 +230,8 @@ namespace ColonyCouncil
             if (Worship.IsPriest(p)) CouncilRecords.Add(p, "Council_RitualsLed");
             PawnGods.RiteLed(p, g);
             FaithHeart.Witnessed(map, g, shrine.Position);
+            // A tale of the game's, for the colony's art (Things/ArtTales.cs): the festival kept.
+            ArtTales.Record(ArtTales.Festival, p, null, Festivals.Name(g), null);
         }
 
         /// <summary>

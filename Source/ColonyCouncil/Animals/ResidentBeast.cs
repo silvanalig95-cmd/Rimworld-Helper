@@ -57,6 +57,9 @@ namespace ColonyCouncil
         public bool pokemon, shiny, rumoured;
         public int stolen, lastStealTick = -1, rumourUntil = -1;
         public string rumourKind;
+        /// <summary>The god a believer took it for when it was named (Gods/OnMap/GodBeasts.cs), -1 for none, and the believer.</summary>
+        public int takenGod = -1;
+        public Pawn taker;
 
         public const int KnownMax = 20;
         public const string Dilemma = "Council_DlmA_ResidentBeast";
@@ -216,6 +219,8 @@ namespace ColonyCouncil
             stolen = 0;
             lastStealTick = -1;
             if (rumoured) rumourKind = null;
+            takenGod = -1;
+            taker = null;
             HerdStory.Name(a);
             string kind = AnimalFacts.KindLabel(a);
             try
@@ -223,8 +228,13 @@ namespace ColonyCouncil
                 var who = namer ?? HerdStory.Keeper(map, null);
                 if (who != null)
                 {
+                    // One of a god's kind or shape: a believer says whose they take it for (Gods/OnMap/GodBeasts.cs).
+                    string taken = GodBeasts.Resident(this, a, map);
+                    string named = "CC_Beast_Named".Translate(a.Named("PET"), who.Named("PAWN"), kind.Named("KIND")).Resolve();
                     Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Beast_NamedTitle".Translate(kind.Named("KIND")).Resolve(),
-                        "CC_Beast_Named".Translate(a.Named("PET"), who.Named("PAWN"), kind.Named("KIND")).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(a));
+                        taken.NullOrEmpty() ? named : named + "\n\n" + taken, LetterDefOf.NeutralEvent, new LookTargets(a));
+                    // A tale of the game's, for the colony's art (Things/ArtTales.cs).
+                    ArtTales.Record(ArtTales.BeastNamed, who, a, null, null);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, "CC_Beast_NamedChronicle".Translate(a.Named("PET"), who.Named("PAWN"), kind.Named("KIND")).Resolve(), who));
                     Interplay.Journal(who, "Council_Journal_Beast_Named", Tags().ToArray(), a.Named("PET"), kind.Named("KIND"));
                     if (rumoured && shiny) CouncilGameComponent.GiveThought(who, PokeWorldCampDefOf.Council_PW_RumourTrue);
@@ -284,7 +294,8 @@ namespace ColonyCouncil
             if (pokemon && HerdStoryMath.StealDue(stance, DaysNamed, sinceSteal) && Rand.Chance(HerdStoryMath.StealChance)) Steal(comp, map);
             float sinceAsk = lastAskTick < 0 ? 0f : (Now - lastAskTick) / (float)GenDate.TicksPerDay;
             if (!HerdStoryMath.AskDue(DaysNamed, asks, sinceAsk)) return;
-            string def = pokemon ? PokemonDilemma : Dilemma;
+            // Taken for a god's when it was named: the question with a believer's answer (Gods/OnMap/GodBeasts.cs).
+            string def = pokemon ? PokemonDilemma : takenGod >= 0 && Gods.ById(takenGod) != null ? SacredDilemma : Dilemma;
             // Asked of the colony whose land it roams.
             if ((DilemmaTracker.For(map) ?? comp.dilemmas).TryFire(true, d => d.defName == def))
             {
@@ -294,11 +305,13 @@ namespace ColonyCouncil
         }
 
         public const string PokemonDilemma = "Council_DlmA_ResidentPokemon";
+        public const string SacredDilemma = "Council_DlmA_ResidentBeastSacred";
 
         /// <summary>The beast's tags for its lines: predator or grazer, the stance, pokemon, shiny, rumoured, thief, catch.</summary>
         public List<string> Tags()
         {
             var tags = new List<string> { Predator ? "predator" : "grazer", StanceNow };
+            if (takenGod >= 0) tags.Add("sacred");
             if (pokemon) tags.Add("pokemon");
             if (shiny) tags.Add("shiny");
             if (rumoured) tags.Add("rumoured");
@@ -318,6 +331,8 @@ namespace ColonyCouncil
                 Tell.Minor(NewsKind.Land, Importance.Notable, HomeMap, text, a.Spawned ? new LookTargets(a) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, who));
                 if (key == "stays" && who != null && who.Spawned) CouncilGameComponent.GiveThought(who, HerdStoryDefOf.Council_Beast_PartOfTheLand);
+                // Taken for a god's: the book keeps that it stayed among them, under that god (Gods/OnMap/GodBeasts.cs).
+                if (key == "stays") GodBeasts.ResidentStayed(this, a, HomeMap);
             }
             catch (System.Exception e)
             {
@@ -330,6 +345,8 @@ namespace ColonyCouncil
             }
             animal = null;
             namer = null;
+            takenGod = -1;
+            taker = null;
             fateTick = Now;
             candidateId = 0;
             candidateDays = 0;
@@ -380,6 +397,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastStealTick, "lastStealTick", -1);
             Scribe_Values.Look(ref rumourUntil, "rumourUntil", -1);
             Scribe_Values.Look(ref rumourKind, "rumourKind");
+            Scribe_Values.Look(ref takenGod, "takenGod", -1);
+            Scribe_References.Look(ref taker, "taker");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (knownIds == null) knownIds = new List<int>();

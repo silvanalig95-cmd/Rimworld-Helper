@@ -205,9 +205,10 @@ namespace ColonyCouncil
             if (!Interplay.Ready("worship-beastvow|" + Gods.HomeKey(map), 10f)) return;
             foreach (var g in Worship.PrayedTo(map))
             {
-                var def = GodDomainDef.Of(g.domain);
-                if (def?.Animals == null || def.Animals.Count == 0) continue;
-                var beast = map.mapPawns.AllPawnsSpawned.FirstOrDefault(a => a?.RaceProps != null && a.RaceProps.Animal && a.Faction == null && !a.Dead && def.Animals.Contains(a.def));
+                // The god's own sacred kinds, else its domain's (Gods/SacredKinds.cs).
+                var kinds = SacredKinds.Of(g);
+                if (kinds.Count == 0) continue;
+                var beast = map.mapPawns.AllPawnsSpawned.FirstOrDefault(a => a?.RaceProps != null && a.RaceProps.Animal && a.Faction == null && !a.Dead && kinds.Contains(a.def));
                 if (beast == null) continue;
                 var hunter = map.mapPawns.FreeColonistsSpawned.Where(p => Worship.Ours(p) && !p.DevelopmentalStage.Juvenile() && Worship.GodOf(p) == g
                                                                          && !p.WorkTypeIsDisabled(WorkTypeDefOf.Hunting) && !HasOpen(p, VowKind.BeastSpared)
@@ -349,7 +350,7 @@ namespace ColonyCouncil
                 return;
             }
             Pawn about = k == VowKind.NoMeat ? p.Map?.mapPawns.FreeColonistsSpawned.FirstOrDefault(x => x != p) ?? p : null;
-            ThingDef beast = k == VowKind.BeastSpared ? GodDomainDef.Of(g.domain)?.Animals?.FirstOrDefault() ?? DefDatabase<ThingDef>.GetNamedSilentFail("Deer") : null;
+            ThingDef beast = k == VowKind.BeastSpared ? SacredKinds.Of(g).FirstOrDefault() ?? DefDatabase<ThingDef>.GetNamedSilentFail("Deer") : null;
             Make(p, g, k, about, beast);
         }
     }

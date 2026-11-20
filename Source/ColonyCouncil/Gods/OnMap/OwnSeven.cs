@@ -28,6 +28,8 @@ namespace ColonyCouncil
         public TamiuState tamiu = new TamiuState();
         /// <summary>Revel's, the fifteenth (Gods/OnMap/OwnRevel.cs), saved beside the seven's.</summary>
         public RevelState revel = new RevelState();
+        /// <summary>The festival playing out today (Gods/OnMap/OwnFeasts.cs), and Hollin's count of trees felled since her last Greening.</summary>
+        public FeastState feast = new FeastState();
 
         /// <summary>Saved with the rest of the book (its ExposeData).</summary>
         internal void ExposeSeven()
@@ -41,6 +43,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref ducat, "ducat");
             Scribe_Deep.Look(ref tamiu, "tamiu");
             Scribe_Deep.Look(ref revel, "revel");
+            Scribe_Deep.Look(ref feast, "feast");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ruins ??= new List<string>();
@@ -52,6 +55,7 @@ namespace ColonyCouncil
                 ducat ??= new DucatState();
                 tamiu ??= new TamiuState();
                 revel ??= new RevelState();
+                feast ??= new FeastState();
             }
         }
     }

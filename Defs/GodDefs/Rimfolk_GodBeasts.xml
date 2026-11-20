@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' beasts (Source/ColonyCouncil/Gods/OnMap/GodBeasts.cs; docs/content-update-proposals.md, C3, C4, C16): a god's
+    beast at home, the beast that stays taken for a god's, a legendary of PokéWorld on the land. What people say, one sentence
+    each; {GOD} is the speaker's own name for the god they take it for (a belief, never the truth), {BEAST} the beast's name,
+    {KIND} its kind. Tags: the moment (greet, bite, festivalbite, nofood, shrine, gone, resident, legend, legendscoff,
+    unnamed for a believer who can name no god), and the god's own (cirrus, undertow ...) for lines of its own. Two small
+    moods, modelled in Tools/Balance (Rates.cs), and the names a god's beast born on its festival day is given, in the god's
+    own words (the names' tag is god:key).
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_GodBeastGone</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>a god's beast died</label>
+        <description>One of our animals that I held to be sacred has died. It feels like more than losing an animal.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_SacredBeastSlain</defName>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a sacred beast slain</label>
+        <description>We killed a beast I believe was sacred. I don't think that kind of thing goes unanswered.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_BeastSpared</defName>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the beast left be</label>
+        <description>The council left the beast alone, as I asked. It isn't ours to hunt, and now everyone knows it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodBeast_Say</defName>
+    <lines>
+      <plain>
+        <li>[greet] Hello, {BEAST}, you're one of {GOD}'s, aren't you.</li>
+        <li>[greet] So you're {GOD}'s own, welcome to the colony.</li>
+        <li>[greet] Look at you, {BEAST}, {GOD} must have sent you to us.</li>
+        <li>[greet,cirrus] You smell like a storm coming, {BEAST}, {GOD} must be fond of you.</li>
+        <li>[greet,undertow] You only come out at dusk, {BEAST}, just like {GOD}'s own should.</li>
+        <li>[greet,hollin] There's moss in your coat, {BEAST}, {GOD} keeps you close.</li>
+        <li>[greet,hush] So cold to the touch, {BEAST}, you're {GOD}'s for sure.</li>
+        <li>[greet,helios] You shine in the sun, {BEAST}, {GOD} must have made you on a bright day.</li>
+        <li>[greet,selene] You keep the night hours, {BEAST}, like {GOD} does.</li>
+        <li>[greet,smoulder] You're warm as a hearthstone, {BEAST}, {GOD} must be close under you.</li>
+        <li>[greet,morel] You smell of the forest floor, {BEAST}, that's {GOD} in you.</li>
+
+        <li>[bite] Here, {BEAST}, a bite from my hand for {GOD}'s sake.</li>
+        <li>[bite] Go on, take it, it's for you.</li>
+        <li>[bite] Gently now, {BEAST}, that's it.</li>
+        <li>[bite,nofood] I've nothing for you today, {BEAST}, but I came to see you.</li>
+        <li>[festivalbite] You eat first today, {BEAST}, it's {GOD}'s day.</li>
+        <li>[festivalbite] First bite of the feast is yours, {BEAST}.</li>
+        <li>[festivalbite,nofood] There's nothing in the stores for you, {BEAST}, but you come with me today.</li>
+
+        <li>[shrine] There, {BEAST}, that's {GOD}'s place.</li>
+        <li>[shrine] Stand here with me a moment, {BEAST}, it's your day as well.</li>
+
+        <li>[gone] {BEAST} was one of {GOD}'s, and I hope it's gone back to them.</li>
+        <li>[gone] Rest now, {BEAST}, {GOD} will have you back.</li>
+
+        <li>[resident] That {KIND} out there is {GOD}'s, nobody touch it.</li>
+        <li>[resident] Don't anyone hunt that {KIND}, it belongs to {GOD}.</li>
+        <li>[resident] {BEAST} is {GOD}'s, I knew it the first time I saw it.</li>
+
+        <li>[legend] That's {GOD}'s own creature, I'd know it anywhere.</li>
+        <li>[legend] Look at it, that's no ordinary {KIND}, it belongs to {GOD}.</li>
+        <li>[legend] {GOD} has sent one of their own across our land.</li>
+        <li>[legendunnamed] That's no ordinary {KIND}, something sent it here.</li>
+        <li>[legendunnamed] I don't know whose it is, but that {KIND} is holy.</li>
+        <li>[legendscoff] It's a rare {KIND}, that's all it is.</li>
+        <li>[legendscoff] Rare, yes, holy, no.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodBeast_Names</defName>
+    <lines>
+      <plain>
+        <li>[god:hollin] Greenmantle</li>
+        <li>[god:hollin] Rootborn</li>
+        <li>[god:hollin] Mossback</li>
+        <li>[god:smoulder] Deepcoal</li>
+        <li>[god:smoulder] Emberling</li>
+        <li>[god:smoulder] Cinder</li>
+        <li>[god:bellwether] Whitehorn</li>
+        <li>[god:bellwether] Longroad</li>
+        <li>[god:bellwether] Passer</li>
+        <li>[god:morel] Loam</li>
+        <li>[god:morel] Sporecap</li>
+        <li>[god:morel] Mouldwick</li>
+        <li>[god:ennu] Wayfarer</li>
+        <li>[god:ennu] Doorstep</li>
+        <li>[god:ennu] Roadling</li>
+        <li>[god:pip] Spark</li>
+        <li>[god:pip] Cogwheel</li>
+        <li>[god:cirrus] Thunder</li>
+        <li>[god:cirrus] Galeborn</li>
+        <li>[god:cirrus] Skyward</li>
+        <li>[god:hush] Rime</li>
+        <li>[god:hush] Stillwater</li>
+        <li>[god:hush] Snowfall</li>
+        <li>[god:undertow] Nightfall</li>
+        <li>[god:undertow] Shade</li>
+        <li>[god:undertow] Lampless</li>
+        <li>[god:helios] Noonday</li>
+        <li>[god:helios] Sunborn</li>
+        <li>[god:helios] Gilt</li>
+        <li>[god:selene] Moonling</li>
+        <li>[god:selene] Vigil</li>
+        <li>[god:selene] Silverlight</li>
+        <li>[god:mog] Threshold</li>
+        <li>[god:mog] Lantern</li>
+        <li>[god:mog] Linen</li>
+        <li>[god:murmur] Rainsong</li>
+        <li>[god:murmur] Wellspring</li>
+        <li>[god:murmur] Croak</li>
+        <li>[god:ducat] Florin</li>
+        <li>[god:ducat] Tithe</li>
+        <li>[god:ducat] Ha'penny</li>
+        <li>[god:revel] Brimful</li>
+        <li>[god:revel] Merry</li>
+        <li>[god:revel] Lastdrop</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -405,6 +405,19 @@ MODEL = {
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
     "Gods/OnMap/OwnSeven.cs:ruins": ("fixed", const("Gods/OnMap/OwnSevenMath.cs", "RuinsHeldAtMost", 30), 35,
                                      "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
+    # Each god's festival kept as its words say (Gods/OnMap/OwnFeasts.cs): the lamps switched on and the doors let shut for
+    # the night of a festival (Pip's, Undertow's), put back at dawn and let go; only while that night lasts.
+    "Gods/OnMap/OwnFeasts.cs:lit": ("while", const("Gods/OnMap/OwnFeastsMath.cs", "LampsMost", 12), P,
+                                    "lamps switched on for a festival's night, OwnFeastsMath.LampsMost at most, let go at dawn"),
+    "Gods/OnMap/OwnFeasts.cs:doors": ("while", const("Gods/OnMap/OwnFeastsMath.cs", "DoorsMost", 8), P,
+                                      "doors let shut for the Shuttered Night, OwnFeastsMath.DoorsMost at most, let go at dawn"),
+    # The gods' beasts (Gods/OnMap/GodBeasts.cs): who greeted which of the colony's beasts of a god's kind ('beast|person',
+    # a few a year, the oldest let go past GodBeastsMath.GreetedMax), and the beasts on the land taken for a god's (a
+    # legendary of PokéWorld now and then, GodBeastsMath.LegendsMax at most).
+    "Gods/OnMap/GodBeasts.cs:greeted": ("cap", (const("Gods/OnMap/GodBeastsMath.cs", "GreetedMax", 160), 0.2), 30,
+                                        "who greeted which of the gods' beasts at home, GodBeastsMath.GreetedMax at most"),
+    "Gods/OnMap/GodBeasts.cs:legends": ("cap", (const("Gods/OnMap/GodBeastsMath.cs", "LegendsMax", 20), 0.03), 200,
+                                        "beasts on the land taken for a god's (legendaries), GodBeastsMath.LegendsMax at most"),
     # The old powers' own strange happenings (OldPowers/OldPowersBook.cs): when each last came (one a happening, fourteen),
     # the short memory of the forms they took, the rooms of the old ruins searched for a scroll; and only while one is
     # under way (one at a time, let go when it ends): the pilgrims walking together and the places of the eyes in the dark.

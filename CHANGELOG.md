@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Festivals kept, beasts held sacred
+
+*20 November 2026, version 0.278.1*
+
+- Eight gods' festivals now play out as their words say: saplings set for felled trees, silver dropped into the rock, the herd on the long grass, scraps dug in and mushroom stew, a broken thing mended and lamps lit all night, a silent supper, doors shut at nightfall, and a watch on the walls till dawn.
+- At every festival's rite, those who hold the god stand behind the one leading it.
+- Every god but one now holds some rare animals of your mods sacred, and hunting, vows and dreams follow them.
+- One of your animals held to be a god's is greeted, fed by hand and walked to the god's place on its feast day, and mourned when it dies.
+- A wild beast that stays, or a legendary Pokémon, may be taken for a god's, and the council's question about the beast has the believer's answer.
+- Sculptures can now show the colony's own stories: a god seen, a festival kept, a beast named, a raid held at a line.
+
 ## The gods among the people
 
 *20 November 2026, version 0.278.0*

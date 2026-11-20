@@ -83,9 +83,8 @@ most sense." So, in this order, three builds at a time:
      peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
-     gods 1 (C1, C2, C3, C4, C16, C17) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29), started 20 November
-     (gods 2 built, not released: the entry "The gods among the colony's people and the world" above the newest
-     release line);
+     gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
+     released 0.278.0);
      council (A1, A2, A5, A6, A21), started 20 November; the land and its life (C19, C20, C21, C22, C24, C28, C30);
      wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
      B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
@@ -607,6 +606,75 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.278.1, **The gods' integrations, part 1:
+  festivals, sacred beasts and art** (20 November 2026; the player, on `docs/content-update-proposals.md`: "your content
+  proposal overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I
+  just want additional God events, more immersion, more just further also building up on the gods in general, how
+  they're integrated, the effects they have, the relations between pawns, the kind of events that generated from it",
+  and "first do all the integrations that you proposed in your document before we add additional content variety").
+  Built as proposed in part C: C1, C2, C3, C4, C16 and C17, each marked there; DESIGN.md "The gods' integrations, part 1:
+  festivals, sacred beasts and art" has every rule. C1: the eight festivals that kept only the shared feast play out as
+  their words say (Hollin's saplings, one for each tree felled since the last Greening, and a meal under the oldest tree;
+  Smoulder's silver down the deepest shaft or a crack in the rock; Bellwether's herd on the long grass and the old story
+  at dusk; Morel's scraps dug under, the field turning rich, and mushroom stew cooked from the stores; Pip's broken thing
+  mended, the machines walked round, the lamps lit all night; Hush's silent supper, the sick and the old nearest the
+  fire; Undertow's doors shut and lamps lit at nightfall, put back at dawn; Selene's watch on the walls till dawn, the
+  night watch's own play-out, and dreams told at breakfast), and the believers stand behind the priest at every rite. C2:
+  ten more gods have sacred kinds from the player's animals (Pip none), driving the offences, the vow to spare a beast,
+  the dream warning, the gifted beast and the mark by the god's own kinds. C3: one of the colony's own animals of a god's
+  kind is greeted, fed a bite by hand, fed first and walked to the god's place at its festival, an omen if born on that
+  day, grieved when it dies, by those who hold the god they take it for (each one's own reading, sometimes wrong). C4:
+  the beast that stays, of a god's kind or shape, is taken for a god's by a believer, and its council question
+  (`Council_DlmA_ResidentBeastSacred`) has the believer's answer first (leave it be, played out). C16: a legendary of
+  PokéWorld (and Meowth, Persian, Spiritomb) on the land is taken for a god's as a god's hand; hunting it troubles those
+  who believe it. C17: eight of Rimfolk's moments are the game's tales for the colony's art. The Almanac's pages *the
+  gods* and *the colony's animals* (keywords unchanged), README "Worship".
+  - Code: `Gods/OnMap/OwnFeasts.cs` (`FeastState`, `OwnFeasts`, `JobDriver_FeastWork`), `OwnFeastsMath.cs`,
+    `GodBeasts.cs` (`GodBeastsBook`, `LegendTaken`, `GodBeasts`), `GodBeastsMath.cs`, `Gods/SacredKinds.cs`,
+    `Things/ArtTales.cs` (`Tale_Rimfolk`, `ArtTales`), `ArtTalesMath.cs`, `Animals/ResidentBeastSacred.cs`,
+    `Gods/GodsIntegrationDebug.cs` (all new; the three Math files linked in the tests); seams in `OwnHappenings.cs`,
+    `OwnSeven.cs` (`feast` saved), `Festivals.cs` (the gathering, the festival's beast, its tale), `GodHands.cs`
+    (`ShowWith`), `GodDeeds.cs`, `GodHealth.cs`, `GodWorldGifts.cs`, `Vows.cs`, `GodDreams.cs`, `Offerings.cs`,
+    `GodMarkGoods.cs`, `Gods.cs` (`Moment`), `SacredAnimal.cs`, `ResidentBeast.cs` (`takenGod`, `taker` saved),
+    `OmenAnimals.cs`, `HerdStory.cs`, `Happenings.cs`, `DefenseLinesWatch.cs`. Defs: `GodDefs/Rimfolk_GodFeasts.xml`,
+    `Rimfolk_GodBeasts.xml`, `Misc/Rimfolk_Tales.xml` (new), `Rimfolk_Gods.xml` (the kinds, `MayRequire`),
+    `DilemmaDefs/Rimfolk_Dilemmas_Beast.xml`; Keyed `Rimfolk_GodFeasts.xml`, `Rimfolk_GodBeasts.xml` (new). Saved: the
+    festival under way and the trees felled (`OwnHappeningsBook.feast`; its lamps and doors only for the night), the
+    greetings and the legendaries taken (`GodBeastsBook`), each modelled in `Tools/save_estimate.py`. Tests:
+    `GodsIntegrationTests` (new), the two spoken pools in `ImmersionTests`, the moods in `Tools/Balance/Rates.cs`;
+    `Tools/playout_skips.txt` has the sacred question's food and taming answers as the plain one's.
+  - Decided here (open in the proposals): a festival answered late begins as soon as it may until its latest hour, else
+    the next day at its hour (`OwnFeastsMath.LatestHour`); the Greening's count is the trees felled since the last one,
+    20 saplings at most; the Deep Silver is a twentieth of the stores' silver, 5 to 40; the Turning Under's scraps are hay,
+    else the plainest raw vegetables, and up to nine squares turn rich; the stew is fungus meals (Ideology), else simple
+    meals, of any raw fungus the game knows, a meal for ten, six at most; Pip's mending is the game's own repair (a
+    broken-down machine with a component in the stores, else a damaged building); Undertow's shutters are the doors to the
+    outside held open, let shut for the night; the lamps and doors are put back at dawn only if nobody changed them since;
+    Selene's watch is one or two who hold her; the donkey stays Ennu's as the table has it, though a colony may keep
+    donkeys (slaughtering one is an offence to Ennu); a beast at home is taken for a god by each colonist's own fixed
+    reading; a festival-born god's beast is an omen without the twenty days' gap, within the three living; Meowth, Persian
+    and Spiritomb, not legendaries in PokéWorld, are taken for a god's as the table says, the same kind once in 30 days; a
+    tale kind comes at most once in two to ten days at a home; the named season's tale waits for C18.
+  - Harm: none new. Selene's watch on a cold night is the night watch's, under its budget (`nightWatch`).
+  - Not run here (none of it could be): every play-out in the game (the jobs, the walks, the lamps and doors, the stew,
+    the repair, the watch, the dreams at breakfast), the gods' beasts' greeting, bite and walk, the omen named, the sacred
+    question and its answer played out, a legendary taken for a god's as a hand, and above all the art: the game's art
+    descriptions from Rimfolk's tales (the rule packs use the game's `[circumstance_group]`, as its own tales do; if a
+    sculpture's description shows an error, that is the place to look).
+  - Try in the game (dev mode, "Rimfolk"): 1. "Gods: a festival kept now, its custom at once..." for each of the eight,
+    then "Gods: the festival's next part now" to move on to the meal, the story, the lamps, dawn or breakfast; each ends
+    in a message and a line in the colony's book. 2. Dedicate a shrine to a god, then "Gods: a festival's rite now, the
+    believers behind it...": those who hold the god stand in rows behind. 3. Tame a thunderox, dusk prowler or a dryad,
+    then "Gods: a god's beast at home: greeted, given a bite, walked to its place..." (the walk needs a shrine of the god).
+    4. With a beast that stays of a god's kind (a frost lynx, a thrumbo), "Gods: the beast that stays here taken for a
+    god's now, and its question". 5. With PokéWorld, "Gods: a legendary on the land now, taken for a god's...". 6. "Art:
+    each of Rimfolk's tales now" on a colonist, then have them make a sculpture and read its description.
+  - Mods that would help: Pawns on Display (Workshop 3446605621; 1.5, 1.6 and 1.7, updated 12 October) for statues of a
+    colonist's or a god's beast's own look (C3, C17); Dark Ages: Beasts and Monsters (3472275628; 1.5 to 1.7, in their
+    list but off) for more creatures to hold sacred; Milky Way (3773448562; 1.6 and 1.7, off) for Selene's night on the
+    walls; P-Music (725130005; 1.0 to 1.7, off, kept up) for the festivals; Gauranlen Tree Expanded (Continued)
+    (3025108023; to 1.6, no 1.7 tag) for more dryad castes. Vanilla Furniture Expanded - Art (1968134023; 1.5 to 1.7) is
+    already active, and its statues show the new tales.
 - 0.278.0, **The gods among the colony's people
   and the world** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall
   sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want

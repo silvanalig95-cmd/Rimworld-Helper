@@ -406,6 +406,8 @@ namespace ColonyCouncil
             var a = s?.a;
             if (s == null || a == null || p == null || s.hurt || s.sat.Contains(p) || s.sat.Count >= GodsOnMapMath.SittersAVisit) return;
             s.sat.Add(p);
+            // A tale of the game's, for the colony's art (Things/ArtTales.cs).
+            if (s.God != null) ArtTales.Record(ArtTales.SacredBeast, p, null, Called(a, s.God), null);
             var grief = Grief(p);
             var fear = Fear(p);
             var open = p.skills?.skills?.Where(k => k != null && k.passion == Passion.None && !k.TotallyDisabled).ToList() ?? new List<SkillRecord>();
@@ -749,6 +751,7 @@ namespace ColonyCouncil
             Gods.AddFavour(god, s.map, GodsOnMapMath.Fed, null);
             string called = Called(s.a, god);
             Deeds.Record("Rimfolk_Deed_FedSacred", by, null, -1f, null, called);
+            ArtTales.Record(ArtTales.SacredBeast, by, null, called, null);
             GodsOnMapWords.Saw(god, s.map, s.a.Position, GodActKind.Act, by, "CC_GodM_Saw_Fed", called.Named("BEAST"));
         }
 

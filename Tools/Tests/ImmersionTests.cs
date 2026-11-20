@@ -220,7 +220,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_PlayBellFuneral",
         // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
         // colony say at each moment.
-        "Rimfolk_Pool_OldPowersSaid"
+        "Rimfolk_Pool_OldPowersSaid",
+        // Each god's festival kept as its words say, and the gods' beasts at home and on the land (Gods/OnMap/OwnFeasts.cs,
+        // GodBeasts.cs): what is said at the festival's work, to a god's beast, and of a beast taken for a god's.
+        "Rimfolk_Pool_GodFeast_Say", "Rimfolk_Pool_GodBeast_Say"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

@@ -137,7 +137,8 @@ namespace ColonyCouncil
 
         private static PawnKindDef BeastKind(God g)
         {
-            var sacred = g.DomainDef?.Animals?.Where(a => a.race != null && a.GetStatValueAbstract(StatDefOf.Wildness) <= 0.8f).Select(a => DefDatabase<PawnKindDef>.GetNamedSilentFail(a.defName));
+            // Its own sacred kinds, else its domain's (Gods/SacredKinds.cs), tame enough to be given.
+            var sacred = SacredKinds.Of(g).Where(a => a.race != null && a.GetStatValueAbstract(StatDefOf.Wildness) <= 0.8f).Select(a => DefDatabase<PawnKindDef>.GetNamedSilentFail(a.defName));
             var kinds = GodWays.Beasts(g).Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n)).Concat(sacred ?? Enumerable.Empty<PawnKindDef>())
                 .Where(k => k?.RaceProps?.Animal == true).ToList();
             return kinds.FirstOrDefault();
