@@ -31,6 +31,7 @@
     <Compile Include="../../Source/ColonyCouncil/Offices/OfficeNamesMath.cs" Link="OfficeNamesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/RecordMath.cs" Link="RecordMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/SeatMath.cs" Link="SeatMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesTiesMath.cs" Link="PeoplesTiesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentCauseMath.cs" Link="AilmentCauseMath.cs" />

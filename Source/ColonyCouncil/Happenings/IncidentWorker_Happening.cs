@@ -57,6 +57,8 @@ namespace ColonyCouncil
             if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= RiseFallEffects.EventFactor(def, target as Map);
             // A colony (or one of its people by name) known for something draws the world's events of its kind (Diplomacy/Renown.cs).
             if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= Renown.EventFactor(def, target as Map);
+            // A people bound to the colony sends its own events more often, one it broke its word with less (Peoples/PeopleTies.cs).
+            if (S != null && S.eventsFromStoryteller && def.category != HappeningTracker.Category) f *= PeopleTies.EventFactor(def);
             return f;
         }
 
@@ -176,7 +178,31 @@ namespace ColonyCouncil
             var ctx = new HappeningContext { incident = def, map = map, points = parms.points, scenario = forScenario };
             try
             {
-                if (!Cast(ctx, ext) || !Begin(ctx, ext))
+                // One of the peoples' own events: cast first with its gift going to the colonist who carries the colony's tie
+                // with them (Peoples/PeopleTies.cs); when that can't be, cast as ever.
+                var carrier = PeopleTies.CarrierFor(def, map);
+                if (carrier != null)
+                {
+                    bool cast;
+                    using (PeopleTies.Giving(carrier))
+                        cast = Cast(ctx, ext);
+                    if (!cast)
+                    {
+                        Abort(ctx);
+                        ctx = new HappeningContext { incident = def, map = map, points = parms.points, scenario = forScenario };
+                        if (!Cast(ctx, ext))
+                        {
+                            Abort(ctx);
+                            return false;
+                        }
+                    }
+                    if (!Begin(ctx, ext))
+                    {
+                        Abort(ctx);
+                        return false;
+                    }
+                }
+                else if (!Cast(ctx, ext) || !Begin(ctx, ext))
                 {
                     Abort(ctx);
                     return false;
@@ -336,6 +362,9 @@ namespace ColonyCouncil
             ctx.cause = label;
             string extra = Extra(ctx);
             string body = ctx.text + (extra.NullOrEmpty() ? "" : "\n\n" + extra);
+            // One of the peoples' own events from a people bound to the colony: its letter names the tie (Peoples/PeopleTies.cs).
+            string tie = PeopleTies.LetterLine(ctx);
+            if (!tie.NullOrEmpty()) body += "\n\n" + tie;
             // The event's own effects: a people's goodwill they move is for how the event turned out (World/GoodwillWhy.cs).
             using (Causes.Push("CC_Cause_EventHappened".Translate(label).Resolve()))
             using (GoodwillWhy.During(GoodwillWhy.Event))

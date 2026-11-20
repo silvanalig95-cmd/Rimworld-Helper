@@ -156,6 +156,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>citizens</li></callings>
         <group>Visitors</group>
         <ages>19~35</ages>
         <stayHours>6~8</stayHours>
@@ -351,6 +352,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>crew</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Odyssey</li>
@@ -416,6 +418,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>crew</li></callings>
         <group>Visitors</group>
         <ages>19~40</ages>
         <stayHours>8~12</stayHours>
@@ -481,6 +484,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>crew</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Royalty</li>
@@ -546,6 +550,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>crew</li></callings>
         <group>Visitors</group>
         <ages>20~40</ages>
         <stayHours>6~8</stayHours>
@@ -610,6 +615,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>editors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Biotech</li>
@@ -676,6 +682,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>editors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Biotech</li>
@@ -743,6 +750,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>editors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>vanillaexpanded.vgeneticse</li>
@@ -810,6 +818,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>editors</li></callings>
         <group>Visitors</group>
         <ages>24~55</ages>
         <stayHours>6~8</stayHours>

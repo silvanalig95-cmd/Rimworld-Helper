@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 802; modelled: 802; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,071 KB** after a year, **3,786 KB** after two, **4,251 KB** after five.
+Rimfolk's part of the save, roughly: **3,071 KB** after a year, **3,787 KB** after two, **4,251 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -46,7 +46,7 @@ Rimfolk's part of the save, roughly: **3,071 KB** after a year, **3,786 KB** aft
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
 | `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, a second store: CampGrow.cs, about thirty more), while the camp stays | while | 120 | 120 | 120 | 23.4 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 251 | 251 | 251 | 22.1 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 252 | 252 | 252 | 22.1 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
 | `Gods/Worship/WorshipBook.cs:prayers` | prayers said, settled and let go after twenty days, WorshipBook.MaxPrayers | cap | 60 | 80 | 80 | 20.3 |
@@ -111,10 +111,10 @@ Rimfolk's part of the save, roughly: **3,071 KB** after a year, **3,786 KB** aft
 | `World/WorldSituations.cs:history` | 40 past | cap | 6 | 12 | 30 | 7.3 |
 | `Building/Suggest/Suggestions.cs:declinedTitles` | with the above: the words they had | fixed | 80 | 80 | 80 | 7.0 |
 | `Gods/Worship/WorshipBook.cs:marks` | a person's crises (a month), turnings and pilgrimages, WorshipBook.MaxMarks | cap | 12 | 24 | 60 | 7.0 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 78 | 78 | 78 | 6.9 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 79 | 79 | 79 | 6.9 |
 | `Building/ColonyUse.cs:amounts` | with the above: how much | window | 280 | 280 | 280 | 6.8 |
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 75 | 75 | 75 | 6.6 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 76 | 76 | 76 | 6.6 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Beasts/BeastBook.cs:alphas` | packs led by an alpha: one a home a month at most (the setting at 200%: two), BeastsMath.MaxAlphaRecords kept | cap | 4 | 7 | 16 | 6.6 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 74 | 74 | 74 | 6.5 |

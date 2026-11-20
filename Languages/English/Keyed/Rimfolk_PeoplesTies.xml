@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples and their ties (the content update's B4, B12, B14, B17, B22, B29 and B31, 20 November 2026). -->
+
+  <!-- B14: the closing line of a people's own event's letter, naming the colony's tie with them (Peoples/PeopleTies.cs). The letters' style. -->
+  <CC_Ties_Letter_Debt>{PEOPLE} have not forgotten the debt of honour that stands between them and the colony.</CC_Ties_Letter_Debt>
+  <CC_Ties_Letter_Envoy>Their envoy at the colony, {WHO}, has been writing home all season, and it shows.</CC_Ties_Letter_Envoy>
+  <CC_Ties_Letter_EnvoyOurs>The colony's own envoy, {WHO}, sits at their table this season, and {PEOPLE} have taken note of it.</CC_Ties_Letter_EnvoyOurs>
+  <CC_Ties_Letter_Pact>{PEOPLE} send this as the colony's partners in the pact.</CC_Ties_Letter_Pact>
+  <CC_Ties_Letter_Fealty>{PEOPLE} do not forget that the colony is sworn to them, and they treat it as their own.</CC_Ties_Letter_Fealty>
+  <CC_Ties_Letter_FealtyOurs>{PEOPLE} hold {WHO} of the colony, and they do not forget whose word protects it.</CC_Ties_Letter_FealtyOurs>
+  <CC_Ties_Letter_Hostage>One of their own, {WHO}, is at the colony as the pledge of their word, and {PEOPLE} mean the colony to see them keep it.</CC_Ties_Letter_Hostage>
+  <CC_Ties_Letter_Ward>{WHO}, one of their young, is in the colony's keeping this year, and {PEOPLE} have not forgotten it.</CC_Ties_Letter_Ward>
+  <CC_Ties_Letter_Marriage>Since {WHO} married into the colony, {PEOPLE} think of it as more than a neighbour.</CC_Ties_Letter_Marriage>
+
+  <!-- B12: a town's fortune at the gate (World/Region/FortuneShows.cs). Messages plain; the bubbles one sentence each. -->
+  <CC_Fortune_Gift>{PAWN_nameDef} of {PEOPLE} is bringing a small gift from {TOWN}, which is {LINE}: {COUNT} silver, to be set down at the colony.</CC_Fortune_Gift>
+  <CC_Fortune_Ask>{PAWN_nameDef} of {PEOPLE} has asked the colony for a meal. {TOWN} is {LINE}, and their clothes show it.</CC_Fortune_Ask>
+  <CC_Fortune_AskLine>It's been a hard year at {TOWN}, and I'd be grateful for a meal if you can spare one.</CC_Fortune_AskLine>
+  <CC_Fortune_Thanks>Thank you, I'll tell them at {TOWN} who fed me.</CC_Fortune_Thanks>
+
+  <!-- B4: what the new head remembers of the colony's gate (World/Region/NewHeads.cs), a notable's note. Plain. -->
+  <CC_NewHead_Note_table>Was sat at the colony's table and given a bed on their first ride out as head.</CC_NewHead_Note_table>
+  <CC_NewHead_Note_gift>Was given a gift at the colony's gate on their first ride out as head.</CC_NewHead_Note_gift>
+  <CC_NewHead_Note_word>Was greeted with a word at the colony's gate on their first ride out as head.</CC_NewHead_Note_word>
+  <CC_NewHead_Note_none>Was left waiting at the colony's gate on their first ride out as head.</CC_NewHead_Note_none>
+
+  <!-- B17: kin hear of their town's hard year (World/KinNews.cs). The letters in the letters' style; the rest plain. -->
+  <CC_Kin_Cause>word from {TOWN} ({EVENT})</CC_Kin_Cause>
+  <CC_Heart_Cause_KinTown>word from {TOWN}: {EVENT}</CC_Heart_Cause_KinTown>
+  <CC_Kin_Deed>sent {WHAT} home to {TOWN}</CC_Kin_Deed>
+  <CC_Kin_CarryLabel>help sent home</CC_Kin_CarryLabel>
+  <CC_Kin_Letter_Label>News from {TOWN}</CC_Kin_Letter_Label>
+  <CC_Kin_Letter_1>[courier,!many] The courier had a letter in the bag for {NAMES}, from {TOWN}. The news is bad ({EVENT}), and it was written in a hurry, by someone who had other things to do that day.\n\n{NAMES} read it twice and put it away, and has been quiet since.</CC_Kin_Letter_1>
+  <CC_Kin_Letter_2>[road,!many] Word from {TOWN} has come up the road by way of travellers: {EVENT}. It came late and second-hand, and {NAMES} would give a good deal for a proper letter.\n\nFor now there is only the worry.</CC_Kin_Letter_2>
+  <CC_Kin_Letter_3>[courier,many] The courier's bag held letters from {TOWN} for {NAMES}. They opened them together at the gate, and read the same news in each ({EVENT}).\n\nThey sat up late talking about who they know there.</CC_Kin_Letter_3>
+  <CC_Kin_Letter_4>[courier,kind:sickness,!many] The letter from {TOWN} came with the courier and was opened with gloves, out of habit. The fever is in the town, the sickhouse is full, and the writer has lost count of the beds.\n\n{NAMES} has been worried about the people there ever since.</CC_Kin_Letter_4>
+  <CC_Kin_Letter_5>[road,kind:sickness,!many] A trader on the road said it plainly: the fever is at {TOWN}, and they are shutting doors there. {NAMES} heard it at the gate and went to find someone to tell.</CC_Kin_Letter_5>
+  <CC_Kin_Letter_6>[kind:hunger,!many] The letter from {TOWN} is short, and most of it is about food: the granary is thin, the bread is half chaff, and the old ones are eating last ({EVENT}).\n\n{NAMES} has read it more than once, and counted the colony's sacks afterwards.</CC_Kin_Letter_6>
+  <CC_Kin_Letter_7>[kind:drought,!many] Word from {TOWN}: the wells are low, the fields are worse, and nobody there remembers a dry spell this long ({EVENT}).\n\n{NAMES} has been watching the sky over the colony as if it could help.</CC_Kin_Letter_7>
+  <CC_Kin_Letter_8>[kind:fire,!many] The news from {TOWN} smells of smoke: a fire went through the town, and the letter lists the streets that are gone ({EVENT}).\n\n{NAMES} went looking for the names of friends in it, and found some.</CC_Kin_Letter_8>
+  <CC_Kin_Letter_9>[kind:water,!many] The river came up at {TOWN}, the letter says, into the lower houses and the stores ({EVENT}). They are drying out what they can.\n\n{NAMES} has been asking anyone who comes by the gate whether the water has gone down.</CC_Kin_Letter_9>
+  <CC_Kin_Letter_10>[kind:weather,!many] The winter has been hard at {TOWN} ({EVENT}). The letter says the woodpiles are low and the roads are shut, and it took a long time to get here.\n\n{NAMES} has kept it close since.</CC_Kin_Letter_10>
+  <CC_Kin_Letter_11>[kind:war,!many] The letter from {TOWN} was written behind barred doors ({EVENT}). The fighting has not reached the town yet, it says, but everyone there is waiting for it.\n\n{NAMES} has hardly put it down.</CC_Kin_Letter_11>
+  <CC_Kin_Letter_12>[kind:townraid,!many] Raiders were at {TOWN} ({EVENT}), and the letter that came after says who was hurt and who is missing.\n\n{NAMES} read the list slowly, all the way to the bottom.</CC_Kin_Letter_12>
+  <CC_Kin_Letter_13>[tie:marriage,!many] {PAWN_nameDef} married into the colony from {PEOPLE}, and the letter from {TOWN} was from {PAWN_possessive} own people: things are bad there ({EVENT}).\n\n{PAWN_nameDef} has said little about it, and thought about it a great deal.</CC_Kin_Letter_13>
+  <CC_Kin_Letter_14>[tie:ward,!many] The letter from {TOWN} was for {PAWN_nameDef}, the young ward of {PEOPLE} in the colony's keeping. It says the town is in a hard way ({EVENT}), and that {PAWN_pronoun} is not to worry.\n\n{PAWN_nameDef} is worrying.</CC_Kin_Letter_14>
+  <CC_Kin_Letter_15>[tie:came,!many] {PAWN_nameDef} came to the colony from {PEOPLE}, and the word from {TOWN} is about people {PAWN_pronoun} grew up with ({EVENT}).\n\nThe colony is home now, but {PAWN_nameDef} has been looking toward {TOWN} all the same.</CC_Kin_Letter_15>
+  <CC_Kin_Letter_16>[tie:envoy,!many] {PAWN_nameDef}, the envoy of {PEOPLE} at the colony, has had a letter from {TOWN} ({EVENT}). {PAWN_pronoun} read it at the window and asked for paper to answer it at once.</CC_Kin_Letter_16>
+  <CC_Kin_Letter_17>[tie:hostage,!many] {PAWN_nameDef}, held at the colony as the pledge of {PEOPLE}'s word, has had word from {TOWN}: {EVENT}. {PAWN_pronoun} can only wait for the next letter.</CC_Kin_Letter_17>
+  <CC_Kin_Letter_18>[road,many] Word has come up the road from {TOWN} by way of travellers ({EVENT}), and {NAMES} heard it together at the gate.\n\nThey have been asking everyone who comes by for more since.</CC_Kin_Letter_18>
+  <CC_Kin_Abroad_Label>A letter from {PAWN_nameDef} at {TOWN}</CC_Kin_Abroad_Label>
+  <CC_Kin_Abroad_1>[staying] {PAWN_nameDef} writes from {TOWN}: the town is in a hard way ({EVENT}), and {PAWN_pronoun} has been lending a hand where {PAWN_pronoun} can. {PAWN_pronoun} is well, and staying until the term is out.</CC_Kin_Abroad_1>
+  <CC_Kin_Abroad_2>[staying,kind:hunger] {PAWN_nameDef} writes from {TOWN} that the bread there is half chaff and the portions are small ({EVENT}). {PAWN_pronoun} eats what the household eats, and is staying.</CC_Kin_Abroad_2>
+  <CC_Kin_Abroad_3>[staying,kind:sickness] {PAWN_nameDef} writes from {TOWN} that the fever is in the town ({EVENT}). {PAWN_pronoun} is keeping well away from the sickhouse, as {PAWN_possessive} hosts insist, and is staying for now.</CC_Kin_Abroad_3>
+  <CC_Kin_Abroad_4>[comingHome] {PAWN_nameDef} writes from {TOWN} that the fever is in the town ({EVENT}), and that {PAWN_possessive} hosts have told {PAWN_objective} to go home while the roads are open. {PAWN_pronoun} is setting out for the colony now, before the term is out.</CC_Kin_Abroad_4>
+  <CC_Kin_Abroad_5>[comingHome] {PAWN_nameDef} writes from {TOWN} in a hurry: the fever has reached the street {PAWN_pronoun} lodges on ({EVENT}), and {PAWN_pronoun} is coming home early, on {PAWN_possessive} hosts' advice.</CC_Kin_Abroad_5>
+  <CC_Kin_Abroad_6>[staying,kind:fire] {PAWN_nameDef} writes from {TOWN} that a fire took part of the town ({EVENT}), and that {PAWN_pronoun} spent two days carrying water and the rest carrying timber. {PAWN_pronoun} is staying to help with the rebuilding.</CC_Kin_Abroad_6>
+
+  <!-- B22: the neighbours for good at the colony's days, and the colony's friend at theirs (Camps/HoldingDays.cs). Messages plain; bubbles one sentence each. -->
+  <CC_HoldingDay_Came>{WHO} of {NAME} came over for {DAY} and set down a dish from their own stores ({COUNT} simple meals) by the gathering.</CC_HoldingDay_Came>
+  <CC_HoldingDay_CameNoDish>{WHO} of {NAME} came over for {DAY} and joined the gathering.</CC_HoldingDay_CameNoDish>
+  <CC_HoldingDay_CameLine>We wouldn't miss {DAY}, and we brought something for the table.</CC_HoldingDay_CameLine>
+  <CC_HoldingDay_GraveLine1>We heard about {DEAD}, and we wanted to come and stand here a while.</CC_HoldingDay_GraveLine1>
+  <CC_HoldingDay_GraveLine2>{DEAD} always had a word for us when we came by the gate.</CC_HoldingDay_GraveLine2>
+  <CC_HoldingDay_GraveLine3>We're sorry about {DEAD}, truly.</CC_HoldingDay_GraveLine3>
+  <CC_CampErrand_Arrived_mourn>{X_nameDef} of the {NAME} has come to stand at the colony's new grave.</CC_CampErrand_Arrived_mourn>
+  <CC_HoldingDay_Why_Settled>it is the day in the year that {NAME} settled here</CC_HoldingDay_Why_Settled>
+  <CC_HoldingDay_Why_Birthday>it is {PAWN_nameDef}'s birthday</CC_HoldingDay_Why_Birthday>
+  <CC_HoldingDay_Why_Wedding>{A_nameDef} and {B_nameDef} of their family were married today</CC_HoldingDay_Why_Wedding>
+  <CC_HoldingDay_Invite>Our neighbours for good have asked {PAWN_nameDef} over to their fire this evening: {WHY}.</CC_HoldingDay_Invite>
+  <CC_HoldingDay_VisitLabel>an evening at the neighbours' fire</CC_HoldingDay_VisitLabel>
+
+  <!-- B29: a feast's guests bring their town's year (Diplomacy/FeastYear.cs). The feast's letters in the letters' style; the toast is speech, one sentence. -->
+  <CC_FeastYear_Gift>{NAME_nameDef} comes from {TOWN} in a good year ({EVENT}), and has brought a gift for the colony: {COUNT} silver, set down at the gate.</CC_FeastYear_Gift>
+  <CC_FeastYear_Hard>{NAME_nameDef} comes from {TOWN}, where times are hard ({EVENT}), and will think more of a full plate than of any contest.</CC_FeastYear_Hard>
+  <CC_FeastYear_ToastHard>To our friends from {TOWN}, and to better days there soon.</CC_FeastYear_ToastHard>
+  <CC_FeastYear_ToastGood>To {TOWN}, and to the good year they're having.</CC_FeastYear_ToastGood>
+  <CC_FeastYear_Leftovers>{NAME_nameDef} asked leave to carry what was left home to {TOWN}, where times are hard, and took {COUNT} meals from the colony's stores with thanks.</CC_FeastYear_Leftovers>
+
+  <!-- B31: a camp that comes back says what it lived through at home since (Camps/CampMemory.cs). The camps' style. Each line is for one news ([news:...]); [helped]: the colony helped them in it. -->
+  <CC_Camp_WorldNews_1>[news:fever] The fever went through {TOWN} while they were away, and they lost people they knew to it.</CC_Camp_WorldNews_1>
+  <CC_Camp_WorldNews_2>[news:fever,helped] The fever went through {TOWN} after they left. They know the colony sent help, and they say so before anything else.</CC_Camp_WorldNews_2>
+  <CC_Camp_WorldNews_3>[news:hunger] It was a hungry year at {TOWN}, and they have come away thinner than they went.</CC_Camp_WorldNews_3>
+  <CC_Camp_WorldNews_4>[news:hunger,helped] It was a hungry year at {TOWN}, and they have not forgotten whose grain got them through it.</CC_Camp_WorldNews_4>
+  <CC_Camp_WorldNews_5>[news:rains] The drought at {TOWN} broke in the end, and they were there to see the first rain come down on the dry fields.</CC_Camp_WorldNews_5>
+  <CC_Camp_WorldNews_6>[news:dryyear] The drought at {TOWN} never properly broke. The rains came too late for the crop, and they say the town is still counting what it lost.</CC_Camp_WorldNews_6>
+  <CC_Camp_WorldNews_7>[news:fire] A fire went through {TOWN} after they left. They helped clear the burned streets, and there is a new mill going up where the old one stood.</CC_Camp_WorldNews_7>
+  <CC_Camp_WorldNews_8>[news:fire,helped] A fire took part of {TOWN} after they left. They say the colony's help is spoken of there, and that half the new roofs were raised with it.</CC_Camp_WorldNews_8>
+  <CC_Camp_WorldNews_9>[news:flood] The river came up at {TOWN} while they were away. They spent weeks shovelling mud out of the lower houses, and the town is still drying out.</CC_Camp_WorldNews_9>
+  <CC_Camp_WorldNews_10>[news:winter] They wintered at {TOWN} in the worst cold anyone there remembers, and burned the fences before the end of it.</CC_Camp_WorldNews_10>
+  <CC_Camp_WorldNews_11>[news:herds] Sickness went through the herds at {TOWN}. They lost beasts, and the ones they came back with are the ones that lived.</CC_Camp_WorldNews_11>
+  <CC_Camp_WorldNews_12>[news:harvest] The harvest at {TOWN} was the best in years, and they have come with full sacks and in good spirits.</CC_Camp_WorldNews_12>
+  <CC_Camp_WorldNews_13>[news:fair] They were at the great fair at {TOWN}, and they are still talking about it.</CC_Camp_WorldNews_13>
+  <CC_Camp_WorldNews_14>[news:head] There is a new head at {TOWN} since they left, and they have opinions about it, which they share freely.</CC_Camp_WorldNews_14>
+  <CC_Camp_WorldNews_15>[news:war] The fighting came close to {TOWN} while they were away, and they kept off the roads until it was over.</CC_Camp_WorldNews_15>
+  <CC_Camp_WorldNews_16>[news:raid] Raiders struck {TOWN} after they left, and it went badly there. They do not talk about it much.</CC_Camp_WorldNews_16>
+  <CC_Camp_WorldNews_17>[news:raidheld] Raiders came at {TOWN} while they were away, and the town held. They are proud of it, and tell it more than once.</CC_Camp_WorldNews_17>
+  <CC_Camp_WorldNews_18>[news:rebuilt] They spent the season at {TOWN}, helping with the rebuilding, and came away with new skills and sore hands.</CC_Camp_WorldNews_18>
+  <CC_Camp_WorldNews_19>[news:faith] They kept the holy days at {TOWN} with everyone else, and came away with a blessing they mean to share.</CC_Camp_WorldNews_19>
+  <CC_Camp_WorldNews_20>[news:mourning] {TOWN} was in mourning while they were there, and they wore the grey with everyone else.</CC_Camp_WorldNews_20>
+
+</LanguageData>

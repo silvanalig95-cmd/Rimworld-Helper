@@ -604,6 +604,8 @@ wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
 // The council's integrations, part 1 (Offices/SeatCalls.cs, Interplay/Interplay_Seats.cs): the weight of office's hard call,
 // and the crop the reeve found blight in.
 wishPh.UnionWith(new[] { "CALL", "CROP" });
+// The peoples and their ties (World/KinNews.cs, DilemmaContextKin): the world event at the town a council question is about.
+wishPh.Add("EVENT");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

@@ -241,6 +241,8 @@ namespace ColonyCouncil
                     t.arrived = now;
                     var first = t.Bearers.FirstOrDefault();
                     if (first != null) CourierWords.Say(first, t, t.kind == CourierKind.Await ? "await" : "arrive");
+                    // The word of a hard year at a people comes with them to those at the colony with a tie there (World/KinNews.cs).
+                    KinNews.CourierCame(t);
                 }
                 else
                 {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples and their ties (the content update's B17; Source/ColonyCouncil/World/KinNews.cs): word of a hard year at
+       a people someone at the colony has a tie to, and help the council let them send home. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_KinWorried</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>worried about home</label>
+        <description>Word came that things are bad where my people are. I keep thinking about the ones I know there.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_KinSentHelp</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sent help home</label>
+        <description>The council let me send something home to my people. It won't fix everything there, but it will help.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

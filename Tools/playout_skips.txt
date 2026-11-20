@@ -647,3 +647,6 @@ Rimfolk_Storyline_GraveMourners [option 0] done by the part's own code: the mour
 Rimfolk_Storyline_RaidersTribute [option 0] done by the part's own code: a colonist carries the silver out to the edge of the colony's land (DilemmaEffect_RaidersCampPrice, HappeningWorker_RaidersTribute.Start)
 Rimfolk_Storyline_WellDigger [option 0] done by the part's own code: the foreman walks to the gate and the lent colonist walks out with them (HappeningWorker_WellDigger, JobDriver_StorylineLentOut)
 Rimfolk_Storyline_WellRefugees [option 0] done by the part's own code: the refugees walk in to the gate and join the colony (HappeningWorker_WellRefugees, Arrivals.Join)
+
+# Defs/WorldSituationDefs/Rimfolk_WS_NewHead.xml
+Rimfolk_WS_NewHead [end:visited] told after it happened: the supper, the gift and the feast promised were the gate's answers (a feast with them at it, the gift carried out), and the next feast is only promised
