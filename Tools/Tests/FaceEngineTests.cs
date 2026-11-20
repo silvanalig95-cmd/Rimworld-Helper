@@ -183,15 +183,15 @@ public static class FaceEngineTests
 
         // ---------------- The seams ----------------
         string engine = Read("UI/Faces/FaceEngine.cs"), inspect = Read("UI/Faces/InspectPortrait.cs"), kit = Read("UI/UiKit.cs"), card = Read("UI/ColonistCard/ColonistCardWindow.cs");
-        C(engine.Contains("PortraitsCache.Get(p, size, RotFor(pose), new Vector3(cam.x, 0f, cam.z), cam.zoom, true, true, Headgear, Clothes)"),
+        C(engine.Contains("PortraitsCache.Get(p, size, RotFor(turn), new Vector3(cam.x, 0f, cam.z), cam.zoom, true, true, Headgear, Clothes)"),
             "the game's portrait cache, framed by the face, supersampled at the interface's scale, the steady face's headgear and clothes as set");
         C(engine.Contains("tree.TryGetNodeByTag(PawnRenderNodeTagDefOf.Head, out var node)") && engine.Contains("tree.TryGetMatrix(node, parms, out var m)") && engine.Contains("node.GetMesh(parms)"),
             "the head read from the game's own drawing: its node's matrix and mesh");
-        C(engine.Contains("BaseHeadOffsetAt(Rot4.South)") && engine.Contains("CurLifeStage?.headSizeFactor"), "until the game has drawn them: the body type's head offset and the life stage's head size");
+        C(engine.Contains("BaseHeadOffsetAt(rot)") && engine.Contains("Fallback(p, Rot4.South,") && engine.Contains("CurLifeStage?.headSizeFactor"), "until the game has drawn them: the body type's head offset and the life stage's head size");
         C(engine.Contains("story?.favoriteColor") && engine.Contains("f.def.FactionIcon") && engine.Contains("c = f.Color"), "their favourite colour, else their people's; the game's faction icon in its colour");
         C(engine.Contains("[HarmonyPatch(typeof(PortraitsCache), nameof(PortraitsCache.SetDirty))]") && engine.Contains("FaceEngine.Forget(pawn)"), "read again when the game marks their portrait dirty");
-        C(kit.Contains("FaceEngine.Picture(p, inner.size, FaceFrame.Face, out var cam)") && !kit.Contains("PortraitsCache.Get("), "the round portraits (letters, cards, lists) through the engine");
-        C(card.Contains("FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure)") && !card.Contains("PortraitsCache.Get("), "the colonist card's portrait through the engine, its tile's size kept");
+        C(kit.Contains("FaceEngine.DrawRound(inner, p, FaceEngine.PoseOf(p, turn, r.width >= FacePoseMath.PoseFrom), alpha)") && !kit.Contains("PortraitsCache.Get("), "the round portraits (letters, cards, lists) through the engine");
+        C(card.Contains("FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure, null, 1f, true)") && !card.Contains("PortraitsCache.Get("), "the colonist card's portrait through the engine, its tile's size kept");
         // Every portrait of a person in the mod goes through the engine; the founding window keeps the game's own pawn picker's look.
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
         {
@@ -207,7 +207,7 @@ public static class FaceEngineTests
           && inspect.Contains("AccessTools.PropertyGetter(typeof(InspectTabBase), \"TabRect\")") && inspect.Contains("GizmoGridDrawer.HeightDrawnRecently"),
             "the pane, an open tab and the gizmos read as they are on the screen");
         C(inspect.Contains("sel.NumSelected != 1") && inspect.Contains("p.RaceProps.Humanlike"), "one person selected, anyone humanlike");
-        C(inspect.Contains("FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs))") && inspect.Contains("if (!dragging) render = rect.width;"),
+        C(inspect.Contains("FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true)") && inspect.Contains("if (!dragging) render = rect.width;"),
             "drawn at its size, and while dragged the picture of the start is shown, no new one at every step");
         C(inspect.Contains("Input.GetMouseButton(0)") && inspect.Contains("s.inspectPortraitSize = FaceMath.Snap(now)") && inspect.Contains("s.Write()"), "let go, the size is kept in the settings");
         C(inspect.Contains("KnownAs.Short(p)") && inspect.Contains("Cards.Open(p)"), "the name the colony knows them by; a click opens their card");
