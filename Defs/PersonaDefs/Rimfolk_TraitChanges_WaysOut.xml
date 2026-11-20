@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs); see
+    Rimfolk_TraitChanges_Spectrum.xml for how a rule reads. This file: ways out of bad traits (docs/traits-proposals.md,
+    the first batch, 20 November 2026). Every rule here names the degrees it leads out of (wayOutOf; 0 for a trait
+    without degrees): a way out isn't held back by the colony's 10 days, and the character page shows it from the start,
+    with what is still missing. Where a proposal reads "this or that" (a seat, or two promises kept), it is two rules.
+
+    Besides the rule frame's usual parts, these use: notMarks (no mark of these on their page in the last notMarksDays
+    days), a zero count (a tally with noneDays: none of it for that many days, counted from the newest one or from the
+    trait's last change, whichever is later), a tally that counts marks as they come (marks; kept 240 days, so two long
+    peaces can be counted although a long peace leaves the page after 60 days), givenBy (only when that rule gave the
+    trait), notPrecepts (their ideoligion holds none of these precepts), and a practice that adds up two kinds of work
+    (Cooking+Smithing).
+  -->
+
+  <!-- ==================== A way out of each bad trait Rimfolk gives ==================== -->
+
+  <!-- 1. Jealous fades (any jealous, not only Rimfolk's): a seat, or two promises kept; no seat or vote lost in 120 days. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_JealousFadesSeat</defName>
+    <label>no longer jealous after being given a seat</label>
+    <trait>Jealous</trait>
+    <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Elected</any></li>
+    </marks>
+    <notMarks>VotedOut, LostElection</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <moved>trust>=0</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer jealous.</news>
+    <meaning>The colony gave {PAWN_nameDef} a seat, and no vote has gone against {PAWN_objective} since. A bedroom finer than {PAWN_possessive} own no longer upsets {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>They gave me a seat. I've stopped counting the chairs in everyone else's room.</li>
+        <li>Someone else got the bigger room this season. I found I didn't mind.</li>
+      </plain>
+      <warm><li>The colony trusted me with a seat. I'd rather spend my time on that than on envying people.</li></warm>
+      <blunt><li>I've got a say now. That's what I wanted.</li></blunt>
+      <cheerful><li>I looked at the new bedroom down the hall today and was just glad for whoever gets it.</li></cheerful>
+      <gloomy><li>I still notice who has what. It just doesn't bother me much anymore.</li></gloomy>
+      <cold><li>The council treats me fairly now. I have no reason to keep comparing rooms.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_JealousFadesPromises</defName>
+    <label>no longer jealous after promises kept to them</label>
+    <trait>Jealous</trait>
+    <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>PromiseKept</any><count>2</count></li>
+    </marks>
+    <notMarks>VotedOut, LostElection</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <moved>trust>=0</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer jealous.</news>
+    <meaning>The council kept its word to {PAWN_nameDef} twice, and no vote has gone against {PAWN_objective} since. A bedroom finer than {PAWN_possessive} own no longer upsets {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>The council said it would do something for me, and it did. Twice now.</li>
+        <li>Someone else has the better room. I can live with that.</li>
+      </plain>
+      <warm><li>They kept their word to me. It's easier to be glad for others when you're treated fairly.</li></warm>
+      <blunt><li>They kept their promises. I've stopped keeping score.</li></blunt>
+      <cheerful><li>Two promises kept in a row. I've decided to stop worrying about who has the nicest room.</li></cheerful>
+      <gloomy><li>I expected them to forget what they promised me. They didn't, and I feel less hard done by.</li></gloomy>
+      <cold><li>The council has been reliable with me. Envy no longer seems worth the effort.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 2. Bloodlust Rimfolk gave fades: no fight mark in 120 days, a long peace, warmth back near where it was. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_BloodlustFades</defName>
+    <label>bloodlust fading after a long peace</label>
+    <trait>Bloodlust</trait>
+    <change>Lose</change>
+    <onlyGiven>true</onlyGiven>
+    <wayOutOf><li>0</li></wayOutOf>
+    <notMarks>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_RaidsHardened, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_SworeVengeance</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <moved>warmth>=-5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.05</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} no longer has a taste for blood.</news>
+    <meaning>A long stretch without fighting has taken the pleasure out of violence for {PAWN_nameDef}. Killing no longer lifts {PAWN_possessive} mood, and corpses bother {PAWN_objective} as they do most people.</meaning>
+    <journal>
+      <plain>
+        <li>It's been months since the last fight. I don't miss it anymore.</li>
+        <li>I walked past the graves today and felt sad about them, which I haven't in a long time.</li>
+      </plain>
+      <warm><li>I'd rather spend my days with the others than wait for the next raid.</li></warm>
+      <blunt><li>I don't want to fight anymore. Good.</li></blunt>
+      <cheerful><li>A whole season of quiet, and I liked every day of it.</li></cheerful>
+      <gloomy><li>I used to look forward to the raids. I'm glad that's gone.</li></gloomy>
+      <cold><li>The fighting no longer interests me. I'll do it when I have to.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    4. Cannibal Rimfolk gave fades: what famine brought goes 180 days after the last human flesh eaten (a zero count, from
+    the last meal or from when it came, whichever is later) with no hungry season in 120 days; what a faith brought goes
+    once they take up a faith that doesn't call for it. Each only for the cannibal its own rule gave (givenBy).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_CannibalFamineFades</defName>
+    <label>no longer a cannibal once the famine is long past</label>
+    <trait>Cannibal</trait>
+    <change>Lose</change>
+    <onlyGiven>true</onlyGiven>
+    <givenBy><li>Rimfolk_TC_CannibalFamine</li></givenBy>
+    <wayOutOf><li>0</li></wayOutOf>
+    <tallies>
+      <li>
+        <key>HumanFlesh</key>
+        <thoughts>AteHumanlikeMeatDirect, AteHumanlikeMeatAsIngredient, AteHumanlikeMeatDirectCannibal, AteHumanlikeMeatAsIngredientCannibal, AteRawHumanlikeMeat, AteHumanMeat_Disapproved, AteHumanMeat_Horrible, AteHumanMeat_Abhorrent, AteHumanMeat_Preferred, AteHumanMeat_RequiredStrong, AteHumanMeat_RequiredRavenous</thoughts>
+        <events>AteHumanMeat, AteHumanMeatDirect, AteHumanMeatAsIngredient</events>
+        <noneDays>180</noneDays>
+        <label>ate human flesh</label>
+      </li>
+    </tallies>
+    <notMarks>HungrySeason</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a cannibal.</news>
+    <meaning>{PAWN_nameDef} has not eaten human flesh in 180 days, and the colony has not gone hungry in a long time. The taste the famine left has gone, and eating human flesh would upset {PAWN_objective} again, as it does most people.</meaning>
+    <journal>
+      <plain>
+        <li>I don't think about that meat anymore. The famine feels like a long time ago.</li>
+        <li>Someone mentioned the hungry years at supper and I lost my appetite. That never used to happen.</li>
+      </plain>
+      <warm><li>We did what we had to back then. I'm glad we don't have to anymore, and I don't want to.</li></warm>
+      <blunt><li>I eat normal food now. That's the end of it.</li></blunt>
+      <cheerful><li>Full stores, ordinary meals, and no craving for anything else. Good.</li></cheerful>
+      <gloomy><li>I remember what we ate. I'd rather not remember it so well.</li></gloomy>
+      <cold><li>The craving came with the famine. The famine is over, and so is the craving.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_CannibalFaithFades</defName>
+    <label>no longer a cannibal after taking up another faith</label>
+    <trait>Cannibal</trait>
+    <change>Lose</change>
+    <dlc>Ideology</dlc>
+    <onlyGiven>true</onlyGiven>
+    <givenBy><li>Rimfolk_TC_CannibalFaith</li></givenBy>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Converted</any></li>
+    </marks>
+    <notPrecepts>Cannibalism_Preferred, Cannibalism_RequiredStrong, Cannibalism_RequiredRavenous</notPrecepts>
+    <notPreceptsLabel>a faith that does not call for eating human flesh</notPreceptsLabel>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a cannibal.</news>
+    <meaning>{PAWN_nameDef} has taken up a faith that does not call for eating human flesh. Without the faith behind it, the want has gone, and eating human flesh would upset {PAWN_objective} again, as it does most people.</meaning>
+    <journal>
+      <plain>
+        <li>My new faith doesn't ask it of me, and I don't want it anymore.</li>
+        <li>I looked at the meat in the freezer today and felt nothing for it.</li>
+      </plain>
+      <warm><li>The people I pray with now eat as most people do, and I'd like to share their table.</li></warm>
+      <blunt><li>New faith. Ordinary food. Simple.</li></blunt>
+      <cheerful><li>I'm learning new prayers and new meals, and I like both.</li></cheerful>
+      <gloomy><li>I did it because the old faith said to. I'm not sure what to think about that now.</li></gloomy>
+      <cold><li>The preference came from the old teaching. Without the teaching it has no reason to stay.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 5. World weary lifts (Vanilla Traits Expanded, any): two long peaces (counted as they come) and one good mark. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_WorldWearyLifts</defName>
+    <label>world weariness lifting after good years</label>
+    <trait>VTE_WorldWeary</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <tallies>
+      <li>
+        <key>LongPeace</key>
+        <marks>LongPeace</marks>
+        <count>2</count>
+        <label>a long peace</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>MovingRitual, Mastered, Legendary, Freed, AddictionOvercome, Elected, TaughtWell</any></li>
+    </marks>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>60</notMarksDays>
+    <moved>outlook>=-5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer world weary.</news>
+    <meaning>Two long stretches of peace, with something good to show for them, have lifted {PAWN_nameDef}'s spirits. Bleak thoughts no longer come so easily, and {PAWN_nameDef} is easier to get close to again.</meaning>
+    <journal>
+      <plain>
+        <li>Two quiet years in a row. I've started to make plans again.</li>
+        <li>I caught myself looking forward to the harvest.</li>
+      </plain>
+      <warm><li>The people here gave me good years. I'd like to give them some back.</li></warm>
+      <blunt><li>Things are better. I feel better.</li></blunt>
+      <cheerful><li>I laughed at a joke at supper and didn't have to try.</li></cheerful>
+      <gloomy><li>I still expect the worst sometimes. Not every day, though.</li></gloomy>
+      <cold><li>The last two years went well. I've adjusted my expectations.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 6. Rebel settles (Vanilla Traits Expanded, any): two promises kept, or a seat; no broken promise, lost seat or lost vote in 120 days. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_RebelSettlesPromises</defName>
+    <label>a rebel settled by promises kept</label>
+    <trait>VTE_Rebel</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>PromiseKept</any><count>2</count></li>
+    </marks>
+    <notMarks>BrokenPromise, VotedOut, LostElection</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <moved>trust>=0</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a rebel.</news>
+    <meaning>The council kept its word to {PAWN_nameDef} twice and has not let {PAWN_objective} down since. {PAWN_nameDef} no longer drags {PAWN_possessive} feet when given work.</meaning>
+    <journal>
+      <plain>
+        <li>The council did what it said it would, twice. I can work with that.</li>
+        <li>I got my work this morning and just did it.</li>
+      </plain>
+      <warm><li>They kept their word to me. I'll do my part without making it hard for them.</li></warm>
+      <blunt><li>They kept their promises. I'll keep mine.</li></blunt>
+      <cheerful><li>Two promises kept. I've stopped looking for the catch.</li></cheerful>
+      <gloomy><li>I still don't trust them completely. But they've earned a bit.</li></gloomy>
+      <cold><li>The council has been consistent. Resisting it no longer makes sense.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_RebelSettlesSeat</defName>
+    <label>a rebel settled by a seat on the council</label>
+    <trait>VTE_Rebel</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Elected</any></li>
+    </marks>
+    <notMarks>BrokenPromise, VotedOut, LostElection</notMarks>
+    <notMarksDays>120</notMarksDays>
+    <moved>trust>=0</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a rebel.</news>
+    <meaning>The colony gave {PAWN_nameDef} a seat and has not broken a promise to {PAWN_objective} since. {PAWN_nameDef} no longer drags {PAWN_possessive} feet when given work.</meaning>
+    <journal>
+      <plain>
+        <li>I have a seat now. It's hard to complain about decisions I help make.</li>
+        <li>I argued for what I wanted at the meeting, and then went along with the result.</li>
+      </plain>
+      <warm><li>They asked me to help run things. I want to do it well.</li></warm>
+      <blunt><li>I have a say now. No need to fight the council.</li></blunt>
+      <cheerful><li>It turns out I like being on the inside of the decisions.</li></cheerful>
+      <gloomy><li>Now I'm the one people grumble about. Fair enough.</li></gloomy>
+      <cold><li>With a seat, I can change things directly. Refusing work is no longer useful.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== Ways out of bad traits colonists arrive with ==================== -->
+
+  <!-- 10. Pyromaniac fades: 120 calm days, 60 recent hours at the stove or the forge, a masterwork or a mastered skill. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_PyromaniacFades</defName>
+    <label>the urge to start fires put to use at the stove or the forge</label>
+    <trait>Pyromaniac</trait>
+    <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>120</calmDays>
+    <practice>Cooking+Smithing>=60</practice>
+    <marks>
+      <li><any>Masterwork, Mastered</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.03</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a pyromaniac.</news>
+    <meaning>{PAWN_nameDef} has spent long hours at the stove or the forge, made fine work there, and gone a long time without a breakdown. The urge to start fires has gone, and {PAWN_nameDef} can be given firefighting again.</meaning>
+    <journal>
+      <plain>
+        <li>I spend my days by the fire at work. I don't need to light any others.</li>
+        <li>Someone asked me to help put out a fire today, and I did.</li>
+      </plain>
+      <warm><li>I'd rather use the fire to make things for everyone than worry them with it.</li></warm>
+      <blunt><li>I work with fire every day. That's enough fire.</li></blunt>
+      <cheerful><li>My best piece came out of the forge this month. I'm proud of it.</li></cheerful>
+      <gloomy><li>I still like watching the flames. I just don't want to start any.</li></gloomy>
+      <cold><li>The urge has a proper outlet now. It no longer needs another.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 16. Lush and stoner dry out (Vanilla Traits Expanded): an addiction overcome in the last 120 days, as the teetotal rule. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_LushDriesOut</defName>
+    <label>a lush who dried out after beating an addiction</label>
+    <trait>VTE_Lush</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>
+    </marks>
+    <moved>pride>=3</moved>
+    <gapDays>0</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a lush.</news>
+    <meaning>{PAWN_nameDef} has fought free of an addiction and no longer wants to drink as much as before.</meaning>
+    <journal>
+      <plain>
+        <li>I had one drink at the party and left it there.</li>
+        <li>I remember how bad it got. I don't want to go back to drinking like that.</li>
+      </plain>
+      <warm><li>The others helped me through it. I'm not going to undo that.</li></warm>
+      <blunt><li>I drink less now. A lot less.</li></blunt>
+      <cheerful><li>I remember the whole party this time, start to finish.</li></cheerful>
+      <gloomy><li>I still want a drink some evenings. I don't have one.</li></gloomy>
+      <cold><li>Heavy drinking cost me too much. I've stopped.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_StonerDriesOut</defName>
+    <label>a stoner who dried out after beating an addiction</label>
+    <trait>VTE_Stoner</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>
+    </marks>
+    <moved>pride>=3</moved>
+    <gapDays>0</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a stoner.</news>
+    <meaning>{PAWN_nameDef} has fought free of an addiction and no longer wants to smoke as much as before.</meaning>
+    <journal>
+      <plain>
+        <li>I haven't smoked in weeks. My head is clearer for it.</li>
+        <li>Someone offered me a joint today. I said no and meant it.</li>
+      </plain>
+      <warm><li>I'd rather be properly awake for the people here.</li></warm>
+      <blunt><li>Quit smoking. Staying quit.</li></blunt>
+      <cheerful><li>I get up early now, and I'm not tired by noon.</li></cheerful>
+      <gloomy><li>It used to take the edge off. Now I just live with the edge.</li></gloomy>
+      <cold><li>The habit was slowing my work. I've ended it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    14. Talking it through (Therapy (Continued), orion.therapy): four sessions with a therapist in 90 days (its
+    TherapyRelieved memory, read by name) count as one good mark toward the ways up for nerves and mood. Each rule here
+    is the rule it stands beside (Rimfolk_TraitChanges_Spectrum.xml) with the sessions in place of one of its marks:
+    volatile to nervous (Rimfolk_TC_VolatileSoftens), nervous to none (Rimfolk_TC_NervesSteadier), depressive to
+    pessimist (Rimfolk_TC_DepressionLifts), pessimist to none (Rimfolk_TC_MoodBrightens). Nothing without the mod.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_TherapyVolatile</defName>
+    <label>a volatile temper softened by talking it through</label>
+    <trait>Nerves</trait>
+    <change>StepUp</change>
+    <from><li>-2</li></from>
+    <wayOutOf><li>-2</li></wayOutOf>
+    <mods><li>orion.therapy</li></mods>
+    <calmDays>120</calmDays>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <gapDays>120</gapDays>
+    <chance>0.12</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has softened from volatile to {TRAIT}.</news>
+    <meaning>Regular sessions with a therapist and a long stretch without a breakdown have taken the worst of the temper out of {PAWN_nameDef}, though {PAWN_nameDef} still frays under stress.</meaning>
+    <journal>
+      <plain>
+        <li>The therapist and I talk about what sets me off. I can see it coming now.</li>
+        <li>I got angry today and talked myself down before I broke anything.</li>
+      </plain>
+      <warm><li>I owe the people here a calmer me. The sessions are helping.</li></warm>
+      <blunt><li>Talking helps. I didn't expect that.</li></blunt>
+      <cheerful><li>Four sessions, and I haven't thrown anything in months.</li></cheerful>
+      <gloomy><li>The anger is still there. I just know what to do with it now.</li></gloomy>
+      <cold><li>Discussing my reactions has made them easier to control.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_TherapyNervous</defName>
+    <label>nerves steadied by fights held and talking them through</label>
+    <trait>Nerves</trait>
+    <change>StepUp</change>
+    <from><li>-1</li></from>
+    <wayOutOf><li>-1</li></wayOutOf>
+    <mods><li>orion.therapy</li></mods>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened, SavedSomeone</any><count>2</count></li>
+    </marks>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <moved>nerve>=15</moved>
+    <gapDays>90</gapDays>
+    <chance>0.15</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. The fights {PAWN_nameDef} came through, and talking them over with a therapist, have steadied {PAWN_objective}.</newsLost>
+    <meaning>After standing through fights and talking them over with a therapist, it takes more than a raid to shake {PAWN_nameDef} now.</meaning>
+    <journal>
+      <plain>
+        <li>I talked through the last raid with the therapist. I slept fine afterward.</li>
+        <li>The alarm went and my hands stayed steady.</li>
+      </plain>
+      <warm><li>Having someone to talk to after a fight makes the next one easier.</li></warm>
+      <blunt><li>Talking about it helped. I'm steadier.</li></blunt>
+      <cheerful><li>A raid in the morning, therapy in the afternoon, and a good night's sleep.</li></cheerful>
+      <gloomy><li>The fear is still there. It doesn't run things anymore.</li></gloomy>
+      <cold><li>Looking at the fear closely made it smaller. A practical result.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_TherapyDepressive</defName>
+    <label>despair lifting with better days and talking it through</label>
+    <trait>NaturalMood</trait>
+    <change>StepUp</change>
+    <from><li>-2</li></from>
+    <wayOutOf><li>-2</li></wayOutOf>
+    <mods><li>orion.therapy</li></mods>
+    <marks>
+      <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Kindness, ForgivenBy</any></li>
+    </marks>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>60</notMarksDays>
+    <moved>outlook>=12</moved>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer depressive, only a {TRAIT}.</news>
+    <meaning>Something good in the last stretch and regular sessions with a therapist have lifted the worst of it. {PAWN_nameDef} still expects little of the world, but good days reach {PAWN_objective} again.</meaning>
+    <journal>
+      <plain>
+        <li>I told the therapist I'd had a good day. It was true.</li>
+        <li>Some mornings are still hard. Fewer of them, though.</li>
+      </plain>
+      <warm><li>The others kept asking how I was. I've started giving them a real answer.</li></warm>
+      <blunt><li>Better. Not good. Better.</li></blunt>
+      <cheerful><li>I enjoyed dinner tonight. I want to remember that.</li></cheerful>
+      <gloomy><li>It's lighter than it was. I don't trust it yet.</li></gloomy>
+      <cold><li>The sessions gave me another way to look at things. It is working, slowly.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_TherapyPessimist</defName>
+    <label>a brighter outlook with good days and talking it through</label>
+    <trait>NaturalMood</trait>
+    <change>StepUp</change>
+    <from><li>-1</li></from>
+    <wayOutOf><li>-1</li></wayOutOf>
+    <mods><li>orion.therapy</li></mods>
+    <marks>
+      <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Elected, Legendary</any><count>2</count></li>
+    </marks>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <notMarks>Loss</notMarks>
+    <notMarksDays>45</notMarksDays>
+    <moved>outlook>=12</moved>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become an {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer a {TRAIT}. A good stretch here, and talking things over with a therapist, have lifted {PAWN_objective} out of it.</newsLost>
+    <meaning>A good stretch here and regular sessions with a therapist have changed how {PAWN_nameDef} sees things.</meaning>
+    <journal>
+      <plain>
+        <li>I've stopped expecting every season to go wrong.</li>
+        <li>I told the therapist about my plans for next year. I meant them.</li>
+      </plain>
+      <warm><li>Things here are better than I let myself believe. I can see that now.</li></warm>
+      <blunt><li>Life's not bad. I'll admit it.</li></blunt>
+      <cheerful><li>I made plans for the spring. Real ones.</li></cheerful>
+      <gloomy><li>I still worry. I just don't assume the worst first.</li></gloomy>
+      <cold><li>My forecasts were too negative. I've corrected them.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+</Defs>

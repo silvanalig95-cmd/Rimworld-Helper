@@ -114,15 +114,26 @@ namespace ColonyCouncil
         /// Why no trait may change now, or null: "person" (this person changed within <see cref="PersonGapDays"/>), "colony"
         /// (anyone did within <see cref="ColonyGapDays"/>), "trait" (this trait of theirs within <paramref name="gapDays"/>).
         /// A tick below 0 means never. With <paramref name="undoing"/> (the change takes away a trait Rimfolk gave them),
-        /// the person's own 60 days don't hold it back: what Rimfolk brought may go as soon as its reason does.
+        /// the person's own 60 days don't hold it back: what Rimfolk brought may go as soon as its reason does. With
+        /// <paramref name="wayOut"/> (the change leads out of a bad trait, <see cref="IsWayOut"/>), the colony's 10 days
+        /// don't hold it back, so gains can't crowd the ways out out; a way out still counts as the colony's change, so
+        /// gains wait 10 days after it.
         /// </summary>
-        public static string RateBlocked(int lastPerson, int lastColony, int lastSameTrait, int gapDays, int now, bool undoing = false)
+        public static string RateBlocked(int lastPerson, int lastColony, int lastSameTrait, int gapDays, int now, bool undoing = false, bool wayOut = false)
         {
-            if (lastColony >= 0 && now - lastColony < ColonyGapDays * DayTicks) return "colony";
+            if (!wayOut && lastColony >= 0 && now - lastColony < ColonyGapDays * DayTicks) return "colony";
             if (!undoing && lastPerson >= 0 && now - lastPerson < PersonGapDays * DayTicks) return "person";
             if (lastSameTrait >= 0 && gapDays > 0 && now - lastSameTrait < (long)gapDays * DayTicks) return "trait";
             return null;
         }
+
+        /// <summary>
+        /// A change that leads out of a bad trait: the person has the trait now, at one of the degrees the rule names as bad
+        /// (<paramref name="wayOutOf"/>; 0 for a trait without degrees), and the change takes it away or steps it toward
+        /// none. Stepping nervous up to none is one; stepping none up to steadfast, from the same rule, is a gain.
+        /// </summary>
+        public static bool IsWayOut(IList<int> wayOutOf, TraitStep step) =>
+            step.ok && step.hadTrait && wayOutOf != null && wayOutOf.Contains(step.from);
 
         // ---------------- Absorbing ----------------
 
@@ -307,6 +318,33 @@ namespace ColonyCouncil
             return r < 0f ? 0f : r > 1f ? 1f : r;
         }
 
+        /// <summary>
+        /// A zero count: how many days they have gone without any of these moments, counted from the newest of them or from
+        /// <paramref name="after"/> (the trait's last change), whichever is later, so a stretch from before the trait came
+        /// doesn't count toward it going. Infinity when there is neither (none counted, and the trait never changed).
+        /// </summary>
+        public static float NoneDays(IList<int> ticks, int now, int after)
+        {
+            int from = after;
+            if (ticks != null)
+                for (int i = 0; i < ticks.Count; i++)
+                    if (ticks[i] <= now && ticks[i] > from) from = ticks[i];
+            return from < 0 ? float.PositiveInfinity : DaysSince(from, now);
+        }
+
+        /// <summary>
+        /// The kinds of work a practice fact adds up: "Cooking+Smithing" is the hours at the stove and the forge together;
+        /// a single name is itself.
+        /// </summary>
+        public static List<string> PracticeParts(string name)
+        {
+            var list = new List<string>();
+            if (string.IsNullOrEmpty(name)) return list;
+            foreach (var part in name.Split('+'))
+                if (part.Trim().Length > 0 && !list.Contains(part.Trim())) list.Add(part.Trim());
+            return list;
+        }
+
         /// <summary>Days since <paramref name="since"/> (a tick), or 0 for never.</summary>
         public static float DaysSince(int since, int now) => since < 0 || now < since ? 0f : (now - since) / (float)DayTicks;
 
@@ -327,14 +365,37 @@ namespace ColonyCouncil
         /// Rimfolk gave them this trait: of its changes kept for this person (the change records are Rimfolk's own), the
         /// newest gave it to them. A trait they came with, or one a change already took away, isn't Rimfolk's to undo.
         /// </summary>
-        public static bool GaveIt(IList<int> ticks, IList<bool> gave)
+        public static bool GaveIt(IList<int> ticks, IList<bool> gave) => GaveIt(ticks, gave, null, null);
+
+        /// <summary>
+        /// As <see cref="GaveIt(IList{int}, IList{bool})"/>, and with <paramref name="by"/> (rule defNames) only when one of
+        /// those rules made that newest change: a cannibal that famine brought goes with the famine, one a faith brought
+        /// with the faith. <paramref name="rules"/> are the rules of the changes, in the same order as the ticks.
+        /// </summary>
+        public static bool GaveIt(IList<int> ticks, IList<bool> gave, IList<string> rules, ICollection<string> by)
         {
             if (ticks == null || gave == null) return false;
             int newest = -1;
             for (int i = 0; i < ticks.Count && i < gave.Count; i++)
                 if (newest < 0 || ticks[i] >= ticks[newest]) newest = i;
-            return newest >= 0 && gave[newest];
+            if (newest < 0 || !gave[newest]) return false;
+            if (by == null || by.Count == 0) return true;
+            return rules != null && newest < rules.Count && rules[newest] != null && by.Contains(rules[newest]);
         }
+
+        // ---------------- Where life is taking them ----------------
+
+        /// <summary>The share of a rule's evidence that must be there before the character page shows it (ways out aside).</summary>
+        public const float BuildingFrom = 0.34f;
+
+        /// <summary>
+        /// Whether the character page's "Where life is taking them" shows a rule: a way out of a bad trait always, from the
+        /// start, so the player can see what would help; any other once some of its evidence is there, at least a third.
+        /// <paramref name="have"/> and <paramref name="total"/> count the parts that are evidence (marks, deeds, records,
+        /// time, sides); the parts that hold by default (nothing bad lately, a stretch without something) don't count here.
+        /// </summary>
+        public static bool BuildingShows(bool wayOut, int have, int total) =>
+            wayOut || (total > 0 && have > 0 && have >= total * BuildingFrom);
 
         // ---------------- Rivals ----------------
 

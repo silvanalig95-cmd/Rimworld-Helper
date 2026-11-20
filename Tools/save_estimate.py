@@ -515,7 +515,7 @@ MODEL = {
     "Persona/TraitChanges.cs:changes": ("cap", (const("Persona/TraitChanges.cs", "MaxChanges", 200), 0.1), 1200, "known pawns only, 8 per person, 200 at most; with their story"),
     "Persona/TraitChanges.cs:absorbed": ("fixed", 8, V, "per change: how the trait moved each side (counted under changes)"),
     "Persona/TraitChanges.cs:watches": ("colonists", 1, 3400, "one per colonist with its deeds and ten snapshots; known pawns only"),
-    "Persona/TraitChanges.cs:tallies": ("fixed", 3, 80, "per colonist: deeds counted, 240 days, 12 per kind (counted under watches)"),
+    "Persona/TraitChanges.cs:tallies": ("fixed", 5, 80, "per colonist: deeds, memories (therapy sessions) and marks (long peaces) counted, 240 days, 12 per kind (counted under watches)"),
     "Persona/TraitChanges.cs:snapshots": ("fixed", 10, 60, "per colonist: 10 snapshots, every ten days (counted under watches)"),
     "Persona/TraitChanges.cs:values": ("fixed", 3, D, "per snapshot: the records a pace reads (counted under watches)"),
     "Persona/TraitChanges.cs:once": ("fixed", 2, 40, "the changes that come once in a colony's life"),

@@ -217,6 +217,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("persona mark told: " + pick.defName, e);
             }
+            // Some trait changes count marks as they come, past the mark's time on the page (Persona/TraitChanges.cs).
+            TraitChanges.Notify_Mark(p, pick);
             // A loved one lost, a rescue by someone of another faith: maybe a crisis of faith in the days after (Faith/).
             FaithCrisis.AfterMark(p, MarkDefs.FamilyOf(pick), other);
             return mark;
