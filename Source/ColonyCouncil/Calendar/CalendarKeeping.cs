@@ -212,6 +212,18 @@ namespace ColonyCouncil
                 foundingWaitUntil = Find.TickManager.TicksGame + GenDate.TicksPerDay * 3;
                 return;
             }
+            // A god's festival the council already answered for on its eve (Gods/Worship/WorshipCouncilMore.cs, the feast in a
+            // hard season): only its rite, held that evening, so the day itself is not kept; or let pass.
+            if (d.kind == CalendarKind.GodFestival)
+            {
+                string eve = WorshipCouncilMore.EveAnswer(GodOfDay(d), map);
+                if (eve == "rite") return;
+                if (eve == "pass")
+                {
+                    PassDay(d, map);
+                    return;
+                }
+            }
             SendLetter(d, occurrence, map, home, years);
         }
 

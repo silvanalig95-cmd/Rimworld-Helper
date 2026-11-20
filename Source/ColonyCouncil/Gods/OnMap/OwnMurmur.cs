@@ -235,7 +235,7 @@ namespace ColonyCouncil
             Water(map, out string what);
             foreach (var p in sang) OwnHappenings.Memory(p, SangThought);
             if (sang.Count > 0 && g != null) PawnGods.RiteLed(sang[0], g);
-            OwnHappenings.Line(map, "CC_GodMurmur_Song_Text".Translate(n.Named("COUNT"), what.Named("WATER"), Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(new TargetInfo(at, map)));
+            OwnHappenings.Line(map, TextVariants.Vary("CC_GodMurmur_Song_Text").Translate(n.Named("COUNT"), what.Named("WATER"), Homes.Name(map).Named("HOME")).Resolve(), new LookTargets(new TargetInfo(at, map)));
             if (g != null) Worship.Booked(g, map, at, "CC_GodMurmur_Book_Song".Translate(n.Named("COUNT"), what.Named("WATER")).Resolve(), sang.FirstOrDefault());
             if (!Rand.Chance(OwnHappeningsMath.SongAnswered(festival, g == null ? 0f : GodNear.Of(g, map)))) return;
             s.rainMap = map;
@@ -263,7 +263,7 @@ namespace ColonyCouncil
             var at = Water(map, out _);
             if (at.IsValid) OwnHappenings.Sound(map, at, 1f, Croaks);
             s.rainbowUntil = Now + GenDate.TicksPerDay * 2;
-            string text = "CC_GodMurmur_Rain_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
+            string text = TextVariants.Vary("CC_GodMurmur_Rain_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             OwnHappenings.CardOf(g, map, "Council_Evt_LongRains", "CC_GodMurmur_Rain_Title", "CC_GodMurmur_Rain_TitleNamed", text,
                 at.IsValid ? new LookTargets(new TargetInfo(at, map)) : null, LetterDefOf.PositiveEvent);
             var seer = at.IsValid ? OwnHappenings.Seer(map, at, 40f) : null;
@@ -404,7 +404,7 @@ namespace ColonyCouncil
             OwnHappenings.SayFromWith(p, Pool, g, new[] { what.Named("WHAT") }, "giveback");
             if (g != null) PawnGods.Gift(p, g, what);
             Water(map, out string water);
-            string text = "CC_GodMurmur_GiveBack_Text".Translate(p.Named("PAWN"), what.Named("WHAT")).Resolve();
+            string text = TextVariants.Vary("CC_GodMurmur_GiveBack_Text").Translate(p.Named("PAWN"), what.Named("WHAT")).Resolve();
             OwnHappenings.CardOf(g, map, "SeasonalFlooding", "CC_GodMurmur_GiveBack_Title", "CC_GodMurmur_GiveBack_TitleNamed", text, new LookTargets(new TargetInfo(at, map)),
                 LetterDefOf.PositiveEvent);
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Blessing, p, "CC_GodMurmur_Saw_GiveBack", what.Named("WHAT"));
@@ -444,7 +444,7 @@ namespace ColonyCouncil
             for (int i = 0; i < 3; i++) OwnHappenings.Sound(map, CellFinder.RandomClosewalkCellNear(mid, map, 20), 0.9f, Croaks);
             var seer = map.mapPawns.FreeColonistsSpawned.Where(p => GodOmens.Awake(p) && OwnHappenings.Ours(p)).RandomElementWithFallback();
             if (seer != null) OwnHappenings.SayFrom(seer, Pool, g, came > 0 ? "frogs" : "frogsheard");
-            OwnHappenings.Line(map, (came > 0 ? "CC_GodMurmur_Frogs_Text" : "CC_GodMurmur_Frogs_TextHeard").Translate(Homes.Name(map).Named("HOME")).Resolve(),
+            OwnHappenings.Line(map, TextVariants.Vary(came > 0 ? "CC_GodMurmur_Frogs_Text" : "CC_GodMurmur_Frogs_TextHeard").Translate(Homes.Name(map).Named("HOME")).Resolve(),
                 seer != null ? new LookTargets(seer) : null);
             if (g != null) OwnHappenings.Saw(g, map, IntVec3.Invalid, GodActKind.Blessing, seer, came > 0 ? "CC_GodMurmur_Saw_Frogs" : "CC_GodMurmur_Saw_FrogsHeard");
             OwnHappenings.Came(b, OwnHappening.MurmurFrogs, OwnHappenings.Now, came > 0 ? "seen" : "heard");

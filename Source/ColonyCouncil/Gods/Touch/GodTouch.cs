@@ -583,6 +583,8 @@ namespace ColonyCouncil
                     case TouchTier.Great:
                         b.Set("g|" + god + "|" + home, now);
                         b.Set("gc|" + home, now);
+                        // Once in two colony-years at most, the god's rarest gift of the player's mods is left there too (GodRareGifts).
+                        GodRareGifts.AfterGreat(b, ctx);
                         break;
                     case TouchTier.Notable:
                         b.Set("n|" + god + "|" + home, now);

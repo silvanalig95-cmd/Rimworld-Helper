@@ -105,7 +105,7 @@ namespace ColonyCouncil
             OwnHappenings.Came(b, OwnHappening.EnnuTest, now, b.test.ToString());
             string what = ("CC_GodO_Test_" + b.test).Translate().Resolve();
             OwnHappenings.Say(x, "testask,test:" + b.test.ToString().ToLowerInvariant(), g, Together.Company(x));
-            Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_GodO_TestAsked_Text".Translate(GodStranger.Traveller(GodStranger.Age).Named("TRAVELLER"), what.Named("WHAT")).Resolve(),
+            Tell.Message(NewsKind.Land, Importance.Notable, map, TextVariants.Vary("CC_GodO_TestAsked_Text").Translate(GodStranger.Traveller(GodStranger.Age).Named("TRAVELLER"), what.Named("WHAT")).Resolve(),
                 new LookTargets(x), MessageTypeDefOf.NeutralEvent);
             return true;
         }

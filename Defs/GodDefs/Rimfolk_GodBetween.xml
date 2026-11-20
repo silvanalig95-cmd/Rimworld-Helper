@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods between the colony's people (Source/ColonyCouncil/Gods/OnMap/Between/; DESIGN.md, "The gods between the
+    colony's people"): each god's happenings that set its people toward or against each other. How each ends between two
+    people is a memory of each other in the game's own opinions (Thought_CouncilSocial), or one's own mood, small as the
+    gods' other moods are: closer (+6 for eight days), made it up (+8), a kindness remembered (+8), a quarrel over it (-5),
+    resentment (-4), wariness (-6), laughed at (-4); ashamed (-3) and proud (+3) are moods. Modelled in Tools/Balance.
+    The lines: one sentence each, people talking, tagged <happening>_<part> (the speaker's part in it, chosen by the code
+    from what they believe); "named" lines use {GOD}, the colony's name for the god, only where the colony is sure it was
+    that god. The Hunger is never named. {OTHER} is the one spoken to.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Closer</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>shared something</label>
+        <description>We were there together for it, and it was good to have them beside me.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Quarrel</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>argued over a sign</label>
+        <description>We saw the same thing and could not agree on what it meant, and it turned into an argument.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-5</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_MadeUp</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>made it up</label>
+        <description>We were at odds, and now we aren't. I'm glad of it.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Kind</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>looked out for me</label>
+        <description>They went out of their way for me when they didn't have to. I won't forget it.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Jealous</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>resentful</label>
+        <description>Everyone made a fuss over them, and I know my work is as good.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Wary</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>uneasy about them</label>
+        <description>I saw something I didn't like, and I can't look at them the same way now.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Between_Laughed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>laughed at me</label>
+        <description>They laughed at me in front of everyone. It still stings.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Between_Ashamed</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>ashamed</label>
+        <description>It was shown to me in front of someone else, and they were right.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Between_Proud</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>proud of it</label>
+        <description>I did that, and everyone saw it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodBetween_Say</defName>
+    <lines>
+      <plain>
+        <!-- Hollin: the saplings between two who fought -->
+        <li>[hollinbound_believe] Two of them, side by side, right where we argued.</li>
+        <li>[hollinbound_believe] She put these here for us, {OTHER}, I'm sure of it.</li>
+        <li>[hollinbound_believe,named] {GOD} doesn't like a quarrel on her ground, and neither do I.</li>
+        <li>[hollinbound_plain] Two saplings overnight, and both of us standing here like fools.</li>
+        <li>[hollinbound_plain] All right, {OTHER}, I'm sorry about yesterday.</li>
+        <li>[hollinbound_doubt] Two weeds came up and now we're meant to hug, are we.</li>
+        <li>[hollinbound_doubt] Somebody planted these to make a point, and it wasn't a god.</li>
+
+        <!-- Hollin: brambles round the woodcutter's stump -->
+        <li>[hollinstumps_show] Look at your stump, {OTHER}, the brambles came up round it overnight.</li>
+        <li>[hollinstumps_show] That's how many trees now, {OTHER}, and how many have you planted?</li>
+        <li>[hollinstumps_show,named] {GOD} remembers every one of them, {OTHER}.</li>
+        <li>[hollinstumps_ashamed] I didn't think of it that way, I only cut what we needed.</li>
+        <li>[hollinstumps_ashamed] I'll plant some back, I promise.</li>
+        <li>[hollinstumps_doubt] Brambles grow on stumps, that's what they do.</li>
+        <li>[hollinstumps_doubt] We need the wood, and no bush is going to tell me otherwise.</li>
+
+        <!-- Smoulder: the forge flares at a fine piece -->
+        <li>[smoulderpraise_proud] Look at that, the best thing I've ever made.</li>
+        <li>[smoulderpraise_proud] Did you see the forge flare when I finished it?</li>
+        <li>[smoulderpraise_proud,named] That one's good enough for {GOD} himself.</li>
+        <li>[smoulderpraise_envy] It's good work, I suppose, if you like that sort of thing.</li>
+        <li>[smoulderpraise_envy] I could have made that, {OTHER}, if anyone had given me the time.</li>
+        <li>[smoulderpraise_envy] Everyone fussing over one piece, honestly.</li>
+
+        <!-- Smoulder: pulled back from the falling stones -->
+        <li>[smouldernearmiss_pull] Get back, {OTHER}, the rock's moving.</li>
+        <li>[smouldernearmiss_pull] Move, {OTHER}, now.</li>
+        <li>[smouldernearmiss_thanks] That would have been on my head, {OTHER}, thank you.</li>
+        <li>[smouldernearmiss_thanks] You pulled me out of the way, I owe you.</li>
+        <li>[smouldernearmiss_thanks] The mountain turned over in its sleep, and you were quicker.</li>
+        <li>[smouldernearmiss_thanks,named] {GOD} shifted down there, and you saved me from it.</li>
+        <li>[smouldernearmiss_doubt] Loose rock, we should have shored it, but thank you, {OTHER}.</li>
+
+        <!-- Bellwether: the old one and the child -->
+        <li>[bellwethertold_tell] There's a great white beast that walks the world, and he likes children.</li>
+        <li>[bellwethertold_tell] Sit still and watch, they come closer if you're quiet.</li>
+        <li>[bellwethertold_tell,named] When I was your age my grandmother told me about {GOD}.</li>
+        <li>[bellwethertold_child] They came right up to us, did you see?</li>
+        <li>[bellwethertold_child] Will the white one come one day, do you think?</li>
+        <li>[bellwethertold_child] Tell me the part about the horn again.</li>
+
+        <!-- Bellwether: the hunter who let it go -->
+        <li>[bellwetherspared_let] It looked right at me, I couldn't do it.</li>
+        <li>[bellwetherspared_let] Go on, then, off with you.</li>
+        <li>[bellwetherspared_let,named] Not this one, {GOD} can have it.</li>
+        <li>[bellwetherspared_praise] I heard you let the {BEAST} go, {OTHER}, and you did right.</li>
+        <li>[bellwetherspared_praise] Some beasts are meant to be let pass, {OTHER}.</li>
+        <li>[bellwetherspared_praise,named] {GOD} saw that, {OTHER}, I'm sure of it.</li>
+        <li>[bellwetherspared_grumble] You had a {BEAST} in your sights and you let it walk off, {OTHER}?</li>
+        <li>[bellwetherspared_grumble] There went a week of meat, {OTHER}.</li>
+        <li>[bellwetherspared_answer] It looked at me, and I wasn't going to shoot it after that.</li>
+        <li>[bellwetherspared_answer] We have enough, we don't need every beast that walks past.</li>
+
+        <!-- Morel: food gone to rot -->
+        <li>[morelwasted_whose] Who left the {THING} out here to rot, {OTHER}?</li>
+        <li>[morelwasted_whose] This {THING} was good yesterday, whose job was it?</li>
+        <li>[morelwasted_give] Give it back to her, {OTHER}, it's no good to us now.</li>
+        <li>[morelwasted_give,named] {GOD} takes what we let go, let's dig it in for her.</li>
+        <li>[morelwasted_agree] Fine, out to the field with it, it'll feed something.</li>
+        <li>[morelwasted_agree] At least the soil will have it.</li>
+        <li>[morelwasted_blame] Don't look at me, I wasn't the one who left it.</li>
+        <li>[morelwasted_blame] It was on the cook's list, not mine, {OTHER}.</li>
+        <li>[morelwasted_doubt] It rotted because it was left out, nobody's mother took it.</li>
+
+        <!-- Morel: threads on the sealed stone -->
+        <li>[morelsealed_kept] Look at the threads, she wants {DEAD} back in the earth.</li>
+        <li>[morelsealed_kept] We shut {DEAD} away in stone, and now look at it.</li>
+        <li>[morelsealed_kept,named] {GOD} doesn't like to have the dead kept from her.</li>
+        <li>[morelsealed_whole] {DEAD} is kept whole in there, as the dead should be.</li>
+        <li>[morelsealed_whole] Leave the stone alone, it's the right way to keep them.</li>
+        <li>[morelsealed_doubt] It's mould, {OTHER}, it grows on damp stone.</li>
+        <li>[morelsealed_doubt] Scrub it off and stop frightening everyone.</li>
+
+        <!-- Ennu: a bowl for the newcomer -->
+        <li>[ennuwelcomed_bowl] Here, {OTHER}, you'll want something warm after the road.</li>
+        <li>[ennuwelcomed_bowl] Sit and eat, nobody new goes hungry here.</li>
+        <li>[ennuwelcomed_bowl,named] {GOD} would want you fed first, so here you are.</li>
+        <li>[ennuwelcomed_welcome] Welcome, {OTHER}, sit with me a while.</li>
+        <li>[ennuwelcomed_welcome] Come and sit, you can learn everyone's names later.</li>
+        <li>[ennuwelcomed_thanks] Thank you, {OTHER}, that's more than I expected.</li>
+        <li>[ennuwelcomed_thanks] You're the first to sit with me since I came.</li>
+        <li>[ennuwelcomed_chide] {NEWCOMER} is one of us now, {OTHER}, so act like it.</li>
+        <li>[ennuwelcomed_chide] A stranger is a guest until they're family, {OTHER}.</li>
+
+        <!-- Ennu: waiting up for the late one -->
+        <li>[ennuwaitedup_waited] There you are, {OTHER}, I kept a light for you.</li>
+        <li>[ennuwaitedup_waited] I wasn't going to bed until you were back.</li>
+        <li>[ennuwaitedup_waited,named] {GOD} keeps a place for whoever's late, so I did too.</li>
+        <li>[ennuwaitedup_late] You waited up for me, {OTHER}?</li>
+        <li>[ennuwaitedup_late] I saw the light from out there and knew it was you.</li>
+
+        <!-- Pip: the machine mended by two hands -->
+        <li>[piptwohands_hands] Put your hand on it with mine, {OTHER}, just try.</li>
+        <li>[piptwohands_hands] It wanted the both of us, listen to it hum.</li>
+        <li>[piptwohands_hands,named] {GOD} was waiting for someone to come and see it.</li>
+        <li>[piptwohands_believe] It hummed the moment we both touched it, {OTHER}.</li>
+        <li>[piptwohands_believe] It only needed company.</li>
+        <li>[piptwohands_plain] Well, it's running, and I don't know why.</li>
+        <li>[piptwohands_plain] I'll take it, whatever that was.</li>
+        <li>[piptwohands_doubt] A loose wire settled when we leaned on it, that's all.</li>
+        <li>[piptwohands_doubt] Machines don't get lonely, {OTHER}.</li>
+
+        <!-- Pip: the machine that hums for its talker -->
+        <li>[piptalked_talk] Come on, then, you can do it, I know you can.</li>
+        <li>[piptalked_talk] There we are, good, that's better.</li>
+        <li>[piptalked_talk,named] I'll tell {GOD} how well you did today.</li>
+        <li>[piptalked_mock] You're talking to the {MACHINE}, {OTHER}?</li>
+        <li>[piptalked_mock] Does it talk back, {OTHER}?</li>
+        <li>[piptalked_hum] Hear that, {OTHER}, it likes being talked to.</li>
+        <li>[piptalked_hum] Laugh all you like, it never hums for you.</li>
+
+        <!-- Cirrus: a star for two -->
+        <li>[cirrustwowatchers_see] Look up, {OTHER}, quick, there.</li>
+        <li>[cirrustwowatchers_see] Did you see that one cross the whole sky?</li>
+        <li>[cirrustwowatchers_see,named] {GOD} is watching tonight, look.</li>
+        <li>[cirrustwowatchers_wish] I made a wish on it, I won't tell you what.</li>
+        <li>[cirrustwowatchers_wish] I'm glad I was out here to see it with you, {OTHER}.</li>
+        <li>[cirrustwowatchers_wish] Let's stay out a little longer in case there's another.</li>
+
+        <!-- Cirrus: shapes in the clouds -->
+        <li>[cirruscloudshape_shape] That cloud is {THEIRS}, look, plain as anything.</li>
+        <li>[cirruscloudshape_shape] There, {OTHER}, that one is {THEIRS}, you can see the shape.</li>
+        <li>[cirruscloudshape_shapeplain] That cloud looks like a great beast lying down.</li>
+        <li>[cirruscloudshape_same] It is {THEIRS}, I see it too.</li>
+        <li>[cirruscloudshape_same] You're right, {OTHER}, I'd know that shape anywhere.</li>
+        <li>[cirruscloudshape_other] That's not it at all, that's {THEIRS} up there.</li>
+        <li>[cirruscloudshape_other] You only see what you want to, it's {THEIRS} and you know it.</li>
+        <li>[cirruscloudshape_plain] I see a beast, or maybe a boat.</li>
+        <li>[cirruscloudshape_doubt] It's a cloud, {OTHER}, it's a cloud.</li>
+        <li>[cirruscloudshape_doubt] And that one over there looks like soup.</li>
+
+        <!-- Hush: a coat for the cold one -->
+        <li>[hushcoat_give] Put this on, {OTHER}, you're blue with cold.</li>
+        <li>[hushcoat_give] Here, the {COAT} is warmer than what you've got.</li>
+        <li>[hushcoat_give,named] {GOD} doesn't want the weak left out in it, so wear this.</li>
+        <li>[hushcoat_thanks] Thank you, {OTHER}, I couldn't feel my hands.</li>
+        <li>[hushcoat_thanks] I didn't even notice how cold I'd got.</li>
+
+        <!-- Hush: quiet asked on the cold night -->
+        <li>[hushnoise_quiet] Keep it down, {OTHER}, it's a cold night and people are sleeping.</li>
+        <li>[hushnoise_quiet] Not tonight, {OTHER}, please, let it be quiet.</li>
+        <li>[hushnoise_quiet,named] {GOD} walks on nights like this, and she hates the noise.</li>
+        <li>[hushnoise_sorry] You're right, I'm sorry, we'll stop.</li>
+        <li>[hushnoise_sorry] I forgot what night it was, sorry.</li>
+        <li>[hushnoise_grumble] Fine, fine, we're stopping.</li>
+        <li>[hushnoise_grumble] All right, but you're no fun, {OTHER}.</li>
+        <li>[hushnoise_refuse] It's my evening too, {OTHER}, go to bed if you want quiet.</li>
+        <li>[hushnoise_refuse] I'm not stopping for a ghost story.</li>
+
+        <!-- Undertow: the whisperer at the edge (never named) -->
+        <li>[undertowwhisper_saw] What is {WHISPERER} doing out there in the dark?</li>
+        <li>[undertowwhisper_saw] Who's {WHISPERER} talking to out there?</li>
+        <li>[undertowwhisper_saw] I didn't like the sound of that at all.</li>
+        <li>[undertowwhisper_caught] I was only getting some air, {OTHER}.</li>
+        <li>[undertowwhisper_caught] Mind your own business, {OTHER}.</li>
+
+        <!-- Undertow: the light let go out (never named) -->
+        <li>[undertowlampout_who] Who let the {LIGHT} go out last night, {OTHER}?</li>
+        <li>[undertowlampout_who] I woke up in the pitch dark, whose job was the {LIGHT}?</li>
+        <li>[undertowlampout_notme] Don't look at me, I filled it yesterday.</li>
+        <li>[undertowlampout_notme] It was full when I went to bed, {OTHER}.</li>
+        <li>[undertowlampout_laugh] We'll both fill it tonight, then, and stop blaming each other.</li>
+
+        <!-- Helios: out into the sun -->
+        <li>[heliossun_come] Come and sit in the sun with me a while, {OTHER}.</li>
+        <li>[heliossun_come] You've been inside too long, the sun will do you good.</li>
+        <li>[heliossun_come,named] {GOD} gives it for nothing, so come and have some.</li>
+        <li>[heliossun_warm] That's better, I can feel it on my face.</li>
+        <li>[heliossun_warm] I'd forgotten how good it is to sit out in the light.</li>
+
+        <!-- Helios: his light on two at odds -->
+        <li>[heliosalike_alike] The sun's on both of you the same, so maybe stop scowling.</li>
+        <li>[heliosalike_alike] He gives to everyone alike, {OTHER}, you two could try it.</li>
+        <li>[heliosalike_alike,named] {GOD} doesn't pick sides, so why should we?</li>
+        <li>[heliosalike_agree] Fair enough, it's too nice a day to stay angry.</li>
+        <li>[heliosalike_agree] All right, {OTHER}, I'll let it go if you will.</li>
+        <li>[heliosalike_doubt] The sun's hot, that's all, and I'm still not talking to them.</li>
+
+        <!-- Helios: called into the shade -->
+        <li>[heliosshade_shade] Come out of the sun, {OTHER}, before it cooks you.</li>
+        <li>[heliosshade_shade] That's enough for now, come and sit in the shade with me.</li>
+        <li>[heliosshade_sun] He doesn't mean to burn anyone, he just gives too much.</li>
+        <li>[heliosshade_sun,named] {GOD} is giving more than we can take today.</li>
+        <li>[heliosshade_thanks] Thanks, {OTHER}, I didn't notice how hot it got.</li>
+        <li>[heliosshade_thanks] I needed that, I was starting to see spots.</li>
+
+        <!-- Selene: sorry after the moonlit night -->
+        <li>[selenesorry_sorry] I couldn't sleep last night for what I said to you, {OTHER}.</li>
+        <li>[selenesorry_sorry] I was out under the moon half the night, and I'm sorry, {OTHER}.</li>
+        <li>[selenesorry_sorry,named] {GOD} gave it back to me all night, and I deserved it.</li>
+        <li>[selenesorry_accept] All right, {OTHER}, I'll let it go.</li>
+        <li>[selenesorry_accept] Thank you for saying it.</li>
+        <li>[selenesorry_refuse] A sorry doesn't take it back, {OTHER}.</li>
+        <li>[selenesorry_refuse] Save it, I'm not ready to hear it.</li>
+
+        <!-- Selene: the same dream at breakfast -->
+        <li>[selenesamedream_dream] I dreamt I was standing in water under a white moon.</li>
+        <li>[selenesamedream_dream] I dreamt of a long road with a silver light at the end of it.</li>
+        <li>[selenesamedream_same] So did I, {OTHER}, exactly that.</li>
+        <li>[selenesamedream_same] That was my dream too, word for word.</li>
+        <li>[selenesamedream_uneasy] That's what I dreamt, and I don't like that you did too.</li>
+        <li>[selenesamedream_uneasy] Why were you in my dream, {OTHER}?</li>
+
+        <!-- Tamiu: the cat on the grave -->
+        <li>[moggravecat_cat] Look, the cat's sitting with {DEAD}.</li>
+        <li>[moggravecat_cat] It came by itself, {OTHER}, and just sat down there.</li>
+        <li>[moggravecat_cat,named] {GOD} sent one to keep {DEAD} company.</li>
+        <li>[moggravecat_remember] I still go to say something to {DEAD} and remember.</li>
+        <li>[moggravecat_remember] Sit with me a while, {OTHER}.</li>
+
+        <!-- Tamiu: riddles at supper -->
+        <li>[mogriddle_ask] What has a door and no house, {OTHER}?</li>
+        <li>[mogriddle_ask] What walks all night and never moves from the doorway?</li>
+        <li>[mogriddle_ask] I've got one you won't get, {OTHER}.</li>
+        <li>[mogriddle_stumped] Fine, you win, tell me the answer.</li>
+        <li>[mogriddle_stumped] I give up, {OTHER}, I've got nothing.</li>
+
+        <!-- Murmur: a splash at the water -->
+        <li>[murmursplash_splash] That's for yesterday, {OTHER}.</li>
+        <li>[murmursplash_splash] You looked like you needed cooling off.</li>
+        <li>[murmursplash_splash,named] {GOD} says hello, {OTHER}.</li>
+        <li>[murmursplash_back] Oh, now you're going to get it.</li>
+        <li>[murmursplash_back] Two can play that game, {OTHER}.</li>
+        <li>[murmursplash_offended] I'm soaked, {OTHER}, that's not funny.</li>
+        <li>[murmursplash_offended] Very clever, now I have to change.</li>
+
+        <!-- Murmur: a frog in the bedroom -->
+        <li>[murmurfrogin_keep] Leave it be, {OTHER}, it came in out of the rain.</li>
+        <li>[murmurfrogin_keep,named] That's one of {GOD}'s, don't you dare hurt it.</li>
+        <li>[murmurfrogin_out] There's a frog on my floor, {OTHER}, get it out.</li>
+        <li>[murmurfrogin_out] I'm not sleeping with that thing in here.</li>
+        <li>[murmurfrogin_agree] Come on then, out you go, back to the wet.</li>
+        <li>[murmurfrogin_agree] Look at its face, {OTHER}, it's as surprised as we are.</li>
+
+        <!-- Ducat: a coin passed on -->
+        <li>[ducatpassed_found] A gold coin, just lying here.</li>
+        <li>[ducatpassed_found] Somebody dropped this, or nobody did.</li>
+        <li>[ducatpassed_give] Here, {OTHER}, I think this is meant for you.</li>
+        <li>[ducatpassed_give] It didn't feel right to keep it, take it.</li>
+        <li>[ducatpassed_give,named] {GOD} never stays put, so I'm passing it on.</li>
+        <li>[ducatpassed_thanks] For me, {OTHER}, really?</li>
+        <li>[ducatpassed_thanks] That's kind, I won't forget it.</li>
+        <li>[ducatpassed_stores] It goes in the stores, it was never mine to keep.</li>
+
+        <!-- Ducat: the miser's silver scattered -->
+        <li>[ducatmiser_laugh] Up all night counting it, {OTHER}, and look where it ended up.</li>
+        <li>[ducatmiser_laugh] The silver ran away from you, {OTHER}.</li>
+        <li>[ducatmiser_believe] Gold doesn't sit still for anyone, {OTHER}, let it go.</li>
+        <li>[ducatmiser_believe,named] {GOD} doesn't like a miser, everyone knows that.</li>
+        <li>[ducatmiser_ashamed] I was only checking it was all there.</li>
+        <li>[ducatmiser_ashamed] Fine, I'll leave it alone.</li>
+        <li>[ducatmiser_angry] Somebody moved it to make a fool of me.</li>
+
+        <!-- Revel: one cup between two at odds -->
+        <li>[revelrivalscup_pour] Here, {OTHER}, one {DRINK}, and let's leave it there.</li>
+        <li>[revelrivalscup_pour] I'm not saying I was wrong, but drink this.</li>
+        <li>[revelrivalscup_pour,named] {GOD} says a shared cup ends a quarrel, so here.</li>
+        <li>[revelrivalscup_drink] All right, {OTHER}, to us, then.</li>
+        <li>[revelrivalscup_drink] Fine, but you're pouring the next one.</li>
+        <li>[revelrivalscup_refuse] I don't drink, {OTHER}, but thanks for the thought.</li>
+        <li>[revelrivalscup_refuse] Not tonight, I'll keep my head clear.</li>
+
+        <!-- Revel: a wager lost -->
+        <li>[revelwager_wager] I bet you I can, {OTHER}, loser scrubs the other's floor.</li>
+        <li>[revelwager_wager] Want a bet on it, {OTHER}?</li>
+        <li>[revelwager_taken] You're on, and you'll be scrubbing.</li>
+        <li>[revelwager_taken] Done, shake on it.</li>
+        <li>[revelwager_scrub] A bet's a bet, {OTHER}, but I'm never drinking with you again.</li>
+        <li>[revelwager_scrub] I don't even remember what the bet was.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

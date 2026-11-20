@@ -55,6 +55,8 @@ namespace ColonyCouncil
         public int god = -1;
         public int home = HomesMath.None;
         public Pawn carrier;
+        /// <summary>The one the council asked to carry it (a scoffer set to carry the offering: WorshipCouncilMore), first in line.</summary>
+        public Pawn asked;
         /// <summary>What it was, in words ("a fine meal", "a thrumbo fur"), for when it is gone.</summary>
         public string label;
         public OfferingKind kind;
@@ -105,6 +107,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref god, "god", -1);
             Scribe_Values.Look(ref home, "home", HomesMath.None);
             Scribe_References.Look(ref carrier, "carrier");
+            Scribe_References.Look(ref asked, "asked");
             Scribe_Values.Look(ref label, "label");
             Scribe_Values.Look(ref kind, "kind", OfferingKind.Other);
             Scribe_Values.Look(ref favour, "favour");
@@ -160,6 +163,10 @@ namespace ColonyCouncil
         public ThingDef beast;
         public int until = -1;
         public bool done;
+        /// <summary>The vows of a season (Gods/Worship/VowsSeason.cs): the lamp kept lit, how many trees planted or callers fed, the day last kept, the callers now at the gate (their party's id).</summary>
+        public Thing thing;
+        public int count, lastDay = -1;
+        public string pending;
 
         public void ExposeData()
         {
@@ -172,6 +179,10 @@ namespace ColonyCouncil
             Scribe_Defs.Look(ref beast, "beast");
             Scribe_Values.Look(ref until, "until", -1);
             Scribe_Values.Look(ref done, "done");
+            Scribe_References.Look(ref thing, "thing");
+            Scribe_Values.Look(ref count, "count");
+            Scribe_Values.Look(ref lastDay, "lastDay", -1);
+            Scribe_Values.Look(ref pending, "pending");
         }
     }
 

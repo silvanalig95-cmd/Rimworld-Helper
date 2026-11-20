@@ -268,7 +268,7 @@ namespace ColonyCouncil
             OwnHappenings.Stand(p, at, 1100);
             OwnHappenings.Memory(p, WaterThought);
             OwnHappenings.SayFrom(p, Pool, g, "water");
-            string text = "CC_GodSelene_Water_Text".Translate(p.Named("PAWN")).Resolve();
+            string text = TextVariants.Vary("CC_GodSelene_Water_Text").Translate(p.Named("PAWN")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodSelene_Water_Title", "CC_GodSelene_Water_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p, "CC_GodSelene_Saw_Water");
         }
@@ -302,7 +302,7 @@ namespace ColonyCouncil
             OwnHappenings.Memory(p, WatchThought);
             var g = God;
             OwnHappenings.SayFrom(p, Pool, g, "watch");
-            OwnHappenings.Line(map, "CC_GodSelene_Watch_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
+            OwnHappenings.Line(map, TextVariants.Vary("CC_GodSelene_Watch_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
             if (g != null) OwnHappenings.Saw(g, map, p.Position, GodActKind.Blessing, p, "CC_GodSelene_Saw_Watch");
             OwnHappenings.Came(b, OwnHappening.SeleneWatch, OwnHappenings.Now, null, p.thingIDNumber.ToString());
             b.Due(Now + 500);
@@ -402,7 +402,7 @@ namespace ColonyCouncil
                 if (s.darkStood)
                 {
                     OwnHappenings.Memory(p, DarkFaceThought);
-                    OwnHappenings.Line(map, "CC_GodSelene_DarkFace_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
+                    OwnHappenings.Line(map, TextVariants.Vary("CC_GodSelene_DarkFace_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p));
                     var g = God;
                     if (g != null) OwnHappenings.Saw(g, map, s.darkAt, GodActKind.Omen, p, "CC_GodSelene_Saw_DarkFace");
                 }

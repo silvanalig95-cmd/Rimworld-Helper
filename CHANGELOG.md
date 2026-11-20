@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods between the people
+
+*20 November 2026, version 0.281.0*
+
+- Every god has two or more new happenings that bring your colonists together or set them against each other, thirty-one in all: saplings between two who fought, a coat carried to someone cold, riddles at supper, one cup set between two at odds.
+- How it ends between the two (closer, a quarrel, made up, ashamed, resentful, wary, laughed at, a kindness remembered) stays in their opinions of each other and is told in the news.
+- The devout may vow their god a season as a life goal: a lamp kept lit, a tree a week, plain food only, or every caller at the gate fed, each kept on the map.
+- Four new council questions of faith: a plan laid over a god's place, a feast day in a hard season, a scoffer at the rites, and a shrine nobody keeps.
+- Every god's card now comes in three wordings.
+- Very rarely a named weapon of Possessed Weapons or a warm drake's egg of Dragons Descent is found after something strange; more of your mods' xenotypes lean toward a god, and with Alpha Bees the bees are told of a death or someone new.
+
 ## The region's years and the camps
 
 *20 November 2026, version 0.280.2*

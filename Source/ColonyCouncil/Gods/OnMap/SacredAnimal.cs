@@ -185,7 +185,7 @@ namespace ColonyCouncil
             string called = Called(a, god);
             bool kin = s.kin.Count > 0;
             spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Animal_Title", "CC_GodM_Animal_TitleNamed", called.Named("BEAST"));
-            spec.text = ((IsMog(s) ? "CC_Mog_Came_Text" : "CC_GodM_Animal_Text") + (kin ? "Kin" : "")).Translate(called.Named("BEAST"), (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN"))
+            spec.text = TextVariants.Vary((IsMog(s) ? "CC_Mog_Came_Text" : "CC_GodM_Animal_Text") + (kin ? "Kin" : "")).Translate(called.Named("BEAST"), (s.kin.FirstOrDefault()?.def.label ?? "").Named("KIN"))
                 .Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(a));
             if (!spec.veiled) Gods.Learn(god, "visitors");
@@ -716,7 +716,7 @@ namespace ColonyCouncil
             string called = Called(a, god);
             var spec = PresenceSpec.For(god, map, PresenceKind.Blessing, s.to, a);
             spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Boon_Title", "CC_GodM_Boon_TitleNamed", called.Named("BEAST"), p.Named("PAWN"));
-            spec.text = "CC_GodM_Boon_Text".Translate(called.Named("BEAST"), p.Named("PAWN")).Resolve() + (what.NullOrEmpty() ? "" : "\n\n" + what);
+            spec.text = TextVariants.Vary("CC_GodM_Boon_Text").Translate(called.Named("BEAST"), p.Named("PAWN")).Resolve() + (what.NullOrEmpty() ? "" : "\n\n" + what);
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.PositiveEvent, new LookTargets(s.to, map));
             Gods.AddFavour(god, map, GodsOnMapMath.Followed, null);
             GodsOnMapWords.Saw(god, map, s.to, GodActKind.Blessing, p, "CC_GodM_Saw_Led", called.Named("BEAST"));
@@ -784,7 +784,7 @@ namespace ColonyCouncil
             {
                 var spec = PresenceSpec.For(god, map, PresenceKind.Wrath, cell, victim.Spawned ? victim : null);
                 spec.title = GodsOnMapWords.Title(god, map, false, "CC_GodM_Sacrilege_Title", "CC_GodM_Sacrilege_TitleNamed", called.Named("BEAST"));
-                spec.text = (slain ? "CC_GodM_Sacrilege_TextSlain" : "CC_GodM_Sacrilege_Text").Translate(called.Named("BEAST"), harmer.Named("HARMER")).Resolve();
+                spec.text = TextVariants.Vary(slain ? "CC_GodM_Sacrilege_TextSlain" : "CC_GodM_Sacrilege_Text").Translate(called.Named("BEAST"), harmer.Named("HARMER")).Resolve();
                 if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NegativeEvent, new LookTargets(cell, map));
                 GodsOnMapWords.Saw(god, map, cell, GodActKind.Wrath, GodsOnMapWords.Seer(map, cell, 40f) ?? (by != null && by.IsColonist ? by : null), "CC_GodM_Saw_Struck",
                     called.Named("BEAST"), harmer.Named("HARMER"));
@@ -825,7 +825,7 @@ namespace ColonyCouncil
                 Called(s.a ?? victim, god).Named("BEAST"), victim.def.label.Named("KIN"), (by?.LabelShort ?? "CC_GodM_Someone".Translate().Resolve()).Named("HARMER")
             };
             spec.title = "CC_GodM_KinStruck_Title".Translate(args).Resolve().CapitalizeFirst();
-            spec.text = "CC_GodM_KinStruck_Text".Translate(args).Resolve();
+            spec.text = TextVariants.Vary("CC_GodM_KinStruck_Text").Translate(args).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Important, map, spec.title, spec.text, LetterDefOf.NegativeEvent, new LookTargets(cell, map));
             GodsOnMapWords.Saw(god, map, cell, GodActKind.Wrath, GodsOnMapWords.Seer(map, cell, 40f), "CC_GodM_Saw_KinStruck", args);
             if (cell.IsValid)

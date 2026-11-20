@@ -192,7 +192,7 @@ namespace ColonyCouncil
                 OwnHappenings.GoTo(a, b.roadEdge, GenDate.TicksPerHour * 3);
                 var seer = GodsOnMapWords.Seer(map, a.Position, 35f);
                 OwnHappenings.Say(seer, "roadopen", god);
-                Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_GodO_RoadOpen_Text".Translate(called.Named("BEAST")).Resolve(), new LookTargets(a), MessageTypeDefOf.PositiveEvent);
+                Tell.Message(NewsKind.Land, Importance.Notable, map, TextVariants.Vary("CC_GodO_RoadOpen_Text").Translate(called.Named("BEAST")).Resolve(), new LookTargets(a), MessageTypeDefOf.PositiveEvent);
                 OwnHappenings.Saw(god, map, a.Position, GodActKind.Depart, seer, "CC_GodO_Saw_RoadOpen", called.Named("BEAST"));
                 return true;
             }
@@ -201,7 +201,7 @@ namespace ColonyCouncil
                 b.roadStage = 5;
                 if (b.roadBack.IsValid) OwnHappenings.GoTo(a, b.roadBack, GenDate.TicksPerHour * 3);
                 a.mindState.exitMapAfterTick = now + GenDate.TicksPerHour * 3;
-                Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_GodO_RoadBack_Text".Translate(called.Named("BEAST")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent);
+                Tell.Message(NewsKind.Land, Importance.Notable, map, TextVariants.Vary("CC_GodO_RoadBack_Text").Translate(called.Named("BEAST")).Resolve(), new LookTargets(a), MessageTypeDefOf.NeutralEvent);
                 OwnHappenings.Saw(god, map, a.Position, GodActKind.Depart, GodsOnMapWords.Seer(map, a.Position, 35f), "CC_GodO_Saw_RoadBack", called.Named("BEAST"));
                 return true;
             }
@@ -372,7 +372,7 @@ namespace ColonyCouncil
             {
                 b.hurt = null;
                 t.mindState.exitMapAfterTick = now;
-                Tell.Message(NewsKind.Land, Importance.Notable, t.Map, "CC_GodO_HurtLimped_Text".Translate().Resolve(), new LookTargets(t), MessageTypeDefOf.NeutralEvent);
+                Tell.Message(NewsKind.Land, Importance.Notable, t.Map, TextVariants.Vary("CC_GodO_HurtLimped_Text").Translate().Resolve(), new LookTargets(t), MessageTypeDefOf.NeutralEvent);
                 return;
             }
             if (t.Downed || t.InMentalState) return;
@@ -460,7 +460,7 @@ namespace ColonyCouncil
             b.passedAt = -1;
             GodOmens.Dreamt(comp, p, "CC_GodO_Last_Dream".Translate().Resolve());
             OwnHappenings.Came(b, OwnHappening.BellwetherLast, now);
-            Tell.Message(NewsKind.People, Importance.Notable, map, "CC_GodO_Last_Text".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent);
+            Tell.Message(NewsKind.People, Importance.Notable, map, TextVariants.Vary("CC_GodO_Last_Text").Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent);
             OwnHappenings.Say(p, "last", g);
             OwnHappenings.Saw(g, map, p.Position, GodActKind.Omen, p, "CC_GodO_Saw_Last");
             return true;

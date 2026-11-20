@@ -39,7 +39,7 @@ public static class RevelTests
 
         // ================= His happenings and their pace =================
 
-        var mine = OwnHappeningsMath.Of("Revel");
+        var mine = OwnHappeningsMath.Of("Revel").Where(h => !OwnHappeningsMath.IsBetween(h)).ToList();
         C(mine.Count == 8 && OwnHappeningsMath.Gods.Last() == "Revel" && mine.All(h => OwnHappeningsMath.GodOf(h) == "Revel"),
             "eight of his own: the long night, a vision, a craving, a stash, a binge egged on, the craving eased, the horned reveller, his cup");
         C(mine.Min(h => (int)h) > (int)OwnHappening.MogLostDead, "added after the others, so a save's list of when each last came keeps its order");
