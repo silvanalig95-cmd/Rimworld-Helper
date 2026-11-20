@@ -228,7 +228,7 @@ namespace ColonyCouncil
         {
             var tex = TexUI.WinExpandWidget;
             if (tex == null) return;
-            GUI.color = dragging || Mouse.IsOver(g) ? Color.white : new Color(1f, 1f, 1f, 0.55f);
+            GUI.color = dragging || Mouse.IsOver(g) ? UiKit.Plain : UiKit.WithAlpha(UiKit.Plain, 0.55f);
             GUI.DrawTextureWithTexCoords(g.ContractedBy(3f), tex, new Rect(0f, 1f, 1f, -1f));
             GUI.color = Color.white;
         }

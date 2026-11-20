@@ -154,19 +154,22 @@ namespace ColonyCouncil
         /// <see cref="BackdropMost"/> (a pale yellow gets less than a deep blue), so the face reads on it as on the
         /// game's dark panels and two people's colours still tell apart.
         /// </summary>
-        public static uint Backdrop(uint colour, uint ground) => Toward(ground, colour, 0.45f, BackdropMost);
+        public static uint Backdrop(uint colour, uint ground) => Mix(ground, colour, BackdropShare(colour, ground));
 
         /// <summary>The soft light behind the head: more of their colour, no brighter than <see cref="GlowMost"/>.</summary>
-        public static uint Glow(uint colour, uint ground) => Toward(ground, colour, 0.75f, GlowMost);
+        public static uint Glow(uint colour, uint ground) => Mix(ground, colour, GlowShare(colour, ground));
 
-        private static uint Toward(uint ground, uint colour, float most, double cap)
+        /// <summary>How much of their colour goes into the backdrop (0 to 0.45), the game's look mixing it with the ground the same way.</summary>
+        public static float BackdropShare(uint colour, uint ground) => Share(ground, colour, 0.45f, BackdropMost);
+
+        /// <summary>How much of their colour goes into the light behind the head (0 to 0.75).</summary>
+        public static float GlowShare(uint colour, uint ground) => Share(ground, colour, 0.75f, GlowMost);
+
+        private static float Share(uint ground, uint colour, float most, double cap)
         {
             for (float t = most; t > 0.02f; t -= 0.03f)
-            {
-                uint c = Mix(ground, colour, t);
-                if (SkinMath.Luminance(c) <= cap) return c;
-            }
-            return ground;
+                if (SkinMath.Luminance(Mix(ground, colour, t)) <= cap) return t;
+            return 0f;
         }
 
         // ---------------- The large portrait at the inspect pane ----------------

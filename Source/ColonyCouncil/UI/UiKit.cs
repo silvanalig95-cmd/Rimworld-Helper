@@ -895,7 +895,7 @@ namespace ColonyCouncil
             var inner = r.ContractedBy(inset);
             var tex = FaceEngine.Picture(p, inner.size, FaceFrame.Face, out var cam);
             if (inner.width >= 30f) FaceEngine.DrawGlow(inner, cam, FaceEngine.GlowColour(p), alpha);
-            GUI.color = new Color(1f, 1f, 1f, alpha);
+            GUI.color = WithAlpha(Plain, alpha);
             if (tex != null) DrawInCircle(inner, tex);
             else Widgets.ThingIcon(inner, p);
             GUI.color = WithAlpha(ring, ring.a * alpha);

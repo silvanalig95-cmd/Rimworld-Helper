@@ -47,7 +47,7 @@ namespace ColonyCouncil
             public int tries;
             public float until;
             public bool hasColour;
-            public uint colour;
+            public Color colour;
             public Color back, glow;
         }
 
@@ -116,7 +116,7 @@ namespace ColonyCouncil
             DrawGlow(r, cam, l.glow, alpha);
             if (tex != null)
             {
-                GUI.color = new Color(1f, 1f, 1f, alpha);
+                GUI.color = UiKit.WithAlpha(UiKit.Plain, alpha);
                 GUI.DrawTexture(r, tex);
             }
             else Widgets.ThingIcon(r, p);
@@ -206,31 +206,33 @@ namespace ColonyCouncil
                 l.tries = tries + 1;
                 if (!l.firm && l.tries >= Tries) l.firm = true;
                 l.until = now + (l.firm ? KeepFor : RetryIn);
-                l.hasColour = ColourOf(p, out var c);
-                l.colour = l.hasColour ? Rgb(c) : 0u;
+                l.hasColour = ColourOf(p, out l.colour);
                 looks[p.thingIDNumber] = l;
             }
             // The ground is the look's (Rimfolk's own inside its windows, the game's elsewhere), so the colours are worked
             // out for the ground they sit on, once for each colour and ground.
-            uint ground = Rgb(UiKit.PortraitBack);
+            var ground = UiKit.PortraitBack;
             if (!l.hasColour)
             {
-                l.back = UiKit.PortraitBack;
+                l.back = ground;
                 l.glow = UiKit.WithAlpha(UiKit.Edge, 0.6f);
                 return l;
             }
-            ulong key = ((ulong)ground << 32) | l.colour;
-            if (!grounds.TryGetValue(key, out var pair))
+            uint g = Rgb(ground), c = Rgb(l.colour);
+            ulong key = ((ulong)g << 32) | c;
+            if (!shares.TryGetValue(key, out var share))
             {
-                pair = (Hex(FaceMath.Backdrop(l.colour, ground)), Hex(FaceMath.Glow(l.colour, ground)));
-                grounds[key] = pair;
+                share = (FaceMath.BackdropShare(c, g), FaceMath.GlowShare(c, g));
+                shares[key] = share;
             }
-            l.back = pair.back;
-            l.glow = pair.glow;
+            var opaque = UiKit.WithAlpha(l.colour, 1f);
+            l.back = Color.Lerp(ground, opaque, share.back);
+            l.glow = Color.Lerp(ground, opaque, share.glow);
             return l;
         }
 
-        private static readonly Dictionary<ulong, (Color back, Color glow)> grounds = new Dictionary<ulong, (Color back, Color glow)>();
+        /// <summary>How much of a colour goes into the backdrop and the light on a ground, worked out once for each colour and ground.</summary>
+        private static readonly Dictionary<ulong, (float back, float glow)> shares = new Dictionary<ulong, (float back, float glow)>();
 
         private static Look Read(Pawn p)
         {
@@ -350,8 +352,6 @@ namespace ColonyCouncil
         private static uint Rgb(Color c) =>
             ((uint)Mathf.Clamp(Mathf.RoundToInt(c.r * 255f), 0, 255) << 16) | ((uint)Mathf.Clamp(Mathf.RoundToInt(c.g * 255f), 0, 255) << 8)
             | (uint)Mathf.Clamp(Mathf.RoundToInt(c.b * 255f), 0, 255);
-
-        private static Color Hex(uint rgb) => new Color(SkinMath.R(rgb), SkinMath.G(rgb), SkinMath.B(rgb), 1f);
 
         private static Texture2D MakeGlow(int size)
         {
