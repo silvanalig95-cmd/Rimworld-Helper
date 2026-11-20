@@ -88,6 +88,40 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- ===================== A seat's walk (A1) ===================== -->
+
+  <!-- Said by the holder as they set off alone on the seat's round or walk ([stores], [fields], [walls]). One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatSetsOff</defName>
+    <lines>
+      <plain>
+        <li>[stores] Time to count the stores again.</li>
+        <li>[stores] Let's see what we've actually got left.</li>
+        <li>[tribal,stores] Time to go round the store pits.</li>
+        <li>[fields] I'll have a look at the fields before anyone else is up.</li>
+        <li>[fields] Time to see how the rows came through the night.</li>
+        <li>[walls] I'll walk the walls before it gets dark.</li>
+        <li>[walls] One more look round the edge before night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said by the holder now and then on the seat's round or walk ([stores], [fields], [walls]). One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatAtWork</defName>
+    <lines>
+      <plain>
+        <li>[stores] Let me count these again.</li>
+        <li>[stores] Sacks, crates and barrels, one at a time.</li>
+        <li>[stores] I'll want this written down before I forget it.</li>
+        <li>[fields] The rows look straight enough from here.</li>
+        <li>[fields] I'll want a closer look at this end tomorrow.</li>
+        <li>[walls] Quiet out there, so far.</li>
+        <li>[walls] I'd like to see them try that again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
   <!-- ===================== The quartermaster's count (A1) ===================== -->
 
   <!-- The quartermaster, at the end of the count, about what is shortest ([short:food], [short:medicine], [short:meals]).
@@ -199,7 +233,7 @@
       <plain>
         <li>Aye, I'm with {OTHER_nameDef} on that.</li>
         <li>Aye, and it's about time somebody said it.</li>
-        <li>[wish] Aye, I'd want the same.</li>
+        <li>[wish] Aye, they should have it.</li>
         <li>[repeal] Aye, lift it.</li>
         <li>[decree] Aye, I'd be glad of it.</li>
         <li>Aye, put me down for it.</li>

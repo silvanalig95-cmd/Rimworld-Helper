@@ -469,6 +469,8 @@ namespace ColonyCouncil
             Safe("Pip's hour", () => OwnPip.Hourly(b, now));
             Safe("Cirrus's hour", () => OwnCirrus.Hourly(b, now));
             Safe("the second seven's hour", () => Seven(b, now));
+            Safe("a festival's hour", () => OwnFeasts.Hourly(b, now));
+            Safe("the gods' beasts' hour", () => GodBeasts.Hourly(now));
             Safe("an anger forewarned", () => Forewarned(b, now));
         }
 
@@ -484,6 +486,7 @@ namespace ColonyCouncil
             Safe("Pip's steps", () => OwnPip.Step(b, now));
             Safe("Cirrus's steps", () => OwnCirrus.Step(b, now));
             Safe("the second seven's steps", () => SevenSteps(b, now));
+            Safe("a festival's steps", () => OwnFeasts.Step(b, now));
         }
 
         internal static void Safe(string what, Action a)
@@ -853,12 +856,16 @@ namespace ColonyCouncil
             else if (kind == OmenKind.FairyRing && god.Key == OwnMorel.Key) OwnMorel.Remember(Book, map, at);
         }
 
-        /// <summary>A god's festival kept at a home (Festivals.Kept): the Guest's Open Door, a night of the wrong star kept for the sky.</summary>
+        /// <summary>
+        /// A god's festival kept at a home (Festivals.Kept): the Guest's Open Door, a night of the wrong star kept for the sky,
+        /// the second seven's own, and the other eight as their words say (Gods/OnMap/OwnFeasts.cs).
+        /// </summary>
         public static void FestivalKept(God god, Map map)
         {
             if (god == null || map == null || Book == null) return;
             if (god.Key == OwnEnnu.Key) OwnEnnu.OpenDoor(map);
             else if (god.Key == OwnCirrus.Key) OwnCirrus.FestivalKept();
+            else if (OwnFeasts.Keeps(god)) OwnFeasts.Begin(Book, god, map);
             else SevenFestival(Book, god, map);
         }
 
@@ -872,6 +879,8 @@ namespace ColonyCouncil
             b.felledMap = map;
             b.felledAt = plant.PositionHeld;
             b.felledSinceTree++;
+            // Counted for Hollin's next Greening: a sapling for each (Gods/OnMap/OwnFeasts.cs).
+            OwnFeasts.Felled(b);
         }
 
         /// <summary>One of the game's events happened at a home (Patch_OwnEventHappened): thrumbos passing.</summary>

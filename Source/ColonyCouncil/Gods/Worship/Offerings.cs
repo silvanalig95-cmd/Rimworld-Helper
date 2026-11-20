@@ -627,6 +627,8 @@ namespace ColonyCouncil
                 Worship.Sign(g, map, cell, PresenceKind.Act, "CC_Wsh_Taken_Title".Translate(place.Named("SHRINE")).Resolve(), text, new LookTargets(cell, map), false, GodActKind.Act, true,
                     "taken");
                 GodTouch.PlainTaken(g, map);
+                // A tale of the game's, for the colony's art (Things/ArtTales.cs): the gift taken, by one who saw it.
+                ArtTales.Record(ArtTales.OfferingTaken, Gods.Witnesses(map, cell).FirstOrDefault() ?? o.carrier, null, ArtTales.GodWords(g, map), what);
             }
             else
             {

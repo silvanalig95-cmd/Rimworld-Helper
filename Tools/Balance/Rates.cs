@@ -659,6 +659,23 @@ namespace Balance
             ("Rimfolk_Thought_Revel_SlowMorning", 0.02f),
             ("Rimfolk_Thought_Revel_SatUp", 0.001f),
             ("Rimfolk_Thought_Revel_SatWithMe", 0.001f),
+            // Each god's festival kept as its words say (Gods/OnMap/OwnFeasts.cs): a colony keeps up to three gods' festivals a
+            // year, so each of the eight comes to a colony that holds it once a year; most of the colony takes part in the
+            // Greening's meal and the silent supper, one to four in the others' work. A god's beast at home grieved (one of the
+            // colony's animals of a god's kind dying, those who hold the god it is taken for) a few times in a long game; a
+            // sacred beast slain by the colony (a legendary or the beast that stays, taken for a god's) rarer still; the beast
+            // that stays left be as its believer asked, one person, about once a year where such a beast stays.
+            ("Rimfolk_Thought_Feast_Hollin", 0.004f),
+            ("Rimfolk_Thought_Feast_Smoulder", 0.0005f),
+            ("Rimfolk_Thought_Feast_Bellwether", 0.002f),
+            ("Rimfolk_Thought_Feast_Morel", 0.0008f),
+            ("Rimfolk_Thought_Feast_Pip", 0.0005f),
+            ("Rimfolk_Thought_Feast_Hush", 0.004f),
+            ("Rimfolk_Thought_Feast_Undertow", 0.001f),
+            ("Rimfolk_Thought_Feast_Selene", 0.0008f),
+            ("Rimfolk_Thought_GodBeastGone", 0.0006f),
+            ("Rimfolk_Thought_SacredBeastSlain", 0.0004f),
+            ("Rimfolk_Thought_BeastSpared", 0.0003f),
             // The gods' touch (Gods/Touch/): about one occurrence of the gods a day seen by a few of the colony (the player's save,
             // 15 November 2026, had about that), a third of them signs; a believer of that god glad of a kindness or a sight
             // about once in two weeks, someone of no strong belief awed about once a week and uneasy at a sign or an anger about

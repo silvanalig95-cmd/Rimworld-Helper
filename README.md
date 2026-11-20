@@ -4962,12 +4962,43 @@ Sometimes a fever eases in the night after, or the rain comes; nobody can say fo
 scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
 unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until
 the sick one is well, a pilgrimage on foot, a temple, a beast spared for a season. Each god the colony holds has its
-festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god. An
+festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god; those
+who hold the god stand behind the one leading the rite. Each festival is kept as its words say, played out on the map:
+for Hollin's Greening a sapling is set by hand for each tree the colony felled since the last one and a meal is eaten
+under the oldest tree; for Smoulder's Deep Silver silver goes down the deepest shaft (a crack in the rock without a
+mine); for Bellwether's Letting Pass the herd is walked out to the long grass and the old story told to the children at
+dusk; for Morel's Turning Under the year's scraps are dug into a field, which turns rich, and mushroom stew is cooked;
+for Pip's First Spark something broken is mended, the machines are looked over and the lamps burn all night; for Hush's
+Stillness there is a silent supper, the sick and the old nearest the fire; for Undertow's Shuttered Night the doors are
+shut and every lamp lit (torches topped up); for Selene's Longest Night two keep watch on the walls till dawn and dreams
+are told at breakfast. Some animals of the game and your mods are held sacred to a god, rare ones, never the land's
+common game, and what the colony's people make of one is their own reading, sometimes wrong: one of the colony's own they greet, bring a bite by hand, walk to the god's place on its feast day and
+grieve when it dies; a wild beast that stays may be taken for a god's when it is named, and the council's question then
+has the believer's answer, to leave it be; a legendary Pokémon on the land may be taken for a god's, and hunting it
+troubles those who believe it. The colony's sculptures may show these moments: a god seen, a sacred beast's visit, a
+festival kept, the beast that stays named, the herd's old leader dying, a raid held at a line. An
 elected priest (a shaman, a priest, a pastor or an oracle by the age) dedicates the places, carries the offerings and
 leads the rites, and the council is asked which god to keep the year for, whether to vow a temple, what to do when
 someone dreams a god wants the colony's finest beast, and whose rite comes first when two rival gods' people quarrel.
 Gods speak in dreams. None of it ever says what a god thinks; what people saw goes into the colony's book. Setting:
 *Worship of the gods* (on).
+
+**The gods among your people** (not released yet). A vowed pilgrimage walks out for real when a holy place of the god
+lies within a few days' road (a town of a people that holds it, the pilgrim fellowship's shrine, an old shrine by a
+landmark): a caravan of one there and home, a keepsake of the place, that people's name for the god in the book and
+one of their stories told at supper. A fisher who holds to Murmur gives the first fish of the morning back to the water,
+with a splash someone may see, and fishes better that day (Vanilla Fishing Expanded's fisherman leans toward Murmur, and
+the water's give-back may leave the mod's fish on the mud). A debt the colony pays when due leaves a gold coin on the
+payer's doorstep the next morning and keeps the next trader half a day longer; one let lapse brings a trader who drives
+a hard bargain for the day, said plainly in the trade window. The book's keeper walks out to see a sign they missed and
+writes up the evening's new entries at a writing table (Vanilla Books Expanded's first). Raiders cry their god's name as
+they come on, and a prisoner may tell their warden a story of their gods. At a eulogy the dead are given to the god they
+held, in the old words, and those who share that god grieve a little less. A season the weather book names is taken for
+a god's doing by your believers, argued over, doubted, retold by a neighbour, and a year on the council may be asked to
+keep a day against it. The room planner offers a shrine room for each god your book has a chapter for, built the way
+your people picture it. With Vanilla Christmas Expanded, midwinter brings the festive tree switched on, the gingerbread
+and warm drinks set out, a present handed to each of your people and a snow sculpture. Dev mode has *Gods among: ...*
+actions for each.
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

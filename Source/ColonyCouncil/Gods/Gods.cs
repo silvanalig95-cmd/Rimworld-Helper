@@ -268,8 +268,10 @@ namespace ColonyCouncil
                 var g = ById(act.god);
                 var lore = GodLore.Instance;
                 string taken = g == null || lore == null ? null : GodLoreMath.Attribute(g.Key, lore.KnownOf(), Rand.Value);
-                GodLore.Saw(pawns, ByKey(taken), act.text);
+                var entry = GodLore.Saw(pawns, ByKey(taken), act.text);
                 act.booked = true;
+                // The book's keeper, if they weren't there, walks out to look (Gods/Among/KeeperAtWork.cs).
+                KeeperAtWork.Told(entry, map, act.cell);
                 // Each witness's own belief in the god they took it for (Gods/Belief/PawnGods.cs).
                 PawnGods.Saw(pawns, ByKey(taken), act.kind, false, act.text, act.cell, map);
                 // A kindness or an anger seen: the believer among them comes to hold what the god they took it for loves or hates.
@@ -326,7 +328,9 @@ namespace ColonyCouncil
                 // Seen plainly (not veiled), or a disguised god revealing itself: the colony knows it was this god, and names it.
                 bool plain = !spec.veiled || spec.kind == PresenceKind.Reveal;
                 if (plain) taken = spec.god;
-                GodLore.Saw(witnesses, taken, words);
+                var entry = GodLore.Saw(witnesses, taken, words);
+                // The book's keeper, if they weren't there, walks out to look (Gods/Among/KeeperAtWork.cs).
+                KeeperAtWork.Told(entry, spec.map, spec.kind == PresenceKind.Omen ? IntVec3.Invalid : spec.cell);
                 if (plain) lore.MarkActing(spec.god);
                 // The holy book: what the colony saw of it plainly, and what a believer now holds it loves or hates.
                 if (plain) GodLore.Sighted(witnesses, spec.god, words);
@@ -334,6 +338,8 @@ namespace ColonyCouncil
                     GodLore.Inferred(GodLore.Believer(witnesses), taken, spec.god, spec.kind == PresenceKind.Wrath);
                 // Each witness's own belief in the god they took it for, plainly seen the more (Gods/Belief/PawnGods.cs).
                 PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);
+                // A tale of the game's, for the colony's art (Things/ArtTales.cs): the god as the colony knew it then.
+                ArtTales.Seen(spec.god, spec.map, witnesses, spec.kind);
                 // What it does to those who saw it, and what follows on the map (Gods/Touch/GodTouch.cs).
                 GodTouch.NoteMoment(spec, witnesses, plain, taken);
                 momentGod = spec.god.id;

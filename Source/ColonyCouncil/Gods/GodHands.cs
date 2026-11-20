@@ -86,8 +86,19 @@ namespace ColonyCouncil
         /// a second god met in it (the eclipse: Selene stepping between Helios and the world), so a believer who takes it
         /// for the first says a line of their meeting. False when nobody there would say it.
         /// </summary>
-        public static bool Show(Map map, God god, HandKind kind, string label, int now, God with = null, string sign = null)
+        public static bool Show(Map map, God god, HandKind kind, string label, int now, God with = null, string sign = null) =>
+            ShowWith(map, god, kind, label, now, null, null, out _, with, sign);
+
+        /// <summary>
+        /// A god's hand remarked on (<see cref="Show"/>) in lines of the moment's own: <paramref name="lineFor"/> gives the
+        /// believer's line for the god they take it for (and <paramref name="scoffFor"/> the scoffer's), each with the speaker's
+        /// own name for it, or null for the god's own hand lines; <paramref name="taken"/> is the god they took it for, or null
+        /// for something they couldn't name (a legendary of PokéWorld on the land: Gods/OnMap/GodBeasts.cs).
+        /// </summary>
+        public static bool ShowWith(Map map, God god, HandKind kind, string label, int now, Func<God, Pawn, string> lineFor, Func<God, Pawn, string> scoffFor, out God taken,
+            God with = null, string sign = null)
         {
+            taken = null;
             var lore = GodLore.Instance;
             if (lore == null || map == null || god == null) return false;
             var people = map.mapPawns.FreeColonistsSpawned.Where(Able).ToList();
@@ -99,11 +110,11 @@ namespace ColonyCouncil
             // Known for the god's own (the colony saw it act plainly, or learned this sign as its own): named plainly, and nobody
             // doubts it. Else whoever the believer takes it for.
             bool known = Gods.CardName(god, map, sign) != null;
-            var taken = known ? god : Gods.ByKey(GodLoreMath.Attribute(god.Key, knownOf, Rand.Value));
+            taken = known ? god : Gods.ByKey(GodLoreMath.Attribute(god.Key, knownOf, Rand.Value));
             bool meeting = with != null && (taken == god || taken == with);
             // The god they take it for drawn near (GodNear): their words say it was felt plainly.
             bool near = taken != null && GodNear.Near(taken, map);
-            string line = Line(taken?.def?.hands, kind, near, "CC_GodHand_Unnamed_", UnnamedLines, taken, believer, meeting);
+            string line = lineFor?.Invoke(taken, believer) ?? Line(taken?.def?.hands, kind, near, "CC_GodHand_Unnamed_", UnnamedLines, taken, believer, meeting);
             if (line.NullOrEmpty()) return false;
             // apart: a believer's word on something everyone on the land can see, said to nobody in particular.
             Speech.Say(believer, line);
@@ -113,7 +124,7 @@ namespace ColonyCouncil
             if (!known)
             {
                 scoffer = people.Where(x => x != believer && Together.Can(believer, x) && GodLore.Credence(x) < GodLoreMath.ScofferBelow).OrderBy(GodLore.Credence).FirstOrDefault();
-                answer = scoffer == null ? null : Line(taken?.def?.scoffs, kind, near, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
+                answer = scoffer == null ? null : scoffFor?.Invoke(taken, scoffer) ?? Line(taken?.def?.scoffs, kind, near, "CC_GodHand_UnnamedScoff_", UnnamedScoffs, taken, scoffer, false);
                 if (!answer.NullOrEmpty() && Speech.Say(scoffer, answer, believer)) said.Add((scoffer, answer, true));
                 else scoffer = null;
             }

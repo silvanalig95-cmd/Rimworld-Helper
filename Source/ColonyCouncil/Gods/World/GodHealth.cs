@@ -60,8 +60,9 @@ namespace ColonyCouncil
         /// <summary>
         /// An animal died (Happenings.Notify_Killed), killed by one of the colony: a god whose kin it was (GodWays.Kin:
         /// Bellwether's thrumbos) answers in its own way (word on the roads, every god colder), else holds it against the
-        /// killer; else a beast sacred to a domain whose god takes it ill (GodsMath.SacredDeath, the core's): the loudest such
-        /// god the colony knows holds it against the killer.
+        /// killer; else a beast sacred to a god (its own sacred kind, Gods/SacredKinds.cs, else its domain's for a god with none
+        /// of its own) that takes it ill (GodsMath.SacredDeath, the core's): the loudest such god the colony knows holds it
+        /// against the killer.
         /// </summary>
         public static void Killed(Pawn victim, DamageInfo? dinfo, Map map)
         {
@@ -84,10 +85,21 @@ namespace ColonyCouncil
                 }
                 bool slaughtered = victim.Faction == Faction.OfPlayer || dinfo?.Def == DamageDefOf.ExecutionCut;
                 bool wild = victim.Faction == null;
+                // A god's own sacred kind (Gods/SacredKinds.cs): the loudest god the colony knows that holds it so.
+                var own = SacredKinds.GodsOf(victim.def).Where(x => GodsMath.SacredDeath(x.domain, slaughtered, wild) < 0f && (Gods.Known(x) || Gods.ColonyGods(map).Contains(x)))
+                    .OrderByDescending(Gods.Loudness).FirstOrDefault();
+                if (own != null)
+                {
+                    if (Gods.Loudness(own) < 0.5f) return;
+                    Grudge(own, killer, map, "beast");
+                    GodWorld.Remark(map, victim.PositionHeld, "sacrilege", own, killer, killer.Named("KILLER"));
+                    return;
+                }
                 foreach (var def in DefDatabase<GodDomainDef>.AllDefsListForReading)
                 {
                     if (def?.Animals == null || !def.Animals.Contains(victim.def) || GodsMath.SacredDeath(def.domain, slaughtered, wild) >= 0f) continue;
-                    var g = Gods.All.Where(x => (x.domain == def.domain || x.second == def.domain) && (Gods.Known(x) || Gods.ColonyGods(map).Contains(x)))
+                    // A domain's kind: the gods of that domain with no sacred kinds of their own.
+                    var g = Gods.All.Where(x => (x.domain == def.domain || x.second == def.domain) && !SacredKinds.Own(x) && (Gods.Known(x) || Gods.ColonyGods(map).Contains(x)))
                         .OrderByDescending(Gods.Loudness).FirstOrDefault();
                     if (g == null || Gods.Loudness(g) < 0.5f) continue;
                     Grudge(g, killer, map, "beast");

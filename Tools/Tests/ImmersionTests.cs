@@ -27,6 +27,9 @@ public static class ImmersionTests
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",
         // The colony's animals' days, seen (Animals/AnimalDays.cs).
         "Rimfolk_Pool_AnimalDays",
+        // The gods among the colony's people (Gods/Among/).
+        "Rimfolk_Pool_GodsAmong_Fisher", "Rimfolk_Pool_GodsAmong_Keeper", "Rimfolk_Pool_GodsAmong_RaiderCry", "Rimfolk_Pool_GodsAmong_Grave", "Rimfolk_Pool_GodsAmong_Season",
+        "Rimfolk_Pool_GodsAmong_Midwinter",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
@@ -122,7 +125,7 @@ public static class ImmersionTests
         // The council's seats at their work, a holder answering for a promise at supper, and any other business at the meeting
         // (Interplay/Interplay_Seats.cs, Offices/SeatHalfway.cs, Ambitions/MeetingBusiness.cs).
         "Rimfolk_Pool_SeatHeardSays", "Rimfolk_Pool_SeatHearReply", "Rimfolk_Pool_SeatCountShort", "Rimfolk_Pool_SeatBlight", "Rimfolk_Pool_SeatOnWatch",
-        "Rimfolk_Pool_SeatSupper", "Rimfolk_Pool_MeetingPetition", "Rimfolk_Pool_MeetingPetitionFor", "Rimfolk_Pool_MeetingAye", "Rimfolk_Pool_MeetingNay",
+        "Rimfolk_Pool_SeatSupper", "Rimfolk_Pool_SeatSetsOff", "Rimfolk_Pool_SeatAtWork", "Rimfolk_Pool_MeetingPetition", "Rimfolk_Pool_MeetingPetitionFor", "Rimfolk_Pool_MeetingAye", "Rimfolk_Pool_MeetingNay",
         // Harm, part 7 (Harm/Tempers.cs, GateTroubles.cs, Stories.cs): tempers in the colony, visitors and outsiders, personal
         // stories, said by those they happen to and those who step in.
         "Rimfolk_Pool_SitDownBlows", "Rimfolk_Pool_PeacemakerBetween", "Rimfolk_Pool_SpeakerWords", "Rimfolk_Pool_SpeakerCalms", "Rimfolk_Pool_PeacemakerWord",
@@ -221,7 +224,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_PlayBellFuneral",
         // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
         // colony say at each moment.
-        "Rimfolk_Pool_OldPowersSaid"
+        "Rimfolk_Pool_OldPowersSaid",
+        // Each god's festival kept as its words say, and the gods' beasts at home and on the land (Gods/OnMap/OwnFeasts.cs,
+        // GodBeasts.cs): what is said at the festival's work, to a god's beast, and of a beast taken for a god's.
+        "Rimfolk_Pool_GodFeast_Say", "Rimfolk_Pool_GodBeast_Say"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

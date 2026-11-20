@@ -28,7 +28,10 @@ namespace ColonyCouncil
         private static readonly Color SeatColor = new Color(0.85f, 0.9f, 1f);
 
         /// <summary>One of the seats' own walks or sittings (not an answer the player gave, and not a gathering).</summary>
-        public static bool IsSeatWork(PlayOut p) => p?.afterward != null && p.afterward.StartsWith(SeatPrefix, System.StringComparison.Ordinal);
+        public static bool IsSeatWork(PlayOut p) => p != null && p.seat;
+
+        /// <summary>What a seat at its work says while it goes on (PlayOut.pool), by the round: [stores], [fields], [walls].</summary>
+        public const string SeatAtWorkPool = "Rimfolk_Pool_SeatAtWork";
 
         /// <summary>The council's day (Daily): the speaker, the quartermaster and the reeve see whether today is theirs.</summary>
         private static void SeatsDaily(CouncilGameComponent comp)
@@ -71,7 +74,10 @@ namespace ColonyCouncil
                 effect.hours = new IntRange(h, (h + 3) % 24);
             }
             var play = effect.Begin(new DilemmaContext { map = holder.Map, a = holder, b = other });
-            if (play != null) play.afterward = afterward;
+            if (play == null) return null;
+            play.afterward = afterward;
+            play.seat = true;
+            if (play.IsGroup) play.pool = SeatAtWorkPool;
             return play;
         }
 
@@ -234,7 +240,8 @@ namespace ColonyCouncil
         }
 
         private static string FieldsText(Pawn reeve, int marked, bool walked) =>
-            OfficeNames.Key(marked > 0 ? (walked ? "CC_Seat_FieldsBlight" : "CC_Seat_FieldsBlightNoWalk") : "CC_Seat_FieldsClear", reeve.Named("PAWN"), marked.Named("COUNT"));
+            OfficeNames.Key(marked <= 0 ? "CC_Seat_FieldsClear" : marked == 1 ? (walked ? "CC_Seat_FieldsBlightOne" : "CC_Seat_FieldsBlightOneNoWalk")
+                : walked ? "CC_Seat_FieldsBlight" : "CC_Seat_FieldsBlightNoWalk", reeve.Named("PAWN"), marked.Named("COUNT"));
 
         // ---------------- The marshal at dusk ----------------
 

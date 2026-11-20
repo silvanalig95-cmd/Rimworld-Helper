@@ -33,6 +33,8 @@
   <CC_Seat_Label_Fields>the reeve's walk</CC_Seat_Label_Fields>
   <CC_Seat_FieldsBlight>{PAWN_nameDef} walked the fields at first light and marked {COUNT} blighted plants for cutting.</CC_Seat_FieldsBlight>
   <CC_Seat_FieldsBlightNoWalk>{PAWN_nameDef} found blight in the fields and marked {COUNT} plants for cutting.</CC_Seat_FieldsBlightNoWalk>
+  <CC_Seat_FieldsBlightOne>{PAWN_nameDef} walked the fields at first light and marked a blighted plant for cutting.</CC_Seat_FieldsBlightOne>
+  <CC_Seat_FieldsBlightOneNoWalk>{PAWN_nameDef} found blight in the fields and marked a plant for cutting.</CC_Seat_FieldsBlightOneNoWalk>
   <CC_Seat_FieldsClear>{PAWN_nameDef} walked the fields at first light and found no blight.</CC_Seat_FieldsClear>
 
   <!-- The marshal at dusk. -->

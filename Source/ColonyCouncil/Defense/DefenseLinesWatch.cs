@@ -274,6 +274,14 @@ namespace ColonyCouncil
             if (busiest != null)
                 Notify.Message("CC_DefLine_RaidOver".Translate(DefenseLineReview.NameOf(busiest, map), Summary(busiest, busiestRaid, map)).Resolve(),
                     new LookTargets(busiest.gate, map), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            // The line held (they came through the gate, and nobody fell): a tale of the game's for the colony's art, with the
+            // one of the colony standing nearest its gate (Things/ArtTales.cs).
+            if (busiest != null && ArtTalesMath.Held(busiestRaid.lessons))
+            {
+                var by = map.mapPawns.FreeColonistsSpawned.Where(p => !p.Downed && !p.Dead).OrderByDescending(p => p.Drafted)
+                    .ThenBy(p => p.Position.DistanceToSquared(busiest.gate)).FirstOrDefault();
+                if (by != null) ArtTales.Record(ArtTales.LineHeld, by, null, null, DefenseLineReview.NameOf(busiest, map));
+            }
         }
 
         // ---------------- Words ----------------

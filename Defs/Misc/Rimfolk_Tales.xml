@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods, the beasts and the land in the colony's art (Source/ColonyCouncil/Things/ArtTales.cs; docs/content-update-
+    proposals.md, C17): Rimfolk's moments recorded as the game's own tales, so the colony's sculptures (and Vanilla Furniture
+    Expanded - Art's statues, which use the same art system) may show them. PAWN is the one of the colony who was there,
+    OTHER a beast in it, GOD the god as the colony knew it at the time (its name where the colony knew it was that god, else
+    what was seen), WHAT what it was about (a gift, a line's name). Plain words, as the game's own art describes.
+  -->
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_GodSeen</defName>
+    <label>a god seen</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>180</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>4</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] before [GOD]</li>
+        <li>tale_noun->what [PAWN_nameDef] saw</li>
+        <li>image->[PAWN_nameFull] standing before [GOD] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] looking up at [GOD] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] kneeling before [GOD] [circumstance_group]</li>
+        <li>circumstance_phrase->at dusk</li>
+        <li>circumstance_phrase->with one hand raised to shade [PAWN_possessive] eyes</li>
+        <li>circumstance_phrase->while the others stand back</li>
+        <li>circumstance_phrase->at the edge of the colony</li>
+        <li>desc_sentence->[PAWN_nameDef] holds very still.</li>
+        <li>desc_sentence->The figure of [GOD] is carved larger than anything else in the piece.</li>
+        <li>desc_sentence->[PAWN_nameDef]'s face shows awe.</li>
+        <li>desc_sentence->The rest of the scene is left rough, as if the artist did not want to look at it too long.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_SacredBeast</defName>
+    <label>a sacred beast's visit</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>3</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] and [GOD]</li>
+        <li>tale_noun->the day [GOD] came</li>
+        <li>image->[PAWN_nameFull] sitting quietly near [GOD] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] holding out food to [GOD] [circumstance_group]</li>
+        <li>circumstance_phrase->in the long grass</li>
+        <li>circumstance_phrase->while it grazes</li>
+        <li>circumstance_phrase->as the light fades</li>
+        <li>desc_sentence->The beast is shown far larger than [PAWN_nameDef].</li>
+        <li>desc_sentence->[PAWN_nameDef] looks calm.</li>
+        <li>desc_sentence->Other animals watch from the edge of the piece.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_OfferingTaken</defName>
+    <label>an offering taken</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>3</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->the taking of [WHAT]</li>
+        <li>tale_noun->the gift [PAWN_nameDef] saw taken</li>
+        <li>image->[PAWN_nameFull] watching a gift of [WHAT] taken from a shrine [circumstance_group]</li>
+        <li>image->a gift of [WHAT] vanishing from a shrine before [PAWN_nameFull] [circumstance_group]</li>
+        <li>circumstance_phrase->while a crowd looks on</li>
+        <li>circumstance_phrase->in a burst of light</li>
+        <li>circumstance_phrase->in the middle of the day</li>
+        <li>desc_sentence->Nobody in the piece is touching the gift.</li>
+        <li>desc_sentence->[PAWN_nameDef] has stepped back from the shrine.</li>
+        <li>desc_sentence->Above the shrine is a mark that might stand for [GOD].</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_FestivalKept</defName>
+    <label>a festival kept</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>2.5</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] at [GOD]</li>
+        <li>tale_noun->the keeping of [GOD]</li>
+        <li>image->[PAWN_nameFull] leading the rite of [GOD] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] at the shrine on [GOD] [circumstance_group]</li>
+        <li>circumstance_phrase->with the faithful standing behind [PAWN_objective]</li>
+        <li>circumstance_phrase->before the shrine</li>
+        <li>circumstance_phrase->as the feast is laid out</li>
+        <li>desc_sentence->Everyone's head is bowed.</li>
+        <li>desc_sentence->A long table of food fills one side of the piece.</li>
+        <li>desc_sentence->[PAWN_nameDef] has both hands raised.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_FestivalBeast</defName>
+    <label>a sacred beast at a festival</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>3</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[PAWN_nameDef] and [OTHER_nameDef] on [GOD]</li>
+        <li>image->[PAWN_nameFull] leading [OTHER_nameDef] to the shrine on [GOD] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] feeding [OTHER_nameDef] from the hand on [GOD] [circumstance_group]</li>
+        <li>circumstance_phrase->while the others watch</li>
+        <li>circumstance_phrase->in the morning light</li>
+        <li>desc_sentence->[OTHER_nameDef] walks calmly at [PAWN_nameDef]'s side.</li>
+        <li>desc_sentence->[PAWN_nameDef] is smiling.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_BeastNamed</defName>
+    <label>a wild beast named</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>2</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->the naming of [OTHER_nameDef]</li>
+        <li>image->[PAWN_nameFull] pointing out [OTHER_nameDef] from the wall [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] watching [OTHER_nameDef] at the edge of the trees [circumstance_group]</li>
+        <li>circumstance_phrase->in the early morning</li>
+        <li>circumstance_phrase->with the children crowding round</li>
+        <li>desc_sentence->[OTHER_nameDef] is looking straight back.</li>
+        <li>desc_sentence->[PAWN_nameDef] is mouthing a name.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_HerdLeaderDied</defName>
+    <label>the herd's old leader died</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>2</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->the death of [OTHER_nameDef]</li>
+        <li>image->[PAWN_nameFull] kneeling beside [OTHER_nameDef], the old leader of the herd, [circumstance_group]</li>
+        <li>circumstance_phrase->with the herd standing round</li>
+        <li>circumstance_phrase->in the pens at dusk</li>
+        <li>desc_sentence->The rest of the herd stand with their heads lowered.</li>
+        <li>desc_sentence->[PAWN_nameDef] has one hand on [OTHER_nameDef]'s neck.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+  <TaleDef>
+    <defName>Rimfolk_Tale_LineHeld</defName>
+    <label>a raid held at a line</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>120</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>3</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->the holding of [WHAT]</li>
+        <li>image->[PAWN_nameFull] standing at [WHAT] as raiders come up against it [circumstance_group]</li>
+        <li>circumstance_phrase->with the gate behind [PAWN_objective]</li>
+        <li>circumstance_phrase->in the smoke of the fight</li>
+        <li>desc_sentence->Not one of the defenders has fallen.</li>
+        <li>desc_sentence->[PAWN_nameDef] stands with feet set wide.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
+</Defs>

@@ -134,6 +134,15 @@ namespace ColonyCouncil
             if (!TieRules.Move(tie, state, now)) return false;
             Changed();
             History.Tie(tie, History.TieWord(tie.state, was));
+            // A debt the colony owed, paid or let lapse: Ducat's coin, or the trader's hard bargain (Gods/Among/DucatDebts.cs).
+            try
+            {
+                DucatDebts.Moved(tie);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("world ledger: a debt's turn", e);
+            }
             return true;
         }
 

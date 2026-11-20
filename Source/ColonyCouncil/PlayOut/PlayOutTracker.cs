@@ -586,7 +586,7 @@ namespace ColonyCouncil
             sit.expiryInterval = -1;
             o.jobs.StartJob(sit, JobCondition.InterruptForced, null, false, true);
             string where = (p.sitBy == PlaySpot.Fire ? "CC_Play_Where_FireSide" : "CC_Play_Where_Table").Translate();
-            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
+            Tell.Message(NewsKind.People, Interplay.IsSeatWork(p) ? Importance.Flavor : Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
                 new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent);
             return true;
         }
