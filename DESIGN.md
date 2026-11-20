@@ -19352,12 +19352,11 @@ no old line was changed.
   founding stories were left alone (done in 0.277.2).
 - **B18, the peoples' own camps, fuller words** (`Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml`). The 26 camps to
   four arrival texts, two joins, nine bubble lines, and two help texts and six moment lines where those are said: a help
-  told in the camp's own words (tales, milk, fish, show; medicine, wood, mend and meat are told by the shared lines, so
-  a kind's own line for them never shows), a moment its camp's ways say (`SayMoment`). The enclave's pad and the Banner's
-  company give no help (`helpChance` 0); the field sickhouse's moments are never said, its round and gift being a
-  farewell walk's and a left gift's it doesn't have. The eight camps of 0.282.0 (`_Variety4.xml`) to the same floor for
-  arrivals, joins and bubbles; of their moments only the carters' mending and the games team's kill are ever said, so
-  only those got more. New arrival texts say nothing of cold or snow, which the colony's land may not have in winter, and
+  told in the camp's own words (tales, milk, fish, show; medicine, wood, mend and meat were told by the shared lines
+  until the fix below), a moment its camp's ways say (`SayMoment`). The enclave's pad and the Banner's company give no
+  help (`helpChance` 0); the field sickhouse's moments were never said (the fix below). The eight camps of 0.282.0
+  (`_Variety4.xml`) to the same floor for arrivals, joins and bubbles; of their moments only the carters' mending and the
+  games team's kill were said then, so only those got more. New arrival texts say nothing of cold or snow, which the colony's land may not have in winter, and
   name gear only where the people's own gear has it (the Circuit's sashes, the Line's oilskins, the vault's numbers).
   26 camps: arrivals 56 to 105, joins 26 to 52, help 27 to 51, bubbles 132 to 234, moments 102 to 154.
 - **B30, the thinnest encounters** (`Defs/EncounterDefs/`). Two texts more for each of the 25 named, by season, weather
@@ -19366,13 +19365,33 @@ no old line was changed.
   animals, a pilgrim or a sexton at a grave, a scholar at the books, a salvager at the broken machine, a reader under the
   open sky, a linesman at the comms console, a mechanitor at a mech, a listener humming).
 
-Found and left as they were, for the lead: the help lines of a kind's own for medicine, wood, mend and meat are never
-shown (`CampCarry`, `CampLife.DoHelp` and `CampRequests.MendGear` tell those by the shared lines `CC_Camp_Help_*`): the
-pilgrims' hostel's [medicine], the boat-builders' [wood], the Wheel's yard's [mend] and all eight of 0.282.0's camps'
-help lines; and moment lines no code says: the hostel's [gift], the field sickhouse's [round] and [gift], and the
-[carry] and [gift] lines of six of 0.282.0's camps (no camp good of theirs is carried out, none leaves a gift). Routing
-them through `HelpText` would show some lines that claim more than happens (the travellers' herbs, the boat-builders'
-logs carried over), so it was not done here.
+**The camps' own words said** (a fix, 20 November 2026; not released yet). Found by this round, fixed after it. Every
+good turn of a camp is told through `Camp.HelpText`, the kind's own line first and the shared `CC_Camp_Help_*` line
+only for a kind with none, so the own lines for medicine (`CampCarry.Brought`), wood and meat (`CampLife.DoHelp`) and
+mending (`CampRequests.MendGear`) now show: the pilgrims' hostel's, the herb-gatherers', the boat-builders', the Wheel's
+yard's, the trappers', the herd followers' and all eight of 0.282.0's. Those that said more than happens were reworded
+in their own voice: the hostel's herbs are gathered at dawn by one of its own (no travellers left them), the
+boat-builders' logs are left at their camp's edge (nobody brings them over), the yard mends one colonist's thing (its
+line put a count before it, always 0), the beekeepers mend whatever is worn (not always a torn sleeve), the
+pickers go out at dawn for the herbs, the gleaners' wood is cut and stacked on the colony's side of their camp (not
+fallen wood by their fire), those walking home stack theirs there too with no word of when they slept, and the
+star-watchers mend for an hour of the day, not all of it.
+
+A [carry] now says what is carried (`SayMoment`'s what): [carry,goods] a porter's load between the beasts and the stall
+(`CampWork.Carry`), [carry,wood], [carry,stone] or [carry,gathered] what their own felling, mining or gathering left
+lying, carried in to their stash (`CampWork.Fetch`, any kind); a line with none of these fits any load. So the
+woodcutters', herb-gatherers', stonecutters', mushroom pickers', young hands', gleaners' and walkers' carry lines are
+said as they carry in their work, and the salt caravan's, the league's winter camp's and the snowbound caravan's are
+kept to their porters. The hostel's [gift] ("Leave the hut for the next walker.") is said as it goes in its own time
+with the long hut left standing (`CampWorker_Hostel.Leaving`); the field sickhouse's [round] as a sister sets off to the
+next bed (`CampWorker_Sickhouse.DayJob`; its line no longer says the sickest first, as the nearest comes first).
+Removed, as nothing on the map does what they say: the [gift] lines of the field sickhouse, the beekeepers, the
+mushroom pickers and the snowbound caravan; the beekeepers' honey and the star-watchers' blankets carried; the
+herb-gatherers' "For the colony's healer." (what they carry in goes to their own stash); and the road wardens' [repair]
+(they mend nothing). `Tools/Tests/CampWordsSaidTests.cs` lists the good turns the code tells through `HelpText` and the
+moments it says, with what a kind needs for each (a hunt for [kill], a farewell round of the sick for [round], a gift
+in `leaveBehind` for [gift], porters for [carry,goods], a worker's own moments), checks both lists against the code, and
+every camp kind's help and moment lines against them.
 
 Nothing new is saved. Not checked without the game: how the new lines read among the old in a real colony; a visitor of
 a third people speaking of another people's world event (the fact is read by the talk as any other); the other-peoples
