@@ -159,11 +159,12 @@ namespace ColonyCouncil
             bar = "CC_EventCard_Bar".Translate((ago < GenDate.TicksPerHour ? "CC_EventCard_JustNow".Translate().Resolve() : "CC_EventCard_Ago".Translate(TextUtil.DaysString(ago)).Resolve())
                 .Named("CAME")).Resolve();
             kindColour = letter.def?.color ?? Color.white;
-            // The people: the most important first, the dead and the gone left out of the picture, kept in the list.
+            // The people: the most important first, kept in the list. The dead are pictured grey with poses on (not once their
+            // body is bones), the gone left out of the picture.
             foreach (var p in f.people)
             {
                 if (p == null || p.Discarded) continue;
-                if (pictured.Count < EventCardMath.PictureMost && !p.Dead) pictured.Add(p);
+                if (pictured.Count < EventCardMath.PictureMost && (!p.Dead || FaceEngine.PicturesDead(p))) pictured.Add(p);
                 if (people.Count < EventCardMath.InvolvedMost) people.Add(Person(p));
                 else
                 {

@@ -65,8 +65,9 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
-- **To do when the player asks (20 November 2026, the player; nothing built yet): faces people can recognize, in the
-  direction of Crusader Kings.** The player: "when you write letters to people or there's an event and you see the
+- **Done (20 November 2026, the player; phase 1 released 0.289.0, phase 2 built, not released): faces people can
+  recognize, in the direction of Crusader Kings.** The player: "when you write letters to people or there's an event
+  and you see the
   character's icon, at the top, their face, their in-game icon ... these are just not recognizable characters to me,
   especially the ones from other factions. I have like no way to recognize them. If that could just be enhanced, even
   I don't know, just a graphical enhancement of what the game is also already implementing. If you think about this and
@@ -157,11 +158,13 @@ most sense." So, in this order, three builds at a time:
   images a batch, and where to start (A for their own colonists first is the lead's suggestion).
   **Phase 1 built** (20 November 2026, the player's go: "yes, begin on enhancing the pawns visuals as proposed. the
   larger image of the pawn can be in the bottom left corner, attached to the pawn default screen when you select it,
-  in the corner of the screen and this window, perhaps you can rescale this window with drag and drop also"; built,
-  not released): the face engine (framing by the head, the steady face, their colour and their people's mark, drawn
-  sharp) under every portrait, and the large portrait at the inspect pane, resized by dragging; the entry "Portraits,
-  phase 1" above the newest release line. Still open: phase 2, the poses and a little movement above (the head and
-  body drawn apart, a pose by character and mood, the side views for two facing each other), which the lead sends next.
+  in the corner of the screen and this window, perhaps you can rescale this window with drag and drop also"; released
+  0.289.0): the face engine (framing by the head, the steady face, their colour and their people's mark, drawn
+  sharp) under every portrait, and the large portrait at the inspect pane, resized by dragging.
+  **Phase 2 built** (20 November 2026, the same go; built, not released): the poses and a little movement above (the
+  head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
+  other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
+  2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
@@ -760,6 +763,61 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 2: poses and
+  a little movement** (20 November 2026; the player: "now they're all looking in the same direction. At least make them
+  also, have the other direction", "also angles and kind of positions that are also different from the one that you
+  have at the top ... you see these characters also a bit moving around a bit and being in a position, a different one
+  that gives them kind of character", and the go: "yes, begin on enhancing the pawns visuals as proposed"). DESIGN.md
+  "Portraits, phase 2: poses and a little movement" has every rule; README "Portraits"; the Almanac's guide, one
+  sentence more. Phase 1's framing, colours, mark, sizes, placement and settings stay.
+  - **The way they face**: the game's side views where two people are pictured side by side (an event card's or a
+    letter's two, a tie on the council's Social page): the left one faces right, the right one left. One alone, or three,
+    face the front; the shy are turned half away.
+  - **The head drawn apart**: the game has no `HeadOnly` flag (1.6 and 1.7 have `HeadStump` and `NoBody`), so the body
+    is the game's own render without the head (`HeadStump`) and the head the same render with `NoBody` added for that
+    one draw (two prefixes on the render tree's `ParallelPreDraw` and `Draw`, touching only that pawn while it is drawn).
+    A small test picture of each pawn checks the head came out alone and the body without it; a pawn that fails (a
+    race with parts drawn with the head, wings above it, no head node) keeps the whole picture and only a pose's lean;
+    after three failures and no success, none is drawn apart that session. Drawn again only when the game marks or
+    redraws the pawn (so Facial Animation's face comes as the game draws it), let go a second after last shown.
+  - **The poses**, the strongest first: dead (grey), a prisoner (the head low), an angry break (a lean), a sad break or
+    grief (the head a little down), a mood under the break line, a fresh quarrel (a lean), a council seat, the head of a
+    people or a title (the chin up), a shy trait (half away), a proud trait (the chin up), old for their race (a slight
+    stoop). Small: never more than a tenth of a head, ten degrees of a nod, four of a lean. A pose from a break, death
+    or captivity shows at once; any other holds at least an hour of the game. On the large portrait, the colonist card
+    and round portraits from 64 across (event cards); the small ones in lists only face a way and show the dead grey.
+    Event cards now picture the dead they are about, grey, unless their body is bones.
+  - **A little movement** (the large portrait and the colonist card only): breathing, a half-degree sway, and every 24 to
+    36 seconds a turn to a side view and back for 2.6 seconds, as transforms of pictures already made; still while the
+    game is paused (the map is still too, and the eye stays on what the player reads).
+  - **Settings** (How you're told, Portraits): "Poses in portraits" (on), "Portraits move a little" (on).
+  - **Code map**: `UI/Faces/FacePoseMath.cs` (the rules: the pose, the shifts, the pairs, the movement, the test picture's
+    check, the grey; no game types), `UI/Faces/FaceEnginePoses.cs` (the facts from the game, the pose kept steady, the
+    dead in a letter), `UI/Faces/FaceEngineSplit.cs` (the head drawn apart and its test, the grey copies,
+    `Patch_FaceHeadOnlyPreDraw`, `Patch_FaceHeadOnlyDraw`, `Patch_FaceEngineRedrawn`), `UI/Faces/FaceEngine.cs` (the
+    side views' framing, the drawing in layers, the clock), `UI/UiKit.cs` (`Portrait` takes a turn; `DrawInCircle`
+    moves a picture inside the circle), `UI/EventCards/EventCardWindow.cs` and `EventCardModel.cs` (the pair, the dead),
+    `UI/SocialPanel.cs` (a tie's pair), `UI/Faces/InspectPortrait.cs` and `UI/ColonistCard/ColonistCardWindow.cs`
+    (moving), `CouncilSettings.cs`, `UI/SettingsCatalog.cs`, `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests:
+    `Tools/Tests/FacePoseTests.cs` (the order of the poses and the mood's margin, a wavering mood that doesn't flicker
+    over ten days, the pairs, every shift small and mirrored, the breath, the sway and the turns over ten minutes, the
+    test picture's check both ways up and its failures, the grey, the seams). Saved: nothing in saves; two settings.
+  - Not checked without the game: that `NoBody` gives the head alone in a portrait's draw and `HeadStump` the body
+    without it (the test picture guards it; if the game doesn't, every pose keeps the whole picture and the log says
+    so once); how the neck looks under a raised or tipped head; each pose's size as it reads; the side views'
+    framing; the breath, sway and turns; the grey; the dead in event cards; Facial Animation's faces coming through.
+  - Try in the game (screenshots, please, of each): 1. Select a colonist with a council seat or a title: the large
+    portrait shows the chin up; a prisoner: the head low; someone grieving (a death in the family) or very low: the
+    head down and tipped; one in a tantrum or just out of a fight: a lean; a shy one (recluse, anxious, coward): turned
+    half away; an old one: a slight stoop. 2. Open a letter or a dilemma about two colonists: their two portraits face
+    each other; the council's Social page: each tie's two face each other. 3. Watch the large portrait and a colonist
+    card for a minute with the game running: breathing, a slight sway, and now and then a turn to a side and back;
+    pause: it holds still. 4. A death letter: the dead pictured grey. 5. A colonist of a Humanoid Alien Races race, if
+    you have one: their pose drawn or, if their head can't be drawn apart, their whole picture; the log tells if no one
+    could be. 6. Facial Animation: blinks and expressions still show in the large portrait. 7. Settings, Portraits:
+    "Poses in portraits" off makes every face plain (two side by side still face each other); "Portraits move a
+    little" off stills them.
+  - Mods that would help: none needed; Facial Animation (on in the list) already comes into every pose by itself.
 - 0.289.0, **Portraits, phase 1: the face
   engine and the portrait at the inspect pane** (20 November 2026; the player: "especially for my own pawns, because
   these even at a certain length feel unrecognizable anymore, especially if you regularly change armor and clothing",

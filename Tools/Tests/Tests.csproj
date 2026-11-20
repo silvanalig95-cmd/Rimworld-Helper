@@ -71,6 +71,7 @@
     <Compile Include="../../Source/ColonyCouncil/Weapons/WeaponNiceMath.cs" Link="WeaponNiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/ItemPortraitMath.cs" Link="ItemPortraitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/FaceMath.cs" Link="FaceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/Faces/FacePoseMath.cs" Link="FacePoseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelReadMath.cs" Link="ApparelReadMath.cs" />

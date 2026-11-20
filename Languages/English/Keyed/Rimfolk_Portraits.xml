@@ -18,6 +18,12 @@
   <CC_Settings_PortraitClothes>Clothes in portraits</CC_Settings_PortraitClothes>
   <CC_Settings_PortraitClothes_Tip>On, portraits show the clothes and armour on the body as worn. Off, the body without them, so new armour changes nothing in the picture.</CC_Settings_PortraitClothes_Tip>
   <CC_SetNote_PortraitClothes>Portraits show the clothes and armour they wear.</CC_SetNote_PortraitClothes>
+  <CC_Settings_PortraitPoses>Poses in portraits</CC_Settings_PortraitPoses>
+  <CC_Settings_PortraitPoses_Tip>A person's portrait shows how they hold themselves: the chin up for the proud (a proud trait, a council seat, the head of a people, a title), the head a little down for the sad or grieving, a lean for the angry (a break, a fresh quarrel), turned half away for the shy, a slight stoop for the old, the head low for a prisoner, and the dead drawn grey. A pose stays for at least an hour of the game unless a break, death or captivity changes it. The large portraits and those in letters and cards take a pose; the small ones in lists face the front. Two people side by side in a letter or a tie face each other either way.</CC_Settings_PortraitPoses_Tip>
+  <CC_SetNote_PortraitPoses>Portraits show the proud, the sad, the angry, the shy, the old, prisoners and the dead each their own way.</CC_SetNote_PortraitPoses>
+  <CC_Settings_PortraitsMove>Portraits move a little</CC_Settings_PortraitsMove>
+  <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe, sway a little and now and then turn to one side and back. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
+  <CC_SetNote_PortraitsMove>The large portraits breathe, sway and now and then turn to one side; still while paused.</CC_SetNote_PortraitsMove>
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>

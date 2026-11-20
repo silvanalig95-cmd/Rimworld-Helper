@@ -440,11 +440,11 @@ namespace ColonyCouncil
             float size = r.height;
             if (m.pictured.Count > 0)
             {
-                // The first on top: drawn last.
+                // The first on top: drawn last. Two face each other.
                 for (int i = m.pictured.Count - 1; i >= 0; i--)
                 {
                     var pr = new Rect(r.x + i * size * EventCardMath.PictureStep, r.y, size, size);
-                    UiKit.Portrait(pr, m.pictured[i], UiKit.WithAlpha(m.kindColour, i == 0 ? 0.95f : 0.6f));
+                    UiKit.Portrait(pr, m.pictured[i], UiKit.WithAlpha(m.kindColour, i == 0 ? 0.95f : 0.6f), 1f, FacePoseMath.PairTurn(i, m.pictured.Count));
                     TooltipHandler.TipRegion(pr, m.pictured[i].LabelShortCap);
                 }
                 return;

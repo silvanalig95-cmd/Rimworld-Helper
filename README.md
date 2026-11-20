@@ -101,8 +101,14 @@ change who it is, on their own colour (their favourite, else their people's) wit
 colony, and rendered at the size it is shown so it stays sharp. Select anyone on the map and a **large portrait** of
 them stands above the inspect pane at the bottom left, with their name and the name the colony knows them by; with a
 tab open (Bio, Gear, Health) it stands beside the tab. Drag its top right corner to make it larger or smaller (96 to
-360, kept between games); click it for their card. **A large portrait at the inspect pane**, **Its size**, **Headgear
-in portraits** and **Clothes in portraits** (How you're told, Portraits) set it.
+360, kept between games); click it for their card. A portrait shows how a person holds themselves: the chin up for the
+proud (a proud trait, a council seat, the head of their people, a title), the head a little down for the sad or
+grieving, a lean for the angry, turned half away for the shy, a slight stoop for the old, the head low for a prisoner,
+the dead drawn grey; the head is the game's own, drawn apart from the body and set on it. Two people side by side in a
+letter or a tie face each other. The large portrait and the colonist card's breathe, sway a little and now and then turn
+to one side and back, still while the game is paused. **A large portrait at the inspect pane**, **Its size**,
+**Headgear in portraits**, **Clothes in portraits**, **Poses in portraits** and **Portraits move a little** (How you're
+told, Portraits) set it.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

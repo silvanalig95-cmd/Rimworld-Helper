@@ -16050,14 +16050,103 @@ race, hair and face comes with it (Facial Animation's eyes and mouth among them)
     member the engine reads (`PortraitsCache.Get` with its headgear and clothes, the render tree's matrix and node,
     `PawnDrawParms`, the favourite colour, the faction icon, the immediate window), are the same in 1.6 and 1.7
     (ApiDiff); `TabRect` is read by name and found in both.
-- **For phase 2**: the engine takes a pose (`FacePose`, only the front so far); poses by character and mood, the head
-  and body drawn apart with the game's render flags (`HeadStump`, `NoBody`), the side views for two people facing each
-  other and a little movement come in there.
+- **For phase 2**: the engine takes a pose (`FacePose`); poses by character and mood, the head and body drawn apart with
+  the game's render flags (`HeadStump`, `NoBody`), the side views for two people facing each other and a little
+  movement came in there ("Portraits, phase 2", below).
 - **Not checked without the game**: that the render tree's matrix for the head gives the framing these numbers expect
   (the camera's units are the game's, read from its references, and the round portraits of a grown-up were matched to
   the old framing by number, not by eye); how the bust and the card's figure look for children, babies, big xenotypes
   and Humanoid Alien Races' races; the backdrop colours and the light behind the head; RimHUD's pane and tabs; the
   open tabs' rects and the placement beside them; the drag; the gizmos' height as the game reports it.
+
+### Portraits, phase 2: poses and a little movement (the player's go, 20 November 2026; not released yet)
+
+The player's words (20 November 2026): "now they're all looking in the same direction. At least make them also, have
+the other direction, but as much as you can work like with angles and positions", and "if we already work with the
+pawn base from the game, you know, also angles and kind of positions that are also different from the one that you
+have at the top, which is one consistent position, is also something that is nice about Crusader Kings. You know, you
+see these characters also a bit moving around a bit and being in a position, a different one that gives them kind of
+character." The go: "yes, begin on enhancing the pawns visuals as proposed". Built on phase 1 (above), whose framing,
+colours, mark, sizes, placement and settings stay as they were. Still no painted art: every picture is the game's own
+drawing of the pawn. The code: `UI/Faces/FacePoseMath.cs` (the rules, no game types, linked in the tests),
+`UI/Faces/FaceEnginePoses.cs` (the pose read from the game and kept steady), `UI/Faces/FaceEngineSplit.cs` (the head
+drawn apart, the dead's grey, three hooks), `UI/Faces/FaceEngine.cs` (the drawing and the movement). Tested in
+`Tools/Tests/FacePoseTests.cs`. No saved data, no Sched slot.
+
+- **The way they face.** The game's own views: the front (south) for a portrait alone, the side views (east to the
+  right, west to the left; the game draws the left as the right mirrored, and the camera follows the head into the
+  side view) where two people are pictured side by side, the left one facing right and the right one facing left
+  (`FacePoseMath.PairTurn`). Where it reads well: an event card's or a letter's header with two people (a dilemma's two,
+  a quarrel's, a match's), and a tie on the council's Social page (the two overlapping portraits). Three or more, and
+  every portrait alone, face the front; the one who speaks in a letter is pictured alone and faces the reader. The
+  colonist card's friends and rivals stay in their rows facing the front: a column of faces turned aside read worse
+  than facing out. The shy are turned half away (a side view, each to a side of their own) where a portrait takes a
+  pose.
+- **The head drawn apart from the body.** The game has no head-only flag (1.6 and 1.7 both have `HeadStump` and
+  `NoBody` among `PawnRenderFlags`, no `HeadOnly`), so both pictures come from the game's own pawn renderer
+  (`PawnCacheRenderer.RenderPawn`) at the same camera: the body with the head left out (`renderHead` off, the game's
+  `HeadStump`), and the head alone, with `NoBody` added to that one draw's flags (`Patch_FaceHeadOnlyPreDraw` and
+  `Patch_FaceHeadOnlyDraw`, prefixes on `PawnRenderTree.ParallelPreDraw` and `PawnRenderTree.Draw` that touch only the
+  pawn being drawn so, while it is drawn; `NoBody` is how the game draws a pawn in bed, the body under the blanket).
+  - *Tested before it is used*: once a game for each pawn shown in a pose, a small picture of their whole figure (32
+    by 64) is drawn both ways and read back (`FacePoseMath.SplitLooksRight`): the head picture must have something in it
+    and nothing at the feet, the body picture the body at the feet and nothing at the crown above the hair. Which end is
+    the head's is read from the head picture, so the rows may come either way up.
+  - *Falls back to the whole picture* for a pawn that fails it: a race whose body parts are drawn with the head (or
+    wings, a tail or a horn reaching above the head), a body with no head node (the head picture comes out empty), a
+    game whose drawing doesn't honour the flag. That pawn keeps their whole picture with only the pose's lean. After
+    three such pawns and none that came apart, no head is drawn apart this session (one line in the log says so). With
+    the deeper game hooks off, or either hook not applied, every pose keeps the whole picture.
+  - *The pictures*: Rimfolk's own render textures at the size shown (the game's supersampling and the interface scale
+    on it), drawn again only when the game marks the pawn dirty (`PortraitsCache.SetDirty`) or draws its portrait again
+    (`Patch_FaceEngineRedrawn`, a postfix on the game's private `PortraitsCache.PortraitParams.RenderPortrait`, found by
+    name), at most five times a second; let go a second after they were last shown, as the game's cache does. So
+    Facial Animation's face comes with the picture whenever the game draws it, and nothing forces a redraw for it.
+- **A pose by who they are and how they are** (`FacePoseMath.Bearing`, the strongest first): dead (drawn grey); a
+  prisoner (the head low); an angry break (an aggressive or malicious mental state, a social fight: a lean); a sad
+  break (a sad wander, hiding in their room, giving up) or grief (the game's own thought for the death of each family
+  tie by its relations, a friend's death, a bonded animal's, a death in the family seen: the head a little down); a mood
+  under their minor break line (down, until it is five points above the line again); a fresh quarrel (a fight or an
+  insult within a day: a lean); a standing (a council seat, the head of their people, an Empire title: the chin up); a
+  shy trait (Biotech's recluse, Vanilla Traits Expanded's anxious, coward, submissive and schizoid, the game's nervous:
+  turned half away); a proud trait (Vanilla Traits Expanded's snob and brave, the game's jealous, iron-willed and
+  beautiful: the chin up); old for their race (four fifths of its life expectancy, 64 for a human: a slight stoop);
+  else plain. Every trait and thought is looked up by name and left out when the player's list hasn't got it.
+  - *Where the head sits* (`FacePoseMath.Shift`, in head sizes and degrees): in the front view the head moves up (the
+    proud, 0.025) or down (the shy and the angry 0.02, the old 0.035, the sad 0.05 and tipped 3.5 degrees to a side of
+    their own, a prisoner 0.08), and the angry lean 2.5 degrees one way with the head tipped back the other; in a side
+    view the head nods forward (the sad 6, a prisoner 9) or the chin lifts (the proud 3), and the angry and the old
+    lean forward. Never more than a tenth of a head, ten degrees of a nod or four of a lean. The head turns about the
+    neck, 0.18 head sizes under its middle; the lean about the feet.
+  - *Steady*: looked at every two seconds; a pose from a state of the moment (death, captivity, a break) shows at once
+    and goes when the state does; any other is held at least an hour of the game before another takes its place, so a
+    mood wavering at the line doesn't flicker.
+  - *Where*: the large portrait at the inspect pane, the colonist card, and the round portraits from 64 across (an event
+    card's header). The small round portraits in lists only face the way asked and show the dead grey. In a round
+    portrait the head moves inside the circle (its picture read from further along), so the circle stays put, and the
+    lean is left out.
+  - *The dead drawn grey*: a grey copy of their picture (by brightness as the eye sees it, a little dimmed), made once
+    from the game's picture and again only if the game draws them again, on the plain ground with no light behind them.
+    An event card now pictures the dead it is about, grey, unless their body is bones; before, they were left out of
+    the picture.
+- **A little movement** (the large portrait at the inspect pane and the colonist card only, never in lists; the setting
+  "Portraits move a little", on): breathing (the body up to 0.9% taller from its feet and back every 4.2 seconds, the
+  head riding on it), a slow sway of half a degree each way about the feet every 7.3 seconds, and now and then a turn
+  (every 24 to 36 seconds, each person their own, one side then the other) to a side view for 2.6 seconds and back,
+  each view full until halfway through the fade, so the figure never thins. All transforms of pictures already made:
+  the side view's pictures are made once as a turn starts. It holds still while the game is paused, as the map does:
+  the pawn it shows is still too, and a portrait that breathes on its own while the player reads a paused screen pulls
+  the eye. Each person's breath, sway and turns keep their own timing.
+- **Settings** (How you're told, Portraits): "Poses in portraits" (on; off, every portrait faces the front or the way
+  asked, plain) and "Portraits move a little" (on).
+- Both hooks' signatures and every member used (the pawn renderer's call, the render flags, the render textures and
+  reading them back, the mental state's category, the relations' death thoughts, a memory's age, the break line, the
+  royal title, the rot of a body, the game's rotation about a point) are the same in 1.6 and 1.7 (ApiDiff); the private
+  `RenderPortrait` is found by name.
+- **Not checked without the game**: that `NoBody` gives the head alone in a portrait's draw and `HeadStump` the body
+  without it, and how the neck looks under a head that moves (the test picture guards against the first); the poses'
+  sizes as they read; the side views' framing; the turns, the breath and the sway; the grey; the event cards' dead;
+  that Facial Animation's face changes come through as the game draws them.
 
 ### On-screen panels and the hover card
 

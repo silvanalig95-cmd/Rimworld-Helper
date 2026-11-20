@@ -238,7 +238,7 @@ public static class ColonistCardTests
         C(model.Contains("public static void KitLines(string id, Func<Pawn, IEnumerable<ColonistCardLine>> lines)"), "a hook for the apparel suggestions to come");
         C(model.Contains("p.skills?.skills") && model.Contains("s.TotallyDisabled") && model.Contains("People.PassionLevel(s)") && model.Contains("SkillUI.PassionMajorIcon")
           && model.Contains("\"VSE.Passions.PassionManager\""), "the game's own skills and passions, Vanilla Skills Expanded's marks where it is loaded");
-        C(window.Contains("FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure)") && window.Contains("ColonistCardMath.HeartLine("), "the portrait from the face engine (the game's cache), the heart's line under it");
+        C(window.Contains("FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure, null, 1f, true)") && window.Contains("ColonistCardMath.HeartLine("), "the portrait from the face engine (the game's cache), the heart's line under it");
         C(model.Contains("HeartView.BandColor(band)") && model.Contains("HeartView.GoodColor"), "in the colonist bar's heart line colours");
         C(model.Contains("CardSections.registry.Of(CardKind.Colonist)") && model.Contains("CardActs.registry.In(CardKind.Colonist, CardSlot.Acts)")
           && model.Contains("\"heart-good\", \"heart-dayoff\", \"knownas\""), "what other parts add to a colonist's card (a ward, a ransom, a match) is kept, less what the card shows itself");
