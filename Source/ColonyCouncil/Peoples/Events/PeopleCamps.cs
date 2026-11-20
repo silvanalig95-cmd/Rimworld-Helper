@@ -617,6 +617,17 @@ namespace ColonyCouncil
             if (st != null && st.seen >= 3) marks.Add("faces");
         }
 
+        /// <summary>
+        /// Going in their own time with the long hut still standing (it stays, as every hut does): the one who speaks for
+        /// them says it is left for the next walker ([gift]).
+        /// </summary>
+        public override void Leaving(Camp c)
+        {
+            if (c?.map == null || c.leader == null || !c.leader.Spawned || !CampPackMath.Orderly(c.ending)) return;
+            if (!c.plans.Any(p => p != null && (p.role == "hut" || p.role == "door") && !p.dropped && p.Built(c.map, c.faction) != null)) return;
+            c.SayMoment(c.leader, "gift");
+        }
+
         public override string Fill(Camp c, string text) => text == null || !text.Contains("{GUESTS}") ? text : text.Replace("{GUESTS}", (StateOf(c)?.seen ?? 0).ToString());
 
         /// <summary>Granted: the bread carried out each morning from now (the first this morning).</summary>

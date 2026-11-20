@@ -621,7 +621,7 @@ namespace ColonyCouncil
                     int give = Mathf.Max(10, total * 2 / 5);
                     int given = GiveAway(meat, give);
                     if (given <= 0) return false;
-                    Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_meat", null, null, given), LetterDefOf.PositiveEvent, false);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("meat", null, null, given), LetterDefOf.PositiveEvent, false);
                     foreach (var c in colonists) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
                     return true;
                 }
@@ -631,7 +631,7 @@ namespace ColonyCouncil
                     if (wood.Sum(t => t.stackCount) < 40) return false;
                     int given = GiveAway(wood, Rand.RangeInclusive(25, 40));
                     if (given <= 0) return false;
-                    Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_wood", null, null, given), LetterDefOf.PositiveEvent, false);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("wood", null, null, given, ThingDefOf.WoodLog.label), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
                 case "medicine":

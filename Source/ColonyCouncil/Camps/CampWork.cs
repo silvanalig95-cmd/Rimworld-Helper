@@ -393,7 +393,10 @@ namespace ColonyCouncil
                     bool gathered = t.def.IsNutritionGivingIngestible || t.def.IsMedicine;
                     if (!wood && !gathered && !CampTake.StoneChunk(t.def)) continue;
                     if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                    return HaulToStash(camp, pawn, t);
+                    var job = HaulToStash(camp, pawn, t);
+                    // A word as they carry it in, by what it is: their [carry] lines for wood, stone or what they gathered.
+                    if (job != null) camp.SayMoment(pawn, "carry", 0.2f, wood ? "wood" : gathered ? "gathered" : "stone");
+                    return job;
                 }
             }
             // Their own goods lying away from where they belong (dropped, refunded), unless the colony has carried them
@@ -559,7 +562,7 @@ namespace ColonyCouncil
                 if (!home.IsValid || !far.IsValid || !pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                 var job = HaulTo(camp, pawn, t, CampLookMath.CarryOut(t.Position.DistanceTo(home)) ? far : home);
                 if (job == null) continue;
-                camp.SayMoment(pawn, "carry", 0.3f);
+                camp.SayMoment(pawn, "carry", 0.3f, "goods");
                 return job;
             }
             return null;

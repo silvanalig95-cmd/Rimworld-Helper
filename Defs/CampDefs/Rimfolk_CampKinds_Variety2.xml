@@ -111,8 +111,8 @@
       <li>Leave the young ones standing.</li>
     </lines>
     <momentLines>
-      <li>[carry] Heavy, this one.</li>
-      <li>[carry] Onto the pile with it.</li>
+      <li>[carry,wood] Heavy, this one.</li>
+      <li>[carry,wood] Onto the pile with it.</li>
     </momentLines>
     <!-- What the colony can ask of them, and what they ask of the colony (CampAsks.cs, CampRequests.cs). -->
     <asks>
@@ -255,8 +255,7 @@
       <li>Never take the last of a patch.</li>
     </lines>
     <momentLines>
-      <li>[carry] For the colony's healer.</li>
-      <li>[carry] Mind, it bruises.</li>
+      <li>[carry,gathered] Mind, it bruises.</li>
     </momentLines>
     <helpTexts>
       <li>[medicine] {X_nameDef} of the herb-gatherers went out at dawn and came back with more than they need. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</li>

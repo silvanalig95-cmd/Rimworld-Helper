@@ -358,7 +358,7 @@
       <li>[stay] Trade's good here, we're not moving on just yet.</li>
     </momentLines>
     <helpTexts>
-      <li>[mend] {X_nameDef} came over from the yard and mended {COUNT} {THING} of the colony's for nothing.</li>
+      <li>[mend] {X_nameDef} came over from the yard and mended {A_nameDef}'s {THING} for nothing.</li>
       <li>[tales] {A_nameDef} sat by the yard's fire and heard about the night their valley burned.</li>
       <li>[tales] {A_nameDef} sat by the yard's fire and heard why nobody at the Wheel has ever voted to stop moving.</li>
     </helpTexts>

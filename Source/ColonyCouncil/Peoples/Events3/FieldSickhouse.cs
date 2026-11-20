@@ -595,6 +595,8 @@ namespace ColonyCouncil
             if (next == null) return null;
             var j = JobMaker.MakeJob(job, next);
             j.count = 600;
+            // Now and then a word as she sets off to the next bed ([round]).
+            c.SayMoment(p, "round", 0.2f);
             return j;
         }
 

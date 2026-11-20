@@ -149,8 +149,9 @@ namespace ColonyCouncil
         public int surveys;
 
         /// <summary>
-        /// A help line of the camp's own kind (its helpTexts tagged with the help: [heal], [show]...), or the general
-        /// one from the translations. {X} is whoever helped, {A} the colonist it was for, {COUNT} and {THING} what;
+        /// A help line of the camp's own kind (its helpTexts tagged with the help: [heal], [show], [wood]...), or the general
+        /// one from the translations; every good turn is told through here, so a kind's own words are the ones shown
+        /// (Tools/Tests/CampWordsSaidTests.cs). {X} is whoever helped, {A} the colonist it was for, {COUNT} and {THING} what;
         /// <paramref name="where"/> is a tag for where it was done (a blessing at the colony's "fields" or its "gate").
         /// </summary>
         private string HelpText(string help, Pawn x = null, Pawn a = null, int count = 0, string thing = null, string where = null)
