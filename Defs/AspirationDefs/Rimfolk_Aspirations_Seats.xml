@@ -38,7 +38,7 @@
         <li>Reeve. I walked every field at first light this morning, the same as yesterday, except now it's my job.</li>
         <li>They made me reeve. The first thing I did was count the seed. The second was count it again.</li>
       </plain>
-      <cheerful><li>Reeve! I've already planned three seasons of planting in my head.</li></cheerful>
+      <cheerful><li>Reeve. I've already planned three seasons of planting in my head.</li></cheerful>
       <gloomy><li>Reeve now. When the blight comes, they'll all look at me.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -86,7 +86,7 @@
         <li>[spark:seat:daykept] We kept a day together this week, and it was me who saw it through. I'd like to see them all through.</li>
       </plain>
       <warm><li>Our days are what we'll remember of this place. Somebody should look after them, and I'd like it to be me.</li></warm>
-      <cheerful><li>Keeper of days! Somebody has to remind everyone it's a feast, and I never forget a feast.</li></cheerful>
+      <cheerful><li>Keeper of days, that's me. Somebody has to remind everyone it's a feast, and I never forget a feast.</li></cheerful>
       <cold><li>The calendar is kept carelessly. A keeper of days would end that.</li></cold>
     </chosen>
     <achieved>
@@ -118,7 +118,7 @@
     </chosen>
     <achieved>
       <plain><li>Herdmaster. I went out to the pens and told them. They didn't seem surprised.</li></plain>
-      <cheerful><li>Herdmaster! Every animal in the colony is mine to look after now, and I mean every one.</li></cheerful>
+      <cheerful><li>Herdmaster. Every animal in the colony is mine to look after now, and I mean every one.</li></cheerful>
       <gloomy><li>Herdmaster now. When we have to slaughter, I'll be the one choosing.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -166,7 +166,7 @@
         <li>[spark:seat:greeted] The travellers by the road went away thinking well of us, and I think I had something to do with it. I'd like the seat for it.</li>
       </plain>
       <warm><li>Everyone who comes up our road should be welcomed properly. I'd like that to be my work.</li></warm>
-      <cheerful><li>Warden of guests! I'd meet every caravan with a cup in my hand.</li></cheerful>
+      <cheerful><li>Warden of guests, that's what I'd like. I'd meet every caravan with a cup in my hand.</li></cheerful>
       <cold><li>How we treat visitors decides how the region treats us. The warden's seat matters more than people think.</li></cold>
     </chosen>
     <achieved>

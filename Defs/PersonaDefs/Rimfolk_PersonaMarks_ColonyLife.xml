@@ -55,7 +55,7 @@
             <li>It took longer than I thought and it was harder than I thought, and I did it anyway.</li>
           </plain>
           <warm><li>I couldn't have done it without the others. I'll tell each of them so.</li></warm>
-          <cheerful><li>I did it! What's next?</li></cheerful>
+          <cheerful><li>I did it. What's next?</li></cheerful>
           <gloomy><li>I got there. I keep waiting for something to go wrong with it.</li></gloomy>
         </journal>
       </li>
@@ -109,7 +109,7 @@
             <li>{LABEL} is ours for good now. I remember the evening I first asked for it, and how nervous I was.</li>
           </plain>
           <warm><li>Something I asked for will go on after me. I didn't expect that to matter so much.</li></warm>
-          <cheerful><li>My custom is a tradition! I'm going to pretend I planned it that way.</li></cheerful>
+          <cheerful><li>My custom is a tradition. I'm going to pretend I planned it that way.</li></cheerful>
           <gloomy><li>A tradition now. One day somebody will forget why we do it.</li></gloomy>
         </journal>
       </li>

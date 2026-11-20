@@ -191,8 +191,8 @@
           <li>{COUNT} days of food</li>
         </titles>
         <texts>
-          <li>{A_nameDef} has been through the stores and counted about {COUNT} days of food left. {A_pronoun} would like hands put to bringing more in now, before it gets worse.</li>
-          <li>[quartermaster] {A_nameDef}, who keeps the colony's stores, has counted them twice: about {COUNT} days of food. {A_pronoun} wants everyone who can be spared to help bring food in.</li>
+          <li>{A_nameDef} has been through the stores and counted about {COUNT} days of food left, and would like hands put to bringing more in now, before it gets worse.</li>
+          <li>[quartermaster] {A_nameDef}, who keeps the colony's stores, has counted them twice: about {COUNT} days of food, and wants everyone who can be spared to help bring food in.</li>
           <li>[ripe] There are about {COUNT} days of food in the stores and ripe crops standing in the fields. {A_nameDef} wants them in, today, with everyone helping.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -260,7 +260,7 @@
           </li>
           <li>
             <label>Tell {A_nameDef} it will have to wait</label>
-            <outcome>{A_nameDef} is told plainly that {TALE} will have to wait. {A_pronoun} would have liked a yes, but says an answer is better than none.</outcome>
+            <outcome>{A_nameDef} is told plainly that {TALE} will have to wait. {A_nameDef} would have liked a yes, but says an answer is better than none.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
@@ -382,7 +382,7 @@
           </li>
           <li>
             <label>The work comes first</label>
-            <outcome>{A_nameDef} is needed at work tomorrow, and the vow waits. {A_pronoun} is not happy about it.</outcome>
+            <outcome>{A_nameDef} is needed at work tomorrow, and the vow waits, which {A_nameDef} is not happy about.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_VowHeldBack</thought></li>
             </effects>
@@ -481,7 +481,7 @@
           </li>
           <li>
             <label>Later, when there's time</label>
-            <outcome>{B_nameDef} is told it will have to wait. {B_pronoun} will ask again.</outcome>
+            <outcome>{B_nameDef} is told it will have to wait, and will ask again.</outcome>
           </li>
         </options>
       </li>
@@ -567,8 +567,8 @@
           <li>{COUNT} plants ripe</li>
         </titles>
         <texts>
-          <li>{COUNT} plants stand ripe in the colony's fields, and {A_nameDef} doesn't want to lose them to the first frost. {A_pronoun} asks for every pair of hands that can be spared this afternoon.</li>
-          <li>[reeve] {A_nameDef}, who keeps the colony's fields, has walked them: {COUNT} plants ripe and the nights getting colder. {A_pronoun} wants a work party in the field today.</li>
+          <li>{COUNT} plants stand ripe in the colony's fields, and {A_nameDef} doesn't want to lose them to the first frost, and asks for every pair of hands that can be spared this afternoon.</li>
+          <li>[reeve] {A_nameDef}, who keeps the colony's fields, has walked them: {COUNT} plants ripe and the nights getting colder, and wants a work party in the field today.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

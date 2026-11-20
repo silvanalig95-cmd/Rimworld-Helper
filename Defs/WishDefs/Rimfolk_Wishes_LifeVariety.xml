@@ -24,7 +24,7 @@
     <fulfilledWhen>Someone makes {THING} at the bench.</fulfilledWhen>
     <request>
       <plain>
-        <li>{OTHER_nameDef} has been talking to a stick with a face scratched on it for a week. {OTHER_pronoun} deserves a better friend than that stick.</li>
+        <li>{OTHER_nameDef} has been talking to a stick with a face scratched on it for a week, and deserves a better friend than that stick.</li>
         <li>{OTHER_nameDef} plays with whatever the grown-ups throw away, and makes it look like a game. Imagine what {OTHER_pronoun} would do with a real toy.</li>
         <li>I caught {OTHER_nameDef} building a little house out of chips from the woodpile, very carefully, and nobody to live in it. Could someone make something to live in it?</li>
         <li>[lowtech] When I was small we had carved animals, a whole herd of them, and I was never lonely. {OTHER_nameDef} has none.</li>
@@ -40,7 +40,7 @@
         <li>{OTHER_nameDef} needs a toy. Someone at the bench could make one in an afternoon.</li>
       </blunt>
       <cheerful>
-        <li>A toy for {OTHER_nameDef}! I've already decided which way I'll hide it behind my back.</li>
+        <li>A toy for {OTHER_nameDef}. I've already decided which way I'll hide it behind my back.</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} is growing up out here with nothing but chores and cold. One toy wouldn't fix that, but it would help.</li>
@@ -56,7 +56,7 @@
       </plain>
       <warm><li>Thank you. I've been looking forward to this more than {OTHER_nameDef} will.</li></warm>
       <blunt><li>Good. It's done. I'll take it over.</li></blunt>
-      <cheerful><li>It's perfect! {OTHER_nameDef} is going to shriek.</li></cheerful>
+      <cheerful><li>It's perfect. {OTHER_nameDef} is going to shriek.</li></cheerful>
       <gloomy><li>It's a good one. I hope it lasts longer than most things here.</li></gloomy>
       <cold><li>The toy is made. I will deliver it.</li></cold>
     </thanks>

@@ -84,8 +84,8 @@
     <roleA><maxAge>29</maxAge></roleA>
     <texts>
       <li>{A_nameDef} has noticed that the oldest among them eat last and say least at supper, and doesn't think it should be that way round. One evening in the autumn, {A_pronoun} says, the cup should be raised to the elders, and the rest of the colony should listen to them for once.</li>
-      <li>"They carried this place before most of us got here," {A_nameDef} told the council. {A_pronoun} would like a day to honour the colony's elders: a supper for them, and the children making them something by hand.</li>
-      <li>{A_nameDef} asked one of the elders a question about the old days and got an answer that lasted an hour and was worth every minute. {A_pronoun} thinks the whole colony should hear more of it, on a day set aside.</li>
+      <li>"They carried this place before most of us got here," {A_nameDef} told the council, and would like a day to honour the colony's elders: a supper for them, and the children making them something by hand.</li>
+      <li>{A_nameDef} asked one of the elders a question about the old days and got an answer that lasted an hour and was worth every minute. {A_nameDef} thinks the whole colony should hear more of it, on a day set aside.</li>
       <li>[lowtech] Among {A_nameDef}'s people the old were given the first cut of the autumn meat and the warmest place at the fire, one night a year. {A_nameDef} would like the colony to do the same.</li>
       <li>[again] The elders' day again. The elders have pretended all week not to know about it, badly.</li>
       <li>[tradition] It's the elders' day, and {A_nameDef} has been setting places at the head of the table since noon.</li>

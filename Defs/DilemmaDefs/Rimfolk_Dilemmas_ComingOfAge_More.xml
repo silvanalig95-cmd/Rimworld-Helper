@@ -26,7 +26,7 @@
     <options>
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in the fields</label>
-        <outcome>{A_nameDef} spent the first morning on {A_possessive} knees in the soil while {B_nameDef} talked about roots. {A_pronoun} came in at noon muddy to the elbows and asking about manure.</outcome>
+        <outcome>{A_nameDef} spent the first morning on {A_possessive} knees in the soil while {B_nameDef} talked about roots, and came in at noon muddy to the elbows and asking about manure.</outcome>
         <ways><tradition>3</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Plants</skill></li>
@@ -72,7 +72,7 @@
     <options>
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in the kitchen</label>
-        <outcome>{A_nameDef}'s first lesson was onions, a great many of them. {A_pronoun} cried through most of it and was very proud of the soup.</outcome>
+        <outcome>{A_nameDef}'s first lesson was onions, a great many of them, and {A_pronoun} cried through most of it and was very proud of the soup.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Cooking</skill></li>
@@ -158,7 +158,7 @@
     <texts>
       <li>Half the walls in this colony have {A_nameDef}'s handprints in the mortar, {B_nameDef} says, from the years {A_pronoun} was too small to be any help and helped anyway. {A_nameDef} has come of age, and {B_nameDef} wants {A_objective} on the building crew properly.</li>
       <li>"Someone has to know how the roof stays up when I'm gone," {B_nameDef} told the council, "and {A_nameDef} already asks." {A_nameDef} came of age this week.</li>
-      <li>[lowtech] {B_nameDef} raised most of the colony's walls with {B_possessive} own hands. {B_pronoun} would teach {A_nameDef}, just come of age, how a wall is laid so it still stands in fifty winters.</li>
+      <li>[lowtech] {B_nameDef} raised most of the colony's walls with {B_possessive} own hands, and would teach {A_nameDef}, just come of age, how a wall is laid so it still stands in fifty winters.</li>
     </texts>
     <options>
       <li>
