@@ -423,7 +423,7 @@
       <li>[storm] Pull the boat up higher, the water's rising.</li>
     </momentLines>
     <helpTexts>
-      <li>[wood] {X_nameDef} brought over {COUNT} logs the boat-builders could not use and left them at the edge of their camp for the colony.</li>
+      <li>[wood] {X_nameDef} left {COUNT} logs the boat-builders could not use at the edge of their camp for the colony.</li>
       <li>[tales] {A_nameDef} sat with the boat-builders by their fire and heard about every boat their people have built since the flood that started them.</li>
       <li>[tales] {A_nameDef} sat with the boatwrights while the pitch cooled and heard how the ferries pulled people off the rooftops for three days after the dam broke.</li>
     </helpTexts>

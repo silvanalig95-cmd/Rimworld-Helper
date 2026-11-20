@@ -169,13 +169,18 @@ namespace ColonyCouncil
 
         // ---------------- Words ----------------
 
-        /// <summary>A line of the camp's own for this moment ([kill], [carry], [round]...), said by <paramref name="p"/>.</summary>
-        public void SayMoment(Pawn p, string moment, float chance = 1f)
+        /// <summary>
+        /// A line of the camp's own for this moment ([kill], [carry], [round]...), said by <paramref name="p"/>.
+        /// <paramref name="what"/> is a tag for what the moment is about (a carry's load: "goods", "wood", "stone",
+        /// "gathered"), so a line tagged with it is said only then.
+        /// </summary>
+        public void SayMoment(Pawn p, string moment, float chance = 1f, string what = null)
         {
             if (p == null || !p.Spawned || kind?.momentLines == null || !Rand.Chance(chance)) return;
             var lines = kind.momentLines.Where(l => HasTag(l, moment)).ToList();
             if (lines.Count == 0) return;
             var tags = new HashSet<string> { moment };
+            if (!what.NullOrEmpty()) tags.Add(what);
             Flavor.AddEraTags(tags);
             CampWords.AddTags(tags, kind, faction, map);
             string line = Flavor.Pick(lines, tags);

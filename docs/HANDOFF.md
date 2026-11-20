@@ -619,6 +619,55 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Fix: the camps' own words for
+  their good turns and moments** (20 November 2026; found by the world's text round below, 0.287.0, and fixed with the
+  lead's go; CLAUDE.md: "Events and answers show on the map as accurately as possible: what the words say happens is
+  what the player sees", and camps keep the flavour style of the player's 20 November restore). Two bugs: a camp kind's
+  own help lines for medicine, wood, mending and meat were never shown (the shared `CC_Camp_Help_*` lines always
+  were), and moment lines sat in the defs with no code to say them. DESIGN.md "Text variety: the world's thin pools",
+  the paragraph "The camps' own words said".
+  - **The good turns**: every one is told through `Camp.HelpText` (the kind's own line, else the shared one): medicine
+    (`CampCarry.Brought`), wood and meat (`CampLife.DoHelp`), mending (`CampRequests.MendGear`). Shown now: the
+    pilgrims' hostel's, the herb-gatherers', the boat-builders', the Wheel's yard's, the trappers', the herd followers'
+    and all eight of 0.282.0's. Reworded in their own voice where they said more than happens: the hostel's herbs (one of
+    its own gathers them at dawn; no travellers left them), the boat-builders' logs (left at their camp's edge, not
+    brought over), the yard's mending (one colonist's thing; it said "{COUNT}", always 0), the beekeepers' (whatever is
+    worn, not a torn sleeve), the pickers' herbs (out at dawn), the gleaners' wood (cut and stacked on the colony's side
+    of their camp, not fallen wood by the fire), the walkers' (no word of when they slept), the star-watchers' mending (an
+    hour of the day). Kept as they were: the herb-gatherers', the carters', the young hands', the games team's, the
+    trappers' and the herd followers'.
+  - **The moments**: `Camp.SayMoment` takes what the moment is about (`what`); a [carry] says what is carried:
+    [carry,goods] a porter's load (`CampWork.Carry`), [carry,wood], [carry,stone] or [carry,gathered] what their own
+    felling, mining or gathering left lying, carried in to their stash (`CampWork.Fetch`, any kind, new); a line with
+    none fits any load. Wired: the woodcutters' two, the herb-gatherers' "Mind, it bruises.", the stonecutters', the
+    mushroom pickers', the young hands', the gleaners' and the walkers' carry lines (as they carry in their work); the
+    hostel's [gift] "Leave the hut for the next walker." as it goes in its own time with the long hut standing
+    (`CampWorker_Hostel.Leaving`, new); the field sickhouse's [round] as a sister sets off to the next bed
+    (`CampWorker_Sickhouse.DayJob`; the line now "Bed to bed, each in turn.", as the nearest comes first, not the
+    sickest). Retagged to stay with their porters: the salt caravan's, the league's winter camp's and the snowbound
+    caravan's [carry] ([carry,goods]). Removed, as nothing on the map does what they say: the [gift] of the field
+    sickhouse, the beekeepers, the mushroom pickers and the snowbound caravan; the beekeepers' honey and the
+    star-watchers' blankets carried; the herb-gatherers' "For the colony's healer." (what they carry in goes to their own
+    stash); the road wardens' [repair] (they mend nothing).
+  - **Code map**: `Camps/CampKinds.cs` (`HelpText`), `Camps/CampCarry.cs`, `Camps/CampLife.cs`, `Camps/CampRequests.cs`,
+    `Camps/CampLook.cs` (`SayMoment`'s `what`), `Camps/CampWork.cs` (`Carry`, `Fetch`), `Camps/CampKindDef.cs` (the
+    moment tags written out), `Peoples/Events/PeopleCamps.cs` (`CampWorker_Hostel.Leaving`),
+    `Peoples/Events3/FieldSickhouse.cs`; defs in `Defs/CampDefs/` (`_PeopleEvents`, `_PeopleEvents3`, `_PeopleEvents4`,
+    `_PeopleEvents5`, `_Variety2`, `_Variety3`, `_Variety4`, `_Road`, `_PeoplesLore`, `_Winter`, `_World`). Test:
+    `Tools/Tests/CampWordsSaidTests.cs` (the good turns the code tells, the moments it says with what a kind needs for
+    each and every worker's own, both checked against the code, and every camp kind's help and moment lines against
+    them; run on the tree before the fix it fails 21 times). Saved: nothing new.
+  - Not checked without the game: how often a carry line is said (a chance of one in five as they carry something in),
+    the hostel's word at its going, a sister's word on her round.
+  - Try in the game: 1. Dev "World variety: one of the new camps here now..." for the mushroom pickers, the gleaners, the
+    young hands or those walking home; as they carry in what they cut or gathered, now and then a word ("Careful, they
+    bruise.", "Nearly a full sack."); when they do the colony a good turn, the letter is in their own words. 2. "Peoples'
+    events: one of their camps here now..." for the pilgrims' hostel: its herbs letter after a dawn's gathering, and as
+    it goes at the end of its stay the one who speaks for them says the hut is left for the next walker. 3. "Peoples'
+    events 3: one of their camps here now..." for the field sickhouse: a sister on her rounds now and then says "Bed to
+    bed, each in turn." 4. A salt caravan: its porters' words are said between the beasts and the stall, never over the
+    logs they carry in.
+  - Mods that would help: none; these are words and where they are said, with no graphics or sound to add.
 - 0.288.0, **The colony's last variety items: a
   day off for a friend, the colony's names for its places, rooms from the player's mods** (20 November 2026; the player on
   `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can go ahead with
@@ -708,11 +757,10 @@ repo.
     enclave's pad and the Banner's company give no help, the field sickhouse's moments and six of 0.282.0's camps'
     are never said); no beat line where a beat has no words now (an arrival or an incident alone); new camp arrivals
     say nothing of cold or snow, and name gear only where the people's gear has it.
-  - Found, not changed (for the lead to decide): help lines of a camp's own for medicine, wood, mend and meat never show,
-    as `CampCarry`, `CampLife.DoHelp` and `CampRequests.MendGear` tell those by the shared `CC_Camp_Help_*` lines (the
-    pilgrims' hostel's [medicine], the boat-builders' [wood], the Wheel's yard's [mend], all eight of 0.282.0's camps'
-    help lines); moment lines no code says (the hostel's [gift], the field sickhouse's [round] and [gift], the [carry]
-    and [gift] of six of 0.282.0's camps). A fix through `HelpText` would show a few lines that claim more than happens.
+  - Found here, fixed after (the entry "Fix: the camps' own words for their good turns and moments" above): help lines
+    of a camp's own for medicine, wood, mend and meat never showed, as `CampCarry`, `CampLife.DoHelp` and
+    `CampRequests.MendGear` told those by the shared `CC_Camp_Help_*` lines; moment lines no code said (the hostel's
+    [gift], the field sickhouse's [round] and [gift], the [carry] and [gift] of six of 0.282.0's camps).
   - Not checked without the game: how the new lines read among the old ones in a real colony; a visitor of a third
     people speaking of another people's world event; the other-peoples pieces with a people at war, at peace with all
     and just after a peace.

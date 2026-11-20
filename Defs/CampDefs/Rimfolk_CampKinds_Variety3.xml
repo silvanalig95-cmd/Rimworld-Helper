@@ -141,7 +141,7 @@
       <li>[cut] This one's sound.</li>
       <li>[cut] Stand back from the chips.</li>
       <li>[cut] There's a good block in here.</li>
-      <li>[carry] Heavy, this lot.</li>
+      <li>[carry,stone|wood] Heavy, this lot.</li>
     </momentLines>
     <helpTexts>
       <li>[scrap] {X_nameDef} set out {COUNT} {THING} from the stonecutters' work at the edge of their camp, for the colony.</li>

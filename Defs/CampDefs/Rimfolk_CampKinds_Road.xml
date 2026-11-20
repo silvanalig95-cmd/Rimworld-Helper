@@ -142,11 +142,11 @@
       <li>Keep the fire small, we leave early.</li>
     </lines>
     <momentLines>
-      <li>[carry] Mind the bales.</li>
-      <li>[carry] Heavier than it looks.</li>
-      <li>[carry] Where do you want it?</li>
-      <li>[carry] Last one, then water.</li>
-      <li>[carry] Watch the knot on that.</li>
+      <li>[carry,goods] Mind the bales.</li>
+      <li>[carry,goods] Heavier than it looks.</li>
+      <li>[carry,goods] Where do you want it?</li>
+      <li>[carry,goods] Last one, then water.</li>
+      <li>[carry,goods] Watch the knot on that.</li>
     </momentLines>
     <helpTexts>
       <li>[goods] {X_nameDef}, the caravan's trader, took a few things out of the packs for the colony and carried them to the edge of the camp, by way of thanks for the water and the quiet: {THING}.</li>

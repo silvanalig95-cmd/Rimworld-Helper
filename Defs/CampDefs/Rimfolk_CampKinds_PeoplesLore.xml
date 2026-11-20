@@ -133,9 +133,9 @@
       <li>Blanket the beasts, it's going to bite tonight.</li>
     </lines>
     <momentLines>
-      <li>[carry] Mind the crate, it's counted.</li>
-      <li>[carry] Last one for the table, then beer.</li>
-      <li>[carry] Heavier than the ledger says.</li>
+      <li>[carry,goods] Mind the crate, it's counted.</li>
+      <li>[carry,goods] Last one for the table, then beer.</li>
+      <li>[carry,goods] Heavier than the ledger says.</li>
       <li>[gift] Stand it where the road can see it.</li>
       <li>[gift] Good ink, and now a good stone to go with it.</li>
     </momentLines>

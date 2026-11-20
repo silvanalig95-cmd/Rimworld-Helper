@@ -370,7 +370,7 @@ namespace ColonyCouncil
             worn.HitPoints = worn.MaxHitPoints;
             SayMoment(smith, "repair", 0.6f);
             CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
-            Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_mend", smith, c, 0, worn.LabelNoCount), LetterDefOf.PositiveEvent, false);
+            Tell(Text("CC_Camp_HelpTitle"), HelpText("mend", smith, c, 0, worn.LabelNoCount), LetterDefOf.PositiveEvent, false);
         }
 
         /// <summary>

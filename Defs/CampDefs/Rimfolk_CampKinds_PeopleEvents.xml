@@ -100,7 +100,7 @@
       <li>[quarrel] Your people and mine have never got on, and tonight won't change it.</li>
     </momentLines>
     <helpTexts>
-      <li>[medicine] {X_nameDef} brought the colony a bundle of healing herbs the travellers had left in thanks for their beds: {THING}.</li>
+      <li>[medicine] {X_nameDef} of the hostel went out at dawn for healing herbs, and left {COUNT} bundles of {THING} on the colony's side of the hostel in thanks for the colony's welcome.</li>
       <li>[tales] {A_nameDef} sat at the hostel's bread table while the travellers traded news of every town on the road, and came back knowing who was feuding with whom.</li>
       <li>[tales] {A_nameDef} sat by the shrine's flame at the hostel and heard {X_nameDef} tell how old Brannoc was turned out of his town and walked to every shrine he had heard of.</li>
     </helpTexts>

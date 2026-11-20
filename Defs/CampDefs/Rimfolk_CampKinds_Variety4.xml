@@ -141,12 +141,8 @@
       <li>[their:tribal] The bees know whose hand it is.</li>
       <li>[their:industrial] The frames are full, we'll spin them tonight.</li>
     </lines>
-    <momentLines>
-      <li>[carry] Mind, it's sticky.</li>
-      <li>[gift] For the colony's table, from the bees.</li>
-    </momentLines>
     <helpTexts>
-      <li>[mend] {X_nameDef} of the beekeepers saw a colonist's torn sleeve and sat down to mend it, the way {X_pronoun} mends the hive cloths.</li>
+      <li>[mend] {X_nameDef} of the beekeepers saw how worn {A_nameDef}'s {THING} was and mended it there and then, the way {X_pronoun} mends the hive cloths.</li>
     </helpTexts>
     <asks>
       <li>
@@ -296,11 +292,10 @@
       <li>[morning] Early, before the slugs get to them.</li>
     </lines>
     <momentLines>
-      <li>[carry] Careful, they bruise.</li>
-      <li>[gift] A basket for the colony's table, all safe ones.</li>
+      <li>[carry,gathered] Careful, they bruise.</li>
     </momentLines>
     <helpTexts>
-      <li>[medicine] {X_nameDef} of the pickers came back from the woods with healing herbs as well as caps, and has left {COUNT} bundles on the colony's side of their camp.</li>
+      <li>[medicine] {X_nameDef} of the pickers knows healing herbs as well as caps, went out for them at dawn, and has left {COUNT} bundles on the colony's side of their camp.</li>
     </helpTexts>
     <asks>
       <li>
@@ -618,10 +613,10 @@
       <li>[evening] Shake out the sacks and see what we have.</li>
     </lines>
     <momentLines>
-      <li>[carry] Nearly a full sack.</li>
+      <li>[carry,gathered] Nearly a full sack.</li>
     </momentLines>
     <helpTexts>
-      <li>[wood] The gleaners have gathered fallen wood from the edges of the land for the colony, {COUNT} logs, stacked by their fire, to say thank you.</li>
+      <li>[wood] The gleaners have cut wood for the colony, {COUNT} logs, stacked on the colony's side of their camp, to say thank you.</li>
     </helpTexts>
     <asks>
       <li>
@@ -839,10 +834,10 @@
       <li>[morning] Up and walking, we're nearly there.</li>
     </lines>
     <momentLines>
-      <li>[carry] Last of the wood for tonight.</li>
+      <li>[carry,wood] Last of the wood for tonight.</li>
     </momentLines>
     <helpTexts>
-      <li>[wood] Those camped {PLACE} on the way home cut wood for the colony before they slept, {COUNT} logs, to pay for the night.</li>
+      <li>[wood] Those camped {PLACE} on the way home cut wood for the colony, {COUNT} logs, and stacked it on the colony's side of their camp to pay for the night.</li>
     </helpTexts>
     <asks>
       <li>
@@ -932,11 +927,8 @@
       <li>[rain] No sky tonight, then.</li>
       <li>[night] Look up, and give your eyes a while.</li>
     </lines>
-    <momentLines>
-      <li>[carry] More blankets for the night.</li>
-    </momentLines>
     <helpTexts>
-      <li>[mend] {X_nameDef} of the star-watchers had nothing to do in the daylight, and spent it mending a colonist's worn gear.</li>
+      <li>[mend] {X_nameDef} of the star-watchers had nothing to do in the daylight, and spent an hour of it mending a colonist's worn gear.</li>
     </helpTexts>
     <asks>
       <li>

@@ -420,7 +420,8 @@ namespace ColonyCouncil
                     StashBrought(p, c, n, look);
                     return;
                 case "medicine":
-                    text = Text("CC_Camp_Help_medicine", p, null, n);
+                    // In the camp's own words when its kind has them ([medicine]), else the shared line.
+                    text = HelpText("medicine", p, a, n, c.def.label);
                     foreach (var x in colonists) CouncilGameComponent.GiveThought(x, CampDefOf.Council_Camp_Helped);
                     break;
                 case "goods":

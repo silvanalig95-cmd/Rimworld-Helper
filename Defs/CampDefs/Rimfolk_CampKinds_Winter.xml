@@ -525,9 +525,8 @@
       <li>Another log, it bites tonight.</li>
     </lines>
     <momentLines>
-      <li>[carry] Mind the crate, the snow's slick.</li>
-      <li>[carry] Last one for the table.</li>
-      <li>[gift] For the colony, with the caravan's thanks.</li>
+      <li>[carry,goods] Mind the crate, the snow's slick.</li>
+      <li>[carry,goods] Last one for the table.</li>
     </momentLines>
     <helpTexts>
       <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony, by way of thanks for the shelter of its wall: {THING}.</li>

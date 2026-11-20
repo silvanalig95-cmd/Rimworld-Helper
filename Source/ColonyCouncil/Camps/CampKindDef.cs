@@ -155,7 +155,7 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> situationKinds;
         public float situationWeight = 3f;
-        /// <summary>The good turns they do, told their own way: lines tagged with the help ([heal], [show]...).</summary>
+        /// <summary>The good turns they do, told their own way: lines tagged with one of their <see cref="help"/> ([heal], [show], [wood]...; [herbs] for a healer's herbs).</summary>
         [MustTranslate] public List<string> helpTexts;
         /// <summary>What the colony can ask of this kind of camp, beyond terms and gifts (see <see cref="CampAsk"/>): on the camp's page.</summary>
         public List<CampAsk> asks;
@@ -225,8 +225,13 @@ namespace ColonyCouncil
         public CampWalk farewellWalk;
         /// <summary>
         /// Short lines said at moments of the camp's life, tagged with the moment: [kill] (a hunter's shot), [butcher] (a
-        /// kill dressed at the camp), [carry] (a porter with a load), [herd] (seeing to the herd), [repair] (mending the
-        /// colony's building), [round] (the farewell round), [gift] (a gift left behind).
+        /// kill dressed at the camp), [carry] (a load carried, with what it is: [carry,goods] a porter's load between the
+        /// beasts and the stall, [carry,wood], [carry,stone] or [carry,gathered] what their own felling, mining or gathering
+        /// left lying, carried in to their stash; a line with none of these fits any load), [herd] (seeing to the herd),
+        /// [repair] (mending the colony's building or a colonist's gear), [round] (the farewell round), [gift] (a gift left
+        /// behind), [blessing] (the words of their blessing), [seek:REASON], the land kinds' work ([fish], [strip]...) and
+        /// the moments of a kind with ways of its own (its CampWorker). Each only where the code says it
+        /// (Tools/Tests/CampWordsSaidTests.cs checks every kind's tags).
         /// </summary>
         [MustTranslate] public List<string> momentLines;
 
