@@ -368,6 +368,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnSevenMath.cs" Link="OwnSevenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnBetweenMath.cs" Link="OwnBetweenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Immersion/TellingBeesMath.cs" Link="TellingBeesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodRareGiftsMath.cs" Link="GodRareGiftsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnFeastsMath.cs" Link="OwnFeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodBeastsMath.cs" Link="GodBeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ArtTalesMath.cs" Link="ArtTalesMath.cs" />

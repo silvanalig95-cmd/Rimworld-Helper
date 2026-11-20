@@ -236,6 +236,15 @@
   <CC_GodM_KinStruck_Text_2>{HARMER} wounded one of the {KIN}s following the {BEAST}. The {BEAST} turned its great head and looked at the colony for a long time.</CC_GodM_KinStruck_Text_2>
   <CC_GodM_KinStruck_Text_3>One of the {KIN}s trailing the {BEAST} was hurt by {HARMER}, and the {BEAST} turned to look at the colony for a long moment.</CC_GodM_KinStruck_Text_3>
 
+  <!-- ===================== The gods' rarest gifts (Gods/Touch/GodRareGifts.cs; C10) ===================== -->
+
+  <CC_GodRare_Weapon>Where it happened at {HOME}, a {WEAPON} lies on the ground in a ring of scorched earth. Nobody here made it or brought it.</CC_GodRare_Weapon>
+  <CC_GodRare_Weapon_2>A {WEAPON} lies where it happened at {HOME}, inside a ring of burnt ground, and nobody knows where it came from.</CC_GodRare_Weapon_2>
+  <CC_GodRare_Weapon_3>The ground is scorched in a ring at {HOME} where it happened, and in the middle lies a {WEAPON} that was not there before.</CC_GodRare_Weapon_3>
+  <CC_GodRare_Egg>Among the fallen rock in the deep working at {HOME} lies an egg, big as a head and warm to the touch.</CC_GodRare_Egg>
+  <CC_GodRare_Egg_2>In the deep working at {HOME}, between the stones that came down, there is a warm egg as large as a head.</CC_GodRare_Egg_2>
+  <CC_GodRare_Egg_3>Someone looking over the collapse in the deep working at {HOME} found a large egg among the rocks, still warm.</CC_GodRare_Egg_3>
+
   <!-- ===================== The festivals ===================== -->
 
   <CC_Feast_Smoulder_Text_2>For the Deep Silver, {PAWN} took {COUNT} silver from the stores at {HOME} and dropped it down {PLACE}, saying the mountain's names over it.</CC_Feast_Smoulder_Text_2>

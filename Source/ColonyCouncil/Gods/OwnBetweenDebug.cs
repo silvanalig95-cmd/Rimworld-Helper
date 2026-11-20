@@ -1,3 +1,4 @@
+using System.Linq;
 using LudeonTK;
 using RimWorld;
 using Verse;
@@ -130,5 +131,17 @@ namespace ColonyCouncil
 
         [DebugAction("Rimfolk", "Gods: Revel's wager lost now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void RevelWager() => Fire(OwnHappening.RevelWager);
+
+        // ---- The gods' rarest gifts (Gods/Touch/GodRareGifts.cs) ----
+
+        [DebugAction("Rimfolk", "Gods: a rare gift (a god's weapon) now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void RareWeapon()
+        {
+            var list = GodRareGiftsMath.Weapons.Keys.Select(k => new DebugMenuOption(k == "Mog" ? "Tamiu" : k, DebugMenuOptionMode.Action, () => Say(GodRareGifts.DevWeapon(Find.CurrentMap, k)))).ToList();
+            Find.WindowStack.Add(new Dialog_DebugOptionListLister(list));
+        }
+
+        [DebugAction("Rimfolk", "Gods: a rare gift (a drake's egg in the deep) now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void RareEgg() => Say(GodRareGifts.DevEgg(Find.CurrentMap));
     }
 }

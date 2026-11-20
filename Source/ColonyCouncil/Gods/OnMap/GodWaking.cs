@@ -108,6 +108,8 @@ namespace ColonyCouncil
             GodMarks.Note(god, map, cell, (form != null ? "CC_GodM_Woken_Act" : "CC_GodM_Quake_Act").Translate().Resolve(), PresenceKind.Wrath, form != null && !spec.veiled);
             GodMarks.Witnessed(map, cell, (form != null ? "CC_GodM_Memory_Woken" : "CC_GodM_Memory_Quake").Translate().Resolve(), miner == null ? null : new[] { miner });
             if (saw != null) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World, saw, seer));
+            // Now and then a warm drake's egg among the fallen rock of the deep (Dragons Descent; GodRareGifts).
+            GodRareGifts.AfterWaking(god, map, at);
             return true;
         }
 
