@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## No more grey map
+
+*20 November 2026, version 0.275.2*
+
+- Fixed: the map turning grey while time ran, and a visitor drawn as only a name, after the open gates brought a visitor sneaking to the stores. A save with such a stuck pawn is mended when it loads.
+- Fixed: the sleepwalk and restless walk, the dawn walk, the muster post, the dare, the shooing of a visitor, the practice walk and the sneak to the stores had never played out and now do.
+- A job that has lost its kind is refused before it starts, whichever mod made it, so it can't stop the map from being drawn again.
+
 ## Sent to a far town
 
 *20 November 2026, version 0.275.1*

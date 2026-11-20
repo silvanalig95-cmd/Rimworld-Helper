@@ -58,12 +58,30 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **To do when the player asks (20 November 2026): the comms console and the peoples' ages.** The player, with
+  League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm Riders. I
+  mean, they are always only on medieval style tech level, it seems, you know, based on their weapons, etc. I don't know
+  if that makes sense, or whether the Storm Riders already kind of also progressed into a more modern technology level.
+  But if they did, then it's really not reflected at all in their weapons and gear. I mean, that is a very cool idea,
+  that other factions can also increase tech level and adjust over time. But then also, if they are still on older
+  technology, it doesn't make sense if they are all reachable with the comms console." Found: the Stormriders are the
+  Dark Elves mod's faction (`DevDesigner_DarkElvesFaction`, Medieval, `devdesigner.elves.continued`), one of Rimfolk's
+  foreign peoples (`Rimfolk_ForeignPeoples.xml`); Rimfolk's changing ages ("Peoples whose age changes",
+  `Peoples/PeopleAges.cs`) cover only its own twenty-three peoples and those that arose in their ways, so the
+  Stormriders are and stay medieval, and their gear is medieval as it should be. The comms console is the game's own: it
+  lists every faction, whatever its age. Proposed, waiting for the player's go: (1) the comms console reaches only
+  peoples whose age has a radio (industrial or spacer, Rimfolk's age where it keeps one, else the faction's own tech
+  level); the others are shown greyed ("no radio: a letter goes by rider"), with the way Rimfolk already writes to them
+  (the neighbours' letters) named, and a setting to keep the game's way; (2) the foreign peoples' ages change too, as
+  Rimfolk's own do (their pace by their ways, rising with trade, teaching and time), their gear following through the
+  every-age pass from the full mod pool.
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
     unpausing the game. Once I paused, the map just returned to normal, but as soon as I unpause, everything turns gray
     again ... Once I reload the save, the issue seems to be resolved ... the player log doesn't update". Save uploaded
-    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Being traced.
+    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Done: the entry "Jobs of no kind: the
+    grey map and the invisible pawn" above the newest release line.
   - **Go, restore**: "yes, please restore letters, wishes, ambitions, life goals, personal stories, council questions,
     camps, and world events to just the previous text, to kind of the flavor style text that you created before,
     restore it from the backup, and keep that also in mind for additional content to be added." CLAUDE.md's text rule
@@ -555,6 +573,39 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.275.2, **Jobs of no kind: the grey map and
+  the invisible pawn** (20 November 2026; the player: "I just had an event pop up about one of my pawns receiving a
+  medal. And then I selected the option that everyone should go to the gate ... after this, the whole map screen turned
+  gray essentially while I was unpausing the game. Once I paused, the map just returned to normal, but as soon as I
+  unpause, everything turns gray again ... Once I reload the save, the issue seems to be resolved", and with a
+  screenshot of the name "Huang" with no body, from League_of_Toba_8: "there's an invisible pawn here"). Built in the
+  main tree, a priority bug. DESIGN.md "Jobs of no kind".
+  - **The cause** (traced in both saves): not the medal. The open-gates decree's harm hour (`GateTroubles.Gates`, at
+    8000067, 146 ticks after the medal's answer) took the medal's visitors as the first since the decree and gave the
+    Republic's guard (Huang, `Rimfolk_Republic_Guard`) the sneak to the stores, `JobMaker.MakeJob(null, cell)`: the
+    field `HarmSevenDefOf.Rimfolk_StoresSneak` had stayed null because its class lacked `[DefOf]`. His job had no def and
+    no driver (`<curDriver IsNull="True" />`, saved so; still so in League_of_Toba_8). Drawing him threw (caught per
+    pawn: drawn as his name only), and each frame with ticks his facing (`Pawn_RotationTracker`, the post-tick visuals of
+    1.6) read the missing driver and threw out of the frame's update before the map was drawn, so the map was grey while
+    time ran. `HarmSixDefOf` and `NightWalkDefOf` had the same fault: none of the eight walks of harm parts 5 to 7 had
+    ever played out.
+  - **The fix.** `[DefOf]` on the three classes. `Lean/JobGuard.cs`: `Patch_JobGuard` refuses any job of no kind at
+    `Pawn_JobTracker.StartJob` (one warning in the log); `JobGuard.Repair` at load (`CouncilGameComponent.FinalizeInit`)
+    sends a pawn with a job of no kind or without a driver back to choosing a job and clears such jobs from queues (one
+    line in the log); a visitor so mended with no group of theirs to leave with is sent home (`Arrivals.SendAway`). The
+    player, later the same day: "the pawn is no longer invisible but is just staying at this spot, not moving but
+    sleeping, and about to starve": after their reload his job was gone, and, worn out by days stuck at the gate, he slept
+    where he stood; his lord (`LordJob_ExitMapBest`, Lord_316) still holds, so on waking he eats from his pack (two meals)
+    and leaves. `Tools/Tests/JobGuardTests.cs`: every class that calls `EnsureInitializedInCtor` carries
+    `[DefOf]`, and each of Rimfolk's own defs it names exists.
+  - **Left to see.** In the first save the medal was given at once (the answer's moment), so the colony never gathered
+    at the gate: either the setting "Answers play out on the map" is off in the player's game, or the clerk's errand
+    couldn't start (`RepublicMedal.Begin`); the answer's words promise the gathering. Asked of the player.
+  - **Try in the game.** Load League_of_Toba_8: the log says one pawn was mended, Huang walks off the map with the clerk's
+    lord gone (or stands and then leaves), drawn whole, and the map stays drawn while time runs. With dev mode, the open
+    gates' visitors' dev action "Harm seven: the next open gate's visitors bring a stranger" now sends one sneaking to
+    the stores.
+  - **Mods that would help.** None.
 - 0.275.1, **A colonist a world event sends to
   a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the
   to-do found 19 November 2026 in the plain-words pass on the region map: answers of world events said a colonist goes
