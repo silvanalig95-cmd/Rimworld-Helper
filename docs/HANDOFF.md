@@ -43,8 +43,19 @@ most sense." So, in this order, three builds at a time:
    the mood (0.266.7), choosing the material from the gear tab (0.268.1), a god's mark worth having (0.268.3).
 - Dropped (19 November 2026): the advisor warning for greenhouse plants beyond a sun lamp's light ("I'm aware of that
   now. You don't need to do it").
-- Still offered, not answered: the peoples' "Where their ways began" Almanac pages, each people's talk piece and 21 of
-  the 23 faiths' descriptions still tell their start through one named founder.
+- **The player's go of 20 November 2026**: "go ahead with the next tasks, including the traits, and give me a full
+  briefing of all the updates since my last message". The next tasks, in this order (bug fixes first), three builds at a
+  time:
+  1. **The defense survey's shut doors** (a bug; the to-do entry "the defense survey counts a shut door as a way raiders
+     might break through" below).
+  2. **A colonist a world event sends to a far town really goes** (the to-do entry "a colonist a world event sends to a
+     far town stays at the colony" below).
+  3. **More traits that come and go, the lead's first batch**: 37, 38, 1, 2, 4, 5, 6, 14, 10, 16, 26 and 27 of
+     `docs/traits-proposals.md` (the player named no numbers, so the recommended twelve; the rest wait for a pick).
+  4. **The peoples' own texts**: the Almanac's peoples' pages in plain words, their "Where their ways began" sections,
+     each people's talk piece on how their ways began and the 21 faiths' descriptions that name a founder, each told in
+     that people's own shape as the descriptions were (0.239.0 and after), a founder named only where the people keep
+     the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
 
 **How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
