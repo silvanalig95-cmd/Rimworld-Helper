@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 794; modelled: 794; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** after two, **4,241 KB** after five.
+Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** after two, **4,242 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -585,6 +585,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `Peoples/Events4/FloodedOut.cs:guests` | the flooded families' old and young taken in as guests, three at most, while the camp stands | fixed | 3 | 3 | 3 | 0.1 |
 | `Peoples/Events8/LandingParty.cs:crew` | the landing party's crew as they came, six at most, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
 | `Peoples/Events8/PeopleEvents8Book.cs:medalDeeds` | the deeds rolled for the Republic's medal, their ids, PeopleEvents8Math.MaxMedalDeeds kept | cap | 3 | 6 | 12 | 0.1 |
+| `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life (psychopath, cannibal, a psychopath's way out) | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/OnMapTimed.cs:things` | per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/PlayOuts.cs:risks` | per play-out: an answer's fight or walk-out held for the scene, one or two at most | fixed | 1 | 1 | 1 | 0.1 |
 | `PlayOut/PlayOuts.cs:spots` | per play-out | fixed | 2 | 2 | 2 | 0.1 |
@@ -617,7 +618,6 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `Peoples/Events/PeopleCamps.cs:trail` | the lantern post's hunters out on the trail, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events5/CircuitRing.cs:waiting` | the colony's challengers waiting for the afternoon's bout, while the ring stands | fixed | 2 | 2 | 2 | 0.1 |
 | `Peoples/Events6/StormTower.cs:rods` | the storm tower's two rods, while the camp stands | fixed | 2 | 2 | 2 | 0.1 |
-| `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/OnMapTimed.cs:cells` | per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:round` | per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only | fixed | 2 | 2 | 2 | 0.1 |
@@ -761,7 +761,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `Persona/PawnPersona.cs:stances` | per person: one per topic (23), and per newcomer for 60 days (counted under people) | fixed | 24 | 24 | 24 | (in its record) |
 | `Persona/TraitChanges.cs:absorbed` | per change: how the trait moved each side (counted under changes) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/TraitChanges.cs:snapshots` | per colonist: 10 snapshots, every ten days (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
-| `Persona/TraitChanges.cs:tallies` | per colonist: deeds, memories (therapy sessions) and marks (long peaces) counted, 240 days, 12 per kind (counted under watches) | fixed | 5 | 5 | 5 | (in its record) |
+| `Persona/TraitChanges.cs:tallies` | per colonist: deeds, memories (therapy sessions), marks (long peaces, fight marks, hungry seasons) and food binges counted, 240 days, 12 per kind (counted under watches) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/TraitChanges.cs:values` | per snapshot: the records a pace reads (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:game` | per hunt: 3 animals at most (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:hands` | per play-out: who went (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |

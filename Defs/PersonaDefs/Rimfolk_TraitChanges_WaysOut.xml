@@ -4,16 +4,21 @@
   <!--
     Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs); see
     Rimfolk_TraitChanges_Spectrum.xml for how a rule reads. This file: ways out of bad traits (docs/traits-proposals.md,
-    the first batch, 20 November 2026). Every rule here names the degrees it leads out of (wayOutOf; 0 for a trait
-    without degrees): a way out isn't held back by the colony's 10 days, and the character page shows it from the start,
-    with what is still missing. Where a proposal reads "this or that" (a seat, or two promises kept), it is two rules.
+    the first batch and the second, 20 November 2026). Every rule here names the degrees it leads out of (wayOutOf; 0
+    for a trait without degrees): a way out isn't held back by the colony's 10 days, and the character page shows it
+    from the start, with what is still missing. Where a proposal reads "this or that" (a seat, or two promises kept), it
+    is two rules.
 
     Besides the rule frame's usual parts, these use: notMarks (no mark of these on their page in the last notMarksDays
     days), a zero count (a tally with noneDays: none of it for that many days, counted from the newest one or from the
-    trait's last change, whichever is later), a tally that counts marks as they come (marks; kept 240 days, so two long
-    peaces can be counted although a long peace leaves the page after 60 days), givenBy (only when that rule gave the
-    trait), notPrecepts (their ideoligion holds none of these precepts), and a practice that adds up two kinds of work
-    (Cooking+Smithing).
+    trait's last change, whichever is later, and never from before they joined; a zero count of marks also reads the
+    marks still on their page), a zero count that starts only once another tally of the rule has counted one
+    (noneAfter: a hungry season, then 60 days without a food binge), a tally that counts marks as they come (marks; kept
+    240 days, so two long peaces can be counted although a long peace leaves the page after 60 days), a tally of
+    breakdowns from their mood (mentalStates), givenBy (only when that rule gave the trait), notGiven (only a trait
+    Rimfolk didn't give), notPrecepts (their ideoligion holds none of these precepts), friend (a friend on the Bonds
+    page), bondedAnimal (an animal bonded to them), a practice that adds up two kinds of work (Cooking+Smithing) and one
+    with a most (night&lt;=10).
   -->
 
   <!-- ==================== A way out of each bad trait Rimfolk gives ==================== -->
@@ -542,6 +547,959 @@
       <cheerful><li>I made plans for the spring. Real ones.</li></cheerful>
       <gloomy><li>I still worry. I just don't assume the worst first.</li></gloomy>
       <cold><li>My forecasts were too negative. I've corrected them.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== The second batch: the other ways out (20 November 2026, "go ahead with all the traits") ==================== -->
+
+  <!--
+    3. Psychopath Rimfolk gave fades: 180 days with no execution or organ taken (a zero count of the deeds that made it,
+    the same key as the gain's), three marks of care since it came, warmth moved +15. Rare, and once in a colony's life,
+    as the psychopath itself.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_PsychopathFades</defName>
+    <label>feeling for others coming back after a long, decent stretch</label>
+    <trait>Psychopath</trait>
+    <change>Lose</change>
+    <onlyGiven>true</onlyGiven>
+    <onceKey>PsychopathFades</onceKey>
+    <wayOutOf><li>0</li></wayOutOf>
+    <tallies>
+      <li>
+        <key>Cruelty</key>
+        <events>ExecutedPrisoner, ExecutedGuest, ExecutedColonist, ExecutedPrisonerGuilty, ExecutedPrisonerInnocent, HarvestedOrgan, HarvestedOrganFromGuest, HarvestedOrganFromColonist</events>
+        <tales>ExecutedPrisoner</tales>
+        <noneDays>180</noneDays>
+        <label>carried out an execution or took an organ</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>SavedSomeone, TaughtWell, ForgivenBy, Kindness</any><count>3</count></li>
+    </marks>
+    <moved>warmth>=15</moved>
+    <gapDays>0</gapDays>
+    <chance>0.02</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a psychopath.</news>
+    <meaning>{PAWN_nameDef} has not carried out an execution or taken an organ in 180 days, and has looked after other people several times since becoming a psychopath. Other people's suffering upsets {PAWN_objective} again, as it does most people.</meaning>
+    <journal>
+      <plain>
+        <li>I sat with the family of the man we buried today, and I didn't have to pretend to be sad.</li>
+        <li>I thought about the executions this morning, and for the first time in a long while it bothered me.</li>
+      </plain>
+      <warm><li>The people here kept treating me well when I gave them little reason to. It has made a difference.</li></warm>
+      <blunt><li>I feel things again. I'm not sure I like it.</li></blunt>
+      <cheerful><li>Someone thanked me today and I was glad, properly glad, not just polite about it.</li></cheerful>
+      <gloomy><li>Now I remember what I did, and it weighs on me.</li></gloomy>
+      <cold><li>I notice other people's pain again. It makes some decisions harder than they were.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 7. Workaholic eases (Vanilla Traits Expanded): an eighth of their time at recreation over 60 days, and a long peace. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_WorkaholicEases</defName>
+    <label>a workaholic who learned to rest</label>
+    <trait>VTE_Workaholic</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <pace>
+      <li><record>TimeGettingJoy</record><atLeast>0.125</atLeast><days>60</days><label>time at recreation</label></li>
+    </pace>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a workaholic.</news>
+    <meaning>{PAWN_nameDef} has spent an eighth of {PAWN_possessive} time at recreation for two months, during a long peace, and can now stop working when it is time to rest.</meaning>
+    <journal>
+      <plain>
+        <li>I took the whole evening off and didn't think about work once.</li>
+        <li>I stopped at the usual time today and went to sit with the others.</li>
+      </plain>
+      <warm><li>The others were right. I'm better company when I get some rest.</li></warm>
+      <blunt><li>The work day ends at the end of the day now.</li></blunt>
+      <cheerful><li>I played games until late. The work will still be there tomorrow.</li></cheerful>
+      <gloomy><li>I still feel like I should be working. I sit down anyway.</li></gloomy>
+      <cold><li>I work better the day after a rest. I've accepted that.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 8. Recluse opens up (Biotech): a friend on the Bonds page, two kindnesses, rescues, nursings or forgivenesses, trust back near where it was. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_RecluseOpensUp</defName>
+    <label>a recluse who opened up to a friend</label>
+    <trait>Recluse</trait>
+    <change>Lose</change>
+    <dlc>Biotech</dlc>
+    <wayOutOf><li>0</li></wayOutOf>
+    <friend>true</friend>
+    <marks>
+      <li><any>Kindness, SavedBy, NursedBack, ForgivenBy</any><count>2</count></li>
+    </marks>
+    <moved>trust>=-5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a recluse.</news>
+    <meaning>{PAWN_nameDef} has a friend in the colony, and others have been good to {PAWN_objective} more than once. How many people live here no longer affects {PAWN_possessive} mood.</meaning>
+    <journal>
+      <plain>
+        <li>I sat with my friend at supper and didn't mind the noise around us.</li>
+        <li>There are more people here than I'd like, but I know some of them now.</li>
+      </plain>
+      <warm><li>Having one real friend here has made it easier to be around everyone else.</li></warm>
+      <blunt><li>I've got a friend here. The crowd matters less.</li></blunt>
+      <cheerful><li>New people came through the gate today, and I went over to say hello.</li></cheerful>
+      <gloomy><li>I still like a quiet corner. I just don't need one all the time.</li></gloomy>
+      <cold><li>Some of these people have proven reliable. I can put up with more of them.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    9. Slothful to lazy: the hard-work rule's shape from slothful, with the proposal's numbers (less than a twelfth of
+    their time at recreation over 60 days, a masterwork, a skill mastered or a student taught in the last 120 days, 6%);
+    the step after that is the hard-work rule's lazy to none.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_SlothfulStirs</defName>
+    <label>less slothful after a stretch of work done well</label>
+    <trait>Industriousness</trait>
+    <change>StepUp</change>
+    <wayOutOf><li>-2</li></wayOutOf>
+    <from><li>-2</li></from>
+    <pace>
+      <li><record>TimeGettingJoy</record><atMost>0.083</atMost><days>60</days><label>time at recreation</label></li>
+    </pace>
+    <marks>
+      <li><any>Masterwork, Mastered, TaughtWell</any><withinDays>120</withinDays></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer slothful, only {TRAIT}.</news>
+    <meaning>Two months with little time at recreation, and work {PAWN_pronoun} can be proud of, have got {PAWN_nameDef} moving. {PAWN_nameDef} still works slowly, but faster than before.</meaning>
+    <journal>
+      <plain>
+        <li>I worked a full day and didn't go looking for a place to sit down.</li>
+        <li>The job took me less time than it used to.</li>
+      </plain>
+      <warm><li>The others carried me for long enough. I want to do my share.</li></warm>
+      <blunt><li>I work now. Slowly, but I work.</li></blunt>
+      <cheerful><li>I made something good this month, and I want to do it again.</li></cheerful>
+      <gloomy><li>Lying around never made me feel better. Working sometimes does.</li></gloomy>
+      <cold><li>Idleness was costing me more than the effort does.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    11. Gourmand eases: they went hungry (the mark, counted as it comes), then 60 days without a food binge (a zero count
+    that starts at the hungry season, noneAfter), pride moved -3.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_GourmandEases</defName>
+    <label>a gourmand who learned to make do after going hungry</label>
+    <trait>Gourmand</trait>
+    <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
+    <tallies>
+      <li>
+        <key>HungrySeason</key>
+        <marks>HungrySeason</marks>
+        <label>went hungry</label>
+      </li>
+      <li>
+        <key>FoodBinge</key>
+        <mentalStates>Binging_Food</mentalStates>
+        <noneDays>60</noneDays>
+        <noneAfter>HungrySeason</noneAfter>
+        <label>a food binge since going hungry</label>
+      </li>
+    </tallies>
+    <moved>pride&lt;=-3</moved>
+    <gapDays>0</gapDays>
+    <chance>0.05</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a gourmand.</news>
+    <meaning>{PAWN_nameDef} went hungry and has not had a food binge in the 60 days since. {PAWN_nameDef} no longer gets hungry so quickly, and is no more likely to go on a food binge than anyone else.</meaning>
+    <journal>
+      <plain>
+        <li>I eat what's put in front of me now, and I'm full afterward.</li>
+        <li>I remember being hungry. Plain food doesn't bother me anymore.</li>
+      </plain>
+      <warm><li>Everyone went short that season. I'd rather share what we have than wish for more.</li></warm>
+      <blunt><li>Food is food. I eat it.</li></blunt>
+      <cheerful><li>A simple meal and a full stomach. That's a good day for me now.</li></cheerful>
+      <gloomy><li>I still think about good food. I just don't need it the way I did.</li></gloomy>
+      <cold><li>I eat to keep going. The rest was a habit I no longer need.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    12. Bloodlust they came with fades (the slower twin of 2, for a bloodlust Rimfolk didn't give): 240 days with no fight
+    mark (a zero count of the marks as they come and on their page), two long peaces, a student taught, a kindness or being
+    nursed back, warmth moved +10.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_BloodlustCameWithFades</defName>
+    <label>bloodlust fading after the better part of a year at peace</label>
+    <trait>Bloodlust</trait>
+    <change>Lose</change>
+    <notGiven>true</notGiven>
+    <wayOutOf><li>0</li></wayOutOf>
+    <tallies>
+      <li>
+        <key>FightMarks</key>
+        <marks>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_RaidsHardened, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_SworeVengeance</marks>
+        <noneDays>240</noneDays>
+        <label>a fight mark (held the line, hardened by the raids, went down and got up harder, swore vengeance)</label>
+      </li>
+      <li>
+        <key>LongPeace</key>
+        <marks>LongPeace</marks>
+        <count>2</count>
+        <label>a long peace</label>
+      </li>
+    </tallies>
+    <marks>
+      <li><any>TaughtWell, Kindness, NursedBack</any></li>
+    </marks>
+    <moved>warmth>=10</moved>
+    <gapDays>0</gapDays>
+    <chance>0.02</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} no longer has a taste for blood.</news>
+    <meaning>Eight months without a fight, two long stretches of peace, and time spent teaching others or being looked after by them have taken the pleasure out of violence for {PAWN_nameDef}. Killing no longer lifts {PAWN_possessive} mood, and corpses bother {PAWN_objective} as they do most people.</meaning>
+    <journal>
+      <plain>
+        <li>It's been most of a year since I last fought. I don't miss it.</li>
+        <li>I helped bury a raider today and felt sorry for him.</li>
+      </plain>
+      <warm><li>I'd rather teach the young ones a trade than teach them how to fight.</li></warm>
+      <blunt><li>No more fighting for the fun of it.</li></blunt>
+      <cheerful><li>Another quiet season. I've come to like them.</li></cheerful>
+      <gloomy><li>I used to wait for the raids. Now I hope they stay away.</li></gloomy>
+      <cold><li>Violence was a habit, and I've lost it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 13. Very neurotic to neurotic: 90 days without a breakdown, a long peace, nerve moved +5. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_NeuroticEases</defName>
+    <label>less neurotic after a long calm and a long peace</label>
+    <trait>Neurotic</trait>
+    <change>StepDown</change>
+    <wayOutOf><li>2</li></wayOutOf>
+    <from><li>2</li></from>
+    <calmDays>90</calmDays>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <moved>nerve>=5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer very neurotic, only {TRAIT}.</news>
+    <meaning>Three months without a breakdown, during a long peace, have eased the worst of {PAWN_nameDef}'s worrying. {PAWN_nameDef} still works quickly out of worry, but is less likely to break down than before.</meaning>
+    <journal>
+      <plain>
+        <li>I slept through the night without going over everything that could go wrong.</li>
+        <li>It's been three months since I last fell apart. I worry less about the next time.</li>
+      </plain>
+      <warm><li>The others kept things steady around me, and it helped.</li></warm>
+      <blunt><li>Less worry. Same amount of work.</li></blunt>
+      <cheerful><li>I checked the doors only once tonight.</li></cheerful>
+      <gloomy><li>I still worry. It doesn't take over the whole day now.</li></gloomy>
+      <cold><li>My worrying has come down to a level I can work with.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    15. Anxious calms (Vanilla Traits Expanded): 90 days without a breakdown and held the line once, or two long peaces
+    (two rules), nerve moved +8; with Therapy (Continued), four sessions in 90 days in place of either (14).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_AnxiousCalmsHeld</defName>
+    <label>less anxious after holding the line</label>
+    <trait>VTE_Anxious</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>90</calmDays>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine</any></li>
+    </marks>
+    <moved>nerve>=8</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer anxious.</news>
+    <meaning>Three months without a breakdown, and holding the line in a fight, have shown {PAWN_nameDef} that {PAWN_pronoun} can cope. {PAWN_nameDef} no longer feels on edge all the time.</meaning>
+    <journal>
+      <plain>
+        <li>I stood my ground when the raid came. Since then the small worries seem smaller.</li>
+        <li>I went a whole day without my stomach in knots.</li>
+      </plain>
+      <warm><li>I held my place next to the others, and they held theirs next to me. I feel safer here now.</li></warm>
+      <blunt><li>I got through the worst of it. The rest is easier.</li></blunt>
+      <cheerful><li>It turns out I'm braver than I thought.</li></cheerful>
+      <gloomy><li>Things can still go wrong. I've seen that I can handle it when they do.</li></gloomy>
+      <cold><li>The fight showed I can function under pressure. I don't need to be on alert all the time.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_AnxiousCalmsPeace</defName>
+    <label>less anxious after two long peaces</label>
+    <trait>VTE_Anxious</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>90</calmDays>
+    <tallies>
+      <li>
+        <key>LongPeace</key>
+        <marks>LongPeace</marks>
+        <count>2</count>
+        <label>a long peace</label>
+      </li>
+    </tallies>
+    <moved>nerve>=8</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer anxious.</news>
+    <meaning>Three months without a breakdown and two long stretches of peace have let {PAWN_nameDef} settle. {PAWN_nameDef} no longer feels on edge all the time.</meaning>
+    <journal>
+      <plain>
+        <li>Nothing bad has happened here in a long time. I've started to believe it will stay that way for a while.</li>
+        <li>I went a whole day without my stomach in knots.</li>
+      </plain>
+      <warm><li>The quiet months with everyone here have done me good.</li></warm>
+      <blunt><li>It's been quiet. I'm calmer.</li></blunt>
+      <cheerful><li>I woke up this morning looking forward to the day instead of dreading it.</li></cheerful>
+      <gloomy><li>I still expect trouble. I just don't lie awake waiting for it.</li></gloomy>
+      <cold><li>Two long quiet stretches are good evidence. I've stopped expecting the worst every day.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_TherapyAnxious</defName>
+    <label>less anxious after talking it through</label>
+    <trait>VTE_Anxious</trait>
+    <change>Lose</change>
+    <mods><li>orion.therapy</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>90</calmDays>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <moved>nerve>=8</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer anxious.</news>
+    <meaning>Three months without a breakdown and regular sessions with a therapist have let {PAWN_nameDef} settle. {PAWN_nameDef} no longer feels on edge all the time.</meaning>
+    <journal>
+      <plain>
+        <li>The therapist and I went through what I worry about, one thing at a time. Most of it was smaller than it felt.</li>
+        <li>I went a whole day without my stomach in knots.</li>
+      </plain>
+      <warm><li>It helps to have someone listen. I don't carry all of it alone now.</li></warm>
+      <blunt><li>Talking helped. I'm calmer.</li></blunt>
+      <cheerful><li>Four sessions in, and I slept the whole night.</li></cheerful>
+      <gloomy><li>The worries are still there. I know what to do with them now.</li></gloomy>
+      <cold><li>Naming each worry made it easier to set aside.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 17. Squeamish hardens (Vanilla Traits Expanded): 40 recent hours as a doctor, and 30 times tending others (the game's record). -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SqueamishHardens</defName>
+    <label>less squeamish after long hours as a doctor</label>
+    <trait>VTE_Squeamish</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <practice>Doctor>=40</practice>
+    <records>TimesTendedOther>=30</records>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer squeamish.</news>
+    <meaning>{PAWN_nameDef} has spent many hours as a doctor lately and has tended others thirty times or more. Blood and wounds no longer upset {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>I stitched a deep cut today and my hands didn't shake.</li>
+        <li>Blood used to make me dizzy. Now I just get on with the work.</li>
+      </plain>
+      <warm><li>Someone has to look after the hurt ones, and now I can.</li></warm>
+      <blunt><li>Blood doesn't bother me anymore.</li></blunt>
+      <cheerful><li>I patched up three people today and kept my lunch down.</li></cheerful>
+      <gloomy><li>I've seen enough wounds that they don't shock me now.</li></gloomy>
+      <cold><li>An injury is a problem to fix. I treat it as one.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 18. Kleptomaniac reformed (Vanilla Traits Expanded): forgiven, or given a seat (two rules); 120 days without a breakdown; trust moved +5. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_KleptomaniacForgiven</defName>
+    <label>a kleptomaniac who stopped taking after being forgiven</label>
+    <trait>VTE_Kleptomaniac</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>ForgivenBy</any></li>
+    </marks>
+    <calmDays>120</calmDays>
+    <moved>trust>=5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a kleptomaniac.</news>
+    <meaning>Someone in the colony forgave {PAWN_nameDef}, and {PAWN_pronoun} has gone four months without a breakdown and trusts the others more than before. {PAWN_nameDef} no longer feels the urge to take things that aren't {PAWN_possessive}.</meaning>
+    <journal>
+      <plain>
+        <li>I walked past the storeroom today and didn't think about what I could take.</li>
+        <li>I gave back the last thing I'd hidden. Nobody made a fuss.</li>
+      </plain>
+      <warm><li>They forgave me when they didn't have to. I don't want to let them down again.</li></warm>
+      <blunt><li>I don't take things anymore.</li></blunt>
+      <cheerful><li>My pockets are empty and I feel lighter for it.</li></cheerful>
+      <gloomy><li>I still notice things lying around. I leave them where they are.</li></gloomy>
+      <cold><li>Taking things cost me the others' trust. Having it back is worth more.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_KleptomaniacSeat</defName>
+    <label>a kleptomaniac who stopped taking after being given a seat</label>
+    <trait>VTE_Kleptomaniac</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Elected</any></li>
+    </marks>
+    <calmDays>120</calmDays>
+    <moved>trust>=5</moved>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a kleptomaniac.</news>
+    <meaning>The colony trusted {PAWN_nameDef} with a seat, and {PAWN_pronoun} has gone four months without a breakdown and trusts the others more than before. {PAWN_nameDef} no longer feels the urge to take things that aren't {PAWN_possessive}.</meaning>
+    <journal>
+      <plain>
+        <li>I walked past the storeroom today and didn't think about what I could take.</li>
+        <li>They trust me with a seat. I'm not going to steal from the people who gave it to me.</li>
+      </plain>
+      <warm><li>They put their trust in me. I want to deserve it.</li></warm>
+      <blunt><li>I don't take things anymore.</li></blunt>
+      <cheerful><li>A seat on the council and empty pockets. I like how that feels.</li></cheerful>
+      <gloomy><li>I still notice things lying around. I leave them where they are.</li></gloomy>
+      <cold><li>A councillor caught stealing would lose the seat. Taking things is no longer worth it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    19. Slob tidies up: 40 recent hours cleaning, or the habit "can't stand a mess" held 60 days and lived on 40 (two
+    rules each). Vanilla Traits Expanded's slob goes; Dubs Bad Hygiene's hygiene trait steps up one degree, slob to
+    unhygienic and unhygienic to none (its degrees read as -2 and -1, below hygienic 1 and germaphobe 2). The habit stays,
+    so tidy (or neat) can still come of it later.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SlobCleaning</defName>
+    <label>no longer a slob after long hours of cleaning</label>
+    <trait>VTE_Slob</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <practice>Cleaning>=40</practice>
+    <gapDays>0</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a slob.</news>
+    <meaning>{PAWN_nameDef} has spent many hours cleaning lately, and keeping things tidy has become normal for {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>I cleaned up after myself today without anyone asking.</li>
+        <li>I noticed the mess in my room and sorted it out before bed.</li>
+      </plain>
+      <warm><li>A clean room is nicer for everyone. I see that now.</li></warm>
+      <blunt><li>I clean up now. That's all.</li></blunt>
+      <cheerful><li>The floor is clean, the table is clean, and I did it.</li></cheerful>
+      <gloomy><li>I spent so long scrubbing other people's mess that I stopped making my own.</li></gloomy>
+      <cold><li>A tidy room saves time. I keep mine that way now.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SlobHabit</defName>
+    <label>no longer a slob after taking up tidying</label>
+    <trait>VTE_Slob</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <habit>Council_Quirk_TidyTable</habit>
+    <habitDays>60</habitDays>
+    <habitLived>40</habitLived>
+    <endsHabit>false</endsHabit>
+    <gapDays>0</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a slob.</news>
+    <meaning>For two months {PAWN_nameDef} hasn't been able to leave a mess alone, and keeping things tidy has become normal for {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>I wiped the table after supper without thinking about it.</li>
+        <li>I noticed the mess in my room and sorted it out before bed.</li>
+      </plain>
+      <warm><li>A clean room is nicer for everyone. I see that now.</li></warm>
+      <blunt><li>I clean up now. That's all.</li></blunt>
+      <cheerful><li>Two months of tidying, and my room has never looked better.</li></cheerful>
+      <gloomy><li>I used to live in a mess and not notice. Now I notice everything.</li></gloomy>
+      <cold><li>A tidy room saves time. I keep mine that way now.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_DBH_SlobCleaning</defName>
+    <label>cleaner habits after long hours of cleaning</label>
+    <trait>Hygienic</trait>
+    <change>StepUp</change>
+    <mods><li>dubwise.dubsbadhygiene</li></mods>
+    <wayOutOf><li>-2</li><li>-1</li></wayOutOf>
+    <from><li>-2</li><li>-1</li></from>
+    <practice>Cleaning>=40</practice>
+    <gapDays>0</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a slob, only {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. Many hours of cleaning lately have changed {PAWN_possessive} habits.</newsLost>
+    <meaning>{PAWN_nameDef} has spent many hours cleaning lately, and cares more about washing and keeping things clean than before.</meaning>
+    <journal>
+      <plain>
+        <li>I washed before supper today without anyone telling me to.</li>
+        <li>I noticed the mess in my room and sorted it out before bed.</li>
+      </plain>
+      <warm><li>The others shouldn't have to put up with my dirt. I keep myself cleaner now.</li></warm>
+      <blunt><li>I wash now. Regularly.</li></blunt>
+      <cheerful><li>A hot bath and a clean room. I could get used to this.</li></cheerful>
+      <gloomy><li>I spent so long scrubbing other people's mess that I stopped making my own.</li></gloomy>
+      <cold><li>Staying clean keeps me from getting sick. That's reason enough.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_DBH_SlobHabit</defName>
+    <label>cleaner habits after taking up tidying</label>
+    <trait>Hygienic</trait>
+    <change>StepUp</change>
+    <mods><li>dubwise.dubsbadhygiene</li></mods>
+    <wayOutOf><li>-2</li><li>-1</li></wayOutOf>
+    <from><li>-2</li><li>-1</li></from>
+    <habit>Council_Quirk_TidyTable</habit>
+    <habitDays>60</habitDays>
+    <habitLived>40</habitLived>
+    <endsHabit>false</endsHabit>
+    <gapDays>0</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a slob, only {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. Two months of tidying up have changed {PAWN_possessive} habits.</newsLost>
+    <meaning>For two months {PAWN_nameDef} hasn't been able to leave a mess alone, and {PAWN_pronoun} cares more about washing and keeping things clean than before.</meaning>
+    <journal>
+      <plain>
+        <li>I washed before supper today without anyone telling me to.</li>
+        <li>I wiped the table after supper without thinking about it.</li>
+      </plain>
+      <warm><li>The others shouldn't have to put up with my dirt. I keep myself cleaner now.</li></warm>
+      <blunt><li>I wash now. Regularly.</li></blunt>
+      <cheerful><li>Two months of tidying, and I've started taking baths for fun.</li></cheerful>
+      <gloomy><li>I used to live in a mess and not notice. Now I notice everything.</li></gloomy>
+      <cold><li>Staying clean keeps me from getting sick. That's reason enough.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    20. Animal hater softens (Vanilla Traits Expanded): an animal bonded to them, three animals tamed (the game's record),
+    or the habit "names every animal" (three rules). The habit stays, so an animal lover can still come of it later.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_AnimalHaterBond</defName>
+    <label>no longer an animal hater after an animal bonded to them</label>
+    <trait>VTE_AnimalHater</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <bondedAnimal>true</bondedAnimal>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer an animal hater.</news>
+    <meaning>An animal has bonded to {PAWN_nameDef}, and {PAWN_pronoun} no longer minds having animals around.</meaning>
+    <journal>
+      <plain>
+        <li>The animal follows me around all day. I've stopped trying to shoo it away.</li>
+        <li>I fed it before I fed myself this morning.</li>
+      </plain>
+      <warm><li>It chose me, for some reason. I've grown fond of it.</li></warm>
+      <blunt><li>One animal is fine. Maybe more than one.</li></blunt>
+      <cheerful><li>It sleeps at the foot of my bed now, and I don't mind at all.</li></cheerful>
+      <gloomy><li>I didn't want an animal. Now I'd be sorry to lose it.</li></gloomy>
+      <cold><li>It is loyal and useful. I've revised my opinion of animals.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_AnimalHaterTamed</defName>
+    <label>no longer an animal hater after taming animals</label>
+    <trait>VTE_AnimalHater</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <records>AnimalsTamed>=3</records>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer an animal hater.</news>
+    <meaning>{PAWN_nameDef} has tamed three animals or more, and no longer minds having animals around.</meaning>
+    <journal>
+      <plain>
+        <li>I tamed another one today. It took patience, and I had it.</li>
+        <li>The animals I tamed still come to me when I call them.</li>
+      </plain>
+      <warm><li>They trusted me enough to come close. I'd like to keep that trust.</li></warm>
+      <blunt><li>Animals are fine. I've tamed a few.</li></blunt>
+      <cheerful><li>Three tamed now. I'm getting good at this.</li></cheerful>
+      <gloomy><li>I didn't expect to care about them. I do.</li></gloomy>
+      <cold><li>Tamed animals do useful work. I've revised my opinion of them.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_AnimalHaterHabit</defName>
+    <label>no longer an animal hater after naming the animals</label>
+    <trait>VTE_AnimalHater</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <habit>Council_Quirk_NamesAnimals</habit>
+    <endsHabit>false</endsHabit>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer an animal hater.</news>
+    <meaning>{PAWN_nameDef} has spent months naming the colony's animals and sitting with them, and no longer minds having them around.</meaning>
+    <journal>
+      <plain>
+        <li>I know every animal here by name now. It's hard to dislike something you've named.</li>
+        <li>I sat with the animals after work again today.</li>
+      </plain>
+      <warm><li>They know me now, and they're glad to see me.</li></warm>
+      <blunt><li>The animals are all right.</li></blunt>
+      <cheerful><li>I gave the new calf a name today. The others say it suits her.</li></cheerful>
+      <gloomy><li>I didn't expect to care about them. I do.</li></gloomy>
+      <cold><li>Spending time with them made them easier to handle. I don't mind them now.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 21. Submissive stands up (Vanilla Traits Expanded): given a seat, or held the line twice (two rules); pride moved +8. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SubmissiveSeat</defName>
+    <label>no longer submissive after being given a seat</label>
+    <trait>VTE_Submissive</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Elected</any></li>
+    </marks>
+    <moved>pride>=8</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer submissive.</news>
+    <meaning>The colony gave {PAWN_nameDef} a seat, and {PAWN_pronoun} has grown more confident since. {PAWN_nameDef} no longer gives in to others so easily.</meaning>
+    <journal>
+      <plain>
+        <li>I disagreed with someone at the meeting today and said so.</li>
+        <li>They gave me a seat, so they must want to hear what I think.</li>
+      </plain>
+      <warm><li>The others trusted me with a seat. I owe them my honest opinion.</li></warm>
+      <blunt><li>I say what I think now.</li></blunt>
+      <cheerful><li>I argued my point at the meeting and won. That was new.</li></cheerful>
+      <gloomy><li>I used to go along with everything to keep the peace. It never made me happy.</li></gloomy>
+      <cold><li>A seat comes with a duty to speak. I speak.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SubmissiveHeld</defName>
+    <label>no longer submissive after holding the line</label>
+    <trait>VTE_Submissive</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine</any><count>2</count></li>
+    </marks>
+    <moved>pride>=8</moved>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer submissive.</news>
+    <meaning>{PAWN_nameDef} has held the line in two fights and has grown more confident since. {PAWN_nameDef} no longer gives in to others so easily.</meaning>
+    <journal>
+      <plain>
+        <li>I stood my ground against raiders twice. I can stand my ground in an argument too.</li>
+        <li>Someone tried to hand me their chores today and I said no.</li>
+      </plain>
+      <warm><li>I fought next to the others as an equal. I'd like to be treated as one.</li></warm>
+      <blunt><li>I don't back down anymore.</li></blunt>
+      <cheerful><li>I told someone they were wrong today, politely, and it went fine.</li></cheerful>
+      <gloomy><li>I used to go along with everything to keep the peace. It never made me happy.</li></gloomy>
+      <cold><li>I've shown I can hold a position under fire. I hold my opinions the same way.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    22. Snob humbled (Vanilla Traits Expanded): humbled by the colony's oath or a hungry season, and carried to safety or
+    nursed back by someone, pride moved -6.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SnobHumbled</defName>
+    <label>no longer a snob after hard times and help from others</label>
+    <trait>VTE_Snob</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <marks>
+      <li><any>Rimfolk_Mark_Humbled, HungrySeason</any></li>
+      <li><any>SavedBy, NursedBack</any></li>
+    </marks>
+    <moved>pride&lt;=-6</moved>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a snob.</news>
+    <meaning>{PAWN_nameDef} has been through hard times like everyone else and has needed others to carry {PAWN_objective} to safety or nurse {PAWN_objective} back to health. {PAWN_nameDef} no longer thinks {PAWN_pronoun} is better than the people around {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>The people I looked down on are the ones who carried me when I couldn't walk.</li>
+        <li>I ate the same plain stew as everyone else today and didn't complain.</li>
+      </plain>
+      <warm><li>They looked after me when I needed it. I'm no better than any of them.</li></warm>
+      <blunt><li>I was wrong about the others. Simple as that.</li></blunt>
+      <cheerful><li>A plain room and good company. That's enough for me now.</li></cheerful>
+      <gloomy><li>Going hungry and being carried home cured me of thinking I was special.</li></gloomy>
+      <cold><li>I needed help like anyone else. My opinion of myself was too high.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 23. Couch potato gets up (Vanilla Traits Expanded): as the hard-work rule, 60 days with little recreation and a masterwork, a mastered skill or a student taught. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_CouchPotatoGetsUp</defName>
+    <label>no longer a couch potato after a stretch of work done well</label>
+    <trait>VTE_CouchPotato</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <pace>
+      <li><record>TimeGettingJoy</record><atMost>0.04</atMost><days>60</days><label>time at recreation</label></li>
+    </pace>
+    <marks>
+      <li><any>Masterwork, Mastered, TaughtWell</any><withinDays>120</withinDays></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer a couch potato.</news>
+    <meaning>Two months with little time at recreation, and work {PAWN_pronoun} can be proud of, have changed {PAWN_nameDef}'s habits. {PAWN_nameDef} no longer needs as much recreation as before.</meaning>
+    <journal>
+      <plain>
+        <li>I spent my free hour finishing a job instead of lying down.</li>
+        <li>I didn't miss the games much this season. I was busy with better things.</li>
+      </plain>
+      <warm><li>The work I did this season helped everyone. That's better than another afternoon resting.</li></warm>
+      <blunt><li>Less lounging. More doing.</li></blunt>
+      <cheerful><li>I made something I'm proud of, and I want to make another.</li></cheerful>
+      <gloomy><li>Resting all day never made me feel better. Working sometimes does.</li></gloomy>
+      <cold><li>I need less rest than I thought I did.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- 24. Insomniac sleeps again (Vanilla Traits Expanded): 60 days without a breakdown, a long peace, few recent hours up at night (at most 10). -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_InsomniacSleeps</defName>
+    <label>sleeping through the night again after a calm stretch</label>
+    <trait>VTE_Insomniac</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>60</calmDays>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <practice>night&lt;=10</practice>
+    <gapDays>0</gapDays>
+    <chance>0.06</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer an insomniac.</news>
+    <meaning>Two months without a breakdown, a long peace and nights spent in bed rather than up and about have let {PAWN_nameDef} sleep properly again.</meaning>
+    <journal>
+      <plain>
+        <li>I slept through the whole night and woke up rested.</li>
+        <li>I went to bed at the usual time and fell asleep before I could start worrying.</li>
+      </plain>
+      <warm><li>It's quiet here at night now, and knowing the others are safe helps me sleep.</li></warm>
+      <blunt><li>I sleep now. All night.</li></blunt>
+      <cheerful><li>A full night's sleep. I'd forgotten how good that feels.</li></cheerful>
+      <gloomy><li>I still wake up sometimes. I fall asleep again now.</li></gloomy>
+      <cold><li>A regular bedtime fixed most of it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    25. Mood swings and impulsiveness settle (Vanilla Anomaly Expanded - Insanity's mood swings, VAEI_MoodSwings, and
+    impulsive, VAEI_Unstable): 120 days without a breakdown and a long peace, or with Therapy (Continued) four sessions in
+    90 days in its place (two rules each).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VAEI_MoodSwingsSettle</defName>
+    <label>mood swings settling after a long calm and a long peace</label>
+    <trait>VAEI_MoodSwings</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanomalyeinsanity</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>120</calmDays>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} no longer has mood swings.</news>
+    <meaning>Four months without a breakdown, during a long peace, have steadied {PAWN_nameDef}. {PAWN_nameDef}'s mood no longer jumps up and down from one day to the next.</meaning>
+    <journal>
+      <plain>
+        <li>I felt the same in the evening as I did in the morning. That hasn't happened in a long time.</li>
+        <li>A bad thing happened today and I stayed level about it.</li>
+      </plain>
+      <warm><li>The others have had a steadier version of me lately. I want to keep it that way.</li></warm>
+      <blunt><li>My moods are steady now.</li></blunt>
+      <cheerful><li>A good week, and no crash at the end of it.</li></cheerful>
+      <gloomy><li>I still have low days. They come and go slowly now, like everyone else's.</li></gloomy>
+      <cold><li>My moods have become predictable. That makes planning easier.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VAEI_MoodSwingsTherapy</defName>
+    <label>mood swings settling with talking it through</label>
+    <trait>VAEI_MoodSwings</trait>
+    <change>Lose</change>
+    <mods><li>orion.therapy</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>120</calmDays>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} no longer has mood swings.</news>
+    <meaning>Four months without a breakdown and regular sessions with a therapist have steadied {PAWN_nameDef}. {PAWN_nameDef}'s mood no longer jumps up and down from one day to the next.</meaning>
+    <journal>
+      <plain>
+        <li>The therapist helped me notice when my mood starts to turn. I can slow it down now.</li>
+        <li>I felt the same in the evening as I did in the morning. That hasn't happened in a long time.</li>
+      </plain>
+      <warm><li>Talking it over every week has made me easier to live with.</li></warm>
+      <blunt><li>The sessions worked. My moods are steady.</li></blunt>
+      <cheerful><li>A good week, and no crash at the end of it.</li></cheerful>
+      <gloomy><li>I still have low days. They come and go slowly now, like everyone else's.</li></gloomy>
+      <cold><li>Tracking my moods with the therapist made them easier to manage.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VAEI_ImpulsiveSettles</defName>
+    <label>less impulsive after a long calm and a long peace</label>
+    <trait>VAEI_Unstable</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanomalyeinsanity</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>120</calmDays>
+    <marks>
+      <li><any>LongPeace</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer impulsive.</news>
+    <meaning>Four months without a breakdown, during a long peace, have steadied {PAWN_nameDef}. {PAWN_nameDef} thinks before acting now.</meaning>
+    <journal>
+      <plain>
+        <li>I wanted to do something stupid today. I waited, and the urge passed.</li>
+        <li>I thought it over before I answered, for once.</li>
+      </plain>
+      <warm><li>The others have had to put up with my rash moments for long enough.</li></warm>
+      <blunt><li>I think first now.</li></blunt>
+      <cheerful><li>A whole season without doing anything I regretted.</li></cheerful>
+      <gloomy><li>The urges still come. I let them pass now.</li></gloomy>
+      <cold><li>Acting without thinking caused me too many problems. I've stopped doing it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VAEI_ImpulsiveTherapy</defName>
+    <label>less impulsive with talking it through</label>
+    <trait>VAEI_Unstable</trait>
+    <change>Lose</change>
+    <mods><li>orion.therapy</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <calmDays>120</calmDays>
+    <tallies>
+      <li>
+        <key>Therapy</key>
+        <thoughts>TherapyRelieved</thoughts>
+        <count>4</count>
+        <withinDays>90</withinDays>
+        <label>talked it through with a therapist</label>
+      </li>
+    </tallies>
+    <gapDays>0</gapDays>
+    <chance>0.04</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer impulsive.</news>
+    <meaning>Four months without a breakdown and regular sessions with a therapist have steadied {PAWN_nameDef}. {PAWN_nameDef} thinks before acting now.</meaning>
+    <journal>
+      <plain>
+        <li>The therapist taught me to count to ten before I do anything. It works.</li>
+        <li>I thought it over before I answered, for once.</li>
+      </plain>
+      <warm><li>Talking it over every week has made me easier to live with.</li></warm>
+      <blunt><li>I think first now.</li></blunt>
+      <cheerful><li>A whole season without doing anything I regretted.</li></cheerful>
+      <gloomy><li>The urges still come. I let them pass now.</li></gloomy>
+      <cold><li>Talking through my decisions made me slower to act, and better at it.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 

@@ -115,6 +115,8 @@ namespace ColonyCouncil
         public static void Breakdown(Pawn p, MentalStateDef state)
         {
             if (ownBreaks == 0) PersonaMarks.Notify_Breakdown(p, state);
+            // A food binge counts against a gourmand's way out, whatever set it off (Persona/TraitChanges.cs).
+            TraitChanges.Notify_MentalState(p, state);
             if (!On || ownBreaks > 0 || p == null || state == null || !p.IsColonist || !People.HasInnerLife(p)) return;
             var comp = CouncilGameComponent.Instance;
             foreach (var f in FriendsOf(p, 40).Take(3))

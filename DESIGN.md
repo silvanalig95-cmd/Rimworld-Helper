@@ -1331,9 +1331,10 @@ The game's traits can grow, appear or fade at the end of a stretch of life the p
 `TraitChangeMath.cs`). Each rule is a `TraitChangeDef`: a trait, gain, loss or a step of one degree (through none, so a
 nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
 stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions (and
-marks counted as they come, or a stretch with none), the game's records, a share of time from record snapshots every
-ten days, calm days, skills, the faith they hold; guards for DLC, mods and tech. 71 rules (20 November 2026): 31 give a
-trait, 18 take one away, 22 move a trait one degree; 30 of them are ways out of a bad trait (`wayOutOf`, below).
+marks counted as they come, breakdowns, or a stretch with none), the game's records, a share of time from record
+snapshots every ten days, calm days, skills, the faith they hold, a friend, an animal bonded to them; guards for DLC, mods
+and tech. 100 rules (20 November 2026): 31 give a trait, 43 take one away, 26 move a trait one degree; 59 of them are
+ways out of a bad trait (`wayOutOf`, below).
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
   colonist rolls its chance (3 to 15% a day) and one of those that come up happens; a way out of a bad trait doesn't
@@ -1493,6 +1494,78 @@ or gives a good one.
   before the next comes" is a tally with `marks`; a faith is `notPrecepts`; a sum of work is `A+B` in `practice`; "at most"
   hours is `practice` with `<=`. Not built yet: a friendship condition (8), a mark for the nurse (28), a fight mark
   counted only while drunk (35, a tally like `whileHungry`), a year bonded with an animal of a kind (30).
+
+### More traits that come and go, the other ways out (the player's go, 20 November 2026; not released yet)
+
+The player, 20 November 2026: "go ahead with all the traits". This build is the remaining ways out of
+`docs/traits-proposals.md`: 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25, each marked there. 29 new rules, every one a way out
+of a bad trait (`wayOutOf`, no gap since the trait came), so 100 rules in all and 59 ways out. Harm: none of it gives a
+trait; each rule takes a bad one away or steps it toward none. The new traits (28 to 36) are the next build.
+
+- **New parts.** A friend on the Bonds page (`friend`: an announced friendship with someone living,
+  `TraitChanges.Friend`); an animal bonded to them (`bondedAnimal`, alive); only a trait Rimfolk didn't give (`notGiven`,
+  the slower twin of a rule with `onlyGiven`; `TraitChangeMath.GivenAllows`); a tally of breakdowns from their mood
+  (`mentalStates`, counted when one starts: one line in `WorldReactions.Breakdown`, `TraitChanges.Notify_MentalState`);
+  a zero count that starts only once another tally of the rule has counted one (`noneAfter`,
+  `TraitChangeMath.NoneDaysAfter`: "went hungry, then 60 days without a food binge"). Every zero count now starts no
+  earlier than the day they joined the colony (`NoneDays(..., known)`, from the game's record of time as a colonist), so
+  someone who came last week hasn't gone 240 days without a fight; a zero count of marks also reads the marks still on
+  their page, so a mark from before this build counts while it is there. Each new part has its line on the character
+  page with its plain "still missing" words, its check in `Lacks` and its line in the letter. "At most" hours (24) is a
+  practice with `<=`, which the rule frame already read.
+- **3, psychopath Rimfolk gave fades** (`Rimfolk_TC_PsychopathFades`, `onlyGiven`): 180 days without an execution or an
+  organ taken (a zero count on the gain's own `Cruelty` key), three marks of care since it came (carried someone to
+  safety, saw a student through, forgiven, a kindness remembered), warmth moved +15, 2% a day, once in a colony's life
+  (`onceKey`; the psychopath itself comes once).
+- **7, workaholic eases** (Vanilla Traits Expanded): an eighth of their time at recreation over 60 days and a long
+  peace, 6%.
+- **8, recluse opens up** (Biotech): a friend on the Bonds page, two of a kindness remembered, carried to safety, nursed
+  back or forgiven, trust moved -5 or more, 6%.
+- **9, slothful to lazy** (`Rimfolk_TC_SlothfulStirs`): the hard-work rule's shape from slothful, with the proposal's
+  numbers: less than a twelfth of their time at recreation over 60 days (8.3%), a masterwork, a skill mastered or a
+  student taught in the last 120 days, 6%. Its own rule rather than slothful added to the hard-work rule, whose 4% of
+  recreation, pride and 120-day gap the proposal doesn't ask; lazy to none is still the hard-work rule.
+- **11, gourmand eases**: went hungry (the mark, counted as it comes), then 60 days without a food binge (`noneAfter`),
+  pride moved -3, 5%.
+- **12, bloodlust they came with fades** (`notGiven`, the slower twin of 2): 240 days without a fight mark (the four 2
+  waits out, a zero count of the marks as they come and on their page), two long peaces, a student taught, a kindness or
+  being nursed back, warmth moved +10, 2%.
+- **13, very neurotic to neurotic**: 90 days without a breakdown, a long peace, nerve moved +5, 6%.
+- **15, anxious calms** (Vanilla Traits Expanded): 90 calm days and held the line once, or two long peaces (two rules),
+  or with Therapy (Continued) four sessions in 90 days in place of either (14's twin), nerve moved +8, 8%.
+- **17, squeamish hardens** (Vanilla Traits Expanded): 40 recent hours as a doctor and 30 times tending others (the
+  game's `TimesTendedOther`), 8%.
+- **18, kleptomaniac reformed** (Vanilla Traits Expanded): forgiven, or given a seat (two rules), 120 calm days, trust
+  moved +5, 4%.
+- **19, slob tidies up**: 40 recent hours cleaning, or the habit "can't stand a mess" held 60 days and lived on 40 (two
+  rules each, 10%): Vanilla Traits Expanded's slob goes; Dubs Bad Hygiene's `Hygienic` steps up one degree, slob to
+  unhygienic and unhygienic to none (read as degrees -2 and -1). The habit stays, so tidy or neat can still come of it.
+- **20, animal hater softens** (Vanilla Traits Expanded): an animal bonded to them, three animals tamed (the game's
+  `AnimalsTamed`), or the habit "names every animal" (three rules, 6%; the habit stays).
+- **21, submissive stands up** (Vanilla Traits Expanded): given a seat, or held the line twice (two rules), pride moved
+  +8, 8%.
+- **22, snob humbled** (Vanilla Traits Expanded): humbled by an oath or went hungry, and carried to safety or nursed
+  back, pride moved -6, 6% (one rule: each "or" is a choice of marks).
+- **23, couch potato gets up** (Vanilla Traits Expanded): as the hard-work rule, 4% or less of their time at recreation
+  over 60 days and a masterwork, a skill mastered or a student taught in 120 days, 8%.
+- **24, insomniac sleeps again** (Vanilla Traits Expanded): 60 calm days, a long peace and at most 10 recent hours up
+  and busy in the small hours (`night<=10`; the practice log holds about three weeks, so about half an hour a night),
+  6%.
+- **25, mood swings and impulsive settle** (Vanilla Anomaly Expanded - Insanity's `VAEI_MoodSwings` and `VAEI_Unstable`):
+  120 calm days and a long peace, or the therapy of 14 in its place (two rules each), 4%.
+- **Told.** As every change: a letter (good news) with what led to it and dates (now also the friend, the animal and a
+  stretch without a binge since going hungry), a journal line in six voices, the chronicle, "Traits gained and lost";
+  each way out shows under "Where life is taking them" from the start (a habit's once they have the habit). The words
+  are plain (CLAUDE.md, 14 November 2026).
+- **Code**: `Persona/TraitChangeMath.cs` (`NoneDays(known)`, `NoneDaysAfter`, `GivenAllows`),
+  `Persona/TraitChangeDefs.cs` (`friend`, `bondedAnimal`, `notGiven`; a tally's `mentalStates` and `noneAfter`; their
+  config errors), `Persona/TraitChanges.cs` (`Notify_MentalState`, the gate's `notGiven`, `NoneDays` with the joining day
+  and the page's marks, `Friend`, `BondedAnimal`, their parts and letter lines), `Social/WorldReactions.cs` (one line),
+  `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml` (the 29 rules), `Languages/English/Keyed/Rimfolk_TraitChanges.xml`.
+  Nothing new is saved: the tallies hold the new counts (the save model's tallies estimate is up from 5 to 8 kinds).
+  Tests: `TraitChangeTests` (the joining day, the zero count after something, who gave it, each of the seventeen's
+  conditions against the proposal, 59 ways out, none of the batch a gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad
+  Hygiene's `Hygienic` and the insanity mod's two traits.
 
 ### The animals' natures (the player's picks, 7 November 2026)
 

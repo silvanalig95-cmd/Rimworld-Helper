@@ -82,8 +82,9 @@ most sense." So, in this order, three builds at a time:
     Storage, Deep Storage Plus (Continued) and RimFridge's shelves.
 - **The player, 20 November 2026 (second message):**
   - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
-    being built; the other 26 follow in two builds once it is merged (the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25;
-    the new traits 28 to 36), reusing its new parts.
+    released (0.275.0); the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25 are built, not released (the entry "More
+    traits that come and go, the other ways out" above the newest release line); the new traits 28 to 36 follow in one
+    more build, reusing their new parts.
   - "I don't remember making letters, wishes, ambitions, life goals, personal stories, council questions, gods cards and
     messages as plain text? do you still have the previous backups available in case i want to restore?" Answered: the
     overview of 19 November listed them under item 4 ("Plain-words text pass, remaining parts: letters, wishes and
@@ -192,7 +193,8 @@ repo.
   not released): more traits that come and go.** The to-do of 17 November 2026 with the player's words, the proposal list
   (`docs/traits-proposals.md`) and what was built are now one entry above the newest release line ("More traits that
   come and go, the first batch"). The player's "go ahead with all the traits" (20 November 2026) covers the other 26
-  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25, then the new traits 28 to 36.
+  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25 (built, not released: "More traits that
+  come and go, the other ways out"), then the new traits 28 to 36.
 - **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
@@ -555,6 +557,70 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **More traits that come and go, the
+  other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
+  out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a
+  psychopath Rimfolk gave feels for others again after 180 days without an execution or an organ taken, three marks of
+  care and warmth up 15 (2%, once); 7, a workaholic learns to rest (an eighth of their time at recreation for 60 days and
+  a long peace); 8, a recluse with a friend on the Bonds page opens up (Biotech); 9, slothful steps up to lazy after two
+  months with under a twelfth of their time at recreation and fine work; 11, a gourmand who went hungry and then went 60
+  days without a food binge eats like anyone else; 12, a bloodlust the colonist came with fades after 240 days without a
+  fight mark, two long peaces and something good (2%); 13, very neurotic eases to neurotic after 90 calm days and a long
+  peace; 15, the anxious calm down (90 calm days and held the line, two long peaces, or four therapy sessions); 17, the
+  squeamish harden after 40 hours as a doctor and 30 times tending others; 18, a kleptomaniac forgiven or given a seat
+  stops taking; 19, a slob tidies up after 40 hours cleaning or the tidy habit (Vanilla Traits Expanded's slob, and Dubs
+  Bad Hygiene's slob and unhygienic one step at a time); 20, an animal hater softens after a bond, three animals tamed or
+  the naming habit; 21, the submissive stand up after a seat or holding the line twice; 22, a snob is humbled by hard
+  times and help; 23, a couch potato gets up after the hard-work rule's two months; 24, an insomniac sleeps again after 60
+  calm days, a long peace and few hours up at night; 25, the insanity mod's mood swings and impulsiveness settle after 120
+  calm days and a long peace or therapy. 29 new rules (100 in all), all ways out (59). No bad trait is added. DESIGN.md
+  "More traits that come and go, the other ways out" has every rule; the Almanac's page *traits that change*, "Ways out of
+  a bad trait", has a row for each (keywords unchanged); README "Traits that change".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `NoneDays(..., known)`, `NoneDaysAfter`, `GivenAllows`),
+    `Persona/TraitChangeDefs.cs` (`friend`, `bondedAnimal`, `notGiven`; a tally's `mentalStates` and `noneAfter`; config
+    errors for each), `Persona/TraitChanges.cs` (`Notify_MentalState`, the gate's `notGiven`, `NoneDays` from the day they
+    joined and with the marks on their page, `Friend`, `BondedAnimal`, their parts with the missing words and their
+    letter lines), `Social/WorldReactions.cs` (one line in `Breakdown`), `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml`
+    (the 29 rules), the comment in `_Extreme.xml`, Keyed `Rimfolk_TraitChanges.xml` (a friend, a bonded animal). Nothing new
+    is saved (the tallies hold the new counts: fight marks, hungry seasons, food binges; the save model's tallies estimate
+    is up from 5 to 8 kinds, `once` from 2 to 3). Tests: `TraitChangeTests` (the joining day, a zero count that starts after
+    something, who gave it, each of the seventeen's conditions against the proposal, 59 ways out, none of the batch a
+    gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad Hygiene's `Hygienic` and the insanity mod's `VAEI_MoodSwings` and
+    `VAEI_Unstable`.
+  - Decided here (open in the proposals): 9 is its own rule with the proposal's numbers (at most 8.3% of their time at
+    recreation, a masterwork, a skill mastered or a student taught in 120 days, 6%), not slothful added to the hard-work
+    rule (4%, pride +5, a 120-day gap); 23's "little recreation" is the hard-work rule's 4%; 24's "few hours up at night"
+    is at most 10 recent hours in the practice log (about three weeks, so about half an hour a night); 19's "lived with
+    for 60 days" is the habit held 60 days and lived on 40 (the frame's two days in three), 20's habit the frame's 90 and
+    60; a way out that comes of a habit keeps the habit, so tidy, neat or animal lover can still grow from it; 3's "once
+    per person" is once in a colony's life (`onceKey`), as the psychopath itself; 12 is only for a bloodlust Rimfolk
+    didn't give (`notGiven`), so the quicker 2 and the slower 12 never show together; 11's hungry season is the mark for
+    going hungry, counted as it comes (a hungry season before this build doesn't start the 60 days), and the 60 days
+    start at it; every zero count now starts no earlier than the day the colonist joined (the game's record of time as a
+    colonist), and a zero count of marks also reads the marks still on the page; "or" between marks of one count is one
+    rule (22), between different things two (15, 18, 19, 20, 21, 25); "X up N" is X moved N or more, "trust back near" -5
+    or more, as in the first batch. Mods' files that aren't here: Dubs Bad Hygiene's `Hygienic` degrees are read as slob
+    -2 and unhygienic -1 (the catalogue has only the labels, germaphobe, hygienic, unhygienic, slob; numbered otherwise the
+    two rules do nothing); Vanilla Traits Expanded's squeamish is assumed able to doctor, and its animal hater able to
+    handle animals and bond (if not, those ways out don't come); the insanity mod's two traits are read at degree 0, as a
+    trait with one degree is; the therapy rules assume the patient gets `TherapyRelieved`, as in the first batch.
+  - Harm: none. No rule here gives a trait.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, "Where life is taking
+    them" with the friend and the bonded animal and the "Still missing" lines); the food binge counted when it starts;
+    Dubs Bad Hygiene's degrees; Vanilla Traits Expanded's and the insanity mod's traits leaving as the game's own do.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist, a way out
+    marked): 1. A gourmand, slothful, very neurotic, recluse (Biotech) or Vanilla Traits Expanded slob, anxious,
+    squeamish, kleptomaniac, animal hater, submissive, snob, couch potato, insomniac or workaholic colonist: the character
+    page, "Where life is taking them", shows each way out at once with "Still missing: ...". 2. A recluse: once a friendship
+    shows on the Bonds page, "A friend on the Bonds page: (name)" turns green. 3. An animal hater: tame an animal that
+    bonds to them; "An animal bonded to them: (name)" turns green. 4. A gourmand: after malnutrition marks them ("went
+    hungry"), the page counts days without a food binge from then. 5. "Traits that change: give a trait as Rimfolk
+    would..." with `Rimfolk_TC_PsychopathExecutioner` on a colonist, then the page shows the psychopath's way out; a
+    bloodlust given the same way shows only the quicker way out (2), one they came with only the slower (12). 6. "a way out
+    of a bad trait, now..." makes any of them happen with its letter.
+  - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Dubs Bad Hygiene
+    (836308268, up to 1.7), Vanilla Anomaly Expanded - Insanity (3342412435, 1.6 and 1.7) and Therapy (Continued)
+    (3509488682, 1.6 and 1.7), all active in their list and kept up, give the traits and the sessions.
 - 0.275.1, **A colonist a world event sends to
   a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the
   to-do found 19 November 2026 in the plain-words pass on the region map: answers of world events said a colonist goes

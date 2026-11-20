@@ -278,3 +278,10 @@ VFEC_Toga
 VFEC_Apparel_CenturionHelmet
 # Therapy (Continued) 1.6 (orion.therapy): the memory a patient gets after a session (docs/player-mods, defs.tsv.gz, active)
 TherapyRelieved
+# Traits that change, the second batch of ways out (Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml), from docs/player-mods
+# traits.tsv (active):
+# Dubs Bad Hygiene 1.6 (dubwise.dubsbadhygiene): the hygiene trait, germaphobe, hygienic, unhygienic and slob
+Hygienic
+# Vanilla Anomaly Expanded - Insanity 1.6 (vanillaexpanded.vanomalyeinsanity): mood swings, and impulsive
+VAEI_MoodSwings
+VAEI_Unstable
