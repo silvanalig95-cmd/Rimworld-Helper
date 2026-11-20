@@ -6,7 +6,9 @@ trades come and go sounds great". Pick by number (or strike and change any of it
 together. The player's go of 20 November 2026, "go ahead with the next tasks, including the traits": the lead's first
 batch (below) is built, not released yet, each item marked **Built**; the same day, "go ahead with all the traits": the
 other 26 follow in two more builds (the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25; the new traits 28 to 36). DESIGN.md,
-"More traits that come and go, the first batch", has every rule as built and the parts the later builds reuse.
+"More traits that come and go, the first batch", has every rule as built and the parts the later builds reuse; the
+second batch (the ways out, built the same day, not released yet, each marked **Built**) is in "More traits that come
+and go, the other ways out".
 
 ## Today
 
@@ -50,7 +52,7 @@ new part.
    fights, so a long quiet lets it go, as vengeful already does. **Built** (20 November 2026, not released yet). "Warmth back near" read as warmth moved -5 or more.
 3. **Psychopath Rimfolk gave fades**: 180 days with no execution or organ taken (new: a deed count that must be zero),
    three marks of care (SavedSomeone, TaughtWell, ForgivenBy, Kindness), warmth up 15. Rare (2%), once per person. The
-   one trait Rimfolk gives from cruelty gets a slow way back through a long stretch of decent life.
+   one trait Rimfolk gives from cruelty gets a slow way back through a long stretch of decent life. **Built** (20 November 2026, the second batch, not released yet). The zero count is the gain's own count of executions and organs taken; "once per person" is once in a colony's life, as the psychopath itself.
 4. **Cannibal Rimfolk gave fades**: from famine, after 180 days without eating human flesh (new: a zero count) and no
    hungry season in 120 days, uncommon (6%); from a faith, once they take up a faith that does not call for it
    (Converted), uncommon (8%). What hunger or a faith brought goes when the hunger or the faith does. **Built** (20 November 2026, not released yet). Each way for the cannibal its own rule gave; the zero count is a tally with `noneDays`, from the last meal or from when it came.
@@ -62,25 +64,25 @@ new part.
    kept ones win them back. **Built** (20 November 2026, not released yet). Two rules, as jealous.
 7. **Workaholic eases** (Vanilla Traits Expanded; neither good nor bad, but it costs them their rest): 60 days with an
    eighth of their time at recreation and a long peace. Uncommon (6%). It came from a season without rest; a season of
-   rest undoes it.
+   rest undoes it. **Built** (20 November 2026, the second batch, not released yet).
 8. **Recluse opens up** (Biotech; neither good nor bad, but they want few people around): a friend on the Bonds page
    (new: a friendship condition) and two of Kindness, SavedBy, NursedBack, ForgivenBy, trust back near where it was.
-   Uncommon (6%). It came from heartbreak and betrayal; a friend and some kindness bring them back.
+   Uncommon (6%). It came from heartbreak and betrayal; a friend and some kindness bring them back. **Built** (20 November 2026, the second batch, not released yet). A friend is an announced friendship on the Bonds page with someone living; "trust back near" is trust moved -5 or more.
 
 ## B. Ways out of bad traits colonists often arrive with (the game's)
 
 9. **Slothful to lazy** (the hard-work rule from slothful too): 60 days with less than a twelfth of their time at
    recreation and one of Masterwork, Mastered, TaughtWell. Uncommon (6%). The step after that is the existing lazy to
-   none.
+   none. **Built** (20 November 2026, the second batch, not released yet). Its own rule with these numbers (8.3% of their time at most, the mark within 120 days as the hard-work rule asks), rather than slothful added to the hard-work rule (4%, pride, a 120-day gap).
 10. **Pyromaniac fades**: 120 calm days, 60 recent hours at the stove or the forge (Cooking or Smithing), and a
     masterwork or a mastered skill. Rare (3%). The urge put to use, with no fire-starting break in a long while. **Built** (20 November 2026, not released yet). The hours at the stove and the forge are added together.
 11. **Gourmand eases**: a hungry season shared with the colony (HungrySeason), then 60 days without a food binge, pride
     down 3. Uncommon (5%). Having gone hungry with everyone, they learn to make do. A good outcome of a bad thing that
-    happened anyway.
+    happened anyway. **Built** (20 November 2026, the second batch, not released yet). The hungry season is the mark for going hungry (malnourished), counted as it comes; the 60 days without a food binge start at it.
 12. **Bloodlust they came with fades** (the slower twin of 2): 240 days with no fight mark, two long peaces, and one of
-    TaughtWell, Kindness, NursedBack, warmth up 10. Rare (2%).
+    TaughtWell, Kindness, NursedBack, warmth up 10. Rare (2%). **Built** (20 November 2026, the second batch, not released yet). Only for a bloodlust Rimfolk didn't give (2 is for the one it gave); the 240 days are counted from the fight marks as they come and on their page, never from before they joined.
 13. **Very neurotic to neurotic**: 90 calm days, a long peace, nerve up 5. Uncommon (6%). The worst of the worrying eases
-    in a safe stretch; neurotic's quicker work stays.
+    in a safe stretch; neurotic's quicker work stays. **Built** (20 November 2026, the second batch, not released yet).
 14. **Talking it through** (Therapy (Continued), `orion.therapy`, active in the player's list): four therapy sessions
     in 90 days (its `TherapyRelieved` memory, read by name) count as a good mark toward the ways up for nerves (volatile
     to nervous, nervous to none), mood (depressive to pessimist, pessimist to none), anxious (15) and mood swings (25).
@@ -89,27 +91,27 @@ new part.
 ## C. Ways out of bad traits from the player's mods
 
 15. **Anxious calms** (Vanilla Traits Expanded): 90 calm days and held the line once or two long peaces, nerve up 8.
-    Uncommon (8%).
+    Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). Three rules: held the line, two long peaces, or (14) four therapy sessions in 90 days.
 16. **Lush and stoner dry out** (Vanilla Traits Expanded): an addiction overcome in the last 120 days
     (AddictionOvercome), as the existing teetotal rule. Common (15%). **Built** (20 November 2026, not released yet).
 17. **Squeamish hardens** (Vanilla Traits Expanded): 40 recent hours as a doctor and 30 times tending others (the game's
-    record). Uncommon (8%).
+    record). Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). The nursing mark of 28 joins it with the new traits' build.
 18. **Kleptomaniac reformed** (Vanilla Traits Expanded): forgiven (ForgivenBy) or given a seat (Elected), 120 calm days,
-    trust up 5. Rare (4%). Trusted, they stop taking.
+    trust up 5. Rare (4%). Trusted, they stop taking. **Built** (20 November 2026, the second batch, not released yet). Two rules.
 19. **Slob tidies up** (Vanilla Traits Expanded's slob; Dubs Bad Hygiene's slob and unhygienic, one step up): 40 recent
     hours cleaning, or the tidy habit lived with for 60 days. Common (10%). The existing tidy trait can then come from
-    the habit.
+    the habit. **Built** (20 November 2026, the second batch, not released yet). Four rules (each mod's, cleaning or the habit); the habit held 60 days and lived on 40, and kept; Dubs Bad Hygiene's degrees read as slob -2 and unhygienic -1.
 20. **Animal hater softens** (Vanilla Traits Expanded): an animal bonded to them, three animals tamed (the game's
-    record), or the habit of naming the animals. Uncommon (6%).
-21. **Submissive stands up** (Vanilla Traits Expanded): given a seat or held the line twice, pride up 8. Uncommon (8%).
+    record), or the habit of naming the animals. Uncommon (6%). **Built** (20 November 2026, the second batch, not released yet). Three rules; the habit as the rule frame holds one (90 days, lived on 60), and kept.
+21. **Submissive stands up** (Vanilla Traits Expanded): given a seat or held the line twice, pride up 8. Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). Two rules.
 22. **Snob humbled** (Vanilla Traits Expanded): humbled by the colony's oath (Humbled) or a hungry season, and carried
-    to safety or nursed back by someone, pride down 6. Uncommon (6%).
+    to safety or nursed back by someone, pride down 6. Uncommon (6%). **Built** (20 November 2026, the second batch, not released yet). One rule: each "or" is a choice of marks.
 23. **Couch potato gets up** (Vanilla Traits Expanded): as the hard-work rule, 60 days with little recreation and a
-    masterwork, a mastered skill or a student taught. Uncommon (8%).
+    masterwork, a mastered skill or a student taught. Uncommon (8%). **Built** (20 November 2026, the second batch, not released yet). "Little" is the hard-work rule's 4%, and the mark within 120 days.
 24. **Insomniac sleeps again** (Vanilla Traits Expanded): 60 calm days, a long peace, and few recent hours up at night
-    (new: an "at most" on recent hours). Uncommon (6%).
+    (new: an "at most" on recent hours). Uncommon (6%). **Built** (20 November 2026, the second batch, not released yet). "Few" is at most 10 recent hours up and busy between eleven and five (about half an hour a night).
 25. **Mood swings and impulsiveness settle** (Vanilla Anomaly Expanded - Insanity's mood swings and impulsive): 120 calm
-    days and a long peace, or the therapy of 14. Rare (4%).
+    days and a long peace, or the therapy of 14. Rare (4%). **Built** (20 November 2026, the second batch, not released yet). Two rules each.
 
 ## D. New good traits from good things
 

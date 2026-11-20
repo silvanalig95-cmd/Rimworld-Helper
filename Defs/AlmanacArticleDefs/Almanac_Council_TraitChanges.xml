@@ -33,7 +33,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
       </li>
       <li>
         <heading>Where life is taking them</heading>
-        <text>The character page shows, under "Where life is taking them", the changes a colonist is heading toward, each with how many of the things that lead there have happened ("2 of 4"). Hover one for the list: what has happened is in green, what hasn't yet in grey, with how far along each is (marks, with the kinds that count, deeds, days without a breakdown, hours at a kind of work, a habit and how long it's been lived, a vow of vengeance). Only changes nothing else stands in the way of are shown. Every way out of a bad trait the colonist has comes first and is shown from the start, with a line under it of what is still missing, in a few words each ("Still missing: one of: given a seat; 120 days without a mark of these: lost the vote, voted out of a seat (30 so far)"), so you can see what would help. Up to three other changes follow, the furthest along first, once a third of what leads there has happened. When all of it has, the change can come on any day.</text>
+        <text>The character page shows, under "Where life is taking them", the changes a colonist is heading toward, each with how many of the things that lead there have happened ("2 of 4"). Hover one for the list: what has happened is in green, what hasn't yet in grey, with how far along each is (marks, with the kinds that count, deeds, days without a breakdown, hours at a kind of work, a habit and how long it's been lived, a vow of vengeance, a friend, an animal bonded to them). Only changes nothing else stands in the way of are shown. Every way out of a bad trait the colonist has comes first and is shown from the start, with a line under it of what is still missing, in a few words each ("Still missing: one of: given a seat; 120 days without a mark of these: lost the vote, voted out of a seat (30 so far)"), so you can see what would help. Up to three other changes follow, the furthest along first, once a third of what leads there has happened. When all of it has, the change can come on any day.</text>
       </li>
       <li>
         <heading>From habits</heading>
@@ -60,7 +60,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
       </li>
       <li>
         <heading>Ways out of a bad trait</heading>
-        <text>Thirty rules lead out of a bad trait: they take it away, or step it toward none (nervous to none, pessimist to none, lazy to none). A way out isn't held back by the colony's 10 days, so changes that give a trait can't crowd it out; the colonist's own 60 days and the rule's gap still count, and after a way out the colony waits its 10 days for anything else. On the character page each way out shows from the start under "Where life is taking them", with what is still missing. Some ways out are for a trait Rimfolk gave only; a trait the colonist came with by those is theirs to keep.</text>
+        <text>Fifty-nine rules lead out of a bad trait: they take it away, or step it toward none (nervous to none, pessimist to none, lazy to none, slothful to lazy). A way out isn't held back by the colony's 10 days, so changes that give a trait can't crowd it out; the colonist's own 60 days and the rule's gap still count, and after a way out the colony waits its 10 days for anything else. On the character page each way out shows from the start under "Where life is taking them", with what is still missing. Some ways out are for a trait Rimfolk gave only, and the slower way out of bloodlust is for one the colonist came with. A way out that comes of a habit leaves the habit as it is, so a good trait can still grow from it later. A stretch without something (a fight, a food binge) is never counted from before the colonist joined.</text>
         <table>
           <li>Trait | What it asks for | Chance a day</li>
           <li>Jealous | given a seat, or 2 promises kept to them; no vote or seat lost in the last 120 days; trust moved 0 or more from their nature | 8%</li>
@@ -72,6 +72,23 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Rebel (Vanilla Traits Expanded) | 2 promises kept, or given a seat; no broken promise, lost seat or lost vote in the last 120 days; trust moved 0 or more | 8%</li>
           <li>Lush, stoner (Vanilla Traits Expanded) | an addiction overcome in the last 120 days, pride moved +3 | 15%</li>
           <li>Nerves, mood (Therapy (Continued)) | four sessions with a therapist in 90 days count in place of one mark: volatile to nervous after 120 calm days; nervous to none with 2 marks of danger held; depressive to pessimist with 1 good mark; pessimist to none with 2 good marks; the rest as the way up it stands beside | 10% to 15%</li>
+          <li>Psychopath (one Rimfolk gave) | 180 days without an execution or an organ taken by their own hand, 3 marks of care since it came (carried someone to safety, saw a student through, forgiven, a kindness remembered), warmth moved +15; once in a colony's life | 2%</li>
+          <li>Bloodlust (one they came with) | 240 days without a fight mark (held the line, hardened by the raids, went down and got up harder, swore vengeance), 2 long peaces, a student taught, a kindness remembered or being nursed back, warmth moved +10 | 2%</li>
+          <li>Gourmand | went hungry, then 60 days without a food binge; pride moved -3 | 5%</li>
+          <li>Slothful | to lazy: 8% or less of their time at recreation over the last 60 days, and a masterwork, a skill mastered or a student taught in the last 120 days | 6%</li>
+          <li>Very neurotic | to neurotic: 90 days without a breakdown, a long peace, nerve moved +5 | 6%</li>
+          <li>Recluse (Biotech) | a friend on the Bonds page, and 2 of a kindness remembered, carried to safety, nursed back or forgiven; trust moved -5 or more | 6%</li>
+          <li>Workaholic (Vanilla Traits Expanded) | an eighth or more of their time at recreation over the last 60 days, and a long peace | 6%</li>
+          <li>Anxious (Vanilla Traits Expanded) | 90 days without a breakdown, and held the line once or 2 long peaces (with Therapy (Continued), 4 sessions with a therapist in 90 days in their place); nerve moved +8 | 8%</li>
+          <li>Squeamish (Vanilla Traits Expanded) | about 40 hours lately as a doctor, and 30 times tending others (the game's record) | 8%</li>
+          <li>Kleptomaniac (Vanilla Traits Expanded) | forgiven, or given a seat; 120 days without a breakdown; trust moved +5 | 4%</li>
+          <li>Slob (Vanilla Traits Expanded); slob and unhygienic (Dubs Bad Hygiene, one step at a time) | about 40 hours lately cleaning, or the habit "can't stand a mess" held 60 days and lived on 40 | 10%</li>
+          <li>Animal hater (Vanilla Traits Expanded) | an animal bonded to them, 3 animals tamed (the game's record), or the habit "names every animal" held 90 days and lived on 60 | 6%</li>
+          <li>Submissive (Vanilla Traits Expanded) | given a seat, or held the line twice; pride moved +8 | 8%</li>
+          <li>Snob (Vanilla Traits Expanded) | humbled by an oath or went hungry, and carried to safety or nursed back; pride moved -6 | 6%</li>
+          <li>Couch potato (Vanilla Traits Expanded) | 4% or less of their time at recreation over the last 60 days, and a masterwork, a skill mastered or a student taught in the last 120 days | 8%</li>
+          <li>Insomniac (Vanilla Traits Expanded) | 60 days without a breakdown, a long peace, and at most about 10 hours lately up and busy in the small hours | 6%</li>
+          <li>Mood swings, impulsive (Vanilla Anomaly Expanded - Insanity) | 120 days without a breakdown and a long peace (with Therapy (Continued), 4 sessions with a therapist in 90 days in its place) | 4%</li>
         </table>
         <after>The older ways out are in the tables below: nervous, volatile, pessimist and depressive stepping up, lazy working harder, a chemical interest or fascination easing, abrasive, wimp, greedy, coward and craven fading, and vengeful's two.</after>
       </li>
@@ -125,7 +142,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
       </li>
       <li>
         <heading>The two extreme traits</heading>
-        <text>A psychopath and a cannibal come only from a history as extreme as the trait, each at most once in a colony's life. The letter is a negative one and names the deeds with their dates. A cannibal Rimfolk gave can go again once its reason has (see "Ways out of a bad trait"); a psychopath stays.</text>
+        <text>A psychopath and a cannibal come only from a history as extreme as the trait, each at most once in a colony's life. The letter is a negative one and names the deeds with their dates. A cannibal Rimfolk gave can go again once its reason has, and a psychopath Rimfolk gave can, rarely, after half a year without an execution or an organ taken and with care shown to others since (see "Ways out of a bad trait").</text>
         <table>
           <li>Trait | Change | What it asks for | Chance a day</li>
           <li>Psychopath | appears | 3 executions or organs taken by their own hand (the same victim counts once), and a betrayal, heartbreak or death among their marks; warmth moved -30 and trust -25, now warmth -60 and trust -50 or lower; never someone kind | 10%</li>
@@ -151,7 +168,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Neat (Vanilla Traits Expanded) | appears | the habit "can't stand a mess", held 90 days and lived on 60 | 10%</li>
           <li>Animal lover (Vanilla Traits Expanded) | appears | the habit "names every animal", held 90 days and lived on 60 | 10%</li>
         </table>
-        <after>A rule for a DLC's or a mod's trait does nothing without it. Vengeful makes a colonist unhappy for as long as any of their rivals is alive, so it never comes to someone who already has one. A vengeful colonist's way out shows on their character page under "Where life is taking them" from the day it came. One who came with the trait keeps it. The ways out of world weary, rebel, lush and stoner are in "Ways out of a bad trait".</after>
+        <after>A rule for a DLC's or a mod's trait does nothing without it. Vengeful makes a colonist unhappy for as long as any of their rivals is alive, so it never comes to someone who already has one. A vengeful colonist's way out shows on their character page under "Where life is taking them" from the day it came. One who came with the trait keeps it. The ways out of world weary, rebel, lush, stoner, workaholic, anxious, squeamish, kleptomaniac, slob, animal hater, submissive, snob, couch potato and insomniac, Dubs Bad Hygiene's slob and unhygienic, and Vanilla Anomaly Expanded - Insanity's mood swings and impulsive are in "Ways out of a bad trait".</after>
       </li>
     </sections>
     <keywords><li>trait</li><li>traits</li><li>trait change</li><li>steadfast</li><li>nervous</li><li>optimist</li><li>pessimist</li><li>kind</li><li>psychopath</li><li>cannibal</li><li>personality</li></keywords>

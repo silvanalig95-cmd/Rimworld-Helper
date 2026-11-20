@@ -41,8 +41,8 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Things the person did that the game tells only in passing (a memory, a deed in the game's history, a tale), or
-    /// marks they were given, counted on separate occasions and kept under <see cref="key"/> (rules that name the same key
+    /// Things the person did that the game tells only in passing (a memory, a deed in the game's history, a tale, a
+    /// breakdown), or marks they were given, counted on separate occasions and kept under <see cref="key"/> (rules that name the same key
     /// share the count). Kept 240 days whatever happens to the mark itself, so "two long peaces" can be counted although
     /// a long peace leaves the character page before the next one comes.
     /// </summary>
@@ -57,6 +57,8 @@ namespace ColonyCouncil
         public string tales;
         /// <summary>Marks they were given (defNames, families or stories, as a rule's marks name them), counted when they come.</summary>
         public string marks;
+        /// <summary>Breakdowns they had from their mood (MentalStateDef names: "Binging_Food"), counted when they start.</summary>
+        public string mentalStates;
         /// <summary>Only while they were starving or malnourished, or in a hungry season.</summary>
         public bool whileHungry;
         public int count = 1;
@@ -64,10 +66,16 @@ namespace ColonyCouncil
         public int withinDays;
         /// <summary>
         /// A zero count: none of them for this many days, counted from the newest one or from the trait's last change,
-        /// whichever is later (<see cref="TraitChangeMath.NoneDays"/>). With it, <see cref="count"/> and
+        /// whichever is later, and never from before they joined the colony (<see cref="TraitChangeMath.NoneDays"/>); a
+        /// zero count of marks also reads the marks still on their character page. With it, <see cref="count"/> and
         /// <see cref="withinDays"/> don't apply. At most <see cref="TraitChanges.TallyKeepDays"/>.
         /// </summary>
         public int noneDays;
+        /// <summary>
+        /// With <see cref="noneDays"/>: the zero count starts only once the rule's tally with this key has counted one
+        /// ("a hungry season, then 60 days without a food binge"; <see cref="TraitChangeMath.NoneDaysAfter"/>).
+        /// </summary>
+        public string noneAfter;
         /// <summary>What one of them is called in the letter ("ate human flesh while starving").</summary>
         [MustTranslate] public string label;
 
@@ -160,6 +168,12 @@ namespace ColonyCouncil
         /// the famine and what a faith brought with the faith. Empty: whichever rule gave it.
         /// </summary>
         public List<string> givenBy;
+        /// <summary>Only for a trait Rimfolk didn't give them (one they came with): the slower twin of a rule with <see cref="onlyGiven"/>.</summary>
+        public bool notGiven;
+        /// <summary>A friend on the Bonds page: a friendship announced between them and someone living.</summary>
+        public bool friend;
+        /// <summary>An animal bonded to them, alive.</summary>
+        public bool bondedAnimal;
         /// <summary>
         /// The degrees this rule leads out of (0 for a trait without degrees): it is a way out of a bad trait when the person
         /// has the trait at one of them (<see cref="TraitChangeMath.IsWayOut"/>). A way out isn't held back by the colony's
@@ -394,7 +408,8 @@ namespace ColonyCouncil
             if (journal == null || !journal.Any) yield return "no journal lines";
             if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
             bool evidence = (marks != null && marks.Count > 0) || (tallies != null && tallies.Count > 0) || (pace != null && pace.Count > 0) || calmDays > 0
-                            || !records.NullOrEmpty() || !habit.NullOrEmpty() || !practice.NullOrEmpty() || !vendetta.NullOrEmpty();
+                            || !records.NullOrEmpty() || !habit.NullOrEmpty() || !practice.NullOrEmpty() || !vendetta.NullOrEmpty() || friend || bondedAnimal;
+            if (notGiven && onlyGiven) yield return "notGiven and onlyGiven can't both hold";
             if (!vendetta.NullOrEmpty() && vendetta != VendettaUnpaid && vendetta != VendettaOver) yield return "vendetta must be unpaid or over, not " + vendetta;
             if (vendetta == VendettaUnpaid && vendettaDays < 1) yield return "an unpaid vendetta needs its days";
             if (onlyGiven && change != TraitChangeKind.Lose) yield return "onlyGiven is for a loss: it undoes what Rimfolk gave";
@@ -431,9 +446,12 @@ namespace ColonyCouncil
                 foreach (var t in tallies)
                 {
                     if (t == null || t.key.NullOrEmpty()) yield return "a tally without a key";
-                    else if (t.thoughts.NullOrEmpty() && t.events.NullOrEmpty() && t.tales.NullOrEmpty() && t.marks.NullOrEmpty()) yield return "tally " + t.key + " counts nothing";
+                    else if (t.thoughts.NullOrEmpty() && t.events.NullOrEmpty() && t.tales.NullOrEmpty() && t.marks.NullOrEmpty() && t.mentalStates.NullOrEmpty())
+                        yield return "tally " + t.key + " counts nothing";
                     else if (t.label.NullOrEmpty()) yield return "tally " + t.key + " has no label";
                     else if (t.noneDays < 0 || t.noneDays > TraitChanges.TallyKeepDays) yield return "tally " + t.key + ": noneDays from 1 to " + TraitChanges.TallyKeepDays;
+                    else if (!t.noneAfter.NullOrEmpty() && (!t.None || !tallies.Any(o => o != null && o != t && o.key == t.noneAfter && !o.None)))
+                        yield return "tally " + t.key + ": noneAfter needs noneDays and names another tally of this rule that counts (" + t.noneAfter + ")";
                 }
             if (pace != null)
                 foreach (var p in pace)

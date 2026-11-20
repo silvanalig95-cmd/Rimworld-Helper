@@ -4,7 +4,9 @@
   <!--
     Traits that change with what happens to a colonist (Source/ColonyCouncil/Persona/TraitChanges.cs); see
     Rimfolk_TraitChanges_Spectrum.xml for how a rule reads. This file: the two traits that only an extreme history can
-    give, each at most once in a colony's life (onceKey), and never undone by anything that happens later.
+    give, each at most once in a colony's life (onceKey). Each can go again only by its own ways out, for the one Rimfolk
+    gave (Rimfolk_TraitChanges_WaysOut.xml): a cannibal once the famine or the faith behind it is past, a psychopath,
+    rarely, after half a year without an execution or an organ taken and with care shown to others.
 
     Deeds are counted on separate occasions (tallies): a memory the colonist gained, a deed in the game's history with
     them as the one who did it, or a tale the game tells about them. The same victim, or the same half day, is one

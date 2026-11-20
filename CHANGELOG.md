@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every bad trait can fade
+
+*20 November 2026, version 0.276.1*
+
+- Seventeen more ways out of bad traits, so every bad trait Rimfolk gives and most bad traits colonists arrive with can now fade.
+- A psychopath Rimfolk made can, rarely, care for others again after half a year without an execution or an organ taken and with care shown to others; a bloodlust a colonist came with fades after most of a year without a fight.
+- A gourmand who went hungry and then went two months without a food binge eats like anyone else, slothful colonists step up to lazy after hard work done well, the very neurotic ease in a long calm, and a recluse with a friend opens up.
+- With Vanilla Traits Expanded, workaholics learn to rest, the anxious calm down, the squeamish harden, kleptomaniacs stop stealing once forgiven or given a seat, and animal haters soften after a bond, taming or naming the animals.
+- Also with Vanilla Traits Expanded, the submissive stand up, snobs are humbled, couch potatoes get up, insomniacs sleep again, and slobs tidy up, as do Dubs Bad Hygiene's slob and unhygienic.
+- The insanity mod's mood swings and impulsiveness settle after a long calm or therapy sessions, and the character page shows each way out from the start, now with a friend on the Bonds page and an animal bonded to them.
+
 ## The flavour words back
 
 *20 November 2026, version 0.276.0*

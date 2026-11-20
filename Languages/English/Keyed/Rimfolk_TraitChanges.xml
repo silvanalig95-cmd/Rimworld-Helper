@@ -31,6 +31,9 @@
   <CC_TC_NotMarks>No mark of these in the last {0} days: {1}.</CC_TC_NotMarks>
   <CC_TC_None>{0}: none in the last {1} days.</CC_TC_None>
   <CC_TC_Faith>They follow {0} now, {1}.</CC_TC_Faith>
+  <!-- A friend on the Bonds page, an animal bonded to them. -->
+  <CC_TC_Friend>{PAWN_nameDef} and {OTHER_nameDef} are friends.</CC_TC_Friend>
+  <CC_TC_Bonded>{ANIMAL} is bonded to {PAWN_nameDef}.</CC_TC_Bonded>
 
   <!-- Where life is taking them: the character page's section 26 (Persona/TraitChanges.cs, Building). -->
   <CC_TCB_Section>Where life is taking them</CC_TCB_Section>
@@ -64,6 +67,10 @@
   <CC_TCB_Gap>Days since the last change to {0}: {1} of {2}</CC_TCB_Gap>
   <CC_TCB_NotMarks>Days since the last mark of these ({0}): {1} of {2}</CC_TCB_NotMarks>
   <CC_TCB_None>{0}: none for {1} of {2} days</CC_TCB_None>
+  <CC_TCB_Friend>A friend on the Bonds page</CC_TCB_Friend>
+  <CC_TCB_FriendWith>A friend on the Bonds page: {OTHER_nameDef}</CC_TCB_FriendWith>
+  <CC_TCB_Bonded>An animal bonded to them</CC_TCB_Bonded>
+  <CC_TCB_BondedWith>An animal bonded to them: {ANIMAL}</CC_TCB_BondedWith>
   <!-- Under a way out of a bad trait: what is still missing, in a few plain words each, joined by semicolons. -->
   <CC_TCB_StillMissing>Still missing: {0}.</CC_TCB_StillMissing>
   <CC_TCB_MissGap>{1} days since the last change to {0} ({2} so far)</CC_TCB_MissGap>
@@ -81,6 +88,8 @@
   <CC_TCB_MissVowUnpaid>a vow of vengeance unpaid for {0} days ({1} so far)</CC_TCB_MissVowUnpaid>
   <CC_TCB_MissVowOver>no vow of vengeance still standing</CC_TCB_MissVowOver>
   <CC_TCB_MissMelee>fighting in melee</CC_TCB_MissMelee>
+  <CC_TCB_MissFriend>a friend on the Bonds page</CC_TCB_MissFriend>
+  <CC_TCB_MissBonded>an animal bonded to them</CC_TCB_MissBonded>
   <CC_TCB_MissPractice>{0}: {1} hours lately (now about {2})</CC_TCB_MissPractice>
   <CC_TCB_MissHabit>the habit "{0}"</CC_TCB_MissHabit>
   <CC_TCB_MissHabitHeld>the habit "{0}" held {1} days ({2} so far)</CC_TCB_MissHabitHeld>

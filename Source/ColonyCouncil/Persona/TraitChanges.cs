@@ -266,6 +266,7 @@ namespace ColonyCouncil
         private static Dictionary<ThoughtDef, List<TraitTally>> byThought;
         private static Dictionary<HistoryEventDef, List<TraitTally>> byEvent;
         private static Dictionary<TaleDef, List<TraitTally>> byTale;
+        private static Dictionary<MentalStateDef, List<TraitTally>> byMental;
         /// <summary>The tallies that count marks as they come, one per key (marks are given rarely, so a list).</summary>
         private static List<TraitTally> byMark;
         private static List<string> paceRecords;
@@ -278,6 +279,7 @@ namespace ColonyCouncil
             byThought = new Dictionary<ThoughtDef, List<TraitTally>>();
             byEvent = new Dictionary<HistoryEventDef, List<TraitTally>>();
             byTale = new Dictionary<TaleDef, List<TraitTally>>();
+            byMental = new Dictionary<MentalStateDef, List<TraitTally>>();
             byMark = new List<TraitTally>();
             var records = new HashSet<string>();
             void Index<T>(Dictionary<T, List<TraitTally>> into, T def, TraitTally t) where T : Def
@@ -294,6 +296,7 @@ namespace ColonyCouncil
                     foreach (var n in t.Split(t.thoughts)) Index(byThought, DefDatabase<ThoughtDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.events)) Index(byEvent, DefDatabase<HistoryEventDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.tales)) Index(byTale, DefDatabase<TaleDef>.GetNamedSilentFail(n), t);
+                    foreach (var n in t.Split(t.mentalStates)) Index(byMental, DefDatabase<MentalStateDef>.GetNamedSilentFail(n), t);
                     if (!t.marks.NullOrEmpty() && !byMark.Any(x => x.key == t.key && x.whileHungry == t.whileHungry)) byMark.Add(t);
                 }
                 foreach (var p in def.pace ?? new List<TraitPace>())
@@ -369,6 +372,24 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("trait changes from a mark", e);
+            }
+        }
+
+        /// <summary>A breakdown from their mood started (WorldReactions.Breakdown): counted for the tallies that name it (a food binge).</summary>
+        public static void Notify_MentalState(Pawn p, MentalStateDef state)
+        {
+            if (state == null || p == null || !Persona.On) return;
+            Build();
+            if (!byMental.TryGetValue(state, out var list)) return;
+            try
+            {
+                if (!On || !CanChange(p)) return;
+                foreach (var t in list)
+                    if (!t.whileHungry || Hungry(p)) Count(p, t.key, null);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("trait changes from a breakdown", e);
             }
         }
 
@@ -580,9 +601,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What stands in the way whatever they live through: the rule unavailable or used, a trait that blocks it, the
-        /// degree it would step to, room for a trait, conflicts, a role, the last change of this trait too recent, age
-        /// and time in the colony. Null when only the evidence is missing (or nothing). With <paramref name="gapAsPart"/> the
-        /// rule's gap since the trait last changed is left to the caller (the character page shows it as a part).
+        /// degree it would step to, room for a trait, conflicts, a role, who gave the trait (only Rimfolk, or only not
+        /// Rimfolk), the last change of this trait too recent, age and time in the colony. Null when only the evidence is
+        /// missing (or nothing). With <paramref name="gapAsPart"/> the rule's gap since the trait last changed is left to the
+        /// caller (the character page shows it as a part).
         /// </summary>
         private static string Gate(Pawn p, TraitChangeDef def, int now, out TraitStep step, bool gapAsPart = false)
         {
@@ -607,6 +629,7 @@ namespace ColonyCouncil
             if (step.hasAfter && !Allowed(p, td, step.to, cur)) return "not allowed";
             if ((step.Removes || (has && step.hasAfter)) && HeldByRole(p)) return "role";
             if (def.onlyGiven && !GaveIt(p, td.defName, def.givenBy)) return "not given";
+            if (def.notGiven && !TraitChangeMath.GivenAllows(GaveIt(p, td.defName), false, true)) return "given";
             if (!gapAsPart && !GapOver(p, def, now)) return "trait";
             if (def.minAge > 0 && (p.ageTracker?.AgeBiologicalYears ?? 0) < def.minAge) return "age";
             if (def.daysHere > 0 && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < def.daysHere * (float)GenDate.TicksPerDay) return "new";
@@ -743,9 +766,11 @@ namespace ColonyCouncil
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
             {
-                if (tally.None ? NoneDays(w, tally, lastSame, now) < tally.noneDays : Entries(w, tally, lastSame, now).Count < tally.count)
+                if (tally.None ? NoneDays(p, w, tally, lastSame, now) < tally.noneDays : Entries(w, tally, lastSame, now).Count < tally.count)
                     return "tally " + tally.key;
             }
+            if (def.friend && Friend(p) == null) return "friend";
+            if (def.bondedAnimal && BondedAnimal(p) == null) return "bonded";
             if (!FaithAllows(p, def)) return "faith";
             foreach (var f in def.Records)
             {
@@ -855,11 +880,50 @@ namespace ColonyCouncil
             return w.tallies.Where(e => e.key == tally.key && e.tick > after && now - e.tick < within * GenDate.TicksPerDay).OrderBy(e => e.tick).ToList();
         }
 
-        /// <summary>A zero count: days without any of these, from the newest kept or the trait's last change (whichever is later).</summary>
-        private static float NoneDays(TraitWatch w, TraitTally tally, int after, int now)
+        /// <summary>
+        /// A zero count: days without any of these, from the newest kept (and, for marks, the newest still on their page)
+        /// or the trait's last change, whichever is later, and never from before they joined the colony; with noneAfter,
+        /// only from the newest of that other tally (0 days until it has counted one).
+        /// </summary>
+        private static float NoneDays(Pawn p, TraitWatch w, TraitTally tally, int after, int now)
         {
             var ticks = w == null ? new List<int>() : w.tallies.Where(e => e.key == tally.key).Select(e => e.tick).ToList();
-            return TraitChangeMath.NoneDays(ticks, now, after);
+            if (!tally.marks.NullOrEmpty())
+            {
+                var r = Persona.Of(p);
+                if (r != null)
+                    foreach (var m in r.marks)
+                        if (m?.def != null && tally.CountsMark(m.def)) ticks.Add(m.tick);
+            }
+            float here = p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? -1f;
+            int known = here < 0f ? -1 : Math.Max(0, now - (int)Math.Min(here, now));
+            if (tally.noneAfter.NullOrEmpty()) return TraitChangeMath.NoneDays(ticks, now, after, known);
+            var start = w == null ? new List<int>() : w.tallies.Where(e => e.key == tally.noneAfter).Select(e => e.tick).ToList();
+            return TraitChangeMath.NoneDaysAfter(ticks, start, now, after, known);
+        }
+
+        /// <summary>A friend on the Bonds page: an announced friendship with someone still alive, or null.</summary>
+        private static Pawn Friend(Pawn p)
+        {
+            var social = CouncilGameComponent.Instance?.social;
+            if (social == null || p == null) return null;
+            foreach (var tie in social.ties)
+            {
+                if (tie == null || tie.kind != TieKind.Friends || !tie.announced || !tie.Involves(p)) continue;
+                var other = tie.Other(p);
+                if (other != null && !other.Dead) return other;
+            }
+            return null;
+        }
+
+        /// <summary>An animal bonded to them, alive, or null.</summary>
+        private static Pawn BondedAnimal(Pawn p)
+        {
+            var rels = p?.relations?.DirectRelations;
+            if (rels == null) return null;
+            foreach (var rel in rels)
+                if (rel?.def == PawnRelationDefOf.Bond && rel.otherPawn != null && !rel.otherPawn.Dead && rel.otherPawn.RaceProps.Animal) return rel.otherPawn;
+            return null;
         }
 
         /// <summary>Their ideoligion holds none of the precepts the rule names (no ideoligion, or no rule about it: it holds).</summary>
@@ -1024,7 +1088,7 @@ namespace ColonyCouncil
             {
                 if (tally.None)
                 {
-                    float days = NoneDays(w, tally, lastSame, now);
+                    float days = NoneDays(p, w, tally, lastSame, now);
                     ordered.Add("CC_TC_None".Translate(tally.label.CapitalizeFirst(), float.IsInfinity(days) ? tally.noneDays : Mathf.FloorToInt(days)).Resolve());
                     continue;
                 }
@@ -1035,6 +1099,10 @@ namespace ColonyCouncil
             }
             if (def.NotPrecepts.Count > 0 && p.Ideo != null)
                 ordered.Add("CC_TC_Faith".Translate(p.Ideo.name, def.notPreceptsLabel).Resolve());
+            var friend = def.friend ? Friend(p) : null;
+            if (friend != null) ordered.Add("CC_TC_Friend".Translate(p.Named("PAWN"), friend.Named("OTHER")).Resolve());
+            var animal = def.bondedAnimal ? BondedAnimal(p) : null;
+            if (animal != null) ordered.Add("CC_TC_Bonded".Translate(p.Named("PAWN"), animal.LabelShort.CapitalizeFirst().Named("ANIMAL")).Resolve());
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
@@ -1142,8 +1210,9 @@ namespace ColonyCouncil
         /// <summary>
         /// What leads to a rule's change, part by part, in words, and whether each part holds: the gap since the trait last
         /// changed (while it lasts), how far a side has moved and where it stands, the marks and the marks it waits out, the
-        /// deeds and the stretches without one, the faith, the records, skills, how their time goes, calm days, a habit,
-        /// what they've been doing lately. The same evidence the rule checks (Lacks), told for the player.
+        /// deeds and the stretches without one, the faith, a friend, an animal bonded to them, the records, skills, how their
+        /// time goes, calm days, a habit, what they've been doing lately. The same evidence the rule checks (Lacks), told for
+        /// the player.
         /// </summary>
         public static List<TraitPart> Parts(Pawn p, TraitChangeDef def, int now)
         {
@@ -1207,7 +1276,7 @@ namespace ColonyCouncil
                 string label = tally.label ?? tally.key;
                 if (tally.None)
                 {
-                    float none = NoneDays(w, tally, lastSame, now);
+                    float none = NoneDays(p, w, tally, lastSame, now);
                     int days = float.IsInfinity(none) ? tally.noneDays : Mathf.Min(Mathf.FloorToInt(none), tally.noneDays);
                     parts.Add(new TraitPart("CC_TCB_None".Translate(label.CapitalizeFirst(), days, tally.noneDays).Resolve(), none >= tally.noneDays,
                         "CC_TCB_MissNone".Translate(label, tally.noneDays, days).Resolve(), true));
@@ -1219,6 +1288,18 @@ namespace ColonyCouncil
             }
             if (def.NotPrecepts.Count > 0)
                 parts.Add(new TraitPart(def.notPreceptsLabel.CapitalizeFirst(), FaithAllows(p, def), def.notPreceptsLabel));
+            if (def.friend)
+            {
+                var friend = Friend(p);
+                parts.Add(new TraitPart(friend != null ? "CC_TCB_FriendWith".Translate(friend.Named("OTHER")).Resolve() : "CC_TCB_Friend".Translate().ToString(),
+                    friend != null, "CC_TCB_MissFriend".Translate().ToString()));
+            }
+            if (def.bondedAnimal)
+            {
+                var animal = BondedAnimal(p);
+                parts.Add(new TraitPart(animal != null ? "CC_TCB_BondedWith".Translate(animal.LabelShort.Named("ANIMAL")).Resolve() : "CC_TCB_Bonded".Translate().ToString(),
+                    animal != null, "CC_TCB_MissBonded".Translate().ToString()));
+            }
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);

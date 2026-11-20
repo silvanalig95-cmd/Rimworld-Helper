@@ -321,15 +321,31 @@ namespace ColonyCouncil
         /// <summary>
         /// A zero count: how many days they have gone without any of these moments, counted from the newest of them or from
         /// <paramref name="after"/> (the trait's last change), whichever is later, so a stretch from before the trait came
-        /// doesn't count toward it going. Infinity when there is neither (none counted, and the trait never changed).
+        /// doesn't count toward it going; and never from before <paramref name="known"/> (when they joined the colony, the
+        /// first day Rimfolk could count anything of theirs), so someone who arrived last week hasn't gone 240 days without
+        /// a fight. Infinity when there is none of these (nothing counted, the trait never changed, nothing known).
         /// </summary>
-        public static float NoneDays(IList<int> ticks, int now, int after)
+        public static float NoneDays(IList<int> ticks, int now, int after, int known = -1)
         {
-            int from = after;
+            int from = Math.Max(after, known);
             if (ticks != null)
                 for (int i = 0; i < ticks.Count; i++)
                     if (ticks[i] <= now && ticks[i] > from) from = ticks[i];
             return from < 0 ? float.PositiveInfinity : DaysSince(from, now);
+        }
+
+        /// <summary>
+        /// "Then N days without X": a zero count that starts only once something else has happened (a hungry season, then
+        /// 60 days without a food binge). Counted as <see cref="NoneDays"/> from the newest of <paramref name="startTicks"/>
+        /// since the trait's last change; 0 days while none of those has happened yet.
+        /// </summary>
+        public static float NoneDaysAfter(IList<int> ticks, IList<int> startTicks, int now, int after, int known = -1)
+        {
+            int start = -1;
+            if (startTicks != null)
+                for (int i = 0; i < startTicks.Count; i++)
+                    if (startTicks[i] <= now && startTicks[i] > after && startTicks[i] > start) start = startTicks[i];
+            return start < 0 ? 0f : NoneDays(ticks, now, Math.Max(after, start), known);
         }
 
         /// <summary>
@@ -382,6 +398,13 @@ namespace ColonyCouncil
             if (by == null || by.Count == 0) return true;
             return rules != null && newest < rules.Count && rules[newest] != null && by.Contains(rules[newest]);
         }
+
+        /// <summary>
+        /// Whether a rule may change the trait they have, by who gave it: <paramref name="onlyGiven"/> only one Rimfolk
+        /// gave (its own ways out), <paramref name="notGiven"/> only one it didn't (the slower twin for a trait they came
+        /// with), else either.
+        /// </summary>
+        public static bool GivenAllows(bool gave, bool onlyGiven, bool notGiven) => onlyGiven ? gave : !notGiven || !gave;
 
         // ---------------- Where life is taking them ----------------
 
