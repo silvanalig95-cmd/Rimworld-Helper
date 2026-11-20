@@ -930,7 +930,7 @@
   <CC_Floor_CostLine>{0} {1} for the room (have {2})</CC_Floor_CostLine>
 
   <!-- Justice, mercy, parties, rescues, hunts -->
-  <CC_Reason_Justice>{PAWN_nameDef} is still angry about the last raid, and {OTHER_nameDef}, one of the enemy, is alive in a cell.</CC_Reason_Justice>
+  <CC_Reason_Justice>{PAWN_nameDef} hasn't forgiven the raid, and {OTHER_nameDef}, one of the enemy, is still alive.</CC_Reason_Justice>
   <CC_Reason_JusticeBlood>{PAWN_nameDef} is bloodthirsty, and {OTHER_nameDef} is still alive in a cell.</CC_Reason_JusticeBlood>
   <CC_Reason_JusticeGrief>{PAWN_nameDef} is grieving, and blames {OTHER_nameDef}'s people for it.</CC_Reason_JusticeGrief>
   <CC_Reason_JusticeCold>{PAWN_nameDef} sees no use in feeding {OTHER_nameDef} any longer.</CC_Reason_JusticeCold>

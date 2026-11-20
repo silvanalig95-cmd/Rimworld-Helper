@@ -86,11 +86,11 @@
           <li>{X_nameDef}'s price</li>
         </titles>
         <texts>
-          <li>[!hunters,!broken] A rider came to the gate under a white cloth and gave {X_nameDef}'s words exactly as they were given: "{COUNT} silver, and {NAME} rides past. Refuse, and we come in."\n\nThe council has argued about it since. Paying would buy quiet for a while. A price on {X_nameDef}'s head, posted in every town that will take it, would set hunters on {X_objective}. Or the colony can hold out behind its walls and give the band nothing.</li>
+          <li>[!hunters,!broken] A rider came to the gate under a white cloth and gave {X_nameDef}'s words exactly as they were given: "{COUNT} silver, and {NAME} rides past. Refuse, and we come in."\n\nThe council has argued since. Paying would buy quiet, for a while. A price on {X_nameDef}'s head, posted in every town that will take it, would set hunters on {X_objective}. Or the colony can hold its walls and let the band find out how little there is to take.</li>
           <li>[hunters,!ally,!broken] {X_nameDef} has named a price: {COUNT} silver, and {NAME} will ride past the colony. The rider who brought the message left before anyone could answer.\n\n{ENEMY} are hunting {X_nameDef} already, and are short of everything a long hunt needs. A purse of silver would go a long way with them. A bounty would bring hunters of every other kind. Or the colony can sit tight and let the band starve of plunder.</li>
           <li>[hunters,ally,!broken] {X_nameDef} has sent word: {COUNT} silver, and {NAME} will look elsewhere for plunder.\n\nThere are other answers. {ENEMY}, the colony's allies, have been fighting {FACTION} for years; asked, they would march on {NAME} in force, though it would cost them fighters and they would want that remembered. Silver for their riders, or a price on {X_nameDef}'s head, would cost the colony less. Or the council can wait the band out.</li>
-          <li>[hunters,broken] {X_nameDef} took the colony's silver once and came back anyway. Now another message has come, naming a price.\n\nThe council won't hear of paying twice. {ENEMY} are still hunting {X_objective}, and a bounty would bring others. The band may yet break up on its own.</li>
-          <li>[!hunters,broken] {X_nameDef} has sent another rider with another price. The last silver the colony paid bought a few days' quiet, and then the band came back.\n\nThe council won't hear of paying twice. A bounty would bring hunters from every town that will post it. Or the colony can hold out behind its walls and let the band wear itself out.</li>
+          <li>[hunters,broken] {X_nameDef} took the colony's silver once and came back anyway. Now another rider is at the gate, talking about a price.\n\nThe council won't hear of paying twice. {ENEMY} are still hunting {X_objective}, and a bounty would bring others. The band may yet break up on its own.</li>
+          <li>[!hunters,broken] Another rider from {X_nameDef}, another price. The last silver the colony paid bought a few days' quiet, and then the band came back.\n\nThe council won't hear of paying twice. A bounty would bring hunters from every town that will post it. Or the colony can hold its walls and let the band wear itself out.</li>
         </texts>
         <defaultOption>4</defaultOption>
         <options>
@@ -122,7 +122,7 @@
           </li>
           <li>
             <label>Send silver to {ENEMY} ({DAYS} silver)</label>
-            <outcome>A rider of {ENEMY} comes for the silver and leaves again at once. Their hunters will be better fed and better armed for it.</outcome>
+            <outcome>A rider of {ENEMY} comes for the silver and is gone again before dark. Their hunters will be better fed and better armed for it.</outcome>
             <showIf><li>hunters</li></showIf>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {ENEMY}</label><what>silver</what><factor>0.35</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
@@ -168,7 +168,7 @@
           <li>{ENEMY} thrown back</li>
         </titles>
         <texts>
-          <li>The army of {ENEMY} met {NAME} in the hills beyond {PLACE}, and came off worse. They are back behind their walls counting their dead, and some of them blame the colony for it.\n\n{X_nameDef} is still out there, and more confident than ever.</li>
+          <li>The army of {ENEMY} met {NAME} in the hills beyond {PLACE}, and came off worse. They are back behind their walls counting their dead, and some of them lay that at the colony's door.\n\n{X_nameDef} is still out there, and prouder for it.</li>
           <li>[enemyLowtech] {ENEMY} marched against {NAME} with banners flying and came home three days later with their wounded in carts. {X_nameDef} met them at a river crossing and held it.\n\nThe band will be bolder for this. {ENEMY} will not be asked again soon.</li>
         </texts>
       </li>
@@ -228,10 +228,10 @@
           <li>{X_nameDef} is dead</li>
         </titles>
         <texts>
-          <li>[revenge] {X_nameDef} is dead, brought down at the colony by {B_nameDef}, who had more reason than most. {NAME} is already scattering.\n\nIn {PLACE} people will be telling the story for a long time, and not happily.</li>
-          <li>[slayer] {B_nameDef} brought {X_nameDef} down at the colony's own walls. Without {X_objective}, {NAME} is a crowd of tired fighters a long way from home, and it is already breaking up.\n\nIn the towns around {PLACE}, people are drinking to the colony.</li>
+          <li>[revenge] {X_nameDef} is dead, brought down at the colony by {B_nameDef}, who had more reason than most. {NAME} scattered before nightfall.\n\nIn {PLACE} they will tell it as a story, and not one they enjoy telling.</li>
+          <li>[slayer] {B_nameDef} brought {X_nameDef} down at the colony's own walls. Without {X_objective}, {NAME} is a crowd of tired fighters a long way from home, and it is already breaking up.\n\nIn the towns around {PLACE}, they are drinking to the colony tonight.</li>
           <li>[diedCaptive] {X_nameDef} died in the colony's hands. {NAME} did not outlive {X_objective} by long: the band broke up within days, each fighter making for home with whatever could be carried.</li>
-          <li>[!diedCaptive] {X_nameDef} is dead. {NAME} came to the colony for plunder and lost its leader instead, and its fighters are already drifting home.\n\nThe neighbors have heard, and for a while the colony will be known and respected on the roads.</li>
+          <li>[!diedCaptive] {X_nameDef} is dead. {NAME} came to the colony for plunder and lost its leader instead, and its fighters are already drifting home.\n\nThe neighbors have heard. For a while, the colony's name will mean something on the roads.</li>
         </texts>
         <chronicle>{X_nameDef} of {NAME} died at the colony.</chronicle>
         <effects>
@@ -286,7 +286,7 @@
           <li>{X_nameDef} ransomed</li>
         </titles>
         <texts>
-          <li>{X_nameDef} rode home with {FACTION}'s silver paid, and the colony is richer by {COUNT}. {NAME} broke up anyway. Few fighters want to follow a leader who had to be bought out of a cell.\n\n{X_nameDef} is alive, and won't forget being held in the colony's cell.</li>
+          <li>{X_nameDef} rode home with {FACTION}'s silver paid, and the colony is richer by {COUNT}. {NAME} broke up anyway. Few fighters want to follow a leader who had to be bought out of a cell.\n\n{X_nameDef} is alive, and remembers the inside of that cell.</li>
           <li>{FACTION} paid what the colony asked, and {X_nameDef} went home, and the colony is {COUNT} silver richer. {NAME} didn't last long after. Fighters don't follow a leader who was bought back out of a cell.</li>
         </texts>
         <chronicle>The colony let {FACTION} ransom {X_nameDef} for {COUNT} silver.</chronicle>
@@ -306,7 +306,7 @@
         <texts>
           <li>[takenAlive] Riders of {ENEMY} caught up with {X_nameDef} at the ford below {PLACE} and took {X_objective} alive. The rest of {NAME} scattered into the hills without a fight.\n\n{ENEMY} mean to put {X_nameDef} on trial. However that goes, the colony has seen the last of {X_objective}.</li>
           <li>[!takenAlive] {X_nameDef} is dead, brought down by riders of {ENEMY} in a fight near {PLACE} that was over in an afternoon. {NAME} broke and ran as soon as its leader fell.\n\nThe news reached the colony with a trader two days later.</li>
-          <li>[gifts,!takenAlive,enemyLowtech] {ENEMY} cornered {X_nameDef} in the hills above {PLACE} and killed {X_objective} there, riding horses and eating bread the colony's silver paid for.\n\n{ENEMY} have sent a rider to tell the colony so, and to say thank you.</li>
+          <li>[gifts,!takenAlive,enemyLowtech] {ENEMY} cornered {X_nameDef} in the hills above {PLACE}, on horses and with bread the colony's silver paid for. {X_nameDef} did not come down again.\n\n{ENEMY} have sent a rider to tell the colony so, and to say thank you.</li>
           <li>[gifts,!takenAlive,enemyHightech] {ENEMY} ran {X_nameDef} to ground near {PLACE}, in trucks and with ammunition the colony's silver paid for. {NAME} is finished.\n\n{ENEMY} have sent word to say so, and to say thank you.</li>
           <li>[winter] The snow did half the work. {ENEMY} found {X_nameDef}'s camp by its smoke, in the hills near {PLACE}, and {NAME} had no fight left in it after a cold month of short rations.</li>
         </texts>
@@ -359,8 +359,8 @@
           <li>{X_nameDef} falls to hired swords</li>
         </titles>
         <texts>
-          <li>The company the colony hired, led by {OTHER_nameDef}, fell on {FACTION} at {PLACE}. {X_nameDef} was there, and was killed.\n\nThe colony's silver bought more than anyone expected. {NAME} is finished.</li>
-          <li>{OTHER_nameDef}'s company, in the colony's pay, caught {FACTION} at {PLACE}, and {X_nameDef} was killed in the fight. {NAME} is finished, and the colony's silver did it.</li>
+          <li>The company the colony hired, led by {OTHER_nameDef}, fell on {FACTION} at {PLACE}. {X_nameDef} was there, and did not come out of it.\n\nThe colony's silver bought more than anyone expected. {NAME} is finished.</li>
+          <li>{OTHER_nameDef}'s company caught {FACTION} at {PLACE}, in the colony's pay, and {X_nameDef} didn't leave the field. {NAME} is finished, and the colony's silver did it.</li>
         </texts>
         <chronicle>Mercenaries in the colony's pay brought down {X_nameDef} of {NAME}.</chronicle>
         <effects>
@@ -375,9 +375,9 @@
         </titles>
         <texts>
           <li>[truce,theirLowtech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, horses sold, {X_nameDef} gone with a few loyal riders and nobody sure where.\n\nThe colony paid for its quiet. At the council table, some still call that wise.</li>
-          <li>[truce,theirHightech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, trucks sold for parts, {X_nameDef} gone with a few loyal followers and nobody sure where.\n\nThe colony paid for its quiet, and some on the council still complain about it.</li>
+          <li>[truce,theirHightech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, trucks sold for parts, {X_nameDef} gone with a few loyal followers and nobody sure where.\n\nThe colony paid for its quiet, and there are some at the council table who haven't stopped saying so.</li>
           <li>[broken] After the broken truce, {NAME} never found its feet again. Its fighters wanted plunder and got hard knocks, and one by one they went home. {X_nameDef} rode out of the region with a handful of the loyal.\n\nThe colony's silver is gone, but so is the band.</li>
-          <li>[repelled,!truce,!broken] {NAME} has broken up. Every raid it sent at the colony came back with less than it cost to send, and that is how bands like this one come to an end.\n\n{X_nameDef} left the region with a handful of loyal riders, and without a coin of the colony's silver.</li>
+          <li>[repelled,!truce,!broken] {NAME} has broken up. Every raid it sent at the colony came back with less than it cost to send, and that is the kind of story that ends a band.\n\n{X_nameDef} left the region with a handful of loyal riders, and without a coin of the colony's silver.</li>
           <li>[!repelled,!truce,!broken] {NAME} has broken up. A season of raiding brought it less than it promised, and fighters who aren't paid in plunder go home. {X_nameDef} left the region with a handful of loyal riders.\n\nThe colony waited {X_objective} out.</li>
         </texts>
         <chronicle>{NAME} broke up, and {X_nameDef} left the region.</chronicle>
@@ -425,7 +425,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} hasn't been seen in days. Some say a fever in the hills, some say a knife in the back from one of {X_possessive} own. {NAME} has broken up either way, and the roads are quieter for it.</li>
-          <li>{X_nameDef} was last seen at a camp in the hills, and nobody has seen {X_objective} since. {NAME} has broken up without {X_objective}, and the roads are quieter.</li>
+          <li>The last anyone saw of {X_nameDef} was a fire going out on a hillside. Whatever happened after, {NAME} has broken up without {X_objective}, and the roads are quieter.</li>
         </texts>
         <chronicle>{X_nameDef} vanished, and {NAME} broke up.</chronicle>
         <effects>
@@ -490,7 +490,7 @@
             <key>brokenTexts</key>
             <texts>
               <li>The silver bought less time than the council hoped. {X_nameDef} has spent it, and {NAME} is back at the colony with {X_objective} at its head.\n\nThere won't be another offer.</li>
-              <li>[theirLowtech] {X_nameDef} has broken the bargain the colony paid for. {NAME} is on the road again, heading for the colony.</li>
+              <li>[theirLowtech] {X_nameDef}'s word was worth exactly what the colony paid for it, and not a day more. {NAME} is on the road again, and the road leads here.</li>
             </texts>
           </li>
           <li>

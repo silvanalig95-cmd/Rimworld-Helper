@@ -72,8 +72,8 @@
           <li>The lord's herald</li>
         </titles>
         <texts>
-          <li>A herald in {FACTION}'s colors has ridden up to the gate, very upright, and asked {A_nameDef} whether the colony means to receive the progress. A night's rest for the retinue would be a fine thing, the herald said, and a gift sent to meet them on the road would also be noticed.\n\nA proper night's hosting would cost the colony about {COUNT} silver in food, drink and fodder.</li>
-          <li>[faction:Outland_VathunNobles] A Vathun herald, horns freshly polished, has come to the gate and asked {A_nameDef}, in the forest court's long way of asking, whether the colony would offer its lord a night under its roof. A gift on the road would also do, the herald allowed, from a settlement of no particular caste.\n\nA proper night's hosting would cost about {COUNT} silver.</li>
+          <li>A herald in {FACTION}'s colors rode up to the colony this morning, very upright, and asked {A_nameDef} whether the colony means to receive the progress. A night's rest for the retinue would be a fine thing, he said. A gift sent to meet them on the road would also be noticed.\n\nA proper night's hosting would cost the colony about {COUNT} silver in food, drink and fodder.</li>
+          <li>[faction:Outland_VathunNobles] A Vathun herald, horns freshly polished, presented himself to {A_nameDef} and asked, in the forest court's long way of asking, whether the colony would offer its lord a night under its roof. A gift on the road would also do, he allowed, for a settlement of no particular caste.\n\nA proper night's hosting would cost about {COUNT} silver.</li>
           <li>[faction:Outland_Empire] An Eastborn scribe arrived ahead of the palanquin with a letter, a brush and a great deal of patience. The magistrate, the letter said, would honor the colony by resting there one night; or the colony might honor the magistrate with a gift on the road.\n\nA proper night's hosting would cost about {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -108,7 +108,7 @@
           </li>
           <li>
             <label>Keep to ourselves</label>
-            <outcome>The herald is thanked for the trouble and given a cup of water. The progress will go by on the high road, banners and all.</outcome>
+            <outcome>The herald was thanked for his trouble and given a cup of water. The progress will go by on the high road, banners and all, and the colony will watch it from the wall.</outcome>
             <flags><li>kept</li></flags>
           </li>
         </options>
@@ -135,7 +135,7 @@
         <forbids><li>hosted</li></forbids>
         <message>true</message>
         <texts>
-          <li>The lord's progress passed by on the high road today: banners, horses, a long dust cloud and a good deal of trumpeting.</li>
+          <li>The lord's progress passed by on the high road today: banners, horses, a long dust cloud and a good deal of trumpeting. The colony watched it go by from the wall.</li>
           <li>[gift] The progress passed by on the high road. As it went, a rider broke off and brought the colony a sealed letter of thanks from the lord.</li>
         </texts>
       </li>
@@ -210,7 +210,7 @@
       <li>[factionmod:athelas.medievaltotalrim.mongols] The khans of {FACTION} have called a great gathering on the grass near {PLACE}, to feast, race horses and choose where the riders go next. Every road for days around is full of horsemen, all going the same way.</li>
     </texts>
     <summaries>
-      <li>{FACTION}'s bands are on the roads. An envoy may come asking for a token of respect: paying earns their goodwill, warning the neighbors earns the neighbors' goodwill, and refusing only means a few anxious days.</li>
+      <li>{FACTION}'s bands are on the roads. An envoy may come asking for a token of respect: paying earns their goodwill, warning the neighbors earns theirs, and refusing costs only nerves.</li>
       <li>[paid] The colony paid {FACTION}'s token of respect.</li>
       <li>[warned] The colony sent word of the gathering to its neighbors.</li>
     </summaries>
@@ -236,9 +236,9 @@
           <li>An envoy from the gathering</li>
         </titles>
         <texts>
-          <li>An envoy of {FACTION} has ridden up to the gate and asked {A_nameDef} for a token of respect for the gathering: {COUNT} silver, to show the colony knows whose roads these are this season.\n\nIt isn't a threat, the envoy says, and says it twice.</li>
-          <li>[faction:Outland_RedburnPact] A hobgoblin envoy in a coat of many stolen colors is standing at the gate, asking {A_nameDef}, almost politely, for {COUNT} silver "for the moot's fire".</li>
-          <li>[factionmod:athelas.medievaltotalrim.mongols] A rider of {FACTION} has reined in at the gate, unhurried, and asked {A_nameDef} for {COUNT} silver as the colony's gift to the gathering. While waiting for the answer, the rider looks over the colony and its horses.</li>
+          <li>An envoy of {FACTION} rode up to the gate and asked {A_nameDef} for a token of respect for the gathering: {COUNT} silver, to show the colony knows whose roads these are this season.\n\nIt isn't a threat, the envoy said. He said it twice.</li>
+          <li>[faction:Outland_RedburnPact] A hobgoblin envoy in a coat of many stolen colors stood at the gate and asked {A_nameDef}, almost politely, for {COUNT} silver "for the moot's fire". The two orcs behind him said nothing at all, very loudly.</li>
+          <li>[factionmod:athelas.medievaltotalrim.mongols] A rider of {FACTION} reined in at the gate, unhurried, and asked {A_nameDef} for {COUNT} silver as the colony's gift to the gathering. He looked at the walls while he waited for the answer, and at the horses.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -255,7 +255,7 @@
           </li>
           <li>
             <label>Refuse, and send word to the neighbors</label>
-            <outcome>The envoy is refused, politely, and {A_nameDef} sends word to every friendly town within reach of how many bands are on the roads, and which way they are going.</outcome>
+            <outcome>The envoy was refused, politely, and before he was out of sight {A_nameDef} had riders going to every friendly town within reach with word of how many bands were on the roads, and which way.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Neighbors</who></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
@@ -266,7 +266,7 @@
           </li>
           <li>
             <label>Refuse, politely</label>
-            <outcome>The envoy hears the colony's answer, shrugs as if it makes no difference, and rides off.</outcome>
+            <outcome>The envoy heard the colony's answer, shrugged as if it made no difference to him, and rode off. Everyone on the wall watched him go.</outcome>
             <flags><li>refused</li></flags>
           </li>
         </options>
@@ -281,7 +281,7 @@
         <message>true</message>
         <texts>
           <li>A band of {FACTION} went by on the road today, close enough to count. They looked the colony over and kept going.</li>
-          <li>[paid] Riders of {FACTION} went past the colony today. One of them raised a spear toward the colony as they passed, perhaps as a greeting.</li>
+          <li>[paid] Riders of {FACTION} went past the colony at midday. One of them raised a spear toward the wall as they passed, perhaps as a greeting.</li>
         </texts>
       </li>
       <li>
@@ -294,8 +294,8 @@
         </effects>
         <message>true</message>
         <texts>
-          <li>A band of {FACTION} came along the road slowly today, looking hard at the colony.</li>
-          <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the colony. They know the colony warned the road about them.</li>
+          <li>A band of {FACTION} came along the road slowly this afternoon, looking hard at the walls. The colony is keeping its gate shut and its lamps low, and the night watch has been doubled.</li>
+          <li>[warned] {FACTION}'s warriors went by slowly today, looking hard at the walls. They know the colony warned the road about them.</li>
         </texts>
       </li>
     </beats>

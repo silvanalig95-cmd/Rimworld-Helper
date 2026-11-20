@@ -18,7 +18,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_RoadCalls</defName>
     <label>the road calls</label>
-    <summary>A camp of travelers is on the colony's land, and a colonist who has spent evenings at their fire half wants to go with them when they leave. In the end the camp moves on and the colonist stays.</summary>
+    <summary>A camp of travelers on the colony's land, and a colonist who has spent evenings at their fire and half wants to go with them when they leave. In the end, the camp goes, and they stay.</summary>
     <workerClass>ColonyCouncil.ArcWorker_CampRoad</workerClass>
     <needsOther>false</needsOther>
     <maxDays>60</maxDays>
@@ -41,7 +41,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has been spending evenings at the travelers' camp, listening to {NAME}'s stories of the road.</li>
-          <li>{PAWN_nameDef} goes to sit at the camp's fire most evenings now.</li>
+          <li>The camp's fire draws {PAWN_nameDef} most evenings now.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -96,12 +96,12 @@
           <cold><li>The camp has departed. I remain. On reflection, the colony's claims on me were the stronger.</li></cold>
         </journal>
         <chronicle>
-          <li>When the camp moved on, {PAWN_nameDef} saw them off at the gate and stayed behind.</li>
-          <li>"The road will still be there," the travelers told {PAWN_nameDef} when they left, and {PAWN_nameDef} stayed at home.</li>
+          <li>When the camp moved on, {PAWN_nameDef} walked them to the gate and came home.</li>
+          <li>"The road will keep," the travelers told {PAWN_nameDef} when they left. {PAWN_nameDef} came home.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StayedHome</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>seeing the camp off at the gate</label><to>Gate</to><waitHours>3</waitHours><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the walk to the gate</label><to>Gate</to><waitHours>3</waitHours><duration>0.5~0.75</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>6</amount></li>
           <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_RoadStories</quirk><chance>0.2</chance></li>
@@ -137,7 +137,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_WeightOfOffice</defName>
     <label>the weight of office</label>
-    <summary>A colonist newly seated on the council isn't sure they can do the job. They get advice from someone who has sat there, have some doubtful days, make a hard call and grow into the office, unless they lose the seat first.</summary>
+    <summary>Newly seated on the council, a colonist isn't sure they can carry it. Advice from someone who has sat there, some doubtful days, a hard call, and growing into it, unless the seat is lost first.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Office</workerClass>
     <needsOther>false</needsOther>
     <maxDays>60</maxDays>
@@ -158,7 +158,7 @@
           <cold><li>Made {NAME}. I've written down what the office owes, and to whom. It's a long page. I'll get through it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}, newly made {NAME}, isn't yet sure {PAWN_pronoun} can do the job.</li>
+          <li>{PAWN_nameDef}, newly made {NAME}, isn't yet sure {PAWN_pronoun} can carry the office.</li>
           <li>Three people came to {PAWN_nameDef} on {PAWN_possessive} first morning as {NAME}, and {PAWN_nameDef} promised all three to look into it.</li>
         </chronicle>
         <gate>
@@ -172,7 +172,7 @@
       </li>
       <li>
         <label>doubtful days</label>
-        <waiting>Next: some steady days, or some days of {PAWN_nameDef} trusting the council.</waiting>
+        <waiting>Next: some steady days, or {PAWN_nameDef}'s faith in the council holding.</waiting>
         <journal>
           <plain>
             <li>{OTHER_nameDef} told me nobody is ready for a seat on the council, and everyone pretends. It helped more than it should have.</li>
@@ -286,13 +286,13 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_FarNews</defName>
     <label>word from far away</label>
-    <summary>There are hard times out in the world (a plague, a famine, a war, a flood), and a colonist has family caught up in them. They share the worry with someone at home and wait, until word comes at last, or the worst news.</summary>
+    <summary>Hard times out in the world (a plague, a famine, a war, a flood), and family of theirs out there in it. Worry shared with someone at home, the long wait, and word at last, or the worst news.</summary>
     <workerClass>ColonyCouncil.ArcWorker_FarNews</workerClass>
     <needsOther>false</needsOther>
     <maxDays>70</maxDays>
     <stages>
       <li>
-        <label>bad news</label>
+        <label>news on the wind</label>
         <waiting>Next: {PAWN_nameDef} shares the worry with someone.</waiting>
         <journal>
           <plain>
@@ -307,8 +307,8 @@
           <cold><li>The trouble out there has reached {FACTION}, and {LOST} is among them. I have no means of learning more.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has heard the news of "{NAME}". {LOST}, who is family to {PAWN_objective}, lives among {FACTION} and is caught up in it.</li>
-          <li>{LOST}, who is family to {PAWN_nameDef}, lives far away, and the news from there is bad.</li>
+          <li>The news this season is "{NAME}", and {PAWN_nameDef} has family out in it: {LOST}, among {FACTION}.</li>
+          <li>{PAWN_nameDef} has family far away, {LOST}, and the news from the road is bad.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -386,7 +386,7 @@
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_KinDiedFarAway</thought></li>
     </fizzleEffects>
     <fizzleChronicle>
-      <li>[kindead] {LOST}, {PAWN_nameDef}'s family far away among {FACTION}, died in the hard times.</li>
+      <li>[kindead] {LOST}, family of {PAWN_nameDef}'s far away among {FACTION}, did not live through the hard times.</li>
       <li>{PAWN_nameDef} never learned what became of {LOST}.</li>
     </fizzleChronicle>
     <eulogy>

@@ -14,7 +14,7 @@
   -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmFealty_Swear</defName>
-    <label>an objection to the oath</label>
+    <label>an oath at the gate</label>
     <workerClass>ColonyCouncil.DilemmaWorker_FealtySwear</workerClass>
     <cooldownDays>0</cooldownDays>
     <answerDays>0.5</answerDays>
@@ -22,7 +22,7 @@
       <li>{X_nameDef} of {FACTION} waits at the gate to take the colony's oath ({WORD}), and {A_nameDef} has asked the council to hear {A_objective} out before anyone walks out there.</li>
       <li>[avenger] {X_nameDef} of {FACTION} waits at the gate to take the colony's oath. {A_nameDef} swore vengeance on {FACTION}, and says the colony can't kneel to the people it swore to make pay.</li>
       <li>[avenger,pet] {A_nameDef} has not forgotten what {FACTION} did to {A_possessive} animal, and now {X_nameDef} of {FACTION} waits at the gate for the colony's oath. {A_nameDef} has come before the council about it.</li>
-      <li>[proud] {X_nameDef} of {FACTION} is at the gate to take the colony's oath ({WORD}). {A_nameDef} says the colony built itself with its own hands and shouldn't kneel to anyone.</li>
+      <li>[proud] {X_nameDef} of {FACTION} is at the gate to take the colony's oath ({WORD}). {A_nameDef} says the colony built itself with its own hands and owes nobody a knee.</li>
       <li>[proud] {A_nameDef} stood up before the council as {X_nameDef} of {FACTION} waited at the gate: the colony would be paying for its own walls twice, {A_pronoun} says, once in work and once in tribute.</li>
       <li>[faith] {X_nameDef} of {FACTION} waits at the gate, and {A_nameDef} has asked the council not to swear the colony to a people of another faith.</li>
       <li>[proud] {A_nameDef} is too proud to kneel to anyone, and says the colony should be too. {X_nameDef} of {FACTION} waits at the gate for its oath ({WORD}).</li>

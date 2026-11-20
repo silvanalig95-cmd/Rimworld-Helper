@@ -11,7 +11,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Masterwork</defName>
     <label>the apprentice's masterwork</label>
-    <summary>A keen crafter, artist or builder learns from a master until the master has nothing more to correct, then sets out to make something excellent.</summary>
+    <summary>A keen crafter, artist or builder learns at a master's elbow until the master's eye finds nothing more to say, then sets out to make something excellent.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Apprentice</workerClass>
     <weight>1.2</weight>
     <skills>
@@ -91,7 +91,7 @@
           <cold><li>I am ready to produce something worth keeping. I will not accept less.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is working on something special and won't let anyone see it yet, not even {PAWN_possessive} teacher.</li>
+          <li>Something is taking shape under {PAWN_nameDef}'s hands, and {PAWN_pronoun} won't let anyone see it yet, not even {PAWN_possessive} teacher.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
@@ -146,7 +146,7 @@
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could show {OTHER_objective} {PAWN_possessive} best work.</li>
-      <li>{PAWN_nameDef}'s apprenticeship has stalled, and the best piece will have to wait.</li>
+      <li>{PAWN_nameDef}'s best piece will have to wait.</li>
     </fizzleChronicle>
     <eulogy>
       <plain>
@@ -170,7 +170,7 @@
     <maxDays>90</maxDays>
     <stages>
       <li>
-        <label>first interest</label>
+        <label>a spark</label>
         <waiting>Next: {PAWN_nameDef} works up the nerve to ask {OTHER_nameDef} about it.</waiting>
         <journal>
           <plain>
@@ -310,7 +310,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_PassingItOn</defName>
     <label>passing it on</label>
-    <summary>An elder, or one of the colony's old hands, picks someone younger to teach their craft, teaches them until they have gained two levels, and then passes on the last of what they know.</summary>
+    <summary>An elder, or one of the colony's old hands, picks out someone younger to inherit their craft, teaches them until they've come on two levels, and hands down the last lessons.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Elder</workerClass>
     <weight>1.2</weight>
     <masterLevel>12</masterLevel>
@@ -374,7 +374,7 @@
       </li>
       <li>
         <label>the last lessons</label>
-        <waiting>Next: the last lessons.</waiting>
+        <waiting>Next: the last lessons, the ones that aren't written down anywhere.</waiting>
         <journal>
           <plain>
             <li>My student is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_nameDef}.</li>
@@ -419,7 +419,7 @@
         </otherJournal>
         <chronicle>
           <li>{PAWN_nameDef} has handed down the last of what {PAWN_pronoun} knows of {SKILL}, and {OTHER_nameDef} has it all now.</li>
-          <li>{OTHER_nameDef} will carry on {PAWN_nameDef}'s craft now.</li>
+          <li>{OTHER_nameDef} carries {PAWN_nameDef}'s craft now.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PassedOn</thought></li>

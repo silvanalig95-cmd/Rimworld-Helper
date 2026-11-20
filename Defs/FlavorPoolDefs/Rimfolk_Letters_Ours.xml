@@ -24,8 +24,8 @@
         <li>[greetings,v:blunt] Hello from {COLONY}. That's it. That's the letter.</li>
         <li>[greetings,v:blunt] Everyone here is fine. Hope you are too.</li>
         <li>[greetings,v:blunt,v:abrasive] Somebody here thought we should be friendlier with the neighbours. So: hello.</li>
-        <li>[greetings,v:eloquent] It is easy, out here, to forget that we have neighbours. We are glad your town is one of them, and wanted to say so.</li>
-        <li>[greetings,v:eloquent] I write for no reason but to keep in touch, which seems to me reason enough.</li>
+        <li>[greetings,v:eloquent] It is easy, out here, to forget that there are other lights burning in the dark. Your town is one of them, and we wanted you to know we see it.</li>
+        <li>[greetings,v:eloquent] I write for no reason but to keep the road between us open, which seems to me reason enough.</li>
         <li>[greetings,v:eloquent,warm] Every letter between {COLONY} and {TOWN} makes the distance a little shorter, and I would like it shorter still.</li>
         <li>[greetings,v:kind] We hope everyone at {TOWN} is well, and warm, and eating properly.</li>
         <li>[greetings,v:cheerful] Things are good here, as good as they get, and we wanted to share a little of it.</li>
@@ -42,7 +42,7 @@
         <li>[condolences,v:blunt] We heard about {TOPIC}. That's hard. I'm sorry.</li>
         <li>[condolences,v:blunt] We heard. We're sorry. That's all there is to say, and it isn't enough.</li>
         <li>[condolences,v:eloquent] We heard of {TOPIC}, and there are no words equal to it, so I will only say that we grieve with you, from as near as a letter can come.</li>
-        <li>[condolences,v:eloquent] They say everyone grieves alone. I do not believe it, and I hope this letter is some small comfort.</li>
+        <li>[condolences,v:eloquent] Grief is a road everyone walks alone, they say. I do not believe it. Let this letter walk a little of it with you.</li>
         <li>[condolences,v:kind] We heard of {TOPIC}. Please look after yourselves, and each other, in the days ahead.</li>
         <li>[condolences,v:gloomy] We know something of loss here. I am sorry it has come to you.</li>
         <li>[condolences,war] Our peoples are at war, but grief is grief. We are sorry for your dead.</li>
@@ -60,7 +60,7 @@
         <li>[news] What do you hear out your way? Anything you can tell us of the roads and the towns near you would be welcome.</li>
         <li>[news,v:plain] We would be grateful for any news of the region: who is at war, who is struggling, which roads are safe.</li>
         <li>[news,v:blunt] What's going on out there? Tell us what you know.</li>
-        <li>[news,v:eloquent] We live at the edge of things here, and news reaches us late, if at all. Whatever you can tell us would be a great kindness.</li>
+        <li>[news,v:eloquent] We live at the edge of things here, and the world reaches us late and in pieces. Whatever you can tell us would be a great kindness.</li>
         <li>[news,v:learned] I keep a record of what we hear, and would gladly add whatever you can tell me of your part of the world.</li>
         <li>[news,m:wary] We would like to understand the region better before we make our plans, and you are better placed than most to tell us.</li>
         <!-- ================= Invitation ================= -->
@@ -70,7 +70,7 @@
         <li>[invitation,v:plain] If you can spare the time, we would like you to come and visit.</li>
         <li>[invitation,v:blunt] Come over. We'll feed you.</li>
         <li>[invitation,v:blunt,colony:daysoon] {DAY} is coming. Come.</li>
-        <li>[invitation,v:eloquent] Letters are good, but meeting is better. Come to {COLONY} when you can, and let us talk face to face.</li>
+        <li>[invitation,v:eloquent] Letters are good, but faces are better. Come to {COLONY} when the road allows, and let us talk without the ink between us.</li>
         <li>[invitation,v:eloquent,colony:daysoon] We keep {DAY} soon, and it would mean a great deal to have a guest from {TOWN} at our table for it.</li>
         <li>[invitation,v:kind] We would love to see you here. Do come, if you can.</li>
         <li>[invitation,v:cheerful] Come and visit. We promise good food, honest company, and only a little singing.</li>
@@ -96,7 +96,7 @@
         <li>[pact] We would like to propose {PACT}, on fair terms for both sides.</li>
         <li>[pact,v:blunt] We want {PACT} with you. Fair terms. Think about it.</li>
         <li>[pact,v:blunt] A pact. Fair for both. What do you say?</li>
-        <li>[pact,v:eloquent] Neighbours who stand together are safer. We propose {PACT}, and hope you will see the good in it that we do.</li>
+        <li>[pact,v:eloquent] Neighbours who stand together stand longer. We propose {PACT}, and hope you will see in it what we do.</li>
         <!-- ================= Truce ================= -->
         <li>[truce] We offer a truce, and we hope you will take it.</li>
         <li>[truce] We propose a truce {TERM}, and we mean it honestly.</li>
@@ -126,7 +126,7 @@
         <li>[match] We propose a match between {OURS} and {THEIRS}, if both are willing.</li>
         <li>[match,v:blunt] {OURS} and {THEIRS}. We think it's a good match. Do you?</li>
         <li>[match,v:blunt] A match between one of ours and one of yours. Think it over.</li>
-        <li>[match,v:eloquent] A marriage can bring two peoples closer. We propose a match between {OURS} and {THEIRS}, with all the goodwill it deserves.</li>
+        <li>[match,v:eloquent] Two people may build a bridge where two peoples cannot. We propose a match between {OURS} and {THEIRS}, with all the goodwill it deserves.</li>
         <li>[match,v:cheerful] We have a proposal that has made at least two people here very nervous: a match between {OURS} and {THEIRS}.</li>
         <!-- ================= Fealty ================= -->
         <li>[fealty] We offer our fealty to {PEOPLE}, on terms we hope are fair to both.</li>

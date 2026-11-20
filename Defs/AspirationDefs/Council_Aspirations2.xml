@@ -63,9 +63,9 @@
     <achieved>
       <plain>
         <li>I walked from one end of what I've dug to the other today, and it took a while.</li>
-        <li>[trait:Undergrounder] Deep, quiet and ours. With rock all around us, I feel safe.</li>
+        <li>[trait:Undergrounder] Deep, quiet and ours. The mountain holds us like a pair of cupped hands now.</li>
       </plain>
-      <blunt><li>Five hundred cuts of rock. My arms hurt, but it's done.</li></blunt>
+      <blunt><li>Five hundred cuts of rock. My arms hurt. The mountain lost.</li></blunt>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -268,7 +268,7 @@
       <plain>
         <li>[inherited] {NAME} could hit a hare at the far end of the field. I'll practice every day until I {GOAL} too.</li>
         <li>Raiders don't wait for you to steady your hands. I'm going to practice until mine don't need steadying.</li>
-        <li>[trait:Bloodlust] I love the moment right before the shot. I want to get so good at {SKILL} that I never miss.</li>
+        <li>[trait:Bloodlust] I love the moment right before the shot. I want to get so good at {SKILL} that it's the only moment there is.</li>
         <li>[tribal] The best hunters in the old stories could split a reed at a hundred paces. I'll settle for ninety.</li>
       </plain>
       <blunt><li>I can hit things. I want to hit the exact thing I'm aiming at, every time.</li></blunt>
@@ -309,7 +309,7 @@
       <plain>
         <li>I spoke at dinner tonight, and the room went quiet to listen without anyone asking for quiet.</li>
       </plain>
-      <cheerful><li>People ask my opinion now, on purpose.</li></cheerful>
+      <cheerful><li>People ask my opinion now, on purpose! I've had to start having more opinions.</li></cheerful>
       <cold><li>They listen when I speak. A worthwhile investment.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -398,7 +398,7 @@
     <achieved>
       <plain>
         <li>Marshal. The colony trusts me with its walls and everyone behind them. I checked every barricade twice tonight.</li>
-        <li>[trait:Bloodlust] I'm marshal. Let the raiders come, because I'm ready for them.</li>
+        <li>[trait:Bloodlust] I'm marshal. Let the raiders learn my name. Let them come and learn it properly.</li>
       </plain>
       <gloomy><li>I'm marshal now. Whoever dies on the wall from now on, I'll be the one who put them there.</li></gloomy>
     </achieved>
@@ -475,7 +475,7 @@
       <plain>
         <li>[inherited] The stores have been a mess since we lost {NAME}. I'll {GOAL} and set them right.</li>
         <li>I know exactly what's in every stockpile, down to the last nail. It's about time someone gave me the keys.</li>
-        <li>[trait:Greedy] Quartermaster. Imagine it, all the silver in the colony counted by me every evening.</li>
+        <li>[trait:Greedy] Quartermaster. Imagine it. All the silver in the colony, counted by me, every evening. Just counted. Mostly.</li>
       </plain>
       <cheerful><li>I want to be quartermaster! I love lists and counting and a well-stacked shelf.</li></cheerful>
       <cold><li>Our stores are mismanaged. I could run them at a profit within a season. Quartermaster is the obvious seat.</li></cold>
@@ -533,7 +533,7 @@
       <plain>
         <li>[inherited] {NAME} wanted to grow old here. I'll {GOAL} and do the growing old for both of us.</li>
         <li>Five more years. I'd like to see this place grow up, and be here for it.</li>
-        <li>[old] My knees have been through a lot of winters here. I'd like to see five more of them. Then I'll think about resting.</li>
+        <li>[old] My knees know every winter by name now. I'd like to meet five more of them. Then I'll think about resting.</li>
       </plain>
       <cheerful><li>Five more years here! Think of all the harvests and birthdays, and the arguments about chores.</li></cheerful>
       <gloomy><li>[old] Everyone my age is in the ground already. I mean to be stubborn about it. Five more years, at least.</li></gloomy>
@@ -550,7 +550,7 @@
 
   <ColonyCouncil.AspirationDef>
     <defName>Council_Asp2_Township</defName>
-    <label>a town on the Rim</label>
+    <label>a town on the rim</label>
     <workerClass>ColonyCouncil.AspirationWorker_ColonySize</workerClass>
     <amount>20</amount>
     <weight>0.5</weight>

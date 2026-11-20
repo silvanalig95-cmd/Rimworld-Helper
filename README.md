@@ -1810,7 +1810,7 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
-*two healers, two cooks* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
+*nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
 infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
 infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight

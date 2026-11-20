@@ -72,7 +72,7 @@
         <li>[spark:hurt] I keep going over how it happened. I'm going to be careful now, and {GOAL}.</li>
         <li>[spark:hurt] It still aches when I put weight on it. I'll watch every step until I trust my own feet again.</li>
         <li>I've had enough of being the one carried in. A whole month without a scrape, that's what I want.</li>
-        <li>[tribal] My grandmother said the careless get hurt. I'll walk carefully for a while.</li>
+        <li>[tribal] My grandmother said the land bites the careless. I'll walk carefully until it forgets about me.</li>
         <li>[child] I'm going to be really, really careful now, every day, until it's a whole month.</li>
       </plain>
       <warm><li>I gave everyone a fright. The least I can do is not do it again for a while.</li></warm>
@@ -111,13 +111,13 @@
         <li>Everything around here is a little broken, and nobody minds until it falls apart. I mind. I'm going to {GOAL}.</li>
         <li>I walk past three cracked things on my way to breakfast. Starting tomorrow, I stop walking past.</li>
         <li>[tribal] A tent that's mended in time outlasts the one who made it. So does a wall.</li>
-        <li>[industrial] Half our machines are held together with wire and luck. I'd like to fix them properly.</li>
+        <li>[industrial] Half our machines are held together with wire and hope. I'd like to replace the hope.</li>
         <li>[inherited] {NAME} kept everything here standing. Somebody has to carry on doing it.</li>
       </plain>
       <warm><li>A mended door that closes properly makes someone's evening better. I'd like to make forty evenings better.</li></warm>
       <blunt><li>Things break. I fix them. Forty of them.</li></blunt>
       <cheerful><li>I love the click of a thing that works again. I want forty more clicks.</li></cheerful>
-      <gloomy><li>Everything wears out in the end. I'll keep things going as long as I can.</li></gloomy>
+      <gloomy><li>Everything wears out in the end. I'll keep it going a bit longer than it wants to.</li></gloomy>
       <cold><li>Repair costs less than replacement. The colony wastes a great deal by ignoring that.</li></cold>
     </chosen>
     <achieved>
@@ -231,7 +231,7 @@
       <warm><li>Out here, we're all somebody's neighbor. I'd like ours to be glad of us.</li></warm>
       <blunt><li>Next time a neighbor calls, I go.</li></blunt>
       <cheerful><li>I want every town on the road to know they can count on us. Starting with me.</li></cheerful>
-      <gloomy><li>Hard times are coming for everyone. Better they find us ready to help than shut away behind our walls.</li></gloomy>
+      <gloomy><li>Hard times are coming for everyone. Better they find us helpful than find us closed.</li></gloomy>
       <cold><li>A colony that helps is a colony that gets helped. I'll make sure we're owed a favor or two.</li></cold>
     </chosen>
     <achieved>
@@ -262,7 +262,7 @@
         <li>[spark:Rimfolk_FirstNight] We lit the first fire here and said a few words. Somebody has to remember days like that, and keep them.</li>
         <li>[spark:Council_Evt_FoundingDay] The founding day came round and half of us nearly forgot it. Not next time.</li>
         <li>[spark:loss] We lose people, and then we lose the days we shared with them. I'm going to keep the days.</li>
-        <li>A colony should keep its own days. I'll see the next ones kept properly.</li>
+        <li>A colony is the days it keeps. I'll see the next ones kept properly.</li>
         <li>[tribal] The old days are kept by those who remember them. I'll remember.</li>
       </plain>
       <warm><li>The days we keep together are the ones the children will remember. I want them to be good ones.</li></warm>
@@ -334,7 +334,7 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[spark:omen] One of my dreams came true. I think it's a sign I'm meant to lead the rites.</li>
+        <li>[spark:omen] I dreamt I was leading the rite, and then it came true in other ways. I think it's meant for me.</li>
         <li>[spark:loss] We said the words over our dead, and I wanted to be the one saying them. I'll lead the next rites.</li>
         <li>The rites hold us together. I'd like to be the one who leads them.</li>
         <li>[tribal] The old songs need a voice to carry them. Mine will do.</li>
@@ -347,7 +347,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>I've led three rites now. I could see in their faces that it meant something.</li>
+        <li>Three rites led to their end. I could see it in their faces: it meant something.</li>
         <li>That was the third rite I led. My voice didn't shake once.</li>
       </plain>
       <warm><li>Everyone came, and everyone left a little lighter. That was the point.</li></warm>

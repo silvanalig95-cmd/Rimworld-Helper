@@ -25,8 +25,8 @@
         <!-- The Stormglass Conclave: the glass, the sky, the record -->
         <li>[greetings,warm,their:seers] Your letter was read in the tower under a clear glass, {WRITER}, and a clear glass is a kind sky.</li>
         <li>[greetings,cordial,their:seers] The tower has your letter, {WRITER}, and has written down the day it came, as it writes down everything.</li>
-        <li>[greetings,cool,their:seers] We have your letter. We have not made up our minds about you yet.</li>
-        <li>[news,warm,their:seers] The tower watches the whole region's sky, {WRITER}, and the roads under it. Here is what the tower recorded this season.</li>
+        <li>[greetings,cool,their:seers] We have your letter. The glass has not made up its mind about you yet.</li>
+        <li>[news,warm,their:seers] The tower watches the whole region's sky, {WRITER}, and the roads under it. Here is what the season wrote.</li>
         <li>[news,cordial,their:seers] Our runners carry the weather from town to town, and the news with it. This is the season's.</li>
         <li>[help,warm,their:seers] What you asked for is coming with a vial-runner, {WRITER}, and the glass says fair roads for it.</li>
         <li>[help,cordial,their:seers] The tower can spare it, and it is on the road with our runner.</li>
@@ -37,10 +37,10 @@
         <li>[warning,warm,their:seers] Your warning reached the tower before the trouble did, {WRITER}, and for once the sky was not the first to tell us. We will not forget it.</li>
         <li>[warning,cordial,their:seers] We have your warning, {WRITER}. The tower's shutters are down tonight.</li>
         <!-- The Mossborn: the grove, the seedling, the long count -->
-        <li>[greetings,warm,their:grovekeepers] Your letter was read under the oldest tree in the grove, {WRITER}, and we were glad of it.</li>
+        <li>[greetings,warm,their:grovekeepers] Your letter was read under the oldest tree in the grove, {WRITER}, and it listened as well as we did.</li>
         <li>[greetings,cordial,their:grovekeepers] The grove has your letter, {WRITER}. We are slow to answer, but we remember.</li>
         <li>[greetings,cool,their:grovekeepers] We have your letter. The forest remembers every axe, and we are still counting yours.</li>
-        <li>[news,warm,their:grovekeepers] News reaches the groves slowly, {WRITER}, but all of it reaches us. Here is what a season brought.</li>
+        <li>[news,warm,their:grovekeepers] The groves hear the region as trees do, {WRITER}, slowly and all of it. Here is what a season brought.</li>
         <li>[news,cordial,their:grovekeepers] Seed-carriers walk every road, and listen on all of them. This is what they heard.</li>
         <li>[help,warm,their:grovekeepers] What you asked for is coming with a leaf-runner, {WRITER}. Plant it, and be patient, as we say.</li>
         <li>[help,cordial,their:grovekeepers] The grove can spare it, and a runner is bringing it.</li>
@@ -48,7 +48,7 @@
         <li>[invitation,warm,their:grovekeepers] A seed-carrier will come, with a sapling for your gate.</li>
         <li>[condolences,warm,their:grovekeepers] We planted a sapling for your dead this morning, {WRITER}, beside our own. In the end we are all the grove.</li>
         <li>[condolences,cordial,their:grovekeepers] The Mossborn are sorry for your loss, {WRITER}. A grave that grows is a grave that is not forgotten.</li>
-        <li>[warning,warm,their:grovekeepers] Your warning reached the grove in time, {WRITER}, and everyone is in among the old trees. We will remember who told us.</li>
+        <li>[warning,warm,their:grovekeepers] Your warning reached the grove in time, {WRITER}, and everyone is in among the old trees. The grove remembers who told it.</li>
         <li>[warning,cordial,their:grovekeepers] We have your warning, {WRITER}. The grove will keep its fires low tonight.</li>
         <!-- The Ashen Banner: the Roll, the wall, the pay -->
         <li>[greetings,warm,their:mercenaries] Your letter was read in the hall of the Roll, {WRITER}, and the captain called it a good one, which the captain rarely does.</li>

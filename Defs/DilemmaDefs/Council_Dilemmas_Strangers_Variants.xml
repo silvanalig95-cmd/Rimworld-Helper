@@ -48,7 +48,7 @@
     <defName>Council_Var_DlmS_RudeGuest</defName>
     <dilemma>Council_DlmS_RudeGuest</dilemma>
     <texts>
-      <li>[theirLowtech] {X_nameDef} of {FACTION} has called {A_nameDef} a dirt-eater twice today, once at the well and once at supper, and laughed both times. The other visitors have started laughing along.\n\n{A_nameDef} has asked the council whether what a guest says is the council's business.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} has called {A_nameDef} a dirt-eater twice today, once at the well and once at supper, and laughed both times. The other visitors have started laughing along.\n\n{A_nameDef} has asked the council whether a guest's tongue is the council's business.</li>
       <li>[theirHightech] Today {X_nameDef} of {FACTION} asked {A_nameDef}, slowly and loudly, whether {A_pronoun} could read. It capped two days of remarks about the colony's beds and the colony's smell, most of them aimed at {A_nameDef}.\n\n{A_nameDef} said yes, and has been counting the days until the visitors leave.</li>
       <li>[trait:Abrasive] {A_nameDef} and {X_nameDef} of {FACTION} took against each other at first sight, and both have said so. Today {X_nameDef} went further, and said something about {A_nameDef}'s family that stopped all talk at the table.\n\n{A_nameDef} wants the council to act. Several people think {A_nameDef} started it.</li>
       <li>[trait:Kind] {A_nameDef} has put up with {X_nameDef}'s remarks for two days without a word back. Tonight {X_nameDef} of {FACTION} made {A_nameDef} leave the dinner table in tears, and some of the others want the council to act even though {A_nameDef} won't ask.</li>
@@ -137,7 +137,7 @@
     <defName>Council_Var_DlmS_FallenPlea</defName>
     <dilemma>Council_DlmS_FallenPlea</dilemma>
     <texts>
-      <li>[winter] One of the {FACTION} attackers, {X_nameDef}, is still alive out in the snow, bleeding and too cold to shout anymore. {A_nameDef} found {X_objective} and came straight to the council.\n\nIn this cold, {X_nameDef} won't last the afternoon.</li>
+      <li>[winter] One of the {FACTION} attackers is still alive out in the snow: {X_nameDef}, bleeding and too cold to shout anymore. {A_nameDef} found {X_objective} and came straight to the council.\n\nIn this cold, {X_nameDef} won't last the afternoon.</li>
       <li>[night] It's dark, and somewhere past the wall one of the {FACTION} attackers is calling for help. {A_nameDef} went out with a light, found {X_nameDef} alive and bleeding, and came back to ask what to do.</li>
       <li>[x:old] Among the fallen {FACTION} attackers is {X_nameDef}, gray-haired and badly hurt, who keeps asking {A_nameDef} whether the others got away.\n\n{X_nameDef} is too old to be raiding, and too hurt to wait long for an answer.</li>
       <li>[trait:Kind] {A_nameDef} is kneeling next to {X_nameDef}, one of the {FACTION} attackers, pressing a rag to the wound and calling for the council to decide. An hour ago {X_nameDef} was trying to kill {A_objective}.</li>
@@ -178,7 +178,7 @@
     <texts>
       <li>[winter] {X_nameDef} and a few others of {FACTION} came through the snow to ask for food. Their stores froze and split, and they've been eating their seed since the first frost. {X_nameDef} asked {A_nameDef} at the gate, plainly, with no speech prepared.</li>
       <li>[theirLowtech] Blight got the {FACTION} fields this year. {X_nameDef} has walked two days with an empty basket to ask the colony for whatever it can spare, and {A_nameDef} has brought the request to the council.</li>
-      <li>[colony:Generous] The colony is known for giving, and word has spread. {X_nameDef} of {FACTION} is at the gate with empty sacks, asking {A_nameDef} for food for the people back home.</li>
+      <li>[colony:Generous] The colony has a name for giving, and the name has carried. {X_nameDef} of {FACTION} is at the gate with empty sacks, asking {A_nameDef} for food for the people back home.</li>
       <li>[colony:Thrifty] {X_nameDef} of {FACTION} has heard the colony doesn't give much away, and came anyway. Their stores are empty. {X_nameDef} asked {A_nameDef} for food at the gate and waited for the answer with {X_possessive} hat in {X_possessive} hands.</li>
       <li>[x:old] {X_nameDef} of {FACTION} is old and bent nearly double under an empty sack, and has walked a long way to ask for food for the young ones back home. {A_nameDef} found {X_objective} resting at the gate.</li>
     </texts>
@@ -205,8 +205,8 @@
     <dilemma>Council_DlmS_PetBit</dilemma>
     <texts>
       <li>[rain] {PET_nameDef} has been in a foul mood all day in the rain, and when {X_nameDef} of {FACTION} reached down to pat {PET_objective}, {PET_nameDef} bit. {X_nameDef} wants silver for it. {A_nameDef} says {PET_nameDef} would have bitten {A_objective} too, in that weather.</li>
-      <li>[trait:Kind] {A_nameDef} has already bandaged {X_nameDef}'s hand and apologized three times for {PET_nameDef}. It isn't enough. The {FACTION} visitors want silver for the bite, and a few of them want the animal.</li>
-      <li>[night] {X_nameDef} of {FACTION} went for a walk after dark and tripped over {PET_nameDef}, asleep by the door. {PET_nameDef} bit before it was properly awake. The {FACTION} visitors want silver for it, and {A_nameDef} wants to know what a guest was doing creeping around in the dark.</li>
+      <li>[trait:Kind] {A_nameDef} has already bandaged {X_nameDef}'s hand and apologized three times for {PET_nameDef}. It isn't enough: the {FACTION} visitors want silver for the bite, and a few of them want the animal.</li>
+      <li>[night] {X_nameDef} of {FACTION} went for a walk after dark and tripped over {PET_nameDef}, asleep by the door. {PET_nameDef} bit first and woke up after. The {FACTION} visitors want silver for it, and {A_nameDef} wants to know what a guest was doing creeping around in the dark.</li>
     </texts>
     <outcomes>
       <li>
@@ -242,7 +242,7 @@
     <defName>Council_Var_DlmS_ChildPet</defName>
     <dilemma>Council_DlmS_ChildPet</dilemma>
     <texts>
-      <li>[rain] {A_nameDef} came in soaked, carrying {X_indefinite} wrapped in {A_possessive} coat, and announced that it was cold and lost and had no one. {A_nameDef} wants to keep it.\n\nThe adults can already tell who will end up looking after it.</li>
+      <li>[rain] {A_nameDef} came in soaked, carrying {X_indefinite} wrapped in {A_possessive} coat, and announced that it was cold and lost and had no one. {A_nameDef} wants to keep it.\n\nThe adults can see how this is going to go.</li>
       <li>[spring] {A_nameDef} found {X_indefinite} in the long grass this morning, small enough to fit in two hands, and hasn't put it down since. {A_nameDef} wants to keep it, and has already made it a bed in a crate.</li>
       <li>[snow] All week {A_nameDef} has been sneaking bread to {X_indefinite} sheltering from the snow under the porch. Today {A_nameDef} asked the council, very politely, whether it could come inside for good.</li>
     </texts>
@@ -280,7 +280,7 @@
     <defName>Council_Var_DlmS_Tonic</defName>
     <dilemma>Council_DlmS_Tonic</dilemma>
     <texts>
-      <li>[theirLowtech] {X_nameDef} of {FACTION} sells a tonic in clay jars, brewed from marsh roots by somebody's grandmother. {X_nameDef} says it cures bad sleep, bad joints and bad luck, and the last jar costs one hundred silver.\n\n{A_nameDef} has been sleeping badly for weeks, and wants it.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} sells a tonic in clay jars, brewed from marsh roots by somebody's grandmother. It cures bad sleep, bad joints and bad luck, and the last jar costs one hundred silver.\n\n{A_nameDef} has been sleeping badly for weeks, and wants it.</li>
       <li>[theirHightech] {X_nameDef}'s tonic comes in a sealed glass vial with a printed label, and the label promises a great deal. {X_nameDef} wants one hundred silver for it. {A_nameDef}, who hasn't slept properly in weeks, has read the label four times.</li>
       <li>[trait:Nervous] {A_nameDef} has been jumpy for days and sleeping worse each night. {X_nameDef}, the {FACTION} trader, noticed, and has a tonic for exactly that: one hundred silver for the bottle.\n\n{A_nameDef} has already worked out where {A_pronoun} would keep it.</li>
     </texts>
@@ -317,7 +317,7 @@
     <defName>Council_Var_DlmS_BeastReturns</defName>
     <dilemma>Council_DlmS_BeastReturns</dilemma>
     <texts>
-      <li>[night] Last night {A_nameDef} saw eyes in the dark past the fields, low to the ground, and knew them. They belong to {X_definite}, the beast that mauled one of the colonists and got away, and it has found its way back.</li>
+      <li>[night] Eyes in the dark past the fields, low to the ground. {A_nameDef} knew them. They belong to {X_definite}, the beast that mauled one of the colonists and got away, and it hasn't forgotten the way here.</li>
       <li>[winter] {A_nameDef} found tracks in the snow this morning, circling the colony twice. They belong to {X_definite}, the animal that mauled a colonist and limped off into the wild.\n\nThe winter has made it bolder.</li>
     </texts>
     <outcomes>

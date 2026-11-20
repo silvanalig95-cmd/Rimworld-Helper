@@ -20,9 +20,9 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} found {A_nameDef} in the storeroom in the middle of the night, still chewing, with {A_possessive} pockets stuffed full of food.\n\n"I was hungry," {A_nameDef} said.\n\n"That's the third time this week," said {B_nameDef}, who wants the council to deal with it.</li>
+      <li>Still chewing, pockets stuffed full. That was how {B_nameDef} found {A_nameDef} in the storeroom in the middle of the night.\n\n"I was hungry," {A_nameDef} said.\n\n"Third time this week," said {B_nameDef}, who wants the council to deal with it.</li>
       <li>Food has been going missing from the stores for days. Last night {B_nameDef} waited in the dark between the shelves and caught {A_nameDef} filling a sack.\n\n{A_nameDef} hasn't tried to deny it.</li>
-      <li>This morning {B_nameDef} found a pile of picked bones and three empty sacks under {A_nameDef}'s bed, after a week of the stores running short.\n\n{A_nameDef} says {A_pronoun} only took what {A_pronoun} needed. {B_nameDef} points out that the rest of the colony has been going to bed hungry.</li>
+      <li>A pile of picked bones and three empty sacks, under {A_nameDef}'s bed. {B_nameDef} found them this morning, after a week of the stores running short.\n\n{A_nameDef} says {A_pronoun} only took what {A_pronoun} needed. {B_nameDef} points out that the rest of the colony has been going to bed hungry.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -91,7 +91,7 @@
     <things><li>Beer</li><li>SmokeleafJoint</li><li>Ambrosia</li></things>
     <thingCount>12</thingCount>
     <texts>
-      <li>{A_nameDef} pried up a loose board in the old shed and found {COUNT} {THING} wrapped in oilcloth. Whoever hid it hasn't been back for it in years.\n\nPeople started arguing about what to do with it straight away.</li>
+      <li>{A_nameDef} pried up a loose board in the old shed and found {COUNT} {THING} wrapped in oilcloth. Whoever hid it hasn't been back for it in years.\n\nThe arguing started before {A_nameDef} had the board back down.</li>
       <li>{A_nameDef} was digging a trench when {A_possessive} shovel struck a buried crate. Inside were {COUNT} {THING}, still good, probably left by smugglers long before the colony came.\n\nWord got around fast.</li>
     </texts>
     <defaultOption>0</defaultOption>
@@ -146,7 +146,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have been at each other's throats for days. Today it was about whose turn it was to clean. Yesterday it was a borrowed knife that came back dull.\n\nBoth of them want the council to settle it, and both expect to win.</li>
-      <li>{A_nameDef} and {B_nameDef} had another shouting match, this time across the dinner table, and a spoon was thrown.\n\nEach has brought the council a list of complaints about the other, and each says the other started it.</li>
+      <li>{A_nameDef} and {B_nameDef} had another shouting match, this time across the dinner table, and a spoon was thrown.\n\nEach has brought the council a list of complaints. {B_nameDef}'s begins with the spoon. {A_nameDef}'s begins with what {B_nameDef} said before the spoon.</li>
       <li>This morning {B_nameDef} moved {A_nameDef}'s things out of the workshop. By lunch {A_nameDef} had salted {B_nameDef}'s stew until it couldn't be eaten. It has gone on like this for days.\n\nThe others are tired of it, and {A_nameDef} and {B_nameDef} each want the council to take their side.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -230,7 +230,7 @@
     <thingCount>30</thingCount>
     <texts>
       <li>{A_nameDef} wants to cook a feast tonight with the best of everything in the stores. "We could all be dead next week," {A_pronoun} says.\n\nIt would use about {COUNT} raw food.</li>
-      <li>{A_nameDef} has been planning a seven-course menu for weeks and has finally brought it to the council. It would take about {COUNT} raw food from the stores. {A_nameDef} went through every course for them.</li>
+      <li>{A_nameDef} has been planning a seven-course menu for weeks, in the margins of the kitchen tally, and has finally brought it to the council. It would take about {COUNT} raw food from the stores. {A_nameDef} can recite every course, and did.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>

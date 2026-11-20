@@ -12,14 +12,14 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_FearLaid</defName>
     <label>the fear laid to rest</label>
-    <summary>The enemy who hurt them is in the colony's cells or gone for good, but they are still afraid. A few days to take it in, telling a friend everything that happened, and a few good nights help them get over it.</summary>
+    <summary>The enemy who hurt them is in the colony's cells, or gone for good, but the fear isn't. Taking it in, telling a friend the whole of it, and a few good nights lay it to rest.</summary>
     <workerClass>ColonyCouncil.ArcWorker_FearLaid</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <needsOther>false</needsOther>
     <maxDays>45</maxDays>
     <stages>
       <li>
-        <label>still afraid</label>
+        <label>over, mostly</label>
         <waiting>Next: a few days for {PAWN_nameDef} to take it in.</waiting>
         <journal>
           <plain>
@@ -43,7 +43,7 @@
         </journal>
         <chronicle>
           <li>[captured] {PAWN_nameDef} walks the long way round now, so as not to pass the cell where {NAME} is kept.</li>
-          <li>{PAWN_nameDef} is still afraid of {NAME}, even though the danger has passed.</li>
+          <li>{PAWN_nameDef} is still afraid of {NAME}, though it's over.</li>
         </chronicle>
         <gate><kind>Time</kind><days>3</days><minDays>2</minDays></gate>
       </li>
@@ -123,7 +123,7 @@
           <cold><li>The fear has run its course. I sleep through the night and work through the day, as before.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is no longer afraid of {NAME}.</li>
+          <li>{PAWN_nameDef} has laid the fear of {NAME} to rest.</li>
           <li>[captured] {PAWN_nameDef} can walk past {NAME}'s cell now without a second look.</li>
         </chronicle>
         <effects>

@@ -34,7 +34,7 @@
         <li>These clothes were fine in summer. They won't be fine for {SUBJECT}.</li>
         <li>I've worked out what I'll need for {SUBJECT}, and it isn't what I'm wearing. Something like {THING} would do it.</li>
         <li>My clothes were made for somewhere warmer than this. I need clothes made for here.</li>
-        <li>[fall,morning] The mornings are already cold. I'd like to be dressed for {SUBJECT} before the worst of it comes.</li>
+        <li>[fall,morning] The mornings have teeth already. I'd like to be dressed for {SUBJECT} before it bites properly.</li>
         <li>[winter,evening] My fingers went white out there today, and it took ages to feel them again.</li>
         <li>[snow] I came back from the fields with snow down my collar and up my sleeves.</li>
         <li>[old] The cold gets into my bones these days. Something warm for {SUBJECT}, before I'm stiff all through.</li>
@@ -76,7 +76,7 @@
     </thanks>
     <expired>
       <plain><li>More shirts, then, one on top of the other.</li></plain>
-      <blunt><li>If I lose a toe to frostbite, I'll hold the council responsible.</li></blunt>
+      <blunt><li>If I lose a toe, I'm leaving it on the council's table.</li></blunt>
       <gloomy><li>It'll be frostbite by midwinter.</li></gloomy>
       <cold><li>Expect less from me until spring.</li></cold>
     </expired>
@@ -85,7 +85,7 @@
         <li>It's getting colder, and I'm still dressed for the weather we had.</li>
         <li>Still nothing warm enough to wear, and {SUBJECT} isn't waiting.</li>
       </plain>
-      <gloomy><li>I can't feel my ears any more, and nobody seems to care.</li></gloomy>
+      <gloomy><li>I've stopped feeling my ears. That's probably fine.</li></gloomy>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -214,9 +214,9 @@
       <cold><li>Recovery improved.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll stamp my feet by the fire to warm up, then.</li></plain>
+      <plain><li>I'll stamp my feet by the fire and call it a sauna.</li></plain>
       <blunt><li>Winter's long. I'll remember who let this slide.</li></blunt>
-      <gloomy><li>Another winter with nowhere to get properly warm.</li></gloomy>
+      <gloomy><li>Winter wins again.</li></gloomy>
     </expired>
     <reminder>
       <plain>

@@ -33,11 +33,11 @@
       <li>Smoke over {PLACE}</li>
     </titles>
     <texts>
-      <li>[theirLowtech] A spark from a bakehouse oven set a thatched roof alight in {PLACE}, and the wind spread the fire. By morning the granary was ash, along with the meeting hall where {FACTION} kept their records and some forty houses.\n\nEveryone got out alive, which the people of {PLACE} are calling a miracle. They are sleeping in the fields under carts and blankets, and more than anything they will need timber.</li>
+      <li>[theirLowtech] A spark from a bakehouse oven caught a thatched roof in {PLACE}, and the wind did the rest. By morning the granary was ash, and the meeting hall where {FACTION} kept their records, and some forty houses besides.\n\nEvery soul got out, which the people of {PLACE} are calling a miracle. They are sleeping in the fields under carts and blankets, and before anything else they will need timber.</li>
       <li>[theirHightech] A fuel store went up in {PLACE} two nights ago, and the fire jumped from building to building faster than {FACTION}'s pumps could follow. The east side of the town is black beams and melted glass now, with one water tower standing over it.\n\n{FACTION} got almost everyone out. They'll be rebuilding all season.</li>
-      <li>[summer] It has been a dry summer, and in {PLACE} a single dropped lamp was enough. The fire burned for a day and a night, and only stopped when the wind turned it back onto ground it had already burned.\n\nAll {FACTION} have left is the well, the stone walls of the mill and a handful of houses across the stream.</li>
-      <li>[their:grateful] Yesterday a brown haze hung over the hills toward {PLACE} from noon until dark. It was the smoke of {PLACE} burning, in the worst fire {FACTION} have known.\n\nThey count the colony as a friend, and their rider is already on the way. They will need timber and roofs, and a great deal of both.</li>
-      <li>[their:friend] A message has come from {FACTION}, written in an unsteady hand: "{PLACE} has burned. We are alive, all of us. Tell {FRIEND_nameDef} we are alive. If your colony can spare timber, we will need it before the rains."</li>
+      <li>[summer] It has been a dry summer, and in {PLACE} a single dropped lamp was enough. The fire burned for a day and a night, and only stopped when the wind turned it back onto ground it had already eaten.\n\nWhat {FACTION} have left is the well, the stone walls of the mill and a handful of houses across the stream.</li>
+      <li>[their:grateful] From noon until dark yesterday a brown smear hung over the hills toward {PLACE}. It was {PLACE} burning, in the worst fire {FACTION} have known.\n\nThey count the colony as a friend, and their rider is already on the road here. They will need timber and roofs, and a great deal of both.</li>
+      <li>[their:friend] A message came from {FACTION} this morning, in a hand that wasn't steady: "{PLACE} has burned. We are alive, all of us. Tell {FRIEND_nameDef} we are alive. If your colony can spare timber, we will need it before the rains."</li>
     </texts>
     <summaries>
       <li>{FACTION} will ask for timber and for a builder who knows roofs, and families burned out of {PLACE} may come to the gate. When {PLACE} stands again, its people will know whose timber is in the walls.</li>
@@ -60,8 +60,8 @@
         </titles>
         <texts>
           <li>[theirLowtech] A wagon from {PLACE} has come to the gate with an empty bed and a tired driver. {FACTION} need timber for roofs before the weather turns, and {COUNT} logs would put a dozen families under cover.\n\nThe driver can't pay much this year, and doesn't pretend otherwise.</li>
-          <li>[theirHightech] {FACTION}'s rebuilding crews have used up every plank in the region. Their courier is waiting at the gate with an empty cart and a list that starts with {COUNT} logs.\n\nThey'll pay something, though not much.</li>
-          <li>[their:grateful] The carter from {PLACE} hardly had to ask. {A_nameDef} saw the empty cart and the soot still on the carter's sleeves, and knew what {FACTION} needed: {COUNT} logs for the roofs of {PLACE}, if the colony can spare them.</li>
+          <li>[theirHightech] {FACTION}'s rebuilding crews have used up every plank in the region. Their courier is waiting at the gate with an empty cart and a list that starts with {COUNT} logs.\n\nThey'll pay something. Not much.</li>
+          <li>[their:grateful] The carter from {PLACE} hardly had to ask. {A_nameDef} saw the empty cart and the soot still on his sleeves, and knew what {FACTION} needed: {COUNT} logs for the roofs of {PLACE}, if the colony can spare them.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -155,7 +155,7 @@
         <options>
           <li>
             <label>Send {A_nameDef} to {PLACE}</label>
-            <outcome>{A_nameDef} goes off to {PLACE} with a bag of tools, to help put up a dozen new roofs.</outcome>
+            <outcome>{A_nameDef} goes to {PLACE} with a bag of tools and comes back four days later, sunburnt, after helping put up a dozen new roofs.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_RebuiltTogether</thought></li>
@@ -330,7 +330,7 @@
         <options>
           <li>
             <label>Hide him</label>
-            <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. Before long both families find out where he is.</outcome>
+            <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. By evening both families have found out where he is.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><inside>true</inside></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
@@ -381,7 +381,7 @@
         <options>
           <li>
             <label>{A_nameDef} sits between them</label>
-            <outcome>{A_nameDef} spends a long day at the table with two families who won't look at each other. By the end of it they have stopped arguing about the killing and started arguing about the blood price, which is a step toward settling it.</outcome>
+            <outcome>{A_nameDef} spends a long day at the table with two families who won't look at each other. By evening they have stopped arguing about the killing and started arguing about the blood price, which is a step toward settling it.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Social</riskSkill>
             <riskOutcome>In the second hour an uncle of {ENEMY}'s family said something about a grandmother. {A_nameDef} got everyone out before it came to blows, but the feud is worse than it was.</riskOutcome>
@@ -504,8 +504,8 @@
           <li>{NAME} goes on</li>
         </titles>
         <texts>
-          <li>{NAME} has gone quiet. There has been no more blood, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nOn both sides, the talks at the colony's table are remembered as the day it got worse.</li>
-          <li>{NAME} hasn't ended, only gone quiet. The families of {FACTION} and {ENEMY} won't sit in the same room, and both blame the colony's table for it.</li>
+          <li>{NAME} has gone underground. There has been no more blood, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nOn both sides, the talks at the colony's table are remembered as the day it got worse.</li>
+          <li>{NAME} hasn't ended. It has gone quiet, the way a fire does under ash. The families of {FACTION} and {ENEMY} won't sit in the same room, and both say it was the colony's table that made it so.</li>
         </texts>
         <chronicle>{NAME} smoldered on after talks at the colony went wrong.</chronicle>
         <effects>
@@ -535,8 +535,8 @@
           <li>{NAME} settled, after a fashion</li>
         </titles>
         <texts>
-          <li>{NAME} is over, as such things end when one side gets what it wanted. {ENEMY}'s family has had its revenge. {FACTION}'s family has a grave to tend, and they curse the colony's name.</li>
-          <li>{NAME} ended when the colony handed over what {ENEMY}'s family wanted. They are satisfied. {FACTION}'s family is not, and they speak of the colony with anger.</li>
+          <li>{NAME} is over, the way such things end when one side gets what it wanted. {ENEMY}'s family has had its satisfaction. {FACTION}'s family has a grave to tend and the colony's name to curse.</li>
+          <li>{NAME} ended when the colony handed over what {ENEMY}'s family wanted. They are satisfied. {FACTION}'s family is not, and the colony's name is said hard in their house.</li>
         </texts>
         <chronicle>{NAME} ended when the colony handed over the fugitive.</chronicle>
       </li>
@@ -583,10 +583,10 @@
     <texts>
       <li>[lowtech] A new star has come up low in the east, with a tail behind it like a horse's mane. The old people call it {NAME}, and every village for a hundred miles has its own idea of what it means: war, plague, a good harvest, the end of the world.\n\nIt will hang there for a couple of weeks, and then it will be gone.</li>
       <li>[!lowtech] A comet has come into view over the region. The astronomers call it {NAME}, and say it won't pass this close again for three hundred years. On a clear night it's bright enough to throw shadows.\n\nThe roads are full of people heading somewhere dark to see it, and of people who think it's a sign.</li>
-      <li>{NAME} hangs over the hills every night now, a smear of light with a long pale tail. In the villages they say the hens stopped laying the night it came, and that milk left out overnight goes sour by morning.</li>
+      <li>{NAME} hangs over the hills every night now, a smear of light with a long pale tail. In the villages they say the hens stopped laying the night it came, and that milk left out overnight turns by morning.</li>
     </texts>
     <summaries>
-      <li>Fortune tellers, pilgrims and scholars come more often while {NAME} is in the sky. The colony's people will want to watch it, and a sky-watcher may ask to use the colony's land.</li>
+      <li>Fortune tellers, pilgrims and scholars come more often while {NAME} is in the sky. The colony's people will want to watch it, and a sky-watcher may ask to use the colony's hill.</li>
     </summaries>
     <modifiers>
       <li><rimfolk>Council_Evt_FortuneTeller</rimfolk><factor>3</factor></li>
@@ -603,14 +603,14 @@
           <li>Watching {NAME}</li>
         </titles>
         <texts>
-          <li>{A_nameDef} woke three people last night to come out and see {NAME}, and two of them stayed up until dawn. Now {A_nameDef} wants to do it properly: a fire outside, blankets, something hot to drink, and the whole sky.\n\nNot everyone thinks a comet is good news. {A_nameDef} says that's all the more reason to look at it together.</li>
-          <li>[winter] {NAME} is brightest in the long winter nights. {A_nameDef} wants a fire lit outside so the colony can watch it together, and has already started stacking the wood.</li>
+          <li>{A_nameDef} woke three people last night to come out and see {NAME}, and two of them stayed up until dawn. Now {A_nameDef} wants to do it properly: a fire on the hill, blankets, something hot to drink, and the whole sky.\n\nNot everyone thinks a comet is good news. {A_nameDef} says that's all the more reason to look at it together.</li>
+          <li>[winter] {NAME} is brightest in the long winter nights. {A_nameDef} wants a fire on the hill so the colony can watch it together, and has already started stacking the wood.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>A night watch by a fire</label>
-            <outcome>A fire is laid outside for tonight. Anyone who wants to watch {NAME} can come and sit by it.</outcome>
+            <label>A night watch on the hill</label>
+            <outcome>A fire is laid on the hill for tonight. Anyone who wants to watch {NAME} can come up and sit by it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the night watch for {NAME}</label><hours>20~23</hours><duration>3~4</duration><target>Colony</target></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_CometWatch</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -635,15 +635,15 @@
           <li>A watcher of the sky</li>
         </titles>
         <texts>
-          <li>[theirLowtech] An old star-reader of {FACTION} has come with a bundle of notched sticks. {PLACE}'s elders told her the colony's land has the clearest sky in the valley, and she asks to sit out on its far ground for a few nights and count {NAME}'s steps across the stars.\n\nShe offers to teach anyone who sits with her.</li>
-          <li>[theirHightech] An astronomer of {FACTION} has turned up with a telescope in a padded case and a notebook already half full. The colony's land is clear of the valley haze, and she asks to set up on its far ground for a few nights.\n\nShe will share what she finds with whoever helps her carry the case out.</li>
-          <li>[noenemy] A sky-watcher from the towns has come to ask for the use of the colony's far ground, the darkest for miles, to watch {NAME} from for a few nights. In return she offers to teach whoever sits up with her.</li>
+          <li>[theirLowtech] An old star-reader of {FACTION} has come with a bundle of notched sticks and a great deal of patience. {PLACE}'s elders told her the colony's hill has the clearest sky in the valley, and she asks to sit on it for a few nights and count {NAME}'s steps across the stars.\n\nShe offers to teach anyone who sits with her.</li>
+          <li>[theirHightech] An astronomer of {FACTION} has turned up with a telescope in a padded case and a notebook already half full. The colony's hill is above the valley haze, and she asks to set up there for a few nights.\n\nShe will share what she finds with whoever helps her get the case up the slope.</li>
+          <li>[noenemy] A sky-watcher from the towns has come to ask for the colony's hill, the darkest and highest for miles, to watch {NAME} from for a few nights. In return she offers to teach whoever sits up with her.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Welcome her, and sit up with her</label>
-            <outcome>{A_nameDef} will sit up with the stargazer on her first night here, and learn whatever she can teach.</outcome>
+            <outcome>{A_nameDef} sits up with the stargazer on the hill her first night here, and comes away with names for things {A_pronoun} had never noticed were there.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>900</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>800</max><onlyIfChosen>true</onlyIfChosen></li>
@@ -656,7 +656,7 @@
           </li>
           <li>
             <label>She can watch from the road</label>
-            <outcome>The stargazer is told the colony's land isn't open to visitors. She sets up by the road instead, and in a few days she's gone.</outcome>
+            <outcome>The stargazer is told the hill isn't open to visitors. She sets up by the road instead, and in a few days she's gone.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><spot>Road</spot></li>
             </effects>
@@ -672,13 +672,13 @@
           <li>Something fell</li>
         </titles>
         <texts>
-          <li>A streak of fire crossed the sky before dawn and came down with a thump somewhere in the hills past the fields. {A_nameDef} heard it, and has been eager to go and look ever since.\n\nIt may be a piece of {NAME}, or it may be nothing.</li>
+          <li>A streak of fire crossed the sky before dawn and ended in a thump somewhere in the hills past the fields. {A_nameDef} heard it, and has been itching to go and look ever since.\n\nIt may be a piece of {NAME}. It may be nothing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send {A_nameDef} to look</label>
-            <outcome>{A_nameDef} goes out to look, and comes back with a lump of black, pitted stone that's heavier than it should be, and a story about a crater as wide as a cart.</outcome>
+            <outcome>{A_nameDef} comes back at dusk with a lump of black, pitted stone that's heavier than it should be, and a story about a crater as wide as a cart.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>180~360</value><fancy>true</fancy></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>2~3</duration></li>
@@ -704,8 +704,8 @@
           <li>The stargazer's notes</li>
         </titles>
         <texts>
-          <li>[theirLowtech] A rider is at the gate with a bundle for {A_nameDef} from the old star-reader who watched {NAME} from the colony's land: a sheaf of bark sheets covered in her marks, {NAME}'s steps across the sky night by night, and at the end, a mark she says stands for {A_nameDef}.\n\n{A_nameDef} has started puzzling over it, and can already read some of it.</li>
-          <li>[theirHightech] A rider has brought {A_nameDef} a packet from the astronomer who watched {NAME} from the colony's land: her finished notes on it, a chart of its path, and a page of thanks with {A_nameDef}'s name in it.\n\n{A_nameDef} has sat down at the table to read it.</li>
+          <li>[theirLowtech] A rider is at the gate with a bundle for {A_nameDef} from the old star-reader who spent those nights on the colony's hill: a sheaf of bark sheets covered in her marks, {NAME}'s steps across the sky night by night, and at the end, a mark she says stands for {A_nameDef}.\n\n{A_nameDef} has been puzzling over it all evening, and is starting to read it.</li>
+          <li>[theirHightech] A rider has brought {A_nameDef} a packet from the astronomer who set up on the colony's hill: her finished notes on {NAME}, a chart of its path, and a page of thanks with {A_nameDef}'s name in it.\n\n{A_nameDef} has been reading at the table since it came.</li>
         </texts>
       </li>
     </beats>
@@ -717,8 +717,8 @@
         </titles>
         <texts>
           <li>[theirLowtech|theirHightech] {NAME} is fading, dimmer every night, and soon it will be gone. The war it foretold didn't come, nor the plague, nor the end of the world. A child was born in {PLACE} on the night it was brightest, and they've named her after it.</li>
-          <li>[watched] {NAME} has gone back into the dark. The colony still talks about the night by the fire, with the blankets, when everyone watched it together.</li>
-          <li>[noenemy] {NAME} is gone from the sky. The fortune tellers are already explaining what it meant.</li>
+          <li>[watched] {NAME} has gone back into the dark. The colony still talks about the night on the hill, with the fire and the blankets, when everyone looked up at once.</li>
+          <li>[noenemy] {NAME} is gone from the sky. The fortune tellers are already explaining what it meant, now that it can't argue.</li>
         </texts>
         <chronicle>{NAME} crossed the sky and was gone.</chronicle>
       </li>
@@ -812,7 +812,7 @@
         <options>
           <li>
             <label>Send {A_nameDef} with a sickle</label>
-            <outcome>{A_nameDef} goes off to help in {FACTION}'s fields with a sickle. The wages will follow once {FACTION} have sold the grain.</outcome>
+            <outcome>{A_nameDef} spends four days in {FACTION}'s fields and comes back brown, aching and full of harvest supper. The wages will follow once {FACTION} have sold the grain.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Plants</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_Mission_HarvestHands</thought></li>
@@ -872,7 +872,7 @@
           <li>A harvest supper</li>
         </titles>
         <texts>
-          <li>The harvest is in all over the region, and every village is holding its supper. {A_nameDef} thinks the colony should hold one too: the long table, the good food, and a toast to a good year.\n\nIt would cost a feast's worth of food. This year the colony can afford it.</li>
+          <li>The harvest is in all over the region, and every village is holding its supper. {A_nameDef} thinks the colony should hold one too: the long table, the good food, a toast to a year when the land was kind.\n\nIt would cost a feast's worth of food. This year the colony can afford it.</li>
           <li>Every village in the region has held its harvest supper by now, and {A_nameDef} has been to none of them. The colony could hold its own: the long table, the good food, and a toast to the land.\n\nIt would take a feast's worth of food, and this year the stores can spare it.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -902,8 +902,8 @@
           <li>The year of plenty ends</li>
         </titles>
         <texts>
-          <li>The last of the harvest is in, prices are climbing back, and {FACTION}'s granaries at {PLACE} are full to the rafters. People will remember this year when the next bad one comes.</li>
-          <li>[hands] {FACTION}'s harvest is in, and their carter is bringing the colony's wages: {COUNT} silver, in coin, since grain is cheap this year and silver isn't.</li>
+          <li>The last of the harvest is in, prices are climbing back, and {FACTION}'s granaries at {PLACE} are full to the rafters. People will be talking about this year in the next bad one.</li>
+          <li>[hands] {FACTION}'s harvest is in, and their carter has brought the colony's wages up the road: {COUNT} silver, paid in coin, since grain is cheap this year and silver isn't.</li>
           <li>[supper,!hands] The harvest is in all over the region. The colony's own supper is still being talked about, mostly the pie.</li>
           <li>[gleaned,!hands] The last of the harvest is in. On the roads, the gleaners say the colony's stubble was the most generous in the valley.</li>
         </texts>
@@ -940,9 +940,9 @@
       <li>Herds on the road</li>
     </titles>
     <texts>
-      <li>The bells of the herds can be heard before the herds come into sight, and the dust hangs over the old drove roads all day. {FACTION} are walking their herds to the great market beyond {PLACE}, and some of those roads pass close to the colony.\n\nDrovers are hard people but mostly fair ones. They'll want grass, water and somewhere to stop.</li>
+      <li>The bells come over the hill before the herds do, and the dust hangs over the old drove roads from dawn to dark. {FACTION} are walking their herds to the great market beyond {PLACE}, and some of those roads pass close to the colony.\n\nDrovers are hard people and fair ones, mostly. They'll want grass, water and somewhere to stop.</li>
       <li>[theirHightech] {FACTION} are moving stock to market the old way this year, on the hoof, since fuel is dear. The drove roads past {PLACE} are busy for the first time in a generation, and the colony sits on one of them.</li>
-      <li>The old drove roads are busy again. {FACTION} are taking their herds to the market beyond {PLACE}, and the bawling and the bells can be heard at the colony before the herds come into sight.\n\nThe drovers will be looking for grass, water and a place to stop.</li>
+      <li>The old drove roads are busy again. {FACTION} are taking their herds to the market beyond {PLACE}, and the bawling and the bells reach the colony's walls before the dust is even in sight.\n\nThe drovers will be looking for grass, water and a place to stop.</li>
     </texts>
     <summaries>
       <li>Drovers camp near the colony more often, and may ask to graze their herds on its land. A stray or two may wander in, and the drovers' dogs and stories come with them.</li>
@@ -1055,7 +1055,7 @@
           <li>The drovers come home</li>
         </titles>
         <texts>
-          <li>The drovers of {FACTION} are on their way home from the market beyond {PLACE}, with the herd sold and a full purse. They have stopped at the colony's gate to leave something: a young beast from the market pens, roped and fed, in return for the night on the far meadow.\n\nDrovers remember a good stop, the headman says, and this is how they show it.</li>
+          <li>The drovers of {FACTION} are on their way home from the market beyond {PLACE}, lighter by a herd and heavier by a purse. They stopped at the colony's gate to leave something: a young beast from the market pens, roped and fed, in return for the night on the far meadow.\n\nDrovers remember a good stop, the headman says. This is how they show it.</li>
           <li>[theirHightech] {FACTION}'s drovers are heading home from the market with empty trailers and full pockets. They've stopped at the gate to leave the colony a young beast from the sale pens, for the night of grazing it gave them on the way out.</li>
         </texts>
       </li>
@@ -1067,7 +1067,7 @@
           <li>The herds go by</li>
         </titles>
         <texts>
-          <li>The last of the droves has gone through, and the market beyond {PLACE} is over for the year. The dust has settled on the roads.</li>
+          <li>The last of the droves has gone through, and the market beyond {PLACE} is over for the year. The dust has settled on the roads. Somewhere a dog is still barking at nothing.</li>
           <li>[helped] The droves have gone by. The drovers of {FACTION} will remember the colony's meadow and its fire next year, and the year after, the way drovers remember every good stop on a long road.</li>
         </texts>
         <chronicle>The droves of {FACTION} passed by on the way to market.</chronicle>

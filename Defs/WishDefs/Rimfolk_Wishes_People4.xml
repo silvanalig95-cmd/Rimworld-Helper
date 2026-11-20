@@ -43,7 +43,7 @@
         <li>Half the colony's elbows are out of their sleeves, and I've nothing left to patch them with.</li>
         <li>Could we put some cloth by? Winter's hard on clothes, and I can't mend with thread alone.</li>
         <li>[winter] Every coat I mend tears somewhere else the next week. I need cloth, and plenty of it.</li>
-        <li>[tribal] We need hides put by, and good ones. The cold gets through a worn wrap in days.</li>
+        <li>[tribal] We need hides put by, and good ones. The cold eats through a worn wrap in days.</li>
         <li>[medieval] A bolt of wool in the stores would see us through the winter's mending.</li>
         <li>[spacer] Even synthread wears through. I need something to patch it with.</li>
       </plain>
@@ -64,7 +64,7 @@
       <cold><li>The stores will cover the winter's mending.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll patch with what I've got, which isn't much.</li></plain>
+      <plain><li>I'll patch with what I've got, which is mostly other patches.</li></plain>
       <gloomy><li>Rags it is, then.</li></gloomy>
     </expired>
   </ColonyCouncil.WishDef>
@@ -98,13 +98,13 @@
       <plain>
         <li>The steel pile is down to a few bars. The next thing that breaks will just stay broken.</li>
         <li>Could we put some steel by? I keep starting jobs I can't finish.</li>
-        <li>[tribal] The metal we found is nearly used up. Our knives and arrowheads need more of it.</li>
-        <li>[medieval] A smith can't do much without iron. We need steel in the stores.</li>
+        <li>[tribal] The sky-metal we found is nearly used up. Our knives and arrowheads need more of it.</li>
+        <li>[medieval] A smith without iron is just someone standing by a fire. We need steel in the stores.</li>
         <li>[industrial] Everything we build needs steel, and we're nearly out.</li>
       </plain>
       <warm><li>I'd hate to have to tell someone their door can't be fixed for want of a few bars.</li></warm>
       <blunt><li>We're out of steel. Fix that.</li></blunt>
-      <cheerful><li>A nice big pile of steel, that's all I want.</li></cheerful>
+      <cheerful><li>A nice fat pile of steel, that's all I want. Well, for now.</li></cheerful>
       <gloomy><li>When the next raid smashes the gate, we'll have nothing to mend it with.</li></gloomy>
       <cold><li>Steel is the bottleneck on half the colony's work. A reserve would remove it.</li></cold>
     </request>
@@ -166,7 +166,7 @@
     </request>
     <thanks>
       <plain>
-        <li>A box of spare parts on the shelf. If something breaks now, I can fix it.</li>
+        <li>A box of spare parts on the shelf. Let something break; I'm ready.</li>
         <li>I counted them twice. Enough for the next few breakdowns.</li>
       </plain>
       <warm><li>Now nobody goes without light or heat for want of a part. Thank you.</li></warm>
@@ -312,19 +312,19 @@
         <li>There are trees growing right against our walls. One good storm and one of them is coming through a roof.</li>
         <li>Could we fell the trees by the walls? I lie awake listening to them creak.</li>
         <li>[rain] The ground's soft and the trees by the walls are leaning. I don't like it.</li>
-        <li>[tribal] The trees lean over our lodges, and one day one will fall. Better we bring them down first.</li>
+        <li>[tribal] A tree that leans on your lodge will one day lie on it. Better we bring it down first.</li>
         <li>[spacer] Our walls weren't built to take a falling tree. Those trees should come down.</li>
       </plain>
       <warm><li>I don't want anyone hurt in their bed because a tree came down. Let's fell them while it's calm.</li></warm>
       <blunt><li>Trees by the walls. Cut them down.</li></blunt>
-      <cheerful><li>We'd get firewood, and no tree through the roof. It's a good trade.</li></cheerful>
+      <cheerful><li>Free firewood, and a roof that stays a roof. It's a good trade.</li></cheerful>
       <gloomy><li>It's only a matter of time before one of them falls on someone.</li></gloomy>
       <cold><li>A falling tree costs a wall and maybe a life. Felling it costs an afternoon.</li></cold>
     </request>
     <thanks>
       <plain>
         <li>The trees are down and stacked as logs. I'll sleep through the next storm.</li>
-        <li>Nothing is leaning on the walls now.</li>
+        <li>Nothing leaning on the walls now but the wind.</li>
       </plain>
       <warm><li>Thank you. It's one less thing to fear on a windy night.</li></warm>
       <blunt><li>Trees down. Good.</li></blunt>
@@ -375,7 +375,7 @@
       </plain>
       <warm><li>Thank you. Everyone's mornings are easier now.</li></warm>
       <blunt><li>Paths clear. Good.</li></blunt>
-      <cheerful><li>I can see the ground on the path again.</li></cheerful>
+      <cheerful><li>I can see the ground. Well, a path of it.</li></cheerful>
       <cold><li>The ways are passable again.</li></cold>
     </thanks>
     <expired>

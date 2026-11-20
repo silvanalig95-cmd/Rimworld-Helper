@@ -18,17 +18,17 @@
     <lines>
       <plain>
         <!-- ================= A day's entry ================= -->
-        <li>[di:entry] Rain all day. Mended the roof, and it leaked on me while I did.</li>
+        <li>[di:entry] Rain all day. Mended the roof, which leaked on me while I mended it, out of spite.</li>
         <li>[di:entry] Nothing happened. I wrote that down so there would be a record of it.</li>
         <li>[di:entry,!w:tribal] Market. Bought nothing, sold less, talked to everyone. A good day.</li>
         <li>[di:entry] The {ANIMALS} were out on the ridge at dawn. I stood and watched them until the porridge burned.</li>
-        <li>[di:entry] Argued with the neighbour about the fence. Won the argument, but the fence came down anyway.</li>
+        <li>[di:entry] Argued with the neighbour about the fence. Won. Lost the fence.</li>
         <li>[di:entry] Couldn't sleep. Sat up with the lamp and thought about the road, and where it goes, and who is at the other end of it.</li>
         <li>[di:entry,season:winter] Cold. Very cold. Wrote this with my gloves on, which is why it looks like this.</li>
         <li>[di:entry,season:summer] Hot. Too hot to do anything but lie in the shade and plan what I will do when it is cooler.</li>
         <li>[di:entry,season:spring] The first green on the trees. Everyone is in a better mood, even the goat.</li>
         <li>[di:entry,season:autumn] Picked the last of the {PLANT}. Everything smells of it. I do not mind.</li>
-        <li>[di:entry] Fixed the gate, the third time this season.</li>
+        <li>[di:entry] Fixed the gate. Third time this season. The gate and I have an understanding now: it breaks, and I fix it.</li>
         <li>[di:entry,!first] Read your last letter again. Laughed at the same part.</li>
         <li>[di:entry] Walked out to the edge of the fields and back. Thought about nothing. Highly recommended.</li>
         <li>[di:entry] A stranger asked the way. Gave it. Wondered all afternoon where they were going.</li>
@@ -51,7 +51,7 @@
         <li>[di:resume] Back. The pot is fine. The stove is not. That is another letter.</li>
         <li>[di:resume,w:tribal] The sun is up. The fire is new. I go on.</li>
         <!-- ================= Medieval English (olde) ================= -->
-        <li>[olde,di:entry] Rain all the day. Mended the roof, and it dripped upon me the while.</li>
+        <li>[olde,di:entry] Rain all the day. Mended the roof, which wept upon me while I mended it, out of spite.</li>
         <li>[olde,di:entry] Naught befell. I set it down that there be a record of it.</li>
         <li>[olde,di:entry] Market day. Bought naught, sold less, spake with all. A good day.</li>
         <li>[olde,di:entry] The {ANIMALS} were upon the ridge at dawn. I stood and watched till the pottage burned.</li>
@@ -64,7 +64,7 @@
         <li>[olde,di:resume] It is morn now. Where was I? No matter. Here is the rest.</li>
         <li>[olde,di:resume] It was naught but a neighbour wanting a ladder. I lent the ladder and kept the letter.</li>
         <!-- ================= The long-lived (sv:ancient) ================= -->
-        <li>[sv:ancient,di:entry] Rose. Thought about the last hundred years. Retired early.</li>
+        <li>[sv:ancient,di:entry] Rose. Considered the century. Retired.</li>
         <li>[sv:ancient,di:entry] A visitor asked my age. I told them. They did not believe me. I did not insist.</li>
         <li>[sv:ancient,di:entry] Reordered the archive by colour, then by smell, then back. A productive day.</li>
         <li>[sv:ancient,di:entry,di:latest] Began a letter to {TO}. Finished it. Unusually prompt of me.</li>
@@ -72,7 +72,7 @@
         <!-- ================= Round 2, part 2: more days' entries ================= -->
         <li>[di:entry] Mended the fence where the {ANIMALS} come through. Watched the {ANIMALS} come through somewhere else.</li>
         <li>[di:entry] Baked. Burned the first batch, ate the second, gave away the third, which was the best, which is always the way.</li>
-        <li>[di:entry] Long walk to the far field and back. Nothing to report but a clear sky.</li>
+        <li>[di:entry] Long walk to the far field and back. Nothing to report except the sky, which was very large today.</li>
         <li>[di:entry,grave] Sat with someone who needed sitting with. Did not say much. Did not need to.</li>
         <li>[di:entry,di:latest,fam:familiar|fam:close] Sat down to write to {TO}. The usual chair, the usual lamp, the usual too much to say.</li>
         <li>[di:entry,di:latest,fam:new] Began a letter to {TO}, whom I have never met. Crossed out the first line four times.</li>
@@ -80,20 +80,20 @@
         <li>[di:entry,season:autumn] The first frost. Brought in the last of the {PLANT}. The whole house smells of it.</li>
         <li>[di:entry,season:spring] Lambs. Mud. Lambs in the mud. Lambs in the kitchen, briefly.</li>
         <li>[di:entry,w:spacer] Shuttle overhead at dawn. Logged it, out of habit. Nobody asked me to log it.</li>
-        <li>[di:entry,w:spacer] Recalibrated the water reclaimer. It now works slightly better and runs slightly louder.</li>
+        <li>[di:entry,w:spacer] Recalibrated the water reclaimer. It now reclaims slightly better and complains slightly louder.</li>
         <li>[di:entry,w:spacer] Watched the comms panel blink for an hour. Nothing came through. It was restful.</li>
         <li>[di:entry,w:industrial] The mill whistle went at six, and I was already up, which has never happened before and will not happen again.</li>
         <li>[di:entry,w:industrial] Wrote out the accounts. They do not balance. They have never balanced. I suspect they are not meant to.</li>
-        <li>[di:entry,w:tribal] Walked to the river with the young ones. Showed them the pool where the fish rest in the shade.</li>
-        <li>[di:entry,w:tribal] The hunters came back. Enough meat for the moon, and the dogs are well fed too.</li>
+        <li>[di:entry,w:tribal] Walked to the river with the young ones. Showed them where the fish sleep. They did not believe me until the fish woke up.</li>
+        <li>[di:entry,w:tribal] The hunters came back. Enough meat for the moon. The dogs are smiling.</li>
         <li>[di:entry,w:tribal] Sat by the fire and mended a net and listened to the old ones argue about a story that happened before any of them were born.</li>
         <li>[di:entry,w:tribal,di:latest] Asked the one who makes marks to put down these words for {TO}. Watched the marks come. They look like birds walking.</li>
         <li>[di:break,w:tribal] The fire is low and the story-teller is starting. I will put down the rest at first light.</li>
         <li>[di:resume,w:tribal] It is light. The story went on until the stars faded. I will tell it to you another time.</li>
         <li>[di:entry,their:scholars] Spent the day in the archive. Found a letter from a hundred years ago complaining about the weather. Nothing changes.</li>
-        <li>[di:entry,their:salvagers] The Wheel moved on six miles. Found a door in the dirt. Left it shut; we do not open buried doors.</li>
+        <li>[di:entry,their:salvagers] The Wheel moved on six miles. Found a door in the dirt. Did not open it. We have rules about doors.</li>
         <li>[di:entry,their:crew] Hull inspection. Talked to the ship while I worked. The ship did not answer, which is normal, and also lucky.</li>
-        <li>[di:entry,their:seers] Read the storm glass at dawn: rain by noon. It rained at dusk.</li>
+        <li>[di:entry,their:seers] Read the glass at dawn: rain by noon. It rained at dusk. The glass and I are not speaking.</li>
         <li>[di:entry,their:traders] Counted the takings twice. Got two different numbers. Took the larger. Business is good.</li>
         <li>[di:entry,their:herders] Moved the herd to the high grass. The herd moved itself, really. I followed and took the credit.</li>
         <li>[olde,di:entry] Mended the hedge where the {ANIMALS} come through. Watched the {ANIMALS} come through elsewhere.</li>
@@ -123,10 +123,10 @@
         <li>[sv:beast,di:entry] Found a new trail by the creek. Followed it. It went in a circle. Followed it again, to be sure.</li>
         <li>[sv:beast,di:entry] The young ones fought over a stick. Then over a better stick. Then they slept on both.</li>
         <li>[sv:beast,di:entry,di:latest] Sat down, two-leg fashion, to make marks for {TO}. Hard on the back. Worth it.</li>
-        <li>[sv:green,di:entry] Sun all morning. Took it in. Cloud in the afternoon. Waited.</li>
-        <li>[sv:green,di:entry] Grew a little, too little to see.</li>
+        <li>[sv:green,di:entry] Sun all morning. Drank it. Cloud in the afternoon. Waited.</li>
+        <li>[sv:green,di:entry] Grew a little. Not enough to see. Enough to know.</li>
         <li>[sv:green,di:entry] A bird sat on one of us for an hour. Nobody minded. The bird sang. Good.</li>
-        <li>[sv:green,di:entry,di:latest] Thought of {TO}, and wrote this.</li>
+        <li>[sv:green,di:entry,di:latest] Turned toward {TO}, the way we turn toward light. Wrote this.</li>
 
         <!-- ================= Round 2, part 2: more days ================= -->
         <li>[di:entry] Wrote a list of things to do. Did the first one. Rewrote the list.</li>
@@ -139,18 +139,18 @@
         <li>[di:break] The kettle is boiling over. I will finish this tomorrow, with tea.</li>
         <li>[di:resume] Tomorrow, as promised, with tea. The kettle survived. So did I.</li>
         <li>[di:entry,empire] Audience in the morning, banquet in the evening, and between them an hour alone in the garden, which was the best of it.</li>
-        <li>[di:entry,empire] Bowed to fourteen people today. Was bowed to by two.</li>
+        <li>[di:entry,empire] Bowed to fourteen people today. Was bowed to by two. The arithmetic of rank is unforgiving.</li>
         <li>[olde,di:entry] Wrote a list of tasks. Did the first. Wrote the list anew.</li>
         <li>[olde,di:entry] Rain again. The roof held. I sat beneath it right pleased with the roof.</li>
         <li>[olde,di:entry,season:winter] Too cold for aught but to sit by the fire and think upon doing things. Thought upon a great many.</li>
         <li>[olde,di:entry] One knocked at dusk asking the way to a place I had never heard of. Gave directions all the same, and wished them good speed.</li>
 
         <!-- ================= Round 2, part 2: a few more days ================= -->
-        <li>[di:entry] Planted beans. A bird watched me do it, and dug some of them up after.</li>
+        <li>[di:entry] Planted beans. A bird watched me do it, and then, I am fairly sure, unplanted them.</li>
         <li>[di:entry] Nobody argued at supper. I am not sure what it means. I am keeping an eye on everyone.</li>
-        <li>[di:entry,season:summer] Too hot to work, so we did not. Sat in the river until our fingers wrinkled.</li>
-        <li>[di:entry,season:autumn] Raked leaves. The wind blew them back.</li>
-        <li>[di:entry,w:tribal] Saw a hawk take a fish from the river and drop it on the bank. I took the fish home.</li>
+        <li>[di:entry,season:summer] Too hot to work, so we did not. Sat in the river until our fingers wrinkled and our troubles floated off downstream.</li>
+        <li>[di:entry,season:autumn] Raked leaves. The wind unraked them. We have agreed to call it a draw.</li>
+        <li>[di:entry,w:tribal] Saw a hawk take a fish from the river and drop it on the bank. Took the fish. The hawk and I have an understanding now, or the hawk has a grudge.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
