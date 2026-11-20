@@ -1356,9 +1356,9 @@ The game's traits can grow, appear or fade at the end of a stretch of life the p
 nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
 stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions (and
 marks counted as they come, breakdowns, or a stretch with none), the game's records, a share of time from record
-snapshots every ten days, calm days, skills, the faith they hold, a friend, an animal bonded to them; guards for DLC, mods
-and tech. 100 rules (20 November 2026): 31 give a trait, 43 take one away, 26 move a trait one degree; 59 of them are
-ways out of a bad trait (`wayOutOf`, below).
+snapshots every ten days, calm days, skills, the faith they hold, a friend, an animal bonded to them (a dog or a cat of
+the colony's, for so long), a trait they have; guards for DLC, mods and tech. 112 rules (20 November 2026): 41 give a
+trait, 45 take one away, 26 move a trait one degree; 60 of them are ways out of a bad trait (`wayOutOf`, below).
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
   colonist rolls its chance (3 to 15% a day) and one of those that come up happens; a way out of a bad trait doesn't
@@ -1590,6 +1590,75 @@ trait; each rule takes a bad one away or steps it toward none. The new traits (2
   Tests: `TraitChangeTests` (the joining day, the zero count after something, who gave it, each of the seventeen's
   conditions against the proposal, 59 ways out, none of the batch a gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad
   Hygiene's `Hygienic` and the insanity mod's two traits.
+
+### More traits that come and go, the new traits (the player's go, 20 November 2026; not released yet)
+
+The player, 20 November 2026: "go ahead with all the traits". This build is the new traits of
+`docs/traits-proposals.md`, 28 to 36, each marked there, and with it the whole list of 38 is built. 12 new rules (112 in
+all): 10 give a trait, one more way out of a bad trait (60 in all), and desensitized going again. Harm: no new bad
+trait. The good ones (healer's hands, dog and cat person, fisherman, mountain lover) come of good things; perfectionist
+and wanderlust are neither good nor bad; the three that come of hard times (desensitized, drunken master, occultist)
+are neither good nor bad, rare or uncommon (3 to 5% a day once everything holds), and come only of what already
+happened on the map: fights the colony won but lost people in and its burials, fights won drunk, the colony's own dark
+study and brushes with the unknown. Every trait from a mod by its defName in `docs/player-mods/traits.tsv` (active rows);
+each rule does nothing without its mod. These are gains, so they wait for the colony's 10 days, and show under "Where
+life is taking them" once a third of their evidence is there.
+
+- **New parts.** A mark for the nurse (`Rimfolk_Mark_NursedSomeone`, family `NursedSomeone`: "nursed someone back to
+  health"), the other side of "nursed back to health": given to the doctor in `HealthTracker.PulledThrough`
+  (`PersonaMarks.Notify_Nursed`), after the doctor's own journal line so one happening is one line; a turning point kept
+  180 days, each patient once while it lasts, the next patient a day later (`repeatDays` 1). An animal bonded to them of a
+  kind and for so long (`bondedKind` dog or cat, `bondedDays`; the bond's length from the game's own start of the
+  relation, `DirectPawnRelation.startTicks`; only the colony's own animal; `TraitChangeMath.PetKind`, `BondDays`). A trait
+  they have (`withTrait`: a brawler; a part that holds or not, and isn't evidence toward showing the rule). A tally
+  counted only while they were drunk (`whileDrunk`, the game's alcohol high on them when the mark comes;
+  `TraitChangeMath.TallyCounts`). Time awake under a rock roof (the practice `rock`: hours under a mountain's roof,
+  mined out or overhead, `RoofDef.isNatural`; looked at hourly with the rest of the practice log, and fading the same
+  way). And a count of marks now also reads the marks of its kind still on their character page (a masterwork made
+  before this build, a mark given before the count began; `TraitChangeMath.PageMarksToAdd`, the same mark counted
+  once), as the zero count already did, unless the tally asks how they were at the time (hungry, drunk). Each new part
+  has its line on the character page with its plain "still missing" words, its check in `Lacks` and its line in the
+  letter. A kind of work from a DLC (Odyssey's fishing, Anomaly's dark study) is only checked as a config error when the
+  DLC is there (`TraitChangeDef.Present`).
+- **28, nursed someone back, and healer's hands from it**: the nurse's mark counts toward kind (one of the three marks of
+  kindness) and toward squeamish's way out (`Rimfolk_TC_VTE_SqueamishNursed`: 40 recent hours as a doctor and a patient
+  nursed back, in place of 30 times tending others; 8%); healer's hands' second way (`Rimfolk_TC_HealerNursing`): 60
+  recent hours as a doctor and three patients nursed back, 8%.
+- **29, perfectionist** (Vanilla Traits Expanded): three masterworks (a legendary piece counts as one) and a skill
+  mastered in the last 180 days, pride moved +10, 4%, neither good nor bad.
+- **30, dog person or cat person** (Vanilla Traits Expanded): bonded a year (60 days) with one of the colony's dogs or
+  cats, 10%, never both and never an animal hater. A dog: the game's three, Vanilla Animals Expanded's five, a breed in
+  the label, a label ending in "dog" (not a prairie dog); a cat: the game's cat, any kind called a cat, Vanilla Animals
+  Expanded's cats.
+- **31, fisherman** (Vanilla Fishing Expanded, on Odyssey's fishing): 80 recent hours of the Fishing work, 8%.
+- **32, wanderlust** (Vanilla Traits Expanded): two marks of a second season abroad within a year, openness moved +10,
+  5%, neither good nor bad.
+- **33, desensitized** (Vanilla Traits Expanded): two fights the colony won but lost people in (fought through a costly
+  fight), 20 corpses buried (the game's `CorpsesBuried`), warmth moved -6, 3%, neither good nor bad. It goes again after
+  a long peace and two kindnesses remembered (`Rimfolk_TC_VTE_DesensitizedEases`, 5%, any desensitized; neither good nor
+  bad, so not a way out of a bad trait).
+- **34, mountain lover** (Vanilla Traits Expanded's `VTE_ChildOfMountain`): as the undergrounder (97% of their time under
+  a roof over 60 days, 180 days in the colony, openness 0 or less), and 240 recent hours awake under a rock roof (about
+  twelve hours a day, most of their waking time), 3%.
+- **35, drunken master** (Vanilla Traits Expanded): a brawler who held the line three times while drunk, 3%, neither
+  good nor bad.
+- **36, occultist** (Anomaly): 60 recent hours of dark study and drawn to what lies beyond twice, 5%, neither good nor
+  bad.
+- **Told.** As every change: a letter with what led to it and dates (now also how long the animal has been bonded and
+  the trait they have), a journal line in six voices, the chronicle, "Traits gained and lost". The nurse's mark has its
+  own journal lines in six voices. The words are plain (CLAUDE.md, 14 November 2026).
+- **Code**: `Persona/TraitChangeMath.cs` (`TallyCounts`, `PageMarksToAdd`, `PetKind`, `BondDays`),
+  `Persona/TraitChangeDefs.cs` (`bondedKind`, `bondedDays`, `withTrait`, a tally's `whileDrunk`; `Present`; their config
+  errors), `Persona/TraitChanges.cs` (`CountsNow`, `Drunk`, `Entries` with the page's marks, `BondedAnimal` of a kind and
+  its days, `WithTrait`, their parts and letter lines), `Persona/Marks.cs` (`Notify_Nursed`), `Health/HealthTracker.cs`
+  (the doctor's mark after the journal line, `CountDoctor`), `Quirks/Practice.cs` and `Quirks.cs` (the practice `rock`),
+  `Defs/PersonaDefs/Rimfolk_PersonaMarks_Bonds.xml` (the nurse's mark), the rules in `_Mods.xml` (29 to 35),
+  `_Character.xml` (36, and kind with the nurse's mark), `_Habits.xml` (28's healer) and `_WaysOut.xml` (28's
+  squeamish), Keyed `Rimfolk_TraitChanges.xml` and `Rimfolk_Habits.xml`. Saved: one number more in each colonist's
+  practice log (`rock`); nothing else (the tallies hold the new counts). Tests: `TraitChangeTests` (drunk, the page's
+  marks, the dogs and cats of the player's list, a bond's length, each of the nine's conditions against the proposal,
+  none of them bad news, 112 rules); `MarkTests` (the nurse's mark names someone); `Tools/Tests/ModDefNames.txt` has
+  dog person, cat person, mountain lover and the fisherman.
 
 ### The animals' natures (the player's picks, 7 November 2026)
 
@@ -11413,7 +11482,7 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
   (testing)...", "a people down an age now (testing)..." (the letter as the years would bring it), "every people's
   season now (testing)".
 
-### The comms console by radio, and the foreign peoples' ages (the player's go, 20 November 2026; not released yet)
+### The comms console by radio, and the foreign peoples' ages (the player's go, 20 November 2026; released 0.277.0)
 
 The player, with League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm
 Riders. I mean, they are always only on medieval style tech level, it seems ... that is a very cool idea, that other

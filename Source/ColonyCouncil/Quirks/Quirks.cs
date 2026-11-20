@@ -302,14 +302,18 @@ namespace ColonyCouncil
                     bool fire = wt != null && wt.defName == "Firefighter";
                     bool counts = wt != null && !fire && wt.defName != "Patient" && wt.defName != "PatientBedRest";
                     bool busy = counts || job?.def?.joyKind != null;
-                    bool outside = !p.Position.Roofed(map) && !p.InBed();
-                    if (!counts && !fire && !(busy && (night || morning)) && !outside) continue;
+                    var roof = p.Position.GetRoof(map);
+                    bool outside = roof == null && !p.InBed();
+                    // Under a mountain's rock (mined out or overhead), for the mountain lover (Persona/TraitChanges.cs).
+                    bool rock = roof != null && roof.isNatural;
+                    if (!counts && !fire && !(busy && (night || morning)) && !outside && !rock) continue;
                     var log = PracticeOf(p, true);
                     if (counts) log.Add(wt.defName);
                     else if (fire) log.Add(wt.defName, false);
                     if (busy && night) log.night += 1f;
                     if (busy && morning) log.morning += 1f;
                     if (outside) log.outdoors += 1f;
+                    if (rock) log.rock += 1f;
                 }
             }
         }

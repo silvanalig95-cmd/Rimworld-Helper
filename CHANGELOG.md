@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Radio and the ages of other peoples
+
+*20 November 2026, version 0.277.0*
+
+- The comms console now calls only peoples whose age has a radio, the industrial and spacer ages or a people with a town near the Signal Line's masts; the others are listed greyed with how a letter reaches them, and a setting keeps the game's way.
+- The dark elves (the Stormriders) now change age over the years like Rimfolk's own peoples: eleven years an age, sooner with your trade, gifts and alliance, and no further than the industrial age.
+- Once they reach the industrial age, their Darkshards carry repeating guns with an ammo pack, their Dark Riders a light gun, and their Dreadspears and Black Guard a belt of frag grenades, from the weapons in your mods; their traders carry that age's goods and the comms console reaches them.
+- A pact called in, a ransom, a favour and a truce by radio follow the same rule as the letters, so the Signal Line's masts carry those calls too.
+
 ## The medal at the gate
 
 *20 November 2026, version 0.276.2*

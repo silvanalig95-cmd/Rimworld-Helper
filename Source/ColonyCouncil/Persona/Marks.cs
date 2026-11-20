@@ -590,6 +590,23 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The doctor's side of it (HealthTracker.PulledThrough, after the doctor's own journal line, so one happening is
+        /// one line): nursed someone back to health. Counted for kind, healer's hands and squeamish's way out.
+        /// </summary>
+        public static void Notify_Nursed(Pawn doctor, Pawn patient, string illness)
+        {
+            try
+            {
+                if (doctor == null || patient == null || doctor == patient) return;
+                Give(doctor, "NursedSomeone", patient, illness.NullOrEmpty() ? null : illness);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("persona marks: nursed someone", e);
+            }
+        }
+
         /// <summary>Something they made came out a masterwork or legendary (Patch_ArcMade).</summary>
         public static void Notify_Made(Pawn worker, Thing thing)
         {

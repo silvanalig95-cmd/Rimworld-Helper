@@ -282,11 +282,12 @@ namespace ColonyCouncil
             byMental = new Dictionary<MentalStateDef, List<TraitTally>>();
             byMark = new List<TraitTally>();
             var records = new HashSet<string>();
+            bool Same(TraitTally x, TraitTally t) => x.key == t.key && x.whileHungry == t.whileHungry && x.whileDrunk == t.whileDrunk;
             void Index<T>(Dictionary<T, List<TraitTally>> into, T def, TraitTally t) where T : Def
             {
                 if (def == null) return;
                 if (!into.TryGetValue(def, out var list)) into[def] = list = new List<TraitTally>();
-                if (!list.Any(x => x.key == t.key && x.whileHungry == t.whileHungry)) list.Add(t);
+                if (!list.Any(x => Same(x, t))) list.Add(t);
             }
             foreach (var def in TraitChangeDef.All)
             {
@@ -297,7 +298,7 @@ namespace ColonyCouncil
                     foreach (var n in t.Split(t.events)) Index(byEvent, DefDatabase<HistoryEventDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.tales)) Index(byTale, DefDatabase<TaleDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.mentalStates)) Index(byMental, DefDatabase<MentalStateDef>.GetNamedSilentFail(n), t);
-                    if (!t.marks.NullOrEmpty() && !byMark.Any(x => x.key == t.key && x.whileHungry == t.whileHungry)) byMark.Add(t);
+                    if (!t.marks.NullOrEmpty() && !byMark.Any(x => Same(x, t))) byMark.Add(t);
                 }
                 foreach (var p in def.pace ?? new List<TraitPace>())
                 {
@@ -318,12 +319,9 @@ namespace ColonyCouncil
             try
             {
                 if (!On || m.pawn != pawn || !CanChange(pawn)) return;
-                bool? hungry = null;
+                bool? hungry = null, drunk = null;
                 foreach (var t in list)
-                {
-                    if (t.whileHungry && !(hungry ??= Hungry(pawn))) continue;
-                    Count(pawn, t.key, null);
-                }
+                    if (CountsNow(t, pawn, ref hungry, ref drunk)) Count(pawn, t.key, null);
             }
             catch (Exception e)
             {
@@ -341,8 +339,9 @@ namespace ColonyCouncil
             {
                 if (!On || !ev.args.TryGetArg(HistoryEventArgsNames.Doer, out Pawn doer) || !CanChange(doer)) return;
                 ev.args.TryGetArg(HistoryEventArgsNames.Victim, out Pawn victim);
+                bool? hungry = null, drunk = null;
                 foreach (var t in list)
-                    if (!t.whileHungry || Hungry(doer)) Count(doer, t.key, victim);
+                    if (CountsNow(t, doer, ref hungry, ref drunk)) Count(doer, t.key, victim);
             }
             catch (Exception e)
             {
@@ -362,12 +361,9 @@ namespace ColonyCouncil
             try
             {
                 if (!On || !CanChange(p)) return;
-                bool? hungry = null;
+                bool? hungry = null, drunk = null;
                 foreach (var t in byMark)
-                {
-                    if (!t.CountsMark(def) || (t.whileHungry && !(hungry ??= Hungry(p)))) continue;
-                    Count(p, t.key, null);
-                }
+                    if (t.CountsMark(def) && CountsNow(t, p, ref hungry, ref drunk)) Count(p, t.key, null);
             }
             catch (Exception e)
             {
@@ -384,8 +380,9 @@ namespace ColonyCouncil
             try
             {
                 if (!On || !CanChange(p)) return;
+                bool? hungry = null, drunk = null;
                 foreach (var t in list)
-                    if (!t.whileHungry || Hungry(p)) Count(p, t.key, null);
+                    if (CountsNow(t, p, ref hungry, ref drunk)) Count(p, t.key, null);
             }
             catch (Exception e)
             {
@@ -408,9 +405,18 @@ namespace ColonyCouncil
                 }
                 else if (tale is Tale_SinglePawn one) doer = one.pawnData?.pawn;
                 if (!CanChange(doer)) continue;
+                bool? hungry = null, drunk = null;
                 foreach (var t in list)
-                    if (!t.whileHungry || Hungry(doer)) Count(doer, t.key, victim, Now - tale.AgeTicks);
+                    if (CountsNow(t, doer, ref hungry, ref drunk)) Count(doer, t.key, victim, Now - tale.AgeTicks);
             }
+        }
+
+        /// <summary>Whether a tally counts a moment of theirs now: one asked only while hungry, or only while drunk, counts only then.</summary>
+        private static bool CountsNow(TraitTally t, Pawn p, ref bool? hungry, ref bool? drunk)
+        {
+            if (t.whileHungry) hungry ??= Hungry(p);
+            if (t.whileDrunk) drunk ??= Drunk(p);
+            return TraitChangeMath.TallyCounts(t.whileHungry, t.whileDrunk, hungry ?? false, drunk ?? false);
         }
 
         /// <summary>Starving or malnourished now or lately, or in a hungry season.</summary>
@@ -421,6 +427,9 @@ namespace ColonyCouncil
             if (p.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf.Malnutrition) != null) return true;
             return PersonaMarks.HasRecent(p, "HungrySeason", 20f);
         }
+
+        /// <summary>Drunk: the game's alcohol high on them (from beer, or any drink that gives it), tipsy or worse.</summary>
+        private static bool Drunk(Pawn p) => p.health?.hediffSet?.GetFirstHediffOfDef(HediffDefOf.AlcoholHigh) != null;
 
         private static void Count(Pawn p, string key, Pawn about, int tick = -1)
         {
@@ -766,11 +775,12 @@ namespace ColonyCouncil
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
             {
-                if (tally.None ? NoneDays(p, w, tally, lastSame, now) < tally.noneDays : Entries(w, tally, lastSame, now).Count < tally.count)
+                if (tally.None ? NoneDays(p, w, tally, lastSame, now) < tally.noneDays : Entries(p, w, tally, lastSame, now).Count < tally.count)
                     return "tally " + tally.key;
             }
             if (def.friend && Friend(p) == null) return "friend";
-            if (def.bondedAnimal && BondedAnimal(p) == null) return "bonded";
+            if (def.bondedAnimal && (BondedAnimal(p, def, now, out float bonded) == null || bonded < def.bondedDays)) return "bonded";
+            if (!def.withTrait.NullOrEmpty() && WithTrait(p, def) == null) return "with trait";
             if (!FaithAllows(p, def)) return "faith";
             foreach (var f in def.Records)
             {
@@ -873,11 +883,27 @@ namespace ColonyCouncil
             r.marks.Where(m => m?.def != null && m.tick > after && need.Matches(m.def) && (need.withinDays <= 0 || now - m.tick < need.withinDays * GenDate.TicksPerDay))
                 .OrderBy(m => m.tick).ToList();
 
-        private static List<TallyEntry> Entries(TraitWatch w, TraitTally tally, int after, int now)
+        /// <summary>
+        /// The moments a tally has counted, since this trait last changed and within its days, oldest first. A count of
+        /// marks also takes in the marks of that kind still on their character page (one given before the count began),
+        /// unless it asks how they were at the time (hungry, drunk), which a mark on the page can't tell.
+        /// </summary>
+        private static List<TallyEntry> Entries(Pawn p, TraitWatch w, TraitTally tally, int after, int now)
         {
-            if (w == null) return new List<TallyEntry>();
             float within = tally.withinDays > 0 ? tally.withinDays : TallyKeepDays;
-            return w.tallies.Where(e => e.key == tally.key && e.tick > after && now - e.tick < within * GenDate.TicksPerDay).OrderBy(e => e.tick).ToList();
+            var list = w == null ? new List<TallyEntry>()
+                : w.tallies.Where(e => e.key == tally.key && e.tick > after && now - e.tick < within * GenDate.TicksPerDay).ToList();
+            if (!tally.marks.NullOrEmpty() && !tally.Filtered)
+            {
+                var r = Persona.Of(p);
+                if (r != null)
+                {
+                    var page = r.marks.Where(m => m?.def != null && tally.CountsMark(m.def)).Select(m => m.tick).ToList();
+                    foreach (int tick in TraitChangeMath.PageMarksToAdd(list.Select(e => e.tick).ToList(), page, after, now, within))
+                        list.Add(new TallyEntry { key = tally.key, tick = tick });
+                }
+            }
+            return list.OrderBy(e => e.tick).ToList();
         }
 
         /// <summary>
@@ -916,15 +942,52 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>An animal bonded to them, alive, or null.</summary>
-        private static Pawn BondedAnimal(Pawn p)
+        /// <summary>
+        /// An animal bonded to them, alive, or null; with the rule's <see cref="TraitChangeDef.bondedKind"/>, one of the
+        /// colony's dogs or cats. Of several, the one bonded longest, and <paramref name="days"/> how long (from the bond's
+        /// own start).
+        /// </summary>
+        private static Pawn BondedAnimal(Pawn p, TraitChangeDef def, int now, out float days)
         {
+            days = 0f;
             var rels = p?.relations?.DirectRelations;
             if (rels == null) return null;
+            Pawn best = null;
             foreach (var rel in rels)
-                if (rel?.def == PawnRelationDefOf.Bond && rel.otherPawn != null && !rel.otherPawn.Dead && rel.otherPawn.RaceProps.Animal) return rel.otherPawn;
-            return null;
+            {
+                var a = rel?.otherPawn;
+                if (a == null || rel.def != PawnRelationDefOf.Bond || a.Dead || a.RaceProps?.Animal != true) continue;
+                if (!def.bondedKind.NullOrEmpty() && (a.Faction != Faction.OfPlayer || TraitChangeMath.PetKind(a.def.defName, a.def.label) != def.bondedKind)) continue;
+                float d = TraitChangeMath.BondDays(new[] { rel.startTicks }, now);
+                if (best != null && d <= days) continue;
+                best = a;
+                days = d;
+            }
+            return best;
         }
+
+        /// <summary>The trait of theirs the rule asks for (one of <see cref="TraitChangeDef.withTrait"/>), or null.</summary>
+        private static Trait WithTrait(Pawn p, TraitChangeDef def)
+        {
+            var all = p?.story?.traits?.allTraits;
+            if (all == null || def.withTrait.NullOrEmpty()) return null;
+            return all.FirstOrDefault(x => x?.def != null && def.withTrait.Contains(x.def.defName));
+        }
+
+        /// <summary>"the brawler trait": the traits a rule asks for, by their labels.</summary>
+        private static string WithTraitWords(TraitChangeDef def)
+        {
+            var labels = def.withTrait.Select(n => DefDatabase<TraitDef>.GetNamedSilentFail(n)).Where(x => x != null)
+                .Select(x => x.degreeDatas?.FirstOrDefault()?.label ?? x.label ?? x.defName).Distinct().ToList();
+            if (labels.Count == 0) return string.Join(", ", def.withTrait);
+            string names = labels.Count == 1 ? labels[0]
+                : "CC_TCB_PracticeOr".Translate(string.Join(", ", labels.Take(labels.Count - 1)), labels[labels.Count - 1]).Resolve();
+            return "CC_TCB_TheTrait".Translate(names).Resolve();
+        }
+
+        /// <summary>"one of the colony's dogs": what a rule's bond is with, or "an animal".</summary>
+        private static string BondedWords(TraitChangeDef def) =>
+            def.bondedKind.NullOrEmpty() ? "CC_TC_PetKind_any".Translate().ToString() : ("CC_TC_PetKind_" + def.bondedKind).Translate().ToString();
 
         /// <summary>Their ideoligion holds none of the precepts the rule names (no ideoligion, or no rule about it: it holds).</summary>
         private static bool FaithAllows(Pawn p, TraitChangeDef def)
@@ -1092,7 +1155,7 @@ namespace ColonyCouncil
                     ordered.Add("CC_TC_None".Translate(tally.label.CapitalizeFirst(), float.IsInfinity(days) ? tally.noneDays : Mathf.FloorToInt(days)).Resolve());
                     continue;
                 }
-                var entries = Entries(w, tally, lastSame, now);
+                var entries = Entries(p, w, tally, lastSame, now);
                 if (entries.Count == 0) continue;
                 var when = entries.Select(e => PersonaMarks.DateLabel(e.tick, p) + (e.label.NullOrEmpty() ? "" : " (" + e.label + ")")).ToList();
                 ordered.Add(tally.label.CapitalizeFirst() + ": " + string.Join(", ", when) + ".");
@@ -1101,8 +1164,14 @@ namespace ColonyCouncil
                 ordered.Add("CC_TC_Faith".Translate(p.Ideo.name, def.notPreceptsLabel).Resolve());
             var friend = def.friend ? Friend(p) : null;
             if (friend != null) ordered.Add("CC_TC_Friend".Translate(p.Named("PAWN"), friend.Named("OTHER")).Resolve());
-            var animal = def.bondedAnimal ? BondedAnimal(p) : null;
-            if (animal != null) ordered.Add("CC_TC_Bonded".Translate(p.Named("PAWN"), animal.LabelShort.CapitalizeFirst().Named("ANIMAL")).Resolve());
+            float bondDays = 0f;
+            var animal = def.bondedAnimal ? BondedAnimal(p, def, now, out bondDays) : null;
+            if (animal != null)
+                ordered.Add(def.bondedDays > 0
+                    ? "CC_TC_BondedFor".Translate(Mathf.FloorToInt(bondDays), p.Named("PAWN"), animal.LabelShort.CapitalizeFirst().Named("ANIMAL")).Resolve()
+                    : "CC_TC_Bonded".Translate(p.Named("PAWN"), animal.LabelShort.CapitalizeFirst().Named("ANIMAL")).Resolve());
+            if (!def.withTrait.NullOrEmpty() && WithTrait(p, def) != null)
+                ordered.Add("CC_TC_WithTrait".Translate(WithTraitWords(def), p.Named("PAWN")).Resolve());
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
@@ -1210,9 +1279,9 @@ namespace ColonyCouncil
         /// <summary>
         /// What leads to a rule's change, part by part, in words, and whether each part holds: the gap since the trait last
         /// changed (while it lasts), how far a side has moved and where it stands, the marks and the marks it waits out, the
-        /// deeds and the stretches without one, the faith, a friend, an animal bonded to them, the records, skills, how their
-        /// time goes, calm days, a habit, what they've been doing lately. The same evidence the rule checks (Lacks), told for
-        /// the player.
+        /// deeds and the stretches without one, the faith, a friend, an animal bonded to them (and for how long), a trait they
+        /// must have, the records, skills, how their time goes, calm days, a habit, what they've been doing lately. The same
+        /// evidence the rule checks (Lacks), told for the player.
         /// </summary>
         public static List<TraitPart> Parts(Pawn p, TraitChangeDef def, int now)
         {
@@ -1282,7 +1351,7 @@ namespace ColonyCouncil
                         "CC_TCB_MissNone".Translate(label, tally.noneDays, days).Resolve(), true));
                     continue;
                 }
-                int have = Entries(w, tally, lastSame, now).Count;
+                int have = Entries(p, w, tally, lastSame, now).Count;
                 parts.Add(new TraitPart("CC_TCB_Count".Translate(label.CapitalizeFirst(), Mathf.Min(have, tally.count), tally.count).Resolve(), have >= tally.count,
                     "CC_TCB_MissCount".Translate(label, tally.count - have).Resolve()));
             }
@@ -1296,9 +1365,31 @@ namespace ColonyCouncil
             }
             if (def.bondedAnimal)
             {
-                var animal = BondedAnimal(p);
-                parts.Add(new TraitPart(animal != null ? "CC_TCB_BondedWith".Translate(animal.LabelShort.Named("ANIMAL")).Resolve() : "CC_TCB_Bonded".Translate().ToString(),
-                    animal != null, "CC_TCB_MissBonded".Translate().ToString()));
+                var animal = BondedAnimal(p, def, now, out float bonded);
+                if (!def.bondedKind.NullOrEmpty() || def.bondedDays > 0)
+                {
+                    // One of the colony's dogs bonded to them, and for how long of how long: two parts, so a bond on its
+                    // way to a year shows under "Where life is taking them".
+                    string with = BondedWords(def);
+                    parts.Add(new TraitPart(animal != null ? "CC_TCB_BondedKindWith".Translate(with.CapitalizeFirst(), animal.LabelShort).Resolve()
+                            : "CC_TCB_BondedKind".Translate(with.CapitalizeFirst()).Resolve(),
+                        animal != null, "CC_TCB_BondedKind".Translate(with).Resolve()));
+                    if (def.bondedDays > 0)
+                    {
+                        int days = Mathf.Min(Mathf.FloorToInt(bonded), def.bondedDays);
+                        parts.Add(new TraitPart("CC_TCB_BondedDays".Translate(days, def.bondedDays).Resolve(), animal != null && bonded >= def.bondedDays,
+                            "CC_TCB_MissBondedDays".Translate(def.bondedDays, days).Resolve()));
+                    }
+                }
+                else
+                    parts.Add(new TraitPart(animal != null ? "CC_TCB_BondedWith".Translate(animal.LabelShort.Named("ANIMAL")).Resolve() : "CC_TCB_Bonded".Translate().ToString(),
+                        animal != null, "CC_TCB_MissBonded".Translate().ToString()));
+            }
+            if (!def.withTrait.NullOrEmpty())
+            {
+                // Who they are already (a brawler): it holds or it doesn't, and isn't evidence toward showing the rule.
+                string words = WithTraitWords(def);
+                parts.Add(new TraitPart(words.CapitalizeFirst(), WithTrait(p, def) != null, words, true));
             }
             foreach (var f in def.Records)
             {

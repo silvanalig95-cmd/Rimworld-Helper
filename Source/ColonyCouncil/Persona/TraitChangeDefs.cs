@@ -61,6 +61,8 @@ namespace ColonyCouncil
         public string mentalStates;
         /// <summary>Only while they were starving or malnourished, or in a hungry season.</summary>
         public bool whileHungry;
+        /// <summary>Only while they were drunk (the game's alcohol high on them): held the line drunk, for the drunken master.</summary>
+        public bool whileDrunk;
         public int count = 1;
         /// <summary>Only from the last this many days (0: all kept, which is <see cref="TraitChanges.TallyKeepDays"/>).</summary>
         public int withinDays;
@@ -80,6 +82,9 @@ namespace ColonyCouncil
         [MustTranslate] public string label;
 
         public bool None => noneDays > 0;
+
+        /// <summary>It asks how they were at the time (hungry, drunk), which the marks still on their page can't tell.</summary>
+        public bool Filtered => whileHungry || whileDrunk;
 
         public IEnumerable<string> Split(string list) =>
             list.NullOrEmpty() ? Enumerable.Empty<string>() : list.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0);
@@ -174,6 +179,15 @@ namespace ColonyCouncil
         public bool friend;
         /// <summary>An animal bonded to them, alive.</summary>
         public bool bondedAnimal;
+        /// <summary>
+        /// With <see cref="bondedAnimal"/>: one of the colony's dogs ("dog") or cats ("cat"), by
+        /// <see cref="TraitChangeMath.PetKind"/>; empty, any animal.
+        /// </summary>
+        public string bondedKind;
+        /// <summary>With <see cref="bondedAnimal"/>: bonded at least this many days (the bond's own start; 60 is a year).</summary>
+        public int bondedDays;
+        /// <summary>They have one of these traits (defNames): a brawler, for the drunken master.</summary>
+        public List<string> withTrait;
         /// <summary>
         /// The degrees this rule leads out of (0 for a trait without degrees): it is a way out of a bad trait when the person
         /// has the trait at one of them (<see cref="TraitChangeMath.IsWayOut"/>). A way out isn't held back by the colony's
@@ -375,21 +389,32 @@ namespace ColonyCouncil
             get
             {
                 if (Trait == null) return false;
-                if (!mods.NullOrEmpty() && !mods.Any(People.ModActive)) return false;
+                if (!Present) return false;
                 if (!insteadOf.NullOrEmpty() && insteadOf.Any(n => DefDatabase<TraitDef>.GetNamedSilentFail(n) != null)) return false;
                 if (RimfolkTraits.Doubled(Trait)) return false;
                 if (!habit.NullOrEmpty() && Habit == null) return false;
+                return minTech == TechLevel.Undefined || Avail.EffectiveTech >= minTech;
+            }
+        }
+
+        /// <summary>
+        /// The DLC and one of the mods it names are loaded (the game's own content it reads is there: the fishing work is
+        /// Odyssey's, dark study Anomaly's).
+        /// </summary>
+        public bool Present
+        {
+            get
+            {
+                if (!mods.NullOrEmpty() && !mods.Any(People.ModActive)) return false;
                 switch (dlc)
                 {
-                    case null:
-                    case "": break;
-                    case "Royalty": if (!ModsConfig.RoyaltyActive) return false; break;
-                    case "Ideology": if (!ModsConfig.IdeologyActive) return false; break;
-                    case "Biotech": if (!ModsConfig.BiotechActive) return false; break;
-                    case "Anomaly": if (!ModsConfig.AnomalyActive) return false; break;
-                    case "Odyssey": if (!ModsConfig.OdysseyActive) return false; break;
+                    case "Royalty": return ModsConfig.RoyaltyActive;
+                    case "Ideology": return ModsConfig.IdeologyActive;
+                    case "Biotech": return ModsConfig.BiotechActive;
+                    case "Anomaly": return ModsConfig.AnomalyActive;
+                    case "Odyssey": return ModsConfig.OdysseyActive;
+                    default: return true;
                 }
-                return minTech == TechLevel.Undefined || Avail.EffectiveTech >= minTech;
             }
         }
 
@@ -435,9 +460,17 @@ namespace ColonyCouncil
             if (!notPrecepts.NullOrEmpty() && notPreceptsLabel.NullOrEmpty()) yield return "notPrecepts needs notPreceptsLabel";
             if (calmSinceChange && calmDays <= 0) yield return "calmSinceChange needs calmDays";
             if (!habit.NullOrEmpty() && Habit == null) yield return "unknown habit " + habit;
-            foreach (var f in Practice)
-                foreach (var part in TraitChangeMath.PracticeParts(f.name))
-                    if (!ColonyCouncil.Practice.IsKnown(part)) yield return "unknown practice " + part;
+            // A kind of work from a DLC or a mod is only there with it (Odyssey's fishing, Anomaly's dark study).
+            if (Present)
+                foreach (var f in Practice)
+                    foreach (var part in TraitChangeMath.PracticeParts(f.name))
+                        if (!ColonyCouncil.Practice.IsKnown(part)) yield return "unknown practice " + part;
+            if ((!bondedKind.NullOrEmpty() || bondedDays > 0) && !bondedAnimal) yield return "bondedKind and bondedDays need bondedAnimal";
+            if (!bondedKind.NullOrEmpty() && bondedKind != TraitChangeMath.Dog && bondedKind != TraitChangeMath.Cat)
+                yield return "bondedKind must be " + TraitChangeMath.Dog + " or " + TraitChangeMath.Cat + ", not " + bondedKind;
+            if (!withTrait.NullOrEmpty() && Present)
+                foreach (var n in withTrait)
+                    if (DefDatabase<TraitDef>.GetNamedSilentFail(n) == null) yield return "withTrait names no trait " + n;
             if (!evidence) yield return "a change with nothing behind it: give it marks, deeds, records, a pace or calm days";
             if (marks != null)
                 foreach (var m in marks)
@@ -450,6 +483,9 @@ namespace ColonyCouncil
                         yield return "tally " + t.key + " counts nothing";
                     else if (t.label.NullOrEmpty()) yield return "tally " + t.key + " has no label";
                     else if (t.noneDays < 0 || t.noneDays > TraitChanges.TallyKeepDays) yield return "tally " + t.key + ": noneDays from 1 to " + TraitChanges.TallyKeepDays;
+                    else if (t.whileDrunk && t.None) yield return "tally " + t.key + ": whileDrunk counts moments, not a stretch without them";
+                    else if (tallies.Any(o => o != null && o != t && o.key == t.key && (o.whileHungry != t.whileHungry || o.whileDrunk != t.whileDrunk)))
+                        yield return "tally " + t.key + ": the same key counted two ways (whileHungry, whileDrunk); give each its own key";
                     else if (!t.noneAfter.NullOrEmpty() && (!t.None || !tallies.Any(o => o != null && o != t && o.key == t.noneAfter && !o.None)))
                         yield return "tally " + t.key + ": noneAfter needs noneDays and names another tally of this rule that counts (" + t.noneAfter + ")";
                 }
