@@ -129,7 +129,7 @@ namespace ColonyCouncil
         /// <summary>
         /// "butcher": the colony's butcher's table (or spot) nearest the middle; "storeroom": the middle of its biggest
         /// stockpile; "kitchen": the stove nearest the middle (where meals are cooked); "altar": the faith's altar or
-        /// ideogram (Ideology), else any faith's.
+        /// ideogram (Ideology), else any faith's; "sickroom": a medical bed of the filthiest room with a patient abed.
         /// </summary>
         public static IntVec3 At(Map map, string at)
         {
@@ -151,6 +151,8 @@ namespace ColonyCouncil
                     .OrderBy(t => t.Position.DistanceToSquared(center)).FirstOrDefault();
                 return b?.Position ?? IntVec3.Invalid;
             }
+            // A room with a patient abed, the filthiest such (the sickroom question, CouncilLife/EverydayQuestions.cs).
+            if (at == "sickroom") return Everyday.SickroomCell(map);
             if (at == "storeroom")
             {
                 var z = map.zoneManager.AllZones.OfType<Zone_Stockpile>().Where(z2 => z2.Cells.Count > 0).OrderByDescending(z2 => z2.Cells.Count).FirstOrDefault();

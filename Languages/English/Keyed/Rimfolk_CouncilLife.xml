@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Colony life's variety, part 1 (Source/ColonyCouncil/CouncilLife/): the council's situations, the two decrees, the
+       three stories and the everyday questions. Plain words. -->
+
+  <!-- A seat holder steps down, or has a deputy (StepDown.cs). -->
+  <CC_Life_SteppedDownChronicle>{PAWN_nameDef} stepped down as {OFFICE}, with the council's leave.</CC_Life_SteppedDownChronicle>
+  <CC_Life_DeputyIn>{DEPUTY_nameDef} does the {OFFICE}'s daily work for the next {DAYS} days, while {PAWN_nameDef} rests.</CC_Life_DeputyIn>
+  <CC_Life_DeputyOver>{DEPUTY_nameDef}'s days doing the {OFFICE}'s work are over, and {PAWN_nameDef} has it back.</CC_Life_DeputyOver>
+  <CC_Life_NoDeputy>Nobody is left at home to stand in.</CC_Life_NoDeputy>
+  <CC_Impact_StepDown>{0} steps down as {1}; the seat stands empty until the colony votes on it, and {0}'s strain eases</CC_Impact_StepDown>
+  <CC_Impact_StepDownBrief>the {0}'s seat empty</CC_Impact_StepDownBrief>
+  <CC_Impact_Deputy>{0} does the {1}'s daily work for {2} days</CC_Impact_Deputy>
+  <CC_Impact_DeputyBrief>{0} stands in</CC_Impact_DeputyBrief>
+  <CC_Impact_HeartDayOff>{0}: the heart's day off, from now (the rest of today off if one can't be given yet)</CC_Impact_HeartDayOff>
+  <CC_Impact_TheDevoted>those who trust the council most ({0})</CC_Impact_TheDevoted>
+
+  <!-- Two wishes, one pile (OneSteel.cs). -->
+  <CC_Impact_WishFirst>{0}'s wish ({1}) promised; {2} waits {3} days longer and is told why</CC_Impact_WishFirst>
+  <CC_Impact_WishFirstBrief>{0}'s wish first</CC_Impact_WishFirstBrief>
+  <CC_Impact_WishBothWait>neither promised; {0} wait {1} days longer and are told why</CC_Impact_WishBothWait>
+  <CC_Impact_WishBothWaitBrief>both wishes wait</CC_Impact_WishBothWaitBrief>
+
+  <!-- The night watch and the welcome, in each age's words (WatchAndWelcome.cs). -->
+  <CC_Life_WatchLabel_tribal>the watch at the edge of the camp</CC_Life_WatchLabel_tribal>
+  <CC_Life_WatchLabel_medieval>the night watch on the walls</CC_Life_WatchLabel_medieval>
+  <CC_Life_WatchLabel_industrial>the sentry roster</CC_Life_WatchLabel_industrial>
+  <CC_Life_WatchLabel_spacer>the night shift on the perimeter</CC_Life_WatchLabel_spacer>
+  <CC_Life_WelcomeLabel_tribal>{PAWN_nameDef} welcomes {OTHER_nameDef} at the fire</CC_Life_WelcomeLabel_tribal>
+  <CC_Life_WelcomeLabel_medieval>{PAWN_nameDef} welcomes {OTHER_nameDef} at the hearth</CC_Life_WelcomeLabel_medieval>
+  <CC_Life_WelcomeLabel_industrial>{PAWN_nameDef} helps {OTHER_nameDef} settle in</CC_Life_WelcomeLabel_industrial>
+  <CC_Life_WelcomeLabel_spacer>{PAWN_nameDef}'s orientation hour with {OTHER_nameDef}</CC_Life_WelcomeLabel_spacer>
+
+  <!-- The one sent away comes back to the gate (LifeArcs.cs). -->
+  <CC_Life_MeetSentAwayLabel>{PAWN_nameDef} goes out to meet {OTHER_nameDef}</CC_Life_MeetSentAwayLabel>
+
+  <!-- A name for the newborn (EverydayQuestions.cs). -->
+  <CC_Impact_NameAnimal>the {0} is called {1}</CC_Impact_NameAnimal>
+  <CC_Impact_NameAnimalBrief>named {0}</CC_Impact_NameAnimalBrief>
+  <CC_Life_Named>The new {KIND} is called {PET_nameDef} now, on the council's word.</CC_Life_Named>
+
+</LanguageData>

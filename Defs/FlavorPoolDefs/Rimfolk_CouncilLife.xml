@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colony life's variety, part 1 (Source/ColonyCouncil/CouncilLife/). Lines said over a head are one sentence each.
+  -->
+
+  <!-- Two wishes, one pile: the one whose wish waits is told why, face to face (OneSteel.cs). {OTHER} the one told,
+       {THING} the stuff. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LifeYourTurn</defName>
+    <lines>
+      <plain>
+        <li>There's {THING} for one of you, {OTHER_nameDef}, and yours comes next.</li>
+        <li>Yours waits three days, {OTHER_nameDef}, until there's {THING} enough for it.</li>
+        <li>It isn't no, {OTHER_nameDef}, it's after the other one.</li>
+      </plain>
+      <warm><li>I'm sorry, {OTHER_nameDef}, there's only {THING} for one, and yours is next in line.</li></warm>
+      <blunt><li>Not enough {THING} for both, so yours waits.</li></blunt>
+      <cheerful><li>Three more days, {OTHER_nameDef}, and it's your turn with the {THING}.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LifeBothWait</defName>
+    <lines>
+      <plain>
+        <li>Neither of you gets the {THING} yet, {OTHER_nameDef}, not until there's enough for both.</li>
+        <li>The {THING} stays in the stores for now, {OTHER_nameDef}, for both your wishes.</li>
+      </plain>
+      <blunt><li>Nobody gets the {THING} until there's more of it.</li></blunt>
+      <warm><li>Give it three days, {OTHER_nameDef}, and we'll see whether there's {THING} for you both.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A holder who stepped down by the council's leave (StepDown.cs): their journal. {OFFICE} the seat. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_SteppedDown</defName>
+    <lines>
+      <plain>
+        <li>I asked to put down the {OFFICE}'s seat, and the council let me. I feel lighter already.</li>
+        <li>No longer {OFFICE}, by my own asking. Someone else will do it better for a while.</li>
+        <li>I handed the {OFFICE}'s work back today. I'd carried it as far as I could.</li>
+      </plain>
+      <warm><li>Stepping down as {OFFICE} was the hardest thing I've asked for. I hope whoever takes it is looked after better than I looked after myself.</li></warm>
+      <blunt><li>Not {OFFICE} any more. My choice. Good.</li></blunt>
+      <cheerful><li>I've put down the {OFFICE}'s seat, and my evenings are my own again.</li></cheerful>
+      <gloomy><li>I wasn't up to being {OFFICE}. At least I said so before anyone else had to.</li></gloomy>
+      <cold><li>I have stepped down as {OFFICE}. It was the sensible course.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

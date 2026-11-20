@@ -10,10 +10,10 @@ namespace ColonyCouncil
     // Two wishes, one pile of steel (the content update's A4, the player's go of 20 November 2026): two colonists' open
     // wishes each for a thing to be built or made, each needing the same stuff (steel, wood, components, cloth: the wish's
     // own thing and what it costs), and the stores holding enough for either but not both. The quartermaster speaks in it
-    // when there is one (A2). Answers: A's first, B's first, or whoever asked first. The first is promised as the
-    // council's own Promise does it (its promise's own play-out runs: the plan laid in their room, and so on); the other's
-    // deadline moves on three days, and they are told why face to face, by the quartermaster or the one whose wish went
-    // first. The rules are OneSteelMath.
+    // when there is one (A2). A is the one who asked first. Answers: first come, first served (A's), B's first, or neither
+    // until the stores hold more. The first is promised as the council's own Promise does it (its promise's own play-out
+    // runs: the plan laid in their room, and so on); whoever waits has their deadline moved on three days and is told why
+    // face to face, by the quartermaster or the other asker. The rules are OneSteelMath.
 
     /// <summary>Shared look-ups for the wishes' costs.</summary>
     public static class OneSteel
@@ -107,63 +107,69 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One of the two wishes goes first (A4's answers, <see cref="first"/> "A", "B", or "older": whoever asked first): it is
-    /// promised as the council's Promise does it, and the other's deadline moves on three days; its asker is told why face to
-    /// face by the quartermaster (else the first wish's asker), and takes it as waiting a turn, not as being passed over.
+    /// Which of the two wishes goes first (A4's answers, <see cref="first"/> "A", the one who asked first, "B", or "none",
+    /// both wait for more): the first is promised as the council's Promise does it, and the other's deadline moves on three
+    /// days (both, with none); whoever waits is told why face to face by the quartermaster (else the other wish's asker), and
+    /// takes it as waiting a turn, not as being passed over.
     /// </summary>
     public class DilemmaEffect_WishFirst : DilemmaEffect
     {
-        public string first = "older";
+        public string first = "A";
 
         public override bool ChanceEach => false;
 
-        private bool AFirst(DilemmaContext ctx)
+        private static ThoughtDef Thought(string name) => DefDatabase<ThoughtDef>.GetNamedSilentFail(name);
+
+        /// <summary>Whose wish is promised (null: nobody's), and who waits.</summary>
+        private void Sides(DilemmaContext ctx, out Pawn winner, out List<Pawn> waits)
         {
-            if (first == "A") return true;
-            if (first == "B") return false;
-            var l = ctx as DilemmaContextLife;
-            var wa = OneSteel.ById(l?.wishA ?? -1);
-            var wb = OneSteel.ById(l?.wishB ?? -1);
-            return wa == null || wb == null || OneSteelMath.AFirst(wa.createdTick, wb.createdTick);
+            var w = first == "A" ? ctx.a : first == "B" ? ctx.b : null;
+            winner = w;
+            waits = new[] { ctx.a, ctx.b }.Where(p => p != null && p != w).ToList();
         }
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             if (!(ctx is DilemmaContextLife l) || ctx.a == null || ctx.b == null) return;
-            bool aFirst = AFirst(ctx);
-            var winner = aFirst ? ctx.a : ctx.b;
-            var waits = aFirst ? ctx.b : ctx.a;
-            sheet.Play("CC_Impact_WishFirst".Translate(winner.LabelShort, aFirst ? l.labelA : l.labelB, waits.LabelShort, ImpactMath.Number(OneSteelMath.WaitDays)).Resolve(),
-                "CC_Impact_WishFirstBrief".Translate(winner.LabelShort).Resolve());
-            sheet.Thought(new List<Pawn> { winner }, winner.LabelShort, Thought("Rimfolk_Life_FirstInLine"), p => null);
-            sheet.Thought(new List<Pawn> { waits }, waits.LabelShort, Thought("Rimfolk_Life_WaitMyTurn"), p => null);
+            Sides(ctx, out var winner, out var waits);
+            string waiting = TextUtil.JoinAnd(waits.Select(p => p.LabelShort).ToList());
+            if (winner != null)
+                sheet.Play("CC_Impact_WishFirst".Translate(winner.LabelShort, winner == ctx.a ? l.labelA : l.labelB, waiting, ImpactMath.Number(OneSteelMath.WaitDays)).Resolve(),
+                    "CC_Impact_WishFirstBrief".Translate(winner.LabelShort).Resolve());
+            else
+                sheet.Play("CC_Impact_WishBothWait".Translate(waiting, ImpactMath.Number(OneSteelMath.WaitDays)).Resolve(), "CC_Impact_WishBothWaitBrief".Translate().Resolve());
+            var up = Thought("Rimfolk_Life_FirstInLine");
+            var down = Thought("Rimfolk_Life_WaitMyTurn");
+            if (winner != null && up != null) sheet.Thought(new List<Pawn> { winner }, winner.LabelShort, up, p => null);
+            if (down != null) sheet.Thought(waits, waiting, down, p => null);
         }
-
-        private static ThoughtDef Thought(string name) => DefDatabase<ThoughtDef>.GetNamedSilentFail(name);
 
         public override void Apply(DilemmaContext ctx)
         {
             if (!(ctx is DilemmaContextLife l) || ctx.a == null || ctx.b == null) return;
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
-            bool aFirst = AFirst(ctx);
-            var wFirst = OneSteel.ById(aFirst ? l.wishA : l.wishB);
-            var wWait = OneSteel.ById(aFirst ? l.wishB : l.wishA);
-            var winner = aFirst ? ctx.a : ctx.b;
-            var waits = aFirst ? ctx.b : ctx.a;
-            if (wFirst != null && wFirst.state == WishState.Open && !wFirst.promised) comp.Promise(wFirst);
-            if (wWait != null && wWait.state == WishState.Open) wWait.expiresTick += Mathf.RoundToInt(OneSteelMath.WaitDays * GenDate.TicksPerDay);
-            CouncilGameComponent.GiveThought(winner, Thought("Rimfolk_Life_FirstInLine"));
-            CouncilGameComponent.GiveThought(waits, Thought("Rimfolk_Life_WaitMyTurn"));
-            // Told why, face to face: the quartermaster when there is one at home, else the one whose wish went first.
-            var teller = ctx.holder != null && ctx.holder != waits && !ctx.holder.Dead ? ctx.holder : winner;
-            if (teller == null || waits.Dead) return;
+            Sides(ctx, out var winner, out var waits);
+            if (winner != null && OneSteel.ById(winner == ctx.a ? l.wishA : l.wishB) is Wish w && w.state == WishState.Open && !w.promised) comp.Promise(w);
+            if (winner != null) CouncilGameComponent.GiveThought(winner, Thought("Rimfolk_Life_FirstInLine"));
             string thing = ctx.thing?.label ?? "";
-            Together.When("onesteel|" + waits.thingIDNumber + "|" + Find.TickManager.TicksGame, teller, waits, () =>
+            foreach (var p in waits)
             {
-                string line = Interplay.Line("Rimfolk_Pool_LifeYourTurn", teller, null, waits.Named("OTHER"), thing.Named("THING"));
-                if (!line.NullOrEmpty()) Speech.Say(teller, line, waits);
-            }, 48f, 6f);
+                if (OneSteel.ById(p == ctx.a ? l.wishA : l.wishB) is Wish ww && ww.state == WishState.Open)
+                    ww.expiresTick += Mathf.RoundToInt(OneSteelMath.WaitDays * GenDate.TicksPerDay);
+                CouncilGameComponent.GiveThought(p, Thought("Rimfolk_Life_WaitMyTurn"));
+                // Told why, face to face: the quartermaster when there is one at home, else the other wish's asker.
+                var teller = ctx.holder != null && ctx.holder != p && !ctx.holder.Dead ? ctx.holder : p == ctx.a ? ctx.b : ctx.a;
+                if (teller == null || teller.Dead || p.Dead) continue;
+                var who = p;
+                var by = teller;
+                string pool = winner == null ? "Rimfolk_Pool_LifeBothWait" : "Rimfolk_Pool_LifeYourTurn";
+                Together.When("onesteel|" + who.thingIDNumber + "|" + Find.TickManager.TicksGame, by, who, () =>
+                {
+                    string line = Interplay.Line(pool, by, null, who.Named("OTHER"), thing.Named("THING"));
+                    if (!line.NullOrEmpty()) Speech.Say(by, line, who);
+                }, 48f, 6f);
+            }
         }
     }
 }

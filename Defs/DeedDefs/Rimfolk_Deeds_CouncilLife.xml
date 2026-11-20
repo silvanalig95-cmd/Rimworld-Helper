@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A deed of the council's life (the content update's A3, with A23's first deed; CouncilLife/StepDown.cs): a holder who put
+    a seat down by the council's leave, worn down or laid up. Known for knowing their limits, and for putting the seat
+    before themselves.
+  -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SteppedDown</defName>
+    <label>stepped down from a seat</label>
+    <theme>steppeddown</theme>
+    <facets><discretion>2</discretion><kindness>1</kindness></facets>
+    <fadeDays>60</fadeDays>
+    <interest>0.6</interest>
+    <text>stepped down from a seat on the council</text>
+    <logTopic>Rimfolk_GossipTopic_SteppedDown</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SteppedDown</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the seat put down</li>
+        <li>gossip_topic->stepping down from the council</li>
+        <li>gossip_topic->who has the seat now</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>
