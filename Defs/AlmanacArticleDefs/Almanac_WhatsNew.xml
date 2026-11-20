@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.286.0</version>
+        <date>20 November 2026</date>
+        <title>More words for the gods, and prayers in the old voice</title>
+        <points>
+          <li>Fixed: the words said at a god's place after the council's answers showed the god's placeholder instead of its name.</li>
+          <li>The gods have more said about them: what people answer back, what the colony's book sets down in the old voice, and what the neighbours write after a god's hand.</li>
+          <li>The priest, the keeper of the book, a devout elder and those of a faith of the old ages now pray, give thanks and keep the rites and the saints' days in the old voice.</li>
+          <li>More talk around worship: each god's way of taking an offering, each god's presence, true dreams, vows, pilgrimages, saints and the festival on the calendar.</li>
+          <li>The pilgrims' and the seer's camps have more to say, and the weather talk and the land's journals have more lines.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.285.0</version>
         <date>20 November 2026</date>
         <title>Life, customs and stories</title>

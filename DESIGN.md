@@ -18912,7 +18912,7 @@ carrier gain a field each. Not checked without the game: the happenings' timing 
 and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
 drake's egg hatching as the colony's, Alpha Bees' hives reached.
 
-### Text variety: the gods' thin pools (the player's go, 20 November 2026; not released yet)
+### Text variety: the gods' thin pools (the player's go, 20 November 2026; released 0.286.0)
 
 The player on the content update: "In general, I just want additional God events, more immersion, more just further also
 building up on the gods in general ... And then also, just variety". The gods' part of the second text round: C32 to C36
