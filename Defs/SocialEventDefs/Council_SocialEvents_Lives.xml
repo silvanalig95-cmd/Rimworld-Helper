@@ -16,6 +16,8 @@
       <li>When the talk came close to a sore subject, {B_nameDef} changed it smoothly, without a glance at {A_nameDef}.</li>
       <li>When the questions came {A_nameDef}'s way, {B_nameDef} stepped in and answered most of them.</li>
       <li>{B_nameDef} caught {A_nameDef}'s eye as the talk turned to where people came from, and steered it elsewhere.</li>
+      <li>When someone asked {A_nameDef} an awkward question, {B_nameDef} found a reason to call {A_objective} away.</li>
+      <li>{B_nameDef} gave {A_nameDef} a small nod across the room to say {A_possessive} secret was still safe.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -35,6 +37,8 @@
     <texts>
       <li>{B_nameDef} snapped at {A_nameDef} over nothing, muttering about "what I know," and {A_nameDef} went pale.</li>
       <li>{B_nameDef} told {A_nameDef}, under {B_possessive} breath, that keeping {A_possessive} secret was getting hard, in a voice that sounded like a warning.</li>
+      <li>{B_nameDef} reminded {A_nameDef}, quietly and not kindly, that {B_pronoun} still knew {A_possessive} secret.</li>
+      <li>{B_nameDef} told {A_nameDef} that {B_pronoun} was tired of keeping quiet for {A_objective}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
@@ -53,6 +57,8 @@
     <texts>
       <li>{A_nameDef} and {B_nameDef} talked about {FACTION} in low voices and made each other a promise.</li>
       <li>{A_nameDef} counted off on {A_possessive} fingers what {FACTION} owes them, and {B_nameDef} added the ones {A_pronoun} had missed.</li>
+      <li>{A_nameDef} and {B_nameDef} went over what {FACTION} had done to the colony, and agreed they would not forget it.</li>
+      <li>{A_nameDef} and {B_nameDef} talked about {FACTION} for a long time, and both came away angry.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -71,6 +77,8 @@
     <texts>
       <li>{B_nameDef} made fun of {A_nameDef}'s habit ({QUIRK}), and {A_nameDef} didn't laugh.</li>
       <li>{B_nameDef} did an impression of {A_nameDef} ({QUIRK}) for anyone who would watch.</li>
+      <li>{B_nameDef} laughed at {A_nameDef}'s habit ({QUIRK}) in front of the others, and {A_nameDef} was hurt by it.</li>
+      <li>{B_nameDef} told {A_nameDef} that {A_possessive} habit ({QUIRK}) was childish, and {A_nameDef} told {B_objective} to mind {B_possessive} own business.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Pranked</thought></li>
@@ -90,6 +98,8 @@
       <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead.</li>
       <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, joined in.</li>
       <li>{B_nameDef} told {A_nameDef} that {B_pronoun} understands it now ({QUIRK}), more than {B_pronoun} expected to.</li>
+      <li>{B_nameDef} noticed {A_nameDef}'s habit ({QUIRK}) and said {B_pronoun} found it rather nice.</li>
+      <li>{B_nameDef} asked {A_nameDef} where the habit came from ({QUIRK}), and {A_nameDef} told {B_objective}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -109,6 +119,8 @@
       <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} wants to {GOAL}, and {B_nameDef} just said, "Then do it."</li>
       <li>{B_nameDef} asked {A_nameDef} how the plan to {GOAL} is coming along, and listened to the whole answer.</li>
       <li>{B_nameDef} told {A_nameDef} that if anyone here could {GOAL}, it was {A_objective}.</li>
+      <li>{B_nameDef} told {A_nameDef} not to give up on wanting to {GOAL}, however long it takes.</li>
+      <li>{A_nameDef} told {B_nameDef} {A_pronoun} wasn't sure {A_pronoun} could ever {GOAL}, and {B_nameDef} said {A_pronoun} should try anyway.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -130,6 +142,8 @@
     <texts>
       <li>{B_nameDef} found out {A_nameDef} wants to {GOAL}, and laughed in {A_possessive} face.</li>
       <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, loud enough to carry, and didn't wait for an answer.</li>
+      <li>{B_nameDef} told {A_nameDef} that {A_pronoun} would never {GOAL}, and laughed while saying it.</li>
+      <li>{B_nameDef} made a joke about {A_nameDef} wanting to {GOAL}, and made sure the others heard.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
@@ -150,6 +164,8 @@
       <li>{B_nameDef} gave up {B_possessive} free time to help {A_nameDef}, who means to {GOAL} one day.</li>
       <li>{B_nameDef} offered to help {A_nameDef} with the plan to {GOAL}, and meant it.</li>
       <li>{B_nameDef} talked through the next step of {A_nameDef}'s plan to {GOAL} with {A_objective}, and wouldn't take thanks for it.</li>
+      <li>{B_nameDef} sat down with {A_nameDef} to work out what it would take to {GOAL}.</li>
+      <li>{B_nameDef} told {A_nameDef} {B_pronoun} would keep an eye out for anything that could help {A_objective} {GOAL}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Gift</thought></li>

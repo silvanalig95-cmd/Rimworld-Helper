@@ -18,6 +18,8 @@
       <li>{A_nameDef} hummed the same four notes over and over until {B_nameDef} asked whether {A_pronoun} knew any others.</li>
       <li>{B_nameDef} asked {A_nameDef} to stop humming, and {A_nameDef}, still humming, said {A_pronoun} wasn't.</li>
       <li>{B_nameDef} snapped at {A_nameDef} that one more hum and {B_pronoun} would go and work somewhere else.</li>
+      <li>{B_nameDef} told {A_nameDef} that the humming was driving {B_objective} mad, and {A_nameDef} said {A_pronoun} hadn't noticed {A_pronoun} was doing it.</li>
+      <li>{A_nameDef} hummed through the whole job, and by the end {B_nameDef} was glaring at {A_objective}.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -33,6 +35,8 @@
     <texts>
       <li>{B_nameDef} started humming along with {A_nameDef}, badly, and it turned into a duet.</li>
       <li>{B_nameDef} caught {A_nameDef}'s tune and can't get rid of it, so now they hum it together.</li>
+      <li>{A_nameDef} hummed a tune {B_nameDef} knew, and {B_nameDef} sang the words.</li>
+      <li>{B_nameDef} asked {A_nameDef} what the tune was, and {A_nameDef} taught {B_objective} the rest of it.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>3</change>
@@ -48,6 +52,8 @@
     <texts>
       <li>{B_nameDef} repeated word for word what {A_nameDef} had said in {A_possessive} sleep, and {A_nameDef} went red.</li>
       <li>{B_nameDef} told {A_nameDef}, grinning, that {A_pronoun} argues in {A_possessive} sleep with someone called Vera, and loses.</li>
+      <li>{B_nameDef} told the others what {A_nameDef} had mumbled in {A_possessive} sleep, and {A_nameDef} didn't find it funny.</li>
+      <li>{B_nameDef} complained that {A_nameDef}'s talking in {A_possessive} sleep kept {B_objective} awake half the night.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -64,6 +70,8 @@
     <texts>
       <li>{A_nameDef} told {B_nameDef}, cheerfully, how much of the day {B_pronoun} misses by sleeping through the dawn.</li>
       <li>{A_nameDef} asked {B_nameDef} whether {B_pronoun} was only just up, and got asked if {A_pronoun} ever talks about anything but mornings.</li>
+      <li>{A_nameDef} told {B_nameDef} all about the sunrise {B_pronoun} had slept through.</li>
+      <li>{B_nameDef} asked {A_nameDef} to be quieter in the mornings, and {A_nameDef} said the mornings are the best part of the day.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -80,6 +88,8 @@
     <texts>
       <li>{B_nameDef} told {A_nameDef} that the food tastes better on the days {A_pronoun} sings while {A_pronoun} cooks.</li>
       <li>{B_nameDef} asked {A_nameDef} for a recipe, and {A_nameDef} said it only works with the song.</li>
+      <li>{B_nameDef} asked {A_nameDef} to sing the same song next time {A_pronoun} cooks, since the last meal was so good.</li>
+      <li>{A_nameDef} sang {B_nameDef} the song {A_pronoun} uses to time a stew, and {B_nameDef} tried to learn it.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -95,6 +105,8 @@
     <texts>
       <li>{A_nameDef} tidied {B_nameDef}'s things away while {B_pronoun} was still using them, and stacked them where {B_pronoun} couldn't find them.</li>
       <li>{B_nameDef} set a cup down for a moment, and {A_nameDef} had it washed and put away before {B_pronoun} turned round.</li>
+      <li>{B_nameDef} spent a long while looking for {B_possessive} things, then found them neatly put away where {A_nameDef} keeps everything.</li>
+      <li>{B_nameDef} asked {A_nameDef} to leave {B_possessive} things where they were, and {A_nameDef} said they were a mess.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -110,6 +122,8 @@
     <texts>
       <li>{A_nameDef} gave {B_nameDef} a carved spoon, whittled from an offcut over a few evenings.</li>
       <li>{A_nameDef} handed {B_nameDef} what {A_pronoun} had been whittling for days, a careful likeness of {B_nameDef}'s favorite animal.</li>
+      <li>{A_nameDef} gave {B_nameDef} a small wooden figure {A_pronoun} had carved in {A_possessive} spare time.</li>
+      <li>{A_nameDef} handed {B_nameDef} a little wooden block with {B_possessive} name carved into it, without making a fuss.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>5</change>
@@ -125,6 +139,8 @@
     <texts>
       <li>{A_nameDef} knew to the season when {B_nameDef} first came to the colony, and {B_nameDef} was more touched than {B_pronoun} let on.</li>
       <li>{A_nameDef} wished {B_nameDef} well for a day that mattered to {B_objective}, and {B_nameDef} had no idea anyone knew.</li>
+      <li>{A_nameDef} remembered that {B_nameDef} had come to the colony around this time of year, and said so.</li>
+      <li>{A_nameDef} remembered the date of something that mattered to {B_nameDef}, and {B_nameDef} thanked {A_objective} for it.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -140,6 +156,8 @@
     <texts>
       <li>Last night {A_nameDef} named the stars for {B_nameDef} one by one, and {B_nameDef} suspects half the names were made up.</li>
       <li>{A_nameDef} promised to show {B_nameDef} which star is which once it gets dark.</li>
+      <li>{A_nameDef} pointed out to {B_nameDef} which star comes out first after sunset, and {B_nameDef} promised to look for it.</li>
+      <li>{A_nameDef} told {B_nameDef} the names {A_pronoun} uses for the shapes in the night sky, and {B_nameDef} asked for more.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -156,6 +174,8 @@
     <texts>
       <li>{A_nameDef} counted out loud while {B_nameDef} was trying to think, and started over when {B_nameDef} asked {A_objective} to stop.</li>
       <li>{B_nameDef} lost {B_possessive} place three times to {A_nameDef}'s counting, and {A_nameDef} wouldn't stop or say what {A_pronoun} was counting.</li>
+      <li>{A_nameDef} counted under {A_possessive} breath the whole time {B_nameDef} was trying to work, and {B_nameDef} told {A_objective} to stop.</li>
+      <li>{B_nameDef} asked {A_nameDef} what {A_pronoun} was counting this time, and the answer only annoyed {B_objective} more.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -172,6 +192,8 @@
     <texts>
       <li>{A_nameDef} and {B_nameDef} found out they are both superstitious, and compared their precautions at length.</li>
       <li>{B_nameDef} saw {A_nameDef}'s ritual and, rather than laugh, showed {A_objective} {B_possessive} own.</li>
+      <li>{A_nameDef} and {B_nameDef} agreed on which days are unlucky, and promised to warn each other.</li>
+      <li>{B_nameDef} told {A_nameDef} about a charm {B_pronoun} carries for luck, and {A_nameDef} took it seriously.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>5</change>
@@ -187,6 +209,8 @@
     <texts>
       <li>{A_nameDef} and {B_nameDef} argued over names for the next animal the colony takes in, and settled on two, one each.</li>
       <li>{B_nameDef} has started using the names {A_nameDef} gives the animals, though {B_pronoun} won't admit where they came from.</li>
+      <li>{A_nameDef} and {B_nameDef} made a list of names for animals the colony might take in.</li>
+      <li>{B_nameDef} asked {A_nameDef} how {A_pronoun} chooses names for animals, and {A_nameDef} explained {A_possessive} rules.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>3</change>
