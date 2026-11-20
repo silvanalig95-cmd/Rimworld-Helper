@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal lines for the council's life (the content update's A31, 20 November 2026): a seat taken, a seat lower
+    than before, a life goal changed, a name earned, a bond made in a fight or in everyday life, a year in the colony and
+    coming home from a journey. First person, written when it happens, in plain words. Same placeholders as the pools
+    they join: {OFFICE} and {NEW} (seat names, lowercase), {OLDGOAL} and {GOAL} (verb phrases), {TITLE} (never at the
+    start of a sentence), {OTHER_...}, {YEARS} (a number), {DAYS} ("3 days"). A changed goal is tagged by what changed
+    it: [loss] (someone close died) or [downed] (a brush with death), the only two that change a goal (GoalMath.Big).
+    A voice keeps fewer than three lines where it had one, so it is still drawn together with the plain lines.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_Elected</defName>
+    <pool>Council_Journal_Elected</pool>
+    <lines>
+      <plain>
+        <li>I'm {OFFICE} now. I'll try to do it properly.</li>
+        <li>I'm {OFFICE} now. Three people have already stopped me to tell me what needs doing.</li>
+        <li>They chose me as {OFFICE}. I've started a list of what needs doing, and it's already long.</li>
+        <li>[newcomer] I've barely learned where everything is, and they've made me {OFFICE}. I'll be asking a lot of questions.</li>
+        <li>I didn't expect to be made {OFFICE}. I'll do it as well as I can for as long as they want me.</li>
+        <li>I'm {OFFICE} now. I don't feel any different, but people already look at me differently.</li>
+        <li>Made {OFFICE} today. I'll start with the jobs nobody else wanted and go from there.</li>
+        <li>Everyone here already does a bit of everything. Now I'm {OFFICE} as well.</li>
+        <li>I've spent the rest of the day trying to look like I know what a good {OFFICE} does.</li>
+        <li>I'm {OFFICE} now. I hope I can make things a little easier for people here.</li>
+        <li>They made me {OFFICE}. I'll have to talk to a lot more people than I'm used to.</li>
+      </plain>
+      <warm><li>They picked me as {OFFICE}. I'll try to be fair to everyone, including the ones who didn't want me.</li></warm>
+      <blunt><li>I'm {OFFICE} now. Somebody had to be.</li></blunt>
+      <cheerful><li>I'm {OFFICE} now, and I'm more pleased about it than I'll let on to the others.</li></cheerful>
+      <gloomy><li>Made {OFFICE}. Every complaint in the colony will come to me now.</li></gloomy>
+      <cold><li>I'm {OFFICE} now. The others will expect things of me, and I expect things of them.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_GoalChanged</defName>
+    <pool>Council_Journal_GoalChanged</pool>
+    <lines>
+      <plain>
+        <li>[loss] Losing someone close changes what matters. I've given up trying to {OLDGOAL}, and I want to {GOAL} instead.</li>
+        <li>[loss] After this loss, trying to {OLDGOAL} feels like it belongs to someone else. I'm going to {GOAL}.</li>
+        <li>[loss] I keep thinking about how little time anyone gets here. I'd rather {GOAL} than keep trying to {OLDGOAL}.</li>
+        <li>[loss] I've thought about it all day and decided: no more trying to {OLDGOAL}. I want to {GOAL}.</li>
+        <li>[loss] The people we've lost had plans of their own. I've dropped my plan to {OLDGOAL} and mean to {GOAL} while I can.</li>
+        <li>[loss] Grieving has made me think about what I really want. It isn't to {OLDGOAL} any more. It's to {GOAL}.</li>
+        <li>[downed] I was lying on the ground thinking I might not get up. I'm done trying to {OLDGOAL}. I want to {GOAL}.</li>
+        <li>[downed] Nearly dying makes you sort out what you want. I want to {GOAL}, not to {OLDGOAL}.</li>
+        <li>[downed] When I was down and couldn't get up, I wasn't thinking about how to {OLDGOAL}. Now I want to {GOAL}.</li>
+        <li>[downed] I came close to not making it. I've let go of trying to {OLDGOAL}, and I'm going to {GOAL}.</li>
+        <li>[downed] I nearly didn't get any more time at all. I'll use what I have to {GOAL}, not to {OLDGOAL}.</li>
+      </plain>
+      <warm><li>[loss] I'd always meant to {OLDGOAL}. Since we lost one of our own, I want to {GOAL}, and to spend more time with the people here.</li></warm>
+      <blunt><li>[downed] Nearly died. Changed my mind. I'm going to {GOAL}.</li></blunt>
+      <cheerful><li>[downed] I'm still here, which means I get to choose again, and I'm choosing to {GOAL}.</li></cheerful>
+      <gloomy><li>[loss] Wanting to {OLDGOAL} seems pointless after this. I want to {GOAL} before something takes that away too.</li></gloomy>
+      <cold><li>[downed] Being downed showed me how short my time might be. My aim now is to {GOAL}, and trying to {OLDGOAL} is dropped.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A seat lower than the one they held. {OFFICE}: the seat they had; {NEW}: the one they have now. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_MovedDown</defName>
+    <pool>Council_Journal_MovedDown</pool>
+    <lines>
+      <plain>
+        <li>I'm {NEW} now, not {OFFICE}. It's still work worth doing, and I'll do it.</li>
+        <li>Moved from {OFFICE} to {NEW}. I'd be lying if I said it didn't sting a little.</li>
+        <li>[old] Going from {OFFICE} to {NEW} at my age isn't the worst thing. There's less of it to carry.</li>
+        <li>They've made me {NEW}. Whoever is {OFFICE} now can come and ask me anything they need to know.</li>
+        <li>Maybe I wasn't the best {OFFICE}. I'll try to be a good {NEW}.</li>
+        <li>Being {NEW} instead of {OFFICE} means fewer people come to me with problems. I'm not sure yet how I feel about that.</li>
+        <li>I'm no longer {OFFICE}, and they've given me {NEW} instead. I'll keep my head down and do the job.</li>
+        <li>[trait:Jealous] Somebody else is {OFFICE} now and I'm {NEW}. I'll be watching how they do.</li>
+        <li>I'm still on the council, as {NEW} now rather than {OFFICE}. That counts for something.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A flattering name earned. {TITLE} ("the Healer", "Deadeye"): never at a sentence start. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_Epithet</defName>
+    <pool>Council_Journal_Epithet</pool>
+    <lines>
+      <plain>
+        <li>Someone at the stores called me {TITLE} without thinking about it. That's when I knew the name had stuck.</li>
+        <li>[old] I've been called plenty of things over the years, and {TITLE} is one of the better ones.</li>
+        <li>I heard two of the others talking, and one of them called me {TITLE}. They didn't know I could hear.</li>
+        <li>[small] There aren't many of us, so a name like {TITLE} gets used every day.</li>
+      </plain>
+      <warm>
+        <li>People say {TITLE} kindly when they say it. I'm grateful for that.</li>
+        <li>I'll try to keep earning the name {TITLE}. People seem to mean it.</li>
+      </warm>
+      <blunt>
+        <li>So I'm {TITLE} now. Fine by me, as long as nobody expects speeches.</li>
+        <li>Everyone's calling me {TITLE}. I've done the work, so I'll take the name.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm {TITLE} now, and I grin every time someone says it.</li>
+        <li>Somebody called me {TITLE} and I said thank you twice. I'll get used to it eventually.</li>
+      </cheerful>
+      <gloomy>
+        <li>Being called {TITLE} is nice for now. People forget these things quickly.</li>
+        <li>They call me {TITLE}. I hope I don't do something soon that makes them stop.</li>
+      </gloomy>
+      <cold>
+        <li>People call me {TITLE} now. It's useful to be known for something.</li>
+        <li>The name {TITLE} has stuck. I'll make sure it stays accurate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Comrades: they stood side by side in a fight. {OTHER_...}: the other fighter. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_TieFormed_Comrades</defName>
+    <pool>Council_Journal_TieFormed_Comrades</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I stood together when it mattered. We hardly talked afterwards, and we didn't need to.</li>
+        <li>I watched {OTHER_nameDef}'s side in the fight and {OTHER_pronoun} watched mine. I'll stand next to {OTHER_objective} again if it comes to it.</li>
+      </plain>
+      <warm>
+        <li>After the fight I made sure {OTHER_nameDef} was all right before I did anything else.</li>
+        <li>I'm glad it was {OTHER_nameDef} next to me in that fight. I felt safer for it.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} didn't run. Neither did I. That's enough for me.</li>
+        <li>Fought next to {OTHER_nameDef}. {OTHER_nameDef} can be trusted in a fight.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I came through it together, and we've been laughing about it since.</li>
+        <li>With {OTHER_nameDef} beside me I was a lot less scared than I expected to be.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} and I both made it through that fight. I hope we're both as lucky next time.</li>
+        <li>I keep going over the fight in my head. At least {OTHER_nameDef} was there.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} did what needed doing in the fight, without being told. I'll want {OTHER_objective} beside me again.</li>
+        <li>I've noted who held steady in the fight. {OTHER_nameDef} was one of them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A friendship. {OTHER_...}: the friend. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_TieFormed_Friends</defName>
+    <pool>Council_Journal_TieFormed_Friends</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I talk every day now, about nothing much. I'd miss it if we stopped.</li>
+        <li>[old] At my age you don't expect to make new friends, but {OTHER_nameDef} and I have become close.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} is a good friend to have. I'll try to be as good a friend back.</li>
+        <li>I've started looking for {OTHER_nameDef} when something good happens, so I can tell {OTHER_objective} first.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} is all right. More than all right, actually.</li>
+        <li>Me and {OTHER_nameDef}, friends. Didn't plan it, but there it is.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I are proper friends now, and I'm very pleased about it.</li>
+        <li>{OTHER_nameDef} laughs at my jokes, even the bad ones. That's a friend.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} is a real friend now. I worry about losing the people I care about, and now there's one more.</li>
+        <li>{OTHER_nameDef} and I get on well. I'd forgotten what that was like.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} is reliable and good company. A friend worth having.</li>
+        <li>I count {OTHER_nameDef} as a friend now. I don't say that about many people.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The anniversary of joining. {YEARS} is a number. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_Anniversary</defName>
+    <pool>Council_Journal_Anniversary</pool>
+    <lines>
+      <plain>
+        <li>Year {YEARS} here. I walked round the whole colony and tried to remember what it looked like when I came.</li>
+        <li>[old] Another year here, {YEARS} in all. I'm glad I'm spending my old age with these people.</li>
+        <li>My anniversary here, year {YEARS}. A few people said something, and it meant more than I let on.</li>
+        <li>[grieving] It's my anniversary here, but I didn't feel much like marking it this year.</li>
+        <li>Year {YEARS}. I know this place better than anywhere I lived before.</li>
+      </plain>
+      <warm><li>Year {YEARS} with these people. I'm lucky to have them.</li></warm>
+      <blunt><li>Year {YEARS} done. There's work tomorrow, same as always.</li></blunt>
+      <cheerful><li>Year {YEARS}, and I'm still glad I came.</li></cheerful>
+      <gloomy><li>Year {YEARS}. I've seen good people come and go here.</li></gloomy>
+      <cold><li>Year {YEARS}. I've made myself useful here, and the colony knows it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Home from a journey of two days or more. {DAYS}: how long they were away ("3 days"). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Journal_Homecoming</defName>
+    <pool>Council_Journal_Homecoming</pool>
+    <lines>
+      <plain>
+        <li>Back home after {DAYS} away. The first thing I did was check on my things.</li>
+        <li>Home after {DAYS}. Everyone wanted to hear about the trip, and I told it three times.</li>
+        <li>[winter] Home after {DAYS} in the cold. It took me a long time to warm up.</li>
+        <li>[summer] Back after {DAYS} on hot, dusty roads. I drank a lot of water before I did anything else.</li>
+        <li>Back after {DAYS}. I'm still catching up on what happened here while I was gone.</li>
+      </plain>
+      <warm><li>Home after {DAYS}. It was good to see everyone's faces again.</li></warm>
+      <blunt><li>Back after {DAYS}. Feet hurt. Glad to be home.</li></blunt>
+      <cheerful><li>Home after {DAYS}. I've missed everyone more than I expected to.</li></cheerful>
+      <gloomy><li>Home after {DAYS}. The road was hard, and I'm glad it's over for now.</li></gloomy>
+      <cold><li>Returned after {DAYS}. I'll tell the council what we saw on the way.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
