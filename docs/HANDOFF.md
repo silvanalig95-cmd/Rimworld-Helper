@@ -57,6 +57,28 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **The player, 20 November 2026 (third and fourth messages):**
+  - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
+    option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
+    unpausing the game. Once I paused, the map just returned to normal, but as soon as I unpause, everything turns gray
+    again ... Once I reload the save, the issue seems to be resolved ... the player log doesn't update". Save uploaded
+    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Being traced.
+  - **Go, restore**: "yes, please restore letters, wishes, ambitions, life goals, personal stories, council questions,
+    camps, and world events to just the previous text, to kind of the flavor style text that you created before,
+    restore it from the backup, and keep that also in mind for additional content to be added." CLAUDE.md's text rule
+    now says so. To build: each of the eight parts back to its text before its plain-words batch (letters 0.266.9,
+    wishes, ambitions and life goals 0.268.2, personal stories 0.268.4, council questions 0.268.5 and 0.269.2, camps
+    0.269.1, world events 0.270.1), keeping every def and code change that made the map match the words (the camp's
+    people at its gatherings, the guardian on the long walk, the prospector, preachers and delegations at the gate, the
+    far-town colonists sent away) and, where the old words claim what the code doesn't do (the batches' "put right"
+    lists), a minimal fix in the old voice.
+  - **Go, PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example, the Dawn Stone and I
+    guess other evolution stones that I cannot put into large storage shelves, for example, from the storage mod. It's
+    just not in the list of available items ... Can you please review all the Poke World items and ensure they are also
+    storable in storage mods, or in appropriate kinds of storage shelves that also can carry everything else?" PokéWorld
+    keeps its items under its own top category (`PW_PokeWorld`: stones, fossils, balls, TMs, healing items, eggs,
+    leathers, belts), which shelves that list the game's categories don't take; the player's storage mods are LWM's Deep
+    Storage, Deep Storage Plus (Continued) and RimFridge's shelves.
 - **The player, 20 November 2026 (second message):**
   - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
     being built; the other 26 follow in two builds once it is merged (the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25;
