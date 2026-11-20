@@ -81,6 +81,8 @@
     <texts>
       <li>{FACTION}'s herders are bringing their herd to the colony's water {PLACE}, {X_nameDef} at the front and the dogs working the edges. They have come through the drought, {X_pronoun} told {A_nameDef}, and will camp by the water until the herd has drunk its fill.</li>
       <li>[ws:drought] With {SITUATION} on the land, {FACTION}'s herders have brought their herd to the colony's water {PLACE}, the beasts lowing as they smell it.</li>
+      <li>[summer] {FACTION}'s herders are driving their herd in to the colony's water {PLACE}, thin from the dry season. {X_nameDef} told {A_nameDef} they would camp beside it a few days and keep the beasts off the colony's fields.</li>
+      <li>The dogs of {FACTION}'s herders have found the colony's water first, and the herd is close behind, {X_nameDef} walking at its head {PLACE}. The springs on their road are dry, {X_pronoun} told {A_nameDef}, and they would rest here until the beasts have drunk.</li>
     </texts>
     <settled>
       <li>The herders of {FACTION} have made camp by the water {PLACE}: tents, a fire, and the herd standing in the shallows with the dogs lying in the shade.</li>
@@ -88,6 +90,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the herders by the water has watched the colony share what it had in a dry year, and asks whether it could use someone who knows beasts.</li>
+      <li>{X_nameDef} of the herders by the water says {X_possessive} camp has more hands than beasts after the dry year, and asks whether the colony would take in a herder.</li>
     </joinTexts>
     <farewell>
       <li>[hay] The herders of {FACTION} gathered the herd and went back to the road, the beasts fat on the colony's hay. Their people will remember who had water in the dry year.</li>
@@ -103,12 +106,17 @@
       <li>The old ones drink first.</li>
       <li>Easy, easy.</li>
       <li>Rain will come, it always does.</li>
+      <li>[evening] Bring them in for the count.</li>
+      <li>[hot] Keep them in the shade until the heat breaks.</li>
+      <li>The young ones go between the old ones, keep them close.</li>
     </lines>
     <momentLines>
       <li>[herd] All here, every head.</li>
       <li>[herd] Drink, and then rest.</li>
       <li>[stray] Get them out of there before they eat it to the ground.</li>
       <li>[gift] For the water, and you'll count this one at dusk now.</li>
+      <li>[herd] Slowly to the water, don't let them crowd.</li>
+      <li>[stray] That one's wandered off again, fetch it back.</li>
     </momentLines>
     <helpTexts>
       <li>[milk] {X_nameDef} saw to one of the herd by the water and carried what it gave over to the edge of the camp for the colony: {COUNT} {THING}.</li>
@@ -233,9 +241,13 @@
     <works><li>Haul</li></works>
     <titles>
       <li>The enclave's pad</li>
+      <li>A landing pad on rented ground</li>
     </titles>
     <texts>
       <li>Two factors and two marshals of {FACTION} are walking in to the ground the colony rented them {PLACE}, {X_nameDef} with the slate where the rent is written to the last digit.</li>
+      <li>Four of {FACTION}'s people are walking in to the ground the colony rented them {PLACE}, two factors with their ledgers and two marshals with their weapons slung. {X_nameDef} has the rent written down to the last digit.</li>
+      <li>{X_nameDef} and three more of {FACTION} are coming in to the rented ground {PLACE} to mark out a pad. They will trade from it while the rent is paid, {X_pronoun} told {A_nameDef}, and leave the ground as they found it.</li>
+      <li>[winter] Two factors and two marshals of {FACTION} are walking in to the ground the colony rented them {PLACE}, winter or not. A pad can be kept in any season, {X_nameDef} told {A_nameDef}, as long as the rent is paid on the day.</li>
     </texts>
     <settled>
       <li>The enclave's stalls are up {PLACE}, and a marshal is already marking out the pad beside them, where the morning's pod will come down.</li>
@@ -243,6 +255,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the enclave's pad has watched the colony's people trade fairly, and asks whether the colony could use someone who keeps accounts to the last digit.</li>
+      <li>{X_nameDef}, one of the marshals at the enclave's pad, says {X_pronoun} would rather keep one colony safe than guard a hundred cargoes, and asks whether there is a place for {X_objective} here.</li>
     </joinTexts>
     <farewell>
       <li>[raised] The enclave paid what the colony asked to the end, packed their stalls into the last pod and went, {X_nameDef} reading the figures over twice.</li>
@@ -255,10 +268,18 @@
       <li>A bargain struck is kept to the last digit.</li>
       <li>Mind the pad, a pod comes down at dawn.</li>
       <li>The price is the price.</li>
+      <li>Write it in the manifest, every crate.</li>
+      <li>[morning] Stalls open, prices on the board.</li>
+      <li>[night] Lights on the pad, in case a pod comes down.</li>
+      <li>We'll take silver, or goods at a fair rate.</li>
     </lines>
     <momentLines>
       <li>[offpad] Off the pad, please, a pod could come down at any time.</li>
       <li>[stock] Stock's in, and the stalls are open.</li>
+      <li>[offpad] Stand back from the pad, please, for your own safety.</li>
+      <li>[offpad] Nobody on the pad, it's marked for a reason.</li>
+      <li>[stock] New stock down from orbit, come and see.</li>
+      <li>[stock] Fresh crates, and the prices are on the board.</li>
     </momentLines>
     <asks>
       <li>

@@ -351,6 +351,7 @@
       <li>[theirLowtech] The thaw has come all at once, and every road in the region is a river of mud to the axles. {FACTION}'s carts have stopped where they stood, and the drovers at {PLACE} are waiting for the ground to dry, which it shows no sign of doing.\n\nNobody is going far this week.</li>
       <li>[theirHightech] The spring rains have turned the region's roads to mud, and {FACTION}'s trucks are sunk to the hubs between {PLACE} and the ford. The traders are sitting it out wherever they stopped, and the post is days late.\n\nWhoever is on the road now is staying on it a while.</li>
       <li>[their:traders] The road league has stopped its caravans at every waystation from {PLACE} to the ford: the roads are mud to the axles, and a waymaster does not send wagons where they will sink.\n\nThe carters already on the road are stuck where they are.</li>
+      <li>[theirTribal] The snow has melted all at once, and the trails between {PLACE} and the river are knee-deep in mud. {FACTION} have set down their packs and sledges where they stood, and the hunters say nobody will go far until the ground firms up.\n\nWhoever is out on the trails now will be out there a while.</li>
     </texts>
     <summaries>
       <li>Caravans and visitors come less often while the roads are mud. Carters stuck on the road may stop at the colony, and a carter may sell the colony a load cheap that would spoil before it reached {PLACE}.</li>
@@ -437,6 +438,7 @@
         <texts>
           <li>The roads have dried enough to drive on, and the carts are moving again, in a hurry, with a week to make up. The ruts they left will be there until next spring.</li>
           <li>[helped] The roads have dried at last, and the travelers and carters who sat out the mud are back on them. More than one of them stopped at the colony on the way past to say thank you.</li>
+          <li>The sun has been out long enough to dry the roads, and {FACTION}'s carts and travelers are moving toward {PLACE} again. All who were stuck in the mud are trying to make up the lost week at once.</li>
         </texts>
         <chronicle>The spring mud dried on the region's roads.</chronicle>
       </li>
@@ -473,6 +475,7 @@
       <li>[theirLowtech] For three nights the stars have been falling over the region, a dozen an hour some nights, and at {PLACE} the people of {FACTION} stay up to watch them. One came down in the hills above the town with a sound like a door slammed, and the children have been out looking for it every day since.</li>
       <li>[theirHightech] The night sky over the region is full of falling stars, more than anyone at {PLACE} can remember, and {FACTION}'s readers are out with their instruments every night. One came down whole in the hills near the town, and the finders are already arguing over it.</li>
       <li>[their:seers] The Stormglass Conclave at {PLACE} has had its readers up every night for a week: the stars are falling over the region in their hundreds, and one came down whole in the hills near the tower. The keepers are writing all of it down.</li>
+      <li>[winter] The long winter nights over the region have been full of falling stars, and the people of {FACTION} at {PLACE} stand out in the cold to watch them. One came down in the hills beyond the town, and nobody has found it yet.</li>
     </texts>
     <summaries>
       <li>Those who watch the sky come to camp under the colony's open sky while it lasts, and a finder may bring a piece of a fallen star to the gate to sell. Some at the colony will take the stars for a god's sign, and say so.</li>
@@ -487,6 +490,7 @@
         <message>true</message>
         <texts>
           <li>The stars are still falling over the region these nights. At {PLACE} the people sleep in the day so as to be up to watch them.</li>
+          <li>Word from {PLACE}: more stars fell last night than the night before, and {FACTION} have stopped trying to count them.</li>
         </texts>
       </li>
       <li>
@@ -502,6 +506,7 @@
         </titles>
         <texts>
           <li>A finder of {FACTION} is at the gate with a pack that clanks. {X_pronoun} found where one of the stars came down in the hills, and inside the burnt rock was iron, good iron, {COUNT} pieces of it. {X_pronoun} would sell it to the colony for a fair price before carrying it on to {PLACE}.</li>
+          <li>A finder of {FACTION} has come to the gate with {COUNT} pieces of iron in {X_possessive} pack, cut out of the burnt rock where a star came down in the hills. It is better iron than the mines give, {X_pronoun} says, and {X_pronoun} would sell it here for a fair price rather than carry it all the way to {PLACE}.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -533,6 +538,7 @@
         </titles>
         <texts>
           <li>A finder of {FACTION} is at the gate with a heavy case. One of the falling stars came down near {PLACE}, and it wasn't a rock: it was a piece of something old from up there, and {X_pronoun} has cut {COUNT} plates of plasteel out of it. {X_pronoun} would sell them to the colony for a fair price.</li>
+          <li>A finder of {FACTION} is at the gate with a case of {COUNT} plates of plasteel, cut from something that came down with the falling stars near {PLACE}. It is old, {X_pronoun} says, older than anyone living, and {X_pronoun} would sell it to the colony for a fair price.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -561,6 +567,7 @@
         <texts>
           <li>The stars have stopped falling over the region, and the nights are ordinary again. At {PLACE} they are still arguing about what it meant, and will be for years.</li>
           <li>[theirLowtech] The falling stars are over. The children of {PLACE} found the one that came down in the hills, and it is in the square now, a black stone nobody quite likes to touch.</li>
+          <li>The last of the falling stars came down two nights ago, and the sky over the region is quiet again. {FACTION} at {PLACE} are back to sleeping at night.</li>
         </texts>
         <chronicle>The stars fell over the region for a week.</chronicle>
       </li>
@@ -605,6 +612,8 @@
     <texts>
       <li>A flood has opened an old battlefield above {PLACE}, and the bones of a war nobody alive remembers are lying in the open. {FACTION} have sworn to bury every one of them before the summer, friend and enemy alike, and have sent word round the region for linen for the shrouds.\n\nIt will take them weeks.</li>
       <li>[their:sextons] The Quiet Bell has found an old field above {PLACE} where the dead of the long war were never buried, and every sexton of theirs is walking there with a spade and a bell. They will not leave until every grave is dug and every bell is rung.\n\nThey are asking the region for linen for the shrouds.</li>
+      <li>[theirHightech] Heavy rains have cut away a hillside above {PLACE} and laid open a battlefield from a war nobody alive remembers, the dead still in their rusted gear. {FACTION} mean to bury every one of them, and have asked the region for linen for the shrouds.\n\nThe work will take them weeks.</li>
+      <li>[winter] Even with the ground frozen, {FACTION} have gone out to the old battlefield the flood opened above {PLACE}. They will not leave the dead lying in the snow, and they are digging every grave by hand.\n\nThey have asked the region for linen for the shrouds.</li>
     </texts>
     <summaries>
       <li>{FACTION} will want linen for the shrouds. While their sextons are near, they will take any dead the colony has left unburied on its land and bury them with the rest.</li>
@@ -625,6 +634,7 @@
         </titles>
         <texts>
           <li>A sexton of {FACTION} is at the gate with a spade on {X_possessive} shoulder and a list of what the burying still needs. Linen, mostly: {COUNT} cloth would shroud a good many of the old dead at {PLACE}.\n\n{X_pronoun} has no silver to offer for it, only the thanks of the dead, which {X_pronoun} says is worth more than it sounds.</li>
+          <li>A sexton of {FACTION} has come to the gate from the old field, with earth on {X_possessive} boots and a list of what the burying needs. The graves are being dug faster than the shrouds can be sewn, and {COUNT} cloth would see a good many of the dead buried properly.\n\n{X_pronoun} has nothing to pay with but thanks.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -657,6 +667,7 @@
         </titles>
         <texts>
           <li>Sextons of {FACTION} on their way to the burying are at the gate with a pack beast and their spades. They have seen dead lying unburied on the colony's land, strangers by the look of them, and ask whether they may take them to the old field and bury them with the rest.\n\nIt would cost the colony nothing.</li>
+          <li>Sextons of {FACTION} have stopped at the gate with their spades on the way to the old field above {PLACE}. They have seen unburied dead on the colony's land, and ask whether they may carry them away and bury them with the rest.\n\nThey ask nothing for the work.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -687,6 +698,7 @@
         </titles>
         <texts>
           <li>The great burying is done above {PLACE}. Every one of the old dead is in the ground in a shroud, some of them in the colony's linen, and the bell has been rung over every grave. {FACTION} have written down who helped.</li>
+          <li>The old field above {PLACE} is quiet. {FACTION}'s sextons have buried the last of the old dead and rung the bell over every grave, and they have added the colony's name to the list of those who helped.</li>
         </texts>
         <chronicle>The great burying above {PLACE} was done, with the colony's help.</chronicle>
         <effects>
@@ -700,6 +712,7 @@
         </titles>
         <texts>
           <li>The great burying is done above {PLACE}, and the old field is a field again. The sextons have gone home, and nobody else in the region has to look at it.</li>
+          <li>The sextons of {FACTION} have finished at the old field above {PLACE}. The dead are in the ground, the bells have been rung, and the field has been left to grow over.</li>
         </texts>
         <chronicle>The great burying above {PLACE} was done.</chronicle>
       </li>
@@ -741,6 +754,7 @@
       <li>[theirLowtech] {NAME} at {PLACE} went down in the night, piers and all, and the river took most of it before morning. {FACTION} are already cutting timber for a new one, but until it stands every cart on the road has to go round by the upper ford, and the upper ford goes past the colony.</li>
       <li>[theirHightech] {NAME} at {PLACE} has given way under a loaded truck, and the river has the middle span. {FACTION}'s engineers say a new one by the end of the season if the timber comes. Until then the road goes the long way round, and the long way goes past the colony.</li>
       <li>[their:fishers] {NAME} at {PLACE} is down in the river, and the river folk have every ferry on the water carrying people across, free, as they carried them off the rooftops when the dam broke. The carts can't go on a ferry, though, and the carts are coming the long way round, past the colony.</li>
+      <li>[spring] The spring flood at {PLACE} has carried off {NAME}, and {FACTION} are left with two stumps of pier and a river too high to ford. They will build again once the water drops.\n\nUntil then every cart on the road has to go the long way round, and the long way goes past the colony.</li>
     </texts>
     <summaries>
       <li>Travelers on the long way round pass the colony more often. {FACTION} will want timber for the new bridge, and the road's travelers may ask to rest at the colony's gate.</li>
@@ -760,6 +774,7 @@
         <message>true</message>
         <texts>
           <li>Travelers going the long way round {NAME} are on the road past the colony with their pack beasts, grumbling about the extra day.</li>
+          <li>A few travelers going the long way round {NAME} are passing the colony on the road, loaded for the extra day on the road.</li>
         </texts>
       </li>
       <li>
@@ -774,6 +789,7 @@
         </titles>
         <texts>
           <li>A carter of {FACTION} is at the gate with an empty cart and a message from the bridge-builders at {PLACE}: {COUNT} wood for the piers and the deck of the new bridge, at half again what it's worth.\n\nThe sooner it stands, the sooner the road goes back the short way.</li>
+          <li>A carter of {FACTION} has come up to the gate from {PLACE}. The builders of the new bridge need {COUNT} wood for the piers and the deck, and will pay half again what it is worth.\n\nUntil the bridge is up, the road goes the long way round.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -819,6 +835,7 @@
         </titles>
         <texts>
           <li>Travelers of {FACTION} on the long way round {NAME} are at the gate, footsore and a day behind. They ask whether they might rest by the colony's wall for the night and water their beasts.</li>
+          <li>A small party of {FACTION}'s travelers is at the gate, tired from the long way round {NAME}. They ask to spend the night by the colony's wall before they go on.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -864,6 +881,7 @@
         </titles>
         <texts>
           <li>The new bridge at {PLACE} is open, and the road goes the short way again. The colony's stretch of road has gone quiet, which some at the colony are relieved about and some aren't.</li>
+          <li>The new bridge at {PLACE} is up, and the carts are back on the short road. The travelers who went past the colony while it was down have gone back to their usual way.</li>
         </texts>
         <chronicle>A new bridge was built at {PLACE}.</chronicle>
       </li>

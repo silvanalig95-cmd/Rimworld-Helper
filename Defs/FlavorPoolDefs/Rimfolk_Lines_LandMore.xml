@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for the weather and the land's journals (C36 of docs/content-update-proposals.md): the thinnest weather
+    pools (Immersion/WeatherTalk.cs, WeatherTouches.cs, Weather/WeatherDynamics.cs, WeatherBook.cs, AfterStorm.cs) and the
+    thinnest journal pools of the land's beasts, pets and the calendar's animal days, each brought to eight plain lines.
+    The same tags and placeholders as the pools they join. Spoken lines are one sentence, said over the head; journals are
+    the writer's own. Plain words.
+  -->
+
+  <!-- ===================== The weather ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayLightningRod</defName>
+    <pool>Council_Pool_SayLightningRod</pool>
+    <lines>
+      <plain>
+        <li>The rod took that one, right where it should.</li>
+        <li>Better the rod than the roof.</li>
+        <li>That one hit the rod and nothing else.</li>
+        <li>I felt the ground jump when it hit the rod.</li>
+        <li>The rod's earning its keep today.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalTornado</defName>
+    <pool>Council_Journal_Tornado</pool>
+    <lines>
+      <plain>
+        <li>A tornado crossed our land today. I've never heard a wind like it, and I hope I never do again.</li>
+        <li>The tornado has passed. It sounded like a herd running over the roof, and then it was gone.</li>
+        <li>We saw the tornado coming a long way off. There was nothing to do but get inside and wait.</li>
+        <li>After the tornado the whole colony went quiet for a while, as if nobody wanted to be the first to speak.</li>
+        <li>[old] I've lived through a lot of weather, but that tornado is the worst I've seen.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayLightningFlinch</defName>
+    <pool>Council_Pool_SayLightningFlinch</pool>
+    <lines>
+      <plain>
+        <li>Make it stop, please.</li>
+        <li>I'm going inside until this is over.</li>
+        <li>Every time it flashes I forget to breathe.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayRecordDry</defName>
+    <pool>Council_Pool_SayRecordDry</pool>
+    <lines>
+      <plain>
+        <li>I can't remember the last time it rained.</li>
+        <li>The ground's so dry it's splitting open.</li>
+        <li>Even the weeds are giving up in this.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayRecordWet</defName>
+    <pool>Council_Pool_SayRecordWet</pool>
+    <lines>
+      <plain>
+        <li>I've forgotten what dry ground feels like.</li>
+        <li>Everything's wet, the wood, the beds, the boots, all of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayWarmSpell</defName>
+    <pool>Council_Pool_SayWarmSpell</pool>
+    <lines>
+      <plain>
+        <li>It's warmer than it has any right to be this time of year.</li>
+        <li>It's warm enough to work without a coat.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayForecastCloud</defName>
+    <pool>Council_Pool_SayForecastCloud</pool>
+    <lines>
+      <plain>
+        <li>Those clouds are going to sit on us for a while.</li>
+        <li>The sun won't be out much longer, the cloud's coming.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayForecastDust</defName>
+    <pool>Council_Pool_SayForecastDust</pool>
+    <lines>
+      <plain>
+        <li>There's a brown wall on the horizon, get things covered.</li>
+        <li>Dust storm coming, close everything up.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_SayForecastWrong</defName>
+    <pool>Council_Pool_SayForecastWrong</pool>
+    <lines>
+      <plain>
+        <li>Don't ask me about the weather again.</li>
+        <li>I'll leave the forecasting to someone else.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The land's journals ===================== -->
+  <!-- A pack's alpha brought down: {NAME} its name, {KIND} its kind (Beasts/PackAlphas.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalAlphaSlain</defName>
+    <pool>Rimfolk_Journal_AlphaSlain</pool>
+    <lines>
+      <plain>
+        <li>I killed {NAME} today, the leader of the pack. I hope the rest of them keep their distance now.</li>
+        <li>The pack's leader is dead. I watched the others break and run, and I didn't go after them.</li>
+        <li>I'll be telling the story of {NAME} for a long time, the {KIND} that led the pack.</li>
+        <li>With {NAME} dead, I think the pack will leave us alone.</li>
+        <li>My hands haven't stopped shaking since I brought down {NAME}.</li>
+        <li>I'm glad {NAME} is dead, and I'm a little sorry too. It was only doing what a pack's leader does.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The region's legend won over, and brought down: {NAME} its name (Beasts/RegionLegend.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalLegendBefriended</defName>
+    <pool>Rimfolk_Journal_LegendBefriended</pool>
+    <lines>
+      <plain>
+        <li>{NAME} is one of ours now. I keep going out to look at it, to make sure it's real.</li>
+        <li>People told stories about {NAME} for years. Now it sleeps on our land.</li>
+        <li>It took so long to earn {NAME}'s trust. I don't mean to waste it.</li>
+        <li>I still can't quite believe {NAME} chose to trust me.</li>
+        <li>The towns around here will hear that {NAME} lives with us now. I wonder what they'll make of it.</li>
+        <li>I'll look after {NAME} as well as I can. It deserves that much.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalLegendSlain</defName>
+    <pool>Rimfolk_Journal_LegendSlain</pool>
+    <lines>
+      <plain>
+        <li>{NAME} is dead, and I'm the one who killed it. I don't think it's sunk in yet.</li>
+        <li>They'll tell stories about {NAME} for a long time yet, and now I'm in them.</li>
+        <li>I keep seeing the moment {NAME} fell. It was bigger up close than anyone said.</li>
+        <li>Everyone wants to hear about {NAME}. All I want is to sleep.</li>
+        <li>I'm proud of bringing down {NAME}, and I'm not ashamed to say so.</li>
+        <li>There was a moment when I thought {NAME} would kill me instead. I won't forget it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A nemesis let go by the council, by the one they hurt: {X} the nemesis (Strangers/Nemeses.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalNemesisReleased</defName>
+    <pool>Council_Journal_NemesisReleased</pool>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is free as of today. I didn't know what to feel, so I went back to work.</li>
+        <li>The council let {X_nameDef} go. I hope they're right, and I hope I never see {X_objective} again.</li>
+        <li>{X_nameDef} is gone. I keep looking toward the gate as if {X_pronoun} might come back.</li>
+        <li>I wanted {X_nameDef} punished. The council wanted it finished. Maybe they're wiser than me.</li>
+        <li>They released {X_nameDef} today. It's over, at least as far as the council is concerned.</li>
+        <li>I don't forgive {X_nameDef}. I'll just have to live with what the council chose.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A pet that stood between its person and harm: {PET} (Strangers/Pets.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalPetDefended</defName>
+    <pool>Council_Journal_PetDefended</pool>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} put itself between me and the fight without a moment's thought. I'll never forget it.</li>
+        <li>{PET_nameDef} deserves the best of everything after today.</li>
+        <li>[hurt] I'm hurt, but it would have been far worse without {PET_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- An animal's day: one that slept at the foot of their bed (Animals/AnimalDays.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalAnimalDays</defName>
+    <pool>Rimfolk_Journal_AnimalDays</pool>
+    <lines>
+      <plain>
+        <li>[day:foot] {PET_nameDef} slept at the foot of my bed last night. It was warm, and I slept well.</li>
+        <li>[day:foot] I found {PET_nameDef} curled up at the end of my bed when I woke.</li>
+        <li>[day:foot] {PET_nameDef} chose my room to sleep in last night. I didn't have the heart to move {PET_objective}.</li>
+        <li>[day:foot] Last night {PET_nameDef} came in and settled at my feet, and stayed till morning.</li>
+        <li>[day:foot] I could hear {PET_nameDef} breathing at the foot of the bed all night. It was a comfort.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- An oath sworn against a beast that killed or maimed one of the colony: {X} the beast, {VICTIM} (Beasts/BeastNemeses.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_JournalBeastOath</defName>
+    <pool>Rimfolk_Journal_BeastOath</pool>
+    <lines>
+      <plain>
+        <li>[killed] {VICTIM} is dead because of {X_nameDef}. I've sworn it won't happen to anyone else.</li>
+        <li>[maimed] I saw what {X_nameDef} did to {VICTIM}. I've sworn the beast won't do it again.</li>
+        <li>I've sworn to hunt down {X_nameDef}, and I meant every word.</li>
+        <li>I'll find {X_nameDef}. It might take a season, but I'll find it.</li>
+        <li>I can't rest while {X_nameDef} is still out there, so I've sworn not to.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The calendar's animal days, talked over: a companion remembered ({DEAD}), the herd's first foal (Calendar/). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_CalTalkCompanion</defName>
+    <pool>Council_Cal_Talk_Companion</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} remembered {DEAD} together, and the little habits it had.</li>
+        <li>{A_nameDef} told {B_nameDef} that {A_pronoun} still looks for {DEAD} at feeding time.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether {B_pronoun} would ever want another like {DEAD}.</li>
+        <li>{A_nameDef} and {B_nameDef} agreed that the place hasn't been the same without {DEAD}.</li>
+        <li>{A_nameDef} told {B_nameDef} about the day {DEAD} first came to the colony.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_LandMore_CalTalkFoal</defName>
+    <pool>Council_Cal_Talk_Foal</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} argued over which of the herd looks most like the first foal.</li>
+        <li>{A_nameDef} told {B_nameDef} who was there when the first foal was born.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether {B_pronoun} had ever seen a foal born before that one.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about how much the herd has grown since the first foal.</li>
+        <li>{A_nameDef} told {B_nameDef} how nervous everyone was the day the first foal was coming.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

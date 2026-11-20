@@ -529,6 +529,9 @@ to the closest who has no room of their own. The words still say what they were 
 *Ties:* `Legacy`, `FamilyInheritance`, `FamilyLifeMath`, `VendettaMath` shared, the tests. *Size:* S. *Harm:* none.
 This one is a rule fix and comes before the rest (CLAUDE.md: bug fixes before features).
 
+**Built** (released 0.276.2, with the medal read at the gate): the heirloom and the room pass by closeness, the same
+measure as the vendetta's.
+
 ### Text variety (counted with `Tools/variety_report.py`)
 
 **A31 (T) Journals of the council's life.** `Council_Journal_Elected` has 8 lines (3 plain, one in each tone) for about
@@ -839,6 +842,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B9. More ways to begin and end for the thinnest world events** (T; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/WorldSituationDefs/`). Decided: recounted first; the 17 named and five of 0.282.0's ten as thin (falling stars, the great burying, the bridge down, the roads gone to mud, timber gone scarce) each to four start letters, a second line for every beat of one line and three ending lines, an ending of one line given a second; beats with no words (an arrival or a game's incident alone) left without, since words would add a letter the map doesn't need; new start letters by their people's age or the season, never the colony's era alone; 82 lines (titles, start letters, beats and endings of the 22: 227 before, 309 after).
 - **The thin pools as counted** (start letters / beat lines / ending lines):
 
   | World event | Start letters | Beat lines | Ending lines | Note |
@@ -869,6 +873,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Text:** flavour style (world events).
 
 **B10. Talk of the world events nobody mentions** (T; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Rimfolk_OutsiderTalks_WorldTold.xml`, `FactsMath.AddHeard`). Decided: a visitor of another people knew of no world event but their own and the region's, so a piece for them could never be said; the smallest fact was added (`heard`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE}, {HEARDPEOPLE}: the newest world event of another people, news from the road, less current than their own) with a test; the twelve named, famine, plague, a hard winter and all ten of 0.282.0's (which had none either) get three pieces each: 75 pieces, 326 lines.
 - **The thin pools.**
   - Twelve world events have no outsider talk piece at all: Blight, ColdYear, DryLaw, GreatCaravan, GreatWork, Legend,
     MedicineScarce, NeighborsWar, NewTownMet, SonBand, TownRaid and Trek.
@@ -963,6 +968,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B16. Each people's own talk** (T; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Rimfolk_OutsiderTalks_PeoplesDays.xml`, `_PeoplesDays2.xml`). Decided: the other peoples by the conditions the talk already has, with no new code: their war ({WAR}, and war:ourfoe or war:ourfriend for how their foe stands with the colony), a peace of theirs made lately ({PEACEWITH}), or at war with nobody; the colony as they see it by their regard (likesus, wary) and what is true of it (small, its animals, their age ahead of it); a line naming a tool of one age has the other age's form; 138 pieces (106 before, 244 after).
 - **The thin pools as counted.** 16 peoples have 4 talk pieces of their own (faith, honour, hardship, work) and 7 have 6.
 - **What to add.** Six more each, about 138 pieces, on:
   - their working day;
@@ -997,6 +1003,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### Camps
 
 **B18. The peoples' own camps, fuller words** (T; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml`, `_Variety4.xml`). Decided: help texts and moment lines added only where they are said: a help told by its own words (tales, milk, fish, show), a moment its camp's ways say; the enclave's pad and the Banner's company give no help, the sickhouse's moments are never said (its round and gift come from a farewell walk and a gift it doesn't have), so those stay as they were; the eight camps of 0.282.0 to the same floor for arrivals, joins and bubbles, and their two moments that are said (the carters' mending, the games team's kill); a new arrival text says no cold or snow, which the colony's land may not have; 26 camps: arrivals 56 to 105, joins 26 to 52, help 27 to 51, bubbles 132 to 234, moments 102 to 154; the eight newest: arrivals 24 to 32, joins 9 to 16, bubbles 62 to 73, moments 10 to 14.
 - **The thin pools as counted.** These are the 26 camps of the peoples' events (`Rimfolk_CampKinds_PeopleEvents*.xml`):
 
   | Pool | Lines in all 26 camps | Average per camp |
@@ -1199,6 +1206,7 @@ the contest)
 ### More text
 
 **B30. The thinnest encounters** (T; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/EncounterDefs/`). Decided: the 46 peoples' own encounters of 0.282.0, at two texts each, brought to the same floor; every new text true to the scene that plays out (a herder at one of the colony's animals, a sexton at a grave, a linesman at the comms console); by season, weather and time of day where they cross them; 142 texts (the 25 named: 49 to 99; the 46: 92 to 184).
 - **The thin pools as counted.** 25 encounters have only 1 or 2 texts: MarshLights, CaveMouth, FogShape, Gallatross,
   Graveyard, Meadow, Mushrooms, OcularForest, RefugeeThanks, RefugeeCarving, Shiny, Rare, ChildAndWild, RowTalk,
   QuietHour, Lifter, SongFromHome, HardWord, Trick, Fascination, Unease, ChildQuestion, DebtMentioned, HeatLightning and
@@ -1890,6 +1898,9 @@ Each item that adds text says which of these it follows.
   | Scoffs | 3 | 3 more each, 45 | plain: people talking |
   | `whatLines`, `seenLines` | 3 each | 2 more each, 60 | the old voice: the book's verses |
   | `letterLines` | 2 (Tamiu's 3) | 3 more each, about 44 | the flavour style: letters |
+- **Built** (20 November 2026, not released yet; `Defs/GodDefs/Rimfolk_Gods.xml`). 150 lines: 3 scoffs more each (3 to 6,
+  untagged, so they answer a gift, a sign or a wrath alike), 2 more `whatLines` and `seenLines` each in the old voice (3 to
+  5, told after the first three), 3 more `letterLines` each (2 to 5, Tamiu's 3 to 6), neutral about what the hand was.
 
 **T3 / C33 (T) Worship talk** (M)
 - **What to add:**
@@ -1923,6 +1934,12 @@ Each item that adds text says which of these it follows.
 - **Style:**
   - Plain, but the vow and pilgrimage lines belong to life goals and take the flavour style.
   - Prayer and rite words take the old voice (T4).
+- **Built** (20 November 2026, not released yet; `Rimfolk_GodPresence_OwnLines.xml`, `Rimfolk_Worship_Pools.xml`,
+  `Rimfolk_Belief_Pools.xml`, `Rimfolk_Saints.xml`, `Rimfolk_GodsOnMap_Lines.xml`). 277 lines: the ways 42 to 97 (3 and 1
+  a way, the visitor given Ducat's gift 3), the presences 90 to 150 (4 each), the true dreams 15 to 29 (2 a kind), every
+  pool of the table to 8 (the vow was already at 9 after 0.281.0). Of 0.281.0's own pools, the vows of a season said day by
+  day (`Rimfolk_Pool_Worship_VowKeep`, 3 a vow) to 8 a vow; the happenings between the colony's people (1 to 3 lines a beat,
+  once a scene) left for now. Decided: a way's believers' lines split by `mine` and `theirs`, as the code tags them.
 
 **T4 / C34 (T) Scripture in the old voice** (M; needs the player's word)
 - **Now:** CLAUDE.md keeps the old medieval voice for the gods' and faiths' texts, and the player enjoys it "especially
@@ -1946,6 +1963,14 @@ Each item that adds text says which of these it follows.
   - a believer of a faith of the old ages.
 
   Everyone else keeps the plain lines, and each line still says plainly what it means.
+- **Built** (20 November 2026, the player's go on the whole list; not released yet; `Rimfolk_Worship_Pools.xml`,
+  `Rimfolk_Saints.xml`, `Source/ColonyCouncil/Gods/Worship/Worship.cs`, `WorshipMath.cs`, `WorshipCouncil.cs`). 102 lines
+  tagged `[olde]`: prayers 36, thanks 14, rites 18, the words at a god's place 10, the saints' prayers 14 and feasts 10.
+  `WorshipMath.OldVoice` picks the four (a devout elder: sixty or more; a faith of the old ages: with Ideology, one another
+  people of the bow and the spear or the sword and the keep holds as its own; never a scoffer), and `Worship.LineWith`
+  gives them the tag. Decided: `festivalDishes` left, a phrase in the messages and the book, not spoken. Found on the way
+  and fixed: the words at a god's place showed the god's placeholder (the gathering fills in no god); they are filled in
+  for the one who leads them.
 
 **T5 / C35 (T) The gods' camps** (S; flavour style, as camps)
 - **Add:** the pilgrims' camp and the seer's camp (`Rimfolk_GodsWorld_Camps.xml`) to 8 lines each, about 30 lines.
@@ -1954,6 +1979,8 @@ Each item that adds text says which of these it follows.
   |---|---|---|---|
   | Pilgrims' | 4 | 4 | 6 |
   | Seer's | 3 | 2 | 5 |
+- **Built** (20 November 2026, not released yet; `Defs/GodDefs/Rimfolk_GodsWorld_Camps.xml`). 24 lines: every list of both
+  camps at 8; the seer still names no god.
 
 **T6 / C36 (T) Weather talk and the land's journal lines** (S to M; plain)
 - **Weather:** the weather pools under 7 lines, counting the everyday add-ons. Bring them to 8, about 26 more:
@@ -1990,6 +2017,10 @@ Each item that adds text says which of these it follows.
   | `PetFarewell` | 3 |
   | `Council_Cal_Talk_Companion` | 3 |
   | `Council_Cal_Talk_Foal` | 3 |
+- **Built** (20 November 2026, not released yet; `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml`, extensions of the
+  pools). 73 lines, every pool brought to 8 plain lines as the brief asked (the weather 26, the journals and talk 47).
+  Recounted with their extensions, the herd's journals (`Herd_Gone`, `Herd_LastSeason` with its kinds, `Herd_SpringCalf`
+  with its kinds, `Herd_Leader`) and the pet's farewell journal were already at 10 to 12: left.
 
 ---
 

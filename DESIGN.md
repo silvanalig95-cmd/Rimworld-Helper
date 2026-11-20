@@ -18912,6 +18912,67 @@ carrier gain a field each. Not checked without the game: the happenings' timing 
 and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
 drake's egg hatching as the colony's, Alpha Bees' hives reached.
 
+### Text variety: the gods' thin pools (the player's go, 20 November 2026; released 0.286.0)
+
+The player on the content update: "In general, I just want additional God events, more immersion, more just further also
+building up on the gods in general ... And then also, just variety". The gods' part of the second text round: C32 to C36
+of `docs/content-update-proposals.md`, about 630 new lines and no line rewritten. The counts were taken again first, since
+0.281.0 had added the gods' variety after the proposals were written. The gods stay unseen in all of it: a line names a
+god only where its pool already does (by the colony's or the speaker's name for it), what people say is their own belief,
+and nothing shows a favour, a want or a rule.
+
+- **C32, the gods' own lines** (`Rimfolk_Gods.xml`): each of the fifteen has three more scoffers' answers (plain, and
+  untagged, so they answer a gift, a sign or a wrath alike; 3 to 6), two more lines on what it is and two on how it is
+  seen, told at the fire and set down in the book in the old voice ("{GOD} speaketh through the dryads, one word and then
+  another"; 3 to 5 each, after the three already told in order), and three more lines for a neighbour's letter about its
+  hand at the colony (2 to 5, Tamiu's 3 to 6), in the letters' flavour style and neutral about what the hand was.
+- **C33, worship talk** (plain, but the vows and the pilgrimage in the life goals' style): each god's way of taking an
+  offering has three more remarks (one for the one who holds that god, `mine`, one for anyone else, `theirs`, one for
+  either) and one more for a scoffer, and the visitor given Ducat's gift three more (42 to 97); each presence four more
+  remarks, one of them for when the colony is sure whose it is (90 to 150); each true dream two more (15 to 29). Every thin
+  pool of the proposal's table brought to eight lines: the beast given, the precious gift asked, granted and refused, the
+  gift answered, the pilgrim setting off and arriving, a place dedicated, a crisis of faith and its journal, the scoffer
+  answered, the couple's bickering over the rain, a vow kept and broken, the words at a god's place; dread, a shrine lost,
+  keeping away, rival devotees, the won-over's journal; the saints' statue, naming, words and remembering; the shared
+  memory of a god seen, the god's beast beckoning, the stranger's thanks, Tamiu's stare, the visitor at a god's mark; and
+  the festival on the calendar let pass, talked over and written up. The vow in `Rimfolk_Pool_Worship_Vow` was already at
+  nine (0.281.0 added four). Of 0.281.0's own pools, the vows of a season said day by day (`Rimfolk_Pool_Worship_VowKeep`)
+  had three lines a vow, said every day for fifteen days: brought to eight a vow. The happenings between the colony's
+  people (`Rimfolk_Pool_GodBetween_Say`) say one to three lines at each beat of a scene, once a scene and scenes days
+  apart, and their cards already come in three wordings: left for now.
+- **C34, scripture in the old voice** (the player's "the only thing i don't mind and even enjoy, is old medieval writing
+  ... especially the relitions", and the go on the whole list): 102 lines tagged `[olde]` beside the plain ones, every one
+  in the old words ("Hear me, {GOD}, as thou hast heard our elders before us"), still saying plainly what it means: the
+  prayers (36, for each moment and each god), thanks (14), a festival's rite (18, each domain), the words at a god's place
+  (10), the saints' prayers (14) and their feasts (10). Who says them (`WorshipMath.OldVoice`, `Worship.OldVoice`): the
+  priest, the keeper of the colony's book of the gods (`GodLore.Keeper`), a devout elder (sixty or more in human years),
+  and a believer of a faith of the old ages (with Ideology, a faith another people of the bow and the spear or of the
+  sword and the keep holds as its own); never a scoffer. `Worship.LineWith`, where every worship and saints' line is
+  picked, adds the tag for them, so a tagged line can only reach them, and their moment's old line weighs more than its
+  plain one; everyone else keeps the plain words. Each festival's `festivalDishes` is a phrase in the messages and the
+  book, not spoken, and stays as it is.
+- **The words at a god's place, a fix** (`DilemmaEffect_ShrineWords`): the council's answers that hold words at a god's
+  place (a year begun for a god, a temple vowed, a rite, a shrine moved, swept or let go) drew their lines from
+  `Rimfolk_Pool_Worship_RiteWords` through the gathering, which fills in no god, so its lines showed the god's
+  placeholder. They are now filled in when the answer is given, for the one who leads them (`Worship.Lines`, in the old
+  voice where they speak it), and the gathering says those.
+- **C35, the gods' camps** (`Rimfolk_GodsWorld_Camps.xml`, the camps' flavour style): the pilgrims' camp and the hermit
+  seer's each have eight arrival texts (4 and 3 before), eight lines over their heads (6 and 5) and eight words for their
+  moments (the pilgrims' prayer and grief, 4; the seer's foretelling, 2). The seer still names no god.
+- **C36, weather talk and the land's journals** (plain; `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml`, extensions of
+  the pools): the lightning rod, the tornado's journal, the flinch at lightning, the record dry and wet spells, the warm
+  spell and the forecasts of cloud, dust and a wrong one brought to eight plain lines (3 to 6 before, counting the
+  everyday add-ons); and the journals of a pack's alpha brought down, the region's legend won over or brought down, a
+  nemesis let go, a pet that stood guard, an animal asleep at the foot of the bed, an oath sworn against a beast, and the
+  calendar's companion and first foal talked over, to eight (2 to 5 before). The herd's journals (the leader gone, its
+  last season, the spring's first young, the new leader) and a pet's farewell, counted with their extensions since, were
+  already at ten to twelve.
+
+Tests: `Tools/Tests/WorshipTests.cs` (who speaks the old voice; the set beside the plain lines in each pool, each line in
+the old words; the tag given in `Worship.LineWith`; the words at a god's place filled in). No new saved state, no harm.
+Not checked without the game: how often each of the four says an old line rather than a plain one, and the words at a
+god's place said by the one who leads them.
+
 ### The world brought home (the player's go, 20 November 2026; released 0.280.0)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
@@ -19250,6 +19311,72 @@ contests. Not checked without the game: the games day's young people at the gate
 out, the new scenes' jobs on visitors under their lords, the beehouses built and taken down by the beekeepers, a colonist's
 sting at them, the pickers' preference among the caps, the poisoned picker's ask, the star-watchers' nights, the stud's
 mating and the young one's arrival, a singer at an instrument with its music, and how often each comes in a real colony.
+
+### Text variety: the world's thin pools (the player's go, 20 November 2026; released 0.287.0)
+
+The player on the content update: "your content proposal overall sounds really good. You can go ahead with this in the
+order you think makes most sense ... And then also, just variety, further kind of events, camps, world events, normal
+storyteller events, dilemmas, etc. Just more of them." Text round 2, the world's part: B9, B10, B16, B18 and B30 of
+`docs/content-update-proposals.md`, part B, as written there, each marked **Built** there with what was decided. Every
+pool was recounted first, since 0.282.0 had added ten world events, eight camps and 46 encounters after the proposals
+were counted; those of 0.282.0's as thin as the ones named were brought to the same floor. Words only, apart from one
+small fact for B10. The world events' letters and the camps' arrivals, joins and help in the flavour style CLAUDE.md
+keeps for them; talk, the camps' bubbles and the encounters plain, one sentence a line where said aloud. New lines only:
+no old line was changed.
+
+- **B9, more ways to begin and end** (`Defs/WorldSituationDefs/`). The 17 named world events and five of 0.282.0's
+  (falling stars, the great burying, the bridge down, the roads gone to mud, timber gone scarce): start letters to four,
+  each beat of one line a second, ending lines to three (an ending of one line a second). The new start letters go by
+  their people's age ([theirLowtech], [theirHightech], and the newest's [theirTribal] and the like) or the season, so a
+  steelworks is never a medieval people's and a rockfall in the pass never a spacer's; a beat with no words (an arrival
+  or the game's own incident alone) keeps none. Every beat line says what the map shows: the patrol at the gate, the
+  finder with the case, the carter with the empty cart. 82 lines.
+- **B10, talk of the world events nobody mentioned** (`Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_WorldTold.xml`). The
+  twelve named (Blight, ColdYear, DryLaw, GreatCaravan, GreatWork, Legend, MedicineScarce, NeighborsWar, NewTownMet,
+  SonBand, TownRaid, Trek), famine, plague and a hard winter, and all ten of 0.282.0's, which had none either: three
+  pieces each, 75. One for a visitor whose own people it is (`ws:DEFNAME`, `situation:theirs`), one for a visitor of
+  another people (`heard:ws:DEFNAME`), one once it is over (`ended:ws:DEFNAME`, said by its own people, or by anyone for
+  one of the region's own). A visitor of another people knew of no world event but their own and the region's (the facts
+  skip another people's, `Facts.Situations`), so the piece for them needed a fact: the newest world event of another
+  people now gives `heard`, `heard:bad` or `heard:good`, `heard:ws:DEFNAME` and {HEARD}, {HEARDPLACE}, {HEARDPEOPLE}
+  (`FactsMath.SituationRank`, `FactsMath.Heard`, `FactsMath.AddHeard`, tested in `Tools/Tests/FactsTests.cs`), news from
+  the road, at most 1.2 current against their own's 3. Nothing else reads it, so no old piece is said differently.
+- **B16, each people's own talk** (`Rimfolk_OutsiderTalks_PeoplesDays.xml`, `_PeoplesDays2.xml`). Six pieces more for
+  each of the 23 peoples (138): their working day, food and drink, their young, their town (`town`, {TOWN}), the other
+  peoples and the colony as they see it. The other peoples by the real relations in the save, with the conditions the
+  talk already has and no new code: their war (`their:war`, {WAR}; `war:ourfoe` when their foe is the colony's too), a
+  peace of theirs made lately (`their:peace`, {PEACEWITH}) or at war with nobody who counts (`!their:war`), each turn's
+  alternatives kept apart so the piece follows one branch. The colony as they see it by their regard (`likesus`, `wary`)
+  and what is true (`small`, `colony:animals`, `their:ahead`). A line that names a tool or a weapon of one age has the
+  other age's form ([their:lowtech] pike and crossbow, else the guns), as a people's age changes at its own pace. The
+  founding stories were left alone (done in 0.277.2).
+- **B18, the peoples' own camps, fuller words** (`Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml`). The 26 camps to
+  four arrival texts, two joins, nine bubble lines, and two help texts and six moment lines where those are said: a help
+  told in the camp's own words (tales, milk, fish, show; medicine, wood, mend and meat are told by the shared lines, so
+  a kind's own line for them never shows), a moment its camp's ways say (`SayMoment`). The enclave's pad and the Banner's
+  company give no help (`helpChance` 0); the field sickhouse's moments are never said, its round and gift being a
+  farewell walk's and a left gift's it doesn't have. The eight camps of 0.282.0 (`_Variety4.xml`) to the same floor for
+  arrivals, joins and bubbles; of their moments only the carters' mending and the games team's kill are ever said, so
+  only those got more. New arrival texts say nothing of cold or snow, which the colony's land may not have in winter, and
+  name gear only where the people's own gear has it (the Circuit's sashes, the Line's oilskins, the vault's numbers).
+  26 camps: arrivals 56 to 105, joins 26 to 52, help 27 to 51, bubbles 132 to 234, moments 102 to 154.
+- **B30, the thinnest encounters** (`Defs/EncounterDefs/`). Two texts more for each of the 25 named, by season, weather
+  and time of day where they cross them, and for each of the 46 peoples' own encounters of 0.282.0 (all at two): 142.
+  Where an encounter plays out a scene, the new text tells that scene and no more (a herder at one of the colony's
+  animals, a pilgrim or a sexton at a grave, a scholar at the books, a salvager at the broken machine, a reader under the
+  open sky, a linesman at the comms console, a mechanitor at a mech, a listener humming).
+
+Found and left as they were, for the lead: the help lines of a kind's own for medicine, wood, mend and meat are never
+shown (`CampCarry`, `CampLife.DoHelp` and `CampRequests.MendGear` tell those by the shared lines `CC_Camp_Help_*`): the
+pilgrims' hostel's [medicine], the boat-builders' [wood], the Wheel's yard's [mend] and all eight of 0.282.0's camps'
+help lines; and moment lines no code says: the hostel's [gift], the field sickhouse's [round] and [gift], and the
+[carry] and [gift] lines of six of 0.282.0's camps (no camp good of theirs is carried out, none leaves a gift). Routing
+them through `HelpText` would show some lines that claim more than happens (the travellers' herbs, the boat-builders'
+logs carried over), so it was not done here.
+
+Nothing new is saved. Not checked without the game: how the new lines read among the old in a real colony; a visitor of
+a third people speaking of another people's world event (the fact is read by the talk as any other); the other-peoples
+pieces with a people at war with a rough people, at peace with all, and just after a peace.
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
@@ -19869,7 +19996,7 @@ is over), so there is no pass of their own.
   own reached, the year's first supper asked now or set going now, the year read aloud tonight, make a colonist the
   record keeper.
 
-## Colony life's variety, part 2: life, customs, stories and the colony's own events (the player's go, 20 November 2026; not released yet)
+## Colony life's variety, part 2: life, customs, stories and the colony's own events (the player's go, 20 November 2026; released 0.285.0)
 
 The player on `docs/content-update-proposals.md`: "just variety, further kind of events, camps, world events, normal
 storyteller events, dilemmas, etc. ... yes, I want more events, camps, world events, and dilemmas, but first do all the

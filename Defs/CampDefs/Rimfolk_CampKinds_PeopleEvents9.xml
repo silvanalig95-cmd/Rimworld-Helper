@@ -51,6 +51,8 @@
     <texts>
       <li>A mech-tender and two link-hands of {FACTION} are walking in with their labour mechs behind them, {X_nameDef} at the front. They will keep a mech yard by the colony for some days.</li>
       <li>[lowtech] Three of {FACTION} in indigo robes are walking in, {X_nameDef} at the front, with a few working mechs plodding behind them. They will camp by the colony for some days, their mechs cutting rock.</li>
+      <li>{X_nameDef} of {FACTION} and two link-hands are walking in with their mechs in a quiet line behind them. They will keep a yard by the colony for some days, {X_pronoun} told {A_nameDef}, and their mechs will work while they rest.</li>
+      <li>[winter] Three of {FACTION} are walking in with their labour mechs, {X_nameDef} at the front. Mechs don't mind the season, {X_pronoun} told {A_nameDef}, so they will keep their yard by the colony all the same.</li>
     </texts>
     <settled>
       <li>{FACTION}'s mech yard is set up {PLACE}: tents in a row, a fire, and the mechs standing ready beside a cleared patch for the rock they cut.</li>
@@ -58,6 +60,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, a link-hand at the mech yard {PLACE}, asks whether the colony would take {X_objective} in. {X_pronoun} has kept other people's mechs running for years and would like to stay in one place.</li>
+      <li>{X_nameDef}, one of the link-hands, asks whether the colony could use someone who knows mechs, and says {X_pronoun} would gladly work beside the colony's people instead.</li>
     </joinTexts>
     <farewell>
       <li>[feral,cut] The mech yard packed up and walked off, one mech fewer than came. They left the {CUT} loads of rock their mechs cut piled by their old camp, for the colony to use.</li>
@@ -72,14 +75,22 @@
       <li>Check the joints before the next shift.</li>
       <li>That one needs a new actuator soon.</li>
       <li>Keep the mechs clear of the colony's fields.</li>
+      <li>[morning] Charge check, all of them.</li>
+      <li>Steady, the link is holding.</li>
+      <li>[night] Power them down, quietly.</li>
+      <li>Never leave a mind on its own.</li>
     </lines>
     <momentLines>
       <li>[tend] This one's running well, next.</li>
       <li>[feral] It's slipped its link, everyone keep back.</li>
       <li>[band] They're here for the mechs, get them behind the fire.</li>
+      <li>[tend] Joints oiled, link steady, next one.</li>
+      <li>[tend] This one's sound, put it back to work.</li>
+      <li>[feral] It's out of the link, don't go near it.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the link-hands by their fire and heard how the first Lattice was linked on a battlefield where a hundred mechs stood still.</li>
+      <li>[tales] {A_nameDef} sat with the link-hands by their fire and heard what it is like to feel a mech's work through the link, like a hand that is not quite your own.</li>
     </helpTexts>
     <asks>
       <li>
@@ -158,6 +169,8 @@
     <texts>
       <li>A few of {FACTION} in pale robes are walking in, {X_nameDef} at the front. They will sit in a ring at the quietest place on the colony's land for some days and sing each evening.</li>
       <li>[lowtech] A few of {FACTION}, barefoot and in pale robes, are walking in, {X_nameDef} at the front. They will camp some days at the quietest place on the colony's land and sing there each evening.</li>
+      <li>{X_nameDef} and a few others of {FACTION} are walking in to the quietest place on the colony's land. They will sit in a ring there for some days, {X_pronoun} told {A_nameDef}, and sing in the evenings.</li>
+      <li>[summer] In the long evenings a few of {FACTION} have come to sit in a ring at the quietest place on the colony's land, {X_nameDef} at the front. They will sing each night at dusk, {X_pronoun} told {A_nameDef}, and keep quiet the rest of the day.</li>
     </texts>
     <settled>
       <li>{FACTION}'s listening ring is set up {PLACE}, away from the colony's workshops: bedrolls in a ring round one small fire.</li>
@@ -165,6 +178,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the Choir camped {PLACE}, asks whether {X_pronoun} might stay with the colony a while longer than the others, to learn what an ordinary life is like.</li>
+      <li>{X_nameDef} of the listening ring says the colony's ordinary noise has taught {X_objective} more than the halls ever did, and asks whether {X_pronoun} might stay and live among it.</li>
     </joinTexts>
     <farewell>
       <li>[strange] The listening ring packed up early and left in silence. Their last evening's song had gone strange, and they would not stay with the void so close.</li>
@@ -178,14 +192,22 @@
       <li>It's very quiet here, which is good.</li>
       <li>We sing again at dusk.</li>
       <li>Be ordinary, if you can.</li>
+      <li>[morning] Sit, and say nothing for a while.</li>
+      <li>[evening] The light's going, it's nearly time.</li>
+      <li>Quiet, the hum is clear today.</li>
+      <li>There's no hurry here.</li>
     </lines>
     <momentLines>
       <li>[song] We'll start, and they'll hear it in the colony tonight.</li>
       <li>[loud] There's loud work near us tonight, it carries.</li>
       <li>[strange] The song came out wrong tonight, we're leaving.</li>
+      <li>[song] Sit with us, if you like, and listen.</li>
+      <li>[song] Slowly, and keep the note.</li>
+      <li>[loud] We'll wait until the work stops, then sing.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat a while at the Choir's fire and heard how each generation born beside the Spire came to hear a little more of it than the one before.</li>
+      <li>[tales] {A_nameDef} sat a while in the Choir's ring and heard {X_nameDef} explain why they say nobody should listen to the void.</li>
     </helpTexts>
     <asks>
       <li>
@@ -272,6 +294,8 @@
     <texts>
       <li>Three surface-scouts of {FACTION} are walking in, {X_nameDef} at the front, looking up at the sky more than at the path. They will camp by the colony for a week to learn the surface.</li>
       <li>[lowtech] Three of {FACTION}'s scouts are walking in with packs and capes over their vault suits, {X_nameDef} at the front. They will camp by the colony for a week to learn how people live up here.</li>
+      <li>{X_nameDef} and two more scouts of {FACTION} are walking in, the vault's numbers on the backs of their suits. The overseer sent them to learn the surface, {X_pronoun} told {A_nameDef}, and they would like to learn it from the colony.</li>
+      <li>[rain] Three scouts of {FACTION} have walked in through the rain, staring up at it, {X_nameDef} at the front. They will camp by the colony for a week, {X_pronoun} told {A_nameDef}, and learn whatever it will teach them.</li>
     </texts>
     <settled>
       <li>{FACTION}'s surface scouts have made camp {PLACE}: three tents in a neat row and a fire, with the vault's number painted on each tent.</li>
@@ -279,6 +303,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the vault's scouts camped {PLACE}, asks whether {X_pronoun} could stay with the colony instead of going back below. {X_pronoun} has got used to the sky, {X_pronoun} says, and would rather not lose it again.</li>
+      <li>{X_nameDef}, one of the vault's scouts, says the colony has taught {X_objective} more in a week than the vault did in years, and asks whether {X_pronoun} might stay.</li>
     </joinTexts>
     <farewell>
       <li>[taught,mauled] The surface scouts numbered off and walked home after {LESSONS} afternoons of lessons, one of them still bandaged from the beast that turned on them.</li>
@@ -293,14 +318,22 @@
       <li>There's nothing over us out here.</li>
       <li>Is that weather, or is something wrong?</li>
       <li>The overseer will want to hear about this.</li>
+      <li>[morning] Roll call, all three of us.</li>
+      <li>[rain] It's just water, it's only water.</li>
+      <li>Write down what they grow, and how they grow it.</li>
+      <li>[night] So many stars, I can't stop looking.</li>
     </lines>
     <momentLines>
       <li>[skysick] I can't go out there today, the sky is too big.</li>
       <li>[out] All right, I'll come out, but stay with me.</li>
       <li>[learned] We'll take that back down and teach the others.</li>
+      <li>[learned] Write that down, the vault will want it.</li>
+      <li>[out] Stay close, it's only the sky.</li>
+      <li>[skysick] I'll stay in the tent today, it's too open out there.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the scouts by their fire and heard how the overseer the vault's council chose broke the seal and walked out first, and how half of them went back below for a week.</li>
+      <li>[tales] {A_nameDef} sat with the scouts by their fire and heard about the roll call in the vault, every number answered every morning.</li>
     </helpTexts>
     <asks>
       <li>

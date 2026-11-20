@@ -408,7 +408,12 @@ namespace ColonyCouncil
         {
             if (!base.Fill(p, ctx)) return false;
             var g = (ctx as GodDilemmaContext)?.GodAt(god);
-            if (g == null || ctx.map == null) return true;
+            if (g == null || ctx.map == null)
+            {
+                // No god to name: the pool's words (which name one) are not said.
+                p.pool = null;
+                return true;
+            }
             var lead = priest ? Worship.Priest(ctx.map) : null;
             if (lead != null && lead.Spawned && lead.Map == ctx.map && PlayOuts.CanTakePart(lead, ctx.map))
             {
@@ -422,6 +427,11 @@ namespace ColonyCouncil
                 p.spots.Remove(PlaySpot.Place);
                 p.spots.Insert(0, PlaySpot.Place);
             }
+            // The words name the god, and the gathering fills in no god itself: they are filled in now for the one who leads
+            // them (in the old voice where they speak it, Worship.OldVoice), and the pool itself is never drawn there.
+            var speaker = p.organizer ?? p.invited.FirstOrDefault();
+            if (speaker != null && !p.pool.NullOrEmpty()) p.lines.AddRange(Worship.Lines(p.pool, speaker, g, 5));
+            p.pool = null;
             return p.invited.Count > 0;
         }
     }

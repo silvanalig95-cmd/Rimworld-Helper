@@ -4001,7 +4001,9 @@ The colony's own ward or envoy at the struck town writes, and from a plague town
 begin, more letters along the way and more ways to end, and its answers, like a dilemma's, can turn out in more than
 one way, picked to fit the moment, so one that comes back reads differently. The region remembers who
 helped: a people the colony stood by in a plague says so when the next hard year comes, and a famous healer charges
-the colony half.
+the colony half. Visitors talk of them (not released yet: 25 more world events): one whose own people a world event
+touches tells it as theirs, one of another people says what they heard of it on the road, and its own people speak of
+it once it is over.
 
 - **A warlord rises** among a hostile people: a named war leader with a warband (a world pawn, like a nemesis). While
   he rises, his people's raids hit harder and come more often, he leads some of them himself, and his band raids the
@@ -4817,7 +4819,9 @@ blessed the house each morning, whether it let him in or not; the society's cler
 burning archive at Hesk in a handcart; the enclave's first crew, who sold a downed ore hauler's cargo, passage and debts
 one deal at a time; the river folk's ferries, which pulled people off the rooftops the night the dam broke. Their
 letters (now also in grief and in thanks for a warning), messengers, visitors and talk speak from it, each in its own
-manner. And each has a touchpoint of its own: when someone is down with a fever, a hospitaller comes to go from bed to
+manner. Visitors of each of the 23 peoples also talk of their working day, their food and drink, their young, their
+towns, how they stand with the other peoples as the game has it (a war, a peace made lately, or at war with nobody) and
+what they make of the colony (not released yet). And each has a touchpoint of its own: when someone is down with a fever, a hospitaller comes to go from bed to
 bed through the night, the colony's doctor alongside if it likes; after a good winter's grazing the herders' elder
 leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter quarters by the colony,
 trades all the while, stands with the colony against raiders if asked, and after a good stay leaves a carved waystone at

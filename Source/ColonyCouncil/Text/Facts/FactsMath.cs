@@ -219,6 +219,35 @@ namespace ColonyCouncil
             if (!string.IsNullOrEmpty(why)) f.Value("FAVOURWHY", why);
         }
 
+        // ---------------- The world's events ----------------
+
+        /// <summary>
+        /// How near a running world event is to a people, for their talk: 3 it is theirs, 2 they are its second people (the
+        /// other side of a war, the other buyer), 1 the region's own (no people of its own), 0 another people's.
+        /// </summary>
+        public static int SituationRank(bool theirs, bool second, bool regionWide) => theirs ? 3 : second ? 2 : regionWide ? 1 : 0;
+
+        /// <summary>A world event of another people (rank 0) is not theirs to tell; a visitor of a third people has only heard of it on the road.</summary>
+        public static bool Heard(int rank) => rank == 0;
+
+        /// <summary>
+        /// Another people's world event as a visitor of a third people has heard of it on the road (B10 of
+        /// docs/content-update-proposals.md): heard, heard:bad or heard:good, heard:ws:DEFNAME, with {HEARD} (what it is
+        /// called, with "the"), {HEARDPLACE} (where) and {HEARDPEOPLE} (whose it is). News from elsewhere, less current than
+        /// their own: at most 1.2, fading over twelve days.
+        /// </summary>
+        public static void AddHeard(FactSet f, string defName, bool bad, string name, string place, string people, float days)
+        {
+            if (f == null || string.IsNullOrEmpty(defName) || string.IsNullOrEmpty(name)) return;
+            float h = Fresh(days, 12f, 1.2f);
+            f.Tag("heard", h);
+            f.Tag(bad ? "heard:bad" : "heard:good");
+            f.Tag("heard:ws:" + defName, h);
+            f.Value("HEARD", name);
+            if (!string.IsNullOrEmpty(place)) f.Value("HEARDPLACE", place);
+            if (!string.IsNullOrEmpty(people)) f.Value("HEARDPEOPLE", people);
+        }
+
         // ---------------- The history ----------------
 
         /// <summary>What happened in the last this many days is "lately".</summary>

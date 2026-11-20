@@ -5,6 +5,38 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The world's talk, camps and encounters, fuller
+
+*20 November 2026, version 0.287.0*
+
+- The thinnest world events have more ways to begin and end: new start letters, second lines for short beats and more endings for 22 of them.
+- Visitors now talk about 25 more world events, and a visitor from another people speaks of what they heard about one on the road.
+- Each of the 23 peoples talks about its working day, food, children and towns, how it stands with the other peoples, and what it makes of your colony.
+- The peoples' own camps have fuller words: more arrival letters, joins, help, bubble lines and moments.
+- Two more texts for each of the thinnest encounters and for every people's own encounter.
+
+## More words for the gods, and prayers in the old voice
+
+*20 November 2026, version 0.286.0*
+
+- Fixed: the words said at a god's place after the council's answers showed the god's placeholder instead of its name.
+- The gods have more said about them: what people answer back, what the colony's book sets down in the old voice, and what the neighbours write after a god's hand.
+- The priest, the keeper of the book, a devout elder and those of a faith of the old ages now pray, give thanks and keep the rites and the saints' days in the old voice.
+- More talk around worship: each god's way of taking an offering, each god's presence, true dreams, vows, pilgrimages, saints and the festival on the calendar.
+- The pilgrims' and the seer's camps have more to say, and the weather talk and the land's journals have more lines.
+
+## Life, customs and stories
+
+*20 November 2026, version 0.285.0*
+
+- A child coming of age can now be apprenticed in the fields, the kitchen, with the animals or at building, taught by the reeve or the herdmaster when they hold the seat.
+- A grown-up fond of a child may ask for a toy, from Vanilla Christmas Expanded or a small carving, and carries it over by hand once it is made.
+- Two new customs: the giving day in winter, with names drawn and gifts from the stores handed over after supper, and the elders' day in autumn.
+- Three new ambitions (nobody left out, a season of kept promises, a lighter season) and a life goal for every other seat on the council.
+- New marks, deeds and names from the colony's own life, such as Old Keys, the Drover and Word-Kept.
+- Groups now keep fishing, the hot water, a pot of tea or coffee and card games as habits, and elections bring seven social events and talk about the vote.
+- Twelve new events from the colony's everyday life and six new personal stories.
+
 ## More words in colony life
 
 *20 November 2026, version 0.284.0*

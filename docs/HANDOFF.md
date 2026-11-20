@@ -65,6 +65,11 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the lead's proposal for the player's "Just more of them"): the
+  content update's second round.** `docs/content-update-proposals-2.md`, 44 items: D1 to D15 the gods' events (most
+  between the colony's people), D16 to D23 storyteller events, D24 to D32 council questions, D33 to D38 camps, D39 to D44
+  world events, with counts of what exists now and mods that would help. The lead's first round of twelve: D1, D3, D4,
+  D9, D10, D14, D16, D17, D25, D30, D35, D39. Nothing is built until the player picks.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
   additional God events, more immersion, more just further also building up on the gods in general, how they're
@@ -93,10 +98,12 @@ most sense." So, in this order, three builds at a time:
      CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
      colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
-     council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); building: colony life 2 (A8,
-     A11, A15, A16, A22 to A26, A28, twelve events, six personal stories), text round 2's world half (B9, B10, B16,
-     B18, B30) and its gods half (C32 to C36); the last variety items (A9, C25, C27; built, not released: the entry "The
-     colony's last variety items" above the newest release line).
+     council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); colony life 2 (A8, A11, A15,
+     A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); text round 2's gods half (C32 to C36;
+     released 0.286.0) and its world half (B9, B10, B16, B18, B30; released 0.287.0). Building: the last three items
+     (A9, C25, C27), with which the proposal list is all built (built, not released: the entry "The colony's last variety
+     items" above the newest release line), and a fix for the camps' own help and moment lines that no code said (found by
+     the world's text round).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -612,7 +619,154 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colony life's variety, part 2:
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The colony's last variety items: a
+  day off for a friend, the colony's names for its places, rooms from the player's mods** (20 November 2026; the player on
+  `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can go ahead with
+  this in the order you think makes most sense"). A9, C25 and C27, the last three variety items of the list, each marked
+  **Built** in the proposals doc with what was decided. DESIGN.md "The colony's last variety items" (after "Colony life's
+  variety, part 2") has every rule; README in Wishes, Build: room plans and a new "The colony's names for its places"; the
+  Almanac's wish list (people, the council and the world) and Management's room plans (keywords unchanged). No harm.
+  - **A9, a day off for a friend.** Someone at home worn down or near breaking two days running, whose day off could be
+    given now, may have a day off asked for them by anyone close to them (the heart's closeness 0.6, about an opinion of 50,
+    a partner, kin) or a kind colonist who doesn't think badly of them: the asker's own wish about them, flavour style. Met
+    by the heart's day off given after it was asked (or under way) or the calendar's rest day; the asker's thanks, the two
+    closer, and seven times in ten an hour's visit (with answers playing out; else the day off's own time with a friend).
+    Let lapse, only the asker loses trust, and the worn one isn't told (not among the friends who take it personally). The
+    heart's advice on a day off says who asked. Kept apart from worn thin and the step-down question both ways.
+  - **C25, the colony's names for its places.** Five happenings name a place, by one who was there, said aloud once, a
+    message pointing at it and a line in the chronicle: a god seen where it stood ("the rise where Bellwether was seen", by
+    the colony's name where it knows the god, else what was seen; named an hour after, once the card is over), the first
+    grave out in the open ("the field of the graves"), a gathering beside a grown tree ("the old oak": a party, a wedding, a
+    council meeting), a raid held at a gate with nobody lost ("the gate that held"), a flood that reached the path or fields
+    ("the drowned path", "the drowned field", Odyssey's flood). A cell and a size, twelve a home, ten cells apart, no two
+    of one name, kept with the map. Used on a god's card when a god comes again where a name is, at supper, in the colony's
+    letters (`{OURPLACE}`, `colony:place`), in the chronicle; a quiet label with "Names of places on the map" (off by
+    default). Tree cut, gate or graves gone: the label fades for a season, then the name is forgotten.
+  - **C27, room plans from the player's mods.** A writer's study (Vanilla Books Expanded), a coffee corner (Vanilla Brewing
+    Expanded - Coffees and Teas), a dryad grove (Vanilla Ideology Expanded - Dryads), a festive hall (Vanilla Christmas
+    Expanded), a beekeeper's yard (Alpha Bees) and a fish house (Vanilla Fishing Expanded, with Vanilla Cooking Expanded -
+    Sushi's prep table where it is), each only with its mod; every mod named is active in the player's list and every def
+    name checked against `docs/player-mods/` (poolcheck OK).
+  - Code map: `Source/ColonyCouncil/Wishes/FriendDayOff.cs` (the worker, the look-ups, the company), `FriendDayOffMath.cs`
+    (pure, linked in the tests); `WishWorker.OtherNotTold` read in `CouncilDynamics.Expire`; one-line hooks in
+    `CouncilLife/StepDown.cs`, `CouncilLife/LifeArcs.cs`, `Heart/HeartAdvice.cs`. `Source/ColonyCouncil/Places/`:
+    `PlaceNames.cs` (`PlaceBook`, a map component saved with each home map, modelled in `Tools/save_estimate.py`; the
+    naming, the hour, the fading, the label), `PlaceTalk.cs` (supper), `PlaceNameMath.cs` (pure, linked in the tests),
+    `LastVarietyDebug.cs`; hooks in `Gods/Gods.cs` (Moment), `Gods/Presence/GodCard.cs` (Send), `Defense/DefenseLinesWatch.cs`
+    (the line held), `CouncilGameComponent.cs` (HourlyLife), `Text/Facts/FactsColony.cs` (colony:place, OURPLACE);
+    settings `placeNames` (on) and `placeLabels` (off) in `CouncilSettings.cs` and `UI/SettingsCatalog.cs`. Defs:
+    `Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml`, `Defs/FlavorPoolDefs/Rimfolk_Pools_PlaceNames.xml`, seven lines in
+    `Rimfolk_Letters_Aside.xml`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml`; words
+    `Languages/English/Keyed/Rimfolk_FriendDayOff.xml`, `Rimfolk_PlaceNames.xml`. Tests `Tools/Tests/LastVarietyTests.cs`,
+    the mods' room pieces in `RoomTemplateTests`, `OURPLACE` in `LetterFormTests` and the DefValidator. No new `Sched` offset.
+  - Decided here: see each item's **Built** line in the proposals doc. The beast that stays already has its own name, so
+    it names no place. A god's place waits an hour after the moment, so its name comes after the card, not before. The
+    wedding's spot is the game's private field (read by name, `AccessTools.FieldRefAccess`; checked by ApiDiff).
+  - Not run here (none of it could be): a god's place named after a real coming and the card naming it the next time; the
+    first grave named when someone walks by; a party or a wedding beside a grown tree; a raid held at a gate; Odyssey's flood
+    reaching a path; the label at different zooms and fading; supper talk at the table; the colony's letters with
+    `{OURPLACE}`; the friend's wish met by the button and by a rest day, the visit after, a lapse; the six rooms placed with
+    their mods' real pieces (sizes as the catalogue gives them: a mod piece of another size is left out by the planner).
+  - Try in the game (dev mode, "Rimfolk"): 1. Have someone worn down two days (strain 55 or more), then "Last variety: a
+    day off for a friend, asked now by..." on someone close to them or kind; give the day off from the Mood tab and watch
+    the thanks and the visit. 2. Settings, "Names of places on the map" on; "Last variety: name the place at the mouse as..."
+    for each kind, then "...list the named places here", "...a named place brought up at supper now" (at supper, someone
+    eating beside another), and "...the place at the mouse gone a season ago" (the next hour forgets it). 3. Hold a party
+    beside a grown tree; let a raid come through a gate and be held; bury a colonist outdoors and walk past. 4. In the room
+    planner, the six new rooms (Leisure, Work and Food) with their mods.
+  - Mods that would help: none needed for the label (the game's own label drawing) or the rooms (the mods' own
+    furniture, all already on). The flowers of Vanilla Plants Expanded - Flowers
+    ([3748351639](https://steamcommunity.com/sharedfiles/filedetails/?id=3748351639), 1.6 and 1.7, already on) and Alpha
+    Props - Parks and Gardens' flowers (on) can be sown in the beekeeper's yard's and the dryad grove's pots. For a coffee
+    corner and a festive hall with a counter and tavern tables: Tavern
+    ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305), 1.6 and 1.7, kept up, in the list but
+    off; needs Vanilla Expanded Framework, on). For a smoker in the fish house: only Medieval Overhaul's
+    ([3219596926](https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926), 1.6 in the catalogue, in the list but
+    off), nothing found on 1.7.
+- 0.287.0, **Text round 2, the world's part:
+  the thin world events, their talk, the peoples' own talk, their camps and the thinnest encounters** (20 November 2026;
+  the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+  with this in the order you think makes most sense ... And then also, just variety, further kind of events, camps,
+  world events, normal storyteller events, dilemmas, etc. Just more of them."). B9, B10, B16, B18 and B30 of part B, each
+  marked **Built** in the proposals doc with what was decided and its counts; DESIGN.md "Text variety: the world's thin
+  pools" (after "The world's variety"). Every pool recounted first: 0.282.0's world events, camps and encounters as thin
+  as the named ones were brought to the same floor (five world events for B9, all ten for B10, all eight camps for B18,
+  all 46 peoples' encounters for B30). 82 world event lines, 213 talk pieces (1,043 lines said), 285 camp lines and
+  142 encounter texts.
+  - **Where the lines are**: B9 the world events' own defs in `Defs/WorldSituationDefs/` (82: start letters to four,
+    second lines for one-line beats, ending lines to three, for 22 world events); B10 `Defs/OutsiderTalkDefs/
+    Rimfolk_OutsiderTalks_WorldTold.xml` (75 pieces for 25 world events: theirs, heard of by another people, and over);
+    B16 `Rimfolk_OutsiderTalks_PeoplesDays.xml` and `_PeoplesDays2.xml` (138 pieces, six for each of the 23 peoples); B18
+    the camps' own defs in `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml` and `_Variety4.xml` (285 lines); B30 the
+    encounters' own defs in `Defs/EncounterDefs/` (142 texts). Code, for B10 only: a visitor of another people now hears
+    of the newest world event of another people (`FactsMath.SituationRank`, `Heard`, `AddHeard`; `Facts.Situations` in
+    `Text/Facts/FactsWorld.cs`): `heard`, `heard:bad`/`heard:good`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE},
+    {HEARDPEOPLE}; the talk's format header (`Rimfolk_OutsiderTalks_Greetings.xml`) and the tests' vocabulary
+    (`Tools/Tests/OutsiderTalkTests.cs`) name them, `Tools/Tests/FactsTests.cs` tests the rule.
+  - Decided: B16's other peoples by the conditions the talk already has (their war and how it stands with the colony, a
+    peace made lately, at war with nobody), no new code; a camp's help and moment lines only where they are said (the
+    enclave's pad and the Banner's company give no help, the field sickhouse's moments and six of 0.282.0's camps'
+    are never said); no beat line where a beat has no words now (an arrival or an incident alone); new camp arrivals
+    say nothing of cold or snow, and name gear only where the people's gear has it.
+  - Found, not changed (for the lead to decide): help lines of a camp's own for medicine, wood, mend and meat never show,
+    as `CampCarry`, `CampLife.DoHelp` and `CampRequests.MendGear` tell those by the shared `CC_Camp_Help_*` lines (the
+    pilgrims' hostel's [medicine], the boat-builders' [wood], the Wheel's yard's [mend], all eight of 0.282.0's camps'
+    help lines); moment lines no code says (the hostel's [gift], the field sickhouse's [round] and [gift], the [carry]
+    and [gift] of six of 0.282.0's camps). A fix through `HelpText` would show a few lines that claim more than happens.
+  - Not checked without the game: how the new lines read among the old ones in a real colony; a visitor of a third
+    people speaking of another people's world event; the other-peoples pieces with a people at war, at peace with all
+    and just after a peace.
+  - Try in the game: dev mode, "World variety: start one of the new world events now..." or any world event, then talk
+    with a visitor of its people and of another people (right-click, Talk with...); read the start and ending letters
+    of the gold fever, the levy, the market days or the bridge down; start a people's own camp from its event and watch
+    the bubbles and the arrival letter; let a visitor of one of the 23 peoples stay and talk (their day, their food,
+    their young, their town, the other peoples, the colony).
+  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
+- 0.286.0, **Text variety: the gods' thin
+  pools** (20 November 2026; the player on `docs/content-update-proposals.md`: "In general, I just want additional God
+  events, more immersion, more just further also building up on the gods in general ... And then also, just variety", and
+  the go on the whole list, the old voice included). C32 to C36 of the proposals, each marked **Built** there; DESIGN.md
+  "Text variety: the gods' thin pools" (after the gods' variety section). About 630 new lines, none rewritten, counted
+  again first (0.281.0 had added the gods' variety since the proposals): C32 the gods' own lines (150: 3 scoffs more each,
+  3 to 6; 2 more of what each is and how it is seen, in the old voice, 3 to 5; 3 more neighbours' letter lines each, 2 to
+  5, Tamiu's 3 to 6); C33 worship talk (277: the offering ways 42 to 97, the presences 90 to 150, the true dreams 15 to 29,
+  every thin pool of the table to 8, and of 0.281.0's own the vows of a season said day by day, 3 a vow, to 8 a vow); C34
+  the old voice (102 `[olde]` lines beside the plain prayers 31, thanks 12, rites 16, words at a god's place 8, saints'
+  prayers 13 and feasts 9); C35 the gods' two camps (24: every list at 8); C36 the weather and the land's journals (73: nine
+  weather pools and nine journal and talk pools to 8 plain lines).
+  - Code: `Gods/Worship/WorshipMath.cs` (`OldVoice`, `OldVoiceTag` "olde", `ElderAge` 60; pure, linked), `Gods/Worship/Worship.cs`
+    (`OldVoice(Pawn)`: the priest, the keeper of the book `GodLore.Keeper`, a devout elder, a believer of a faith another
+    people of the old ages holds as its own (`FaithAge`, with Ideology), never a scoffer; `LineWith` adds the tag, so every
+    worship and saints' line reaches them; `Lines` for several lines filled in), `Gods/Worship/WorshipCouncil.cs`
+    (`DilemmaEffect_ShrineWords` fills the words for the one who leads them and clears the pool). Defs: `Rimfolk_Gods.xml`,
+    `Rimfolk_Worship_Pools.xml`, `Rimfolk_Belief_Pools.xml`, `Rimfolk_Saints.xml`, `Rimfolk_GodPresence_OwnLines.xml`,
+    `Rimfolk_GodsOnMap_Lines.xml`, `Rimfolk_GodsWorld_Camps.xml`, new `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml` (the
+    weather and the land's journals as extensions, so their own files are untouched). Tests: `WorshipTests` (who speaks the
+    old voice; the set beside the plain lines in the six pools, each line in the old words; the tag given; the words at a
+    god's place filled in).
+  - Found and fixed on the way (a bug): the council's answers that hold words at a god's place (a god's year begun, a
+    temple vowed, a rite, a shrine moved, swept or let go) said their lines through the gathering, which fills in no god, so
+    "{GOD}" showed in the bubbles. They are filled in when the answer is given, for the one who leads them.
+  - Decided here: the scoffs untagged (a tagged one would push the plain three aside for its kind); the letters neutral about
+    what the god's hand was; a way's believers split by `mine` and `theirs`, as the code tags them; the old voice beside
+    the plain lines by a tag rather than pools of their own (the four still say a plain line now and then, their moment's
+    old line weighing more); without Ideology the fourth speaker is not known, so the old voice is the other three's;
+    `festivalDishes` left (a phrase in the messages and the book, not spoken); the happenings between the colony's people
+    (`Rimfolk_Pool_GodBetween_Say`, 1 to 3 lines at each beat of a scene) left for a round of their own; the herd's journals
+    and a pet's farewell already at 10 to 12 with their extensions, left.
+  - Harm: none. Saved: nothing new.
+  - Not run here: how often each of the four says an old line, the words at a god's place in the game, every new line over a
+    head.
+  - Try in the game: 1. With the priest set (or a devout colonist of sixty, or with Ideology one whose faith a tribal or
+    medieval people keeps), let a prayer happen (dev "Worship: ..." for a prayer, a festival's rite or an answer): the
+    priest's words come in the old voice ("Hear me, ... as thou hast heard our elders before us"), a young colonist's in
+    the plain one. 2. Answer the council's "the god of the year" (or any question with words at a god's place): the
+    gathering's bubbles name the god, never "{GOD}". 3. Let a god's offering go its way and read the remark the next day;
+    let a presence come and read what people say; a neighbour's letter after a god's hand. 4. Call the gods' pilgrims or the
+    seer (dev "Gods in the world: ..."): their arrival letter and their words at dawn, dusk and the seer's evening.
+  - Mods that would help: none for the words. The rites already use the player's own Alpha Memes chants and Vanilla
+    Ideology Expanded pieces where they are built.
+- 0.285.0, **Colony life's variety, part 2:
   life, customs, stories and the colony's own events** (20 November 2026; the player on
   `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with this in
   the order you think makes most sense ... And then also, just variety, further kind of events, camps, world events,
@@ -692,70 +846,6 @@ repo.
     ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to 1.7, updated 25 October) for the
     feel of the festival evenings and the old song. Vanilla Christmas Expanded is already on and used (the toys, the giving
     day's gifts and lamps). Still missing: a bell for the giving day or a calendar day (no 1.6 or 1.7 mod found).
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The colony's last variety items: a
-  day off for a friend, the colony's names for its places, rooms from the player's mods** (20 November 2026; the player on
-  `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can go ahead with
-  this in the order you think makes most sense"). A9, C25 and C27, the last three variety items of the list, each marked
-  **Built** in the proposals doc with what was decided. DESIGN.md "The colony's last variety items" (after "Colony life's
-  variety, part 2") has every rule; README in Wishes, Build: room plans and a new "The colony's names for its places"; the
-  Almanac's wish list (people, the council and the world) and Management's room plans (keywords unchanged). No harm.
-  - **A9, a day off for a friend.** Someone at home worn down or near breaking two days running, whose day off could be
-    given now, may have a day off asked for them by anyone close to them (the heart's closeness 0.6, about an opinion of 50,
-    a partner, kin) or a kind colonist who doesn't think badly of them: the asker's own wish about them, flavour style. Met
-    by the heart's day off given after it was asked (or under way) or the calendar's rest day; the asker's thanks, the two
-    closer, and seven times in ten an hour's visit (with answers playing out; else the day off's own time with a friend).
-    Let lapse, only the asker loses trust, and the worn one isn't told (not among the friends who take it personally). The
-    heart's advice on a day off says who asked. Kept apart from worn thin and the step-down question both ways.
-  - **C25, the colony's names for its places.** Five happenings name a place, by one who was there, said aloud once, a
-    message pointing at it and a line in the chronicle: a god seen where it stood ("the rise where Bellwether was seen", by
-    the colony's name where it knows the god, else what was seen; named an hour after, once the card is over), the first
-    grave out in the open ("the field of the graves"), a gathering beside a grown tree ("the old oak": a party, a wedding, a
-    council meeting), a raid held at a gate with nobody lost ("the gate that held"), a flood that reached the path or fields
-    ("the drowned path", "the drowned field", Odyssey's flood). A cell and a size, twelve a home, ten cells apart, no two
-    of one name, kept with the map. Used on a god's card when a god comes again where a name is, at supper, in the colony's
-    letters (`{OURPLACE}`, `colony:place`), in the chronicle; a quiet label with "Names of places on the map" (off by
-    default). Tree cut, gate or graves gone: the label fades for a season, then the name is forgotten.
-  - **C27, room plans from the player's mods.** A writer's study (Vanilla Books Expanded), a coffee corner (Vanilla Brewing
-    Expanded - Coffees and Teas), a dryad grove (Vanilla Ideology Expanded - Dryads), a festive hall (Vanilla Christmas
-    Expanded), a beekeeper's yard (Alpha Bees) and a fish house (Vanilla Fishing Expanded, with Vanilla Cooking Expanded -
-    Sushi's prep table where it is), each only with its mod; every mod named is active in the player's list and every def
-    name checked against `docs/player-mods/` (poolcheck OK).
-  - Code map: `Source/ColonyCouncil/Wishes/FriendDayOff.cs` (the worker, the look-ups, the company), `FriendDayOffMath.cs`
-    (pure, linked in the tests); `WishWorker.OtherNotTold` read in `CouncilDynamics.Expire`; one-line hooks in
-    `CouncilLife/StepDown.cs`, `CouncilLife/LifeArcs.cs`, `Heart/HeartAdvice.cs`. `Source/ColonyCouncil/Places/`:
-    `PlaceNames.cs` (`PlaceBook`, a map component saved with each home map, modelled in `Tools/save_estimate.py`; the
-    naming, the hour, the fading, the label), `PlaceTalk.cs` (supper), `PlaceNameMath.cs` (pure, linked in the tests),
-    `LastVarietyDebug.cs`; hooks in `Gods/Gods.cs` (Moment), `Gods/Presence/GodCard.cs` (Send), `Defense/DefenseLinesWatch.cs`
-    (the line held), `CouncilGameComponent.cs` (HourlyLife), `Text/Facts/FactsColony.cs` (colony:place, OURPLACE);
-    settings `placeNames` (on) and `placeLabels` (off) in `CouncilSettings.cs` and `UI/SettingsCatalog.cs`. Defs:
-    `Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml`, `Defs/FlavorPoolDefs/Rimfolk_Pools_PlaceNames.xml`, seven lines in
-    `Rimfolk_Letters_Aside.xml`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml`; words
-    `Languages/English/Keyed/Rimfolk_FriendDayOff.xml`, `Rimfolk_PlaceNames.xml`. Tests `Tools/Tests/LastVarietyTests.cs`,
-    the mods' room pieces in `RoomTemplateTests`, `OURPLACE` in `LetterFormTests` and the DefValidator. No new `Sched` offset.
-  - Decided here: see each item's **Built** line in the proposals doc. The beast that stays already has its own name, so
-    it names no place. A god's place waits an hour after the moment, so its name comes after the card, not before. The
-    wedding's spot is the game's private field (read by name, `AccessTools.FieldRefAccess`; checked by ApiDiff).
-  - Not run here (none of it could be): a god's place named after a real coming and the card naming it the next time; the
-    first grave named when someone walks by; a party or a wedding beside a grown tree; a raid held at a gate; Odyssey's flood
-    reaching a path; the label at different zooms and fading; supper talk at the table; the colony's letters with
-    `{OURPLACE}`; the friend's wish met by the button and by a rest day, the visit after, a lapse; the six rooms placed with
-    their mods' real pieces (sizes as the catalogue gives them: a mod piece of another size is left out by the planner).
-  - Try in the game (dev mode, "Rimfolk"): 1. Have someone worn down two days (strain 55 or more), then "Last variety: a
-    day off for a friend, asked now by..." on someone close to them or kind; give the day off from the Mood tab and watch
-    the thanks and the visit. 2. Settings, "Names of places on the map" on; "Last variety: name the place at the mouse as..."
-    for each kind, then "...list the named places here", "...a named place brought up at supper now" (at supper, someone
-    eating beside another), and "...the place at the mouse gone a season ago" (the next hour forgets it). 3. Hold a party
-    beside a grown tree; let a raid come through a gate and be held; bury a colonist outdoors and walk past. 4. In the room
-    planner, the six new rooms (Leisure, Work and Food) with their mods.
-  - Mods that would help: none needed for the label (the game's own label drawing) or the rooms (the mods' own
-    furniture, all already on). The flowers of Vanilla Plants Expanded - Flowers
-    ([3748351639](https://steamcommunity.com/sharedfiles/filedetails/?id=3748351639), 1.6 and 1.7, already on) and Alpha
-    Props - Parks and Gardens' flowers (on) can be sown in the beekeeper's yard's and the dryad grove's pots. For a coffee
-    corner and a festive hall with a counter and tavern tables: Tavern
-    ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305), 1.6 and 1.7, kept up, in the list but
-    off; needs Vanilla Expanded Framework, on). For a smoker in the fish house: only Medieval Overhaul's
-    ([3219596926](https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926), 1.6 in the catalogue, in the list but
-    off), nothing found on 1.7.
 - 0.284.0, **Colony life's text variety: the
   journals, the teasing, the decrees' voices, the answers to wishes, the social log, social events, the seats' words and
   the year's last** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall

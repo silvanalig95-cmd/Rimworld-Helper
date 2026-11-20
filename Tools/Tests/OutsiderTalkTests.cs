@@ -238,6 +238,8 @@ public static class OutsiderTalkTests
         .Concat(Expand("war:", "new long losing winning fought ourfoe ourfriend"))
         .Concat(Expand("situation:", "theirs bad good new long helped ended sickness hunger cold war trade faith politics empire disaster beasts"))
         .Concat(Expand("ended:", "theirs helped bad sickness hunger cold war trade faith politics empire disaster beasts"))
+        // Another people's world event, heard of on the road (Text/Facts/FactsMath.cs, AddHeard; B10).
+        .Concat(new[] { "heard", "heard:bad", "heard:good" })
         .Concat(Expand("colony:", "raid raidby raid:them raid:theirfoe raid:fallen raid:mechs raid:insects raid:animals raid:tribal raid:people death death:battle birth "
                                   + "wedding newcomer decree election camp harvest hungry plenty disaster research project day daytoday daysoon daypast traders young old "
                                   + "children animals prisoners expecting noble quiet hospital hospital:renowned doctor"))
@@ -272,7 +274,7 @@ public static class OutsiderTalkTests
 
     internal static readonly string[] Families =
     {
-        "ws:", "ended:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:", "town:lately:", "them:lately:",
+        "ws:", "ended:ws:", "heard:ws:", "condition:", "deed:", "deedbest:", "wrongbest:", "talked:", "last:", "trait:", "skill:", "them:best:", "us:best:", "town:lately:", "them:lately:",
         "town:why:"
     };
 
@@ -306,7 +308,9 @@ public static class OutsiderTalkTests
         "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION",
         // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over; the colony's
         // own news of many colonies (this home's mother, a home handed over and its people, a town come back).
-        "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK"
+        "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK",
+        // Another people's world event, heard of on the road (Text/Facts/FactsMath.cs, AddHeard; B10).
+        "HEARD", "HEARDPLACE", "HEARDPEOPLE"
     };
 
     private static int Library(string root, Action<bool, string> C0)

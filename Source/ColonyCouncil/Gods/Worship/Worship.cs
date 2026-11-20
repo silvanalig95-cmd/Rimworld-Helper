@@ -135,6 +135,35 @@ namespace ColonyCouncil
             return WorshipMath.Scoffer(noReligion, ideology, ideology ? Faiths.Certainty(p) : 1f, p.thingIDNumber);
         }
 
+        /// <summary>
+        /// Says the faith's words in the old voice (WorshipMath.OldVoice): the priest, the keeper of the colony's book of the
+        /// gods, a devout elder, or a believer of a faith of the old ages; never a scoffer.
+        /// </summary>
+        public static bool OldVoice(Pawn p)
+        {
+            if (p == null || p.RaceProps?.Humanlike != true) return false;
+            bool keeper = GodLore.Keeper(out _) == p;
+            return WorshipMath.OldVoice(IsPriest(p), keeper, Devout(p), Flavor.HumanAge(p), FaithAge(p), Scoffer(p));
+        }
+
+        /// <summary>
+        /// The age of the faith someone holds (with Ideology): the oldest age among the peoples, not the colony, who keep it as
+        /// their own; none without Ideology, or when no other people keeps it.
+        /// </summary>
+        private static WorldAge? FaithAge(Pawn p)
+        {
+            var ideo = Faiths.On ? Faiths.Of(p) : null;
+            if (ideo == null) return null;
+            WorldAge? oldest = null;
+            foreach (var f in Find.FactionManager.AllFactionsListForReading)
+            {
+                if (f == null || f.IsPlayer || f.ideos?.PrimaryIdeo != ideo) continue;
+                var age = Ages.Of(f);
+                if (oldest == null || age < oldest.Value) oldest = age;
+            }
+            return oldest;
+        }
+
         /// <summary>A psychic gift: the game's psychic sensitivity well above the usual, or a RimWorld of Magic caster.</summary>
         public static bool Psychic(Pawn p)
         {
@@ -288,6 +317,8 @@ namespace ColonyCouncil
                 if (extra != null) tags.AddRange(extra.Where(t => !t.NullOrEmpty()));
                 if (IsPriest(p)) tags.Add("priest");
                 if (Scoffer(p)) tags.Add("scoffer");
+                // The faith's own words in the old voice ([olde] lines), for the four who speak it.
+                if (OldVoice(p)) tags.Add(WorshipMath.OldVoiceTag);
                 string line = Flavor.FromPool(pool, p, null, null, tags.ToArray());
                 if (line.NullOrEmpty()) return null;
                 var args = new List<NamedArgument> { p.Named("PAWN"), (other ?? p).Named("OTHER") };
@@ -301,6 +332,21 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("worship: a line from " + pool, e);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Up to <paramref name="count"/> different lines from a pool for someone and their god, filled in (<see cref="Line"/>):
+        /// the words a gathering's lord says at a god's place, which fills in no god itself.
+        /// </summary>
+        public static List<string> Lines(string pool, Pawn p, God g, int count)
+        {
+            var said = new List<string>();
+            for (int i = 0; i < count * 2 && said.Count < count; i++)
+            {
+                string line = Line(pool, p, g);
+                if (!line.NullOrEmpty() && !said.Contains(line)) said.Add(line);
+            }
+            return said;
         }
 
         /// <summary>Says a line from a pool over their head (one sentence, Speech.Say), to <paramref name="to"/> when given.</summary>

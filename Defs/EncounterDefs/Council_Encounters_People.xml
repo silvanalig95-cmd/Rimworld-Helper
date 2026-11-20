@@ -502,6 +502,8 @@
     <texts>
       <li>{X_nameDef} hadn't said ten words since arriving. Today {A_nameDef} brought {X_objective} a second bowl of stew without asking, and {X_nameDef} cried into it and said thank you, over and over.</li>
       <li>It was the first night in a month {X_nameDef} hadn't slept with {X_possessive} shoes on, {X_pronoun} told {A_nameDef}. {A_nameDef} just nodded.</li>
+      <li>{X_nameDef} found {A_nameDef} at the end of the day and thanked {A_objective} for the bed, the food and for nobody asking questions. {A_nameDef} said it was nothing, and meant it.</li>
+      <li>[winter] {X_nameDef} told {A_nameDef} that this was the first winter in years {X_pronoun} hadn't spent cold and hungry, and thanked {A_objective} for it twice.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
     <effects>
@@ -521,6 +523,8 @@
     <stranger><kind>Lodger</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} made {A_nameDef} a small wooden carving with a borrowed knife, badly, and handed it over with both hands. "For the kindness," {X_nameDef} said.</li>
+      <li>{X_nameDef} gave {A_nameDef} a small carving {X_pronoun} had whittled from scrap wood. It was rough and not well made, but {X_pronoun} had clearly tried hard.</li>
+      <li>{X_nameDef} pressed a little wooden figure into {A_nameDef}'s hands. {X_pronoun} wasn't much of a carver, {X_pronoun} said, but {X_pronoun} wanted to give something back.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
     <effects>

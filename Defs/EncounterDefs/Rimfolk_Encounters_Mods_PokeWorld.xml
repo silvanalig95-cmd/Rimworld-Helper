@@ -42,6 +42,8 @@
     <texts>
       <li>{A_nameDef} looked twice at {X_indefinite} in the grass. It was the wrong color, and its coat caught the light like a new coin. {A_nameDef} stood very still and didn't breathe until it moved on.</li>
       <li>Past the fields, the grass sparkled. When {A_nameDef} went to look, {A_pronoun} found {X_indefinite} unlike any {A_pronoun} had ever seen, shining as if someone had painted it.</li>
+      <li>[snow] Against the snow {X_indefinite} shone so brightly that {A_nameDef} saw it from across the field. {A_pronoun} watched it until it went into the trees.</li>
+      <li>{A_nameDef} saw {X_indefinite} with a coat of the wrong color, bright as polished metal, and talked about nothing else for the rest of the day.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
@@ -61,6 +63,8 @@
     <texts>
       <li>Far off on the ridge, {A_nameDef} saw {X_indefinite} crossing, unhurried, the kind trainers talk about for years. {A_nameDef} watched until it was out of sight.</li>
       <li>{A_nameDef} came back from the fields out of breath, having seen {X_indefinite} drinking at the water as calmly as a goat. By the time anyone else looked, it had gone into the trees.</li>
+      <li>[evening] At dusk {A_nameDef} saw {X_indefinite} at the edge of the trees, the kind of Pokémon most trainers only hear about. It looked back at {A_objective} for a long moment and left.</li>
+      <li>{A_nameDef} kept very still while {X_indefinite} crossed the open ground nearby, and watched how it moved and where it stopped to look around.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_PW_SawRareOne</thought></li>
@@ -85,6 +89,8 @@
     <texts>
       <li>{A_nameDef} sat very still at the edge of the field holding out a berry, and after a long while {X_indefinite} came and took it from {A_possessive} hand. {A_nameDef} hasn't stopped talking about it.</li>
       <li>{A_nameDef} and {X_indefinite} played chase along the fence for a long while, taking turns at being chased.</li>
+      <li>{A_nameDef} found {X_indefinite} hiding in the long grass and lay down on {A_possessive} stomach to watch it. They stared at each other for a long time before it wandered off.</li>
+      <li>[rain] {A_nameDef} and {X_indefinite} both ran for the same bit of shelter when the rain started, and waited it out side by side.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncPW_SmallFriend</thought></li>

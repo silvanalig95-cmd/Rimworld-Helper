@@ -52,6 +52,8 @@
     <texts>
       <li>A clerk and two guards of {FACTION} are coming in along the road with crates of rations, {X_nameDef} at the front. They will keep a ration post by the colony's road for a week.</li>
       <li>[lowtech] A clerk of {FACTION} and two of its guard are walking in along the road with sacks of grain and dried meat. They will hand out food to the hungry by the colony's road for seven days.</li>
+      <li>{X_nameDef}, a clerk of {FACTION}, has come in along the road with two of its guards and the rations for a post by the colony's road. Anyone hungry may come, {X_pronoun} told {A_nameDef}, as long as they give their name for the roll.</li>
+      <li>[winter] A clerk and two guards of {FACTION} have brought crates of rations along the road for the lean months. Nobody goes hungry while the Republic stands, {X_nameDef} told {A_nameDef}, and they will keep the post open for a week.</li>
     </texts>
     <settled>
       <li>{FACTION}'s ration post is set up {PLACE}, by the road: a fire, a table with the rations stacked on it, and a guard on either side.</li>
@@ -59,6 +61,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the guards at the ration post {PLACE}, says {X_pronoun} has handed out enough rations, and asks whether there is a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef} of the ration post says {X_pronoun} has filled in enough forms for one life, and asks whether the colony would take in someone who keeps good records.</li>
     </joinTexts>
     <farewell>
       <li>[fed,riot] The Republic's ration post packed up and went on to the next road. It fed {FED} of the hungry while it stood, though the queue came to blows once when the rations ran out.</li>
@@ -72,14 +75,22 @@
       <li>Your name for the roll, please.</li>
       <li>There is a form for that.</li>
       <li>The Republic never fell.</li>
+      <li>[morning] Post's open, form a line.</li>
+      <li>Name, town and how many in your household.</li>
+      <li>[evening] Count what's left and write it down.</li>
+      <li>Everyone gets the same, that's the law.</li>
     </lines>
     <momentLines>
       <li>[ration] Here's your ration, next please.</li>
       <li>[short] The rations are gone until the next delivery.</li>
       <li>[turned] Your people are at war with the Republic, so there's nothing here for you.</li>
+      <li>[ration] Sign here, and here's your ration.</li>
+      <li>[ration] One each, and please keep the line moving.</li>
+      <li>[short] We've handed out the last of it, the next crates are on the way.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat by the ration post's fire and heard how the old postmaster read the laws aloud on the radio every evening until other towns answered.</li>
+      <li>[tales] {A_nameDef} sat by the ration post's fire and heard {X_nameDef} recite the first article of the old laws from memory.</li>
     </helpTexts>
     <asks>
       <li>
@@ -181,6 +192,8 @@
     <texts>
       <li>A landing party of {FACTION} is walking in from where their shuttle set them down, {X_nameDef} at the front, in step. They will camp by the colony for some days and survey the land.</li>
       <li>[lowtech] A party of {FACTION}'s crew is walking in, {X_nameDef} at the front, with a chain and stakes for measuring. They will camp by the colony for some days and survey the land.</li>
+      <li>{X_nameDef} has led a landing party of {FACTION} in to camp by the colony, every one of them in uniform and in step. They have orders to survey the land, {X_pronoun} told {A_nameDef}, and to log everything they find.</li>
+      <li>[spring] A landing party of {FACTION} is walking in, {X_nameDef} at the front, to camp by the colony while the weather is good. The ship wants the land surveyed, {X_pronoun} told {A_nameDef}, for when the order to disembark comes.</li>
     </texts>
     <settled>
       <li>{FACTION}'s landing party has made camp {PLACE}: one shelter with the bunks in a row, the fire laid square, and a watch posted.</li>
@@ -202,15 +215,22 @@
       <li>For when the order comes.</li>
       <li>Bunks squared away by the first bell.</li>
       <li>Every watch is kept.</li>
+      <li>[morning] Report to your posts.</li>
+      <li>[night] Second watch, wake me if anything moves.</li>
+      <li>Note the bearing and log it.</li>
+      <li>The ship is holding position, and so are we.</li>
     </lines>
     <momentLines>
       <li>[bell] Change of the watch, ring the bell.</li>
       <li>[deserter] Nobody gave you leave to disembark.</li>
       <li>[survey] Good ground here, log it.</li>
       <li>[raiders] Raiders on the horizon, warn the colony.</li>
+      <li>[survey] Mark it on the chart, there's good water here.</li>
+      <li>[bell] Second bell, change the watch.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the landing party by their fire and heard how Captain Sallow kept the crew at their posts after the ship came down.</li>
+      <li>[tales] {A_nameDef} sat with the landing party by their fire and heard what was written in the ship's log on the day it came down.</li>
     </helpTexts>
     <asks>
       <li>
@@ -314,6 +334,8 @@
     <texts>
       <li>Two sequencers and a vat-keeper of {FACTION} are walking in with sample cases, {X_nameDef} at the front. They will camp by the colony for a week and sample the land's beasts and plants.</li>
       <li>[lowtech] Three of {FACTION} are walking in with boxes and jars, {X_nameDef} at the front. They will camp by the colony for some days and take samples of the land's beasts and plants.</li>
+      <li>{X_nameDef} and two others of {FACTION} are walking in with their sample cases to camp by the colony for a week. They want to know what lives on the colony's land, {X_pronoun} told {A_nameDef}, and they will take nothing from anyone without asking.</li>
+      <li>[summer] With the land at its greenest, three of {FACTION} are walking in to camp by the colony and sample its plants and beasts. {X_nameDef} told {A_nameDef} that every sample would be written in the ledger.</li>
     </texts>
     <settled>
       <li>{FACTION}'s field lab is set up {PLACE}: tents, a fire, and a table covered with sample jars.</li>
@@ -321,6 +343,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the field lab camped {PLACE} says {X_pronoun} has spent enough of {X_possessive} life in the vat halls, and asks whether there is a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef} of the field lab says {X_pronoun} would like to live among people who were born rather than grown, and asks whether there is a place for {X_objective} at the colony.</li>
     </joinTexts>
     <farewell>
       <li>[loose] The field lab packed up and went back to the vats, without the beast that got loose.</li>
@@ -333,15 +356,22 @@
       <li>Label that jar before it goes in the case.</li>
       <li>The vats are warm, and the work goes on.</li>
       <li>Hold still, it's only a sample.</li>
+      <li>[morning] Fresh cases, fresh labels.</li>
+      <li>Write it in the ledger before you forget.</li>
+      <li>Nothing is changed without asking.</li>
+      <li>[evening] Seal the cases for the night.</li>
     </lines>
     <momentLines>
       <li>[loose] The beast is loose, keep away from it.</li>
       <li>[gene] It's written in, and the work went well.</li>
       <li>[drawn] That's the sample, thank you.</li>
       <li>[sample] Another one for the case.</li>
+      <li>[sample] Label it, date it, into the case.</li>
+      <li>[drawn] That's all we need, thank you for letting us.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the Works' people by their fire and heard how the people the lab had grown kept the vats warm through the winter after its founders left.</li>
+      <li>[tales] {A_nameDef} sat with the Works' people by their fire and heard why their children choose their own genes when they are old enough.</li>
     </helpTexts>
     <asks>
       <li>

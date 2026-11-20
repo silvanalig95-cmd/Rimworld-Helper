@@ -193,6 +193,8 @@
     <texts>
       <li>[theirLowtech] A wet spring rotted the healroot in the ground across the region, and the herb-women at {PLACE} have nothing left on their shelves. {FACTION} are binding wounds with clean cloth and hope, and paying whatever they must for anything that heals.\n\nThe colony has medicine in its stores, and people know it.</li>
       <li>[theirHightech] The medicine that comes up the road to {PLACE} has stopped coming: a convoy lost, the traders say, and nobody in a hurry to send another. {FACTION} are down to their last kits and rationing them.\n\nThe colony has medicine in its stores, and people know it.</li>
+      <li>[winter] A hard winter has emptied the medicine stores at {PLACE} before the spring, and there is nothing more to be had from the traders. {FACTION} are keeping what is left for the worst of their sick.\n\nThe colony has medicine in its stores, and people know it.</li>
+      <li>[summer] A summer fever went through {PLACE} and used up every dose of medicine {FACTION} had put by. Their healers have sent word to every settlement that might have some to sell.\n\nThe colony has medicine in its stores, and people know it.</li>
     </texts>
     <summaries>
       <li>{FACTION} will pay well for medicine. Healers on the road come by more often, and gatherers of herbs. A colony with medicine to spare can do well out of it, or do good; medicine sold is medicine the colony hasn't got.</li>
@@ -264,6 +266,7 @@
         </titles>
         <texts>
           <li>A herb-seller of {FACTION} has come back from the high valleys with healroot nobody else has found this year, and stopped at the colony's gate on the way to {PLACE}. {COUNT} bundles of it, at a price that would have been thought robbery last season.\n\nThis season it may be cheap.</li>
+          <li>A gatherer of {FACTION} has stopped at the colony's gate on the way home to {PLACE}, with {COUNT} bundles of healroot from the hills in a pack. In a year like this it would fetch a high price anywhere.\n\nThe gatherer would sell it to the colony here and now.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -296,6 +299,7 @@
         </titles>
         <texts>
           <li>Medicine is coming up the road to {PLACE} again, and the healers there have their shelves back. {FACTION} got their sick through the lean weeks partly on the colony's stores, and remember it.</li>
+          <li>The shortage is over, and {FACTION}'s healers at {PLACE} have stocked their shelves again. They have not forgotten where their medicine came from when there was none to be had.</li>
         </texts>
         <chronicle>Medicine came back to the region; {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -309,6 +313,7 @@
         </titles>
         <texts>
           <li>Medicine is back in the region's markets, and the prices are coming down.</li>
+          <li>Medicine is coming up the road to {PLACE} again, and the healers there are no longer turning the sick away. The prices in the region's markets are falling back to what they were.</li>
         </texts>
         <chronicle>Medicine came back to the region.</chronicle>
       </li>

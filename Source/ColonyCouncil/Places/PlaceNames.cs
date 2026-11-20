@@ -245,9 +245,9 @@ namespace ColonyCouncil
         // ================= A god seen =================
 
         /// <summary>
-        /// A god's moment was played and seen (Gods.Moment): where it stood, out in the open on a home map, the first who saw it
-        /// names the place by what the colony knows of it (ArtTales.GodWords: the colony's name for the god where it knows it,
-        /// else what was seen), and the ground it stood on.
+        /// A god's moment was played and seen (Gods.Moment): where it stood, out in the open on a home map, the place's name is
+        /// made by what the colony knows of it then (ArtTales.GodWords: the colony's name for the god where it knows it, else
+        /// what was seen) and the ground it stood on, and waits for the hour's look an hour on, when one who saw it names it.
         /// </summary>
         public static void GodSeen(PresenceSpec spec, List<Pawn> witnesses)
         {

@@ -536,7 +536,9 @@ wishPh.UnionWith(new[]
     "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "GIVENUP", "TOWNSITUATION",
     // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, and the years since the hand-over in words;
     // the colony's own news of many colonies (this home's mother, a home handed over and its people, a town come back).
-    "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK"
+    "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK",
+    // Another people's world event, heard of on the road (Text/Facts/FactsMath.cs, AddHeard): its name, where, whose.
+    "HEARD", "HEARDPLACE", "HEARDPEOPLE"
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });

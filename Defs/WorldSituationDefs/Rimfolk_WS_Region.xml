@@ -29,6 +29,7 @@
       <li>[founder,theirLowtech] Settlers of {FACTION} under {X_nameDef} have finished their new town, {PLACE}, {TALE}. The first houses are up and the well is dug, and they held their first market before the roofs were on.\n\nThey are short of nearly everything, timber most of all, and the colony may expect to hear from them.</li>
       <li>[founder,theirHightech] {FACTION} have finished a new settlement: {PLACE}, {TALE}, with {X_nameDef} at its head. The first prefab walls are up, and someone has already painted the name over the gate, slightly crooked.\n\nA new town needs everything at once, and {PLACE} will be glad of friends.</li>
       <li>[!founder] Settlers of {FACTION} have finished their new town, {PLACE}, {TALE}. They are short of nearly everything, and glad of friends.\n\nTheir first word to the colony is already on the road.</li>
+      <li>[!founder,theirHightech] {FACTION} have finished a new settlement at {PLACE}, {TALE}: a handful of prefab houses, a generator shed and a radio mast. The settlers are short of nearly everything.\n\nThey will be looking for neighbors to trade with, and the colony is one of the nearest.</li>
     </texts>
     <summaries>
       <li>{PLACE} is on the map to stay. Its first traders will come by soon, and caravans and visitors from {FACTION} come more often while the town finds its feet.</li>

@@ -886,6 +886,7 @@
       <li>{FACTION} lost every field around {PLACE} in a single afternoon. The cloud that did it is still out there: a swarm of locusts as wide as a valley, and it hasn't settled yet.\n\nWhether it comes this way is up to the wind.</li>
       <li>[summer] The sky to the south went brown at midday, and a few minutes later came the sound, like rain that doesn't stop. Locusts. Since then a rider has brought word that {PLACE} was stripped to the dirt.\n\nThe swarm is still in the air.</li>
       <li>A rider came through from {PLACE} without stopping, shouting the news over the gate: locusts. {FACTION}'s fields are gone, every one, and the swarm has lifted again and is drifting with the wind.\n\nWhere it comes down next is up to the wind.</li>
+      <li>[spring] {FACTION} had only just sown the fields around {PLACE} when the locusts came and ate the young shoots to the ground. The swarm rose again before nightfall and is still on the wind.\n\nNobody can say where it will come down next.</li>
     </texts>
     <summaries>
       <li>Any day now the swarm may pass over the colony and strip its open fields. Roofed fields and greenhouses are safe, and smoke may turn it. Food will be scarcer in the region for a while.</li>
