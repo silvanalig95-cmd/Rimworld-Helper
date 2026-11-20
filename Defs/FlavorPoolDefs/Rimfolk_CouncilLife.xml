@@ -27,7 +27,9 @@
       <plain>
         <li>Neither of you gets the {THING} yet, {OTHER_nameDef}, not until there's enough for both.</li>
         <li>The {THING} stays in the stores for now, {OTHER_nameDef}, for both your wishes.</li>
+        <li>Yours and the other one both wait, {OTHER_nameDef}, until the stores have more {THING}.</li>
       </plain>
+      <cheerful><li>Three days, {OTHER_nameDef}, and then we'll see how much {THING} there is for you both.</li></cheerful>
       <blunt><li>Nobody gets the {THING} until there's more of it.</li></blunt>
       <warm><li>Give it three days, {OTHER_nameDef}, and we'll see whether there's {THING} for you both.</li></warm>
     </lines>

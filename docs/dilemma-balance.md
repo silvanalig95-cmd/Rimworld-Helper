@@ -46,7 +46,7 @@ with an effect the scales don't measure (a faith's certainty, a guardian named, 
 it gets no verdict, and is read by hand.
 ```
 
-247 dilemmas, 821 answers. Flagged: 61 dilemmas, 89 answers (first pass: 61 dilemmas; second pass: 0).
+285 dilemmas, 931 answers. Flagged: 61 dilemmas, 88 answers (first pass: 61 dilemmas; second pass: 0).
 
 ## First pass: the dilemmas rebalanced in this round
 
@@ -462,6 +462,12 @@ it gets no verdict, and is read by hand.
 |  | 4 | Let A try to tame it | 12 | 0 | 0 | 12 | mood +12 | partly scored (DriveOff, FeedBeast): read by hand |
 |  | 5 | Let it be | 0 | 0 | 0 | 0 | nothing scored | partly scored (DriveOff, FeedBeast): read by hand |
 |  | 6 | Drive it off | 0 | 0 | 0 | -0 | nothing scored | partly scored (DriveOff, FeedBeast): read by hand |
+| the beast that stays, held sacred (`Council_DlmA_ResidentBeastSacred`) | 1 | Leave it be, as A asks: it is not ours to hunt | 12 | 0 | 0 | 12 | mood +12 | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
+|  | 2 | Leave food out for it | 0 | 0 | 0 | 0 | nothing scored | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
+|  | 3 | Keep everyone close until it moves on | 0 | 33 | 0 | -33 | mood -32, work -1 | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
+|  | 4 | Send the hunters after X all the same | 0 | 9 | 0 | -9 | mood -8, work -1 | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
+|  | 5 | Let A try to tame it | 12 | 0 | 0 | 12 | mood +12 | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
+|  | 6 | Drive it off | 0 | 0 | 0 | -0 | nothing scored | partly scored (DriveOff, FeedBeast, SparedForGod): read by hand |
 
 ### Rimfolk_Dilemmas_Choices.xml
 
@@ -479,6 +485,25 @@ it gets no verdict, and is read by hand.
 | seed for the neighbours (`Council_DlmC_NeighboursSeed`) | 1 | Send it, and ask nothing | 17 | 11 | 0 | 6 | mood +1, trust +1, goods -5, outside +10 | trade-off |
 |  | 2 | Sell it to them at a fair price | 14 | 5 | 0 | 9 | mood +6, goods -1, outside +4 | trade-off |
 |  | 3 | The colony can't spare it | 0 | 13 | 0 | -13 | mood -9, outside -4 | trade-off |
+
+### Rimfolk_Dilemmas_CouncilLife.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| a seat put down (`Rimfolk_Dilemma_StepDown`) | 1 | Let A step down | 16 | 0 | 0 | 16 | mood +12, trust +4 | partly scored (Deputy, StepDown, TrustDevoted): read by hand |
+|  | 2 | B stands in for ten days | 22 | 6 | 0 | 16 | mood +15, trust +4, wellbeing +3, work -6 | partly scored (Deputy, StepDown, TrustDevoted): read by hand |
+|  | 3 | Ask A to stay on | 0 | 13 | 0 | -13 | mood -10, trust -3 | partly scored (Deputy, StepDown, TrustDevoted): read by hand |
+| two wishes, one pile (`Rimfolk_Dilemma_OneSteel`) | 1 | First come, first served: A's | 3 | 0 | 0 | 3 | trust +3 | partly scored (WishFirst): read by hand |
+|  | 2 | B's first | 3 | 2 | 0 | 2 | trust +2 | partly scored (WishFirst): read by hand |
+|  | 3 | Neither until there's more {THING} | 9 | 0 | 0 | 9 | trust +9 | partly scored (WishFirst): read by hand |
+
+### Rimfolk_Dilemmas_Customs_ColonyLife.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| the year's first supper (`Council_Dilemma_FirstSupper`) | 1 | Everyone says it, at one supper | 131 | 0 | 0 | 131 | mood +128, trust +3 | partly scored (FirstSupper): read by hand |
+|  | 2 | Only those who want to say it | 109 | 0 | 0 | 109 | mood +109 | partly scored (FirstSupper): read by hand |
+|  | 3 | Not this year | 0 | 4 | 0 | -4 | mood -4 | partly scored (FirstSupper): read by hand |
 
 ### Rimfolk_Dilemmas_Customs_New.xml
 
@@ -519,6 +544,85 @@ it gets no verdict, and is read by hand.
 | the winter tales (`Rimfolk_Dlm_WinterTales`) | 1 | The year told by the fire | 79 | 4 | 0 | 75 | mood +65, trust +4, wellbeing +10, work -4 | trade-off |
 |  | 2 | One tale at supper | 57 | 1 | 0 | 55 | mood +55, trust +2, work -1 | trade-off |
 |  | 3 | The year is best forgotten | 1 | 15 | 0 | -13 | mood -12, trust -2 | trade-off |
+
+### Rimfolk_Dilemmas_Everyday.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| the only one who knows how (`Rimfolk_DlmE_OnlyOneKnows`) | 1 | A teaches B | 19 | 10 | 0 | 9 | mood +3, trust +3, work -1, skill +4 | trade-off |
+|  | 2 | A keeps the craft to Aself | 20 | 15 | 0 | 5 | mood +8, trust -3 | trade-off |
+|  | 3 | Leave it to the two of them | 9 | 14 | 0 | -4 | mood -12, trust +8 | trade-off |
+| the broom and the bucket (`Rimfolk_DlmE_Broom`) | 1 | B takes the broom | 28 | 32 | 0 | -4 | mood -10, trust +3, work +3 | trade-off |
+|  | 2 | A cleaning day, four of us | 14 | 9 | 0 | 4 | trust +2, work +3 | trade-off |
+|  | 3 | The floors are for whoever minds them | 20 | 14 | 0 | 6 | mood +8, trust -2 | trade-off |
+| dawn to dark (`Rimfolk_DlmE_DawnToDark`) | 1 | B takes A away from it for an evening | 11 | 0 | 0 | 11 | mood +8, trust +2, wellbeing +2 | trade-off |
+|  | 2 | A day off for A | 6 | 10 | 0 | -4 | mood -4, trust +3, wellbeing +3, work -6 | trade-off |
+|  | 3 | A knows A own limits | 23 | 12 | 0 | 11 | mood +8, trust +3 | trade-off |
+| every hand to the harvest (`Rimfolk_DlmE_HarvestHands`) | 1 | Every hand to the fields | 26 | 32 | 0 | -6 | mood -10, trust +2, work +3 | trade-off |
+|  | 2 | B goes out with A | 12 | 9 | 0 | 3 | work +3 | trade-off |
+|  | 3 | The growers in their own time | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| the good meals (`Rimfolk_DlmE_GoodMeals`) | 1 | A proper supper tonight | 12 | 19 | 0 | -7 | mood +3, work -6, goods -4 | trade-off |
+|  | 2 | Keep them for the hard days | 9 | 12 | 0 | -3 | mood -3 | trade-off |
+| a second helping (`Rimfolk_DlmE_Seconds`) | 1 | B has a word with A at supper | 10 | 9 | 0 | 1 | trust +2 | trade-off |
+|  | 2 | A brings in what A eats | 3 | 6 | 0 | -3 | mood -6, work +3 | trade-off |
+|  | 3 | One more helping won't break the colony | 12 | 12 | 0 | 0 | mood -3, trust +3 | trade-off |
+| a helper in the kitchen (`Rimfolk_DlmE_KitchenHelp`) | 1 | B learns at A's elbow | 19 | 10 | 0 | 9 | mood +3, trust +3, work -1, skill +4 | trade-off |
+|  | 2 | B takes the cooking for a few days | 13 | 9 | 0 | 4 | trust +3, wellbeing +1 | trade-off |
+|  | 3 | The kitchen stays A's | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| a patch of one's own (`Rimfolk_DlmE_OwnPatch`) | 1 | A little fenced patch by the fields | 20 | 9 | 0 | 11 | mood +11 | trade-off |
+|  | 2 | A corner out of the way | 12 | 6 | 0 | 6 | mood +3, trust +3 | trade-off |
+|  | 3 | Every row belongs to the colony | 22 | 12 | 0 | 10 | mood +8, trust +2 | trade-off |
+| laid up and bored (`Rimfolk_DlmE_BoredAbed`) | 1 | B sits with A this evening | 18 | 0 | 0 | 18 | mood +17, trust +2 | trade-off |
+|  | 2 | Friends take turns at the bedside | 11 | 2 | 0 | 9 | mood +8, trust +3, work -2 | trade-off |
+|  | 3 | Rest is rest | 9 | 12 | 0 | -3 | mood -12, trust +9 | trade-off |
+| the doctor's rounds (`Rimfolk_DlmE_DoctorsRounds`) | 1 | B does a round of the colony today | 12 | 9 | 0 | 3 | trust +2, skill +2 | trade-off |
+|  | 2 | A hands the doctoring to B for a few days | 14 | 9 | 0 | 5 | wellbeing +2, skill +3 | trade-off |
+|  | 3 | The doctoring stays with A | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| the sickroom (`Rimfolk_DlmE_Sickroom`) | 1 | Scrub it today | 23 | 9 | 0 | 14 | mood +11, work +3 | trade-off |
+|  | 2 | A sees to it Aself | 14 | 4 | 0 | 10 | mood +5, trust +2, work +3 | trade-off |
+|  | 3 | It will get its turn | 22 | 12 | 0 | 10 | mood +8, trust +2 | trade-off |
+| a child and an animal (`Rimfolk_DlmE_ChildAndBeast`) | 1 | Let them play this afternoon | 10 | 12 | 0 | -2 | mood -2 | partly scored (AnimalScene): read by hand |
+|  | 2 | A helps B with the animals | 14 | 6 | 0 | 7 | mood +3, trust +2, skill +3 | partly scored (AnimalScene): read by hand |
+|  | 3 | Not yet | 9 | 3 | 0 | 6 | mood +6 | partly scored (AnimalScene): read by hand |
+| a chair for old bones (`Rimfolk_DlmE_ElderChair`) | 1 | B makes A a chair | 15 | 9 | 0 | 6 | mood +12, trust -9, goods +3 | trade-off |
+|  | 2 | The best seat by the fire tonight | 4 | 0 | 0 | 3 | mood +2, trust +2 | trade-off |
+|  | 3 | The stool has done this long | 9 | 12 | 0 | -3 | mood -12, trust +9 | trade-off |
+| a young voice (`Rimfolk_DlmE_YoungVoice`) | 1 | A speaks at supper | 15 | 11 | 0 | 4 | mood +3, trust +3, work -2 | trade-off |
+|  | 2 | B hears A out first | 10 | 6 | 0 | 4 | mood +3, trust +2 | trade-off |
+|  | 3 | A can wait A turn | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| the same hands with the herd (`Rimfolk_DlmE_HerdHands`) | 1 | B works the herd with A this afternoon | 15 | 9 | 0 | 6 | trust +2, work +3, skill +2 | trade-off |
+|  | 2 | A teaches B the animals | 16 | 10 | 0 | 6 | mood +3, work -1, skill +4 | trade-off |
+|  | 3 | The herd stays with A | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| a name for the newborn (`Rimfolk_DlmE_NameNewborn`) | 1 | Call it {NAMEA} | 12 | 2 | 0 | 10 | mood +10 | partly scored (NameAnimal): read by hand |
+|  | 2 | Call it {NAMEB} | 12 | 2 | 0 | 10 | mood +10 | partly scored (NameAnimal): read by hand |
+|  | 3 | It doesn't need a name yet | 0 | 4 | 0 | -4 | mood -4 | partly scored (NameAnimal): read by hand |
+| two hands for one animal (`Rimfolk_DlmE_WhoseBeast`) | 1 | {PET_nameDef} goes with A | 16 | 22 | 0 | -6 | mood +16, relations -22 | partly scored (NewMaster): read by hand |
+|  | 2 | {PET_nameDef} goes with B | 16 | 22 | 0 | -6 | mood +16, relations -22 | partly scored (NewMaster): read by hand |
+|  | 3 | {PET_nameDef} stays with the herd | 0 | 24 | 0 | -24 | mood -24 | partly scored (NewMaster): read by hand |
+| a visitor at supper (`Rimfolk_DlmE_VisitorSupper`) | 1 | Supper with the visitors | 23 | 19 | 0 | 4 | mood +11, work -6, goods -4, outside +3 | trade-off |
+|  | 2 | A takes a meal out to them | 10 | 8 | 0 | 2 | mood +3, goods -2, outside +1 | trade-off |
+|  | 3 | They stay where they are | 9 | 12 | 0 | -3 | mood -3 | trade-off |
+| a traveller's news (`Rimfolk_DlmE_TravellersNews`) | 1 | An evening at the fire with them | 24 | 14 | 0 | 10 | mood +15, work -5 | trade-off |
+|  | 2 | A sits with X an hour | 4 | 0 | 0 | 4 | mood +3, trust +2 | trade-off |
+|  | 3 | The news will keep | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| two friends who fell out (`Rimfolk_DlmE_FriendsFellOut`) | 1 | A supper for the two of them | 32 | 2 | 0 | 30 | relations +32, work -1, goods -1 | trade-off |
+|  | 2 | They talk it out | 26 | 0 | 0 | 25 | trust +3, relations +22 | trade-off |
+|  | 3 | Let them cool off | 9 | 12 | 0 | -3 | mood -12, trust +9 | trade-off |
+| an old friend left out (`Rimfolk_DlmE_OldFriendLeftOut`) | 1 | An evening for the two old friends | 22 | 9 | 0 | 13 | mood -9, relations +22 | trade-off |
+|  | 2 | B brings A along | 10 | 5 | 0 | 6 | mood +9, trust +2, work -5 | trade-off |
+|  | 3 | A will get over it | 18 | 24 | 0 | -6 | mood -7, trust +9, relations -8 | trade-off |
+| talk behind a back (`Rimfolk_DlmE_BehindTheirBack`) | 1 | A says sorry in front of everyone | 22 | 10 | 0 | 12 | mood -9, relations +22, work -1 | trade-off |
+|  | 2 | They have it out in private | 14 | 0 | 0 | 13 | relations +14 | trade-off |
+|  | 3 | Words are only words | 9 | 22 | 0 | -14 | mood +9, relations -22 | trade-off |
+| the first warm day (`Rimfolk_DlmE_WarmDay`) | 1 | Supper out of doors | 48 | 40 | 0 | 8 | mood +18, work -6, goods -4 | trade-off |
+|  | 2 | Half an hour in the sun at noon | 16 | 1 | 0 | 15 | mood +16, work -1 | trade-off |
+|  | 3 | The sowing comes first | 20 | 12 | 0 | 8 | mood +8 | trade-off |
+| a cold bedroom (`Rimfolk_DlmE_ColdBedroom`) | 1 | A fire kept in A's room | 9 | 0 | 0 | 9 | mood +9 | trade-off |
+|  | 2 | B gives A the warmer room | 40 | 30 | 0 | 10 | mood -30, relations +40 | trade-off |
+|  | 3 | A will manage | 2 | 12 | 0 | -10 | mood -12, trust +2 | trade-off |
+| the storm at night (`Rimfolk_DlmE_StormNight`) | 1 | Everyone sits up until it passes | 15 | 4 | 0 | 12 | mood +6, trust +9, work -4 | trade-off |
+|  | 2 | B sits with A | 8 | 0 | 0 | 7 | mood +6, trust +2 | trade-off |
+|  | 3 | Storms pass | 12 | 2 | 0 | 10 | mood +10 | trade-off |
 
 ### Rimfolk_Dilemmas_Faith.xml
 
@@ -563,6 +667,21 @@ it gets no verdict, and is read by hand.
 | family come to take them home (`Council_DlmGuest_KinAsks`) | 1 | Let A go home with X | 10 | 94 | 0 | -84 | mood -32, work -2, people -60, outside +10 | partly scored (GoHomeWith): read by hand |
 |  | 2 | A stays, and X goes home with {COUNT} silver | 0 | 70 | 0 | -70 | mood -40, trust -4, goods -20, outside -5 | partly scored (GoHomeWith): read by hand |
 |  | 3 | A stays | 0 | 64 | 0 | -64 | mood -40, trust -9, outside -15 | partly scored (GoHomeWith): read by hand |
+
+### Rimfolk_Dilemmas_HerdCount.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| the autumn count (`Rimfolk_Dlm_HerdCount`) | 1 | Keep them all | 23 | 2 | 0 | 22 | mood +20, trust +2 | partly scored (HerdOldest, HerdSell): read by hand |
+|  | 2 | Sell the yearlings to the next traders | 2 | 12 | 0 | -10 | mood -12, trust +2 | partly scored (HerdOldest, HerdSell): read by hand |
+|  | 3 | {COUNT} of the oldest to the butcher | 3 | 15 | 0 | -12 | mood -12 | partly scored (HerdOldest, HerdSell): read by hand |
+
+### Rimfolk_Dilemmas_KinSendHome.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| help sent home (`Rimfolk_Dilemma_KinSendHome`) | 1 | Send {COUNT} {WHAT} home with the courier | 0 | 0 | 0 | 0 | nothing scored | partly scored (KinSendHome): read by hand |
+|  | 2 | The colony can't spare it now | 0 | 3 | 0 | -3 | trust -3 | partly scored (KinSendHome): read by hand |
 
 ### Rimfolk_Dilemmas_Lives.xml
 
@@ -611,9 +730,9 @@ it gets no verdict, and is read by hand.
 | the worrier's watch (`Council_DlmLv_WorrierWatch`) | 1 | Set a night watch for the night | 2 | 4 | 0 | -2 | mood -3, wellbeing +2, work -1 | dominated by answer 2 |
 |  | 2 | B talks it through with A | 8 | 0 | 0 | 7 | relations +5, wellbeing +3, work -0 | trade-off |
 |  | 3 | The walls are fine. Get some sleep. | 0 | 6 | 0 | -6 | mood -6 | dominated by answer 1; dominated by answer 2 |
-| the colony's record (`Council_DlmLv_RecordKeeper`) | 1 | Make A keeper of the colony's record | 6 | 2 | 0 | 4 | trust +2, skill +3 | trade-off |
-|  | 2 | Keep it, but keep it private | 0 | 2 | 0 | -2 | mood -2 | dominated by answer 1 |
-|  | 3 | Read out the good parts at supper | 0 | 2 | 0 | -2 | work -2 | dominated by answer 1 |
+| the colony's record (`Council_DlmLv_RecordKeeper`) | 1 | Make A keeper of the colony's record | 6 | 2 | 0 | 4 | trust +2, skill +3 | partly scored (RecordKeeper): read by hand |
+|  | 2 | Keep it, but keep it private | 0 | 2 | 0 | -2 | mood -2 | partly scored (RecordKeeper): read by hand |
+|  | 3 | Read out the good parts at supper | 0 | 2 | 0 | -2 | work -2 | partly scored (RecordKeeper): read by hand |
 
 ### Rimfolk_Dilemmas_Lives_Customs.xml
 
@@ -713,6 +832,14 @@ it gets no verdict, and is read by hand.
 |  | 2 | Leave food out, and back to work | 4 | 0 | 0 | 4 | mood +4 | partly scored (FeedBeast): read by hand |
 |  | 3 | Not this year | 0 | 4 | 0 | -4 | mood -4 | partly scored (FeedBeast): read by hand |
 
+### Rimfolk_Dilemmas_SeatHalfway.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| a promise halfway (`Rimfolk_Dilemma_SeatHalfway`) | 1 | Give B a hand with it | 4 | 0 | 0 | 4 | trust +4 | partly scored (SeatHands, SeatSupper): read by hand |
+|  | 2 | B answers for it at supper | 14 | 0 | 0 | 14 | trust +14 | partly scored (SeatHands, SeatSupper): read by hand |
+|  | 3 | Leave it to the vote | 0 | 2 | 0 | -2 | trust -2 | partly scored (SeatHands, SeatSupper): read by hand |
+
 ### Rimfolk_Dilemmas_TownKin.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -773,6 +900,22 @@ it gets no verdict, and is read by hand.
 |  | 2 | Tame it once it's on its feet | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (MarkBeast): read by hand |
 |  | 3 | Leave it to the wild | 0 | 2 | 0 | -2 | mood -2 | partly scored (MarkBeast): read by hand |
 
+### Rimfolk_Dilemmas_WorldHome.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| keeping apart from travellers (`Rimfolk_Dlm_WS_Apart`) | 1 | Keep apart from travellers until it passes | 24 | 0 | 0 | 24 | mood +20, trust +4 | partly scored (WorldApart): read by hand |
+|  | 2 | Greet them as always | 0 | 30 | 0 | -30 | mood -30 | partly scored (WorldApart): read by hand |
+| a vigil day for the holy year (`Rimfolk_Dlm_WS_Vigil`) | 1 | Grant the vigil days | 24 | 0 | 0 | 24 | mood +20, trust +4 | partly scored (WorldVow): read by hand |
+|  | 2 | The work comes first | 0 | 30 | 0 | -30 | mood -30 | partly scored (WorldVow): read by hand |
+| taking sides in a war (`Rimfolk_Dlm_WS_Sides`) | 1 | Stand with {FACTION} | 20 | 30 | 0 | -10 | mood -10 | partly scored (WorldSide): read by hand |
+|  | 2 | Stand with {ENEMY} | 20 | 30 | 0 | -10 | mood -10 | partly scored (WorldSide): read by hand |
+|  | 3 | Keep out of it | 3 | 0 | 0 | 3 | trust +3 | partly scored (WorldSide): read by hand |
+| mourning colours (`Rimfolk_Dlm_WS_Mourning`) | 1 | Wear mourning colours | 20 | 0 | 0 | 20 | mood +20 | partly scored (WorldMourning): read by hand |
+|  | 2 | Leave the colony's clothes as they are | 0 | 30 | 0 | -30 | mood -30 | partly scored (WorldMourning): read by hand |
+| a fair day at home (`Rimfolk_Dlm_WS_FairDay`) | 1 | Hold a fair day | 44 | 59 | 0 | -15 | mood +20, wellbeing +24, work -59 | easy: best by 15 |
+|  | 2 | Not this year | 0 | 30 | 0 | -30 | mood -30 | trade-off |
+
 ### Rimfolk_Dilemmas_YearFour.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -807,6 +950,13 @@ it gets no verdict, and is read by hand.
 | the faith without a guide (`Rimfolk_DlmY_NoGuide`) | 1 | A guides the faith | 20 | 9 | 0 | 10 | mood +9, trust +2 | partly scored (NameGuide): read by hand |
 |  | 2 | B guides the faith | 20 | 9 | 0 | 10 | mood +9, trust +2 | partly scored (NameGuide): read by hand |
 |  | 3 | The faithful can manage | 0 | 27 | 0 | -27 | mood -24, trust -3 | partly scored (NameGuide): read by hand |
+
+### Rimfolk_GodsAmong.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| a day against the season (`Rimfolk_Dlm_SeasonDay`) | 1 | Keep a day for {GOD} at {PLACE} | 3 | 0 | 0 | 3 | trust +3 | partly scored (GodFavour, SeasonDay, ShrineWords): read by hand |
+|  | 2 | Let it pass | 0 | 2 | 0 | -2 | trust -2 | partly scored (GodFavour, SeasonDay, ShrineWords): read by hand |
 
 ### Rimfolk_Saints.xml
 
@@ -968,9 +1118,9 @@ These files were being written to by others in the same round; their findings wa
 | harvest home (`Council_Dilemma_HarvestHome`) | 1 | A harvest feast for everyone | 153 | 43 | 0 | 110 | mood +115, trust +9, work -7, goods -7 | trade-off |
 |  | 2 | Store every scrap for winter | 0 | 47 | 0 | -47 | mood -41, trust -6 | trade-off |
 |  | 3 | A modest supper | 89 | 9 | 0 | 81 | mood +86, trust +3, work -4, goods -5 | trade-off |
-| the longest night (`Council_Dilemma_Midwinter`) | 1 | Extra rations for the long night | 102 | 33 | 0 | 69 | mood +77, trust +6, work -7, goods -7 | trade-off |
-|  | 2 | Stories by the fire, no feast | 59 | 7 | 0 | 52 | mood +48, trust +3, wellbeing +8, work -7 | trade-off |
-|  | 3 | Just another night | 0 | 26 | 0 | -26 | mood -26 | trade-off |
+| the longest night (`Council_Dilemma_Midwinter`) | 1 | Extra rations for the long night | 102 | 33 | 0 | 69 | mood +77, trust +6, work -7, goods -7 | partly scored (Midwinter): read by hand |
+|  | 2 | Stories by the fire, no feast | 59 | 7 | 0 | 52 | mood +48, trust +3, wellbeing +8, work -7 | partly scored (Midwinter): read by hand |
+|  | 3 | Just another night | 0 | 26 | 0 | -26 | mood -26 | partly scored (Midwinter): read by hand |
 | naming the year (`Council_Dilemma_NameTheYear`) | 1 | The year of A | 57 | 16 | 0 | 41 | mood +32, trust +9 | trade-off |
 |  | 2 | Name it for those we lost | 86 | 5 | 0 | 82 | mood +86, trust -3, work -2 | trade-off |
 |  | 3 | The year of the muffalo | 72 | 4 | 0 | 68 | mood +72, trust -4 | trade-off |

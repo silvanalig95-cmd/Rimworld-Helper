@@ -136,8 +136,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Rimfolk_DlmE_ChairMade</defName>
-    <durationDays>6</durationDays>
-    <stages><li><label>a chair of my own</label><description>Someone made me a proper chair for my room. My back is grateful.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <durationDays>4</durationDays>
+    <stages><li><label>a chair of my own</label><description>Someone made me a proper chair for my room. My back is grateful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -172,14 +172,14 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Rimfolk_DlmE_News</defName>
-    <durationDays>2</durationDays>
+    <durationDays>1</durationDays>
     <stages><li><label>news from outside</label><description>I heard the news from the roads tonight. The world is bigger than this colony.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Rimfolk_DlmE_BroughtAlong</defName>
-    <durationDays>2</durationDays>
-    <stages><li><label>brought along</label><description>An old friend brought me along to the evening with the others.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <durationDays>3</durationDays>
+    <stages><li><label>brought along</label><description>An old friend brought me along to the evening with the others.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -222,6 +222,30 @@
     <defName>Rimfolk_DlmE_StormAlone</defName>
     <durationDays>1</durationDays>
     <stages><li><label>alone in the storm</label><description>The storm went on half the night, and I lay awake through it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_GotMyWay</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council saw it my way</label><description>I said what I thought, and the council went along with it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Pressed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>made to give way</label><description>The council asked me to give way on something I cared about. I did, and I'm not happy about it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Learned</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>learned from someone who knows</label><description>Someone who really knows the work showed me how it's done.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SleptThrough</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>slept through the storm</label><description>There was a storm in the night. I slept through most of it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- An old friend's new friend (the old friend left out): an opinion of the friend who has someone else now. -->

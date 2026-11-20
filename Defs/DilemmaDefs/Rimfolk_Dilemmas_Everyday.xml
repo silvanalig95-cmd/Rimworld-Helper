@@ -32,7 +32,8 @@
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} teaches {B_nameDef} {SKILL}</label><teacher>A</teacher><student>B</student><hours>8~18</hours><duration>2~3</duration><xpPerHour>200</xpPerHour></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
         </effects>
       </li>
@@ -42,7 +43,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
         </effects>
       </li>
@@ -52,6 +53,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -78,7 +80,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{B_nameDef}'s turn with the broom</label><target>B</target><organizer>B</organizer><count>1</count><tasks><li>Clean</li></tasks><hours>8~16</hours><duration>2~3</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
         </effects>
       </li>
@@ -88,7 +90,8 @@
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the cleaning day</label><count>4</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>9~17</hours><duration>2~3</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
@@ -97,6 +100,7 @@
         <outcome>The council said the floors are for whoever minds them. {A_nameDef} said that was {A_objective}, then, as usual.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
         </effects>
       </li>
@@ -124,7 +128,6 @@
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits {A_nameDef} down</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Fire</sitBy><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_TakenAway</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
@@ -145,6 +148,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
     </options>
@@ -186,7 +190,8 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} and {B_nameDef} in the fields</label><target>AAndB</target><count>2</count><tasks><li>Harvest</li><li>Haul</li></tasks><near><li>Fields</li></near><hours>9~18</hours><duration>3~4</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -226,7 +231,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s supper</label><hours>17~20</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_CookProud</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -238,7 +243,7 @@
         <ways><generosity>-1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
         </effects>
       </li>
     </options>
@@ -268,7 +273,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} has a word with {A_nameDef}</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>17~20</hours><duration>0.75~1</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ToldOff</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
@@ -286,7 +291,9 @@
         <outcome>The council let it go. {B_nameDef} said the colony would remember who had the last of it.</outcome>
         <ways><generosity>1</generosity></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
     </options>
@@ -311,7 +318,8 @@
         <ways><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{B_nameDef} in the kitchen with {A_nameDef}</label><teacher>A</teacher><student>B</student><hours>8~18</hours><duration>2~3</duration><xpPerHour>200</xpPerHour></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
         </effects>
       </li>
@@ -321,8 +329,10 @@
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HandOver"><work>Cooking</work><label>the cooking</label></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_TheirKitchen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-4</amount></li>
         </effects>
       </li>
       <li>
@@ -359,7 +369,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SowPatch"><fence>true</fence></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_OwnPatch</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -367,7 +377,9 @@
         <outcome>{A_nameDef} sowed a small patch in a corner at the edge of the home ground, where it's in nobody's way.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SowPatch"><fence>false</fence><outOfWay>true</outOfWay></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -377,6 +389,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -403,13 +416,13 @@
         <label>{B_nameDef} sits with {A_nameDef} this evening</label>
         <outcome>{B_nameDef} came by the sickbed in the evening and stayed a good while, talking about nothing much. {A_nameDef} looked better for it.</outcome>
         <outcomes>
-          <li>[seat] {B_nameDef} came by the sickbed in the evening and stayed a good while, and {HOLDER_nameDef} pretended not to notice. {A_nameDef} looked better for it.</li>
+          <li>[seat] {B_nameDef} came by the sickbed in the evening and stayed a good while, and {HOLDER_nameDef}, as {OFFICE}, pretended not to notice. {A_nameDef} looked better for it.</li>
         </outcomes>
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits with {A_nameDef}</label><who>B</who><whom>A</whom><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Company</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
@@ -420,6 +433,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>company at {A_nameDef}'s bedside</label><target>FriendsOfA</target><to>Person</to><whom>A</whom><count>3</count><hours>15~21</hours><duration>3~4</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Company</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -427,6 +441,7 @@
         <outcome>The council said the patient needs quiet. {A_nameDef} went back to counting the cracks in the ceiling.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -453,8 +468,9 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Rounds"><label>{B_nameDef}'s round of the colony</label><who>B</who><count>6</count><hours>9~17</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
@@ -465,7 +481,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HandOver"><work>Doctor</work><label>the doctoring</label></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LoadShared</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
         </effects>
       </li>
       <li>
@@ -501,7 +519,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>scrubbing the sickroom</label><count>3</count><tasks><li>Clean</li></tasks><at>sickroom</at><hours>8~19</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -511,7 +529,8 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} scrubs the sickroom</label><target>A</target><count>1</count><tasks><li>Clean</li></tasks><at>sickroom</at><hours>8~19</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_OwnHands</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -519,6 +538,8 @@
         <outcome>The council left the sickroom to take its turn. {A_nameDef} wasn't happy about it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -555,12 +576,13 @@
         <label>{A_nameDef} helps {B_nameDef} with the animals</label>
         <outcome>{A_nameDef} spent the afternoon at {B_nameDef}'s side with the animals, learning how they're fed and handled, and asked a question about every one of them.</outcome>
         <outcomes>
-          <li>[seat] {A_nameDef} spent the afternoon at {B_nameDef}'s side with the animals, learning how they're fed and handled, and {HOLDER_nameDef} said it was the right start.</li>
+          <li>[seat] {A_nameDef} spent the afternoon at {B_nameDef}'s side with the animals, learning how they're fed and handled, and {HOLDER_nameDef} said, as {OFFICE}, that it was the right start.</li>
         </outcomes>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} learns the animals from {B_nameDef}</label><teacher>B</teacher><student>A</student><hours>9~17</hours><duration>1.5~2</duration><xpPerHour>150</xpPerHour></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
@@ -569,6 +591,7 @@
         <outcome>The council said not yet. {A_nameDef} took it about as well as children take not yet.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_NotYet</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
         </effects>
       </li>
     </options>
@@ -596,7 +619,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Made"><label>a chair for {A_nameDef}</label><things>Armchair|DiningChair|Stool</things><maker>B</maker><forWhom>A</forWhom><inRoom>true</inRoom><makeHours>2</makeHours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ChairMade</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
         </effects>
       </li>
       <li>
@@ -605,6 +628,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} by the fire</label><who>A</who><to>Fire</to><orTo><li>Outdoors</li></orTo><hours>18~22</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BestSeat</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -613,6 +637,7 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -639,7 +664,8 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef} has a say</label><spots><li>Dining</li></spots><hours>17~20</hours><duration>0.75~1</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Heard</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -648,7 +674,9 @@
         <ways><tradition>1</tradition><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} hears {A_nameDef} out</label><who>B</who><whom>A</whom><sit>true</sit><hours>9~21</hours><duration>1~1.5</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -686,8 +714,9 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} and {B_nameDef} at the pens</label><target>AAndB</target><count>2</count><tasks><li>Tend</li><li>Herd</li></tasks><hours>12~18</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>150</xp></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
@@ -696,7 +725,8 @@
         <outcome>{A_nameDef} kept {B_nameDef} at {A_possessive} side for an afternoon and showed {B_objective} how each of the animals likes to be handled.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} teaches {B_nameDef} the animals</label><teacher>A</teacher><student>B</student><hours>9~17</hours><duration>2~2.5</duration><xpPerHour>180</xpPerHour></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
         </effects>
       </li>
       <li>
@@ -704,6 +734,7 @@
         <outcome>The council left the animals with {A_nameDef}. The animals didn't seem to mind.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
         </effects>
       </li>
     </options>
@@ -826,9 +857,9 @@
         <ways><openness>2</openness><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the visitors</label><guests>stranger</guests><hours>17~20</hours></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -837,8 +868,9 @@
         <ways><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><eat>true</eat></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compromise</thought></li>
         </effects>
       </li>
       <li>
@@ -846,7 +878,7 @@
         <outcome>The strangers stay where they are, and the colony minds its own business.</outcome>
         <ways><openness>-1</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
         </effects>
       </li>
@@ -881,8 +913,8 @@
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening with the travellers</label><guests>stranger</guests><hours>18~22</hours><duration>2~3</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_News</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmE_News</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -892,6 +924,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} sits with {X_nameDef}</label><who>A</who><to>Stranger</to><sit>true</sit><hours>9~22</hours><duration>1~1.5</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_News</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -935,7 +968,7 @@
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for {A_nameDef} and {B_nameDef}</label><target>AAndB</target><spots><li>Dining</li></spots><hours>17~20</hours><duration>1.5~2</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.7</chance></li>
         </effects>
       </li>
       <li>
@@ -946,7 +979,9 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {B_nameDef} talk it out</label><who>A</who><whom>B</whom><sit>true</sit><hours>9~21</hours><duration>1~1.5</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -954,6 +989,7 @@
         <outcome>The council said friends sort these things out themselves. So far, they haven't.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_DlmE_StillSore</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -977,7 +1013,8 @@
         <outcome>{B_nameDef} came to find {A_nameDef} after the day's work, and the two of them sat by the fire for the evening the way they used to.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} and {A_nameDef} by the fire</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Fire</sitBy><hours>18~22</hours><duration>1.5~2</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_MadeUp</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
       </li>
       <li>
@@ -987,6 +1024,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening at the fire</label><organizer>B</organizer><hours>18~22</hours><duration>2~3</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BroughtAlong</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -994,6 +1032,8 @@
         <outcome>The council said friendship isn't a thing it can decree. {A_nameDef} went on counting.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LeftOut</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -1044,6 +1084,7 @@
         <outcome>The council said it doesn't rule on gossip. {B_nameDef} said {B_pronoun} would remember that.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
         </effects>
       </li>
     </options>
@@ -1131,6 +1172,7 @@
         <outcome>The council said a cold room is still a room. {A_nameDef} said that was easy to say from a warm one.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
     </options>
@@ -1155,6 +1197,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>sitting out the storm</label><organizer>B</organizer><spots><li>Rec</li><li>Dining</li></spots><hours>18~23</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormTogether</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -1163,7 +1206,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits with {A_nameDef}</label><who>B</who><whom>A</whom><hours>18~23</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormTogether</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
@@ -1171,6 +1214,7 @@
         <outcome>The council said storms pass. {A_nameDef} lay awake until this one did.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormAlone</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Rimfolk_DlmE_SleptThrough</thought></li>
         </effects>
       </li>
     </options>

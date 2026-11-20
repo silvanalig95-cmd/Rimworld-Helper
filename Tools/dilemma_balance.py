@@ -319,7 +319,7 @@ def score_effects(defs, d, effects):
             out.append(("wellbeing", -num(e, "amount") * 0.3 * n, "strain"))
         elif cls == "DilemmaEffect_StrainRelief":
             out.append(("wellbeing", num(e, "amount", 10) * 0.3 * n, "strain eased"))
-        elif cls == "DilemmaEffect_Rest":
+        elif cls in ("DilemmaEffect_Rest", "DilemmaEffect_HeartDayOff"):
             out.append(("wellbeing", 3 * n, "day off"))
             out.append(("work", -6 * n, "day off"))
         elif cls == "DilemmaEffect_Joy":
@@ -424,7 +424,7 @@ SCORED = {
     "DilemmaEffect_Carving", "DilemmaEffect_BurnFound", "DilemmaEffect_Smash", "DilemmaEffect_Resistance", "DilemmaEffect_HoldBack",
     "DilemmaEffect_Cull", "DilemmaEffect_TurnOut", "DilemmaEffect_LoseAnimal", "DilemmaEffect_GivePet", "DilemmaEffect_SellHeirloom",
     "DilemmaEffect_Operation", "DilemmaEffect_Hours", "DilemmaEffect_SelfTend", "DilemmaEffect_MedCare", "DilemmaEffect_SuspendBills",
-    "DilemmaEffect_Emancipate", "DilemmaEffect_PrisonerOrder",
+    "DilemmaEffect_Emancipate", "DilemmaEffect_PrisonerOrder", "DilemmaEffect_HeartDayOff",
 }
 
 # Effects that are the words made real, or a condition, and change nothing the scales measure: scored as nothing.
