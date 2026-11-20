@@ -448,7 +448,7 @@ offices' setting.
   now (any promise hands can help), the colony's petitions read out as at a meeting, and a new holder's story given its
   call.
 
-### Colony life's variety, part 1: the council's situations and its everyday questions (the content update's A3, A4, A7, A18, A19 and A20, and twenty-five questions of everyday life; the player's go, 20 November 2026; not released yet)
+### Colony life's variety, part 1: the council's situations and its everyday questions (the content update's A3, A4, A7, A18, A19 and A20, and twenty-five questions of everyday life; the player's go, 20 November 2026; released 0.283.0)
 
 The player: "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and
 "yes, I want more events, camps, world events, and dilemmas, but first do all the integrations". With the integrations
