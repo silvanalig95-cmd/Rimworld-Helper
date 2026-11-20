@@ -266,6 +266,8 @@ namespace ColonyCouncil
         private static Dictionary<ThoughtDef, List<TraitTally>> byThought;
         private static Dictionary<HistoryEventDef, List<TraitTally>> byEvent;
         private static Dictionary<TaleDef, List<TraitTally>> byTale;
+        /// <summary>The tallies that count marks as they come, one per key (marks are given rarely, so a list).</summary>
+        private static List<TraitTally> byMark;
         private static List<string> paceRecords;
         private static int generation = -1;
 
@@ -276,6 +278,7 @@ namespace ColonyCouncil
             byThought = new Dictionary<ThoughtDef, List<TraitTally>>();
             byEvent = new Dictionary<HistoryEventDef, List<TraitTally>>();
             byTale = new Dictionary<TaleDef, List<TraitTally>>();
+            byMark = new List<TraitTally>();
             var records = new HashSet<string>();
             void Index<T>(Dictionary<T, List<TraitTally>> into, T def, TraitTally t) where T : Def
             {
@@ -291,6 +294,7 @@ namespace ColonyCouncil
                     foreach (var n in t.Split(t.thoughts)) Index(byThought, DefDatabase<ThoughtDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.events)) Index(byEvent, DefDatabase<HistoryEventDef>.GetNamedSilentFail(n), t);
                     foreach (var n in t.Split(t.tales)) Index(byTale, DefDatabase<TaleDef>.GetNamedSilentFail(n), t);
+                    if (!t.marks.NullOrEmpty() && !byMark.Any(x => x.key == t.key && x.whileHungry == t.whileHungry)) byMark.Add(t);
                 }
                 foreach (var p in def.pace ?? new List<TraitPace>())
                 {
@@ -343,6 +347,31 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A mark was just given (PersonaMarks.Give): counted for the tallies that name it, so a mark can be counted after
+        /// it has gone from the character page (two long peaces, a year apart). Same day, same tally: one occasion.
+        /// </summary>
+        public static void Notify_Mark(Pawn p, PersonaMarkDef def)
+        {
+            if (def == null || p == null || !Persona.On) return;
+            Build();
+            if (byMark.Count == 0) return;
+            try
+            {
+                if (!On || !CanChange(p)) return;
+                bool? hungry = null;
+                foreach (var t in byMark)
+                {
+                    if (!t.CountsMark(def) || (t.whileHungry && !(hungry ??= Hungry(p)))) continue;
+                    Count(p, t.key, null);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("trait changes from a mark", e);
+            }
+        }
+
         /// <summary>The day's new tales (an execution, told whether or not a DLC records it as a deed), once a day.</summary>
         private static void ReadTales()
         {
@@ -387,9 +416,9 @@ namespace ColonyCouncil
         // ---------------- Once a day ----------------
 
         /// <summary>
-        /// Once a day: the watches are brought up to date (calm days, how time is spent, the day's tales), and when the
-        /// colony hasn't seen a change in 10 days, each colonist's rules are checked; of those that hold and roll their
-        /// chance, one happens.
+        /// Once a day: the watches are brought up to date (calm days, how time is spent, the day's tales), and each
+        /// colonist's rules are checked (within 10 days of the colony's last change only the ways out of a bad trait); of
+        /// those that hold and roll their chance, one happens.
         /// </summary>
         public static void Daily(CouncilGameComponent comp)
         {
@@ -419,18 +448,23 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("trait changes: tales", e);
             }
-            if (TraitChangeMath.RateBlocked(-1, t.lastChange, -1, 0, now) != null) return;
+            // Within the colony's 10 days, only a way out of a bad trait.
+            bool colonyWaits = TraitChangeMath.RateBlocked(-1, t.lastChange, -1, 0, now) != null;
             var ready = new List<(Pawn p, TraitChangeDef def, TraitStep step)>();
             foreach (var p in people)
             {
                 // Within their 60 days, only a change that takes away a trait Rimfolk gave them.
-                bool waiting = TraitChangeMath.RateBlocked(t.LastChange(p.thingIDNumber), -1, -1, 0, now) != null;
+                int lastPerson = t.LastChange(p.thingIDNumber);
+                bool waiting = TraitChangeMath.RateBlocked(lastPerson, -1, -1, 0, now) != null;
                 foreach (var def in TraitChangeDef.All)
                 {
-                    if (waiting && def.change == TraitChangeKind.Gain) continue;
+                    if ((waiting || colonyWaits) && def.change == TraitChangeKind.Gain) continue;
+                    if (colonyWaits && !def.LeadsOut) continue;
                     try
                     {
-                        if (Why(p, def, now, out var step) == null && (!waiting || Undoes(p, def, step)) && Rand.Chance(def.chance)) ready.Add((p, def, step));
+                        if (Why(p, def, now, out var step) != null) continue;
+                        if (TraitChangeMath.RateBlocked(lastPerson, t.lastChange, -1, 0, now, Undoes(p, def, step), def.WayOut(step)) != null) continue;
+                        if (Rand.Chance(def.chance)) ready.Add((p, def, step));
                     }
                     catch (Exception e)
                     {
@@ -467,7 +501,8 @@ namespace ColonyCouncil
             foreach (var def in TraitChangeDef.All)
             {
                 string why = Why(p, def, now, out var step);
-                sb.Append("\n  ").Append(def.defName).Append(": ").Append(why ?? "holds (" + (def.chance * 100f).ToString("0") + "% a day)");
+                sb.Append("\n  ").Append(def.defName).Append(def.WayOut(step) ? " (a way out)" : "").Append(": ")
+                    .Append(why ?? "holds (" + (def.chance * 100f).ToString("0") + "% a day)");
                 if (why == null && apply)
                 {
                     Apply(p, def, step, now);
@@ -476,6 +511,42 @@ namespace ColonyCouncil
                 }
             }
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Dev mode: the rules that could change this colonist now if their evidence were there (the gate passes, the gap
+        /// since the trait last changed aside): with <paramref name="waysOut"/> the ways out of a bad trait they have,
+        /// else the gains. Each with what it still lacks (null: it holds).
+        /// </summary>
+        public static List<(TraitChangeDef def, string lacks)> DebugRules(Pawn p, bool waysOut)
+        {
+            var list = new List<(TraitChangeDef, string)>();
+            if (Tracker == null || !On || !CanChange(p)) return list;
+            Build();
+            int now = Now;
+            Look(Tracker.Watch(p, true), p, now);
+            foreach (var def in TraitChangeDef.All)
+            {
+                if (Gate(p, def, now, out var step, true) != null) continue;
+                if (waysOut ? !def.WayOut(step) : def.change != TraitChangeKind.Gain) continue;
+                list.Add((def, Lacks(p, def, now)));
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Dev mode: make this rule's change now, as the daily pass would (the letter, the journal line, the record that
+        /// Rimfolk gave a trait, so its ways out can be tried), whatever its evidence, chance and the limits say.
+        /// </summary>
+        public static string DebugApply(Pawn p, TraitChangeDef def)
+        {
+            if (Tracker == null || !On || !CanChange(p) || def == null) return "traits can't change for " + (p?.LabelShort ?? "nobody") + " now";
+            int now = Now;
+            string gate = Gate(p, def, now, out var step, true);
+            if (gate != null) return def.defName + " can't change " + p.LabelShort + ": " + gate;
+            Apply(p, def, step, now);
+            buildingCache.Remove(p.thingIDNumber);
+            return def.defName + ": changed " + p.LabelShort + " now";
         }
 
         /// <summary>Keeps up what a colonist is watched for: calm since when, and every ten days how their time is spent.</summary>
@@ -510,9 +581,10 @@ namespace ColonyCouncil
         /// <summary>
         /// What stands in the way whatever they live through: the rule unavailable or used, a trait that blocks it, the
         /// degree it would step to, room for a trait, conflicts, a role, the last change of this trait too recent, age
-        /// and time in the colony. Null when only the evidence is missing (or nothing).
+        /// and time in the colony. Null when only the evidence is missing (or nothing). With <paramref name="gapAsPart"/> the
+        /// rule's gap since the trait last changed is left to the caller (the character page shows it as a part).
         /// </summary>
-        private static string Gate(Pawn p, TraitChangeDef def, int now, out TraitStep step)
+        private static string Gate(Pawn p, TraitChangeDef def, int now, out TraitStep step, bool gapAsPart = false)
         {
             step = default;
             var t = Tracker;
@@ -534,10 +606,8 @@ namespace ColonyCouncil
             if (!TraitChangeMath.RoomFor(step, traits.allTraits.Count)) return "no room";
             if (step.hasAfter && !Allowed(p, td, step.to, cur)) return "not allowed";
             if ((step.Removes || (has && step.hasAfter)) && HeldByRole(p)) return "role";
-            if (def.onlyGiven && !GaveIt(p, td.defName)) return "not given";
-            int lastSame = t.LastChange(p.thingIDNumber, td.defName);
-            string rate = TraitChangeMath.RateBlocked(-1, -1, lastSame, def.gapDays, now);
-            if (rate != null) return rate;
+            if (def.onlyGiven && !GaveIt(p, td.defName, def.givenBy)) return "not given";
+            if (!gapAsPart && !GapOver(p, def, now)) return "trait";
             if (def.minAge > 0 && (p.ageTracker?.AgeBiologicalYears ?? 0) < def.minAge) return "age";
             if (def.daysHere > 0 && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < def.daysHere * (float)GenDate.TicksPerDay) return "new";
             if (def.noRival && HasRival(p)) return "rival";
@@ -548,13 +618,18 @@ namespace ColonyCouncil
         /// Rimfolk gave them this trait: the newest of its changes kept for them added it (a trait they came with, or one a
         /// change already took away, isn't Rimfolk's to undo).
         /// </summary>
-        public static bool GaveIt(Pawn p, string trait)
+        public static bool GaveIt(Pawn p, string trait, List<string> by = null)
         {
             var t = Tracker;
             if (t == null || p == null || trait == null) return false;
             var mine = t.changes.Where(c => c.pawn == p.thingIDNumber && c.trait == trait).ToList();
-            return TraitChangeMath.GaveIt(mine.Select(c => c.tick).ToList(), mine.Select(c => c.hasAfter && !c.hadTrait).ToList());
+            return TraitChangeMath.GaveIt(mine.Select(c => c.tick).ToList(), mine.Select(c => c.hasAfter && !c.hadTrait).ToList(),
+                mine.Select(c => c.rule).ToList(), by);
         }
+
+        /// <summary>The rule's gap since this trait of theirs last changed is over (or it never changed).</summary>
+        private static bool GapOver(Pawn p, TraitChangeDef def, int now) =>
+            TraitChangeMath.RateBlocked(-1, -1, Tracker.LastChange(p.thingIDNumber, def.Trait.defName), def.gapDays, now) == null;
 
         /// <summary>The change takes away a trait Rimfolk gave them: the person's 60 days don't hold it back.</summary>
         private static bool Undoes(Pawn p, TraitChangeDef def, TraitStep step) => step.Removes && GaveIt(p, def.Trait?.defName);
@@ -667,7 +742,11 @@ namespace ColonyCouncil
             }
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
-                if (Entries(w, tally, lastSame, now).Count < tally.count) return "tally " + tally.key;
+            {
+                if (tally.None ? NoneDays(w, tally, lastSame, now) < tally.noneDays : Entries(w, tally, lastSame, now).Count < tally.count)
+                    return "tally " + tally.key;
+            }
+            if (!FaithAllows(p, def)) return "faith";
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
@@ -685,7 +764,7 @@ namespace ColonyCouncil
             if (!def.vendetta.NullOrEmpty() && !VowHolds(p, def, now)) return "vendetta";
             if (def.meleeFighter && !MeleeFighter(p)) return "melee";
             foreach (var f in def.Practice)
-                if (!f.Holds(Practice.Hours(p, f.name))) return "practice " + f.name;
+                if (!f.Holds(PracticeHours(p, f.name))) return "practice " + f.name;
             if (def.Habit != null)
             {
                 var q = HabitOf(p, def);
@@ -774,6 +853,43 @@ namespace ColonyCouncil
             if (w == null) return new List<TallyEntry>();
             float within = tally.withinDays > 0 ? tally.withinDays : TallyKeepDays;
             return w.tallies.Where(e => e.key == tally.key && e.tick > after && now - e.tick < within * GenDate.TicksPerDay).OrderBy(e => e.tick).ToList();
+        }
+
+        /// <summary>A zero count: days without any of these, from the newest kept or the trait's last change (whichever is later).</summary>
+        private static float NoneDays(TraitWatch w, TraitTally tally, int after, int now)
+        {
+            var ticks = w == null ? new List<int>() : w.tallies.Where(e => e.key == tally.key).Select(e => e.tick).ToList();
+            return TraitChangeMath.NoneDays(ticks, now, after);
+        }
+
+        /// <summary>Their ideoligion holds none of the precepts the rule names (no ideoligion, or no rule about it: it holds).</summary>
+        private static bool FaithAllows(Pawn p, TraitChangeDef def)
+        {
+            if (def.NotPrecepts.Count == 0) return true;
+            var ideo = p.Ideo;
+            if (ideo == null) return true;
+            foreach (var name in def.NotPrecepts)
+            {
+                var pd = DefDatabase<PreceptDef>.GetNamedSilentFail(name);
+                if (pd != null && ideo.HasPrecept(pd)) return false;
+            }
+            return true;
+        }
+
+        /// <summary>Recent hours at a practice, or at several added up ("Cooking+Smithing": the stove and the forge together).</summary>
+        private static float PracticeHours(Pawn p, string name)
+        {
+            float sum = 0f;
+            foreach (var part in TraitChangeMath.PracticeParts(name)) sum += Practice.Hours(p, part);
+            return sum;
+        }
+
+        /// <summary>"cooking or smithing": what a practice fact is about, for the player.</summary>
+        private static string PracticeWords(string name)
+        {
+            var words = TraitChangeMath.PracticeParts(name).Select(Practice.Words).ToList();
+            if (words.Count <= 1) return words.FirstOrDefault() ?? name;
+            return "CC_TCB_PracticeOr".Translate(string.Join(", ", words.Take(words.Count - 1)), words[words.Count - 1]).Resolve();
         }
 
         private static float Share(TraitWatch w, Pawn p, TraitPace pace, int now)
@@ -901,14 +1017,24 @@ namespace ColonyCouncil
                     if (!text.NullOrEmpty()) ordered.Add(PersonaMarks.DateLabel(m.tick, p) + ": " + text);
                 }
             }
+            if (r != null && !def.notMarks.NullOrEmpty())
+                ordered.Add("CC_TC_NotMarks".Translate(def.notMarksDays, NotMarkNames(def)).Resolve());
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
             {
+                if (tally.None)
+                {
+                    float days = NoneDays(w, tally, lastSame, now);
+                    ordered.Add("CC_TC_None".Translate(tally.label.CapitalizeFirst(), float.IsInfinity(days) ? tally.noneDays : Mathf.FloorToInt(days)).Resolve());
+                    continue;
+                }
                 var entries = Entries(w, tally, lastSame, now);
                 if (entries.Count == 0) continue;
                 var when = entries.Select(e => PersonaMarks.DateLabel(e.tick, p) + (e.label.NullOrEmpty() ? "" : " (" + e.label + ")")).ToList();
                 ordered.Add(tally.label.CapitalizeFirst() + ": " + string.Join(", ", when) + ".");
             }
+            if (def.NotPrecepts.Count > 0 && p.Ideo != null)
+                ordered.Add("CC_TC_Faith".Translate(p.Ideo.name, def.notPreceptsLabel).Resolve());
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
@@ -930,7 +1056,7 @@ namespace ColonyCouncil
                 if (s != null) ordered.Add("CC_TC_Skill".Translate(sd.LabelCap, s.Level).Resolve());
             }
             foreach (var f in def.Practice)
-                ordered.Add("CC_TC_Practice".Translate(Practice.Words(f.name).CapitalizeFirst(), Mathf.RoundToInt(Practice.Hours(p, f.name))).Resolve());
+                ordered.Add("CC_TC_Practice".Translate(PracticeWords(f.name).CapitalizeFirst(), Mathf.RoundToInt(PracticeHours(p, f.name))).Resolve());
             var habit = HabitOf(p, def);
             if (habit != null)
                 ordered.Add("CC_TC_Habit".Translate(habit.Label, Mathf.FloorToInt(TraitChangeMath.DaysSince(habit.gainedTick, now)), habit.livedDays).Resolve());
@@ -994,16 +1120,44 @@ namespace ColonyCouncil
         // ---------------- Where life is taking them ----------------
 
         /// <summary>
-        /// What leads to a rule's change, part by part, in words, and whether each part holds: how far a side has moved
-        /// and where it stands, the marks, the deeds, the records, skills, how their time goes, calm days, a habit, what
-        /// they've been doing lately. The same evidence the rule checks (Lacks), told for the player.
+        /// One thing a rule asks for, as the character page tells it: the line in the list, whether it has happened, what
+        /// is still missing in a few plain words (the "still missing" line under a way out), and whether it holds by
+        /// default (nothing of a kind lately, a stretch without something, the gap since the trait last changed), which
+        /// doesn't count as evidence toward showing a rule.
         /// </summary>
-        public static List<(string text, bool ok)> Parts(Pawn p, TraitChangeDef def, int now)
+        public struct TraitPart
         {
-            var parts = new List<(string, bool)>();
+            public string text, missing;
+            public bool ok, byDefault;
+
+            public TraitPart(string text, bool ok, string missing, bool byDefault = false)
+            {
+                this.text = text;
+                this.ok = ok;
+                this.missing = missing;
+                this.byDefault = byDefault;
+            }
+        }
+
+        /// <summary>
+        /// What leads to a rule's change, part by part, in words, and whether each part holds: the gap since the trait last
+        /// changed (while it lasts), how far a side has moved and where it stands, the marks and the marks it waits out, the
+        /// deeds and the stretches without one, the faith, the records, skills, how their time goes, calm days, a habit,
+        /// what they've been doing lately. The same evidence the rule checks (Lacks), told for the player.
+        /// </summary>
+        public static List<TraitPart> Parts(Pawn p, TraitChangeDef def, int now)
+        {
+            var parts = new List<TraitPart>();
             var t = Tracker;
             if (t == null || def?.Trait == null) return parts;
             int lastSame = t.LastChange(p.thingIDNumber, def.Trait.defName);
+            // The rule's gap since this trait last changed, while it lasts (only a way out is shown before it's over).
+            if (!GapOver(p, def, now))
+            {
+                int since = Mathf.FloorToInt(TraitChangeMath.DaysSince(lastSame, now));
+                parts.Add(new TraitPart("CC_TCB_Gap".Translate(def.Trait.label, since, def.gapDays).Resolve(), false,
+                    "CC_TCB_MissGap".Translate(def.Trait.label, def.gapDays, since).Resolve(), true));
+            }
             var r = Persona.Of(p);
             if (r != null && (def.Moved.Count > 0 || def.Now.Count > 0))
             {
@@ -1011,91 +1165,151 @@ namespace ColonyCouncil
                 var moved = new float[PersonaMath.Axes];
                 for (int i = 0; i < moved.Length; i++) moved[i] = TraitChangeMath.Moved(r.lasting[i], r.drift[i]);
                 foreach (var c in def.Moved)
-                    parts.Add(("CC_TCB_Moved".Translate(AxisName(c.axis), Signed(moved[c.axis]), Needs(c.atLeast, c.value, true)).Resolve(), c.Holds(moved)));
+                {
+                    string needs = Needs(c.atLeast, c.value, true);
+                    parts.Add(new TraitPart("CC_TCB_Moved".Translate(AxisName(c.axis), Signed(moved[c.axis]), needs).Resolve(), c.Holds(moved),
+                        "CC_TCB_MissMoved".Translate(AxisWord(c.axis), needs, Signed(moved[c.axis])).Resolve()));
+                }
                 var values = Persona.Values(p);
                 foreach (var c in def.Now)
-                    parts.Add(("CC_TCB_Now".Translate(AxisName(c.axis), Signed(values[c.axis]), Needs(c.atLeast, c.value, true)).Resolve(), c.Holds(values)));
+                {
+                    string needs = Needs(c.atLeast, c.value, true);
+                    parts.Add(new TraitPart("CC_TCB_Now".Translate(AxisName(c.axis), Signed(values[c.axis]), needs).Resolve(), c.Holds(values),
+                        "CC_TCB_MissNow".Translate(AxisWord(c.axis), needs, Signed(values[c.axis])).Resolve()));
+                }
             }
             foreach (var need in def.marks)
             {
                 int have = r == null ? 0 : EvidenceMarks(r, need, lastSame, now).Count;
-                string names = MarkNames(need);
+                var labels = MarkLabels(need.Matches);
+                string names = string.Join(", ", labels);
                 string text = names.NullOrEmpty() ? "CC_TCB_Marks".Translate(Mathf.Min(have, need.count), need.count).Resolve()
                     : "CC_TCB_MarksNamed".Translate(Mathf.Min(have, need.count), need.count, names).Resolve();
-                parts.Add((text, have >= need.count));
+                int more = need.count - have;
+                string missing = more > 1 ? "CC_TCB_MissMore".Translate(more, names).Resolve()
+                    : labels.Count == 1 ? names : "CC_TCB_MissOneOf".Translate(names).Resolve();
+                parts.Add(new TraitPart(text, have >= need.count, missing));
+            }
+            if (r != null && !def.notMarks.NullOrEmpty())
+            {
+                // Days since the newest mark it waits out (on their page), up to the days it asks for.
+                int newest = -1;
+                foreach (var m in r.marks)
+                    if (m?.def != null && def.NotMark(m.def) && m.tick > newest) newest = m.tick;
+                int days = newest < 0 ? def.notMarksDays : Mathf.Min(Mathf.FloorToInt(TraitChangeMath.DaysSince(newest, now)), def.notMarksDays);
+                string names = NotMarkNames(def);
+                parts.Add(new TraitPart("CC_TCB_NotMarks".Translate(names, days, def.notMarksDays).Resolve(), days >= def.notMarksDays,
+                    "CC_TCB_MissNotMarks".Translate(def.notMarksDays, names, days).Resolve(), true));
             }
             var w = t.Watch(p, false);
             foreach (var tally in def.tallies)
             {
+                string label = tally.label ?? tally.key;
+                if (tally.None)
+                {
+                    float none = NoneDays(w, tally, lastSame, now);
+                    int days = float.IsInfinity(none) ? tally.noneDays : Mathf.Min(Mathf.FloorToInt(none), tally.noneDays);
+                    parts.Add(new TraitPart("CC_TCB_None".Translate(label.CapitalizeFirst(), days, tally.noneDays).Resolve(), none >= tally.noneDays,
+                        "CC_TCB_MissNone".Translate(label, tally.noneDays, days).Resolve(), true));
+                    continue;
+                }
                 int have = Entries(w, tally, lastSame, now).Count;
-                parts.Add(("CC_TCB_Count".Translate((tally.label ?? tally.key).CapitalizeFirst(), Mathf.Min(have, tally.count), tally.count).Resolve(), have >= tally.count));
+                parts.Add(new TraitPart("CC_TCB_Count".Translate(label.CapitalizeFirst(), Mathf.Min(have, tally.count), tally.count).Resolve(), have >= tally.count,
+                    "CC_TCB_MissCount".Translate(label, tally.count - have).Resolve()));
             }
+            if (def.NotPrecepts.Count > 0)
+                parts.Add(new TraitPart(def.notPreceptsLabel.CapitalizeFirst(), FaithAllows(p, def), def.notPreceptsLabel));
             foreach (var f in def.Records)
             {
                 var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
                 if (rd == null || p.records == null) continue;
                 float v = p.records.GetValue(rd);
-                parts.Add(("CC_TCB_Fact".Translate(rd.LabelCap, Mathf.RoundToInt(v), Needs(f.atLeast, f.value, false)).Resolve(), f.Holds(v)));
+                string needs = Needs(f.atLeast, f.value, false);
+                parts.Add(new TraitPart("CC_TCB_Fact".Translate(rd.LabelCap, Mathf.RoundToInt(v), needs).Resolve(), f.Holds(v),
+                    "CC_TCB_MissFact".Translate(rd.label, needs, Mathf.RoundToInt(v)).Resolve()));
             }
             foreach (var f in def.Skills)
             {
                 var sd = DefDatabase<SkillDef>.GetNamedSilentFail(f.name);
                 var sk = sd == null ? null : p.skills?.GetSkill(sd);
                 if (sk == null) continue;
-                parts.Add(("CC_TCB_Fact".Translate(sd.LabelCap, sk.Level, Needs(f.atLeast, f.value, false)).Resolve(), !sk.TotallyDisabled && f.Holds(sk.Level)));
+                string needs = Needs(f.atLeast, f.value, false);
+                parts.Add(new TraitPart("CC_TCB_Fact".Translate(sd.LabelCap, sk.Level, needs).Resolve(), !sk.TotallyDisabled && f.Holds(sk.Level),
+                    "CC_TCB_MissFact".Translate(sd.label, needs, sk.Level).Resolve()));
             }
             foreach (var pace in def.pace)
             {
                 float share = Share(w, p, pace, now);
                 string needs = pace.atLeast >= 0f ? "CC_TCB_AtLeast".Translate(Mathf.RoundToInt(pace.atLeast * 100f)).Resolve() : "CC_TCB_AtMost".Translate(Mathf.RoundToInt(pace.atMost * 100f)).Resolve();
-                parts.Add(("CC_TCB_Pace".Translate((pace.label ?? pace.record).CapitalizeFirst(), Mathf.RoundToInt(Mathf.Max(0f, share) * 100f), needs).Resolve(), pace.Holds(share)));
+                int pct = Mathf.RoundToInt(Mathf.Max(0f, share) * 100f);
+                string label = pace.label ?? pace.record;
+                parts.Add(new TraitPart("CC_TCB_Pace".Translate(label.CapitalizeFirst(), pct, needs).Resolve(), pace.Holds(share),
+                    "CC_TCB_MissPace".Translate(label, needs, pct).Resolve()));
             }
             if (def.calmDays > 0)
             {
                 int days = Mathf.FloorToInt(CalmDays(w, def, lastSame, now));
+                int shown = Mathf.Min(days, def.calmDays);
+                string word = TraitWord(def, p, true);
                 string text = def.calmSinceChange
-                    ? "CC_TCB_CalmSince".Translate(Mathf.Min(days, def.calmDays), def.calmDays, TraitWord(def, p, true)).Resolve()
-                    : "CC_TCB_Calm".Translate(Mathf.Min(days, def.calmDays), def.calmDays).Resolve();
-                parts.Add((text, days >= def.calmDays));
+                    ? "CC_TCB_CalmSince".Translate(shown, def.calmDays, word).Resolve()
+                    : "CC_TCB_Calm".Translate(shown, def.calmDays).Resolve();
+                string missing = def.calmSinceChange
+                    ? "CC_TCB_MissCalmSince".Translate(def.calmDays, shown, word).Resolve()
+                    : "CC_TCB_MissCalm".Translate(def.calmDays, shown).Resolve();
+                parts.Add(new TraitPart(text, days >= def.calmDays, missing));
             }
             if (def.vendetta == TraitChangeDef.VendettaUnpaid)
             {
                 UnpaidVow(p, def, now, out float unpaid);
-                int days = Mathf.FloorToInt(unpaid);
-                parts.Add(("CC_TCB_VowUnpaid".Translate(Mathf.Min(days, def.vendettaDays), def.vendettaDays).Resolve(), days >= def.vendettaDays));
+                int days = Mathf.Min(Mathf.FloorToInt(unpaid), def.vendettaDays);
+                parts.Add(new TraitPart("CC_TCB_VowUnpaid".Translate(days, def.vendettaDays).Resolve(), days >= def.vendettaDays,
+                    "CC_TCB_MissVowUnpaid".Translate(def.vendettaDays, days).Resolve()));
             }
-            else if (def.vendetta == TraitChangeDef.VendettaOver) parts.Add(("CC_TCB_VowOver".Translate().ToString(), VowsOver(p)));
-            if (def.meleeFighter) parts.Add(("CC_TCB_Melee".Translate().ToString(), MeleeFighter(p)));
+            else if (def.vendetta == TraitChangeDef.VendettaOver)
+                parts.Add(new TraitPart("CC_TCB_VowOver".Translate().ToString(), VowsOver(p), "CC_TCB_MissVowOver".Translate().ToString()));
+            if (def.meleeFighter) parts.Add(new TraitPart("CC_TCB_Melee".Translate().ToString(), MeleeFighter(p), "CC_TCB_MissMelee".Translate().ToString()));
             foreach (var f in def.Practice)
             {
-                float h = Practice.Hours(p, f.name);
-                parts.Add(("CC_TCB_Practice".Translate(Practice.Words(f.name).CapitalizeFirst(), Mathf.RoundToInt(h), Needs(f.atLeast, f.value, false)).Resolve(), f.Holds(h)));
+                float h = PracticeHours(p, f.name);
+                string words = PracticeWords(f.name);
+                string needs = Needs(f.atLeast, f.value, false);
+                parts.Add(new TraitPart("CC_TCB_Practice".Translate(words.CapitalizeFirst(), Mathf.RoundToInt(h), needs).Resolve(), f.Holds(h),
+                    "CC_TCB_MissPractice".Translate(words, needs, Mathf.RoundToInt(h)).Resolve()));
             }
             if (def.Habit != null)
             {
                 var q = HabitOf(p, def);
-                if (q == null) parts.Add(("CC_TCB_NoHabit".Translate(def.Habit.label).Resolve(), false));
+                if (q == null)
+                    parts.Add(new TraitPart("CC_TCB_NoHabit".Translate(def.Habit.label).Resolve(), false, "CC_TCB_MissHabit".Translate(def.Habit.label).Resolve()));
                 else
                 {
                     int held = Mathf.FloorToInt(TraitChangeMath.DaysSince(q.gainedTick, now));
-                    parts.Add(("CC_TCB_HabitHeld".Translate(q.Label, Mathf.Min(held, def.habitDays), def.habitDays).Resolve(), held >= def.habitDays));
-                    parts.Add(("CC_TCB_HabitLived".Translate(q.Label, Mathf.Min(q.livedDays, def.habitLived), def.habitLived).Resolve(), q.livedDays >= def.habitLived));
+                    parts.Add(new TraitPart("CC_TCB_HabitHeld".Translate(q.Label, Mathf.Min(held, def.habitDays), def.habitDays).Resolve(), held >= def.habitDays,
+                        "CC_TCB_MissHabitHeld".Translate(q.Label, def.habitDays, Mathf.Min(held, def.habitDays)).Resolve()));
+                    parts.Add(new TraitPart("CC_TCB_HabitLived".Translate(q.Label, Mathf.Min(q.livedDays, def.habitLived), def.habitLived).Resolve(), q.livedDays >= def.habitLived,
+                        "CC_TCB_MissHabitLived".Translate(q.Label, def.habitLived, Mathf.Min(q.livedDays, def.habitLived)).Resolve()));
                 }
             }
             return parts;
         }
 
-        /// <summary>The marks a need counts, by their names on the character page: "a kindness remembered, forgiven, ..." (twelve at most).</summary>
-        private static string MarkNames(TraitMarkNeed need)
+        /// <summary>The marks that match, by their names on the character page: "a kindness remembered", "forgiven", ... (twelve at most).</summary>
+        private static List<string> MarkLabels(Func<PersonaMarkDef, bool> match)
         {
             var labels = new List<string>();
             foreach (var def in DefDatabase<PersonaMarkDef>.AllDefsListForReading)
-                if (need.Matches(def) && !def.label.NullOrEmpty() && !labels.Contains(def.label)) labels.Add(def.label);
+                if (match(def) && !def.label.NullOrEmpty() && !labels.Contains(def.label)) labels.Add(def.label);
             if (labels.Count > 12) labels = labels.Take(11).Append("CC_TCB_MarksMore".Translate().ToString()).ToList();
-            return string.Join(", ", labels);
+            return labels;
         }
 
+        /// <summary>The marks a rule waits out, by their names on the character page.</summary>
+        private static string NotMarkNames(TraitChangeDef def) => string.Join(", ", MarkLabels(def.NotMark));
+
         private static string AxisName(int axis) => ("CC_Persona_Axis_" + (PersonaAxis)axis).Translate().CapitalizeFirst();
+
+        private static string AxisWord(int axis) => ("CC_Persona_Axis_" + (PersonaAxis)axis).Translate().ToString().ToLowerInvariant();
 
         /// <summary>"+16 or more", "10 or less".</summary>
         private static string Needs(bool atLeast, float value, bool signed)
@@ -1104,17 +1318,18 @@ namespace ColonyCouncil
             return (atLeast ? "CC_TCB_OrMore" : "CC_TCB_OrLess").Translate(v).Resolve();
         }
 
-        /// <summary>Most rules shown at once, and the share of a rule's parts that must hold before it's shown.</summary>
+        /// <summary>Most rules shown at once besides the ways out of a bad trait, which are all shown.</summary>
         public const int BuildingShown = 3;
-        public const float BuildingFrom = 0.34f;
 
         private static readonly Dictionary<int, (int tick, CharacterSection section)> buildingCache = new Dictionary<int, (int, CharacterSection)>();
 
         /// <summary>
-        /// Section 26: the changes their life is heading toward, the furthest along first, each with how many of the
-        /// things that lead there have happened; hover one for the list. Only rules nothing else stands in the way of
-        /// (the gate), with at least a third of their evidence there; a way out of a trait Rimfolk gave them is shown first
-        /// and from the start, so the player can see what would undo it. Kept a few hours of game time.
+        /// Section 26: the changes their life is heading toward, each with how many of the things that lead there have
+        /// happened; hover one for the list. Only rules nothing else stands in the way of (the gate). Every way out of a bad
+        /// trait they have comes first and is shown from the start (a habit's only once they have the habit), with a line of
+        /// what is still missing in plain words, so the player can steer toward it; then up to three other rules with at
+        /// least a third of their evidence there, the furthest along first (TraitChangeMath.BuildingShows). Kept a few hours
+        /// of game time.
         /// </summary>
         public static CharacterSection Building(Pawn p)
         {
@@ -1123,16 +1338,19 @@ namespace ColonyCouncil
             if (buildingCache.TryGetValue(p.thingIDNumber, out var cached) && now >= cached.tick && now - cached.tick < GenDate.TicksPerHour * 2) return cached.section;
             if (buildingCache.Count > 60) buildingCache.Clear();
             Build();
-            var rows = new List<(TraitChangeDef def, int have, int total, List<(string text, bool ok)> parts)>();
+            var rows = new List<(TraitChangeDef def, bool wayOut, int have, int total, List<TraitPart> parts)>();
             foreach (var def in TraitChangeDef.All)
             {
                 try
                 {
-                    if (Gate(p, def, now, out _) != null) continue;
+                    if (Gate(p, def, now, out var step, true) != null) continue;
+                    bool wayOut = def.WayOut(step) && (def.Habit == null || HabitOf(p, def) != null);
+                    if (!wayOut && !GapOver(p, def, now)) continue;
                     var parts = Parts(p, def, now);
-                    int have = parts.Count(x => x.ok);
-                    if (parts.Count == 0 || (!def.onlyGiven && (have == 0 || have < parts.Count * BuildingFrom))) continue;
-                    rows.Add((def, have, parts.Count, parts));
+                    if (parts.Count == 0) continue;
+                    var evidence = parts.Where(x => !x.byDefault).ToList();
+                    if (!TraitChangeMath.BuildingShows(wayOut, evidence.Count(x => x.ok), evidence.Count)) continue;
+                    rows.Add((def, wayOut, parts.Count(x => x.ok), parts.Count, parts));
                 }
                 catch (Exception e)
                 {
@@ -1143,15 +1361,23 @@ namespace ColonyCouncil
             if (rows.Count > 0)
             {
                 s = new CharacterSection { title = "CC_TCB_Section".Translate() };
-                // A way out of a trait Rimfolk gave first, then the furthest along.
-                foreach (var row in rows.OrderByDescending(x => x.def.onlyGiven).ThenByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have).Take(BuildingShown))
+                // Every way out first, then the furthest along of the rest.
+                var shown = rows.Where(x => x.wayOut).OrderByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have)
+                    .Concat(rows.Where(x => !x.wayOut).OrderByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have).Take(BuildingShown));
+                foreach (var row in shown)
                 {
                     string count = row.have >= row.total ? "CC_TCB_All".Translate().ToString() : "CC_TCB_Of".Translate(row.have, row.total).Resolve();
                     var tip = new StringBuilder("CC_TCB_Tip".Translate(TraitWord(row.def, p)).Resolve());
-                    foreach (var (text, ok) in row.parts)
-                        tip.Append("\n").Append(("• " + text).Colorize(ok ? UiKit.Good : UiKit.Dim));
+                    foreach (var part in row.parts)
+                        tip.Append("\n").Append(("• " + part.text).Colorize(part.ok ? UiKit.Good : UiKit.Dim));
                     tip.Append("\n\n").Append("CC_TCB_TipEnd".Translate());
-                    s.Line(row.def.label.CapitalizeFirst() + "  " + count.Colorize(UiKit.Dim), tip.ToString());
+                    string tipText = tip.ToString();
+                    s.Line(row.def.label.CapitalizeFirst() + "  " + count.Colorize(UiKit.Dim), tipText);
+                    if (row.wayOut && row.have < row.total)
+                    {
+                        string missing = string.Join("; ", row.parts.Where(x => !x.ok && !x.missing.NullOrEmpty()).Select(x => x.missing));
+                        s.Line(("    " + "CC_TCB_StillMissing".Translate(missing).Resolve()).Colorize(UiKit.Dim), tipText);
+                    }
                 }
             }
             buildingCache[p.thingIDNumber] = (now, s);

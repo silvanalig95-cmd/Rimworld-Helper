@@ -152,12 +152,12 @@
       <li>Rimfolk_Defense_TunnelKillbox</li>
     </templates>
     <placeAt>line</placeAt>
-    <whyNow>Raids this size break a plain gate. A killbox brings them in a few at a time, into open ground under every gun the colony has.</whyNow>
+    <whyNow>Raids this size are more than a plain gate holds for long. A killbox brings them in a few at a time, into open ground under every gun the colony has.</whyNow>
     <howItWorks>The gate opens into a narrow entrance with a turn in it, then a box of open ground with your cover and turrets at the far end. Raiders take the one easy way in, come round the turn a few at a time, and stand in the open while everyone shoots. It does nothing against those who don't use the gate.</howItWorks>
     <mistakes>
       <li>A straight entrance: raiders stop in the doorway and shoot from its cover.</li>
-      <li>A gate shut during the raid: with no way in, raiders break the wall anywhere.</li>
-      <li>An entrance so long that raiders give up on it and go for the walls.</li>
+      <li>A gate shut during the raid: raiders take another open way, however long, or with none left break the wall anywhere.</li>
+      <li>An entrance so long and winding that raiders, far from anyone to fight, drift off to smash what they can reach outside.</li>
       <li>Wood in or near the box: raiders set fires, and a burning killbox burns your own people.</li>
       <li>Shooting the first raider through instead of waiting until they're in the box.</li>
     </mistakes>

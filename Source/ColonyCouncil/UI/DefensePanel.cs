@@ -142,6 +142,14 @@ namespace ColonyCouncil
                 if (r.concentration >= 0.35f) m.from.Add("CC_Def_From_Mostly".Translate(DefenseSurvey.Direction(DefenseMath.Compass(r.angle))).ToString());
                 if (r.enclosed) m.from.Add("CC_Def_Enclosed".Translate());
                 else if (r.openings > 0) m.from.Add("CC_Def_Openings".Translate(r.openings));
+                // Whose ways these are, and whether a shut door is on them: only where no open way is left (DefenseMath).
+                if (r.BreakAll) m.from.Add("CC_Def_Ways_Shut".Translate());
+                else if (r.TotalBreak > 0)
+                {
+                    var shutSides = Enumerable.Range(0, 4).Where(i => r.sideBreak[i] > 0).Select(i => DefenseSurvey.FacingWord(i)).ToList();
+                    m.from.Add("CC_Def_Ways_ShutSome".Translate(TextUtil.JoinAnd(shutSides)).Resolve());
+                }
+                else if (s.doors > 0) m.from.Add("CC_Def_Ways_Open".Translate());
                 for (int i = 0; i < s.chokes.Count && i < 3; i++)
                 {
                     var c = s.chokes[i];

@@ -20,5 +20,14 @@ namespace ColonyCouncil
 
         /// <summary>The wait has run past its days.</summary>
         public static bool Stale(int since, int now) => now - since > KeepDays * 60000f;
+
+        /// <summary>What a piece kept for someone else is worth to anyone looking for better clothes: nothing they would go for.</summary>
+        public const float NotForThem = -1000f;
+
+        /// <summary>
+        /// A piece waiting for someone is kept from everyone else (the crafter too) while the one it is for is alive and the
+        /// wait hasn't run out.
+        /// </summary>
+        public static bool KeptFrom(bool forAlive, bool isTheOne, bool stale) => forAlive && !isTheOne && !stale;
     }
 }

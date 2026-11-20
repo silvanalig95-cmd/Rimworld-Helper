@@ -68,8 +68,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// They have just chosen their next job with nothing under way: a piece waiting for them, near now, is put on first
-        /// (forced, as the mod's own order was, so the outfit doesn't take it off again). One that is gone, worn, past its
-        /// days or no longer fits without taking something off is let go of.
+        /// (forced, as the mod's own order was, so the outfit doesn't take it off again; what they wear in its place comes
+        /// off, as with the mod's own order). One that is gone, worn, past its days, that they can't wear, or that would take
+        /// off something locked on them is let go of.
         /// </summary>
         internal static void NextJob(Pawn p, MadeForWearBook book, ref ThinkResult result)
         {
@@ -77,7 +78,7 @@ namespace ColonyCouncil
             if (e == null) return;
             var piece = e.piece as Apparel;
             if (piece == null || piece.Destroyed || piece.ParentHolder is Pawn_ApparelTracker || p.Dead || p.apparel == null
-                || MadeForWearMath.Stale(e.since, Find.TickManager.TicksGame) || !p.apparel.CanWearWithoutDroppingAnything(piece.def))
+                || MadeForWearMath.Stale(e.since, Find.TickManager.TicksGame) || !EquipmentUtility.CanEquip(piece, p) || p.apparel.WouldReplaceLockedApparel(piece))
             {
                 book.waiting.Remove(e);
                 return;
@@ -119,6 +120,18 @@ namespace ColonyCouncil
         public static MadeForWearBook Get => Current.Game?.GetComponent<MadeForWearBook>();
 
         public Entry For(Pawn p) => p == null ? null : waiting.FirstOrDefault(e => e?.pawn == p);
+
+        /// <summary>The piece is waiting for someone other than <paramref name="p"/> (and its wait hasn't run out).</summary>
+        public bool KeptFromOthers(Thing piece, Pawn p)
+        {
+            for (int i = 0; i < waiting.Count; i++)
+            {
+                var e = waiting[i];
+                if (e != null && e.piece == piece)
+                    return MadeForWearMath.KeptFrom(e.pawn != null && !e.pawn.Dead, e.pawn == p, MadeForWearMath.Stale(e.since, Find.TickManager.TicksGame));
+            }
+            return false;
+        }
 
         public void Add(Pawn p, Thing piece)
         {
@@ -185,6 +198,38 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("a piece made for someone: holding the order", e);
                 return true;
+            }
+        }
+    }
+
+    /// <summary>
+    /// A piece waiting for the one it was made for isn't taken by anyone else looking for better clothes, the crafter among
+    /// them (the player, 20 November 2026: "when the pawn that creates the item would also wear it, they immediately wear
+    /// it ... instead of reserving it for the other pawn"). The game's own look for better clothes scores it as worth nothing
+    /// to them; an order the player gives still goes (Integrations/MadeForWear.cs).
+    /// </summary>
+    [HarmonyPatch(typeof(JobGiver_OptimizeApparel), "ApparelScoreGain")]
+    public static class Patch_MadeForWearKept
+    {
+        private static bool broken;
+
+        public static bool Prepare() => MadeForWear.PatchType != null;
+
+        public static string StandsDownWhy() => MadeForWear.StandsDownWhy;
+
+        public static void Postfix(Pawn pawn, Apparel ap, ref float __result)
+        {
+            if (broken || __result <= 0f || ap == null) return;
+            var book = MadeForWearBook.Get;
+            if (book == null || book.waiting.Count == 0) return;
+            try
+            {
+                if (book.KeptFromOthers(ap, pawn)) __result = MadeForWearMath.NotForThem;
+            }
+            catch (Exception e)
+            {
+                broken = true;
+                CouncilLog.ErrorOnce("a piece made for someone: keeping it for them", e);
             }
         }
     }

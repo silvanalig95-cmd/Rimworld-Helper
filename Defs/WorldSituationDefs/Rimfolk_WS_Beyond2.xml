@@ -389,18 +389,24 @@
         <options>
           <li>
             <label>Send {A_nameDef} with the petition</label>
-            <outcome>{A_nameDef} goes to {PLACE} with the villages' spokesmen, and speaks first, and longest.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE}, to stand with the villages' spokesmen before {FACTION}'s {TITLE}.</outcome>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>{A_nameDef} spoke well, but {FACTION}'s {TITLE} wasn't in a listening mood. The petition was refused, and the colony's name was written down.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>700</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>1</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>700</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount><requires>noted</requires></li>
+                </effects>
+                <home>
+                  <li>[!risk] {A_nameDef} is back from {PLACE}. {A_pronoun} went before the {TITLE} with the villages' spokesmen, and spoke first, and longest.</li>
+                  <li>[risk] {A_nameDef} is back from {PLACE}. {A_pronoun} spoke well, but {FACTION}'s {TITLE} wasn't in a listening mood. The petition was refused, and the colony's name was written down.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>petition</li></flags>
             <riskFlags><li>noted</li></riskFlags>
-            <riskEffects>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
-            </riskEffects>
             <help>2</help>
             <deed>stood with the villages against the toll at {PLACE}</deed>
             <ways><openness>1</openness></ways>
@@ -575,10 +581,18 @@
         <options>
           <li>
             <label>Send {A_nameDef} to teach</label>
-            <outcome>{A_nameDef} spends three days in {FACTION}'s forges and comes back covered in soot, with a few tricks of theirs as well.</outcome>
+            <outcome>{A_nameDef} sets out for {FACTION}'s forges at {PLACE}, to show their smiths how to make old iron go further.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Crafting</skill><xp>1100</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>3</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Crafting</skill><xp>1100</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from three days in {FACTION}'s forges, covered in soot, with a few tricks of theirs as well.</li>
+                </home>
+              </li>
             </effects>
             <help>2</help>
             <deed>sent {A_nameDef} to teach the smiths of {PLACE}</deed>
@@ -764,12 +778,20 @@
         <options>
           <li>
             <label>{A_nameDef} goes to speak for them</label>
-            <outcome>{A_nameDef} goes to {PLACE} and speaks for the exiles in front of the {TITLE}.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE}, to speak for the exiles in front of the {TITLE}.</outcome>
             <riskChance>0.45</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>The {TITLE} heard {A_nameDef} out in silence and then had {A_objective} shown to the road. The exiles are not allowed back.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>800</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>1</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>800</xp></li>
+                </effects>
+                <home>
+                  <li>[!risk] {A_nameDef} is back from {PLACE}. {A_pronoun} spoke for the exiles in front of the {TITLE}, who heard {A_objective} to the end and did not say no.</li>
+                  <li>[risk] {A_nameDef} is back from {PLACE}. The {TITLE} heard {A_objective} out in silence and then had {A_objective} shown to the road. The exiles stay exiles.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>pardon</li></flags>
             <riskFlags><li>spurned</li></riskFlags>

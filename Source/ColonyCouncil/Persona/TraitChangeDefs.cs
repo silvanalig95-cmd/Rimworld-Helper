@@ -41,8 +41,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Things the person did that the game tells only in passing (a memory, a deed in the game's history, a tale),
-    /// counted on separate occasions and kept under <see cref="key"/> (rules that name the same key share the count).
+    /// Things the person did that the game tells only in passing (a memory, a deed in the game's history, a tale), or
+    /// marks they were given, counted on separate occasions and kept under <see cref="key"/> (rules that name the same key
+    /// share the count). Kept 240 days whatever happens to the mark itself, so "two long peaces" can be counted although
+    /// a long peace leaves the character page before the next one comes.
     /// </summary>
     public class TraitTally
     {
@@ -53,16 +55,35 @@ namespace ColonyCouncil
         public string events;
         /// <summary>Tales the game tells (TaleDef names) with them as the first person in it.</summary>
         public string tales;
+        /// <summary>Marks they were given (defNames, families or stories, as a rule's marks name them), counted when they come.</summary>
+        public string marks;
         /// <summary>Only while they were starving or malnourished, or in a hungry season.</summary>
         public bool whileHungry;
         public int count = 1;
         /// <summary>Only from the last this many days (0: all kept, which is <see cref="TraitChanges.TallyKeepDays"/>).</summary>
         public int withinDays;
+        /// <summary>
+        /// A zero count: none of them for this many days, counted from the newest one or from the trait's last change,
+        /// whichever is later (<see cref="TraitChangeMath.NoneDays"/>). With it, <see cref="count"/> and
+        /// <see cref="withinDays"/> don't apply. At most <see cref="TraitChanges.TallyKeepDays"/>.
+        /// </summary>
+        public int noneDays;
         /// <summary>What one of them is called in the letter ("ate human flesh while starving").</summary>
         [MustTranslate] public string label;
 
+        public bool None => noneDays > 0;
+
         public IEnumerable<string> Split(string list) =>
             list.NullOrEmpty() ? Enumerable.Empty<string>() : list.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0);
+
+        [Unsaved] private HashSet<string> markNames;
+
+        /// <summary>Whether a mark given counts here: named by its defName, its family or its story.</summary>
+        public bool CountsMark(PersonaMarkDef def)
+        {
+            markNames ??= new HashSet<string>(Split(marks));
+            return TraitChangeDef.Named(markNames, def);
+        }
     }
 
     /// <summary>
@@ -87,7 +108,8 @@ namespace ColonyCouncil
     /// (Persona/TraitChanges.cs). Everything it asks for is something the player can read: marks on the character
     /// page, a side moved from their nature, deeds counted, records the game keeps, a vow of vengeance. When it holds, the
     /// chance is rolled once a day; the rate limits keep it rare (one change per person in 60 days, one in the colony in
-    /// 10; taking away a trait Rimfolk gave isn't held back by the person's 60).
+    /// 10; taking away a trait Rimfolk gave isn't held back by the person's 60, and a way out of a bad trait isn't held
+    /// back by the colony's 10). Where a rule would read "this or that" (a seat, or two promises kept), it is two rules.
     /// </summary>
     public class TraitChangeDef : Def
     {
@@ -133,6 +155,21 @@ namespace ColonyCouncil
         public bool noRival;
         /// <summary>Only takes away a trait Rimfolk gave them (the newest change of it kept here gave it).</summary>
         public bool onlyGiven;
+        /// <summary>
+        /// With <see cref="onlyGiven"/>: only when one of these rules (defNames) gave it, so what famine brought goes with
+        /// the famine and what a faith brought with the faith. Empty: whichever rule gave it.
+        /// </summary>
+        public List<string> givenBy;
+        /// <summary>
+        /// The degrees this rule leads out of (0 for a trait without degrees): it is a way out of a bad trait when the person
+        /// has the trait at one of them (<see cref="TraitChangeMath.IsWayOut"/>). A way out isn't held back by the colony's
+        /// 10 days, and the character page shows it from the start, with what is still missing.
+        /// </summary>
+        public List<int> wayOutOf;
+        /// <summary>Their ideoligion holds none of these precepts (PreceptDef names); without an ideoligion it holds.</summary>
+        public string notPrecepts;
+        /// <summary>What that means, for the player: "a faith that does not call for eating human flesh".</summary>
+        [MustTranslate] public string notPreceptsLabel;
         /// <summary>Days in the colony (0: no condition).</summary>
         public int daysHere;
         public int minAge;
@@ -303,6 +340,19 @@ namespace ColonyCouncil
 
         public bool IsStep => change == TraitChangeKind.StepUp || change == TraitChangeKind.StepDown;
 
+        /// <summary>The rule can lead out of a bad trait (for some degree it steps from).</summary>
+        public bool LeadsOut => !wayOutOf.NullOrEmpty();
+
+        /// <summary>This change, for this person, leads out of a bad trait.</summary>
+        public bool WayOut(TraitStep step) => TraitChangeMath.IsWayOut(wayOutOf, step);
+
+        [Unsaved] private List<string> preceptNames;
+
+        /// <summary>The precepts their ideoligion must not hold (names, as written).</summary>
+        public List<string> NotPrecepts => preceptNames ??= notPrecepts.NullOrEmpty()
+            ? new List<string>()
+            : notPrecepts.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
+
         public const string VendettaUnpaid = "unpaid", VendettaOver = "over";
 
         /// <summary>The DLC and mods it needs are there, and the colony is far enough along.</summary>
@@ -348,10 +398,31 @@ namespace ColonyCouncil
             if (!vendetta.NullOrEmpty() && vendetta != VendettaUnpaid && vendetta != VendettaOver) yield return "vendetta must be unpaid or over, not " + vendetta;
             if (vendetta == VendettaUnpaid && vendettaDays < 1) yield return "an unpaid vendetta needs its days";
             if (onlyGiven && change != TraitChangeKind.Lose) yield return "onlyGiven is for a loss: it undoes what Rimfolk gave";
+            if (onlyGiven && !LeadsOut) yield return "onlyGiven takes away a bad trait Rimfolk gave: name it a way out (wayOutOf)";
+            if (!givenBy.NullOrEmpty())
+            {
+                if (!onlyGiven) yield return "givenBy needs onlyGiven";
+                foreach (var g in givenBy)
+                {
+                    var by = DefDatabase<TraitChangeDef>.GetNamedSilentFail(g);
+                    if (by == null) yield return "givenBy names no rule " + g;
+                    else if (by.trait != trait || by.change != TraitChangeKind.Gain) yield return "givenBy " + g + " doesn't give " + trait;
+                }
+            }
+            if (LeadsOut)
+            {
+                if (change == TraitChangeKind.Gain) yield return "a gain is never a way out of a bad trait";
+                if (tone <= 0) yield return "a way out of a bad trait is good news (tone 1)";
+                if (IsStep && !from.NullOrEmpty())
+                    foreach (int d in wayOutOf)
+                        if (!from.Contains(d)) yield return "wayOutOf " + d + " is a degree it doesn't step from";
+            }
+            if (!notPrecepts.NullOrEmpty() && notPreceptsLabel.NullOrEmpty()) yield return "notPrecepts needs notPreceptsLabel";
             if (calmSinceChange && calmDays <= 0) yield return "calmSinceChange needs calmDays";
             if (!habit.NullOrEmpty() && Habit == null) yield return "unknown habit " + habit;
             foreach (var f in Practice)
-                if (!ColonyCouncil.Practice.IsKnown(f.name)) yield return "unknown practice " + f.name;
+                foreach (var part in TraitChangeMath.PracticeParts(f.name))
+                    if (!ColonyCouncil.Practice.IsKnown(part)) yield return "unknown practice " + part;
             if (!evidence) yield return "a change with nothing behind it: give it marks, deeds, records, a pace or calm days";
             if (marks != null)
                 foreach (var m in marks)
@@ -360,8 +431,9 @@ namespace ColonyCouncil
                 foreach (var t in tallies)
                 {
                     if (t == null || t.key.NullOrEmpty()) yield return "a tally without a key";
-                    else if (t.thoughts.NullOrEmpty() && t.events.NullOrEmpty() && t.tales.NullOrEmpty()) yield return "tally " + t.key + " counts nothing";
+                    else if (t.thoughts.NullOrEmpty() && t.events.NullOrEmpty() && t.tales.NullOrEmpty() && t.marks.NullOrEmpty()) yield return "tally " + t.key + " counts nothing";
                     else if (t.label.NullOrEmpty()) yield return "tally " + t.key + " has no label";
+                    else if (t.noneDays < 0 || t.noneDays > TraitChanges.TallyKeepDays) yield return "tally " + t.key + ": noneDays from 1 to " + TraitChanges.TallyKeepDays;
                 }
             if (pace != null)
                 foreach (var p in pace)

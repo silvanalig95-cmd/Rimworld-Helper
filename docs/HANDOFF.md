@@ -52,6 +52,7 @@ most sense." So, in this order, three builds at a time:
      far town stays at the colony" below).
   3. **More traits that come and go, the lead's first batch**: 37, 38, 1, 2, 4, 5, 6, 14, 10, 16, 26 and 27 of
      `docs/traits-proposals.md` (the player named no numbers, so the recommended twelve; the rest wait for a pick).
+     Built, not released: the entry "More traits that come and go, the first batch" above the newest release line.
   4. **The peoples' own texts**: the Almanac's peoples' pages in plain words, their "Where their ways began" sections,
      each people's talk piece on how their ways began and the 21 faiths' descriptions that name a founder, each told in
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
@@ -179,41 +180,19 @@ repo.
 - **Done (19 November 2026, the player's go: "yes, please", "all the three"; built, not released): choose the material
   when ordering a piece from the gear tab.** The wish with the player's words, the lead's proposal and what was built are
   now one entry above the newest release line ("Choose the material when ordering a piece").
-- **To do when the player asks (found 19 November 2026 in the plain-words pass on the region map; no words of the
-  player's yet): a colonist a world event sends to a far town stays at the colony.** Fifteen answers of thirteen world
-  events say a colonist goes off to another people's town for a day or several (to advise, build, teach, read old
-  writing, speak or keep watch), and the colonist's skill and the people's goodwill count at once, but nobody leaves
-  the map: the drought's well and the road's bridge ("Lend them {A_nameDef} for a day", `Council_WS_Region`), the
-  herdsman in the sickness of the herds, the great fire's roofs and the bumper harvest's sickle (`Rimfolk_WS_Beyond`;
-  there too the blood feud's talks, told at the colony's table with neither family on the map), the toll's petition, the iron's smiths and the exiles' plea (`Rimfolk_WS_Beyond2`), the
-  rebuilt bridge (`Rimfolk_WS_FollowUps`), the vault's old writing and the closed markets' talks (`Rimfolk_WS_Wider`),
-  the moot's speaker and the old thrumbo's watch (`Rimfolk_WS_Wider2`), and the other settlers' traps
-  (`Rimfolk_WS_World`). The plain-words pass made their words tell it as set going, with no time that can't have come
-  ("{A_nameDef} goes off to {PLACE} with a mallet and a plumb-line, to build {FACTION} their bridge"), and the road's
-  builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
-  storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
-  {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
-- **To do when the player asks (found 19 November 2026 in the plain-words pass on the Almanac, part 2; no words of the
-  player's yet): the defense survey counts a shut door as a way raiders might break through.** The survey of the ways
-  in (`Defense/DefenseMath.cs`, a Dijkstra from home with `DoorCost` 400, about thirty cells of walking) lets a shut
-  door stand on the raiders' way when the open way round is some thirty cells longer. In the game's 1.6 pathing a
-  closed colony door is no way at all for an ordinary assault raider: their goto, attack and trash jobs have
-  `canBashDoors` false, so they take the open way however long it is (`docs/defense-research/mechanics.md`, 1.2 and
-  1.3). A back door near the edge can so be shown as the raiders' way in, with its choke points and raid counts, while
-  the game sends them the long way to the killbox. The Almanac now says what the game does and names the survey's own
-  count ("how raiders pick their way"); the defense lines' help on a shut gate (`CC_DefLine_How_Gate` in
-  `Rimfolk_DefenseLines.xml`, "if breaking it is no cheaper than somewhere else, they pick their own stretch of wall")
-  still follows the survey's count. When asked: count a shut door as closed while any open way reaches home, and at
-  400 only when none does (a colony walled in all round, where they break in at random).
-- **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
-  the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
-  trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
-  along its scale; in their save 3 changes in 124 days, all gains. When asked: propose a list first (more ways out of a bad trait, by what happens on the map).
-  The player, 19 November 2026, on the overview: "More trades come and go sounds great". The list is written:
-  `docs/traits-proposals.md` (19 November 2026), 38 proposals in six groups (a way out of each bad trait Rimfolk gives,
-  of the bad traits colonists arrive with, of the mods' bad traits, new good traits from good things, a few from the
-  mods' traits for flavour, and how often and how it shows), with the lead's first batch (37, 38, 1, 2, 4, 5, 6, 14,
-  10, 16, 26, 27). Nothing is built until the player picks.
+- **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): a colonist a world
+  event sends to a far town really goes.** The to-do (found 19 November 2026 in the plain-words pass on the region map)
+  and what was built are now one entry above the newest release line ("A colonist a world event sends to a far town
+  goes").
+- **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): the defense survey
+  counts a shut door as a way raiders might break through.** The finding (from the plain-words pass on the Almanac, part
+  2), the cause in the game's 1.6 code and what was built are now one entry above the newest release line ("The defense
+  survey's shut doors").
+- **Done, the first batch (20 November 2026, the player's go: "go ahead with the next tasks, including the traits"; built,
+  not released): more traits that come and go.** The to-do of 17 November 2026 with the player's words, the proposal list
+  (`docs/traits-proposals.md`) and what was built are now one entry above the newest release line ("More traits that
+  come and go, the first batch"). The player's "go ahead with all the traits" (20 November 2026) covers the other 26
+  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25, then the new traits 28 to 36.
 - **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
@@ -576,6 +555,232 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.275.1, **A colonist a world event sends to
+  a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the
+  to-do found 19 November 2026 in the plain-words pass on the region map: answers of world events said a colonist goes
+  off to another people's town for a day or several, to advise, build, teach, read old writing, speak or keep watch,
+  and the skill and the goodwill counted at once, but nobody left the map; the blood feud's talks were told at the
+  colony's table with neither family on the map). Sixteen answers of fourteen world events now send the colonist for
+  real, by the peoples' events' season away (`SeasonAway`, round 2): a walk to the map's edge, a caravan of one on the
+  game's roads to the event's town (or a tile beside the colony: the road's river crossing, the herders' fire in the
+  hills), their days there, and a caravan of one home; the learning, the goodwill, the moods, the epithets, the vault's
+  research and the road gang's wage come when they are home, with a letter that says how it went (the gamble's words,
+  where the answer has one, are told then). The answer's card shows the days away with the road; it is greyed while the
+  colonist can't leave, the colony would keep fewer than three able grown hands, there's no way out or no road, or the
+  town is more than eight days each way. The world event waits for its colonist before it ends (thirty days past at
+  most, and two days after they are home), its letters that would fall to them wait until they are back, and the moot's
+  vote is asked of the speaker at the moot on their last day there (they stay on up to three days for it). The blood
+  feud's elders of both families come to the gate with the question, and the talker sits with them there. Days there
+  (the road both ways on top): the drought's well 1, the new road's bridge 1 (a tile out, the wage carried home), the
+  herds' sickness 2, the great fire's roofs 4, the bumper harvest 4, the toll's petition 1, the iron's smiths 3, the
+  exiles' plea 1, the rebuilt bridge 7, the vault's writing 4, the closed markets' talks 2, the moot's speaker (with the
+  gift or without) 4, the old thrumbo's watch 4 (a tile out), the settlers' traps: the talk half a day, the traps
+  carried back 0. DESIGN.md "A colonist a world event sends to a far town goes"; README "Sent to a far town"; the
+  Almanac's world events page, *Reading one* (keywords unchanged).
+  - Code: `Source/ColonyCouncil/World/FarErrandMath.cs` (new, pure, linked into the tests), `FarErrands.cs` (new:
+    `WorldEffect_Away`, `FarErrandAway`, `FarErrands`), `FarErrandsDebug.cs` (new, four dev actions). Hooks:
+    `SeasonAway.Kinds` (the kind "world") and `AwayKind.Stays` (new, used in the season's "there" stage);
+    `WorldSituations.Tick` (the end held, `farErrandHeld` in the event's numbers), `Beats` (wait, come or drop),
+    `Run` (the event's person kept while away), `Resolve` (`FarErrands.AnswerRisk`); `WorldSituationWorker.CastBeat`
+    (a letter from the far town keeps its colonist); `SituationBeat.atPlace` and two config checks. Defs: the seven
+    world events' files, Keyed `Rimfolk_WorldSituations.xml` (12 keys). Tools: the play-out audit knows
+    `WorldEffect_Away`; eight skips gone (the road's builder, the herdsman, the harvest hands, the smiths, the exiles'
+    plea, the feud's talks, both settlers' answers). Nothing new is saved: which answer sent them is in the season
+    away's own words (`FarErrandMath.Note`).
+  - Text (the player's rule of 20 November 2026, flavour kept for world events; a restore of the world events' text to
+    before 0.270.1 should keep these lines): in each sending answer the `outcome` (now "sets out for ...") and the new
+    `home` lines (mostly the earlier flavour outcomes moved to the homecoming); `riskOutcome` removed from the drought's
+    well, the herdsman, the toll's petition, the exiles' plea, the closed markets' talks and the settlers' talk (their
+    words are the homecoming's [risk] lines); the moot's gift answer "who sets out for {PLACE} that same day" (was "in
+    the morning"); the harvest supper's "has been to none of them" line tagged [!hands]; the feud's mediate texts (the
+    elders "have come to its gate", "at the colony's gate"), its answer's outcome and risk outcome (at the gate) and four
+    ending lines ("the colony's table" now "the colony's gate").
+  - Decided here: the season away over the well storyline's way (the world map shows the caravan going to the very town;
+    the time away is the real road); the days from the words (the earlier flavour outcomes' "four days", "a week", "four
+    nights"); the settlers' traps carried back is a sending answer too (the words had the colony's hunter carry them to
+    the settlers' edge); the feud's map changed, not its words' place (the event is about the colony as neutral ground,
+    and its endings remember the talks at the colony), the gate rather than the table because that is where the visit
+    shows them; the petition refused costs its goodwill when the speaker is home; the settlers' talk gone wrong no
+    longer gives +5 goodwill.
+  - Tests: `Tools/Tests/FarErrandTests.cs` (the rules, the sixteen answers and their days, the words, the feud, the
+    seams).
+  - Not run here (none of it could be): the walk to the edge and the caravan of one on the world map to the town and
+    back, the arrival message, the homecoming's letter and the silver at the builder's feet, the answer greyed with its
+    reason, the event's letters waiting and its end held, the moot's vote asked on the last day, the feud's elders at the
+    gate and the talker with them.
+  - Try in the game (dev mode, "Rimfolk"): 1. "World event: the question that sends a colonist away, now..." and pick
+    one (say the great fire's roofs); answer it; watch the colonist walk out and the caravan of one on the world map.
+    2. "World event: the colonist sent away is there now", then "...days there up now", then "...home now": the
+    homecoming's letter, the learning and the goodwill; the event's end comes two days later. 3. The moot: send the
+    speaker; on their last day there the vote's letter comes; answer, and they come home. 4. The feud: the mediate
+    question brings both families' elders to the gate; the talker sits with them; the words come when they are done.
+    5. With two grown colonists, or the colonist drafted, the answer is greyed with the reason.
+  - Mods that would help: none needed; the caravans, roads and world map are the game's own.
+- 0.275.0, **More traits that come and go, the
+  first batch** (20 November 2026; the player, 17 November 2026: "while i generally like the idea of traits emerging
+  and/or disappearing (we shouild also build up on this as to do)"; 19 November 2026: "More trades come and go sounds
+  great"; 20 November 2026: "go ahead with the next tasks, including the traits", and later the same day "go ahead with
+  all the traits"). The lead's recommended first batch of `docs/traits-proposals.md`, twelve of 38, each marked there:
+  37, a way out of a bad trait isn't held back by the colony's 10 days (gains still are, and wait 10 days after a way
+  out); 38, the character page shows every way out of a bad trait the colonist has from the start, first, with a line of
+  what is still missing in plain words; 1, jealous fades (any) after a seat or two promises kept; 2, a bloodlust Rimfolk
+  gave fades after 120 days without a fight mark and a long peace; 4, a cannibal Rimfolk gave goes, famine's after 180
+  days without human flesh and no hungry season in 120, a faith's once they take up a faith that doesn't call for it; 5,
+  world weary lifts after two long peaces and a good mark; 6, a rebel settles after two promises kept or a seat; 10, a
+  pyromaniac loses the urge after 120 calm days, 60 recent hours at the stove and the forge and a masterwork or a skill
+  mastered; 16, a lush or a stoner dries out after beating an addiction; 14, with Therapy (Continued) four sessions in
+  90 days count as a mark toward steadier nerves and a brighter mood; 26, brave after holding the line twice and
+  carrying someone to safety; 27, a fast walker becomes a jogger after 120 recent hours hauling or a second season
+  abroad. 18 new rules (71 in all), 30 of them ways out. No bad trait is added. DESIGN.md "More traits that come and go,
+  the first batch" has every rule and the parts the next builds reuse; the Almanac's page *traits that change* has a new
+  section, "Ways out of a bad trait" (keywords unchanged); README "Traits that change".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `RateBlocked(..., wayOut)`, `IsWayOut`, `NoneDays`,
+    `PracticeParts`, `GaveIt(..., rules, by)`, `BuildingShows`), `Persona/TraitChangeDefs.cs` (`wayOutOf`, `givenBy`,
+    `notPrecepts`, `notPreceptsLabel`; a tally's `marks` and `noneDays`; config errors for each),
+    `Persona/TraitChanges.cs` (the daily pass runs the ways out within the colony's 10 days, `Notify_Mark`, the gate's
+    `givenBy` and gap as a part, the zero count, the faith, sums of work, `TraitPart` and `Parts` with the missing words
+    and the marks a rule waits out, `Building`, `DebugRules`, `DebugApply`), `Persona/Marks.cs` (one line in `Give`),
+    `Persona/TraitChangeDebug.cs` (two dev actions), `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml` (new: fifteen
+    ways out), `Rimfolk_TC_VTE_Brave` in `_Mods.xml`, the two jogger rules in `_Habits.xml`, `wayOutOf` on the fifteen
+    older ways out (`_Spectrum`, `_Character`, `_Habits`, `_Mods`), Keyed `Rimfolk_TraitChanges.xml` (the missing words,
+    the letter's new lines, the settings tip and the page's tip say a way out doesn't wait). Nothing new is saved (the
+    tallies hold the new counts; the save model's tallies estimate is up from 3 to 5 kinds). Tests: `TraitChangeTests`
+    (37's rule and a colony's year of it against the old rule, what a way out is, the zero count, the rule that gave it,
+    what the page shows, each of the twelve's conditions against the proposal, every good loss a way out);
+    `Tools/Tests/ModDefNames.txt` has Therapy (Continued)'s `TherapyRelieved`.
+  - Decided here (open in the proposals): "this or that" is two rules (jealous, rebel, jogger), each at the proposal's
+    chance, so both together come a little more often; "trust back to where it was" is trust moved 0 or more from their
+    nature, "warmth/outlook back near" moved -5 or more (a trait Rimfolk gave already took the move into itself, so these
+    mostly hold for it; they matter for a trait the colonist came with); "no X in N days" reads the marks on their page,
+    as the rules already did (a minor mark leaves the page after its keeping, 90 days for some); "two long peaces" are
+    counted as they come, since a long peace leaves the page 60 days after it came and the next can only come 60 days
+    later; "two seasons abroad" is the mark for a second season abroad within a year (one mark); the zero count starts
+    from the last meal or from when the trait came, whichever is later, so a stretch from before it came doesn't count
+    and an older save's meals (not counted before this build) can't make it come early; "a faith that does not call for
+    it" is an ideoligion holding none of the game's three precepts that prefer or require human flesh; the therapy twins
+    keep the rule they stand beside in everything but one mark, and only for the bad degree (nervous to none's mark is one
+    of danger held, as that rule asks); brave is also never for RimTraits' craven (not in their list now); the jogger
+    waits 120 days after becoming a fast walker and asks 60 days in the colony, as the fast walker rule; every way out
+    waits no gap since it came; the 15 older ways out are marked too (37 and 38 hold for them), lazy to none among them,
+    and chemical interest to none; a way out that grows from a habit shows on the page only once they have the habit.
+    The four Therapy (Continued) rules assume its `TherapyRelieved` memory goes to the patient after each session (the
+    catalogue has the def, active; the mod's own files aren't here): if it goes to the therapist, the sessions count for
+    the therapist instead.
+  - Harm: none. No rule here gives a bad trait.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, the page's "Where life
+    is taking them" with its "Still missing" lines and their wrapping, the dev actions' menus); the therapy memory's
+    receiver; Vanilla Traits Expanded's brave, lush, stoner, rebel and world weary taking and leaving as the game's own
+    traits do (their work tags and conflicts are the game's to apply); firefighting coming back for a former pyromaniac.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist, a way out
+    marked): 1. A jealous, rebel, world weary, pyromaniac, lush, stoner, nervous or pessimist colonist: their character
+    page, "Where life is taking them", shows each way out at once with "Still missing: ...". 2. "Traits that change: give a
+    trait as Rimfolk would..." on a colonist, pick `Rimfolk_TC_BloodlustGained` or `Rimfolk_TC_CannibalFamine`, then
+    look at the page: the way out shows, and "a way out of a bad trait, now..." makes it happen with its letter. 3. Make
+    a change on one colonist, then within ten days a way out on another with "a way out of a bad trait, now...": the
+    daily pass lets a way out through the colony's ten days (the log's "why or why not" says "colony" for gains only).
+    4. With Therapy (Continued): a nervous colonist with four sessions in 90 days and two marks of danger held.
+  - Mods that would help: none needed. Therapy (Continued) (`orion.therapy`, Workshop 3509488682, tagged 1.6 and 1.7,
+    active in their list) gives the sessions; Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7, active) the
+    traits.
+- 0.274.2, **A piece made for someone, kept
+  for them** (20 November 2026; the player: "So while the material selection for creating a item seems to work for the
+  most part, although it should, in my opinion, only show the materials where I also have enough available, or
+  otherwise, just or at least show how many it takes and how many I have. But it also doesn't seem to work yet that this
+  item is then kind of reserved for this pawn. So essentially, when the pawn that creates the item would also wear it,
+  they immediately wear it. I just saw this instead of reserving it for the other pawn. And I don't know if it works that
+  the target pawn takes it later."). A fix of 0.266.4 and 0.268.1, built in the main tree.
+  - **The causes.** Nothing kept a waiting piece from others: the crafter's own look for better clothes found it beside
+    the bench and put it on. And the one it was made for never would have: `MadeForWear.NextJob` let the piece go as soon
+    as it "no longer fits without taking something off" (`CanWearWithoutDroppingAnything`), true for anyone who already
+    wears a shirt when a shirt is made for them.
+  - **The fix.** `Patch_MadeForWearKept`, a postfix on `JobGiver_OptimizeApparel.ApparelScoreGain`: a piece waiting for
+    someone scores -1000 for everyone else while the one it is for is alive and the 15 days haven't run out
+    (`MadeForWearBook.KeptFromOthers`, `MadeForWearMath.KeptFrom`). `NextJob` lets a piece go only when they can't wear it
+    (`EquipmentUtility.CanEquip`) or it would take off something locked (`WouldReplaceLockedApparel`); the forced Wear job
+    takes off what it replaces, as the mod's own order does. The material menu says "Cloth: 60 for one, 412 on hand"
+    (`CC_MaterialChoice_Stuff` with `{NEED}`); it already offered only materials with enough for one piece
+    (`MaterialChoiceMath.Offered`), so if one ever shows with less, the two numbers now show it.
+  - **Try in the game.** Order a parka from the gear tab for a colonist who is out working far off and already wears a
+    parka; let someone else make it. The message says it is ready and it goes to storage; nobody else puts it on, not the
+    crafter. When the colonist is back at the base and free, they walk to it and put it on, dropping the old parka.
+  - **Mods that would help.** None; this works with Nice Inventory Tab, which is in the list.
+- 0.274.1, **The defense survey's shut
+  doors** (20 November 2026; found 19 November 2026 in the plain-words pass on the Almanac, part 2, with no words of the
+  player's; the player's go of 20 November 2026: "go ahead with the next tasks"). A bug fix. DESIGN.md "Shut doors on the
+  ways in" (under "The defense helper: reading the ways in", whose door rule and opening lines now say the same);
+  README's Defenses page paragraph; the Almanac's "how raiders pick their way" and "Doors in a line"
+  (`Almanac_DefendingLines.xml`, keywords unchanged); `docs/defense-research/mechanics.md` 1.3 (where raiders arrive).
+  - **The bug**: the survey of the ways in (`Defense/DefenseMath.cs`, a Dijkstra from home) counted a shut door as
+    `DoorCost` 400, about thirty cells of walking, so a shut back door near the edge was drawn as the raiders' way in,
+    with its choke point and its share of raids, whenever the open way round was some thirty cells longer, while the game
+    sends them the long way to the killbox. Read again in the 1.6 code (the 1.6 decompile the research notes use, and
+    the 1.6 and 1.7 reference assemblies' constants and signatures, which agree): an ordinary raider's goto, attack and
+    trash jobs can't bash doors, so `PathUtility.GetDoorCost` makes a closed colony door impassable to them
+    (`Building_Door.PawnCanOpen` is false for their faction, and `LordJob_AssaultColony` doesn't let them open any
+    door); they take an open way however long, and with none left they trash a random building they can touch. The game
+    also sends raiders to any edge cell that reaches the colony through its doors (`RCellFinder.TryFindRandomPawnEntryCell`
+    wants `CanReachColony`, which uses `TraverseMode.PassDoors`), so the rule holds for each edge cell, not for the whole
+    colony.
+  - **What was built**: (1) A shut door (not held open, not a line's way through) costs `DefenseMath.ShutDoorCost`
+    (2 to the 24th), more than any walk on any map: an open way always wins, however long, and only where no open way
+    reaches home is a door on the way, the way that breaks the fewest doors (the survey's guess: the game's raiders pick
+    a door or a stretch of wall at random, so the old trade of one door against thirty cells had no ground in the game
+    either). The lead's note asked for 400 where no open way is left; with the cost above, the fewest doors decide
+    there, which differs from 400 only when two doors would save more than thirty cells, and it lets the defense lines
+    compare their ways by doors. `DoorsToBreak` and `Walking` split a cost; `Result.sideBreak`, `TotalBreak` and
+    `BreakAll` (walled in all round, every gate shut) count the edge cells with no open way; `Distances` adds in 64 bits
+    and drops a step that would overflow. (2) The survey says which, under "Where they come from" on the Defenses page:
+    `CC_Def_Ways_Open` (every edge has an open way and the colony has doors: these are the ways of raiders who walk in
+    from the edge, who don't break a door while an open way is left), `CC_Def_Ways_Shut` (no open way from anywhere:
+    they break in at a door or a stretch of wall they pick, the ways drawn through the doors are only a guess, a gate
+    held open would be their way in) or `CC_Def_Ways_ShutSome` (the sides where part of the edge has none). (3) The
+    defense lines' way round (`DefenseLineMath.FindLeak`): a way round that breaks more of the colony's doors than the
+    way through the gate is no way round ("No open way round"); one that breaks no more is the way they take with the
+    gate shut, however long, through a door held open too (`DefenseLineReview.Leak` now tells a long way past such a
+    door as the long way round, where it said "No way round"). A line's gate and the doors in its wall stay its way
+    through, shut or not (the door rule: the line as it will be used in a raid), and its card says what a shut gate
+    does. (4) The words that had breaking a door as a choice raiders weigh: `CC_DefLine_How_Gate` (it also says
+    sappers and breachers dig or break through anywhere), `CC_DefLine_Gate_Shut`, `_Gate_ShutKillbox`, `_Gate_Doors`,
+    `_How_LeakDoor`, `_Leak_Door`, `_Leak_Sealed`, `_Killbox_Why3`, `_Remind` and the reminder setting's tooltip;
+    `CC_Def_Adv_WallDone` ("come through a door or not at all"), `CC_Def_Adv_Post` ("before the gate breaks"); the
+    step ladder's killbox (`whyNow` "Raids this size break a plain gate", a shut gate's mistake, and "An entrance so
+    long that raiders give up on it and go for the walls", which the game has no rule for: raiders far from anyone to
+    fight drift off to smash what they reach, as the Almanac's killbox page says); the Almanac's three mentions of the
+    survey's thirty cells.
+  - **Code map**: `Defense/DefenseMath.cs` (`ShutDoorCost`, `DoorsToBreak`, `Walking`, `StepCost`, `Distances`,
+    `Result.sideBreak`, `TotalBreak`, `BreakAll`, the class's note on which raids the ways are), `Defense/DefenseLineMath.cs`
+    (`FindLeak`, the `Leak` fields' notes, `MarkLineDoors`' note), `Defense/DefenseLineReview.cs` (`Leak`),
+    `Defense/DefenseSurvey.cs` (notes), `UI/DefensePanel.cs` (the three lines),
+    `Languages/English/Keyed/Rimfolk_Defense.xml`, `Rimfolk_DefenseLines.xml`, `Defs/DefenseStepDefs/Rimfolk_DefenseSteps.xml`,
+    `Defs/AlmanacArticleDefs/Almanac_DefendingLines.xml`. Untouched but following the new costs: the choke points and
+    their shares, the walled-in test (`Enclosed`), the trap corridor's way up to a gate (`DefenseApproach`), the plan
+    check's walks (`CheckWay`), the doors behind a gate (`DoorsBehind`) and on the way to the beds (`DoorsToCore`).
+    Tests: `DefenseTests.ShutDoorChecks` (an open way round a few cells longer, a long one about a hundred cells longer,
+    walled in all round, the door held open there and with the colony walled in, part of the edge with only the door),
+    `DefenseLineTests` (a way round through another door: shut, no way round; held open, the way round through it),
+    `DefenseApproachTests` (a shut door that isn't a line's sends every walk to the other pass; a cost split into doors
+    and walking). Saved: nothing.
+  - **What the player sees differently**: on the Defenses page and with "Show on the map", the red ways no longer run
+    through a shut door while an open way is left, however long (round to the killbox, a gap or a gate held open); the
+    yellow narrow places and their "About N in 10 raids would pass it" follow, so a shut back door near the edge drops
+    out of the gaps and the advice. A colony walled in all round with every gate shut still has its ways drawn through
+    the doors, and the page now says they are only a guess. One new line under "Where they come from" says which. On
+    a defense line's card: a way round through another shut door is no longer told as a way through your door ("keep
+    the other shut and strong"), but as no open way round; a long way round through a door held open is told as the long
+    way round. The first survey after loading the game updates the busiest way in quietly (no "Raiders now come by"
+    message).
+  - **Can't be checked without the game**: raiders in a 1.7 raid walking the long open way past a shut back door (the
+    1.7 method bodies weren't read; its reference assembly has the same door constants and signatures); the drawn ways
+    on the player's own maps; the new line's fit in the page's left column.
+  - **Try in the game**: (1) A colony with an open killbox (or its gate held open) and a shut door nearer the raiders:
+    Colony, Defenses, "Survey again", "Show on the map": the red ways go to the killbox, none through the shut door, and
+    "Where they come from" says these are the ways of raiders who walk in from the edge. (2) Set the killbox's gate to
+    close (a colony walled in all round): "Survey again": the page says every way in passes a shut door and the ways
+    drawn are a guess, and the wall's advice says a door held open is their way in. (3) A defense line with a second
+    door of the colony's on another way in: shut, its card says "No open way round"; set that door to stay open, and it
+    says the easiest way on is through that door. (4) In a raid with a shut back door and the killbox open: raiders walk
+    the long way to the killbox, as the page now draws.
+  - **Mods that would help**: none; the survey reads the map Rimfolk already has, and no graphics or sound come into it.
 - 0.274.0, **The peoples' own events, round 10, the last**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new

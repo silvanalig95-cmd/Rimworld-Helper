@@ -3,8 +3,8 @@ using ColonyCouncil;
 
 /// <summary>
 /// The defense helper's reading of a line against the ways in (Source/ColonyCouncil/Defense/DefenseLineMath.cs and
-/// DefenseApproach.cs): the door rule (a line's gate is its way through, shut or not; a door held open is open; other
-/// doors still cost raiders a door to break), gaps a line already holds (the same cells, the same pass a few cells
+/// DefenseApproach.cs): the door rule (a line's gate is its way through, shut or not; a door held open is open; any
+/// other shut door is no way at all while an open way is left), gaps a line already holds (the same cells, the same pass a few cells
 /// off, the same ways in) and real new gaps, the way raiders walk up to a gate, where a trap corridor goes on it (in
 /// front, its lane on the way, leaning on the rock, never across the line) and why it doesn't fit when it doesn't, and
 /// walls that would send raiders another way.
@@ -58,7 +58,7 @@ public static class DefenseApproachTests
         {
             var shut = TwoPasses();
             var r = DefenseMath.Analyse(shut);
-            Check(ThroughB(r) > ThroughA(r), $"door rule: a shut door that isn't a line's sends the walks to the other pass ({ThroughA(r)} through the door, {ThroughB(r)} by B)");
+            Check(ThroughA(r) == 0 && ThroughB(r) > 0, $"door rule: a shut door that isn't a line's sends every walk to the other pass ({ThroughA(r)} through the door, {ThroughB(r)} by B)");
             var lined = TwoPasses();
             int marked = DefenseLineMath.MarkLineDoors(lined, 18, 36, 0);
             Check(marked == 1 && lined.free[gateA], "door rule: the line's gate is marked as its way through");
@@ -70,8 +70,10 @@ public static class DefenseApproachTests
             var open = TwoPasses();
             open.free[gateA] = true;
             Check(ThroughA(DefenseMath.Analyse(open)) == ThroughA(r2), "door rule: a door held open counts as open");
-            Check(DefenseMath.StepCost(shut, gateA, 0) == DefenseMath.Ortho + DefenseMath.DoorCost && DefenseMath.StepCost(lined, gateA, 0) == DefenseMath.Ortho,
+            Check(DefenseMath.StepCost(shut, gateA, 0) == DefenseMath.Ortho + DefenseMath.ShutDoorCost && DefenseMath.StepCost(lined, gateA, 0) == DefenseMath.Ortho,
                 "door rule: only a door raiders must break costs them a door");
+            Check(DefenseMath.DoorsToBreak(DefenseMath.Ortho + DefenseMath.ShutDoorCost) == 1 && DefenseMath.Walking(DefenseMath.Ortho + DefenseMath.ShutDoorCost) == DefenseMath.Ortho
+                && DefenseMath.DoorsToBreak(-1) == -1 && DefenseMath.DoorsToBreak(5000) == 0, "a way's cost splits into its doors and its walking");
         }
         // A double gate: the door right behind the gate is the line's too; a door further in isn't.
         {

@@ -15,6 +15,7 @@
     <label>a coward who stood and fought</label>
     <trait>VTE_Coward</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
     <marks>
       <li><any>Rimfolk_Mark_HeldTheLine, SavedSomeone, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened</any><count>2</count></li>
@@ -82,6 +83,7 @@
     <label>no longer vengeful once the vow is over</label>
     <trait>VTE_Vengeful</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
     <onlyGiven>true</onlyGiven>
     <vendetta>over</vendetta>
@@ -108,6 +110,7 @@
     <label>no longer vengeful after a long calm</label>
     <trait>VTE_Vengeful</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
     <onlyGiven>true</onlyGiven>
     <calmDays>45</calmDays>
@@ -217,6 +220,36 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!-- Brave (docs/traits-proposals.md 26, 20 November 2026): held the line twice and carried someone to safety; never a wimp or a coward. -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_Brave</defName>
+    <label>brave after holding the line and carrying someone to safety</label>
+    <trait>VTE_Brave</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <marks>
+      <li><any>Rimfolk_Mark_HeldTheLine</any><count>2</count></li>
+      <li><any>SavedSomeone</any></li>
+    </marks>
+    <moved>nerve>=15</moved>
+    <blockedBy><li>Wimp</li><li>VTE_Coward</li><li>RT_Craven</li></blockedBy>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become brave.</news>
+    <meaning>{PAWN_nameDef} has held the line more than once and carried someone to safety in a fight. {PAWN_nameDef} is now harder to frighten and steadier when the fighting starts.</meaning>
+    <journal>
+      <plain>
+        <li>When the raid came I went to the line without thinking about it.</li>
+        <li>I pulled someone out of the fighting last month. I'd do it again.</li>
+      </plain>
+      <warm><li>If someone's hurt out there, I'll go and get them.</li></warm>
+      <blunt><li>I don't run. I go where I'm needed.</li></blunt>
+      <cheerful><li>Scared? A bit. I went anyway, and it worked out.</li></cheerful>
+      <gloomy><li>Someone has to stand at the front. It may as well be me.</li></gloomy>
+      <cold><li>Fear is a warning. I've learned to note it and act anyway.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
   <!-- ==================== RimTraits - General Traits (sierra.rt.generaltraits) ==================== -->
 
   <ColonyCouncil.TraitChangeDef>
@@ -224,6 +257,7 @@
     <label>craven no more after standing their ground</label>
     <trait>RT_Craven</trait>
     <change>Lose</change>
+    <wayOutOf><li>0</li></wayOutOf>
     <mods><li>sierra.rt.generaltraits</li></mods>
     <marks>
       <li><any>Rimfolk_Mark_HeldTheLine, SavedSomeone, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened</any><count>2</count></li>
