@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council's situations and everyday questions
+
+*20 November 2026, version 0.283.0*
+
+- A council seat holder who is worn down or laid up asks to step down: let them go, give them a deputy for ten days and a day off, or ask them to stay.
+- When two colonists' wished-for things need the same steel, wood or cloth and there is only enough for one, the council says who goes first, and whoever waits is told why face to face.
+- Two new decrees show on the map: the night watch, two fighters in turn on the walls from nine until one, and a welcome for newcomers, an evening hour with each new face.
+- Three new personal stories: after the vote, the one sent away, and worn thin.
+- Twenty-five new council questions from everyday life, from the broom and the bucket to a storm at night, with every answer done on the map.
+
 ## New world events, camps and encounters
 
 *20 November 2026, version 0.282.0*

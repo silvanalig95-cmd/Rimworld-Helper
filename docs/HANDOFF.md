@@ -611,7 +611,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colony life's variety, part 1: the
+- 0.283.0, **Colony life's variety, part 1: the
   council's situations and its everyday questions** (20 November 2026; the player on `docs/content-update-proposals.md`:
   "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and "yes, I want
   more events, camps, world events, and dilemmas, but first do all the integrations"; with the integrations built, the
