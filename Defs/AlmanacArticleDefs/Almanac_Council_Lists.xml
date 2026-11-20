@@ -58,6 +58,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A pet to look after | Children, when something small and calm roams near the colony. Any new animal will do.</li>
           <li>New stories to read | Children, when the colony has fewer than three books.</li>
           <li>Milk for the little one | Parents of a baby, or with one on the way (Biotech), when the stores hold less than 20 milk or baby food.</li>
+          <li>A toy for the little one | A parent, an elder or a grown-up fond of a child of three to twelve (Biotech), when the colony can make a toy (Vanilla Christmas Expanded) or a small carving. Once it's made, they carry it to the child themselves.</li>
         </table>
       </li>
       <li>
@@ -273,6 +274,9 @@ Every project shows something on the map when it is reached (with "Answers play 
           <li>school days | 3 school desks, with children in the colony.</li>
           <li>a seat of power | A throne room for a noble's title.</li>
           <li>the menagerie | 3 new animals and a barn.</li>
+          <li>nobody left out | Every grown colonist in a group or with a friend, when two or more have neither. Colonies of 4 or more.</li>
+          <li>a season of kept promises | 15 days in a row with no promise let lapse and two kept along the way, while someone minds a broken promise.</li>
+          <li>a lighter season | 15 days in a row with nobody worn down or near breaking, when someone is (the colony's feelings on).</li>
         </table>
       </li>
       <li>
@@ -341,6 +345,7 @@ Every project shows something on the map when it is reached (with "Answers play 
           <li>make peace with a rival, avenge the dead | Those with a rival; those with a vendetta.</li>
           <li>train a student until they can stand alone | Masters of a skill; a grateful student.</li>
           <li>earn a seat on the council, serve as marshal, physician, steward or quartermaster | Anyone, each office by who suits it; a lost election.</li>
+          <li>serve as reeve, peacemaker, keeper of days, herdmaster, chaplain or warden of guests; take an elder's seat | Each by who suits it, while the seat is open to the colony; a lost election, and the seat's own work (a harvest in, a quarrel mended, a day kept, an animal tamed, a rite led, a camp greeted, a student taught; a birth for an elder).</li>
           <li>have an idea chosen by the council | Anyone grown; being left out of a decision, a meeting.</li>
           <li>earn a name the colony remembers | Anyone; a friend's name.</li>
           <li>make friends among travelers and guests, see an old enemy brought down | With strangers on; a nemesis.</li>
