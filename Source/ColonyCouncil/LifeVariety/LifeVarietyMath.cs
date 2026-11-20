@@ -237,6 +237,9 @@ namespace ColonyCouncil
         /// <summary>The supper is from 17; the gifts are handed round after it, from this hour, and the evening ends at midnight.</summary>
         public const int GiveFrom = 19, EveningEnds = 23;
 
+        /// <summary>The giving day's plan is let go this many hours after it was asked, whatever is still to be handed round.</summary>
+        public const int MostHours = 40;
+
         /// <summary>A gift worth giving, in silver, at most (no one hands over the colony's best rifle on the giving day).</summary>
         public const float MostWorth = 400f;
 

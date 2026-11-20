@@ -21,7 +21,7 @@ namespace ColonyCouncil
             if (p == null || p.Dead) return;
             try
             {
-                Marks.Give(p, family, null, label);
+                PersonaMarks.Give(p, family, null, label);
             }
             catch (Exception e)
             {

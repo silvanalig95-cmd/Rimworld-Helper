@@ -154,8 +154,8 @@ namespace ColonyCouncil
     public class GivingPlan : IExposable
     {
         public Map map;
-        /// <summary>The home's own day it is kept on (its year times sixty and its day of the year).</summary>
-        public int day = -1;
+        /// <summary>The home's own day it was asked on (its year times sixty and its day of the year), and the tick.</summary>
+        public int day = -1, start;
         /// <summary>Only the children are given to.</summary>
         public bool childrenOnly;
         /// <summary>It came with the faith's festive feast (Vanilla Christmas Expanded): the feast was the supper, the gifts follow it at once.</summary>
@@ -172,6 +172,7 @@ namespace ColonyCouncil
         {
             Scribe_References.Look(ref map, "map");
             Scribe_Values.Look(ref day, "day", -1);
+            Scribe_Values.Look(ref start, "start");
             Scribe_Values.Look(ref childrenOnly, "childrenOnly");
             Scribe_Values.Look(ref afterFeast, "afterFeast");
             Scribe_Values.Look(ref supperId, "supperId", -1);

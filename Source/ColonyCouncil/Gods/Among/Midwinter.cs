@@ -75,6 +75,13 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>Midwinter is being kept at this home today (the giving day lights no lamps of its own then: LifeVariety/GivingDay.cs).</summary>
+        public static bool KeepingToday(Map map)
+        {
+            var b = GodsAmongBook.Book;
+            return b != null && map != null && b.mwMap == map && b.mwDay == LocalDay(map);
+        }
+
         /// <summary>The home's own day (its year and day of the year), so the evening runs by its own clock.</summary>
         private static int LocalDay(Map map) => GenLocalDate.Year(map) * 60 + GenLocalDate.DayOfYear(map);
 
@@ -292,6 +299,9 @@ namespace ColonyCouncil
             Mark(b, PresentsBit);
             var def = Present;
             if (def == null) return;
+            // The giving day kept at this home now: its gifts are the evening's presents, so midwinter hands none of its own
+            // (the two never double: the content update's A26, LifeVariety/GivingDay.cs).
+            if (GivingDay.KeptToday(map)) return;
             var people = Home(map);
             int inStore = map.listerThings.ThingsOfDef(def).Where(t => t.Spawned && t.IsInAnyStorage()).Sum(t => t.stackCount);
             int n = GodsAmongMath.Presents(people.Count, inStore);

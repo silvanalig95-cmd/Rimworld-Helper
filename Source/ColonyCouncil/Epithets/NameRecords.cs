@@ -121,6 +121,8 @@ namespace ColonyCouncil
             try
             {
                 NameRecords.Notify_RitualKept(job, cancelled);
+                // The faith's festive feast (Vanilla Christmas Expanded): the giving day's gifts follow it (LifeVariety/GivingDay.cs).
+                if (!cancelled) GivingDay.AfterFestiveFeast(job.Ritual, job.lord?.Map);
             }
             catch (Exception e)
             {
