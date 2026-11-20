@@ -22,7 +22,7 @@
       <bestAt>Shooting</bestAt>
     </roleB>
     <texts>
-      <li>{A_nameDef} has been following {B_nameDef} out to the hunting grounds every morning, twenty paces behind, thinking nobody had noticed. Today {A_nameDef} stopped hiding and asked to be taught to shoot.\n\n{B_nameDef} said to ask the council. {A_nameDef} has been waiting outside the council's door ever since, standing as tall as {A_pronoun} can.</li>
+      <li>{A_nameDef} has been following {B_nameDef} out to the hunting grounds every morning, twenty paces behind, "secretly." Today {A_nameDef} stopped hiding and asked to be taught to shoot.\n\n{B_nameDef} said to ask the council. {A_nameDef} has been waiting outside the council's door ever since, standing as tall as {A_pronoun} can.</li>
       <li>{A_nameDef} brought a drawing to dinner of a raider stuck full of arrows, with a small figure in the corner doing the shooting. The small figure had {A_nameDef}'s name written under it.\n\n{B_nameDef}, the colony's best shot, has been asked for lessons nine times today. Most people out here learn to shoot sooner or later, and {A_nameDef} would like it to be sooner.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -81,7 +81,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Let {B_nameDef} show {A_objective} how to skin a kill</label>
+        <label>Let {B_nameDef} show {A_objective} the messy part</label>
         <outcome>{B_nameDef} walked {A_nameDef} through skinning the day's kill, step by step. {A_nameDef} went pale halfway through and now says {A_pronoun} wants to be a farmer.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
@@ -190,7 +190,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_WildFriend</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a child feeding a wild animal</label>
+    <label>a friend past the wall</label>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
     <roleA>
@@ -201,8 +201,8 @@
       <bestAt>Shooting</bestAt>
     </roleB>
     <texts>
-      <li>This week four potatoes, three strips of jerky and a handful of corn went missing from the stores. {B_nameDef} followed the crumbs past the wall and found {A_nameDef} hand-feeding a scruffy wild animal, which bolted the moment it saw {B_objective}.\n\n{A_nameDef} has given it a name, and won't say it in front of {B_nameDef}.</li>
-      <li>{A_nameDef} has made friends with a wild animal that lives in the scrub past the wall. It has a lot of teeth and eats whatever {A_nameDef} can smuggle out of the stores in a sleeve.\n\n{B_nameDef} has seen the tracks, and wants the council's say before doing anything about the animal.</li>
+      <li>Missing from the stores this week: four potatoes, three strips of jerky, a fistful of corn. {B_nameDef} followed the crumbs past the wall and found {A_nameDef} hand-feeding a scruffy wild animal, which bolted the moment it saw {B_objective}.\n\n{A_nameDef} has given it a name, and won't say it in front of {B_nameDef}.</li>
+      <li>{A_nameDef} has made a friend. It lives in the scrub past the wall, has a lot of teeth, and eats whatever {A_nameDef} can smuggle out of the stores in a sleeve.\n\n{B_nameDef} has seen the tracks, and wants the council's say before doing anything about the animal.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -371,7 +371,7 @@
       <bestAt>Animals</bestAt>
     </roleB>
     <texts>
-      <li>{PET_nameDef} is stiff in the mornings, off {PET_possessive} food, and sleeps in the sun most of the day. {B_nameDef}, who knows animals better than anyone here, looked {PET_objective} over and said it isn't the kind of sickness that gets better.\n\n{A_nameDef} has asked the council what to do, though {A_pronoun} can hardly bear to talk about it.</li>
+      <li>{PET_nameDef} is stiff in the mornings, off {PET_possessive} food, and sleeps in the sun most of the day. {B_nameDef}, who knows animals better than anyone here, looked {PET_objective} over and said it isn't the kind of sickness that gets better.\n\n{A_nameDef} has asked the council what to do, and begged them not to say it out loud.</li>
       <li>{A_nameDef} has been helping {PET_nameDef} to {PET_possessive} feet every morning, because {PET_nameDef} can't manage it alone anymore. {B_nameDef} says it will only get harder for both of them.\n\nNo medicine will fix this.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -401,7 +401,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Walk {PET_nameDef} out past the walls and let {PET_objective} go</label>
+        <label>Take {PET_nameDef} on one last walk, and let {PET_objective} go</label>
         <outcome>{A_nameDef} walked {PET_nameDef} out past the walls, slowly, the long way around, and came back alone. {A_nameDef} hasn't talked about it, and the others haven't asked.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
@@ -453,7 +453,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetPot</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>a plan to eat a pet</label>
+    <label>a hungry look</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.7</weight>
     <cooldownDays>45</cooldownDays>
@@ -461,7 +461,7 @@
       <anyTrait><li>Psychopath</li><li>Gourmand</li></anyTrait>
     </roleB>
     <texts>
-      <li>{B_nameDef} has been working out how long the stores will last, and how much meat {PET_nameDef} would give. "That's a week of stew," {B_nameDef} said at dinner, pointing with a spoon, "walking around eating our feed."\n\n{A_nameDef} hasn't left {PET_nameDef}'s side since. Both of them want the council to decide whether {PET_nameDef} is family or food.</li>
+      <li>{B_nameDef} has done the arithmetic on the stores, and on {PET_nameDef}. "That's a week of stew," {B_nameDef} said at dinner, pointing with a spoon, "walking around eating our feed."\n\n{A_nameDef} hasn't left {PET_nameDef}'s side since. Both of them want the council to decide whether {PET_nameDef} is family or food.</li>
       <li>{A_nameDef} caught {B_nameDef} measuring {PET_nameDef} with a length of string and muttering about roasting times.\n\n{A_nameDef} wants the council to say plainly that {PET_nameDef} is not food. {B_nameDef} would like the question discussed.</li>
     </texts>
     <defaultOption>0</defaultOption>
@@ -496,7 +496,7 @@
         </effects>
       </li>
       <li>
-        <label>Agree to cook the animal</label>
+        <label>Fetch the pot</label>
         <outcome>The council said yes, but {PET_nameDef} got over the wall before the water boiled and hasn't come back. {A_nameDef} left the gate open all night.</outcome>
         <ways><mercy>-8</mercy><generosity>-3</generosity></ways>
         <effects>
@@ -543,8 +543,8 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} found a letter in the laundry and read it aloud at dinner, doing voices. It was a love letter from {A_nameDef} to someone in the colony. It gave no name, but the description of the eyes narrowed it down to two people.\n\n{A_nameDef} left the table halfway through the reading and has been hiding in the storeroom ever since.</li>
-      <li>{A_nameDef} lost a love letter, three pages long. {B_nameDef} found it and read it out at dinner, so the whole table now knows that someone here has "hands like a summer harvest," and everyone is guessing who.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} says it was only a joke.</li>
+      <li>{B_nameDef} found a letter in the laundry and read it aloud at dinner, doing voices. It was a love letter from {A_nameDef} to someone in the colony. It gave no name, though the part about the eyes narrowed it down to two people.\n\n{A_nameDef} left the table at the word "luminous" and has been hiding in the storeroom ever since.</li>
+      <li>{A_nameDef} lost a love letter, three pages long. {B_nameDef} found it and read it out at dinner, so the whole table now knows that someone here has "hands like a summer harvest." People have been glancing at each other's hands since.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} says it was only a joke.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -638,8 +638,8 @@
       <maxMood>0.5</maxMood>
     </roleA>
     <texts>
-      <li>{A_nameDef} has brought the council a written plan for {A_possessive} own funeral. It says where the grave should go, out of the wind, what wood the coffin should be made of, who should carry it and who is not allowed to speak.\n\n"Out here, that's just good sense," {A_nameDef} says, and would like it all made ready now.</li>
-      <li>{A_nameDef} came to the council and asked, very calmly, for a coffin to be built now, so that {A_pronoun} can make sure it fits.\n\nAs far as anyone knows, {A_nameDef} isn't sick. {A_nameDef} says it's simply better to be ready, and the calm way {A_pronoun} says it worries people.</li>
+      <li>{A_nameDef} has brought the council a list. Across the top, in {A_possessive} best hand, it says "My funeral."\n\nThe spot (out of the wind)\nThe wood for the box\nWho carries it\nWho is not allowed to speak\n\n"Out here, that's just good sense," {A_nameDef} says, and would like it all made ready now.</li>
+      <li>{A_nameDef} came to the council and asked, as calmly as if asking for the salt, for a coffin to be built now, while {A_nameDef} can still check the fit.\n\nAs far as anyone knows, {A_nameDef} isn't sick. {A_nameDef} says it's simply better to be ready, and the calm way {A_pronoun} says it worries people.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -719,7 +719,7 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>Three nights running, {A_nameDef} has gotten up in {A_possessive} sleep and gone walking. Last night {A_nameDef} walked through {B_nameDef}'s room and climbed right over {B_nameDef}, who was asleep in bed.\n\n{A_nameDef} remembers none of it. {B_nameDef} wants something done before tonight.</li>
+      <li>Three nights running, {A_nameDef} has gotten up in {A_possessive} sleep and gone walking. Last night's route went through {B_nameDef}'s room, across {B_nameDef}'s bed, and over {B_nameDef}, who was in it.\n\n{A_nameDef} remembers none of it. {B_nameDef} wants something done before tonight.</li>
       <li>{B_nameDef} woke at three in the morning to find {A_nameDef} at the workbench, eyes open, carefully taking apart {B_nameDef}'s best work. Asked what was going on, {A_nameDef} said "the potatoes are listening" and went back to bed.\n\nThe damage is real, and {B_nameDef} wants a lock on {A_nameDef}'s door.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -782,7 +782,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Do nothing, since {A_nameDef} can't help it</label>
+        <label>{A_nameDef} can't help it</label>
         <outcome>{A_nameDef} is spared the bolt and the bell, and is grateful for it. With no help from the council, {B_nameDef} now sleeps with a chair against the door and a boot in one hand.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
@@ -904,7 +904,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Credit</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>who saved the colony</label>
+    <label>who saved us</label>
     <weight>1</weight>
     <cooldownDays>20</cooldownDays>
     <withinDaysOfThreat>3</withinDaysOfThreat>
@@ -916,13 +916,13 @@
       <maxOpinionOfA>30</maxOpinionOfA>
     </roleB>
     <texts>
-      <li>"I held the line," says {A_nameDef}. "{B_nameDef} hung back where it was safe."\n\n"{A_nameDef} hung back," says {B_nameDef}. "I held the line."\n\nBoth want the council to settle it before people start believing the other one.</li>
+      <li>"I held the line," says {A_nameDef}. "{B_nameDef} hung back where it was safe."\n\n"{A_nameDef} hung back," says {B_nameDef}. "I held the line."\n\nBoth want the council to settle it before one version sticks.</li>
       <li>{A_nameDef} and {B_nameDef} each say they're the one who saved the colony in the last fight. Each has a fresh bruise to show and a witness who is "pretty sure."\n\nThe argument has gone on through two dinners and is starting on a third.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
-        <label>Give {A_nameDef} the credit</label>
+        <label>It was {A_nameDef}</label>
         <outcome>The council credits {A_nameDef} with saving the colony. {A_nameDef} has taken to lingering in doorways in case anyone wants to say thanks, and {B_nameDef} avoids {A_objective}.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SavedTheColony</thought></li>
@@ -939,7 +939,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Give {B_nameDef} the credit</label>
+        <label>It was {B_nameDef}</label>
         <outcome>The credit is {B_nameDef}'s. {B_nameDef} tells the story at every meal, with more attackers each time, and {A_nameDef} has started eating elsewhere.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_SavedTheColony</thought></li>
@@ -995,8 +995,8 @@
       <notTrait><li>Psychopath</li></notTrait>
     </roleA>
     <texts>
-      <li>{A_nameDef} came to the council after dark and admitted, clearly ashamed, that {A_pronoun} has a spouse back home, a long way from here, who almost certainly thinks {A_nameDef} is dead.\n\n{A_nameDef} wants to send word. Getting a message that far costs silver, and it's the colony's silver.</li>
-      <li>Over a late drink, {A_nameDef} told the others that {A_pronoun} was married once, far from here, and as far as {A_pronoun} knows still is. The message is already written and folded small. "I'm alive. I'm sorry it took so long to say so."\n\n{A_nameDef} wants it passed hand to hand by travelers heading that way, and out here that isn't cheap.</li>
+      <li>{A_nameDef} came to the council after dark and admitted, as if confessing to a theft, that {A_pronoun} has a spouse back home, a long way from here, who almost certainly thinks {A_nameDef} is dead.\n\n{A_nameDef} wants to send word. Getting a message that far costs silver, and it's the colony's silver.</li>
+      <li>It came out over a late drink: {A_nameDef} was married once, far from here, and as far as {A_nameDef} knows still is. The message is already written and folded small. "I'm alive. I'm sorry it took so long to say so."\n\n{A_nameDef} wants it passed hand to hand by travelers heading that way, and out here that isn't cheap.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -1043,7 +1043,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Refuse, since a message could lead strangers here</label>
+        <label>No: a message can be followed back</label>
         <outcome>{A_nameDef} said {A_pronoun} understood why not, and took {A_possessive} supper out to the step to eat it alone.</outcome>
         <ways><mercy>-2</mercy><openness>-6</openness></ways>
         <effects>

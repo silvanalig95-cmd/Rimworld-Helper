@@ -11,7 +11,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_LongGrief</defName>
     <label>a long grief</label>
-    <summary>After a death, someone who loved the dead person grieves. After a few days they start talking about them or dreaming of them, then have some better days, and slowly the grief eases.</summary>
+    <summary>After a death, someone who loved the dead grieves: days of the empty place, then remembering out loud or in a dream, then small good things again, until it eases.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Grief</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -36,8 +36,8 @@
     <maxDays>70</maxDays>
     <stages>
       <li>
-        <label>the first days</label>
-        <waiting>Next: a few days to grieve.</waiting>
+        <label>the empty place</label>
+        <waiting>Next: time. Grief doesn't hurry.</waiting>
         <journal>
           <plain>
             <li>{LOST}'s things are still where {LOST} left them. I can't bring myself to move them.</li>
@@ -74,7 +74,7 @@
           <cold><li>I have started to remember {LOST} on purpose, in order. It is better than being ambushed by it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has started talking about {LOST} again, but can't yet get through a whole story without stopping.</li>
+          <li>{LOST}'s name is back in {PAWN_nameDef}'s talk, though {PAWN_pronoun} can't yet get all the way through a story.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -90,7 +90,7 @@
         </gate>
       </li>
       <li>
-        <label>better days</label>
+        <label>small things again</label>
         <waiting>Next: a run of better days.</waiting>
         <journal>
           <plain>
@@ -108,7 +108,7 @@
           <plain><li>{OTHER_nameDef} and I talked about {LOST} today. Neither of us had said the name aloud in days.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>At supper the other night, {PAWN_nameDef} laughed at a joke for the first time in a long while.</li>
+          <li>At supper the other night, {PAWN_nameDef} laughed, and didn't stop {PAWN_objective}self.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Mood</hold><value>0.45</value><hours>72</hours><minDays>4</minDays><timeoutDays>35</timeoutDays></gate>
       </li>
@@ -127,7 +127,7 @@
           <cold><li>The worst of it is over. I can work. I can sleep. I remember {LOST} accurately, and that will do.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s grief for {LOST} has eased, though it has not gone.</li>
+          <li>{PAWN_nameDef}'s grief for {LOST} has eased. It has not gone.</li>
           <li>{PAWN_nameDef} sleeps through most nights again, and talks about {LOST} in the daytime.</li>
         </chronicle>
         <effects>
@@ -170,7 +170,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Widowed</defName>
     <label>the one left</label>
-    <summary>After a husband, wife or betrothed dies, the one left behind grieves slowly. They start talking about the dead one, take an hour of their own at the grave or on a long walk, and after some better days they can bear it.</summary>
+    <summary>After a husband, wife or betrothed dies, the one left lives through it slowly: the empty side of the bed, going through their things and talking of them at last, a first season with an hour of their own for them, until they can carry it.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Widowed</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <memories>
@@ -184,7 +184,7 @@
     <stages>
       <li>
         <label>the empty side of the bed</label>
-        <waiting>Next: a week to grieve.</waiting>
+        <waiting>Next: time. Nobody hurries the one left.</waiting>
         <journal>
           <plain>
             <li>I still sleep on my own side, and leave {LOST}'s side as it was.</li>
@@ -224,7 +224,7 @@
           <cold><li>I have begun to sort {LOST}'s belongings. It is a task like any other, nearly.</li></cold>
         </journal>
         <chronicle>
-          <li>Little by little, {PAWN_nameDef} has started talking about {LOST} again.</li>
+          <li>{LOST}'s name has come back into {PAWN_nameDef}'s talk, a little at a time.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -257,7 +257,7 @@
           <plain><li>{PAWN_nameDef} said {LOST}'s name today without stopping. I noticed.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} spent an hour alone with {PAWN_possessive} memories of {LOST}, and came back looking a little better.</li>
+          <li>{PAWN_nameDef} took an hour of {PAWN_possessive} own for {LOST}, and came back a little lighter.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an hour of their own</label><to>Grave</to><orTo><li>Walk</li></orTo><hours>9~18</hours><duration>1~1.5</duration></li>
@@ -279,7 +279,7 @@
           <cold><li>I have come to terms with the loss of {LOST}. I remember {LOST} accurately, and that will do.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is coping better with the loss of {LOST} now, though it still hurts.</li>
+          <li>{PAWN_nameDef} carries the loss of {LOST} more lightly now. It has not gone.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GriefEased</thought></li>
@@ -322,7 +322,7 @@
     <maxDays>70</maxDays>
     <stages>
       <li>
-        <label>keeping quiet</label>
+        <label>the weight of it</label>
         <waiting>Next: {PAWN_nameDef} decides whom to tell first.</waiting>
         <journal>
           <plain>
@@ -357,7 +357,7 @@
           <cold><li>{OTHER_nameDef} is the safest first listener. I'll judge the reaction there.</li></cold>
         </journal>
         <chronicle>
-          <li>Twice now, {PAWN_nameDef} has been alone with {OTHER_nameDef} and not managed to say it.</li>
+          <li>Twice now, {PAWN_nameDef} has found a moment alone with {OTHER_nameDef} and let it pass.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -456,7 +456,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_FearFaced</defName>
     <label>a fear faced</label>
-    <summary>Someone hurt by an enemy who got away, or afraid of the dark, storms or the eclipse, trains until they feel ready and stands firm in the next fight at home (or sees the enemy brought down).</summary>
+    <summary>Someone hurt by an enemy who got away, or haunted by a dread, trains until they're ready and stands firm in the next fight at home (or sees the enemy brought down).</summary>
     <workerClass>ColonyCouncil.ArcWorker_Fear</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <needsOther>false</needsOther>
@@ -491,8 +491,8 @@
           </cold>
         </journal>
         <chronicle>
-          <li>[nemesis] {PAWN_nameDef} hasn't been the same since {NAME} beat {PAWN_objective} and got away.</li>
-          <li>{PAWN_nameDef} is afraid, and sick of being afraid.</li>
+          <li>[nemesis] {PAWN_nameDef} hasn't been the same since {NAME} left {PAWN_objective} in the dirt.</li>
+          <li>Fear has a hold on {PAWN_nameDef}, and {PAWN_pronoun} is sick of it.</li>
         </chronicle>
         <gate><kind>Time</kind><days>3</days><minDays>3</minDays></gate>
       </li>
@@ -566,7 +566,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} faced what {PAWN_pronoun} feared, and came through it standing.</li>
-          <li>[nemesis] {PAWN_nameDef} is no longer afraid of {NAME}.</li>
+          <li>[nemesis] {NAME} has no hold on {PAWN_nameDef} now.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_RemoveQuirk">
@@ -611,7 +611,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_RecurringDream</defName>
     <label>the recurring dream</label>
-    <summary>Someone keeps having the same strange dream. Talking it over gives them an idea: to make what they dreamt with their own hands and see if the dream stops.</summary>
+    <summary>The same strange dream keeps coming back. Told to someone, it gives an idea: make it real with one's own hands, and see if it lets go.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Dreamer</workerClass>
     <weight>0.8</weight>
     <children>true</children>
@@ -661,7 +661,7 @@
           <cold><li>I will describe the dream to someone else. An outside view may be useful.</li></cold>
         </journal>
         <chronicle>
-          <li>The dream came back again, and {PAWN_nameDef} was distracted by it all the next morning.</li>
+          <li>The dream came back again. {PAWN_nameDef} spent the next morning half in it.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -692,7 +692,7 @@
           <cold><li>Giving the image a physical form may end the recurrence. I'll test that.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} wants to make what {PAWN_pronoun} dreamt with {PAWN_possessive} own hands, to see if the dream stops.</li>
+          <li>With {PAWN_possessive} own hands, {PAWN_nameDef} means to make the dream real, and see if it lets go.</li>
         </chronicle>
         <gate>
           <kind>Made</kind>
@@ -706,7 +706,7 @@
         </gate>
       </li>
       <li>
-        <label>the dream stopped</label>
+        <label>the dream let go</label>
         <journal>
           <plain>
             <li>Haven't had the dream since I finished. Slept straight through, both nights. I'd forgotten what that was like.</li>
@@ -720,7 +720,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}'s dream has stopped coming.</li>
-          <li>{PAWN_nameDef} made something from {PAWN_possessive} dream, and the dream hasn't come back since.</li>
+          <li>{PAWN_nameDef} made something of {PAWN_possessive} dream, and the dream let {PAWN_objective} be.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DreamLetGo</thought></li>
@@ -759,7 +759,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_GrudgeLaidDown</defName>
     <label>a grudge laid down</label>
-    <summary>Weeks into a vendetta, someone tired of it talks it over with a friend and, after some calmer days, gives it up without taking revenge. If the enemy attacks again first, the anger comes back.</summary>
+    <summary>Weeks into a vendetta, someone tired of carrying it talks it over and, over some calmer days, lays it down without the satisfaction of revenge. If the enemy's banners come back first, the anger does too.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Vendetta</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <needsOther>false</needsOther>
@@ -781,7 +781,7 @@
           <cold><li>My account with {FACTION} remains open. It is, I admit, expensive to keep open.</li></cold>
         </journal>
         <chronicle>
-          <li>Weeks later, {PAWN_nameDef} still gets angry whenever anyone mentions {FACTION}, as {PAWN_pronoun} has ever since what happened to {LOST}.</li>
+          <li>Weeks on, {PAWN_nameDef} still can't hear {FACTION} named without {PAWN_possessive} jaw setting. It has been that way since what happened to {LOST}.</li>
         </chronicle>
         <gate><kind>Time</kind><days>3</days><minDays>3</minDays></gate>
       </li>
@@ -800,7 +800,7 @@
           <cold><li>I am weighing what the vendetta costs against what it gives. The figures are poor.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has started to wonder whether the grudge is worth keeping.</li>
+          <li>{PAWN_nameDef} has started asking what the grudge is for, and has not liked the answers.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -827,7 +827,7 @@
           <cold><li>I think of {FACTION} less often. Their claim on my attention was overstated.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s anger at {FACTION} is slowly fading.</li>
+          <li>{PAWN_nameDef}'s anger at {FACTION} is cooling, slowly, the way a hearthstone does.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Mood</hold><value>0.4</value><hours>72</hours><minDays>4</minDays><timeoutDays>30</timeoutDays></gate>
       </li>
@@ -845,8 +845,8 @@
           <cold><li>I have closed my account with {FACTION}. Unpaid, and closed.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has given up {PAWN_possessive} vendetta against {FACTION} without taking revenge.</li>
-          <li>{PAWN_nameDef} has let go of {PAWN_possessive} grudge over {LOST}, and can talk about it now without getting angry.</li>
+          <li>{PAWN_nameDef} has laid down {PAWN_possessive} vendetta against {FACTION}, unpaid.</li>
+          <li>{PAWN_nameDef} has let go of {PAWN_possessive} grudge over {LOST}, and can say the name now without making a fist.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_SettleVendetta" />
@@ -868,7 +868,7 @@
       <gloomy><li>[timeout] The grudge against {FACTION} has its claws in deep.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
-      <li>[anger] {FACTION} attacked again, and {PAWN_nameDef}'s anger came back.</li>
+      <li>[anger] {FACTION} came back, and {PAWN_nameDef}'s anger came back with them.</li>
       <li>[settled] {PAWN_nameDef}'s vendetta against {FACTION} ended some other way before {PAWN_pronoun} could lay it down.</li>
       <li>{PAWN_nameDef} still carries {PAWN_possessive} grudge against {FACTION}.</li>
     </fizzleChronicle>
@@ -934,7 +934,7 @@
           <cold><li>Encouragement received. Resuming work.</li></cold>
         </journal>
         <chronicle>
-          <li>A friend told {PAWN_nameDef} to keep going, and {PAWN_pronoun} is back at it.</li>
+          <li>A friend's word, and {PAWN_nameDef} is back at it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_BelievedInMe</thought></li>

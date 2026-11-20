@@ -30,7 +30,11 @@ public static class TraitChangeTests
         ["NaturalMood"] = new[] { -2, -1, 1, 2 },
         ["Industriousness"] = new[] { -2, -1, 1, 2 },
         ["DrugDesire"] = new[] { -1, 1, 2 },
-        ["SpeedOffset"] = new[] { -1, 1, 2 }
+        ["SpeedOffset"] = new[] { -1, 1, 2 },
+        ["Neurotic"] = new[] { 1, 2 },
+        // Dubs Bad Hygiene's hygiene trait (germaphobe, hygienic, unhygienic, slob in its file): read as 2, 1, -1 and -2,
+        // as the game's own four-degree traits are numbered (its files aren't here; docs/player-mods has the labels only).
+        ["Hygienic"] = new[] { -2, -1, 1, 2 }
     };
 
     // The memories, deeds, tales, records and skills the rules name, each one the game has: memories from its thought
@@ -57,8 +61,11 @@ public static class TraitChangeTests
     private static readonly HashSet<string> GameTales = new HashSet<string> { "ExecutedPrisoner" };
     private static readonly HashSet<string> GameRecords = new HashSet<string>
     {
-        "KillsHumanlikes", "Kills", "TimesInMentalState", "TimeGettingJoy", "TimeUnderRoof", "TimeAsColonistOrColonyAnimal", "TimeInBed"
+        "KillsHumanlikes", "Kills", "TimesInMentalState", "TimeGettingJoy", "TimeUnderRoof", "TimeAsColonistOrColonyAnimal", "TimeInBed",
+        "AnimalsTamed", "TimesTendedOther"
     };
+    // The breakdowns a tally counts (the game's MentalStateDefs, docs/player-mods defs.tsv.gz).
+    private static readonly HashSet<string> GameMentalStates = new HashSet<string> { "Binging_Food" };
 
     /// <summary>A vow as the player's save has it: open, the colony at war with those who did it, none of them fallen yet.</summary>
     private static TraitChangeMath.Vow OpenVow(int sworn, string loss) => new TraitChangeMath.Vow(sworn, true, true, 0, loss);
@@ -203,6 +210,23 @@ public static class TraitChangeTests
         Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now - 200 * Day }, now, now - 20 * Day) - 20f) < 0.01f, "or from the trait's last change, if later: a stretch from before it came doesn't count");
         Check(Math.Abs(TraitChangeMath.NoneDays(new List<int>(), now, now - 20 * Day) - 20f) < 0.01f, "none counted since it came: the days since it came");
         Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now + 5 * Day, now - 40 * Day }, now, -1) - 40f) < 0.01f, "a moment from the future (a loaded save) is ignored");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int>(), now, -1, now - 10 * Day) - 10f) < 0.01f,
+            "12: someone who joined ten days ago, with nothing counted, has gone ten days without it, not forever");
+        Check(Math.Abs(TraitChangeMath.NoneDays(new List<int> { now - 30 * Day }, now, -1, now - 300 * Day) - 30f) < 0.01f, "joining long ago doesn't hide a newer one");
+        Check(float.IsPositiveInfinity(TraitChangeMath.NoneDays(new List<int>(), now, -1, -1)), "with nothing known at all, as before");
+        Check(TraitChangeMath.NoneDaysAfter(new List<int>(), new List<int>(), now, -1, now - 300 * Day) == 0f,
+            "11: no hungry season yet, so the 60 days without a food binge haven't started");
+        Check(Math.Abs(TraitChangeMath.NoneDaysAfter(new List<int>(), new List<int> { now - 70 * Day }, now, -1, now - 300 * Day) - 70f) < 0.01f,
+            "11: went hungry 70 days ago and no binge since: 70 days");
+        Check(Math.Abs(TraitChangeMath.NoneDaysAfter(new List<int> { now - 20 * Day }, new List<int> { now - 70 * Day }, now, -1, now - 300 * Day) - 20f) < 0.01f,
+            "11: a binge since the hungry season counts from the binge");
+        Check(Math.Abs(TraitChangeMath.NoneDaysAfter(new List<int> { now - 100 * Day }, new List<int> { now - 70 * Day }, now, -1, now - 300 * Day) - 70f) < 0.01f,
+            "11: a binge before the hungry season doesn't matter: from the hungry season");
+        Check(TraitChangeMath.NoneDaysAfter(new List<int>(), new List<int> { now - 70 * Day }, now, now - 20 * Day, -1) == 0f,
+            "11: a hungry season from before the trait's last change doesn't start it");
+        Check(TraitChangeMath.GivenAllows(true, true, false) && !TraitChangeMath.GivenAllows(false, true, false), "a way out for what Rimfolk gave only");
+        Check(TraitChangeMath.GivenAllows(false, false, true) && !TraitChangeMath.GivenAllows(true, false, true), "12: the slower twin only for a trait they came with");
+        Check(TraitChangeMath.GivenAllows(true, false, false) && TraitChangeMath.GivenAllows(false, false, false), "any other rule for either");
         Check(TraitChangeMath.PracticeParts("Cooking+Smithing").SequenceEqual(new[] { "Cooking", "Smithing" }) && TraitChangeMath.PracticeParts("Hauling").SequenceEqual(new[] { "Hauling" }),
             "a practice adds up the kinds of work it names");
         var famineRule = new List<string> { "Rimfolk_TC_CannibalFamine" };
@@ -461,6 +485,11 @@ public static class TraitChangeTests
                 foreach (var ev in List((string)tally.Element("events"))) Check(GameEvents.Contains(ev), $"{name}: the deed {ev} is the game's");
                 foreach (var ta in List((string)tally.Element("tales"))) Check(GameTales.Contains(ta), $"{name}: the tale {ta} is the game's");
                 foreach (var m in List((string)tally.Element("marks"))) Check(markNames.Contains(m), $"{name}: the mark {m} it counts as it comes is a mark, a family or a story");
+                foreach (var ms in List((string)tally.Element("mentalStates"))) Check(GameMentalStates.Contains(ms), $"{name}: the breakdown {ms} is the game's");
+                string after = (string)tally.Element("noneAfter");
+                if (after != null)
+                    Check(tally.Element("noneDays") != null && r.Element("tallies")!.Elements("li").Any(o => o != tally && (string)o.Element("key") == after && o.Element("noneDays") == null),
+                        $"{name}: a zero count that starts after something names another tally of the rule that counts ({after})");
                 Check(!string.IsNullOrWhiteSpace((string)tally.Element("label")), $"{name}: a deed counted is named in the letter");
                 int noneDays = (int?)tally.Element("noneDays") ?? 0;
                 Check(noneDays >= 0 && noneDays <= 240, $"{name}: a zero count fits in the 240 days deeds are kept ({noneDays})");
@@ -491,6 +520,9 @@ public static class TraitChangeTests
             var wayOut = r.Element("wayOutOf")?.Elements("li").Select(li => int.Parse(li.Value)).ToList();
             if (change == "Lose" && ((int?)r.Element("tone") ?? 0) > 0) Check(wayOut != null && wayOut.Count > 0, $"{name}: a good loss is a way out of a bad trait (wayOutOf)");
             if (r.Element("onlyGiven") != null) Check(wayOut != null && wayOut.Count > 0, $"{name}: undoing what Rimfolk gave is a way out");
+            if (r.Element("notGiven") != null) Check(r.Element("onlyGiven") == null && wayOut != null && wayOut.Count > 0, $"{name}: a way out for a trait they came with, never also only Rimfolk's");
+            if (wayOut != null && r.Element("habit") != null && change == "Lose")
+                Check((bool?)r.Element("endsHabit") == false, $"{name}: a way out that comes of a habit keeps the habit, so a good trait can still grow from it");
             if (wayOut != null)
             {
                 Check(change != "Gain" && ((int?)r.Element("tone") ?? 0) > 0, $"{name}: a way out is a loss or a step, and good news");
@@ -715,7 +747,198 @@ public static class TraitChangeTests
                 Check(Rule(n)?.Element("wayOutOf")?.Elements("li").Select(li => int.Parse(li.Value)).SequenceEqual(new[] { degree }) == true, $"37: {n} is a way out of degree {degree}");
             foreach (var r in rules.Where(r => ((string)r.Element("change") ?? "Gain") == "Gain"))
                 Check(r.Element("wayOutOf") == null, $"37: {(string)r.Element("defName")}: a gain is never a way out");
-            Check(rules.Count(r => r.Element("wayOutOf") != null) == 15 + 15, $"thirty ways out of a bad trait ({rules.Count(r => r.Element("wayOutOf") != null)})");
+
+            // ---------- The second batch: the other ways out (the player's "go ahead with all the traits", 20 November 2026) ----------
+            int Calm(XElement r) => (int?)r.Element("calmDays") ?? 0;
+            string Moved(XElement r) => (string)r.Element("moved") ?? "";
+            XElement? Tally(XElement r, string key) => r.Element("tallies")?.Elements("li").FirstOrDefault(li => (string)li.Element("key") == key);
+            float? PaceAtMost(XElement r) => (float?)r.Element("pace")?.Elements("li").FirstOrDefault()?.Element("atMost");
+            float? PaceAtLeast(XElement r) => (float?)r.Element("pace")?.Elements("li").FirstOrDefault()?.Element("atLeast");
+            bool Lose(XElement r, string trait) => (string)r.Element("trait") == trait && (string)r.Element("change") == "Lose";
+            bool TherapyTally(XElement? t) => t != null && List((string)t.Element("thoughts")).SequenceEqual(new[] { "TherapyRelieved" })
+                                               && (int?)t.Element("count") == 4 && (int?)t.Element("withinDays") == 90;
+            bool Mods(XElement r, string mod) => r.Element("mods")?.Elements("li").Any(li => li.Value == mod) == true;
+            XElement Need(string n)
+            {
+                var r = Rule(n);
+                Check(r != null, $"the rule {n} is there");
+                return r ?? new XElement("none");
+            }
+
+            // 3. Psychopath Rimfolk gave fades: 180 days with no execution or organ taken, three marks of care, warmth up 15; rare, once.
+            {
+                var r = Need("Rimfolk_TC_PsychopathFades");
+                var psychoGain = Rule("Rimfolk_TC_PsychopathExecutioner");
+                var cruelty = Tally(r, "Cruelty");
+                Check(Lose(r, "Psychopath") && (bool?)r.Element("onlyGiven") == true && (string)r.Element("onceKey") == "PsychopathFades", "3: only the psychopath Rimfolk gave, once");
+                Check(cruelty != null && (int?)cruelty.Element("noneDays") == 180 && psychoGain != null
+                      && (string)cruelty.Element("events") == (string)Tally(psychoGain, "Cruelty")!.Element("events"), "3: 180 days without the deeds that made it (the gain's own count)");
+                Check(AnyOf(r, 0).ToHashSet().SetEquals(new[] { "SavedSomeone", "TaughtWell", "ForgivenBy", "Kindness" }) && CountOf(r, 0) == 3, "3: three marks of care");
+                Check(Moved(r) == "warmth>=15" && Chance(r) == 0.02f && Rare(r) && WayOut(r), "3: warmth up 15, rare (2%)");
+            }
+            // 7. Workaholic eases: an eighth of their time at recreation over 60 days and a long peace.
+            {
+                var r = Need("Rimfolk_TC_VTE_WorkaholicEases");
+                Check(Lose(r, "VTE_Workaholic") && Vtes(r) && PaceAtLeast(r) == 0.125f && AnyOf(r, 0).SequenceEqual(new[] { "LongPeace" }), "7: an eighth of their time at rest, and a long peace");
+                Check(Chance(r) == 0.06f && Uncommon(r) && WayOut(r), "7: uncommon (6%)");
+            }
+            // 8. Recluse opens up: a friend on the Bonds page, two of kindness, rescue, nursing or forgiveness, trust back near.
+            {
+                var r = Need("Rimfolk_TC_RecluseOpensUp");
+                Check(Lose(r, "Recluse") && (string)r.Element("dlc") == "Biotech" && (bool?)r.Element("friend") == true, "8: a recluse with a friend (Biotech)");
+                Check(AnyOf(r, 0).ToHashSet().SetEquals(new[] { "Kindness", "SavedBy", "NursedBack", "ForgivenBy" }) && CountOf(r, 0) == 2, "8: two of kindness, carried to safety, nursed back, forgiven");
+                Check(Moved(r) == "trust>=-5" && Chance(r) == 0.06f && WayOut(r), "8: trust back near where it was, 6%");
+            }
+            // 9. Slothful to lazy: less than a twelfth of their time at recreation over 60 days, one of masterwork, mastered, taught well.
+            {
+                var r = Need("Rimfolk_TC_SlothfulStirs");
+                var step = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, -2, 0, false, Degrees["Industriousness"], new List<int> { -2 });
+                Check((string)r.Element("trait") == "Industriousness" && (string)r.Element("change") == "StepUp" && step.ok && step.to == -1 && step.hasAfter, "9: slothful steps up to lazy");
+                Check(PaceAtMost(r) < 1f / 12f && PaceAtMost(r) > 0.08f && AnyOf(r, 0).ToHashSet().SetEquals(new[] { "Masterwork", "Mastered", "TaughtWell" }), "9: under a twelfth at rest, and fine work");
+                Check(Chance(r) == 0.06f && WayOut(r) && r.Element("wayOutOf")!.Elements("li").Single().Value == "-2", "9: a way out of slothful, 6%");
+                var harder = Rule("Rimfolk_TC_WorkHarder");
+                Check(harder != null && !harder.Element("from")!.Elements("li").Any(li => li.Value == "-2"), "9: the hard-work rule itself still starts at lazy");
+            }
+            // 11. Gourmand eases: went hungry, then 60 days without a food binge, pride down 3.
+            {
+                var r = Need("Rimfolk_TC_GourmandEases");
+                var hungry = Tally(r, "HungrySeason");
+                var binge = Tally(r, "FoodBinge");
+                Check(Lose(r, "Gourmand") && hungry != null && (string)hungry.Element("marks") == "HungrySeason", "11: a hungry season");
+                Check(binge != null && (string)binge.Element("mentalStates") == "Binging_Food" && (int?)binge.Element("noneDays") == 60 && (string)binge.Element("noneAfter") == "HungrySeason",
+                    "11: then 60 days without a food binge, counted from the hungry season");
+                Check(Moved(r) == "pride<=-3" && Chance(r) == 0.05f && WayOut(r), "11: pride down 3, 5%");
+            }
+            // 12. Bloodlust they came with fades: 240 days without a fight mark, two long peaces, one of taught, kindness, nursed back, warmth up 10.
+            {
+                var r = Need("Rimfolk_TC_BloodlustCameWithFades");
+                var fights = Tally(r, "FightMarks");
+                var peace = Tally(r, "LongPeace");
+                var quick = Rule("Rimfolk_TC_BloodlustFades");
+                Check(Lose(r, "Bloodlust") && (bool?)r.Element("notGiven") == true, "12: for a bloodlust they came with");
+                Check(fights != null && (int?)fights.Element("noneDays") == 240 && quick != null
+                      && List((string)fights.Element("marks")).ToHashSet().SetEquals(List(NotMarks(quick))), "12: 240 days without the fight marks 2 waits out");
+                Check(peace != null && (int?)peace.Element("count") == 2 && AnyOf(r, 0).ToHashSet().SetEquals(new[] { "TaughtWell", "Kindness", "NursedBack" }), "12: two long peaces and one good mark");
+                Check(Moved(r) == "warmth>=10" && Chance(r) == 0.02f && Rare(r) && WayOut(r), "12: warmth up 10, rare (2%)");
+            }
+            // 13. Very neurotic to neurotic: 90 calm days, a long peace, nerve up 5.
+            {
+                var r = Need("Rimfolk_TC_NeuroticEases");
+                var step = TraitChangeMath.Plan(TraitChangeKind.StepDown, true, 2, 0, false, Degrees["Neurotic"], new List<int> { 2 });
+                Check((string)r.Element("trait") == "Neurotic" && (string)r.Element("change") == "StepDown" && step.ok && step.to == 1 && step.hasAfter, "13: very neurotic steps down to neurotic");
+                Check(Calm(r) == 90 && AnyOf(r, 0).SequenceEqual(new[] { "LongPeace" }) && Moved(r) == "nerve>=5" && Chance(r) == 0.06f && WayOut(r), "13: 90 calm days, a long peace, nerve up 5, 6%");
+            }
+            // 15. Anxious calms: 90 calm days and held the line or two long peaces (or the therapy of 14), nerve up 8.
+            {
+                var held = Need("Rimfolk_TC_VTE_AnxiousCalmsHeld");
+                var peace = Need("Rimfolk_TC_VTE_AnxiousCalmsPeace");
+                var talk = Need("Rimfolk_TC_TherapyAnxious");
+                foreach (var r in new[] { held, peace, talk })
+                    Check(Lose(r, "VTE_Anxious") && Calm(r) == 90 && Moved(r) == "nerve>=8" && Chance(r) == 0.08f && WayOut(r), "15: 90 calm days, nerve up 8, 8%");
+                Check(AnyOf(held, 0).SequenceEqual(new[] { "Rimfolk_Mark_HeldTheLine" }) && CountOf(held, 0) == 1, "15: held the line once");
+                Check((int?)Tally(peace, "LongPeace")?.Element("count") == 2, "15: or two long peaces");
+                Check(TherapyTally(Tally(talk, "Therapy")) && Mods(talk, "orion.therapy"), "15: or four sessions with a therapist in 90 days (Therapy (Continued))");
+            }
+            // 17. Squeamish hardens: 40 recent hours as a doctor and 30 times tending others.
+            {
+                var r = Need("Rimfolk_TC_VTE_SqueamishHardens");
+                Check(Lose(r, "VTE_Squeamish") && (string)r.Element("practice") == "Doctor>=40" && (string)r.Element("records") == "TimesTendedOther>=30", "17: 40 hours as a doctor, 30 times tending others");
+                Check(Chance(r) == 0.08f && Vtes(r) && WayOut(r), "17: 8%");
+            }
+            // 18. Kleptomaniac reformed: forgiven or given a seat, 120 calm days, trust up 5; rare.
+            foreach (var (n, mark) in new[] { ("Rimfolk_TC_VTE_KleptomaniacForgiven", "ForgivenBy"), ("Rimfolk_TC_VTE_KleptomaniacSeat", "Elected") })
+            {
+                var r = Need(n);
+                Check(Lose(r, "VTE_Kleptomaniac") && AnyOf(r, 0).SequenceEqual(new[] { mark }) && Calm(r) == 120 && Moved(r) == "trust>=5", $"18: {mark}, 120 calm days, trust up 5");
+                Check(Chance(r) == 0.04f && Rare(r) && WayOut(r), "18: rare (4%)");
+            }
+            // 19. Slob tidies up: 40 recent hours cleaning, or the tidy habit lived with for 60 days; VTE's slob, Dubs Bad Hygiene's slob and unhygienic one step up.
+            foreach (var n in new[] { "Rimfolk_TC_VTE_SlobCleaning", "Rimfolk_TC_VTE_SlobHabit", "Rimfolk_TC_DBH_SlobCleaning", "Rimfolk_TC_DBH_SlobHabit" })
+            {
+                var r = Need(n);
+                bool dbh = n.Contains("DBH");
+                Check(dbh ? (string)r.Element("trait") == "Hygienic" && (string)r.Element("change") == "StepUp" && Mods(r, "dubwise.dubsbadhygiene")
+                              && r.Element("from")!.Elements("li").Select(li => li.Value).SequenceEqual(new[] { "-2", "-1" })
+                          : Lose(r, "VTE_Slob") && Vtes(r), $"19: {n}: the right slob");
+                Check(n.EndsWith("Cleaning") ? (string)r.Element("practice") == "Cleaning>=40"
+                          : (string)r.Element("habit") == "Council_Quirk_TidyTable" && (int?)r.Element("habitDays") == 60 && (bool?)r.Element("endsHabit") == false,
+                    $"19: {n}: 40 hours cleaning, or the tidy habit for 60 days (kept, so tidy can come of it)");
+                Check(Chance(r) == 0.1f && Common(r) && WayOut(r), "19: common (10%)");
+            }
+            {
+                var degs = Degrees["Hygienic"];
+                var slob = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, -2, 0, false, degs, new List<int> { -2, -1 });
+                var unhygienic = TraitChangeMath.Plan(TraitChangeKind.StepUp, true, -1, 0, false, degs, new List<int> { -2, -1 });
+                Check(slob.ok && slob.to == -1 && slob.hasAfter && unhygienic.ok && unhygienic.Removes, "19: slob to unhygienic, unhygienic to none");
+                Check(!TraitChangeMath.Plan(TraitChangeKind.StepUp, false, 0, 0, false, degs, new List<int> { -2, -1 }).ok, "19: never on to hygienic from none");
+            }
+            // 20. Animal hater softens: an animal bonded to them, three animals tamed, or the habit of naming the animals.
+            {
+                var bond = Need("Rimfolk_TC_VTE_AnimalHaterBond");
+                var tamed = Need("Rimfolk_TC_VTE_AnimalHaterTamed");
+                var habit = Need("Rimfolk_TC_VTE_AnimalHaterHabit");
+                foreach (var r in new[] { bond, tamed, habit })
+                    Check(Lose(r, "VTE_AnimalHater") && Vtes(r) && Chance(r) == 0.06f && WayOut(r), "20: an animal hater's way out, 6%");
+                Check((bool?)bond.Element("bondedAnimal") == true, "20: an animal bonded to them");
+                Check((string)tamed.Element("records") == "AnimalsTamed>=3", "20: three animals tamed (the game's record)");
+                Check((string)habit.Element("habit") == "Council_Quirk_NamesAnimals" && (bool?)habit.Element("endsHabit") == false, "20: the habit of naming the animals, kept");
+            }
+            // 21. Submissive stands up: given a seat or held the line twice, pride up 8.
+            foreach (var (n, mark, count) in new[] { ("Rimfolk_TC_VTE_SubmissiveSeat", "Elected", 1), ("Rimfolk_TC_VTE_SubmissiveHeld", "Rimfolk_Mark_HeldTheLine", 2) })
+            {
+                var r = Need(n);
+                Check(Lose(r, "VTE_Submissive") && AnyOf(r, 0).SequenceEqual(new[] { mark }) && CountOf(r, 0) == count && Moved(r) == "pride>=8", $"21: {mark} x{count}, pride up 8");
+                Check(Chance(r) == 0.08f && WayOut(r), "21: 8%");
+            }
+            // 22. Snob humbled: humbled or a hungry season, and carried to safety or nursed back, pride down 6.
+            {
+                var r = Need("Rimfolk_TC_VTE_SnobHumbled");
+                Check(Lose(r, "VTE_Snob") && AnyOf(r, 0).ToHashSet().SetEquals(new[] { "Rimfolk_Mark_Humbled", "HungrySeason" })
+                      && AnyOf(r, 1).ToHashSet().SetEquals(new[] { "SavedBy", "NursedBack" }), "22: humbled or hungry, and carried or nursed back");
+                Check(Moved(r) == "pride<=-6" && Chance(r) == 0.06f && WayOut(r), "22: pride down 6, 6%");
+            }
+            // 23. Couch potato gets up: as the hard-work rule, 60 days with little recreation and a masterwork, mastery or student.
+            {
+                var r = Need("Rimfolk_TC_VTE_CouchPotatoGetsUp");
+                var harder = Rule("Rimfolk_TC_WorkHarder");
+                Check(Lose(r, "VTE_CouchPotato") && harder != null && PaceAtMost(r) == PaceAtMost(harder)
+                      && AnyOf(r, 0).ToHashSet().SetEquals(new[] { "Masterwork", "Mastered", "TaughtWell" }), "23: the hard-work rule's little recreation, and fine work");
+                Check(Chance(r) == 0.08f && WayOut(r), "23: 8%");
+            }
+            // 24. Insomniac sleeps again: 60 calm days, a long peace, few recent hours up at night (at most).
+            {
+                var r = Need("Rimfolk_TC_VTE_InsomniacSleeps");
+                Check(Lose(r, "VTE_Insomniac") && Calm(r) == 60 && AnyOf(r, 0).SequenceEqual(new[] { "LongPeace" }), "24: 60 calm days and a long peace");
+                Check(TraitChangeMath.TryParseFacts((string)r.Element("practice"), out var night, out _) && night.Count == 1 && night[0].name == "night" && !night[0].atLeast
+                      && night[0].value <= 12f && night[0].Holds(0f) && !night[0].Holds(20f), "24: at most a few recent hours up at night");
+                Check(Chance(r) == 0.06f && WayOut(r), "24: 6%");
+            }
+            // 25. Mood swings and impulsive settle: 120 calm days and a long peace, or the therapy of 14; rare.
+            foreach (var (n, trait, therapy) in new[]
+                     {
+                         ("Rimfolk_TC_VAEI_MoodSwingsSettle", "VAEI_MoodSwings", false), ("Rimfolk_TC_VAEI_MoodSwingsTherapy", "VAEI_MoodSwings", true),
+                         ("Rimfolk_TC_VAEI_ImpulsiveSettles", "VAEI_Unstable", false), ("Rimfolk_TC_VAEI_ImpulsiveTherapy", "VAEI_Unstable", true)
+                     })
+            {
+                var r = Need(n);
+                Check(Lose(r, trait) && Calm(r) == 120 && Chance(r) == 0.04f && Rare(r) && WayOut(r), $"25: {n}: 120 calm days, rare (4%)");
+                Check(therapy ? TherapyTally(Tally(r, "Therapy")) && Mods(r, "orion.therapy") && r.Element("marks") == null
+                          : AnyOf(r, 0).SequenceEqual(new[] { "LongPeace" }) && Mods(r, "vanillaexpanded.vanomalyeinsanity"), $"25: {n}: a long peace, or the therapy");
+            }
+            // Harm at the game's own rate: every rule of this batch takes a bad trait away, none gives one.
+            var second = rules.Where(r => ((string)r.Element("defName")!).Length > 0 && new[]
+            {
+                "Rimfolk_TC_PsychopathFades", "Rimfolk_TC_VTE_WorkaholicEases", "Rimfolk_TC_RecluseOpensUp", "Rimfolk_TC_SlothfulStirs", "Rimfolk_TC_GourmandEases",
+                "Rimfolk_TC_BloodlustCameWithFades", "Rimfolk_TC_NeuroticEases", "Rimfolk_TC_VTE_AnxiousCalmsHeld", "Rimfolk_TC_VTE_AnxiousCalmsPeace",
+                "Rimfolk_TC_TherapyAnxious", "Rimfolk_TC_VTE_SqueamishHardens", "Rimfolk_TC_VTE_KleptomaniacForgiven", "Rimfolk_TC_VTE_KleptomaniacSeat",
+                "Rimfolk_TC_VTE_SlobCleaning", "Rimfolk_TC_VTE_SlobHabit", "Rimfolk_TC_DBH_SlobCleaning", "Rimfolk_TC_DBH_SlobHabit",
+                "Rimfolk_TC_VTE_AnimalHaterBond", "Rimfolk_TC_VTE_AnimalHaterTamed", "Rimfolk_TC_VTE_AnimalHaterHabit", "Rimfolk_TC_VTE_SubmissiveSeat",
+                "Rimfolk_TC_VTE_SubmissiveHeld", "Rimfolk_TC_VTE_SnobHumbled", "Rimfolk_TC_VTE_CouchPotatoGetsUp", "Rimfolk_TC_VTE_InsomniacSleeps",
+                "Rimfolk_TC_VAEI_MoodSwingsSettle", "Rimfolk_TC_VAEI_MoodSwingsTherapy", "Rimfolk_TC_VAEI_ImpulsiveSettles", "Rimfolk_TC_VAEI_ImpulsiveTherapy"
+            }.Contains((string)r.Element("defName"))).ToList();
+            Check(second.Count == 29 && second.All(WayOut) && second.All(r => ((int?)r.Element("tone") ?? 0) > 0 && (string)r.Element("change") != "Gain"),
+                $"the second batch: 29 ways out, none of them a gain ({second.Count})");
+            Check(rules.Count(r => r.Element("wayOutOf") != null) == 15 + 15 + 29, $"fifty-nine ways out of a bad trait ({rules.Count(r => r.Element("wayOutOf") != null)})");
         }
 
         Check(rules.Select(r => (string)r.Element("defName")).Distinct().Count() == rules.Count, "every rule has its own name");

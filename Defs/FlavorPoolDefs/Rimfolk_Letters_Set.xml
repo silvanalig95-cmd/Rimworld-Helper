@@ -22,10 +22,10 @@
     <lines>
       <plain>
         <!-- ================= Petitions ================= -->
-        <li>[pe:body,theirs,k:request] To the people of {COLONY}, from the undersigned of {TOWN}:\n\nWe ask, as neighbours, whether you could spare {GOODS} this season. We are running short, and we would not ask if there were anyone nearer to ask. Whatever you send will be remembered, and repaid when we can.</li>
+        <li>[pe:body,theirs,k:request] To the people of {COLONY}, from the undersigned of {TOWN}:\n\nWe ask, as neighbours, whether you could spare {GOODS} this season. We are short, and the season is long, and we would not ask if there were anyone nearer to ask. Whatever you send will be remembered, and repaid when we can.</li>
         <li>[pe:body,theirs,k:request,grave] We, the people of {TOWN}, being in hard times and having nobody else to turn to, put our names to this and ask {COLONY} for {GOODS}.\n\nWe are not used to asking. We have done it now. The rest is up to you.</li>
         <li>[pe:body,theirs,k:request,m:proud] The people of {TOWN} do not beg, and this is not begging. It is a statement, signed by many, that {GOODS} would be very welcome here, and that {COLONY} would be thought well of for sending it.</li>
-        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} sat together and agreed on this: we need {GOODS}. If {COLONY} can give it, we will not forget it. If not, we will understand.</li>
+        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} sat together, and this is what we say: we need {GOODS}. If {COLONY} can give it, we will not forget. If not, we will not forget that either, but kindly.</li>
         <li>[pe:body,ours,help] To the people of {TOWN}, from all of us at {COLONY}:\n\nWe are short of {HELP}, and we would be grateful for any you can spare. We do not ask lightly, and we will not forget it.</li>
         <li>[pe:body,ours,help] We, the people of {COLONY}, every one of us, ask our neighbours at {TOWN} for {HELP}, if it can be spared.\n\nWe know times are hard everywhere. We would do the same for you, and we will, when we can.</li>
         <li>[olde,pe:body,theirs,k:request] To the good folk of {COLONY}, from them whose names are set below, of {TOWN}:\n\nWe pray thee, as neighbours, to spare us {GOODS} this season, for we are in want, and know none nearer to ask. Whatsoever thou sendest shall be remembered, and repaid when we may.</li>
@@ -36,32 +36,32 @@
         <li>[ac:head] The account, as it stands:</li>
         <li>[ac:head,m:trade] What we have, what we want, and what it costs:</li>
         <li>[ac:head,k:request] What we need, in order:</li>
-        <li>[ac:item,!w:tribal] Owed to the smith: one goose, since last winter. He reminds us often.</li>
-        <li>[ac:item] Borrowed from the neighbours: a ladder and two buckets.</li>
+        <li>[ac:item,!w:tribal] Owed to the smith: one goose, since last winter, and he has not forgotten.</li>
+        <li>[ac:item] Borrowed from the neighbours: a ladder, two buckets, and a great deal of patience.</li>
         <li>[ac:item] Lent out and not returned: one good knife, one bad knife, one goat.</li>
-        <li>[ac:item,!w:tribal] Sold at market: three cheeses, and a chair we promised to mend first.</li>
-        <li>[ac:item] In the cellar: more turnips than we can eat.</li>
-        <li>[ac:item] Repairs needed: the roof, the fence and the well cover.</li>
+        <li>[ac:item,!w:tribal] Sold at market: three cheeses, a chair, and a promise to fix the chair.</li>
+        <li>[ac:item] In the cellar: turnips. More turnips than anyone needs. Please do not mention turnips when you write back.</li>
+        <li>[ac:item] Repairs needed: the roof, the fence, the well cover, and my temper.</li>
         <li>[ac:item] Spent on boots this year: too much. Boots worn out this year: all of them.</li>
-        <li>[ac:item] Firewood stacked: enough for a mild winter, but probably not for a hard one.</li>
-        <li>[ac:item] {ANIMALS} seen near the fields: more than last year.</li>
+        <li>[ac:item] Firewood stacked: enough, if the winter is kind. The winter is never kind.</li>
+        <li>[ac:item] {ANIMALS} seen near the fields: more than last year, fewer than next.</li>
         <li>[ac:item,m:trade] Leather, cured, good quality: plenty, and priced to sell.</li>
-        <li>[ac:item,m:trade] Salt: a little, and expensive.</li>
+        <li>[ac:item,m:trade] Salt: some, and dear.</li>
         <li>[ac:item,m:trade] Dried fruit: a cartload, if the price is right.</li>
         <li>[ac:item,m:trade] Cloth, plain: as much as you like. Cloth, fancy: ask.</li>
-        <li>[ac:item,m:trade] Tools, mended: a few, nearly as good as new.</li>
+        <li>[ac:item,m:trade] Tools, mended: a few, as good as new, nearly.</li>
         <li>[ac:item,ac:asked,k:request] {GOODS}: as much as can be spared, which we know may not be much.</li>
         <li>[ac:item,w:tribal] Arrows: many. Arrows that fly straight: fewer.</li>
-        <li>[ac:item,w:tribal] Hides: three good ones, and one the dog chewed.</li>
+        <li>[ac:item,w:tribal] Hides: three good ones, and one that the dog found first.</li>
         <li>[ac:item,w:tribal] Owed to the healer: a basket of roots, since the fever.</li>
-        <li>[ac:end] That is the whole list.</li>
-        <li>[ac:end,m:trade] Fair prices, and better terms for neighbours.</li>
+        <li>[ac:end] That is the whole of it, give or take a turnip.</li>
+        <li>[ac:end,m:trade] Prices fair, terms fairer, for neighbours.</li>
         <li>[ac:end,k:request] Anything at all would help. We will settle up when we can.</li>
         <li>[olde,ac:head] The reckoning, as it standeth:</li>
-        <li>[olde,ac:item] Owed to the smith: one goose, since last winter, and he asketh after it often.</li>
+        <li>[olde,ac:item] Owed to the smith: one goose, since last winter, and he hath not forgot.</li>
         <li>[olde,ac:item] Lent and not returned: one good knife, one ill knife, one goat.</li>
         <li>[olde,ac:item] In the cellar: turnips, more than any soul needeth.</li>
-        <li>[olde,ac:item] Wanting mending: the roof, the hedge and the well.</li>
+        <li>[olde,ac:item] Wanting mending: the roof, the hedge, the well, and mine own temper.</li>
         <li>[olde,ac:item,m:trade] Wool, carded and spun: enough and to spare, at a fair price.</li>
         <li>[olde,ac:item,ac:asked,k:request] {GOODS}: so much as may be spared.</li>
         <li>[olde,ac:end] So endeth the reckoning.</li>
@@ -80,20 +80,20 @@
         <li>[u:none,ac:item,ac:asked,k:request] {GOODS}, please.</li>
         <li>[u:none,ac:end] That's all of it.</li>
         <!-- ================= Recipes and remedies ================= -->
-        <li>[rc:recipe,theirs] Winter stew, the way we make it at {TOWN}.\n\nTake whatever meat you have, and twice as many onions as you think. Brown the meat in the pot, then the onions, then add water until it looks like too much. Throw in whatever roots are left in the cellar, a handful of salt, and anything green that is not poisonous. Let it sit at the back of the fire from noon until dark, and do not stir it more than twice. Serve it with bread.</li>
+        <li>[rc:recipe,theirs] Winter stew, the way we make it at {TOWN}.\n\nTake whatever meat you have, and twice as many onions as you think. Brown the meat in the pot, then the onions, then add water until it looks like too much. Throw in whatever roots are left in the cellar, a handful of salt, and anything green that is not poisonous. Let it sit at the back of the fire from noon until dark. Do not stir it more than twice; it knows what it is doing. Serve with bread and an argument about whether it needed more salt.</li>
         <li>[rc:recipe] Honey cakes, for when somebody needs cheering up.\n\nTwo cups of flour, one of honey, an egg if you have one and a spoonful of fat if you do not. Mix it until your arm is tired, then a little longer. Drop spoonfuls on a hot stone or a greased pan. They are done when they smell done. Hide two for yourself before anyone else comes in.</li>
-        <li>[rc:recipe,w:tribal] Ash-baked roots, as the old ones make them.\n\nDig the fire pit deep. Wrap the roots in wet leaves. Bury them in the ashes when the flames are down to coals, and leave them there while someone tells a long story. When the story is over, they are ready.</li>
-        <li>[rc:recipe,!w:tribal] Pickled {PLANT}, which people doubt until they try it.\n\nPick it young, wash it twice, and pack it tight in a jar with salt and vinegar and a few peppercorns if you can get them. Seal it and leave it in a dark corner until the snow comes. Then open it. People are always surprised how good it is.</li>
-        <li>[rc:recipe,help,medicine] For a fever, when there is no medicine.\n\nBoil willow bark until the water goes brown, let it cool, and give a cup morning and night. Keep them warm and keep them drinking. Cool cloths on the forehead. Sit with them, because company helps more than you would think. Most fevers break on the third night.</li>
+        <li>[rc:recipe,w:tribal] Ash-baked roots, as the old ones make them.\n\nDig the fire pit deep. Wrap the roots in wet leaves. Bury them in the ashes when the flames are down to coals, and tell a long story. When the story is over, they are ready. If they are not ready, the story was too short.</li>
+        <li>[rc:recipe,!w:tribal] Pickled {PLANT}, which nobody believes in until they try it.\n\nPick it young, wash it twice, and pack it tight in a jar with salt and vinegar and a few peppercorns if you can get them. Seal it and forget it in a dark corner until the snow comes. Then open it and watch people's faces.</li>
+        <li>[rc:recipe,help,medicine] For a fever, when there is no medicine.\n\nBoil willow bark until the water goes brown, let it cool, and give a cup morning and night. Keep them warm and keep them drinking. Cool cloths on the forehead. Sit with them. Most fevers break on the third night, and the sitting is half the cure.</li>
         <li>[rc:recipe,help,medicine] For a wound that will not close, when there is nothing better.\n\nWash it in boiled water with salt, more often than seems needed. Bind it in clean cloth, boiled too. Honey on it if you have honey. Keep the flies off and the patient still. Change the cloth twice a day, and do not let anyone put anything else on it, however sure they are.</li>
-        <li>[rc:recipe] Porridge, the way we make it.\n\nOats, water, salt. Not milk. Never sugar. Stir it with the handle of the spoon, as everyone here does. Let it stand a minute before eating.</li>
-        <li>[rc:recipe,w:spacer] Ration bar pudding, from the old ship's galley.\n\nCrumble two standard ration bars into a pan with a little water. Heat gently. Add anything sweet you can find, and stir until it is smooth. It will still taste like a ration bar, but it is warm, and it is better eaten with company.</li>
-        <li>[rc:recipe,!w:tribal] Bread, for anyone who was never taught.\n\nFlour, water, salt, and yesterday's dough if you kept some, which you should. Mix it, knead it until it is smooth and springy, then leave it under a cloth by the fire until it doubles. Shape it, cut a slash in the top so it can rise, and bake it hot. Do not open the oven to look, or it will sink.</li>
-        <li>[rc:recipe,c:tea] Tea, as we brew it.\n\nWater not quite boiling. Leaves, a pinch a cup and one for the pot. Let it steep for about four minutes. Pour it and sit down. It is our custom not to talk until the first cup is finished.</li>
-        <li>[rc:recipe,ours] The stew {COOK} makes, as near as I can set it down.\n\nWhatever meat there is, browned hard. Onions, a great many. Water, whatever roots are in the store, salt, and a long time on the fire. {COOK} says the secret is to leave it alone, and does not let anyone else near the pot.</li>
-        <li>[rc:recipe,ours] The bread we bake here, which {COOK} says is nothing special, though there is never any left.\n\nFlour, water, salt, and a spoon of the old dough. Knead it until your arms ache. Let it rise by the fire. Bake it hot and do not open the oven. That is all {COOK} will tell me.</li>
-        <li>[olde,rc:recipe,theirs] A pottage of winter, as we make it at {TOWN}.\n\nTake what flesh thou hast, and onions twice as many as thou thinkest meet. Brown them in the pot, then add water, and what roots remain in the cellar, and salt, and any green thing that is not poison. Let it stand at the back of the fire from noon till dark, and stir it not above twice. Serve it with bread.</li>
-        <li>[olde,rc:recipe,help,medicine] For a fever, where there is no physic.\n\nSeethe willow bark till the water be brown, let it cool, and give a cup at morn and eve. Keep the sick warm, and keep them drinking. Lay cool cloths upon the brow, and sit by them, for company doth the sick much good. Most fevers break the third night.</li>
+        <li>[rc:recipe] Porridge, the right way, which is the only way.\n\nOats, water, salt. Not milk. Never sugar. Stir it with the handle of the spoon, not the bowl, for reasons nobody here will explain. Let it stand a minute before eating, so it can think about what it has done.</li>
+        <li>[rc:recipe,w:spacer] Ration bar pudding, from the old ship's galley.\n\nCrumble two standard ration bars into a pan with a little water. Heat gently. Add anything sweet you can find. Stir until it stops resembling a ration bar. It will not stop resembling a ration bar. Eat it anyway, with company, and tell stories about real food.</li>
+        <li>[rc:recipe,!w:tribal] Bread, for anyone who was never taught.\n\nFlour, water, salt, and yesterday's dough if you kept some, which you should. Mix it, knead it until it fights back, then leave it under a cloth by the fire until it doubles. Shape it, slash the top so it can breathe, and bake it hot. Do not open the oven to look. It is shy.</li>
+        <li>[rc:recipe,c:tea] Tea, as we brew it, which is properly.\n\nWater not quite boiling. Leaves, a pinch a cup and one for the pot. Steep it for as long as it takes to say something kind about someone you do not like. Pour. Sit. Do not talk until the first cup is gone.</li>
+        <li>[rc:recipe,ours] The stew {COOK} makes, as near as I can set it down.\n\nWhatever meat there is, browned hard. Onions, a great many. Water, whatever roots are in the store, salt, and a good deal of patience. {COOK} says the secret is to leave it alone. {COOK} also says there is no secret, and will not let anyone near the pot.</li>
+        <li>[rc:recipe,ours] The bread we bake here, which {COOK} says is nothing special and which everyone fights over.\n\nFlour, water, salt, and a spoon of the old dough. Knead it until your arms ache. Let it rise by the fire. Bake it hot and do not open the oven. That is all {COOK} will tell me, and I suspect it is not all.</li>
+        <li>[olde,rc:recipe,theirs] A pottage of winter, as we make it at {TOWN}.\n\nTake what flesh thou hast, and onions twice as many as thou thinkest meet. Brown them in the pot, then add water, and what roots remain in the cellar, and salt, and any green thing that is not poison. Let it stand at the back of the fire from noon till dark, and stir it not above twice. Serve it with bread and a quarrel over the salt.</li>
+        <li>[olde,rc:recipe,help,medicine] For a fever, where there is no physic.\n\nSeethe willow bark till the water be brown, let it cool, and give a cup at morn and eve. Keep the sick warm, and keep them drinking. Lay cool cloths upon the brow, and sit by them. Most fevers break the third night, and the sitting is half the cure.</li>
         <li>[olde,rc:recipe] Honey cakes, for a heavy heart.\n\nTwo measures of flour and one of honey, an egg if thou hast it. Beat it till thine arm be weary, then a while more. Drop it by spoonfuls upon a hot stone. They are done when they smell done. Hide two for thyself ere any come in.</li>
         <li>[olde,rc:recipe,!c:tea,!p:sober] Mulled ale, against the cold.\n\nWarm the ale slow and never let it boil. Put in honey, and a stick of cinnamon if thou canst get it, and a roasted apple if thou canst not. Drink it by the fire, and speak no ill of anyone until the cup be empty.</li>
         <!-- ================= Riddles: the riddle ~~ its answer ================= -->
@@ -117,17 +117,17 @@
         <li>[olde,ri:riddle] Feed me and I live; give me drink and I die. ~~ Fire.</li>
         <li>[olde,ri:riddle] What runneth all day and never wearieth, and hath a bed and never sleepeth? ~~ A river.</li>
         <li>[olde,ri:riddle] Name me and thou breakest me. ~~ Silence.</li>
-        <li>[sv:fey,ri:riddle] What is given to you, belongs to you, and is used by everyone else far more than you use it? ~~ Your name. Be careful who you give it to.</li>
+        <li>[sv:fey,ri:riddle] What is given to you, belongs to you, and is used by everyone else far more than you use it? ~~ Your name. Mind where you leave it.</li>
         <li>[sv:fey,ri:riddle] We are always in front of you and never behind, and you will never once see us. ~~ The days to come.</li>
         <li>[sv:fey,ri:riddle] What dances in the ring at midnight, and is not there, and leaves no print? ~~ Us, of course.</li>
-        <li>[sv:ancient,ri:riddle] I have outlived every king who tried to own me, and I still belong to whoever holds me. ~~ A coin. I still have some from those kings.</li>
+        <li>[sv:ancient,ri:riddle] I have outlived every king who tried to own me, and I still belong to whoever holds me. ~~ A coin. I have several, from the kings in question.</li>
         <li>[sv:ancient,ri:riddle] The longer it stands, the less of it there is. ~~ A candle. I have burned a great many.</li>
-        <li>[ri:later] I will give you the answer next time.</li>
+        <li>[ri:later] The answer next time. No peeking, not that there is anywhere to peek.</li>
         <li>[ri:later] I will tell you in my next letter, if you have not guessed it by then.</li>
-        <li>[ri:later,warmly] Write back with your guess, even if you are not sure of it.</li>
+        <li>[ri:later,warmly] Write back with your guess. Wrong answers are welcome, and frankly more fun.</li>
         <li>[olde,ri:later] The answer in my next, if thou hast not found it ere then.</li>
-        <li>[sv:fey,ri:later] The answer comes with the next letter.</li>
-        <li>[sv:ancient,ri:later] I shall supply the answer in my next letter.</li>
+        <li>[sv:fey,ri:later] The answer comes with the next letter, or with the next full moon, whichever is later.</li>
+        <li>[sv:ancient,ri:later] I shall supply the answer in due course. Due course, for me, is your next letter.</li>
         <li>[ri:answer] The answer to my riddle, if you have not got it: {ANSWER}</li>
         <li>[ri:answer] Did you guess my riddle? It was this: {ANSWER}</li>
         <li>[olde,ri:answer] The answer to my riddle, if thou hast not found it: {ANSWER}</li>
@@ -135,61 +135,61 @@
         <li>[sv:ancient,ri:answer] The answer to the riddle, as undertaken: {ANSWER}</li>
 
         <!-- ================= Round 2, part 2: petitions ================= -->
-        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} have put their marks here. We ask {COLONY} for {GOODS}. The children are thin. We would not ask for ourselves.</li>
-        <li>[pe:body,theirs,k:request,olde,grave] Unto the good folk of {COLONY}, the humble petition of the people of {TOWN}, being in sore need:\n\nThat it may please {COLONY} to spare us {GOODS} in this hard season, for which the petitioners shall ever be grateful, and shall not forget it.\n\nGiven under our hands, such as can write, and our marks, such as cannot.</li>
+        <li>[pe:body,theirs,k:request,w:tribal] All the people of {TOWN} have put their marks here, by the fire, in the ash. We ask {COLONY} for {GOODS}. The children are thin. We would not ask for ourselves.</li>
+        <li>[pe:body,theirs,k:request,olde,grave] Unto the good folk of {COLONY}, the humble petition of the people of {TOWN}, being in sore need:\n\nThat it may please {COLONY} to spare us {GOODS} in this hard season, for which the petitioners shall ever be grateful, and shall remember it at every board.\n\nGiven under our hands, such as can write, and our marks, such as cannot.</li>
         <li>[pe:body,theirs,k:request,w:spacer] Formal request, {TOWN} to {COLONY}. Subject: {GOODS}. Urgency: real.\n\nSignatories below, in the order they reached the terminal.</li>
-        <li>[pe:body,theirs,k:request,u:none] All of us at {TOWN} want {GOODS}, please. We put our names. Some of us put marks.</li>
+        <li>[pe:body,theirs,k:request,u:none] All of us at {TOWN} want {GOODS}, please. We put our names. Some of us put marks. One put a drawing of a pig. Ignore him.</li>
         <li>[pe:body,ours,help,olde] We of {COLONY}, being in need, beseech our friends of {TOWN} for {HELP}, and set our names hereunder, every one, that it may be known how many shall remember it.</li>
 
         <!-- ================= Round 2, part 2: lists and accounts, by the peoples' callings ================= -->
-        <li>[ac:item,their:traders] Wagons out: six. Wagons back: five. The sixth is late, somewhere between here and the coast.</li>
-        <li>[ac:item,their:scholars] Books catalogued: three hundred. Books found on the wrong shelf while cataloguing: about a hundred.</li>
+        <li>[ac:item,their:traders] Wagons out: six. Wagons back: five. The sixth is somewhere between here and the coast, having a wonderful time, presumably.</li>
+        <li>[ac:item,their:scholars] Books catalogued: three hundred. Books found misfiled while cataloguing: three hundred and one.</li>
         <li>[ac:item,their:salvagers] Salvage hauled this month: four tons of something. Identified: a ton and a half. The rest is under discussion.</li>
         <li>[ac:item,their:crew] Hull plates replaced: twelve. Hull plates still needing replacement: all the others.</li>
-        <li>[ac:item,their:drillers] Holes drilled: nine. Holes that struck anything: two, and one of those was water.</li>
+        <li>[ac:item,their:drillers] Holes drilled: nine. Holes with anything at the bottom: two. Holes with water: one. Holes with a hat in: one. We are looking into the hat.</li>
         <li>[ac:item,their:linesmen] Masts climbed: thirty. Masts climbed twice because somebody forgot the wrench: eleven.</li>
-        <li>[ac:item,their:herders] Goats counted at dawn: forty. Goats counted at dusk: forty-one, because a stray joined the herd.</li>
-        <li>[ac:item,their:citizens] Motions proposed: forty. Motions passed: two.</li>
-        <li>[ac:item,their:vaultfolk] Days since the door opened: more than we expected. Days some of us went back inside because the open sky was too much for them: fewer each month.</li>
-        <li>[ac:item,their:mechanitors] Mechs maintained: all of them. Mechs needing new parts: three.</li>
-        <li>[ac:item,their:seers] Storms foretold: eleven. Storms that came: nine. Storms that came without warning: two.</li>
-        <li>[ac:item,their:tamers] Bouts in the ring: twenty. Bouts won by the beast: twelve.</li>
-        <li>[ac:item,their:healers,olde] Item: bandages rolled, two hundred; bandages used, a hundred and ninety.</li>
-        <li>[ac:item,their:pilgrims,olde] Item: pilgrims lodged this season, forty; pilgrims that paid, three; pilgrims that prayed for us, forty, which we hold worth more than payment.</li>
-        <li>[ac:item,their:fishers,olde] Item: fish taken, a great many, and the nets mended twice.</li>
-        <li>[ac:item,their:hunters,olde] Item: lanterns trimmed and lit, every night of the year, to keep the beasts from the walls.</li>
+        <li>[ac:item,their:herders] Goats counted at dawn: forty. Goats counted at dusk: forty-one. We are not asking questions.</li>
+        <li>[ac:item,their:citizens] Motions proposed: forty. Motions passed: two. Motion to stop proposing motions: tabled.</li>
+        <li>[ac:item,their:vaultfolk] Days since the door opened: more than we expected. Days spent going back inside because outside is too big: fewer each month.</li>
+        <li>[ac:item,their:mechanitors] Mechs maintained: all of them. Mechs that seem to enjoy it: one, possibly.</li>
+        <li>[ac:item,their:seers] Storms foretold: eleven. Storms that came: nine. Storms that came without being foretold, and were rude about it: two.</li>
+        <li>[ac:item,their:tamers] Bouts in the ring: twenty. Bouts won by the beast: twelve. Bouts won by the beast's dignity: all of them.</li>
+        <li>[ac:item,their:healers,olde] Item: bandages rolled, two hundred; bandages lost, a hundred and ninety, and none can say whither.</li>
+        <li>[ac:item,their:pilgrims,olde] Item: pilgrims lodged this season, forty; pilgrims that paid, three; pilgrims that prayed for us, forty, which is better coin.</li>
+        <li>[ac:item,their:fishers,olde] Item: fish taken, a great many; fish that got away, a greater many, by every account given at the inn.</li>
+        <li>[ac:item,their:hunters,olde] Item: lanterns trimmed and lit, every night of the year. Item: things seen beyond the lantern, which we list not.</li>
         <li>[ac:item,their:sextons,olde] Item: bells rung for the dead, nine; for weddings, four; for the miller's name-day, once, by mischance, and none will let him forget it.</li>
         <li>[ac:item,their:artisans,olde] Item: pots thrown, eighty; pots fired whole, sixty; pots the kiln-master holdeth worthy of the mark, nine.</li>
-        <li>[ac:item,olde] Item: one cow, that will not be led. Item: one plough, broken. Item: one ploughman, much vexed by both.</li>
+        <li>[ac:item,olde] Item: one cow, being of a contrary mind. Item: one plough, being broken. Item: one ploughman, being much aggrieved.</li>
         <li>[ac:head,olde] The reckoning, as it standeth:</li>
-        <li>[ac:item,w:tribal] Skins cured: many. Skins traded: some. Skins the dogs chewed: one.</li>
-        <li>[ac:item,w:tribal] Arrows made: two hands. Arrows lost in the long grass: one hand.</li>
-        <li>[ac:end,their:scholars] Any errors in this account will be corrected in the next one.</li>
-        <li>[ac:end,w:tribal] That is the count, as near as we can make it.</li>
-        <li>[ac:end,olde] Thus standeth the reckoning, as true as we could make it.</li>
+        <li>[ac:item,w:tribal] Skins cured: many. Skins traded: some. Skins the dogs got to first: one, and the dogs are very pleased.</li>
+        <li>[ac:item,w:tribal] Arrows made: two hands. Arrows lost in the long grass: one hand. The grass is richer than we are.</li>
+        <li>[ac:end,their:scholars] Errors in this account: to be corrected in the next account, which will contain new errors.</li>
+        <li>[ac:end,w:tribal] That is the count, as near as the fingers go.</li>
+        <li>[ac:end,olde] Thus standeth the reckoning, and woe to them that dispute it.</li>
         <li>[ac:item,u:none] Things we have: a pig, a knife and some rope. Things we need: everything else.</li>
 
         <!-- ================= Round 2, part 2: recipes and remedies ================= -->
-        <li>[rc:recipe,olde] Pottage, as my grandam made it.\n\nTake whatsoever is in the garden, and a bone if thou hast one, and set it all in the great pot with water and a fistful of barley. Let it sit at the back of the fire from morning till evening. Stir it when thou passest, and not else. Salt at the end, never the beginning, as the old wives teach.</li>
-        <li>[rc:recipe,olde,!p:sober] A posset, for one that hath taken cold.\n\nHeat milk till it be near to boiling, but let it not boil. Pour in ale, a cup to the pint, and stir with a stick of cinnamon if thou hast such, or a clean spoon if thou hast not. Honey to taste. Drink it abed, pull up the coverlet, and sleep till morning.</li>
-        <li>[rc:recipe,olde] Frumenty, for a feast day.\n\nWheat, cracked and soaked a night. Boil it in milk till it be soft and thick. Stir in two eggs, beaten, and a little saffron if thou canst afford it. Serve it hot, with venison if thou hast any, or else with bread.</li>
-        <li>[rc:recipe,olde,help,medicine] For a fever, when there is no physic to be had.\n\nSteep willow bark in hot water till it be brown and bitter, and give a cup at morn and eve. Keep the sick one warm and give them drink, much drink. Cool cloths upon the brow. Sit by them, for company doth the sick much good. Most fevers break upon the third night.</li>
-        <li>[rc:recipe,their:fishers,olde] Fish smoked the river way.\n\nGut thy fish and split them, and lay them in brine the space of an hour. Hang them in the smoke-house over a fire of green wood, slow, two days and a night. They will turn dark brown and keep till spring, though all thou ownest will smell of smoke.</li>
-        <li>[rc:recipe,their:healers,olde,help,medicine] For a cough that will not leave, from the Order's book.\n\nHoney and hot water, and a sprig of {PLANT} steeped in it. A spoon of it every hour the sick one waketh. Keep them from the smoke and from the cold air at night. The Order saith to pray for them as well.</li>
-        <li>[rc:recipe,w:tribal] Pemmican, as the old ones make it.\n\nDry the meat in strips over a slow fire until it snaps. Pound it to dust between two stones. Melt the fat and pour it in, with berries if the berries are ripe. Press it into the skin bag and tie it. It keeps through a whole winter, and it tastes better than it looks.</li>
-        <li>[rc:recipe,w:tribal] Ash cakes, for the trail.\n\nMeal and water and a pinch of salt, worked into flat cakes on a warm stone. Bury them in the hot ashes, not the coals, for as long as it takes to sing a long song. Dig them out and knock the ash off. Eat them as you walk.</li>
-        <li>[rc:recipe,w:tribal,help,medicine] For a wound, when the medicine is gone.\n\nChew {PLANT} until it is soft and lay it on the wound. Bind it with a clean strip of hide. Change it at sunrise and sunset. Keep the wounded one still; singing to them helps. It heals slowly, but it heals.</li>
+        <li>[rc:recipe,olde] Pottage, as my grandam made it.\n\nTake whatsoever is in the garden, and a bone if thou hast one, and set it all in the great pot with water and a fistful of barley. Let it sit at the back of the fire from matins till vespers. Stir it when thou passest, and not else. Salt at the end, never the beginning, for so the old wives say, and the old wives have outlived all that doubted them.</li>
+        <li>[rc:recipe,olde,!p:sober] A posset, for one that hath taken cold.\n\nHeat milk till it trembleth, but let it not boil. Pour in ale, a cup to the pint, and stir with a stick of cinnamon if thou hast such, or a clean spoon if thou hast not. Honey to taste. Drink it abed, and pull up the coverlet, and let none speak to thee till morning.</li>
+        <li>[rc:recipe,olde] Frumenty, for a feast day.\n\nWheat, cracked and soaked a night. Boil it in milk till it be soft and thick. Stir in two eggs, beaten, and a little saffron if thou art rich, which thou art not, so leave it out. Serve hot with venison if thou art rich, which, again. Serve it with bread.</li>
+        <li>[rc:recipe,olde,help,medicine] For a fever, when there is no physic to be had.\n\nSteep willow bark in hot water till it be brown and bitter, and give a cup at morn and eve. Keep the sick one warm and give them drink, much drink. Cool cloths upon the brow. Sit by them. Most fevers break upon the third night, and the sitting is half the cure.</li>
+        <li>[rc:recipe,their:fishers,olde] Fish smoked the river way.\n\nGut thy fish and split them, and lay them in brine the length of a sermon, a short one. Hang them in the smoke-house over a fire of green wood, slow, two days and a night. They will be the colour of an old saddle and keep till spring. All thou ownest will smell of them. That is the price.</li>
+        <li>[rc:recipe,their:healers,olde,help,medicine] For a cough that will not leave, from the Order's book.\n\nHoney and hot water, and a sprig of {PLANT} steeped in it. A spoon of it every hour the sick one waketh. Keep them from the smoke and from the cold air at night. Prayer will not hurt, the Order saith, but neither will the honey.</li>
+        <li>[rc:recipe,w:tribal] Pemmican, as the old ones make it.\n\nDry the meat in strips over a slow fire until it snaps. Pound it to dust between two stones. Melt the fat and pour it in, with berries if the berries are ripe. Press it into the skin bag and tie it. It will keep longer than you will, and taste better than it looks, which is not difficult.</li>
+        <li>[rc:recipe,w:tribal] Ash cakes, for the trail.\n\nMeal and water and a pinch of salt, worked into flat cakes on a warm stone. Bury them in the hot ashes, not the coals, and count a long song. Dig them out and knock the ash off. Eat them walking. Everyone does.</li>
+        <li>[rc:recipe,w:tribal,help,medicine] For a wound, when the medicine is gone.\n\nChew {PLANT} until it is soft and lay it on the wound. Bind it with a clean strip of hide. Change it at sunrise and sunset. Keep the wounded one still, and sing to them, because the singing keeps them still. It mends slowly, but it mends.</li>
         <li>[rc:recipe,their:herders] Herder's cheese, quick.\n\nWarm the milk by the fire until it is as warm as a hand. Stir in a spoon of sour whey from the last batch. Wait until it sets. Cut it, salt it, hang it in a cloth from the tent pole. If the dog gets to it first, start again, and tie it higher.</li>
-        <li>[rc:recipe,w:industrial] Tinned stew, improved.\n\nOpen two tins of stew and pour them into a pan. Add an onion, browned first, and whatever is wilting in the cupboard. A spoon of mustard. A splash of the strong tea from the bottom of the pot. Heat until it bubbles. It will still taste of the tin, but much less.</li>
-        <li>[rc:recipe,w:industrial] Coffee, the way the night shift makes it.\n\nUse far more grounds than you think you should. Water just off the boil. Let it stand for a few minutes while you find a clean cup. The night shift drinks it standing up.</li>
-        <li>[rc:recipe,w:spacer] Hydroponic salad, for anyone who has not had fresh greens in a long time.\n\nTake whatever came up green in the tanks this week. Rinse it twice. Tear it, do not cut it; the tank-keeper insists. Oil, salt, a little vinegar from the ration store. Eat it slowly, by a window if you have one.</li>
-        <li>[rc:recipe,their:crew] Galley coffee, from the old ship's book.\n\nOne measure of grounds for each of the crew, and one for the pot. Boil it, which every cook in the world will tell you not to do. Boil it anyway; the ship's book says so.</li>
+        <li>[rc:recipe,w:industrial] Tinned stew, improved.\n\nOpen two tins of stew and pour them into a pan. Add an onion, browned first, and whatever is wilting in the cupboard. A spoon of mustard. A splash of the strong tea from the bottom of the pot. Heat until it bubbles. It will still taste of tins, but now it tastes of tins that are trying.</li>
+        <li>[rc:recipe,w:industrial] Coffee, the way the night shift makes it.\n\nFill the pot with grounds until you are ashamed, then add one more spoon. Water just off the boil. Let it stand while you find a clean cup, which will take long enough. Drink it standing. Do not ask the night shift how they sleep. They do not.</li>
+        <li>[rc:recipe,w:spacer] Hydroponic salad, for those who have forgotten what a leaf is.\n\nTake whatever came up green in the tanks this week. Rinse it twice, once for dirt and once for luck. Tear, do not cut; the tank-keeper insists. Oil, salt, a little vinegar from the ration store. Eat it slowly and look out of a window. It helps to look out of a window.</li>
+        <li>[rc:recipe,their:crew] Galley coffee, from the old ship's book.\n\nOne measure of grounds for each of the crew, and one for the pot. Boil it, which every cook in the world will tell you not to do. Boil it anyway; the ship's book says so, and the ship's book has never been wrong about coffee, only about everything else.</li>
         <li>[rc:recipe,sv:machine] PROCEDURE: TOAST.\n\nSTEP 1: OBTAIN BREAD.\nSTEP 2: APPLY HEAT. DURATION: UNTIL GOLDEN.\nSTEP 3: OBSERVE. DO NOT LOOK AWAY. THE TRANSITION FROM GOLDEN TO BLACK TAKES 11 SECONDS.\nSTEP 4: BUTTER.\nNOTE: THIS UNIT HAS COMPLETED THE PROCEDURE 4,012 TIMES. SUCCESS RATE: IMPROVING.</li>
         <li>[rc:recipe,sv:machine] PROCEDURE: TEA, OPTIMISED.\n\nWATER: 100 DEGREES. LEAVES: 2.5 GRAMS. STEEP: 4 MINUTES. MILK: OPTIONAL, BUT THE HUMANS BECOME DISTRESSED IF IT GOES IN FIRST.\nTHIS UNIT DOES NOT DRINK TEA. THIS UNIT MAKES IT VERY WELL.</li>
         <li>[rc:recipe,sv:green] Rain soup.\n\nTake one bucket. Put it out under the sky. Wait for rain. Wait longer. Add one handful of good soil and one warm afternoon. Do not stir. Stand in it, if you are like us. If you are not like us, we are told this recipe is less useful to you. We are sorry. It is our favourite.</li>
-        <li>[rc:recipe,sv:green] Compost, the right way.\n\nEverything that was alive, in a heap. Turn it when the moon is full. Water it when it is dry. Leave it alone the rest of the time while it rots down. In a season it will be the best soil you have ever had, though it will not look like much.</li>
+        <li>[rc:recipe,sv:green] Compost, the right way.\n\nEverything that was alive, in a heap. Turn it when the moon is full. Water it when it is thirsty. Leave it alone the rest of the time; it is busy. In a season it will be the best thing you have ever made, and it will not look like it, and that is the lesson.</li>
         <li>[rc:recipe,sv:beast] Find the meat. Smell it. If it smells right, eat it. If it smells wrong, give it to the young ones; they will eat anything.\n\nThat is the whole of it. You two-legs put fire on everything. We have tried it. It is not bad. It is not better.</li>
-        <li>[rc:recipe,sv:beast] Bone broth, for a cold den.\n\nThe bones from the hunt, cracked. Water from the stream. A hot stone dropped in, and another, and another, until it steams. Lap it while it is hot. Then lie close together. The warmth of lying close helps as much as the broth.</li>
+        <li>[rc:recipe,sv:beast] Bone broth, for a cold den.\n\nThe bones from the hunt, cracked. Water from the stream. A hot stone dropped in, and another, and another, until it steams. Lap it while it is hot. Then lie close together. The broth is half of it. The lying close is the other half.</li>
 
         <!-- ================= Round 2, part 2: riddles (the riddle ~~ its answer) ================= -->
         <li>[ri:riddle] The more you take, the more you leave behind. ~~ Footsteps.</li>
@@ -210,17 +210,17 @@
         <li>[ri:riddle,w:tribal] What walks with the hunter and cannot be caught? ~~ The hunter's shadow.</li>
         <li>[ri:later,w:tribal] When your words come back to our fire, I will tell you.</li>
         <li>[sv:fey,ri:riddle] What do you give us that you never miss, and we keep forever? ~~ Your name, if you are careless. Be careful.</li>
-        <li>[sv:fey,ri:riddle] Ring of mushrooms, ring of stone, ring of dancers: which ring has no end? ~~ All of them, since a ring has no end.</li>
+        <li>[sv:fey,ri:riddle] Ring of mushrooms, ring of stone, ring of dancers: which ring has no end? ~~ All of them. That is what a ring is for.</li>
         <li>[sv:ancient,ri:riddle] I was young once, then old, then young again, and I am none of those now. ~~ The moon. I have watched it do this some forty thousand times.</li>
-        <li>[sv:ancient,ri:riddle] What do the dead keep that the living lose? ~~ Their opinions.</li>
+        <li>[sv:ancient,ri:riddle] What do the dead keep that the living lose? ~~ Their opinions. Mine have been very stable.</li>
         <li>[sv:machine,ri:riddle] QUERY: WHAT HAS ONE STATE WHEN OBSERVED AND ANOTHER WHEN NOT? ~~ THE CAT. THIS UNIT HAS BEEN MONITORING THE CAT.</li>
-        <li>[sv:machine,ri:riddle] QUERY: WHAT INCREASES WHEN SHARED AND DECREASES WHEN HOARDED? ~~ INFORMATION.</li>
+        <li>[sv:machine,ri:riddle] QUERY: WHAT INCREASES WHEN SHARED AND DECREASES WHEN HOARDED? ~~ INFORMATION. ALSO SOUP.</li>
         <li>[sv:machine,ri:riddle] QUERY: I HAVE A FACE AND TWO HANDS AND NO ARMS. WHAT AM I? ~~ A CLOCK. THIS UNIT FINDS THE CLOCK RELATABLE.</li>
         <li>[sv:machine,ri:later] ANSWER: TO BE TRANSMITTED IN THE NEXT CORRESPONDENCE.</li>
         <li>[sv:machine,ri:answer] THE ANSWER TO THE PREVIOUS QUERY: {ANSWER}</li>
         <li>[sv:deep,ri:riddle] What is below the below? ~~ Us. Waiting. Kindly.</li>
         <li>[sv:deep,ri:riddle] Answer this: what shape has a door that opens inward, from the other side? ~~ The shape of you, listening.</li>
-        <li>[sv:deep,ri:later] The answer comes later, in the next letter.</li>
+        <li>[sv:deep,ri:later] The answer comes later. Everything comes later.</li>
         <li>[sv:deep,ri:answer] The answer, from below: {ANSWER}</li>
 
         <!-- ================= Round 2, part 2: more riddles, recipes and accounts ================= -->
@@ -233,19 +233,19 @@
         <li>[ri:riddle,olde] What is it that the more thou takest from it, the greater it groweth? ~~ A hole.</li>
         <li>[ri:riddle,w:tribal] What runs all day and never tires, and lies down at night in the same bed? ~~ The river.</li>
         <li>[ac:head] What we have, more or less:</li>
-        <li>[ac:item] Candles: enough for a month, if nobody reads in bed, and somebody always does.</li>
-        <li>[ac:item] Chickens: eleven. Eggs: nine a day.</li>
-        <li>[ac:item] Firewood: stacked to the eaves on the north side, and only to the knee on the south side, which the children stacked.</li>
-        <li>[ac:item] Owed to us: two sacks of grain, a favour, and an apology. We expect to see the grain first.</li>
-        <li>[ac:item] Owed by us: rather more than that.</li>
-        <li>[ac:item,season:winter] Blankets: one each, and two for the old ones.</li>
-        <li>[ac:end] That is everything in our stores.</li>
-        <li>[rc:recipe] Bread, for anyone who has never made it.\n\nFlour, water, salt, and a spoon of last week's dough. Mix it with your hands until your hands are tired. Leave it under a cloth near the fire until it doubles. Bake it hot. The first loaf usually burns; the second will be much better.</li>
-        <li>[rc:recipe] Onion soup, for a cold evening.\n\nSlice more onions than seems reasonable and cook them slowly in butter until they are brown and sweet. Add water or stock, salt, and a crust of old bread. Simmer it, and eat it with whoever chopped the onions.</li>
+        <li>[ac:item] Candles: enough for a month, if nobody reads in bed. Somebody reads in bed.</li>
+        <li>[ac:item] Chickens: eleven. Eggs: nine. One of the chickens is not pulling her weight, and we know which.</li>
+        <li>[ac:item] Firewood: stacked to the eaves on the north side, and to the knee on the south, because the south side was stacked by the children.</li>
+        <li>[ac:item] Owed to us: two sacks of grain, a favour, and an apology. The grain seems likeliest.</li>
+        <li>[ac:item] Owed by us: rather more than the above.</li>
+        <li>[ac:item,season:winter] Blankets: one each, two for the old ones, three for whoever complains loudest.</li>
+        <li>[ac:end] There. Now you know more about our stores than our own steward does.</li>
+        <li>[rc:recipe] Bread, for those afraid of bread.\n\nFlour, water, salt, and a spoon of last week's dough. Mix it with your hands until your hands are tired. Leave it under a cloth near the fire until it doubles, which it will, whatever you have done wrong. Bake it hot. Burn the first loaf; everyone does. The second will be the best thing you have eaten all week.</li>
+        <li>[rc:recipe] Onion soup, for a cold evening.\n\nSlice more onions than seems reasonable and cook them slowly in butter until they are brown and sweet and the whole house has given up resisting. Add water or stock, salt, and a crust of old bread. Simmer. Eat it with the person who chopped the onions, as an apology for the crying.</li>
         <li>[rc:recipe,help,medicine] For a burn, when there is nothing better.\n\nCool water over it, for a long while, longer than they will want. Never butter, whatever the old ones say. Cover it loosely with clean cloth, and keep it clean. Honey on it after the first day if you have honey. Watch for heat and redness spreading; if it spreads, they need a proper healer, and quickly.</li>
 
         <!-- ================= Round 2, part 2: a few more recipes and riddles ================= -->
-        <li>[rc:recipe,olde] Oat cakes, for the road.\n\nOatmeal and a little salt, and water hot enough to make thee wince. Work it to a paste and flatten it thin upon the griddle. Turn it once, and never twice. They keep a fortnight in thy pack.</li>
+        <li>[rc:recipe,olde] Oat cakes, for the road.\n\nOatmeal and a little salt, and water hot enough to make thee wince. Work it to a paste and flatten it thin upon the griddle. Turn it once, and never twice. They keep a fortnight in thy pack and taste of it.</li>
         <li>[ri:riddle,olde,!w:tribal] I am the beginning of eternity, the end of time and space, the beginning of every end, and the end of every place. ~~ The letter e.</li>
         <li>[rc:recipe,w:tribal] Fish baked in clay.\n\nWrap the fish in leaves and then in river clay, thick as your thumb. Put it in the coals and forget it while a story is told. Crack the clay with a stone. The skin comes away with it, and what is left is the best fish you will ever eat with your fingers.</li>
         <li>[ri:riddle,w:tribal] What can you catch but never throw? ~~ A cold.</li>

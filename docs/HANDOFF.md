@@ -58,6 +58,26 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
+  overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
+  additional God events, more immersion, more just further also building up on the gods in general, how they're
+  integrated, the effects they have, the relations between pawns, the kind of events that generated from it. So that's
+  a great direction. And then also, just variety, further kind of events, camps, world events, normal storyteller
+  events, dilemmas, etc. Just more of them, maybe just for a later stage. Just work on first all the things you already
+  have on to do as well. ... I have answers play out on the map is enabled for me. And yes, please go ahead Regarding the
+  faction update, in the sense that only the ones with radio can answer, and also that foreign peoples change [age] at
+  their pace." Then: "So for the content update, yes, I want more events, camps, world events, and dilemmas, but first
+  do all the integrations that you proposed in your document before we add additional content variety in that sense."
+  The order, three builds at a time:
+  1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
+     medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
+     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
+     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice), the comms console by radio and the foreign
+     peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
+  2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
+     (A) and the world (B); the **E** items with them where they belong to the same systems.
+  3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
+     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
 - **To do when the player asks (20 November 2026): the comms console and the peoples' ages.** The player, with
   League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm Riders. I
   mean, they are always only on medieval style tech level, it seems, you know, based on their weapons, etc. I don't know
@@ -90,18 +110,16 @@ most sense." So, in this order, three builds at a time:
     0.269.1, world events 0.270.1), keeping every def and code change that made the map match the words (the camp's
     people at its gatherings, the guardian on the long walk, the prospector, preachers and delegations at the gate, the
     far-town colonists sent away) and, where the old words claim what the code doesn't do (the batches' "put right"
-    lists), a minimal fix in the old voice.
-  - **Go, PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example, the Dawn Stone and I
-    guess other evolution stones that I cannot put into large storage shelves, for example, from the storage mod. It's
-    just not in the list of available items ... Can you please review all the Poke World items and ensure they are also
-    storable in storage mods, or in appropriate kinds of storage shelves that also can carry everything else?" PokéWorld
-    keeps its items under its own top category (`PW_PokeWorld`: stones, fossils, balls, TMs, healing items, eggs,
-    leathers, belts), which shelves that list the game's categories don't take; the player's storage mods are LWM's Deep
-    Storage, Deep Storage Plus (Continued) and RimFridge's shelves.
+    lists), a minimal fix in the old voice. Done: the entry "The flavour text back in eight parts" above the newest
+    release line.
+  - **Done (built, not released): PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example,
+    the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves ..." The to-do with
+    the player's words is now one entry above the newest release line ("PokéWorld's items on the shelves").
 - **The player, 20 November 2026 (second message):**
   - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
-    being built; the other 26 follow in two builds once it is merged (the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25;
-    the new traits 28 to 36), reusing its new parts.
+    released (0.275.0); the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25 are built, not released (the entry "More
+    traits that come and go, the other ways out" above the newest release line); the new traits 28 to 36 follow in one
+    more build, reusing their new parts.
   - "I don't remember making letters, wishes, ambitions, life goals, personal stories, council questions, gods cards and
     messages as plain text? do you still have the previous backups available in case i want to restore?" Answered: the
     overview of 19 November listed them under item 4 ("Plain-words text pass, remaining parts: letters, wishes and
@@ -210,7 +228,8 @@ repo.
   not released): more traits that come and go.** The to-do of 17 November 2026 with the player's words, the proposal list
   (`docs/traits-proposals.md`) and what was built are now one entry above the newest release line ("More traits that
   come and go, the first batch"). The player's "go ahead with all the traits" (20 November 2026) covers the other 26
-  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25, then the new traits 28 to 36.
+  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25 (built, not released: "More traits that
+  come and go, the other ways out"), then the new traits 28 to 36.
 - **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
@@ -561,6 +580,15 @@ repo.
   The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`), with the
   peoples' texts, waiting for the player's answer.
   Still to pick, when the player asks: the peoples (their pages in the Almanac and their texts).
+  Eight parts back in the flavour style, by the player's choice (20 November 2026: "yes, please restore letters,
+  wishes, ambitions, life goals, personal stories, council questions, camps, and world events to just the previous
+  text, to kind of the flavor style text that you created before"; built, not released): the letters (0.266.9),
+  wishes, ambitions and life goals (0.268.2), personal stories (0.268.4), council questions (0.268.5, 0.269.2), camps
+  (0.269.1) and world events (0.270.1) have their words from before those batches again, with the false parts put
+  right in the old voice; the entry "The flavour text back in eight parts" above the newest release line, and CLAUDE.md
+  ("Plain, neutral text") says new text for these parts takes that style. The other batches stay plain: event cards,
+  messages and the interface, advice, encounters, missions and visitors, decrees and seats, the gods and faith, the
+  Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -575,9 +603,9 @@ repo.
   found the already imlpemented function".
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The medal read at the gate, the
   peoples' errands past a barred door, and what the dead leave by closeness** (20 November 2026; the player's go on two
-  fixes: the medal, "I selected the option that everyone should go to the gate", given at once though "Answers play out
-  on the map" is on, and A30 of `docs/content-update-proposals.md`). DESIGN.md "The medal read at the gate, and visitors'
-  errands past a barred door" and "What the dead leave goes to whoever was closest".
+  fixes: the medal, "I selected the option that everyone should go to the gate", given at once though "I have answers
+  play out on the map is enabled for me", and A30 of `docs/content-update-proposals.md`). DESIGN.md "The medal read at
+  the gate, and visitors' errands past a barred door" and "What the dead leave goes to whoever was closest".
   - **The medal: the cause** (read in greyscreen.rws). The answer came at 7999921, 141 ticks after the clerk (Helena) and
     the guard walked in from the map's south edge; the clerk was still walking to the gate (her Goto to the gate spot
     (42, 192), begun at 7999859, still under way at the save, at (42, 100)). `RepublicMedal.Begin` sent the clerk to the
@@ -625,6 +653,220 @@ repo.
     one the dead's close friend and one a brother they didn't get on with, kill the one with a room (dev mode): a day
     later the room goes to the friend if the friend has no room, and the heirloom to the friend.
   - **Mods that would help.** None needed: the meeting uses the game's own standing and the visitors already there.
+- 0.276.1, **More traits that come and go, the
+  other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
+  out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a
+  psychopath Rimfolk gave feels for others again after 180 days without an execution or an organ taken, three marks of
+  care and warmth up 15 (2%, once); 7, a workaholic learns to rest (an eighth of their time at recreation for 60 days and
+  a long peace); 8, a recluse with a friend on the Bonds page opens up (Biotech); 9, slothful steps up to lazy after two
+  months with under a twelfth of their time at recreation and fine work; 11, a gourmand who went hungry and then went 60
+  days without a food binge eats like anyone else; 12, a bloodlust the colonist came with fades after 240 days without a
+  fight mark, two long peaces and something good (2%); 13, very neurotic eases to neurotic after 90 calm days and a long
+  peace; 15, the anxious calm down (90 calm days and held the line, two long peaces, or four therapy sessions); 17, the
+  squeamish harden after 40 hours as a doctor and 30 times tending others; 18, a kleptomaniac forgiven or given a seat
+  stops taking; 19, a slob tidies up after 40 hours cleaning or the tidy habit (Vanilla Traits Expanded's slob, and Dubs
+  Bad Hygiene's slob and unhygienic one step at a time); 20, an animal hater softens after a bond, three animals tamed or
+  the naming habit; 21, the submissive stand up after a seat or holding the line twice; 22, a snob is humbled by hard
+  times and help; 23, a couch potato gets up after the hard-work rule's two months; 24, an insomniac sleeps again after 60
+  calm days, a long peace and few hours up at night; 25, the insanity mod's mood swings and impulsiveness settle after 120
+  calm days and a long peace or therapy. 29 new rules (100 in all), all ways out (59). No bad trait is added. DESIGN.md
+  "More traits that come and go, the other ways out" has every rule; the Almanac's page *traits that change*, "Ways out of
+  a bad trait", has a row for each (keywords unchanged); README "Traits that change".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `NoneDays(..., known)`, `NoneDaysAfter`, `GivenAllows`),
+    `Persona/TraitChangeDefs.cs` (`friend`, `bondedAnimal`, `notGiven`; a tally's `mentalStates` and `noneAfter`; config
+    errors for each), `Persona/TraitChanges.cs` (`Notify_MentalState`, the gate's `notGiven`, `NoneDays` from the day they
+    joined and with the marks on their page, `Friend`, `BondedAnimal`, their parts with the missing words and their
+    letter lines), `Social/WorldReactions.cs` (one line in `Breakdown`), `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml`
+    (the 29 rules), the comment in `_Extreme.xml`, Keyed `Rimfolk_TraitChanges.xml` (a friend, a bonded animal). Nothing new
+    is saved (the tallies hold the new counts: fight marks, hungry seasons, food binges; the save model's tallies estimate
+    is up from 5 to 8 kinds, `once` from 2 to 3). Tests: `TraitChangeTests` (the joining day, a zero count that starts after
+    something, who gave it, each of the seventeen's conditions against the proposal, 59 ways out, none of the batch a
+    gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad Hygiene's `Hygienic` and the insanity mod's `VAEI_MoodSwings` and
+    `VAEI_Unstable`.
+  - Decided here (open in the proposals): 9 is its own rule with the proposal's numbers (at most 8.3% of their time at
+    recreation, a masterwork, a skill mastered or a student taught in 120 days, 6%), not slothful added to the hard-work
+    rule (4%, pride +5, a 120-day gap); 23's "little recreation" is the hard-work rule's 4%; 24's "few hours up at night"
+    is at most 10 recent hours in the practice log (about three weeks, so about half an hour a night); 19's "lived with
+    for 60 days" is the habit held 60 days and lived on 40 (the frame's two days in three), 20's habit the frame's 90 and
+    60; a way out that comes of a habit keeps the habit, so tidy, neat or animal lover can still grow from it; 3's "once
+    per person" is once in a colony's life (`onceKey`), as the psychopath itself; 12 is only for a bloodlust Rimfolk
+    didn't give (`notGiven`), so the quicker 2 and the slower 12 never show together; 11's hungry season is the mark for
+    going hungry, counted as it comes (a hungry season before this build doesn't start the 60 days), and the 60 days
+    start at it; every zero count now starts no earlier than the day the colonist joined (the game's record of time as a
+    colonist), and a zero count of marks also reads the marks still on the page; "or" between marks of one count is one
+    rule (22), between different things two (15, 18, 19, 20, 21, 25); "X up N" is X moved N or more, "trust back near" -5
+    or more, as in the first batch. Mods' files that aren't here: Dubs Bad Hygiene's `Hygienic` degrees are read as slob
+    -2 and unhygienic -1 (the catalogue has only the labels, germaphobe, hygienic, unhygienic, slob; numbered otherwise the
+    two rules do nothing); Vanilla Traits Expanded's squeamish is assumed able to doctor, and its animal hater able to
+    handle animals and bond (if not, those ways out don't come); the insanity mod's two traits are read at degree 0, as a
+    trait with one degree is; the therapy rules assume the patient gets `TherapyRelieved`, as in the first batch.
+  - Harm: none. No rule here gives a trait.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, "Where life is taking
+    them" with the friend and the bonded animal and the "Still missing" lines); the food binge counted when it starts;
+    Dubs Bad Hygiene's degrees; Vanilla Traits Expanded's and the insanity mod's traits leaving as the game's own do.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist, a way out
+    marked): 1. A gourmand, slothful, very neurotic, recluse (Biotech) or Vanilla Traits Expanded slob, anxious,
+    squeamish, kleptomaniac, animal hater, submissive, snob, couch potato, insomniac or workaholic colonist: the character
+    page, "Where life is taking them", shows each way out at once with "Still missing: ...". 2. A recluse: once a friendship
+    shows on the Bonds page, "A friend on the Bonds page: (name)" turns green. 3. An animal hater: tame an animal that
+    bonds to them; "An animal bonded to them: (name)" turns green. 4. A gourmand: after malnutrition marks them ("went
+    hungry"), the page counts days without a food binge from then. 5. "Traits that change: give a trait as Rimfolk
+    would..." with `Rimfolk_TC_PsychopathExecutioner` on a colonist, then the page shows the psychopath's way out; a
+    bloodlust given the same way shows only the quicker way out (2), one they came with only the slower (12). 6. "a way out
+    of a bad trait, now..." makes any of them happen with its letter.
+  - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Dubs Bad Hygiene
+    (836308268, up to 1.7), Vanilla Anomaly Expanded - Insanity (3342412435, 1.6 and 1.7) and Therapy (Continued)
+    (3509488682, 1.6 and 1.7), all active in their list and kept up, give the traits and the sessions.
+- 0.276.0, **The flavour text back in eight
+  parts** (20 November 2026; the player: "yes, please restore letters, wishes, ambitions, life goals, personal
+  stories, council questions, camps, and world events to just the previous text, to kind of the flavor style text that
+  you created before, restore it from the backup, and keep that also in mind for additional content to be added").
+  The plain-words batches of those eight parts are undone in their text: the letters (0.266.9), wishes, ambitions and
+  life goals (0.268.2), personal stories (0.268.4), council questions (0.268.5 and 0.269.2), camps (0.269.1) and world
+  events (0.270.1). Every other plain-words batch stays as it is.
+  - **How.** For each batch, its own text diff reversed onto the present files with a three-way merge (`git
+    merge-file`: the present file, the batch's result as base, the text before the batch with the batch's def-only
+    commits applied: the camps' guests commit `e8d7fd78`, the world events' visitors commit `ff7da580`, the lead's own
+    fix inside the 0.269.2 merge). Every file merged cleanly; the two lines of the 0.269.2 fix whose patch didn't apply
+    (the guardian's second `DilemmaEffect_Visit`, the hurt animal's "first hunter free" outcome) were put back by hand.
+    Kept: every def setting and code change since (the camps' fifteen `<guests>camp</guests>` and the minstrel's
+    `organizer`, `VisitEffect_AtGate` for the prospector and the preachers, `VisitEffect_Come` for the delegations, the
+    guardian's walk, the peoples' events rounds 5 to 10, new lines and defs added since). The far-town errands
+    (0.275.1) landed first and their lines are kept as the lead has them, as the lead asked: each sending answer's
+    "sets out for" outcome, the `home` lines, the six removed `riskOutcome`s, the harvest supper's `[!hands]`, the
+    feud's gate texts and its four ending lines with "the colony's gate". `Lean/ShippedLines.cs`: the four hour-bound
+    camp farewells and their `AlsoWhen` keys are the old ones again ("which is how {X_nameDef} arrived", "carrying the
+    colony's hills away with them on paper", "in a cloud of exhaust and goodwill", the tree-singers' bow); every pinned
+    line is word for word in the defs.
+  - **Lines brought back, per part** (lines of the part's files that differ from the plain text, the ones then put
+    right included): letters 608, wishes 170, ambitions 35, life goals 36, personal stories 161, council questions 509,
+    camps 291, world events 336. Names came back with them: the ambitions "a ring of iron", "teeth in the mud", "the
+    long store", "nobody is the only one", "the walls' fire", the life goal "a town on the rim"; the stories' stages
+    ("the empty place", "small things again", "the body tells", "every morning a gift", "news on the wind"); the
+    questions' names ("a path: the workshop", "a hungry look", "blood on old hands", "the shakes", "a raider in the
+    crops", "something at the pens", "what to teach it", "the den in the brush" and the rest); the camps' "Pilgrims of the
+    green" and "Men out of {SITUATION}". Where the docs name them: DESIGN.md's ambitions line and play-out list, README's
+    ambitions, the Almanac's ambition table and animal questions table and the den's name on the nature mods page
+    (keywords unchanged), `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py`. The batches' truth
+    fixes in README and the Almanac (an old companion "if it dies first", the strange herds that bolt, the prospector at
+    the gate, the delegations' two nights) stay.
+  - **Put right against the map, in the old voice: 374 lines** (letters 2, wishes 5, life goals 1, personal stories 12,
+    council questions 49, camps 127, world events 178). Each old line is back with only its false part changed; every
+    one, with its reason and its words before and after, is in `docs/flavour-restore.md`. By kind: a ransom asked in gold
+    (paid in silver); the justice wish's "only raider still alive" (any hostile prisoner) and the child's "only four"
+    books; the passing-on story's "nearly as good" (two levels gained), the feud with an animal's "ambush in the doorway,
+    a stolen lunch" (it runs at the heels), the road calls' "boundary stone" (the gate), the grudge's "since {LOST}"
+    (what happened to {LOST}), "the traders' news", "the children's questions", an old companion's death "the story's
+    end", the settings' "three or four stages"; the council's answers that named a season, a celebration, a day of work,
+    the night shift let off, one last walk read as a death, a night watch "for a while", turns "through the night", "A
+    goes with the next journey out", a sowing or building party "this afternoon", the spring cleaning's day and morning,
+    "{B_nameDef} ends its pain", the crop "by the next moon"; the camps' hours (41 lines: an arrival "this morning", a join or
+    request "tonight", a farewell "before dawn" or "at first light"), the hunting asks that sent the camp's party along,
+    the eldest and the youngest nobody picks, the pilgrims' eldest praying, "their best" prospector or player, the
+    healer seeing "whoever is ill", the salt caravan's "half again as much", the charts helping "whoever is studying",
+    the refugees' stacked wood, the shows and songs told as done though about to happen, the wardens' watch told as
+    done, the mourners standing by the road "when they go", the settling ask brought to the gate with "in the morning",
+    and twenty farewells with a leftover the map doesn't keep (trampled ground, hay, salt in the dirt, holes freezing
+    over, a camp "gone" that may still stand); the world events' hours (71 lines), people at the gate no
+    effect brings (the plague's first rider, the bandit's map, the mercenary captain, the warlord's second price, the
+    peace talks' riders, the merchant's boy, the road's foreman), silver and prizes told as come that are on their way,
+    the well, wall, stream, creek, ridge, hill and old stones a colony may not have (the comet's hill, the mage's stones,
+    the prospector's stream, the old thrumbo's ridge), a herald or envoy called "he", things told as done that come later
+    or not on the map (the token at the chain, the beans by the wall, the dent in the table, the outcomes in the past
+    tense), and the healer walked "to the edge of the colony's land". 44 of these lines opened a sentence with a pronoun
+    placeholder, which the game shows in lowercase: the name stands there instead (the batches had done the same).
+  - **Restored whole although a batch listed them:** "Sell it to them at a fair price" (40 silver for 40 raw food is
+    fair); the stockpile "drawn in under its roof" (that is what happens to it); the tea wish's "Sick and thirsty, then"
+    (the batch's change was about the approved sample's rewrite, not the old line); "A long walk past the fields with
+    {B_nameDef}, first" (true since the lead's fix sends B along); the camp's gatherings and the minstrel's song (true
+    since the guests commit); the prospector, the preachers and the delegations at the gate.
+  - **Code map.** No code changed but `ShippedLines.AlsoWhen`'s four keys (back to the old lines). Def text in the
+    batches' files under `Defs/FlavorPoolDefs/` (letters), `Defs/WishDefs/`, `Defs/AmbitionDefs/`,
+    `Defs/AspirationDefs/`, `Defs/ArcDefs/`, `Defs/DilemmaDefs/`, `Defs/CampDefs/`, `Defs/WorldSituationDefs/`, and their
+    Keyed lines (`ColonyCouncil.xml`'s justice reason, `Rimfolk_Arcs`, `Rimfolk_Animals`, `Rimfolk_HarmSeven`,
+    `Rimfolk_DilemmaImpact`, `Rimfolk_Variety3`, `Rimfolk_Camps`, `Rimfolk_Holding`, `Rimfolk_WorldBeyond`,
+    `Rimfolk_Region`); DESIGN.md (the new section "The flavour words back in eight parts", the ambitions line, the
+    play-out list's names and the comet's watch), README (one ambition), the Almanac (three pages' names),
+    `docs/dilemma-balance.md`, `docs/flavour-restore.md` (new: every line put right).
+  - **Checks.** `Tools/textcheck.py --base claude/peaceful-maxwell-rpqlwu`: no placeholder, tag or key lost; it names
+    only the restore itself: "withdrawal" to "the shakes" (a one-word name it reads as an identifier), the silver sums
+    the old answer labels didn't name ("Send silver instead" for "Send 80 silver instead" and seven more), two camps'
+    tips that say "a share of their meat" where the plain ones said 35, and the circus show that no longer names
+    {A_nameDef} as the strongman's volunteer.
+  - **Can't be checked without the game.** How the flavour lines read beside the plain messages and cards around them;
+    that the lines put right still sound like their neighbours.
+  - **Try in the game.** Write to a few neighbours and read the answers (an unschooled raider people holding a colonist
+    asks for silver); open the council window and wait for a few wishes and an ambition's pitch ("a ring of iron" in a
+    colony with turrets researched); dev actions "Rimfolk": "Personal story: begin one for..." and "next stage" (a long
+    grief's "the empty place"); "Dev: dilemma now" on the decrees page a few times; "Camps: another camp here now" and
+    read the arrival, a join, a show's letter in the evening and the farewell at any hour; "Start world event..." with
+    the comet, the gold fever and a famous healer, and read each letter at different hours.
+  - **Mods that would help.** None; it is text only.
+- 0.275.3, **PokéWorld's items on the
+  shelves** (20 November 2026; the player's go of the same day: "there's a bunch of items from the Poke World mod, for
+  example, the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves, for example,
+  from the storage mod. It's just not in the list of available items, so I can't store them in the shelves. Can you
+  please review all the Poke World items and ensure they are also storable in storage mods, or in appropriate kinds of
+  storage shelves that also can carry everything else?"). DESIGN.md "PokéWorld's items on the shelves that carry
+  everything else" (after the Food Alert section); README's PokéWorld paragraph and the settings' other mods list; the
+  Almanac's PokéWorld page, "With Rimfolk" (`Almanac_Mods_PokeWorld.xml`, keywords unchanged); the mods table's
+  PokéWorld row (`Council_Mods_Support.xml`).
+  - **Why**: PokéWorld Updated lists its items under categories of its own (`PW_PokeWorld` and its children), and a
+    storage building's filter lists and takes only what its fixed filter allows; the storage mods' shelves name the
+    game's categories, so the stones and the rest were neither shown nor taken. The game's own shelf has no fixed filter
+    and already took them.
+  - **What was built**: once every def has loaded, each of PokéWorld's storable items that sits in none of the game's
+    categories is matched to the game's own category of its kind, read from its fields (apparel by its layer and body
+    part, weapons, a tool held like one, a hatching egg, medicine, drugs, food by its kind, a material by its stuff kind,
+    else the miscellaneous items). The items are never put in those categories (the lead's call: cooking bills, food
+    policies, traders, tailoring bills and Rimfolk's egg events would draw on them, the 379 eggs above all); the match
+    only decides the shelves. By the player's catalogue: the 9 evolution stones, 15 fossils, 5 balls, the TM, 5 healing
+    items, 2 evolution items and the odd keystone match `ItemsMisc`, the 379 eggs `EggsFertilized`, the legendary
+    leather `Leathers`, the 5 ball belts `ApparelUtility`; the 17 unfinished fossils and the portable computer are left
+    alone, the 3 fishing rods go by their fields. Every storage def whose fixed filter takes the whole of such a category
+    (its own list names it or one above it with none of it left out, or it allows every one of the category's own
+    things) allows the matched items themselves, and its default settings where those take the whole of it, so new
+    shelves have them ticked; a fridge only what spoils and eggs; a hopper none (it feeds a dispenser); the display roots
+    worked out again, so the filter window lists them under PokéWorld's own heading. Shelves already built take them
+    once a save at load (or when the setting is switched on in a game) where their own settings take the whole category
+    of what they can hold. The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld, on by default)
+    puts the storage filters back when switched off. The self-check's mods part has a line on it.
+  - **Which shelves take which** (from the shelves' kinds; their filters aren't in the catalogue, so this is what the
+    rule gives if their filters are as their names say): Deep Storage's Big Shelf, Very Big Shelves, Pallets and Safe,
+    where they take the game's items, the stones and the rest; its Clothing Rack the ball belts; its Hampers the
+    legendary leather, where they take the leathers; its Weapons Cabinet and Locker only weapons (none of PokéWorld's,
+    unless the fishing rods are held like a weapon); its Food Basket and Meal Tray Rack the eggs only where they take
+    every fertilized egg; Deep Storage Plus's Bin like a shelf, its barrel, organ fridge and firewood rack nothing;
+    RimFridge's five fridges only the eggs, if their filters take the fertilized eggs; the game's hopper never;
+    Vanilla Expanded's weapon rack, the taps and drains nothing; the game's own shelves already took everything and now
+    have them ticked in new ones where their default takes the category. The true list is in the self-check and, in dev
+    mode, the log at startup.
+  - **Code map**: `Integrations/PokeWorldShelves.cs` (new: `Apply`, `Allow`, `Match`, `Undo`, `AllowOnBuilt`,
+    `CheckLine`, `StandsDownWhy`), `Integrations/PokeWorldShelvesMath.cs` (new, pure, linked: `KindOf`, `WithParents`,
+    `TakesWhole`, `FridgeTakes`, `Allow`, `IsFridgeType`, `IsHatcherType`, `ToMatch`, `Summary`),
+    `CouncilGameComponent.cs` (`pokeShelvesVersion`, `PokeShelvesOnce` from `FinalizeInit`),
+    `ColonyCouncilMod.WriteSettings`, `CouncilSettings` (`pokemonShelves`), `UI/SettingsCatalog.cs` (its row),
+    `UI/SelfCheck.cs` (its line), Keyed `Rimfolk_Integrations_PokeWorld.xml`. Tests: `Tools/Tests/PokeWorldShelvesTests.cs`
+    (about 110 checks: each kind to its category, every PokéWorld item of the catalogue, the shelf rule, fridges and
+    hoppers, never put in the game's categories, the seams), `SettingsTests` (the row). Saved: one number. No Harmony
+    patch, no Sched slot.
+  - **Decided here**: "the whole of a category" also counts a shelf whose own list names the category but sets one thing
+    apart by name (as the wastepack, which is a miscellaneous item, might be). Hoppers never take them. Stockpile zones
+    are left alone.
+  - **Can't be checked without the game**: what PokéWorld's categories sit under and the storage mods' real filters
+    (neither is in the catalogue); that each shelf's filter window lists the items under PokéWorld after the display root
+    is worked out again; Deep Storage editing its buildings' filters from its own settings in a running game (it may set
+    them again without PokéWorld's items until the next start); the fishing rods' and the eggs' hatcher fields; the
+    existing shelves taking them at load; anything of 1.7 beyond the reference assembly.
+  - **Try in the game**: (1) Dev mode on, start the game, open the log: "PokéWorld's items on the shelves: N items, by
+    the game's kind they match ...; M storage buildings take some: ..." lists each. (2) Load the save, select a Deep
+    Storage Big Shelf, Storage tab: PokéWorld's heading lists the Dawn Stone and the other stones, fossils and balls,
+    ticked where the shelf takes all of the game's miscellaneous items; haulers bring a Dawn Stone to it. (3) A clothing
+    rack lists the ball belts; a RimFridge fridge lists the Pokémon eggs, not the stones; a hopper lists none. (4) Build
+    a new Big Shelf: the stones are ticked. (5) Settings, Rimfolk, Your other mods, PokéWorld: switch "PokéWorld's items
+    on the shelves" off and close: the stones leave the Big Shelf's list. (6) Debug actions, Rimfolk, the self-check: the
+    mods part has the line.
+  - **Mods that would help**: none; the items, shelves and graphics are the player's mods' own.
 - 0.275.2, **Jobs of no kind: the grey map and
   the invisible pawn** (20 November 2026; the player: "I just had an event pop up about one of my pawns receiving a
   medal. And then I selected the option that everyone should go to the gate ... after this, the whole map screen turned

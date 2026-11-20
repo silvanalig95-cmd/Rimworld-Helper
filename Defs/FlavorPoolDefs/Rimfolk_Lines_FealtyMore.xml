@@ -38,7 +38,7 @@
         <!-- While the colony is sworn to them -->
         <li>[greetings,warm,fealty:oath,theirLowtech] Those who hold of us are always welcome to write. Our head asks that your colony keeps its walls strong.</li>
         <li>[greetings,cordial,fealty:oath,theirHightech] Thanks for the update. Your standing with us remains good.</li>
-        <li>[greetings,cool,fealty:oath,!fealty:short] We have your letter. Your tribute has always come on time, and that counts for more than words.</li>
+        <li>[greetings,cool,fealty:oath,!fealty:short] We have your letter. Your tribute speaks louder than your words, and so far it has spoken well.</li>
         <li>[greetings,cordial,fealty:oath,fealty:levies] Our call on your oath was heard this season, and our head remembers how it was answered.</li>
         <li>[greetings,warm,fealty:oath,fealty:protected,theirLowtech] Our band is home from your walls with stories of your people. They say you hold a line like our own.</li>
         <li>[news,cordial,fealty:oath] As one who holds of us now, your colony should know how things stand with us. So, our news.</li>
@@ -55,7 +55,7 @@
         <!-- While a town of theirs is the colony's own vassal -->
         <li>[greetings,warm,vassal:town] Our kin at the town you protect send greetings with ours. They speak well of your colony.</li>
         <li>[greetings,cordial,vassal:town,theirHightech] Our relatives under your protection report that things are stable. Thank you for that.</li>
-        <li>[greetings,cool,vassal:town,vassal:heavy,theirLowtech] Each harvest your colony takes, our kin grow thinner. We think your share is too heavy.</li>
+        <li>[greetings,cool,vassal:town,vassal:heavy,theirLowtech] Each harvest your colony takes, our kin grow thinner. We hope you enjoy the bread.</li>
         <li>[news,cordial,vassal:town,vassal:levy] Our kin fought at your walls when you called, and their families are proud of them. That is the best of our news.</li>
         <li>[help,warm,vassal:town] Take this, and think of our kin in your keeping when you use it.</li>
         <li>[help,refusal,vassal:town,vassal:heavy] You take a heavy share of our kin's harvest, and now ask us for more? No.</li>

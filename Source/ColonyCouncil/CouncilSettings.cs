@@ -644,6 +644,8 @@ namespace ColonyCouncil
         public bool pokemonTypeSpar = true;
         /// <summary>A Water type puts out a fire near it.</summary>
         public bool pokemonTypeDouse = true;
+        /// <summary>With PokéWorld: its items are also listed beside the game's own things of the same kind, so shelves that take those take them (Integrations/PokeWorldShelves.cs).</summary>
+        public bool pokemonShelves = true;
         /// <summary>With A RimWorld of Magic: a mage may bind one of the colony's animals as a familiar (Integrations/MagicFamiliars.cs).</summary>
         public bool familiars = true;
         /// <summary>An alert while an animal's fresh carcass lies out with nobody seeing to it (Animals/FreshCarcasses.cs).</summary>
@@ -1181,6 +1183,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pokemonTypeCalm, "pokemonTypeCalm", true);
             Scribe_Values.Look(ref pokemonTypeSpar, "pokemonTypeSpar", true);
             Scribe_Values.Look(ref pokemonTypeDouse, "pokemonTypeDouse", true);
+            Scribe_Values.Look(ref pokemonShelves, "pokemonShelves", true);
             Scribe_Values.Look(ref familiars, "familiars", true);
             Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);
             Scribe_Values.Look(ref noFoodAlert, "noFoodAlert", true);

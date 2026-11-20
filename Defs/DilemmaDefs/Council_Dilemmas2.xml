@@ -16,8 +16,8 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>Last night {B_nameDef} bet {B_possessive} good coat on a pair of twos at cards and lost it to {A_nameDef}. {A_nameDef} has worn the coat every day since and says how warm it is whenever {B_nameDef} walks past.\n\n{B_nameDef} says the deck was marked, and wants the bet thrown out.</li>
-      <li>{A_nameDef} won a week of {B_nameDef}'s dinners at dice, fair and square, with three witnesses. Three days in, {B_nameDef} is living on scraps and has started eyeing {A_nameDef}'s plate.\n\n"A bet is a bet," says {A_nameDef}. The others would like the council to step in before it turns into a fight.</li>
+      <li>Two pair beats a pair of twos, which {B_nameDef} learned last night after betting {B_possessive} good coat on the twos. {A_nameDef} has worn the coat every day since, buttoned to the chin, and remarks on how warm it is whenever {B_nameDef} walks past.\n\n{B_nameDef} says the deck was marked, and wants the bet thrown out.</li>
+      <li>{A_nameDef} won a week of {B_nameDef}'s dinners at dice, fair and square, with three witnesses. Three days in, {B_nameDef} is living on scraps and has started eyeing {A_nameDef}'s plate.\n\n"A bet is a bet," says {A_nameDef}. The others would like the council to step in before someone gets a fork in the hand.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -103,7 +103,7 @@
     <things><li>Silver</li></things>
     <thingCount>60</thingCount>
     <texts>
-      <li>{B_nameDef} went into {A_nameDef}'s room to fetch a borrowed hammer and found a hoard under the bed. There were {COUNT} {THING} from the stores, the two good kitchen knives, fourteen spoons, a blanket everyone thought the moths had eaten, and the hammer.\n\n{A_nameDef} says it's a collection.</li>
+      <li>{B_nameDef} went into {A_nameDef}'s room for a borrowed hammer, looked under the bed, and came back out with a list.\n\n{COUNT} {THING}, out of the stores\nThe two good kitchen knives\nFourteen spoons\nThe blanket the moths were blamed for\nThe hammer\n\n{A_nameDef} calls it a collection.</li>
       <li>The good chair went missing from the dining room three days ago. {B_nameDef} followed the scuff marks it left across the floor to {A_nameDef}'s door, and found it inside, with a row of spoons laid out on the seat and {COUNT} {THING} under the mattress.\n\n"I was keeping them safe," {A_nameDef} said. {B_nameDef} wants all of it back in the stores by supper.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -164,7 +164,7 @@
     </roleA>
     <texts>
       <li>In {A_nameDef}'s dream the fields were burning, then the sky, and people stood in the smoke without faces. {A_nameDef} woke the colony screaming last night, and has described the dream at every meal since.\n\nSome of the others have started watching the horizon.</li>
-      <li>Three nights running, {A_nameDef} has dreamed of smoke over the walls and a voice counting backward from ten. Each night the voice gets closer to the end, and last night it reached three.\n\nThe people on night watch have become jumpy.</li>
+      <li>Three nights running, {A_nameDef} has dreamed of smoke over the walls and a voice counting backward from ten. Each night it gets further. Last night it reached three.\n\nThe night watch has grown jumpy.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -314,8 +314,8 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} knocked {A_nameDef}'s carved wooden bird off the shelf with a broom handle, and it broke into four pieces. It was the only thing {A_nameDef} still had from home.\n\n{B_nameDef} keeps saying it was an accident, so often that some people have started to doubt it.</li>
-      <li>{A_nameDef} carried an old pocket watch that hadn't worked in years. {B_nameDef} borrowed it to fix it as a surprise, and handed it back in pieces.\n\n{A_nameDef} is very upset about it. {B_nameDef} is very sorry and would like that to be the end of it.</li>
+      <li>Four pieces. {A_nameDef}'s carved wooden bird, the only thing {A_pronoun} still had from home, went off the shelf when {B_nameDef} caught it with a broom handle.\n\n{B_nameDef} keeps saying it was an accident, more often than seems necessary.</li>
+      <li>{A_nameDef} carried an old pocket watch that hadn't worked in years. {B_nameDef} borrowed it to fix it, as a surprise, and handed it back in a cupped palm.\n\n{A_nameDef} is grieving over a handful of springs. {B_nameDef} is very sorry and would like that to be the end of it.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -496,7 +496,7 @@
       <maxOpinionOfA>20</maxOpinionOfA>
     </roleB>
     <texts>
-      <li>{A_nameDef}'s newest sculpture is clearly of {B_nameDef}, down to the squint, but with a nose half again the size of the real one.\n\n{B_nameDef} wants the thing gone. {A_nameDef} says it's an honest likeness.</li>
+      <li>{A_nameDef}'s newest sculpture is {B_nameDef}, unmistakably, down to the squint, with a nose half again the size of the real one.\n\n{B_nameDef} wants the thing gone. {A_nameDef} says it's an honest likeness.</li>
       <li>{A_nameDef} calls the new piece "{PLACE}". The others recognized {B_nameDef} in it straight away, and laughed.\n\n{B_nameDef} has asked the council, very calmly, to have it removed before {B_nameDef} takes a hammer to it.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -648,7 +648,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have agreed to settle their quarrel with a fight. Fists only, at dawn, behind the stockpile, with anyone who wants to watch.\n\nThey want the council's blessing, mostly so the loser can't complain afterward.</li>
-      <li>{B_nameDef} threw a work glove at {A_nameDef}'s feet this morning and challenged {A_objective} to a fight.\n\nThey want to settle it in the yard, with witnesses, if the council will allow it.</li>
+      <li>{B_nameDef} threw a glove at {A_nameDef}'s feet this morning. It was a dirty work glove, and {A_nameDef} took that as part of the insult.\n\nThey want to settle it in the yard, with witnesses, if the council will allow it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -727,8 +727,8 @@
       <notTrait><li>Wimp</li></notTrait>
     </roleA>
     <texts>
-      <li>{A_nameDef} has opinions about how the colony is run and wants them to count. {A_nameDef} is asking for a formal seat on the council, with a vote, a chair at the head of the table, and a title.\n\n{A_nameDef} has suggested several titles, most of them rather grand.</li>
-      <li>{A_nameDef} pinned a list of demands to the dining room door overnight. The first is a seat on the council, and the other ten depend on getting it.\n\nPeople are reading it over breakfast, and some of them are nodding.</li>
+      <li>{A_nameDef} has opinions about how the colony is run and wants them to count. {A_nameDef} is asking for a formal seat on the council, with a vote, a chair at the head of the table, and a title.\n\n{A_nameDef} has suggested several titles. Most of them begin with "High."</li>
+      <li>{A_nameDef} pinned a list of demands to the dining room door overnight. Item one is a seat on the council. Items two through eleven assume item one.\n\nPeople are reading it over breakfast, and some of them are nodding.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -812,13 +812,13 @@
       <maxOpinionOfA>15</maxOpinionOfA>
     </roleB>
     <texts>
-      <li>{A_nameDef} has chalked two columns on the workshop wall, one for {A_nameDef}'s hours of work and one for {B_nameDef}'s. {B_nameDef}'s column is mostly empty.\n\n{A_nameDef} wants the council to come and look.</li>
-      <li>{A_nameDef} came to the council with dirt up to the elbows and pointed out the window at {B_nameDef}, who was lying in the grass at noon, watching clouds. "Every day," {A_nameDef} said.\n\n{B_nameDef} says {B_pronoun} does {B_possessive} best thinking that way. {A_nameDef} doesn't believe it.</li>
+      <li>Two columns are chalked on the workshop wall, one for {A_nameDef}'s hours of work and one for {B_nameDef}'s. {B_nameDef}'s is mostly empty.\n\n{A_nameDef} has started underlining things, and wants the council to come and look.</li>
+      <li>{A_nameDef} came to the council with dirt up to the elbows and pointed out the window at {B_nameDef}, who was lying in the grass at noon, watching clouds. "Every day," {A_nameDef} said.\n\n{B_nameDef} says it's called thinking. {A_nameDef} says it's called lying down.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
-        <label>Side with {A_nameDef} and give {B_nameDef} double shifts</label>
+        <label>Side with {A_nameDef}: double shifts for {B_nameDef}</label>
         <outcome>{B_nameDef} is on double shifts until the tally evens out, and {A_nameDef} keeps the count on the wall up to date.</outcome>
         <ways><mercy>-3</mercy><toil>7</toil></ways>
         <effects>
@@ -901,7 +901,7 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} swears that {A_nameDef} rode with the raiders who burned {B_possessive} home, years ago and far from here. {A_nameDef} hasn't denied it, and hasn't said anything else either.\n\nThe others are starting to take sides, and the council needs to settle it before it gets worse.</li>
+      <li>{B_nameDef} swears that {A_nameDef} rode with the raiders who burned {B_possessive} home, years ago and far from here. {A_nameDef} hasn't denied it, and hasn't said anything else either.\n\nThe others are starting to take sides, and the council needs to speak first.</li>
       <li>It came out over dinner. {A_nameDef} was telling the story behind an old scar and named the place where {A_pronoun} got it, and {B_nameDef} was on {B_possessive} feet with a knife in hand. {B_nameDef} says {A_nameDef} helped burn that place to the ground.\n\n{A_nameDef} says it was a long time ago, with different people, and that {A_pronoun} was someone else then. The council has to decide whether that's enough.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -926,7 +926,7 @@
         </riskEffects>
       </li>
       <li>
-        <label>Make {A_nameDef} earn {A_possessive} place with hard work</label>
+        <label>{A_nameDef} earns {A_possessive} place</label>
         <outcome>{A_nameDef} is working the hardest jobs in the colony, without complaint, until the council is satisfied. {B_nameDef} watches every shift.</outcome>
         <ways><mercy>2</mercy><toil>4</toil></ways>
         <effects>

@@ -38,7 +38,7 @@
       <li>Among {FACTION} a woman they call {NAME} has been going from village to village since the thaw, and people have started following her. She preaches no new creed, her followers say. She asks people to give away one thing they don't need, to feed whoever comes to the door, and to come along the road with her for a while.\n\nThere are a few hundred of them now, on the roads around {PLACE}. {FACTION}'s {TITLE} has not yet decided what to make of it.</li>
       <li>[theirLowtech] In the villages around {PLACE} they are talking about {NAME}, who came down out of the hills barefoot in the snow and has not stopped moving since. She sleeps where she is offered a roof and eats what she is given, and when she talks, farmers put down their hoes to listen.\n\nHer followers come behind her with their belongings on their backs. Some have left their fields to do it, and that is what worries {FACTION}'s elders.</li>
       <li>[theirHightech] {FACTION} have a problem their rule books don't cover: a retired schoolteacher called {NAME}, who goes up and down the roads around {PLACE} talking to anyone who'll stop, and a following that grows every week. Some of them have quit their jobs to go with her.\n\nShe breaks no law. {FACTION}'s council has met about her twice anyway.</li>
-      <li>[ideology] {NAME} has been preaching on the roads around {PLACE} since the thaw, and {FACTION}'s moral guides don't know what to make of her. She doesn't speak against their faith, or for it. She talks about sharing bread, opening the door to strangers and walking the road together, and people follow her.\n\nThe guides say it will pass, but every week there are more followers on the roads.</li>
+      <li>[ideology] {NAME} has been preaching on the roads around {PLACE} since the thaw, and {FACTION}'s moral guides don't know what to make of her. She doesn't speak against their faith, or for it. She talks about bread and doors and the road, and people follow her.\n\nThe guides say it will pass. Every week there are more followers on the roads.</li>
       <li>[colony:Devout] {NAME}'s followers say she has heard of the colony, a place that keeps its faith, and means to come and see it for herself. They are on the roads around {PLACE}, a few hundred of them, and the colony lies on her way.</li>
     </texts>
     <summaries>
@@ -60,7 +60,7 @@
           <li>Followers on the road</li>
         </titles>
         <texts>
-          <li>A dozen of {NAME}'s followers have stopped on the road below the colony, and three of them have come up to the gate. They aren't begging, they say, only asking: {NAME} teaches that opening your door to strangers matters more than keeping them out, and they would like to know whether the colony agrees.\n\nThey look as if they haven't eaten since yesterday.</li>
+          <li>A dozen of {NAME}'s followers have stopped on the road below the colony, and three of them have come up to the gate. They aren't begging, they say, only asking: {NAME} teaches that a door that opens is worth more than a wall that holds, and they would like to know which kind the colony has.\n\nThey look as if they haven't eaten since yesterday.</li>
           <li>[winter] Followers of {NAME} are on the road below the colony in the snow, in a line with their bundles. Three of them have come up to the gate to ask for bread and a place out of the wind for the night.</li>
           <li>[colony:Generous] {NAME}'s followers have heard that the colony's table is long. Three of them have come up to the gate, polite and hungry, to see whether it's true.</li>
         </texts>
@@ -411,7 +411,7 @@
           <li>Old things for sale</li>
         </titles>
         <texts>
-          <li>A scavenger back from {NAME} has stopped at the gate with a cart of crates, roped down and covered. He was one of the first in, he says, and he'll sell the lot for {COUNT} silver, unopened, because he'd rather have silver now than wait for {PLACE}'s dealers to set a price.\n\nHe won't say what's in them, and he may not know.</li>
+          <li>A scavenger back from {NAME} has stopped at the gate with a cart of crates, roped down and covered. He was one of the first in, he says, and he'll sell the lot for {COUNT} silver, unopened, because he'd rather have silver now than wait for {PLACE}'s dealers to set a price.\n\nHe won't say what's in them. He may not know.</li>
           <li>[!lowtech] A dealer with a cart of sealed cases from {NAME} is at the gate. The cases still have their old stencils on them, and one of them hums. He wants {COUNT} silver for the lot and won't open one first, on principle.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -510,7 +510,7 @@
           <li>Behind the deeper door</li>
         </titles>
         <texts>
-          <li>{FACTION} opened the deeper door and found a storeroom nobody had touched since the first settlers: tools, cloth, sealed food, books in the old tongue. Their carter is bringing the colony's share: {COUNT} silver.</li>
+          <li>{FACTION} opened the deeper door and found a storeroom nobody had touched since the first settlers: tools, cloth, sealed food, books in the old tongue. Their carter has brought the colony's share: {COUNT} silver, counted out at the gate.</li>
         </texts>
         <chronicle>The deeper door of {NAME} was opened, and the colony had its share.</chronicle>
         <effects>
@@ -655,7 +655,7 @@
         <options>
           <li>
             <label>Close the colony's market to {ENEMY}</label>
-            <outcome>The envoy thanks the colony warmly. Word soon goes down the road to {ENEMY}: the colony has picked a side.</outcome>
+            <outcome>The envoy thanks the colony warmly. Word goes down the road to {ENEMY} before long: the colony has picked a side.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount><who>Enemy</who></li>
@@ -688,19 +688,19 @@
           <li>A cart after dark</li>
         </titles>
         <texts>
-          <li>A driver of {ENEMY} has come to the gate with a covered cart and a quiet voice. He has goods for buyers inside {PLACE} who don't care whose they are, and {FACTION}'s guards are watching the roads. He asks to leave the cart in the colony's barn for a few nights, and offers {COUNT} silver for the space.\n\nIf {FACTION} find out, they won't like it.</li>
+          <li>A driver of {ENEMY} came to the gate with a covered cart and a quiet voice. He has goods for buyers inside {PLACE} who don't care whose they are, and {FACTION}'s guards are watching the roads. He asks to leave the cart in the colony's barn for a few nights, and offers {COUNT} silver for the space.\n\nIf {FACTION} find out, they won't like it.</li>
           <li>[joined] A driver of {ENEMY} is at the gate, knowing very well that the colony has closed its market to his people. He isn't asking to sell, he says. He only wants to leave a covered cart in the barn for a few nights, and he'll pay {COUNT} silver for it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Hide the cart, for {COUNT} silver</label>
-            <outcome>The cart goes into the back of the barn under a tarpaulin, and the driver pays in silver and goes on his way.</outcome>
+            <outcome>The cart goes into the back of the barn under a tarpaulin, and the driver pays in silver and goes off down the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><enemy>true</enemy></li>
             </effects>
             <riskChance>0.3</riskChance>
-            <riskOutcome>{FACTION}'s riders will come up the road asking questions, and they are bound to find the cart. The colony's name will go back to {PLACE} with them.</riskOutcome>
+            <riskOutcome>{FACTION}'s riders will come up the road in a day or two asking questions, and find the cart. The driver will get away, but the colony's name will go back to {PLACE} with the riders.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-10</amount></li>
             </riskEffects>
@@ -713,7 +713,7 @@
           </li>
           <li>
             <label>Tell {FACTION}'s riders</label>
-            <outcome>{FACTION}'s riders are told about the cart, and they catch it on the road.</outcome>
+            <outcome>{FACTION}'s riders are told about the cart, and catch it on the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount><who>Enemy</who></li>
@@ -789,7 +789,7 @@
           <li>The markets open</li>
         </titles>
         <texts>
-          <li>{NAME} is over. {FACTION} have opened the market at {PLACE} to {ENEMY} again, the old debt is to be paid in three parts, and the first carts of {ENEMY} have already gone through the gate.\n\nBoth peoples say it was {A_nameDef} who found the way.</li>
+          <li>{NAME} is over. {FACTION} have opened the market at {PLACE} to {ENEMY} again, the old debt is to be paid in three parts, and the first carts of {ENEMY} have gone through the gate already.\n\nBoth peoples say it was {A_nameDef} who found the way.</li>
         </texts>
         <chronicle>{NAME} was settled at a table the colony sat between.</chronicle>
         <effects>
@@ -829,7 +829,7 @@
         </titles>
         <texts>
           <li>{NAME} has worn itself out. {FACTION} let {ENEMY}'s carts back into {PLACE} once their own merchants began to complain louder than the {TITLE}. Nothing was settled, and the carts are moving again.</li>
-          <li>[open] {NAME} has worn itself out, and the markets are open again. The colony traded with both peoples the whole time, and neither has fully forgiven it, though both still come.</li>
+          <li>[open] {NAME} has worn itself out, and the markets are open again. The colony traded with both peoples the whole time, and neither has quite forgiven it, or quite stopped coming.</li>
         </texts>
         <chronicle>{NAME} wore itself out, and the markets opened again.</chronicle>
       </li>
@@ -889,7 +889,7 @@
           <li>The house's stores for sale</li>
         </titles>
         <texts>
-          <li>A bailiff for the creditors of {NAME} has come to the gate with a list and a loaded cart. Among the house's stock are its caravan stores, pemmican packed for drivers who will never set out, and he will let the colony have {COUNT} of it for less than half its price.\n\nIt keeps for a long time, and the creditors want to be rid of it.</li>
+          <li>A bailiff for the creditors of {NAME} has come to the gate with a list and a loaded cart. Among the house's stock are its caravan stores, pemmican packed for drivers who will never set out, and he will let the colony have {COUNT} of it for less than half its price.\n\nIt keeps for a long time. The creditors don't want to keep it at all.</li>
           <li>[theirHightech] The creditors' agent for {NAME} is at the gate with a manifest and a truck of the house's road rations: {COUNT} packs of pemmican, sold at less than half their price to whoever takes them first.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -925,7 +925,7 @@
         <options>
           <li>
             <label>Take him on</label>
-            <outcome>The driver is shown a bed and a place at the table, and asks what needs doing.</outcome>
+            <outcome>The driver is shown a bed and a place at the table, and asks what needs doing before the day is out.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>22~50</ages></li>
             </effects>

@@ -38,7 +38,7 @@
     <request>
       <plain>
         <li>I've been practicing behind the woodpile, and the sparks keep landing in the hay. Could we build {THING}?</li>
-        <li>Magic needs a quiet place marked out for it. Right now I work it at the dinner table, between the bread and the salt.</li>
+        <li>Magic wants a quiet, marked place. Right now I work it at the dinner table, between the bread and the salt.</li>
         <li>[night] I can't do the long workings in my room. The others hear it through the wall, and it frightens them.</li>
         <li>[trait:InnerFire] There are scorch marks on the storeroom floor again. A proper circle would keep the fire where it belongs.</li>
         <li>[trait:Druid|trait:TM_Shaman] I can feel the land from anywhere. It's the rest of the work that needs a proper circle.</li>

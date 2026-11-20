@@ -18,7 +18,7 @@
   <!-- ===================== One of them wants to stay ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_StayBehind</defName>
-    <label>someone from the camp wants to stay</label>
+    <label>one of them wants to stay</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampFriend</workerClass>
     <weight>1.4</weight>
     <cooldownDays>30</cooldownDays>
@@ -28,7 +28,7 @@
     <texts>
       <li>{X_nameDef} of the {FACTION} camp has been at the colony most evenings this week, and today asked {A_nameDef} straight out whether {X_pronoun} could stay. The others at the camp are against it. They need every pair of hands on the road, and {X_nameDef} carries more than most.\n\n{A_nameDef} brought it to the council.</li>
       <li>[winter] The {FACTION} camp will move on when the snow lets them, and {X_nameDef} doesn't want to go with them. {X_nameDef} has asked {A_nameDef} to put it to the council, knowing the camp will take it badly.</li>
-      <li>{A_nameDef} and {X_nameDef} of the {FACTION} camp have become friends over the evenings at their fire. Now {X_nameDef} wants to stay when the camp goes on, and the camp's elders have made it plain that they can't spare {X_objective}.</li>
+      <li>{A_nameDef} and {X_nameDef} of the {FACTION} camp have become friends over the evenings at their fire. Now {X_nameDef} wants to stay when the camp goes on, and the camp's elders have made it plain they'd rather lose a mule.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -94,7 +94,7 @@
   <!-- ===================== Missing from the camp ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_Theft</defName>
-    <label>a theft from the camp</label>
+    <label>missing from the camp</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampMember</workerClass>
     <weight>1.2</weight>
     <cooldownDays>35</cooldownDays>
@@ -132,7 +132,7 @@
         </effects>
       </li>
       <li>
-        <label>Tell them the colony stands by its own</label>
+        <label>Our people don't steal</label>
         <outcome>The council told {X_nameDef} the colony stands by {A_nameDef}, and that's the end of it. {X_nameDef} went back to the camp, and the camp has kept its distance since.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
@@ -167,7 +167,7 @@
   <!-- ===================== One of theirs in the storeroom ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_CaughtInStores</defName>
-    <label>a camp member in the storeroom</label>
+    <label>one of theirs in the storeroom</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampMember</workerClass>
     <weight>1.2</weight>
     <cooldownDays>35</cooldownDays>
@@ -228,7 +228,7 @@
   <!-- ===================== Their beasts in the fields ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_HerdInFields</defName>
-    <label>the camp's animals in the fields</label>
+    <label>their beasts in the fields</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampHerd</workerClass>
     <weight>1.5</weight>
     <cooldownDays>25</cooldownDays>
@@ -239,8 +239,8 @@
     </roleA>
     <texts>
       <li>Beasts from the {FACTION} camp got into the colony's fields in the night, and they're in there now, working their way along the rows. {A_nameDef} found them at first light. Their people swear the tether was sound when they turned in.</li>
-      <li>[summer] The {FACTION} camp's animals have pushed into the colony's fields after the fresh shoots, and {A_nameDef} has been trying to shoo them out on {A_possessive} own. Their people haven't noticed yet.</li>
-      <li>{A_nameDef} came in from the fields to say the camp's animals are in the crop, eating it, and won't be chased out.</li>
+      <li>[summer] The {FACTION} camp's animals have pushed into the colony's fields after the green, and {A_nameDef} has been trying to shoo them out on {A_possessive} own. Their people haven't noticed yet.</li>
+      <li>{A_nameDef} came in from the fields to say the camp's beasts are in the crop, and in no hurry to leave it.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -300,12 +300,12 @@
     <answerDays>1</answerDays>
     <texts>
       <li>Riders of {ENEMY} came by the {FACTION} camp at dawn and left again without a fight, but not without words. There's an old quarrel between the two peoples, and the riders want the colony, whose land it is, to send the camp on its way.\n\n{X_nameDef} has come up to ask whether the colony means to.</li>
-      <li>{X_nameDef} of the {FACTION} camp came to the gate looking grim: riders of {ENEMY} have been watching the camp from the ridge since yesterday. {X_nameDef} says it is an old debt between the two peoples, older than {X_objective}. The camp would like to know whose side the colony is on, if it's on one.</li>
+      <li>{X_nameDef} of the {FACTION} camp came to the gate grim-faced: riders of {ENEMY} have been watching the camp from the ridge since yesterday. An old debt, {X_nameDef} says, older than {X_objective}. The camp would like to know whose side the colony is on, if it's on one.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
-        <label>Tell {ENEMY} the camp stays as the colony's guest</label>
+        <label>Our land, our guests: tell {ENEMY} so</label>
         <outcome>{A_nameDef} walked out to the ridge and told the riders of {ENEMY} that the camp stays as long as the colony says. They went, and the camp's fire burned high that night.</outcome>
         <ways><openness>2</openness><mercy>1</mercy></ways>
         <effects>
@@ -350,7 +350,7 @@
         </effects>
       </li>
       <li>
-        <label>Stay out of it: it's their quarrel</label>
+        <label>It's their quarrel, not ours</label>
         <outcome>The colony kept out of it. The riders watched the camp for another day and then went, and the camp hasn't been friendly since.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
@@ -416,14 +416,14 @@
   <!-- ===================== Their feast day ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_Festival</defName>
-    <label>the camp's feast day</label>
+    <label>their feast day</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Camp</workerClass>
     <weight>1.2</weight>
     <cooldownDays>40</cooldownDays>
     <minColonists>2</minColonists>
     <answerDays>0.8</answerDays>
     <texts>
-      <li>Tomorrow is a feast day among the {FACTION}, {X_nameDef} says, and the camp would like to keep it properly, under a roof and with music. {X_nameDef} asked {A_nameDef} whether the colony's hall might be theirs for an evening, and whether the colony would join them.</li>
+      <li>Tomorrow is a feast day among the {FACTION}, {X_nameDef} says, and the camp would like to keep it properly, under a roof and with music. {X_nameDef} asked {A_nameDef} whether the colony's hall might be theirs for an evening, and the colony with it.</li>
       <li>[ideology] The faithful of the {FACTION} camp have a holy day tomorrow, and nowhere fit to keep it. {X_nameDef} asked {A_nameDef}, carefully, whether they might hold it at the colony, and whether the colony would come.</li>
       <li>{X_nameDef} came up from the camp with a drum under {X_possessive} arm. It's their feast tomorrow, the one they keep wherever they are, and this year they'd like to keep it with the colony.</li>
     </texts>
@@ -474,7 +474,7 @@
   <!-- ===================== The fee falls short ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_FeeShort</defName>
-    <label>the camp can't pay its fee</label>
+    <label>the fee falls short</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampFee</workerClass>
     <weight>1.5</weight>
     <cooldownDays>25</cooldownDays>
@@ -482,7 +482,7 @@
     <answerDays>1</answerDays>
     <texts>
       <li>{X_nameDef} came up from the {FACTION} camp to say what {X_pronoun} didn't want to say: they can't pay the fee this time, the {COUNT} silver they agreed to. They'd make it good another way, with a beast or a day's work for the colony.</li>
-      <li>The fee from the {FACTION} camp is due, and {X_nameDef} brought half of it and an apology. Business on the road has been poor, {X_nameDef} says. Would the colony take something else for the rest?</li>
+      <li>The fee from the {FACTION} camp is due, and {X_nameDef} brought half of it and an apology. The road has been poor, {X_nameDef} says. Would the colony take something else for the rest?</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
@@ -516,7 +516,7 @@
         </effects>
       </li>
       <li>
-        <label>Insist on the full fee</label>
+        <label>The terms are the terms</label>
         <outcome>{X_nameDef} went back down to the camp, and the fee was found, purse by purse. Every coin of it was grudged.</outcome>
         <ways><mercy>-2</mercy></ways>
         <effects>
@@ -639,13 +639,13 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_DlmC_FriendSentOn</defName>
     <thoughts><li>Rimfolk_DlmC_FriendSentOn</li></thoughts>
-    <fix>It fades in a few days. Time with friends at home and work to keep them busy both help.</fix>
+    <fix>It fades in a few days. Time with friends at home, and work for their hands, helps them stop watching the road.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_DlmC_Accused</defName>
     <thoughts><li>Rimfolk_DlmC_PaidForIt</li><li>Rimfolk_DlmC_Accused</li></thoughts>
-    <fix>It fades in a few days. A friend's company helps, and so does the camp moving on. If the camp accuses someone again, standing by them or searching the colony for what was lost doesn't give this mood.</fix>
+    <fix>It fades in a few days. A friend's company helps, and so does the camp moving on; when the camp's next accusation comes, standing by them or searching for the truth leaves no sting.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -657,7 +657,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_DlmC_LostTheCrop</defName>
     <thoughts><li>Rimfolk_DlmC_LostTheCrop</li></thoughts>
-    <fix>It fades in two days. A good harvest, or the camp paying its way, makes the greedy feel better.</fix>
+    <fix>It fades in two days. A good harvest, or the camp paying its way, settles the greedy.</fix>
   </ColonyCouncil.MoodHintDef>
 
 </Defs>

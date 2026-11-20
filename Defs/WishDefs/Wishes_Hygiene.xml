@@ -112,14 +112,14 @@
       <plain>
         <li>There's nowhere to wash. Not even a bucket. Could we build {THING}?</li>
         <li>[hot] I've sweated through the same shirt for three days, and there's nowhere to rinse it out, or me.</li>
-        <li>[afterraid] I've still got blood on my hands from the raid. I'd like somewhere to wash it off.</li>
+        <li>[afterraid] The raid is still on my hands. I'd like somewhere to wash it off.</li>
         <li>[work:Growing] I come in from the fields with half the field on me, and there's nowhere to wash it off.</li>
         <li>[child] I'm all sticky and there's nowhere to wash.</li>
       </plain>
       <warm><li>Even {THING} would do. I'll fill it myself if I have to.</li></warm>
       <blunt><li>I stink. Give me {THING}.</li></blunt>
       <cheerful><li>A tub of water is all I'm asking for. I'll even share it.</li></cheerful>
-      <gloomy><li>I've started to smell like the midden, and I'm starting not to care.</li></gloomy>
+      <gloomy><li>I've started to smell like the midden. Maybe that's just who I am now.</li></gloomy>
       <cold><li>Filth breeds disease, and I don't intend to die of something that stupid. Get {THING}.</li></cold>
     </request>
     <thanks>
@@ -173,7 +173,7 @@
         <li>[winter] Washing in cold water in winter is how people catch their death. We know how to heat it now.</li>
         <li>A boiler and {THING}. Then a bath would actually be a bath.</li>
       </plain>
-      <warm><li>Hot water would make the mornings nicer. People might even smile before breakfast.</li></warm>
+      <warm><li>Hot water would make the mornings kinder. People might even smile before breakfast.</li></warm>
       <blunt><li>Cold water again. Heat it.</li></blunt>
       <cheerful><li>Hot water, with steam coming off it! I'd stay in until I wrinkled.</li></cheerful>
       <gloomy><li>My teeth are still chattering from this morning's wash.</li></gloomy>

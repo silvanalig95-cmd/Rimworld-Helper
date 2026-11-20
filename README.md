@@ -952,7 +952,7 @@ little goodwill), a promised room has to come within a fortnight, and someone st
 keeping them costs more again.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 71 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 100 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
@@ -967,13 +967,21 @@ again and again, and a fast walker after a season of hauling. A habit lived for 
 from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
 healer's hands, trail-wise, scholar, mender); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
-loaded. Thirty of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
+loaded. Fifty-nine of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
 after a seat or two promises kept, a rebel settles the same way, a bloodlust Rimfolk gave fades after a long peace, a
 cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it, world weariness lifts
 after two long peaces and something good, a pyromaniac who works the stove or the forge and stays calm loses the urge,
 a lush or a stoner dries out after beating an addiction, and with Therapy (Continued) four sessions with a therapist
-count toward steadier nerves and a brighter mood; a brave colonist comes of holding the line and carrying someone to
-safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road. The character page shows
+count toward steadier nerves and a brighter mood, less anxiety and steadier moods; a psychopath Rimfolk gave can, rarely,
+feel for others again after half a year without an execution and with care shown to others, and a bloodlust a colonist
+came with fades after most of a year without a fight; a gourmand who went hungry and then didn't binge eats like anyone
+else, slothful steps up to lazy after hard work done well, very neurotic eases to neurotic in a long calm, and a recluse
+with a friend opens up (Biotech); for Vanilla Traits Expanded, a workaholic learns to rest, the anxious calm down, the
+squeamish harden after long hours as a doctor, a kleptomaniac stops taking once forgiven or given a seat, a slob tidies up
+after hours of cleaning or the tidy habit (Dubs Bad Hygiene's slob and unhygienic too), an animal hater softens after a
+bond, three animals tamed or naming the animals, the submissive stand up, a snob is humbled, a couch potato gets up and
+an insomniac sleeps again; Vanilla Anomaly Expanded - Insanity's mood swings and impulsiveness settle; a brave
+colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road. The character page shows
 "where life is taking them": every way out of a bad trait the colonist has, from the start, with what is still
 missing in plain words, then the other changes they are heading toward, with how many of the things that lead there
 have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
@@ -1827,7 +1835,7 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
-*two healers, two cooks* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
+*nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
 infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
 infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight
@@ -3072,7 +3080,15 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   cluck, quack or honk, bats squeak, big beasts roar, the stones, gases, ice, shells and fish take a tortoise's voice;
   only animals that call when grown). Without those mods every species sounds as before, and the same species always
   the same. It never calls more often than PokéWorld had it; or their own cries a third as often; or as PokéWorld has
-  them. Rimfolk only reads the mod, by name (checked
+  them. **PokéWorld's items on the shelves** (a setting, on by default): PokéWorld keeps its items in lists of its own,
+  which shelves that take the game's lists (Deep Storage's and the like) don't take or show, so each item counts for
+  the shelves as the game's own things of the same kind (the evolution stones, fossils, balls, TMs and potions as
+  miscellaneous items, the eggs as fertilized eggs, the legendary leather as leather, the ball belts as utility
+  apparel). A shelf, rack or bin that takes the whole of such a list then takes them and shows them in its filter under
+  PokéWorld, a new one with them ticked; shelves already built take them once when a save loads, where they take the
+  whole list; a fridge takes only the eggs and what spoils, a hopper none, and a shelf's own limits still apply. Only
+  the shelves count them this way, not bills, food policies or traders. Rimfolk otherwise only reads
+  the mod, by name (checked
   against PokéWorld Updated for 1.6, its 898 species and eight generations); what a version lacks is skipped and said
   once in the log. Five Almanac pages explain it.
 - **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own. Colonists **ride out
@@ -5931,7 +5947,7 @@ The pages:
   stalls, and with Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
   (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by
-  Rimfolk; familiars), PokéWorld (what Pokémon sound like; the Pokémon types at home and each of their six parts), Faction
+  Rimfolk; familiars), PokéWorld (what Pokémon sound like; the Pokémon types at home and each of their six parts; its items on the shelves), Faction
   Territories and Vassalage (distant new settlements in the colony news), Move the Patient (the best bed first and
   room made for the worse off), Vanilla Trading Expanded (its market, contracts and banks on the trade screen), and a faith's precept against turrets from any mod minding only the turrets where
   they are.

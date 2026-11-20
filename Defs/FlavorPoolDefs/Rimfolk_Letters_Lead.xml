@@ -25,9 +25,9 @@
         <li>[lk:story,warm|cordial,lk:lead] Something happened here that you will not believe, so I will tell it slowly.</li>
         <li>[lk:story,theirs,warm|cordial,lk:lead] Here is a tale they tell at {TOWN}. It might even be true.</li>
         <li>[lk:story,theirs,warmly,lk:lead] Our oldest neighbour told this one at supper, and I have stolen it for you.</li>
-        <li>[lk:story,cordial|cool,lk:lead] I am not one for stories, but this one is worth telling.</li>
+        <li>[lk:story,cordial|cool,lk:lead] I am not one for stories, but this one wants telling.</li>
         <li>[lk:story,theirs,w:tribal,lk:lead] This is a story we tell at the fire when the nights are long. I give it to you the way it was given to me.</li>
-        <li>[lk:story,theirs,w:tribal,lk:lead] Sit, and I will tell it as the old ones tell it.</li>
+        <li>[lk:story,theirs,w:tribal,lk:lead] Sit, and I will tell it as the old ones tell it, with the parts they leave out left out.</li>
         <li>[lk:story,theirs,w:spacer,lk:lead] Nothing much happens out here that would interest the feeds, but here is something that interested us.</li>
         <li>[olde,lk:story,theirs,lk:lead] Hearken, for here is a tale of {TOWN}, and I tell it as it was told to me.</li>
         <li>[olde,lk:story,lk:lead] Now I shall tell thee of a thing that befell us, and thou mayst judge it as thou wilt.</li>
@@ -37,7 +37,7 @@
         <li>[sv:beast,lk:story,lk:lead] Here is a hunt-tale. Read it slowly, the way a trail is read.</li>
         <li>[sv:ancient,lk:story,lk:lead] Permit me a tale from my earlier centuries. I have trimmed it to the essentials, which took some decades.</li>
         <li>[lk:story,lk:after,theirs] Anyway. That is the news from {TOWN}, more or less.</li>
-        <li>[lk:story,lk:after] Make of that what you will. We still argue about it.</li>
+        <li>[lk:story,lk:after] Make of that what you will. We still have not.</li>
         <li>[lk:story,lk:after] Nobody here agrees on what it means, which is half the pleasure of it.</li>
         <li>[lk:story,lk:after,warmly] I have told it badly, but you will forgive me, and tell it better yourself.</li>
         <li>[lk:story,lk:after,w:tribal] That is how it was told to me. Now it is yours to tell.</li>
@@ -52,11 +52,11 @@
         <li>[lk:raid,rd:now,rd:road,theirs,lk:lead] There has been trouble on our roads, and you should know of it, since you use them too.</li>
         <li>[lk:raid,rd:now,rd:you,theirs,lk:lead] You know what you did. I will tell you how it looked from our side of the wall.</li>
         <li>[lk:raid,rd:now,rd:helped,theirs,lk:lead] Your people stood on our walls when it mattered. Here is the whole of it, for those of yours who were not there to see.</li>
-        <li>[lk:raid,rd:old,theirs,lk:lead] There has been no raid here in years, thank goodness, but the old ones still tell of the last, and so will I.</li>
+        <li>[lk:raid,rd:old,theirs,lk:lead] There has been no raid here in years, thank the weather, but the old ones still tell of the last, and so will I.</li>
         <li>[lk:raid,rd:old,lk:lead] When I was small, the raiders came. I have never written it down before.</li>
         <li>[lk:raid,rd:old,lk:lead] My grandmother told this one, and her mother before her, and now it is my turn.</li>
         <li>[lk:raid,rd:old,cordial|cool,lk:lead] You live on a road, as we do, so you might as well hear what the road can bring.</li>
-        <li>[lk:raid,rd:old,w:tribal,lk:lead] It was long ago, before my mother was born. I will tell it as it is told at the fire.</li>
+        <li>[lk:raid,rd:old,w:tribal,lk:lead] It was long ago, before my mother had her name. I will tell it as it is told at the fire.</li>
         <li>[lk:raid,rd:now,w:tribal,theirs,lk:lead] The raiders came. I will tell it the way it is told at the fire, though it is too new to be a fire-story yet.</li>
         <li>[lk:raid,rd:boast,lk:lead] You will remember us. We remember you.</li>
         <li>[lk:raid,rd:boast,lk:lead] In case anyone at your place has forgotten how it went, here it is again.</li>
@@ -69,7 +69,7 @@
         <li>[olde,lk:raid,ours,rd:ours,lk:lead] Reavers came upon us, and I would have thee hear it from mine own hand.</li>
         <li>[sv:machine,lk:raid,rd:now,lk:lead] INCIDENT REPORT FOLLOWS. COMPILED FROM WITNESS ACCOUNTS AND OWN SENSORS.</li>
         <li>[sv:machine,lk:raid,rd:old,lk:lead] HISTORICAL INCIDENT FOLLOWS, FROM ARCHIVE. ACCURACY: AS RECORDED, WHICH IS TO SAY UNKNOWN.</li>
-        <li>[sv:beast,lk:raid,lk:lead] We smelled the raiders before we saw them. Here is how it went.</li>
+        <li>[sv:beast,lk:raid,lk:lead] The raiders came on the wind. We smelled them first. Here is how it went.</li>
         <li>[u:none,lk:raid,rd:now,lk:lead] We had a fight.</li>
         <li>[u:none,lk:raid,rd:old,lk:lead] My grandad told me this.</li>
         <li>[u:none,lk:raid,rd:boast,lk:lead] You remember us. We remember you.</li>
@@ -85,7 +85,7 @@
         <li>[lk:poem,warm|cordial,lk:lead] Here are a few lines. I am no poet, but the evenings are long.</li>
         <li>[lk:poem,cordial|cool,lk:lead] I enclose some verse, since it says it better than I would.</li>
         <li>[lk:poem,condolences,lk:lead] I could not find the right words of my own, so here are some that have been said before.</li>
-        <li>[lk:poem,theirs,w:tribal,lk:lead] This is a song we sing. Sing it yourselves, if you like.</li>
+        <li>[lk:poem,theirs,w:tribal,lk:lead] This is a song we sing. Sing it if you like; it does not mind who sings it.</li>
         <li>[lk:poem,ours,warm|cordial,lk:lead] I have been writing a little verse in the evenings. Here is some of it, for better or worse.</li>
         <li>[olde,lk:poem,lk:lead] I have set down some few lines in verse, and pray thou wilt forgive the rhymes.</li>
         <li>[olde,lk:poem,theirs,lk:lead] Here is a song of our country, which the young folk sing at harvest and the old folk sing all year.</li>
@@ -112,7 +112,7 @@
         <li>[olde,lk:sermon,lk:lead] Suffer me to speak of holy things, for my heart is full of them.</li>
         <li>[olde,lk:sermon,theirs,lk:lead] Hear now what was preached at {TOWN} at the last gathering, for it was well said.</li>
         <li>[u:none,lk:sermon,lk:lead] I have to tell you something important.</li>
-        <li>[sv:deep,lk:sermon,lk:lead] Listen. Closely, you must.</li>
+        <li>[sv:deep,lk:sermon,lk:lead] Listen. Not with the ears.</li>
         <li>[lk:sermon,lk:after] There. I feel better, and I hope that you do.</li>
         <li>[lk:sermon,lk:after,zeal:crank] Burn this if you like. It will still be true.</li>
         <li>[olde,lk:sermon,lk:after] Ponder it, and may it do thee good.</li>
@@ -175,7 +175,7 @@
         <li>[lk:sermon,lk:after] I have said my piece. I will not say it again unless you ask.</li>
         <li>[lk:raid,lk:after,rd:now,theirs] I have written it down so that it is written somewhere outside {TOWN}. Keep it.</li>
         <li>[lk:chronicle,lk:after] That is the news. The sheet will be wrong about some of it, as always.</li>
-        <li>[lk:recipe,lk:after] If it goes wrong, blame the oven.</li>
+        <li>[lk:recipe,lk:after] If it goes wrong, it is the oven. It is always the oven.</li>
         <li>[olde,lk:poem,lk:after] There, that is all of it. It is better sung, if thou canst bear it.</li>
 
         <!-- ================= Round 2, part 2: a raid on their road, and the colony's own attack ================= -->
@@ -205,14 +205,14 @@
         <li>[sv:machine,lk:recipe,lk:lead] ATTACHED: ONE (1) PROCEDURE. HUMANS REPORT IT AS PLEASANT.</li>
         <li>[sv:machine,lk:diary,lk:lead] ATTACHED: EXCERPTS FROM THIS UNIT'S LOG, SELECTED FOR RELEVANCE AND, THIS UNIT IS TOLD, CHARM.</li>
         <li>[sv:machine,lk:riddle,lk:lead] QUERY FOLLOWS. YOU MAY ATTEMPT AN ANSWER.</li>
-        <li>[sv:green,lk:poem,lk:lead] We made you a song, slowly, as we make everything.</li>
+        <li>[sv:green,lk:poem,lk:lead] We grew you a song.</li>
         <li>[sv:green,lk:recipe,lk:lead] You asked nothing, but we will tell you how we eat.</li>
         <li>[sv:beast,lk:recipe,lk:lead] You two-legs like to know how things are eaten. Here.</li>
         <li>[sv:beast,lk:diary,lk:lead] Some of our days, by nose.</li>
         <li>[sv:hive,lk:poem,lk:lead] The many made a hum for you.</li>
         <li>[sv:hive,lk:sermon,lk:lead] The many believe. Here is how.</li>
         <li>[sv:deep,lk:riddle,lk:lead] A question, from below.</li>
-        <li>[sv:deep,lk:poem,lk:lead] A song, from deep below, where we live.</li>
+        <li>[sv:deep,lk:poem,lk:lead] A song we heard through the floor of the world.</li>
 
         <!-- ================= Round 2, part 2: the court's lead-ins ================= -->
         <li>[lk:story,lk:lead,empire] A story of the court, which I may tell you because it is not mine.</li>

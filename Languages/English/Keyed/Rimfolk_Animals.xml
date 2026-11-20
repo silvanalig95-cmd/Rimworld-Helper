@@ -19,7 +19,7 @@
 
   <!-- ===================== Personal stories (Animals/AnimalArcs.cs, Arcs/ArcTracker.cs) ===================== -->
 
-  <CC_Arc_StrayMarked>{PAWN} has asked the handlers to tame {PET_definite}, which has been coming to the door for days.</CC_Arc_StrayMarked>
+  <CC_Arc_StrayMarked>{PAWN} has asked the handlers to try {PET_definite}: it's been coming to the door for days.</CC_Arc_StrayMarked>
   <!-- A story about an animal's last days, ended by its death. -->
   <CC_Arc_Farewell>{PAWN_nameDef}'s story ({STORY}) has come to its end.</CC_Arc_Farewell>
   <CC_Arc_FarewellChronicle>{PAWN_nameDef}'s story ({STORY}) came to its end.</CC_Arc_FarewellChronicle>

@@ -5,6 +5,33 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Every bad trait can fade
+
+*20 November 2026, version 0.276.1*
+
+- Seventeen more ways out of bad traits, so every bad trait Rimfolk gives and most bad traits colonists arrive with can now fade.
+- A psychopath Rimfolk made can, rarely, care for others again after half a year without an execution or an organ taken and with care shown to others; a bloodlust a colonist came with fades after most of a year without a fight.
+- A gourmand who went hungry and then went two months without a food binge eats like anyone else, slothful colonists step up to lazy after hard work done well, the very neurotic ease in a long calm, and a recluse with a friend opens up.
+- With Vanilla Traits Expanded, workaholics learn to rest, the anxious calm down, the squeamish harden, kleptomaniacs stop stealing once forgiven or given a seat, and animal haters soften after a bond, taming or naming the animals.
+- Also with Vanilla Traits Expanded, the submissive stand up, snobs are humbled, couch potatoes get up, insomniacs sleep again, and slobs tidy up, as do Dubs Bad Hygiene's slob and unhygienic.
+- The insanity mod's mood swings and impulsiveness settle after a long calm or therapy sessions, and the character page shows each way out from the start, now with a friend on the Bonds page and an animal bonded to them.
+
+## The flavour words back
+
+*20 November 2026, version 0.276.0*
+
+- Letters, wishes, ambitions, life goals, personal stories, council questions, camps and world events have their earlier flavour words back.
+- Where an old line said something the map doesn't show, only that part was changed: no hour a letter can't know, nobody at the gate who isn't there, no well or hill a colony may not have, silver still on its way.
+- The old names came back with them, such as the ambitions a ring of iron and teeth in the mud and the questions a hungry look and the shakes, and the Almanac uses them too.
+
+## PokéWorld on the shelves
+
+*20 November 2026, version 0.275.3*
+
+- PokéWorld's items now go on the storage mods' shelves: a shelf, rack or bin that takes all of the game's miscellaneous items, fertilized eggs, leathers or utility apparel takes the PokéWorld things of that kind and shows them in its filter under PokéWorld.
+- Shelves already built take them once when a save loads, where they take the whole list, and new ones have them ticked. A fridge takes only the eggs and what spoils, a hopper none of them, and the shelves' own limits on size, weight and stacks still apply.
+- The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld) turns it off. Only the shelves count the items this way, never bills, food policies or traders, so Pokémon eggs are never cooked.
+
 ## No more grey map
 
 *20 November 2026, version 0.275.2*
