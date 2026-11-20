@@ -1103,6 +1103,8 @@ namespace ColonyCouncil
             if (victim.RaceProps?.Animal == true) GodDeeds.Killed(victim, dinfo, note.beast, note.map);
             // The gods in the world (Gods/World/GodHealth.cs): a god that takes the sacred beast's death ill holds it against the killer.
             if (victim.RaceProps?.Animal == true) GodHealth.Killed(victim, dinfo, note.map);
+            // The gods' beasts (Gods/OnMap/GodBeasts.cs): one of the colony's taken for a god's grieved; a beast taken for a god's slain.
+            if (victim.RaceProps?.Animal == true) GodBeasts.Died(victim, dinfo, note.map);
         }
 
         // ---------------- Memos for later events ----------------

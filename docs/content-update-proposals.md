@@ -1134,7 +1134,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1232,7 +1232,7 @@ Each item that adds text says which of these it follows.
 
 ### The gods and faith
 
-**C1 (E) Each god's festival kept as its words say** (M to L)
+**C1 (E) Each god's festival kept as its words say** (M to L) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **On the map:** the 8 festivals that today keep only the shared feast get their own play-out, each matching its
   words:
   - Hollin's Greening: saplings set by hand, one for each tree felled this year (the count is kept), and bread eaten
@@ -1254,7 +1254,7 @@ Each item that adds text says which of these it follows.
   agarilux.
 - **Harm:** Selene's watch on a cold night already falls under the night watch's budget (`nightWatch`); nothing new.
 
-**C2 (V) Sacred kinds for every god, from the player's animals** (S)
+**C2 (V) Sacred kinds for every god, from the player's animals** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **What changes:** the 10 gods with no sacred kinds get some from the active rows, and Hollin gets Vanilla Ideology
   Expanded - Dryads' castes.
   - Kept to rare kinds, never the land's common game or the colony's livestock, so hunting does not offend all the
@@ -1284,7 +1284,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** soft, by name, with each god's domain kinds as the fallback.
 - **Harm:** none.
 
-**C3 (I) A god's beast at home** (S to M)
+**C3 (I) A god's beast at home** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** one of the colony's own animals is of a god's sacred kind. In their save these would be the thunderox, the
   dusk prowler and the two dryads.
 - **What happens:**
@@ -1297,7 +1297,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** C2's kinds, `AnimalDays` (the rounds), `OmenAnimals`, `Festivals`, `PawnGods`, `GodLore.Believes`.
 - **Harm:** none.
 
-**C4 (I) The beast that stays, taken for a god's** (S)
+**C4 (I) The beast that stays, taken for a god's** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** the named wild beast that stays (`ResidentBeast`) is of a god's sacred kind or shape (a thrumbo, a frost
   lynx, a dusk prowler).
 - **What happens:**
@@ -1453,7 +1453,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** funerals (`Vendettas` eulogy), belief, grief, the book.
 - **Harm:** none.
 
-**C16 (I) Legendary Pokémon taken for a god's** (S)
+**C16 (I) Legendary Pokémon taken for a god's** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** a legendary of PokéWorld comes onto the land.
 - **What happens:** a believer says whose they take it for, perhaps wrongly, and the book keeps it as a hand
   (`GodHands`).
@@ -1476,7 +1476,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** PokéWorld's spawns and Rimfolk's rare sighting, the gods' hands, belief.
 - **Harm:** none.
 
-**C17 (I) The gods, the beasts and the land in the colony's art** (M)
+**C17 (I) The gods, the beasts and the land in the colony's art** (M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **What changes:** Rimfolk records none of the game's tales today, so the colony's sculptures never show any of its
   stories. Each of these would become one:
   - a god seen;

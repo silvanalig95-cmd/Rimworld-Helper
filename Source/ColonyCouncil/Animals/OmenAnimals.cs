@@ -115,6 +115,8 @@ namespace ColonyCouncil
 
         private static void Consider(AnimalPowersBook book, Pawn a, Map map, int now)
         {
+            // One of a god's kind born on that god's festival day (Gods/OnMap/GodBeasts.cs).
+            if (GodBeasts.FestivalBirth(book, a, map, now)) return;
             var sign = SignNow(map, a, out string day);
             // The kept day's even chance is the animal's own, so a reload doesn't roll it again.
             float roll = Rand.ValueSeeded(a.thingIDNumber ^ 0x51A7);

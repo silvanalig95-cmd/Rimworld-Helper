@@ -334,6 +334,8 @@ namespace ColonyCouncil
                     GodLore.Inferred(GodLore.Believer(witnesses), taken, spec.god, spec.kind == PresenceKind.Wrath);
                 // Each witness's own belief in the god they took it for, plainly seen the more (Gods/Belief/PawnGods.cs).
                 PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);
+                // A tale of the game's, for the colony's art (Things/ArtTales.cs): the god as the colony knew it then.
+                ArtTales.Seen(spec.god, spec.map, witnesses, spec.kind);
                 // What it does to those who saw it, and what follows on the map (Gods/Touch/GodTouch.cs).
                 GodTouch.NoteMoment(spec, witnesses, plain, taken);
                 momentGod = spec.god.id;

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Each god's festival kept as its words say (Source/ColonyCouncil/Gods/OnMap/OwnFeasts.cs; docs/content-update-proposals.md,
+    C1): the eight festivals that kept only the shared feast, played out on the map. The feast's own jobs (planting, digging,
+    cooking, a machine looked over, the lamps and doors), a small mood for each festival's part, modelled in Tools/Balance
+    (Rates.cs), and what people say, one sentence each. Tags: the god's own (hollin, smoulder ...), the moment, named where the
+    colony is sure of the god (its {GOD} the colony's name), scoffer, children (a story told to children), watched (a dream
+    told by one who kept the watch).
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_Feast_Plant</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastWork</driverClass>
+    <reportString>planting a sapling for the Greening.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Feast_Dig</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastWork</driverClass>
+    <reportString>digging the scraps into the field.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Feast_Cook</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastWork</driverClass>
+    <reportString>cooking mushroom stew for the feast.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Feast_Machine</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastWork</driverClass>
+    <reportString>looking TargetA over.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Feast_Lamp</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastWork</driverClass>
+    <reportString>going round the lamps and doors.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Hollin</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the Greening</label>
+        <description>A sapling for every tree we took, and a meal together under the old tree. It felt like paying back something we owed.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Smoulder</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the Deep Silver</label>
+        <description>I carried the silver down and dropped it into the rock, and said the old names over it. It's done for another year.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Bellwether</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the Letting Pass</label>
+        <description>The herd out on the long grass, and the old story told at dusk. A quiet, good day.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Morel</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the Turning Under</label>
+        <description>The year's scraps went back into the ground, and there was mushroom stew. Nothing goes to waste.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Pip</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>kept the First Spark</label>
+        <description>Something broken mended, every machine looked over, and the lights left on all night. Everything runs a little better for it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Hush</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a silent supper</label>
+        <description>We ate the plainest food together and nobody had to say anything. It was restful.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Undertow</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the Shuttered Night</label>
+        <description>Every door shut and every lamp lit, and whatever was out there went past. I slept well behind it.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_Feast_Selene</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>watched the longest night</label>
+        <description>I kept watch on the walls from dusk till the sun came up. Long and cold, but I'm glad it was me.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodFeast_Say</defName>
+    <lines>
+      <plain>
+        <li>[hollin,plant] One for every tree we took, that's only fair.</li>
+        <li>[hollin,plant] There, that one will be taller than me one day.</li>
+        <li>[hollin,plant] Set them deep and pack the earth down, they'll take.</li>
+        <li>[hollin,plant,named] {GOD} gave us the wood, so we give her the trees back.</li>
+        <li>[hollin,plant,scoffer] Planting trees is good work, feast day or not.</li>
+        <li>[hollin,meal] We eat under the old tree today, that's how the day goes.</li>
+        <li>[hollin,meal] This tree was here long before any of us.</li>
+        <li>[hollin,meal,named] {GOD} likes us under her oldest tree on this day.</li>
+
+        <li>[smoulder,down] Down it goes, to the one under the mountain.</li>
+        <li>[smoulder,down] Old one, deep one, coil under the stone, take it and sleep.</li>
+        <li>[smoulder,down] There, that's the year's silver gone to the deep.</li>
+        <li>[smoulder,down,named] {GOD}, take the silver and keep sleeping.</li>
+        <li>[smoulder,down,scoffer] That's good silver going down a hole, but it's the custom.</li>
+        <li>[smoulder,empty] Nothing to give this year, but I came all the same.</li>
+        <li>[smoulder,empty,named] No silver this year, {GOD}, only your names.</li>
+
+        <li>[bellwether,herd] Go on, the long grass is yours today.</li>
+        <li>[bellwether,herd] We leave the edge for them today, it's the Letting Pass.</li>
+        <li>[bellwether,alone] No herd to walk out, so I'll walk out myself.</li>
+        <li>[bellwether,story] Long ago a white beast walked through this land and left everything living behind it.</li>
+        <li>[bellwether,story] This is how the white beast came by and the grass grew back where it had walked.</li>
+        <li>[bellwether,story,children] Sit down, all of you, this is the old story about the white beast.</li>
+        <li>[bellwether,story,named] This is the story of {GOD}, who walked through and let everything live.</li>
+
+        <li>[morel,dig] Back into the ground with it, it'll come back as soil.</li>
+        <li>[morel,dig] Everything rots in the end, and that's the good part.</li>
+        <li>[morel,dig,named] {GOD} takes what we throw away and makes it good again.</li>
+        <li>[morel,dig,scoffer] It's compost, but I'll grant it's good compost.</li>
+        <li>[morel,stew] Mushroom stew for the Turning Under, as it should be.</li>
+        <li>[morel,stew] It smells like the cellar, which means it's done right.</li>
+
+        <li>[pip,mended] There, it works again, a broken thing mended.</li>
+        <li>[pip,mended,named] Fixed, and {GOD} would be pleased with that.</li>
+        <li>[pip,machine] A bit of oil and a look over, that's all they want.</li>
+        <li>[pip,machine] Listen to it run, that's a happy machine.</li>
+        <li>[pip,bench] No machines here, but the benches deserve a look too.</li>
+        <li>[pip,lamp] All the lights on tonight, that's the First Spark.</li>
+        <li>[pip,lamp] Leave this one burning till morning.</li>
+        <li>[pip,alllit] Every light is already on, good.</li>
+
+        <li>[undertow,shut] Shut the doors, it's the Shuttered Night.</li>
+        <li>[undertow,shut] Close it up and let whatever's out there pass by.</li>
+        <li>[undertow,lamp] Every lamp lit tonight, so it goes past us.</li>
+        <li>[undertow,lamp] Light them all, the dark goes round a lit house.</li>
+        <li>[undertow,lamp,scoffer] Lamps on and doors shut, it's sensible enough on a dark night.</li>
+        <li>[undertow,alllit] Doors shut and lamps lit already, good.</li>
+
+        <li>[selene,watch] Up on the walls till dawn, it's the longest night.</li>
+        <li>[selene,watch] We watch tonight, and we tell our dreams in the morning.</li>
+        <li>[selene,watch,named] {GOD} is up all night, so we stay up with her.</li>
+        <li>[selene,dream] I dreamt the moon came down to the wall and looked at each of us.</li>
+        <li>[selene,dream] I dreamt I was walking on the wall and the stars were close enough to touch.</li>
+        <li>[selene,dream] I dreamt of the sea last night, and I've never even seen the sea.</li>
+        <li>[selene,dream] I dreamt someone I used to know was calling me from the far side of a river.</li>
+        <li>[selene,dream] I dreamt the whole colony was silver, every roof of it.</li>
+        <li>[selene,dream,watched] I nodded off on the wall for a moment and dreamt the moon was talking to me.</li>
+        <li>[selene,dream,watched] Up on the wall I kept thinking I saw someone walking, and then I dreamt it.</li>
+        <li>[selene,dream,scoffer] I dreamt about breakfast, and here it is.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

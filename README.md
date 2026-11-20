@@ -4914,7 +4914,21 @@ Sometimes a fever eases in the night after, or the rain comes; nobody can say fo
 scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
 unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until
 the sick one is well, a pilgrimage on foot, a temple, a beast spared for a season. Each god the colony holds has its
-festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god. An
+festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god; those
+who hold the god stand behind the one leading the rite. Each festival is kept as its words say, played out on the map:
+for Hollin's Greening a sapling is set by hand for each tree the colony felled since the last one and a meal is eaten
+under the oldest tree; for Smoulder's Deep Silver silver goes down the deepest shaft (a crack in the rock without a
+mine); for Bellwether's Letting Pass the herd is walked out to the long grass and the old story told to the children at
+dusk; for Morel's Turning Under the year's scraps are dug into a field, which turns rich, and mushroom stew is cooked;
+for Pip's First Spark something broken is mended, the machines are looked over and the lamps burn all night; for Hush's
+Stillness there is a silent supper, the sick and the old nearest the fire; for Undertow's Shuttered Night the doors are
+shut and every lamp lit (torches topped up); for Selene's Longest Night two keep watch on the walls till dawn and dreams
+are told at breakfast. Some animals of the game and your mods are held sacred to a god, rare ones, never the land's
+common game, and what the colony's people make of one is their own reading, sometimes wrong: one of the colony's own they greet, bring a bite by hand, walk to the god's place on its feast day and
+grieve when it dies; a wild beast that stays may be taken for a god's when it is named, and the council's question then
+has the believer's answer, to leave it be; a legendary Pokémon on the land may be taken for a god's, and hunting it
+troubles those who believe it. The colony's sculptures may show these moments: a god seen, a sacred beast's visit, a
+festival kept, the beast that stays named, the herd's old leader dying, a raid held at a line. An
 elected priest (a shaman, a priest, a pastor or an oracle by the age) dedicates the places, carries the offerings and
 leads the rites, and the council is asked which god to keep the year for, whether to vow a temple, what to do when
 someone dreams a god wants the colony's finest beast, and whose rite comes first when two rival gods' people quarrel.

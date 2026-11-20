@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The gods' beasts (Source/ColonyCouncil/Gods/OnMap/GodBeasts.cs; docs/content-update-proposals.md, C3, C4, C16): a god's
+    beast at home, the beast that stays taken for a god's, a legendary of PokéWorld on the land. {GOD} is always the speaker's
+    or the believer's own name for the god they take it for: a belief, never the truth. The book's lines are a believer's
+    words, in the old voice of the gods' texts; the message and the letter say plainly what was done.
+  -->
+
+  <CC_GodBeast_Walked_Text>On the feast day {PAWN} gave {BEAST} the {KIND} a bite from the hand first, and walked it to {SHRINE} at {HOME}.</CC_GodBeast_Walked_Text>
+  <CC_GodBeast_Walked_Book>{BEAST} the {KIND} was fed first upon the feast day, and led unto the god's place.</CC_GodBeast_Walked_Book>
+  <CC_GodBeast_Noted_Bite>was given a bite by hand by {PAWN_nameDef}</CC_GodBeast_Noted_Bite>
+
+  <CC_GodBeast_Book_Gone>{BEAST} the {KIND} was of {GOD}, and is gone back unto {GOD}.</CC_GodBeast_Book_Gone>
+  <CC_GodBeast_Book_Slain_legend>The {KIND} that came upon our land was {GOD}'s own, and it was slain by our hands.</CC_GodBeast_Book_Slain_legend>
+  <CC_GodBeast_Book_Slain_resident>{BEAST} the {KIND} was {GOD}'s, and we have slain it.</CC_GodBeast_Book_Slain_resident>
+  <CC_GodBeast_Book_Resident>{BEAST} the {KIND}, that will not leave our land, is {GOD}'s, and not ours to hunt.</CC_GodBeast_Book_Resident>
+  <CC_GodBeast_Book_Stayed>{BEAST} the {KIND}, that is {GOD}'s, abode among us a whole season.</CC_GodBeast_Book_Stayed>
+  <CC_GodBeast_Book_Spared>We let {BEAST} the {KIND} be, for it is {GOD}'s, and not ours to hunt.</CC_GodBeast_Book_Spared>
+
+  <CC_GodBeast_ResidentLetter>{PAWN_nameDef} says it is {GOD}'s, and will not hear of it being hunted.</CC_GodBeast_ResidentLetter>
+  <CC_GodBeast_LegendLabel>a {KIND} on the land</CC_GodBeast_LegendLabel>
+
+  <!-- The colony's art (Source/ColonyCouncil/Things/ArtTales.cs): a god nobody could name, in a tale. -->
+  <CC_Tale_SomethingUnnamed>something nobody could name</CC_Tale_SomethingUnnamed>
+
+</LanguageData>
