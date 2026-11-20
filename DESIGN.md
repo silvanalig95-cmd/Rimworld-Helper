@@ -232,7 +232,7 @@ tone draws on its own lines alone only with three or more; a tone of one or two 
 one person, the unlucky one of ten, would say their own line again within a year, with no memory and with the speaker's
 (`--by-speaker` ranks by it; some journal pools' draws are read from the save).
 
-### Colony life's text variety (the content update's A31 to A37; the player's go, 20 November 2026; not released yet)
+### Colony life's text variety (the content update's A31 to A37; the player's go, 20 November 2026; released 0.284.0)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good", with "adding more
 text variety" in the first request. The thin pools part A counted with `Tools/variety_report.py`, recounted after the

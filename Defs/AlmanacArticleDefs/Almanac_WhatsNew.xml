@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.284.0</version>
+        <date>20 November 2026</date>
+        <title>More words in colony life</title>
+        <points>
+          <li>New journal entries for a seat taken or lost, a name earned, friends and comrades, a year in the colony and coming home.</li>
+          <li>A changed life goal's journal entry now says whether a loss or a brush with death changed it.</li>
+          <li>More teasing on eighteen topics in every voice, and more closing words when colonists remember being nursed, a close call, a debt, a lost child or an old joke.</li>
+          <li>More voices for and against seven decrees, and more answers to wishes.</li>
+          <li>More council talk and gossip in the social log, and two more texts for each of 35 social events.</li>
+          <li>Three more first words for every council seat, and more last words for the year letter and the colony's anniversary.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.283.0</version>
         <date>20 November 2026</date>
         <title>The council's situations and everyday questions</title>

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More words in colony life
+
+*20 November 2026, version 0.284.0*
+
+- New journal entries for a seat taken or lost, a name earned, friends and comrades, a year in the colony and coming home.
+- A changed life goal's journal entry now says whether a loss or a brush with death changed it.
+- More teasing on eighteen topics in every voice, and more closing words when colonists remember being nursed, a close call, a debt, a lost child or an old joke.
+- More voices for and against seven decrees, and more answers to wishes.
+- More council talk and gossip in the social log, and two more texts for each of 35 social events.
+- Three more first words for every council seat, and more last words for the year letter and the colony's anniversary.
+
 ## The council's situations and everyday questions
 
 *20 November 2026, version 0.283.0*
