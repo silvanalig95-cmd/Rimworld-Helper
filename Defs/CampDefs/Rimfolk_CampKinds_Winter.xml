@@ -480,7 +480,7 @@
     <sleep>Tents</sleep>
     <works><li>Chop</li></works>
     <animals>
-      <li><pack>true</pack><kinds><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Horse</li><li>Dromedary</li></kinds><count>2~3</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Horse</li><li>Dromedary</li><li MayRequire="ve.vanillachristmasexpanded">VCE_Megareindeer</li></kinds><count>2~3</count><at>picket</at></li>
       <li><kinds><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
     <campGoods>

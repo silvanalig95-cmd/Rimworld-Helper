@@ -5,6 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -201,8 +202,14 @@ namespace ColonyCouncil
                 return false;
             }
             // Gone from the map, or made the colony's own (recruited, taken prisoner): no longer a guest it looks after.
-            if (!p.Spawned || p.Faction == Faction.OfPlayer || p.IsPrisoner || p.HostFaction != Faction.OfPlayer) return false;
+            if (!p.Spawned || p.Faction == Faction.OfPlayer || p.IsPrisoner) return false;
             bool well = TakenInMath.Well(p.health.HasHediffsNeedingTend(), HealthAIUtility.ShouldSeekMedicalRest(p), p.Downed);
+            if (p.HostFaction != Faction.OfPlayer)
+            {
+                // The game let them go as a guest on its own: on their feet with nowhere to be, they set off home now.
+                if (!p.Downed && p.GetLord() == null) GoHome(t, well);
+                return false;
+            }
             if (TakenInMath.GoesHome(well, p.Downed, t.since, now))
             {
                 GoHome(t, well);
@@ -246,7 +253,12 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Home, on foot: no longer the colony's guest; the message says so.</summary>
+        /// <summary>
+        /// Home, on foot: no longer the colony's guest; the message says so. Their people remember who tended them: a call to
+        /// arms' wounded as the deed "tended", a runaway on the deed "rescued" noted when they were taken in, each naming the
+        /// colony's doctor who tended them most (World/KinMemory.cs). The game's own count of a guest gone home leaves no
+        /// second deed for them (<see cref="Credited"/>).
+        /// </summary>
         private static void GoHome(TakenInPatient t, bool well)
         {
             var p = t?.pawn;
@@ -255,6 +267,7 @@ namespace ColonyCouncil
             {
                 if (p.HostFaction == Faction.OfPlayer && !p.IsPrisoner) p.guest?.SetGuestStatus(null);
                 if (p.Downed || p.Faction == Faction.OfPlayer) return;
+                Remember(t);
                 Arrivals.SendAway(new[] { p });
                 Tell.Message(NewsKind.World, Importance.Notable, p.Map,
                     (well ? "CC_TakenIn_Home" : "CC_TakenIn_HomeHurt").Translate(p.Named("PAWN"), (t.people?.Name ?? p.Faction?.Name ?? "?").Named("PEOPLE")).Resolve(),
@@ -264,6 +277,28 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("taken in: home", e);
             }
+        }
+
+        /// <summary>Those sent home whose people already remember who tended them, by thing id (not saved: the game counts their going as they leave).</summary>
+        private static readonly HashSet<int> credited = new HashSet<int>();
+
+        /// <summary>Someone the colony took in, sent home with their people's memory of it already noted (World/Patch_FactionMemory.cs leaves them be).</summary>
+        public static bool Credited(Pawn p) => p != null && credited.Contains(p.thingIDNumber);
+
+        /// <summary>Their people remember the colony's care, naming the doctor who tended them most.</summary>
+        private static void Remember(TakenInPatient t)
+        {
+            var p = t.pawn;
+            var f = t.people ?? p.Faction;
+            if (f == null) return;
+            FactionDeed d;
+            if (t.why == TakenInMath.Runaway)
+                d = FactionMemory.Instance?.deeds?.LastOrDefault(x => x != null && x.faction == f && x.kind == "rescued");
+            else
+                d = FactionMemory.Note(f, "tended", p.LabelShort);
+            KinMemory.Credit(d, p, "tend");
+            credited.Add(p.thingIDNumber);
+            while (credited.Count > 64) credited.Remove(credited.First());
         }
 
         /// <summary>

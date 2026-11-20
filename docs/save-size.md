@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 812; modelled: 812; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,078 KB** after a year, **3,796 KB** after two, **4,262 KB** after five.
+Saved collections found: 814; modelled: 814; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,080 KB** after a year, **3,798 KB** after two, **4,264 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -284,6 +284,7 @@ Rimfolk's part of the save, roughly: **3,078 KB** after a year, **3,796 KB** aft
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
 | `Beasts/BeastBook.cs:oaths` | oaths sworn against a beast that killed or maimed: a few a year, BeastsMath.MaxOaths kept, the ended going first | cap | 1 | 2 | 6 | 1.3 |
 | `Gods/Among/GodsAmongBook.cs:deadHeld` | the god each of the colony's dead held, kept five days for their eulogy, GodsAmongBook.MaxDeadHeld | cap | 3 | 6 | 12 | 1.3 |
+| `World/Region/TakenIn.cs:patients` | other peoples' hurt in the colony's beds, while they are here (twenty days at most) | fixed | 8 | 8 | 8 | 1.2 |
 | `Diplomacy/DiplomacyBook.cs:vassals` | per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone | cap | 1 | 2 | 3 | 1.2 |
 | `World/Region/FollowUps.cs:waiting` | follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows | cap | 1 | 1 | 3 | 1.2 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
@@ -373,6 +374,7 @@ Rimfolk's part of the save, roughly: **3,078 KB** after a year, **3,796 KB** aft
 | `Peoples/Events5/PeopleEvents5Book.cs:betters` | the pieces at the Wheel's cart, the open ones and the last few done | cap | 2 | 3 | 4 | 0.6 |
 | `Peoples/Events5/PeopleEvents5Book.cs:stirs` | the gravewardens' burials of the colony's risen dead, four kept | cap | 1 | 2 | 4 | 0.6 |
 | `UI/WeekMemory.cs:answers` | answers of every kind whose play-outs are still watched, each only for the days they take (Answers.MaxWatched 40 at most) | fixed | 4 | 4 | 4 | 0.6 |
+| `World/Region/TakenIn.cs:coming` | a call to arms' wounded on their way to the colony's beds, a day to three each | fixed | 4 | 4 | 4 | 0.6 |
 | `World/Ledger/LedgerFormers.cs:formerRecords` | one per colony handed over, HandOverMath.MaxTowns at most (the oldest whose town is gone goes); none in a save that never handed one over | cap | 0 | 1 | 2 | 0.6 |
 | `Peoples/Events2/EnclavePad.cs:pad` | the enclave's pad's cells, while its camp stands | fixed | 25 | 25 | 25 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |

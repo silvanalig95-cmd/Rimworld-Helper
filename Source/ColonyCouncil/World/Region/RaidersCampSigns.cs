@@ -22,7 +22,7 @@ namespace ColonyCouncil
     /// A raiders' camp's signs on the map (docs/content-update-proposals.md, B13; the rules are RaidersCampSignsMath's).
     /// <para>
     /// Its scouts: before each raid two of its people come to the map's edge on the side the raid will come from, walk a few
-    /// steps in, stand and watch the colony for an hour or so, then go; the raid follows two to three hours after they were
+    /// steps in, stand and watch the colony for an hour or so, then go; the raid follows an hour or two after they were
     /// first seen, in from the edge they watched from, and its letter says so. They never start a fight: hurt, they make for
     /// the edge and defend themselves on the way (the game's own leaving duty).
     /// </para>
@@ -39,8 +39,8 @@ namespace ColonyCouncil
         // ================= The scouts =================
 
         /// <summary>
-        /// The camp's raid is coming: its scouts are seen first, at the edge on its side, and the raid is due in two to three
-        /// hours from that edge. False when no scout can be made or no edge found (the raid then comes as it always did).
+        /// The camp's raid is coming: its scouts are seen first, at the edge on its side, and the raid is due in an hour or two
+        /// from that edge. False when no scout can be made or no edge found (the raid then comes as it always did).
         /// </summary>
         private static bool Scout(Map home, RaidersCamp c, int now)
         {
@@ -197,9 +197,16 @@ namespace ColonyCouncil
             c.smokeAt = now;
             if (!Rand.Chance(RaidersCampSignsMath.SmokeChance) || MapFacts.ThreatOn(home)) return;
             var who = OnTheWalls(home);
+            string line = SmokeLine(home, c);
+            if (who == null || line == null) return;
+            Speech.Say(who, line);
+        }
+
+        /// <summary>The line on the camp's smoke, in its direction from the colony ("There's smoke to the northeast again ..."), or null.</summary>
+        private static string SmokeLine(Map home, RaidersCamp c)
+        {
             string dir = Direction(home, c);
-            if (who == null || dir.NullOrEmpty()) return;
-            Speech.Say(who, TextVariants.Vary("CC_RaidCamp_Smoke").Translate(dir.Named("DIR"), c.kind.Named("KIND")).Resolve());
+            return dir.NullOrEmpty() ? null : TextVariants.Vary("CC_RaidCamp_Smoke").Translate(dir.Named("DIR"), c.kind.Named("KIND")).Resolve();
         }
 
         /// <summary>
@@ -263,12 +270,13 @@ namespace ColonyCouncil
                 return;
             }
             var who = OnTheWalls(home);
-            if (who == null)
+            string line = SmokeLine(home, c);
+            if (who == null || line == null)
             {
-                Say("nobody of the colony is awake out of doors.");
+                Say(who == null ? "nobody of the colony is awake out of doors." : "the camp has no direction from this home.");
                 return;
             }
-            Speech.Say(who, TextVariants.Vary("CC_RaidCamp_Smoke").Translate(Direction(home, c).Named("DIR"), c.kind.Named("KIND")).Resolve());
+            Speech.Say(who, line);
         }
     }
 
@@ -394,7 +402,9 @@ namespace ColonyCouncil
             if (ctx.stranger == null) return false;
             ctx.tale = c.kind;
             ctx.placeName = RaidersCamps.Where(ctx.map, c);
-            ctx.a = Colonists(ctx.map).Where(p => !p.Downed && !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
+            // Who sees them come: a grown colonist out of doors and awake if there is one.
+            var grown = Colonists(ctx.map).Where(p => !p.Downed && !p.DevelopmentalStage.Juvenile()).ToList();
+            ctx.a = grown.Where(p => p.Spawned && p.Awake() && !p.Position.Roofed(p.Map)).RandomElementWithFallback() ?? grown.RandomElementWithFallback();
             return ctx.a != null;
         }
 

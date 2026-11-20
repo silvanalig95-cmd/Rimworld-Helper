@@ -17,11 +17,12 @@ namespace ColonyCouncil
     /// </summary>
     public static class RegionPrices
     {
+        /// <summary>One world event's move on one people's prices: the goods, the factor, the event's label and where it is (null on the other side of a war).</summary>
         private struct Entry
         {
             public RegionGoods goods;
             public float factor;
-            public string why;
+            public string why, place;
         }
 
         private static readonly Dictionary<Faction, List<Entry>> byPeople = new Dictionary<Faction, List<Entry>>();
@@ -60,24 +61,18 @@ namespace ColonyCouncil
                 string def = s?.def?.defName;
                 var g = RegionPricesMath.Goods(def, out bool dear);
                 if (g == RegionGoods.None || s.ctx == null) continue;
-                string why = Why(s);
-                Add(s.ctx.faction, g, dear, why);
-                if (RegionPricesMath.BothSides(def)) Add(s.ctx.enemy, g, dear, why);
+                string why = s.def?.label ?? "?";
+                // Where it is, at its own people's town; the other side of a war or a closed market is hurt at home, unnamed.
+                Add(s.ctx.faction, g, dear, why, s.ctx.placeName.NullOrEmpty() ? null : s.ctx.placeName);
+                if (RegionPricesMath.BothSides(def) && s.ctx.enemy != s.ctx.faction) Add(s.ctx.enemy, g, dear, why, null);
             }
         }
 
-        private static void Add(Faction f, RegionGoods g, bool dear, string why)
+        private static void Add(Faction f, RegionGoods g, bool dear, string why, string place)
         {
             if (f == null || f.IsPlayer) return;
             if (!byPeople.TryGetValue(f, out var list)) byPeople[f] = list = new List<Entry>();
-            list.Add(new Entry { goods = g, factor = dear ? RegionPricesMath.Dear : RegionPricesMath.Cheap, why = why });
-        }
-
-        /// <summary>"famine, Ashford": the world event and where it is, for the price's hover.</summary>
-        private static string Why(WorldSituation s)
-        {
-            string label = s.def?.label ?? "?";
-            return s.ctx.placeName.NullOrEmpty() ? label : "CC_RegionPrice_Where".Translate(label.Named("EVENT"), s.ctx.placeName.Named("PLACE")).Resolve();
+            list.Add(new Entry { goods = g, factor = dear ? RegionPricesMath.Dear : RegionPricesMath.Cheap, why = why, place = place });
         }
 
         /// <summary>What kind of goods a thing is, for the region's years (worked out once a def).</summary>
@@ -118,8 +113,10 @@ namespace ColonyCouncil
             if (g == RegionGoods.None) yield break;
             foreach (var e in list)
                 if (e.goods == g)
-                    yield return (e.factor >= 1f ? "CC_RegionPrice_Dear" : "CC_RegionPrice_Cheap").Translate(("CC_RegionPrice_Goods_" + g).Translate().Named("GOODS"),
-                        RegionPricesMath.Percent(e.factor).Named("PCT"), f.Name.Named("PEOPLE"), e.why.Named("WHY")).Resolve();
+                    // "Food dear at Ashford (famine): 25% more with the Ashford Union, buying or selling."
+                    yield return ("CC_RegionPrice_" + (e.factor >= 1f ? "Dear" : "Cheap") + (e.place != null ? "At" : "")).Translate(
+                        ("CC_RegionPrice_Goods_" + g).Translate().Named("GOODS"), RegionPricesMath.Percent(e.factor).Named("PCT"), f.Name.Named("PEOPLE"),
+                        e.why.Named("EVENT"), (e.place ?? "").Named("PLACE")).Resolve();
         }
 
         /// <summary>The moot's season price on this thing (Peoples/Events10/), in words for the hover, or null.</summary>
@@ -137,7 +134,8 @@ namespace ColonyCouncil
         public static string Describe()
         {
             if (!Any) return "no world event moves a price now.";
-            return string.Join("; ", byPeople.Select(kv => kv.Key.Name + ": " + string.Join(", ", kv.Value.Select(e => e.goods + " x" + e.factor.ToString("0.00") + " (" + e.why + ")"))));
+            return string.Join("; ", byPeople.Select(kv => kv.Key.Name + ": " + string.Join(", ", kv.Value.Select(e => e.goods + " x" + e.factor.ToString("0.00") + " (" + e.why
+                                                                                                                         + (e.place != null ? " at " + e.place : "") + ")"))));
         }
     }
 

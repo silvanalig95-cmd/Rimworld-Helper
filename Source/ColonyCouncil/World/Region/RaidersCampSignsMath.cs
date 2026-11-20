@@ -5,8 +5,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The small rules of a raiders' camp's signs on the map (docs/content-update-proposals.md, B13;
     /// World/Region/RaidersCampSigns.cs): before each of its raids two of its scouts come to the map's edge on the side the
-    /// raid will come from, watch for an hour or so and go, and the raid follows two to three hours after they were first
-    /// seen (held back while another fight is on, given up half a day late); once in its life a captive who ran from it
+    /// raid will come from, watch for an hour or so and go, and the raid follows an hour or two after they were first seen
+    /// (held back while another fight is on, given up half a day late); once in its life a captive who ran from it
     /// reaches the gate, and taken in, its next raid comes sooner; at dusk someone on the walls may speak of its smoke.
     /// Pure (no game types): Tools/Tests checks them.
     /// </summary>
@@ -19,10 +19,10 @@ namespace ColonyCouncil
         public const int Scouts = 2;
 
         /// <summary>They watch from near the edge this long (hours), then walk off.</summary>
-        public const float WatchHoursMin = 1f, WatchHoursMax = 1.5f;
+        public const float WatchHoursMin = 1f, WatchHoursMax = 1.25f;
 
         /// <summary>The raid comes this long (hours) after they were first seen.</summary>
-        public const float LeadHoursMin = 2f, LeadHoursMax = 3f;
+        public const float LeadHoursMin = 1.5f, LeadHoursMax = 2.5f;
 
         /// <summary>How far in from the edge they stand to watch (cells).</summary>
         public const int WatchCells = 10;

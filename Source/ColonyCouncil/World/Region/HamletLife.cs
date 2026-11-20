@@ -218,7 +218,8 @@ namespace ColonyCouncil
                     .SelectMany(t => t.people).FirstOrDefault(p => p != null && p.Spawned && p.Map == home && !p.Dead && !p.Downed);
                 if (carter == null) continue;
                 h.wordUntil = -1;
-                Speech.Say(carter, HamletWords.CarterWord(h, need.Value));
+                string word = HamletWords.CarterWord(h, need.Value);
+                Speech.Say(carter, word);
             }
         }
 
