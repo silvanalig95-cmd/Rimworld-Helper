@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A small mark of kindness (the content update's A20, worn thin: CouncilLife/LifeArcs.cs): the friend who sat with
+    someone worn down until they were back to themselves. Given at a fraction of its size by the story's end.
+  -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_StoodBy</defName>
+    <label>stood by a friend</label>
+    <shifts><warmth>4</warmth><outlook>2</outlook></shifts>
+    <keepDays>90</keepDays>
+    <shaped>{PAWN_nameDef} has been quicker to notice when someone is struggling since sitting with {OTHER} through a hard time.</shaped>
+    <defaultLabel>a hard time</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>StoodBy</family>
+        <needsOther>true</needsOther>
+        <repeatDays>30</repeatDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>

@@ -20,6 +20,8 @@
       <li>{A_nameDef} told {B_nameDef} about a hard winter long ago, the version with the bear in it.</li>
       <li>{B_nameDef} asked {A_nameDef} what things were like when {A_pronoun} was young, and got a long answer, with names.</li>
       <li>{A_nameDef} went through the people of {A_possessive} youth for {B_nameDef}, one by one, and what became of each of them.</li>
+      <li>{A_nameDef} told {B_nameDef} about the places {A_pronoun} lived before coming here, and {B_nameDef} asked a lot of questions.</li>
+      <li>{B_nameDef} sat with {A_nameDef} for a while and heard about the work people did when {A_nameDef} was {B_possessive} age.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_HeardTheOldDays</thought></li>
@@ -39,6 +41,8 @@
       <li>{A_nameDef} watched {B_nameDef} work for a full minute, then took the tool from {B_possessive} hands and showed {B_objective} a better grip.</li>
       <li>"Not like that," {A_nameDef} told {B_nameDef}, and showed {B_objective} the way {A_pronoun} was taught forty years ago.</li>
       <li>{A_nameDef} passed on to {B_nameDef} a trick of the job that {B_pronoun} had never been told.</li>
+      <li>{A_nameDef} stopped {B_nameDef} halfway through a job and showed {B_objective} how to do it with half the effort.</li>
+      <li>{A_nameDef} took a few minutes to show {B_nameDef} how {A_pronoun} would do the job, and {B_nameDef} tried it that way.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>150</xp><chance>0.5</chance></li>
@@ -60,6 +64,8 @@
       <li>{A_nameDef} and {B_nameDef} agreed that everything had been better in their day, including the weather and their knees.</li>
       <li>Comparing aches like traders comparing goods, {A_nameDef} and {B_nameDef} gave the prize to {A_nameDef}'s back over {B_nameDef}'s hip.</li>
       <li>{A_nameDef} and {B_nameDef} talked about people from long ago and laughed at jokes only the two of them still understand.</li>
+      <li>{A_nameDef} and {B_nameDef} sat together and compared the remedies they each swear by for a stiff back.</li>
+      <li>{A_nameDef} and {B_nameDef} found they had both lived through a hard winter when they were young, and spent a while comparing the two.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_SocLv_Reminisced</thought></li>
@@ -78,6 +84,8 @@
     <texts>
       <li>{A_nameDef} nodded off in the middle of a sentence, and {B_nameDef} put a blanket round {A_possessive} shoulders.</li>
       <li>{A_nameDef} dozed off over {A_possessive} work, and {B_nameDef} finished it for {A_objective} without saying so.</li>
+      <li>{A_nameDef} fell asleep sitting up, and {B_nameDef} made sure nobody woke {A_objective}.</li>
+      <li>{A_nameDef} nodded off in the middle of a job, and {B_nameDef} moved {A_possessive} tools out of the way so nothing got knocked over.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>2</change>
@@ -95,6 +103,8 @@
       <li>{A_nameDef} taught {B_nameDef} a game {A_pronoun} played as a child, with stones and lines scratched in the dirt.</li>
       <li>{A_nameDef} showed {B_nameDef} how to whistle through {B_possessive} fingers, and {B_nameDef} hasn't stopped since.</li>
       <li>{A_nameDef} let {B_nameDef} win an old counting game with pebbles, then stopped letting {B_objective}, and lost anyway.</li>
+      <li>{A_nameDef} taught {B_nameDef} a clapping rhyme from {A_possessive} own childhood, and they went through it until {B_nameDef} had it right.</li>
+      <li>{A_nameDef} showed {B_nameDef} how to make a spinning top from a scrap of wood, and {B_nameDef} has been spinning it ever since.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_SocLv_OldGame</thought></li>
@@ -115,6 +125,8 @@
       <li>{A_nameDef} told {B_nameDef}, at length, everything wrong with young people today, using {B_nameDef} as the example throughout.</li>
       <li>{A_nameDef} watched {B_nameDef} work, said, "In my day we did it properly," and didn't explain what properly was.</li>
       <li>{B_nameDef} asked {A_nameDef} a simple question and got a lecture on respect and the state of the colony's boots.</li>
+      <li>{A_nameDef} told {B_nameDef} {B_pronoun} was doing it wrong, and when {B_nameDef} asked how to do it right, said {B_pronoun} ought to know already.</li>
+      <li>{A_nameDef} complained to {B_nameDef} about how loud young people are, loudly enough that the others turned to look.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
@@ -135,6 +147,8 @@
     <texts>
       <li>{B_nameDef} was fretting over a job gone wrong until {A_nameDef} said the best plowman still turns a crooked furrow.</li>
       <li>{A_nameDef} answered {B_nameDef}'s long complaint with one old saying, and {B_nameDef} stopped to think about it.</li>
+      <li>When {B_nameDef} got frustrated with a slow job, {A_nameDef} said that slow work is seldom done twice, and {B_nameDef} took more care.</li>
+      <li>{A_nameDef} had an old saying for {B_nameDef}'s trouble, and {B_nameDef} said it helped.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_WiseWord</thought></li>
@@ -154,6 +168,8 @@
     <texts>
       <li>{B_nameDef} asked {A_nameDef} a straight question, got "patience is a virtue" for an answer, and walked off.</li>
       <li>{A_nameDef} said "many hands make light work" while watching {B_nameDef} do all of it.</li>
+      <li>{B_nameDef} complained about a broken tool, and {A_nameDef} answered with a saying about bad workmen, which didn't help.</li>
+      <li>{A_nameDef} had a proverb for everything {B_nameDef} said, and {B_nameDef} lost patience by the third one.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -170,6 +186,8 @@
     <texts>
       <li>{B_nameDef} heard the one about the clever fox and the farmer's daughter from {A_nameDef}, and wants it again with the fox winning.</li>
       <li>{A_nameDef} told {B_nameDef} a story with three dragons in it and no ending yet, and {B_nameDef} keeps asking for one.</li>
+      <li>{A_nameDef} told {B_nameDef} a long story about a lost traveller who found the way home by following a river, and {B_nameDef} listened to the end.</li>
+      <li>{B_nameDef} asked {A_nameDef} for a story, and {A_nameDef} made one up on the spot about a talking crow, doing all the voices.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_StoryHour</thought></li>
@@ -193,6 +211,8 @@
     <texts>
       <li>{A_nameDef} laughed, the way {A_pronoun} does when things are hard, while {B_nameDef} was talking about the one {B_pronoun} lost.</li>
       <li>{A_nameDef} laughed into {A_possessive} sleeve at the mention of the dead, and {B_nameDef} heard it.</li>
+      <li>{A_nameDef} laughed at the wrong moment while {B_nameDef} was talking about someone who died, and {B_nameDef} stopped talking.</li>
+      <li>{B_nameDef} mentioned someone the colony lost, and {A_nameDef} let out a nervous laugh that {B_nameDef} hasn't forgiven.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
@@ -211,6 +231,8 @@
     <texts>
       <li>{B_nameDef} swore {B_pronoun} had never promised to help, so {A_nameDef} read {B_objective} the day and the exact words from {A_possessive} notebook.</li>
       <li>{A_nameDef} corrected {B_nameDef}'s story from the notebook, page and line, while {B_nameDef} was still telling it.</li>
+      <li>{A_nameDef} looked up in {A_possessive} notebook when {B_nameDef} last did {B_possessive} share of the cleaning, and read it out.</li>
+      <li>{B_nameDef} said something had never happened, and {A_nameDef} showed {B_objective} the page where {A_pronoun} had written it down.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -226,6 +248,8 @@
     <texts>
       <li>{B_nameDef} talked {A_nameDef} through why the roof will hold, beam by beam, until {A_nameDef} believed it.</li>
       <li>{B_nameDef} counted the stores out loud for {A_nameDef}, sack by sack, to prove there was enough to last.</li>
+      <li>{A_nameDef} was worried about raiders, and {B_nameDef} talked through what the colony would do if they came until {A_nameDef} calmed down.</li>
+      <li>{B_nameDef} listened to all of {A_nameDef}'s worries, one at a time, and had a sensible answer for most of them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_SocLv_WorryEased</thought></li>
@@ -244,6 +268,8 @@
     <texts>
       <li>{A_nameDef} took {B_nameDef}'s turn at the filthiest job going before {B_nameDef} had even finished complaining about it.</li>
       <li>{A_nameDef} offered to take {B_nameDef}'s night watch, and {B_nameDef} accepted, owing {A_objective} a favor.</li>
+      <li>{A_nameDef} offered to do {B_nameDef}'s share of the hauling so {B_nameDef} could rest for a while.</li>
+      <li>{A_nameDef} heard {B_nameDef} was tired and volunteered to cover {B_possessive} next chore.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_SocLv_TookMyTurn</thought></li>
@@ -263,6 +289,8 @@
     <texts>
       <li>{A_nameDef} admitted to saving scraps for any stray that comes near, and {B_nameDef} said {B_pronoun} does the same.</li>
       <li>{A_nameDef} and {B_nameDef} swapped stories of every stray they had ever taken in, bites included.</li>
+      <li>{A_nameDef} and {B_nameDef} talked about the animals around the colony and which of them they would most like to tame.</li>
+      <li>{A_nameDef} told {B_nameDef} about a stray {A_pronoun} once fed through a whole winter, and {B_nameDef} told one of {B_possessive} own.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -279,6 +307,8 @@
     <texts>
       <li>Last night {B_nameDef} put out {A_nameDef}'s light, {A_nameDef} lit it again, and so it went until someone shouted at them both.</li>
       <li>{B_nameDef} complained that {A_nameDef}'s light keeps people awake, and {A_nameDef} said the dark keeps {A_objective} awake.</li>
+      <li>{B_nameDef} asked {A_nameDef} to put the light out at night, and {A_nameDef} refused.</li>
+      <li>{A_nameDef} and {B_nameDef} argued about the light again, and neither of them gave way.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>

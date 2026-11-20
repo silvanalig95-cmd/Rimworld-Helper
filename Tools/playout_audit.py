@@ -374,6 +374,13 @@ PLAY = {
     # A world event's answer that sends a colonist to a far town (World/FarErrands.cs): a caravan of one there, their days
     # there and the road home, the season away's own (Peoples/Events2/SeasonAway.cs).
     "WorldEffect_Away": "a caravan of one to a far town and home",
+    # Colony life's variety, part 1 (CouncilLife/): the heart's day off given from an answer (or the rest of today), the
+    # night watch's rota and a welcome's evening hour each morning of their decrees, and the one sent away met at the gate.
+    "DilemmaEffect_HeartDayOff": "rest",
+    "DilemmaEffect_MadeChair": "handed over",
+    "DilemmaEffect_WatchRota": "vigil",
+    "DilemmaEffect_WelcomeEvening": "visit",
+    "ArcEffect_MeetSentAway": "visit",
     # A promise halfway (Offices/SeatHalfway.cs): the seat's own work with a hand (a watch on the walls, the food brought in,
     # the sickroom seen to, the herd brought home, an evening), and the holder's word at supper.
     "DilemmaEffect_SeatHands": "the seat's work with a hand",

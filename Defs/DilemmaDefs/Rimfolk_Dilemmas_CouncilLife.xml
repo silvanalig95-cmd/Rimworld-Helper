@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colony life's variety, part 1: the council's situations (the content update's A3 and A4, the player's go of 20 November
+    2026; Source/ColonyCouncil/CouncilLife/StepDown.cs, OneSteel.cs). In the council questions' own style.
+
+    A seat holder asks to step down: A the holder, worn down or near breaking five days running, or ten days in a sickbed;
+    B the one who would stand in (the most able at the seat's work who holds no seat); {OFFICE} the seat in the colony's
+    age. Tags [worn], [breaking], [laidup]. Never while an election is under way.
+
+    Two wishes, one pile of steel: A asked first, B second; {WISHA} and {WISHB} the wishes, {THING} the stuff they both need,
+    {COUNT} what the stores hold (enough for either, not both). The quartermaster speaks in it when there is one ([seat]).
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_StepDown</defName>
+    <label>a seat put down</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_StepDown</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>15</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>{A_nameDef} came to the council with the {OFFICE}'s things wrapped in a cloth and set them on the table. "Someone else should carry these for a while," {A_nameDef} said, and didn't sit down.\n\n{B_nameDef} knows enough of the seat's work to keep it going, if the council asks.</li>
+      <li>[worn] For days {A_nameDef} has been first up and last to bed, and it shows. Questions about the {OFFICE}'s work get answered before they're finished, and the answers forgotten by noon. Tonight {A_nameDef} asked the council to find someone else for the seat.\n\n{B_nameDef} could take on the work, at least for a while.</li>
+      <li>[breaking] {A_nameDef} hasn't been right for a week. The {OFFICE}'s work still gets done, with a set jaw and hands that aren't quite steady. This morning {A_nameDef} asked the council to let the seat go to someone else.\n\n{B_nameDef} could stand in.</li>
+      <li>[laidup] Ten days in a sickbed, and the work of the {OFFICE} has piled up beside it. {A_nameDef} sent word to the council that the seat ought to go to someone on their feet.\n\n{B_nameDef} could take it on while the council decides.</li>
+      <li>[lowtech] {A_nameDef} came to the council fire and laid the {OFFICE}'s staff on the ground between them. "I've carried it as far as I can for now," {A_nameDef} said.\n\nThe others looked at {B_nameDef}, who knows the work.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} step down</label>
+        <outcome>The council took the {OFFICE}'s seat back from {A_nameDef} with thanks. It stands empty until the colony votes on it, and {A_nameDef} looked lighter for it before the day was out.</outcome>
+        <outcomes>
+          <li>[laidup] The council took the {OFFICE}'s seat back from {A_nameDef} with thanks, and told {A_objective} to get well first and worry later. The seat stands empty until the colony votes on it.</li>
+          <li>[lowtech] The council took up the {OFFICE}'s staff from the ground and thanked {A_nameDef} for carrying it. The seat stands empty until the colony chooses again.</li>
+        </outcomes>
+        <ways><mercy>2</mercy><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_StepDown" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Life_SteppedDown</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} stands in for ten days</label>
+        <outcome>{B_nameDef} takes on the {OFFICE}'s daily work for ten days, and {A_nameDef} has the day off, starting now. The seat is still {A_nameDef}'s.</outcome>
+        <outcomes>
+          <li>[laidup] {B_nameDef} takes on the {OFFICE}'s daily work for ten days, and {A_nameDef} is told to rest the day through. The seat is still {A_nameDef}'s when {A_pronoun} is back on {A_possessive} feet.</li>
+        </outcomes>
+        <ways><mercy>1</mercy><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Deputy" />
+          <li Class="ColonyCouncil.DilemmaEffect_HeartDayOff"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Life_StandIn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask {A_nameDef} to stay on</label>
+        <outcome>The council asked {A_nameDef} to keep the seat a while longer, and {A_nameDef} said yes. Those who trust the council most were glad of it. {A_nameDef} went back to the {OFFICE}'s work no less tired than before.</outcome>
+        <ways><tradition>1</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TrustDevoted" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Life_AskedToStay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_OneSteel</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
+    <label>two wishes, one pile</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_OneSteel</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>There are {COUNT} {THING} in the stores and two people with plans for all of it. {A_nameDef} asked first, for {WISHA}. {B_nameDef} wants {WISHB}. Either could be made from what there is. Both can't, and neither of them is in a mood to wait.</li>
+      <li>{A_nameDef} has chalked an outline on the floor for {WISHA}. {B_nameDef} has chalked one over it for {WISHB}. Between them stands the colony's whole stock of {THING}, {COUNT} of it, which will make one or the other.</li>
+      <li>[lowtech] The {THING} pile behind the workshop holds {COUNT} and no more. {A_nameDef} has been eyeing it for {WISHA} since before {B_nameDef} started eyeing it for {WISHB}, and both have started calling it "my {THING}" when they mean the colony's.</li>
+      <li>[seat] {HOLDER_nameDef} has counted the {THING} twice, as the {OFFICE} does: {COUNT}, enough for {WISHA} for {A_nameDef}, who asked first, or for {WISHB} for {B_nameDef}, but not both. {HOLDER_nameDef} would like the council to say which before the two of them say it for each other.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>First come, first served: {A_nameDef}'s</label>
+        <outcome>The council promised {A_nameDef} {WISHA}, since {A_pronoun} asked first. {B_nameDef}'s wish waits three days longer, and {B_pronoun} will be told why.</outcome>
+        <outcomes>
+          <li>[seat] The council promised {A_nameDef} {WISHA}, since {A_pronoun} asked first, and {HOLDER_nameDef} set the {THING} aside for it as {OFFICE}. {B_nameDef}'s wish waits three days longer, and {HOLDER_nameDef} will tell {B_objective} why.</li>
+        </outcomes>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WishFirst"><first>A</first></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef}'s first</label>
+        <outcome>The council promised {B_nameDef} {WISHB}, though {A_nameDef} asked first. {A_nameDef}'s wish waits three days longer, and {A_pronoun} will be told why.</outcome>
+        <outcomes>
+          <li>[seat] The council promised {B_nameDef} {WISHB}, though {A_nameDef} asked first, and {HOLDER_nameDef} set the {THING} aside for it as {OFFICE}. {A_nameDef}'s wish waits three days longer, and {HOLDER_nameDef} will tell {A_objective} why.</li>
+        </outcomes>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WishFirst"><first>B</first></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Neither until there's more {THING}</label>
+        <outcome>The council promised neither. The {THING} stays in the stores, both wishes wait three days longer, and {A_nameDef} and {B_nameDef} will each be told why.</outcome>
+        <ways><generosity>-1</generosity><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WishFirst"><first>none</first></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

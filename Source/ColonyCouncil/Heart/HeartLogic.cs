@@ -62,6 +62,9 @@ namespace ColonyCouncil
             CountLack(h, hours);
             Strain(p, h, m, groups, since, now, hours, traits);
             groups.Clear();
+            // How long they have stood worn down or near breaking (the council's step-down question, worn thin: CouncilLife/).
+            h.wornSince = StepDownMath.Since(h.wornSince, h.strain >= HeartMath.BandStart(StrainBand.Worn), now);
+            h.breakingSince = StepDownMath.Since(h.breakingSince, h.strain >= HeartMath.BandStart(StrainBand.Breaking), now);
             // The good side: friends close by and a purpose fill it, and it fades (Heart/GoodHeart.cs).
             GoodHeart.Hour(p, h, hours, now);
 

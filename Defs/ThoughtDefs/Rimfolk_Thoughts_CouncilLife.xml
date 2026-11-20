@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of colony life's variety, part 1 (the content update, the player's go of 20 November 2026): a seat holder asking
+    to step down and two wishes for one pile of stuff (Rimfolk_Dilemmas_CouncilLife.xml), the three personal stories
+    (Rimfolk_Arcs_CouncilLife.xml), the twenty-five everyday questions (Rimfolk_Dilemmas_Everyday.xml), and the two decrees
+    (Rimfolk_Decrees_CouncilLife.xml). Small and short, as the council's moods are. Plain words.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_SteppedDown</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>put the seat down</label><description>I asked the council to let me step down, and it did. I feel lighter for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_StandIn</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>trusted with a seat's work</label><description>The council asked me to do a seat's daily work while its holder rests. They trust me with it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_AskedToStay</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>asked to carry on</label><description>I asked to put the seat down, and the council asked me to keep it. I said yes. I'm still tired.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_FirstInLine</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my wish comes first</label><description>There was only enough for one of us, and the council promised it to me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_WaitMyTurn</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>waiting my turn</label><description>There wasn't enough for both of us, so mine waits a little longer. At least I was told why.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_AfterVoteSour</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the vote still stings</label><description>I lost my seat at the count. I keep thinking about it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_MadePeaceSeat</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>helped the new holder</label><description>I showed the new holder how the seat's work is done. Losing it doesn't bother me now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_SentAwayHard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>someone I cared about sent away</label><description>The council sent away someone I was close to. The colony feels emptier.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_BetterDays</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>better days</label><description>Things are better than they were a few days ago.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Life_BackToSelf</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>back to myself</label><description>I was worn down badly for a while. I'm back to myself now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_TakenAway</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>taken away from the work</label><description>A friend made me stop working for an evening. I didn't want to, and I'm glad I did.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SentToRest</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>made to rest</label><description>The council gave me a day off I didn't ask for. There was work to do.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_CookProud</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>they ate my best cooking</label><description>The whole colony sat down to my best cooking and cleared their plates.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_ToldOff</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>told to keep to one helping</label><description>I was told in front of everyone to keep to one helping. I was hungry.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_TheirKitchen</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the kitchen is mine for a while</label><description>The council gave me the cooking for a few days. I mean to do it well.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_OwnPatch</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a patch of my own</label><description>I have a little patch of ground of my own now, with my own seed in it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Company</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>company while laid up</label><description>Someone kept me company while I was stuck in the sickbed. It made the day go faster.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_LoadShared</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>someone else's turn</label><description>Someone else is doing my share of the work for a few days. I needed that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_OwnHands</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>had to do it myself</label><description>The council left it to me, so I did it myself. It shouldn't have been mine to do.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_PlayedWithBeast</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>played with an animal</label><description>I played with one of the animals all afternoon. It was the best day.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_NotYet</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>told not yet</label><description>I wanted to play with one of the animals and they said not yet.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_ChairMade</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a chair of my own</label><description>Someone made me a proper chair for my room. My back is grateful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_BestSeat</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the best seat by the fire</label><description>I had the best seat by the fire tonight.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Heard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>they let me speak</label><description>I said my piece in front of the colony, and they listened.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_NamedIt</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>I named the newborn</label><description>The council chose my name for the newborn animal.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_NotMyName</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>not my name for it</label><description>I had a better name for the newborn animal. Nobody asked me twice.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_GotTheBeast</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>an animal of my own to handle</label><description>The council gave the animal to me to handle. It follows me now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_News</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>news from outside</label><description>I heard the news from the roads tonight. The world is bigger than this colony.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_BroughtAlong</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>brought along</label><description>An old friend brought me along to the evening with the others.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SaidSorry</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>apologised in front of everyone</label><description>I had to say sorry in front of the whole colony. I deserved it, and it still stung.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_StillSore</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>still sore with a friend</label><description>A friend and I fell out, and nobody has helped us make it up.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SupperOutside</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>supper out of doors</label><description>We ate out of doors on the first warm evening of the year.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SunAtNoon</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>half an hour in the sun</label><description>We stopped work at noon to stand in the sun for a while.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_WarmAtLast</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>warm at last</label><description>My room is warm at night now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_StormTogether</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>not alone in the storm</label><description>The storm was bad last night, but I wasn't alone in it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_StormAlone</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>alone in the storm</label><description>The storm went on half the night, and I lay awake through it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_GotMyWay</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council saw it my way</label><description>I said what I thought, and the council went along with it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Pressed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>made to give way</label><description>The council asked me to give way on something I cared about. I did, and I'm not happy about it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_Learned</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>learned from someone who knows</label><description>Someone who really knows the work showed me how it's done.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_SleptThrough</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>slept through the storm</label><description>There was a storm in the night. I slept through most of it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- An old friend's new friend (the old friend left out): an opinion of the friend who has someone else now. -->
+  <ThoughtDef>
+    <defName>Rimfolk_DlmE_LeftOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>has other friends now</label><description>We used to spend our evenings together. Now they spend them with someone else.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The decrees ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_NightWatch</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>the night watch</label><description>Up half the night walking the walls, when my turn comes round. I hate every hour of it.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>the night watch</label><description>Two of us out on the walls every night. It seems like a lot of lost sleep.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>the night watch</label><description>Someone is awake on the walls every night. I sleep better for it.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the night watch</label><description>The walls are watched every night, and I like my turn at it.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_Welcome</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>a welcome for newcomers</label><description>An hour of small talk every evening by order of the council. I'd rather be left alone.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a welcome for newcomers</label><description>Evenings spent being friendly to people I barely know. It's tiring.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a welcome for newcomers</label><description>The new people are being made welcome. That's how it should be.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a welcome for newcomers</label><description>Every newcomer gets an evening with one of us. I'm proud of this colony.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

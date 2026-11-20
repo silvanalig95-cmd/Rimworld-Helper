@@ -761,7 +761,8 @@ namespace ColonyCouncil
                 return false;
             }
             b.turned = true;
-            comp.journals.Write(p, "Council_Journal_GoalChanged", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
+            // Tagged by what changed it ([loss] or [downed], the only sparks big enough), so the entry can say so.
+            comp.journals.WriteTagged(p, "Council_Journal_GoalChanged", new[] { pick.spark }, null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
             return true;
         }
 

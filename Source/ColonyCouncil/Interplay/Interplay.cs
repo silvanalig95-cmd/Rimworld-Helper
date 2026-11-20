@@ -99,12 +99,12 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The holder of an office in the colony of this map (the seat's for a map that isn't a home), while offices are on;
-        /// null otherwise.
+        /// null otherwise. A deputy in for a holder who was given one does the seat's work for its days (CouncilLife/StepDown.cs).
         /// </summary>
-        internal static Pawn Officer(string defName, Map map) => S.offices ? ColonyState.For(map)?.offices.HolderOf(defName) : null;
+        internal static Pawn Officer(string defName, Map map) => S.offices ? ColonyState.For(map)?.offices.Acting(defName) : null;
 
-        /// <summary>The holder of an office in someone's own colony (Homes.Of), while offices are on; null otherwise.</summary>
-        internal static Pawn OfficerOf(string defName, Pawn p) => S.offices && p != null ? ColonyState.Of(p)?.offices.HolderOf(defName) : null;
+        /// <summary>The holder of an office in someone's own colony (Homes.Of), while offices are on; null otherwise (a deputy for its days).</summary>
+        internal static Pawn OfficerOf(string defName, Pawn p) => S.offices && p != null ? ColonyState.Of(p)?.offices.Acting(defName) : null;
 
         /// <summary>
         /// Someone holds this office: in their own colony, or in the one whose seat they keep while away on a visit
@@ -117,7 +117,7 @@ namespace ColonyCouncil
             var all = Comp?.colonies;
             if (all == null || all.Count <= 1) return false;
             for (int i = 0; i < all.Count; i++)
-                if (all[i]?.offices.HolderOf(defName) == p) return true;
+                if (all[i]?.offices.Acting(defName) == p) return true;
             return false;
         }
 
@@ -128,7 +128,7 @@ namespace ColonyCouncil
             if (!S.offices) return list;
             foreach (var council in ColonyState.Ticking())
             {
-                var p = council.offices.HolderOf(defName);
+                var p = council.offices.Acting(defName);
                 if (p != null && !list.Contains(p)) list.Add(p);
             }
             return list;

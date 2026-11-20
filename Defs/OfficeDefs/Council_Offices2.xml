@@ -25,6 +25,9 @@
       <li>{PAWN_nameDef} means to walk the fields first thing and come back with a list.</li>
       <li>{PAWN_nameDef} says the soil here is better than it looks, and means to prove it.</li>
       <li>{PAWN_nameDef} has two plans for the planting order already, and is torn between them.</li>
+      <li>{PAWN_nameDef} will walk the fields at first light and have any blight cut out before it spreads.</li>
+      <li>{PAWN_nameDef} means to see that anything the other peoples ask of the colony is sent in full.</li>
+      <li>{PAWN_nameDef} wants to know what each field is growing and when it will be ready.</li>
     </elected>
     <planks>
       <li><key>fields</key><when>Growing</when><text>{PAWN_nameDef} wants more sown while the season lasts, and the weeds kept down.</text></li>
@@ -53,6 +56,9 @@
       <li>{PAWN_nameDef} wants a quiet word with two different people before the week is out, and won't say who.</li>
       <li>{PAWN_nameDef} says anyone with a grievance can come and talk at any time.</li>
       <li>The first thing {PAWN_nameDef} wants to know is who isn't speaking to whom.</li>
+      <li>{PAWN_nameDef} plans to sit the colony's worst rivals down together and make them talk.</li>
+      <li>{PAWN_nameDef} says {PAWN_pronoun} will step in when an argument starts, before it turns into a fight.</li>
+      <li>{PAWN_nameDef} wants every quarrel brought to {PAWN_objective} while it is still small.</li>
     </elected>
     <planks>
       <li><key>quarrels</key><when>Rivalries</when><text>{PAWN_nameDef} names no names, but says the colony's quarrels have gone on long enough.</text></li>
@@ -77,6 +83,9 @@
       <li>{PAWN_nameDef} plans to start a new page in the calendar.</li>
       <li>{PAWN_nameDef} already knows how many days it is until the next one worth keeping.</li>
       <li>{PAWN_nameDef} wants to write down everyone's birthday.</li>
+      <li>{PAWN_nameDef} means to lead the games and the feast on every day the colony keeps.</li>
+      <li>{PAWN_nameDef} wants to make sure no day the colony keeps is forgotten.</li>
+      <li>{PAWN_nameDef} is already planning the next feast day.</li>
     </elected>
     <planks>
       <li><key>traditions</key><when>Traditions</when><text>{PAWN_nameDef} wants the colony's traditions kept properly, the way they were the first time.</text></li>
@@ -104,6 +113,9 @@
       <li>{PAWN_nameDef} goes straight out to the pens.</li>
       <li>{PAWN_nameDef} means to learn the name of every animal in the colony.</li>
       <li>{PAWN_nameDef} says the herd will be better looked after from now on.</li>
+      <li>{PAWN_nameDef} will mind everyone's pets while they are away from the colony.</li>
+      <li>{PAWN_nameDef} wants the milking and the shearing done on time, every time.</li>
+      <li>{PAWN_nameDef} says anyone who loses an animal can come and sit with {PAWN_objective}.</li>
     </elected>
     <planks>
       <li><key>herd</key><when>Herd</when><text>{PAWN_nameDef} says the herd needs someone who knows every animal by name, as {PAWN_pronoun} does.</text></li>
