@@ -191,6 +191,15 @@ namespace ColonyCouncil
         public override void FinalizeInit()
         {
             base.FinalizeInit();
+            // A pawn left with a job of no kind by an older version (the map grey while time ran, the pawn drawn as its name only): back to choosing a job.
+            try
+            {
+                JobGuard.Repair();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("mending pawns' jobs at load", e);
+            }
             // A different game: forget what the last one knew about tech and research, and the last game's people.
             Avail.ResetCache();
             MoodsPanel.Reset();

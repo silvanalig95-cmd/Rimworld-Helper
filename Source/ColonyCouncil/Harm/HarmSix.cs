@@ -5,6 +5,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
+    [DefOf]
     public static class HarmSixDefOf
     {
         public static JobDef Rimfolk_DawnWalk;
