@@ -4,7 +4,7 @@
   <CC_MaterialChoice_Title>Material for the {THING}</CC_MaterialChoice_Title>
   <CC_MaterialChoice_Any>Any material</CC_MaterialChoice_Any>
   <CC_MaterialChoice_Any_Tip>The bill takes any material its settings allow, as Nice Inventory Tab makes it.</CC_MaterialChoice_Any_Tip>
-  <CC_MaterialChoice_Stuff>{STUFF} ({COUNT} on hand)</CC_MaterialChoice_Stuff>
+  <CC_MaterialChoice_Stuff>{STUFF}: {NEED} for one, {COUNT} on hand</CC_MaterialChoice_Stuff>
   <CC_MaterialChoice_Stuff_Tip>One {THING} takes {NEED} {STUFF}. The bill uses only {STUFF}: every other material is unticked in its settings.</CC_MaterialChoice_Stuff_Tip>
   <CC_MaterialChoice_None>Not enough of any material on hand for one {THING}</CC_MaterialChoice_None>
   <CC_Settings_MaterialChoice>Choose the material when ordering a piece</CC_Settings_MaterialChoice>

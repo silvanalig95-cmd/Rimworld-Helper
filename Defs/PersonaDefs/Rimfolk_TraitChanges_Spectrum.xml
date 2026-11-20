@@ -12,6 +12,10 @@
     In news, meaning and journal lines {PAWN} is the colonist and {TRAIT} the trait as it is after the change (as it
     was, for one that's gone). A step that ends at none (nervous steadied) is told by newsLost.
 
+    wayOutOf names the degrees a rule leads out of (0 for a trait without degrees): a change from one of them is a way
+    out of a bad trait, which isn't held back by the colony's 10 days and shows on the character page from the start
+    with what is still missing. Nervous steadied to none is one; none to steadfast, from the same rule, is a gain.
+
     This file: the traits with degrees. Nerves runs volatile, nervous, (none), steadfast, iron-willed; NaturalMood
     depressive, pessimist, (none), optimist, sanguine; Industriousness slothful, lazy, (none), industrious, hard worker;
     DrugDesire teetotaler, (none), chemical interest, chemical fascination. Each step is one degree.
@@ -24,6 +28,7 @@
     <label>nerves steadied by danger held</label>
     <trait>Nerves</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-1</li></wayOutOf>
     <from><li>-1</li><li>0</li></from>
     <marks>
       <li><any>Rimfolk_Mark_HeldTheLine, Rimfolk_Mark_DownedHardened, Rimfolk_Mark_RaidsHardened, SavedSomeone</any><count>3</count></li>
@@ -144,6 +149,7 @@
     <label>a volatile temper softened by calm years</label>
     <trait>Nerves</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-2</li></wayOutOf>
     <from><li>-2</li></from>
     <calmDays>120</calmDays>
     <marks>
@@ -235,6 +241,7 @@
     <label>a brighter outlook after a good stretch</label>
     <trait>NaturalMood</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-1</li></wayOutOf>
     <from><li>-1</li><li>0</li></from>
     <marks>
       <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Elected, Legendary</any><count>3</count></li>
@@ -299,6 +306,7 @@
     <label>despair lifting after better days</label>
     <trait>NaturalMood</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-2</li></wayOutOf>
     <from><li>-2</li></from>
     <marks>
       <li><any>LongPeace, Married, BecameParent, RaisedChild, Freed, AddictionOvercome, MovingRitual, NursedBack, Kindness, ForgivenBy</any><count>2</count></li>
@@ -331,6 +339,7 @@
     <label>harder working after a long stretch of work done well</label>
     <trait>Industriousness</trait>
     <change>StepUp</change>
+    <wayOutOf><li>-1</li></wayOutOf>
     <from><li>-1</li><li>0</li><li>1</li></from>
     <pace>
       <li><record>TimeGettingJoy</record><atMost>0.04</atMost><days>60</days><label>time at recreation</label></li>
@@ -398,6 +407,7 @@
     <label>an addiction overcome, and a turn away from drugs</label>
     <trait>DrugDesire</trait>
     <change>StepDown</change>
+    <wayOutOf><li>1</li></wayOutOf>
     <from><li>0</li><li>1</li></from>
     <marks>
       <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>
@@ -428,6 +438,7 @@
     <label>a chemical fascination eased by an addiction overcome</label>
     <trait>DrugDesire</trait>
     <change>StepDown</change>
+    <wayOutOf><li>2</li></wayOutOf>
     <from><li>2</li></from>
     <marks>
       <li><any>AddictionOvercome</any><withinDays>120</withinDays></li>

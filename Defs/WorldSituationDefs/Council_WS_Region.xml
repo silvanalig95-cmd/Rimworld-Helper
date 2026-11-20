@@ -132,13 +132,21 @@
         <options>
           <li>
             <label>Lend them {A_nameDef} for a day</label>
-            <outcome>{A_nameDef} goes over the plans with the rider and marks where the rock will give. The diggers at {PLACE} expect to strike water within days.</outcome>
+            <outcome>{A_nameDef} shoulders a pack and sets out for {PLACE}, to go over the ground with {FACTION}'s diggers and show them where the rock will give.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Mining</riskSkill>
-            <riskOutcome>{A_nameDef} marks the best spot there is, but warns that the rock is poor. The well will be deep and will give very little water.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Mining</skill><xp>1200</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>1</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Mining</skill><xp>1200</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+                </effects>
+                <home>
+                  <li>[!risk] {A_nameDef} is back from {PLACE}. {A_pronoun} went over the ground with {FACTION}'s diggers and showed them where the rock would give, and word has come after {A_objective} that they struck water two days later.</li>
+                  <li>[risk] {A_nameDef} is back from {PLACE}. {A_pronoun} found them the best spot there was, and word has come after {A_objective} that they dug for a week. The well is deep and damp at the bottom, and gives about a bucket an hour.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>well</li></flags>
             <help>2</help>
@@ -419,11 +427,19 @@
         <options>
           <li>
             <label>Lend them {A_nameDef} for a day</label>
-            <outcome>{A_nameDef} shows the road gang how to set the footing so the river won't take it, and {FACTION}'s foreman pays the silver as promised.</outcome>
+            <outcome>{A_nameDef} sets out for the crossing below the colony, to spend the day in the river with {FACTION}'s road gang.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1200</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_Silver" />
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>1</days>
+                <to>Near</to><near>river</near><placeLabel>the river crossing below the colony</placeLabel><wage>true</wage>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1200</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from the crossing, wet to the waist. {A_pronoun} spent the day in the river with the road gang, and the footing {A_pronoun} set is still standing. {FACTION}'s foreman paid the silver as promised, and {A_nameDef} has carried it home.</li>
+                </home>
+              </li>
             </effects>
             <flags><li>bridge</li></flags>
             <help>2</help>
@@ -1026,13 +1042,21 @@
         <options>
           <li>
             <label>Send {A_nameDef} to help</label>
-            <outcome>{A_nameDef} tells {FACTION}'s herders how to sort the sick animals from the well ones and keep them apart, and the losses at {PLACE} should slow.</outcome>
+            <outcome>{A_nameDef} sets out for {PLACE}, to spend two days among {FACTION}'s sick herds.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Animals</riskSkill>
-            <riskOutcome>{A_nameDef} tells them what can be done, but it isn't much, as the sickness had too long a start. {FACTION} thank {A_nameDef} all the same, and mean it.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>1200</xp></li>
-              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>2</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>1200</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+                </effects>
+                <home>
+                  <li>[!risk] {A_nameDef} is back from {PLACE}. {A_pronoun} spent two days among {FACTION}'s herds, sorting the sick from the well and showing the herders how to keep them apart, and the losses there have slowed.</li>
+                  <li>[risk] {A_nameDef} is back from {PLACE}. {A_pronoun} did what could be done, and it wasn't much: the sickness had too long a start. {FACTION} thanked {A_objective} all the same, and meant it.</li>
+                </home>
+              </li>
             </effects>
             <help>2</help>
             <deed>lent {A_nameDef} to {FACTION}'s herders</deed>

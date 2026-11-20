@@ -26,6 +26,9 @@ namespace ColonyCouncil
 
         /// <summary>They are on the map at home again (the beast with them, if it lived): what the season brought.</summary>
         public abstract void Home(Visit v, Map home, Faction f, bool served);
+
+        /// <summary>Their days there are up, but they stay on a while (a question put to them there not yet answered).</summary>
+        public virtual bool Stays(Visit v, int now) => false;
     }
 
     /// <summary>
@@ -52,7 +55,9 @@ namespace ColonyCouncil
             // Round 8's (Peoples/Events8/): a colonist of the Empire's rank at the Hollow Fleet's hull, giving the order to disembark.
             [OrderToDisembark.AwayKey] = new DisembarkAway(),
             // Round 10's (Peoples/Events10/): the colony's doctor and diggers at a plague town, for the order and the Bell.
-            [PlagueYear.AwayKey] = new PlagueAway()
+            [PlagueYear.AwayKey] = new PlagueAway(),
+            // A world event's answer that sends a colonist to a far town (World/FarErrands.cs).
+            [FarErrandMath.Key] = new FarErrandAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;
@@ -227,8 +232,11 @@ namespace ColonyCouncil
                     return true;
                 }
                 case PeopleEvents2Math.There:
-                    if (f == null || f.defeated || f.HostileTo(Faction.OfPlayer) || now >= v.due) HomeFrom(v, f, map, now >= v.due);
+                {
+                    bool gone = f == null || f.defeated || f.HostileTo(Faction.OfPlayer);
+                    if (gone || now >= v.due && !(HandlerOf(v)?.Stays(v, now) ?? false)) HomeFrom(v, f, map, now >= v.due);
                     return true;
+                }
                 case PeopleEvents2Math.Coming:
                     if (map != null && p.Spawned && p.Map == map) Back(v, f, map);
                     else if (p.GetCaravan() == null && !p.Spawned)

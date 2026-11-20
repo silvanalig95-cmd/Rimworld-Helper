@@ -366,13 +366,11 @@ Council_WS_BanditRoad [robbed/1] a refusal
 Council_WS_Drought [herders/1] the strangers' part: the herders water their animals
 Council_WS_Drought [herders/2] a refusal
 Council_WS_NewRoad [route/1] the surveyors' part, far off
-Council_WS_NewRoad [builder/0] the work at the river crossing, far off (the colonist lent stays at the colony: a to-do in docs/HANDOFF.md)
 Council_WS_HolyYear [alms/1] a refusal
 Council_WS_HolyYear [end:graced] far away, told
 Council_WS_BanditLordFalls [captive/0] already real: the newcomer joins
 Council_WS_BanditLordFalls [end:peace] far away, told
 Council_WS_BanditLordFalls [end:successor] far away, told
-Council_WS_Murrain [herdsman/0] off the map: two days among the herds of another people
 Council_WS_ShipDown [survivor/0] already real: the survivor joins
 Council_WS_ShipDown [survivor/2] a refusal
 Council_WS_ShipDown [end:helped] far away, told
@@ -389,13 +387,11 @@ Council_WS_Warlord [end:allies] far away, told
 
 # Defs/WorldSituationDefs/Rimfolk_WS_Beyond.xml
 Council_WS_GreatFire [end:ignored] far away, told
-Council_WS_Feud [mediate/0] talks with two families who aren't on the map, told
 Council_WS_Feud [end:handed] far away, told
 Council_WS_Feud [end:burnedOut] far away, told
 Council_WS_Comet [watch/1] a refusal
 Council_WS_Comet [scholar/1] a refusal
 Council_WS_Comet [end:gone] a memory of the night already played out, told
-Council_WS_Bumper [hands/0] off the map: four days in another people's fields
 Council_WS_Bumper [supper/1] a refusal
 Council_WS_Bumper [end:plenty] far away, told
 Council_WS_Drovers [dispute/0] the drovers are not on the map, told
@@ -409,10 +405,8 @@ Council_WS_Songs [visit/1] a refusal
 Council_WS_Songs [end:sung] told after it happened
 Council_WS_Toll [pay/1] a refusal
 Council_WS_Toll [end:lifted] far away, told
-Council_WS_IronScarce [mend/0] off the map: three days in another people's forges
 Council_WS_IronScarce [end:over] far away, told
 Council_WS_Exiles [ask/2] a refusal
-Council_WS_Exiles [plea/0] off the map: the colonist goes to the town to speak
 Council_WS_Exiles [end:pardoned] far away, told
 
 # Defs/WorldSituationDefs/Rimfolk_WS_FollowUps.xml
@@ -445,8 +439,6 @@ Council_Evt_RegularBack [option 2] the colonist really goes: they leave with the
 Council_WS_Plague [orphans/2] a refusal: the old woman and the children at the gate go on when the answer comes (Visitors/)
 Council_WS_RivalColony [hunters/0] the hunters are on the far ground already (VisitEffect_Come) and go on when their stop is over
 Council_WS_RivalColony [hunters/2] a warning off: the hunters on the far ground go on when their stop is over
-Council_WS_RivalColony [poaching/1] the talk is at their steading, off the map, told
-Council_WS_RivalColony [poaching/2] their traps are off the map, told
 Council_WS_RivalColony [grown] far away, told
 Council_WS_RivalColony [turning/1] the settlers walk in from the edge when the ending comes (WorldEffect_Join in the absorbed ending)
 Council_WS_RivalColony [feud] at the stream off the map, told; nobody is hurt

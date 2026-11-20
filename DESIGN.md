@@ -1330,11 +1330,14 @@ rules are `Social/TogetherFourMath.cs` (checked in `Tools/Tests/TogetherFourTest
 The game's traits can grow, appear or fade at the end of a stretch of life the player can read (`Persona/TraitChanges.cs`,
 `TraitChangeMath.cs`). Each rule is a `TraitChangeDef`: a trait, gain, loss or a step of one degree (through none, so a
 nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
-stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions, the
-game's records, a share of time from record snapshots every ten days, calm days, skills; guards for DLC, mods and tech.
+stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions (and
+marks counted as they come, or a stretch with none), the game's records, a share of time from record snapshots every
+ten days, calm days, skills, the faith they hold; guards for DLC, mods and tech. 71 rules (20 November 2026): 31 give a
+trait, 18 take one away, 22 move a trait one degree; 30 of them are ways out of a bad trait (`wayOutOf`, below).
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
-  colonist rolls its chance (3 to 15% a day) and one of those that come up happens. Nobody twice in 60 days (except to
+  colonist rolls its chance (3 to 15% a day) and one of those that come up happens; a way out of a bad trait doesn't
+  wait for the colony's 10 days (see "More traits that come and go" below). Nobody twice in 60 days (except to
   take away a trait Rimfolk gave, see "Vengeful from Rimfolk" below); the same
   trait in a person waits its rule's gap (90 to 150 days). Only marks and deeds since that trait last changed count,
   so a stretch of life earns one change. Psychopath and cannibal need an extreme history and come once per colony.
@@ -1402,6 +1405,94 @@ Alder (killed day 98.27); the vow is open with no kills, and Avila has Rimfolk r
   `HasRival`, `MarkNames`), `Secrets/Vendettas.cs` and `VendettaEnds.cs` (`settledTick`),
   `Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml`, `Languages/English/Keyed/Rimfolk_TraitChanges.xml`, the Almanac page
   "traits that change". Tests: `TraitChangeTests` (the vows from their save, the limits, the rules).
+
+### More traits that come and go, the first batch (the player's go, 20 November 2026; released 0.275.0)
+
+The player, 17 November 2026: "while i generally like the idea of traits emerging and/or disappearing (we shouild also
+build up on this as to do)"; 19 November 2026: "More trades come and go sounds great"; 20 November 2026: "go ahead with
+the next tasks, including the traits" (and later the same day, "go ahead with all the traits": the other 26 proposals
+follow in two more builds). This build is the lead's recommended first batch of `docs/traits-proposals.md`: 37, 38, 1,
+2, 4, 5, 6, 14, 10, 16, 26 and 27, each marked there. Harm: none of it gives a bad trait; every new rule takes one away
+or gives a good one.
+
+- **37, a way out isn't held back by the colony's 10 days.** A rule names the degrees it leads out of (`wayOutOf`; 0 for
+  a trait without degrees). A change from one of them, for someone who has the trait there (`TraitChangeMath.IsWayOut`:
+  nervous steadied to none is one, none to steadfast from the same rule is a gain, industrious to hard worker is
+  not), doesn't wait for the colony's 10 days (`RateBlocked(..., wayOut)`); the person's 60 days and the rule's own gap
+  still hold, and a way out still counts as the colony's change, so gains wait 10 days after it. The daily pass now
+  runs within the colony's 10 days too, for the rules that lead out of something only. The 15 ways out already there
+  are marked (nervous, volatile, pessimist, depressive, lazy twice, chemical interest, chemical fascination, abrasive,
+  wimp, greedy, coward, vengeful twice, craven), so 30 in all.
+- **38, every way out on the character page from the start.** "Where life is taking them" shows every way out of a
+  bad trait the colonist has, first and whatever is there yet (`TraitChangeMath.BuildingShows`), then up to three other
+  rules with a third of their evidence, as before. Under each way out, a line of what is still missing in plain words,
+  one short phrase per part ("Still missing: one of: given a seat; 120 days without a mark of these: lost the vote,
+  voted out of a seat (30 so far)"); the tooltip lists every part. A way out that grows from a habit shows once they
+  have the habit (they can't be steered toward one). Its gap since the trait last changed is shown as a part while it
+  lasts (`Gate(..., gapAsPart)`). New parts on the page for every rule: the marks it waits out (`notMarks`, which the
+  rules checked but the page never showed), a stretch without something (a zero count), the faith it asks for. Parts
+  that hold by default (nothing of a kind lately, a stretch without something, the gap) don't count as evidence toward
+  showing a rule that isn't a way out, so an idle colonist isn't shown "1 of 2" toward idleness.
+- **1, jealous fades** (any jealous): two rules, `Rimfolk_TC_JealousFadesSeat` (given a seat) and
+  `..._JealousFadesPromises` (two promises kept to them); each with no seat or vote lost on their page in the last 120
+  days and trust moved from their nature 0 or more ("back to where it was"), 8% a day, no gap.
+- **2, bloodlust Rimfolk gave fades** (`Rimfolk_TC_BloodlustFades`, `onlyGiven`): no fight mark (held the line, hardened
+  by the raids, went down and got up harder, swore vengeance) on their page in the last 120 days, a long peace since it
+  came, warmth moved -5 or more ("near where it was"), 5% a day.
+- **4, cannibal Rimfolk gave fades**, each for the cannibal its own rule gave (`givenBy`, new: `GaveIt` reads the rule of
+  the newest change): famine's (`Rimfolk_TC_CannibalFamineFades`) after 180 days without eating human flesh (a zero
+  count, new: a tally with `noneDays`, counted from the newest meal or from when the trait came, whichever is later,
+  `TraitChangeMath.NoneDays`; the meals are the game's three history events and every human-flesh memory, a cannibal's
+  own among them) and no hungry season in 120 days, 6% a day; a faith's (`..._CannibalFaithFades`, Ideology) once they
+  took up a new ideoligion since it came and it holds none of the precepts that call for human flesh (new:
+  `notPrecepts`, with its words for the page `notPreceptsLabel`), 8% a day.
+- **5, world weary lifts** (`Rimfolk_TC_VTE_WorldWearyLifts`, Vanilla Traits Expanded, any): two long peaces, one good
+  mark (moved by a ceremony, mastered a craft, a legendary piece, freed, overcame an addiction, given a seat, saw a
+  student through), no death that marked them in 60 days, outlook moved -5 or more, 6% a day. A long peace leaves the
+  page after 60 days and the next can only come 60 days later, so two can't be on the page at once: they are counted as
+  they come instead (new: a tally's `marks`, fed by one line in `PersonaMarks.Give`, `TraitChanges.Notify_Mark`; kept
+  240 days like any deed).
+- **6, rebel settles** (Vanilla Traits Expanded, any): `Rimfolk_TC_VTE_RebelSettlesPromises` (two promises kept) and
+  `..._RebelSettlesSeat` (given a seat), each with no broken promise, lost seat or lost vote in 120 days and trust moved
+  0 or more, 8% a day.
+- **10, pyromaniac fades** (`Rimfolk_TC_PyromaniacFades`): 120 days without a breakdown (no fire-starting spree, nor any
+  other), 60 recent hours at the stove and the forge together (new: a practice that adds kinds of work,
+  `Cooking+Smithing>=60`, `TraitChangeMath.PracticeParts`), and a masterwork or a skill mastered, 3% a day. The game
+  gives firefighting back with the trait gone.
+- **16, lush and stoner dry out** (`Rimfolk_TC_VTE_LushDriesOut`, `..._StonerDriesOut`): an addiction overcome in the
+  last 120 days and pride moved +3, as the teetotal rule, 15% a day.
+- **14, talking it through** (Therapy (Continued), `orion.therapy`): four sessions in 90 days (the mod's
+  `TherapyRelieved` memory, read by name, a tally `Therapy`) take the place of one mark in four twins of the ways up, each
+  otherwise as the rule it stands beside and only for the bad degree: volatile to nervous (`Rimfolk_TC_TherapyVolatile`:
+  120 calm days and the sessions), nervous to none (`..._TherapyNervous`: two marks of danger held instead of three),
+  depressive to pessimist (`..._TherapyDepressive`: one good mark instead of two), pessimist to none
+  (`..._TherapyPessimist`: two good marks instead of three). Anxious (15) and mood swings (25) come with their own rules
+  in a later build. Without the mod the four do nothing.
+- **26, brave** (`Rimfolk_TC_VTE_Brave`, Vanilla Traits Expanded): held the line twice and carried someone to safety
+  since, nerve moved +15, never a wimp, a coward or a craven, 8% a day.
+- **27, jogger**: a fast walker steps up to jogger (`SpeedOffset` 1 to 2; a trained trait, only ever gained), two rules:
+  `Rimfolk_TC_JoggerHauling` (120 recent hours hauling, 60 days in the colony) and `..._JoggerAbroad` (a second season
+  abroad within a year, the mark that says so), 6% a day, 120 days after becoming a fast walker.
+- **Told.** As every change: a letter (good news) with what led to it and dates (now also the marks it waited out, a
+  stretch without something, the faith they follow), a journal line in six voices, the chronicle, "Traits gained and
+  lost". The words are plain (CLAUDE.md, 14 November 2026).
+- **Dev mode.** "Traits that change: give a trait as Rimfolk would..." (a gain the gate allows, now, so a way out of what
+  Rimfolk gave can be tried) and "Traits that change: a way out of a bad trait, now..." (each way out for the selected
+  colonist, with what it lacks), beside "why or why not" and "the first that holds, now".
+- **Code**: `Persona/TraitChangeMath.cs` (pure: `RateBlocked(wayOut)`, `IsWayOut`, `NoneDays`, `PracticeParts`,
+  `GaveIt(rules, by)`, `BuildingShows`), `Persona/TraitChangeDefs.cs` (`wayOutOf`, `givenBy`, `notPrecepts`,
+  `notPreceptsLabel`; a tally's `marks` and `noneDays`), `Persona/TraitChanges.cs` (the daily pass, `Notify_Mark`, the
+  gate, `TraitPart` and `Parts` with the missing words, `Building`, `DebugRules`, `DebugApply`), `Persona/Marks.cs`
+  (one line), `Persona/TraitChangeDebug.cs`, `Defs/PersonaDefs/Rimfolk_TraitChanges_WaysOut.xml` (new: the fifteen ways
+  out), the brave and jogger rules in `_Mods.xml` and `_Habits.xml`, `wayOutOf` on the fifteen older ways out,
+  `Languages/English/Keyed/Rimfolk_TraitChanges.xml`. Nothing new is saved (the tallies hold the new counts). Tests:
+  `TraitChangeTests` (37's rule and a colony's year of it, what a way out is, the zero count, the rule that gave it,
+  what the page shows, each of the twelve's conditions against the proposal).
+- **For the next builds** (the other 26 proposals): a way out names `wayOutOf` and `gapDays` 0; "this or that" is two
+  rules; "no X in N days" is `notMarks`; "N days without X" is a tally with `noneDays`; "two of a mark that leaves the page
+  before the next comes" is a tally with `marks`; a faith is `notPrecepts`; a sum of work is `A+B` in `practice`; "at most"
+  hours is `practice` with `<=`. Not built yet: a friendship condition (8), a mark for the nurse (28), a fight mark
+  counted only while drunk (35, a tally like `whileHungry`), a year bonded with an animal of a kind (30).
 
 ### The animals' natures (the player's picks, 7 November 2026)
 
@@ -2815,8 +2906,65 @@ preachers stand there, one of each creed (the second only while its people is at
 peace talks' two delegations come to the gate a day or two after the colony agrees and stay two nights
 (`VisitEffect_Come`, `holdBeat` "talks"), the talks settled by `SituationWorker_PeaceTalks` once they have gone. Answers
 that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
-and the colonist stays at the colony for now (a to-do in docs/HANDOFF.md; the town's well storyline sends its digger
-away, `Storylines/StorylineWell.cs`).
+and the colonist now really goes (the next section).
+
+### A colonist a world event sends to a far town goes (the player's go, 20 November 2026; released 0.275.1)
+
+Sixteen answers of fourteen world events send a colonist to another people's town, or to a place just beyond the
+colony, for a day or several: to advise, build, teach, read old writing, speak or keep watch. They used to leave the
+colonist at the colony while the words sent them off, with the skill and the goodwill counted at once. Now the colonist
+goes, by the peoples' events' season away (`Peoples/Events2/SeasonAway.cs`): a walk to the map's edge, a caravan of one
+on the game's own roads to the town, their days there (kept in the world), and a caravan of one home. That way was
+chosen over the town's well storyline's (`Storylines/StorylineWell.cs`, the digger kept in the world for set days with
+no caravan) because the caravan is what the world map shows: the player sees the colonist travel to the very town the
+words name, and the time away is the real road.
+
+- **The effect.** `WorldEffect_Away` (`World/FarErrands.cs`), named in an answer's effects (or its risk's, where the
+  risk replaces the answer): `days` at the place; `to` Town (the event's {PLACE}) or Near (a tile beside the colony,
+  one with `near` "river" or "hills" first, `placeLabel` what the words call it); `effects` applied when they are home
+  after their days there (the learning, goodwill, a mood, an epithet, research); `wage` (the event's {COUNT} in silver,
+  set down at their feet as they come in); `home` (the letter that says how it went, picked by the event's tags, and
+  [risk] when the answer's gamble came true). The season away's kind "world" (`FarErrandAway`, in `SeasonAway.Kinds`)
+  tells the arrival, lodges them at a town where a plague or a famine of the region's goes round for the illness
+  budget's own roll (`SickHome.Lodged`, as for a caravan stopped there), and brings them home. Which answer sent them is
+  kept in the season away's own words (`FarErrandMath.Note`: the event, the beat, the answer, which list and where in
+  it, the gamble, {COUNT}), so nothing new is saved. The answer's card shows the days away with the road (the season
+  away's own lines: away so many days, the road's dangers the world's own, a sick town's chance) and what their days
+  there come to. Should they not get away after all, what their days would have brought comes at once, as before.
+- **Greyed.** The answer can't be given while {A} can't leave (down, drafted, in a mental state, in a caravan, away
+  already: `PeopleEvents2.MayLeave`), would leave fewer than three able grown hands at home, has no way out to the
+  map's edge, or the town is out of reach (no road on the world, or more than eight days' road each way:
+  `FarErrandMath.MaxRoadDays`, as the league's guard). None of these answers is a letter's default.
+- **The event waits for them.** While its colonist is away, the world event doesn't end (its time or an answer's
+  ending: `FarErrandMath.HoldsEnd`, thirty days past at most), and once they are home it ends no sooner than two days
+  later, so its letters that waited come first (`EndAfterHome`); while it waits past its end, a letter held back (another
+question still open) keeps trying as it would before the end. Its beats that would fall to them (the event's own
+  person, or one with a skill when nobody at home is as good) wait until they are home: the iron's first smelting "for
+  the days A spent at their forges", the exiles' mother "since A spoke for them", the vault's deeper door, the harvest
+  supper. While they are away the event's person stays the one it sent (a later beat's own colonist doesn't take their
+  place). A beat written from the far town (`SituationBeat.atPlace`: the moot's high pastures, "A writes from PLACE")
+  comes only while they are there, on their last day, and is dropped once they have left; they stay on up to three days
+  past their days while it is still to come or unanswered (`AwayKind.Stays`, new in the season away).
+- **The words.** Each answer tells it as set going, and the gamble's words, where it has one, come home with the
+  colonist in the letter. The new and changed lines keep the world events' own flavour (CLAUDE.md, the player's rule of
+  20 November 2026), most of them the earlier outcomes moved to the homecoming.
+- **The blood feud's talks** were told at the colony's table with neither family on the map. The map changed rather
+  than the words' place: the event is about the colony as the neutral ground both families named, and its endings
+  remember the talks at the colony, so the elders of both families now come to the gate with the question
+  (`VisitEffect_AtGate`, one of each people) and the talker sits with them there for some hours (`DilemmaEffect_Visit`
+  to them, its outcome told when it is done). The words say the gate rather than the table, since that is where the
+  visit shows them (visitors keep out of the colony's rooms), and the endings say the same.
+- **The answers and their days there** (the road both ways comes on top: a town five tiles off is two and a half days
+  each way): the drought's well, a day; the new road's bridge, a day at the river crossing a tile from the colony, the
+  road gang's silver carried home; the sickness of the herds, two days; the great fire's roofs, four; the bumper
+  harvest's sickle, four; the toll's petition, a day; the iron's smiths, three; the exiles' plea, a day; the rebuilt
+  bridge, a week; the vault's old writing, four; the closed markets' talks, two; the moot's speaker, with the gift or
+  without, four, the vote asked on the last; the old thrumbo's watch, four nights at the herders' fire in the hills a
+  tile from the colony; the other settlers' traps, half a day talking with their leader, or none, the traps dropped at
+  their edge and straight home.
+- **Dev mode** ("Rimfolk"): "World event: the question that sends a colonist away, now...", "World event: the colonist
+  sent away is there now", "...days there up now", "...home now". The rules are pure in `World/FarErrandMath.cs`,
+  tested in `FarErrandTests`.
 
 ## Pace: how often the colony gathers
 
@@ -17230,8 +17378,15 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   held when they aren't near (`MadeForWearMath.GoNow`: free, in the home area, the piece in the home area too or within
   40 cells); Rimfolk says the piece is ready (the mod's own message after it left out); `MadeForWearBook` (saved) keeps
   it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
-  forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
-  something off. Someone nearby goes at once, as before.
+  forced as the mod's order was; what they wear in its place comes off, as with the mod's own order. Let go of once
+  worn, gone, after 15 days, when they can't wear it (`EquipmentUtility.CanEquip`) or when it would take off something
+  locked on them (`WouldReplaceLockedApparel`). Someone nearby goes at once, as before.
+- **Kept for them** (the player, 20 November 2026: "when the pawn that creates the item would also wear it, they
+  immediately wear it ... instead of reserving it for the other pawn"): while a piece waits for someone, the game's own
+  look for better clothes (`JobGiver_OptimizeApparel.ApparelScoreGain`, `Patch_MadeForWearKept`) scores it as worth
+  nothing to anyone else, the crafter too (`MadeForWearMath.KeptFrom`: the one it is for alive, the wait not run out).
+  An order the player gives still goes. Until 20 November a waiting piece was also let go of as soon as they wore
+  something in its place, the usual case, so they never put it on.
 
 ### Choose the material when ordering a piece from the gear tab (the player's go, 19 November 2026; released 0.268.1)
 
@@ -17252,7 +17407,8 @@ lead's proposal: "yes, please", "all the three".
   name): for a piece made from a material (the product is made from stuff and the recipe takes its stuff from an
   ingredient), one more menu opens, titled "Material for the (piece)": "Any material" first, then each material the
   recipe takes (from its material ingredient, never a fixed one like components; allowed for the piece and by the
-  recipe) that the colony has enough of for one piece, with how much is on hand and the material's own icon. On hand
+  recipe) that the colony has enough of for one piece, with how much one piece takes and how much is on hand ("Cloth: 60
+  for one, 412 on hand", since 20 November 2026) and the material's own icon. On hand
   is what lies on the map, seen and not forbidden; one piece's need is the game's own count for that material
   (`IngredientCount.CountRequiredOfFor`, so gold and silver count in their own units). The order
   (`MaterialChoiceMath.Offered`, pure, in the tests): the material that makes the most pieces first, then by name. With

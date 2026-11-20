@@ -102,7 +102,7 @@ namespace ColonyCouncil
             {
                 var stuff = stuffs[i];
                 var row = rows[i];
-                options.Add(new FloatMenuOption("CC_MaterialChoice_Stuff".Translate(stuff.LabelCap.Named("STUFF"), row.have.Named("COUNT")),
+                options.Add(new FloatMenuOption("CC_MaterialChoice_Stuff".Translate(stuff.LabelCap.Named("STUFF"), row.have.Named("COUNT"), row.need.Named("NEED")),
                     () => Make(bench, piece, recipe, layer, pawn, ing, stuff), shownItemForIcon: stuff, thingStyle: null)
                 {
                     tooltip = new TipSignal("CC_MaterialChoice_Stuff_Tip".Translate(piece.label.Named("THING"), row.need.Named("NEED"), stuff.label.Named("STUFF")))

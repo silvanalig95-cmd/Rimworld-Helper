@@ -753,6 +753,15 @@ collector and a runaway mule's owner; 137 lines of their own). Only peoples at p
 it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
 cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
 
+**Sent to a far town.** When a world event's answer sends one of the colony to another people's town for a day or
+several (to dig a well, raise roofs, bring in a harvest, teach the smiths, read an old vault's writing, speak at a
+petition, a plea or a moot, sit between merchants, keep watch over an old thrumbo), they go: a walk to the map's edge, a
+caravan of one on the world's roads, their days there and the road home, as the peoples' pilgrims and guards travel.
+What they learned and the people's thanks count when they are home, with a letter that says how it went, and the world
+event waits for them before it ends. The answer's card says how long they will be away, road included, and greys the
+answer while they can't leave or the town is more than eight days off. The blood feud's two families now come to the
+gate for their talks, and the talker sits with them there.
+
 Visitors do what their letters say, and keep out of the colony's rooms and fields while they do. They sleep when
 they're tired or night has come, on open ground near their spot; guests given a bed or a roof sleep in a corner
 indoors, and with Hospitality in the colony's free guest beds, which they give back when they go. A camp out on the
@@ -943,7 +952,7 @@ little goodwill), a promised room has to come within a fortnight, and someone st
 keeping them costs more again.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 53 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 71 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
@@ -958,13 +967,21 @@ again and again, and a fast walker after a season of hauling. A habit lived for 
 from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
 healer's hands, trail-wise, scholar, mender); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
-loaded. The character page shows "where life is taking them": the changes a colonist is heading toward, with how many
-of the things that lead there have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
+loaded. Thirty of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
+after a seat or two promises kept, a rebel settles the same way, a bloodlust Rimfolk gave fades after a long peace, a
+cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it, world weariness lifts
+after two long peaces and something good, a pyromaniac who works the stove or the forge and stays calm loses the urge,
+a lush or a stoner dries out after beating an addiction, and with Therapy (Continued) four sessions with a therapist
+count toward steadier nerves and a brighter mood; a brave colonist comes of holding the line and carrying someone to
+safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road. The character page shows
+"where life is taking them": every way out of a bad trait the colonist has, from the start, with what is still
+missing in plain words, then the other changes they are heading toward, with how many of the things that lead there
+have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
 hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
 once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
 deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
 under "Traits gained and lost". At most one change per colonist in 60 days (a trait Rimfolk gave can go sooner) and
-one in the colony in 10; sexuality,
+one in the colony in 10 (a way out of a bad trait doesn't wait for that); sexuality,
 the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
 character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
 turns it off; the Almanac page "traits that change" lists every rule.

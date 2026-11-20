@@ -296,7 +296,8 @@ namespace ColonyCouncil
         {
             if (beat.colonist == null && beat.skill == null)
             {
-                if (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist || !ctx.a.Spawned)
+                // A letter from the far town is from the colonist sent there, away from the map (FarErrands).
+                if (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist || !ctx.a.Spawned && !(beat.atPlace && FarErrands.Away(ctx.a)))
                     ctx.a = IncidentWorker_Happening.Colonists(map).Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
                 return true;
             }

@@ -53,6 +53,20 @@
 
   <!-- Settings -->
   <CC_Settings_WorldSituationsHeader>World events</CC_Settings_WorldSituationsHeader>
+  <!-- A colonist a world event sends to a far town (World/FarErrands.cs): their caravan of one is the season away's (SeasonAway). -->
+  <CC_WS_Away_ThePlace>the far town</CC_WS_Away_ThePlace>
+  <CC_WS_Away_There>{PAWN} has reached {PLACE}.</CC_WS_Away_There>
+  <CC_WS_Away_Home>{PAWN} is back from {PLACE}.</CC_WS_Away_Home>
+  <CC_WS_Away_HomeEarly>{PAWN} is back from {PLACE} before the work there was done.</CC_WS_Away_HomeEarly>
+  <CC_WS_Away_HomeLabel>{0} back from {1}</CC_WS_Away_HomeLabel>
+  <CC_WS_Away_Nobody>Nobody of the colony is free to go.</CC_WS_Away_Nobody>
+  <CC_WS_Away_FewHands>The colony can't spare {PAWN}: too few able hands would be left at home.</CC_WS_Away_FewHands>
+  <CC_WS_Away_NoRoad>There is no road from the colony to {PLACE}.</CC_WS_Away_NoRoad>
+  <CC_WS_Away_TooFar>{PLACE} is too far to send anyone: about {DAYS} on the road each way.</CC_WS_Away_TooFar>
+  <CC_WS_Away_NoWayOut>{PAWN} has no way out to the edge of the map.</CC_WS_Away_NoWayOut>
+  <CC_WS_Away_Impact_Sick>{0} would lodge at {1}, where sickness is going round, and may bring it home (the illness budget's own chance).</CC_WS_Away_Impact_Sick>
+  <CC_WS_Away_Impact_SickBrief>Sickness at the town</CC_WS_Away_Impact_SickBrief>
+
   <CC_Settings_WorldSituations>World events</CC_Settings_WorldSituations>
   <CC_Settings_WorldSituations_Tip>Rare happenings across the whole region that last from a few days to a month: a plague or a famine among the neighbors, a warlord rising among a hostile people, a chief's death and the fight over the seat, a town founded or abandoned, a great fair, a hard winter. While one lasts, it changes which events come (fewer caravans in a plague year, more raids from the warlord's people), puts questions to the council, and ends in a way that depends on what the colony did. At most two run at the same time. They come on Rimfolk's own slow rhythm, apart from the storyteller. The region window's History shows what's going on, in the strip at its top. Dev mode can start any of them (Debug actions, Rimfolk).</CC_Settings_WorldSituations_Tip>
   <CC_Settings_DaysBetweenWorldSituations>About one world event every {0} days</CC_Settings_DaysBetweenWorldSituations>
