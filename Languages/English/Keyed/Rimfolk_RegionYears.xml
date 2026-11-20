@@ -79,6 +79,6 @@
   <CC_Arms_Wounded_Label_2>Wounded at the gate</CC_Arms_Wounded_Label_2>
   <CC_Arms_Wounded_Text>{COUNT} of the wounded of {PEOPLE} have come up the road from the fight at {TOWN}, as the colony offered. They are cut, bruised and tired, and some are leaning on the others.\n\nThey are making for the colony's beds. Anyone who falls on the way will need to be carried the rest of it.</CC_Arms_Wounded_Text>
   <CC_Arms_Wounded_Text_2>The fighting at {TOWN} is over, and {PEOPLE} have sent {COUNT} of their wounded to the colony, as it offered. They walked most of the way and look it.\n\nThey are going in to the colony's beds now, and its doctors will have work for the next few days.</CC_Arms_Wounded_Text_2>
-  <CC_Play_Arms>weapons</CC_Play_Arms>
+  <CC_Play_Arms>spare weapon</CC_Play_Arms>
 
 </LanguageData>

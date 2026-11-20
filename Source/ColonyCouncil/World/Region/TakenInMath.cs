@@ -27,6 +27,9 @@ namespace ColonyCouncil
         /// <summary>Each injury this bad, and never more than this share of the part's health (nothing lost, nothing that kills).</summary>
         public const float SeverityMin = 3f, SeverityMax = 6f, PartShare = 0.6f;
 
+        /// <summary>No wound that would leave them bleeding to death sooner than this (days): there is time to tend them.</summary>
+        public const float MinBleedDays = 1.5f;
+
         /// <summary>Two to four of their wounded come, one to three days after the colony offered its beds.</summary>
         public const int WoundedMin = 2, WoundedMax = 4;
 

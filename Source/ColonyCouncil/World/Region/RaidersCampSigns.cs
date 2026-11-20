@@ -408,7 +408,10 @@ namespace ColonyCouncil
             // Hurt from before: beaten and cut by the camp's people, scratched on the way through the brush.
             TakenIn.Hurt(x, Rand.RangeInclusive(TakenInMath.RunawayInjuriesMin, TakenInMath.RunawayInjuriesMax), false);
             c.runaway = true;
-            LordMaker.MakeNewLord(ctx.faction, new LordJob_VisitOnErrand(ctx.faction, PeoplesD.GateSpot(ctx.map), Mathf.RoundToInt(ext.stayHours.RandomInRange * GenDate.TicksPerHour)),
+            // To the gate, where they sit and wait for the colony's answer.
+            var spot = PeoplesD.GateSpot(ctx.map) ?? IntVec3.Invalid;
+            if (!spot.IsValid && !RCellFinder.TryFindRandomSpotJustOutsideColony(x, out spot)) spot = x.Position;
+            LordMaker.MakeNewLord(ctx.faction, new LordJob_VisitOnErrand(ctx.faction, spot, Mathf.RoundToInt(ext.stayHours.RandomInRange * GenDate.TicksPerHour)),
                 ctx.map, new List<Pawn> { x });
             return true;
         }

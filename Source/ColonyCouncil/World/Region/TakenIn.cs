@@ -295,33 +295,42 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Hurt from before they came (shown on their health): <paramref name="n"/> injuries on outer parts that nobody dies of,
-        /// a fight's (gunshots from the industrial age on, cuts and stabs before it, and bruises) or a runaway's (bruises, cuts
-        /// and scratches). Each no worse than TakenInMath allows of the part's health, so nothing is lost.
+        /// Hurt from before they came (shown on their health): <paramref name="n"/> of the game's own wounds on the arms, legs,
+        /// hands, feet and body, a fight's (gunshots from the industrial age on, cuts and stabs before it, and bruises) or a
+        /// runaway's (bruises, cuts and scratches). Each no worse than TakenInMath allows of the part's health, so nothing is
+        /// lost, and never so many that they can't walk in on their own or would bleed out before anyone could tend them.
         /// </summary>
         public static void Hurt(Pawn p, int n, bool fight)
         {
             if (p?.health?.hediffSet == null || p.Dead) return;
             try
             {
-                var parts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside)
-                    .Where(bp => bp != null && bp.coverageAbs > 0f && (bp.def.tags == null || !bp.def.tags.Any(tag => tag != null && tag.vital))).ToList();
+                string[] limbs = { "Arm", "Shoulder", "Leg", "Torso", "Hand", "Foot" };
+                var parts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside).Where(bp => bp != null && limbs.Contains(bp.def.defName)).ToList();
+                if (parts.Count == 0)
+                    parts = p.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside)
+                        .Where(bp => bp != null && bp.def.hitPoints >= 15 && (bp.def.tags == null || !bp.def.tags.Any(tag => tag != null && tag.vital))).ToList();
                 if (parts.Count == 0) return;
-                var kinds = fight
-                    ? Peoples.TechOf(p.Faction, TechLevel.Medieval) >= TechLevel.Industrial
-                        ? new[] { HediffDefOf.Gunshot, HediffDefOf.Cut, HediffDefOf.Bruise }
-                        : new[] { HediffDefOf.Cut, HediffDefOf.Stab, HediffDefOf.Bruise }
-                    : new[] { HediffDefOf.Bruise, HediffDefOf.Cut, HediffDefOf.Scratch };
+                string[] names = fight
+                    ? Peoples.TechOf(p.Faction, TechLevel.Medieval) >= TechLevel.Industrial ? new[] { "Gunshot", "Cut", "Bruise" } : new[] { "Cut", "Stab", "Bruise" }
+                    : new[] { "Bruise", "Cut", "Scratch" };
+                var kinds = names.Select(x => DefDatabase<HediffDef>.GetNamedSilentFail(x)).Where(d => d != null).ToList();
+                if (kinds.Count == 0) kinds.Add(HediffDefOf.Cut);
                 for (int i = 0; i < n; i++)
                 {
                     var part = parts.RandomElement();
-                    var def = kinds.RandomElement();
-                    if (def == null) continue;
                     float sev = TakenInMath.Severity(Rand.Value, p.health.hediffSet.GetPartHealth(part));
                     if (sev < 1f) continue;
-                    var h = HediffMaker.MakeHediff(def, p, part);
+                    var h = HediffMaker.MakeHediff(kinds.RandomElement(), p, part);
                     h.Severity = sev;
                     p.health.AddHediff(h, part);
+                    bool tooMuch = p.health.Downed
+                                   || p.health.hediffSet.BleedRateTotal > 0f && HealthUtility.TicksUntilDeathDueToBloodLoss(p) < TakenInMath.MinBleedDays * GenDate.TicksPerDay;
+                    if (tooMuch)
+                    {
+                        p.health.RemoveHediff(h);
+                        break;
+                    }
                 }
             }
             catch (Exception e)
