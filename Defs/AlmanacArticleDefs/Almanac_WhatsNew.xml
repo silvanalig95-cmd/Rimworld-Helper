@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.290.0</version>
+        <date>20 November 2026</date>
+        <title>Faces with a bearing</title>
+        <points>
+          <li>Two people side by side in a letter or a tie now face each other, drawn from the game's own side views.</li>
+          <li>Portraits show how a person holds themselves: the chin up for the proud, the head down for the sad, a lean for the angry, turned away for the shy, a stoop for the old, the head low for a prisoner.</li>
+          <li>The large portrait and the colonist card breathe, sway a little and now and then turn to one side, and hold still while the game is paused.</li>
+          <li>Letters about a death show the dead in grey.</li>
+          <li>Two new settings under Portraits: poses, and the movement.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.289.0</version>
         <date>20 November 2026</date>
         <title>Faces you can tell apart</title>

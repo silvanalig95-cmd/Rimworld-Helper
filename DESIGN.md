@@ -16059,7 +16059,7 @@ race, hair and face comes with it (Facial Animation's eyes and mouth among them)
   and Humanoid Alien Races' races; the backdrop colours and the light behind the head; RimHUD's pane and tabs; the
   open tabs' rects and the placement beside them; the drag; the gizmos' height as the game reports it.
 
-### Portraits, phase 2: poses and a little movement (the player's go, 20 November 2026; not released yet)
+### Portraits, phase 2: poses and a little movement (the player's go, 20 November 2026; released 0.290.0)
 
 The player's words (20 November 2026): "now they're all looking in the same direction. At least make them also, have
 the other direction, but as much as you can work like with angles and positions", and "if we already work with the

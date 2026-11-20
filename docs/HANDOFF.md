@@ -763,7 +763,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 2: poses and
+- 0.290.0, **Portraits, phase 2: poses and
   a little movement** (20 November 2026; the player: "now they're all looking in the same direction. At least make them
   also, have the other direction", "also angles and kind of positions that are also different from the one that you
   have at the top ... you see these characters also a bit moving around a bit and being in a position, a different one

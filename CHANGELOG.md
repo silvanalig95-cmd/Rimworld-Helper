@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Faces with a bearing
+
+*20 November 2026, version 0.290.0*
+
+- Two people side by side in a letter or a tie now face each other, drawn from the game's own side views.
+- Portraits show how a person holds themselves: the chin up for the proud, the head down for the sad, a lean for the angry, turned away for the shy, a stoop for the old, the head low for a prisoner.
+- The large portrait and the colonist card breathe, sway a little and now and then turn to one side, and hold still while the game is paused.
+- Letters about a death show the dead in grey.
+- Two new settings under Portraits: poses, and the movement.
+
 ## Faces you can tell apart
 
 *20 November 2026, version 0.289.0*
