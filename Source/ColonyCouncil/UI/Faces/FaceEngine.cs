@@ -63,13 +63,22 @@ namespace ColonyCouncil
 
         private const int Tries = 4;
 
-        /// <summary>Pawns the game marked dirty since the last portrait was drawn (the game may mark one from another thread).</summary>
-        private static readonly System.Collections.Concurrent.ConcurrentQueue<int> forgotten = new System.Collections.Concurrent.ConcurrentQueue<int>();
+        /// <summary>
+        /// Pawns the game marked dirty since the last portrait was drawn: a set, so it holds each pawn once however often
+        /// they are marked (a mod may mark a face many times a second), locked as the game may mark one from another thread.
+        /// </summary>
+        private static readonly HashSet<int> forgotten = new HashSet<int>();
+        private static volatile bool anyForgotten;
 
         /// <summary>The game marked the pawn's portrait dirty (new clothes, grown up, a new look): read them again.</summary>
         public static void Forget(Pawn p)
         {
-            if (p != null) forgotten.Enqueue(p.thingIDNumber);
+            if (p == null) return;
+            lock (forgotten)
+            {
+                forgotten.Add(p.thingIDNumber);
+                anyForgotten = true;
+            }
         }
 
         /// <summary>The camera that frames this pawn for a picture this size.</summary>
@@ -102,7 +111,7 @@ namespace ColonyCouncil
 
         private static Rot4 RotFor(FacePose pose) => Rot4.South;
 
-        /// <summary>The ground behind them in their colour, and the light behind the head.</summary>
+        /// <summary>The ground behind them: their colour mixed into the portrait ground of the look drawn in.</summary>
         public static Color Backdrop(Pawn p) => LookOf(p).back;
 
         /// <summary>
@@ -199,7 +208,15 @@ namespace ColonyCouncil
                 game = Current.Game;
             }
             if (p == null) return default;
-            while (!forgotten.IsEmpty && forgotten.TryDequeue(out int id)) looks.Remove(id);
+            if (anyForgotten)
+            {
+                lock (forgotten)
+                {
+                    foreach (int id in forgotten) looks.Remove(id);
+                    forgotten.Clear();
+                    anyForgotten = false;
+                }
+            }
             float now = Time.realtimeSinceStartup;
             bool had = looks.TryGetValue(p.thingIDNumber, out var l);
             if (!had || now >= l.until)
