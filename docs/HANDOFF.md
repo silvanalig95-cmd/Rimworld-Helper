@@ -106,6 +106,13 @@ most sense." So, in this order, three builds at a time:
   7. The frame by standing, the favourite colour and the crest (1 and 2 above) around the painted portrait.
   8. The same for outsiders who come back (heads, envoys, regulars, enemies), so a face is known on its second visit.
   9. What the mod can already show of a life (age, scars, a lost eye, mood), followed where it does; nothing it can't.
+  The player, then: "now they're all looking in the same direction. At least make them also, have the other direction,
+  but as much as you can work like with angles and positions ... if you need if I can generate sprites for that with
+  another mod or AI, give me instructions." So:
+  10. Mirrored where it reads better: two people in one letter or card face each other, a card's portrait faces its
+      text (drawn flipped, the mod's art untouched).
+  11. Other angles need new art for every layer the mod builds a portrait from, matched to each other; the instructions
+      for making them (with another mod or an image AI) wait until the mod's files show its layers, sizes and names.
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
