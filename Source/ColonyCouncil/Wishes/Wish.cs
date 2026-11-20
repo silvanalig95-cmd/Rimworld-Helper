@@ -73,6 +73,8 @@ namespace ColonyCouncil
         public int petition = -1;
         /// <summary>Those of its petition whose own want was answered on the map before this one, named when the last is.</summary>
         public List<Pawn> petitionMet = new List<Pawn>();
+        /// <summary>The day (days passed) a listener last joined it in conversation (A13, ColonyLife/TalkBacking.cs): once a day at most.</summary>
+        public int talkBackedDay = -1;
         /// <summary>
         /// Read out at a council meeting (Ambitions/MeetingBusiness.cs), on the want that leads its petition: when (-1
         /// never), the ayes and how many were there.
@@ -169,6 +171,7 @@ namespace ColonyCouncil
             // A wish from an older save is on its own (-1); one of the same want voiced now may join it.
             Scribe_Values.Look(ref petition, "petition", -1);
             Scribe_Collections.Look(ref petitionMet, "petitionMet", LookMode.Reference);
+            Scribe_Values.Look(ref talkBackedDay, "talkBackedDay", -1);
             Scribe_Values.Look(ref heardTick, "heardTick", -1);
             Scribe_Values.Look(ref ayes, "ayes");
             Scribe_Values.Look(ref present, "present");

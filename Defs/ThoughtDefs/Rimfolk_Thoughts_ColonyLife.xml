@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Colony life's integrations, part 2 (Source/ColonyCouncil/ColonyLife/): a group's own place (A10), the year's first supper (A27). -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_GroupPlace</defName>
+    <durationDays>7</durationDays>
+    <stages>
+      <li>
+        <label>a place for us</label>
+        <description>We asked for a place of our own to meet, and the colony built it.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_FirstSupper</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>the year's first supper</label>
+        <description>We ate together at the start of the year and went round the table, each saying what we mean to do this year.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_NoFirstSupper</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>no first supper</label>
+        <description>The year started like any other week. Nobody said what they mean to do with it.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

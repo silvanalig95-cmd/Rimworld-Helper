@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colony life's integrations, part 2 (Source/ColonyCouncil/ColonyLife/). Spoken lines are one sentence each (bubbles),
+    plain speech. Journals and the calendar plain.
+  -->
+
+  <!-- ===================== A13: a wish talked up finds backers (ColonyLife/TalkBacking.cs) ===================== -->
+
+  <!-- The listener joins it: {PAWN_...} = the one joining, {OTHER_...} = the one talking it up, {WISH} = the wish (capitalized). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TalkBacked_Join</defName>
+    <lines>
+      <plain>
+        <li>You're right about that, so put my name down with yours.</li>
+        <li>I want the same thing, so count me in when you ask.</li>
+        <li>Now you mention it, I'd like that too, so ask for both of us.</li>
+        <li>I'll back you on that one, {OTHER_nameDef}.</li>
+        <li>[promised] It's already promised, but add my name to it anyway.</li>
+        <li>[child] Can I ask for it with you, {OTHER_nameDef}?</li>
+      </plain>
+      <warm>
+        <li>You shouldn't have to ask on your own, so I'll ask with you.</li>
+        <li>I've been wanting the same and never said, so thank you for saying it.</li>
+      </warm>
+      <blunt>
+        <li>Same here, so add my name.</li>
+        <li>Put me down for that too.</li>
+      </blunt>
+      <cheerful>
+        <li>Yes, that's exactly what we need, so I'm in.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd like that too, for what my name is worth.</li>
+      </gloomy>
+      <cold>
+        <li>Two names on it will carry more weight with the council, so add mine.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who talked it up answers: {PAWN_...} = them, {OTHER_...} = the one who joined. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TalkBacked_Glad</defName>
+    <lines>
+      <plain>
+        <li>Good, two of us asking is better than one.</li>
+        <li>Thanks, {OTHER_nameDef}, I'll tell the council you're with me.</li>
+        <li>Then that's the two of us asking now.</li>
+      </plain>
+      <warm>
+        <li>That means a lot, {OTHER_nameDef}, thank you.</li>
+      </warm>
+      <blunt>
+        <li>Good, the more the better.</li>
+      </blunt>
+      <cheerful>
+        <li>Two of us now, they can't say no to that.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A12: the wished-for thing, tried out (ColonyLife/TryOuts.cs) ===================== -->
+
+  <!-- A friend nearby admires it: {PAWN_...} = the friend, {OTHER_...} = the one trying it out, {THING} = what it is. Tagged [act:sit|lie|warm|look|room]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TryOut_Admire</defName>
+    <lines>
+      <plain>
+        <li>That's a fine {THING}, {OTHER_nameDef}.</li>
+        <li>You waited long enough for that, enjoy it.</li>
+        <li>[act:sit] That looks comfortable, can I try it after you?</li>
+        <li>[act:sit] You look like you're never getting up out of that.</li>
+        <li>[act:lie] That bed looks better than mine.</li>
+        <li>[act:warm] It throws a good heat, I can feel it from here.</li>
+        <li>[act:warm] We'll all be sitting round that once it's cold out.</li>
+        <li>[act:look] Whoever made that knew what they were doing.</li>
+        <li>[act:look] I keep coming back to look at it too.</li>
+        <li>[act:room] It's a good room, you'll be comfortable here.</li>
+        <li>[act:room] I like what you've done with the place.</li>
+      </plain>
+      <warm>
+        <li>I'm glad you got it, {OTHER_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>Not bad at all.</li>
+      </blunt>
+      <cheerful>
+        <li>[act:sit] My turn next, don't get too used to it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A27: the year's first supper (ColonyLife/FirstSupper.cs) ===================== -->
+
+  <!-- Their aim said at the table: {PAWN_...}, {GOAL} = the life goal ("train the dogs"). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Supper_Aim</defName>
+    <lines>
+      <plain>
+        <li>This year I mean to {GOAL}.</li>
+        <li>I've decided that this year I'm going to {GOAL}.</li>
+        <li>If you want to know, I mean to {GOAL} before the year is out.</li>
+        <li>My aim this year is to {GOAL}, so hold me to it.</li>
+        <li>[child] This year I'm going to {GOAL}, you'll see.</li>
+      </plain>
+      <warm>
+        <li>I'd like to {GOAL} this year, and I'd be glad of your help.</li>
+      </warm>
+      <blunt>
+        <li>I'm going to {GOAL} this year.</li>
+      </blunt>
+      <cheerful>
+        <li>This is the year I {GOAL}, I can feel it.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll try to {GOAL} this year, if nothing goes wrong.</li>
+      </gloomy>
+      <cold>
+        <li>I intend to {GOAL} this year, and I've worked out how.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An aim chosen there and then, at the table: {PAWN_...}, {GOAL}. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Supper_NewAim</defName>
+    <lines>
+      <plain>
+        <li>I hadn't thought about it until now, but I'd like to {GOAL}.</li>
+        <li>Sitting here, I've decided I want to {GOAL}.</li>
+        <li>Put me down for this one: I mean to {GOAL}.</li>
+      </plain>
+      <warm>
+        <li>Listening to all of you, I think I'd like to {GOAL}.</li>
+      </warm>
+      <blunt>
+        <li>Fine, then I'll {GOAL}.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, I know, I'm going to {GOAL}.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A backer at the table answers: {PAWN_...} = the backer, {OTHER_...} = the one who said their aim. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Supper_Backed</defName>
+    <lines>
+      <plain>
+        <li>You'll do it, {OTHER_nameDef}, I'm sure of it.</li>
+        <li>I'll help you with that if you want.</li>
+        <li>Good, I'll hold you to it.</li>
+        <li>That suits you, {OTHER_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>If anyone here can do it, it's you.</li>
+      </warm>
+      <blunt>
+        <li>About time you said it out loud.</li>
+      </blunt>
+      <cheerful>
+        <li>I want to be there when you do it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_SaidAim</defName>
+    <lines>
+      <plain>
+        <li>At the first supper of the year I said I mean to {GOAL}. Now everyone knows, so I'd better do it.</li>
+        <li>Everyone said at supper what they want from the year. I said I'd {GOAL}.</li>
+        <li>I said it out loud tonight: I'm going to {GOAL} this year. It felt more real once I'd said it.</li>
+      </plain>
+      <warm>
+        <li>I told them all at supper that I mean to {GOAL}. A few of them offered to help.</li>
+      </warm>
+      <gloomy>
+        <li>I said at supper that I'd {GOAL} this year. I hope I haven't promised more than I can do.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A17: Vanilla Aspirations Expanded's aims (ColonyLife/ModAims.cs) ===================== -->
+
+  <!-- {AIM} = the aim's label, as the mod names it. Tagged [toasted], [private] (one the colony wouldn't toast), [unknown] (not named in the letter). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_ModAim</defName>
+    <lines>
+      <plain>
+        <li>[toasted] I did it: {AIM}. I had set my heart on it, and now it's done.</li>
+        <li>[toasted] {AIM}, done at last. It took longer than I thought it would.</li>
+        <li>[toasted] I can cross one off: {AIM}. I'm not sure what I'll want next.</li>
+        <li>[private] I got what I was after: {AIM}. I'm keeping that to myself.</li>
+        <li>[private] {AIM}. I've done it, and I'd rather nobody asked me about it.</li>
+        <li>[unknown] Something I had set my heart on finally happened. I'm glad.</li>
+      </plain>
+      <warm>
+        <li>[toasted] {AIM}. I wish everyone could feel the way I feel tonight.</li>
+      </warm>
+      <gloomy>
+        <li>[toasted] {AIM}. I thought it would feel bigger than this.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A29: the year read aloud (ColonyLife/YearRead.cs) ===================== -->
+
+  <!-- The reader's own asides between the lines of the year (said by the one reading, at the words gathering). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_YearRead_Aside</defName>
+    <lines>
+      <plain>
+        <li>Bear with me, there's a bit more.</li>
+        <li>I wrote this down as it happened, more or less.</li>
+        <li>Let me find my place.</li>
+        <li>This next part I wrote the day after.</li>
+        <li>Stop me if I've got any of it wrong.</li>
+      </plain>
+      <warm>
+        <li>There's a lot here I'm glad I wrote down.</li>
+      </warm>
+      <blunt>
+        <li>Nearly done, then you can eat.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_YearRead</defName>
+    <lines>
+      <plain>
+        <li>I read the year out at the table tonight. {COUNT} of us were there, and nobody left early.</li>
+        <li>I read the year aloud. It sounded like more had happened than I remembered.</li>
+        <li>Read the year out to {COUNT} of them tonight. Someone asked me to read one part again.</li>
+      </plain>
+      <warm>
+        <li>I read them the year. When I got to the names of those we lost, it went very quiet.</li>
+      </warm>
+      <blunt>
+        <li>Read the year out. Done for another year.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A14: an ambition reached, seen on the map (ColonyLife/AmbitionScenes.cs) ===================== -->
+
+  <!-- Said at the gathering by what was built, by anyone there; [speaker] by the one showing everyone round. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_AmbitionShow</defName>
+    <lines>
+      <plain>
+        <li>It's bigger than I thought it would be.</li>
+        <li>We built this ourselves, all of it.</li>
+        <li>I worked on that part over there.</li>
+        <li>It was worth every day it took.</li>
+        <li>I didn't think we'd finish it this year.</li>
+        <li>[speaker] Come in, all of you, and have a look.</li>
+        <li>[speaker] Mind your feet, the floor is new.</li>
+        <li>[speaker] This is what we were working on all those days.</li>
+        <li>[child] Can I touch it?</li>
+      </plain>
+      <warm>
+        <li>Everyone who worked on this should be proud.</li>
+      </warm>
+      <blunt>
+        <li>It'll do, it'll do nicely.</li>
+      </blunt>
+      <cheerful>
+        <li>I keep finding reasons to walk past it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Let's hope it lasts longer than the last thing we built.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A14: the day an ambition was reached, on the calendar ===================== -->
+
+  <!--
+    The day comes round (ColonyCalendar, Calendar/CalendarKeeping.cs): {NAME} = the day ("the day the hall was finished"),
+    {SUBJECT} = the ambition ("a great hall"), {COUNT} = the days it took, {YEARS}, {A_...} = the one who proposed it, or
+    whoever keeps the day. Kept by walking out to what was built ([way:walk]), or with a supper when nothing was ([way:feast]).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Ambition</defName>
+    <lines>
+      <plain>
+        <li>[way:walk] {NAME}. {A_nameDef} would like everyone to walk over to it this afternoon and have another look.</li>
+        <li>[way:walk,first] A year ago today the colony finished {SUBJECT}. {A_nameDef} wants to walk everyone over to it, the way {A_pronoun} did on the day.</li>
+        <li>[way:walk,years] {YEARS} years since {SUBJECT} was finished, after {COUNT} days of work. {A_nameDef} wants to go and stand by it with everyone again.</li>
+        <li>[way:feast] {NAME}. There is nothing to walk to for this one, so {A_nameDef} wants a supper for it instead.</li>
+        <li>[way:feast,first] A year ago the colony reached {SUBJECT}. {A_nameDef} wants the colony at one table tonight to mark it.</li>
+        <li>[tradition] {NAME}, kept every year now. People were ready to go before {A_nameDef} asked.</li>
+      </plain>
+      <warm><li>{NAME}. {A_nameDef} says everyone who worked on it deserves to be remembered today.</li></warm>
+      <blunt><li>{NAME}. {A_nameDef} wants everyone there. It won't take long.</li></blunt>
+      <cheerful><li>{NAME}. {A_nameDef} has been looking forward to this all week.</li></cheerful>
+      <gloomy><li>{NAME}. {A_nameDef} says it's worth remembering what the colony managed, even in a hard year.</li></gloomy>
+      <cold><li>{NAME}. {A_nameDef} notes it took {COUNT} days and has been useful every day since.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_Ambition</defName>
+    <lines>
+      <plain>
+        <li>[new] We finished {SUBJECT} today. I said we could, and we did, in {COUNT} days.</li>
+        <li>[new] {SUBJECT} is done. I walked everyone round it and couldn't stop talking.</li>
+        <li>[!new,first] A year since we finished {SUBJECT}. We went and looked at it together, and it's held up well.</li>
+        <li>[!new,years] {YEARS} years since we reached {SUBJECT}. Hardly anyone remembers it wasn't always there.</li>
+        <li>[!new,tradition] {NAME} again. It's a proper day of the year now, kept the same way every time.</li>
+      </plain>
+      <warm>
+        <li>[new] {SUBJECT}, finished. Everyone worked on it, and I made sure to thank each of them.</li>
+      </warm>
+      <blunt>
+        <li>[new] {SUBJECT}. Done.</li>
+      </blunt>
+      <gloomy>
+        <li>[new] We finished {SUBJECT}. I'm glad, and tired.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_Ambition</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} how the colony came to set out for {SUBJECT}.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about the {COUNT} days it took to finish {SUBJECT}.</li>
+        <li>{A_nameDef} told {B_nameDef} which part of {SUBJECT} was the hardest to get done.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether the colony should set out for something like {SUBJECT} again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_Ambition</defName>
+    <lines>
+      <plain>
+        <li>{NAME} went by unmarked this year. {A_nameDef} went to look at it alone in the evening.</li>
+        <li>Nobody marked {NAME} this year. {A_nameDef} mentioned it once at supper.</li>
+      </plain>
+      <blunt><li>No fuss for {NAME} this year.</li></blunt>
+      <gloomy><li>{NAME} came and went. {A_nameDef} noticed, even if nobody else did.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

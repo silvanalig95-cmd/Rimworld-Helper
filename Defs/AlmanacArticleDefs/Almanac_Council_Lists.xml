@@ -16,7 +16,7 @@
     <order>1</order>
     <summary>Every kind of wish, who makes it, and when it can come up.</summary>
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
-    <description>There are 129 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+    <description>There are 130 kinds of wish (129 that a colonist asks for, and one a group asks for together), many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
 Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up. Nor does a wish the colonist's own beliefs forbid: no shared bed before the wedding under an ideoligion that keeps lovin for the married, no hunt for a vegetarian, no beer for a teetotaler (the page "wishes and promises" says more).</description>
     <sections>
@@ -138,6 +138,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A council meeting | The sociable, office holders, and anyone who missed the last meeting, when the council hasn't met in eight days or more. Promising it calls the meeting.</li>
           <li>An evening learning another ideoligion | With Ideology: someone wavering in their own ideoligion, who thinks well of a devout believer of another. Promising it arranges the evening; going to an evening of that ideoligion counts too. "Ideoligions and the council" has the details.</li>
           <li>A comms console | The sociable, once one can be built.</li>
+          <li>A place for the group | The anchor of a close group (cohesion 50 or more) with two more of it at home, when the group's habit has no place in the colony and the colony can build one: a fire pit with two seats round it, a bookcase with a chair by it, a game table, an instrument, a shrine. The rest of the group at home signs it. Met when the colony has the place: the group's first evening there follows, and its anchor calls it there from then on.</li>
         </table>
       </li>
       <li>
@@ -184,7 +185,9 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
 
 A few are done in stages, one after another: only the current stage counts, each stage reached stays reached, and a message says what comes next. A stage that counts new work (new things built, new days in a row) starts counting when it begins.
 
-Some run for a whole season: so many days in a row with something kept up, where one lean day starts the count again. Work the game counts (animals hunted, plants harvested, trades made) only counts when the colony's own people do it while the project runs, so a newcomer's past doesn't count.</description>
+Some run for a whole season: so many days in a row with something kept up, where one lean day starts the count again. Work the game counts (animals hunted, plants harvested, trades made) only counts when the colony's own people do it while the project runs, so a newcomer's past doesn't count.
+
+Every project shows something on the map when it is reached (with "Answers play out on the map" on), led by whoever proposed it, or by the council seat whose work it is when someone holds it: the physician shows everyone round a new ward, the marshal walks the defenses at dusk, the elder gives the children their first lesson at the new desks. A room or a building is shown where it stands; the rest end with a supper, an evening under the new lights, a quiet hour at the graves, a walk out in the new coats, a fire, or a toast. The letter says when. The day goes on the colony calendar ("the day the hospital was finished").</description>
     <sections>
       <li>
         <heading>Food and stores</heading>

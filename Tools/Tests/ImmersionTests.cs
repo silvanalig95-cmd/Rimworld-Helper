@@ -227,6 +227,10 @@ public static class ImmersionTests
         // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
         // colony say at each moment.
         "Rimfolk_Pool_OldPowersSaid",
+        // Colony life's integrations, part 2 (ColonyLife/): a wish talked up and joined, a friend admiring the wished-for
+        // thing, the aims said at the year's first supper and a backer's answer, the reader's asides, what was built shown.
+        "Rimfolk_Pool_TalkBacked_Join", "Rimfolk_Pool_TalkBacked_Glad", "Rimfolk_Pool_TryOut_Admire", "Rimfolk_Pool_Supper_Aim",
+        "Rimfolk_Pool_Supper_NewAim", "Rimfolk_Pool_Supper_Backed", "Rimfolk_Pool_YearRead_Aside", "Rimfolk_Pool_AmbitionShow",
         // Each god's festival kept as its words say, and the gods' beasts at home and on the land (Gods/OnMap/OwnFeasts.cs,
         // GodBeasts.cs): what is said at the festival's work, to a god's beast, and of a beast taken for a god's.
         "Rimfolk_Pool_GodFeast_Say", "Rimfolk_Pool_GodBeast_Say"

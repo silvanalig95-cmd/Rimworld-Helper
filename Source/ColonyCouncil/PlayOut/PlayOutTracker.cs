@@ -150,6 +150,8 @@ namespace ColonyCouncil
             using var clock = PassClock.Time(Pass.RarePlayOut);
             // Strangers fed and staying the night bed down by the wall (PlayStrangers.cs).
             PlayStrangers.Tick(now);
+            // A wished-for thing tried out, and lines said in turn at a gathering under way (ColonyLife/LifeBook.cs).
+            LifeBook.Tick(now);
             // The colony's count of gatherings, the toasts waiting, the floor (Stage.cs).
             try
             {
@@ -675,6 +677,8 @@ namespace ColonyCouncil
             PlayAfter.Run(p, true, took);
             // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
             SharedTimes.PlayDone(p, took);
+            // A reading at it closes with those who were there (ColonyLife/Readings.cs).
+            LifeBook.PlayDone(p, took);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
             // say it in their own end message.
             if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())

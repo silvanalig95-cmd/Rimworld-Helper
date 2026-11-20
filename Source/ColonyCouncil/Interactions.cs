@@ -22,6 +22,20 @@ namespace ColonyCouncil
             if (wish.other == recipient) w *= 2f;
             return w;
         }
+
+        /// <summary>A listener who would want the same may join the wish there and then (A13, ColonyLife/TalkBacking.cs).</summary>
+        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
+        {
+            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out lookTargets);
+            try
+            {
+                CouncilGameComponent.Instance?.TalkedUp(initiator, recipient);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("a wish talked up", e);
+            }
+        }
     }
 
     /// <summary>The colonist who proposed the current ambition keeps talking it up.</summary>

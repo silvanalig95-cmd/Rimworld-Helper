@@ -40,6 +40,11 @@
       <cheerful><li>Not a single spoon thrown at dinner tonight!</li></cheerful>
       <cold><li>No more feuds. I expect the work to go faster by the end of the week.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Peacemaker</sceneOffice>
+    <dayLabel>the day of harmony</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to harmony</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -81,6 +86,11 @@
       <warm><li>Somebody brought me a petition today with a flower tucked into it.</li></warm>
       <cold><li>Trust restored. Use it carefully.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Speaker</sceneOffice>
+    <dayLabel>the day the council was trusted</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the council</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -121,6 +131,10 @@
       <warm><li>Every one of them made it through. Some nights I wasn't sure they would.</li></warm>
       <gloomy><li>They're through it. Keep the cupboard locked anyway.</li></gloomy>
     </achieved>
+    <dayLabel>the day of clean living</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening for clean living</label><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>17~22</hours><duration>1.5~2</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

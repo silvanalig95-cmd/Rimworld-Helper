@@ -277,6 +277,9 @@ namespace ColonyCouncil
 
         public override bool Possible(Map map) => Role != null && Stat != null;
 
+        /// <summary>The finest room of its kind, and its finest piece (A14).</summary>
+        public override Thing Showpiece(Map map) => AmbitionScenes.PieceIn(RoomUtil.RoomsFor(map, Role).OrderByDescending(RoomUtil.Impressiveness).FirstOrDefault(), null);
+
         public override float Progress(Map map, float baseline)
         {
             float b = Best(map);

@@ -601,6 +601,8 @@ wishPh.UnionWith(new[] { "DRUG" });
 // Storylines (Storylines/Storylines.cs, Fill): the person who asked by name, the second people, a sum, and the traps and lengths
 // of wall a part asks for ({RIVAL}, {NAME}, {KIND} and {WAY} are above).
 wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
+// Vanilla Aspirations Expanded's aim reached (ColonyLife/ModAims.cs, Rimfolk_Journal_ModAim): the aim, as the mod names it.
+wishPh.Add("AIM");
 // The council's integrations, part 1 (Offices/SeatCalls.cs, Interplay/Interplay_Seats.cs): the weight of office's hard call,
 // and the crop the reeve found blight in.
 wishPh.UnionWith(new[] { "CALL", "CROP" });
@@ -615,6 +617,9 @@ foreach (var (file, doc) in docs)
         if (el.HasElements) continue;
         var root = el.AncestorsAndSelf().Last(a => a.Parent == doc.Root);
         bool isAmbition = root.Name.LocalName.EndsWith("AmbitionDef");
+        // What reaching an ambition sets going (achievedEffects, ColonyLife/AmbitionScenes.cs) is told as an answer is: A the one
+        // who proposed it, B the one who leads it.
+        bool inScene = isAmbition && el.Ancestors().Any(a => a.Name.LocalName == "achievedEffects");
         bool isRule = el.Parent?.Name.LocalName == "rulesStrings";
         if (isRule) continue;
         foreach (Match m in placeholder.Matches(el.Value))
@@ -624,7 +629,8 @@ foreach (var (file, doc) in docs)
             if (p.Contains('_'))
             {
                 var parts = p.Split('_');
-                ok = parts.Length == 2 && pawnPrefixes.Contains(parts[0]) && pawnSuffixes.Contains(parts[1]) && (!isAmbition || parts[0] == "PAWN");
+                ok = parts.Length == 2 && pawnPrefixes.Contains(parts[0]) && pawnSuffixes.Contains(parts[1])
+                     && (!isAmbition || parts[0] == "PAWN" || inScene && (parts[0] == "A" || parts[0] == "B"));
             }
             else ok = !isAmbition && wishPh.Contains(p);
             if (!ok) errors.Add($"{Rel(file)}:{Line(el)}: unexpected placeholder {{{p}}}");

@@ -212,23 +212,30 @@ namespace ColonyCouncil
                 // A close group (the card's "close" or "tight-knit"; a loose one was called too, more often than the words said).
                 if (!GroupMath.MayCall(g.cohesion, (now - g.lastArranged) / (float)Day) || !Rand.Chance(GroupMath.CallChance)) continue;
                 var habit = g.Habits.FirstOrDefault(h => h.Play != null);
-                if (habit == null) continue;
                 var anchor = g.Holder(GroupRole.Anchor) ?? g.members.OrderByDescending(m => m.attachment).FirstOrDefault()?.pawn;
                 var map = anchor?.MapHeld;
                 if (anchor == null || map == null || !map.IsPlayerHome || !PlayOuts.OurPerson(anchor)) continue;
+                // A group with a place of its own, asked of the council and built (A10, ColonyLife/GroupPlaces.cs), is called
+                // to it for the habit it was for, whether or not that habit has a gathering of its own (reading, music, prayer).
+                var placeHabit = GroupPlaces.CallAt(g, map, out var place);
+                if (placeHabit != null) habit = placeHabit;
+                if (habit == null) continue;
                 var invited = g.Pawns.Where(p => PlayOuts.OurPerson(p) && p.MapHeld == map).ToList();
                 if (invited.Count < 3) continue;
                 try
                 {
+                    var spots = habit.Spots.Count > 0 ? habit.Spots : new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Dining, PlaySpot.Gather };
+                    if (placeHabit != null) spots.Insert(0, PlaySpot.Place);
                     var play = new PlayOut
                     {
-                        kind = habit.Play.Value,
+                        kind = placeHabit != null ? GroupPlaces.PlayAt(g.placeKind) : habit.Play.Value,
                         map = map,
                         created = now,
                         label = "CC_Group_PlayLabel".Translate(g.Name.Named("GROUP"), habit.label.Named("HABIT")).Resolve(),
                         invited = invited,
                         organizer = anchor,
-                        spots = habit.Spots.Count > 0 ? habit.Spots : new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Dining, PlaySpot.Gather },
+                        place = placeHabit != null ? place : null,
+                        spots = spots,
                         durationTicks = PlayOutMath.DurationTicks(2f),
                         pool = habit.pool,
                         hourFrom = habit.hourFrom,
@@ -238,9 +245,11 @@ namespace ColonyCouncil
                     };
                     if (play.kind == PlayKind.Bonfire)
                     {
-                        play.buildFire = true;
+                        // At the group's own fire pit nothing is laid: the fire is there.
+                        play.buildFire = placeHabit == null;
                         play.music = true;
                     }
+                    if (placeHabit != null && g.placeKind == GroupPlaceKind.Music) play.music = true;
                     play.deadline = PlayOutMath.Deadline(now, GenLocalDate.HourOfDay(map), play.hourFrom, play.hourTo, PlayOutMath.DefaultWaitHours);
                     string cause = "CC_Cause_GroupHabit".Translate(habit.label, g.Name).Resolve();
                     if (GroupDefs.Habit != null)
@@ -377,7 +386,9 @@ namespace ColonyCouncil
         public static string HabitTip(SocialGroup g, GroupHabitDef h)
         {
             var lines = new List<string> { h.description, "", "CC_Group_HabitDoes".Translate().Resolve() };
-            if (h.Play != null && PlayOuts.On && g.Habits.FirstOrDefault(x => x.Play != null) == h) lines.Add("CC_Group_HabitCalled".Translate().Resolve());
+            // At its own place (A10, ColonyLife/GroupPlaces.cs): the anchor calls them there for this habit.
+            if (PlayOuts.On && g.placeKind != GroupPlaceKind.None && GroupPlaces.KindOf(h) == g.placeKind) lines.Add("CC_Life_GroupPlace_HabitAt".Translate().Resolve());
+            else if (h.Play != null && PlayOuts.On && g.Habits.FirstOrDefault(x => x.Play != null) == h) lines.Add("CC_Group_HabitCalled".Translate().Resolve());
             lines.Add("CC_Group_HabitTip".Translate(g.habitsKept).Resolve());
             return string.Join("\n", lines);
         }

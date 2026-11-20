@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.279.2</version>
+        <date>20 November 2026</date>
+        <title>Wishes, aims and the year</title>
+        <points>
+          <li>Every council project reached now shows on the map, led by the one who proposed it or the seat whose work it is, and its day goes on the colony calendar.</li>
+          <li>A close group asks the council for a place of its own (a fire pit with seats, a bookcase, a game table, an instrument, a shrine) and is called there once it is built.</li>
+          <li>A wished-for chair, bed, heater or room is tried out in the colonist's free time, and the thanks are said there.</li>
+          <li>A wish many can back finds backers in conversation: a listener who wants the same joins it there and then.</li>
+          <li>The year's first supper, a new custom: each says their aim for the year, and the year letter reads it back.</li>
+          <li>The year letter is read aloud at the table on the founding day; a record keeper writes it, and with Vanilla Books Expanded it becomes a book on the shelf.</li>
+          <li>Aims reached from Vanilla Aspirations Expanded are toasted at the next gathering and told round the colony.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.279.1</version>
         <date>20 November 2026</date>
         <title>The land and its life</title>

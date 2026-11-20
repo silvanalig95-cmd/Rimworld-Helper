@@ -18107,7 +18107,7 @@ walked to its place on its festival, the beast that stays given its name, the he
 and a raid held at a line (they came through the gate and nobody fell). A god is named in them only by the colony's
 name where the colony knew at the time it was that god, else as what was seen (`GodDef.unheard`). A kind comes at most
 once in a few days at a home. Vanilla Furniture Expanded - Art's statues take the same tales. A ninth came with the land
-and its life (not released yet): a named season a believer took for a god's doing (C18, `SeasonGods.Named`), with the
+and its life (0.279.1): a named season a believer took for a god's doing (C18, `SeasonGods.Named`), with the
 believer as the one in it, the season's name as what it was about and the god by `ArtTales.GodWords` (said as the
 believer's view: "took the season for the doing of ..."), once in a quadrum at most at a home.
 
@@ -18963,6 +18963,110 @@ then (`Award`), unseen. The same pattern sat in other errands of the peoples' ev
   the ship's parts, the one sat with); a cold store stays shut, and so does a bedroom where one of the colony sleeps. Each
   of those errands refreshes the keep out's look as it starts (`KeepOut.Refresh`), so the way counts at once.
 - Tests: `PeopleEvents8Tests` (the hour's steps, the meeting's range and the places round it, and the seams).
+
+## Colony life's integrations, part 2: wishes, ambitions and the calendar (the player's go, 20 November 2026; released 0.279.2)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
+this in the order you think makes most sense ... more immersion ... the relations between pawns, the kind of events that
+generated from it", and "first do all the integrations that you proposed in your document before we add additional
+content variety". Seven items of part A, each built as proposed there: A10, A12, A13, A14, A17, A27, A29. The code is in
+`Source/ColonyCouncil/ColonyLife/`; the pure rules in `ColonyLifeMath.cs` (Tools/Tests: `ColonyLifeTests`). What is kept
+between passes (`LifeBook`, saved with the council as `CouncilGameComponent.life`): a wished-for thing still to be tried
+out, lines still to be said at a gathering under way, the aims said aloud this year, the ambitions reached since the year
+was last read aloud, the record keeper and the year last read; each list short (see "Save size"). The try-outs and the
+readings ride on the play-outs' own 250-tick pass (`PlayOutTracker`: `LifeBook.Tick`, and `LifeBook.PlayDone` when a plan
+is over), so there is no pass of their own.
+
+- **A10, a place for the group** (`GroupPlaces.cs`, `Rimfolk_Wishes_ColonyLife.xml`). A close group (cohesion at the card's
+  "close", `GroupMath.CloseAt`) with its anchor and two more at home asks for the place its habit needs, when the colony
+  has none and can build one: the fireside a fire pit or campfire with two seats within four cells, the readers a
+  bookcase with a seat in its room, the game night a game table, the musicians an instrument, the faithful an altar or a
+  shrine. Which habit: the first of the group's habits, in its own order, that wants a place of its own
+  (`GroupPlaceMath.FirstWanting`; decided here: the proposal's "first habit" read so, since no group kind lists reading or
+  music first). The anchor makes the wish (`WishWorker_GroupPlace`, subject `group:<id>:<kind>`) and every member at home
+  is put on it as a co-signer (`WishWorker.OnMade`, a new hook called as a wish is made); the request is picked again
+  with a `[place:...]` tag. What counts is read from the whole mod pool by kind (a fire by its name as the gatherings'
+  fire is, a bookcase by the game's class or its name, a game table by the game's own kinds of games, an instrument by the
+  game's class, a shrine by the game's altar flag or its name; Vanilla Furniture Expanded's props never), the game's own
+  first ([sbz] Bookcase's shelves and VFE Core's stone campfire among the rest). When it is met (`WishWorker.OnMet`, a new
+  hook called by `Grant`) the place is the group's (`SocialGroup.placeId`, `placeKind`, saved), a note goes in its
+  history, and its first evening there is set going: the group's gathering, round the fire or at the place itself, with
+  the habit's own lines, counted in the week's gatherings. From then on `GroupHabits.Daily` calls the group to its own
+  place for that habit, the habits without a gathering of their own (reading, music, prayer) included; the habit's pill on
+  the card says so. The place gone, a new one of the kind counts; none, the group is called as before.
+- **A12, the wished-for thing tried out** (`TryOuts.cs`, `Rimfolk_TryOut`). A lasting wish met for a thing, a bed or a room
+  (the promise watch's own kinds) no longer has its thanks said at once: with answers playing out on the map, the one it
+  was for goes to it in their free time within a day (`Together.FreeTime`, free to be called, nothing pressing), the
+  newest of the kept things they can reach, and sits in it, lies on the bed a moment, warms up at a fire or heater, looks
+  over anything else, or walks into the room and looks round; the thanks are said there, and a friend nearby (opinion 20
+  or more, really together) admires it a third of the time. Nothing to reach, or the day out: the thanks where they are,
+  as before. A group's place has its own first evening instead.
+- **A13, a wish talked up finds backers** (`TalkBacking.cs`, `InteractionWorker_TalkAboutWish.Interacted`). When the game's
+  own conversation brings up an open wish many may back (`allowPetition`), the listener joins it there and then if they
+  would want the same (the wish's own rule raises it for them now, the same subject; same colony; not on its cooldown):
+  half the time, more for a friend and less for someone at odds (the wish roll's own bond), once a day at most for the
+  wish (`Wish.talkBackedDay`). A line from each over the other's head, a word in the news and the chronicle, the deadline
+  two days on, as a co-signer does. Who would want the same is the meeting's own rule for "any other business"
+  (`CouncilGameComponent.WantsSame`, A6, `Ambitions/MeetingBusiness.cs`), so a wish talked up and a petition read out at
+  the meeting find the same backers; joining does what the roll's co-signing does (`CoSign`), with a line each.
+- **A14, an ambition reached, seen on the map and kept on the calendar** (`AmbitionScenes.cs`, the ambition defs). Every
+  ambition now has its scene (`achievedEffects`), led by the seat whose work it is when there is a holder at home
+  (`AmbitionDef.sceneOffice`: the physician shows everyone round a new ward or infirmary, the marshal walks the defenses
+  at dusk, the herdmaster the barn, the quartermaster the stores, the peacemaker the toast to harmony, the elder the first
+  lesson) or by the one who proposed it. What was built is stood by (`AmbitionGoal.Showpiece`: the finest room of its kind
+  and its piece, the newest of the things built, the cooler, the sun lamp, the art; for rooms of their own, the
+  proposer's own bed), so the words name it ("Harper shows everyone round the new ward: the colony gathers by the
+  hospital bed."). The kinds: a look round what was built (rooms, the cold store, the cells, the art, the place of study,
+  the throne room, the way to hear from outside); a walk round the colony's edge at dusk (the defenses, the guns, the
+  traps, the stone walls, the way in); a supper (the larder, the greenhouse, the clean kitchen, a year made ready, hot
+  meals, plenty); an evening under the new lights; a quiet hour at the graves; the first lesson at the new desks for the
+  children; a walk out in the new coats; a fire from the winter's wood or for the score settled; a toast for the rest (a
+  calm season, harmony, the council, friends abroad, a master's hand). The letter says when (`PlayWords.Planned`). The day
+  goes on the colony calendar as a day of its own kind (`CalendarKind.Ambition`, named by `AmbitionDef.dayLabel`, "the
+  day the hospital was finished"; weight 22 to 42 by effort and days, `AmbitionDayMath`; three at most), kept by walking
+  out to what was built (`DayWay.Walk`, its thing and place kept like a camp's gift) or with a supper when nothing was,
+  toward a tradition as the other days are; it ends quietly when what was built is gone (or, with nothing built, when
+  nobody who reached it lives). The proposer writes the day in their journal; its letter, talk and pass lines are its
+  own (`Council_Cal_*_Ambition`). The ambitions reached are kept for the year read aloud.
+- **A17, Vanilla Aspirations Expanded's aims** (`ModAims.cs`, `Patch_ModAimLetter`). The mod's letter that an aim was
+  reached (`VAspirE_Fulfilled`, by name) is read as it comes: the aim is the one of the mod's whose label the letter's
+  words name (`ModAimsMath.Match`, the longest). A journal line always; for an aim the colony would toast, the closest
+  friend raises a cup to them at the next gathering (`Stage.Cup`, the toast's own words, since the mod's labels are aims,
+  not deeds), the chronicle and the year's annals note it, and the deed "reached a life goal" is told round the colony.
+  Not toasted (decided here, from the mod's 76 aims): killing someone, an overdose, human meat, a rival dead, pain sought
+  out, being disliked, luciferium and opium, blackout drunk, being digested, burn scars, the flesh's dark arts, becoming
+  inhuman, being entombed, a sanguophage's or a chainsaw's change, a lover's bed, the joywire, deserting; and an aim the
+  letter doesn't name. The heart's need for purpose counts the mod's fulfilment need, -10 empty to +10 full
+  (`ModAimsMath.Purpose`), and Rimfolk's own life goals are taken up a third less often by someone who has the mod's aims
+  (`GoalMath.ModAimsFactor` in `AspirationTracker.TryChoose`).
+- **A27, the year's first supper** (`FirstSupper.cs`, `Rimfolk_Dilemmas_Customs_ColonyLife.xml`). A custom of the year's
+  first days (`CustomConditions.lastDayOfYear` 7; any season, since the year's first days are spring in one place and
+  autumn in another), asked by someone with a life goal, kept on the calendar and toward a tradition like the other
+  customs. "Everyone says it, at one supper": the supper (the one feast engine, `DilemmaEffect_FirstSupper`), and at the
+  table, every ten seconds or so, the next one there with a life goal says it in one line; someone without one may
+  choose one there and then from what fits them (`AspirationTracker.ChooseAtSupper`, spark "supper") and say it; a backer
+  at the table may answer. "Only those who want to": those with a goal say it, nobody takes one up. "Not this year". When
+  the supper is over, each who said theirs and each there who backs them (opinion 20 or more) grow a little closer; each
+  speaker writes it in their journal. The year letter reads back up to five, each as it turned out (reached, still at it,
+  let go, died before it). Text: the question in the flavour style, the lines at table plain, one sentence each.
+- **A29, the year read aloud** (`YearRead.cs`). On the landing's anniversary, after the year letter is written, its writer
+  reads three to five lines of it that evening (who came, who was lost, what the colony finished, an aim from the first
+  supper kept, a name the colony uses, and as filler the raids, how many there are and which year it was:
+  `YearReadMath.Pick`), one sentence every ten seconds or so while they are at the table: at the founding day's own
+  gathering when one is planned for that evening, else at a short gathering of words of its own. Those there remember it
+  together (`Rimfolk_Mem_YearRead`, brought up in talk later) and the writer writes a line of it. The council's answer
+  "Make A keeper of the colony's record" now makes them the colony's record keeper (`DilemmaEffect_RecordKeeper`): they
+  write the year from then on (`AnnalsTracker.Author`), which counts toward the Annalist's name as any writing of it does,
+  and the letter opens with it. With Vanilla Books Expanded (by name) and a writer's or typewriter table, the writer first
+  writes it up there in the day (a visit to the table), and it becomes a book called after the year ("The second year",
+  the game's novel, of the writer's quality) set on a bookcase of the colony's with room, else by the table; with the
+  mod's printing researched, its newspaper. Without the mod, the reading alone.
+- Words: wishes and the custom's question in the flavour style; the lines said aloud plain, one sentence each
+  (`ImmersionTests`); the calendar, journals, messages and the interface plain. No harm in any of it.
+- Dev actions ("Rimfolk", `LifeDebug.cs`): a group asks for its place, a group's first evening at its place now, a
+  colonist tries out a thing now, a wish talked up to someone near, the ambition under way reached now, an aim of their
+  own reached, the year's first supper asked now or set going now, the year read aloud tonight, make a colonist the
+  record keeper.
 
 ## The land and its life (the player's go, 20 November 2026; released 0.279.1)
 

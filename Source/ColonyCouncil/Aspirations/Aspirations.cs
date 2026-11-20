@@ -510,6 +510,20 @@ namespace ColonyCouncil
             return Begin(comp, p, def, null, null);
         }
 
+        /// <summary>
+        /// The year's first supper (A27, ColonyLife/FirstSupper.cs): someone with no life goal may choose one there and then,
+        /// from what fits them now, as they would in their own time (a goal something just sparked weighs more), and says it
+        /// at the table (spark "supper"). Returns it, or null when nothing fits them or they already have one.
+        /// </summary>
+        public Aspiration ChooseAtSupper(CouncilGameComponent comp, Pawn p)
+        {
+            if (!S.aspirations || comp == null || !Eligible(p) || Active(p) != null) return null;
+            var options = Options(p);
+            if (options.Count == 0) return null;
+            var pick = options.RandomElementByWeight(o => o.weight * (o.spark != null ? 3f * GoalMath.SparkPull(o.spark) : 1f));
+            return Begin(comp, p, pick.def, GoalMath.SupperSpark, null);
+        }
+
         /// <summary>Something happened that might give them a goal (battle, downed, loss, birth, omen).</summary>
         public void Notify_Event(Pawn p, string key)
         {
@@ -635,13 +649,16 @@ namespace ColonyCouncil
             // Something just happened that points somewhere: they're likely to decide now, the likelier the stronger it
             // pulls (a fight a little less than the rest of life, GoalMath.SparkPull). Otherwise, in their own time.
             var sparked = options.Where(o => o.spark != null).ToList();
-            if (sparked.Count > 0 && Rand.Chance(GoalMath.SparkedChooseChance * sparked.Max(o => GoalMath.SparkPull(o.spark))))
+            // Someone with Vanilla Aspirations Expanded's aims of their own takes up Rimfolk's a third less often (A17,
+            // ColonyLife/ModAims.cs), so nobody chases six at once.
+            float mod = GoalMath.ModAimsFactor(ModAims.HasAims(p));
+            if (sparked.Count > 0 && Rand.Chance(GoalMath.SparkedChooseChance * mod * sparked.Max(o => GoalMath.SparkPull(o.spark))))
             {
                 var pick = sparked.RandomElementByWeight(o => o.weight * GoalMath.SparkPull(o.spark));
                 Begin(comp, p, pick.def, pick.spark, null);
                 return;
             }
-            if (!Rand.Chance(0.2f)) return;
+            if (!Rand.Chance(0.2f * mod)) return;
             var any = options.RandomElementByWeight(o => o.weight * (o.spark != null ? 6f * GoalMath.SparkPull(o.spark) : 1f));
             Begin(comp, p, any.def, any.spark, null);
         }

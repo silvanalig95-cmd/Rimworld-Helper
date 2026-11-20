@@ -218,6 +218,9 @@ and its Art and Props and Decor modules, Alpha Props - Parks and Gardens (benche
 altars and Vanilla Ideology Expanded - Memes and Structures; the game's campfire, chess table and stools when none fit.
 *Size:* M. *Harm:* none. *Text:* wishes, flavour style: "Every evening we drag the same four stools out to the same cold
 ashes. A proper fire pit would do. We'd keep it lit."
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's integrations, part 2"). "First habit" read as the
+first of the group's habits that wants a place of its own (no group kind lists reading or music first); a close group with
+its anchor and two more at home.
 
 **A11 (V) A toy for the little one.**
 A parent, an elder or a child's close grown-up friend (any of them: nothing here follows family lines) asks for a toy
@@ -236,6 +239,8 @@ hands at the new heater, and say the thanks there; a friend nearby now and then 
 thanks stay as now.
 *Ties:* `Wishes/Kept.cs` (`Notify_Granted`), a small job like the heart's acts, `Speech.Say`, `Together`. *Size:* S/M.
 *Harm:* none.
+**Built** (20 November 2026, not released yet). With "Answers play out on the map" on; the lasting wishes' own kinds (a
+thing, a bed, a room); a friend admires it a third of the time.
 
 **A13 (I) A wish talked up finds backers.**
 Colonists already bring up their open wish in conversation (`InteractionWorker_TalkAboutWish`, the social log). For a
@@ -243,6 +248,8 @@ wish many may back (a rec room, a sick bay, a council meeting: `allowPetition`),
 join it there and then (the co-signing the wish roll already uses, `CouncilGameComponent.CoSign`), with a line over both
 heads. A petition grows this way once a day at most; the roll's own co-signing is unchanged.
 *Ties:* `Interactions.cs`, `Wishes/Petitions.cs`, `Speech`. *Size:* S. *Harm:* none.
+**Built** (20 November 2026, not released yet). Half the time for someone who would want the same, more for a friend; who
+would want the same is the meeting's own rule (A6's `WantsSame`).
 
 ### Ambitions and life goals
 
@@ -258,6 +265,9 @@ kept or let pass, toward a tradition, as the other days are.
 twelve), the week's count (chosen things always count), the chronicle. *Size:* M/L. *Harm:* none. *Text:* ambitions,
 flavour style: "The hall is finished, and {PAWN_nameDef}, who first said it could be done, is walking everyone round it
 as if none of them had ever seen a wall before."
+**Built** (20 November 2026, not released yet). All 57 others have a scene; the seat whose work it is leads where someone
+holds it; up to three such days on the calendar. The ambitions' own letters are unchanged: the letter adds when the
+scene will be, so no line claims a walk round before it happens.
 
 **A15 (V) Three ambitions of the colony's people.**
 Nobody left out: every grown colonist belongs to a group or has a friend (`GroupMath.WhyOutside`, the social web's
@@ -288,6 +298,8 @@ colony wouldn't toast (to kill someone, to overdose, to eat human meat and the l
 Rimfolk's own life goals come a third less often to someone who has the mod's aims, so nobody chases six at once.
 *Ties:* `Aspirations/GoalMath` (the rate), `Heart/HeartNeeds.cs`, `PlayOut/Stage.cs`, `Social/Gossip`, the journal.
 *Mod pool:* Vanilla Aspirations Expanded, read by name. *Size:* S/M. *Harm:* none.
+**Built** (20 November 2026, not released yet). The aim is the one whose label the letter names; 22 of the mod's 76 aims
+are not toasted; an aim the letter doesn't name gets the journal line only.
 
 ### Personal stories
 
@@ -395,6 +407,8 @@ little closer); only those who want to; not this year. The year letter later rea
 said she would train the dogs. She did.").
 *Ties:* Calendar customs, Aspirations (`GoalMath`), `World/YearLetter.cs`, `Speech`. *Size:* M. *Harm:* none. *Text:* the
 question in the flavour style; the lines said at table plain, one sentence each.
+**Built** (20 November 2026, not released yet). The year's first week (days 0 to 7), any season; asked by someone with a
+life goal.
 
 **A28 (V) The elders' day (an autumn custom).**
 With two colonists of sixty or more, or an elder's seat held, someone young asks to honour them: the elders sit at the
@@ -416,6 +430,8 @@ then on, counting toward the Annalist's name. With Vanilla Books Expanded the wr
 *Ties:* `Annals.cs`, `World/YearLetter.cs`, `Epithets/` (the Annalist), the record keeper question, the founding day,
 `SharedMemoryDef`. *Mod pool:* Vanilla Books Expanded, [sbz] Bookcase (active). *Size:* M. *Harm:* none. *Text:* the
 letter in the flavour style of letters; the lines read aloud plain.
+**Built** (20 November 2026, not released yet). The book is the game's novel (the newspaper with printing), on any
+bookcase with room ([sbz] Bookcase's included), else by the table.
 
 ### Everyday family flavour
 

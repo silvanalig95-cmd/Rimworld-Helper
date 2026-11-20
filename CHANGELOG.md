@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wishes, aims and the year
+
+*20 November 2026, version 0.279.2*
+
+- Every council project reached now shows on the map, led by the one who proposed it or the seat whose work it is, and its day goes on the colony calendar.
+- A close group asks the council for a place of its own (a fire pit with seats, a bookcase, a game table, an instrument, a shrine) and is called there once it is built.
+- A wished-for chair, bed, heater or room is tried out in the colonist's free time, and the thanks are said there.
+- A wish many can back finds backers in conversation: a listener who wants the same joins it there and then.
+- The year's first supper, a new custom: each says their aim for the year, and the year letter reads it back.
+- The year letter is read aloud at the table on the founding day; a record keeper writes it, and with Vanilla Books Expanded it becomes a book on the shelf.
+- Aims reached from Vanilla Aspirations Expanded are toasted at the next gathering and told round the colony.
+
 ## The land and its life
 
 *20 November 2026, version 0.279.1*

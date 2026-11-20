@@ -35,6 +35,8 @@ namespace ColonyCouncil
         public List<Belief> forbiddenBy;
         /// <summary>The stores hold less wood than the winter wants (the woodpile day; as wood for the winter reckons it, YearFourMath.WoodWanted).</summary>
         public bool woodShort;
+        /// <summary>Only in the year's first days: up to this day of the year (0 the first; -1 for any day). The year's first supper (A27).</summary>
+        public int lastDayOfYear = -1;
 
         [Unsaved] private ulong forbiddenMask;
         [Unsaved] private bool forbiddenMaskSet;
@@ -69,6 +71,7 @@ namespace ColonyCouncil
             if ((c.faith || !c.memes.NullOrEmpty()) && DecreeWork.ColonyFaith == null) return false;
             if (!c.memes.NullOrEmpty() && !DecreeWork.FaithHas(c.memes)) return false;
             if (c.woodShort && !YearFour.WoodShort(map)) return false;
+            if (c.lastDayOfYear >= 0 && GenLocalDate.DayOfYear(map) > c.lastDayOfYear) return false;
             return true;
         }
 

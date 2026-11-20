@@ -43,6 +43,10 @@
       <cheerful><li>Five, and the chart is full. I need a bigger chart!</li></cheerful>
       <cold><li>Five species added, as planned. The next five will be harder.</li></cold>
     </achieved>
+    <dayLabel>the day the Pokédex pages were filled</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the Pokédex pages</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

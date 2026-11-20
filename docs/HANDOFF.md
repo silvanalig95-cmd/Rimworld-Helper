@@ -86,9 +86,10 @@ most sense." So, in this order, three builds at a time:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
      released 0.278.0);
      council (A1, A2, A5, A6, A21; released 0.279.0); the land and its life (C19, C20, C21, C22, C24, C28, C30; built, not released: the entry "The land and its life" above the newest release line);
-     wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
-     B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
-     B11, B13, B19, B27).
+     wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29; built, not released: the entry "Colony life's
+     integrations, part 2: wishes, ambitions and the calendar" above the newest release line); the world brought home
+     (B1, B2, B3, B23, B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years
+     and the camps (B5, B11, B13, B19, B27).
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
@@ -606,6 +607,86 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.279.2, **Colony life's integrations, part 2:
+  wishes, ambitions and the calendar** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content
+  proposal overall sounds really good. You can go ahead with this in the order you think makes most sense ... more
+  immersion ... the relations between pawns, the kind of events that generated from it", and "first do all the
+  integrations that you proposed in your document before we add additional content variety"). A10, A12, A13, A14, A17,
+  A27 and A29 of part A, each built as proposed and marked **Built** there; DESIGN.md "Colony life's integrations, part 2:
+  wishes, ambitions and the calendar (not released yet)" has it all; README (wishes, groups, life goals, the calendar,
+  ambitions, the year's letter); the Almanac (wishes and promises: "Tried out" and a wish grown by talk; life goals: "Said
+  aloud" and "Vanilla Aspirations Expanded"; the annals: the year read aloud; what colonists wish for: a place for the
+  group; council projects: what reaching one shows; groups: a place of their own; the calendar: an ambition reached;
+  traditions: the year's first supper; keywords unchanged).
+  - What is seen on the map: **A10** a close group's anchor asks for the place its habit needs (a fire pit with two seats,
+    a bookcase with a chair, a game table, an instrument, a shrine), every member at home signing; built, the group's
+    first evening there, and from then on its anchor calls it there (reading, music and prayer too). **A12** a wished-for
+    chair, bed, heater, work of art or room is gone to in their free time that day: they sit, lie on it a moment, warm up,
+    look it over or walk round the room, and say thanks there; a friend nearby may admire it. **A13** in the game's own
+    conversation a listener who would want the same joins an open wish many may back, a line from each over the other's
+    head. **A14** every ambition reached shows a scene, led by the proposer or the seat whose work it is (the physician
+    shows everyone round the new ward, the marshal walks the defenses at dusk, the elder gives the children their first
+    lesson at the new desks; a supper, an evening under the new lights, a quiet hour at the graves, a walk out in new
+    coats, a fire or a toast for the rest), and its day goes on the calendar, kept by walking out to what was built.
+    **A17** a Vanilla Aspirations Expanded aim reached: the closest friend raises a cup at the next gathering (not for the
+    aims the colony wouldn't toast). **A27** in the year's first week the year's first supper: one at a time each at the
+    table says what they mean to do this year (someone without a goal may choose one there), a backer may answer.
+    **A29** on the landing's anniversary the year's writer reads three to five lines of it aloud that evening, one at a
+    time; with Vanilla Books Expanded and a writer's table they first write it up there and it goes on a shelf as a book
+    called "The second year".
+  - Code map: `Source/ColonyCouncil/ColonyLife/` (new): `LifeBook.cs` (the saved book on `CouncilGameComponent.life`, its
+    pass), `ColonyLifeMath.cs` (the pure rules), `Readings.cs` (lines said in turn at a gathering), `TryOuts.cs` (A12, with
+    `JobDriver_TryOut`), `TalkBacking.cs` (A13), `GroupPlaces.cs` (A10, `WishWorker_GroupPlace`), `AmbitionScenes.cs`
+    (A14, and `ColonyCalendar.Notify_AmbitionReached`), `ModAims.cs` (A17, `Patch_ModAimLetter`), `FirstSupper.cs` (A27,
+    `DilemmaEffect_FirstSupper`), `YearRead.cs` (A29, `DilemmaEffect_RecordKeeper`, `YearBook`), `LifeDebug.cs`. Hooks:
+    `PlayOutTracker` (`LifeBook.Tick`, `LifeBook.PlayDone`), `CouncilDynamics.Grant` (`TryOuts.Begin`, `WishWorker.OnMet`),
+    `CouncilGameComponent` (`ExposeLife`, `WishWorker.OnMade`, `CoSign` internal), `Interactions.cs` (the talk's
+    `Interacted`), `Wish.talkBackedDay`, `SocialGroup.placeId`/`placeKind`, `GroupHabits.Daily` and `HabitTip`,
+    `AmbitionGoal.Showpiece` (Goal_Room, _Build, _Freezer, _Greenhouse, _SharedArt, _RoomStat), `AmbitionDef.sceneOffice`
+    and `dayLabel`, `Ambitions.Complete` and `DebugReach`, `CalendarKind.Ambition` (ColonyCalendar, CalendarKeeping,
+    CalendarLived, CalendarPanel), `HeartNeeds.Purpose`, `AspirationTracker.ChooseAtSupper` and `TryChoose`,
+    `GoalMath.ModAimsFactor`/`SupperSpark`, `CustomConditions.lastDayOfYear`, `YearLetter.Write`, `AnnalsTracker.Author`,
+    `PlayAfter.Run` (the year's book). Defs: the 66 ambitions (`achievedEffects` for the 57 without, `sceneOffice`,
+    `dayLabel`), `Rimfolk_Wishes_ColonyLife.xml`, `Rimfolk_Dilemmas_Customs_ColonyLife.xml`, the record keeper's answer in
+    `Rimfolk_Dilemmas_Lives.xml`, `Rimfolk_Lines_ColonyLife.xml`, `Rimfolk_Talk_Lines_ColonyLife.xml`,
+    `Rimfolk_SharedMemories_ColonyLife.xml`, `Rimfolk_Thoughts_ColonyLife.xml`, `Rimfolk_ColonyLife_Misc.xml`,
+    `Languages/English/Keyed/Rimfolk_ColonyLife2.xml`. Tools: `DefValidator` (A and B in an ambition's scene, `{AIM}`;
+    rebuilt), `playout_audit.py` (the supper), `save_estimate.py` (seven models), `ImmersionTests` (eight spoken pools),
+    `ColonyLifeTests` (new).
+  - Decided here: A10's "first habit" read as the first of the group's habits that wants a place (no kind lists reading or
+    music first), the five places of the proposal only, the group with its anchor and two more at home; A12 with "Answers
+    play out on the map" on, the lasting wishes' kinds, a friend a third of the time; A13 half the time, by the wish
+    roll's bond; A14 the scene kinds per ambition (the list in DESIGN.md), the seat that leads, the day's name and weight
+    (22 to 42), three such days at most, its end when what was built is gone; A17 the aim by its label in the letter's
+    words, 22 of the 76 aims not toasted (the list in DESIGN.md), an unnamed aim the journal only; A27 days 0 to 7 of the
+    year in any season, asked by someone with a goal, a line every ten seconds; A29 three to five lines, at the founding
+    day's gathering when it has one that evening, else a short words gathering of its own, the book the game's novel.
+  - With the council's build (A6, any other business at the meeting, merged in 0.279.0): A13's `WouldBack` uses the
+    meeting's own rule for who would want the same (`CouncilGameComponent.WantsSame`), so a wish talked up and a petition
+    read out at the meeting find the same backers; joining does what the roll's co-signing does. Nothing of the meeting
+    was touched.
+  - Harm: none.
+  - Not run here: the try-out's sitting, lying and facing in the game; the readings' bubbles and their pace at a real
+    supper; the gatherings at a group's place and at what an ambition built (the spot by the thing, people standing in a
+    freezer or a barn); the mod's letter text (Vanilla Aspirations Expanded's own words were not read here: the aim is
+    matched by its label in the letter); the year's book's title and description fields on the game's book (set by name,
+    left as the game made them when not found); Vanilla Books Expanded's tables and printing research by name.
+  - Try in the game (Debug actions, "Rimfolk"): 1. "Colony life: a group asks for its place...", pick a group (the card
+    under People, Bonds): the anchor's wish comes with the group signed; build the place (a campfire with two stools, a
+    bookcase with a chair, a chess table) and the wish is met; the group's first evening there follows (or "a group's
+    first evening at its place now..."). 2. "a colonist tries out a thing now...": in their free time they go to their
+    bed or the nearest seat and say thanks there; or grant any wish for a chair, a bed or a room. 3. Give someone a wish
+    for a rec room and "a wish talked up to someone near...". 4. Choose an ambition at a meeting, then "the ambition under
+    way is reached now": the letter says when the scene is, the scene plays, and the Calendar page has the day. 5. With
+    Vanilla Aspirations Expanded, "an aim of their own reached...". 6. "the year's first supper set going now" (or "asked
+    now" in the year's first week). 7. "make a colonist the record keeper...", then "the year read aloud tonight"; with
+    Vanilla Books Expanded build a writer's table first.
+  - Mods that would help: Vanilla Aspirations Expanded and Vanilla Books Expanded are already active and used. From the
+    content proposals' own look (20 November 2026): **Tavern**,
+    https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305 (1.6, 1.7; updated 4 November), subscribed but not
+    enabled: tavern furniture for a group's own place and its evenings; **P-Music**,
+    https://steamcommunity.com/sharedfiles/filedetails/?id=725130005 (1.0 to 1.7; updated 25 October): more of the game's
+    music for the suppers and the evenings at a group's place. Gap: a bell to call a gathering, none found for 1.6 or 1.7.
 - 0.279.1, **The land and its life** (20
   November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You
   can go ahead with this in the order you think makes most sense ... more immersion", and "first do all the integrations

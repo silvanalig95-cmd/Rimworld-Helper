@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Colony life's integrations, part 2 (Source/ColonyCouncil/ColonyLife/): plain words for messages and the interface; the year letter's lines in the letters' own style. -->
+
+  <!-- A13: a wish talked up finds backers -->
+  <CC_Life_TalkBacked>{PAWN_nameDef} heard {OTHER_nameDef} talk about "{WISH}" and joined in asking for it. {COUNT} people are asking for it now.</CC_Life_TalkBacked>
+  <CC_Chronicle_TalkBacked>{0} heard {1} talk about {2} and asked for it too.</CC_Chronicle_TalkBacked>
+
+  <!-- A12: the wished-for thing, tried out -->
+  <CC_Life_TryOut_Room>room</CC_Life_TryOut_Room>
+  <CC_Life_TryOut_Report_Sit>sitting in the new {THING}.</CC_Life_TryOut_Report_Sit>
+  <CC_Life_TryOut_Report_Lie>lying on the new {THING} for a moment.</CC_Life_TryOut_Report_Lie>
+  <CC_Life_TryOut_Report_Warm>warming up at the new {THING}.</CC_Life_TryOut_Report_Warm>
+  <CC_Life_TryOut_Report_Look>looking over the new {THING}.</CC_Life_TryOut_Report_Look>
+  <CC_Life_TryOut_Report_Room>looking round the new {THING}.</CC_Life_TryOut_Report_Room>
+
+  <!-- A10: a place for the group -->
+  <CC_Life_GroupPlace_FirstLabel>the first evening of {GROUP} at the new {THING}</CC_Life_GroupPlace_FirstLabel>
+  <CC_Life_GroupPlace_Why_Fire>{GROUP} meet for {HABIT}, and the colony has no fire pit with seats round it.</CC_Life_GroupPlace_Why_Fire>
+  <CC_Life_GroupPlace_Why_Books>{GROUP} meet for {HABIT}, and the colony has no bookcase with a chair by it.</CC_Life_GroupPlace_Why_Books>
+  <CC_Life_GroupPlace_Why_Games>{GROUP} meet for {HABIT}, and the colony has no game table.</CC_Life_GroupPlace_Why_Games>
+  <CC_Life_GroupPlace_Why_Music>{GROUP} meet for {HABIT}, and the colony has no instrument to play.</CC_Life_GroupPlace_Why_Music>
+  <CC_Life_GroupPlace_Why_Shrine>{GROUP} meet for {HABIT}, and the colony has no shrine.</CC_Life_GroupPlace_Why_Shrine>
+  <CC_Life_GroupPlace_When_Fire>The colony has a fire pit or campfire with at least two seats within a few steps of it ({THING} will do).</CC_Life_GroupPlace_When_Fire>
+  <CC_Life_GroupPlace_When_Books>The colony has a bookcase with a seat near it in the same room ({THING} will do).</CC_Life_GroupPlace_When_Books>
+  <CC_Life_GroupPlace_When_Games>The colony has a game table ({THING} will do).</CC_Life_GroupPlace_When_Games>
+  <CC_Life_GroupPlace_When_Music>The colony has an instrument ({THING} will do).</CC_Life_GroupPlace_When_Music>
+  <CC_Life_GroupPlace_When_Shrine>The colony has an altar or a shrine ({THING} will do).</CC_Life_GroupPlace_When_Shrine>
+  <CC_Life_GroupPlace_When_None>The colony has the place the group asked for.</CC_Life_GroupPlace_When_None>
+  <CC_Life_GroupPlace_Asked>{PAWN_nameDef} asked the council for {THING} for the group, and everyone of it at home signed.</CC_Life_GroupPlace_Asked>
+  <CC_Life_GroupPlace_Got>The group has its own {THING} now.</CC_Life_GroupPlace_Got>
+  <CC_Life_GroupPlace_HabitAt>Its anchor calls them to this at the group's own place every week or two while the group is close.</CC_Life_GroupPlace_HabitAt>
+
+  <!-- A17: Vanilla Aspirations Expanded's aims -->
+  <CC_Life_ModAimDeed>reached an aim of {PAWN_possessive} own: {AIM}</CC_Life_ModAimDeed>
+  <CC_Chronicle_ModAim>{PAWN_nameDef} reached an aim of {PAWN_possessive} own: {AIM}.</CC_Chronicle_ModAim>
+  <CC_Life_ModAimCause>{A_nameDef} reached an aim of {A_possessive} own: {AIM}</CC_Life_ModAimCause>
+  <CC_Life_ModAimCup>{RAISER_nameDef} means to raise a cup to {A_nameDef} at the colony's next gathering, for reaching an aim of {A_possessive} own: {AIM}.</CC_Life_ModAimCup>
+  <CC_Heart_Why_ModAimsMet>their own aims are going well</CC_Heart_Why_ModAimsMet>
+  <CC_Heart_Why_ModAimsUnmet>their own aims are going nowhere</CC_Heart_Why_ModAimsUnmet>
+
+  <!-- A27: the year's first supper -->
+  <CC_Asp_Spark_supper>said aloud at the year's first supper</CC_Asp_Spark_supper>
+  <CC_TieNote_SaidAim>backed {PAWN_nameDef}'s aim for the year: {GOAL}</CC_TieNote_SaidAim>
+  <CC_Life_Supper_ImpactAll>; at the table each with a life goal says it, and anyone without one may choose one there</CC_Life_Supper_ImpactAll>
+  <CC_Life_Supper_ImpactSome>; at the table those with a life goal say it</CC_Life_Supper_ImpactSome>
+  <CC_Year_SupperAims>At the year's first supper, each said what they meant to do with the year.</CC_Year_SupperAims>
+  <CC_Year_SupperAim_Reached>{PAWN_nameDef} said {PAWN_pronoun} would {GOAL}. {PAWN_pronoun} did.</CC_Year_SupperAim_Reached>
+  <CC_Year_SupperAim_StillAt>{PAWN_nameDef} said {PAWN_pronoun} would {GOAL}, and is still at it.</CC_Year_SupperAim_StillAt>
+  <CC_Year_SupperAim_LetGo>{PAWN_nameDef} said {PAWN_pronoun} would {GOAL}. It came to nothing in the end, and nobody holds it against {PAWN_objective}.</CC_Year_SupperAim_LetGo>
+  <CC_Year_SupperAim_Died>{PAWN_nameDef} said {PAWN_pronoun} would {GOAL}, and did not live to see it.</CC_Year_SupperAim_Died>
+
+  <!-- A29: the year read aloud -->
+  <CC_YearOne_OpeningKeeper>On the {ORD} anniversary of the landing, {PAWN_nameDef}, the colony's record keeper by the council's word, has written down its year: its people, the land, and the world beyond.</CC_YearOne_OpeningKeeper>
+  <CC_Life_Read_Joined>This year {NAMES} came to live with us.</CC_Life_Read_Joined>
+  <CC_Life_Read_Died>We lost {NAMES}.</CC_Life_Read_Died>
+  <CC_Life_Read_Built>We finished what we set out to do: {LIST}.</CC_Life_Read_Built>
+  <CC_Life_Read_AimKept>{PAWN_nameDef} said at the first supper that {PAWN_pronoun} would {GOAL}, and {PAWN_pronoun} did.</CC_Life_Read_AimKept>
+  <CC_Life_Read_Name>{PAWN_nameDef} is {NAME} to all of us now.</CC_Life_Read_Name>
+  <CC_Life_Read_Raids>We were attacked {COUNT} times, and we are still here.</CC_Life_Read_Raids>
+  <CC_Life_Read_Raids_One>We were attacked once, and we are still here.</CC_Life_Read_Raids_One>
+  <CC_Life_Read_Raids_Many>We were attacked {COUNT} times, and we are still here.</CC_Life_Read_Raids_Many>
+  <CC_Life_Read_Count>There are {COUNT} of us now.</CC_Life_Read_Count>
+  <CC_Life_Read_Years>That was our {ORD} year here.</CC_Life_Read_Years>
+  <CC_Life_Read_Label>the {ORD} year read aloud</CC_Life_Read_Label>
+  <CC_Life_Read_Planned>{PAWN_nameDef} will read some of the {ORD} year aloud at the table this evening.</CC_Life_Read_Planned>
+  <CC_Life_Read_PlannedAt>{PAWN_nameDef} will read some of the {ORD} year aloud at {LABEL} this evening.</CC_Life_Read_PlannedAt>
+  <CC_Life_RecordKeeper_Impact>{PAWN_nameDef} writes the year letter from now on, and reads some of it aloud on the landing's anniversary</CC_Life_RecordKeeper_Impact>
+  <CC_Life_RecordKeeper_Brief>{PAWN_nameDef} keeps the record</CC_Life_RecordKeeper_Brief>
+  <CC_Life_YearBook_Label>writing up the {ORD} year</CC_Life_YearBook_Label>
+  <CC_Life_YearBook_Title>The {ORD} year</CC_Life_YearBook_Title>
+  <CC_Life_YearBook_Desc>The colony's {ORD} year, written down by {PAWN_nameDef}: who came and who was lost, what was built, and the names the colony uses.</CC_Life_YearBook_Desc>
+  <CC_Life_YearBook_Shelved>{PAWN_nameDef} has written the year up as a {THING}, "{TITLE}", and it is on the colony's shelf.</CC_Life_YearBook_Shelved>
+  <CC_Life_YearBook_Made>{PAWN_nameDef} has written the year up as a {THING}, "{TITLE}". It is by the writer's table until it finds a shelf.</CC_Life_YearBook_Made>
+
+  <!-- A14: an ambition reached, kept on the calendar -->
+  <CC_Cal_Name_Ambition>the day the colony reached {AMBITION}</CC_Cal_Name_Ambition>
+  <CC_Cal_Origin_Ambition>The colony reached its ambition, {AMBITION}, in {YEAR}, {DAYS} days after choosing it. {PAWN} first proposed it.</CC_Cal_Origin_Ambition>
+  <CC_Cal_Origin_AmbitionNoOne>The colony reached its ambition, {AMBITION}, in {YEAR}, {DAYS} days after choosing it.</CC_Cal_Origin_AmbitionNoOne>
+
+</LanguageData>

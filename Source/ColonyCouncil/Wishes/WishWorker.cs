@@ -115,6 +115,19 @@ namespace ColonyCouncil
                 if (Concerns(wish, list[i].def)) yield return list[i];
         }
 
+        /// <summary>
+        /// Just made, before it is told: anything to settle (who signs it with the one who asked: a group's place, A10,
+        /// ColonyLife/GroupPlaces.cs). Not called for a want that joined another's petition.
+        /// </summary>
+        public virtual void OnMade(Wish wish)
+        {
+        }
+
+        /// <summary>Met (granted), whatever kind of wish it is: what follows on the map (a group's first evening at its new place, A10).</summary>
+        public virtual void OnMet(Wish wish)
+        {
+        }
+
         /// <summary>Just granted, before the watch starts: anything to remember (which animal is the new pet).</summary>
         public virtual void OnGranted(Wish wish)
         {

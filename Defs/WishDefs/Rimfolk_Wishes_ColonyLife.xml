@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A10: a place for the group (Source/ColonyCouncil/ColonyLife/GroupPlaces.cs). The anchor of a close group asks the council
+    for the place its habit needs, and everyone of the group at home signs it: the fireside a fire pit with seats round it,
+    the readers a bookcase with a chair by it, the game night a game table, the musicians an instrument, the faithful a
+    shrine. Its request lines are tagged by the place ([place:fire], [place:books], [place:games], [place:music],
+    [place:shrine]). {SUBJECT} is the group's name, {THING} what the colony can build for it ("a campfire").
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_GroupPlace</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a place for {SUBJECT}</label>
+    <description>A close group wants a place of its own for what it does together: a fire pit with seats, a bookcase with a chair, a game table, an instrument or a shrine. Its anchor asks, and the rest of the group at home signs it.</description>
+    <workerClass>ColonyCouncil.WishWorker_GroupPlace</workerClass>
+    <category>Social</category>
+    <weight>1.4</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_GroupPlace</grantedThought>
+    <envy>0.1</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <request>
+      <plain>
+        <li>[place:fire] Every evening we drag the same four stools out to the same cold ashes. A proper fire pit would do, and we'd keep it lit.</li>
+        <li>[place:fire] {SUBJECT} sit out by a patch of scorched ground most nights. Give us {THING} and a few seats round it, and we'll stop borrowing the kitchen's.</li>
+        <li>[place:fire] We keep a fire of an evening, or we try to. Half the time it's three sticks and a lot of smoke. We'd like a real one.</li>
+        <li>[place:books] We pass the same four books between us and read them sitting on the floor. A shelf and a chair would do a lot of good.</li>
+        <li>[place:books] {SUBJECT} read every evening, wherever there's a lamp. Build us {THING} and a chair beside it, and we'll keep it tidy.</li>
+        <li>[place:books] The books live under somebody's bed at the moment. They deserve better, and so do we.</li>
+        <li>[place:games] We've been playing on a board scratched into a crate lid. {THING} would settle a lot of arguments about whose turn it was.</li>
+        <li>[place:games] {SUBJECT} have a game night whether there's a table or not. There usually isn't. Could there be?</li>
+        <li>[place:games] We play with pebbles on the floor of the storeroom, and lose half the pieces every time. We'd like {THING}.</li>
+        <li>[place:music] We sing well enough, but there's nothing to keep the tune. {THING} would give us something to sing along to.</li>
+        <li>[place:music] {SUBJECT} have been drumming on the table for weeks. We'd like a proper instrument before somebody breaks the table.</li>
+        <li>[place:music] Some of us can play, if there was anything here to play on. Could the colony build {THING}?</li>
+        <li>[place:shrine] We say our prayers behind the barn, out of the wind. We'd like a shrine, somewhere that's meant for it.</li>
+        <li>[place:shrine] {SUBJECT} pray together most evenings, in whatever corner is empty. A shrine would give us a place to go.</li>
+        <li>[place:shrine] We'd like {THING}, a quiet place set aside, so that praying isn't something we do in between other things.</li>
+      </plain>
+      <warm>
+        <li>[place:fire] It's the best part of the day, sitting round the fire together. We'd just like a fire worth sitting round.</li>
+        <li>[place:books] Reading together is what keeps us going after a long day. A place for it would mean a lot.</li>
+        <li>[place:games] The game night is when everyone laughs. A table of our own would make it easier to keep going.</li>
+        <li>[place:music] When we sing, the whole colony stops to listen. An instrument would make it better for everyone.</li>
+        <li>[place:shrine] We'd like somewhere to pray together, and anyone else would be welcome there too.</li>
+      </warm>
+      <blunt>
+        <li>[place:fire] We need a fire pit and some seats. Nothing fancy.</li>
+        <li>[place:books] A bookcase and a chair. That's all we're asking.</li>
+        <li>[place:games] Build us a game table. The crate lid is warped.</li>
+        <li>[place:music] Get us an instrument. We'll do the rest.</li>
+        <li>[place:shrine] We want a shrine. A real one.</li>
+      </blunt>
+      <cheerful>
+        <li>[place:fire] Picture it: a proper fire, everyone round it, somebody telling a story. Can we have that?</li>
+        <li>[place:games] A game table! We'd play every night, and we'd let you win sometimes.</li>
+        <li>[place:music] An instrument! We've already picked out the first song.</li>
+      </cheerful>
+      <gloomy>
+        <li>[place:fire] Most nights the fire won't catch, and we sit in the dark anyway. A fire pit would help.</li>
+        <li>[place:books] We read on the floor in the cold. It would be nice not to.</li>
+        <li>[place:shrine] We pray in a draughty corner, and it doesn't feel like anyone hears.</li>
+      </gloomy>
+      <cold>
+        <li>[place:fire] A fire pit with seats would save the wood we waste lighting new fires on bare ground.</li>
+        <li>[place:books] The books would last longer on a shelf. So would our backs, in a chair.</li>
+        <li>[place:games] A game table would stop the pieces being lost every week. It's a sensible thing to build.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A place of our own. We'll be there tonight.</li>
+        <li>Thank you. Everyone in the group has already been to look at it.</li>
+        <li>[promised] The council said it would, and it did. We'll put it to good use.</li>
+      </plain>
+      <warm>
+        <li>Thank you, from all of us. It already feels like ours.</li>
+      </warm>
+      <blunt>
+        <li>Good. We'll use it.</li>
+      </blunt>
+      <cheerful>
+        <li>It's perfect! We're having our first evening there tonight.</li>
+      </cheerful>
+      <gloomy>
+        <li>I didn't think it would happen. Thank you.</li>
+      </gloomy>
+      <cold>
+        <li>It will do nicely. The group thanks the council.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>We'll keep meeting where we always have. It's not so bad.</li>
+        <li>No place for us, then. We'll manage.</li>
+      </plain>
+      <gloomy>
+        <li>Nobody thought it mattered. We'll sit on the floor again.</li>
+      </gloomy>
+      <blunt>
+        <li>Fine. Same cold corner as before.</li>
+      </blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>
