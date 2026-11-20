@@ -242,6 +242,7 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Collections.Look(ref last, "last", LookMode.Value);
             ExposeSeven();
+            ExposeBetween();
             Scribe_References.Look(ref lookBy, "lookBy");
             Scribe_Values.Look(ref lookAt, "lookAt", IntVec3.Invalid);
             Scribe_Values.Look(ref lookTag, "lookTag");
@@ -881,6 +882,8 @@ namespace ColonyCouncil
             b.felledSinceTree++;
             // Counted for Hollin's next Greening: a sapling for each (Gods/OnMap/OwnFeasts.cs).
             OwnFeasts.Felled(b);
+            // Counted for the one who felled it: the brambles round their stump (Gods/OnMap/Between/BetweenHollin.cs).
+            HollinStumps.Felled(b, plant, by);
         }
 
         /// <summary>One of the game's events happened at a home (Patch_OwnEventHappened): thrumbos passing.</summary>
