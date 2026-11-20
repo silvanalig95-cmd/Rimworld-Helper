@@ -339,7 +339,7 @@ namespace ColonyCouncil
                 if (s?.def == null || WorldHomeMath.GreatGods(s.def.defName).Length == 0) continue;
                 if (WorldHomeMath.GreatPast(s.Has(Flag), s.DaysIn))
                 {
-                    s.Set(Flag);
+                    if (!s.Has(Flag)) s.Set(Flag);
                     continue;
                 }
                 var map = s.ctx?.map != null && Homes.IsHome(s.ctx.map) ? s.ctx.map : Homes.Seat;

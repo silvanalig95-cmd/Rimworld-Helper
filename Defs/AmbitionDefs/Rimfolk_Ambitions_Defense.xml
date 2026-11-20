@@ -60,6 +60,11 @@
         <li>The way in is ours now.</li>
       </cold>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the way in was held</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>{B_nameDef} walks the way in at dusk</label><target>Colony</target><organizer>B</organizer><count>3</count><route>bounds</route><hours>16~19</hours><duration>1~1.5</duration><lines><li>This is the only way in now.</li><li>They'd have to come through here.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

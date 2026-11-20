@@ -121,6 +121,8 @@ namespace ColonyCouncil
             {
                 Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
                 Moment(tags, ctx.map ?? ctx.a?.MapHeld, ctx.a, ctx.stranger);
+                // The seat whose work it is has its holder in the question: [seat], and [seat:Reeve] for which (Offices/SeatCalls.cs).
+                SeatCalls.AddTags(ctx, tags);
                 try
                 {
                     ctx.def?.Worker?.AddTags(ctx, tags);

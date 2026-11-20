@@ -60,6 +60,8 @@ namespace ColonyCouncil
             // The new plays' own: a watch on the walls, a gift or a stash burned, rounds outdoors, the pyre or the tree line.
             if (p.patrol) tags.Add("walls");
             if (!p.mode.NullOrEmpty() && (p.kind == PlayKind.Give || p.kind == PlayKind.Rounds || p.kind == PlayKind.Haul)) tags.Add(p.mode);
+            // A round from stop to stop: its kind (bounds, hives; a seat's stores or fields: Interplay/Interplay_Seats.cs).
+            if (p.kind == PlayKind.Procession && PlayRoutes.Known(p.mode)) tags.Add(p.mode);
             return tags.ToArray();
         }
 
@@ -105,6 +107,8 @@ namespace ColonyCouncil
         {
             string label = (p.label ?? "").CapitalizeFirst();
             string names = Names(p.hands.Select(h => h.pawn).ToList());
+            // A seat's own round or walk: one person at their work (Interplay/Interplay_Seats.cs).
+            if (Interplay.IsSeatWork(p)) return Interplay.SeatBeginText(p, names, where);
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return "CC_Play_Begin_WorkParty".Translate(label, names, TaskWords(p)).Resolve();
@@ -122,7 +126,7 @@ namespace ColonyCouncil
                     if (p.mode == PlayGive.Fetch) return "CC_Play_Begin_Fetch".Translate(label, names, what, (p.other?.LabelShort ?? "").Named("OTHER")).Resolve();
                     return "CC_Play_Begin_Give".Translate(label, names, what, where ?? p.other?.LabelShort ?? "").Resolve();
                 }
-                case PlayKind.Rounds: return "CC_Play_Begin_Rounds".Translate(label, names, where ?? "").Resolve();
+                case PlayKind.Rounds: return (p.mode == PlayRounds.Herd ? "CC_Play_Begin_RoundsHerd" : "CC_Play_Begin_Rounds").Translate(label, names, where ?? "").Resolve();
                 case PlayKind.Haul:
                     if (PetGrave.Is(p)) return "CC_Play_Begin_PetGrave".Translate(label, names, where ?? "").Resolve();
                     return "CC_Play_Begin_Haul".Translate(label, names, p.things.Count, where ?? "").Resolve();
@@ -136,7 +140,8 @@ namespace ColonyCouncil
             try
             {
                 var lead = Lead(p);
-                string pool = Pool(p, Invitation);
+                // A seat sets off on its own work alone: its own word, not a call to the others (Interplay/Interplay_Seats.cs).
+                string pool = p.seat ? "Rimfolk_Pool_SeatSetsOff" : Pool(p, Invitation);
                 if (lead == null || pool == null) return;
                 string line = Flavor.FromPool(pool, lead, null, null, Tags(p, lead));
                 // together: said by whoever leads it as it sets off, to no one in particular; the others are on their way to them.
@@ -184,7 +189,8 @@ namespace ColonyCouncil
         public static void After(PlayOut p, List<Pawn> took)
         {
             var journals = CouncilGameComponent.Instance?.journals;
-            string pool = Pool(p, Afterwards);
+            // A seat's own work is told in the news; it is no walk together to write up.
+            string pool = p.seat ? null : Pool(p, Afterwards);
             if (journals == null || pool == null || took.NullOrEmpty()) return;
             try
             {
@@ -287,7 +293,7 @@ namespace ColonyCouncil
                     return to != null ? "CC_Play_End_Give".Translate(gn, carried ?? "", to.LabelShort).Resolve() : "CC_Play_End".Translate(label).Resolve();
                 }
                 case PlayKind.Rounds:
-                    return "CC_Play_End_Rounds".Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
+                    return (p.mode == PlayRounds.Herd ? "CC_Play_End_RoundsHerd" : "CC_Play_End_Rounds").Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
                 case PlayKind.Haul:
                     return ("CC_Play_End_Haul_" + PlayHaul.Key(p.mode)).Translate(label, names, p.tally).Resolve();
                 default: return "CC_Play_End".Translate(label).Resolve();

@@ -152,7 +152,7 @@ namespace ColonyCouncil
                 {
                     var g = Gods.All.FirstOrDefault(x => x != null && x.kind != GodKind.Dead);
                     string god = kind == ArtTales.Festival || kind == ArtTales.FestivalBeast ? g == null ? null : Festivals.Name(g) : ArtTales.GodWords(g, p.Map);
-                    string what = kind == ArtTales.LineHeld ? "the north line" : kind == ArtTales.OfferingTaken ? "a carved figure" : null;
+                    string what = kind == ArtTales.LineHeld ? "the north line" : kind == ArtTales.OfferingTaken ? "a carved figure" : kind == ArtTales.SeasonTaken ? "the winter of the long cold" : null;
                     if (ArtTales.Record(kind, p, beast, god, what) != null) n++;
                 }
             }

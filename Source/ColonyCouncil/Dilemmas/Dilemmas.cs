@@ -68,6 +68,16 @@ namespace ColonyCouncil
         /// council question the world brings home (World/Home/WorldQuestions.cs). Empty: any time.
         /// </summary>
         public List<string> situations;
+        /// <summary>
+        /// The seat whose work the question is about (the content update's A2): its holder at home, when there is one and
+        /// they are neither A nor B, is named in it ({HOLDER_...}, {OFFICE} the seat in the colony's age, lines tagged
+        /// [seat]) and speaks in the opening and the outcome; their answer counts toward the seat's record
+        /// (Offices/SeatCalls.cs). A seasonal custom is the keeper of days' without saying so.
+        /// </summary>
+        public OfficeDef seat;
+
+        /// <summary>The seat whose work it is: the def's own, or the keeper of days' for a seasonal custom.</summary>
+        public OfficeDef SeatOffice => seat ?? (DilemmaTracker.IsSeasonalCustom(this) ? DefDatabase<OfficeDef>.GetNamedSilentFail(Interplay.Keeper) : null);
 
         [Unsaved] private DilemmaWorker worker;
 
@@ -283,6 +293,11 @@ namespace ColonyCouncil
         public SkillDef skill;
         /// <summary>Someone who isn't a colonist: a visitor, trader, prisoner, fallen enemy, pet or wild animal ({X_...}).</summary>
         public Pawn stranger;
+        /// <summary>
+        /// The holder of the seat whose work the question is about ({HOLDER_...}; {OFFICE} is the seat), when they are at
+        /// home and neither A nor B (DilemmaDef.seat, Offices/SeatCalls.cs); null otherwise.
+        /// </summary>
+        public Pawn holder;
         public string text;
         /// <summary>Outside dilemmas (social events, dreams): what to call the cause in trust logs.</summary>
         [Unsaved] public string why;
@@ -306,11 +321,17 @@ namespace ColonyCouncil
                 (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET"),
                 (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK"),
                 LifeChecks.IllnessLabel(a).Named("ILLNESS"),
-                LifeChecks.IllnessLabel(stranger).Named("THEIRILLNESS")
+                LifeChecks.IllnessLabel(stranger).Named("THEIRILLNESS"),
+                // The seat whose work it is, and its holder (lines tagged [seat] only come with one).
+                (holder ?? b ?? a) is Pawn h ? h.Named("HOLDER") : "?".Named("HOLDER"),
+                (SeatName ?? "").Named("OFFICE")
             };
             AddArgs(args);
             return s.Formatted(args.ToArray()).Resolve();
         }
+
+        /// <summary>{OFFICE}: the seat whose work the question is about, in the colony's age (Offices/SeatCalls.cs).</summary>
+        public virtual string SeatName => def?.SeatOffice?.Name ?? "";
 
         /// <summary>What {SKILL} says (world events use a noun: "growing" rather than "plants").</summary>
         public virtual string SkillText => skill?.label ?? "";
@@ -335,6 +356,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pet, "pet");
             Scribe_Defs.Look(ref skill, "skill");
             Scribe_References.Look(ref stranger, "stranger");
+            Scribe_References.Look(ref holder, "holder");
             Scribe_Values.Look(ref text, "text");
         }
     }
@@ -1338,12 +1360,15 @@ namespace ColonyCouncil
         {
             // Lines may be tagged for the moment and the people in it ([winter], [trait:Kind], [b:past:healer]...), and
             // a custom's for how often it was kept before ([again], [years], [tradition], [missed]); not the text it
-            // had lately while another fits.
+            // had lately while another fits. The seat whose work it is speaks in it ([seat], Offices/SeatCalls.cs).
+            ctx.holder = SeatCalls.HolderFor(ctx);
             var tags = LetterTags.For(ctx);
             AddCustomTags(ctx.def, tags);
             ctx.text = Flavor.PickFresh(ctx.def.texts, tags, ctx.def.texts) ?? Flavor.PickText(ctx.def.texts);
+            // A question with no opening of its own for the seat has the holder's word after it.
+            if (ctx.holder != null && !SeatCalls.OwnWords(ctx.def.texts, tags)) ctx.text = SeatCalls.WithWord(ctx.text, ctx, tags);
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
-            var look = new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null));
+            var look = new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger, ctx.holder }.Where(p => p != null));
             string tradition = IsTradition(ctx.def)
                 ? "\n\n" + "CC_Tradition_Note".Translate(ctx.def.traditionLabel, ctx.Format(ctx.def.options[ctx.def.traditionOption].label)).Resolve()
                 : "";
@@ -1399,6 +1424,8 @@ namespace ColonyCouncil
             // answers' log, which the chronicle shows with what came of it (Dilemmas/Answers.cs).
             DilemmaLog.Record(ctx, option, told, risk, byDefault, impact, impactHint, impactFlavour);
             Answers.Record("dilemma", ctx.def.LabelCap, ctx.Format(option.label), told, ctx.a, ctx.faction, ctx.map, byDefault, risk, plays: plays);
+            // The seat whose work it was spoke in it: it counts toward the seat's record, and is the holder's hard call (Offices/SeatCalls.cs).
+            SeatCalls.Answered(ctx);
             // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
             {
@@ -1406,7 +1433,7 @@ namespace ColonyCouncil
                 Tell.Message(NewsKind.Colony, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
             }
             // The letter's text is already written; let go of the people and places so old saves don't hold them.
-            ctx.a = ctx.b = ctx.pet = ctx.stranger = null;
+            ctx.a = ctx.b = ctx.pet = ctx.stranger = ctx.holder = null;
             ctx.map = null;
             ctx.faction = null;
         }

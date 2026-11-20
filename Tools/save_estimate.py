@@ -267,6 +267,8 @@ MODEL = {
     # Offices, epithets
     "Offices/Offices.cs:holders": ("defs", ("OfficeDef", 1), D, "one per office"),
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
+    # Promises raised at the council halfway through (Offices/SeatHalfway.cs): their history ids, the newest kept.
+    "Offices/Offices.cs:raised": ("fixed", const("Offices/SeatHalfway.cs", "MaxRaised", 12), V, "promises raised halfway, OfficeTracker.MaxRaised at most"),
     # An election on the map (Offices/OfficesElection.cs): only from its letter to the count, a few days a year.
     "Offices/Election.cs:races": ("while", 14, 200, "an election's seats, while it lasts"),
     "Offices/Election.cs:entries": ("while", 14 * 3, 260, "two or three candidates a seat, with their platform, while it lasts"),
@@ -455,6 +457,8 @@ MODEL = {
     "Happenings/Happenings.cs:regulars": ("fixed", 5, R, "visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away"),
     "Animals/HerdStory.cs:lineIds": ("fixed", 60, V, "animals of the herd leader's line (ids), the newest 60 (HerdStory.LineMax)"),
     "Animals/HerdStory.cs:lineGens": ("fixed", 60, V, "their generations, beside the ids"),
+    "Animals/HerdStory.cs:sellIds": ("while", const("Animals/HerdStoryMath.cs", "MaxSell", 8), V,
+                                     "the yearlings the council chose to sell at the autumn count (ids), HerdStoryMath.MaxSell at most, until sold or a season"),
     "Animals/ResidentBeast.cs:knownIds": ("fixed", 20, V, "wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax)"),
     "Camps/Camp.cs:felled": ("while", 60, 30, "where their work was these two days (trees felled, rock mined, plants gathered), during one stay"),
     "Camps/Camp.cs:felledTicks": ("while", 60, V, "with the above"),
@@ -1218,6 +1222,14 @@ MODEL = {
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:moods": ("fixed", 4, 120, "per play-out"),
+    # Colony life's integrations, part 2 (ColonyLife/LifeBook.cs): try-outs, readings, the year's aims and works
+    "ColonyLife/LifeBook.cs:tryOuts": ("while", 2, 250, "a wished-for thing waiting to be tried out (A12), gone within a day; LifeBook.MaxTryOuts at most"),
+    "ColonyLife/LifeBook.cs:readings": ("while", 1, 500, "lines to be said at a gathering under way (A27, A29), dropped when it's over; LifeBook.MaxReadings at most"),
+    "ColonyLife/LifeBook.cs:aims": ("cap", (const("ColonyLife/LifeBook.cs", "MaxAims", 30), 0.3), 180, "aims said at the year's first supper, the newest LifeBook.MaxAims (A27)"),
+    "ColonyLife/LifeBook.cs:built": ("cap", (const("ColonyLife/LifeBook.cs", "MaxBuilt", 12), 0.1), 40, "ambitions reached since the year was last read aloud, cleared then; LifeBook.MaxBuilt at most (A14, A29)"),
+    "ColonyLife/Readings.cs:lines": ("fixed", 5, 120, "per reading: the year's lines, five at most (counted under readings)"),
+    "ColonyLife/Readings.cs:spoke": ("fixed", 8, 40, "per reading: who has had their turn at the supper (counted under readings)"),
+    "ColonyLife/Readings.cs:said": ("fixed", 8, 40, "per reading: who said their aim (counted under readings)"),
     "PlayOut/PlayOuts.cs:led": ("fixed", 1, P, "per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only"),
     "PlayOut/PlayOuts.cs:risks": ("fixed", 1, 120, "per play-out: an answer's fight or walk-out held for the scene, one or two at most"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),

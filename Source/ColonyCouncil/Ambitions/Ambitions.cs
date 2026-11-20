@@ -28,6 +28,14 @@ namespace ColonyCouncil
         /// </summary>
         public List<DilemmaEffect> achievedEffects;
         /// <summary>
+        /// The seat whose holder leads what reaching it sets going, when there is one at home (an OfficeDef's name: the
+        /// physician shows the colony round a hospital, the marshal walks the walls): B in <see cref="achievedEffects"/>, the
+        /// one who proposed it otherwise (A14, ColonyLife/AmbitionScenes.cs).
+        /// </summary>
+        public string sceneOffice;
+        /// <summary>The name of the day it was reached, on the colony calendar ("the day the hall was finished"; A14).</summary>
+        [MustTranslate] public string dayLabel;
+        /// <summary>
         /// The goals are stages, reached one after another: only the current one counts, and each one reached stays
         /// reached. A goal that counts new work starts counting when its stage begins.
         /// </summary>
@@ -857,6 +865,13 @@ namespace ColonyCouncil
                 string heckle = Heckle(m.attendees, m.pitches);
                 if (!heckle.NullOrEmpty()) sb.AppendLine(heckle);
             }
+            // Any other business: the petitions read out at the meeting, and how the room took them (MeetingBusiness.cs).
+            string business = gathered ? MeetingBusiness.LetterParagraph(m) : null;
+            if (!business.NullOrEmpty())
+            {
+                sb.AppendLine();
+                sb.AppendLine(business);
+            }
             sb.AppendLine();
             var fav = m.Favorite;
             if (m.attendees.Count > 1 && fav != null)
@@ -1011,6 +1026,14 @@ namespace ColonyCouncil
             else CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, put));
         }
 
+        /// <summary>Dev mode (ColonyLife/LifeDebug.cs): the ambition under way is reached now, as if its goals were met.</summary>
+        internal bool DebugReach(CouncilGameComponent comp)
+        {
+            if (active == null || comp == null) return false;
+            Complete(comp);
+            return true;
+        }
+
         private void Complete(CouncilGameComponent comp)
         {
             // Reaching an ambition that was mostly done when it was chosen is worth less than one built from scratch.
@@ -1035,17 +1058,21 @@ namespace ColonyCouncil
                 if (insp != null && !h.Inspired) h.TryStartInspiration(insp, "CC_Ambition_Inspired".Translate(a.proposer.Named("PAWN")).Resolve());
             }
             string line = a.proposer != null ? (a.def.achieved.Pick(ToneUtility.ToneFor(a.proposer), null, a.proposer) ?? "").Formatted(a.proposer.Named("PAWN")).Resolve() : "";
-            string text = "CC_Ambition_AchievedText".Translate(a.def.label, ((Find.TickManager.TicksGame - a.startTick) / (float)GenDate.TicksPerDay).ToString("0.#")).Resolve();
+            float daysTaken = (Find.TickManager.TicksGame - a.startTick) / (float)GenDate.TicksPerDay;
+            string text = "CC_Ambition_AchievedText".Translate(a.def.label, daysTaken.ToString("0.#")).Resolve();
             if (!line.NullOrEmpty()) text = "\"" + line + "\"\n\n" + text;
+            // What was built, seen on the map: a scene of it led by the one who proposed it (or the seat whose work it is), its
+            // day on the colony calendar, and the year's reading (A14, ColonyLife/AmbitionScenes.cs).
+            var piece = AmbitionScenes.Showpiece(a, map);
+            string planned = AmbitionScenes.Run(a, map, piece);
+            if (!planned.NullOrEmpty()) text += "\n\n" + planned;
+            AmbitionScenes.Remember(a, map, piece, effort, daysTaken);
             Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
             if (a.proposer != null) CouncilGameComponent.Speak(a.proposer, line, new Color(0.6f, 1f, 0.6f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
             Deeds.GreatWork(a.proposer, a.def.label, map);
             nextMeetingTick = Mathf.Max(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 3);
-            if (!a.def.achievedEffects.NullOrEmpty() && PlayOuts.On && map != null)
-                PlayOuts.Run(a.def.achievedEffects, new DilemmaContext { map = map, a = a.proposer != null && !a.proposer.Dead ? a.proposer : null, why = a.def.LabelCap },
-                    "ambition " + a.def.defName);
         }
 
         private void Fail(CouncilGameComponent comp)

@@ -403,7 +403,8 @@ namespace ColonyCouncil
             else
                 News.Post(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
 
-            Speak(who, thanks, SpeechGood);
+            // The thanks are said where the wished-for thing is, when they go to try it out (A12, ColonyLife/TryOuts.cs); else here and now.
+            if (!TryOuts.Begin(w, who, thanks)) Speak(who, thanks, SpeechGood);
             if (!partOf)
                 AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted, everyone != null
                     ? "CC_Chronicle_PetitionGranted".Translate(everyone, w.LabelInline).Resolve()
@@ -414,6 +415,7 @@ namespace ColonyCouncil
             SetCooldown(who, w.def);
             w.state = WishState.Granted;
             Setbacks.Tracker?.Notify_Granted(w);
+            Safe("wish met", () => w.Worker.OnMet(w));
             // A lasting wish (a bed, a room, a telescope) is watched for a while: taking it away again is noticed.
             Safe("promises kept", () => kept.Notify_Granted(this, w));
             // The ambition of the colony that asked.

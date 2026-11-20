@@ -5,6 +5,40 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wishes, aims and the year
+
+*20 November 2026, version 0.279.2*
+
+- Every council project reached now shows on the map, led by the one who proposed it or the seat whose work it is, and its day goes on the colony calendar.
+- A close group asks the council for a place of its own (a fire pit with seats, a bookcase, a game table, an instrument, a shrine) and is called there once it is built.
+- A wished-for chair, bed, heater or room is tried out in the colonist's free time, and the thanks are said there.
+- A wish many can back finds backers in conversation: a listener who wants the same joins it there and then.
+- The year's first supper, a new custom: each says their aim for the year, and the year letter reads it back.
+- The year letter is read aloud at the table on the founding day; a record keeper writes it, and with Vanilla Books Expanded it becomes a book on the shelf.
+- Aims reached from Vanilla Aspirations Expanded are toasted at the next gathering and told round the colony.
+
+## The land and its life
+
+*20 November 2026, version 0.279.1*
+
+- After an earthquake, a tornado, a flashstorm, hail or a flood, the best builder or grower and a few others clear up and repair, and the year's annals count the disasters.
+- The advisor's firewood, winter stores and herd notes now say how long last winter's cold lasted here, set against how long the stores will last.
+- Each autumn the herdmaster walks the pens and counts the herd, and the council decides what to keep through the winter: keep them all, sell the yearlings, or slaughter a few of the oldest.
+- The colony's animals are counted at the defense lines, with the enemies they brought down and a lesson when too many of them fall.
+- A defense line's card and the raid's first message say how much fog, rain or snow takes off every shot in the open, for both sides.
+- Someone with a cold or a cough may be brought tea, hot cocoa or honey from the stores, and gets over it a little sooner.
+- New Almanac pages for five of your mods, and the colony's art can now show a season someone took for a god's doing.
+
+## The council at its work
+
+*20 November 2026, version 0.279.0*
+
+- The speaker, the quartermaster, the reeve and the marshal are seen at their work: an hour with whoever trusts the council least, a weekly count of the stores at dawn, a walk round the fields marking blight, and a walk on the walls at dusk after an attack.
+- Council questions about a seat's work now name the seat's holder, who has a say in the letter and sometimes the outcome; each one answered counts toward their record at the next election.
+- A promise going badly halfway through the year is raised at the council by someone who stood against the holder: give them a hand with the work, have them answer for it at supper, or leave it to the vote.
+- At the seasonal meeting the open petitions are read out after the ambitions, and how the room took them shows on the Decrees page, in This week and in the meeting's letter.
+- The weight of office now waits for a real hard call and names it; with none in twenty days the story ends quietly.
+
 ## Festivals kept, beasts held sacred
 
 *20 November 2026, version 0.278.1*

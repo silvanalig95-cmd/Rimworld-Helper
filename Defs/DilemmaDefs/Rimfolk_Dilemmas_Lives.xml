@@ -438,6 +438,8 @@
   <!-- ===================== Won't see the doctor ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderDoctor</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
     <label>won't see the doctor</label>
     <weight>1.2</weight>
     <cooldownDays>40</cooldownDays>
@@ -772,6 +774,7 @@
         <ways><openness>2</openness><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_RecordKeeper</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RecordKeeper" />
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
         </effects>

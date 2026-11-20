@@ -45,6 +45,11 @@
       <gloomy><li>We won, and it doesn't feel like winning.</li></gloomy>
       <cold><li>Threat removed. Their stores should cover what the trip cost us.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the score was settled</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the fire for the score settled</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -86,6 +91,10 @@
       <cheerful><li>We're famous, sort of! A traveler knew the cook's name.</li></cheerful>
       <cold><li>People know our name now. That counts in every bargain we make.</li></cold>
     </achieved>
+    <dayLabel>the day the colony made its name</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the colony's name</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

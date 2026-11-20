@@ -388,6 +388,8 @@ namespace ColonyCouncil
             ExposeWelcome();
             // The record of the start, while another landing site is offered (Colonies/LandingRecord.cs).
             ExposeLanding();
+            // Colony life's try-outs, readings, the year's aims and the record keeper (ColonyLife/LifeBook.cs).
+            ExposeLife();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
@@ -609,6 +611,8 @@ namespace ColonyCouncil
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
             Safe("habit bubbles", HabitBubbles.Hourly);
+            // A cup for one who is ill (Immersion/SickCup.cs).
+            Safe("a cup for the sick", SickCup.Hourly);
         }
 
         private void HourlyPeople()
@@ -1038,6 +1042,7 @@ namespace ColonyCouncil
                 return w;
             }
             wishes.Add(w);
+            Safe("wish made", () => w.Worker.OnMade(w));
 
             AnnounceNewWish(w);
             Safe("objection", () => MaybeObject(w));

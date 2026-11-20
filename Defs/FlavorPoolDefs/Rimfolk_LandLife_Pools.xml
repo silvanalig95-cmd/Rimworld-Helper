@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The land and its life (docs/content-update-proposals.md, C21, C22, C24): what is said as a cup is handed to someone
+    ill (Immersion/SickCup.cs; tags: tea, cocoa, honey), what the one counting the herd says on the round of the pens
+    (Animals/HerdCount.cs), and what the person of an animal that brought a raider down at a defense line writes
+    (Defense/DefenseLinesWatch.cs; {PET} the animal, {LINE} the line's name). Plain words; the spoken lines are one
+    sentence each.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SickCup</defName>
+    <lines>
+      <plain>
+        <li>[!honey] I brought you something hot, {OTHER_nameDef}.</li>
+        <li>[!honey] Drink this while it's hot, it should help your throat.</li>
+        <li>[!honey] You sound awful, so I made you something hot.</li>
+        <li>Here, sit up a moment and drink this.</li>
+        <li>[tea] It's {DRINK}, breathe in the steam before you drink it.</li>
+        <li>[tea] A cup of {DRINK}, it should ease the cough a little.</li>
+        <li>[cocoa] Hot cocoa, drink it slowly while it's warm.</li>
+        <li>[honey] A spoonful of honey will soothe that throat.</li>
+        <li>[honey] Honey for your throat, take it slowly.</li>
+      </plain>
+      <warm><li>I hate seeing you ill, so drink this and rest.</li></warm>
+      <blunt><li>Drink it, you'll feel better.</li></blunt>
+      <cheerful><li>[!honey] Something warm for the patient, drink up.</li></cheerful>
+      <gloomy><li>It won't cure you, but it might help a little.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HerdCount</defName>
+    <lines>
+      <plain>
+        <li>Hold still, I'm counting you.</li>
+        <li>That's this pen done, on to the next.</li>
+        <li>This one has filled out since spring.</li>
+        <li>Good teeth and a good coat on this one.</li>
+        <li>Easy now, I only want a look at you.</li>
+        <li>Count them twice, the old herders used to say.</li>
+        <li>[winter|fall] You'll want a thick coat for the winter.</li>
+      </plain>
+      <warm><li>There you are, I was hoping to see you.</li></warm>
+      <blunt><li>Stand still and let me count.</li></blunt>
+      <cheerful><li>Look at you all, a fine herd this year.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_AnimalAtLine</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} went for the raiders at {LINE} and brought one of them down.</li>
+        <li>{PET_nameDef} fought at {LINE} today and brought down at least one of them.</li>
+        <li>{PET_nameDef} gets the best of supper tonight, after what it did at {LINE}.</li>
+        <li>I didn't know {PET_nameDef} had it in it, but it held its own at {LINE}.</li>
+        <li>After the fight at {LINE} I checked {PET_nameDef} over from nose to tail.</li>
+        <li>{PET_nameDef} was in the thick of the fight at {LINE}, and came out of it standing.</li>
+      </plain>
+      <warm><li>{PET_nameDef} came back to me after the fight at {LINE}, muddy and pleased with itself. I was so glad to see it.</li></warm>
+      <blunt><li>{PET_nameDef} brought down a raider at {LINE}. Good animal.</li></blunt>
+      <gloomy><li>{PET_nameDef} fought at {LINE} today. Next time it might not come back, and I keep thinking about that.</li></gloomy>
+      <cold><li>{PET_nameDef} did its job at {LINE}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

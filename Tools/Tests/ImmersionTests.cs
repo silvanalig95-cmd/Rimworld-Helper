@@ -30,6 +30,8 @@ public static class ImmersionTests
         // The gods among the colony's people (Gods/Among/).
         "Rimfolk_Pool_GodsAmong_Fisher", "Rimfolk_Pool_GodsAmong_Keeper", "Rimfolk_Pool_GodsAmong_RaiderCry", "Rimfolk_Pool_GodsAmong_Grave", "Rimfolk_Pool_GodsAmong_Season",
         "Rimfolk_Pool_GodsAmong_Midwinter",
+        // The land and its life: a cup for the sick, the autumn count of the herd (Immersion/SickCup.cs, Animals/HerdCount.cs).
+        "Rimfolk_Pool_SickCup", "Rimfolk_Pool_HerdCount",
         // The region's great events taken for a god's doing (World/Home/WorldHome.cs, GreatTaken).
         "Rimfolk_Pool_WorldHome_Great",
         // The family's days together (Social/FamilyBonds.cs).
@@ -124,6 +126,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_SparBegin", "Rimfolk_Pool_SparHit", "Rimfolk_Pool_SparSorry", "Rimfolk_Pool_SparEnd", "Rimfolk_Pool_DareBegin", "Rimfolk_Pool_DareDone",
         "Rimfolk_Pool_DareHurt", "Rimfolk_Pool_DareTalkedOut", "Rimfolk_Pool_DareCall", "Rimfolk_Pool_MarshalWord", "Rimfolk_Pool_CowardBreaks",
         "Rimfolk_Pool_FuryBreaks",
+        // The council's seats at their work, a holder answering for a promise at supper, and any other business at the meeting
+        // (Interplay/Interplay_Seats.cs, Offices/SeatHalfway.cs, Ambitions/MeetingBusiness.cs).
+        "Rimfolk_Pool_SeatHeardSays", "Rimfolk_Pool_SeatHearReply", "Rimfolk_Pool_SeatCountShort", "Rimfolk_Pool_SeatBlight", "Rimfolk_Pool_SeatOnWatch",
+        "Rimfolk_Pool_SeatSupper", "Rimfolk_Pool_SeatSetsOff", "Rimfolk_Pool_SeatAtWork", "Rimfolk_Pool_MeetingPetition", "Rimfolk_Pool_MeetingPetitionFor", "Rimfolk_Pool_MeetingAye", "Rimfolk_Pool_MeetingNay",
         // Harm, part 7 (Harm/Tempers.cs, GateTroubles.cs, Stories.cs): tempers in the colony, visitors and outsiders, personal
         // stories, said by those they happen to and those who step in.
         "Rimfolk_Pool_SitDownBlows", "Rimfolk_Pool_PeacemakerBetween", "Rimfolk_Pool_SpeakerWords", "Rimfolk_Pool_SpeakerCalms", "Rimfolk_Pool_PeacemakerWord",
@@ -223,6 +229,10 @@ public static class ImmersionTests
         // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
         // colony say at each moment.
         "Rimfolk_Pool_OldPowersSaid",
+        // Colony life's integrations, part 2 (ColonyLife/): a wish talked up and joined, a friend admiring the wished-for
+        // thing, the aims said at the year's first supper and a backer's answer, the reader's asides, what was built shown.
+        "Rimfolk_Pool_TalkBacked_Join", "Rimfolk_Pool_TalkBacked_Glad", "Rimfolk_Pool_TryOut_Admire", "Rimfolk_Pool_Supper_Aim",
+        "Rimfolk_Pool_Supper_NewAim", "Rimfolk_Pool_Supper_Backed", "Rimfolk_Pool_YearRead_Aside", "Rimfolk_Pool_AmbitionShow",
         // Each god's festival kept as its words say, and the gods' beasts at home and on the land (Gods/OnMap/OwnFeasts.cs,
         // GodBeasts.cs): what is said at the festival's work, to a god's beast, and of a beast taken for a god's.
         "Rimfolk_Pool_GodFeast_Say", "Rimfolk_Pool_GodBeast_Say"
@@ -255,7 +265,9 @@ public static class ImmersionTests
         // A familiar bound and lost, an omen born (Animals/AnimalPowers.cs).
         "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born",
         // The seven peoples' touchpoints: the order's night nurse, the pilgrims' Long Walk, the society's night of the fire.
-        "Rimfolk_Journal_Evt_OrderNurse", "Rimfolk_Journal_Evt_LongWalk", "Rimfolk_Journal_Evt_Disputation"
+        "Rimfolk_Journal_Evt_OrderNurse", "Rimfolk_Journal_Evt_LongWalk", "Rimfolk_Journal_Evt_Disputation",
+        // An animal of theirs that brought a raider down at a defense line (Defense/DefenseLinesWatch.cs).
+        "Rimfolk_Journal_AnimalAtLine"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

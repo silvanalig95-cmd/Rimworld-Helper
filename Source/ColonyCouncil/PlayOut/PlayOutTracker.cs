@@ -150,6 +150,8 @@ namespace ColonyCouncil
             using var clock = PassClock.Time(Pass.RarePlayOut);
             // Strangers fed and staying the night bed down by the wall (PlayStrangers.cs).
             PlayStrangers.Tick(now);
+            // A wished-for thing tried out, and lines said in turn at a gathering under way (ColonyLife/LifeBook.cs).
+            LifeBook.Tick(now);
             // The colony's count of gatherings, the toasts waiting, the floor (Stage.cs).
             try
             {
@@ -215,7 +217,8 @@ namespace ColonyCouncil
                     PlayFire.Ahead(p);
                 if (!PlayOutMath.InHours(hour, p.hourFrom, p.hourTo)) return;
                 // The colony's own wait for room in its week, and never come within a day and a half of another gathering.
-                if (p.routine && !Stage.Room(p.map, now))
+                // A seat's own work (Interplay/Interplay_Seats.cs) is no gathering and waits for none.
+                if (p.routine && !Interplay.IsSeatWork(p) && !Stage.Room(p.map, now))
                 {
                     p.waitReason = "CC_Stage_Why_Room".Translate();
                     return;
@@ -585,7 +588,7 @@ namespace ColonyCouncil
             sit.expiryInterval = -1;
             o.jobs.StartJob(sit, JobCondition.InterruptForced, null, false, true);
             string where = (p.sitBy == PlaySpot.Fire ? "CC_Play_Where_FireSide" : "CC_Play_Where_Table").Translate();
-            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
+            Tell.Message(NewsKind.People, Interplay.IsSeatWork(p) ? Importance.Flavor : Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
                 new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent);
             return true;
         }
@@ -674,6 +677,8 @@ namespace ColonyCouncil
             PlayAfter.Run(p, true, took);
             // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
             SharedTimes.PlayDone(p, took);
+            // A reading at it closes with those who were there (ColonyLife/Readings.cs).
+            LifeBook.PlayDone(p, took);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
             // say it in their own end message.
             if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())

@@ -55,6 +55,15 @@ namespace ColonyCouncil
 
         public const int LineMax = 60;
 
+        // ---------------- The autumn count (Animals/HerdCount.cs) ----------------
+
+        /// <summary>The year the autumn count was last set going (-1: never), the last count done (its year, head, leader), and when its council question may still be asked (-1: none waiting).</summary>
+        public int countYear = -1, headYear = -1, head, askUntil = -1;
+        public string headLeader;
+        /// <summary>The yearlings the council chose to sell to the next traders (ids), and until when they are kept for it.</summary>
+        public List<int> sellIds = new List<int>();
+        public int sellUntil = -1;
+
         private static int Now => Find.TickManager.TicksGame;
 
         public static bool On => AnimalLife.On;
@@ -345,10 +354,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref leaders, "leaders");
             Scribe_Collections.Look(ref lineIds, "lineIds", LookMode.Value);
             Scribe_Collections.Look(ref lineGens, "lineGens", LookMode.Value);
+            Scribe_Values.Look(ref countYear, "countYear", -1);
+            Scribe_Values.Look(ref headYear, "headYear", -1);
+            Scribe_Values.Look(ref head, "head");
+            Scribe_Values.Look(ref headLeader, "headLeader");
+            Scribe_Values.Look(ref askUntil, "askUntil", -1);
+            Scribe_Collections.Look(ref sellIds, "sellIds", LookMode.Value);
+            Scribe_Values.Look(ref sellUntil, "sellUntil", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (lineIds == null) lineIds = new List<int>();
                 if (lineGens == null) lineGens = new List<int>();
+                sellIds ??= new List<int>();
                 while (lineGens.Count > lineIds.Count) lineGens.RemoveAt(lineGens.Count - 1);
                 while (lineGens.Count < lineIds.Count) lineGens.Add(1);
             }

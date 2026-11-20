@@ -38,4 +38,14 @@
     <displayOrder>1615</displayOrder>
   </RecordDef>
 
+  <!-- A council question about the work of the seat this colonist held, with them speaking in it (Offices/SeatCalls.cs);
+       the next election reads it as part of their record in the seat. -->
+  <RecordDef>
+    <defName>Council_SeatCalls</defName>
+    <label>council questions spoken in for a seat</label>
+    <description>Council questions about the work of this colonist's seat on the council, answered with them speaking for the seat.</description>
+    <type>Int</type>
+    <displayOrder>1634</displayOrder>
+  </RecordDef>
+
 </Defs>

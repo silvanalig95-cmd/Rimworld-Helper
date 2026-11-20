@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 803; modelled: 803; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** after two, **4,255 KB** after five.
+Saved collections found: 812; modelled: 812; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,078 KB** after a year, **3,796 KB** after two, **4,262 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -45,7 +45,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
 | `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, a second store: CampGrow.cs, about thirty more), while the camp stays | while | 120 | 120 | 120 | 23.4 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 255 | 255 | 255 | 22.4 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 258 | 258 | 258 | 22.7 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
@@ -114,7 +114,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 78 | 78 | 78 | 6.9 |
 | `Building/ColonyUse.cs:amounts` | with the above: how much | window | 280 | 280 | 280 | 6.8 |
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 76 | 76 | 76 | 6.7 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 77 | 77 | 77 | 6.8 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Beasts/BeastBook.cs:alphas` | packs led by an alpha: one a home a month at most (the setting at 200%: two), BeastsMath.MaxAlphaRecords kept | cap | 4 | 7 | 16 | 6.6 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 74 | 74 | 74 | 6.5 |
@@ -130,6 +130,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
 | `Camps/CampGround.cs:held` | who held each old site, the newest CampGroundMath.MostHolders of each of six sites | fixed | 36 | 36 | 36 | 5.6 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
+| `ColonyLife/LifeBook.cs:aims` | aims said at the year's first supper, the newest LifeBook.MaxAims (A27) | cap | 18 | 30 | 30 | 5.3 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Apparel/ApparelPickBook.cs:asks` | each colonist's last ask for better clothes (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
@@ -144,7 +145,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Peoples/ArisingBook.cs:arisen` | peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept | cap | 3 | 6 | 15 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
-| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 130 | 130 | 130 | 4.4 |
+| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 131 | 131 | 131 | 4.5 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Social/Banishment.cs:records` | the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords | cap | 3 | 6 | 15 | 4.4 |
@@ -209,7 +210,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
 | `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered, the feast with guests under way and the last one; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 2.3 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 26 | 26 | 26 | 2.2 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 26 | 26 | 26 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Gods/Among/GodsAmongBook.cs:seasons` | the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons | cap | 2 | 4 | 10 | 2.1 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
@@ -402,6 +403,8 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Ambitions/Ambitions.cs:voterChoice` | while the letter waits | while | 20 | 20 | 20 | 0.5 |
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
+| `ColonyLife/LifeBook.cs:readings` | lines to be said at a gathering under way (A27, A29), dropped when it's over; LifeBook.MaxReadings at most | while | 1 | 1 | 1 | 0.5 |
+| `ColonyLife/LifeBook.cs:tryOuts` | a wished-for thing waiting to be tried out (A12), gone within a day; LifeBook.MaxTryOuts at most | while | 2 | 2 | 2 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
 | `Gods/OnMap/GodStranger.cs:points` | beside it, the points, while the stranger stays | while | 20 | 20 | 20 | 0.5 |
 | `Heart/HeartData.cs:goodSpent` | per heart: one per strain source | fixed | 20 | 20 | 20 | 0.5 |
@@ -414,6 +417,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/Camp.cs:members` | the camp's people (up to twelve), while it stays | while | 12 | 12 | 12 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
+| `ColonyLife/LifeBook.cs:built` | ambitions reached since the year was last read aloud, cleared then; LifeBook.MaxBuilt at most (A14, A29) | cap | 6 | 12 | 12 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
 | `Gods/OnMap/OwnFeasts.cs:lit` | lamps switched on for a festival's night, OwnFeastsMath.LampsMost at most, let go at dawn | while | 12 | 12 | 12 | 0.5 |
@@ -479,6 +483,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Faith/FaithCouncilTracker.cs:plans` | the evening of faith waiting to be held: one at a time, let go when its gathering is over | while | 1 | 1 | 1 | 0.3 |
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
+| `Offices/Offices.cs:raised` | promises raised halfway, OfficeTracker.MaxRaised at most | fixed | 12 | 12 | 12 | 0.3 |
 | `Peoples/Events6/PeopleEvents6Book.cs:veterans` | the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone | cap | 0 | 1 | 2 | 0.3 |
 | `Peoples/Events9/PeopleEvents9Book.cs:enemies` | what came up from the vault's lower level, while its fight is on (made at most thirty) | fixed | 30 | 30 | 30 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
@@ -514,6 +519,7 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
 | `CouncilGameComponent.cs:medicKits` | the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs) | fixed | 9 | 9 | 9 | 0.2 |
 | `OldPowers/OldPowersBook.cs:cells` | the places of the eyes in the dark, while they are there (six at most) | while | 6 | 6 | 6 | 0.2 |
+| `Animals/HerdStory.cs:sellIds` | the yearlings the council chose to sell at the autumn count (ids), HerdStoryMath.MaxSell at most, until sold or a season | while | 8 | 8 | 8 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Gods/OnMap/OwnHappenings.cs:watches` | the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most | fixed | 8 | 8 | 8 | 0.2 |
@@ -698,6 +704,9 @@ Rimfolk's part of the save, roughly: **3,072 KB** after a year, **3,789 KB** aft
 | `Colonies/HomesMerge.cs:people` | per merge: the old colony's people as its home was lost (counted under merges) | while | 8 | 8 | 8 | (in its record) |
 | `Colonies/TownLayout.cs:beds` | per kept layout: the beds of those who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `Colonies/TownLayout.cs:sleepers` | per kept layout: who sleeps in each (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
+| `ColonyLife/Readings.cs:lines` | per reading: the year's lines, five at most (counted under readings) | fixed | 5 | 5 | 5 | (in its record) |
+| `ColonyLife/Readings.cs:said` | per reading: who said their aim (counted under readings) | fixed | 8 | 8 | 8 | (in its record) |
+| `ColonyLife/Readings.cs:spoke` | per reading: who has had their turn at the supper (counted under readings) | fixed | 8 | 8 | 8 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |

@@ -236,7 +236,7 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-128 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+129 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. Among
 the newer ones: cloth put by for mending before the cold months, steel and spare parts in the stores, milk for a
@@ -246,6 +246,13 @@ wishes that come up most often (armor, a place to pray, a latrine, a seat at the
 three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
+A wish met for something that stays (a chair, a bed, a room) is **tried out**: in their free time that day the one it
+was for goes to it, sits in it, lies on it a moment, warms up at it, looks it over or walks round the room, and says
+thanks there, while a friend nearby sometimes admires it. A wish several may back for one thing **grows by talk**: when
+someone brings it up in conversation, a listener who would want the same can join it there and then, a line from each
+(once a day at most). A close group whose habit has nowhere to happen asks for **a place of its own** (a fire pit with
+seats, a bookcase with a chair, a game table, an instrument, a shrine), its anchor asking and the rest signing; once it
+is built the group has its first evening there, and is called there from then on.
 Wishes follow the land's year: clothes are asked for by the season coming (what someone wears has to keep them
 comfortable in its usual cold, or on hot land its heat, never a coat for the stores), hot country wants a freezer
 (and, with nothing yet that can keep food frozen, food that keeps), and cold land a sauna, Dubs Bad Hygiene's or a
@@ -1052,7 +1059,7 @@ their own way), on the People table, the Bonds page and their character page. Ea
 - **habits** kept together when they're really together (13: an evening at the fire, a shared table, a game night, the
   small hours, an hour with a book, keeping the sick company, music of an evening, the night sky...), which ease strain
   and count for belonging rather than mood; now and then the anchor calls them all to one on the map (never to the four
-  newest, which are only kept as they come);
+  newest, which are only kept as they come, until the group has a place of its own for one: then that one too);
 - **cohesion** that grows with habits and shared memories and falls with quarrels, losses and time apart, and a history.
 
 Newcomers are outsiders until a group takes them in, sooner in a warm, trusting group, while a wary one closes ranks.
@@ -1220,6 +1227,12 @@ stays: a cup raised to them at the colony's next gathering (or at supper, if non
 never slips again and comes a little faster), a younger colonist with the same passion learning at their side, and a
 title on their Story tab that the colony tells round in gossip. Dying before it is remembered: the chronicle notes
 what they never got to do, and their friends write about it.
+In the year's first week someone may ask for **the year's first supper**, a custom: at one table each says what they
+mean to do this year, one line each, and anyone without a goal may choose one there; those who back them grow a little
+closer, and the next year's letter reads it back ("At the first supper Toni said she would train the dogs. She did.").
+With **Vanilla Aspirations Expanded**, an aim of the mod's reached is marked like a life goal (a cup raised at the next
+gathering, the chronicle, the annals, the colony's talk), unless it is one the colony wouldn't celebrate; its
+fulfilment need counts toward the heart's purpose, and Rimfolk's own goals come a third less often beside it.
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
@@ -1456,6 +1469,12 @@ The herd and the pets are part of the colony's life, not only its larder and its
   last season is told and the keeper sits with it at the pens of an evening; when it dies the keeper takes it hard for
   a few days, and within a day or two the herd follows a new leader, the old one's own blood first if any is grown,
   else the eldest of the many, and a new line begins.
+- **The autumn count** (not released yet): each autumn, with four head or more, the herdmaster (else whoever is best
+  with animals) walks the pens counting; the colony is told the head by kind against last autumn's, with its leader,
+  and the chronicle keeps it. Then the council is asked what to keep through the winter, the hay set against last
+  winter's cold: keep them all, sell the yearlings to the next traders (marked to sell in the trade window, and the one
+  who counted goes down to the pens when a caravan stops; the sale is yours), or a few of the oldest to the butcher for
+  the winter's meat (never the leader, anyone's own, bonded, named or carrying young).
 - **A beast that stays:** a wild animal of some size (a wolf, a bear, a stag, a boar; never an insect or a great
   beast) seen on the colony's land three days running is given a name, by a child if there is one, else by someone
   with a love of animals, and from then on whoever sees it says so in their own words. Four days later the council is
@@ -1719,11 +1738,21 @@ they promised it (wounds tended, plants sown, enemies brought down, quarrels men
 the colony, a name the colony gave them or a life goal reached. The next yearly election judges what the holder
 promised by what the map shows now ("At the last election Toni promised a proper watch at night, and the colony has
 lost nobody since: a promise kept."): a kept promise helps them at the vote, a broken one costs, and it's said in the
-letter, at the hustings and in the results. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+letter, at the hustings and in the results. Halfway to the vote, once a holder has sat 25 days, a promise the map
+already shows going badly by that same test (someone lost after a promise of a proper watch, the food under three days,
+the medicine short, no sickbed, the herd shrunk, spirits sunk) is raised at the council by someone who stood against
+them: give them a hand with the seat's own work (a night's watch on the walls together, the food brought in, the
+sickroom cleaned, the herd brought home, an evening they call), have them answer for it at supper, or leave it to the
+vote. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 
-The offices also do their jobs in the colony's life: the keeper of days organizes the calendar's feasts and games,
+The offices also do their jobs in the colony's life, on the map: the speaker sits an hour at a table with whoever
+trusts the council least and hears them out (their trust rises a little), the quartermaster walks round the stores at
+dawn once a week and counts them (days of food, cooked meals, medicine and what is shortest, in the news and at the
+head of This week's plan), the reeve walks the fields at first light in the growing season and marks blight for
+cutting at each field, and in the two days after an attack the marshal walks the walls at dusk with a word for whoever
+is on watch. The keeper of days organizes the calendar's feasts and games,
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
 convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbors who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
@@ -1731,6 +1760,13 @@ marshal has a word with everyone who fought beside them, and the steward's compa
 chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
 calendar's remembrances; the warden of guests spends an hour at the camp's fire (its tension eases) and sees visitors
 welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
+
+The seat whose work a council question is about speaks in it: about thirty questions (the sick and the medicine, the
+fields, the herd, quarrels, the faith, strangers and the camp, the stores, and every seasonal custom for the keeper of
+days) name the seat's holder when they're at home and not already in it, with their word in the letter and in some of
+the outcomes; each one answered counts toward their record in the seat at the next election. A newly seated holder's
+story, the weight of office, now waits for a real hard call (such a question, a decree they backed declared while
+someone hates it, or answering for a promise at supper) and names it, and with none in twenty days it ends quietly.
 
 ### Traditions
 Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
@@ -1797,7 +1833,8 @@ small and share the budget of good moods. Kept **three years running**, a day or
 **tradition** (one rule for both), with a letter, moods, the chronicle and the annals, and letting it pass then
 disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
-keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
+keep. An older save fills its calendar in from the chronicle, its dead and its nemeses. The day the colony reached one
+of its ambitions goes on it too ("the day the hospital was finished"), kept by walking out to what was built.
 
 ### Journals
 Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
@@ -1829,6 +1866,12 @@ less support. Others back them, doubt them or wander off topic, and when the mee
 votes (only they do). The decision letter shows the votes and tells who came, who was late, who missed it and
 why. Going with the room's favorite pleases its backers; overruling a clear majority costs a little trust.
 
+Once the ambitions are put there is **other business**: the colony's open petitions (a decree asked for or asked to be
+lifted, a want several colonists back together) are read out by their askers, someone says aye or no, the room is
+counted by how each feels about it, and anyone there who wants the same joins it. The tally stays with the petition
+("Backed at the meeting by 5 of 7.") on the Decrees page, in This week and in the meeting's letter; the council still
+answers it from its page.
+
 - **Thin meetings:** with fewer than half there (and never fewer than two), the meeting is put off once to the
   next evening; if it's thin again it's decided anyway, by few, and earns less trust.
 - **Missing it:** through work or travel, a small mood dip (-1 for a day). Having your own idea turned down while
@@ -1850,7 +1893,10 @@ archive*, *renowned hosts*): only the current stage counts, and a message says w
 (*a season of hot meals* and *a season of plenty*, where one lean day starts the count again, *keep the year's days*,
 *a year of steady nerves*). A tribe has *the winter cache* and *the hunters' year*, a spacer colony *the starlight
 archive* and *a hospital of the stars*, and with Hospitality the colony can set out to become *renowned hosts*. The
-Almanac page "council projects" lists them all.
+Almanac page "council projects" lists them all. Every ambition reached is **seen on the map**, led by whoever proposed it
+or by the seat whose work it is: the physician shows everyone round the new ward, the marshal walks the defenses at
+dusk, the elder gives the children their first lesson at the new desks, and the rest end with a supper, an evening
+under the new lights, a quiet hour at the graves or a toast; its day goes on the colony calendar.
 
 ### Planning: what to build, make and grow next
 The **planning** window, behind its own button in the bottom bar (it took the rooms button's place and kept its
@@ -2295,7 +2341,12 @@ watch how they come in, every few seconds and only then: through the gate, round
 colonists fall; after the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west;
 Hana was downed at the sandbags on the left") with a button to the check or step it points at. A setting reminds you
 once a raid when a line's gate is shut, and a shut gate's note says what that means: raiders break it if there's no
-other way, so hold it open to keep them coming through.
+other way, so hold it open to keep them coming through. Not released yet: **the colony's animals at the line** are
+counted too (those that fought there, the enemies they brought down, those that fell): a lesson says to keep them back
+when several fall, a note says when they held, and an animal that brought one down has it on its card and in its
+person's journal. **The lines in today's weather**: in fog, rain or snow the game takes aim off every shot where the
+shooter or the target is under the open sky, both sides alike, turrets too; each line's card says by how much, a raid
+that comes in it says so once, and its lessons note it.
 
 A gap the survey finds that a line already holds (its own cells, the same pass measured a few cells off, or the same
 ways in within about 12 cells) is shown as covered by that line and never offered as a new one; a gap on another way
@@ -2794,8 +2845,19 @@ colonists bringing in the ripe crops before it falls; it rains with it only whil
 longer runs on for a day or two after. Three **quirks**: loves the snow, follows the sun, sleeps best in rain. A
 **storm keeps a trade caravan** half a day longer, and snowbound land slows the people coming for a **mission**.
 With **Seasonal Weather**, a dry, windy day in the fire season brings **firebreak** advice (one button marks the brush
-round the home area for cutting), and after an **earthquake** a few colonists go round the roofs and walls. Stormproof,
-Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed.
+round the home area for cutting). Stormproof, Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet
+Wonders are met where they're installed.
+
+**After the storm, a work party** (not released yet): when a disaster is over and the land is quiet, the one best at the
+work and three others set to it with the game's own jobs, where there's something to do. After an **earthquake**
+(Seasonal Weather's or Vanilla Events Expanded's) or a **tornado** the builders go round the roofs and walls, mending,
+rebuilding and clearing up; after a **flashstorm**, once its fires are out, the growers cut the burnt trees, clean the ash
+and sow again; after Rimfolk's **hail** they sow again where it flattened the young crops; after a **flood** (Odyssey's,
+or Vanilla Landmarks Expanded's tidal flooding) the water's leavings go back to the stores and the dirt is cleaned up.
+The chronicle keeps each once the work is done, and the year's annals count the disasters. **The advisor remembers
+last winter**: once the record has kept a year of cold days, frozen days and days the snow lay, the firewood, winter
+stores, herd feed and herd cold notes each add a sentence in the colony's own terms ("Last winter the cold here lasted
+19 days, and the coldest night was -24 °C; at today's fires the wood in store lasts 11 such days").
 
 **Weather that changes like weather.** The game still chooses each next weather from the land's own (Seasonal
 Weather's by season, any other weather mod's too); Rimfolk weighs that choice by the land and the last days, so that
@@ -2830,7 +2892,11 @@ came back, the world events that ended and how, the allies, and a few lines of t
 the world. Then the founding: who has been here since the first days, how many have died since, what travellers call
 the colony and its customs. Last, a word in the author's own voice. The founding day's own event (or the calendar's
 letter) asks how to keep the day and no longer tells the year; the chronicle has one line for it. Past years can be
-reread from the Chronicle tab.
+reread from the Chronicle tab. That evening the writer **reads some of the year aloud** at the table (three to five
+sentences: who came and who was lost, what was built, an aim kept, a name), and those there remember it together. A
+colonist the council made **record keeper** writes it from then on. With **Vanilla Books Expanded** and a writer's
+table, the year is first written up there as a book called after it ("The second year") that goes on the colony's
+shelf, or a newspaper once printing is researched.
 
 ### Chronicle
 The colony's view of its one history (the region window's History holds the same, with the world around it). It shows
@@ -5664,7 +5730,11 @@ and patients write and talk about falling ill, getting better and the doctor who
 season, the hour, their age and their temperament, and notice when it's the second time; a letter about one person's
 illness names them; dreamfever, serious illnesses and many everyday ailments color their
 dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
-medicine is short, and pulling a patient through lifts both. Settings: everyday ailments on or off (What's on),
+medicine is short, and pulling a patient through lifts both. **A cup for the sick** (not released yet): someone with a
+cold, a cough or a sore throat may be brought a tea (Vanilla Brewing Expanded and its Coffees and Teas), hot cocoa
+(Vanilla Christmas Expanded) or honey (Alpha Bees, Vanilla Factions Expanded - Medieval 2) from the stores by one of the
+colony at their leisure who thinks well of them, handed over and drunk there; the ailment ends a few hours sooner and
+the two think a little better of each other. Never against a drug policy, a faith or a teetotaller. Settings: everyday ailments on or off (What's on),
 serious illnesses on or off and how often, 25% to 200% (How hard). Off, nothing new starts; what's running finishes its
 course.
 

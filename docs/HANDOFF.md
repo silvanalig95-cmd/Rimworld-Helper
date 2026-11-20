@@ -85,10 +85,11 @@ most sense." So, in this order, three builds at a time:
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
      released 0.278.0);
-     council (A1, A2, A5, A6, A21), started 20 November; the land and its life (C19, C20, C21, C22, C24, C28, C30);
-     wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
-     B25, B26, B32; built, not released: the entry "The world brought home" above the newest release line); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
-     B11, B13, B19, B27).
+     council (A1, A2, A5, A6, A21; released 0.279.0); the land and its life (C19, C20, C21, C22, C24, C28, C30; built, not released: the entry "The land and its life" above the newest release line);
+     wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29; built, not released: the entry "Colony life's
+     integrations, part 2: wishes, ambitions and the calendar" above the newest release line); the world brought home
+     (B1, B2, B3, B23, B25, B26, B32; built, not released: the entry "The world brought home" above the newest release line); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years
+     and the camps (B5, B11, B13, B19, B27).
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
@@ -683,6 +684,256 @@ repo.
     ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to 1.7, off, kept up) for the fair
     day and the season of songs; Tavern ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305),
     1.6 and 1.7, off) for the fair day's furniture. Whether each is still kept up was not checked here.
+- 0.279.2, **Colony life's integrations, part 2:
+  wishes, ambitions and the calendar** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content
+  proposal overall sounds really good. You can go ahead with this in the order you think makes most sense ... more
+  immersion ... the relations between pawns, the kind of events that generated from it", and "first do all the
+  integrations that you proposed in your document before we add additional content variety"). A10, A12, A13, A14, A17,
+  A27 and A29 of part A, each built as proposed and marked **Built** there; DESIGN.md "Colony life's integrations, part 2:
+  wishes, ambitions and the calendar (not released yet)" has it all; README (wishes, groups, life goals, the calendar,
+  ambitions, the year's letter); the Almanac (wishes and promises: "Tried out" and a wish grown by talk; life goals: "Said
+  aloud" and "Vanilla Aspirations Expanded"; the annals: the year read aloud; what colonists wish for: a place for the
+  group; council projects: what reaching one shows; groups: a place of their own; the calendar: an ambition reached;
+  traditions: the year's first supper; keywords unchanged).
+  - What is seen on the map: **A10** a close group's anchor asks for the place its habit needs (a fire pit with two seats,
+    a bookcase with a chair, a game table, an instrument, a shrine), every member at home signing; built, the group's
+    first evening there, and from then on its anchor calls it there (reading, music and prayer too). **A12** a wished-for
+    chair, bed, heater, work of art or room is gone to in their free time that day: they sit, lie on it a moment, warm up,
+    look it over or walk round the room, and say thanks there; a friend nearby may admire it. **A13** in the game's own
+    conversation a listener who would want the same joins an open wish many may back, a line from each over the other's
+    head. **A14** every ambition reached shows a scene, led by the proposer or the seat whose work it is (the physician
+    shows everyone round the new ward, the marshal walks the defenses at dusk, the elder gives the children their first
+    lesson at the new desks; a supper, an evening under the new lights, a quiet hour at the graves, a walk out in new
+    coats, a fire or a toast for the rest), and its day goes on the calendar, kept by walking out to what was built.
+    **A17** a Vanilla Aspirations Expanded aim reached: the closest friend raises a cup at the next gathering (not for the
+    aims the colony wouldn't toast). **A27** in the year's first week the year's first supper: one at a time each at the
+    table says what they mean to do this year (someone without a goal may choose one there), a backer may answer.
+    **A29** on the landing's anniversary the year's writer reads three to five lines of it aloud that evening, one at a
+    time; with Vanilla Books Expanded and a writer's table they first write it up there and it goes on a shelf as a book
+    called "The second year".
+  - Code map: `Source/ColonyCouncil/ColonyLife/` (new): `LifeBook.cs` (the saved book on `CouncilGameComponent.life`, its
+    pass), `ColonyLifeMath.cs` (the pure rules), `Readings.cs` (lines said in turn at a gathering), `TryOuts.cs` (A12, with
+    `JobDriver_TryOut`), `TalkBacking.cs` (A13), `GroupPlaces.cs` (A10, `WishWorker_GroupPlace`), `AmbitionScenes.cs`
+    (A14, and `ColonyCalendar.Notify_AmbitionReached`), `ModAims.cs` (A17, `Patch_ModAimLetter`), `FirstSupper.cs` (A27,
+    `DilemmaEffect_FirstSupper`), `YearRead.cs` (A29, `DilemmaEffect_RecordKeeper`, `YearBook`), `LifeDebug.cs`. Hooks:
+    `PlayOutTracker` (`LifeBook.Tick`, `LifeBook.PlayDone`), `CouncilDynamics.Grant` (`TryOuts.Begin`, `WishWorker.OnMet`),
+    `CouncilGameComponent` (`ExposeLife`, `WishWorker.OnMade`, `CoSign` internal), `Interactions.cs` (the talk's
+    `Interacted`), `Wish.talkBackedDay`, `SocialGroup.placeId`/`placeKind`, `GroupHabits.Daily` and `HabitTip`,
+    `AmbitionGoal.Showpiece` (Goal_Room, _Build, _Freezer, _Greenhouse, _SharedArt, _RoomStat), `AmbitionDef.sceneOffice`
+    and `dayLabel`, `Ambitions.Complete` and `DebugReach`, `CalendarKind.Ambition` (ColonyCalendar, CalendarKeeping,
+    CalendarLived, CalendarPanel), `HeartNeeds.Purpose`, `AspirationTracker.ChooseAtSupper` and `TryChoose`,
+    `GoalMath.ModAimsFactor`/`SupperSpark`, `CustomConditions.lastDayOfYear`, `YearLetter.Write`, `AnnalsTracker.Author`,
+    `PlayAfter.Run` (the year's book). Defs: the 66 ambitions (`achievedEffects` for the 57 without, `sceneOffice`,
+    `dayLabel`), `Rimfolk_Wishes_ColonyLife.xml`, `Rimfolk_Dilemmas_Customs_ColonyLife.xml`, the record keeper's answer in
+    `Rimfolk_Dilemmas_Lives.xml`, `Rimfolk_Lines_ColonyLife.xml`, `Rimfolk_Talk_Lines_ColonyLife.xml`,
+    `Rimfolk_SharedMemories_ColonyLife.xml`, `Rimfolk_Thoughts_ColonyLife.xml`, `Rimfolk_ColonyLife_Misc.xml`,
+    `Languages/English/Keyed/Rimfolk_ColonyLife2.xml`. Tools: `DefValidator` (A and B in an ambition's scene, `{AIM}`;
+    rebuilt), `playout_audit.py` (the supper), `save_estimate.py` (seven models), `ImmersionTests` (eight spoken pools),
+    `ColonyLifeTests` (new).
+  - Decided here: A10's "first habit" read as the first of the group's habits that wants a place (no kind lists reading or
+    music first), the five places of the proposal only, the group with its anchor and two more at home; A12 with "Answers
+    play out on the map" on, the lasting wishes' kinds, a friend a third of the time; A13 half the time, by the wish
+    roll's bond; A14 the scene kinds per ambition (the list in DESIGN.md), the seat that leads, the day's name and weight
+    (22 to 42), three such days at most, its end when what was built is gone; A17 the aim by its label in the letter's
+    words, 22 of the 76 aims not toasted (the list in DESIGN.md), an unnamed aim the journal only; A27 days 0 to 7 of the
+    year in any season, asked by someone with a goal, a line every ten seconds; A29 three to five lines, at the founding
+    day's gathering when it has one that evening, else a short words gathering of its own, the book the game's novel.
+  - With the council's build (A6, any other business at the meeting, merged in 0.279.0): A13's `WouldBack` uses the
+    meeting's own rule for who would want the same (`CouncilGameComponent.WantsSame`), so a wish talked up and a petition
+    read out at the meeting find the same backers; joining does what the roll's co-signing does. Nothing of the meeting
+    was touched.
+  - Harm: none.
+  - Not run here: the try-out's sitting, lying and facing in the game; the readings' bubbles and their pace at a real
+    supper; the gatherings at a group's place and at what an ambition built (the spot by the thing, people standing in a
+    freezer or a barn); the mod's letter text (Vanilla Aspirations Expanded's own words were not read here: the aim is
+    matched by its label in the letter); the year's book's title and description fields on the game's book (set by name,
+    left as the game made them when not found); Vanilla Books Expanded's tables and printing research by name.
+  - Try in the game (Debug actions, "Rimfolk"): 1. "Colony life: a group asks for its place...", pick a group (the card
+    under People, Bonds): the anchor's wish comes with the group signed; build the place (a campfire with two stools, a
+    bookcase with a chair, a chess table) and the wish is met; the group's first evening there follows (or "a group's
+    first evening at its place now..."). 2. "a colonist tries out a thing now...": in their free time they go to their
+    bed or the nearest seat and say thanks there; or grant any wish for a chair, a bed or a room. 3. Give someone a wish
+    for a rec room and "a wish talked up to someone near...". 4. Choose an ambition at a meeting, then "the ambition under
+    way is reached now": the letter says when the scene is, the scene plays, and the Calendar page has the day. 5. With
+    Vanilla Aspirations Expanded, "an aim of their own reached...". 6. "the year's first supper set going now" (or "asked
+    now" in the year's first week). 7. "make a colonist the record keeper...", then "the year read aloud tonight"; with
+    Vanilla Books Expanded build a writer's table first.
+  - Mods that would help: Vanilla Aspirations Expanded and Vanilla Books Expanded are already active and used. From the
+    content proposals' own look (20 November 2026): **Tavern**,
+    https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305 (1.6, 1.7; updated 4 November), subscribed but not
+    enabled: tavern furniture for a group's own place and its evenings; **P-Music**,
+    https://steamcommunity.com/sharedfiles/filedetails/?id=725130005 (1.0 to 1.7; updated 25 October): more of the game's
+    music for the suppers and the evenings at a group's place. Gap: a bell to call a gathering, none found for 1.6 or 1.7.
+- 0.279.1, **The land and its life** (20
+  November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You
+  can go ahead with this in the order you think makes most sense ... more immersion", and "first do all the integrations
+  that you proposed in your document before we add additional content variety"). Part C's integrations of the land: C19,
+  C20, C21, C22, C24, C28 and C30, each marked **Built** in the proposals doc with what was decided; DESIGN.md "The land
+  and its life" has every rule. With it, the lead's addition: a ninth art tale, a named season a believer took for a god's
+  doing (C18's `SeasonGods.Named`, `Rimfolk_Tale_SeasonTaken`; DESIGN.md's C17 paragraph). The Almanac's pages *the
+  weather, as the colony knows it*, *the colony's animals*, *defense lines*, *everyday ailments*, *the gods* (the art
+  list), the mod pages below (keywords unchanged); README's weather, animals, defense lines and ailments.
+  - **C19, after the storm.** When an earthquake (Seasonal Weather's or Vanilla Events Expanded's), a tornado, a
+    flashstorm, Rimfolk's hail or a flood (Odyssey's seasonal flood, Vanilla Landmarks Expanded's tidal flooding) is
+    over and the map is quiet, the best builder or grower and three others set to work with the game's own jobs, only
+    where there is work: mending, rebuilding, roofs and clearing after a quake or a tornado; after a flashstorm, once its
+    fires are out, the burnt trees marked and cut, the ash cleaned, sowing where the season allows; after hail, sowing
+    where it flattened the young crops; after a flood, the water's leavings hauled and the dirt cleaned. The chronicle
+    keeps it once some work is done; the annals count each disaster a year. The old quake party is folded in.
+  - **C20, the advisor remembers last winter.** The weather record now counts each season's cold days (a mean below
+    6 °C), frozen days and days the snow lay; once it has a winter, the firewood, winter stores, herd feed and herd cold
+    notes each add one sentence: "Last winter the cold here lasted 19 days, and the coldest night was -24 °C; at today's
+    fires the wood in store lasts 11 such days."
+  - **C21, the autumn count.** Each autumn, four head or more, the herdmaster walks the pens counting (a round of the
+    herd); the colony is told the head by kind against last autumn's, with the leader, and the chronicle keeps it; then
+    the council's question (`Rimfolk_Dlm_HerdCount`, flavour style), the hay against last winter's cold: keep them all;
+    the yearlings to the next traders (marked to sell in the trade window, the counter goes down to the pens when a
+    caravan stops; the sale is the player's); or some of the oldest to the butcher (never the leader or anyone's own).
+  - **C22, the animals at the line.** The raid watch follows the colony's animals: those that fight near a line, the
+    enemies they bring down (their own records), those that fall there. "Keep the dogs back from the line" when several
+    fall; "the dogs held their ground here" as a note when they brought enemies down and none fell; the animal's card
+    and its person's journal keep it.
+  - **C24, a cup for the sick.** Someone with a cold, a cough or a sore throat is brought a tea (Vanilla Brewing Expanded
+    and its Coffees and Teas), hot cocoa (Vanilla Christmas Expanded) or honey (Alpha Bees, Vanilla Factions Expanded -
+    Medieval 2) from the stores by the colonist at their leisure who thinks best of them, handed over and drunk there;
+    the ailment ends a few hours sooner and the two think better of each other. One a day each, never against a drug
+    policy, a faith or a teetotaller, under "Small habits".
+  - **C28, the lines in today's weather.** Checked in the 1.6 code (`ShotReport.HitReportFor`): in fog, rain or snow the
+    game takes aim off every shot where the shooter or the target is under the open sky, both sides, turrets too, never
+    melee. A line's card says by how much while it takes a tenth or more, a raid that comes in it says so once, and its
+    lessons note it.
+  - **C30, the Almanac's mod pages.** New pages: Vanilla Ideology Expanded - Dryads, Dragons Descent (the gods' first
+    round), Vanilla Landmarks Expanded, Vanilla Christmas Expanded (this round and the gods' second), Vanilla Factions
+    Expanded - Medieval 2; "With Rimfolk" brought up to date on Vanilla Brewing Expanded, Alpha Bees, Vanilla Events
+    Expanded and Vanilla Cooking Expanded (Vanilla Fishing Expanded's fishers); a compatibility row for each. Possessed
+    Weapons, Sanguinary Animals and Demigryphs have no page: no built integration uses them.
+  - Code map: `Weather/AfterStorm.cs`, `AfterStormMath.cs`, `Advisor/AdvisorLastWinter.cs`, `Animals/HerdCount.cs`,
+    `Immersion/SickCup.cs`, `SickCupMath.cs`, `Weather/LandLifeDebug.cs` (new); `WeatherMath` (cold, frozen and snow
+    days, `WinterBefore`), `WeatherBook` (snow lying, the disasters, `LastWinter`, the annals), `WeatherDisasters`
+    (`QuakeOver` gone), `AdvisorSignals5`, `AdvisorSignals_YearFour`, `HerdStory` and `HerdStoryMath` (the count),
+    `AnimalLife.Hourly`, `PlayOut/OnMapPlays.cs` (the herd's round, `PlayAfter`), `PlayWords`, `Trade/TradeAdvice.cs`
+    (the yearlings marked), `DefenseLine`, `DefenseLineMath` (the animals' and the weather's lessons), `DefenseLinesWatch`,
+    `UI/DefenseLinesPanel.cs` (today's weather), `CouncilGameComponent.HourlyLife` (the cup), `ArtTales`, `ArtTalesMath`
+    (`Held` with the notes; the ninth tale), `Gods/Among/SeasonGods.cs`. Defs: `Misc/Rimfolk_LandLife.xml`,
+    `ThoughtDefs/Rimfolk_Thoughts_LandLife.xml`, `FlavorPoolDefs/Rimfolk_LandLife_Pools.xml`,
+    `DilemmaDefs/Rimfolk_Dilemmas_HerdCount.xml`, `AlmanacArticleDefs/Almanac_Mods_I_Integrations.xml` (new),
+    `Misc/Rimfolk_Tales.xml`, `IntegrationDefs/Council_Mods_Support.xml`; Keyed `Rimfolk_LandLife.xml` (new). Harmony: the
+    game's `IncidentWorker.TryExecute` (Vanilla Events Expanded's earthquake). Saved: the weather book's disasters and
+    winter counts (short lines), the herd's count and its yearlings for sale (`sellIds`, modelled in
+    `Tools/save_estimate.py`), a line's raid's animals and weather. Tests: `LandLifeTests` (new), `ImmersionTests` (three
+    pools), `GodsIntegrationTests` (nine tales).
+  - Not run here (none of it could be): every play-out in the game (the parties' jobs after each disaster, the burnt
+    trees cut, the herd's round, the counter's visit when a caravan stops, the cup carried, handed over and drunk), the
+    disasters read as they come (above all Odyssey's flood thing and Vanilla Landmarks Expanded's tidal flooding and
+    tornado alley, read by name), the snow lying on the land as the record counts it, the animals' records in a raid,
+    the yearling marked in the trade window (a pawn row, drawn by the same mark as the goods), the weather's aim as the
+    game eases it between weathers, and the art tale's description.
+  - Try in the game (dev mode, "Rimfolk", "Land: ..."): 1. "a disaster's work party now, as if it had just ended..." for
+    each kind, after some damage, burnt ground, an empty field or filth (between 6 and 20 o'clock it starts at once); the
+    chronicle line once it's done. 2. "a made-up last winter here", then let the firewood, winter stores or herd notes come
+    up in the advisor (or "last winter as the advisor reads it" after a real year). 3. With four head or more, "the herd's
+    autumn count now": the herdmaster walks the pens; then the count's message, and "the autumn count's question now";
+    answer "sell the yearlings", then "traders stop for the yearlings now", and open a trade with a caravan to see them
+    marked. 4. With a defense line, "a raid's notes on the first defense line (the animals, the weather)" in fog or rain:
+    the card's lessons and notes, and the weather row. 5. With a tea, hot cocoa or honey in the stores, "a cup for this
+    colonist, ill" on someone, with another colonist at their leisure.
+  - Mods that would help: Atmosphere Overhaul ([3830470974](https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974),
+    1.6 and 1.7, in their subscriptions but off; kept up to be checked on its page) for the storms, fog and weather the
+    disasters and the lines speak of; Simple FX: Smoke ([3261314247](https://steamcommunity.com/sharedfiles/filedetails/?id=3261314247),
+    to 1.6, no 1.7 tag) for the smoke after a flashstorm. Both are already in `docs/content-update-proposals.md`'s list.
+- 0.279.0, **The council at its work, in its
+  questions and at its meeting** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content
+  proposal overall sounds really good. You can go ahead with this in the order you think makes most sense ... more
+  immersion ... the relations between pawns, the kind of events that generated from it", and "first do all the
+  integrations that you proposed in your document before we add additional content variety"). Colony life's
+  integrations, part 1, the council: A1, A2, A5, A6 and A21 of the proposals, each marked **Built** there; DESIGN.md "The
+  council at its work, in its questions and at its meeting" (after "Seats named by the colony's age") has every rule,
+  and the interplay table its new rows; the Almanac's *offices and elections* (the four seats in "In the colony's life",
+  new sections "The seat in the council's questions" and "A promise halfway"), *decrees* ("When to call one"), *council
+  meetings* ("Who's there matters") and *personal stories* (the weight of office's row), keywords unchanged; README
+  "Offices and elections" and "Ambition: council meetings". A1: the speaker sits an hour at a table with whoever trusts
+  the council least (under 10, every three days at most, the same person not within eight), whose trust rises one to
+  two points, a line each and a news line; the quartermaster walks round the stores at dawn once a week (every stockpile
+  and every room with shelves, deep storage or fridges) and the count goes in the news and at the head of This week's
+  plan (days of food, cooked meals, medicine, what is shortest, said aloud when something is); the reeve walks the
+  fields at first light every other day in the growing season (the next morning when blight is unmarked) and marks
+  each field's blight for cutting with the game's own order; the marshal walks the walls at dusk the two days after an
+  attack with a word for anyone drafted or on watch near a look-out. A2: 34 questions name the seat whose work they
+  are about (and every seasonal custom is the keeper of days'); its holder at home, not A or B, speaks in the opening
+  (26 questions with an opening and an outcome of their own for the seat, the rest the holder's word after the text),
+  and each one answered counts toward their record at the next election ("spoken for the seat in 3 of the council's
+  questions"), leaning voters as the seat's work does. A5: a promise the map shows going badly by the vote's own test
+  25 days or more into the seat is raised by one who stood against the holder (else the one who thinks least of them):
+  a hand with the seat's own work on the map, a word at supper, or the vote. A6: at the meeting, once the ambitions are
+  put, the open petitions are read out (four at most), the room counted, those who want the same join, and the tally
+  ("Backed at the meeting by 5 of 7.") shows on the Decrees page, This week and the meeting's letter. A21: the weight of
+  office's doubtful days wait for a real call (a question of the seat's work, a decree they backed that someone hates, the
+  supper), which its journal and chronicle name; with none in twenty days it ends quietly.
+  - Code: `Offices/SeatMath.cs` (pure, linked: the speaker's pick and trust, the stores' shortest, the reeve's and the
+    marshal's days, `GoingBadly` and `HandsFor`, the ayes, the call's tags and quiet end, `CallsSince`),
+    `Interplay/Interplay_Seats.cs` (the four acts, `SeatWorkOver`, `AtField`, `AtLookOut`, `SeatBeginText`, `DebugSeat`;
+    hooked in `Interplay.Daily` and `Hourly`), `Offices/SeatCalls.cs` (the holder of a question, its tags and word,
+    `Answered`, `Call`, `Notify_Decree`), `Offices/SeatHalfway.cs` (`OfficeTracker.TryHalfway`, `DilemmaContextHalfway`,
+    `DilemmaWorker_SeatHalfway`, `DilemmaEffect_SeatHands`, `DilemmaEffect_SeatSupper`), `Ambitions/MeetingBusiness.cs`
+    (the reading, the tally, the letter's paragraph; `CouncilGameComponent.WantsSame`, `JoinAtMeeting`),
+    `Offices/SeatDebug.cs` (dev actions); changed: `Dilemmas/Dilemmas.cs` (`DilemmaDef.seat`, `SeatOffice`,
+    `DilemmaContext.holder` saved, `{HOLDER_...}` and `{OFFICE}`, the holder picked in `Send` and counted in `Resolve`),
+    `Dilemmas/DilemmaChoices.cs` (the [seat] tags), `Offices/RecordMath.cs` (`CallsAt`, `RivalsAt`, `RivalsOf`),
+    `Offices/SeatRecords.cs` and `OfficesElection.cs` (the calls in the record, the rivals kept with a promise),
+    `Offices/Offices.cs` (the count and the promises raised, saved), `Arcs/Arc.cs` (`call`, saved), `Arcs/ArcText.cs`
+    (`{CALL}`), `Arcs/ArcWorkers_Lives.cs` (`ArcWorker_Office`: the Custom gate, [officegone] and [nocall]),
+    `Decrees/Decrees.cs` (the tally on `DecreeRequest`; the decree call in `Enact`), `Wishes/Wish.cs` (the tally),
+    `Ambitions/CouncilMeeting.cs` and `Ambitions.cs` (the business in the talk and the letter), `PlayOut/PlayRoutes.cs`
+    (the rounds of the stores and the fields), `OnMapPlays.cs` (`PlayAfter` and `PlayVigils.Arrived` hooks),
+    `PlayOuts.cs` (`PlayOut.seat`, saved), `PlayGroups.cs` and `PlayOutTracker.cs` (a seat's work is no gathering, and
+    its begin message is a quiet one), `PlayWords.cs` (its own words as it sets off and on the way, no walk's journal),
+    `UI/DecreePanel.cs` and `UI/InboxProviders.cs` (the tally, the stores' count row). Defs:
+    `Defs/DilemmaDefs/Rimfolk_Dilemmas_SeatHalfway.xml`, `Rimfolk_Dilemmas_Seats_Variants.xml`, `<seat>` on 34
+    questions, `Defs/FlavorPoolDefs/Rimfolk_Seats.xml`, `Defs/Misc/Council_Records.xml` (`Council_SeatCalls`),
+    `Defs/ArcDefs/Rimfolk_Arcs_World.xml` (the weight of office), Keyed `Rimfolk_Seats.xml`. Tests: `SeatWorkTests`
+    (the rules, the halfway test against the vote's for every reading, the defs, the seams), `ArcTests` (the new story
+    tags), `ImmersionTests` (the twelve new spoken pools, one sentence each). `Tools/DefValidator/Program.cs` knows
+    `{HOLDER_...}`, `{CALL}` and `{CROP}`; `Tools/playout_audit.py` the two new play-out effects. Saved: the council's
+    last count (a tick and its words) and the promises raised (`OfficeTracker.raised`, twelve at most, modelled in
+    `Tools/save_estimate.py`); three numbers on a petition; the holder on a question's letter; the call on a story; two
+    more values on a promise in the history; a flag on a seat's play-out.
+  - Decided here (open in the proposals): the holder in a question is a role of its own, not B (many have a B of their
+    own); a question whose holder is already A or B has none. The ballots aren't kept by voter, so A5's "someone who
+    didn't vote for the holder" is one who stood against them (now kept with the promise), else the one who thinks least
+    of them; only promises hands can help are raised (a watch, the food, the sick, the herd, the spirits), each once;
+    the food's hands bring it in (harvest, fishing, hauling), the game having no cooking work party. The speaker's
+    "lowest trust" is under 10; the reeve's "growing season" is spring and summer with something growing, and blight is
+    walked for in any season; the marshal's "after raiders were seen" is the map's last big threat, never with hostiles
+    still on it. A6's reading comes during the meeting once the ambitions are put (the vote's count is at its very end),
+    four petitions at most, up to two joining each. A21's "decree they backed" is one they asked for or like, declared
+    while someone at home hates it; the quiet end brings no mood, and the mood of a seat lost too soon now only comes when
+    the seat was lost (it also came on a timeout before). Each seat's act is a play-out of the colony's own that never
+    takes a gathering's place nor waits for room among them; with play-outs off, the speaker has a word, the count and
+    the marks come without the walk, and the marshal's evening isn't kept.
+  - Harm: none.
+  - Not run here (none of it could be): every play-out in the game (the visit at a table, the rounds' stops and their
+    begin and end messages, the marshal's look-outs and his words to someone drafted), the count's figures against the
+    game's own, a fridge or a deep shelf being a `Building_Storage` (RimFridge, LWM's Deep Storage and Deep Storage Plus
+    are assumed to be), the [seat] lines in the letters with their placeholders filled, the meeting's business between
+    its other talk, the tallies on the Decrees page and This week, a story's hard call and its quiet end.
+  - Try in the game (dev mode, "Rimfolk", "Council seats: ..."): 1. "the speaker hears out the one who trusts the council
+    least, now": the speaker and that colonist sit down at a table ("sit down together at the table"), an hour later
+    each says a line and the news says "... sat an hour with ... and heard ... out, as the speaker"; their trust tooltip
+    shows "+1 the speaker, ..., heard them out". 2. "the quartermaster's count of the stores, now": the quartermaster goes
+    round the stockpiles and shelves; at the end the news has the count, and This week's plan shows it at its head. 3.
+    "the reeve's walk round the fields, now" with blight in a field (dev "Crop blight"): at that field the sick plants
+    get the cut mark and the reeve says so. 4. Raise a raid, then "the marshal's walk on the walls at dusk, now" with a
+    colonist drafted near the edge: the marshal stops at each look-out and has a word for them. 5. "ask a question of a
+    seat's work..." for a seat with a holder: the letter's text names the holder and the seat; answer it and look at the
+    holder's Records tab ("council questions spoken in for a seat"). 6. With a new holder in "the weight of office" (an
+    election in the last 12 days), "give a new holder's weight of office its hard call...": at its next stage the journal
+    names the call. 7. "a promise halfway, asked now" after an election: the question comes; give a hand and watch the two
+    at the seat's work. 8. With a decree asked for open, "read the colony's petitions out now, as at a meeting": the
+    Decrees card and This week say "Backed at the meeting by ..."; at a real meeting, the reading comes after the pitches.
+  - Mods that would help: none needed. RimFridge: Now with Shelves! (Workshop 2898411376; 1.4 to 1.6 by its page, not 1.7
+    yet), LWM's Deep Storage (3532608331, 1.0 to 1.7) and Deep Storage Plus (Continued) (2589072911, 1.2 to 1.7), all
+    active in their list, are counted as stores on the quartermaster's round. A bell that rings for the meeting would
+    still help the most; none for 1.6 or 1.7 was found (the proposals' "Gaps").
 - 0.278.1, **The gods' integrations, part 1:
   festivals, sacred beasts and art** (20 November 2026; the player, on `docs/content-update-proposals.md`: "your content
   proposal overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I

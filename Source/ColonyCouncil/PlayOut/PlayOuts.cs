@@ -417,6 +417,11 @@ namespace ColonyCouncil
         /// without a word. An older save's plans are the player's and happen as before.
         /// </summary>
         public bool routine;
+        /// <summary>
+        /// A council seat's own work (Interplay/Interplay_Seats.cs): one person at it, never a gathering, with its own words
+        /// as it sets off and while it goes on, and no journal of a walk together afterwards.
+        /// </summary>
+        public bool seat;
         /// <summary>Another gathering had the evening when it would have started; once, it takes the next evening instead.</summary>
         public bool collided, movedOn;
         /// <summary>A feast's cup, raised by its host a while in (PlayFeast.cs), and the words said with it (null: a toast's own).</summary>
@@ -543,6 +548,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestCount, "guestCount");
             Scribe_Values.Look(ref situationId, "situationId", -1);
             Scribe_Values.Look(ref routine, "routine");
+            Scribe_Values.Look(ref seat, "seat");
             Scribe_Values.Look(ref collided, "collided");
             Scribe_Values.Look(ref toast, "toast");
             Scribe_Values.Look(ref toastLine, "toastLine");

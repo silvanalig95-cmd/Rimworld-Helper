@@ -159,10 +159,19 @@ namespace ColonyCouncil
             secretsOut.Clear();
         }
 
-        /// <summary>Who writes the year: the colony's annalist once it has one (a name earned by writing it: Epithets/), else whoever reads and talks best.</summary>
+        /// <summary>
+        /// Who writes the year: the colony's record keeper, by the council's word (A29, ColonyLife/YearRead.cs); else its
+        /// annalist once it has one (a name earned by writing it: Epithets/); else whoever reads and talks best.
+        /// </summary>
         public Pawn Author(CouncilGameComponent comp, out bool keeps)
         {
             var now = Colonists();
+            var recordKeeper = YearRead.Keeper(comp, now);
+            if (recordKeeper != null)
+            {
+                keeps = true;
+                return recordKeeper;
+            }
             var annalist = ColonyCouncilMod.Settings.epithets ? comp.epithets.HolderOf("Council_Epithet_Annalist") : null;
             keeps = annalist != null && now.Contains(annalist) && !annalist.DevelopmentalStage.Juvenile();
             return keeps ? annalist : now.Where(p => !p.DevelopmentalStage.Juvenile())

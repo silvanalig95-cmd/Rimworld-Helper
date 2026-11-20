@@ -340,6 +340,8 @@ namespace ColonyCouncil
         public string line;
         /// <summary>Asking for a decree in force to be lifted, rather than declared.</summary>
         public bool repeal;
+        /// <summary>Read out at a council meeting (Ambitions/MeetingBusiness.cs): when (-1 never), the ayes and how many were there.</summary>
+        public int heardTick = -1, ayes, present;
 
         public void ExposeData()
         {
@@ -348,6 +350,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref line, "line");
             Scribe_Values.Look(ref repeal, "repeal");
+            Scribe_Values.Look(ref heardTick, "heardTick", -1);
+            Scribe_Values.Look(ref ayes, "ayes");
+            Scribe_Values.Look(ref present, "present");
         }
     }
 
@@ -652,6 +657,8 @@ namespace ColonyCouncil
                 }
             }
             DecreeWork.Enacted(this, def, asker);
+            // A seat's holder who backed it while someone hates it has made the hard call of their new seat (Offices/SeatCalls.cs).
+            SeatCalls.Notify_Decree(this, def, asker);
         }
 
         /// <summary>

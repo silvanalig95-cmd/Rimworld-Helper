@@ -217,9 +217,11 @@ namespace ColonyCouncil
             }
             p.waitReason = null;
             // The colony's pace counts an outing as a gathering (PlayOut/Stage.cs); an errand or a gift carried out is one or two people.
-            if (p.kind != PlayKind.Carry && p.kind != PlayKind.Give) Stage.Held(p.map);
+            // A seat's own round (Interplay/Interplay_Seats.cs) is one person at their work, not an outing.
+            if (p.kind != PlayKind.Carry && p.kind != PlayKind.Give && !Interplay.IsSeatWork(p)) Stage.Held(p.map);
             if (p.organizer == null || p.Hand(p.organizer) == null) p.organizer = p.hands[0].pawn;
-            Tell.Message(NewsKind.Colony, Importance.Notable, null, PlayWords.BeginText(p, where), new LookTargets(p.hands.Select(h => h.pawn).Where(x => x.Spawned)), MessageTypeDefOf.NeutralEvent);
+            // A seat's own round is everyday work: a quieter word than an answer's (Interplay/Interplay_Seats.cs).
+            Tell.Message(NewsKind.Colony, Interplay.IsSeatWork(p) ? Importance.Flavor : Importance.Notable, null, PlayWords.BeginText(p, where), new LookTargets(p.hands.Select(h => h.pawn).Where(x => x.Spawned)), MessageTypeDefOf.NeutralEvent);
             PlayWords.Invite(p);
         }
 

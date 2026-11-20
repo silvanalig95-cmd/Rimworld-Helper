@@ -557,6 +557,8 @@ var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOU
 pawnPrefixes.Add("FRIEND");
 // Gossip and reputation (Social/Gossip/): the one a story is about, a deed's detail, and the date in a deed's name.
 pawnPrefixes.Add("SUBJECT");
+// The holder of the seat whose work a council question is about (Offices/SeatCalls.cs).
+pawnPrefixes.Add("HOLDER");
 wishPh.UnionWith(new[] { "DETAIL", "DATE" });
 // A colonist asking for a better weapon (Weapons/WeaponAsks.cs, Rimfolk_Pool_WeaponAsk): the weapon and where it lies ({PLACE}).
 wishPh.Add("WEAPON");
@@ -599,6 +601,14 @@ wishPh.UnionWith(new[] { "DRUG" });
 // Storylines (Storylines/Storylines.cs, Fill): the person who asked by name, the second people, a sum, and the traps and lengths
 // of wall a part asks for ({RIVAL}, {NAME}, {KIND} and {WAY} are above).
 wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
+// Vanilla Aspirations Expanded's aim reached (ColonyLife/ModAims.cs, Rimfolk_Journal_ModAim): the aim, as the mod names it.
+wishPh.Add("AIM");
+// The council's integrations, part 1 (Offices/SeatCalls.cs, Interplay/Interplay_Seats.cs): the weight of office's hard call,
+// and the crop the reeve found blight in.
+wishPh.UnionWith(new[] { "CALL", "CROP" });
+// The land and its life (Animals/HerdCount.cs, Immersion/SickCup.cs, Defense/DefenseLinesWatch.cs): the days the hay and
+// kibble last and last winter's cold at the autumn count, the drink brought to the sick, the defense line an animal fought at.
+wishPh.UnionWith(new[] { "FEED", "WINTER", "DRINK", "LINE" });
 // The world brought home (World/Home/WorldHome.cs): the world event that made a quest likelier and where it is (WorldSteer),
 // and the people of an encounter's world event (WorldSeason.Fill; {SITUATION} and {SITUATIONPLACE} are above).
 wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
@@ -610,6 +620,9 @@ foreach (var (file, doc) in docs)
         if (el.HasElements) continue;
         var root = el.AncestorsAndSelf().Last(a => a.Parent == doc.Root);
         bool isAmbition = root.Name.LocalName.EndsWith("AmbitionDef");
+        // What reaching an ambition sets going (achievedEffects, ColonyLife/AmbitionScenes.cs) is told as an answer is: A the one
+        // who proposed it, B the one who leads it.
+        bool inScene = isAmbition && el.Ancestors().Any(a => a.Name.LocalName == "achievedEffects");
         bool isRule = el.Parent?.Name.LocalName == "rulesStrings";
         if (isRule) continue;
         foreach (Match m in placeholder.Matches(el.Value))
@@ -619,7 +632,8 @@ foreach (var (file, doc) in docs)
             if (p.Contains('_'))
             {
                 var parts = p.Split('_');
-                ok = parts.Length == 2 && pawnPrefixes.Contains(parts[0]) && pawnSuffixes.Contains(parts[1]) && (!isAmbition || parts[0] == "PAWN");
+                ok = parts.Length == 2 && pawnPrefixes.Contains(parts[0]) && pawnSuffixes.Contains(parts[1])
+                     && (!isAmbition || parts[0] == "PAWN" || inScene && (parts[0] == "A" || parts[0] == "B"));
             }
             else ok = !isAmbition && wishPh.Contains(p);
             if (!ok) errors.Add($"{Rel(file)}:{Line(el)}: unexpected placeholder {{{p}}}");

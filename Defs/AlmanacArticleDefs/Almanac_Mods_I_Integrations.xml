@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: the mods the content update's integrations use that had no page (docs/content-update-proposals.md, C30; the
+    land and its life, and the gods' two rounds, 20 November 2026). Each page says briefly what the mod is and what the
+    colony's people do with it in Rimfolk; like the gods' own page, none says what a god does. Each shows only with its mod.
+    Possessed Weapons, Sanguinary Animals and Demigryphs, named in C30 too, have no page: none of the integrations built
+    uses them.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_DryadsVIE</defName>
+    <label>Vanilla Ideology Expanded - Dryads</label>
+    <category>Mods</category>
+    <order>423</order>
+    <mods><li>vanillaexpanded.ideo.dryads</li></mods>
+    <summary>More castes of dryad for the Gauranlen tree, and dryads the colony's people hold sacred</summary>
+    <tip>Its dryads are among the beasts some of your colonists hold sacred.</tip>
+    <description>Vanilla Ideology Expanded - Dryads adds more castes of dryad to the Gauranlen tree, each with work of its own, from gathering to digging and fighting, and awakened dryads that grow out of them.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Some of your colonists hold its dryads sacred, each by their own reading of the old faith of the trees, and they may be wrong. A dryad of the colony's own is greeted by those who hold it so the first time they meet it, brought a bite by hand now and then on the animals' rounds, fed first and walked to the god's place on its feast day, and grieved a little when it dies. Killing one troubles those who hold it sacred, and a vow to spare a sacred beast can be made for them. See "the gods" and "the colony's animals".</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>dryad castes</li>
+      <li>awakened dryad</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Gauranlen</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_DragonsDescent</defName>
+    <label>Dragons Descent</label>
+    <category>Mods</category>
+    <order>425</order>
+    <mods><li>onyxae.dragonsdescent</li></mods>
+    <summary>Dragons and drakes on the land, their eggs, and dragon statues</summary>
+    <tip>Its drakes are among the beasts some of your colonists hold sacred.</tip>
+    <description>Dragons Descent brings dragons and drakes to the world: wild ones on the land, eggs to hatch and raise, and dragon statues to build.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Some of your colonists hold its drakes sacred, as they do other rare beasts: hunting one troubles those who do, and a drake of the colony's own is greeted, fed and walked to the god's place on its feast day by those who hold it so. Where the colony can make it, its great dragon statue stands at the back of the stone shrine room the room planner offers for a god of fire and the deep, between two braziers, once the colony's book has a chapter for that god.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>dragon</li>
+      <li>drake</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_LandmarksVE</defName>
+    <label>Vanilla Landmarks Expanded</label>
+    <category>Mods</category>
+    <order>437</order>
+    <mods><li>vanillaexpanded.vexploratione</li></mods>
+    <summary>Landmarks on the world map that shape the land you settle, and the events that come with some of them</summary>
+    <tip>Settled on a landmark, look at what it brings before you build: a flood plain floods.</tip>
+    <description>Vanilla Landmarks Expanded adds landmarks to the world map, from flood plains, cenotes and sinkholes to sulfur vents and a driftwood shore, each changing the map you settle on, and events that come with some of them, such as tidal flooding and the tornadoes of a tornado alley.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>When its tidal flooding has gone down, a few of the colony carry what the water left lying about back to the stores and clean up; after a tornado from its tornado alley, the best builder and a few others clear the debris and mend the roofs and walls. The chronicle keeps each once they've done some of the work, and the year's annals count them with the other disasters (see "the weather, as the colony knows it"). Your colonists may take a tidal flood for some god's doing, as they do other storms and floods, and say so.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>landmark</li>
+      <li>tidal flooding</li>
+      <li>tornado alley</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Weather</li>
+      <li>Council_AlmMod_D_GeoLandforms</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_E_ChristmasVE</defName>
+    <label>Vanilla Christmas Expanded</label>
+    <category>Mods</category>
+    <order>507</order>
+    <mods><li>ve.vanillachristmasexpanded</li></mods>
+    <summary>A winter festival: festive trees and lights, a festive table, winter food and drink, presents, warm clothes and snow sculptures</summary>
+    <tip>Keep a few presents and some hot cocoa in the stores before midwinter.</tip>
+    <description>Vanilla Christmas Expanded brings a winter festival to the colony: festive trees and fairy lamps, a festive feast table, gingerbread, eggnog and hot cocoa, presents to wrap and give, warm winter clothes and snow sculptures.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>On the colony's midwinter day (the winter god's feast day, or the midwinter supper, kept on the calendar), its festive trees and fairy lamps are switched on at dusk, the gingerbread, eggnog and hot cocoa in the stores are set out beside the festive table at supper, the eldest at home hands a present from the stores to each of the colony after supper, and by day someone makes a snow sculpture where the snow is deep enough. Each part only when its things are there.
+
+Its hot cocoa is carried to someone with a cold or a cough when the stores have no tea, handed over and drunk there, and the cold ends a few hours sooner. A winter camp comes dressed in its warm jacket and hat.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>christmas</li>
+      <li>festive tree</li>
+      <li>presents</li>
+      <li>hot cocoa</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_25_Ailments</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_G_Medieval2VFE</defName>
+    <label>Vanilla Factions Expanded - Medieval 2</label>
+    <category>Mods</category>
+    <order>695</order>
+    <mods><li>oskarpotocki.vfe.medieval2</li></mods>
+    <summary>Medieval kingdoms and clans, their castles and siege camps, and a medieval colony's buildings and furniture</summary>
+    <tip>Its archery target and training dummy give visitors something to do in an idle hour.</tip>
+    <description>Vanilla Factions Expanded - Medieval 2 brings medieval kingdoms and clans to the world, with their castles, banners and siege camps, and a medieval colony's buildings and furniture, from palisades and cloth walls to fur beds and archery targets.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The camps that come to the colony pitch with its banners, cloth walls and palisades, and a winter camp comes in its mantles. The room plans furnish a tribal bedroom with its fur beds and a stately one with its heraldic rug. Visitors with an idle hour spar at its training dummy and shoot at its archery target. Some of Rimfolk's peoples dress and arm from its pieces, and one of Rimfolk's storytellers sends its skirmishes and siege camps. Its raw honey is carried to someone with a sore throat when the stores have no tea or hot cocoa.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>medieval kingdom</li>
+      <li>siege camp</li>
+      <li>palisade</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

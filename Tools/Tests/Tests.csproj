@@ -30,6 +30,7 @@
     <Compile Include="../../Source/ColonyCouncil/Offices/ElectionMath.cs" Link="ElectionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/OfficeNamesMath.cs" Link="OfficeNamesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/RecordMath.cs" Link="RecordMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Offices/SeatMath.cs" Link="SeatMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentCauseMath.cs" Link="AilmentCauseMath.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalMath.cs" Link="GoalMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/ColonyLife/ColonyLifeMath.cs" Link="ColonyLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestWillMath.cs" Link="GuestWillMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestHelpMath.cs" Link="GuestHelpMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/InvitedGuestsMath.cs" Link="InvitedGuestsMath.cs" />
@@ -367,6 +369,8 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnFeastsMath.cs" Link="OwnFeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodBeastsMath.cs" Link="GodBeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ArtTalesMath.cs" Link="ArtTalesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weather/AfterStormMath.cs" Link="AfterStormMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Immersion/SickCupMath.cs" Link="SickCupMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/RevelMath.cs" Link="RevelMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="GodPaceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Among/GodsAmongMath.cs" Link="GodsAmongMath.cs" />

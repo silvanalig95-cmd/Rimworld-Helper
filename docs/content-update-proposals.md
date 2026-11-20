@@ -99,6 +99,12 @@ vigil the night watch already uses, `DilemmaEffect_Vigil`) with a word for whoev
 work count for elections (`OfficeWordsDef.measure`, `RecordMath`), news, This week. *Mod pool:* RimFridge and the deep
 storage mods' shelves count as stores, as the stores code already reads them. *Size:* M. *Harm:* none. *Text:* plain
 (seats). A bubble: "The medicine shelf is lower than I'd like." (said only when it is).
+**Built** (20 November 2026, the council's integrations, part 1, not released yet; DESIGN.md "The council at its work,
+in its questions and at its meeting"). Each act is a play-out of the colony's own that never takes a gathering's place:
+the speaker sits an hour at a table (trust under 10, every three days); the quartermaster's round of the stores at
+dawn, its count in the news and at the head of This week's plan; the reeve's walk at first light every other day in the
+growing season and the next morning for blight; the marshal's walk on the walls at dusk the two days after an attack.
+The marshal's dusk walk is kept only with "Answers play out on the map" on.
 
 **A2 (I) The seat whose work it is speaks in the question.**
 The questions about a seat's work name its holder as the one asked (role B, which already takes an `office:` tag, as
@@ -114,6 +120,11 @@ stores are spent. Their answer counts toward the seat's record that the next ele
 earlier flavour style. A sample opening: "[b:office:Reeve] {B_nameDef} has walked the bare field twice since sunrise,
 kicking at the clods. As {OFFICE_B} {B_pronoun} would like it sown by tomorrow, and would like it known that nobody
 asked {B_objective} before it went bare."
+**Built** (20 November 2026, part 1, not released yet). The holder is a role of its own (`{HOLDER_...}`, `{OFFICE}`, tags
+`[seat]` and `[seat:Reeve]`) rather than B, since many of these questions already have a B; 34 questions name a seat, every
+seasonal custom is the keeper of days', 26 have an opening and an outcome of their own for the seat and the rest the
+holder's word after the text (69 lines in all). Each one answered counts toward the record the next election reads
+("spoken for the seat in 3 of the council's questions").
 
 **A3 (V) A seat holder asks to step down.**
 A new question when a holder has been worn down or near breaking for five days (the heart), or laid up for ten days,
@@ -145,6 +156,10 @@ sick), have them answer for it at supper (a word at the table; their "weight of 
 A21), or leave it to the vote (nothing now; judged as before).
 *Ties:* `Offices/RecordMath.cs`, `ElectionPlanks`, the history's `office:promise`, PlayOut work parties, Arcs. *Size:* M.
 *Harm:* none. *Text:* council question, flavour style.
+**Built** (20 November 2026, part 1, not released yet). The ballots aren't kept by voter, so the one who raises it is
+someone who stood against the holder for the seat (now kept with the promise), else whoever thinks least of them. Only
+promises hands can help are raised (a watch, the food, the sick, the herd, the spirits); the food is brought in
+(harvest, fishing, hauling) rather than cooked, the game having no cooking work party. Each promise is raised once.
 
 **A6 (I) Any other business: petitions read out at the meeting.**
 After the ambition vote at the seasonal meeting, each open decree petition (for a decree or against one, the existing
@@ -155,6 +170,9 @@ of 7") on the Decrees page, in This week and in the meeting's letter. The counci
 *Ties:* `Ambitions/CouncilMeeting.cs`, `MeetingAttendance`, `Decrees/Decrees.cs`, `Wishes/Petitions.cs`,
 `UI/DecreePanel.cs`, the inbox. One small saved tally a petition (a model in `Tools/save_estimate.py`). *Size:* M.
 *Harm:* none. *Text:* plain (meeting lines and the page), the letter's paragraph in the flavour style of letters.
+**Built** (20 November 2026, part 1, not released yet). Read out during the meeting once the ambitions are put (the
+vote's count is at its very end), four at most; the tally is three numbers on the petition (values, so no new saved
+collection needed a model).
 
 **A7 (V) Two decrees that show on the map: the night watch, and a welcome for newcomers.**
 The night watch (six days): each night two of the colony's fighters take turns walking the walls and the gate from nine
@@ -200,6 +218,9 @@ and its Art and Props and Decor modules, Alpha Props - Parks and Gardens (benche
 altars and Vanilla Ideology Expanded - Memes and Structures; the game's campfire, chess table and stools when none fit.
 *Size:* M. *Harm:* none. *Text:* wishes, flavour style: "Every evening we drag the same four stools out to the same cold
 ashes. A proper fire pit would do. We'd keep it lit."
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's integrations, part 2"). "First habit" read as the
+first of the group's habits that wants a place of its own (no group kind lists reading or music first); a close group with
+its anchor and two more at home.
 
 **A11 (V) A toy for the little one.**
 A parent, an elder or a child's close grown-up friend (any of them: nothing here follows family lines) asks for a toy
@@ -218,6 +239,8 @@ hands at the new heater, and say the thanks there; a friend nearby now and then 
 thanks stay as now.
 *Ties:* `Wishes/Kept.cs` (`Notify_Granted`), a small job like the heart's acts, `Speech.Say`, `Together`. *Size:* S/M.
 *Harm:* none.
+**Built** (20 November 2026, not released yet). With "Answers play out on the map" on; the lasting wishes' own kinds (a
+thing, a bed, a room); a friend admires it a third of the time.
 
 **A13 (I) A wish talked up finds backers.**
 Colonists already bring up their open wish in conversation (`InteractionWorker_TalkAboutWish`, the social log). For a
@@ -225,6 +248,8 @@ wish many may back (a rec room, a sick bay, a council meeting: `allowPetition`),
 join it there and then (the co-signing the wish roll already uses, `CouncilGameComponent.CoSign`), with a line over both
 heads. A petition grows this way once a day at most; the roll's own co-signing is unchanged.
 *Ties:* `Interactions.cs`, `Wishes/Petitions.cs`, `Speech`. *Size:* S. *Harm:* none.
+**Built** (20 November 2026, not released yet). Half the time for someone who would want the same, more for a friend; who
+would want the same is the meeting's own rule (A6's `WantsSame`).
 
 ### Ambitions and life goals
 
@@ -240,6 +265,9 @@ kept or let pass, toward a tradition, as the other days are.
 twelve), the week's count (chosen things always count), the chronicle. *Size:* M/L. *Harm:* none. *Text:* ambitions,
 flavour style: "The hall is finished, and {PAWN_nameDef}, who first said it could be done, is walking everyone round it
 as if none of them had ever seen a wall before."
+**Built** (20 November 2026, not released yet). All 57 others have a scene; the seat whose work it is leads where someone
+holds it; up to three such days on the calendar. The ambitions' own letters are unchanged: the letter adds when the
+scene will be, so no line claims a walk round before it happens.
 
 **A15 (V) Three ambitions of the colony's people.**
 Nobody left out: every grown colonist belongs to a group or has a friend (`GroupMath.WhyOutside`, the social web's
@@ -270,6 +298,8 @@ colony wouldn't toast (to kill someone, to overdose, to eat human meat and the l
 Rimfolk's own life goals come a third less often to someone who has the mod's aims, so nobody chases six at once.
 *Ties:* `Aspirations/GoalMath` (the rate), `Heart/HeartNeeds.cs`, `PlayOut/Stage.cs`, `Social/Gossip`, the journal.
 *Mod pool:* Vanilla Aspirations Expanded, read by name. *Size:* S/M. *Harm:* none.
+**Built** (20 November 2026, not released yet). The aim is the one whose label the letter names; 22 of the mod's 76 aims
+are not toasted; an aim the letter doesn't name gets the journal line only.
 
 ### Personal stories
 
@@ -305,6 +335,9 @@ named in a council question about their seat's work (A2), a decree they backed t
 its journal and chronicle name it. With none in twenty days the story ends quietly instead of claiming a call.
 *Ties:* Arcs (a custom gate, `ArcWorker_Office`), the dilemmas' resolve, decrees. *Size:* S. *Harm:* none. *Text:*
 personal stories, flavour style.
+**Built** (20 November 2026, part 1, not released yet). "A decree they backed" is one they asked for or like, declared
+while someone at home hates it. The quiet end claims no call and brings no mood; the mood of a seat lost too soon now
+comes only when the seat was lost.
 
 ### Character, deeds and names
 
@@ -374,6 +407,8 @@ little closer); only those who want to; not this year. The year letter later rea
 said she would train the dogs. She did.").
 *Ties:* Calendar customs, Aspirations (`GoalMath`), `World/YearLetter.cs`, `Speech`. *Size:* M. *Harm:* none. *Text:* the
 question in the flavour style; the lines said at table plain, one sentence each.
+**Built** (20 November 2026, not released yet). The year's first week (days 0 to 7), any season; asked by someone with a
+life goal.
 
 **A28 (V) The elders' day (an autumn custom).**
 With two colonists of sixty or more, or an elder's seat held, someone young asks to honour them: the elders sit at the
@@ -395,6 +430,8 @@ then on, counting toward the Annalist's name. With Vanilla Books Expanded the wr
 *Ties:* `Annals.cs`, `World/YearLetter.cs`, `Epithets/` (the Annalist), the record keeper question, the founding day,
 `SharedMemoryDef`. *Mod pool:* Vanilla Books Expanded, [sbz] Bookcase (active). *Size:* M. *Harm:* none. *Text:* the
 letter in the flavour style of letters; the lines read aloud plain.
+**Built** (20 November 2026, not released yet). The book is the game's novel (the newspaper with printing), on any
+bookcase with room ([sbz] Bookcase's included), else by the table.
 
 ### Everyday family flavour
 
@@ -1141,7 +1178,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1505,6 +1542,8 @@ Each item that adds text says which of these it follows.
   time (`GodDef.unheard` otherwise).
 - **Ties:** the gods' moments, the animals, the weather book, the defense lines, the game's art.
 - **Mod pool:** Vanilla Furniture Expanded - Art's statues show the same tales (they use the game's art system).
+- **The named season (added with the land and its life, not released yet):** the ninth tale, a named season a believer
+  took for a god's doing, recorded from C18's `SeasonGods.Named`.
 - **Harm:** none.
 
 ### The land and its life
@@ -1522,7 +1561,7 @@ Each item that adds text says which of these it follows.
 - **Harm:** none.
 - **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/SeasonGods.cs`). Decided: cold Hush; heat Helios or Smoulder (a warm winter Helios); storms Cirrus; wet Murmur; dry Helios or Murmur; the most devout believer speaks, another who holds another of them argues when beside them, a doubter beside them answers; the letter through the hands kept for neighbours; the council asked in the first six days of the same quarter the year after (keep a day at the god's place, or let it pass and the one who asked goes alone).
 
-**C19 (E) After the storm: a work party for every disaster** (S to M)
+**C19 (E) After the storm: a work party for every disaster** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What exists:** after Seasonal Weather's earthquake, a party already goes round mending (`WeatherDisasters`).
 - **What changes:** the same after the others:
   - a tornado: debris cleared, roofs and walls mended;
@@ -1533,16 +1572,18 @@ Each item that adds text says which of these it follows.
 - **Words:** the chronicle and the annals keep each.
 - **Ties:** `WeatherDisasters`, `WeatherBook` (it already notes the tornado), `PlayWork`, the chronicle.
 - **Harm:** none (fires are the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Weather/AfterStorm.cs`, `AfterStormMath.cs`). Decided: each disaster as the game or the mod shows it (Seasonal Weather's quake condition, Vanilla Events Expanded's quake event, the game's flashstorm condition and tornado thing, Rimfolk's hail, Odyssey's seasonal flood thing, Vanilla Landmarks Expanded's tidal flooding condition); the party an hour or so after it ends, on a quiet map, the fires out first, led by the best builder or grower and three others, only where there is work, let go after two days; hail's broken crops are sown again (Rimfolk's hail destroys those it flattens, so nothing is left to cut); a flood's "stores moved up" is the water's leavings carried back to the stores; the chronicle keeps it once some work is done, the annals count each kind.
 
-**C20 (E) The advisor remembers last winter** (S to M)
+**C20 (E) The advisor remembers last winter** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the advisor's firewood, winter-stores, herd-feed and herd-cold notes read the colony's own record of
   the same season a year before: its longest cold, its coldest night, how long the snow lay (`WeatherBook`).
 - **In words:** said in the colony's terms: "last winter the cold held 19 days; at today's fires the wood lasts 11 such
   days".
 - **Ties:** `AdvisorSignals5` (Firewood, WinterStores), HerdFeed, HerdCold, `WeatherBook`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Advisor/AdvisorLastWinter.cs`, `WeatherMath.WinterBefore`). Decided: last winter is the four quadrums before the one now; "its longest cold" is how many days the cold lasted (a mean below 6 °C, the advisor's own measure), since the record keeps quadrums; the snow lay when half or more of the open land had a layer of it most of the day; spoken of after 20 days of a winter the record counted (seasons kept before the update are left out); one sentence added to each of the four notes.
 
-**C21 (I) The autumn count of the herd** (M; flavour style for the question)
+**C21 (I) The autumn count of the herd** (M; flavour style for the question) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **When:** each autumn, when the herd is four or more.
 - **What happens:**
   - The herdmaster, else the best with animals, walks the pens counting; a play-out.
@@ -1551,8 +1592,9 @@ Each item that adds text says which of these it follows.
   - The herd story notes the year's count and its leader.
 - **Ties:** `HerdStory`, the HerdFeed advisor, `WeatherBook`, trade, the council.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Animals/HerdCount.cs`, `Defs/DilemmaDefs/Rimfolk_Dilemmas_HerdCount.xml`). Decided: between 8 and 15 o'clock on a quiet day of autumn, once a year; the count is a round of up to eight of the herd; the question asked after it, within two days; yearlings are past their first stage and under a year old (eight at most, nobody's own, bonded, named or carrying young); they are marked to sell in the trade window for 30 days and the counter goes down to the pens when a caravan stops (Rimfolk never sells by itself); the oldest never the herd's leader, a male and a female of each kind kept, one when the hay lasts and the share it falls short by when it doesn't, four at most.
 
-**C22 (I) The colony's animals at the line** (S to M)
+**C22 (I) The colony's animals at the line** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the defense lines' lessons note colonists downed at a line (`DefenseLinesWatch`). They would also
   count the colony's animals that fought there: how many enemies they brought down, and who was hurt.
   - A lesson would say "the dogs held the gate" or "keep the animals back from the gate: three were downed there".
@@ -1560,6 +1602,7 @@ Each item that adds text says which of these it follows.
   already exist (`Strangers/Pets.cs`).
 - **Ties:** defense lines, the animals, the journal.
 - **Harm:** none (the fight is the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Defense/DefenseLinesWatch.cs`, `DefenseLineMath`). Decided: an animal fights at a line when it went for a raider within 30 cells of the gate; what it brought down is the greater of its own downings and kills in the raid (the game's records); "keep the animals back" when two or more fell there (or one that brought nobody down), "they held" as a note beside the lessons when they brought enemies down and none fell; the card's "lately" and its person's journal for one that brought an enemy down, unless the fight came to the person (the pets' heroics say that).
 
 **C23 (V) Telling the bees** (S)
 - **When:** one of the colony dies, or someone new joins.
@@ -1571,7 +1614,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** Alpha Bees; never comes without it.
 - **Harm:** none.
 
-**C24 (I) A cup for the sick** (S to M)
+**C24 (I) A cup for the sick** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **On the map:** the first-pot habit already carries coffee or tea to a friend in the morning (`Immersion/FirstPot.cs`).
   This item would bring something hot to someone with a cold, a cough or a sore throat:
   - Vanilla Brewing Expanded - Coffees and Teas' `VBE_MintTea`, `VBE_LemonTea`, `VBE_BlackTea`;
@@ -1584,6 +1627,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** the three mods, by name; never offered against a drug policy, a faith or teetotalism.
 - **Harm:** none; it slightly lowers the time spent ill, which sits near the top of its target (14% average,
   `docs/balance-report.md`).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Immersion/SickCup.cs`, `SickCupMath.cs`). Decided: the ailments are Rimfolk's colds and coughs (head and chest cold, the smoke, rimrot, post-flu, pollution, lingering, smoker's and spore coughs); the bringer is the colonist at their leisure, not ill, who thinks best of the sick one; Vanilla Cooking Expanded has no honey in the player's mods, so the honey is Alpha Bees' or Vanilla Factions Expanded - Medieval 2's raw honey, and the mods' other teas come after mint and lemon; no vanilla fallback (the game has no hot drink); one cup a day each, waking hours, one every two hours a map, severity eased by 0.04 (some five hours off a head cold).
 
 **C25 (V) The colony's own names for its places** (L)
 - **What changes:** places on the home map get names from what first happened there, given by the colony's people:
@@ -1640,7 +1684,7 @@ Each item that adds text says which of these it follows.
 
 ### Defense and the advisor
 
-**C28 (E) The lines in today's weather** (S to M)
+**C28 (E) The lines in today's weather** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the game lowers every shot taken outdoors in fog, rain or snow (the weather factor in the aim,
   `docs/defense-research/mechanics.md`). The defense survey follows the game's own sight and cover but not the weather.
   With this item:
@@ -1649,6 +1693,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `DefenseLineReview`, `DefenseLinesWatch`, the weather. To check against the 1.6 code before building, as
   the survey's other rules were.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/UI/DefenseLinesPanel.cs`, `DefenseLinesWatch.cs`). Checked in the 1.6 code (`Verse/ShotReport.HitReportFor`): the weather's accuracy factor multiplies every shot's aim when the shooter or the target is unroofed, any shooter, turrets too; melee is untouched. Decided: said when it takes a tenth or more, in percent; the raid's first look is one message; the lessons keep it as a note beside the others.
 
 (C20 and C22 also touch the advisor and the defense.)
 
@@ -1671,7 +1716,7 @@ Each item that adds text says which of these it follows.
 
 ### The Almanac
 
-**C30 (E) The Almanac's pages for the mods this round uses** (S)
+**C30 (E) The Almanac's pages for the mods this round uses** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** these active mods have no page today, or are named nowhere in the Almanac:
   - Possessed Weapons
   - Vanilla Ideology Expanded - Dryads
@@ -1686,6 +1731,7 @@ Each item that adds text says which of these it follows.
 - **No gods:** like the gods' own page, no page says what a god does with them; the pages say what the colony's people
   do.
 - **Keywords:** of existing pages unchanged (`almanaccheck`).
+- **Built** (20 November 2026, not released yet; `Defs/AlmanacArticleDefs/Almanac_Mods_I_Integrations.xml`, `Council_Mods_Support.xml`). Decided: pages for the mods the built integrations use that had none (Vanilla Ideology Expanded - Dryads, Dragons Descent, Vanilla Landmarks Expanded, Vanilla Christmas Expanded, Vanilla Factions Expanded - Medieval 2); Vanilla Fishing Expanded's part with the fishers on the Vanilla Cooking Expanded page that covers it; the brewing, bees and events pages brought up to date; a table row for each. Possessed Weapons, Sanguinary Animals and Demigryphs have no page, since no built integration uses them.
 
 ### Text variety
 

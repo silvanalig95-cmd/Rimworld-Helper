@@ -376,6 +376,9 @@ namespace ColonyCouncil
             // What letting it lapse can do to the body, named before it's let go (Harm/Carriers.cs).
             string lapse = req?.pawn != null && !req.repeal ? Carriers.LapseLine(def) : null;
             if (lapse != null) l.note += " " + lapse;
+            // Read out at a council meeting: how the room took it (Ambitions/MeetingBusiness.cs).
+            string tally = req?.pawn != null ? MeetingBusiness.Tally(req) : null;
+            if (tally != null) l.note += " " + tally;
             l.noteShown = l.note == null ? null : PaneLinks.Mark(l.note, req.pawn);
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
             // Needed now and wanted: it can come again sooner, and a repeat is minded less.
