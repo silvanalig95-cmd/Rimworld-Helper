@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.275.1</version>
+        <date>20 November 2026</date>
+        <title>Sent to a far town</title>
+        <points>
+          <li>A colonist a world event sends to another people's town now really goes: they set out from the edge of the map as a caravan of one, spend the days the letter names there, and come home with a letter that says how it went.</li>
+          <li>What they learned and the people's thanks count when they are home, and the world event waits for them before it ends; the answer says how long they will be away, road included, and is greyed when they can't leave or the town is too far.</li>
+          <li>In the blood feud, the elders of both families now come to the colony's gate for their talks, and the colony's talker sits with them there.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.275.0</version>
         <date>20 November 2026</date>
         <title>Ways out of bad traits</title>

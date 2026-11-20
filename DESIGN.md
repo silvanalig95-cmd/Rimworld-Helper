@@ -2908,7 +2908,7 @@ peace talks' two delegations come to the gate a day or two after the colony agre
 that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
 and the colonist now really goes (the next section).
 
-### A colonist a world event sends to a far town goes (the player's go, 20 November 2026; not released yet)
+### A colonist a world event sends to a far town goes (the player's go, 20 November 2026; released 0.275.1)
 
 Sixteen answers of fourteen world events send a colonist to another people's town, or to a place just beyond the
 colony, for a day or several: to advise, build, teach, read old writing, speak or keep watch. They used to leave the

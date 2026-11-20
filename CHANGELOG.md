@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Sent to a far town
+
+*20 November 2026, version 0.275.1*
+
+- A colonist a world event sends to another people's town now really goes: they set out from the edge of the map as a caravan of one, spend the days the letter names there, and come home with a letter that says how it went.
+- What they learned and the people's thanks count when they are home, and the world event waits for them before it ends; the answer says how long they will be away, road included, and is greyed when they can't leave or the town is too far.
+- In the blood feud, the elders of both families now come to the colony's gate for their talks, and the colony's talker sits with them there.
+
 ## Ways out of bad traits
 
 *20 November 2026, version 0.275.0*
