@@ -110,7 +110,11 @@ namespace ColonyCouncil
         private static Visit Of(Pawn master) =>
             CouncilGameComponent.Instance?.happenings?.visits?.FirstOrDefault(v => v != null && v.kind == Kind && !v.done && v.x == master);
 
-        /// <summary>The answer taken: the master to the piece, the maker beside it; with the play-outs off (or nobody can get there), judged at once.</summary>
+        /// <summary>
+        /// The answer taken: the master to the piece, the maker beside it. A piece in a room visitors otherwise keep out of (a bedroom) is
+        /// open to the master for it (KeepOut, PeopleErrands); one they still can't get to waits for the visit's hour. With the play-outs
+        /// off, judged at once.
+        /// </summary>
         public static void Begin(HappeningContext ctx, bool lesson)
         {
             var map = ctx?.map;
@@ -122,33 +126,71 @@ namespace ColonyCouncil
             v.place = piece;
             v.stake = lesson ? 1 : 0;
             v.skill = ctx.skill;
-            var at = At(piece);
-            if (PlayOuts.On && at.IsValid && PeoplesE.Up(x, map) && x.CanReach(at, PathEndMode.Touch, Danger.Some))
+            if (PlayOuts.On)
             {
-                Lords.Leave(x);
-                Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, at.Cell, 6 * GenDate.TicksPerHour), map, new List<Pawn> { x });
-                if (PeopleEvents7.Send(x, PeopleEvents7.JudgeJob, at, PeopleEvents7Math.JudgeTicks))
-                {
-                    var a = ctx.a;
-                    if (a != null && a.Spawned && a.Map == map && !a.Downed && !a.Drafted && !a.InMentalState && at.Thing != a)
-                        PeopleEvents7.Send(a, PeopleEvents7.StandByJob, at, PeopleEvents7Math.JudgeTicks);
-                    else if (a != null && at.Thing == a && lesson) a.skills?.Learn(ctx.skill ?? SkillDefOf.Crafting, PeopleEvents7Math.JudgeXp, true);
-                    return;
-                }
+                KeepOut.Refresh(map);
+                // Under way, or not yet with the way still barred: the visit's hour tries again, and says so if the master never gets there.
+                if (Start(v) || At(piece).IsValid && PeoplesE.Up(x, map)) return;
             }
             if (lesson && ctx.a != null) ctx.a.skills?.Learn(ctx.skill ?? SkillDefOf.Crafting, PeopleEvents7Math.JudgeXp, true);
             Verdict(v);
         }
 
-        /// <summary>The visit's hour: the master gone or the hours run out before the hour at the piece is done, the verdict is given there and then.</summary>
+        /// <summary>The visit's due once the master was at the piece's work (0: not yet, they wait at the gate).</summary>
+        private const int Started = 1;
+
+        /// <summary>The master sent to the piece, the maker beside it; false when the master can't get to it now.</summary>
+        private static bool Start(Visit v)
+        {
+            var x = v.x;
+            var map = v.map;
+            var at = At(v.place);
+            if (!at.IsValid || !PeoplesE.Up(x, map) || !x.CanReach(at, PathEndMode.Touch, Danger.Some)) return false;
+            Lords.Leave(x);
+            Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, at.Cell, 6 * GenDate.TicksPerHour), map, new List<Pawn> { x });
+            if (!PeopleEvents7.Send(x, PeopleEvents7.JudgeJob, at, PeopleEvents7Math.JudgeTicks)) return false;
+            v.due = Started;
+            var a = v.a;
+            if (a != null && a.Spawned && a.Map == map && !a.Downed && !a.Drafted && !a.InMentalState && at.Thing != a)
+                PeopleEvents7.Send(a, PeopleEvents7.StandByJob, at, PeopleEvents7Math.JudgeTicks);
+            else if (a != null && at.Thing == a && v.stake == 1) a.skills?.Learn(v.skill ?? SkillDefOf.Crafting, PeopleEvents7Math.JudgeXp, true);
+            return true;
+        }
+
+        /// <summary>
+        /// The visit's hour: the master at the piece, left; not got to it yet, tried again; the hours out before they could get to it, they
+        /// go home without a verdict, said as it is; stopped partway (the master gone or the hours run out), the verdict there and then.
+        /// </summary>
         public static bool Hour(Visit v, int now)
         {
             if (v.done) return false;
             var x = v.x;
             bool working = x != null && x.Spawned && x.CurJobDef == PeopleEvents7.JudgeJob;
             if (working && now <= v.until) return true;
+            if (v.due != Started)
+            {
+                if (now <= v.until && PeoplesE.Up(x, v.map) && v.place != null && !v.place.Destroyed)
+                {
+                    Start(v);
+                    return true;
+                }
+                NoWay(v);
+                return false;
+            }
             Verdict(v);
             return false;
+        }
+
+        /// <summary>The master never got to the piece in the visit's hours (a door barred to visitors, a cold store): home without a verdict, told.</summary>
+        private static void NoWay(Visit v)
+        {
+            if (v.done) return;
+            v.done = true;
+            var x = v.x;
+            if (v.map != null && v.place != null)
+                Tell.Message(NewsKind.People, Importance.Notable, v.map, "CC_PEv7_MarkNoWay".Translate((x?.LabelShort ?? "?").Named("MASTER"), v.place.LabelNoCount.Named("THING")).Resolve(),
+                    x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+            if (x != null) Arrivals.SendAway(new List<Pawn> { x });
         }
 
         /// <summary>The master's hour at the piece done: the verdict.</summary>

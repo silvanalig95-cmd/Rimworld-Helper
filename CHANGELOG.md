@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The medal at the gate
+
+*20 November 2026, version 0.276.2*
+
+- The Republic's medal is read at the gate: the colonist walks out to the clerk, with everyone free if you asked, and if they can't get out in time the clerk goes home and the message says so.
+- Visitors sent to someone or something inside the colony (the Works' gene work, the master's judging, the radio call, the casket, the ship's walk, the listener and the warden) no longer finish unseen behind a shut bedroom door: the colonist comes out to them, the colony lets them through, or the message says what happened.
+- What a dead colonist leaves, their heirloom and their room, goes to whoever was closest to them, a partner, a friend or a relative, never to blood kin first.
+
 ## Every bad trait can fade
 
 *20 November 2026, version 0.276.1*

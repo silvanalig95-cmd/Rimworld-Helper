@@ -45,6 +45,7 @@ namespace ColonyCouncil
             return ideo != null && x != null && ideo.PreferredXenotypes.Count > 0 && !ideo.PreferredXenotypes.Contains(x);
         }
 
+        /// <summary>The answer taken: the sequencer works three hours at the colonist's side; with the play-outs off, at once.</summary>
         public static void Begin(HappeningContext ctx)
         {
             var map = ctx?.map;
@@ -54,18 +55,34 @@ namespace ColonyCouncil
             if (map == null || t == null || x == null || b == null || ctx.faction == null) return;
             var v = t.AddVisit(Kind, ctx.incident, map, x, b, null, Now + 8 * GenDate.TicksPerHour);
             v.text = ctx.faction.GetUniqueLoadID() + "|" + (ctx.note ?? "");
-            if (PlayOuts.On && PeoplesG.Up(b, map) && PeopleEvents8.Errand(x, map, b, null, PeopleEvents8.XenogermJob, PeopleEvents8Math.XenogermTicks, 6f)) return;
-            Implant(v);
+            if (!PlayOuts.On)
+            {
+                Implant(v);
+                return;
+            }
+            // Straight to them, or, with a door barred to visitors in the way, they walk out to the sequencer (PeopleEvents8.WorkOn); not
+            // able to start now, the visit's hour tries again.
+            PeopleEvents8.WorkOn(v, PeopleEvents8.XenogermJob, PeopleEvents8Math.XenogermTicks);
         }
 
+        /// <summary>The visit's hour: the work under way, left; stopped, set going again; the hours out before it could be done, said so (never done unseen).</summary>
         public static bool Hour(Visit v, int now)
         {
             if (v.done) return false;
             var x = v.x;
             bool working = x != null && x.Spawned && x.CurJobDef == PeopleEvents8.XenogermJob;
-            if (working && now <= v.until) return true;
-            Implant(v);
-            return false;
+            switch (PeopleEvents8Math.Step(PeoplesG.Up(x, v.map), working, now, v.until, v.due))
+            {
+                case PeopleEvents8Math.MeetStep.Wait:
+                    return true;
+                case PeopleEvents8Math.MeetStep.Again:
+                    v.due++;
+                    PeopleEvents8.WorkOn(v, PeopleEvents8.XenogermJob, PeopleEvents8Math.XenogermTicks);
+                    return true;
+                default:
+                    PeopleEvents8.Undone(v);
+                    return false;
+            }
         }
 
         public static void Done(Pawn sequencer, Pawn taker)
@@ -82,6 +99,7 @@ namespace ColonyCouncil
         {
             if (v.done) return;
             v.done = true;
+            PeopleEvents8.Release(v);
             var x = v.x;
             var b = v.a;
             var map = v.map;

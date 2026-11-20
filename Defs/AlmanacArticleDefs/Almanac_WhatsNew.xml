@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.276.2</version>
+        <date>20 November 2026</date>
+        <title>The medal at the gate</title>
+        <points>
+          <li>The Republic's medal is read at the gate: the colonist walks out to the clerk, with everyone free if you asked, and if they can't get out in time the clerk goes home and the message says so.</li>
+          <li>Visitors sent to someone or something inside the colony (the Works' gene work, the master's judging, the radio call, the casket, the ship's walk, the listener and the warden) no longer finish unseen behind a shut bedroom door: the colonist comes out to them, the colony lets them through, or the message says what happened.</li>
+          <li>What a dead colonist leaves, their heirloom and their room, goes to whoever was closest to them, a partner, a friend or a relative, never to blood kin first.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.276.1</version>
         <date>20 November 2026</date>
         <title>Every bad trait can fade</title>

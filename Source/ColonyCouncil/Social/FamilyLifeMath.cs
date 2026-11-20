@@ -38,9 +38,9 @@ namespace ColonyCouncil
     /// <summary>
     /// The numbers and choices behind the family's life together (Social/FamilyLife.cs): who is glad of a new couple and
     /// who doubts it, whether a child on the way is wanted, which family names a baby is offered, whether a birthday is
-    /// one the family marks, what a child was named after, how much family weighs in who inherits, what a family is
-    /// called and what its name stands for, who sits down to a family supper, how grown brothers and sisters get on, and
-    /// how often a grown child looks in on an ageing parent. No game types, so Tools/Tests checks it.
+    /// one the family marks, what a child was named after, how close someone was to the dead for what they leave, what a
+    /// family is called and what its name stands for, who sits down to a family supper, how grown brothers and sisters get
+    /// on, and how often a grown child looks in on an ageing parent. No game types, so Tools/Tests checks it.
     /// </summary>
     public static class FamilyLifeMath
     {
@@ -57,33 +57,42 @@ namespace ColonyCouncil
         /// <summary>The birthday a child comes of age (stops being a child: Lives/Legacy.cs marks it).</summary>
         public const int ComingOfAgeAge = 13;
 
-        /// <summary>The least <see cref="HeirBonus"/> that counts as family for a dead colonist's room (family by marriage).</summary>
-        public const float HeirFamily = 40f;
+        // ---------- What the dead leave ----------
 
         /// <summary>
-        /// How much a relation weighs in who inherits what the dead leave (Social/FamilyInheritance.cs, Lives/Legacy.cs),
-        /// on top of how the two felt about each other: a parent, child, brother or sister most; then a partner, or a
-        /// parent or child by adoption; other family by blood; family by marriage; anything else between them (an old
-        /// flame) a little; no relation, nothing.
+        /// How close someone was to the dead, for what the dead leave (their keepsake, their room: Lives/Legacy.cs,
+        /// Social/FamilyInheritance.cs): the vendetta's own measure (VendettaMath.Closeness), the game's opinion of the dead
+        /// (which carries the game's weight for a relation and everything that passed between them), the social web's warmth
+        /// between the two, and a partner or a relative by blood as one part among them, added. Since the player's rule of 5
+        /// November 2026 (the colony is the family, never a dynasty; A30 of 20 November 2026) blood no longer comes first: a
+        /// close friend comes before a brother who was never close.
         /// </summary>
-        public static float HeirBonus(string relation, bool byBlood)
+        public static float Closeness(int opinion, float web, bool partner, bool kin) => VendettaMath.Closeness(new VendettaMath.Bond(opinion, web, partner, kin));
+
+        /// <summary>Close enough to keep the dead's keepsake (their weapon or hat): as close as an opinion of 20 alone.</summary>
+        public const float KeepsakeAtLeast = 20f;
+
+        /// <summary>Close enough to be given the dead's room: as close as an opinion of 60 alone, as for taking up their vendetta.</summary>
+        public const float RoomAtLeast = VendettaMath.AtLeast;
+
+        /// <summary>
+        /// Who gets what the dead leave: the closest of those close enough (an index into <paramref name="closeness"/>; where
+        /// two are as close, the first), or -1 for nobody. Who may at all (a colonist here, one with no room of their own for a
+        /// room) is the caller's to say.
+        /// </summary>
+        public static int Heir(IList<float> closeness, float atLeast)
         {
-            if (string.IsNullOrEmpty(relation)) return 0f;
-            switch (relation)
+            if (closeness == null) return -1;
+            int pick = -1;
+            float best = float.MinValue;
+            for (int i = 0; i < closeness.Count; i++)
             {
-                case "Parent":
-                case "Child":
-                case "Sibling":
-                    return 80f;
-                case "Spouse":
-                case "Fiance":
-                case "Lover":
-                    return 70f;
+                float c = closeness[i];
+                if (float.IsNaN(c) || c < atLeast || c <= best) continue;
+                best = c;
+                pick = i;
             }
-            if (FamilyMath.Adoptive(relation)) return 70f;
-            if (byBlood) return 60f;
-            if (FamilyMath.ByMarriage(relation)) return HeirFamily;
-            return 20f;
+            return pick;
         }
 
         /// <summary>

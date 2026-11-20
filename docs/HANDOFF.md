@@ -58,6 +58,10 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **To do when the player asks (found 20 November 2026 with A30, no words of the player's yet): who raises an orphan.**
+  The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
+  A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
+  raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
   additional God events, more immersion, more just further also building up on the gods in general, how they're
@@ -71,7 +75,8 @@ most sense." So, in this order, three builds at a time:
   The order, three builds at a time:
   1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
      medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness), the peoples' founder texts (in each text's present voice), the comms console by radio and the foreign
+     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
+     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice), the comms console by radio and the foreign
      peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems.
@@ -600,6 +605,58 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.276.2, **The medal read at the gate, the
+  peoples' errands past a barred door, and what the dead leave by closeness** (20 November 2026; the player's go on two
+  fixes: the medal, "I selected the option that everyone should go to the gate", given at once though "I have answers
+  play out on the map is enabled for me", and A30 of `docs/content-update-proposals.md`). DESIGN.md "The medal read at
+  the gate, and visitors' errands past a barred door" and "What the dead leave goes to whoever was closest".
+  - **The medal: the cause** (read in greyscreen.rws). The answer came at 7999921, 141 ticks after the clerk (Helena) and
+    the guard walked in from the map's south edge; the clerk was still walking to the gate (her Goto to the gate spot
+    (42, 192), begun at 7999859, still under way at the save, at (42, 100)). `RepublicMedal.Begin` sent the clerk to the
+    colonist wherever they were (`PeopleEvents8.Errand`: `CanReach` from the clerk to Avila). It never started: the save
+    has Lord_315 (the visit's) and Lord_316 (the leaving's, `Award`'s `SendAway`) and `nextLordID` 317, so the errand's
+    lord was never made, and the failing part came before it. The clerk was up, Avila neither drafted (no fight on) nor in
+    a break (no catharsis), the play-outs on (the player): the reach failed. The game lets a friendly visitor open the
+    colony's doors; Rimfolk's keep out (`Visitors/KeepOut.cs`) forbids the doors of the colony's bedrooms and cold stores
+    to visitors, and its look (tick 131 of every 250) ran at 7999881, 101 ticks after the clerk came, 40 before the
+    answer. Avila was indoors and awake then (`lastOutdoorTick` 7994323; his last `SleptInBedroom` 46350 ticks old; at the
+    save he was showering in the bedroom at (72..75, 196..198), whose bed is someone else's, after eating), so most
+    likely in a room with a bed. Not the door mods: Doors Expanded and More Door Variants' louver doors keep the game's
+    door rule, Door Clearance doesn't touch who passes, and Hospitality's guest rules are for its own visit lords (the clerk
+    was under Rimfolk's, `Strangers.IsHospitalityGuest`).
+    Also wrong before: the colonist and the gathered were sent to stand by the clerk where she was, at the map's edge.
+  - **Built.** `Peoples/Events8/PeopleEvents8.cs` (the meeting: `MeetSpot`, `Beside`, `SendOut`, `Release`, `Meet`,
+    `WorkOn`, `Undone`, `LeaveBack`; `JobDriver_PEv8Work`'s meeting place, TargetB, and a target out of reach passed
+    over), `PeopleEvents8Math` (`MeetRange`, `MeetWaitTicks`, `MeetSends`, `MeetStep`, `Step`, `Met`),
+    `RepublicMedal` (the meeting at the gate, the hour, `Left`), `GeneTakenOut` and `WholeXenogerm` (`WorkOn`, the hour,
+    `Undone`), `VoteObserver` (the roll's reachable voters), `GravshipLog` (the ship open to the officers, from outside
+    when nowhere aboard), `SleeperOfTheirs` (the colony's doctor opens it when the runner can't get to it),
+    `Peoples/PeopleErrands.cs` (the errands' ways into a bedroom, read by `KeepOut.Care`), `Events7/MastersMark.cs` and
+    `VoiceForColony.cs`, `Events9/MindShouts.cs` and `VoidListens.cs`, `Events5/MendTonight.cs`; eight new keyed lines
+    (`CC_PEv8_MedalLeft`, `_WorkUndone`, `_WorkUndonePaid`, `_GravOutside`, `_GravOutsidePart`, `_SleeperHomeOpened`,
+    `CC_PEv7_MarkNoWay`, `CC_PEv9_ShoutNoWay`). The list of each errand of rounds 5 to 10 looked over, with what was done
+    or why it was left, is in the DESIGN section.
+  - **A30.** `Social/FamilyLifeMath.cs`: `Closeness` (the vendetta's `VendettaMath.Closeness`), `KeepsakeAtLeast` 20,
+    `RoomAtLeast` 60 (the vendetta's `AtLeast`), `Heir`; `HeirBonus` and `HeirFamily` gone. `Lives/Legacy.cs` (the
+    heirloom to the closest), `Social/FamilyInheritance.cs` (`Inheritance.Closeness`; the room to the closest without a
+    room who was close enough, closeness noted at the death). The room's plain message and one journal line no longer
+    say "as family". The Almanac's "What the dead leave" and the README's line say it. Left: who raises an orphan
+    ("family first", a council question, outside A30).
+  - **Tests.** `PeopleEvents8Tests` (the hour's steps, the meeting's range, every place round the meeting place counts
+    as met, the medal never given at once with the play-outs on, the seams), `FamilyLifeTests` (closeness as the
+    vendetta's, a close friend before a distant brother, the floors, ties).
+  - **Can't be checked without the game.** The clerk waiting at the gate spot and reading when the colonist comes within
+    four cells; the colonist and the free people walking out and standing round, let go when it is read; the officers
+    walking a ship whose room has beds; a master's piece in a bedroom; the sequencer's work at the gate; KeepOut's ways
+    for these errands (the doors re-read when the errand starts).
+  - **Try in the game.** With dev mode, "Peoples' events 8: a medal for a deed now" (the clerk comes for the freshest deed): send
+    the colonist to bed in a room with a door first, answer "Gather everyone who is free at the gate to hear it": the
+    clerk walks to the gate, the colonist and up to eight others walk out and stand round her, she reads for an hour
+    (a bar), the medal is pinned on, they go back to their day. Draft the colonist before answering: the clerk waits, and
+    after the hours she goes home with the message that he could not get out to the gate. For A30: with two colonists,
+    one the dead's close friend and one a brother they didn't get on with, kill the one with a room (dev mode): a day
+    later the room goes to the friend if the friend has no room, and the heirloom to the friend.
+  - **Mods that would help.** None needed: the meeting uses the game's own standing and the visitors already there.
 - 0.276.1, **More traits that come and go, the
   other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
   out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a

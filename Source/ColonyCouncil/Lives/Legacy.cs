@@ -70,8 +70,8 @@ namespace ColonyCouncil
         // ---------------- Heirlooms ----------------
 
         /// <summary>
-        /// Called when a colonist has died: their weapon or hat goes to the one who loved them most, family weighing most,
-        /// blood closest (Social/FamilyInheritance.cs).
+        /// Called when a colonist has died: their weapon or hat goes to whoever was closest to them, a partner, a friend or a
+        /// relative, by how close they really were, never blood first (FamilyLifeMath.Closeness, Social/FamilyInheritance.cs).
         /// </summary>
         public void Notify_Death(CouncilGameComponent comp, Pawn dead)
         {
@@ -80,9 +80,10 @@ namespace ColonyCouncil
             if (thing == null)
                 thing = dead.apparel?.WornApparel.FirstOrDefault(a => a.def.apparel?.layers?.Contains(ApparelLayerDefOf.Overhead) ?? false);
             if (thing == null || thing.Destroyed) return;
-            var heir = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => p.relations != null && !p.DevelopmentalStage.Baby())
-                .OrderByDescending(p => p.relations.OpinionOf(dead) + comp.social.Warmth(p, dead) + Inheritance.Bonus(p, dead)).FirstOrDefault();
-            if (heir == null || heir.relations.OpinionOf(dead) < 20 && comp.social.Warmth(heir, dead) < 30f && !heir.GetRelations(dead).Any()) return;
+            var could = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => p != dead && p.relations != null && !p.DevelopmentalStage.Baby()).ToList();
+            int i = FamilyLifeMath.Heir(could.Select(p => Inheritance.Closeness(comp, p, dead)).ToList(), FamilyLifeMath.KeepsakeAtLeast);
+            if (i < 0) return;
+            var heir = could[i];
             heirlooms.Add(new Heirloom { thing = thing, ofName = dead.LabelShort, heir = heir, tick = Find.TickManager.TicksGame });
             string text = "CC_Heirloom_Passed".Translate(heir.Named("PAWN"), dead.Named("OTHER"), thing.def.label.Named("ITEM")).Resolve();
             Notify.Message(text, new LookTargets(heir, thing), MessageTypeDefOf.NeutralEvent, Importance.Notable);
