@@ -27,7 +27,7 @@ namespace ColonyCouncil
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && PersonKind(f) != null
                             && !f.HostileTo(Faction.OfPlayer) && (pred == null || pred(f)))
-                .RandomElementByWeightWithFallback(f => TechWeight(f, tech) * (factor == null ? 1f : Mathf.Max(0.01f, factor(f))));
+                .RandomElementByWeightWithFallback(f => TechWeight(f, tech) * (factor == null ? 1f : Mathf.Max(0.01f, factor(f))) * WorldSteer.Weight(f));
         }
 
         /// <summary>A people that could still send someone: not gone, not hidden, not at war with the colony.</summary>

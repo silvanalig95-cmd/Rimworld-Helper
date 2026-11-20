@@ -220,6 +220,8 @@ namespace ColonyCouncil
             args.Add((host ?? "").Named("HOST"));
             args.Add((rite ?? "").Named("RITE"));
             args.Add((guest ?? "").Named("GUEST"));
+            // The world event that made this event likelier, for its season's lines: {WSNAME}, {WSPLACE} (B2).
+            WorldSteer.AddArgs(this, args);
             // The colonist their people remember by name (World/KinMemory.cs), for lines tagged [their:friend].
             args.Add(KinMemory.FriendArg(People));
             // What their people remember and the region's word on their town ({DEED}, {WRONG}, {FORTUNE}...), for the lines

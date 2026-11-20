@@ -18450,6 +18450,111 @@ Harm: only the fellowship's cough from a crowded town (C6), already in the budge
 Not checked without the game: the catch hook's list, the trader lord's timer, a sculpture from a snowman, the trade
 window's line, the shrine rooms' layouts with the mods' pieces.
 
+### The world brought home (the player's go, 20 November 2026; released 0.280.0)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
+this in the order you think makes most sense ... more immersion ... the relations between pawns, the kind of events that
+generated from it", and "first do all the integrations that you proposed in your document before we add additional
+content variety". Built: B1, B2, B3, B23, B25, B26 and B32 of part B, the first of its integrations. The code is
+`Source/ColonyCouncil/World/Home/` (`WorldHome.cs`: `WorldSeason`, `WorldSteer`, `RoadNews`, `WorldApart`, `GreatTaken`;
+`WorldQuestions.cs`, `WorldScenes.cs`, `WorldHomeBook.cs`, `WorldHomeDebug.cs`); the pure rules `WorldHomeMath` (linked
+into the tests); the saved state `WorldHomeBook` (a game component: the vows and the dyed clothes) and the world events'
+own flags (kept apart, a side backed, a great one set down). Its hour is the world events' own (`WorldHome.Hourly`, from
+`WorldSituations` at its tick): no new clock. Words in `Languages/English/Keyed/Rimfolk_WorldHome.xml`.
+
+- **B1, world events in the peoples' own ways.** `WorldSituationDef` has two new lists, `theirs` and `theirEnds`: a
+  paragraph under the start letter, and one under whichever ending's letter, told only when the world event falls on one of
+  Rimfolk's 23 peoples and a line tagged with that people's calling fits (`WorldSituationWorker.Theirs`, picked tagged
+  only; an ending's key is the tag `end:KEY`, so a robbed caravan's line differs). Each of the 33 world events that prefer a
+  people (the patches' `<calling>`) has one of each for its people; the six hard ones (plague, famine, hard winter, flood,
+  great fire, mourning) have one for every people (205 lines, the world events' flavour style). A plague at the
+  hospitallers' town fills their sickhouse and the priors ask for linen; a famine among the herding folk has herds sold at
+  a loss and the elders eating last; the great fire takes the Kiln Guild's kilns. A line that names no calling is a
+  config error (`WorldHomeMath.ForAPeople`).
+- **B2, world events steer the quests and storylines offered.** `<rimfolk>` modifiers on 21 world events raise the home
+  quests' and storylines' first parts that fit them (the plague the sickness storyline, the lent healer and the order's
+  medicine; the drought the well; the bandit road, a bandit lord's fall and the warlord the raiders settling nearby and the
+  outlaw; markets closed, a blood feud and a war between neighbours the two towns' quarrel; the great fire and the war the
+  children from the burned village; the drovers, the great herds and the murrain the strayed herd and the sick animal; a
+  holy year and a great pilgrimage the relic; a people in mourning the lost founder's grave; the assize the prisoner kept
+  and the dispute judged; a great fair and a season of songs the musicians and the wedding piece; a year without a summer
+  and a hard winter the seed grain kept cold). Such a first part is steered (`WorldSteer.For`): while it is cast, the
+  world event's own people are four times as likely to be the ones who ask (`Arrivals.Friendly`,
+  `MissionPeoples.Grateful`, `WorldSteer.Weight`); its lines are picked with `ws:KIND`, `wsdef:DEFNAME`, `ws:steered` and
+  `ws:theirs` (at the asker's own people), and the lines written for the season (41 on 17 first parts, plain words) are
+  preferred over the rest when one fits (`WorldSteer.Prefer`). `{WSNAME}` is the world event, `{WSPLACE}` where it is
+  ("the region" when it has no place). The pace of one storyline at a time holds.
+- **B3, messengers tell the road's news.** As a courier sets the bag down at the mailbag (or hands an answer over at the
+  gate), and as the post rider, the mail run or any carrier drops the post's bag (`MailIn.Delivered`), a world event on
+  their road (their own people's first, else the nearest whose place lies near the colony, near their town, or not far out
+  of the way between: `WorldHomeMath.OnRoad`) is told, three times in four, in one sentence from `Rimfolk_CourierLines`
+  tagged `[road]` with its kind or name and `[ws:theirs]` at their own town (44 lines): "The ford below Ashford is under
+  water, I came round by the hill." Else their usual word. `{PLACE}`, `{NAME}`, `{FACTION}` are the world event's.
+- **B23, what the colony is known for draws the quests and camps that fit it.** `RenownMath.Events` takes the quests and
+  first parts of the proposal's table (healers the lent healer, the order's medicine and the sickness storyline; fighters
+  the trainee, the outlaw, the camp guard and the Banner's muster; hosts the musicians, the dignitary and the festival;
+  traders the factor's goods and the league's escort; makers the wedding piece, the smith, the glass apprentice and the
+  journeyman's year; the faithful the relic, the shrine and the hostel's bread), and a new table, `RenownMath.Camps`, the
+  camps (the field sickhouse, the travelling healer and the healers; the war party and a hired guard; players and
+  minstrels; merchants from afar and the salt caravan; the smith; pilgrims and penitents), each by how far the name carries
+  (`BandFactor`: a quarter more in a town's reach, to three quarters among the peoples; `CampKindDef.WeightNow` through
+  `Renown.CampFactor`).
+- **B25, encounters of the region's hard times.** `EncounterDef` has `situations` (world event kinds or defNames: only
+  in their season) and `scene` (`WorldScenes`): what must be true on the map and plays out as it is told. Fourteen
+  (`Defs/EncounterDefs/Rimfolk_Encounters_WorldTimes.xml`, plain): in a plague a visitor keeps their distance, and another
+  asks after the fever; in a famine a hungry visitor slips food from the stores into their pack (`pocket`: food of the
+  stores within twelve cells of them, one piece moved into their pack) and the colonist lets it go or tells them to keep it,
+  and a trader looks for grain; in a drought a visitor asks where the water is; in a holy year or a great pilgrimage a
+  pilgrim kneels at the colony's holy place (`kneel`: a god's place, a ritual focus, an altar or a shrine; they walk to it
+  and kneel a while, `Rimfolk_WH_KneelAt`) and another asks a colonist's name to pray for; in a war between neighbours two
+  visitors of the two sides share a fire (`sides`: one of each side near the same lit fire or running heater; both sit at
+  it a while); with a comet a visitor and a colonist watch it (`sky`: night, both under the open sky); at a great fair a
+  visitor shows a ribbon won; with the drovers or the great herds a drover's dog runs at the colony's hens and they scatter
+  (`dog`: a dog of the visitor's group, the colony's hens; the dog runs, the hens flee); on the ice road or in a hard
+  winter a carter with frostnipped hands warms them at the colony's fire (`warm`: a lit fire or a heater within twenty
+  cells); in a season of songs a visitor hums the song about the colony (`hum`: a note over their head); in a mourning a
+  visitor asks a colonist to say their dead's names. `{SITUATION}`, `{SITUATIONPLACE}`, `{SITUATIONPEOPLE}` name the
+  world event (`WorldSeason.Fill`), `{B}` the other side's visitor.
+- **B26, council questions the world brings home.** `DilemmaDef` has `situations` (only in their season,
+  `DilemmaWorker.CanHappenNow`; asked before the rest in it, as a season's questions are). Five
+  (`Defs/DilemmaDefs/Rimfolk_Dilemmas_WorldHome.xml`, the council questions' flavour style), each answer doing what it
+  says: in a plague the colony's best doctor asks to keep apart from travellers while it lasts (`WorldApart`: the
+  sickness at the gate and the couriers who arrive sick half as often, `WorldHomeMath.ApartChance` in `Harm/Carriers.cs`;
+  no moments with visitors or traders; each group of them a point of goodwill cooler, the game's message saying why); in a
+  holy year the most devout (the gods on: of a god they hold; else their faith) vows a vigil day each week while it lasts
+  (`WorldHomeBook.vows`: each week, from the morning, most of the working day at their god's place, an altar, else the
+  gathering spot, a `DilemmaEffect_Vigil` from code; once kept, belief in their god as for a vow kept, or their faith
+  steadier, and `Rimfolk_WH_VigilKept`; at the end a word of how many were kept); in a war between neighbours a colonist
+  with ties to one side (family among them, their people's good memory of them by name, a faith shared:
+  `WorldHomeMath.SideTie`) wants the colony to back it, a friend of the other side objects, and backing a side sets the
+  war's flag (`backFaction`, `backEnemy`) so that only that side's asks come (the other side's beats forbid it; goodwill
+  +5 and -4); in a mourning everyone at home wears dark grey (`DilemmaEffect_WorldMourning`: each colonist's outermost body
+  garment that takes a colour, its colour kept and put back when the mourning ends unless dyed since; goodwill +4 with the
+  mourning people); at a great fair a fair day at home (a gathering with music from mid-morning and the day off for
+  everyone).
+- **B32, the region's great events in the colony's book of the gods, as the colony believes.** When a great world event is
+  new (plague, comet, bumper harvest, great fire, a year without a summer, famine, flood, drought, hard winter, murrain:
+  `WorldHomeMath.Great`), once within its first three days, nearly two times in three, the most devout of those who hold a
+  god their people tie to it (`WorldHomeMath.GreatGods`: the fever Morel's or Undertow's, the comet Cirrus's or
+  Selene's, the harvest Hollin's or Helios's...) says over their head whose doing it was, and the book keeps it as their
+  belief in the gods' book's old voice ("The gray cough at Ashford came of the Soft Mother, and not of chance.",
+  `CC_WH_Great_Belief_*`), under the name they call the god (an unknown god unnamed); another who takes it for another god
+  says so beside them, and each holds their own the harder; one who believes none of it answers, and the book keeps the
+  doubt (`GreatTaken`, as `SeasonGods` for a named season). Only who believes it: the gods stay unseen.
+
+Decided here (open in the proposals): B1's "a line in the six hard ones" is one start paragraph for each of the 23 peoples
+in each of the six, and the ending paragraphs are for the preferring world events (a flood's and a mourning's included);
+a people's paragraph is added under the letter's own text rather than replacing it, so it always shows when one fits.
+B2's steered people are four times as likely; the season's lines are preferred whenever one fits. B3 covers the couriers'
+deliveries, the answers they bring and every carrier of the post's bag; three times in four. B25's fourteen are the
+proposal's nine and five more of the same seasons; "lets it go or speaks" is two ways of telling one scene, the food in
+their pack either way. B26's "keep the gate quiet" stays in the colonist's words only; the colours are what the answer
+does. B32 takes ten great world events, not five.
+
+Harm: none. Dev mode: "World home: ..." for each. Not checked without the game: the steered first letters in the
+Quests tab, a dog's run and the hens' scatter, the visitors' kneeling and warming jobs under their lords, the dyed
+clothes' colours and their return, how often each comes in a real colony.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

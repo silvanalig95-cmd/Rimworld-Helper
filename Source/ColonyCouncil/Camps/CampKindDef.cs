@@ -226,6 +226,8 @@ namespace ColonyCouncil
             // What the home it comes to is known for (each colony its own character).
             var ch = drawnBy.NullOrEmpty() ? null : CharacterTracker.For(map);
             if (ch != null && drawnBy.Any(ch.Is)) w *= 2f;
+            // What the colony is known for draws the camps that fit it (Diplomacy/Renown.cs, RenownMath.Camps; B23).
+            w *= Renown.CampFactor(defName, map);
             return w;
         }
 

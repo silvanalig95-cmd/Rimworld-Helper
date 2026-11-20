@@ -1069,6 +1069,11 @@ MODEL = {
     "Gods/Among/GodsAmongBook.cs:tales": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxTales", 6), 1 / 60), 160, "pilgrims home with a tale owed at supper, six days each, GodsAmongBook.MaxTales"),
     "Gods/Among/GodsAmongBook.cs:deadHeld": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxDeadHeld", 12), 1 / 20), 110, "the god each of the colony's dead held, kept five days for their eulogy, GodsAmongBook.MaxDeadHeld"),
     "Gods/Among/GodsAmongBook.cs:seasons": ("cap", (const("Gods/Among/GodsAmongMath.cs", "MaxSeasons", 12), 1 / 30), 220, "the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons"),
+    # The world brought home (World/Home/WorldHomeBook.cs): a colonist's vow of a vigil day each week while a holy year lasts
+    # (one at a time mostly, WorldHomeBook.MaxVows), and the clothes dyed in mourning colours while the neighbours mourn (one
+    # piece a colonist for a few weeks, WorldHomeMath.MaxDyed; a mourning a year or two).
+    "World/Home/WorldHomeBook.cs:vows": ("cap", (const("World/Home/WorldHomeBook.cs", "MaxVows", 6), 1 / 200), 180, "vows of a vigil day each week while a holy year lasts, WorldHomeBook.MaxVows"),
+    "World/Home/WorldHomeBook.cs:dyed": ("cap", (const("World/Home/WorldHomeMath.cs", "MaxDyed", 40), COLONISTS / 500), 160, "clothes dyed for a mourning, put back when it ends, WorldHomeMath.MaxDyed"),
     "Gods/GodLore.cs:names": ("cap", (const("Gods/GodLoreMath.cs", "MaxNames", 60), 0.05), 200, "the names the colony has heard the gods by, each a page of the book"),
     "Gods/GodLore.cs:told": ("fixed", 60, 40, "how much of each old story the colony has heard, one a story"),
     "Gods/GodLore.cs:lastHand": ("fixed", 14, 40, "each god's last hand remarked on"),

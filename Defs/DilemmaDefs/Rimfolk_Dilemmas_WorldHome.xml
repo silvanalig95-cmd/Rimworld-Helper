@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Council questions the world brings home (docs/content-update-proposals.md, B26; Source/ColonyCouncil/World/Home/
+    WorldQuestions.cs). Each comes only while its world event runs (situations: a kind or a world event's defName), about
+    the colony's own people. {NAME} is the world event, {PLACE} where it is, {FACTION} its people (in the war, A's side),
+    {ENEMY} the other side, {GOD} the god (or the faith) of the one who asks, as they call it. Each answer does what it says:
+    kept apart (WorldApart), a vigil day each week (WorldHomeBook), a side backed (only that side's asks come), mourning
+    colours (dyed, and put back when the mourning ends), a fair day (a gathering and the day off).
+  -->
+
+  <!-- ===================== Plague: keep apart from travellers ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_Apart</defName>
+    <label>keeping apart from travellers</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldSeason</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>2</minColonists>
+    <situations><li>Council_WS_Plague</li></situations>
+    <roleA>
+      <bestAt>Medicine</bestAt>
+    </roleA>
+    <texts>
+      <li>{NAME} is in {PLACE}, and every traveller on the road has passed through one sick town or another. {A_nameDef}, who sees to the colony's sick, asks the council to keep the colony apart from them until it has passed: talk across a few steps of ground, trade at arm's length, no cup shared and no hand shaken.\n\nThe travellers will notice, and some of them will mind.</li>
+      <li>[lowtech] They are burning smoke fires outside the walls of {PLACE} for {NAME}, and the people on the road carry the smell of it. {A_nameDef} has seen what a fever does in a crowded hall, and asks the council to keep the colony apart from travellers until it is over.\n\nVisitors would be met from a few steps off. Some of them will take it as an insult.</li>
+      <li>[!lowtech] The radio from {PLACE} reads out the count of the sick every evening, and it has not gone down. {A_nameDef} asks the council for a rule while {NAME} lasts: travellers kept at a distance, nobody of the colony sitting down with them.\n\nIt will cost the colony a little goodwill with every group that comes through.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Keep apart from travellers until it passes</label>
+        <outcome>Until {NAME} has passed, the colony keeps travellers at arm's length. {A_nameDef} has made sure everyone knows it.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorldApart" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Greet them as always</label>
+        <outcome>The colony greets travellers as it always has. {A_nameDef} thinks it a mistake, and has said so.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Holy year: a vigil day each week ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_Vigil</defName>
+    <label>a vigil day for the holy year</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldVigil</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>3</minColonists>
+    <situations><li>Council_WS_HolyYear</li></situations>
+    <texts>
+      <li>[god] It is a holy year among {FACTION}, and the roads to {PLACE} are full of the faithful. {A_nameDef} will not walk them, with the colony's work as it is, but asks the council's leave for something nearer: one day in each week, while the year lasts, kept in vigil at {GOD}'s place, from morning until the light goes.\n\nIt is a day's work lost each week, and {A_nameDef} knows it.</li>
+      <li>[god] The pilgrims going by to {PLACE} have stirred something in {A_nameDef}, who holds to {GOD} more than anyone at the colony. {A_nameDef} asks to give {GOD} one day a week for as long as the holy year lasts, a day of vigil and no other work.\n\nThe colony would be a pair of hands short on those days.</li>
+      <li>[faith] It is a holy year among {FACTION}, and the faithful are on every road to {PLACE}. {A_nameDef} cannot go, but asks the council's leave to keep one day in each week in vigil, in the ways of {GOD}, from morning until the light goes, while the year lasts.\n\nIt is a day's work lost each week.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Grant the vigil days</label>
+        <outcome>{A_nameDef} will keep the first vigil tomorrow, and one each week after it until the holy year is done.</outcome>
+        <ways><tradition>2</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorldVow" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The work comes first</label>
+        <outcome>{A_nameDef} accepted it, though not gladly.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A war between neighbours: whose side ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_Sides</defName>
+    <label>taking sides in a war</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldSides</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>3</minColonists>
+    <situations><li>Rimfolk_WS_NeighborsWar</li></situations>
+    <texts>
+      <li>{NAME} has set {FACTION} and {ENEMY} against each other, and now it has reached the council table. {A_nameDef}, who has ties among {FACTION}, wants the colony to stand with them openly: to deal with them, and give {ENEMY} nothing. {B_nameDef}, who has friends among {ENEMY}, says the colony has no business choosing, and if it chooses, it has chosen wrong.\n\nBoth of them are waiting for the council.</li>
+      <li>Supper ended early last night. {A_nameDef} spoke up for {FACTION} in {NAME}, {B_nameDef} spoke up for {ENEMY}, and by the end neither would look at the other. Now they have brought it to the council: should the colony stand with one side, and which?\n\nWhichever side it backs, the other will stop asking it for anything.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Stand with {FACTION}</label>
+        <outcome>The colony stands with {FACTION} in {NAME}, and {ENEMY} will have to look elsewhere for what they need.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorldSide"><forA>true</forA></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Stand with {ENEMY}</label>
+        <outcome>The colony stands with {ENEMY} in {NAME}, and {FACTION} will have to look elsewhere for what they need.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorldSide"><forA>false</forA></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep out of it</label>
+        <outcome>The colony keeps out of {NAME}, and deals with whoever comes to the gate, as before. {A_nameDef} and {B_nameDef} have agreed to leave it at that.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_FairsFair</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Mourning: the colony's colours for the neighbours' dead ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_Mourning</defName>
+    <label>mourning colours</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldSeason</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>3</minColonists>
+    <situations><li>Council_WS_Mourning</li></situations>
+    <texts>
+      <li>{FACTION} are in mourning at {PLACE}, and {NAME} has emptied their streets of everything but black. {A_nameDef} asks that the colony show it too: dark colours worn by everyone until the mourning is over, as good neighbours do.\n\nIt costs nothing but a little dye, {A_nameDef} says, and {FACTION} will see it.</li>
+      <li>[lowtech] The bells and drums at {PLACE} have gone slow for days. {A_nameDef} says that among neighbours the dead are mourned by everyone, and asks that the colony put on dark colours for {FACTION}'s dead until {NAME} has run its course.\n\nTheir people pass the colony often enough to notice.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Wear mourning colours</label>
+        <outcome>By the council's word, the colony wears dark grey for {FACTION}'s dead until their mourning is over.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorldMourning" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave the colony's clothes as they are</label>
+        <outcome>The council thinks {FACTION}'s grief is their own, and leaves it there. {A_nameDef} thinks less of the council for it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A great fair: a fair day at home ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_FairDay</defName>
+    <label>a fair day at home</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldSeason</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>3</minColonists>
+    <situations><li>Council_WS_Fair</li></situations>
+    <texts>
+      <li>The fair at {PLACE} is all anyone on the road talks about: the stalls, the contests, the music going on long after dark. Nobody can be spared to walk there, so {A_nameDef} asks for the next best thing: a fair day at home, the work left where it stands and the colony out together for the day.\n\nThe day's work would wait until tomorrow.</li>
+      <li>{A_nameDef} has heard every traveller's story of the fair at {PLACE}, and is tired of hearing them. Why not a fair day of the colony's own? One day with no work, music and games outside, and everyone there.\n\nIt would cost a day's work, no more.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Hold a fair day</label>
+        <outcome>The fair day was kept: the colony's work stopped for it, and the music went on into the afternoon.</outcome>
+        <ways><tradition>2</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the fair day</label><music>true</music><hours>10~13</hours><duration>5~6</duration><spots><li>Outdoors</li><li>Gather</li><li>Rec</li></spots>
+            <lines>
+              <li>It's not the fair at {PLACE}, but it'll do.</li>
+              <li>No work today, the council said so.</li>
+              <li>A whole day without work, I could get used to this.</li>
+              <li>Play that one again, the one from the fair.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The work goes on as usual, and the fair stays something heard about on the road.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

@@ -28,6 +28,10 @@
         </titles>
         <texts>
           <li>{FACTION} have sent word from {PLACE}: raiders of {OTHERPEOPLE} are setting up a {KIND} in the region. {FACTION} ask the colony to build defences and keep watch, in case the raiders come its way.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[wsdef:Council_WS_BanditRoad] The roads have been dangerous all season, and now {FACTION} have sent word from {PLACE}: raiders of {OTHERPEOPLE} are setting up a {KIND} in the region. {FACTION} ask the colony to build defences and keep watch, in case the raiders come its way.</li>
+          <li>[wsdef:Council_WS_BanditLordFalls] {FACTION} have sent word from {PLACE}: since the fall of {WSNAME}, some of the bandit lord's raiders of {OTHERPEOPLE} are setting up a {KIND} in the region. {FACTION} ask the colony to build defences and keep watch, in case the raiders come its way.</li>
+          <li>[wsdef:Council_WS_Warlord] With {WSNAME} on the move in the region, {FACTION} have sent word from {PLACE}: raiders of {OTHERPEOPLE} are setting up a {KIND} nearby. {FACTION} ask the colony to build defences and keep watch, in case the raiders come its way.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

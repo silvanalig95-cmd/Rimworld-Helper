@@ -47,7 +47,7 @@ namespace ColonyCouncil
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => FactionMemory.Remembers(f) && !f.defeated && LivingEvents.Friendly(f) && VarietyUtil.OnGoodTerms(f) && Arrivals.PersonKind(f) != null
                             && (f.def.defName != "Empire" || ModsConfig.RoyaltyActive) && CallingFits(f) && (pred == null || pred(f)))
-                .RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, tech) * (1f + (mem?.Sum(f, DeedSide.Favor) ?? 0f) / 8f) * CallingWeight(f));
+                .RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, tech) * (1f + (mem?.Sum(f, DeedSide.Favor) ?? 0f) / 8f) * CallingWeight(f) * WorldSteer.Weight(f));
         }
 
         /// <summary>The people's town nearest the colony, or null.</summary>

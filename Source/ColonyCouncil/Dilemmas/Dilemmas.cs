@@ -64,6 +64,11 @@ namespace ColonyCouncil
         /// </summary>
         public bool timely;
         /// <summary>
+        /// Only while a world event of one of these runs, by its kind or its defName ("sickness", "Council_WS_HolyYear"): a
+        /// council question the world brings home (World/Home/WorldQuestions.cs). Empty: any time.
+        /// </summary>
+        public List<string> situations;
+        /// <summary>
         /// The seat whose work the question is about (the content update's A2): its holder at home, when there is one and
         /// they are neither A nor B, is named in it ({HOLDER_...}, {OFFICE} the seat in the colony's age, lines tagged
         /// [seat]) and speaks in the opening and the outcome; their answer counts toward the seat's record
@@ -379,6 +384,8 @@ namespace ColonyCouncil
                 if (medicine < def.minMedicine) return false;
             }
             if (def.busyTime && !LifeChecks.BusyTime(map)) return false;
+            // A question the world brings home comes only in its world event's season.
+            if (!def.situations.NullOrEmpty() && !WorldSeason.Fits(def.situations)) return false;
             return true;
         }
 
@@ -1324,7 +1331,8 @@ namespace ColonyCouncil
                 .Where(d => customs || !IsSeasonalCustom(d))
                 .Where(d => force || cal == null || !cal.BringsCustom(d))
                 .ToList();
-            foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value * (d.seasons.NullOrEmpty() && d.withinDaysOfThreat <= 0f ? 1f : 3f)))
+            // A question of its moment (a season, a recent raid, a world event's season) comes before the rest, its moment being short.
+            foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value * (d.seasons.NullOrEmpty() && d.withinDaysOfThreat <= 0f && d.situations.NullOrEmpty() ? 1f : 3f)))
             {
                 DilemmaContext ctx;
                 try

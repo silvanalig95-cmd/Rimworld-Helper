@@ -100,6 +100,15 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> summaries = new List<string>();
         /// <summary>{NAME}: the warband, the fever, the fair. Tagged by era like any line.</summary>
         [MustTranslate] public List<string> names;
+        /// <summary>
+        /// A paragraph in its people's own ways, added under the start letter's text when it is about one of Rimfolk's
+        /// peoples: each line tagged with that people's calling ([their:healers]), picked only for them (B1 of
+        /// docs/content-update-proposals.md: a plague at the hospitallers' town fills their sickhouse). The same tags as
+        /// any of its lines may narrow it further.
+        /// </summary>
+        [MustTranslate] public List<string> theirs;
+        /// <summary>The same under its ending's letter, whichever ending it is: how it ended for them, in their ways.</summary>
+        [MustTranslate] public List<string> theirEnds;
         /// <summary>The start letter's kind (default: Rimfolk's world news letter).</summary>
         public LetterDef letter;
         /// <summary>Bad news: the start letter is the darker world news letter.</summary>
@@ -167,6 +176,12 @@ namespace ColonyCouncil
             }
             foreach (var e in endings)
                 if (e.key.NullOrEmpty()) yield return "an ending has no key";
+            // A people's own paragraph is only ever told of that people.
+            foreach (var l in (theirs ?? new List<string>()).Concat(theirEnds ?? new List<string>()))
+            {
+                Flavor.Strip(l, out var t);
+                if (!WorldHomeMath.ForAPeople(t)) yield return "a line of theirs or theirEnds names no people's calling ([their:healers]): " + l;
+            }
             // A letter from the far town needs an answer that sends someone there.
             bool sends = beats.Any(b => b.options != null && b.options.Any(o => (o.effects?.OfType<WorldEffect_Away>().Any() ?? false) || (o.riskEffects?.OfType<WorldEffect_Away>().Any() ?? false)));
             foreach (var b in beats.Where(b => b.atPlace && !sends))

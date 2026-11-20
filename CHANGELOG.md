@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The world brought home
+
+*20 November 2026, version 0.280.0*
+
+- When a world event falls on one of Rimfolk's peoples, its letters tell it in their own ways: the hospitallers' sickhouse full in a plague, the herding folk selling their herds in a famine, the Kiln Guild's kilns lost in a great fire.
+- While a world event runs, the home quests and storylines that fit it come more often, mostly from its own people, and their first letter names it.
+- Couriers and the post's riders now pass on a sentence of the road's news as they set the bag down at the mailbag.
+- What the colony is known for now also draws the quests, storylines and camps that fit it.
+- Fourteen small moments with visitors come only in a world event's season, each true on the map: a pilgrim kneeling at the colony's holy place, a drover's dog after the hens, two sides of a war at one fire.
+- Five council questions come with the world's events: keeping apart from travellers in a plague, a vigil day each week in a holy year, which side to back in a war, mourning colours for a neighbour's dead, and a fair day at home.
+- When a great world event comes, a devout colonist may set it down in the colony's book of the gods as a god's doing, and others may dispute it.
+
 ## Wishes, aims and the year
 
 *20 November 2026, version 0.279.2*

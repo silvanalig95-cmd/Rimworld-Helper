@@ -458,6 +458,25 @@ namespace ColonyCouncil
             return new string(c);
         }
 
+        /// <summary>
+        /// A paragraph in the people's own ways (WorldSituationDef.theirs, theirEnds): a line tagged with their calling that
+        /// fits, with its placeholders filled in, or null when the world event isn't about one of Rimfolk's peoples or none
+        /// fits. <paramref name="ending"/> adds the ending's key as a tag ([end:recovered]).
+        /// </summary>
+        public string Theirs(List<string> lines, WorldSituation s, string ending = null)
+        {
+            if (lines.NullOrEmpty() || s?.ctx?.faction == null || !Peoples.IsOurs(s.ctx.faction)) return null;
+            var tags = Tags(s);
+            if (!ending.NullOrEmpty()) tags.Add("end:" + ending);
+            var fitting = lines.Where(l =>
+            {
+                Flavor.Strip(l, out var t);
+                return WorldHomeMath.ForAPeople(t);
+            });
+            string line = Flavor.PickTagged(fitting, tags);
+            return line.NullOrEmpty() ? null : Sentences(s.ctx.Format(line));
+        }
+
         /// <summary>The line on the World page and under the start letter.</summary>
         public virtual string Summary(WorldSituation s) => Line(def.summaries, s);
 

@@ -492,6 +492,25 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A kind of camp's factor for what the colony is known for (CampKindDef.WeightNow): the healers' camps to healers,
+        /// the war party to fighters, players to hosts (RenownMath.Camps), by how far its name carries; 1 when none draws it.
+        /// </summary>
+        public static float CampFactor(string defName, Map home)
+        {
+            if (defName == null || !On) return 1f;
+            try
+            {
+                var r = Read();
+                return r != null && r.known != KnownFor.None && r.band >= RenownBand.Town ? RenownMath.CampFactor(defName, r.known, r.band) : 1f;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("renown: a camp's factor", e);
+                return 1f;
+            }
+        }
+
         /// <summary>A feast's guests accept a little more readily at a colony known for hosting (Feasts).</summary>
         public static float GuestFactor(Map home)
         {

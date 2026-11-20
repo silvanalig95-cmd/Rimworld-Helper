@@ -28,6 +28,11 @@
         <texts>
           <li>[order] {GIVER} of {FACTION} has come from {PLACE}, where {KIND} has spread through the town. The order's sickhouse there is full and its medicine is nearly gone, so {GIVER} asks the colony for what it can spare.</li>
           <li>[!order] {GIVER} of {FACTION} has come from {PLACE}, where {KIND} has spread through the town. The town is short of medicine, so {GIVER} asks the colony for what it can spare.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:sickness,ws:theirs,order] With {WSNAME} in {PLACE}, the order's sickhouse there is full and its medicine is nearly gone. {GIVER} of {FACTION} has come to ask the colony for what it can spare.</li>
+          <li>[ws:sickness,ws:theirs,!order] With {WSNAME} in {PLACE}, the town is short of medicine. {GIVER} of {FACTION} has come to ask the colony for what it can spare.</li>
+          <li>[ws:sickness,!ws:theirs] {WSNAME} has spread from {WSPLACE} to {PLACE}, where {KIND} is going through the town. {GIVER} of {FACTION} has come to ask the colony for what medicine it can spare.</li>
+          <li>[ws:scarcity] Medicine is short all over the region this season, and at {PLACE}, where {KIND} has spread through the town, there is almost none left. {GIVER} of {FACTION} has come to ask the colony for what it can spare.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

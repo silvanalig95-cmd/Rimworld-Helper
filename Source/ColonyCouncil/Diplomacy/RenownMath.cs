@@ -434,13 +434,33 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly Dictionary<KnownFor, string[]> Events = new Dictionary<KnownFor, string[]>
         {
-            [KnownFor.Fighters] = new[] { "Council_Evt_Champion" },
-            [KnownFor.Healers] = new[] { "Council_Evt_NeighborsSick", "Council_Evt_WoundedStranger" },
-            [KnownFor.Hosts] = new[] { "Council_Evt_NotableGuest", "Council_Evt_Tourist" },
-            [KnownFor.Traders] = new[] { "Council_Evt_FarMarket" },
-            [KnownFor.Makers] = new[] { "Council_Evt_OldTrade" },
-            [KnownFor.Faithful] = new[] { "Council_Evt_Pilgrims", "Rimfolk_Evt_RelicPilgrims" }
+            // With the quests and storylines that fit each (B23 of docs/content-update-proposals.md): their missions and first parts.
+            [KnownFor.Fighters] = new[] { "Council_Evt_Champion", "Rimfolk_Mission_Trainee", "Rimfolk_Mission_Outlaw", "Rimfolk_Mission_CampGuard", "Rimfolk_Mission_BannerMuster" },
+            [KnownFor.Healers] = new[] { "Council_Evt_NeighborsSick", "Council_Evt_WoundedStranger", "Rimfolk_Mission_Healer", "Rimfolk_Mission_OrderMedicine", "Rimfolk_Storyline_SicknessMedicine" },
+            [KnownFor.Hosts] = new[] { "Council_Evt_NotableGuest", "Council_Evt_Tourist", "Rimfolk_Mission_Musicians", "Council_Mission_Dignitary", "Rimfolk_Mission_Festival" },
+            [KnownFor.Traders] = new[] { "Council_Evt_FarMarket", "Rimfolk_Storyline_FactorKeep", "Rimfolk_Mission_LeagueEscort" },
+            [KnownFor.Makers] = new[] { "Council_Evt_OldTrade", "Rimfolk_Mission_WeddingPiece", "Rimfolk_Mission_Smith", "Rimfolk_Mission_GlassApprentice", "Rimfolk_Mission_WanderYear" },
+            [KnownFor.Faithful] = new[] { "Council_Evt_Pilgrims", "Rimfolk_Evt_RelicPilgrims", "Rimfolk_Storyline_RelicRest", "Council_Mission_Shrine", "Rimfolk_Mission_HostelBread" }
         };
+
+        /// <summary>
+        /// The kinds of camp a colony known for something draws (B23): the field sickhouse and the travelling healers to
+        /// healers, the war party and a hired guard to fighters, players and minstrels to hosts, merchants from afar and the
+        /// salt caravan to traders, the travelling smith to makers, pilgrims and penitents to the faithful (CampKindDefs).
+        /// </summary>
+        public static readonly Dictionary<KnownFor, string[]> Camps = new Dictionary<KnownFor, string[]>
+        {
+            [KnownFor.Healers] = new[] { "Rimfolk_Camp_FieldSickhouse", "Council_Camp_LoneHealer", "Council_Camp_Healers" },
+            [KnownFor.Fighters] = new[] { "Council_Camp_WarParty", "Rimfolk_Camp_HiredGuard" },
+            [KnownFor.Hosts] = new[] { "Council_Camp_Players", "Council_Camp_Minstrels" },
+            [KnownFor.Traders] = new[] { "Council_Camp_FarMerchants", "Council_Camp_SaltCaravan" },
+            [KnownFor.Makers] = new[] { "Council_Camp_Smith" },
+            [KnownFor.Faithful] = new[] { "Council_Camp_Pilgrims", "Council_Camp_Penitents" }
+        };
+
+        /// <summary>A kind of camp's factor for a colony known for this, this far: as an event's (<see cref="BandFactor"/>), 1 when it doesn't draw it.</summary>
+        public static float CampFactor(string defName, KnownFor known, RenownBand band) =>
+            defName != null && Camps.TryGetValue(known, out var kinds) && Array.IndexOf(kinds, defName) >= 0 ? BandFactor(band) : 1f;
 
         /// <summary>How much likelier such an event is, by how far the colony's name carries: a quarter in a town, half in the region, three quarters among the peoples.</summary>
         public static float BandFactor(RenownBand b) => b >= RenownBand.Town ? 1f + 0.25f * (int)b : 1f;

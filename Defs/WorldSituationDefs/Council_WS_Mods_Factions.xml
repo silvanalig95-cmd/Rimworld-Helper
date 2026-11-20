@@ -405,6 +405,14 @@
         <chronicle>{FACTION} elected new consuls.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:citizens] The Last Republic is counting every vote at {PLACE} twice, and the radio reads out the tally each evening. The minister says an election held on the day is the Republic's whole reason for being.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:citizens] The Republic has its consuls, elected on the day, and the radio at {PLACE} read out the count to the last vote.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Gold fever (Vanilla Factions Expanded - Settlers) ===================== -->

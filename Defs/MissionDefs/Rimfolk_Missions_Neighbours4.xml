@@ -136,6 +136,10 @@
           <li>[flux] Bad water after the rains, {FACTION}'s rider says, and half of {PLACE} is down with the flux. They have the beds and the boiling pots; what they need is someone who knows what to do, for two days, and they ask the colony's healer.</li>
           <li>[their:empire] The town's steward writes on the Empire's behalf to ask the colony a favour: its healer, for two days, at the sickhouse of {PLACE}, where the town's own physician has fallen ill. The steward promises the Empire's thanks and its silver.</li>
           <li>[their:friend] "{FRIEND_nameDef} will know someone," {FACTION}'s rider from {PLACE} said at the gate. A fever is going round the town, and they need a healer for two days.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:sickness,ws:theirs,fever] With {WSNAME} at {PLACE}, {FACTION}'s own healer is down with it and the sick are waiting. Their rider asks the colony to lend its healer for two days.</li>
+          <li>[ws:sickness,!ws:theirs,fever] {WSNAME} has spread from {WSPLACE} as far as {PLACE}, and {FACTION}'s own healer is down with it. Their rider asks the colony to lend its healer for two days.</li>
+          <li>[ws:scarcity,fever] With medicine short all over the region, the fever at {PLACE} is going untreated and {FACTION}'s own healer is worn out. Their rider asks the colony to lend its healer for two days.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

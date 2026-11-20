@@ -37,6 +37,8 @@
           <li>[their:industrial] {FACTION}'s militia arrested {X_nameDef} of {ENEMY} after a robbery on the road. The lockup at {PLACE} burned down last month. They ask the colony to hold {X_nameDef} until their marshal can take {X_objective} away for trial.</li>
           <li>[their:spacer,!their:empire] {FACTION} are holding {X_nameDef}, a fighter of {ENEMY} caught near {PLACE}. Their transport for prisoners is not due for some days. They ask the colony to keep {X_nameDef} in its prison until it comes.</li>
           <li>[their:empire] An officer of {FACTION} writes that {X_nameDef} of {ENEMY} was taken in an attack on an Imperial convoy. The prisoner must be held until the magistrate's guard can collect {X_objective}, and the officer asks the colony to hold {X_objective} until then.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[wsdef:Council_WS_Assize] {FACTION} have caught {X_nameDef}, a raider of {ENEMY}, and {WSNAME} at {WSPLACE} has more cases than it can hear. They ask the colony to keep {X_nameDef} in its prison until the court can hear {X_objective}.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -120,6 +122,8 @@
           <li>[their:industrial] {X_nameDef} sold {DEAD} a tractor part last year and says it was never paid for. {DEAD} says the part was broken when it came. Nobody at {PLACE} wants to take sides, so {FACTION} have asked the colony to judge it.</li>
           <li>[their:spacer,!their:empire] {X_nameDef} and {DEAD} of {FACTION} both claim a salvaged power cell. Their crew's contract says nothing about it. They have agreed to accept the colony's judgement.</li>
           <li>[their:empire] {X_nameDef} and {DEAD}, two retainers of {FACTION}, are arguing about which of them should sit higher at their lord's table. The steward at {PLACE} will not decide between them, and asks the colony to judge it.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[wsdef:Council_WS_Assize] {X_nameDef} and {DEAD} of {FACTION} could not get a hearing at {WSNAME} at {WSPLACE}, there are so many waiting. They have agreed to let the colony judge their quarrel instead.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -324,6 +328,10 @@
           <li>[their:industrial] {FACTION} have a bounty out on {X_nameDef} of {ENEMY}, wanted for robbing the store at {PLACE}. Their scouts say {X_nameDef} is hiding somewhere on the colony's land.</li>
           <li>[their:spacer,!their:empire] {X_nameDef} of {ENEMY} escaped from {FACTION}'s holding cells at {PLACE}. Their trackers followed {X_objective} to the colony's land and lost the trail there.</li>
           <li>[their:empire] {FACTION} have named {X_nameDef} of {ENEMY} an outlaw for an attack on an Imperial convoy. The Empire offers a reward for {X_objective}, and {X_nameDef} is hiding on the colony's land.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:roads] The roads near {PLACE} have been dangerous all season, and {FACTION} have put a price on {X_nameDef} of {ENEMY}, who has been robbing travellers there. {X_nameDef} was last seen going onto the colony's land, and is hiding there.</li>
+          <li>[wsdef:Council_WS_Warlord] {FACTION} say {X_nameDef} of {ENEMY} used {WSNAME}'s raids as cover to rob their people near {PLACE}. They have put a price on {X_objective}, and {X_nameDef} is hiding somewhere on the colony's land.</li>
+          <li>[wsdef:Council_WS_BanditLordFalls] {X_nameDef} of {ENEMY} rode with {WSNAME} until the bandit lord fell, and has been robbing travellers near {PLACE} since. {FACTION} have put a price on {X_objective}, and {X_nameDef} is hiding somewhere on the colony's land.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

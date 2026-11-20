@@ -176,7 +176,11 @@ namespace ColonyCouncil
             var ctx = new HappeningContext { incident = def, map = map, points = parms.points, scenario = forScenario };
             try
             {
-                if (!Cast(ctx, ext) || !Begin(ctx, ext))
+                // A world event that makes this event likelier draws its people to it (World/Home/WorldHome.cs, B2).
+                bool cast;
+                using (WorldSteer.During(def))
+                    cast = Cast(ctx, ext);
+                if (!cast || !Begin(ctx, ext))
                 {
                     Abort(ctx);
                     return false;
@@ -262,7 +266,9 @@ namespace ColonyCouncil
         protected string Pick(List<string> lines, HappeningContext ctx)
         {
             if (lines.NullOrEmpty()) return null;
-            return Flavor.Pick(lines, TextTags(ctx)) ?? Flavor.PickText(lines);
+            var tags = TextTags(ctx);
+            // A world event's season: the lines written for it first, when it steered this event here (B2).
+            return Flavor.Pick(WorldSteer.Prefer(lines, tags), tags) ?? Flavor.PickText(lines);
         }
 
         /// <summary>
@@ -296,6 +302,8 @@ namespace ColonyCouncil
             }
             LetterTags.Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction, false);
             AddFactTags(tags, ctx.Facts);
+            // The world event that made this event likelier: ws:sickness, wsdef:Council_WS_Plague, ws:theirs (B2).
+            WorldSteer.AddTags(ctx, tags);
             return tags;
         }
 

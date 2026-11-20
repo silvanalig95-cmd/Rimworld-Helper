@@ -34,6 +34,9 @@
           <li>[plague] A postulant of {FACTION} has walked from the sickhouse at {PLACE} with a letter from {DEAD}, who keeps its ward. The sickness on the roads this year has filled every bed, the order's own medicine is nearly gone, and they ask the colony for what it can spare by a set day. The order pays, and well.</li>
           <li>[plague,host] {HOST} of {PLACE} writes for {FACTION}: the sick are lying two to a bed in the sickhouse, the herb garden is stripped, and {DEAD}, their infirmarian, has made a list. The order asks the colony for medicine by a set day, at a good price.</li>
           <li>[plague,their:friend] The hospitallers of {FACTION} have asked for {FRIEND_nameDef} by name. Their sickhouse at {PLACE} is full with the year's sickness, and {DEAD}, who keeps the ward, would rather buy the colony's medicine than anyone else's.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:sickness,plague] With {WSNAME} on the roads, a postulant of {FACTION} has walked from the sickhouse at {PLACE} with a letter from {DEAD}, who keeps its ward. Every bed is full, the order's own medicine is nearly gone, and they ask the colony for what it can spare by a set day. The order pays, and well.</li>
+          <li>[ws:scarcity,plague] Medicine is short all over the region, and the order's sickhouse at {PLACE} has run through its own. A postulant of {FACTION} has brought a letter from {DEAD}, who keeps the ward, asking the colony for what it can spare by a set day. The order pays, and well.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

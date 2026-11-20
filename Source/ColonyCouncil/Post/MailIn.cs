@@ -113,7 +113,8 @@ namespace ColonyCouncil
                 book.incoming.Remove(i);
                 Open(i, new LookTargets(carrier), carrier, "CC_Mail_BroughtBy");
             }
-            PostWords.Say(carrier, "drop", null);
+            // The road's news when a world event runs on it (World/Home/WorldHome.cs, B3), else the post's usual word.
+            if (!RoadNews.Say(carrier, carrier.Faction != null && !carrier.Faction.IsPlayer ? carrier.Faction : null, carrier.MapHeld)) PostWords.Say(carrier, "drop", null);
             NotableBook.Changed();
         }
 

@@ -105,6 +105,14 @@
         <chronicle>{X_nameDef}, the famous healer, passed through the region.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:editors] The sequencers of the Helix Works at {PLACE} have asked {X_nameDef} for a sample, freely given, to learn how one person can mend so much.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:editors] {X_nameDef} has moved on, and the sequencers at {PLACE} are working through what they learned.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== The great herds ===================== -->
@@ -143,6 +151,9 @@
       <li><incident>FarmAnimalsWanderIn</incident><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_GreatBeast</rimfolk><factor>2</factor></li>
       <li><rimfolk>Council_Evt_WildBounty</rimfolk><factor>1.5</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_HerdStray</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_SickAnimal</rimfolk><factor>1.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -221,6 +232,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:herders] The herding folk keep their own herd close while the wild herds pass, with riders on its flanks day and night, so that none of it is swept away with them.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:herders] The wild herds have passed, and the herding folk at {PLACE} have counted their own at dusk. The camp elder says the count came out whole.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Strange herds (Alpha Animals) ===================== -->
@@ -409,6 +428,14 @@
         <chronicle>A season of wild magic passed.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:listeners] The Choir of the Spire at {PLACE} hears the restlessness as a hum gone out of tune, and the cantor has the whole ring singing to hold it steady.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:listeners] The hum is steady again, the Choir says, and the cantor at {PLACE} has let the ring rest.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

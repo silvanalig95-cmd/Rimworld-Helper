@@ -1257,7 +1257,8 @@ namespace ColonyCouncil
             // Those who set things down had their word as they did (CourierTracker.Unload).
             if (t.unloaded > 0 || t.letterText.NullOrEmpty()) return;
             var first = t.Bearers.FirstOrDefault();
-            if (first != null) CourierWords.Say(first, t, "deliver");
+            // The road's news when a world event runs on it (World/Home/WorldHome.cs, B3), else their usual word.
+            if (first != null && !RoadNews.Say(first, t.faction, first.MapHeld)) CourierWords.Say(first, t, "deliver");
         }
 
         /// <summary>

@@ -4015,6 +4015,28 @@ it is (three lines at most, the last "and N more" past that; the setting "World 
 hurry or end any of them. Modders can add more with a def and no code (see `WorldSituationDef` in
 `Source/ColonyCouncil/World/`).
 
+### The world brought home
+
+A world event reaches into the colony's own life (`Source/ColonyCouncil/World/Home/`):
+- **In the peoples' own ways.** When a world event falls on one of Rimfolk's peoples, its start and ending letters add a
+  paragraph in their ways: the hospitallers' sickhouse full in a plague, the herding folk selling their herds at a loss in a
+  famine, the Kiln Guild's kilns lost in a great fire.
+- **The quests that fit it.** While it lasts, the home quests and storylines that fit it come more often, mostly from its
+  own people, and their first letter names it ("With the gray cough in Ashford, the order's sickhouse there is full...").
+- **The road's news.** Couriers, the post rider and the mail run say a sentence about a world event on their road as they
+  set the bag down at the mailbag ("The ford below Ashford is under water, I came round by the hill.").
+- **What the colony is known for** now draws the quests and camps that fit it too: healers the sickness storyline and the
+  field sickhouse, fighters the outlaw and the war party, hosts the musicians and the players, and so on.
+- **Its season's moments and questions.** Fourteen small moments with visitors and traders come only while their world
+  event runs, each true on the map (a pilgrim kneels at the colony's holy place, a drover's dog runs at the hens, two
+  visitors of a war's two sides sit at the same fire), and five council questions: keep apart from travellers in a
+  plague, a vigil day each week in a holy year, which side to back in a war between neighbours (only that side's asks
+  come after), mourning colours for a neighbour's dead (clothes dyed dark grey until it ends), a fair day at home.
+- **In the colony's book.** When a great one comes (a plague, a comet, a bumper year, a great fire, a year without a
+  summer and a few more), a devout colonist may set it down in the colony's book of the gods as a god's doing, in the
+  book's old voice; another may take it for another god, and a doubter says so. Only what they believe: the gods stay
+  unseen.
+
 ### What the world remembers
 Every people out in the world keeps a memory of the colony over the years: a prisoner set free, a wounded guest tended
 and sent home, gifts, fair trades, quests and missions done or failed, a camp helped or driven off, help in their hard

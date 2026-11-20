@@ -28,6 +28,10 @@
         <texts>
           <li>[their:lowtech] A small village of {FACTION} near {PLACE} has burned down. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
           <li>[their:hightech] A small settlement of {FACTION} near {PLACE} has burned down. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:fire,ws:theirs] {WSNAME} at {PLACE} took a small village of {FACTION} nearby with it. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
+          <li>[ws:fire,!ws:theirs] With {WSNAME} at {WSPLACE} still on everyone's lips, a small village of {FACTION} near {PLACE} has burned down as well. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes in the fire, and asks the colony to shelter them for a few days.</li>
+          <li>[ws:war,ws:theirs] A small village of {FACTION} near {PLACE} was burned in {WSNAME}. {GIVER}, one of its people, is bringing {COUNT} children who lost their homes, and asks the colony to shelter them for a few days.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

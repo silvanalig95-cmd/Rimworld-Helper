@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.280.0</version>
+        <date>20 November 2026</date>
+        <title>The world brought home</title>
+        <points>
+          <li>When a world event falls on one of Rimfolk's peoples, its letters tell it in their own ways: the hospitallers' sickhouse full in a plague, the herding folk selling their herds in a famine, the Kiln Guild's kilns lost in a great fire.</li>
+          <li>While a world event runs, the home quests and storylines that fit it come more often, mostly from its own people, and their first letter names it.</li>
+          <li>Couriers and the post's riders now pass on a sentence of the road's news as they set the bag down at the mailbag.</li>
+          <li>What the colony is known for now also draws the quests, storylines and camps that fit it.</li>
+          <li>Fourteen small moments with visitors come only in a world event's season, each true on the map: a pilgrim kneeling at the colony's holy place, a drover's dog after the hens, two sides of a war at one fire.</li>
+          <li>Five council questions come with the world's events: keeping apart from travellers in a plague, a vigil day each week in a holy year, which side to back in a war, mourning colours for a neighbour's dead, and a fair day at home.</li>
+          <li>When a great world event comes, a devout colonist may set it down in the colony's book of the gods as a god's doing, and others may dispute it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.279.2</version>
         <date>20 November 2026</date>
         <title>Wishes, aims and the year</title>

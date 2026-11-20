@@ -185,6 +185,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league has marked the colony on its road maps as a market worth the walk, with the waymaster's own sign beside the name.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders] The league's buyers have gone back to {PLACE} with full carts, and the colony's mark stays on the league's road maps.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Busy orbital lanes ===================== -->
@@ -303,6 +311,14 @@
         <chronicle>The orbital lanes over the region went quiet again.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:brokers] The enclave's pad master is selling landing slots at {PLACE} by the hour, and the market has not closed since the lanes grew busy.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:brokers] The lanes over the region have gone quiet, and the enclave's market at {PLACE} is counting the season's take to the last figure.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== The assize ===================== -->
@@ -342,6 +358,11 @@
     <summaries>
       <li>The court at {PLACE} will try a prisoner the colony hands over, or hear the colony's grievance against another people. The judge may stop at the colony on the way on.</li>
     </summaries>
+    <modifiers>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Mission_Prisoner</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Dispute</rimfolk><factor>3</factor></li>
+    </modifiers>
     <beats>
       <li>
         <key>court</key>

@@ -577,6 +577,14 @@
         <chronicle>Talk of peace between {FACTION} and {ENEMY} came to nothing.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:linesmen] The Signal Line carries both sides' messages from relay to relay, word for word, and the relay-keepers have sworn to pass on nothing but what was said.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:linesmen] The Signal Line has passed on the talks' last message, word for word, and the relay-keepers have gone back to their ordinary traffic.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A mercenary company ===================== -->
@@ -705,6 +713,14 @@
         <chronicle>{NAME} moved on out of the region.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:mercenaries] {NAME} rides under the Ashen Banner's colours, and the keeper of the Roll at {PLACE} has every name in it written down, to be read out when the contract ends.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:mercenaries] {NAME}'s contract is over, and the keeper of the Roll at {PLACE} has read out every name in it, those who came back and those who did not.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A bandit road ===================== -->
@@ -747,6 +763,9 @@
       <li><incident>TravelerGroup</incident><factor>0.6</factor></li>
       <li><rimfolk>Council_Evt_Stranded</rimfolk><factor>2.5</factor></li>
       <li><group>Visitors</group><factor>0.8</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_RaidersDefences</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Outlaw</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>

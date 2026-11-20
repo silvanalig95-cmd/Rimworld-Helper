@@ -29,6 +29,10 @@
         <texts>
           <li>[atwar] {FACTION} and {OTHERPEOPLE} are at war with each other. Both sides want it to end, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
           <li>[!atwar] {FACTION} and {OTHERPEOPLE} have been on bad terms for a long time. Both sides want to settle it, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:embargo] With {WSNAME} closing markets at {WSPLACE}, nobody in the region wants more trouble. {FACTION} and {OTHERPEOPLE} want to settle their own quarrel, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
+          <li>[ws:feud] With {WSNAME} going on at {WSPLACE}, nobody in the region wants another feud. {FACTION} and {OTHERPEOPLE} want to settle their own quarrel, and they ask to make a truce at the colony, with someone of the colony as their witness.</li>
+          <li>[wsdef:Rimfolk_WS_NeighborsWar] With {WSNAME} costing everyone near {WSPLACE} dearly, {FACTION} and {OTHERPEOPLE} want to settle their own quarrel before it comes to the same. They ask to make a truce at the colony, with someone of the colony as their witness.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

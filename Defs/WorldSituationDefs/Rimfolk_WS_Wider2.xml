@@ -255,6 +255,14 @@
         <chronicle>The ice road across the lakes thawed.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:fishers] The river folk at {PLACE} have pulled their boats up and are running sledges instead, the boatmen marking the safe ice with poles as they would a channel.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:fishers] The ice has gone, and the river folk at {PLACE} have their boats back in the water. The landing master says the river is the better road.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A moot of the peoples ===================== -->
@@ -784,6 +792,14 @@
         <chronicle>{NAME} went back to the high country.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:hunters] The wardens at {PLACE} have opened a new page in the book for {NAME}, and the keeper says it will be written to the last line, one way or another.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:hunters] The keeper of the book at {PLACE} has written the last line on {NAME}'s page, and the crossroads lantern is back to its ordinary watch.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

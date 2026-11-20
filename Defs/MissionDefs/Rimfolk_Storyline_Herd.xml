@@ -28,6 +28,10 @@
         </titles>
         <texts>
           <li>{GIVER} of {FACTION} has sent word that {COUNT} {KIND} strayed from their herd and are now on the colony's land. {GIVER} asks the colony to keep them safe until the herders come for them.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:drove] With every herd in the region on the drove roads this season, {COUNT} {KIND} of {FACTION}'s strayed from the road and are now on the colony's land. {GIVER} asks the colony to keep them safe until the herders come for them.</li>
+          <li>[ws:herds] With {WSNAME} on the move, every herd in the region is restless, and {COUNT} {KIND} of {FACTION}'s broke away and are now on the colony's land. {GIVER} asks the colony to keep them safe until the herders come for them.</li>
+          <li>[wsdef:Council_WS_Murrain] {FACTION} are moving their healthy animals away from {WSNAME}, and {COUNT} {KIND} strayed on the way and are now on the colony's land. {GIVER} asks the colony to keep them safe until the herders come for them.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

@@ -60,6 +60,8 @@
       <li><rimfolk>Council_Evt_MushroomFlush</rimfolk><factor>0.2</factor></li>
       <li><rimfolk>Council_Evt_LongRains</rimfolk><factor>0.1</factor></li>
       <li><rimfolk>Council_Evt_WildBounty</rimfolk><factor>0.5</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_WellWater</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -523,6 +525,15 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] For the league a new road is the best news there is, and the waymaster at {PLACE} has sent surveyors out with the work gangs to see it built straight.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders,!end:abandoned] The league has taken the new road onto its books, to keep as it keeps all its roads.</li>
+      <li>[their:traders,end:abandoned] The league has struck the new road from its books, and the waymaster at {PLACE} says a road nobody keeps is worse than none.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A holy year ===================== -->
@@ -569,6 +580,8 @@
       <li><incident>TravelerGroup</incident><factor>1.6</factor></li>
       <li><incident>VisitorGroup</incident><factor>1.4</factor></li>
       <li><group>Battle</group><factor>0.6</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_RelicRest</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -721,6 +734,14 @@
         <chronicle>{NAME} passed; the colony kept to itself.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:pilgrims] The fellowship keeps its holy year as it keeps every year, with the door open, only more so: every hostel feeds whoever comes, and nobody is asked to pay.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:pilgrims] The holy year is over, and the fellowship's hostels are counting what the open door cost them. The hosteller at {PLACE} says it was worth every crust.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A bandit lord's fall ===================== -->
@@ -771,6 +792,9 @@
       <li><rimfolk>Council_Evt_TreasureMap</rimfolk><factor>2.5</factor></li>
       <li><rimfolk>Council_Evt_Tribute</rimfolk><factor>0.3</factor></li>
       <li><incident>TraderCaravanArrival</incident><factor>1.3</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_RaidersDefences</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Outlaw</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -992,6 +1016,9 @@
       <li><rimfolk>Council_Evt_SickHerd</rimfolk><factor>3</factor></li>
       <li><rimfolk>Council_Evt_Stray</rimfolk><factor>0.5</factor></li>
       <li><rimfolk>Council_Mission_Provisions</rimfolk><factor>1.5</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_HerdStray</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_SickAnimal</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -1367,6 +1394,14 @@
         <chronicle>The wreck of {NAME} was picked clean.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:brokers] The enclave has already filed a claim on {NAME}, and the pad master at {PLACE} has the figures ready for anyone who wants to buy a share of the salvage.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:brokers] The enclave has closed its books on {NAME}, every part sold or accounted for, and the pad master says the figures balance.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

@@ -232,7 +232,8 @@ public static class RenownTests
             "challengers come to fighters, and only to them");
         C(RenownMath.OwnFactor("Council_Evt_NeighborsSick", new[] { KnownFor.Healers }) == 1.25f && RenownMath.OwnFactor("Council_Evt_NeighborsSick", new[] { KnownFor.Fighters }) == 1f
           && RenownMath.OwnFactor("Council_Evt_NeighborsSick", new KnownFor[0]) == 1f, "a healer known by name draws the sick a quarter more, no more");
-        var incidents = string.Concat(Directory.GetFiles(Path.Combine(root, "Defs", "IncidentDefs"), "*.xml").Select(File.ReadAllText));
+        // The events and, since the world brought home (B23), the quests and storylines' first parts (Defs/MissionDefs/).
+        var incidents = string.Concat(Directory.GetFiles(Path.Combine(root, "Defs", "IncidentDefs"), "*.xml").Concat(Directory.GetFiles(Path.Combine(root, "Defs", "MissionDefs"), "*.xml")).Select(File.ReadAllText));
         foreach (var kv in RenownMath.Events)
             foreach (var d in kv.Value)
                 C(incidents.Contains("<defName>" + d + "</defName>"), $"the event {d} ({kv.Key}) exists");
