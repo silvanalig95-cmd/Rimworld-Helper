@@ -179,7 +179,7 @@ namespace ColonyCouncil
             p.invited = invited;
             p.organizer = ctx.b != null && invited.Contains(ctx.b) ? ctx.b : invited[0];
             p.spots = habit != null && habit.Spots.Count > 0 ? habit.Spots : new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Dining, PlaySpot.Gather };
-            p.pool = habit?.pool ?? "Council_Pool_PlayGathering";
+            p.pool = habit?.pool ?? "Council_Pool_PlayParty";
             if (GroupDefs.Habit != null)
                 foreach (var x in invited)
                     p.moods.Add(new HeldMood { pawn = x, thought = GroupDefs.Habit, cause = "CC_Cause_GroupHabit".Translate(habit?.label ?? "", g.Name).Resolve() });

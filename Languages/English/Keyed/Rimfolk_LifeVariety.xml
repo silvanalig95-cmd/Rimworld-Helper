@@ -33,4 +33,9 @@
   <CC_Life2_EldersJournal>They raised a cup to us elders tonight and listened while I talked about my life. I said more than I meant to.</CC_Life2_EldersJournal>
   <CC_Life2_EldersNote>listened to {PAWN_nameDef} at the elders' supper</CC_Life2_EldersNote>
 
+  <!-- The colony's own events -->
+  <CC_Life2_MendNote>sat down and talked out their quarrel</CC_Life2_MendNote>
+  <CC_Life2_GroupEveningLabel>an evening of {GROUP}</CC_Life2_GroupEveningLabel>
+  <CC_Life2_WishGone>The wish is no longer open.</CC_Life2_WishGone>
+
 </LanguageData>
