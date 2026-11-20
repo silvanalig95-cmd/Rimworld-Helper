@@ -457,6 +457,8 @@ MODEL = {
     "Happenings/Happenings.cs:regulars": ("fixed", 5, R, "visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away"),
     "Animals/HerdStory.cs:lineIds": ("fixed", 60, V, "animals of the herd leader's line (ids), the newest 60 (HerdStory.LineMax)"),
     "Animals/HerdStory.cs:lineGens": ("fixed", 60, V, "their generations, beside the ids"),
+    "Animals/HerdStory.cs:sellIds": ("while", const("Animals/HerdStoryMath.cs", "MaxSell", 8), V,
+                                     "the yearlings the council chose to sell at the autumn count (ids), HerdStoryMath.MaxSell at most, until sold or a season"),
     "Animals/ResidentBeast.cs:knownIds": ("fixed", 20, V, "wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax)"),
     "Camps/Camp.cs:felled": ("while", 60, 30, "where their work was these two days (trees felled, rock mined, plants gathered), during one stay"),
     "Camps/Camp.cs:felledTicks": ("while", 60, V, "with the above"),

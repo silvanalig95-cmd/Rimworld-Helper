@@ -45,6 +45,23 @@
         <after>Only on home maps with weather of their own (not in space or a pocket map). Each part has its own setting, and all need the deeper game hooks. Nothing is added to the map: switching them off, or taking Rimfolk out, leaves the game's own weather.</after>
       </li>
       <li>
+        <heading>After a disaster</heading>
+        <text>When a disaster is over and the land is quiet again, the one best at the work and three others set to it together, with the game's own jobs, if there is anything to do. The chronicle writes it down once they've done some of it, and the year's annals count each disaster ("The earth shook twice, and hail fell on the fields once.").</text>
+        <table>
+          <li>Disaster | Who leads | What they do</li>
+          <li>An earthquake (Seasonal Weather's, or Vanilla Events Expanded's) | The best builder | Go round the roofs and walls: mend what is damaged, rebuild what the game has marked for it, patch the roofs, clean up and haul</li>
+          <li>A tornado (the game's own, which Vanilla Landmarks Expanded's tornado alley sends) | The best builder | The same, the debris cleared</li>
+          <li>A flashstorm | The best grower | Once its fires are out in the home area: the burnt trees there and in the fields marked for cutting and cut, the ash cleaned, and the fields sown again where the season allows</li>
+          <li>Rimfolk's hail | The best grower | Sow again where it flattened the young crops (the hail destroys those outright), and bring in what is ripe</li>
+          <li>A flood (Odyssey's seasonal flood, Vanilla Landmarks Expanded's tidal flooding) | The best builder | Carry what the water left lying about back to the stores, and clean up</li>
+        </table>
+        <after>Nothing damaged, burnt, flattened or left lying about: no party. A party waits while raiders are on the map, and is let go after two days. With "Answers play out on the map" off, nothing is set going.</after>
+      </li>
+      <li>
+        <heading>Last winter, remembered</heading>
+        <text>The record also counts, each season, how many days were too cold for anything to grow (below 6 °C on average, the advisor's own measure of winter), how many stayed below freezing all day, and how many the snow lay on most of the open land. Once it has kept a year of them, the advisor's notes on firewood, the winter stores, the herd's feed and the herd in the cold each add a sentence about last winter here: "Last winter the cold here lasted 19 days, and the coldest night was -24 °C; at today's fires the wood in store lasts 11 such days." The herd's autumn count sets the hay against the same number. Seasons kept before this was counted are left out, so in an older colony it starts a year after the update.</text>
+      </li>
+      <li>
         <heading>Events that speak of the weather</heading>
         <text>Rimfolk's events that speak of the weather only come after that weather. The long rains need rain on four of the last seven days. A flush of mushrooms needs a wet day in the last three, a desert bloom one in the last week, and a growing spell two in the last week. A struck tree needs a storm in the last day. Fall's high water and a rockslide in summer or fall need three wet days in the last week. A thirsty herd needs six days with nothing falling here, and an ice fair five days of the last seven below freezing all day. Until the record has that many days, after Rimfolk is first added, these events wait.</text>
       </li>
@@ -73,11 +90,12 @@
         <heading>Other weather mods</heading>
         <table>
           <li>Mod | What Rimfolk does with it</li>
-          <li>Seasonal Weather | On a dry, windy day in summer or fall, with grass and brush up to the home area, the advisor suggests a firebreak, and one button marks the brush in a strip 3 cells wide round the home area for cutting. After an earthquake the best builder and a few others go round the roofs and walls, repairing, cleaning and hauling; the chronicle remembers it and the annals count the quakes.</li>
+          <li>Seasonal Weather | On a dry, windy day in summer or fall, with grass and brush up to the home area, the advisor suggests a firebreak, and one button marks the brush in a strip 3 cells wide round the home area for cutting. After an earthquake the best builder and a few others go round the roofs and walls (see "After a disaster"); the chronicle remembers it and the annals count the quakes.</li>
           <li>Stormproof | The heat dome and the polar front are talked about like a heat wave and a cold snap. All five of its storms send a camp on its way and are in the advisor's "what's happening now".</li>
           <li>Weather is kinda cozy | One who loves the rain never comes to dread storms.</li>
           <li>SS Lightning Rod | A strike drawn down by a rod gets a word from someone in view.</li>
-          <li>Disasters: Tornado | A tornado crossing the land goes in the chronicle, and someone writes about it once it has passed.</li>
+          <li>Disasters: Tornado | A tornado crossing the land goes in the chronicle, someone writes about it once it has passed, and the builders clear up after it.</li>
+          <li>Vanilla Events Expanded, Vanilla Landmarks Expanded | After Vanilla Events Expanded's earthquake, and after Vanilla Landmarks Expanded's tidal flooding and the tornadoes of its tornado alley, the colony clears up as after the others.</li>
           <li>Quiet Wonders | Rimfolk's firefly nights leave the fireflies to it.</li>
         </table>
         <after>Each only with its mod, and all of them are safe to add to a running save.</after>

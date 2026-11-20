@@ -606,6 +606,9 @@ wishPh.Add("AIM");
 // The council's integrations, part 1 (Offices/SeatCalls.cs, Interplay/Interplay_Seats.cs): the weight of office's hard call,
 // and the crop the reeve found blight in.
 wishPh.UnionWith(new[] { "CALL", "CROP" });
+// The land and its life (Animals/HerdCount.cs, Immersion/SickCup.cs, Defense/DefenseLinesWatch.cs): the days the hay and
+// kibble last and last winter's cold at the autumn count, the drink brought to the sick, the defense line an animal fought at.
+wishPh.UnionWith(new[] { "FEED", "WINTER", "DRINK", "LINE" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The land and its life
+
+*20 November 2026, version 0.279.1*
+
+- After an earthquake, a tornado, a flashstorm, hail or a flood, the best builder or grower and a few others clear up and repair, and the year's annals count the disasters.
+- The advisor's firewood, winter stores and herd notes now say how long last winter's cold lasted here, set against how long the stores will last.
+- Each autumn the herdmaster walks the pens and counts the herd, and the council decides what to keep through the winter: keep them all, sell the yearlings, or slaughter a few of the oldest.
+- The colony's animals are counted at the defense lines, with the enemies they brought down and a lesson when too many of them fall.
+- A defense line's card and the raid's first message say how much fog, rain or snow takes off every shot in the open, for both sides.
+- Someone with a cold or a cough may be brought tea, hot cocoa or honey from the stores, and gets over it a little sooner.
+- New Almanac pages for five of your mods, and the colony's art can now show a season someone took for a god's doing.
+
 ## The council at its work
 
 *20 November 2026, version 0.279.0*

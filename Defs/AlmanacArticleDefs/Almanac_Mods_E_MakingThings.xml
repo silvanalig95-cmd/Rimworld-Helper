@@ -54,6 +54,7 @@ If Medieval Overhaul is loaded too, it has its own cheese press and cheese, so b
           <li>The soy sauce fermenter and the cheese press aren't brewing barrels, so they don't meet a colonist's wish for a brewery.</li>
           <li>In spring and summer a cook may wish for a grill once Grilling is researched, and canned meat, fish, fruit and produce count as "food that keeps" for the wish to put food by before winter.</li>
           <li>A feast an answer calls never serves a grill spoiled by the cold.</li>
+          <li>With Vanilla Fishing Expanded, a fisher who holds to the god of the waters gives a fish of the morning's first catch back with a splash and fishes better for half a day (the mod's own fishing luck); its fisherman trait draws its holder toward that god, and what the water gives back may be one of its fish.</li>
         </points>
       </li>
     </sections>
@@ -122,7 +123,7 @@ Hot coffee helps against hypothermia. Coffee kept in a freezer turns into iced c
         <heading>With Rimfolk</heading>
         <text>The whiskey cask, tequila barrel, gin still, vodka drum and ambrandy distillery count for a colonist's wish for a brewery. The brewery room plan can swap its barrels for a tequila barrel, a gin still or a vodka drum.
 
-The liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal, and a colonist down with a cold or a cough may wish for a pot of tea once the colony can brew it.
+The liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal, and a colonist down with a cold or a cough may wish for a pot of tea once the colony can brew it. Someone with a cold, a cough or a sore throat may be brought a cup of tea from the stores by one of the colony at their leisure, the Coffees and Teas add-on's mint and lemon teas first, and drinks it there; the ailment ends a few hours sooner. An early riser with the habit takes the first pot of coffee or tea to a friend of a morning.
 
 A toast an answer calls is raised with a drink from the stores: beer or one of its wines, meads and ciders for those whose drug policy and beliefs allow it, its tea or coffee for teetotalers and the young, one each.</text>
       </li>

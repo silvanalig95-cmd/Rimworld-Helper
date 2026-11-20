@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A cup for the sick (Source/ColonyCouncil/Immersion/SickCup.cs; C24 of docs/content-update-proposals.md): one of the
+    colony at their leisure takes a tea, hot cocoa or honey from the stores to someone with a cold, a cough or a sore
+    throat, hands it over and they drink it there. Not a joy giver: Rimfolk sets it going once an hour at most a map, at
+    the bringer's leisure, under the "Small habits" setting. The thank-yous are in Rimfolk_Thoughts_LandLife.xml.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_SickCup</defName>
+    <driverClass>ColonyCouncil.JobDriver_SickCup</driverClass>
+    <reportString>bringing something to drink to someone who is ill.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

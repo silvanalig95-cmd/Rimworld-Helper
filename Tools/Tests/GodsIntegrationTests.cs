@@ -164,7 +164,9 @@ public static class GodsIntegrationTests
 
         // ================= C17: the colony's art =================
 
-        C(ArtTalesMath.Kinds.Length == 8 && ArtTalesMath.Kinds.Distinct().Count() == 8, "eight of Rimfolk's moments are tales of the game's");
+        C(ArtTalesMath.Kinds.Length == 9 && ArtTalesMath.Kinds.Distinct().Count() == 9, "nine of Rimfolk's moments are tales of the game's");
+        C(!ArtTalesMath.Due("Rimfolk_Tale_SeasonTaken", 0, 14 * 60000) && ArtTalesMath.Due("Rimfolk_Tale_SeasonTaken", 0, 15 * 60000),
+            "a named season taken for a god's doing is told once in a quadrum at most");
         C(ArtTalesMath.Due("Rimfolk_Tale_GodSeen", -1, 0) && !ArtTalesMath.Due("Rimfolk_Tale_GodSeen", 0, 60000) && ArtTalesMath.Due("Rimfolk_Tale_FestivalKept", 0, 1),
             "a kind comes at most once in a few days, a festival every time");
         C(ArtTalesMath.Held(new[] { "Held" }) && !ArtTalesMath.Held(new[] { "Held", "Leak" }) && !ArtTalesMath.Held(new[] { "Leak" }) && !ArtTalesMath.Held(null), "a raid held at a line: through the gate, nobody fell");
@@ -184,8 +186,9 @@ public static class GodsIntegrationTests
         C(tales.Contains("Gods.CardName(g, map) ?? g.def?.unheard"), "a god in the art by the colony's name where it knew it was that god, else as what was seen");
         C(Read("Gods/Gods.cs").Contains("ArtTales.Seen(spec.god, spec.map, witnesses, spec.kind)") && Read("Gods/OnMap/SacredAnimal.cs").Contains("ArtTales.SacredBeast")
           && Read("Gods/Worship/Offerings.cs").Contains("ArtTales.OfferingTaken") && Read("Gods/Worship/Festivals.cs").Contains("ArtTales.Festival")
-          && rb.Contains("ArtTales.BeastNamed") && Read("Animals/HerdStory.cs").Contains("ArtTales.HerdLeader") && Read("Defense/DefenseLinesWatch.cs").Contains("ArtTales.LineHeld"),
-            "the seams: a god seen, a sacred beast's visit, an offering taken, a festival kept, the beast named, the old leader's death, a line held");
+          && rb.Contains("ArtTales.BeastNamed") && Read("Animals/HerdStory.cs").Contains("ArtTales.HerdLeader") && Read("Defense/DefenseLinesWatch.cs").Contains("ArtTales.LineHeld")
+          && Read("Gods/Among/SeasonGods.cs").Contains("ArtTales.Record(ArtTales.SeasonTaken, first, null, ArtTales.GodWords(g, map), named)"),
+            "the seams: a god seen, a sacred beast's visit, an offering taken, a festival kept, the beast named, the old leader's death, a line held, a named season taken for a god's doing (the believer, the god by the colony's words)");
 
         // ================= The balance model, the dev actions =================
 

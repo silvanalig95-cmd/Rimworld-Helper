@@ -841,6 +841,10 @@ namespace ColonyCouncil
             public int through, roundLeft, roundRight, broke, inside;
             /// <summary>Colonists downed in front of the line, at the gate, at the cover left and right of it, in the kill zone or among the buildings behind.</summary>
             public int downedFront, downedGate, downedCoverLeft, downedCoverRight, downedZone, downedBehind;
+            /// <summary>The colony's animals that fought at the line, the enemies they brought down there, and those of them downed or killed there.</summary>
+            public int animalsFought, animalsBrought, animalsDowned;
+            /// <summary>The aim the weather left shots in the open when the raid came, in percent (100: no loss; the game's weather accuracy).</summary>
+            public int aim = 100;
 
             public int Round => roundLeft + roundRight;
             public int Raiders => through + Round + broke + inside;
@@ -861,8 +865,26 @@ namespace ColonyCouncil
             /// <summary>People fell in front of the line: fight from behind it.</summary>
             StayBehind,
             /// <summary>Raiders got among the buildings, or people fell behind the line: a line to fall back to.</summary>
-            Fallback
+            Fallback,
+            /// <summary>Several of the colony's animals were downed at the line (or one that brought nobody down): keep them back from it.</summary>
+            AnimalsBack,
+            /// <summary>The colony's animals fought at the line, brought enemies down and none of them fell (a note, beside the lessons).</summary>
+            AnimalsHeld,
+            /// <summary>The raid came in weather that took aim off every shot in the open (a note, beside the lessons).</summary>
+            Weather
         }
+
+        /// <summary>The weather's aim (the game's accuracy factor, 0 to 1) as a percent, and whether it is worth a word (a tenth or more lost).</summary>
+        public static int AimPercent(float factor) => (int)System.Math.Round(System.Math.Max(0f, System.Math.Min(1f, factor)) * 100f);
+
+        public static bool AimLost(int percent) => percent <= 90;
+
+        /// <summary>
+        /// Enemies an animal brought down in a raid, from its own records before and after (the game counts both a downing and
+        /// a kill, and a kill often follows a downing): the greater of the two.
+        /// </summary>
+        public static int Brought(int downsBefore, int downsAfter, int killsBefore, int killsAfter) =>
+            System.Math.Max(0, System.Math.Max(downsAfter - downsBefore, killsAfter - killsBefore));
 
         /// <summary>The one to three things a raid says about a line, the weightiest first.</summary>
         public static List<Lesson> Lessons(RaidTally t, int max = 3)
@@ -874,6 +896,7 @@ namespace ColonyCouncil
             if (t.downedCoverRight > 0) found.Add((Lesson.CoverRight, 6f + t.downedCoverRight * 3f));
             if (t.downedFront > 0) found.Add((Lesson.StayBehind, 5f + t.downedFront * 3f));
             if (t.inside > 0 || t.downedBehind > 0 || t.downedZone > 0) found.Add((Lesson.Fallback, 4f + t.inside + (t.downedBehind + t.downedZone) * 2f));
+            if (t.animalsDowned >= 2 || t.animalsDowned == 1 && t.animalsBrought == 0) found.Add((Lesson.AnimalsBack, 3f + t.animalsDowned * 2f));
             if (found.Count == 0 && t.through > 0) found.Add((Lesson.Held, 1f));
             found.Sort((a, b) => b.weight.CompareTo(a.weight));
             var list = new List<Lesson>();
@@ -882,6 +905,9 @@ namespace ColonyCouncil
                 if (list.Count >= max) break;
                 list.Add(lesson);
             }
+            // Two notes beside the lessons, never in their place: the animals that held, and the weather the raid came in.
+            if (t.animalsBrought > 0 && t.animalsDowned == 0) list.Add(Lesson.AnimalsHeld);
+            if (AimLost(t.aim)) list.Add(Lesson.Weather);
             return list;
         }
 

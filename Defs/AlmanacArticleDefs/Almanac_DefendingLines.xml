@@ -95,7 +95,13 @@ The helper lays the lane on the way raiders actually walk up to the gate, its ne
       </li>
       <li>
         <heading>Learning from raids</heading>
-        <text>After a raid, the helper looks at what it did to each line it reached: where the raiders came in, what they broke and how the fight went. It keeps those lessons with the line, and they shape the step it suggests next. Look for yourself too: "keeping a defense up" has a short list of what to check.</text>
+        <text>After a raid, the helper looks at what it did to each line it reached: where the raiders came in, what they broke and how the fight went. It keeps those lessons with the line, and they shape the step it suggests next. Look for yourself too: "keeping a defense up" has a short list of what to check.
+
+The colony's animals are counted at the line too: those that fought near it, the enemies they brought down there and those of them downed or killed there. When several fall, a lesson says to keep them back from the line; when they brought enemies down and none fell, a note says they held their ground. An animal that brought one down has it on its card, and its person writes it down, unless the fight came to them (then the pets' own moment says so). A note also says when the raid came in weather that took aim off the shooting.</text>
+      </li>
+      <li>
+        <heading>Today's weather</heading>
+        <text>In fog, rain or snow the game takes aim off every shot where the shooter or the target is under the open sky, the same for the raiders and the colony, turrets too; a shot with a roof over both ends, and a blow in melee, lose nothing. While today's weather takes a tenth or more, each line's card says by how much ("at 50% of its usual aim" in fog), and when a raid comes in it, a message says so once. Fighting from under a roof, or closing to melee, are the ways round it.</text>
       </li>
       <li>
         <heading>The gaps a line holds</heading>

@@ -13,7 +13,7 @@ namespace ColonyCouncil
         public static readonly string[] Kinds =
         {
             "Rimfolk_Tale_GodSeen", "Rimfolk_Tale_SacredBeast", "Rimfolk_Tale_OfferingTaken", "Rimfolk_Tale_FestivalKept", "Rimfolk_Tale_FestivalBeast",
-            "Rimfolk_Tale_BeastNamed", "Rimfolk_Tale_HerdLeaderDied", "Rimfolk_Tale_LineHeld"
+            "Rimfolk_Tale_BeastNamed", "Rimfolk_Tale_HerdLeaderDied", "Rimfolk_Tale_LineHeld", "Rimfolk_Tale_SeasonTaken"
         };
 
         /// <summary>
@@ -28,6 +28,8 @@ namespace ColonyCouncil
                 case "Rimfolk_Tale_SacredBeast": return 3;
                 case "Rimfolk_Tale_OfferingTaken": return 10;
                 case "Rimfolk_Tale_LineHeld": return 2;
+                // A season is named at most once a quadrum; one taken for a god's doing is told once in that time.
+                case "Rimfolk_Tale_SeasonTaken": return 15;
                 default: return 0;
             }
         }
@@ -38,7 +40,16 @@ namespace ColonyCouncil
             return gap <= 0 || last < 0 || now < last || now - last >= gap * ticksPerDay;
         }
 
-        /// <summary>A raid's lessons at a line say it held: they came through the gate, and nobody fell (DefenseLineMath.Lesson.Held, the only lesson).</summary>
-        public static bool Held(IList<string> lessons) => lessons != null && lessons.Count == 1 && lessons[0] == "Held";
+        /// <summary>
+        /// A raid's lessons at a line say it held: they came through the gate, and nobody fell (DefenseLineMath.Lesson.Held,
+        /// the only lesson; the notes beside the lessons, the animals that held and the weather, may come with it).
+        /// </summary>
+        public static bool Held(IList<string> lessons)
+        {
+            if (lessons == null || !lessons.Contains("Held")) return false;
+            foreach (var l in lessons)
+                if (l != "Held" && l != "AnimalsHeld" && l != "Weather") return false;
+            return true;
+        }
     }
 }

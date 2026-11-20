@@ -10,6 +10,8 @@ namespace ColonyCouncil
         public int day = -1, year, quadrum, dayOfYear;
         /// <summary>Hours of it the record looked at, and of those, hours of rain, of snow, of storm and of fog.</summary>
         public int hours, rain, snow, storm, fog;
+        /// <summary>Hours of it with snow lying on most of the open land (WeatherBook.SnowLies); 0 in a day kept before it was looked at.</summary>
+        public int cover;
         /// <summary>The lowest and highest outdoor temperature looked at (°C), and the tile's usual mean for the time of year.</summary>
         public float min = 999f, max = -999f, expected;
 
@@ -28,6 +30,12 @@ namespace ColonyCouncil
         public bool Dry => rain == 0 && snow == 0;
 
         public float Mean => Counted ? (min + max) / 2f : 0f;
+
+        /// <summary>Too cold for anything to grow: a mean below <see cref="WeatherMath.ColdBelow"/> (the advisor's own measure of winter).</summary>
+        public bool Cold => Counted && Mean < WeatherMath.ColdBelow;
+
+        /// <summary>Snow lay on the land for most of the day.</summary>
+        public bool Covered => Counted && cover * 2 > hours;
     }
 
     /// <summary>One quadrum of weather on a map (a season, or a quarter of the year where seasons don't turn).</summary>
@@ -40,6 +48,13 @@ namespace ColonyCouncil
         public float expectedSum;
         /// <summary>The longest run of wet days, and of days with nothing falling.</summary>
         public int longestWet, longestDry;
+        /// <summary>
+        /// Days too cold to grow anything (<see cref="WeatherDay.Cold"/>), days that stayed below freezing, and days the snow
+        /// lay on the land; <see cref="counted"/> for a season begun since they are kept (WeatherBook sets it when the season
+        /// begins; one kept before 20 November 2026, or begun before the update, hasn't them).
+        /// </summary>
+        public int coldDays, frozenDays, coverDays;
+        public bool counted;
         /// <summary>The name it was given when it ended ("the winter of the long cold"), as a kind (see <see cref="WeatherMath.NameOf"/>), or null.</summary>
         public string name;
 
@@ -49,6 +64,15 @@ namespace ColonyCouncil
 
         /// <summary>How much warmer (or colder, below 0) than usual for here it was.</summary>
         public float Anomaly => Mean - Expected;
+    }
+
+    /// <summary>The last winter as the record kept it (WeatherMath.WinterBefore): for the advisor's notes on the winter ahead.</summary>
+    public class LastWinter
+    {
+        /// <summary>Days of the year looked at; of those, too cold to grow, below freezing all day, and with snow lying.</summary>
+        public int days, coldDays, frozenDays, coverDays;
+        /// <summary>The coldest night (°C).</summary>
+        public float coldest = 999f;
     }
 
     /// <summary>The coldest, the hottest and the longest spells the record has seen on a map.</summary>
@@ -106,13 +130,17 @@ namespace ColonyCouncil
         /// <summary>A season this much warmer or colder than usual for here is remembered by a name (°C).</summary>
         public const float NamedAnomaly = 5f;
 
+        /// <summary>A day with a mean below this is too cold for anything to grow (°C): SeasonUtil.GrowMin, the advisor's winter.</summary>
+        public const float ColdBelow = 6f;
+
         /// <summary>Days in the game's year, and in a quadrum.</summary>
         public const int YearDays = 60, QuarterDays = 15;
 
         /// <summary>One hour looked at.</summary>
-        public static void AddHour(WeatherDay d, bool rain, bool snow, bool storm, bool fog, float temp)
+        public static void AddHour(WeatherDay d, bool rain, bool snow, bool storm, bool fog, float temp, bool cover = false)
         {
             d.hours++;
+            if (cover) d.cover++;
             if (rain) d.rain++;
             if (snow) d.snow++;
             if (storm) d.storm++;
@@ -174,6 +202,9 @@ namespace ColonyCouncil
             if (d.Wet) q.wetDays++;
             if (d.Snowy) q.snowDays++;
             if (d.Dry) q.dryDays++;
+            if (d.Cold) q.coldDays++;
+            if (d.Frozen) q.frozenDays++;
+            if (d.Covered) q.coverDays++;
             q.stormHours += d.storm;
             q.fogHours += d.fog;
             if (d.min < q.coldest) q.coldest = d.min;
@@ -397,7 +428,7 @@ namespace ColonyCouncil
         private static int PI(string s) => int.Parse(s, Inv);
 
         public static string Pack(WeatherDay d) =>
-            string.Join(",", d.day, d.year, d.quadrum, d.dayOfYear, d.hours, d.rain, d.snow, d.storm, d.fog, F(d.min), F(d.max), F(d.expected));
+            string.Join(",", d.day, d.year, d.quadrum, d.dayOfYear, d.hours, d.rain, d.snow, d.storm, d.fog, F(d.min), F(d.max), F(d.expected), d.cover);
 
         public static WeatherDay UnpackDay(string s)
         {
@@ -408,7 +439,7 @@ namespace ColonyCouncil
                 return new WeatherDay
                 {
                     day = PI(p[0]), year = PI(p[1]), quadrum = PI(p[2]), dayOfYear = PI(p[3]), hours = PI(p[4]), rain = PI(p[5]), snow = PI(p[6]),
-                    storm = PI(p[7]), fog = PI(p[8]), min = PF(p[9]), max = PF(p[10]), expected = PF(p[11])
+                    storm = PI(p[7]), fog = PI(p[8]), min = PF(p[9]), max = PF(p[10]), expected = PF(p[11]), cover = p.Length > 12 ? PI(p[12]) : 0
                 };
             }
             catch (FormatException)
@@ -423,7 +454,7 @@ namespace ColonyCouncil
 
         public static string Pack(WeatherQuarter q) =>
             string.Join(",", q.year, q.quadrum, q.season, q.days, q.wetDays, q.snowDays, q.dryDays, q.stormHours, q.fogHours, F(q.coldest), F(q.hottest),
-                F(q.meanSum), F(q.expectedSum), q.longestWet, q.longestDry, q.name ?? "");
+                F(q.meanSum), F(q.expectedSum), q.longestWet, q.longestDry, q.name ?? "", q.coldDays, q.frozenDays, q.coverDays, q.counted ? 1 : 0);
 
         public static WeatherQuarter UnpackQuarter(string s)
         {
@@ -435,7 +466,9 @@ namespace ColonyCouncil
                 {
                     year = PI(p[0]), quadrum = PI(p[1]), season = PI(p[2]), days = PI(p[3]), wetDays = PI(p[4]), snowDays = PI(p[5]), dryDays = PI(p[6]),
                     stormHours = PI(p[7]), fogHours = PI(p[8]), coldest = PF(p[9]), hottest = PF(p[10]), meanSum = PF(p[11]), expectedSum = PF(p[12]),
-                    longestWet = PI(p[13]), longestDry = PI(p[14]), name = p[15].Length > 0 ? p[15] : null
+                    longestWet = PI(p[13]), longestDry = PI(p[14]), name = p[15].Length > 0 ? p[15] : null,
+                    coldDays = p.Length > 19 ? PI(p[16]) : 0, frozenDays = p.Length > 19 ? PI(p[17]) : 0, coverDays = p.Length > 19 ? PI(p[18]) : 0,
+                    counted = p.Length > 19 && p[19] == "1"
                 };
             }
             catch (FormatException)
@@ -471,6 +504,41 @@ namespace ColonyCouncil
                 return null;
             }
         }
+
+        // ---------------- Last winter (the advisor remembers it) ----------------
+
+        /// <summary>A winter looked at for fewer days than this isn't spoken of (the record began during it).</summary>
+        public const int WinterSeenDays = 20;
+
+        /// <summary>
+        /// The last winter the record kept: the four quadrums before the one now (the last year, each season once), with
+        /// how many days the cold lasted (too cold to grow), how many stayed below freezing all day, how many the snow lay,
+        /// and the coldest night. Null when the record didn't see enough of that year (fewer than
+        /// <see cref="WinterSeenDays"/> days of seasons that count the cold: a season kept before they were counted is left
+        /// out), or when no day of it was cold.
+        /// </summary>
+        public static LastWinter WinterBefore(IList<WeatherQuarter> kept, int year, int quadrum)
+        {
+            if (kept == null) return null;
+            var w = new LastWinter();
+            int now = year * 4 + quadrum;
+            foreach (var q in kept)
+            {
+                if (q == null || !q.counted) continue;
+                int at = q.year * 4 + q.quadrum;
+                if (at >= now || at < now - 4) continue;
+                w.days += q.days;
+                w.coldDays += q.coldDays;
+                w.frozenDays += q.frozenDays;
+                w.coverDays += q.coverDays;
+                if (q.days > 0 && q.coldest < w.coldest) w.coldest = q.coldest;
+            }
+            if (w.days < WinterSeenDays || w.coldDays <= 0) return null;
+            return w;
+        }
+
+        /// <summary>Whole days something in store lasts at a rate a day (rounded down; 0 when there is no rate or nothing in store).</summary>
+        public static int DaysOf(float have, float perDay) => perDay <= 0f || have <= 0f ? 0 : (int)Math.Floor(have / perDay);
 
         /// <summary>The same quadrum a year earlier, among the kept ones, or null.</summary>
         public static WeatherQuarter YearBefore(IList<WeatherQuarter> kept, WeatherQuarter q)

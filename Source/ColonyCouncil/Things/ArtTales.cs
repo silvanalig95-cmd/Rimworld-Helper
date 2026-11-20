@@ -80,7 +80,7 @@ namespace ColonyCouncil
     /// made later may show one, in the game's own words for art ("This sculpture depicts Avila kneeling before a great white
     /// beast at dusk"): a god seen, a sacred beast's visit, an offering taken before everyone's eyes, a festival kept (and a
     /// god's beast walked to its place on the day), the beast that stays given its name, the herd's old leader dying, a raid
-    /// held at a line. A god is named only by the colony's name where the colony knew at the time it was that god, else as
+    /// held at a line, a named season a believer took for a god's doing (Gods/Among/SeasonGods.cs, C18). A god is named only by the colony's name where the colony knew at the time it was that god, else as
     /// what was seen (GodDef.unheard). Vanilla Furniture Expanded - Art's statues take the same tales (they use the game's art
     /// system). A kind of tale comes at most once in a few days at a colony (ArtTalesMath.GapDays); nothing else is saved.
     /// </summary>
@@ -88,7 +88,7 @@ namespace ColonyCouncil
     {
         public const string GodSeen = "Rimfolk_Tale_GodSeen", SacredBeast = "Rimfolk_Tale_SacredBeast", OfferingTaken = "Rimfolk_Tale_OfferingTaken",
             Festival = "Rimfolk_Tale_FestivalKept", FestivalBeast = "Rimfolk_Tale_FestivalBeast", BeastNamed = "Rimfolk_Tale_BeastNamed",
-            HerdLeader = "Rimfolk_Tale_HerdLeaderDied", LineHeld = "Rimfolk_Tale_LineHeld";
+            HerdLeader = "Rimfolk_Tale_HerdLeaderDied", LineHeld = "Rimfolk_Tale_LineHeld", SeasonTaken = "Rimfolk_Tale_SeasonTaken";
 
         /// <summary>When each kind was last recorded at each home (this session: a load starts again, which only lets one more come).</summary>
         private static readonly Dictionary<string, int> last = new Dictionary<string, int>();

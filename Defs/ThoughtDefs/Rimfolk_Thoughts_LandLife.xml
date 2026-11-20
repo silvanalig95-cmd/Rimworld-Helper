@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A cup for the sick (Source/ColonyCouncil/Immersion/SickCup.cs): the two think a little better of each other. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SickCup_Got</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>brought me something to drink</label><description>I was ill, and they brought me something to drink and stayed a moment.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SickCup_Gave</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>looked after them</label><description>They were ill, and I brought them something to drink. I was glad to do something for them.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

@@ -611,6 +611,8 @@ namespace ColonyCouncil
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
             Safe("habit bubbles", HabitBubbles.Hourly);
+            // A cup for one who is ill (Immersion/SickCup.cs).
+            Safe("a cup for the sick", SickCup.Hourly);
         }
 
         private void HourlyPeople()

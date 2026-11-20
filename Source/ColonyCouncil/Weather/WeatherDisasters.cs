@@ -10,8 +10,8 @@ namespace ColonyCouncil
     /// Seasonal Weather's disasters, met by the colony (only with that mod; nothing here makes one happen). On a dry,
     /// windy day in summer or fall, with grass and brush right up to the home area, the advisor suggests a firebreak, and
     /// one button marks the brush in a strip round the home area for cutting (the game's own designation). When an
-    /// earthquake is over, the best builder and a few others go round the roofs and walls: a work party repairing,
-    /// cleaning and hauling what it left. The chronicle remembers it, and the year's annals count the quakes.
+    /// earthquake is over, the best builder and a few others go round the roofs and walls, as after the other disasters
+    /// (Weather/AfterStorm.cs); the chronicle remembers it, and the year's annals count the quakes.
     /// </summary>
     public static class WeatherDisasters
     {
@@ -91,28 +91,6 @@ namespace ColonyCouncil
             }
             brushKept.Remove(map.uniqueID);
             return marked;
-        }
-
-        /// <summary>
-        /// An earthquake is over on a home map: the best builder and a few others go round the roofs and walls, and the
-        /// chronicle remembers it.
-        /// </summary>
-        public static void QuakeOver(Map map)
-        {
-            var builder = map.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && p.skills != null && !p.WorkTypeIsDisabled(WorkTypeDefOf.Construction))
-                .OrderByDescending(p => p.skills.GetSkill(SkillDefOf.Construction)?.Level ?? 0).FirstOrDefault();
-            if (builder == null) return;
-            var party = new DilemmaEffect_WorkParty
-            {
-                label = "CC_Weather_QuakeParty".Translate().Resolve(),
-                count = 4,
-                tasks = new List<WorkTask> { WorkTask.Repair, WorkTask.Clean, WorkTask.Haul },
-                hours = new IntRange(0, 23),
-                waitHours = 3f,
-                duration = new FloatRange(2f, 3f)
-            };
-            party.Apply(new DilemmaContext { map = map, a = builder });
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Weather_QuakeChronicle".Translate(builder.Named("PAWN")).Resolve(), builder));
         }
     }
 

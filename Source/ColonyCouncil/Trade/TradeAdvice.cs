@@ -238,6 +238,24 @@ namespace ColonyCouncil
                 MedicineRows(rows);
                 foreach (var t in rows) Row(t, notes[t]);
                 foreach (var t in rows) Finish(t, notes[t]);
+                Yearlings(list);
+            }
+
+            /// <summary>
+            /// The herd's yearlings the council chose to sell at the autumn count (Animals/HerdCount.cs): each marked to sell,
+            /// with why. The sale is still the player's (the basket button, then the game's Accept).
+            /// </summary>
+            private void Yearlings(List<Tradeable> list)
+            {
+                foreach (var t in list)
+                {
+                    if (t == null || !(t.AnyThing is Pawn a) || !HerdCount.ForSale(a)) continue;
+                    var n = new TradeNote { canSell = t.CountHeldBy(Transactor.Colony) > 0 && t.TraderWillTrade, have = 1 };
+                    if (!n.canSell) continue;
+                    Mark(n, TradeMark.Sell, 1, TradeAdviceMath.SellUnused, W("CC_HerdCount_TradeWhy"));
+                    n.head = W("CC_Trade_Head_Sell", 1.Named("COUNT"));
+                    notes[t] = n;
+                }
             }
 
             // ---------------- The colony ----------------
