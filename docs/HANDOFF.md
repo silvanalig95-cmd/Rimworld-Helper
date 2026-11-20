@@ -58,12 +58,49 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
+  overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
+  additional God events, more immersion, more just further also building up on the gods in general, how they're
+  integrated, the effects they have, the relations between pawns, the kind of events that generated from it. So that's
+  a great direction. And then also, just variety, further kind of events, camps, world events, normal storyteller
+  events, dilemmas, etc. Just more of them, maybe just for a later stage. Just work on first all the things you already
+  have on to do as well. ... I have answers play out on the map is enabled for me. And yes, please go ahead Regarding the
+  faction update, in the sense that only the ones with radio can answer, and also that foreign peoples change [age] at
+  their pace." Then: "So for the content update, yes, I want more events, camps, world events, and dilemmas, but first
+  do all the integrations that you proposed in your document before we add additional content variety in that sense."
+  The order, three builds at a time:
+  1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
+     medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
+     closeness), the peoples' founder texts (in each text's present voice), the comms console by radio and the foreign
+     peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
+  2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
+     (A) and the world (B); the **E** items with them where they belong to the same systems.
+  3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
+     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
+- **To do when the player asks (20 November 2026): the comms console and the peoples' ages.** The player, with
+  League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm Riders. I
+  mean, they are always only on medieval style tech level, it seems, you know, based on their weapons, etc. I don't know
+  if that makes sense, or whether the Storm Riders already kind of also progressed into a more modern technology level.
+  But if they did, then it's really not reflected at all in their weapons and gear. I mean, that is a very cool idea,
+  that other factions can also increase tech level and adjust over time. But then also, if they are still on older
+  technology, it doesn't make sense if they are all reachable with the comms console." Found: the Stormriders are the
+  Dark Elves mod's faction (`DevDesigner_DarkElvesFaction`, Medieval, `devdesigner.elves.continued`), one of Rimfolk's
+  foreign peoples (`Rimfolk_ForeignPeoples.xml`); Rimfolk's changing ages ("Peoples whose age changes",
+  `Peoples/PeopleAges.cs`) cover only its own twenty-three peoples and those that arose in their ways, so the
+  Stormriders are and stay medieval, and their gear is medieval as it should be. The comms console is the game's own: it
+  lists every faction, whatever its age. Proposed, waiting for the player's go: (1) the comms console reaches only
+  peoples whose age has a radio (industrial or spacer, Rimfolk's age where it keeps one, else the faction's own tech
+  level); the others are shown greyed ("no radio: a letter goes by rider"), with the way Rimfolk already writes to them
+  (the neighbours' letters) named, and a setting to keep the game's way; (2) the foreign peoples' ages change too, as
+  Rimfolk's own do (their pace by their ways, rising with trade, teaching and time), their gear following through the
+  every-age pass from the full mod pool.
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
     unpausing the game. Once I paused, the map just returned to normal, but as soon as I unpause, everything turns gray
     again ... Once I reload the save, the issue seems to be resolved ... the player log doesn't update". Save uploaded
-    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Being traced.
+    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Done: the entry "Jobs of no kind: the
+    grey map and the invisible pawn" above the newest release line.
   - **Go, restore**: "yes, please restore letters, wishes, ambitions, life goals, personal stories, council questions,
     camps, and world events to just the previous text, to kind of the flavor style text that you created before,
     restore it from the backup, and keep that also in mind for additional content to be added." CLAUDE.md's text rule
@@ -73,13 +110,9 @@ most sense." So, in this order, three builds at a time:
     people at its gatherings, the guardian on the long walk, the prospector, preachers and delegations at the gate, the
     far-town colonists sent away) and, where the old words claim what the code doesn't do (the batches' "put right"
     lists), a minimal fix in the old voice.
-  - **Go, PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example, the Dawn Stone and I
-    guess other evolution stones that I cannot put into large storage shelves, for example, from the storage mod. It's
-    just not in the list of available items ... Can you please review all the Poke World items and ensure they are also
-    storable in storage mods, or in appropriate kinds of storage shelves that also can carry everything else?" PokéWorld
-    keeps its items under its own top category (`PW_PokeWorld`: stones, fossils, balls, TMs, healing items, eggs,
-    leathers, belts), which shelves that list the game's categories don't take; the player's storage mods are LWM's Deep
-    Storage, Deep Storage Plus (Continued) and RimFridge's shelves.
+  - **Done (built, not released): PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example,
+    the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves ..." The to-do with
+    the player's words is now one entry above the newest release line ("PokéWorld's items on the shelves").
 - **The player, 20 November 2026 (second message):**
   - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
     released (0.275.0); the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25 are built, not released (the entry "More
@@ -621,6 +654,104 @@ repo.
   - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Dubs Bad Hygiene
     (836308268, up to 1.7), Vanilla Anomaly Expanded - Insanity (3342412435, 1.6 and 1.7) and Therapy (Continued)
     (3509488682, 1.6 and 1.7), all active in their list and kept up, give the traits and the sessions.
+- 0.275.3, **PokéWorld's items on the
+  shelves** (20 November 2026; the player's go of the same day: "there's a bunch of items from the Poke World mod, for
+  example, the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves, for example,
+  from the storage mod. It's just not in the list of available items, so I can't store them in the shelves. Can you
+  please review all the Poke World items and ensure they are also storable in storage mods, or in appropriate kinds of
+  storage shelves that also can carry everything else?"). DESIGN.md "PokéWorld's items on the shelves that carry
+  everything else" (after the Food Alert section); README's PokéWorld paragraph and the settings' other mods list; the
+  Almanac's PokéWorld page, "With Rimfolk" (`Almanac_Mods_PokeWorld.xml`, keywords unchanged); the mods table's
+  PokéWorld row (`Council_Mods_Support.xml`).
+  - **Why**: PokéWorld Updated lists its items under categories of its own (`PW_PokeWorld` and its children), and a
+    storage building's filter lists and takes only what its fixed filter allows; the storage mods' shelves name the
+    game's categories, so the stones and the rest were neither shown nor taken. The game's own shelf has no fixed filter
+    and already took them.
+  - **What was built**: once every def has loaded, each of PokéWorld's storable items that sits in none of the game's
+    categories is matched to the game's own category of its kind, read from its fields (apparel by its layer and body
+    part, weapons, a tool held like one, a hatching egg, medicine, drugs, food by its kind, a material by its stuff kind,
+    else the miscellaneous items). The items are never put in those categories (the lead's call: cooking bills, food
+    policies, traders, tailoring bills and Rimfolk's egg events would draw on them, the 379 eggs above all); the match
+    only decides the shelves. By the player's catalogue: the 9 evolution stones, 15 fossils, 5 balls, the TM, 5 healing
+    items, 2 evolution items and the odd keystone match `ItemsMisc`, the 379 eggs `EggsFertilized`, the legendary
+    leather `Leathers`, the 5 ball belts `ApparelUtility`; the 17 unfinished fossils and the portable computer are left
+    alone, the 3 fishing rods go by their fields. Every storage def whose fixed filter takes the whole of such a category
+    (its own list names it or one above it with none of it left out, or it allows every one of the category's own
+    things) allows the matched items themselves, and its default settings where those take the whole of it, so new
+    shelves have them ticked; a fridge only what spoils and eggs; a hopper none (it feeds a dispenser); the display roots
+    worked out again, so the filter window lists them under PokéWorld's own heading. Shelves already built take them
+    once a save at load (or when the setting is switched on in a game) where their own settings take the whole category
+    of what they can hold. The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld, on by default)
+    puts the storage filters back when switched off. The self-check's mods part has a line on it.
+  - **Which shelves take which** (from the shelves' kinds; their filters aren't in the catalogue, so this is what the
+    rule gives if their filters are as their names say): Deep Storage's Big Shelf, Very Big Shelves, Pallets and Safe,
+    where they take the game's items, the stones and the rest; its Clothing Rack the ball belts; its Hampers the
+    legendary leather, where they take the leathers; its Weapons Cabinet and Locker only weapons (none of PokéWorld's,
+    unless the fishing rods are held like a weapon); its Food Basket and Meal Tray Rack the eggs only where they take
+    every fertilized egg; Deep Storage Plus's Bin like a shelf, its barrel, organ fridge and firewood rack nothing;
+    RimFridge's five fridges only the eggs, if their filters take the fertilized eggs; the game's hopper never;
+    Vanilla Expanded's weapon rack, the taps and drains nothing; the game's own shelves already took everything and now
+    have them ticked in new ones where their default takes the category. The true list is in the self-check and, in dev
+    mode, the log at startup.
+  - **Code map**: `Integrations/PokeWorldShelves.cs` (new: `Apply`, `Allow`, `Match`, `Undo`, `AllowOnBuilt`,
+    `CheckLine`, `StandsDownWhy`), `Integrations/PokeWorldShelvesMath.cs` (new, pure, linked: `KindOf`, `WithParents`,
+    `TakesWhole`, `FridgeTakes`, `Allow`, `IsFridgeType`, `IsHatcherType`, `ToMatch`, `Summary`),
+    `CouncilGameComponent.cs` (`pokeShelvesVersion`, `PokeShelvesOnce` from `FinalizeInit`),
+    `ColonyCouncilMod.WriteSettings`, `CouncilSettings` (`pokemonShelves`), `UI/SettingsCatalog.cs` (its row),
+    `UI/SelfCheck.cs` (its line), Keyed `Rimfolk_Integrations_PokeWorld.xml`. Tests: `Tools/Tests/PokeWorldShelvesTests.cs`
+    (about 110 checks: each kind to its category, every PokéWorld item of the catalogue, the shelf rule, fridges and
+    hoppers, never put in the game's categories, the seams), `SettingsTests` (the row). Saved: one number. No Harmony
+    patch, no Sched slot.
+  - **Decided here**: "the whole of a category" also counts a shelf whose own list names the category but sets one thing
+    apart by name (as the wastepack, which is a miscellaneous item, might be). Hoppers never take them. Stockpile zones
+    are left alone.
+  - **Can't be checked without the game**: what PokéWorld's categories sit under and the storage mods' real filters
+    (neither is in the catalogue); that each shelf's filter window lists the items under PokéWorld after the display root
+    is worked out again; Deep Storage editing its buildings' filters from its own settings in a running game (it may set
+    them again without PokéWorld's items until the next start); the fishing rods' and the eggs' hatcher fields; the
+    existing shelves taking them at load; anything of 1.7 beyond the reference assembly.
+  - **Try in the game**: (1) Dev mode on, start the game, open the log: "PokéWorld's items on the shelves: N items, by
+    the game's kind they match ...; M storage buildings take some: ..." lists each. (2) Load the save, select a Deep
+    Storage Big Shelf, Storage tab: PokéWorld's heading lists the Dawn Stone and the other stones, fossils and balls,
+    ticked where the shelf takes all of the game's miscellaneous items; haulers bring a Dawn Stone to it. (3) A clothing
+    rack lists the ball belts; a RimFridge fridge lists the Pokémon eggs, not the stones; a hopper lists none. (4) Build
+    a new Big Shelf: the stones are ticked. (5) Settings, Rimfolk, Your other mods, PokéWorld: switch "PokéWorld's items
+    on the shelves" off and close: the stones leave the Big Shelf's list. (6) Debug actions, Rimfolk, the self-check: the
+    mods part has the line.
+  - **Mods that would help**: none; the items, shelves and graphics are the player's mods' own.
+- 0.275.2, **Jobs of no kind: the grey map and
+  the invisible pawn** (20 November 2026; the player: "I just had an event pop up about one of my pawns receiving a
+  medal. And then I selected the option that everyone should go to the gate ... after this, the whole map screen turned
+  gray essentially while I was unpausing the game. Once I paused, the map just returned to normal, but as soon as I
+  unpause, everything turns gray again ... Once I reload the save, the issue seems to be resolved", and with a
+  screenshot of the name "Huang" with no body, from League_of_Toba_8: "there's an invisible pawn here"). Built in the
+  main tree, a priority bug. DESIGN.md "Jobs of no kind".
+  - **The cause** (traced in both saves): not the medal. The open-gates decree's harm hour (`GateTroubles.Gates`, at
+    8000067, 146 ticks after the medal's answer) took the medal's visitors as the first since the decree and gave the
+    Republic's guard (Huang, `Rimfolk_Republic_Guard`) the sneak to the stores, `JobMaker.MakeJob(null, cell)`: the
+    field `HarmSevenDefOf.Rimfolk_StoresSneak` had stayed null because its class lacked `[DefOf]`. His job had no def and
+    no driver (`<curDriver IsNull="True" />`, saved so; still so in League_of_Toba_8). Drawing him threw (caught per
+    pawn: drawn as his name only), and each frame with ticks his facing (`Pawn_RotationTracker`, the post-tick visuals of
+    1.6) read the missing driver and threw out of the frame's update before the map was drawn, so the map was grey while
+    time ran. `HarmSixDefOf` and `NightWalkDefOf` had the same fault: none of the eight walks of harm parts 5 to 7 had
+    ever played out.
+  - **The fix.** `[DefOf]` on the three classes. `Lean/JobGuard.cs`: `Patch_JobGuard` refuses any job of no kind at
+    `Pawn_JobTracker.StartJob` (one warning in the log); `JobGuard.Repair` at load (`CouncilGameComponent.FinalizeInit`)
+    sends a pawn with a job of no kind or without a driver back to choosing a job and clears such jobs from queues (one
+    line in the log); a visitor so mended with no group of theirs to leave with is sent home (`Arrivals.SendAway`). The
+    player, later the same day: "the pawn is no longer invisible but is just staying at this spot, not moving but
+    sleeping, and about to starve": after their reload his job was gone, and, worn out by days stuck at the gate, he slept
+    where he stood; his lord (`LordJob_ExitMapBest`, Lord_316) still holds, so on waking he eats from his pack (two meals)
+    and leaves. `Tools/Tests/JobGuardTests.cs`: every class that calls `EnsureInitializedInCtor` carries
+    `[DefOf]`, and each of Rimfolk's own defs it names exists.
+  - **Left to see.** In the first save the medal was given at once (the answer's moment), so the colony never gathered
+    at the gate: either the setting "Answers play out on the map" is off in the player's game, or the clerk's errand
+    couldn't start (`RepublicMedal.Begin`); the answer's words promise the gathering. Asked of the player.
+  - **Try in the game.** Load League_of_Toba_8: the log says one pawn was mended, Huang walks off the map with the clerk's
+    lord gone (or stands and then leaves), drawn whole, and the map stays drawn while time runs. With dev mode, the open
+    gates' visitors' dev action "Harm seven: the next open gate's visitors bring a stranger" now sends one sneaking to
+    the stores.
+  - **Mods that would help.** None.
 - 0.275.1, **A colonist a world event sends to
   a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the
   to-do found 19 November 2026 in the plain-words pass on the region map: answers of world events said a colonist goes

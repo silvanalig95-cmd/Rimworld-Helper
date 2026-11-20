@@ -5,6 +5,22 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## PokéWorld on the shelves
+
+*20 November 2026, version 0.275.3*
+
+- PokéWorld's items now go on the storage mods' shelves: a shelf, rack or bin that takes all of the game's miscellaneous items, fertilized eggs, leathers or utility apparel takes the PokéWorld things of that kind and shows them in its filter under PokéWorld.
+- Shelves already built take them once when a save loads, where they take the whole list, and new ones have them ticked. A fridge takes only the eggs and what spoils, a hopper none of them, and the shelves' own limits on size, weight and stacks still apply.
+- The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld) turns it off. Only the shelves count the items this way, never bills, food policies or traders, so Pokémon eggs are never cooked.
+
+## No more grey map
+
+*20 November 2026, version 0.275.2*
+
+- Fixed: the map turning grey while time ran, and a visitor drawn as only a name, after the open gates brought a visitor sneaking to the stores. A save with such a stuck pawn is mended when it loads.
+- Fixed: the sleepwalk and restless walk, the dawn walk, the muster post, the dare, the shooing of a visitor, the practice walk and the sneak to the stores had never played out and now do.
+- A job that has lost its kind is refused before it starts, whichever mod made it, so it can't stop the map from being drawn again.
+
 ## Sent to a far town
 
 *20 November 2026, version 0.275.1*

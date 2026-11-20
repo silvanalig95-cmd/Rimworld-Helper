@@ -805,6 +805,8 @@ namespace ColonyCouncil
             Mod(Toggle("pokemonTypeCalm", "CC_Settings_PokemonTypeCalm", "CC_SetNote_PokemonTypeCalm", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeSpar", "CC_Settings_PokemonTypeSpar", "CC_SetNote_PokemonTypeSpar", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeDouse", "CC_Settings_PokemonTypeDouse", "CC_SetNote_PokemonTypeDouse", "pokemonTypes"), PokeWorldId);
+            // Its items beside the game's own kinds, so the shelves that take those take them (Integrations/PokeWorldShelves.cs): def data, no game hook.
+            Mod(Toggle("pokemonShelves", "CC_Settings_PokemonShelves", "CC_SetNote_PokemonShelves"), PokeWorldId);
             // Riding out to far work and back with Giddy-Up 2 (Integrations/GiddyUpRideOut.cs): its job choice, so with the hooks.
             Section("CC_SetSec_Mod_GiddyUp");
             Mod(Toggle("rideOut", "CC_Settings_RideOut", "CC_SetNote_RideOut", "deepHooks"), GiddyUpId);
