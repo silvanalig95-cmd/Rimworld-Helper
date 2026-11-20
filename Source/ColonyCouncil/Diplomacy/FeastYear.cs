@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using Verse;
+using Verse.AI;
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// A feast's guests bring their town's year (the content update's B29, 20 November 2026). A guest whose town has a
+    /// world event running there now comes with it: from a hard year (any bad world event at their town) they think more of
+    /// the meal than of the contests (FeastYearMath.Welcome) and, when the colony has meals to spare, ask leave after the
+    /// feast to carry what is left home: a colonist brings the meals out of the stores to each of them, into their pack
+    /// (the keep-out errand's job for food to take home), and they leave with it in the morning; from a good year (their
+    /// fair, a bumper harvest) they bring a gift, handed over at the colony as they arrive. The host's toast at the feast
+    /// names it, in one sentence. Nothing is saved: the year is read as the feast goes.
+    /// </summary>
+    public static class FeastYear
+    {
+        /// <summary>The world event running at a guest's town now (their people's, at that town), or null.</summary>
+        public static WorldSituation Of(FeastGuest g)
+        {
+            var ws = WorldSituations.Instance;
+            if (ws == null || g?.people == null) return null;
+            return ws.Running.Where(s => s?.def != null && s.ctx?.faction == g.people && (g.town < 0 || s.place.kind == RefKind.Town && s.place.id == g.town))
+                .OrderByDescending(s => s.def.bad).FirstOrDefault();
+        }
+
+        public static TownYear YearOf(FeastGuest g, out WorldSituation s)
+        {
+            s = Of(g);
+            return s == null ? TownYear.None : FeastYearMath.Year(s.def.kind, s.def.bad);
+        }
+
+        private static string TownName(FeastGuest g, WorldSituation s) =>
+            !(s?.ctx?.placeName).NullOrEmpty() ? s.ctx.placeName : g.town >= 0 ? NotableBook.TownOf(g.town)?.Name ?? g.people?.Name ?? "?" : g.people?.Name ?? "?";
+
+        // ================= As they come =================
+
+        /// <summary>The guests are at the gate (Feasts.Arrive): a good year's guest hands over their gift. The lines for the arrival's letter.</summary>
+        public static string Arrived(GuestFeast p, Map map)
+        {
+            var lines = new List<string>();
+            foreach (var g in p.guests.Where(g => g.state == GuestState.Here && g.pawn != null && g.pawn.Spawned))
+            {
+                try
+                {
+                    var year = YearOf(g, out var s);
+                    string town = TownName(g, s);
+                    if (year == TownYear.Good)
+                    {
+                        int silver = FeastYearMath.Gift(LivingEvents.WealthFactor(map), Rand.Value);
+                        var gate = PlaySpots.GateCell(map, g.pawn);
+                        if (!gate.IsValid) gate = DropCellFinder.TradeDropSpot(map);
+                        Couriers.PaySilver(map, gate, silver, g.people, g.pawn);
+                        lines.Add("CC_FeastYear_Gift".Translate(g.pawn.Named("NAME"), town.Named("TOWN"), s.Label.Named("EVENT"), silver.Named("COUNT")).Resolve());
+                    }
+                    else if (year == TownYear.Hard)
+                        lines.Add("CC_FeastYear_Hard".Translate(g.pawn.Named("NAME"), town.Named("TOWN"), s.Label.Named("EVENT")).Resolve());
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("a feast's guests: their town's year", e);
+                }
+            }
+            return lines.Count == 0 ? null : string.Join(" ", lines);
+        }
+
+        // ================= The toast =================
+
+        /// <summary>What the host says as the cups go up, when a guest's town has a year to name: one sentence; null otherwise.</summary>
+        public static string Toast(GuestFeast p)
+        {
+            foreach (var g in p.guests.Where(g => g.state == GuestState.Here))
+            {
+                var year = YearOf(g, out var s);
+                if (year == TownYear.None) continue;
+                string town = TownName(g, s);
+                return (year == TownYear.Hard ? "CC_FeastYear_ToastHard" : "CC_FeastYear_ToastGood").Translate(town.Named("TOWN"), (s.ctx?.name ?? s.def.label).Named("EVENT")).Resolve();
+            }
+            return null;
+        }
+
+        // ================= As they go =================
+
+        /// <summary>A guest's welcome by their town's year (a hard year: the meal counts double, each contest half).</summary>
+        public static float Welcome(FeastGuest g, float welcome, int contests) => FeastYearMath.Welcome(welcome, g.ate, contests, YearOf(g, out _));
+
+        /// <summary>
+        /// The feast is over and the night begins (Feasts, before the guests go to their beds): a hard year's guests who ate
+        /// ask leave to carry home what is left, and while the colony has meals to spare, a free colonist brings them out of
+        /// the stores to each of them, into their pack (two a party, never past half of what is spare). A message says who
+        /// is bringing what to whom as they set off; with nobody free to carry, or no meals to spare, nothing is asked.
+        /// </summary>
+        public static void Leftovers(GuestFeast p, Map map)
+        {
+            var job = KeepOutDefOf.Rimfolk_BringOutToKeep;
+            if (map == null || job == null || map.dangerWatcher.DangerRating != StoryDanger.None) return;
+            var hard = p.guests.Where(g => g.ate && g.state == GuestState.Here && g.pawn != null && g.pawn.Spawned && g.pawn.Map == map && YearOf(g, out _) == TownYear.Hard).ToList();
+            if (hard.Count == 0) return;
+            // Plain meals that keep a day on the road, the plainest first: never the colony's fine dishes.
+            var meals = PlaySpots.Meals(map).Where(t => t.def.ingestible != null && t.def.ingestible.IsMeal).OrderBy(t => t.MarketValue).ToList();
+            int spare = Math.Max(0, meals.Sum(t => t.stackCount) - map.mapPawns.FreeColonistsSpawnedCount);
+            int n = FeastYearMath.Leftovers(hard.Count, spare);
+            if (n <= 0) return;
+            int each = Math.Max(1, n / hard.Count);
+            var busy = new HashSet<Pawn>();
+            foreach (var g in hard)
+            {
+                try
+                {
+                    var guest = g.pawn;
+                    Thing meal = null;
+                    Pawn by = null;
+                    foreach (var t in meals)
+                    {
+                        if (!t.Spawned || t.stackCount <= 0) continue;
+                        int count = Math.Min(each, t.stackCount);
+                        by = map.mapPawns.FreeColonistsSpawned.Where(c => !busy.Contains(c) && PlayOuts.CanTakePart(c, map) && !c.Drafted && !c.WorkTypeIsDisabled(WorkTypeDefOf.Hauling))
+                            .OrderBy(c => c.Position.DistanceToSquared(t.Position)).Take(6)
+                            .FirstOrDefault(c => c.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some, 1, count) && c.CanReach(guest, PathEndMode.Touch, Danger.Some));
+                        if (by == null) continue;
+                        meal = t;
+                        break;
+                    }
+                    if (meal == null) continue;
+                    var bring = JobMaker.MakeJob(job, meal, guest);
+                    bring.count = Math.Min(each, meal.stackCount);
+                    // together: the colonist carries the meals out and walks over to the guest to hand them over (JobDriver_BringOutFood).
+                    by.jobs.StartJob(bring, JobCondition.InterruptForced, null, false, true);
+                    if (by.CurJob != bring) continue;
+                    busy.Add(by);
+                    var s = Of(g);
+                    Tell.Message(NewsKind.World, Importance.Notable, map,
+                        "CC_FeastYear_Leftovers".Translate(guest.Named("NAME"), TownName(g, s).Named("TOWN"), (s?.Label ?? "").Named("EVENT"), bring.count.Named("COUNT"), by.Named("PAWN")).Resolve(),
+                        new LookTargets(new Thing[] { by, guest }), MessageTypeDefOf.PositiveEvent);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("a feast's guests: the leftovers", e);
+                }
+            }
+        }
+    }
+}

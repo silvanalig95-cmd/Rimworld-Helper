@@ -320,6 +320,7 @@ namespace ColonyCouncil
                 }
                 case OutsiderAct.Meal:
                     o.food = who.food = c.needs?.food?.CurLevelPercentage ?? 1f;
+                    o.askedMeal = FortuneShows.Asked(x);
                     return true;
                 case OutsiderAct.Drink:
                     o.joy = who.joy = c.needs?.joy?.CurLevelPercentage ?? 1f;

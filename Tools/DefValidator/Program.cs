@@ -612,6 +612,8 @@ wishPh.UnionWith(new[] { "FEED", "WINTER", "DRINK", "LINE" });
 // The world brought home (World/Home/WorldHome.cs): the world event that made a quest likelier and where it is (WorldSteer),
 // and the people of an encounter's world event (WorldSeason.Fill; {SITUATION} and {SITUATIONPLACE} are above).
 wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
+// The peoples and their ties (World/KinNews.cs, DilemmaContextKin): the world event at the town a council question is about.
+wishPh.Add("EVENT");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

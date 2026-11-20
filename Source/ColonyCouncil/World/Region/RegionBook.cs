@@ -199,6 +199,8 @@ namespace ColonyCouncil
             if (Worship.On) Safe("worship, the hour", () => Worship.Hourly(now));
             // The gods in the wider world (Gods/World/GodWorld.cs): champions, blessings at night, lightning, gifts received, the void, myths at supper.
             if (Gods.On) Safe("the gods in the world, the hour", () => GodWorld.Hourly(now));
+            // The peoples and their ties (Peoples/PeoplesTies.cs): a meal asked at the gate, kin's news, the neighbours at the colony's days.
+            Safe("the peoples' ties, the hour", () => PeoplesTies.Hourly(now));
         }
 
         /// <summary>The day: the reach worked out again (with remoteness), the towns in detail seeded and their fortunes moved.</summary>
@@ -231,6 +233,8 @@ namespace ColonyCouncil
             if (Worship.On) Safe("worship", () => Worship.Daily(now));
             // The gods in the wider world (Gods/World/GodWorld.cs): letters, peoples and camps, gifts, wrath, the void, the drama, the ones who don't fit.
             if (Gods.On) Safe("the gods in the world", () => GodWorld.Daily(now));
+            // The neighbours for good's own days (Peoples/PeoplesTies.cs).
+            Safe("the peoples' ties", () => PeoplesTies.Daily(now));
             ColonyBook.Daily(homes, null);
         }
 

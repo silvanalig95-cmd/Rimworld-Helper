@@ -158,6 +158,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>sextons</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>6~10</stayHours>
@@ -224,6 +225,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>sextons</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>4~6</stayHours>
@@ -352,6 +354,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>tamers</li></callings>
         <group>Visitors</group>
         <ages>22~60</ages>
         <stayHours>6~10</stayHours>
@@ -417,6 +420,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>tamers</li></callings>
         <group>Visitors</group>
         <ages>22~60</ages>
         <stayHours>4~8</stayHours>
@@ -540,6 +544,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>tamers</li></callings>
         <group>Visitors</group>
         <ages>22~55</ages>
         <stayHours>4~6</stayHours>
@@ -668,6 +673,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>salvagers</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>4~8</stayHours>
@@ -734,6 +740,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>salvagers</li></callings>
         <group>Visitors</group>
         <mods><li>OskarPotocki.VanillaVehiclesExpanded</li></mods>
         <ages>25~60</ages>

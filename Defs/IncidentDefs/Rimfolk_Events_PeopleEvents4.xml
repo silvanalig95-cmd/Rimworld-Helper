@@ -22,6 +22,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>scholars</li></callings>
         <group>Visitors</group>
         <ages>35~75</ages>
         <stayHours>16~22</stayHours>
@@ -103,6 +104,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>scholars</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>4~6</stayHours>
@@ -170,6 +172,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>brokers</li></callings>
         <group>Visitors</group>
         <ages>28~60</ages>
         <stayHours>4~6</stayHours>
@@ -298,6 +301,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>brokers</li></callings>
         <group>Visitors</group>
         <ages>30~60</ages>
         <stayHours>4~6</stayHours>
@@ -359,6 +363,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>fishers</li></callings>
         <group>Visitors</group>
         <ages>30~65</ages>
         <stayHours>6~10</stayHours>
@@ -492,6 +497,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>fishers</li></callings>
         <group>Visitors</group>
         <ages>30~65</ages>
         <stayHours>4~6</stayHours>
@@ -556,6 +562,7 @@
     <earliestDay>25</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>fishers</li></callings>
         <group>Visitors</group>
         <ages>30~65</ages>
         <stayHours>4~6</stayHours>
@@ -758,6 +765,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>hunters</li></callings>
         <group>Visitors</group>
         <ages>22~55</ages>
         <stayHours>6~10</stayHours>

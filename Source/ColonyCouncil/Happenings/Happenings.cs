@@ -52,6 +52,12 @@ namespace ColonyCouncil
         /// society's), for the events whose own worker picks it; nobody is shut out.
         /// </summary>
         public string prefers;
+        /// <summary>
+        /// One of the peoples' own events: the callings of the people (or the two peoples) it comes from. A people bound to
+        /// the colony sends it more often, one the colony broke its word with less (Peoples/PeopleTies.cs, the content
+        /// update's B14), its letter names the tie, and its gift goes first to the colonist who carries the tie.
+        /// </summary>
+        public List<string> callings;
         /// <summary>Only when one of these mods (or DLCs) is active, by package id.</summary>
         public List<string> mods;
         public List<string> colonyIs;
@@ -125,6 +131,10 @@ namespace ColonyCouncil
             if (texts.NullOrEmpty()) yield return "world event has no texts";
             if (!options.NullOrEmpty() && (defaultOption < 0 || defaultOption >= options.Count)) yield return "defaultOption out of range";
             if (!prefers.NullOrEmpty() && !PeoplesMath.IsCalling(prefers)) yield return "'" + prefers + "' is not a calling";
+            if (callings != null)
+                foreach (var c in callings)
+                    if (!PeoplesMath.IsCalling(c))
+                        yield return "callings: '" + c + "' is not a calling";
             if (leans != null)
                 foreach (var k in leans)
                     if (!StoryWaysMath.IsLeanKey(k))
@@ -807,6 +817,8 @@ namespace ColonyCouncil
             w *= RiseFallEffects.EventFactor(d, map);
             // A colony (or one of its people by name) known for something draws the world's events of its kind (Diplomacy/Renown.cs).
             w *= Renown.EventFactor(d, map);
+            // A people bound to the colony sends its own events more often, one it broke its word with less (Peoples/PeopleTies.cs).
+            w *= PeopleTies.EventFactor(d);
             // The way to play leaning the game, as in the storyteller's pools (Story/StoryDirection.cs).
             w *= StoryDirection.HappeningFactor(ext);
             return Mathf.Max(0.001f, w);

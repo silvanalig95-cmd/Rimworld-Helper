@@ -171,7 +171,9 @@ namespace ColonyCouncil
                     try
                     {
                         // Their people gone, the town that was to grow gone from the map, or waited too long: let go.
-                        if (f.people == null || f.people.defeated || FollowUpsMath.Lapsed(f.endTick, now) || f.kind == "town" && GrownTowns.TownOf(f) == null)
+                        // A new head's ride to the gate (NewHeads.cs) waits a month at most, and only while they still lead.
+                        if (f.people == null || f.people.defeated || FollowUpsMath.Lapsed(f.endTick, now) || f.kind == "town" && GrownTowns.TownOf(f) == null
+                            || f.kind == NewHeads.Kind && (NewHeadMath.Lapsed(f.endTick, now) || !NewHeads.StillHead(f)))
                         {
                             mine.waiting.Remove(f);
                             Release(f);
@@ -183,6 +185,7 @@ namespace ColonyCouncil
                         WorldSituation s = null;
                         if (f.kind == "son") s = WarlordSons.Start(home, f);
                         else if (f.kind == "town") s = GrownTowns.Start(home, f);
+                        else if (f.kind == NewHeads.Kind) s = NewHeads.Start(home, f);
                         if (s == null) continue;
                         started = true;
                         mine.waiting.Remove(f);
