@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A day off for a friend, the colony's names for its places, rooms from your mods
+
+*20 November 2026, version 0.288.0*
+
+- A kind colonist, or a close friend of someone worn down for two days, may ask the council for a day off for them. Give it, or let a rest day come, and the two grow closer, often spending an hour of it together. If it lapses, only the one who asked minds.
+- Places at home get names from what first happened there, given by the colonist who was there: where a god was seen, the first graves, the old tree beside a party or a wedding, the gate that held, where a flood reached the path.
+- The names come up at supper, in the colony's letters and on a god's card, and can show on the map as quiet labels (a setting, off by default). A place whose tree, gate or graves are gone loses its name after a season.
+- Six new room plans with your other mods: a writer's study, a coffee corner, a dryad grove, a festive hall, a beekeeper's yard and a fish house.
+
 ## The world's talk, camps and encounters, fuller
 
 *20 November 2026, version 0.287.0*

@@ -20144,7 +20144,7 @@ once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end
   the giving day's gifts now (everyone or the children, no supper), ask a custom now, the elders' supper set going now,
   one of the colony's own events now, one of the new personal stories for someone.
 
-### The colony's last variety items: a day off for a friend, the colony's names for its places, rooms from the player's mods (the player's go, 20 November 2026; not released yet)
+### The colony's last variety items: a day off for a friend, the colony's names for its places, rooms from the player's mods (the player's go, 20 November 2026; released 0.288.0)
 
 The player on `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can
 go ahead with this in the order you think makes most sense." The last three variety items of the list: A9, C25 and C27,
