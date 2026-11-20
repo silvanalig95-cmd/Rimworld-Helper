@@ -697,6 +697,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B6. Two more scarcities: cloth, and timber** (V; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Variety4.xml`, `World/Variety/`). Decided: cloth gone scarce comes on its own, three times as readily within 40 days after a murrain or closed markets; its tailor buys the colony's cloth dear or teaches a day's Crafting (coats from worn ones); timber gone scarce comes only after a great fire, a flood, rebuilding or a great work, and its carpenter's apprentice asks the colony's best builder for a day's teaching; both make their goods a quarter dearer with that people's traders (the region's prices), and the shearers and the woodcutters come with them.
 - **Cloth gone scarce.** This comes alone, or after sickness in the herds or markets closed:
   - Weavers and tailors buy cloth, wool and leather dear.
   - A tailor of theirs at the gate wants the colony's cloth or teaches Crafting.
@@ -711,6 +712,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B7. The games: a season of contests in the region** (V, with I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Games`, `World/Variety/GamesDay.cs`, `FeastPurpose.Games`). Decided: the four names by age as proposed; champions on the road three times as often, travelling groups and camps a third more; the games day is a letter's answer with two days' notice, then the feast's own day without notables or a meal hope: young people of 16 to 25, two of the games' people and one of a second friendly people (three of the one when there is none), the bouts, the race and the shooting match where the colony has targets, by the feast's rules; the end letter names a champion of the region, and a colonist who won at the games day is named in it and gets the feast's contest deed; a games team camps on the road.
 - **On the map.** A town within reach holds its games. Each age has its own form:
   - **Tribal:** the gathering games.
   - **Medieval:** a tourney.
@@ -730,6 +732,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** bouts as at feasts, a hard blow now and then at the game's rate, shown.
 
 **B8. A pardon proclaimed** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Pardon`, `World/Variety/Pardon.cs`). Decided: it follows the succession ended with a kind head (its `kind` flag), or comes from a people in a holy year; the outlaw's meal is the road beat at the gate; the prisoners' beat comes only while the colony holds prisoners of that people, and its answer sets them all free by the game's own release (the wardens walk them out), counted as help to that people (the small favour) with goodwill at its end; bounty hunters don't come while it runs (weight 0), the outlaw quest at 0.3; outlaws walking home camp nearby; merciful in the colony's ways.
 - **On the map.** After a kind new head takes their seat, or in a holy year, that people proclaims a pardon:
   - Outlaws of theirs walk home along the roads, and one asks a meal at the gate.
   - The colony may send home its prisoners of that people, pardoned. They walk out as a ransomed captive does, their
@@ -851,6 +854,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Peoples/PeopleTies.cs`). Decided: 77 of the peoples' events name their callings (every one that comes by itself; follow-ups and the art handed on are as ever); bound 1.5, a broken word 0.67 while still felt; the speaker carries a pact, fealty or an envoy; the gift goes to the carrier first, else as ever.
 
 **B15. The peoples' own encounters** (V, with I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Encounters_Peoples.xml`, `StrangerRole.calling`, `WorldScenes`). Decided: two for each of the 23 callings, one showing their ways and one telling how their people began; five new scenes that must be true on the map and play out (a grave, a broken machine, a colony animal, a mech with Biotech, a building: books or the comms console), the old injury by the colonist's own hediffs; the linesman looks over the comms console rather than climbing a roof, and the Kiln Guild's moment is a mason judging a piece the colony made; small thoughts (+1 to +3).
 - **What happens now.** An encounter with a visitor of one of Rimfolk's peoples is a general one: road news, a recipe
   swap.
 - **On the map.** Two moments per people, by their ways, 46 in all. Some examples:
@@ -942,6 +946,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B20. Beekeepers on the move** (V; M; only with Alpha Bees or VFE Medieval 2)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Camp_Beekeepers`, `Camps/CampVariety.cs`). Decided: only with Alpha Bees, whose beehouses are the camp's hives at its edge (straw skeps without them were left out); spring and summer, five to eight days; honey, wax and mead in their pack and on their page (Alpha Bees' or VFE Medieval 2's); helping at their hives is two hours at a beehouse, practice with animals and Alpha Bees' own stings; the queen once the colony knows Alpha Bees' basic beekeeping, woodland or temperate by the land; they don't ask the colony to keep fires and axes away (no such rule plays out on the map).
 - **On the map.** In summer, a beekeeping family camps by the colony's flowering ground for five to eight days:
   - They set their hives at the edge of the camp (Alpha Bees' `RB_Beehouse` as a camp piece, else straw skeps by the
     fire).
@@ -958,6 +963,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** a sting now and then on a colonist who helps at their hives, by the existing bee-sting ailment.
 
 **B21. Mushroom and truffle pickers** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Camp_MushroomPickers`, `CampKindDef.gathers`). Decided: in the fall, or within six days after the mushrooms after rain; only on wooded land; they gather the listed caps first (VPE's, else the caves' agarilux and bryolux), then the camps' usual gathering; truffles with Alpha Animals, else raw fungus, and a pig or dog with them; in one stay in four, one of them falls ill with the game's food poisoning in the evening and they ask for the colony's doctor; the ask to keep the herd out of the wood is left out (nothing would keep it).
 - **On the map.** In autumn, or after the "mushrooms after rain" event, a few pickers camp on wooded or cave land. They
   gather the wild mushrooms that grow there (the camps' existing gather work):
   - with Vanilla Plants Expanded - Mushrooms, from its plants (`VPE_Plant_Healtruffle`, `VPE_Plant_Glowcap`,
@@ -1004,6 +1010,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B24. A stud visit** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Mission_StudVisit`, `Missions/Workers_MissionStud.cs`). Decided: any people at peace that keeps a kind the colony keeps and that breeds by mating (egg layers excluded), herding peoples first; their male to the colony's females or their female to its male; it stands five to seven days as the colony's own, so the game's mating does the rest; the fee is a seventh of the beast's worth, 30 to 200 silver, taken from the stores when the drover comes for him; their goodwill +8 for a stand kept to its end, -10 if their animal is lost; their courier brings the young once born; the silver for his keep is half the fee (at least 20), asked by letter only, and then no fee is paid and no young is owed.
 - **On the map.** Herders, the Circuit of Tamers or any herding people ask the colony to let their best male of a kind
   the colony keeps stand in its pen for five to seven days. Then:
   - the game's own mating does the rest;
@@ -1072,6 +1079,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 
 **B28. A feast's guests hope for their own people's contest, and a singing contest** (V, with I; S for the hopes, M for
 the contest)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `FeastMath`, `Diplomacy/FeastSinging.cs`, `FeastContests`). Decided: the hopes as listed, gene-editors and mechanitors at the tables, river folk at the race, the vault's folk and the Choir a fine meal and music; up to six singers, the guests and the colony's people in turn, at any instrument the colony has built (the game's and any mod's), else by a lit fire; the score is artistic and social skill with a little for an instrument and some luck; it answers a hope for music as a concert does, and its champion is named as any contest's.
 - **What happens now.** Guests hope for a contest by their world age only (`Diplomacy/FeastMath.cs`, `FeastHope`).
 - **The hopes, by people.**
   - **The hunt:** hunters, herders, grovekeepers.

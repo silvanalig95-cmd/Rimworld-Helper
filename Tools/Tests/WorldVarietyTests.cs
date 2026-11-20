@@ -211,7 +211,7 @@ public static class WorldVarietyTests
         foreach (var k in new[] { "Contest_Singing", "ContestThe_Singing", "Msg_Begins_Singing", "Result_Singing", "Result_None_Singing", "Dlg_Contest_Singing", "Dlg_ContestTip_Singing",
                      "CWhy_Singing", "CWhy_SingPlace", "Hope_Bouts", "Hope_Tables", "Hope_Race" })
             C(keyed.Contains("<CC_Feast_" + k + ">"), $"the feast's words: CC_Feast_{k}");
-        var singLines = defs.SelectMany(d => d.Root.Elements()).Where(e => (string)e.Element("defName") == "Rimfolk_Lines_OutsiderSays_FeastSinging").SelectMany(e => e.Descendants("li")).Select(li => li.Value).ToList();
+        var singLines = defs.SelectMany(d => d.Root.Elements()).Where(e => (string)e.Element("defName") == "Rimfolk_Lines_OutsiderSays_Feasts").SelectMany(e => e.Descendants("li")).Select(li => li.Value).ToList();
         C(singLines.Count(l => Tags(l).Contains("feastsing")) >= 5 && singLines.Any(l => Tags(l).Contains("feastsingwin")), "a singer's word as they start, and the winner's");
         C(Code("Diplomacy/FeastSinging.cs").Contains("StartPlaying(pawn)") && Def("JobDef", "Rimfolk_FeastSing") != null, "the singer plays the colony's instrument by its own sound, or sings by a fire");
 
