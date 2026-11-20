@@ -29,6 +29,7 @@
   <CC_PEv8_MedalBack_2>I'll keep it, thank you.</CC_PEv8_MedalBack_2>
   <CC_PEv8_MedalBack_3>The others were there too, it belongs to all of us.</CC_PEv8_MedalBack_3>
   <CC_PEv8_MedalAway>{0} isn't at home now.</CC_PEv8_MedalAway>
+  <CC_PEv8_MedalLeft>{PAWN_nameDef} could not get out to the gate, so {CLERK} of {FACTION} went home without reading the citation or pinning on the medal.</CC_PEv8_MedalLeft>
   <CC_PEv8_Impact_Citation>{0} goes out to {1} at the gate, who reads the citation and pins on the medal</CC_PEv8_Impact_Citation>
   <CC_PEv8_Impact_CitationBrief>the citation at the gate</CC_PEv8_Impact_CitationBrief>
   <CC_PEv8_Impact_Medal>{0}: +6 mood for 60 days</CC_PEv8_Impact_Medal>
@@ -74,6 +75,8 @@
   <CC_PEv8_GravLogged>{FACTION}'s officers walked the {SHIP} with {PILOT} and entered it in the Fleet's log.</CC_PEv8_GravLogged>
   <CC_PEv8_GravLoggedPart>{FACTION}'s officers walked the {SHIP} with {PILOT}, entered it in the Fleet's log, and left {PART} from the hull's stores by its engine.</CC_PEv8_GravLoggedPart>
   <CC_PEv8_GravLoggedLesson>{FACTION}'s officers walked the {SHIP} with {PILOT}, entered it in the Fleet's log, and taught {PILOT} what they know of flying it.</CC_PEv8_GravLoggedLesson>
+  <CC_PEv8_GravOutside>{FACTION}'s officers could not get aboard the {SHIP}, so they entered it in the Fleet's log from what they could see outside.</CC_PEv8_GravOutside>
+  <CC_PEv8_GravOutsidePart>{FACTION}'s officers could not get aboard the {SHIP}, so they entered it in the Fleet's log from what they could see outside, and left {PART} from the hull's stores where they stood.</CC_PEv8_GravOutsidePart>
   <CC_PEv8_ShipGone>The colony's gravship isn't here now.</CC_PEv8_ShipGone>
   <CC_PEv8_PilotAway>{0} isn't at home now.</CC_PEv8_PilotAway>
   <CC_PEv8_Impact_Decks>Two officers come down near the {0} and walk its decks part by part, with {1} at the engine</CC_PEv8_Impact_Decks>
@@ -87,6 +90,7 @@
 
   <CC_PEv8_SleeperStays>{PAWN_nameDef}, a sleeper of {FACTION} woken at the colony, has stayed and joined it.</CC_PEv8_SleeperStays>
   <CC_PEv8_SleeperHome>{RUNNER} opened the casket and woke {PAWN_nameDef}, who is walking home to {FACTION} with {RUNNER}. The Fleet paid {COUNT} silver.</CC_PEv8_SleeperHome>
+  <CC_PEv8_SleeperHomeOpened>{RUNNER} could not get to the casket, so {OPENER} opened it and woke {PAWN_nameDef}, who is walking home to {FACTION} with {RUNNER}. The Fleet paid {COUNT} silver.</CC_PEv8_SleeperHomeOpened>
   <CC_PEv8_SleeperWalksHome>{PAWN_nameDef}, a sleeper of {FACTION}, woke from the casket and has set off to find the Fleet.</CC_PEv8_SleeperWalksHome>
   <CC_PEv8_CasketOpened>The casket has been opened, or is gone.</CC_PEv8_CasketOpened>
   <CC_PEv8_Impact_OpenKeep>{0} opens the casket, and the sleeper wakes at the colony</CC_PEv8_Impact_OpenKeep>
@@ -155,6 +159,8 @@
   <!-- ===================== 80. A whole xenogerm ===================== -->
 
   <CC_PEv8_XenogermIn>{SEQ} wrote a whole {KIND} xenogerm into {PAWN_nameDef}. {PAWN_nameDef} will lie in a coma for some days while it takes.</CC_PEv8_XenogermIn>
+  <CC_PEv8_WorkUndone>{SEQ} could not get to {PAWN} in time and has gone home without doing the work.</CC_PEv8_WorkUndone>
+  <CC_PEv8_WorkUndonePaid>{SEQ} could not get to {PAWN} in time and has gone home without doing the work, leaving the payment at the gate.</CC_PEv8_WorkUndonePaid>
   <CC_PEv8_XenogermTaken>{0} can't take a xenogerm now.</CC_PEv8_XenogermTaken>
   <CC_PEv8_Impact_XenogermWork>{0} works on {1} where they stand for three hours</CC_PEv8_Impact_XenogermWork>
   <CC_PEv8_Impact_XenogermWorkBrief>gene work</CC_PEv8_Impact_XenogermWorkBrief>

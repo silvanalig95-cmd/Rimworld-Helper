@@ -8,6 +8,7 @@
   <CC_PEv7_MarkTrue>The master of {FACTION} judged {PAWN_nameDef}'s {THING} true work and put the guild's mark on it. The guild will speak well of {PAWN_objective} for it.</CC_PEv7_MarkTrue>
   <CC_PEv7_MarkTrueExpert>The master of {FACTION} judged {PAWN_nameDef}'s {THING} true work and put the guild's mark on it. The guild will speak well of {PAWN_objective} for it, and {PAWN_nameDef} came away with the quality expertise.</CC_PEv7_MarkTrueExpert>
   <CC_PEv7_MarkFault>The master of {FACTION} found a fault in {PAWN_nameDef}'s {THING} and would not put the guild's mark on it.</CC_PEv7_MarkFault>
+  <CC_PEv7_MarkNoWay>{MASTER} could not get to the {THING} to judge it, and has gone home without a verdict.</CC_PEv7_MarkNoWay>
   <CC_PEv7_MarkTrueBack>I knew it was good, but it's something to hear it.</CC_PEv7_MarkTrueBack>
   <CC_PEv7_MarkTrueBack_2>Thank you, that means a great deal.</CC_PEv7_MarkTrueBack_2>
   <CC_PEv7_MarkTrueBack_3>I'll make the next one better still.</CC_PEv7_MarkTrueBack_3>

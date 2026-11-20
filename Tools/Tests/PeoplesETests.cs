@@ -311,7 +311,7 @@ public static class PeoplesETests
         var almText = string.Join("\n", almanac.Descendants().Where(e => !e.HasElements).Select(e => e.Value));
         C(!almText.Contains('—') && !almText.Contains('!') && !Regex.IsMatch(almText, @"\bin \d+ (days?|hours?)\b"), "its words plain, no countdowns");
         C(almText.Contains("18 cells") && almText.Contains("every fifteen days") && almText.Contains("a dozen") && almText.Contains("fifth and the tenth day") && almText.Contains("half again")
-          && almText.Contains("Hesper Lyle") && almText.Contains("Elin Sedge") && almText.Contains("Corra Mallin") && almText.Contains("Oswin Kell"), "its rules are the code's, and its foundings the defs'");
+          && almText.Contains("glassblower") && almText.Contains("acorn") && almText.Contains("for a king") && almText.Contains("Hardwater"), "its rules are the code's, and its foundings the descriptions'");
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PeoplesE.xml")).Root!.Elements().Select(e => e.Name.LocalName).ToHashSet();
         var used = Regex.Matches(code + contract, "\"(CC_PeoplesE_\\w+)\"").Select(m => m.Groups[1].Value).Distinct().ToList();
         C(used.Count >= 40 && used.All(keyed.Contains) && keyed.Contains("CC_Camp_End_unpaid"), $"every word the code says is keyed ({used.Count})");

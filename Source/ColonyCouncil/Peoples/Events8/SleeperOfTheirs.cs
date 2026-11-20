@@ -85,13 +85,28 @@ namespace ColonyCouncil
             v.text = ctx.faction.GetUniqueLoadID() + "|" + ctx.variant;
             if (PlayOuts.On && opener != null && casket.Spawned)
             {
+                // The runner's way to the casket counts from now, through a room visitors otherwise keep out of (KeepOut, PeopleErrands).
+                if (opener == x) KeepOut.Refresh(map);
                 bool started = opener == x
                     ? PeopleEvents8.Errand(x, map, casket, null, PeopleEvents8.OpenCasketJob, PeopleEvents8Math.OpenTicks, 6f)
-                    : PeoplesG.Up(opener, map) && !opener.Drafted && !opener.InMentalState && PeopleEvents8.Send(opener, PeopleEvents8.OpenCasketJob, casket, PeopleEvents8Math.OpenTicks);
+                    : Ours(opener, map) && PeopleEvents8.Send(opener, PeopleEvents8.OpenCasketJob, casket, PeopleEvents8Math.OpenTicks);
                 if (started) return;
+                // Still no way for the runner (a cold store, someone asleep in the room, a door they can't open): one of the colony
+                // opens it for them, and the sleeper walks out to the runner.
+                if (opener == x)
+                {
+                    var ours = PeoplesD.Best(map, SkillDefOf.Medicine, p => Ours(p, map) && p.CanReach(casket, PathEndMode.Touch, Danger.Some));
+                    if (ours != null && PeopleEvents8.Send(ours, PeopleEvents8.OpenCasketJob, casket, PeopleEvents8Math.OpenTicks))
+                    {
+                        v.a = ours;
+                        return;
+                    }
+                }
             }
             Woken(v);
         }
+
+        private static bool Ours(Pawn p, Map map) => PeoplesG.Up(p, map) && !p.Drafted && !p.InMentalState;
 
         /// <summary>The visit's hour: the hour at the casket not under way any more (or the hours run out), it is opened there and then.</summary>
         public static bool Hour(Visit v, int now)
@@ -152,8 +167,11 @@ namespace ColonyCouncil
             int pay = parts.Length > 1 && int.TryParse(parts[1], out int n) ? n : 0;
             PeoplesG.SayLine(x, v.incident, "home");
             if (pay > 0 && map != null && f != null) Couriers.PaySilver(map, PeoplesD.GateSpot(map) ?? sleeper.Position, pay, f, x);
-            Tell.Message(NewsKind.People, Importance.Notable, map, "CC_PEv8_SleeperHome".Translate(sleeper.Named("PAWN"), (x?.LabelShort ?? "?").Named("RUNNER"), (f?.Name ?? "?").Named("FACTION"),
-                pay.Named("COUNT")).Resolve(), new LookTargets(sleeper), MessageTypeDefOf.PositiveEvent);
+            // Opened by one of the colony for a runner who couldn't get to it: the words say who opened it.
+            var opener = v.a != null && v.a != x && v.a.Faction == Faction.OfPlayer ? v.a : null;
+            Tell.Message(NewsKind.People, Importance.Notable, map, (opener != null ? "CC_PEv8_SleeperHomeOpened" : "CC_PEv8_SleeperHome").Translate(sleeper.Named("PAWN"),
+                (x?.LabelShort ?? "?").Named("RUNNER"), (f?.Name ?? "?").Named("FACTION"), pay.Named("COUNT"), (opener?.LabelShort ?? "").Named("OPENER")).Resolve(),
+                new LookTargets(sleeper), MessageTypeDefOf.PositiveEvent);
             PeopleEvents8.Goodwill(f, PeopleEvents8Math.SleeperGoodwill, GoodwillWhy.Returned);
             var all = new List<Pawn> { sleeper };
             if (x != null && x.Spawned && x.Map == map) all.Add(x);

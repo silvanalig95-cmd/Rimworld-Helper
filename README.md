@@ -903,8 +903,8 @@ a year.
 Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
 nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
 Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 53 kinds of mark: downed in a raid, carried out of one, holding the
-line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness, forgiven after a
+lean of their own. Then life marks them, with 58 kinds of mark: downed in a raid, carried out of one, holding the
+line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness or nursing someone through one, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
 beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
 bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
@@ -935,8 +935,8 @@ offers the family's own first names, and growth birthdays and the eighteenth end
 A child with nobody of their own here (orphaned, or a lost child taken in) brings the council a question a day
 later: who raises them. The answer can name an adoptive parent (and their partner), a relation the game shows on the
 Social tab, and from then on they are parent and child for everything above, the game's own grief included. A dead
-colonist's heirloom prefers family, blood closest, and their own room goes a day later to the closest of their
-family here without one. A husband, wife or betrothed who dies leaves the one left a long story of their own; their
+colonist's heirloom goes to whoever was closest to them, never blood first, and their own room goes a day later to
+the closest here without one. A husband, wife or betrothed who dies leaves the one left a long story of their own; their
 wedding day comes round as the survivor's own, kept with an hour at the grave (or a long walk), and when a widowed
 parent finds someone new, their children are glad for them, or hurt for the parent they lost. Two or more of the
 colony with one last name who are family are known by it ("the Boyds"), their story says what the family's name
@@ -952,7 +952,7 @@ little goodwill), a promised room has to come within a fortnight, and someone st
 keeping them costs more again.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 100 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 112 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
@@ -967,7 +967,7 @@ again and again, and a fast walker after a season of hauling. A habit lived for 
 from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
 healer's hands, trail-wise, scholar, mender); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
-loaded. Fifty-nine of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
+loaded. Sixty of the rules are ways out of a bad trait, and a way out doesn't wait for the colony's ten days: jealousy fades
 after a seat or two promises kept, a rebel settles the same way, a bloodlust Rimfolk gave fades after a long peace, a
 cannibal Rimfolk gave stops once the famine is long past or a new faith doesn't call for it, world weariness lifts
 after two long peaces and something good, a pyromaniac who works the stove or the forge and stays calm loses the urge,
@@ -977,11 +977,18 @@ feel for others again after half a year without an execution and with care shown
 came with fades after most of a year without a fight; a gourmand who went hungry and then didn't binge eats like anyone
 else, slothful steps up to lazy after hard work done well, very neurotic eases to neurotic in a long calm, and a recluse
 with a friend opens up (Biotech); for Vanilla Traits Expanded, a workaholic learns to rest, the anxious calm down, the
-squeamish harden after long hours as a doctor, a kleptomaniac stops taking once forgiven or given a seat, a slob tidies up
+squeamish harden after long hours as a doctor and many wounds tended or a patient nursed back to health, a kleptomaniac stops taking once forgiven or given a seat, a slob tidies up
 after hours of cleaning or the tidy habit (Dubs Bad Hygiene's slob and unhygienic too), an animal hater softens after a
 bond, three animals tamed or naming the animals, the submissive stand up, a snob is humbled, a couch potato gets up and
 an insomniac sleeps again; Vanilla Anomaly Expanded - Insanity's mood swings and impulsiveness settle; a brave
-colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road. The character page shows
+colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road.
+A doctor who nurses someone back to health is marked by it too, and that counts toward kindness; healer's hands also come
+of long hours as a doctor and three patients nursed back. New traits from the player's mods and Anomaly: a perfectionist after a
+run of masterworks, a dog person or a cat person after a year bonded with one of the colony's dogs or cats, a
+fisherman after many hours fishing (Vanilla Fishing Expanded), wanderlust after seasons away, a mountain lover after a
+year under a mountain's rock, and, rarely and only of what already happened on the map, desensitized after fights that
+cost lives and many burials (it fades again after a long peace and some kindness), a drunken master in a brawler who
+held the line drunk three times, and an occultist after long dark study (Anomaly), all three neither good nor bad. The character page shows
 "where life is taking them": every way out of a bad trait the colonist has, from the start, with what is still
 missing in plain words, then the other changes they are heading toward, with how many of the things that lead there
 have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
@@ -4036,6 +4043,15 @@ end the range in the spacer age. Each town's card says how to reach them now and
 two days on the road: by the next post rider", "far: by relay through Emberford, about seven days", "out of reach until
 you have radio"), and the region map rings the far and the out-of-reach towns.
 
+**Only peoples with a radio answer the comms console.** The game's console lists every people whatever its age. With
+Rimfolk, a people of the tribal or the medieval age (by the age it lives in now, as Rimfolk keeps it, or the faction's own
+tech level) with no town near the Signal Line's masts is listed greyed: "(no radio: they can only be reached by a
+letter)", and its tooltip says how a letter reaches them (their card or their page under Peoples, a courier or the
+post). The Empire, the outlanders, the pirates and every people of the industrial age or later answer as before, and so
+does a people that has risen into the industrial age. Only the console's own call changes: ships in orbit, quests and the
+Empire's permits are as they were. Rimfolk's own calls (a pact called in, a ransom, a favour, a truce, a letter by radio)
+keep the same rule. Setting: *Only peoples with a radio answer the comms console* (on; needs the deeper game hooks).
+
 **The peoples, closest first, and what to do with each.** The region window's Peoples is a list of every people beside
 the page of the one you choose. The list has a search, filters (neighbors, mail, dealings) and a sort: closest first
 by default (their nearest town's days on the road at the colony's means, as the post reckons it), or by regard, name or
@@ -4524,31 +4540,38 @@ elves (bladedancers) and about half of their sorceresses (lightning, ice and fir
 sorceresses have a psylink instead. Their casters show it as the peoples' do: a caster's own hood where it fits, never a
 wand in place of their weapon, their craft named at the gate, a helpful spell in peace now and then, the mod's own AI in a
 fight with its most broken spells kept out, and their card says what crafts are among them. A few lines of their own when
-they visit. Only pawns made from now on; their xenotype and race are not touched.
+they visit. Only pawns made from now on; their xenotype and race are not touched. Their age changes over the years as
+Rimfolk's own peoples' do (below): at a medieval people's pace, eleven years an age, sooner with the colony's trade, gifts
+and alliance, and no further than the industrial age. Risen into it, their Darkshards carry repeating guns (assault
+rifles, heavy SMGs, light machine guns and the mods' like) with an ammo pack, their Dark Riders a light gun, their
+Dreadspears and Black Guard keep spear, shield and halberd with a belt of frag grenades, and their knights, witch elves
+and sorceresses keep their own arms; and the comms console reaches them.
 
-**Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
-description on the faction page says in plain words what they do, how they live, what they want from their neighbours
-and where their ways came from, each in a shape of its own, as for all twenty-three peoples), a few sayings, and what
-it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons through Harrow Ford
-under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
+**Where their ways began.** Each of the seven keeps a founding story, a few sayings, and what it honours and fears,
+shown on its card. The description on the faction page says in plain words what they do, how they live, what they want
+from their neighbours and where their ways came from, each in a shape of its own, as for all twenty-three peoples, and
+their faith, their talk of how their ways began and their Almanac page tell the same history in their own voices, a
+founder named only where the people keep the name: the league's nine waymasters, who each sent a guard and a wagon
+through Harrow Ford under nine flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
 fever town alone through a winter and hung its last lamp over the sickhouse door for anyone ("we were spared, and so we
 owe"); the herders' Tamsa, who walked the last forty head through the dry year to grass and back, which is why herders
-count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who blessed every door he passed; the
-society's Ilse Varro, who carried eleven books out of the burning archive at Hesk; the enclave's Ines Okoro, purser of a
-downed ore hauler who sold its cargo one bargain at a time; the river folk's Wenna Reed, whose boats pulled people off the
-rooftops the night the dam broke. Their letters (now also in grief and in thanks for a warning), messengers, visitors and
-talk speak from it, each in its own manner. And each has a touchpoint of its own: when someone is down with a fever, a
-hospitaller comes to go from bed to bed through the night, the colony's doctor alongside if it likes; after a good winter's
-grazing the herders' elder leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter
-quarters by the colony, trades all the while, stands with the colony against raiders if asked, and after a good stay
-leaves a carved waystone at the gate; on the fellowship's walking day a long file of pilgrims stops to pray at the
-colony's graves; once a year a fellow of the society holds the night of the fire's disputation where the colony
-gathers; in any age the enclave offers salvage from above, dropped by pod by the trade spot; and boatmen of the river
-folk dry and mend their nets on the colony's bank for the day and leave fish or net cloth for it. A herb-gatherer, a
-patrol after robbers, a lost traveller, a travelling teacher and a tourist come from them likeliest. Their faiths take a
-meme more from Vanilla Ideology Expanded where it is loaded (the lamp's light, the elders, the waymasters' republic, the
-enclave's machines, the river folk's equal shares), and a new people that arises in their ways carries their signature
-in its name (*Lamp of Ashford*, *Barr's Waystone*, *Last Herd of Ashford*).
+count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who asked at a door each dusk and
+blessed the house each morning, whether it let him in or not; the society's clerk, who carried eleven books out of the
+burning archive at Hesk in a handcart; the enclave's first crew, who sold a downed ore hauler's cargo, passage and debts
+one deal at a time; the river folk's ferries, which pulled people off the rooftops the night the dam broke. Their
+letters (now also in grief and in thanks for a warning), messengers, visitors and talk speak from it, each in its own
+manner. And each has a touchpoint of its own: when someone is down with a fever, a hospitaller comes to go from bed to
+bed through the night, the colony's doctor alongside if it likes; after a good winter's grazing the herders' elder
+leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter quarters by the colony,
+trades all the while, stands with the colony against raiders if asked, and after a good stay leaves a carved waystone at
+the gate; on the fellowship's walking day a long file of pilgrims stops to pray at the colony's graves; once a year a
+fellow of the society holds the night of the fire's disputation where the colony gathers; in any age the enclave offers
+salvage from above, dropped by pod by the trade spot; and boatmen of the river folk dry and mend their nets on the
+colony's bank for the day and leave fish or net cloth for it. A herb-gatherer, a patrol after robbers, a lost traveller,
+a travelling teacher and a tourist come from them likeliest. Their faiths take a meme more from Vanilla Ideology
+Expanded where it is loaded (the lamp's light, the elders, the waymasters' republic, the enclave's machines, the river
+folk's equal shares), and a new people that arises in their ways carries their signature in its name (*Lamp of Ashford*,
+*Barr's Waystone*, *Last Herd of Ashford*).
 
 **Four more: the Wardens, the Bell, the Circuit and the Wheel.** A new world also has the **Lantern Wardens**, who hunt
 the region's great beasts from lantern to lantern (medieval, a hood dyed lantern red over whatever the last hunt paid
@@ -4849,7 +4872,9 @@ craft taught or the power cells it asks for. In a typical game of five to ten ye
 and a learned one the colony helps may go two. A letter in their own voice tells each change, what they learned or what
 they lost, and their card and the region's page of peoples show their age and which way they are heading. Their next
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
-camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
+camps are built its way and their traders carry its goods. The other mods' peoples Rimfolk knows change age the same way
+at a pace of their own: the dark elves of Elves (Continued) at eleven years an age, up to the industrial age, and only as
+far as each of their fighting kinds has arms of that age from your mods. Setting: *Peoples' ages change* (on).
 
 **The gods.** Fifteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
 the world; Smoulder, a dragon asleep under the mountains; Bellwether, the first thrumbo; Morel, the soft mother of rot

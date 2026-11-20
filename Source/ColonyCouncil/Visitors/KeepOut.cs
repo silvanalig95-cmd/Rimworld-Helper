@@ -396,8 +396,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A doctor's work that takes a visitor into a bedroom: a doctor's round of doses (VisitorServices), the animal
-        /// doctor's patients (Callers), a people's worker sent to a colonist (PeopleWorkOn), and a visitor already at the
-        /// game's own tending or rescue.
+        /// doctor's patients (Callers), a people's worker sent to a colonist (PeopleWorkOn), the peoples' errands the colony
+        /// said yes to (PeopleErrands: a piece judged, a radio, a casket, the ship walked, someone sat with), and a visitor
+        /// already at the game's own tending or rescue.
         /// </summary>
         private static void Care(Map map, Snap s)
         {
@@ -418,9 +419,16 @@ namespace ColonyCouncil
             if (visits != null)
                 foreach (var v in visits)
                 {
-                    if (v.kind != PeopleWorkOn.Kind || v.done || v.map != map) continue;
-                    if (v.a != null && v.a.Spawned && v.a.Map == map) Allow(s, v.x, v.a.Position);
-                    if (v.place != null && v.place.Spawned && v.place.Map == map) Allow(s, v.x, v.place.Position);
+                    if (v == null || v.done || v.map != map) continue;
+                    if (v.kind == PeopleWorkOn.Kind)
+                    {
+                        if (v.a != null && v.a.Spawned && v.a.Map == map) Allow(s, v.x, v.a.Position);
+                        if (v.place != null && v.place.Spawned && v.place.Map == map) Allow(s, v.x, v.place.Position);
+                        continue;
+                    }
+                    // The peoples' errands of rounds 7 to 9 the colony said yes to: the master to the piece, the operator to the
+                    // radio, the deck-runner to the casket, the officers along the ship, the listener and the warden to their colonist.
+                    foreach (var (who, at) in PeopleErrands.Ways(v)) Allow(s, who, at);
                 }
             // A visitor already at the game's own tending or rescue of one of the colony's (a helping guest, an ally of
             // another mod's) keeps its way to them. A guest helping out never goes into a bedroom for its work anyway

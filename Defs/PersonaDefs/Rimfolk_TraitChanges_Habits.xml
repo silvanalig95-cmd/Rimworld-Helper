@@ -270,6 +270,37 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!--
+    Healer's hands, the second way (docs/traits-proposals.md 28, 20 November 2026): beside the habit "steady hands",
+    60 recent hours as a doctor and three patients nursed back to health (the doctor's mark, counted as it comes and
+    while it is on their page).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HealerNursing</defName>
+    <label>healer's hands, from patients nursed back to health</label>
+    <trait>Rimfolk_Healer</trait>
+    <change>Gain</change>
+    <practice>Doctor>=60</practice>
+    <tallies>
+      <li><key>Nursed</key><marks>NursedSomeone</marks><count>3</count><label>nursed someone back to health</label></li>
+    </tallies>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has {TRAIT}.</news>
+    <meaning>{PAWN_nameDef} has spent many hours as a doctor lately and has nursed three patients back to health, and now tends wounds faster and better than before.</meaning>
+    <journal>
+      <plain>
+        <li>I've seen three people through a bad illness now. My hands know the work.</li>
+        <li>Another patient is up and walking. I know what I'm doing at a sickbed now.</li>
+      </plain>
+      <warm><li>When someone falls ill, I want to be the one who looks after them.</li></warm>
+      <blunt><li>Three patients back on their feet. I'm good at this.</li></blunt>
+      <cheerful><li>Another one of mine is up and about. That never gets old.</li></cheerful>
+      <gloomy><li>We've had a lot of sickness here. At least I've learned how to treat it.</li></gloomy>
+      <cold><li>My tending is faster and more reliable than it was. Practice did that.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
   <ColonyCouncil.TraitChangeDef>
     <defName>Rimfolk_TC_FastWalker</defName>
     <label>quicker on their feet after a season of hauling</label>

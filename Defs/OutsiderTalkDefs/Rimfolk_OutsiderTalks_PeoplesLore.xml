@@ -107,12 +107,12 @@
     <uses>chat,know</uses>
     <when>their:traders</when>
     <lines>
-      <li>[us] How did the league begin?</li>
-      <li>[them] At Harrow Ford, where the road belonged to whoever had the most rifles.</li>
-      <li>[us] What changed?</li>
-      <li>[them] Edda Vane asked every waymaster on the road for one guard and one wagon.</li>
-      <li>[us] And they gave them?</li>
-      <li>[them] Nine flags went through that ford together, and nobody fired.</li>
+      <li>[us] Who runs the league?</li>
+      <li>[them] Nobody alone, it's been the waymasters together since Harrow Ford.</li>
+      <li>[us] What happened at Harrow Ford?</li>
+      <li>[them] The ford belonged to whoever had the most rifles, so nine waymasters made a deal.</li>
+      <li>[us] What deal?</li>
+      <li>[them] One guard and one wagon each, through the ford together under nine flags.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -151,11 +151,11 @@
     <when>their:pilgrims</when>
     <lines>
       <li>[us] Who was the first pilgrim of your fellowship?</li>
-      <li>[them] Old Brannoc, a nearly blind preacher with a boy to lead him.</li>
-      <li>[us] Where did they go?</li>
-      <li>[them] To every holy place he had ever heard of, whoever's it was.</li>
+      <li>[them] Old Brannoc, a nearly blind preacher turned out of his town over a shrine.</li>
+      <li>[us] Where did he go?</li>
+      <li>[them] To every holy place he had heard of, whoever's it was, with a boy to lead him.</li>
       <li>[us] And the doors on the way?</li>
-      <li>[them] He blessed every one of them, whether it opened or not.</li>
+      <li>[them] He asked at one each dusk and blessed the house in the morning, open or shut.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -194,12 +194,11 @@
     <uses>chat,know</uses>
     <when>their:scholars</when>
     <lines>
-      <li>[us] How did the society begin?</li>
-      <li>[them] The night the old archive at Hesk burned.</li>
-      <li>[us] What was saved?</li>
-      <li>[them] Eleven books and a ledger, in a clerk's handcart.</li>
-      <li>[us] Only that?</li>
-      <li>[them] Ilse Varro copied them for the rest of her life, and we learned to read from her pages.</li>
+      <li>[them] Every one of us learned to read from a copy of a copy of eleven books.</li>
+      <li>[us] Why only eleven?</li>
+      <li>[them] That's all a clerk could get into a handcart the night the archive at Hesk burned.</li>
+      <li>[us] What did she do with them?</li>
+      <li>[them] Copied them for any town that would feed her for a copy, for the rest of her life.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -235,12 +234,11 @@
     <uses>chat,know</uses>
     <when>their:brokers</when>
     <lines>
-      <li>[us] How did the enclave come to be here?</li>
-      <li>[them] An ore hauler came down with a dead drive and no way back up.</li>
-      <li>[us] And the crew stayed?</li>
-      <li>[them] Its purser, Ines Okoro, sold the cargo, the passage and the debts, one bargain at a time.</li>
-      <li>[us] Until?</li>
-      <li>[them] Until the ships above were calling us, and they still do.</li>
+      <li>[them] The enclave's first asset was a crashed ore hauler with a dead drive.</li>
+      <li>[us] Couldn't the crew sell it for scrap?</li>
+      <li>[them] They sold the cargo instead, then the passage, then the debts, one deal at a time.</li>
+      <li>[us] Who buys a debt?</li>
+      <li>[them] Somebody always does at the right price, and soon the ships above were calling.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -265,7 +263,7 @@
       <li>[us] What does a broker fear?</li>
       <li>[them] A debt nobody pays, and being stranded.</li>
       <li>[us] You were stranded once.</li>
-      <li>[them] Nobody is stranded who has something to sell, and Okoro always did.</li>
+      <li>[them] Nobody is stranded who has something to sell, and that crew sold everything.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -277,12 +275,12 @@
     <uses>chat,know</uses>
     <when>their:fishers</when>
     <lines>
-      <li>[us] Where do the river folk come from?</li>
-      <li>[them] From the night the dam broke and the valley towns drowned.</li>
-      <li>[us] How did anyone live through that?</li>
-      <li>[them] Wenna Reed's boats were on the water, and they pulled people off the roofs for three days.</li>
-      <li>[us] And those they pulled out?</li>
-      <li>[them] Stayed with the boats, and we count our families from them.</li>
+      <li>[us] Is it true the river folk count their years from a flood?</li>
+      <li>[them] From the night a dam broke upriver and the valley towns drowned.</li>
+      <li>[us] How did anyone get out?</li>
+      <li>[them] The ferries were the only boats on the water, and they took people off the roofs.</li>
+      <li>[us] For how long?</li>
+      <li>[them] Three days, and the ones they saved stayed with the boats.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

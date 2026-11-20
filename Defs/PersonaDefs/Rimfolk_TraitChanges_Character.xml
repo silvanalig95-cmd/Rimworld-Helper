@@ -14,7 +14,7 @@
     <trait>Kind</trait>
     <change>Gain</change>
     <marks>
-      <li><any>Kindness, NursedBack, SavedBy, ForgivenBy, TaughtWell, SavedSomeone, RaisedChild, BecameParent, Married</any><count>3</count></li>
+      <li><any>Kindness, NursedBack, NursedSomeone, SavedBy, ForgivenBy, TaughtWell, SavedSomeone, RaisedChild, BecameParent, Married</any><count>3</count></li>
     </marks>
     <moved>warmth>=16</moved>
     <now>warmth>=35</now>
@@ -344,6 +344,38 @@
       <cheerful><li>There's a reason behind every strange thing out there, and I mean to find it.</li></cheerful>
       <gloomy><li>It calls, and I'm the only one who answers. That can't end well.</li></gloomy>
       <cold><li>The unknown is the only thing here that still interests me.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!--
+    Occultist (docs/traits-proposals.md 36, 20 November 2026; Anomaly): 60 recent hours of dark study and drawn to what
+    lies beyond twice (the mark, counted as it comes and while it is on their page). Neither good nor bad, and only of
+    what the colony already keeps and studies.
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_Occultist</defName>
+    <label>an occultist after long study of the dark</label>
+    <trait>Occultist</trait>
+    <change>Gain</change>
+    <dlc>Anomaly</dlc>
+    <practice>DarkStudy>=60</practice>
+    <tallies>
+      <li><key>DrawnBeyond</key><marks>Rimfolk_Mark_TouchedByTheUnknown</marks><count>2</count><label>drawn to what lies beyond</label></li>
+    </tallies>
+    <chance>0.05</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become an occultist.</news>
+    <meaning>Many hours of dark study and two brushes with the unknown have drawn {PAWN_nameDef} in, and {PAWN_pronoun} now takes a keen interest in the occult and its rituals.</meaning>
+    <journal>
+      <plain>
+        <li>I spent the afternoon studying the thing in the holding cell. I could have stayed all night.</li>
+        <li>The others don't want to hear what I've learned. I write it down instead.</li>
+      </plain>
+      <warm><li>I study it so that it never hurts anyone here. Understanding it is the best protection we have.</li></warm>
+      <blunt><li>I want to know how it works. All of it.</li></blunt>
+      <cheerful><li>Every hour with it I learn something new. It's fascinating, honestly.</li></cheerful>
+      <gloomy><li>It's dark work, and I'm drawn further into it each time.</li></gloomy>
+      <cold><li>The anomalies follow rules. I intend to learn them.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 

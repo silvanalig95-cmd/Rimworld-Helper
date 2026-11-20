@@ -93,6 +93,7 @@
   <CC_PEv9_ShoutCalmed>{LISTENER} sat beside {PAWN_nameDef}, and the break is over: {PAWN_pronoun} is calm again.</CC_PEv9_ShoutCalmed>
   <CC_PEv9_ShoutCalmedWith>{LISTENER} and {HELPER} sat beside {PAWN_nameDef}, and the break is over: {PAWN_pronoun} is calm again, and {HELPER} learned something of how the Choir does it.</CC_PEv9_ShoutCalmedWith>
   <CC_PEv9_ShoutPassed>{LISTENER} has gone back to the road; {PAWN}'s break was over before they were done.</CC_PEv9_ShoutPassed>
+  <CC_PEv9_ShoutNoWay>{LISTENER} could not get to {PAWN} to sit with them, and has gone back to the road.</CC_PEv9_ShoutNoWay>
   <CC_PEv9_ShoutOver>The break is already over.</CC_PEv9_ShoutOver>
   <CC_PEv9_NoHelper>Nobody of the colony is free to sit with them.</CC_PEv9_NoHelper>
   <CC_PEv9_Impact_ShoutSit>{0} sits beside {1} for two hours, following if {1} wanders</CC_PEv9_Impact_ShoutSit>

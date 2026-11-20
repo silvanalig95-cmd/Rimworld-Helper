@@ -240,7 +240,7 @@ public static class PeopleEvents7Tests
         bool From(string type, string def, string mod) => cat.Any(r => r.active && r.type == type && r.def == def && r.mod.Equals(mod, StringComparison.OrdinalIgnoreCase));
         C(PeopleEvents7Math.Wells.All(w => From("ThingDef", w, "dubwise.rimefeller")), "Rimefeller's wells are in the player's list");
         C(new[] { "Granite", "Limestone", "Marble", "Sandstone", "Slate" }.All(s => From("TerrainDef", "VFEArch_Bridge" + s, "vanillaexpanded.vfearchitect")) && active.Contains("TerrainDef:Bridge")
-          && code.Contains("\"VFEArch_Bridge\" + s") && code.Contains("\"Bridge\""), "Kell's bridge of the colony's stone (Vanilla Furniture Expanded - Architect), the game's wooden bridge after");
+          && code.Contains("\"VFEArch_Bridge\" + s") && code.Contains("\"Bridge\""), "a marked bridge like Hardwater's of the colony's stone (Vanilla Furniture Expanded - Architect), the game's wooden bridge after");
         var fountains = new[] { "AP_ThreeTieredFountain", "AP_RoundFountain", "AP_HexagonalFountain", "AP_SquareFountain", "AP_ObeliskFountain", "AP_ArabicFountain" };
         C(fountains.All(f => From("ThingDef", f, "sarg.alphapropsparks") && code.Contains("\"" + f + "\"")) && From("ThingDef", "Fountain", "dubwise.dubsbadhygiene") && active.Contains("ThingDef:SculptureGrand")
           && From("ThingDef", "VFE_StatueGrand", "vanillaexpanded.vfeart") && From("ThingDef", "VFE_Monument", "vanillaexpanded.vfeart") && code.Contains("\"VFE_StatueGrand\"") && code.Contains("\"VFE_Monument\""),

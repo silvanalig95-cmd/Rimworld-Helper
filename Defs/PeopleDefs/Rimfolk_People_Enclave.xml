@@ -11,7 +11,7 @@
     down by the gate with goods, and comes by drop pod when bidden (Rimfolk_Evt_EnclaveLander). Busy orbital lanes and a
     ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). Their factor offers salvage from above for a
     share of its worth, dropped by pod at the colony's trade spot (Rimfolk_Evt_EnclaveSalvage), in every age. Their
-    founding (told in the description, the founder named in their talk): Ines Okoro, purser of a downed ore hauler, who sold its cargo, passage and debts one
+    founding (told in the description, and the same in their talk, faith and page): the crew of a downed ore hauler, who sold its cargo, passage and debts one
     bargain at a time; the hauler's manifest. What they honour, fear and say is in their template (on their card). They
     defend their markets and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.15: few, and well armed). Listed once among the
@@ -82,11 +82,11 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Exchange</ideoName>
-    <ideoDescription>Everything has a price, and a fair price is the closest thing to justice the stars allow. The body is a tool to be kept sharp and made better, a bargain once struck is kept to the last digit, and the ships above and the towns below are both the enclave's to serve. What a machine can do, a machine should do: Okoro's crew had no hands to spare, and the enclave still has none.</ideoDescription>
+    <ideoDescription>Everything has a price, and a fair price is the closest thing to justice the stars allow. The body is a tool to be kept sharp and made better, a bargain once struck is kept to the last digit, and the ships above and the towns below are both the enclave's to serve. What a machine can do, a machine should do: the hauler's crew had no hands to spare, and the enclave still has none.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
       <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
-      <!-- No hands to spare since Okoro's crew: Vanilla Ideology Expanded's progressive. -->
+      <!-- No hands to spare since the hauler's crew: Vanilla Ideology Expanded's progressive. -->
       <li MayRequire="VanillaExpanded.VMemesE">VME_Progressive</li>
     </forcedMemes>
     <structureMemeWeights Inherit="False">

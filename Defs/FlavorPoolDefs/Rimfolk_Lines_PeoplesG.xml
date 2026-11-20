@@ -139,16 +139,16 @@
       <plain>
         <li>[chat,them,their:editors] We never change anything in a body without asking whose it is.</li>
         <li>[endwarm,them,their:editors] If you ever want a line of yours changed, ask the Works and ask for me.</li>
-        <li>[faithtalk,them,their:editors] Orla Venn kept the vats warm when the founders fled, and taught us to edit.</li>
+        <li>[faithtalk,them,their:editors] The founders fled and left the vats running, so we kept them warm and taught ourselves.</li>
         <li>[chat,them,their:mechanitors] We speak of a mind alone the way you speak of the dark.</li>
         <li>[endwarm,them,their:mechanitors] If your mechs ever need mending, send to the yards and ask for me.</li>
-        <li>[faithtalk,them,their:mechanitors] Tamsin Arro walked among a hundred stilled mechs and linked the first ten to her own mind.</li>
+        <li>[faithtalk,them,their:mechanitors] Ten stilled mechs were linked to one deserter's mind, and no mind of ours is left alone.</li>
         <li>[chat,them,their:listeners] You are louder than you think, everyone is.</li>
         <li>[endwarm,them,their:listeners] If you ever want a quiet mind, come and sit in the ring with me.</li>
-        <li>[faithtalk,them,their:listeners] Ilsabet Ruen slept at the foot of the Spire and woke able to hear it think.</li>
+        <li>[faithtalk,them,their:listeners] Nobody was the first to hear the Spire, and each generation of us hears a little more.</li>
         <li>[chat,them,their:vaultfolk] I still can't sleep without a ceiling, and I was born forty years ago.</li>
         <li>[endwarm,them,their:vaultfolk] If you ever need a door that holds, ask the vault for me.</li>
-        <li>[faithtalk,them,their:vaultfolk] Hollis Crane broke the seal when the water ran short, and walked out first.</li>
+        <li>[faithtalk,them,their:vaultfolk] The overseer broke the seal when the water ran short, and half of us went back below.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

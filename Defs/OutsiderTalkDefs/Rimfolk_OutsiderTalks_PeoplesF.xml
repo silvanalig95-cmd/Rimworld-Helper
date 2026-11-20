@@ -18,12 +18,12 @@
     <uses>chat,know</uses>
     <when>their:linesmen</when>
     <lines>
-      <li>[us] What is the copper pin on your collar?</li>
-      <li>[them] From the first coil Ennis Calloway carried over the hills when the long war cut the roads.</li>
-      <li>[us] What did he do with it?</li>
-      <li>[them] He raised a mast on every height he could climb, until one valley could hear the next.</li>
-      <li>[us] And the first one?</li>
-      <li>[them] Still standing on its ridge, and it has never once gone quiet.</li>
+      <li>[us] What's that copper pin on your collar?</li>
+      <li>[them] Wire from the first coil, carried over the hills when the long war cut the roads.</li>
+      <li>[us] Who carried it?</li>
+      <li>[them] A lineman, who put a mast on every height he could climb until one valley heard the next.</li>
+      <li>[us] And the first mast?</li>
+      <li>[them] Still standing on its ridge, and it has never once gone off the air.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -75,12 +75,12 @@
     <uses>chat,know</uses>
     <when>their:drillers</when>
     <lines>
-      <li>[us] Why does everyone wear the red band?</li>
-      <li>[them] Because of the night the seam under Deepwell ran dry and the owners fled.</li>
+      <li>[us] Does the union boss decide for everyone?</li>
+      <li>[them] Nobody in the union decides anything alone, not since the night at Deepwell.</li>
       <li>[us] What happened that night?</li>
-      <li>[them] Marta Grieve called us all into the hall and put it to the vote, scatter or stay together.</li>
-      <li>[us] And you stayed.</li>
-      <li>[them] We wrote every name in a book and walked out with our picks the next morning.</li>
+      <li>[them] The seam ran dry, the owners ran off, and the miners voted to split up or stay together.</li>
+      <li>[us] And they stayed?</li>
+      <li>[them] They wrote every name in a book and walked out together the next morning.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -133,11 +133,11 @@
     <when>their:citizens</when>
     <lines>
       <li>[us] Who governs the Republic now?</li>
-      <li>[them] The same laws that always did, read out first by Clement Ashdown, the postmaster.</li>
+      <li>[them] The same laws that always did, read out every evening on the radio.</li>
+      <li>[us] Who started reading them out?</li>
+      <li>[them] A small town's postmaster, the winter the capital went dark.</li>
       <li>[us] A postmaster?</li>
-      <li>[them] He was the most senior official left on the radio the winter the capital went dark.</li>
-      <li>[us] What did he do?</li>
-      <li>[them] He read out the old laws each evening and called an election, and other towns answered.</li>
+      <li>[them] There was nobody more senior left on the radio, and other towns answered.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

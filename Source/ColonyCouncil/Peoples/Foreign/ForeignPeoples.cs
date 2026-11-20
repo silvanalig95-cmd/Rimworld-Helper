@@ -19,6 +19,9 @@ namespace ColonyCouncil
     /// cloth dyed its colours, a share with one of its hair styles (by the game's own style gender, never against their
     /// genes) and with a face or body tattoo (Ideology). No letter, nothing saved; their xenotype, race and the pawn kind's
     /// own kit stay. Only fresh pawns, with the deeper game hooks on: those already in a game keep what they have.
+    /// Their age changes as Rimfolk's own peoples' do (Peoples/PeopleAges.cs; the player, 20 November 2026): at a pace of
+    /// their own ways, no further than their roles are armed for (<see cref="Ways"/>), and a pawn of theirs made in an age
+    /// their mod didn't make them for carries its role's arms of that age and nothing of a later age (<see cref="ToAge"/>).
     /// </summary>
     public static class ForeignPeoples
     {
@@ -83,12 +86,14 @@ namespace ColonyCouncil
             var role = RoleOf(d, p.kindDef);
             if (role == null) return null;
             var look = LookFor(d);
+            int age = Peoples.AgeOf(p.Faction);
+            // Every age whole: in an age other than the one their mod made them for, the role's arms of the age first.
+            if (age != Peoples.BeganIn(p.Faction)) ToAge(p, role, age);
             if (p.apparel != null && role.pieces != null)
                 foreach (var piece in role.pieces)
-                    if (piece?.apparel != null && ForeignPeoplesMath.Rolls(piece.chance, Rand.Value) && (!piece.ranged || p.equipment?.Primary?.def?.IsRangedWeapon == true))
+                    if (piece?.apparel != null && ForeignPeoplesMath.Rolls(piece.chance, Rand.Value) && (!piece.ranged || Bow(p.equipment?.Primary?.def)))
                         WearOne(p, piece.apparel, role);
             Sidearm(p, role);
-            int age = Peoples.AgeOf(p.Faction);
             var gifts = ForeignPeoplesMath.Gifts(PeoplesMagic.Loaded, role.gifts, role.giftsWithoutMagic);
             if (gifts != null && gifts.Count > 0) PeopleGifts.GiveFrom(p, gifts, age);
             Caster(p, role, age);
@@ -97,6 +102,9 @@ namespace ColonyCouncil
             Dye(p, role, look);
             return look.label;
         }
+
+        /// <summary>A bow or a crossbow (a ranged weapon of the medieval age or before), the kind a quiver goes with.</summary>
+        private static bool Bow(ThingDef w) => w != null && w.IsRangedWeapon && !PeopleAgesMath.Later((int)w.techLevel, PeopleAgesMath.Medieval);
 
         private static ForeignLook LookFor(ForeignPeopleDef d)
         {
@@ -170,6 +178,88 @@ namespace ColonyCouncil
             if (name == null || PeoplesMagicMath.Wand(name)) return;
             var def = DefDatabase<ThingDef>.GetNamedSilentFail(name);
             if (def != null && !p.apparel.WornApparel.Any(w => w?.def == def)) Wear(p, def, role);
+        }
+
+        // ================= Their age (Peoples/PeopleAges.cs) =================
+
+        /// <summary>
+        /// A pawn of theirs in an age their mod didn't make them for: the role's set of arms of that age (its weapon tags'
+        /// weapons from any loaded mod, its kit), then the every-age pass Rimfolk's own kinds go through (AgeArms.ToAge):
+        /// nothing of a later age, the age's plain clothes on a bare body, the base game's arms of the age in place of a
+        /// weapon of a later age or a fighter's bow in an age of guns.
+        /// </summary>
+        public static void ToAge(Pawn p, ForeignRole role, int age)
+        {
+            AgeArms.LastArmed = false;
+            AgeArms.LastKit = null;
+            if (role?.ageArms != null && role.ageArms.Count > 0) AgeArms.Arm(p, role.ageArms, age);
+            AgeArms.ToAge(p, age, AgeArms.LastArmed, AgeArms.LastKit);
+        }
+
+        /// <summary>The highest age, the lowest and the pace of a people's ways (PeopleAges.Ways), for one that began in <paramref name="start"/>.</summary>
+        public static AgeWays Ways(Faction f, int start)
+        {
+            var d = Of(f);
+            int own = Peoples.BeganIn(f);
+            int limit = d == null ? own : ArmedLimit(d, own);
+            return new AgeWays { pace = ForeignAgesMath.Pace(d?.agePace ?? -1f), limit = Math.Max(limit, start), floor = PeopleAgesMath.Floor(d?.ageFloor ?? -1, start) };
+        }
+
+        private static readonly Dictionary<(ForeignPeopleDef, int), int> armedLimits = new Dictionary<(ForeignPeopleDef, int), int>();
+
+        /// <summary>
+        /// The highest age their ways and their arms allow (ForeignAgesMath.ArmedLimit): worked out once for the loaded mods,
+        /// from the age their mod made them for.
+        /// </summary>
+        public static int ArmedLimit(ForeignPeopleDef d, int own)
+        {
+            if (d == null) return own;
+            if (armedLimits.TryGetValue((d, own), out int limit)) return limit;
+            var armed = new bool[4];
+            for (int a = 0; a < 4; a++) armed[a] = a == own || ArmedFor(d, a);
+            return armedLimits[(d, own)] = ForeignAgesMath.ArmedLimit(own, d.ageLimit, armed);
+        }
+
+        /// <summary>Every role of theirs is armed for the age (ForeignAgesMath.RoleArmed): its set of that age finds a weapon of the age, or a piece of its kit.</summary>
+        public static bool ArmedFor(ForeignPeopleDef d, int age)
+        {
+            if (d?.roles == null) return false;
+            foreach (var r in d.roles)
+            {
+                if (r == null) continue;
+                var set = SetFor(r, age);
+                if (!ForeignAgesMath.RoleArmed(CarriesArms(r), set != null, set != null && Finds(set, r, age))) return false;
+            }
+            return true;
+        }
+
+        /// <summary>The role's set of arms for an age, as AgeArms.Arm picks it (the first whose ages hold it), or null.</summary>
+        public static PeopleAgeArms SetFor(ForeignRole r, int age) =>
+            r?.ageArms?.FirstOrDefault(a => a != null && (!a.weaponTags.NullOrEmpty() || !a.apparel.NullOrEmpty()) && PeoplesDMath.AgeFits(age, a.ages.min, a.ages.max));
+
+        /// <summary>A role carries arms: one of its kinds (loaded) is given weapons by its mod.</summary>
+        private static bool CarriesArms(ForeignRole r) => Kinds(r).Any(k => !k.weaponTags.NullOrEmpty() && k.weaponMoney.max > 0f);
+
+        private static IEnumerable<PawnKindDef> Kinds(ForeignRole r) =>
+            r?.kinds == null ? Enumerable.Empty<PawnKindDef>() : r.kinds.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n)).Where(k => k != null);
+
+        /// <summary>
+        /// A set finds what it names: a weapon of its tags of no later age than the people's, within its means (as
+        /// AgeArms.Arm takes it: the set's own, else the least of its kinds' weapon budgets and a quarter more), or, a kit
+        /// alone, a piece of it.
+        /// </summary>
+        private static bool Finds(PeopleAgeArms set, ForeignRole r, int age)
+        {
+            if (set.weaponTags.NullOrEmpty()) return set.apparel != null && set.apparel.Any(a => a != null);
+            float means = set.money > 0f ? set.money : Kinds(r).Select(k => Math.Max(k.weaponMoney.max, 150f) * 1.25f).DefaultIfEmpty(187.5f).Min();
+            return AgeArms.Weapons(set.weaponTags, means).Any(w => !PeopleAgesMath.Later((int)w.techLevel, age));
+        }
+
+        /// <summary>Their head's words in a letter of their age (CC_PeopleAge_Voice_DEFNAME_Rise or _Fall), or null.</summary>
+        public static string VoiceKey(Faction f, bool rise)
+        {
+            var d = Of(f);
+            return d == null ? null : "CC_PeopleAge_Voice_" + d.defName + (rise ? "_Rise" : "_Fall");
         }
 
         // ================= Their look =================

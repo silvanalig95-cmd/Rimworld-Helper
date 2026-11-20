@@ -509,7 +509,7 @@ MODEL = {
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
     # Faith among the colony's people (a colonist's faith moments, a faith's demands watched, crises waiting to be felt)
     "Faith/FaithPeople.cs:people": ("colonists", 1, 160, "one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving"),
-    "Quirks/Quirks.cs:practice": ("colonists", 1, 140, "one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed"),
+    "Quirks/Quirks.cs:practice": ("colonists", 1, 160, "one per colonist who works, keeps late or early hours or lives under rock; dead and departed dropped daily and at saving, faded-out ones removed"),
     "Quirks/Practice.cs:kinds": ("fixed", const("Quirks/Practice.cs", "MaxKinds", 8), 30, "per colonist: the kinds of work they've done lately, 8 at most (counted under practice)"),
     "Quirks/Practice.cs:hours": ("fixed", const("Quirks/Practice.cs", "MaxKinds", 8), 20, "per colonist: hours at each kind of work, in step with kinds (counted under practice)"),
     "Faith/FaithPeople.cs:leanings": ("fixed", const("Faith/LeaningMath.cs", "MaxLeanings", 6), 120, "per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people)"),
@@ -1089,10 +1089,11 @@ MODEL = {
     "Gods/World/GodWorldBook.cs:lasts": ("fixed", 30, 90, "when each kind of the gods' doings last came, a key a kind and a home"),
     # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
     # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
-    # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that
-    # arises (six standing at most); PeopleAgesMath.MaxRecords kept, a people no longer in the world dropped on saving.
-    "Peoples/PeopleAges.cs:ages": ("cap", (const("Peoples/PeopleAgesMath.cs", "MaxRecords", 40), 15), 300,
-                                   "one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped"),
+    # its heading and why), made the first time the region's day looks at it; those of Rimfolk's in the world at once,
+    # one for each that arises (six standing at most) and one for each of another mod's people Rimfolk knows (the dark
+    # elves: one in a world); PeopleAgesMath.MaxRecords kept, a people no longer in the world dropped on saving.
+    "Peoples/PeopleAges.cs:ages": ("cap", (const("Peoples/PeopleAgesMath.cs", "MaxRecords", 40), 16), 300,
+                                   "one record a people of Rimfolk's (those in the world at once, and each that arises) and one for another mod's people Rimfolk knows, PeopleAgesMath.MaxRecords kept, gone peoples dropped"),
     # Carrying and hauling (Hauling/HaulBook.cs): one load per pawn carrying something for Rimfolk (its work's produce, a
     # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
     # the skills and work givers of the work, the stockpile a bill picked for a kind, and a run's one or two materials.

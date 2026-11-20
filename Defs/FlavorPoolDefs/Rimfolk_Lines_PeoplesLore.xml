@@ -54,7 +54,7 @@
         <li>[warning,warm,their:pilgrims] Your warning turned our bands off the bad road, {WRITER}, and every one of them will bless your door for it.</li>
         <li>[warning,cordial,their:pilgrims] We have your warning, {WRITER}. The bands will take the long way round.</li>
         <!-- The learned society: the copied page, the night of the fire -->
-        <li>[greetings,warm,their:scholars] Your letter has been read, copied twice and filed, {WRITER}, as Ilse Varro asked of us. Strictly speaking that is the highest honour the society has, and you have it.</li>
+        <li>[greetings,warm,their:scholars] Your letter has been read, copied twice and filed, {WRITER}, as the society has done with every page since Hesk. Strictly speaking that is the highest honour the society has, and you have it.</li>
         <li>[condolences,warm,their:scholars] We have written your dead into the archive, {WRITER}, with everything your letter said of them. Nothing known should be lost, and they will not be.</li>
         <li>[condolences,cordial,their:scholars] The society is sorry for your loss, {WRITER}. If you would write down who they were, we will keep it.</li>
         <li>[warning,warm,their:scholars] Your warning reached the archive in time, {WRITER}. The oldest books are in the cellar and the proctors are on the roof, and we have noted who warned us.</li>
@@ -156,19 +156,19 @@
         <li>[faithtalk,them,their:herders] Tamsa walked forty head through the dry year, and we still walk where she walked.</li>
         <li>[chat,them,their:traders] Good ink or red ink, the book only has the two.</li>
         <li>[endwarm,them,their:traders] I'll put in a good word at the next waystation, and they'll write it down.</li>
-        <li>[faithtalk,them,their:traders] Edda Vane took nine wagons through Harrow Ford, and nobody fired.</li>
+        <li>[faithtalk,them,their:traders] No one waymaster rules the road, and none has since nine wagons crossed Harrow Ford.</li>
         <li>[chat,them,their:pilgrims] I have a shell for every shrine, and room on the string for more.</li>
         <li>[endwarm,them,their:pilgrims] Your name goes with me to the next shrine, I promise you.</li>
         <li>[faithtalk,them,their:pilgrims] Old Brannoc prayed at every people's shrine and never asked whose it was.</li>
         <li>[chat,them,their:scholars] Ask the question nobody will, that's the first thing they teach us.</li>
         <li>[endwarm,them,their:scholars] This is going in my notes, and my notes go in the archive.</li>
-        <li>[faithtalk,them,their:scholars] Ilse Varro saved eleven books from the fire, and we've argued about the rest ever since.</li>
+        <li>[faithtalk,them,their:scholars] A clerk got eleven books out of the fire at Hesk, and we've argued about the rest since.</li>
         <li>[chat,them,their:brokers] A bargain struck is kept to the last digit, or it was never a bargain.</li>
         <li>[endwarm,them,their:brokers] Noted, and that means more from us than you'd think.</li>
-        <li>[faithtalk,them,their:brokers] Okoro sold a dead ship one bargain at a time, and we never stopped selling.</li>
+        <li>[faithtalk,them,their:brokers] Our first crew sold a dead hauler one deal at a time, and every deal is in its manifest.</li>
         <li>[chat,them,their:fishers] Take what the water gives and no more, and it'll keep giving.</li>
         <li>[endwarm,them,their:fishers] If you're ever on the water, ask any river boat to carry you across.</li>
-        <li>[faithtalk,them,their:fishers] Wenna Reed's boats pulled people off the rooftops for three days, and we count from that.</li>
+        <li>[faithtalk,them,their:fishers] The ferries took people off the rooftops for three days, and we count our years from it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

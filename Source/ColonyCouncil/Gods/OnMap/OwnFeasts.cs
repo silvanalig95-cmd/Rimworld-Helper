@@ -430,7 +430,7 @@ namespace ColonyCouncil
             return food.FirstOrDefault()?.def;
         }
 
-        private static readonly Color Green = new Color(0.55f, 0.85f, 0.45f), Ember = new Color(1f, 0.6f, 0.3f), Silver = new Color(0.85f, 0.88f, 0.95f);
+        private static readonly Color Green = new Color(0.55f, 0.85f, 0.45f), Silver = new Color(0.85f, 0.88f, 0.95f);
 
         private static void Thought(Pawn p, string god) => OwnHappenings.Memory(p, "Rimfolk_Thought_Feast_" + god);
 

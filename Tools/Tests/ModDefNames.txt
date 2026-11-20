@@ -285,3 +285,10 @@ Hygienic
 # Vanilla Anomaly Expanded - Insanity 1.6 (vanillaexpanded.vanomalyeinsanity): mood swings, and impulsive
 VAEI_MoodSwings
 VAEI_Unstable
+# Traits that change, the new traits (Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml), from docs/player-mods traits.tsv (active):
+# Vanilla Traits Expanded 1.6 (vanillaexpanded.vanillatraitsexpanded): dog person, cat person, and mountain lover (its defName "child of the mountain")
+VTE_DogPerson
+VTE_CatPerson
+VTE_ChildOfMountain
+# Vanilla Fishing Expanded 1.6 (vanillaexpanded.vcef): the fisherman
+VCEF_Fisherman

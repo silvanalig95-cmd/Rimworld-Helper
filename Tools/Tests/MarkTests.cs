@@ -149,5 +149,5 @@ public static class MarkTests
 
     /// <summary>Families whose hooks always pass someone along (Persona/Marks.cs).</summary>
     private static bool CodeGivesOther(string family) =>
-        family is "SavedSomeone" or "BetrayedSomeone" or "NursedBack" or "BecameParent" or "LostLeader" or "LostFriend" or "SworeVengeance";
+        family is "SavedSomeone" or "BetrayedSomeone" or "NursedBack" or "NursedSomeone" or "BecameParent" or "LostLeader" or "LostFriend" or "SworeVengeance";
 }

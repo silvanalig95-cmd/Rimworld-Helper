@@ -44,7 +44,11 @@ namespace ColonyCouncil
             PeoplesG.Grown(map).Where(p => p.genes != null && HediffDefOf.XenogermReplicating != null && !p.health.hediffSet.HasHediff(HediffDefOf.XenogermReplicating)
                                           && PeopleEvents.MayGive(GiftKind, p) && Harmful(p).Count > 0);
 
-        /// <summary>The answer taken: the sequencer walks over and works on them two hours; with the play-outs off, at once.</summary>
+        /// <summary>
+        /// The answer taken: the sequencer walks over to them and works on them two hours; when a door barred to visitors is in the way
+        /// (they are in a bedroom or a cold store), they walk out to the sequencer instead and it is done there (PeopleEvents8.WorkOn).
+        /// With the play-outs off, at once.
+        /// </summary>
         public static void Begin(HappeningContext ctx)
         {
             var map = ctx?.map;
@@ -54,18 +58,33 @@ namespace ColonyCouncil
             if (map == null || t == null || x == null || b == null || ctx.faction == null) return;
             var v = t.AddVisit(Kind, ctx.incident, map, x, b, null, Now + 6 * GenDate.TicksPerHour);
             v.text = ctx.faction.GetUniqueLoadID() + "|" + (ctx.note ?? "");
-            if (PlayOuts.On && PeoplesG.Up(b, map) && PeopleEvents8.Errand(x, map, b, null, PeopleEvents8.GeneOutJob, PeopleEvents8Math.OutTicks, 5f)) return;
-            Out(v);
+            if (!PlayOuts.On)
+            {
+                Out(v);
+                return;
+            }
+            // Not able to start now (they are drafted, or in a break): the visit's hour tries again.
+            PeopleEvents8.WorkOn(v, PeopleEvents8.GeneOutJob, PeopleEvents8Math.OutTicks);
         }
 
+        /// <summary>The visit's hour: the work under way, left; stopped, set going again; the hours out before it could be done, said so (never done unseen).</summary>
         public static bool Hour(Visit v, int now)
         {
             if (v.done) return false;
             var x = v.x;
             bool working = x != null && x.Spawned && x.CurJobDef == PeopleEvents8.GeneOutJob;
-            if (working && now <= v.until) return true;
-            Out(v);
-            return false;
+            switch (PeopleEvents8Math.Step(PeoplesG.Up(x, v.map), working, now, v.until, v.due))
+            {
+                case PeopleEvents8Math.MeetStep.Wait:
+                    return true;
+                case PeopleEvents8Math.MeetStep.Again:
+                    v.due++;
+                    PeopleEvents8.WorkOn(v, PeopleEvents8.GeneOutJob, PeopleEvents8Math.OutTicks);
+                    return true;
+                default:
+                    PeopleEvents8.Undone(v);
+                    return false;
+            }
         }
 
         public static void Done(Pawn sequencer, Pawn taker)
@@ -79,6 +98,7 @@ namespace ColonyCouncil
         {
             if (v.done) return;
             v.done = true;
+            PeopleEvents8.Release(v);
             var x = v.x;
             var b = v.a;
             var map = v.map;

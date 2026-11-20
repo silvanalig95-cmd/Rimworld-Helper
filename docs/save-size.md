@@ -76,7 +76,7 @@ Rimfolk's part of the save, roughly: **3,069 KB** after a year, **3,784 KB** aft
 | `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
 | `Letters/LetterBook.cs:used` | the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go | cap | 30 | 60 | 150 | 11.7 |
-| `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
+| `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (those in the world at once, and each that arises) and one for another mod's people Rimfolk knows, PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
@@ -170,6 +170,7 @@ Rimfolk's part of the save, roughly: **3,069 KB** after a year, **3,784 KB** aft
 | `Faith/FaithPeople.cs:people` | one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving | colonists | 20 | 20 | 20 | 3.1 |
 | `Integrations/GuestHelp.cs:guests` | one record per Hospitality guest staying (GuestHelpMath.MaxGuests at most), let go when they leave | while | 10 | 10 | 10 | 3.1 |
 | `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
+| `Quirks/Quirks.cs:practice` | one per colonist who works, keeps late or early hours or lives under rock; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 3.1 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Gods/GodLore.cs:names` | the names the colony has heard the gods by, each a page of the book | cap | 3 | 6 | 15 | 2.9 |
@@ -182,7 +183,6 @@ Rimfolk's part of the save, roughly: **3,069 KB** after a year, **3,784 KB** aft
 | `Faith/FaithPeople.cs:waiting` | crises waiting to be felt: one per kind per colonist, let go after 6 days | cap | 9 | 18 | 20 | 2.7 |
 | `Lean/Homes.cs:ties` | one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly | colonists | 20 | 20 | 20 | 2.7 |
 | `Offices/Election.cs:races` | an election's seats, while it lasts | while | 14 | 14 | 14 | 2.7 |
-| `Quirks/Quirks.cs:practice` | one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 2.7 |
 | `World/Notables.cs:known` | threats heard of in talk with outsiders: WarnMath.MaxKnown, 30 days | fixed | 40 | 40 | 40 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |

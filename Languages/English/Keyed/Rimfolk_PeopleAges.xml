@@ -11,8 +11,17 @@
 
   <!-- Settings -->
   <CC_Settings_PeopleAges>Peoples' ages change</CC_Settings_PeopleAges>
-  <CC_Settings_PeopleAges_Tip>Each of Rimfolk's peoples is looked at once a season. It moves toward the next age at a pace of its ways (the learned society, the Stormglass Conclave and the road league soonest, the herders and the Mossborn latest and not past the industrial or the medieval age), up to twice as fast for the colony's trade with it, quicker still for the colony's gifts of books, techprints, components and tools, for its people who learned at the colony and for an alliance. A people cut off from the world (no trade with anyone for years, its towns burned, at war with most of the world) falls back an age slowly instead. A letter tells each change, and their card says which way each people is heading. Their gear, arms, gifts, camps, words and traders' goods are those of the age they live in. Off: every people lives in the age it began in, and nothing moves.</CC_Settings_PeopleAges_Tip>
-  <CC_SetNote_PeopleAges>Rimfolk's peoples rise toward the next age over the years, and fall back one when cut off from the world.</CC_SetNote_PeopleAges>
+  <CC_Settings_PeopleAges_Tip>Each of Rimfolk's peoples is looked at once a season, and so are the other mods' peoples Rimfolk knows (the dark elves of Elves (Continued)). It moves toward the next age at a pace of its ways (the learned society, the Stormglass Conclave and the road league soonest, the herders and the Mossborn latest and not past the industrial or the medieval age, the dark elves at a medieval people's pace and no further than the industrial age), up to twice as fast for the colony's trade with it, quicker still for the colony's gifts of books, techprints, components and tools, for its people who learned at the colony and for an alliance. Another mod's people rises no further than its kinds can be armed for. A people cut off from the world (no trade with anyone for years, its towns burned, at war with most of the world) falls back an age slowly instead. A letter tells each change, and their card says which way each people is heading. Their gear, arms, gifts, camps, words and traders' goods are those of the age they live in, and the comms console reaches them once their age has a radio. Off: every people lives in the age it began in, and nothing moves.</CC_Settings_PeopleAges_Tip>
+  <CC_SetNote_PeopleAges>Rimfolk's peoples and the other mods' peoples it knows rise and fall back an age over the years.</CC_SetNote_PeopleAges>
+
+  <!-- The comms console by radio (Peoples/ConsoleRadio.cs): {PEOPLE} is their name, {AGE} the age they live in now. -->
+  <CC_Settings_RadioConsole>Only peoples with a radio answer the comms console</CC_Settings_RadioConsole>
+  <CC_Settings_RadioConsole_Tip>The comms console calls only peoples whose age has a radio: peoples of the industrial or the spacer age, by the age each lives in now (Rimfolk's peoples and the dark elves change age over the years), and a people with a town within 30 tiles of a Signal Line town, whose masts carry the call. The Empire, the outlanders, the pirates and every other people of those ages answer as before. A tribal or medieval people is listed greyed, with the reason and how a letter reaches them. Only the console's own call to a people changes: ships in orbit, other mods' contacts on the console, quests and the Empire's permits are as they were. Rimfolk's own calls (a pact called in, a ransom, a favour, a truce, a letter by radio) follow the same rule. Off: the console calls every people, as the game has it. Needs the deeper game hooks.</CC_Settings_RadioConsole_Tip>
+  <CC_SetNote_RadioConsole>The comms console calls only peoples of the industrial age or later, or near the Signal Line's masts.</CC_SetNote_RadioConsole>
+  <CC_ConsoleRadio_ShortLetter>no radio: they can only be reached by a letter</CC_ConsoleRadio_ShortLetter>
+  <CC_ConsoleRadio_Short>no radio</CC_ConsoleRadio_Short>
+  <CC_ConsoleRadio_Letter>{PEOPLE} live in the {AGE} age and have no radio, so the comms console can't reach them. A letter can: write to them from their card or from their page under Peoples in the region window, and a courier or the post carries it.</CC_ConsoleRadio_Letter>
+  <CC_ConsoleRadio_None>{PEOPLE} live in the {AGE} age and have no radio, so the comms console can't reach them. Their messengers and traders still come to the colony's gate.</CC_ConsoleRadio_None>
 
   <!-- The ages -->
   <CC_PeopleAge_Age_0>tribal</CC_PeopleAge_Age_0>
@@ -86,6 +95,10 @@
   <CC_PeopleAge_Voice_listeners_Fall>Their {LEADER} says the Choir uses less of what the Spire gave, and listens as before.</CC_PeopleAge_Voice_listeners_Fall>
   <CC_PeopleAge_Voice_vaultfolk_Rise>Their {LEADER} says the vault has its old machines working again, every cell counted, and the dwellers remember who sent the parts.</CC_PeopleAge_Voice_vaultfolk_Rise>
   <CC_PeopleAge_Voice_vaultfolk_Fall>Their {LEADER} says another of the vault's machines has stopped for good, and the dwellers make do with what they can make.</CC_PeopleAge_Voice_vaultfolk_Fall>
+
+  <!-- Another mod's peoples Rimfolk knows (Peoples/Foreign/), by their profile's defName. -->
+  <CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Rise>Their {LEADER} says the coven takes up whatever wins its raids, and the new arms will win more of them.</CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Rise>
+  <CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Fall>Their {LEADER} says the coven has lost much of its craft, and it still has its blades and its sorceresses.</CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Fall>
 
   <!-- What of it was the colony's doing, or why they fell back. -->
   <CC_PeopleAge_Letter_trade>Much of it came to them through their trade with the colony.</CC_PeopleAge_Letter_trade>

@@ -71,6 +71,42 @@ namespace ColonyCouncil
         /// <summary>The deeds rolled for a medal, kept.</summary>
         public const int MaxMedalDeeds = 12;
 
+        // ================= Meeting at the gate (the medal, and the Works' work when they can't get to the colonist) =================
+
+        /// <summary>The one met has come when they stand this near the visitor at the meeting place: the work at them begins.</summary>
+        public const float MeetRange = 4f;
+
+        /// <summary>The visitor waits at the meeting place up to three hours for the one they are to meet; the visit's hour sends them again.</summary>
+        public const int MeetWaitTicks = 3 * HourTicks;
+
+        /// <summary>How many times the visit's hour sets the meeting going again (the colonist pulled away by a meal or a fight).</summary>
+        public const int MeetSends = 4;
+
+        /// <summary>What a visit's hour does while its work at someone of the colony is to be done.</summary>
+        public enum MeetStep
+        {
+            /// <summary>Under way: leave it.</summary>
+            Wait,
+            /// <summary>Stopped with hours and sends left: set it going again.</summary>
+            Again,
+            /// <summary>The hours or the sends are out: it ends, said as it is, never done unseen.</summary>
+            GiveUp,
+            /// <summary>The visitor is gone (dead, away, down): nobody to do it.</summary>
+            Gone
+        }
+
+        /// <summary>A visit's hour while the work at a colonist waits on a meeting: the visitor up, their work under way, the hours and the sends used.</summary>
+        public static MeetStep Step(bool visitorUp, bool working, int now, int until, int sends)
+        {
+            if (!visitorUp) return MeetStep.Gone;
+            if (now > until) return MeetStep.GiveUp;
+            if (working) return MeetStep.Wait;
+            return sends < MeetSends ? MeetStep.Again : MeetStep.GiveUp;
+        }
+
+        /// <summary>The one met has come near enough (both on the same map, the distance in cells).</summary>
+        public static bool Met(float distance) => !float.IsNaN(distance) && distance <= MeetRange;
+
         // ================= 73. A fugitive of the Republic =================
 
         /// <summary>The deserter's fine: by the colony's wealth, to the nearest ten.</summary>

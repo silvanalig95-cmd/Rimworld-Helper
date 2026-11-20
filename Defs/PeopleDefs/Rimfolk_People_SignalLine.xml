@@ -17,7 +17,7 @@
     ground, and from then letters reach the colony and its neighbours sooner and the line warns of a raid a little before
     it comes (Rimfolk_Evt_LineMast); a wire-trader buys the colony's components and sells the line's news of a caravan on
     the road (Rimfolk_Evt_LineWire); a lineman climbs the colony's mast in a storm to keep it singing (Rimfolk_Evt_LineStorm).
-    Their ask: parts for a span that came down (Rimfolk_Mission_LineSpan). Their founding: Ennis Calloway and the first
+    Their ask: parts for a span that came down (Rimfolk_Mission_LineSpan). Their founding: a lineman and the first
     coil. Faith (Ideology): the line as one (collectivist), the progressive and the trader of Vanilla Ideology Expanded.
     Kinds of people: genies, hussars, highmates, starjacks (Odyssey), VRE's androids, Alpha Genes' lapis and the Avaloi,
     four in five baseliners.
@@ -67,7 +67,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Open Line</ideoName>
-    <ideoDescription>Every mast is a voice, and every voice is a road nobody has to walk. What is heard on the line belongs to everyone on it, and a message passed on is passed on true, with where it was heard. The masts are kept singing in any weather, because silence is how the region fell apart. Ennis Calloway walked the hills after the long war with a coil of copper wire and raised a mast on every height until one valley could hear the next, and the first mast he raised has never once gone quiet.</ideoDescription>
+    <ideoDescription>Every mast is a voice, and every voice is a road nobody has to walk. What is heard on the line belongs to everyone on it, and a message passed on is passed on true, with where it was heard. The masts are kept singing in any weather, because silence is how the region fell apart. After the long war a lineman walked the hills with a coil of copper wire and raised a mast on every height until one valley could hear the next, and the first mast has never once gone quiet.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
       <!-- The line that carries every voice onward: Vanilla Ideology Expanded's progressive. -->
@@ -640,7 +640,7 @@
         <li>relayWord->Relay</li>
         <li>relayWord->Mast</li>
         <li>relayWord->Cable Yard</li>
-        <li>relayVirtue->Calloway's</li>
+        <li>relayVirtue->Lineman's</li>
         <li>relayVirtue->Singing</li>
         <li>relayVirtue->Copper</li>
         <li>relayVirtue->Windward</li>
