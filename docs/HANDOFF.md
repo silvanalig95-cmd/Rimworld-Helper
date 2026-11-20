@@ -65,6 +65,31 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the player; nothing built yet): fewer quests out on the world map,
+  more that play out at home, and how the odds of events work.** The player: "the missions that you get, especially the
+  ones on the world map, where something pops up somewhere ... where you could go and invade a base or whatever, or find
+  some loot on the world map. I mean, these again, I rarely do because it's just a huge price to pay ... to travel on
+  the world map ... if they have like a separate category ... if you could just reduce the chance in favor of other
+  missions that might play out on the map, you know, it could still be missions, but at least ones where you actually
+  have an impact from it." Also: "how to make it less of a kind of a hurdle to even start something like this ...
+  without making it unrealistic", and "now we have also built so much stuff, and I always wonder, does it even work
+  correctly? And I feel like I have fewer events than I did in the past". What was found (League_of_Toba_8b, day 135,
+  Cassandra on Hard): the quests have a slot of their own in the storyteller, apart from the everyday events and the
+  threats; 77 quests were offered in 135 days, 46 of them out on the world map (19 the game's and Odyssey's, of which 10
+  Odyssey's work sites, and 27 from mods: Alpha Genes' and another mod's labs, Vanilla Quests Expanded, Vanilla Gravship
+  Expanded, Rimworld of Magic, Real Ruins and others), 31 at home. Rimfolk's own events share the storyteller's everyday
+  slot (about one every 4.8 days with Cassandra) up to half of it, so they add variety, not more events; in the save's
+  last 8.5 days one came (the medal), with three council questions, three god cards and the rest on their own timers.
+  Options to put to the player when asked:
+  1. A setting for how often quests out on the world map come (a share of the quest slot's weight for quests that make a
+     site elsewhere, read from their quest nodes, the game's and every mod's; Odyssey's work sites by their own slot);
+     the share given to quests at home, the game's and Rimfolk's (the home quests, the neighbours' missions).
+  2. Quests out on the world map pick a place nearer home (a cap on the distance a site may be).
+  3. More of Rimfolk's events on top of the storyteller's (its own timer, the setting "... drawn by the storyteller" off,
+     or a mix: a share of them drawn on their own).
+  4. An events record (Almanac or the advisor): what came in the last 30 days by kind, and what was held back and why
+     (a question waiting, a fight on, the half-share cap), so the player can see it works.
+  Travel: Vehicle Framework with Vanilla Vehicles Expanded, Giddy-Up 2 and the gravship are already on in the list.
 - **To do when the player asks (20 November 2026, the lead's proposal for the player's "Just more of them"): the
   content update's second round.** `docs/content-update-proposals-2.md`, 44 items: D1 to D15 the gods' events (most
   between the colony's people), D16 to D23 storyteller events, D24 to D32 council questions, D33 to D38 camps, D39 to D44
