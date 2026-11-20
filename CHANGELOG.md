@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New traits from a life lived
+
+*20 November 2026, version 0.277.1*
+
+- A doctor who nurses someone through a dangerous illness is marked by it: it counts toward kindness and toward getting over squeamishness, and three patients pulled through can bring healer's hands.
+- New traits can come with time: a perfectionist after a run of fine work, a dog or cat person after a year with their animal, a fisherman after long days at the water, and a mountain lover after a year under the rock.
+- Rarely, and only from what already happened: wanderlust after seasons away, desensitized after costly fights and many burials (it fades after a long peace), a drunken master in a brawler who held the line drunk, and an occultist after long dark study.
+- Marks still on the character page now count toward these changes, so a masterwork made before this update is not lost.
+
 ## Radio and the ages of other peoples
 
 *20 November 2026, version 0.277.0*

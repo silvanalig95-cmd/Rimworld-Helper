@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.277.1</version>
+        <date>20 November 2026</date>
+        <title>New traits from a life lived</title>
+        <points>
+          <li>A doctor who nurses someone through a dangerous illness is marked by it: it counts toward kindness and toward getting over squeamishness, and three patients pulled through can bring healer's hands.</li>
+          <li>New traits can come with time: a perfectionist after a run of fine work, a dog or cat person after a year with their animal, a fisherman after long days at the water, and a mountain lover after a year under the rock.</li>
+          <li>Rarely, and only from what already happened: wanderlust after seasons away, desensitized after costly fights and many burials (it fades after a long peace), a drunken master in a brawler who held the line drunk, and an occultist after long dark study.</li>
+          <li>Marks still on the character page now count toward these changes, so a masterwork made before this update is not lost.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.277.0</version>
         <date>20 November 2026</date>
         <title>Radio and the ages of other peoples</title>

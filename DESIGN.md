@@ -1591,7 +1591,7 @@ trait; each rule takes a bad one away or steps it toward none. The new traits (2
   conditions against the proposal, 59 ways out, none of the batch a gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad
   Hygiene's `Hygienic` and the insanity mod's two traits.
 
-### More traits that come and go, the new traits (the player's go, 20 November 2026; not released yet)
+### More traits that come and go, the new traits (the player's go, 20 November 2026; released 0.277.1)
 
 The player, 20 November 2026: "go ahead with all the traits". This build is the new traits of
 `docs/traits-proposals.md`, 28 to 36, each marked there, and with it the whole list of 38 is built. 12 new rules (112 in

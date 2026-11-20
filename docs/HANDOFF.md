@@ -595,6 +595,88 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.277.1, **More traits that come and go, the
+  new traits** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The new traits 28 to 36
+  of `docs/traits-proposals.md`, each marked there; with them all 38 are built and the to-do "more traits that come and
+  go" is done. 28, a doctor who sees a patient through a dangerous illness gets a mark of their own ("nursed someone back
+  to health"), which counts toward kind and toward squeamish's way out (in place of 30 times tending others), and
+  healer's hands now also come of 60 recent hours as a doctor and three patients nursed back (8%); 29, perfectionist after
+  three masterworks and a skill mastered in 180 days, pride up 10 (4%); 30, dog person or cat person after a year (60
+  days) bonded with one of the colony's dogs or cats (10%); 31, fisherman after 80 recent hours fishing (Vanilla
+  Fishing Expanded, 8%); 32, wanderlust after a second season abroad within a year, twice, openness up 10 (5%); 33,
+  desensitized after two fights the colony won but lost people in and 20 corpses buried, warmth down 6 (3%), and it
+  fades after a long peace and two kindnesses (5%); 34, mountain lover after a year almost always under a roof, most of
+  their waking hours under a mountain's rock (3%); 35, drunken master in a brawler who held the line three times while
+  drunk (3%); 36, occultist after 60 recent hours of dark study and drawn to the unknown twice (Anomaly, 5%). 12 new
+  rules (112 in all): 10 gains, one more way out (60), desensitized going again. No bad trait is added: perfectionist,
+  wanderlust, desensitized, drunken master and occultist are neither good nor bad, and the last three come only of what
+  already happened on the map and are rare or uncommon. DESIGN.md "More traits that come and go, the new traits" has
+  every rule and part; the Almanac's page *traits that change* has a row for each (keywords unchanged), the page
+  *marks* the doctor's mark; README "Traits that change" and "Character".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `TallyCounts`, `PageMarksToAdd`, `PetKind`, `BondDays`),
+    `Persona/TraitChangeDefs.cs` (`bondedKind`, `bondedDays`, `withTrait`, a tally's `whileDrunk`, `Present`; config
+    errors for each, and a DLC's kind of work checked only with the DLC), `Persona/TraitChanges.cs` (`CountsNow` and
+    `Drunk` in every way a tally counts, `Entries` reading the page's marks too, `BondedAnimal` of a kind with its days,
+    `WithTrait`, their parts with the missing words and their letter lines), `Persona/Marks.cs` (`Notify_Nursed`),
+    `Health/HealthTracker.cs` (`PulledThrough` gives the doctor's mark after the doctor's journal line; the counting moved
+    to `CountDoctor`), `Quirks/Practice.cs` and `Quirks/Quirks.cs` (the practice `rock`: hours awake under a rock roof),
+    `Defs/PersonaDefs/Rimfolk_PersonaMarks_Bonds.xml` (`Rimfolk_Mark_NursedSomeone`), the rules in
+    `Rimfolk_TraitChanges_Mods.xml` (29 to 35), `_Character.xml` (36; kind counts the doctor's mark), `_Habits.xml`
+    (`Rimfolk_TC_HealerNursing`), `_WaysOut.xml` (`Rimfolk_TC_VTE_SqueamishNursed`), Keyed `Rimfolk_TraitChanges.xml`
+    and `Rimfolk_Habits.xml`. Saved: one number more in each colonist's practice log (`rock`; the save model's practice
+    entry is up from 140 to 160 bytes); nothing else (the tallies hold the new counts). Tests: `TraitChangeTests` (drunk,
+    the page's marks counted once, the dogs and cats of the player's list, a bond's length, each of the nine's
+    conditions against the proposal, none bad news, 112 rules, 60 ways out); `MarkTests` (the doctor's mark names the
+    patient); `Tools/Tests/ModDefNames.txt` has `VTE_DogPerson`, `VTE_CatPerson`, `VTE_ChildOfMountain` and
+    `VCEF_Fisherman`.
+  - Decided here (open in the proposals): a count of marks now also reads the marks of its kind still on the character
+    page (as the zero count already did), so a masterwork, a costly fight or a season abroad from before this build
+    counts while it is on the page, and one counted as it came isn't counted twice; a count that asks how they were at
+    the time (hungry, drunk) still only counts as it comes. 28's mark is a turning point kept 180 days, once for each
+    patient while it lasts and the next patient a day later, given after the doctor's journal line so one illness is one
+    line; squeamish's "counted toward" is a rule of its own (40 hours as a doctor and a patient nursed back, 8%), not a
+    change to 17; kind's three marks of kindness now include it. 29 counts a legendary piece as a masterwork; "within 180
+    days" holds for the three pieces and the skill mastered. 30's "a year" is the game's 60 days, from the bond's own
+    start (the game's `DirectPawnRelation.startTicks`), with the colony's own animal; a dog is the game's three, Vanilla
+    Animals Expanded's five, a breed's word in the label or a label ending in "dog" (not a prairie dog); a cat the game's
+    cat, any kind called a cat and Vanilla Animals Expanded's cats (the maine coon too; Odyssey's scimitar cat counts);
+    never both traits, never an animal hater. 31's Fishing work is Odyssey's (the catalogue has no fishing work of Vanilla
+    Fishing Expanded's own, and its 1.6 builds on Odyssey's), so the rule asks for Odyssey too. 32 is two marks of a
+    second season abroad within a year, over the 240 days a count keeps. 33's costly fights are the mark for a fight won
+    with the colony's dead ("fought through a costly fight"), the burials the game's `CorpsesBuried` (looked up in the 1.6
+    reference assemblies' `RecordDefOf`); its way out is neither good nor bad news, for any desensitized, so it is not one
+    of the ways out of a bad trait (it waits for the colony's 10 days and shows once a third of it is there). 34's "under
+    a mountain's roof" is a new practice, hours awake under a rock roof (the game's `RoofDef.isNatural`: a mountain's,
+    thin or overhead), 240 of them lately (about twelve waking hours a day), beside the undergrounder's whole rule. 35's
+    "a brawler" is the game's brawler trait (new: `withTrait`, a part that holds or not and isn't evidence toward showing
+    the rule); "while drunk" is the game's alcohol high on them when the mark is given at the end of the fight. 36 counts
+    the mark "drawn to what lies beyond" twice. Mods' files that aren't here (the traits are by defName from the
+    catalogue, active): Vanilla Traits Expanded's dog person, cat person, perfectionist, wanderlust, desensitized, mountain
+    lover and drunken master, and Vanilla Fishing Expanded's fisherman, are assumed to take and leave as the game's own
+    traits do; the drunken master is assumed not to conflict with the brawler trait (if it does, the game's conflict
+    check keeps the rule from ever coming); dog person and cat person are assumed to be about the same animals as the
+    lists here; the meanings in the letters say only what the trait names say.
+  - Harm: none. No new bad trait; the three that come of hard times (desensitized, drunken master, occultist) only of
+    fights, burials and dark study that already happened on the map, at 3 to 5% a day once everything holds.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, the doctor's mark and
+    its journal line, "Where life is taking them" with the bond's days, the brawler line and the hours under rock); the
+    bond's start tick on a starting animal; the alcohol high still on a hero at the fight's end; the rock hours on a
+    mountain base; Vanilla Traits Expanded's and Vanilla Fishing Expanded's traits coming as the game's own do.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist): 1. A
+    doctor who tends a colonist through plague or the flu twice or more: when the patient is over it, the doctor's
+    character page has "nursed someone back to health". 2. A colonist bonded to one of the colony's dogs: "Where life is
+    taking them" shows dog person "1 of 2", and its tooltip "One of the colony's dogs bonded to them: (name)" and "Days
+    bonded: N of 60". 3. A colony dug into a mountain, a colonist with openness 0 or less: after a few weeks the page
+    shows mountain lover, its tooltip "Time under a rock roof: about N hours lately (needs 240 or more)". 4. A brawler,
+    drunk on beer, who makes the most kills in a won raid: "why or why not" for them says the drunken master still lacks
+    "tally HeldDrunk" until the third such fight. 5. "Traits that change: give a trait as Rimfolk would..." with
+    `Rimfolk_TC_VTE_Desensitized`: "why or why not" shows its fading waiting out 120 days from then ("trait"), and after
+    that asking a long peace and two kindnesses remembered. 6. "Traits that change: the first that holds, now" makes any
+    of them happen with its letter.
+  - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Vanilla Fishing
+    Expanded (1914064942, 1.6 and 1.7), Vanilla Animals Expanded (2871933948, 1.6 and 1.7, its dogs and cats) and the
+    Odyssey and Anomaly DLCs, all active in their list and kept up, give the traits, the fishing, the animals and the dark
+    study.
 - 0.277.0, **The comms console by radio, and the
   foreign peoples' ages** (20 November 2026; the player, with League_of_Toba_8: "So now I finally built the comms console,
   and I'm able, for example, to call the Storm Riders. I mean, they are always only on medieval style tech level, it
@@ -685,88 +767,6 @@ repo.
   - **Mods that would help**: none to add; every arm and kit comes from mods already in the player's list (Vanilla
     Weapons Expanded with its Quickdraw and Grenades, Rimsenal, Advanced Armaments, Vanilla Apparel Expanded -
     Accessories). No mod in the catalogue makes elven firearms; the dark elves' guns are the mods' own guns.
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **More traits that come and go, the
-  new traits** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The new traits 28 to 36
-  of `docs/traits-proposals.md`, each marked there; with them all 38 are built and the to-do "more traits that come and
-  go" is done. 28, a doctor who sees a patient through a dangerous illness gets a mark of their own ("nursed someone back
-  to health"), which counts toward kind and toward squeamish's way out (in place of 30 times tending others), and
-  healer's hands now also come of 60 recent hours as a doctor and three patients nursed back (8%); 29, perfectionist after
-  three masterworks and a skill mastered in 180 days, pride up 10 (4%); 30, dog person or cat person after a year (60
-  days) bonded with one of the colony's dogs or cats (10%); 31, fisherman after 80 recent hours fishing (Vanilla
-  Fishing Expanded, 8%); 32, wanderlust after a second season abroad within a year, twice, openness up 10 (5%); 33,
-  desensitized after two fights the colony won but lost people in and 20 corpses buried, warmth down 6 (3%), and it
-  fades after a long peace and two kindnesses (5%); 34, mountain lover after a year almost always under a roof, most of
-  their waking hours under a mountain's rock (3%); 35, drunken master in a brawler who held the line three times while
-  drunk (3%); 36, occultist after 60 recent hours of dark study and drawn to the unknown twice (Anomaly, 5%). 12 new
-  rules (112 in all): 10 gains, one more way out (60), desensitized going again. No bad trait is added: perfectionist,
-  wanderlust, desensitized, drunken master and occultist are neither good nor bad, and the last three come only of what
-  already happened on the map and are rare or uncommon. DESIGN.md "More traits that come and go, the new traits" has
-  every rule and part; the Almanac's page *traits that change* has a row for each (keywords unchanged), the page
-  *marks* the doctor's mark; README "Traits that change" and "Character".
-  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `TallyCounts`, `PageMarksToAdd`, `PetKind`, `BondDays`),
-    `Persona/TraitChangeDefs.cs` (`bondedKind`, `bondedDays`, `withTrait`, a tally's `whileDrunk`, `Present`; config
-    errors for each, and a DLC's kind of work checked only with the DLC), `Persona/TraitChanges.cs` (`CountsNow` and
-    `Drunk` in every way a tally counts, `Entries` reading the page's marks too, `BondedAnimal` of a kind with its days,
-    `WithTrait`, their parts with the missing words and their letter lines), `Persona/Marks.cs` (`Notify_Nursed`),
-    `Health/HealthTracker.cs` (`PulledThrough` gives the doctor's mark after the doctor's journal line; the counting moved
-    to `CountDoctor`), `Quirks/Practice.cs` and `Quirks/Quirks.cs` (the practice `rock`: hours awake under a rock roof),
-    `Defs/PersonaDefs/Rimfolk_PersonaMarks_Bonds.xml` (`Rimfolk_Mark_NursedSomeone`), the rules in
-    `Rimfolk_TraitChanges_Mods.xml` (29 to 35), `_Character.xml` (36; kind counts the doctor's mark), `_Habits.xml`
-    (`Rimfolk_TC_HealerNursing`), `_WaysOut.xml` (`Rimfolk_TC_VTE_SqueamishNursed`), Keyed `Rimfolk_TraitChanges.xml`
-    and `Rimfolk_Habits.xml`. Saved: one number more in each colonist's practice log (`rock`; the save model's practice
-    entry is up from 140 to 160 bytes); nothing else (the tallies hold the new counts). Tests: `TraitChangeTests` (drunk,
-    the page's marks counted once, the dogs and cats of the player's list, a bond's length, each of the nine's
-    conditions against the proposal, none bad news, 112 rules, 60 ways out); `MarkTests` (the doctor's mark names the
-    patient); `Tools/Tests/ModDefNames.txt` has `VTE_DogPerson`, `VTE_CatPerson`, `VTE_ChildOfMountain` and
-    `VCEF_Fisherman`.
-  - Decided here (open in the proposals): a count of marks now also reads the marks of its kind still on the character
-    page (as the zero count already did), so a masterwork, a costly fight or a season abroad from before this build
-    counts while it is on the page, and one counted as it came isn't counted twice; a count that asks how they were at
-    the time (hungry, drunk) still only counts as it comes. 28's mark is a turning point kept 180 days, once for each
-    patient while it lasts and the next patient a day later, given after the doctor's journal line so one illness is one
-    line; squeamish's "counted toward" is a rule of its own (40 hours as a doctor and a patient nursed back, 8%), not a
-    change to 17; kind's three marks of kindness now include it. 29 counts a legendary piece as a masterwork; "within 180
-    days" holds for the three pieces and the skill mastered. 30's "a year" is the game's 60 days, from the bond's own
-    start (the game's `DirectPawnRelation.startTicks`), with the colony's own animal; a dog is the game's three, Vanilla
-    Animals Expanded's five, a breed's word in the label or a label ending in "dog" (not a prairie dog); a cat the game's
-    cat, any kind called a cat and Vanilla Animals Expanded's cats (the maine coon too; Odyssey's scimitar cat counts);
-    never both traits, never an animal hater. 31's Fishing work is Odyssey's (the catalogue has no fishing work of Vanilla
-    Fishing Expanded's own, and its 1.6 builds on Odyssey's), so the rule asks for Odyssey too. 32 is two marks of a
-    second season abroad within a year, over the 240 days a count keeps. 33's costly fights are the mark for a fight won
-    with the colony's dead ("fought through a costly fight"), the burials the game's `CorpsesBuried` (looked up in the 1.6
-    reference assemblies' `RecordDefOf`); its way out is neither good nor bad news, for any desensitized, so it is not one
-    of the ways out of a bad trait (it waits for the colony's 10 days and shows once a third of it is there). 34's "under
-    a mountain's roof" is a new practice, hours awake under a rock roof (the game's `RoofDef.isNatural`: a mountain's,
-    thin or overhead), 240 of them lately (about twelve waking hours a day), beside the undergrounder's whole rule. 35's
-    "a brawler" is the game's brawler trait (new: `withTrait`, a part that holds or not and isn't evidence toward showing
-    the rule); "while drunk" is the game's alcohol high on them when the mark is given at the end of the fight. 36 counts
-    the mark "drawn to what lies beyond" twice. Mods' files that aren't here (the traits are by defName from the
-    catalogue, active): Vanilla Traits Expanded's dog person, cat person, perfectionist, wanderlust, desensitized, mountain
-    lover and drunken master, and Vanilla Fishing Expanded's fisherman, are assumed to take and leave as the game's own
-    traits do; the drunken master is assumed not to conflict with the brawler trait (if it does, the game's conflict
-    check keeps the rule from ever coming); dog person and cat person are assumed to be about the same animals as the
-    lists here; the meanings in the letters say only what the trait names say.
-  - Harm: none. No new bad trait; the three that come of hard times (desensitized, drunken master, occultist) only of
-    fights, burials and dark study that already happened on the map, at 3 to 5% a day once everything holds.
-  - Not run here (none of it could be): every change in the game (the letters, the journal lines, the doctor's mark and
-    its journal line, "Where life is taking them" with the bond's days, the brawler line and the hours under rock); the
-    bond's start tick on a starting animal; the alcohol high still on a hero at the fight's end; the rock hours on a
-    mountain base; Vanilla Traits Expanded's and Vanilla Fishing Expanded's traits coming as the game's own do.
-  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist): 1. A
-    doctor who tends a colonist through plague or the flu twice or more: when the patient is over it, the doctor's
-    character page has "nursed someone back to health". 2. A colonist bonded to one of the colony's dogs: "Where life is
-    taking them" shows dog person "1 of 2", and its tooltip "One of the colony's dogs bonded to them: (name)" and "Days
-    bonded: N of 60". 3. A colony dug into a mountain, a colonist with openness 0 or less: after a few weeks the page
-    shows mountain lover, its tooltip "Time under a rock roof: about N hours lately (needs 240 or more)". 4. A brawler,
-    drunk on beer, who makes the most kills in a won raid: "why or why not" for them says the drunken master still lacks
-    "tally HeldDrunk" until the third such fight. 5. "Traits that change: give a trait as Rimfolk would..." with
-    `Rimfolk_TC_VTE_Desensitized`: "why or why not" shows its fading waiting out 120 days from then ("trait"), and after
-    that asking a long peace and two kindnesses remembered. 6. "Traits that change: the first that holds, now" makes any
-    of them happen with its letter.
-  - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Vanilla Fishing
-    Expanded (1914064942, 1.6 and 1.7), Vanilla Animals Expanded (2871933948, 1.6 and 1.7, its dogs and cats) and the
-    Odyssey and Anomaly DLCs, all active in their list and kept up, give the traits, the fishing, the animals and the dark
-    study.
 - 0.276.2, **The medal read at the gate, the
   peoples' errands past a barred door, and what the dead leave by closeness** (20 November 2026; the player's go on two
   fixes: the medal, "I selected the option that everyone should go to the gate", given at once though "I have answers
