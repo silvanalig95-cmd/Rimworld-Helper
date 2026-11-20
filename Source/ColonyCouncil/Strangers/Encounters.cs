@@ -66,8 +66,8 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> situations;
         /// <summary>
-        /// What must be true on the map, and plays out as it is told (WorldScenes: pocket, kneel, warm, sides, sky, dog, hum).
-        /// Empty: words only.
+        /// What must be true on the map, and plays out as it is told (WorldScenes: pocket, kneel, warm, sides, sky, dog, hum; and
+        /// for the peoples' own moments grave, broken, beast, mech, building). Empty: words only.
         /// </summary>
         public string scene;
 
@@ -78,6 +78,8 @@ namespace ColonyCouncil
             if (texts.NullOrEmpty()) yield return "encounter has no texts";
             if (!scene.NullOrEmpty() && !WorldScenes.All.Contains(scene)) yield return "unknown scene " + scene;
             if (scene == WorldScenes.Sides && situations.NullOrEmpty()) yield return "the sides scene needs the war it is about (situations)";
+            if (scene == WorldScenes.Building && colonyHas.NullOrEmpty()) yield return "the building scene needs the buildings it is about (colonyHas)";
+            if (stranger != null && !stranger.calling.NullOrEmpty() && !PeoplesMath.IsCalling(stranger.calling)) yield return "unknown calling " + stranger.calling;
         }
     }
 
