@@ -40,6 +40,17 @@ namespace ColonyCouncil
 
         public static bool Near(float tiles) => tiles >= 0f && tiles <= NearTiles;
 
+        // ================= The new camps =================
+
+        /// <summary>Mushroom pickers come in any season within this many days of the colony's own mushrooms after rain (else in the fall).</summary>
+        public static bool AfterFlush(float daysAgo, float within) => daysAgo >= 0f && daysAgo <= within;
+
+        /// <summary>One stay of the mushroom pickers in four, one of them eats a cap that looked right and wasn't (the game's food poisoning, on them).</summary>
+        public const float BadCapChance = 0.25f;
+
+        /// <summary>The star-watchers lie out under the sky these hours of the night (from dusk to one), and sleep after.</summary>
+        public static bool StarHour(int hour) => hour >= 20 || hour < 1;
+
         // ================= B6. Cloth gone scarce =================
 
         /// <summary>Cloth goes scarce more readily this long after a sickness in the herds or markets closed ended.</summary>

@@ -21,4 +21,12 @@
   <CC_Variety_Burying_Impact>The sextons carry the {0} dead lying out on the colony's land to their beast and take them away to be buried.</CC_Variety_Burying_Impact>
   <CC_Variety_Burying_ImpactBrief>the dead taken away</CC_Variety_Burying_ImpactBrief>
 
+  <!-- The new camps (Camps/CampVariety.cs). -->
+  <CC_CampVariety_NoHive>None of the beekeepers' hives is standing yet.</CC_CampVariety_NoHive>
+  <CC_CampVariety_NoHandler>They need someone who works with animals.</CC_CampVariety_NoHandler>
+  <CC_CampVariety_Hives_Impact>{0} spends a couple of hours beside one of the beekeepers' hives, learning to handle bees (animals), and may come away stung.</CC_CampVariety_Hives_Impact>
+  <CC_CampVariety_Hives_ImpactBrief>an afternoon at the hives</CC_CampVariety_Hives_ImpactBrief>
+  <CC_CampVariety_NoBeekeeping>The colony must learn to keep bees first (basic beekeeping).</CC_CampVariety_NoBeekeeping>
+  <CC_CampVariety_BadCap>{0} of the {1} ate a mushroom that looked right and wasn't, and is sick by their fire.</CC_CampVariety_BadCap>
+
 </LanguageData>

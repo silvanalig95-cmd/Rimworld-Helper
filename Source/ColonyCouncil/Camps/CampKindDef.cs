@@ -122,6 +122,11 @@ namespace ColonyCouncil
         /// <summary>Their callings: the day's work they come to do, first first (CampDayMath.Order); the camp's common work (wood, gathering, a catch) comes after.</summary>
         public List<CampLabour> works;
         /// <summary>
+        /// The wild plants their gathering looks for first (plant defNames, a mod's by MayRequire: the mushroom pickers' caps);
+        /// with none of them ripe near the camp, they gather what grows wild as any camp does (CampDay.GatherJob).
+        /// </summary>
+        public List<string> gathers;
+        /// <summary>
         /// What they may leave behind (CampPackMath.Leaves), each only when the stay made it: none listed, any that their stay
         /// brings about.
         /// </summary>
