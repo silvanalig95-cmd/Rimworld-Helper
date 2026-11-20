@@ -1046,6 +1046,12 @@ MODEL = {
     # doings each colonist has seen.
     "Gods/GodLore.cs:entries": ("cap", (const("Gods/GodLoreMath.cs", "MaxEntries", 600), 0.5), 420, "the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept"),
     "Gods/GodLore.cs:who": ("fixed", 3, 20, "per entry: the colonists who saw it or believe it, by name (counted under entries)"),
+    # The gods among the colony's people and the world (Gods/Among/GodsAmongBook.cs): pilgrims home with a tale owed at
+    # supper (a few days each, GodsAmongBook.MaxTales), the god each of the dead held kept for their eulogy (five days,
+    # GodsAmongBook.MaxDeadHeld), and the named seasons taken for a god's doing (a few a year, GodsAmongMath.MaxSeasons).
+    "Gods/Among/GodsAmongBook.cs:tales": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxTales", 6), 1 / 60), 160, "pilgrims home with a tale owed at supper, six days each, GodsAmongBook.MaxTales"),
+    "Gods/Among/GodsAmongBook.cs:deadHeld": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxDeadHeld", 12), 1 / 20), 110, "the god each of the colony's dead held, kept five days for their eulogy, GodsAmongBook.MaxDeadHeld"),
+    "Gods/Among/GodsAmongBook.cs:seasons": ("cap", (const("Gods/Among/GodsAmongMath.cs", "MaxSeasons", 12), 1 / 30), 220, "the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons"),
     "Gods/GodLore.cs:names": ("cap", (const("Gods/GodLoreMath.cs", "MaxNames", 60), 0.05), 200, "the names the colony has heard the gods by, each a page of the book"),
     "Gods/GodLore.cs:told": ("fixed", 60, 40, "how much of each old story the colony has heard, one a story"),
     "Gods/GodLore.cs:lastHand": ("fixed", 14, 40, "each god's last hand remarked on"),

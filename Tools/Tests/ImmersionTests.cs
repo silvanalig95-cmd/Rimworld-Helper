@@ -27,6 +27,9 @@ public static class ImmersionTests
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",
         // The colony's animals' days, seen (Animals/AnimalDays.cs).
         "Rimfolk_Pool_AnimalDays",
+        // The gods among the colony's people (Gods/Among/).
+        "Rimfolk_Pool_GodsAmong_Fisher", "Rimfolk_Pool_GodsAmong_Keeper", "Rimfolk_Pool_GodsAmong_RaiderCry", "Rimfolk_Pool_GodsAmong_Grave", "Rimfolk_Pool_GodsAmong_Season",
+        "Rimfolk_Pool_GodsAmong_Midwinter",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).

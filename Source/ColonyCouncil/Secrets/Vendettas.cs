@@ -491,8 +491,8 @@ namespace ColonyCouncil
             var speaker = close ? e.speaker : speakers.OrderByDescending(Closeness).First();
             if (!close) close = Closeness(speaker) >= 20f;
             if (!close) speaker = speakers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
-            // The gods of the dead (Gods/GodDeeds.cs): words said over the dead, more at a grave.
-            GodDeeds.Funeral(dead, speaker);
+            // The gods of the dead (Gods/GodDeeds.cs): words said over the dead, more at a grave; the dead given to the god they held.
+            string given = GodDeeds.Funeral(dead, speaker);
 
             var tags = new List<string>();
             if (!close) tags.Add("stranger");
@@ -515,6 +515,7 @@ namespace ColonyCouncil
             string speech = raw.Formatted(speaker.Named("PAWN"), dead.Named("OTHER"), (title ?? "").Named("TITLE"), (goal ?? "").Named("GOAL"),
                 Mathf.Max(1, Mathf.RoundToInt(years)).Named("YEARS"), (e.killers?.Name ?? "").Named("FACTION")).Resolve();
             string text = "CC_Eulogy_Text".Translate(speaker.Named("PAWN"), dead.Named("OTHER"), speech.Named("SPEECH")).Resolve();
+            if (!given.NullOrEmpty()) text += "\n\n" + "CC_GA_Grave_Letter".Translate(speaker.Named("PAWN"), dead.Named("OTHER"), given.Named("LINE")).Resolve();
             Tell.Letter(NewsKind.People, Importance.Notable, null, "CC_Eulogy_Label".Translate(dead.LabelShort), text, LetterDefOf.NeutralEvent, speaker);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, speaker));
             comp.journals.Write(speaker, "Council_Journal_GaveEulogy", null, dead.Named("OTHER"));

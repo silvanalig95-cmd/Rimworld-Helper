@@ -285,6 +285,13 @@ Hygienic
 # Vanilla Anomaly Expanded - Insanity 1.6 (vanillaexpanded.vanomalyeinsanity): mood swings, and impulsive
 VAEI_MoodSwings
 VAEI_Unstable
+# Alpha Memes 1.6 (sarg.alphamemes): the gods' shrine rooms (Rimfolk_RoomTemplates_GodRooms.xml), from the player's catalogue (docs/player-mods)
+AM_Megalith
+AM_Obelisk
+AM_Urn
+AM_KemeticSlab_Medium
+# Alpha Props: Parks and Gardens 1.6 (sarg.alphapropsparks): Selene's moon garden (Rimfolk_RoomTemplates_GodRooms.xml)
+AP_ObeliskFountain
 # Traits that change, the new traits (Defs/PersonaDefs/Rimfolk_TraitChanges_Mods.xml), from docs/player-mods traits.tsv (active):
 # Vanilla Traits Expanded 1.6 (vanillaexpanded.vanillatraitsexpanded): dog person, cat person, and mountain lover (its defName "child of the mountain")
 VTE_DogPerson

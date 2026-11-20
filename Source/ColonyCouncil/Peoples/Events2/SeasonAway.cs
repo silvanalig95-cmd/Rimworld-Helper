@@ -57,7 +57,9 @@ namespace ColonyCouncil
             // Round 10's (Peoples/Events10/): the colony's doctor and diggers at a plague town, for the order and the Bell.
             [PlagueYear.AwayKey] = new PlagueAway(),
             // A world event's answer that sends a colonist to a far town (World/FarErrands.cs).
-            [FarErrandMath.Key] = new FarErrandAway()
+            [FarErrandMath.Key] = new FarErrandAway(),
+            // A vowed pilgrimage to a holy place of the vower's god in the region (Gods/Among/VowPilgrimage.cs).
+            [VowPilgrimage.AwayKey] = new VowPilgrimAway()
         };
 
         private static int Now => Find.TickManager.TicksGame;

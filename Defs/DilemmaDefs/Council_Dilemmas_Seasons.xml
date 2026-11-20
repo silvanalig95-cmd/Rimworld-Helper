@@ -148,6 +148,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Midwinter</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Midwinter" />
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.04</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><music>true</music><hours>16~22</hours><duration>3~4</duration>
@@ -167,6 +168,7 @@
         <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stories</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Midwinter" />
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the stories by the fire</label><hours>17~23</hours>

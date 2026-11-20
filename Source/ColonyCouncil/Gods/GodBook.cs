@@ -191,6 +191,8 @@ namespace ColonyCouncil
             Safe("pruning", () => b.Prune(now));
             // The gods on the map (Gods/OnMap/): a coming planned, the marks kept and visited.
             Safe("on the map", () => GodsOnMapBook.Daily(now));
+            // The gods among the colony's people and the world (Gods/Among/): the named seasons come round, pruning.
+            Safe("among the people", () => GodsAmongBook.Daily(now));
         }
 
         /// <summary>The region's hour: the gods' hands remarked on, talk of the gods at the evening fire and from visitors, and who is on a home map, so the colony learns their gods.</summary>
@@ -204,6 +206,8 @@ namespace ColonyCouncil
             Safe("visitors", () => Pantheon.LearnFromVisitors(b));
             // The gods on the map (Gods/OnMap/): the omens, the coming, the stranger, the beast, the weather, the marks.
             Safe("on the map", () => GodsOnMapBook.Hourly(now));
+            // The gods among the colony's people and the world (Gods/Among/): a pilgrim's tale, Ducat's turns, the keeper, the raiders' cries, midwinter.
+            Safe("among the people", () => GodsAmongBook.Hourly(now));
         }
 
         private static void Safe(string what, Action a)

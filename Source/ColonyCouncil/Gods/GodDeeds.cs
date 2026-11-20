@@ -155,19 +155,22 @@ namespace ColonyCouncil
         // ================= A funeral (the eulogy) =================
 
         /// <summary>A eulogy said over one of the colony's dead (Secrets/Vendettas.cs): the gods of the dead pleased, more when the body lies in a grave.</summary>
-        public static void Funeral(Pawn dead, Pawn speaker)
+        public static string Funeral(Pawn dead, Pawn speaker)
         {
-            if (!Gods.On || dead == null || speaker == null) return;
+            if (!Gods.On || dead == null || speaker == null) return null;
             try
             {
                 var map = speaker.MapHeld;
                 bool grave = dead.Corpse?.ParentHolder is Building_Grave;
                 Gods.Deed(GodDomain.Dead, map, grave ? GodsMath.FuneralDeed : GodsMath.FuneralUngravedDeed,
                     (grave ? "CC_God_Deed_Funeral" : "CC_God_Deed_FuneralNoGrave").Translate(dead.LabelShort.Named("DEAD"), speaker.LabelShort.Named("SPEAKER")).Resolve());
+                // The speaker gives the dead to the god they held, in the old voice (Gods/Among/GraveGods.cs): the line, for the eulogy's letter.
+                return GraveGods.Given(dead, speaker);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods: a funeral", e);
+                return null;
             }
         }
     }

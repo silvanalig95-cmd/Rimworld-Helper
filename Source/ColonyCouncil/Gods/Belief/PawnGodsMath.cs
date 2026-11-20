@@ -220,7 +220,7 @@ namespace ColonyCouncil
             ("VTE_Ecologist", 0, "Hollin", 22f), ("BodyPurist", 0, "Hollin", 14f), ("Rimfolk_GreenThumb", 0, "Hollin", 16f), ("VTE_Technophobe", 0, "Hollin", 10f),
             ("VTE_AnimalLover", 0, "Bellwether", 18f), ("VTE_Menagerist", 0, "Bellwether", 18f), ("Rimfolk_AnimalFriend", 0, "Bellwether", 16f), ("VTE_DogPerson", 0, "Bellwether", 8f),
             ("VTE_CatPerson", 0, "Mog", 22f),
-            ("VTE_ChildOfSea", 0, "Murmur", 22f),
+            ("VTE_ChildOfSea", 0, "Murmur", 22f), ("VCEF_Fisherman", 0, "Murmur", 22f),
             ("PsychicSensitivity", 2, "Cirrus", 20f), ("PsychicSensitivity", 1, "Cirrus", 12f), ("TorturedArtist", 0, "Cirrus", 16f),
             ("NaturalMood", 2, "Helios", 12f), ("NaturalMood", 1, "Helios", 6f), ("Joyous", 0, "Helios", 10f),
             ("Cannibal", 0, "Undertow", 18f), ("Psychopath", 0, "Undertow", 14f), ("Bloodlust", 0, "Undertow", 8f), ("VoidFascination", 0, "Undertow", 20f),

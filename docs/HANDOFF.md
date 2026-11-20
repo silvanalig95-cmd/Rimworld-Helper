@@ -83,7 +83,9 @@ most sense." So, in this order, three builds at a time:
      peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
-     gods 1 (C1, C2, C3, C4, C16, C17) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29), started 20 November;
+     gods 1 (C1, C2, C3, C4, C16, C17) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29), started 20 November
+     (gods 2 built, not released: the entry "The gods among the colony's people and the world" above the newest
+     release line);
      council (A1, A2, A5, A6, A21), started 20 November; the land and its life (C19, C20, C21, C22, C24, C28, C30);
      wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
      B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
@@ -605,6 +607,80 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.278.0, **The gods among the colony's people
+  and the world** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall
+  sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
+  additional God events, more immersion, more just further also building up on the gods in general, how they're
+  integrated, the effects they have, the relations between pawns, the kind of events that generated from it", and "first
+  do all the integrations that you proposed in your document before we add additional content variety"). Part C's
+  integrations, the second build: C6, C7, C8, C12, C14, C15, C18, C26 and C29, each marked **Built** in the proposals doc
+  with what was decided. DESIGN.md "The gods among the colony's people and the world" (after Revel's); README "The gods
+  among your people" (after Worship); the Almanac's gods page, a paragraph on what the colony's people do (keywords
+  unchanged).
+  - **C6, a vowed pilgrimage that really walks out.** The pilgrimage vow goes to a holy place of the god within one to
+    six days' road when there is one (a town of a people that holds it first, the fellowship's shrine, an old shrine by a
+    landmark), as a caravan of one (the season away), one to three days there; home with a keepsake of the place (VIE
+    Relics and Artifacts' small inert relics, the fellowship's shell, else a new pilgrim's token), that people's name for
+    the god heard into the book, and a piece of their tale told at the next supper by that name. Else the walk on the
+    colony's land as before.
+  - **C7, Murmur and the fishers.** A fisher who holds to Murmur gives one fish of the morning's first catch back with a
+    splash (a postfix on the game's catch), a word, a witness's word, the book now and then; a half-day of better fishing
+    (Odyssey's yield, Vanilla Fishing Expanded's luck, soft). `VCEF_Fisherman` draws toward Murmur; the water's give-back
+    may leave the mod's fish on the mud.
+  - **C8, Ducat and what the colony owes.** The ledger's debts the colony owes: paid when due, a gold coin outside the
+    payer's door next morning and the next trade caravan stays half a day longer; let lapse, the next trader drives a hard
+    bargain for a day (a plain message and a line in Rimfolk's trade window). Ducat never named.
+  - **C12, the keeper at work.** The book's keeper walks out to a sign they didn't see, looks, says a line in the old
+    voice, and the entry counts them; in the evening, every other day at most, they write up the new entries at Vanilla
+    Books Expanded's writing table, else a table or a lectern.
+  - **C14, the raiders' gods.** A raider of a people with gods cries their god's name as they come within sight, and the
+    book keeps it ("so a raider of ... cried at our wall"); a prisoner talking with the warden tells a piece of their
+    gods' tales.
+  - **C15, the dead's own god at the grave.** At a eulogy the speaker gives the dead to the god they held, in the old
+    voice, over their head and in the letter; those who grieve them and hold that god feel it a little lighter; the book
+    keeps it by the colony's name, or unnamed.
+  - **C18, named seasons taken for a god's doing.** A named season: a believer says whose doing it was, another who holds
+    another god argues it beside them, a doubter answers, the book keeps all three; a neighbour's letter may write of it;
+    a year on, in the same quarter, the council is asked to keep a day against it (`Rimfolk_Dlm_SeasonDay`, flavour
+    style; both answers play out at the god's place).
+  - **C26, a shrine room for each god.** Eleven room plans, each shown once the book has a page for its god, by the
+    colony's name for it, the mods' pieces where the colony can build them; the open-sky ones leave the roof off.
+  - **C29, midwinter with Vanilla Christmas Expanded.** On the winter god's festival or the midwinter custom: the festive
+    trees switched on at dusk, the gingerbread, eggnog and hot cocoa set out beside the festive table, the presents
+    handed round after supper one each, a snow sculpture by day.
+  - Code map: `Source/ColonyCouncil/Gods/Among/` (`GodsAmongMath` pure and tested, `GodsAmongBook` saved with three new
+    collections modelled in `Tools/save_estimate.py`, `VowPilgrimage`, `MurmurFishers`, `DucatDebts`, `KeeperAtWork`,
+    `GodLoreAmong`, `RaidersGods`, `GraveGods`, `SeasonGods`, `GodRooms`, `Midwinter`, `GodsAmongDebug`); defs
+    `Defs/GodDefs/Rimfolk_GodsAmong.xml`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_GodRooms.xml`; words
+    `Languages/English/Keyed/Rimfolk_GodsAmong.xml`. Hooks: `Vows.TrySetOut`, `SeasonAway.Kinds`, `GodTales.Tell`
+    (`asName`), `OwnMurmur.GiveBack`, `PawnGodsMath.TraitDraws`, `WorldLedger.Set`, `Window_RimfolkTrade`,
+    `Gods.Remember` and `Gods.Moment`, `GodLore.Heard` (`key`), `GodDeeds.Funeral` and the eulogy, `WeatherBook.EndQuarter`,
+    `RoomTemplateDef` (`god`, `godLabel`, `godPurpose`, `openSky`), `RoomMenu.Entries`, `TemplatePlanner.Execute`,
+    `CalendarKeeping.KeepDay`, the midwinter custom's two answers; Harmony: the catch, a hard bargain, a raid, a warden's
+    talk, a death. Tests `Tools/Tests/GodsAmongTests.cs`; the six spoken pools in `ImmersionTests`.
+  - Seams with the other build (C1 to C4, C16, C17): midwinter runs beside the winter gods' own festival play-out from the
+    calendar's keeping (`Midwinter.DayKept` sits next to `Festivals.Kept`), and touches neither `Festivals` nor
+    `OwnHappenings.FestivalKept`; nothing here reads the sacred kinds.
+  - Can't be checked without the game: the catch hook (the game's own list, a fish taken off it), the trader lord's timer
+    put back, a snowman finished as the mod's sculpture, the presents passed from pack to pack, the trade window's line,
+    the shrine rooms laid out with the mods' pieces (their sizes estimated in the tests: the catalogue keeps none), the
+    keeper's table and seat, the open-sky rooms' no-roof marking, and how often each comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk", "Gods among: ..."): select a colonist with a god and "a vowed pilgrimage to a
+    holy place now" (they walk out and the message says where and how long; a caravan of one on the world map); with a
+    fisher selected in the morning, "a fisher gives the first fish back"; "a debt paid now" then wait for the morning and a
+    trade caravan, "a debt let lapse now" then a trader at the gate and the trade window; "the keeper walks out to look"
+    and "the keeper writes up the book" (a table or Vanilla Books Expanded's writer's table built); start a raid of a
+    people with gods and "a raider cries their god's name" when they are in sight; with a prisoner, "a prisoner tells the
+    warden of their gods"; after a colonist with a god has died, "the dead given to their god"; "a season named (the long
+    cold)" with a believer of Hush at home, then "a named season comes round, the council asked"; the Rooms menu once the
+    book has a page for a god; with Vanilla Christmas Expanded, "midwinter kept today" in the afternoon.
+  - Mods that would help (graphics): Gerrymon's Greekcore Style ([3666883698](https://steamcommunity.com/sharedfiles/filedetails/?id=3666883698),
+    1.6 and 1.7, subscribed, off) for columns and temple pieces in the shrine rooms; Dark Ages: Crypts and Tombs
+    ([2963826335](https://steamcommunity.com/sharedfiles/filedetails/?id=2963826335), to 1.6, no 1.7 tag) for Tamiu's tomb
+    and the graves; Stoneborn - Dwarven Style Pack ([3172496453](https://steamcommunity.com/sharedfiles/filedetails/?id=3172496453),
+    to 1.6) for Smoulder's stone room; Epochs - Pottery ([3092351095](https://steamcommunity.com/sharedfiles/filedetails/?id=3092351095),
+    to 1.6) for urns; Simple FX: Splashes ([3261109179](https://steamcommunity.com/sharedfiles/filedetails/?id=3261109179),
+    to 1.6) for the fish given back. Each is in the player's subscriptions but off; "kept up" to be checked on its page.
 - 0.277.2, **The peoples' own beginnings, each
   told its own way** (20 November 2026; the player, 14 November 2026: "it really reads like AI gibberish and I don't
   understand what is really meant. also they all follow the same structure and it's always one named individual who

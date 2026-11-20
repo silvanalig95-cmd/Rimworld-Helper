@@ -1085,6 +1085,13 @@ namespace ColonyCouncil
             {
                 if (TryPlace(ThingDefOf.Wall, c, Rot4.North, plan.wallStuff, map)) walls++;
             }
+            // A shrine under the open sky: its floor marked no-roof, so no roof goes up over it (Gods/Among/GodRooms.cs).
+            if (plan.template.openSky && map.areaManager?.NoRoof != null)
+                foreach (var c in plan.interior)
+                {
+                    map.areaManager.NoRoof[c] = true;
+                    if (map.areaManager.BuildRoof != null) map.areaManager.BuildRoof[c] = false;
+                }
             foreach (var c in plan.wallWaiting.Concat(plan.wallFog))
             {
                 queue?.Add(ThingDefOf.Wall, plan.wallStuff, c, Rot4.North, label);

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A shrine room for each god (Source/ColonyCouncil/Gods/Among/GodRooms.cs; C26 of docs/content-update-proposals.md): the
+    room planner offers each one only once the colony has a page for its god in its book, named by the colony's name for it
+    ({GOD} in godLabel and godPurpose). Each is the room as the colony's people picture the god, never what the god wants.
+    The mods' pieces come first where the colony can build them (Alpha Memes, Vanilla Ideology Expanded - Memes and
+    Structures, Vanilla Furniture Expanded - Art, Vanilla Furniture Expanded - Props and Decor, Alpha Props - Parks and
+    Gardens, Dubs Bad Hygiene, Dragons Descent, Ideology), the game's own lights, pots, columns and sarcophagi otherwise; a
+    piece nobody can build here is left out. Without Ideology too: the art and statues the colony makes can be dedicated to
+    the god (Shrines.Is). openSky leaves the roof off. Facings and sizes follow the chapel's file: the door in the south
+    wall's middle, its inside cell left clear.
+  -->
+
+  <!-- ==================== Hollin: a garden shrine of planters round a tree ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Hollin</defName>
+    <label>garden shrine</label>
+    <godLabel>{GOD}'s garden shrine</godLabel>
+    <god>Hollin</god>
+    <description>Plant pots in a ring round bare ground in the middle, where a tree can be planted, with a torch at the back. The roof is left off.</description>
+    <purpose>A green place to pray, open to the sky.</purpose>
+    <godPurpose>A green place for {GOD}, as the colony's people picture {GOD}: roots, leaves and open sky, with a tree at its heart.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li>PlantPot</li></iconDefs>
+    <tips>
+      <li>Plant a tree in the bare ground in the middle: an oak or another long-lived tree grows into the room's heart.</li>
+      <li>A sculpture the colony makes can stand among the pots and be dedicated to the god.</li>
+    </tips>
+    <things>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,6)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(2,6)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,6)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,6)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,2)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,2)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(1,0)</pos><tier>decor</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(5,0)</pos><tier>decor</tier></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(3,6)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Smoulder: a stone room with a brazier ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Smoulder</defName>
+    <label>stone shrine with braziers</label>
+    <godLabel>{GOD}'s stone shrine</godLabel>
+    <god>Smoulder</god>
+    <description>A small stone-floored room with a brazier on either side of the back wall, and Dragons Descent's great dragon statue between them where the colony can make one.</description>
+    <purpose>A warm, close stone room to pray in.</purpose>
+    <godPurpose>A stone room for {GOD}, as the colony's people picture {GOD}: fire in the deep rock, and the heat of it on the face.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <rug>false</rug>
+    <iconDefs><li>DD_DragonStatueRitual_Large</li><li>Brazier</li><li>TorchLamp</li></iconDefs>
+    <floors><li>TileGranite</li><li>TileSlate</li><li>TileSandstone</li><li>TileLimestone</li></floors>
+    <tips>
+      <li>Planned against a rock face or dug into a hillside, it looks the way his people tell it: a room in the rock.</li>
+      <li>The braziers want wood. A statue or sculpture between them can be dedicated to the god.</li>
+    </tips>
+    <things>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,4)</pos><optional>false</optional></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,4)</pos></li>
+      <li><defs><li>DD_DragonStatueRitual_Large</li></defs><pos>(2,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Bellwether: a megalith in the open ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Bellwether</defName>
+    <label>megalith enclosure</label>
+    <godLabel>{GOD}'s standing stone</godLabel>
+    <god>Bellwether</god>
+    <description>A low-walled enclosure open to the sky, with Alpha Memes' or Vanilla Expanded's megalith standing in the middle where the colony can raise one, and a torch at each back corner. The grass inside is left to grow.</description>
+    <purpose>A quiet open place with a standing stone.</purpose>
+    <godPurpose>An open place for {GOD}, as the colony's people picture {GOD}: a great stone in the grass, and the herd grazing round it.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li>AM_Megalith</li><li>VFEPD_Megalith</li><li>TorchLamp</li></iconDefs>
+    <tips>
+      <li>Leave the grass inside uncut: those who hold to Bellwether keep a strip of grass for the herd.</li>
+      <li>Without the megalith, a sculpture in the middle can be dedicated to the god instead.</li>
+    </tips>
+    <things>
+      <li><defs><li>AM_Megalith</li><li>VFEPD_Megalith</li></defs><pos>(3,4)</pos></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,6)</pos><optional>false</optional></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(6,6)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Morel: a dark cellar with mushrooms ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Morel</defName>
+    <label>mushroom cellar shrine</label>
+    <godLabel>{GOD}'s cellar</godLabel>
+    <god>Morel</god>
+    <description>A small dark room with plant pots along the walls for mushrooms, and no lamp.</description>
+    <purpose>A dark, damp room where mushrooms grow.</purpose>
+    <godPurpose>A dark room for {GOD}, as the colony's people picture {GOD}: rot, soil and the things that grow in the dark.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li>PlantPot</li></iconDefs>
+    <tips>
+      <li>Glowstool and agarilux grow in the dark: plant them in the pots and keep the light out.</li>
+      <li>Underground or in a hillside, it stays dark and cool.</li>
+    </tips>
+    <things>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(1,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,2)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,2)</pos><tier>core</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Cirrus: an obelisk under the open sky ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Cirrus</defName>
+    <label>obelisk court</label>
+    <godLabel>{GOD}'s obelisk</godLabel>
+    <god>Cirrus</god>
+    <description>A small court open to the sky, with an obelisk in the middle where the colony can make one (Alpha Memes' or Vanilla Expanded's) and a column at each corner.</description>
+    <purpose>An open court to watch the sky from.</purpose>
+    <godPurpose>An open court for {GOD}, as the colony's people picture {GOD}: wind, storm and the stars, with nothing between them and the sky.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <openSky>true</openSky>
+    <rug>false</rug>
+    <iconDefs><li>AM_Obelisk</li><li>VFE_Obelisk</li><li>Column</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileGranite</li><li>TileSlate</li><li>TileLimestone</li><li>TileSandstone</li></floors>
+    <tips>
+      <li>A telescope nearby suits those who hold to Cirrus, who watch the sky at night.</li>
+      <li>Without the obelisk, a sculpture in the middle can be dedicated to the god instead.</li>
+    </tips>
+    <things>
+      <li><defs><li>AM_Obelisk</li><li>VFE_Obelisk</li></defs><pos>(2,3)</pos></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,4)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(4,4)</pos><tier>core</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,0)</pos><tier>core</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(4,0)</pos><tier>core</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Hush: white stone and urns ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Hush</defName>
+    <label>white stone shrine</label>
+    <godLabel>{GOD}'s white room</godLabel>
+    <god>Hush</god>
+    <description>A small room floored in white stone, with Alpha Memes' urns in the back corners where the colony can make them and one lamp between them.</description>
+    <purpose>A quiet, cold, plain room to sit in silence.</purpose>
+    <godPurpose>A white room for {GOD}, as the colony's people picture {GOD}: snow, stillness and the long cold, and no word spoken.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <rug>false</rug>
+    <iconDefs><li>AM_Urn</li><li>TorchLamp</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileLimestone</li><li>TileGranite</li></floors>
+    <tips>
+      <li>Marble or limestone keeps it white. Those who hold to Hush like it kept cool.</li>
+      <li>A sculpture between the urns can be dedicated to the god.</li>
+    </tips>
+    <things>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(2,4)</pos><optional>false</optional></li>
+      <li><defs><li>AM_Urn</li></defs><pos>(0,4)</pos></li>
+      <li><defs><li>AM_Urn</li></defs><pos>(4,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Helios: an open court with a grand statue ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Helios</defName>
+    <label>sun court</label>
+    <godLabel>{GOD}'s sun court</godLabel>
+    <god>Helios</god>
+    <description>A court open to the sky with four columns and two braziers, and room in the middle for a grand statue (Vanilla Furniture Expanded - Art's, made at the sculptor's table) or another sculpture.</description>
+    <purpose>A bright open court to stand in the sun.</purpose>
+    <godPurpose>An open court for {GOD}, as the colony's people picture {GOD}: noon light, warmth and the harvest ripening.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <openSky>true</openSky>
+    <rug>false</rug>
+    <iconDefs><li>VFE_StatueGrand</li><li>Column</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileMarble</li><li>TileLimestone</li><li>TileGranite</li></floors>
+    <tips>
+      <li>Leave the middle clear: a grand statue or a sculpture set there can be dedicated to the god.</li>
+      <li>Those who hold to Helios like it in full sun at noon.</li>
+    </tips>
+    <things>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,6)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(6,6)</pos><tier>core</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,2)</pos><tier>core</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(6,2)</pos><tier>core</tier></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(2,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,6)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Selene: a moon garden by an obelisk fountain ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Selene</defName>
+    <label>moon garden</label>
+    <godLabel>{GOD}'s moon garden</godLabel>
+    <god>Selene</god>
+    <description>A garden open to the sky with plant pots at the corners and Alpha Props' obelisk fountain in the middle where the colony can build one.</description>
+    <purpose>A quiet garden to sit in at night.</purpose>
+    <godPurpose>A night garden for {GOD}, as the colony's people picture {GOD}: moonlight on water, sleep and dreams, and the sick getting well.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li>AP_ObeliskFountain</li><li>PlantPot</li></iconDefs>
+    <tips>
+      <li>White flowers in the pots suit it. Those who hold to Selene come here after dark.</li>
+      <li>Without the fountain, a sculpture in the middle can be dedicated to the god instead.</li>
+    </tips>
+    <things>
+      <li><defs><li>AP_ObeliskFountain</li></defs><pos>(3,4)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,6)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,6)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,2)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,2)</pos><tier>core</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Tamiu: a tomb shrine with a sarcophagus ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Tamiu</defName>
+    <label>tomb shrine</label>
+    <godLabel>{GOD}'s tomb shrine</godLabel>
+    <god>Mog</god>
+    <description>A stone room with a sarcophagus at the back, Alpha Memes' Kemetic slab before it where the colony can lay one, and a brazier in each back corner.</description>
+    <purpose>A place for the colony's honoured dead.</purpose>
+    <godPurpose>A tomb for {GOD}, as the colony's people picture {GOD}: the dead wrapped and kept, the hearth, and a cat watching from the dark.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <rug>false</rug>
+    <iconDefs><li>Sarcophagus</li><li>AM_KemeticSlab_Medium</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileLimestone</li><li>TileGranite</li><li>TileSlate</li></floors>
+    <tips>
+      <li>The sarcophagus is a grave: someone the colony honoured can be laid in it.</li>
+      <li>A sculpture beside it can be dedicated to the god.</li>
+    </tips>
+    <things>
+      <li><defs><li>Sarcophagus</li></defs><role>grave</role><pos>(3,5)</pos><optional>false</optional></li>
+      <li><defs><li>AM_KemeticSlab_Medium</li></defs><pos>(3,2)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(6,6)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Murmur: a well-house ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Murmur</defName>
+    <label>well-house shrine</label>
+    <godLabel>{GOD}'s well-house</godLabel>
+    <god>Murmur</god>
+    <description>A small walled yard open to the sky, with Dubs Bad Hygiene's primitive well in the middle where the colony can dig one, plant pots at the back and a torch by the door.</description>
+    <purpose>A place by the water to sit and listen.</purpose>
+    <godPurpose>A well-house for {GOD}, as the colony's people picture {GOD}: deep water, rain and the croak from the marsh.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li>PrimitiveWell</li><li>PlantPot</li></iconDefs>
+    <tips>
+      <li>A well needs water under the ground: plan it near the water or the marsh.</li>
+      <li>Those who hold to Murmur sing at the well in a dry spell.</li>
+    </tips>
+    <things>
+      <li><defs><li>PrimitiveWell</li></defs><pos>(2,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,4)</pos><tier>core</tier></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,0)</pos><optional>false</optional></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Pip: a machine shrine ==================== -->
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Rimfolk_GodRoom_Pip</defName>
+    <label>machine shrine</label>
+    <godLabel>{GOD}'s machine shrine</godLabel>
+    <god>Pip</god>
+    <description>A small room with metal floors and two lamps, and room at the back for an old terminal (Ideology's worshipful terminal, where the colony has one to set there) or a sculpture.</description>
+    <purpose>A tidy room for machines and the people who mend them.</purpose>
+    <godPurpose>A shrine for {GOD}, as the colony's people picture {GOD}: a small spark in every machine, and good work done by hand.</godPurpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <rug>false</rug>
+    <iconDefs><li>AncientTerminal_Worshipful</li><li>StandingLamp</li><li>TorchLamp</li></iconDefs>
+    <floors><li>MetalTile</li><li>SterileTile</li><li>TileGranite</li><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Ideology's ancient terminal can be dedicated to the god. Any sculpture the colony makes can too.</li>
+      <li>Those who hold to Pip keep a broken thing to mend there.</li>
+    </tips>
+    <things>
+      <li><defs><li>AncientTerminal_Worshipful</li></defs><pos>(2,4)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(0,4)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><keepOnFloor>true</keepOnFloor><pos>(4,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

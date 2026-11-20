@@ -127,6 +127,15 @@ namespace ColonyCouncil
         public string era;
         /// <summary>The lavish style lays a rug on the open floor if a mod provides one (off for rooms that need the floor clear).</summary>
         public bool rug = true;
+        /// <summary>Its roof is left off: the plan marks the room's floor no-roof (a shrine under the open sky).</summary>
+        public bool openSky;
+        /// <summary>
+        /// A god's shrine room (Gods/Among/GodRooms.cs): the god's key. Shown only once the colony has a page for that god in its
+        /// book, with <see cref="godLabel"/> and <see cref="godPurpose"/> ({GOD}: the colony's name for it) as its label and purpose.
+        /// </summary>
+        public string god;
+        [MustTranslate] public string godLabel;
+        [MustTranslate] public string godPurpose;
 
         /// <summary>A room the player saved from the map (Your rooms); not a def in the database.</summary>
         [Unsaved] public CustomRoomData custom;

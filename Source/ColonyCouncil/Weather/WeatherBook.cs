@@ -261,6 +261,15 @@ namespace ColonyCouncil
                 string text = "CC_Weather_Named".Translate(named, Why(q)).Resolve();
                 Tell.Minor(NewsKind.Land, Importance.Notable, map, text, null, MessageTypeDefOf.NeutralEvent);
                 comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Weather_NamedChronicle".Translate(named.CapitalizeFirst()).Resolve()));
+                // The believers say whose doing they take it for (Gods/Among/SeasonGods.cs).
+                try
+                {
+                    SeasonGods.Named(map, q, named);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("weather: a named season and the gods", e);
+                }
             }
             var change = WeatherMath.Compare(q, before, out float by);
             if (change == WeatherChange.Same) return;

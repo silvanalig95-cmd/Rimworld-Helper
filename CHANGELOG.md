@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods among the people
+
+*20 November 2026, version 0.278.0*
+
+- A vowed pilgrimage now walks out to a holy place of the god in the region, and the pilgrim comes home with a keepsake and one of that people's stories.
+- Fishers who hold to Murmur give the first fish of the morning back to the water, and the fish bite better for them that day.
+- A debt paid on time leaves a gold coin on the payer's doorstep and keeps the next trader longer, and one let lapse brings a hard bargain.
+- The keeper of the book walks out to see the signs they missed and writes up the book at a table in the evening.
+- Raiders call on their gods at the wall, prisoners tell of their gods, and at a eulogy the dead are given to the god they held.
+- A named season is taken for a god's doing and argued over, and a year on the council may keep a day against it.
+- The room planner offers a shrine room for each god the book has a chapter for.
+- With Vanilla Christmas Expanded, midwinter brings the festive tree, the table set out, a present for everyone and a snow sculpture.
+
 ## Each people's own beginning
 
 *20 November 2026, version 0.277.2*
