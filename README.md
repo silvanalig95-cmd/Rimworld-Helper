@@ -2176,8 +2176,9 @@ game. It replaces the TakeCover mod, which in 1.7 shows where colonists would go
 ### Defenses: where to meet them
 The **Defenses** page, the window behind the **"defense"** button in the bottom bar (it can be hidden in the settings
 and is then still in the top right corner of Rimfolk's other windows), reads the colony's defense from its map. It works out which map edges raiders can reach home
-from and the ways they'd walk (from a sample of edge cells, along the easiest path, doors costing extra as raiders
-would have to break them), the narrow places on those ways (a pass through the mountain, a gap between rock and
+from and the ways they'd walk (from a sample of edge cells, along the easiest path; raiders who walk in can't open the
+colony's doors and don't break one while an open way is left, however long, so a shut door is on a way only where no
+open way reaches home, and the page says so), the narrow places on those ways (a pass through the mountain, a gap between rock and
 water, a bridge, the colony's own gate) with their width and the share of raids that would pass each, and whether the
 home is walled in. It counts what stands already (walls and doors, how much of the outer wall is two thick, turrets,
 traps, cover, embrasures, mortars, weapons kept by the beds), who fights (shooters and melee fighters, the best of
@@ -2187,8 +2188,9 @@ clusters (Royalty), insects under overhead mountain, Anomaly's threats and Biote
 when the page opens and kept for a day, or until a wall, door, turret, trap or cover is finished or taken away near a
 defense line or a gap, or the colony's buildings change a lot (at most once a game hour, never per frame: one look per
 building as it's finished or goes); **Survey again** makes it now. A defense line's gate and the doors in its wall
-count as its way through even when shut (raiders break a shut gate rather than walk far round), and a door held open
-counts as open, so shutting a gate never sends the ways in somewhere else.
+count as its way through even when shut (the helper reads a line as it will be used in a raid, with its gate held
+open; the line's card says when the gate is shut), and a door held open counts as open, so shutting a gate never sends
+the ways in somewhere else.
 
 The page shows the map in a few colors with the ways in and the gaps, the facts in short cards, a short **how it's
 commonly done** for the colony's era and land, and **advice ranked by what matters most now**, each with its reasons:

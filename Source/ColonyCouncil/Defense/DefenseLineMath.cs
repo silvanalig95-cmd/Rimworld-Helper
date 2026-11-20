@@ -157,22 +157,28 @@ namespace ColonyCouncil
         {
             /// <summary>The cell in front of the gate the test starts from, or -1 (nothing to stand on there).</summary>
             public int front = -1;
-            /// <summary>The cost of the way on through the gate held open, and of the best way round with it shut (-1: none).</summary>
+            /// <summary>
+            /// The cost of the way on through the gate held open, and of the best way round with it shut (-1: none). A shut
+            /// door on either adds <see cref="DefenseMath.ShutDoorCost"/> (<see cref="DefenseMath.DoorsToBreak"/>).
+            /// </summary>
             public int direct = -1, detour = -1;
-            /// <summary>A way round that's cheap enough that raiders would take it.</summary>
+            /// <summary>A way round no longer than the way through the gate by much, that breaks no more doors.</summary>
             public bool found;
             /// <summary>A way round that's too long to matter while the gate is open, but the one they take when it's shut.</summary>
             public bool longWay;
             /// <summary>It's even cheaper than through the open gate: they'd go round with the gate open too.</summary>
             public bool evenOpen;
-            /// <summary>The way round passes a door of the colony's (another gate), not open ground.</summary>
+            /// <summary>The way round passes a door of the colony's that raiders can pass (one held open, or another line's gate), not only open ground.</summary>
             public bool viaDoor;
             public int door = -1;
             /// <summary>Where the way round passes the line's row, and how far to the right of the gate (negative: left).</summary>
             public int cross = -1, lateral;
             /// <summary>The way round, from the front cell to the beds.</summary>
             public List<int> path = new List<int>();
-            /// <summary>With the gate shut, nothing reaches the beds without breaking in: the line holds the way in alone.</summary>
+            /// <summary>
+            /// With the gate shut, no way round is left that breaks no more of the colony's doors than the way through the
+            /// gate: the line holds the way in alone, and raiders shut out break in where they like.
+            /// </summary>
             public bool sealedShut;
             /// <summary>Nothing reaches the beds from in front of the gate even with it open: the line isn't on a way in.</summary>
             public bool noWayOn;
@@ -192,9 +198,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// With the line's gate held open, and again with it (and every door in the line) shut: the cost from the cell in
-        /// front of the gate to the beds. A way round when shut that costs no more than <see cref="LeakSlack"/> above the
-        /// way through is where raiders go when they find the gate shut, or always, when it's even cheaper. The grid is
-        /// changed while it works and put back afterwards.
+        /// front of the gate to the beds. Raiders don't break a shut door while an open way is left, so a way round that
+        /// has to break more of the colony's doors than the way through the gate is no way round at all, however short
+        /// (<see cref="Leak.sealedShut"/>); one that breaks no more is the way they take when they find the gate shut,
+        /// however long (<see cref="Leak.longWay"/> past <see cref="LeakSlack"/> above the way through), or always, when
+        /// it's even cheaper. The grid is changed while it works and put back afterwards.
         /// </summary>
         public static Leak FindLeak(DefenseMath.MapGrid m, int gx, int gz, int facing, int maxRow = 20)
         {
@@ -229,15 +237,19 @@ namespace ColonyCouncil
                     leak.noWayOn = true;
                     return leak;
                 }
-                if (leak.detour < 0)
+                // Only a way round that breaks no more shut doors than the way through the gate is one (with the gate
+                // open they'd still have to break those): a shut door is no way at all while an open way is left.
+                int doorsThrough = DefenseMath.DoorsToBreak(leak.direct), doorsRound = DefenseMath.DoorsToBreak(leak.detour);
+                if (leak.detour < 0 || leak.direct >= 0 && doorsRound > doorsThrough)
                 {
                     leak.sealedShut = true;
                     return leak;
                 }
-                int slack = LeakSlack(System.Math.Max(0, leak.direct));
-                leak.found = leak.direct < 0 || leak.detour - leak.direct <= slack;
+                int walkThrough = DefenseMath.Walking(leak.direct), walkRound = DefenseMath.Walking(leak.detour);
+                bool fewer = leak.direct < 0 || doorsRound < doorsThrough;
+                leak.found = fewer || walkRound - walkThrough <= LeakSlack(walkThrough);
                 leak.longWay = !leak.found;
-                leak.evenOpen = leak.direct >= 0 && leak.detour <= leak.direct;
+                leak.evenOpen = leak.direct >= 0 && (fewer || walkRound <= walkThrough);
                 int budget = m.w * m.h;
                 var way = DefenseMath.Walk(m, shut, leak.front, ref budget);
                 if (way != null) leak.path = way.cells;
@@ -307,9 +319,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The door rule: a line's gate, every door in its wall and a second door right behind the gate (a double gate)
-        /// are the line's way through, not a block. Raiders who find them shut break them rather than walk far round,
-        /// so the way in still runs through the line; the survey reads them as open ground (<see cref="DefenseMath.MapGrid.free"/>).
-        /// Returns how many doors it marked.
+        /// are the line's way through, not a block. The helper reads a line as it will be used in a raid, with its gate
+        /// held open, so the way in runs through the line even while the gate is shut; the survey reads them as open
+        /// ground (<see cref="DefenseMath.MapGrid.free"/>). In the game a shut gate is no way at all to raiders: the line's
+        /// card says so where the gate is shut. Returns how many doors it marked.
         /// </summary>
         public static int MarkLineDoors(DefenseMath.MapGrid m, int gx, int gz, int facing, int maxRow = 20)
         {

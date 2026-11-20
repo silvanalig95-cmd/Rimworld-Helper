@@ -50,6 +50,13 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   where it belongs, in the letters' `olde` lines ("needeth", "meaneth", "Most dear") and in the gods' and faiths' texts
   (the Gods' book, sayings, prayers, sermons), still saying plainly what it means. Samples and rewrites:
   `docs/text-style-samples.md`.
+  The player, 20 November 2026, after the plain-words pass: "please restore letters, wishes, ambitions, life goals,
+  personal stories, council questions, camps, and world events to just the previous text, to kind of the flavor style
+  text that you created before, restore it from the backup, and keep that also in mind for additional content to be
+  added". So in those eight parts (the neighbours' letters, wishes, ambitions, life goals, personal stories, the
+  council's questions, camps, world events) the flavour style of before the pass is kept, and new text written for them
+  takes that style, still true to what happens on the map. The plain rule holds for the rest: event cards, messages and
+  the interface, advice, encounters, missions, decrees and seats, the gods' cards and messages, the Almanac, What's new.
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).

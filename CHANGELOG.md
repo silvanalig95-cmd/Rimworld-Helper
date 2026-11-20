@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Shut doors on the ways in
+
+*20 November 2026, version 0.274.1*
+
+- The Defenses page no longer draws raiders' ways through a shut door while any open way is left, however long: raiders can't open your doors and don't break one while they have a way, so the gaps and raid counts now follow the way they really take.
+- Where no open way is left, the page says so, names the edges it applies to, and draws the way through the fewest doors as a guess: raiders who are shut out break in at a door or a stretch of wall they pick.
+- A defense line's card no longer treats another shut door as a way round, and its notes on a shut gate say what the game does: raiders take any other open way, and with none left break in where they pick.
+
 ## The peoples' own events, round 10
 
 *19 November 2026, version 0.274.0*

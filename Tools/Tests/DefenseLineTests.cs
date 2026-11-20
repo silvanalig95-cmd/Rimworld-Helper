@@ -128,6 +128,31 @@ public static class DefenseLineTests
             Check(DefenseLineMath.LeakSlack(130) == 35 * DefenseMath.Ortho && DefenseLineMath.LeakSlack(3000) == 1500, "the slack is 35 cells, or half the way on when that's longer");
         }
 
+        // ---------- A way round through another door ----------
+        {
+            // Two passes from open ground in the north into a meadow: the line across pass A (x 16..24) at z = 32 with its
+            // gate at x = 20, and pass B (x 30..32) closed at z = 32 by a wall with a door of the colony's at x = 31, which
+            // isn't the line's.
+            DefenseMath.MapGrid TwoPasses() => Map(50, 50, (x, z) =>
+            {
+                if (z >= 36) return '.';
+                if (z == 32 && x >= 16 && x <= 24) return x == 20 ? 'D' : 'W';
+                if (z == 32 && x >= 30 && x <= 32) return x == 31 ? 'D' : 'W';
+                if (z >= 25 && (x >= 16 && x <= 24 || x >= 30 && x <= 32)) return '.';
+                if (x >= 5 && x <= 40 && z >= 5 && z <= 24) return x >= 18 && x <= 22 && z >= 10 && z <= 12 ? 'c' : x >= 14 && x <= 26 && z >= 8 && z <= 14 ? 'h' : '.';
+                return '#';
+            });
+            var shut = TwoPasses();
+            var leak = DefenseLineMath.FindLeak(shut, 20, 32, 0);
+            Check(leak.direct > 0 && DefenseMath.DoorsToBreak(leak.direct) == 0, "other door shut: the way through the gate is open");
+            Check(leak.sealedShut && !leak.found && !leak.longWay, $"other door shut: no way round, since raiders don't break a door while the gate's way is open ({DefenseMath.DoorsToBreak(leak.detour)} door(s) round)");
+            var held = TwoPasses();
+            held.free[32 * 50 + 31] = true;
+            var leak2 = DefenseLineMath.FindLeak(held, 20, 32, 0);
+            Check(leak2.found && leak2.viaDoor && !leak2.sealedShut && DefenseMath.DoorsToBreak(leak2.detour) == 0, "other door held open: with the gate shut, raiders go round through it");
+            Check(leak2.door == 32 * 50 + 31 && leak2.path.Contains(leak2.door), "other door held open: the way round passes that door");
+        }
+
         // ---------- Open country: a short wall with a gate ----------
         {
             var m = Map(50, 50, (x, z) =>

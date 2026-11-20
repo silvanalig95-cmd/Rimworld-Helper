@@ -13,9 +13,11 @@ namespace ColonyCouncil
     /// faces (the raids its wealth buys, the hostile peoples around, the DLC threats that are on). Worked out on demand,
     /// never more than once a game hour unless asked, and kept until a day has passed, the colony's buildings change a
     /// lot, or a wall, door, turret, trap or cover is finished or taken away near a line or a gap (<see cref="Notify_Changed"/>,
-    /// one look per building, from the game's own construction and despawning). The door rule: a defense line's gate and
-    /// the doors in its wall are its way through, and a door held open is open, so a shut gate never sends the ways in
-    /// elsewhere. A gap a line holds already is marked as that line's (<see cref="CoveringLine"/>). Nothing here ticks.
+    /// one look per building, from the game's own construction and despawning). The ways in are those of raiders who walk
+    /// in from the map's edge, and any other shut door is no way at all to them while an open way is left (see
+    /// <see cref="DefenseMath"/>). The door rule: a defense line's gate and the doors in its wall are its way through, and a
+    /// door held open is open, so a shut gate never sends the ways in elsewhere. A gap a line holds already is marked as
+    /// that line's (<see cref="CoveringLine"/>). Nothing here ticks.
     /// </summary>
     public class DefenseSurvey
     {
@@ -291,7 +293,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The door rule on the grid: a door held open is open ground to raiders, and so is every defense line's gate and
-        /// each door in its wall (a shut gate is still the line's way through: raiders break it rather than go far round).
+        /// each door in its wall (a shut gate is still the line's way through: the helper reads a line as it will be used in
+        /// a raid, with its gate held open). Every other door counts as shut (<see cref="DefenseMath.MapGrid.ShutDoor"/>).
         /// </summary>
         private static void Doors(Map map, DefenseMath.MapGrid m)
         {
